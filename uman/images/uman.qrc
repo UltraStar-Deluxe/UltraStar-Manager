@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/control" >
+        <file>arrow_in.png</file>
+        <file>arrow_out.png</file>
+    </qresource>
+    <qresource prefix="/icons" >
+        <file>cup.png</file>
+    </qresource>
+    <qresource prefix="/marks" >
+        <file>accept.png</file>
+        <file>add.png</file>
+        <file>cancel.png</file>
+        <file>cross.png</file>
+        <file>delete.png</file>
+        <file>link.png</file>
+        <file>tick.png</file>
+        <file>tick_blue.png</file>
+    </qresource>
+    <qresource prefix="/types" >
+        <file>film.png</file>
+        <file>folder.png</file>
+        <file>font.png</file>
+        <file>music.png</file>
+        <file>picture.png</file>
+        <file>text.png</file>
+        <file>user.png</file>
+    </qresource>
+</RCC>
