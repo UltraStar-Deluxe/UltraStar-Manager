@@ -13,4 +13,9 @@ SOURCES += QUDetailItem.cpp \
     main.cpp
 FORMS += QUMainWindow.ui
 RESOURCES += images/uman.qrc
-win32:RC_FILE = uman.rc
+win32 { 
+    RC_FILE = uman.rc
+    LIBS += -L"../lib" \
+        -ltag
+}
+INCLUDEPATH += taglib

@@ -9,6 +9,10 @@
 #include <QMap>
 #include <QDir>
 
+/*!
+ * This class represents a data file which is used by UltraStar for every song.
+ * It contains all tags that are available in US Deluxe 1.00.
+ */
 class QUSongFile: public QObject {
 	Q_OBJECT
 	
@@ -37,12 +41,12 @@ public slots:
 	bool hasBackground() const;
 	bool hasVideo() const;
 	
-	QFileInfo songFileInfo() const {return _fi;}
+	QFileInfo songFileInfo() const {return _fi;} //!< \returns a file info for the current US song file
 	
-	QFileInfo mp3FileInfo() const {return QFileInfo(_fi.dir(), mp3());}
-	QFileInfo coverFileInfo() const {return QFileInfo(_fi.dir(), cover());}
-	QFileInfo backgroundFileInfo() const {return QFileInfo(_fi.dir(), background());}
-	QFileInfo videoFileInfo() const {return QFileInfo(_fi.dir(), video());}
+	QFileInfo mp3FileInfo() const {return QFileInfo(_fi.dir(), mp3());} //!< \returns a file info for the mp3 file
+	QFileInfo coverFileInfo() const {return QFileInfo(_fi.dir(), cover());} //!< \returns a file info for the cover file
+	QFileInfo backgroundFileInfo() const {return QFileInfo(_fi.dir(), background());} //!< \returns a file info for the background file
+	QFileInfo videoFileInfo() const {return QFileInfo(_fi.dir(), video());} //!< \returns a file info for the video file
 	
 	void setInfo(const QString &key, const QString &value);
 	

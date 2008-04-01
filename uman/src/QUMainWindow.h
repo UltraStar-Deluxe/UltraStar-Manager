@@ -8,6 +8,10 @@
 #include "QUSongItem.h"
 #include "ui_QUMainWindow.h"
 
+/*!
+ * This class represents the main user interface of uman. All important tasks
+ * will be offered to the user here.
+ */
 class QUMainWindow : public QMainWindow, private Ui::QUMainWindow {
 	Q_OBJECT
 

@@ -4,6 +4,11 @@
 #include <QVariant>
 #include <QDir>
 
+/*!
+ * Creates a new song file object.
+ * \param file an existing US song file (normally a *.txt)
+ * \param parent parent for Qt object tree
+ */
 QUSongFile::QUSongFile(const QString &file, QObject *parent): QObject(parent) {
 	_fi.setFile(file);
 	updateCache();
@@ -12,6 +17,11 @@ QUSongFile::QUSongFile(const QString &file, QObject *parent): QObject(parent) {
 QUSongFile::~QUSongFile() {
 }
 
+/*!
+ * Reads the US data file and loads all data into memory. This is needed to be done
+ * before any changes can be made.
+ * \returns True on success, otherwise false.
+ */
 bool QUSongFile::updateCache() {
 	_file.setFileName(_fi.filePath());
 	
@@ -40,15 +50,23 @@ bool QUSongFile::updateCache() {
 	return true;
 }
 
-void QUSongFile::setInfo(const QString &key, const QString &value) {
+/*!
+ * \param tag The tag you want to set/overwrite.
+ * \param value The desired value for the tag.
+ * \sa tags()
+ */
+void QUSongFile::setInfo(const QString &tag, const QString &value) {
 	if(value == "") {
-		_info.take(key);
+		_info.take(tag);
 		return;
 	}
 	
-	_info[key] = value.trimmed();
+	_info[tag] = value.trimmed();
 }
 
+/*!
+ * \returns A list of strings with all available tags.
+ */
 QStringList QUSongFile::tags() {
 	QStringList result;
 	
@@ -70,22 +88,42 @@ QStringList QUSongFile::tags() {
 	return result;
 }
 
+/*!
+ * Checks whether the mp3 file really exists and can be used by US.
+ * \returns True if the mp3 specified by the song file really exists.
+ */
 bool QUSongFile::hasMp3() const {
 	return mp3FileInfo().exists();
 }
 
+/*!
+ * Checks whether the cover picture file really exists and can be used by US.
+ * \returns True if the cover specified by the song file really exists.
+ */
 bool QUSongFile::hasCover() const {
 	return coverFileInfo().exists();
 }
 
+/*!
+ * Checks whether the background picture file really exists and can be used by US.
+ * \returns True if the background specified by the song file really exists.
+ */
 bool QUSongFile::hasBackground() const {
 	return backgroundFileInfo().exists();
 }
 
+/*!
+ * Checks whether the video file really exists and can be used by US.
+ * \returns True if the video specified by the song file really exists.
+ */
 bool QUSongFile::hasVideo() const {
 	return videoFileInfo().exists();
 }
 
+/*!
+ * Creates a complete new song file for US. Any old data will be overwritten.
+ * \returns True on success, otherwise false.
+ */
 bool QUSongFile::save() {
 	QFile::remove(_fi.filePath());
 	
@@ -110,6 +148,11 @@ bool QUSongFile::save() {
 	return true;
 }
 
+/*!
+ * Try to rename the directory of the current song file.
+ * \param newName the new name (avoid illegal characters for your OS)
+ * \returns True on success, otherwise false.
+ */
 bool QUSongFile::renameSongDir(const QString &newName) {
 	QDir dir(_fi.dir());	
 	dir.cdUp();
@@ -124,6 +167,11 @@ bool QUSongFile::renameSongDir(const QString &newName) {
 	return result;
 }
 
+/*!
+ * Try to rename the song file itself.
+ * \param newName the new name (avoid illegal characters for your OS)
+ * \returns True on success, otherwise false.
+ */
 bool QUSongFile::renameSongTxt(const QString &newName) {
 	bool result = _fi.dir().rename(_fi.fileName(), newName);
 	
@@ -134,6 +182,12 @@ bool QUSongFile::renameSongTxt(const QString &newName) {
 	return result;	
 }
 
+/*!
+ * Try to rename the mp3 file of the current song file. The information about the
+ * current mp3 file has to be correct or the file cannot be found and renamed.
+ * \param newName the new name (avoid illegal characters for your OS)
+ * \returns True on success, otherwise false.
+ */
 bool QUSongFile::renameSongMp3(const QString &newName) {
 	bool result = _fi.dir().rename(mp3(), newName);
 	
@@ -144,6 +198,12 @@ bool QUSongFile::renameSongMp3(const QString &newName) {
 	return result;
 }
 
+/*!
+ * Try to rename the cover picture file of the current song file. The information about the
+ * current cover has to be correct or the file cannot be found and renamed.
+ * \param newName the new name (avoid illegal characters for your OS)
+ * \returns True on success, otherwise false.
+ */
 bool QUSongFile::renameSongCover(const QString &newName) {
 	bool result = _fi.dir().rename(cover(), newName);
 	
@@ -154,6 +214,12 @@ bool QUSongFile::renameSongCover(const QString &newName) {
 	return result;
 }
 
+/*!
+ * Try to rename the background picture file of the current song file. The information about the
+ * current background has to be correct or the file cannot be found and renamed.
+ * \param newName the new name (avoid illegal characters for your OS)
+ * \returns True on success, otherwise false.
+ */
 bool QUSongFile::renameSongBackground(const QString &newName) {
 	bool result = _fi.dir().rename(background(), newName);
 	
@@ -164,6 +230,12 @@ bool QUSongFile::renameSongBackground(const QString &newName) {
 	return result;
 }
 
+/*!
+ * Try to rename the video file of the current song file. The information about the
+ * current video has to be correct or the file cannot be found and renamed.
+ * \param newName the new name (avoid illegal characters for your OS)
+ * \returns True on success, otherwise false.
+ */
 bool QUSongFile::renameSongVideo(const QString &newName) {
 	bool result = _fi.dir().rename(video(), newName);
 	
