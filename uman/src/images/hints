@@ -1,0 +1,16 @@
+If you double-click the cell where the row with an MP3 file and the column for MP3s cross, you can immediately set up your song file.<br><br>This works also für pictures and videos.
+You can edit the value of each tag in the details area in the upper right. Just double-click to enter edit mode.
+You can modify the order in which tags are saved to a song file by drag&drop these tags under "Options->Tag Save Order".
+Did you remark that "tasks area" on the middle right? Just check the things you want to do, select some songs and then click on the start-button.
+You can hide the event log to the lower right by unchecking "Show Event Log" in the "Options" menu.
+Do you want me to say something else? Tell everybody your requests on our <a href="http://sourceforge.net/projects/uman">SourceForge project website</a>.
+Some tags are missing? Yeah, that's right. Several data stays unchanged because this tool doesn't enable you to modify GAP or BPM a.s.o.<br><br>You can use UltraStar itself very well for that.
+Did I hear you correctly? A missing feature?! Just click <a href="http://sourceforge.net/projects/uman">here</a> and tell it everyone - especially the developers.
+You can also send a mail to <a href="mailto:saiya_mg@users.sourceforge.net">any developer</a> and give feedback.
+The "Songs" menu enables you to expand or collapse the whole song tree. That means you will either see only directories of your songs or all files you can use.
+You are missing a video for your favourite song? Check out <a href="http://www.youtube.com">Youtube</a>!
+Whenever a task could not be done you can see it in the event log to the lower right. Mostly a file could not be found or invalid characters are used to rename something.<br><br>Be aware that UltraStar can display more characters than you can use under Windows for a file.
+Did you notice that there are green and blue ticks for the song tree? Blue ones tell you that your song directory is named correctly after "Artist - Title" not case-sensitive while green ones are case-sensitive.
+The chain beside a picture, audio or video file signals you that it can be found by UltraStar correctly.<br><br>You can reset chains by double-click the correct column.
+Files are unused by UltraStar whenever they appear gray.
+You want to know how many songs you've got? Well...there are <b>%1 songs</b>. Not bad at all.<br><br>Did you get a cover, a background or a video for each one? No? Then you've got a new task.

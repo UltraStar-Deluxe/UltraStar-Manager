@@ -62,6 +62,8 @@ private slots:
 	
 	void editTagOrder();
 	
+	void montyTalk();
+	
 private:
 	QDir _baseDir;
 	QList<QUSongFile*> _songs;

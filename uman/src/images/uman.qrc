@@ -29,6 +29,9 @@
         <file>tick.png</file>
         <file>tick_blue.png</file>
     </qresource>
+    <qresource prefix="/txt" >
+        <file>hints</file>
+    </qresource>
     <qresource prefix="/types" >
         <file>film.png</file>
         <file>folder.png</file>

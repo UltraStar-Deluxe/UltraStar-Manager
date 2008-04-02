@@ -2,9 +2,12 @@
 
 #include <QtGui>
 #include <QApplication>
+#include <QDateTime>
 
 int main(int argc, char *argv[]) {
 	Q_INIT_RESOURCE(uman);
+	
+	qsrand(QDateTime::currentDateTime().toTime_t());
 	
     QApplication a(argc, argv);
     QUMainWindow w;

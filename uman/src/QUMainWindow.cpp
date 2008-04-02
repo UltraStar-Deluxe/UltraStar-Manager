@@ -20,6 +20,7 @@
 
 #include "QUSongFile.h"
 #include "QUDetailItem.h"
+#include "QUMonty.h"
 
 #include "QUTagOrderDialog.h"
 
@@ -186,13 +187,9 @@ void QUMainWindow::initTaskList() {
 	connect(noTasksBtn, SIGNAL(clicked()), this, SLOT(uncheckAllTasks()));
 }
 
-void QUMainWindow::initMonty() {	
-	QString welcomeStr("Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the button below and I will disappear for now.<br>"
-			"<br>"
-			"You have a nice collection of %1 songs there. Are they managed well until now?");
-	
-	monty->setPixmap(QString(":/monty/seated.png"));
-	helpLbl->setText(welcomeStr.arg(QVariant(_songs.size()).toString()));
+void QUMainWindow::initMonty() {
+	montyLbl->setPixmap(monty->pic(QUMonty::seated));
+	helpLbl->setText(monty->welcomeMsg(_songs.size()));
 	
 	connect(hideMontyBtn, SIGNAL(clicked()), helpFrame, SLOT(hide()));
 	
@@ -395,8 +392,8 @@ void QUMainWindow::resetLink(QTreeWidgetItem *item, int column) {
 		song->save();
 	}
 
-
 	createSongTree();
+	montyTalk();
 }
 
 void QUMainWindow::updateDetails() {
@@ -484,6 +481,7 @@ void QUMainWindow::doTasks() {
 		}
 	}
 	createSongTree();
+	montyTalk();
 }
 
 void QUMainWindow::useID3Tag(QUSongFile *song) {
@@ -577,4 +575,14 @@ void QUMainWindow::editTagOrder() {
 	dlg->exec();
 
 	delete dlg;
+	
+	montyTalk();
+}
+
+void QUMainWindow::montyTalk() {
+	if(!actionAllowMonty->isChecked())
+		return;
+	
+	helpFrame->show();
+	monty->talk(montyLbl, helpLbl);
 }
