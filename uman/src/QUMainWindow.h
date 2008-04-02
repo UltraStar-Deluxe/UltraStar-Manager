@@ -17,7 +17,7 @@ class QUMainWindow : public QMainWindow, private Ui::QUMainWindow {
 
 public:
 	QUMainWindow(QWidget *parent = 0);
-	~QUMainWindow() {}
+	~QUMainWindow();
 	
 private slots:
 	void initConfig();

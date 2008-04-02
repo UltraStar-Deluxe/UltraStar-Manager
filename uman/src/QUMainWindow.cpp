@@ -24,9 +24,9 @@
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	setupUi(this);
 	
-	initConfig();
 	initWindow();
 	initMenu();
+	initConfig();
 	
 	initSongTree();
 	initDetailsTable();	
@@ -36,17 +36,38 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 }
 
 /*!
+ * Save configuration for next application start.
+ */
+QUMainWindow::~QUMainWindow() {
+	QSettings settings;
+	
+	settings.setValue("showTaskList", QVariant(actionShowTaskList->isChecked()));
+	settings.setValue("showEventLog", QVariant(actionShowEventLog->isChecked()));
+	settings.setValue("allowMonty", QVariant(actionAllowMonty->isChecked()));
+}
+
+/*!
  * Initializes the windows registry entry for uman. Lets the user
  * choose a path where the song files are located.
  */
 void QUMainWindow::initConfig() {
-	QSettings settings("HPI", "UltraStar Manager");
-	QString path = settings.value("songPath", QVariant("D:/Programme/UltraStar/songs")).toString();
+	QCoreApplication::setOrganizationName("HPI");
+	QCoreApplication::setApplicationName("UltraStar Manager");
+	     
+	QSettings settings;
+	QString path = settings.value("songPath").toString();
 	
 	path = QFileDialog::getExistingDirectory(this, "Choose your UltraStar song directory", path);
-	settings.setValue("songPath", QVariant(path));
+	
+	if(!path.isEmpty())
+		settings.setValue("songPath", QVariant(path));
 	
 	_baseDir.setPath(path);
+	
+	// read other settings
+	actionShowTaskList->setChecked(settings.value("showTaskList", QVariant(true)).toBool());
+	actionShowEventLog->setChecked(settings.value("showEventLog", QVariant(true)).toBool());
+	actionAllowMonty->setChecked(settings.value("allowMonty", QVariant(true)).toBool());
 }
 
 /*!
@@ -67,9 +88,17 @@ void QUMainWindow::initMenu() {
 	connect(actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(collapseAll()));
 	connect(actionCollapseAll, SIGNAL(triggered()), this, SLOT(resizeToContents()));
 	
-	// about
+	//options
+	connect(actionShowEventLog, SIGNAL(toggled(bool)), log, SLOT(setVisible(bool)));
+	connect(actionShowTaskList, SIGNAL(toggled(bool)), taskFrame, SLOT(setVisible(bool)));
+	
+	// help
+	connect(actionShowMonty, SIGNAL(triggered()), helpFrame, SLOT(show()));
 	connect(actionQt, SIGNAL(triggered()), this, SLOT(aboutQt()));
 	connect(actionUman, SIGNAL(triggered()), this, SLOT(aboutUman()));
+	
+	actionAllowMonty->setIcon(QIcon(":/monty/normal.png"));
+	actionShowMonty->setIcon(QIcon(":/monty/happy.png"));
 }
 
 /*!
@@ -154,7 +183,7 @@ void QUMainWindow::initTaskList() {
 	connect(noTasksBtn, SIGNAL(clicked()), this, SLOT(uncheckAllTasks()));
 }
 
-void QUMainWindow::initMonty() {
+void QUMainWindow::initMonty() {	
 	QString welcomeStr("Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the button below and I will disappear for now.<br>"
 			"<br>"
 			"You have a nice collection of %1 songs there. Are they managed well until now?");
@@ -163,6 +192,9 @@ void QUMainWindow::initMonty() {
 	helpLbl->setText(welcomeStr.arg(QVariant(_songs.size()).toString()));
 	
 	connect(hideMontyBtn, SIGNAL(clicked()), helpFrame, SLOT(hide()));
+	
+	if(!actionAllowMonty->isChecked())
+		helpFrame->hide();
 }
 
 /*!
@@ -533,5 +565,5 @@ void QUMainWindow::aboutQt() {
 }
 
 void QUMainWindow::aboutUman() {
-	QMessageBox::about(this, "About", "<b>UltraStar Manager</b><br>Version 1.2<br><br>©2008 by Marcel Taeumel<br><br><i>Tested By</i><br>Michael Grünewald");
+	QMessageBox::about(this, "About", "<b>UltraStar Manager</b><br>Version 1.3<br><br>©2008 by Marcel Taeumel<br><br><i>Tested By</i><br>Michael Grünewald");
 }

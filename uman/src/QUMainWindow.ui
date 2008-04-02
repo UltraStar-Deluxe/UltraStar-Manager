@@ -550,10 +550,12 @@ p, li { white-space: pre-wrap; }
      <bool>false</bool>
     </property>
     <property name="title" >
-     <string>About</string>
+     <string>Help</string>
     </property>
-    <addaction name="actionQt" />
+    <addaction name="actionAllowMonty" />
+    <addaction name="actionShowMonty" />
     <addaction name="separator" />
+    <addaction name="actionQt" />
     <addaction name="actionUman" />
    </widget>
    <widget class="QMenu" name="menuSongs" >
@@ -563,13 +565,23 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionExpandAll" />
     <addaction name="actionCollapseAll" />
    </widget>
+   <widget class="QMenu" name="menuOptions" >
+    <property name="title" >
+     <string>Options</string>
+    </property>
+    <addaction name="actionShowEventLog" />
+    <addaction name="actionShowTaskList" />
+    <addaction name="separator" />
+    <addaction name="actionTagSaveOrder" />
+   </widget>
    <addaction name="menuSongs" />
+   <addaction name="menuOptions" />
    <addaction name="menuAbout_Qt" />
   </widget>
   <widget class="QStatusBar" name="statusbar" />
   <action name="actionQt" >
    <property name="text" >
-    <string>Qt</string>
+    <string>About Qt</string>
    </property>
   </action>
   <action name="actionUman" >
@@ -577,7 +589,7 @@ p, li { white-space: pre-wrap; }
     <iconset resource="images/uman.qrc" >:/icons/cup.png</iconset>
    </property>
    <property name="text" >
-    <string>UltraStar Manager</string>
+    <string>About UltraStar Manager</string>
    </property>
   </action>
   <action name="actionExpandAll" >
@@ -600,6 +612,69 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="statusTip" >
     <string>Only shows all directories in the song tree.</string>
+   </property>
+  </action>
+  <action name="actionShowEventLog" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Show Event Log</string>
+   </property>
+  </action>
+  <action name="actionShowTaskList" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Show Task List</string>
+   </property>
+  </action>
+  <action name="actionShowDetails" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Show Details</string>
+   </property>
+  </action>
+  <action name="actionTagSaveOrder" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="text" >
+    <string>Tag Save Order...</string>
+   </property>
+   <property name="statusTip" >
+    <string>Modify the order in which tags will be saved into song files.</string>
+   </property>
+  </action>
+  <action name="actionAllowMonty" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Allow Monty</string>
+   </property>
+  </action>
+  <action name="actionShowMonty" >
+   <property name="text" >
+    <string>Show Monty now</string>
+   </property>
+   <property name="statusTip" >
+    <string>Displays the last message from Monty the Mammoth.</string>
    </property>
   </action>
  </widget>
