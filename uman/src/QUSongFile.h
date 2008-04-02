@@ -60,6 +60,8 @@ public slots:
 	
 	bool useID3Tag();
 	
+	static QStringList tags();
+	
 private:
 	QFileInfo _fi;
 	QFile     _file;
@@ -67,8 +69,6 @@ private:
 	QStringList _lyrics;
 	
 	bool updateCache();
-	
-	QStringList tags();
 };
 
 #endif /*QUSONGFILE_H_*/

@@ -21,6 +21,8 @@
 #include "QUSongFile.h"
 #include "QUDetailItem.h"
 
+#include "QUTagOrderDialog.h"
+
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	setupUi(this);
 	
@@ -91,6 +93,7 @@ void QUMainWindow::initMenu() {
 	//options
 	connect(actionShowEventLog, SIGNAL(toggled(bool)), log, SLOT(setVisible(bool)));
 	connect(actionShowTaskList, SIGNAL(toggled(bool)), taskFrame, SLOT(setVisible(bool)));
+	connect(actionTagSaveOrder, SIGNAL(triggered()), this, SLOT(editTagOrder()));
 	
 	// help
 	connect(actionShowMonty, SIGNAL(triggered()), helpFrame, SLOT(show()));
@@ -378,16 +381,16 @@ void QUMainWindow::resetLink(QTreeWidgetItem *item, int column) {
 	
 	QUSongFile *song = songItem->song();
 	
-	if( songItem->icon(3).isNull() and songItem->text(0).endsWith(".mp3") and column == 3 ) {
+	if( songItem->icon(3).isNull() and songItem->text(0).toLower().endsWith(".mp3") and column == 3 ) {
 		song->setInfo("MP3", songItem->text(0));
 		song->save();
-	} else if( songItem->icon(4).isNull() and songItem->text(0).endsWith(".jpg") and column == 4 ) {
+	} else if( songItem->icon(4).isNull() and songItem->text(0).toLower().endsWith(".jpg") and column == 4 ) {
 		song->setInfo("COVER", songItem->text(0));
 		song->save();
-	} else if( songItem->icon(5).isNull() and songItem->text(0).endsWith(".jpg") and column == 5 ) {
+	} else if( songItem->icon(5).isNull() and songItem->text(0).toLower().endsWith(".jpg") and column == 5 ) {
 		song->setInfo("BACKGROUND", songItem->text(0));
 		song->save();
-	} else if( songItem->icon(6).isNull() and songItem->text(0).endsWith(".mpg") and column == 6 ) {
+	} else if( songItem->icon(6).isNull() and songItem->text(0).toLower().endsWith(".mpg") and column == 6 ) {
 		song->setInfo("VIDEO", songItem->text(0));
 		song->save();
 	}
@@ -566,4 +569,12 @@ void QUMainWindow::aboutQt() {
 
 void QUMainWindow::aboutUman() {
 	QMessageBox::about(this, "About", "<b>UltraStar Manager</b><br>Version 1.3<br><br>©2008 by Marcel Taeumel<br><br><i>Tested By</i><br>Michael Grünewald");
+}
+
+void QUMainWindow::editTagOrder() {
+	QUTagOrderDialog *dlg = new QUTagOrderDialog(this);
+	
+	dlg->exec();
+
+	delete dlg;
 }

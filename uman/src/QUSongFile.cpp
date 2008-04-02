@@ -3,6 +3,7 @@
 #include <QByteArray>
 #include <QVariant>
 #include <QDir>
+#include <QSettings>
 
 #include "fileref.h"
 #include "tag.h"
@@ -36,7 +37,7 @@ bool QUSongFile::updateCache() {
 	while( !(line.startsWith(":") || _file.atEnd()) ) {
 		line = QString(_file.readLine());
 		
-		foreach(QString tag, tags()) {
+		foreach(QString tag, QUSongFile::tags()) {
 			if(line.startsWith("#" + tag + ":"))
 				setInfo(tag, line.section("#" + tag + ":", 0, 0, QString::SectionSkipEmpty));		
 		}
@@ -135,13 +136,19 @@ bool QUSongFile::save() {
 	
 	if(!_file.open(QIODevice::WriteOnly | QIODevice::Text))
 		return false;
-		
-	foreach(QString key, _info.keys()) {
-		_file.write("#");
-		_file.write(key.toLocal8Bit());
-		_file.write(":");
-		_file.write(_info.value(key).toLocal8Bit());
-		_file.write("\n");
+	
+	QStringList tags;
+	QSettings settings;
+	tags = settings.value("tagOrder", QUSongFile::tags()).toStringList();
+	
+	foreach(QString tag, tags) {
+		if(_info.value(tag) != "") { // do not write empty tags
+			_file.write("#");
+			_file.write(tag.toLocal8Bit());
+			_file.write(":");
+			_file.write(_info.value(tag).toLocal8Bit());
+			_file.write("\n");
+		}
 	}
 	
 	foreach(QString line, _lyrics) {

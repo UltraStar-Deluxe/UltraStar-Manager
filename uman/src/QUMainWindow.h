@@ -60,6 +60,8 @@ private slots:
 	void aboutQt();
 	void aboutUman();
 	
+	void editTagOrder();
+	
 private:
 	QDir _baseDir;
 	QList<QUSongFile*> _songs;

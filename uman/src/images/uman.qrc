@@ -5,6 +5,10 @@
         <file>monty/normal.png</file>
         <file>monty/seated.png</file>
     </qresource>
+    <qresource prefix="/bullets" >
+        <file>bullet_arrow_down.png</file>
+        <file>bullet_arrow_up.png</file>
+    </qresource>
     <qresource prefix="/control" >
         <file>arrow_in.png</file>
         <file>arrow_out.png</file>
