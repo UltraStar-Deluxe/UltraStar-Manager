@@ -4,6 +4,10 @@
 #include <QVariant>
 #include <QDir>
 
+#include "fileref.h"
+#include "tag.h"
+#include "tstring.h"
+
 /*!
  * Creates a new song file object.
  * \param file an existing US song file (normally a *.txt)
@@ -244,4 +248,20 @@ bool QUSongFile::renameSongVideo(const QString &newName) {
 	}
 	
 	return result;
+}
+
+/*!
+ * Reads the ID3 tag from the specified MP3-File (info has to be correct) and uses
+ * artist and title information for the song file.
+ */
+bool QUSongFile::useID3Tag() {
+	if(!hasMp3())
+		return false;
+	
+	TagLib::FileRef ref(mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+	
+	setInfo("ARTIST", TStringToQString(ref.tag()->artist()));
+	setInfo("TITLE", TStringToQString(ref.tag()->title()));
+	
+	return true;
 }

@@ -1,7 +1,15 @@
 <RCC>
+    <qresource prefix="/" >
+        <file>monty/back.png</file>
+        <file>monty/happy.png</file>
+        <file>monty/normal.png</file>
+        <file>monty/seated.png</file>
+    </qresource>
     <qresource prefix="/control" >
         <file>arrow_in.png</file>
         <file>arrow_out.png</file>
+        <file>textfile32.png</file>
+        <file>wizard.png</file>
     </qresource>
     <qresource prefix="/icons" >
         <file>cup.png</file>
@@ -13,6 +21,7 @@
         <file>cross.png</file>
         <file>delete.png</file>
         <file>link.png</file>
+        <file>tag.png</file>
         <file>tick.png</file>
         <file>tick_blue.png</file>
     </qresource>

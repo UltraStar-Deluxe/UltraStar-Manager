@@ -58,6 +58,8 @@ public slots:
 	bool renameSongBackground(const QString &newName);
 	bool renameSongVideo(const QString &newName);
 	
+	bool useID3Tag();
+	
 private:
 	QFileInfo _fi;
 	QFile     _file;

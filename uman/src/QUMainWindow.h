@@ -20,8 +20,14 @@ public:
 	~QUMainWindow() {}
 	
 private slots:
-	void initTable();
-	void initSongTableHeader();
+	void initConfig();
+	void initWindow();
+	void initMenu();
+	void initSongTree();
+	void initSongTreeHeader();
+	void initDetailsTable();
+	void initTaskList();
+	void initMonty();
 	
 	void createSongFiles();
 	void createSongTree();
@@ -39,8 +45,11 @@ private slots:
 	
 	void saveSongChanges(QTableWidgetItem *item);
 	
+	void checkAllTasks();
+	void uncheckAllTasks();
 	void doTasks();
 	
+	void useID3Tag(QUSongFile *song);
 	void renameSongDir(QUSongFile *song);
 	void renameSongTxt(QUSongFile *song);
 	void renameSongMp3(QUSongFile *song);

@@ -1,6 +1,10 @@
 #include "QUMainWindow.h"
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
+
+#include <QListWidget>
+#include <QListWidgetItem>
+
 #include <QDir>
 #include <QStringList>
 #include <QPixmap>
@@ -9,13 +13,33 @@
 #include <QHeaderView>
 #include <QDateTime>
 #include <QSettings>
-#include <QFileDialog>
 #include <QMessageBox>
+
+#include <QFileDialog>
+#include <QProgressDialog>
 
 #include "QUSongFile.h"
 #include "QUDetailItem.h"
 
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
+	setupUi(this);
+	
+	initConfig();
+	initWindow();
+	initMenu();
+	
+	initSongTree();
+	initDetailsTable();	
+	initTaskList();
+	
+	initMonty();
+}
+
+/*!
+ * Initializes the windows registry entry for uman. Lets the user
+ * choose a path where the song files are located.
+ */
+void QUMainWindow::initConfig() {
 	QSettings settings("HPI", "UltraStar Manager");
 	QString path = settings.value("songPath", QVariant("D:/Programme/UltraStar/songs")).toString();
 	
@@ -23,55 +47,53 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	settings.setValue("songPath", QVariant(path));
 	
 	_baseDir.setPath(path);
-		
-	setupUi(this);
-	
+}
+
+/*!
+ * Set up initial window size and title text.
+ */
+void QUMainWindow::initWindow() {
 	setWindowTitle("UltraStar Manager");
-	
-	initTable();
-	
-	connect(expandBtn, SIGNAL(clicked()), songTable, SLOT(expandAll()));
-	connect(expandBtn, SIGNAL(clicked()), this, SLOT(resizeToContents()));
-	connect(collapseBtn, SIGNAL(clicked()), songTable, SLOT(collapseAll()));
-	connect(collapseBtn, SIGNAL(clicked()), this, SLOT(resizeToContents()));
-	
-	connect(taskBtn, SIGNAL(clicked()), this, SLOT(doTasks()));
-	
-	detailsTable->verticalHeader()->hide();
-	detailsTable->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-	detailsTable->setHorizontalHeaderLabels(QStringList() << "Tag" << "Value");
-	
-	detailsTable->horizontalHeader()->setResizeMode(0, QHeaderView::Interactive);
-	detailsTable->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
-	
 	resize(1000, 600);
 	QList<int> sizes;
 	sizes << 700 << 300;
 	splitter->setSizes(sizes);
+}
+
+void QUMainWindow::initMenu() {
+	// song
+	connect(actionExpandAll, SIGNAL(triggered()), songTree, SLOT(expandAll()));
+	connect(actionExpandAll, SIGNAL(triggered()), this, SLOT(resizeToContents()));
+	connect(actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(collapseAll()));
+	connect(actionCollapseAll, SIGNAL(triggered()), this, SLOT(resizeToContents()));
 	
-	connect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(saveSongChanges(QTableWidgetItem*)));
-	
+	// about
 	connect(actionQt, SIGNAL(triggered()), this, SLOT(aboutQt()));
 	connect(actionUman, SIGNAL(triggered()), this, SLOT(aboutUman()));
 }
 
-void QUMainWindow::initTable() {
-	initSongTableHeader();
+/*!
+ * Set up the song tree the first time.
+ * \sa createSongFiles();
+ * \sa createSongTree();
+ */
+void QUMainWindow::initSongTree() {
+	initSongTreeHeader();
 	
-	connect(songTable, SIGNAL(itemSelectionChanged()), this, SLOT(updateDetails()));
+	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateDetails()));
 
-	connect(songTable, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(resetLink(QTreeWidgetItem*, int))); 
-	connect(songTable, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(resizeToContents()));
-	connect(songTable, SIGNAL(itemCollapsed(QTreeWidgetItem*)), this, SLOT(resizeToContents()));
+	connect(songTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(resetLink(QTreeWidgetItem*, int))); 
+	connect(songTree, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(resizeToContents()));
+	connect(songTree, SIGNAL(itemCollapsed(QTreeWidgetItem*)), this, SLOT(resizeToContents()));
 	
 	createSongFiles();
 	createSongTree();
 	
 	resizeToContents();
-	songTable->sortItems(0, Qt::AscendingOrder);
+	songTree->sortItems(0, Qt::AscendingOrder);
 }
 
-void QUMainWindow::initSongTableHeader() {
+void QUMainWindow::initSongTreeHeader() {
 	QTreeWidgetItem *header = new QTreeWidgetItem();
 	header->setText(0, "Folder");
 	header->setIcon(0, QIcon(":/types/folder.png"));
@@ -88,13 +110,74 @@ void QUMainWindow::initSongTableHeader() {
 	header->setText(6, "Video");
 	header->setIcon(6, QIcon(":/types/film.png"));
 	
-	songTable->setHeaderItem(header);	
+	songTree->setHeaderItem(header);	
 }
 
+void QUMainWindow::initDetailsTable() {
+	detailsTable->verticalHeader()->hide();
+	detailsTable->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+	detailsTable->setHorizontalHeaderLabels(QStringList() << "Tag" << "Value");
+	
+	detailsTable->horizontalHeader()->setResizeMode(0, QHeaderView::Interactive);
+	detailsTable->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
+	
+	connect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(saveSongChanges(QTableWidgetItem*)));
+}
+
+void QUMainWindow::initTaskList() {
+	QStringList tasks;
+	tasks << "Get artist and title from ID3 tag";
+	tasks << "Rename directory to \"Artist - Title\"";
+	tasks << "Rename songtext file to \"Artist - Title.txt\"";
+	tasks << "Rename mp3 file to \"Artist - Title.mp3\"";
+	tasks << "Rename cover to \"Artist - Title [CO].jpg\"";
+	tasks << "Rename background to \"Artist - Title [BG].jpg\"";
+	tasks << "Rename video to \"Artist - Title.mpg\"";
+	
+	taskList->addItems(tasks);
+	
+	for(int i = 0; i < taskList->count(); i++) {
+		taskList->item(i)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+		taskList->item(i)->setCheckState(Qt::Unchecked);
+	}
+	
+	taskList->item(0)->setIcon(QIcon(":/marks/tag.png"));
+	taskList->item(1)->setIcon(QIcon(":/types/folder.png"));
+	taskList->item(2)->setIcon(QIcon(":/types/text.png"));
+	taskList->item(3)->setIcon(QIcon(":/types/music.png"));
+	taskList->item(4)->setIcon(QIcon(":/types/picture.png"));
+	taskList->item(5)->setIcon(QIcon(":/types/picture.png"));
+	taskList->item(6)->setIcon(QIcon(":/types/film.png"));
+	
+	connect(taskBtn, SIGNAL(clicked()), this, SLOT(doTasks()));
+	connect(allTasksBtn, SIGNAL(clicked()), this, SLOT(checkAllTasks()));
+	connect(noTasksBtn, SIGNAL(clicked()), this, SLOT(uncheckAllTasks()));
+}
+
+void QUMainWindow::initMonty() {
+	QString welcomeStr("Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the button below and I will disappear for now.<br>"
+			"<br>"
+			"You have a nice collection of %1 songs there. Are they managed well until now?");
+	
+	monty->setPixmap(QString(":/monty/seated.png"));
+	helpLbl->setText(welcomeStr.arg(QVariant(_songs.size()).toString()));
+	
+	connect(hideMontyBtn, SIGNAL(clicked()), helpFrame, SLOT(hide()));
+}
+
+/*!
+ * Creates all instances of QUSongFile to fill the song tree.
+ * \sa CreateSongTree();
+ */
 void QUMainWindow::createSongFiles() {
 	QStringList entries = _baseDir.entryList(QDir::NoDotAndDotDot | QDir::Dirs, QDir::Name);
+	QProgressDialog progress("Reading song files...", 0, 0, entries.size(), this);
+	
+	progress.show();
 	
 	foreach(QString sub, entries) {
+		progress.setValue(progress.value() + 1);
+		
 		QDir subDir(_baseDir.path() + "/" + sub);
 		QStringList files = subDir.entryList(QStringList("*.txt"), QDir::Files);
 		
@@ -102,24 +185,22 @@ void QUMainWindow::createSongFiles() {
 			_songs.append(new QUSongFile(subDir.path() + "/" + files.first()));
 		}
 	}
-	
-	statusBar()->showMessage(QVariant(_songs.size()).toString() + " songs found.");
 }
 
 void QUMainWindow::createSongTree() {
 	int index = -1;
 	
-	if(songTable->currentItem()) {
-		QTreeWidgetItem *parent = dynamic_cast<QTreeWidgetItem*>(songTable->currentItem()->parent());
+	if(songTree->currentItem()) {
+		QTreeWidgetItem *parent = dynamic_cast<QTreeWidgetItem*>(songTree->currentItem()->parent());
 
 		if(parent) {
 			// parent = toplevel
-			index = songTable->indexOfTopLevelItem(parent);
+			index = songTree->indexOfTopLevelItem(parent);
 		} else {
-			index = songTable->indexOfTopLevelItem(songTable->currentItem());
+			index = songTree->indexOfTopLevelItem(songTree->currentItem());
 		}
 	}
-	songTable->clear();
+	songTree->clear();
 	
 	foreach(QUSongFile* song, _songs) {
 		QUSongItem *top = createSongTreeTopLevelItem(song);
@@ -130,9 +211,9 @@ void QUMainWindow::createSongTree() {
 	}
 	
 	if(index >= 0) {
-		songTable->topLevelItem(index)->setSelected(true);
-		songTable->topLevelItem(index)->setExpanded(true);
-		songTable->setCurrentItem(songTable->topLevelItem(index));
+		songTree->topLevelItem(index)->setSelected(true);
+		songTree->topLevelItem(index)->setExpanded(true);
+		songTree->setCurrentItem(songTree->topLevelItem(index));
 		updateDetails();
 	}
 }
@@ -162,7 +243,7 @@ QUSongItem* QUMainWindow::createSongTreeTopLevelItem(QUSongFile *song) {
 	if(song->hasBackground()) item->setIcon(5, QIcon(":/marks/tick.png")); else item->setIcon(5, QIcon(":/marks/cross.png"));
 	if(song->hasVideo()) item->setIcon(6, QIcon(":/marks/tick.png")); else item->setIcon(6, QIcon(":/marks/cross.png"));
 
-	songTable->addTopLevelItem(item);
+	songTree->addTopLevelItem(item);
 	
 	return item;
 }
@@ -253,8 +334,8 @@ void QUMainWindow::updateImage() {
 }
 
 void QUMainWindow::resizeToContents() {
-	for(int i = 0; i < songTable->columnCount(); i++)
-		songTable->resizeColumnToContents(i);
+	for(int i = 0; i < songTree->columnCount(); i++)
+		songTree->resizeColumnToContents(i);
 }
 
 void QUMainWindow::resetLink(QTreeWidgetItem *item, int column) {
@@ -284,7 +365,7 @@ void QUMainWindow::resetLink(QTreeWidgetItem *item, int column) {
 }
 
 void QUMainWindow::updateDetails() {
-	QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTable->currentItem());
+	QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->currentItem());
 	
 	if(!songItem)
 		return;
@@ -328,30 +409,58 @@ void QUMainWindow::saveSongChanges(QTableWidgetItem *item) {
 	createSongTree();
 }
 
+void QUMainWindow::checkAllTasks() {
+	for(int i = 0; i < taskList->count(); i++)
+		taskList->item(i)->setCheckState(Qt::Checked);
+}
+
+void QUMainWindow::uncheckAllTasks() {
+	for(int i = 0; i < taskList->count(); i++)
+		taskList->item(i)->setCheckState(Qt::Unchecked);	
+}
+
+/*!
+ * Does all checked tasks for all selected songs.
+ * \sa initTaskList();
+ */
 void QUMainWindow::doTasks() {
-	foreach(QTreeWidgetItem *item, songTable->selectedItems()) {
+	foreach(QTreeWidgetItem *item, songTree->selectedItems()) {
 		QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
 
 		if(songItem) {	
 			QUSongFile *song = songItem->song();
 
-			if(renameDirChk->checkState() == Qt::Checked)
+			if(taskList->item(0)->checkState() == Qt::Checked)
+				useID3Tag(song);
+			if(taskList->item(1)->checkState() == Qt::Checked)
 				renameSongDir(song);
-			if(renameTxtChk->checkState() == Qt::Checked)
+			if(taskList->item(2)->checkState() == Qt::Checked)
 				renameSongTxt(song);
-			if(renameMp3Chk->checkState() == Qt::Checked)
+			if(taskList->item(3)->checkState() == Qt::Checked)
 				renameSongMp3(song);
-			if(renameCoverChk->checkState() == Qt::Checked)
+			if(taskList->item(4)->checkState() == Qt::Checked)
 				renameSongCover(song);
-			if(renameBackgroundChk->checkState() == Qt::Checked)
+			if(taskList->item(5)->checkState() == Qt::Checked)
 				renameSongBackground(song);
-			if(renameVideoChk->checkState() == Qt::Checked)
+			if(taskList->item(6)->checkState() == Qt::Checked)
 				renameSongVideo(song);
 
 			song->save();
 		}
 	}
 	createSongTree();
+}
+
+void QUMainWindow::useID3Tag(QUSongFile *song) {
+	QString oldArtist(song->artist());
+	QString oldTitle(song->title());
+	
+	if(song->useID3Tag()) {
+		addLogMsg("ID3Tag used for artist. Changed from: \"" + oldArtist + "\" to: \"" + song->artist() + "\".");
+		addLogMsg("ID3Tag used for title. Changed from: \"" + oldTitle + "\" to: \"" + song->title() + "\".");
+	} else {
+		addLogMsg("ID3Tag could NOT be used for artist and title.");
+	}
 }
 
 void QUMainWindow::renameSongDir(QUSongFile *song) {

@@ -17,15 +17,33 @@
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QVBoxLayout" >
+    <property name="spacing" >
+     <number>0</number>
+    </property>
+    <property name="leftMargin" >
+     <number>0</number>
+    </property>
+    <property name="topMargin" >
+     <number>0</number>
+    </property>
+    <property name="rightMargin" >
+     <number>0</number>
+    </property>
+    <property name="bottomMargin" >
+     <number>0</number>
+    </property>
     <item>
      <widget class="QSplitter" name="splitter" >
       <property name="orientation" >
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QWidget" name="layoutWidget" >
+      <widget class="QWidget" name="" >
        <layout class="QVBoxLayout" >
+        <property name="spacing" >
+         <number>5</number>
+        </property>
         <item>
-         <widget class="QTreeWidget" name="songTable" >
+         <widget class="QTreeWidget" name="songTree" >
           <property name="sizePolicy" >
            <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
             <horstretch>0</horstretch>
@@ -90,52 +108,195 @@
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" >
-          <item>
-           <widget class="QToolButton" name="expandBtn" >
-            <property name="text" >
-             <string>...</string>
-            </property>
-            <property name="icon" >
-             <iconset resource="images/uman.qrc" >:/control/arrow_out.png</iconset>
-            </property>
-            <property name="autoRaise" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="collapseBtn" >
-            <property name="text" >
-             <string>...</string>
-            </property>
-            <property name="icon" >
-             <iconset resource="images/uman.qrc" >:/control/arrow_in.png</iconset>
-            </property>
-            <property name="autoRaise" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
+         <widget class="QFrame" name="helpFrame" >
+          <property name="frameShape" >
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow" >
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QHBoxLayout" >
+           <property name="spacing" >
+            <number>5</number>
+           </property>
+           <property name="leftMargin" >
+            <number>0</number>
+           </property>
+           <property name="topMargin" >
+            <number>0</number>
+           </property>
+           <property name="rightMargin" >
+            <number>0</number>
+           </property>
+           <property name="bottomMargin" >
+            <number>0</number>
+           </property>
+           <item>
+            <layout class="QVBoxLayout" >
+             <property name="spacing" >
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="monty" >
+               <property name="text" >
+                <string>monty</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation" >
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeType" >
+                <enum>QSizePolicy::Preferred</enum>
+               </property>
+               <property name="sizeHint" >
+                <size>
+                 <width>20</width>
+                 <height>1</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" >
+             <item>
+              <widget class="QLabel" name="helpLbl" >
+               <property name="palette" >
+                <palette>
+                 <active>
+                  <colorrole role="Base" >
+                   <brush brushstyle="SolidPattern" >
+                    <color alpha="255" >
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window" >
+                   <brush brushstyle="SolidPattern" >
+                    <color alpha="255" >
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>127</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </active>
+                 <inactive>
+                  <colorrole role="Base" >
+                   <brush brushstyle="SolidPattern" >
+                    <color alpha="255" >
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window" >
+                   <brush brushstyle="SolidPattern" >
+                    <color alpha="255" >
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>127</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </inactive>
+                 <disabled>
+                  <colorrole role="Base" >
+                   <brush brushstyle="SolidPattern" >
+                    <color alpha="255" >
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>127</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window" >
+                   <brush brushstyle="SolidPattern" >
+                    <color alpha="255" >
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>127</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </disabled>
+                </palette>
+               </property>
+               <property name="font" >
+                <font>
+                 <family>Verdana</family>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="autoFillBackground" >
+                <bool>true</bool>
+               </property>
+               <property name="frameShape" >
+                <enum>QFrame::Box</enum>
+               </property>
+               <property name="frameShadow" >
+                <enum>QFrame::Plain</enum>
+               </property>
+               <property name="text" >
+                <string>..information here...</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               </property>
+               <property name="wordWrap" >
+                <bool>true</bool>
+               </property>
+               <property name="margin" >
+                <number>5</number>
+               </property>
+               <property name="indent" >
+                <number>-1</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" >
+               <item>
+                <spacer>
+                 <property name="orientation" >
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" >
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="hideMontyBtn" >
+                 <property name="text" >
+                  <string>Hide</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="layoutWidget" >
+      <widget class="QWidget" name="" >
        <layout class="QVBoxLayout" >
+        <property name="spacing" >
+         <number>5</number>
+        </property>
         <item>
          <widget class="QTableWidget" name="detailsTable" >
           <property name="sizePolicy" >
@@ -211,92 +372,138 @@
            </size>
           </property>
           <property name="frameShape" >
-           <enum>QFrame::StyledPanel</enum>
+           <enum>QFrame::Box</enum>
           </property>
           <property name="frameShadow" >
-           <enum>QFrame::Sunken</enum>
+           <enum>QFrame::Raised</enum>
           </property>
           <layout class="QVBoxLayout" >
+           <property name="spacing" >
+            <number>5</number>
+           </property>
+           <property name="leftMargin" >
+            <number>2</number>
+           </property>
+           <property name="topMargin" >
+            <number>2</number>
+           </property>
+           <property name="rightMargin" >
+            <number>2</number>
+           </property>
+           <property name="bottomMargin" >
+            <number>2</number>
+           </property>
            <item>
-            <widget class="QLabel" name="label" >
-             <property name="text" >
-              <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+            <layout class="QHBoxLayout" >
+             <item>
+              <widget class="QLabel" name="label_2" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string/>
+               </property>
+               <property name="pixmap" >
+                <pixmap resource="images/uman.qrc" >:/control/textfile32.png</pixmap>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label" >
+               <property name="text" >
+                <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
 &lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:12pt; font-weight:600;">Tasks&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
-             </property>
-            </widget>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">&lt;span style=" font-size:14pt; font-weight:600;">Tasks&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
            <item>
-            <widget class="Line" name="line" >
-             <property name="frameShadow" >
-              <enum>QFrame::Raised</enum>
+            <layout class="QHBoxLayout" >
+             <property name="spacing" >
+              <number>5</number>
              </property>
-             <property name="orientation" >
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="renameDirChk" >
-             <property name="text" >
-              <string>Rename Directory to "Artist - Title"</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="renameTxtChk" >
-             <property name="text" >
-              <string>Rename Songtext File to "Artist - Title.txt"</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="renameMp3Chk" >
-             <property name="text" >
-              <string>Rename MP3 File to "Artist - Title.mp3"</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="renameCoverChk" >
-             <property name="text" >
-              <string>Rename Cover to "Artist - Title [CO].jpg"</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="renameBackgroundChk" >
-             <property name="text" >
-              <string>Rename Background to "Artist - Title [BG].jpg"</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="renameVideoChk" >
-             <property name="text" >
-              <string>Rename Video to "Artist - Title.mpg"</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="taskBtn" >
-             <property name="sizePolicy" >
-              <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize" >
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text" >
-              <string>Do it!</string>
-             </property>
-            </widget>
+             <item>
+              <widget class="QListWidget" name="taskList" >
+               <property name="editTriggers" >
+                <set>QAbstractItemView::NoEditTriggers</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" >
+               <property name="spacing" >
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="allTasksBtn" >
+                 <property name="sizePolicy" >
+                  <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text" >
+                  <string>Check all</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="noTasksBtn" >
+                 <property name="sizePolicy" >
+                  <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text" >
+                  <string>Uncheck all</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer>
+                 <property name="orientation" >
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" >
+                  <size>
+                   <width>20</width>
+                   <height>21</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QToolButton" name="taskBtn" >
+                 <property name="toolTip" >
+                  <string>Do all checked tasks for all selected songs.</string>
+                 </property>
+                 <property name="text" >
+                  <string>Start</string>
+                 </property>
+                 <property name="icon" >
+                  <iconset resource="images/uman.qrc" >:/control/wizard.png</iconset>
+                 </property>
+                 <property name="iconSize" >
+                  <size>
+                   <width>32</width>
+                   <height>32</height>
+                  </size>
+                 </property>
+                 <property name="toolButtonStyle" >
+                  <enum>Qt::ToolButtonTextBesideIcon</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -336,6 +543,12 @@ p, li { white-space: pre-wrap; }
     </rect>
    </property>
    <widget class="QMenu" name="menuAbout_Qt" >
+    <property name="layoutDirection" >
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="tearOffEnabled" >
+     <bool>false</bool>
+    </property>
     <property name="title" >
      <string>About</string>
     </property>
@@ -343,6 +556,14 @@ p, li { white-space: pre-wrap; }
     <addaction name="separator" />
     <addaction name="actionUman" />
    </widget>
+   <widget class="QMenu" name="menuSongs" >
+    <property name="title" >
+     <string>Songs</string>
+    </property>
+    <addaction name="actionExpandAll" />
+    <addaction name="actionCollapseAll" />
+   </widget>
+   <addaction name="menuSongs" />
    <addaction name="menuAbout_Qt" />
   </widget>
   <widget class="QStatusBar" name="statusbar" />
@@ -357,6 +578,28 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text" >
     <string>UltraStar Manager</string>
+   </property>
+  </action>
+  <action name="actionExpandAll" >
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >:/control/arrow_out.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Expand All</string>
+   </property>
+   <property name="statusTip" >
+    <string>Expands every node in the song tree.</string>
+   </property>
+  </action>
+  <action name="actionCollapseAll" >
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >:/control/arrow_in.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Collapse All</string>
+   </property>
+   <property name="statusTip" >
+    <string>Only shows all directories in the song tree.</string>
    </property>
   </action>
  </widget>

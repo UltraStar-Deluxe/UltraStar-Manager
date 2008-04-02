@@ -18,4 +18,4 @@ win32 {
     LIBS += -L"../lib" \
         -ltag
 }
-INCLUDEPATH += taglib
+INCLUDEPATH += ../include/taglib
