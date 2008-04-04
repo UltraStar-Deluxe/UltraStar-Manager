@@ -68,6 +68,9 @@ public slots:
 	static QStringList allowedPictureFiles();
 	static QStringList allowedVideoFiles();
 	
+	bool unsupportedTagsFound() const { return _foundUnsupportedTags.size() > 0; }
+	QString unsupportedTags() const { return _foundUnsupportedTags.join("\n#"); }
+	
 private:
 	QFileInfo _fi;
 	QFile     _file;

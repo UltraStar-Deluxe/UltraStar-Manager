@@ -22,6 +22,8 @@ public:
 	QString welcomeMsg(int songCount = -1);
 	void talk(QLabel *montyLbl, QLabel *msgLbl);
 	
+	void setSongCount(int c) { songCount = c; }
+	
 protected:
 	QUMonty();
 	

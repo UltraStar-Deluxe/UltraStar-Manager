@@ -36,6 +36,7 @@ private slots:
 	void createSongTree();
 	
 	void updateDetails();
+	void updateStatusbar();
 	void updateImage();
 	void resizeToContents();
 	void resetLink(QTreeWidgetItem *item, int column);
@@ -62,11 +63,12 @@ private slots:
 	void aboutQt();
 	void aboutUman();
 	
+	void toggleRelativeSongPath(bool checked);
 	void editTagOrder();
+	void changeSongDir();
 	
 	void montyTalk();
 	
-	void toggleRelativeSongPath(bool checked);
 	
 private:
 	QList<QUSongFile*> _songs;

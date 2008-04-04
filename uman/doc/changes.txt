@@ -17,11 +17,15 @@ NEW FEATURES
 * new tasks for ID3 tag added: use ID3 tag for artist, title or genre now (artist and title splitted)
 * all songs in every subdirectory of the song folder is now recognized correctly
   > see "Options" Menu to switch the relative path
+* UltraStar song directory can now be changed in the "Options" menu
+  > you will not be asked everytime you start this application
+* introduced blue folder icons for song files that have tags not used by ultrastar
+  > tooltips of blue folder icons display all unsupported tags that where found
+* artist, title, genre is read from ID3 tag and shown in the statusbar when an audio file is selected
 BUG FIXES
 * file endings/suffixes preserved while renameing them
 * tags that are not recognized will not be dropped anymore when saveing the song text file
-
-
+* ID3 tag is not used anymore whenever the wanted information is not present
 
 changes from 1.2 to 1.3
 -----------------------

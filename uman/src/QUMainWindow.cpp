@@ -25,6 +25,10 @@
 #include "QUDetailItem.h"
 #include "QUMonty.h"
 
+#include "fileref.h"
+#include "tag.h"
+#include "tstring.h"
+
 #include "QUTagOrderDialog.h"
 
 QDir QUMainWindow::_baseDir = QDir();
@@ -61,14 +65,16 @@ void QUMainWindow::initConfig() {
 	QCoreApplication::setOrganizationName("HPI");
 	QCoreApplication::setApplicationName("UltraStar Manager");
 	     
+	QString path;
 	QSettings settings;
-	QString path = settings.value("songPath").toString();
+	if(!settings.contains("songPath")) {
+		path = QFileDialog::getExistingDirectory(this, "Choose your UltraStar song directory");
 	
-	path = QFileDialog::getExistingDirectory(this, "Choose your UltraStar song directory", path);
-	
-	if(!path.isEmpty())
-		settings.setValue("songPath", QVariant(path));
-	
+		if(!path.isEmpty())
+			settings.setValue("songPath", QVariant(path));
+	} else {
+		path = settings.value("songPath").toString();
+	}
 	_baseDir.setPath(path);
 	
 	// read other settings
@@ -104,6 +110,7 @@ void QUMainWindow::initMenu() {
 	connect(actionShowTaskList, SIGNAL(toggled(bool)), taskFrame, SLOT(setVisible(bool)));
 	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
 	connect(actionTagSaveOrder, SIGNAL(triggered()), this, SLOT(editTagOrder()));
+	connect(actionChangeSongDirectory, SIGNAL(triggered()), this, SLOT(changeSongDir()));
 	
 	// help
 	connect(actionShowMonty, SIGNAL(triggered()), helpFrame, SLOT(show()));
@@ -124,6 +131,7 @@ void QUMainWindow::initSongTree() {
 	initSongTreeHeader();
 	
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateDetails()));
+	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateStatusbar()));
 
 	connect(songTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(resetLink(QTreeWidgetItem*, int))); 
 	connect(songTree, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(resizeToContents()));
@@ -322,21 +330,25 @@ void QUMainWindow::resetLink(QTreeWidgetItem *item, int column) {
 	if( songItem->icon(3).isNull() 
 			and QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive) 
 			and column == 3 ) {
+		addLogMsg(QString("Audio file changed from \"%1\" to: \"%2\".").arg(song->mp3()).arg(songItem->text(0)));
 		song->setInfo("MP3", songItem->text(0));
 		song->save();
 	} else if( songItem->icon(4).isNull() 
 			and QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive) 
 			and column == 4 ) {
+		addLogMsg(QString("Cover changed from \"%1\" to: \"%2\".").arg(song->cover()).arg(songItem->text(0)));
 		song->setInfo("COVER", songItem->text(0));
 		song->save();
 	} else if( songItem->icon(5).isNull() 
 			and QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive) 
 			and column == 5 ) {
+		addLogMsg(QString("Background changed from \"%1\" to: \"%2\".").arg(song->background()).arg(songItem->text(0)));
 		song->setInfo("BACKGROUND", songItem->text(0));
 		song->save();
 	} else if( songItem->icon(6).isNull() 
 			and QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive) 
 			and column == 6 ) {
+		addLogMsg(QString("Video file changed from \"%1\" to: \"%2\".").arg(song->video()).arg(songItem->text(0)));
 		song->setInfo("VIDEO", songItem->text(0));
 		song->save();
 	}
@@ -401,6 +413,34 @@ void QUMainWindow::updateDetails() {
 		detailsTable->item(i, 0)->setFlags(Qt::ItemIsEnabled);
 		detailsTable->item(i, 1)->setFlags(0);
 	}
+}
+
+/*!
+ * Displays ID3 tag information of a selected MP3 file in the status bar.
+ */
+void QUMainWindow::updateStatusbar() {
+	QUSongItem *item = dynamic_cast<QUSongItem*>(songTree->currentItem());
+	
+	if(!item)
+		return;
+	
+	QFileInfo fi(item->song()->songFileInfo().dir(), item->text(0));
+	QString fileScheme("*." + fi.suffix());
+	
+	if(!QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		this->statusBar()->clearMessage();
+		return; // read only audio files for ID3 tag
+	}
+	
+	TagLib::FileRef ref(fi.absoluteFilePath().toLocal8Bit().data());
+	
+	QString text("Audio file selected: ARTIST = \"%1\"; TITLE = \"%2\"; GENRE = \"%3\"");
+	
+	QString artist(TStringToQString(ref.tag()->artist())); if(artist == "") artist = "n/a";
+	QString title(TStringToQString(ref.tag()->title())); if(title == "") title = "n/a";
+	QString genre(TStringToQString(ref.tag()->genre())); if(genre == "") genre = "n/a";
+	
+	this->statusBar()->showMessage(text.arg(artist).arg(title).arg(genre));
 }
 
 void QUMainWindow::saveSongChanges(QTableWidgetItem *item) {
@@ -645,12 +685,32 @@ void QUMainWindow::aboutUman() {
 
 void QUMainWindow::editTagOrder() {
 	QUTagOrderDialog *dlg = new QUTagOrderDialog(this);
-	
 	dlg->exec();
-
-	delete dlg;
+	delete dlg;	
 	
 	montyTalk();
+}
+
+/*!
+ * Enables the user to set up a new location where all
+ * UltraStar songs can be found.
+ */
+void QUMainWindow::changeSongDir() {
+	QSettings settings;
+	QString path = settings.value("songPath").toString();
+	
+	path = QFileDialog::getExistingDirectory(this, "Choose your UltraStar song directory", path);
+	
+	if(!path.isEmpty()) {
+		settings.setValue("songPath", QVariant(path));
+		_baseDir.setPath(path);
+		refreshSongs();
+		
+		monty->setSongCount(_songs.size());
+		montyTalk();
+		
+		addLogMsg(QString("UltraStar song directory changed to: \"%1\".").arg(_baseDir.path()));
+	}
 }
 
 void QUMainWindow::montyTalk() {
@@ -677,4 +737,9 @@ void QUMainWindow::toggleRelativeSongPath(bool checked) {
 	foreach(QUSongItem *item, tmpList) {
 		item->updateAsDirectory(checked);
 	}
+	
+	if(checked)
+		addLogMsg("Relative song paths are displayed in the song tree now.");
+	else
+		addLogMsg("Only song directories are displayed in the song tree now.");
 }

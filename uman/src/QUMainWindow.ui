@@ -643,6 +643,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionShowRelativeSongPath" />
     <addaction name="separator" />
     <addaction name="actionTagSaveOrder" />
+    <addaction name="actionChangeSongDirectory" />
    </widget>
    <addaction name="menuSongs" />
    <addaction name="menuOptions" />
@@ -651,7 +652,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QStatusBar" name="statusbar" />
   <action name="actionQt" >
    <property name="text" >
-    <string>About Qt</string>
+    <string>About Qt...</string>
    </property>
   </action>
   <action name="actionUman" >
@@ -659,7 +660,7 @@ p, li { white-space: pre-wrap; }
     <iconset resource="images/uman.qrc" >:/icons/cup.png</iconset>
    </property>
    <property name="text" >
-    <string>About UltraStar Manager</string>
+    <string>About UltraStar Manager...</string>
    </property>
   </action>
   <action name="actionExpandAll" >
@@ -764,6 +765,14 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="statusTip" >
     <string>If not checked, displays the song folder names only</string>
+   </property>
+  </action>
+  <action name="actionChangeSongDirectory" >
+   <property name="text" >
+    <string>Change US Song Directory...</string>
+   </property>
+   <property name="statusTip" >
+    <string>Reset the location where all US songs are located.</string>
    </property>
   </action>
  </widget>
