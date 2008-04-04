@@ -378,9 +378,10 @@ void QUMainWindow::updateDetails() {
 	detailsTable->setItem(6, 0, new QTableWidgetItem(QIcon(":/types/genre.png"), "Genre"));
 	detailsTable->setItem(7, 0, new QTableWidgetItem(QIcon(":/types/edition.png"), "Edition"));
 	detailsTable->setItem(8, 0, new QTableWidgetItem(QIcon(":/types/language.png"), "Language"));
+	detailsTable->setItem(9, 0, new QTableWidgetItem(QIcon(":/types/date.png"), "Year"));
 
 	
-	for(int i = 0; i < 9; i++)
+	for(int i = 0; i < 10; i++)
 		detailsTable->item(i, 0)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	
 	detailsTable->setItem(0, 1, new QUDetailItem(song->artist(), "ARTIST", song));
@@ -392,24 +393,25 @@ void QUMainWindow::updateDetails() {
 	detailsTable->setItem(6, 1, new QUDetailItem(song->genre(), "GENRE", song));
 	detailsTable->setItem(7, 1, new QUDetailItem(song->edition(), "EDITION", song));
 	detailsTable->setItem(8, 1, new QUDetailItem(song->language(), "LANGUAGE", song));
+	detailsTable->setItem(9, 1, new QUDetailItem(song->year(), "YEAR", song));
 
-	for(int i = 0; i < 9; i++)
+	for(int i = 0; i < 10; i++)
 		detailsTable->item(i, 1)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 	
 	// other song details, not editable
-	detailsTable->setItem(9, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "BPM"));
-	detailsTable->setItem(10, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Gap"));
-	detailsTable->setItem(11, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Start"));
-	detailsTable->setItem(12, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Videogap"));
-	detailsTable->setItem(13, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Relative"));
+	detailsTable->setItem(10, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "BPM"));
+	detailsTable->setItem(11, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Gap"));
+	detailsTable->setItem(12, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Start"));
+	detailsTable->setItem(13, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Videogap"));
+	detailsTable->setItem(14, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Relative"));
 
-	detailsTable->setItem(9, 1, new QTableWidgetItem(song->bpm()));
-	detailsTable->setItem(10, 1, new QTableWidgetItem(QString("%1 milliseconds").arg(song->gap())));
-	detailsTable->setItem(11, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->start())));
-	detailsTable->setItem(12, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->videogap())));
-	detailsTable->setItem(13, 1, new QTableWidgetItem(song->relative()));
+	detailsTable->setItem(10, 1, new QTableWidgetItem(song->bpm()));
+	detailsTable->setItem(11, 1, new QTableWidgetItem(QString("%1 milliseconds").arg(song->gap())));
+	detailsTable->setItem(12, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->start())));
+	detailsTable->setItem(13, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->videogap())));
+	detailsTable->setItem(14, 1, new QTableWidgetItem(song->relative()));
 	
-	for(int i = 9; i < 14; i++) {
+	for(int i = 10; i < 15; i++) {
 		detailsTable->item(i, 0)->setFlags(Qt::ItemIsEnabled);
 		detailsTable->item(i, 1)->setFlags(0);
 	}

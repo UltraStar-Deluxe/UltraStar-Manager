@@ -35,6 +35,7 @@ public slots:
 	QString relative() const   {return _info.value("RELATIVE", QString("n/a"));}
 	QString edition() const    {return _info.value("EDITION", QString("n/a"));}
 	QString genre() const      {return _info.value("GENRE", QString("n/a"));}
+	QString year() const       {return _info.value("YEAR", QString("n/a"));}
 	
 	bool hasMp3() const;
 	bool hasCover() const;

@@ -345,11 +345,12 @@
            <bool>false</bool>
           </property>
           <property name="rowCount" >
-           <number>14</number>
+           <number>15</number>
           </property>
           <property name="columnCount" >
            <number>2</number>
           </property>
+          <row/>
           <row/>
           <row/>
           <row/>

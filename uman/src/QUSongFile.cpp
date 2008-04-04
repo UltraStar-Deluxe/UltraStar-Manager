@@ -105,6 +105,7 @@ QStringList QUSongFile::tags() {
 	result << "EDITION";
 	result << "GENRE";
 	result << "LANGUAGE";
+	result << "YEAR";
 	
 	return result;
 }
