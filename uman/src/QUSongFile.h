@@ -61,12 +61,17 @@ public slots:
 	bool useID3Tag();
 	
 	static QStringList tags();
+	static void verifyTags(QStringList &tags);
+	static QStringList allowedAudioFiles();
+	static QStringList allowedPictureFiles();
+	static QStringList allowedVideoFiles();
 	
 private:
 	QFileInfo _fi;
 	QFile     _file;
 	QMap<QString, QString> _info;
 	QStringList _lyrics;
+	QStringList _foundUnsupportedTags;
 	
 	bool updateCache();
 };

@@ -14,8 +14,10 @@
 #include <QDateTime>
 #include <QSettings>
 #include <QMessageBox>
+#include <QKeySequence>
 
 #include <QFileDialog>
+#include <QFileInfo>
 #include <QProgressDialog>
 
 #include "QUSongFile.h"
@@ -90,6 +92,9 @@ void QUMainWindow::initMenu() {
 	connect(actionExpandAll, SIGNAL(triggered()), this, SLOT(resizeToContents()));
 	connect(actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(collapseAll()));
 	connect(actionCollapseAll, SIGNAL(triggered()), this, SLOT(resizeToContents()));
+	connect(actionRefresh, SIGNAL(triggered()), this, SLOT(refreshSongs()));
+	
+	actionRefresh->setShortcut(QKeySequence::fromString("F5"));
 	
 	//options
 	connect(actionShowEventLog, SIGNAL(toggled(bool)), log, SLOT(setVisible(bool)));
@@ -107,8 +112,8 @@ void QUMainWindow::initMenu() {
 
 /*!
  * Set up the song tree the first time.
- * \sa createSongFiles();
- * \sa createSongTree();
+ * \sa createSongFiles()
+ * \sa createSongTree()
  */
 void QUMainWindow::initSongTree() {
 	initSongTreeHeader();
@@ -119,11 +124,7 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(resizeToContents()));
 	connect(songTree, SIGNAL(itemCollapsed(QTreeWidgetItem*)), this, SLOT(resizeToContents()));
 	
-	createSongFiles();
-	createSongTree();
-	
-	resizeToContents();
-	songTree->sortItems(0, Qt::AscendingOrder);
+	refreshSongs();
 }
 
 void QUMainWindow::initSongTreeHeader() {
@@ -132,16 +133,22 @@ void QUMainWindow::initSongTreeHeader() {
 	header->setIcon(0, QIcon(":/types/folder.png"));
 	header->setText(1, "Artist");
 	header->setIcon(1, QIcon(":/types/user.png"));
+	header->setToolTip(1, "Shows whether your folder includes the artist correctly");
 	header->setText(2, "Title");
-	header->setIcon(2, QIcon(":/types/font.png"));	
-	header->setText(3, "MP3");
+	header->setIcon(2, QIcon(":/types/font.png"));
+	header->setToolTip(2, "Shows whether your folder includes the title correctly");
+	header->setText(3, "Audio");
 	header->setIcon(3, QIcon(":/types/music.png"));
+	header->setToolTip(3, "Shows whether the song text file points to an audio file that can be found by UltraStar");
 	header->setText(4, "Cover");
 	header->setIcon(4, QIcon(":/types/picture.png"));
+	header->setToolTip(4, "Shows whether the song text file points to a picture that can be found by UltraStar");
 	header->setText(5, "Background");
 	header->setIcon(5, QIcon(":/types/picture.png"));
+	header->setToolTip(5, "Shows whether the song text file points to a picture that can be found by UltraStar");
 	header->setText(6, "Video");
 	header->setIcon(6, QIcon(":/types/film.png"));
+	header->setToolTip(6, "Shows whether the song text file points to a video file that can be found by UltraStar");
 	
 	songTree->setHeaderItem(header);	
 }
@@ -161,11 +168,13 @@ void QUMainWindow::initTaskList() {
 	QStringList tasks;
 	tasks << "Get artist and title from ID3 tag";
 	tasks << "Rename directory to \"Artist - Title\"";
+	tasks << "Rename directory to \"Artist - Title [VIDEO] [SC]\" if checked or video present";
 	tasks << "Rename songtext file to \"Artist - Title.txt\"";
-	tasks << "Rename mp3 file to \"Artist - Title.mp3\"";
-	tasks << "Rename cover to \"Artist - Title [CO].jpg\"";
-	tasks << "Rename background to \"Artist - Title [BG].jpg\"";
-	tasks << "Rename video to \"Artist - Title.mpg\"";
+	tasks << "Rename audio file to \"Artist - Title.*\"";
+	tasks << "Rename cover to \"Artist - Title [CO].*\"";
+	tasks << "Rename background to \"Artist - Title [BG].*\"";
+	tasks << "Rename video to \"Artist - Title.*\"";
+	tasks << "Rename video to \"Artist - Title [VD#*].*\" consider VIDEOGAP";
 	
 	taskList->addItems(tasks);
 	
@@ -176,11 +185,13 @@ void QUMainWindow::initTaskList() {
 	
 	taskList->item(0)->setIcon(QIcon(":/marks/tag.png"));
 	taskList->item(1)->setIcon(QIcon(":/types/folder.png"));
-	taskList->item(2)->setIcon(QIcon(":/types/text.png"));
-	taskList->item(3)->setIcon(QIcon(":/types/music.png"));
-	taskList->item(4)->setIcon(QIcon(":/types/picture.png"));
+	taskList->item(2)->setIcon(QIcon(":/types/folder.png"));
+	taskList->item(3)->setIcon(QIcon(":/types/text.png"));
+	taskList->item(4)->setIcon(QIcon(":/types/music.png"));
 	taskList->item(5)->setIcon(QIcon(":/types/picture.png"));
-	taskList->item(6)->setIcon(QIcon(":/types/film.png"));
+	taskList->item(6)->setIcon(QIcon(":/types/picture.png"));
+	taskList->item(7)->setIcon(QIcon(":/types/film.png"));
+	taskList->item(8)->setIcon(QIcon(":/types/film.png"));
 	
 	connect(taskBtn, SIGNAL(clicked()), this, SLOT(doTasks()));
 	connect(allTasksBtn, SIGNAL(clicked()), this, SLOT(checkAllTasks()));
@@ -195,6 +206,19 @@ void QUMainWindow::initMonty() {
 	
 	if(!actionAllowMonty->isChecked())
 		helpFrame->hide();
+}
+
+/*!
+ * Re-reads all possible song files and builds a new song tree.
+ */
+void QUMainWindow::refreshSongs() {
+	songTree->clear();
+	updateDetails();
+	qDeleteAll(_songs);
+	_songs.clear();
+	
+	createSongFiles();
+	createSongTree();
 }
 
 /*!
@@ -219,137 +243,18 @@ void QUMainWindow::createSongFiles() {
 	}
 }
 
+/*!
+ * Creates the song tree and enables the file system watcher for
+ * the entries.
+ */
 void QUMainWindow::createSongTree() {
-	int index = -1;
-	
-	if(songTree->currentItem()) {
-		QTreeWidgetItem *parent = dynamic_cast<QTreeWidgetItem*>(songTree->currentItem()->parent());
-
-		if(parent) {
-			// parent = toplevel
-			index = songTree->indexOfTopLevelItem(parent);
-		} else {
-			index = songTree->indexOfTopLevelItem(songTree->currentItem());
-		}
-	}
-	songTree->clear();
-	
 	foreach(QUSongFile* song, _songs) {
-		QUSongItem *top = createSongTreeTopLevelItem(song);
-		createSongTreeTxtItem(top, song);
-		createSongTreeMp3Items(top, song);
-		createSongTreeJpgItems(top, song);
-		createSongTreeMpgItems(top, song);
+		QUSongItem *top = new QUSongItem(song, true);
+		songTree->addTopLevelItem(top);
 	}
 	
-	if(index >= 0) {
-		songTree->topLevelItem(index)->setSelected(true);
-		songTree->topLevelItem(index)->setExpanded(true);
-		songTree->setCurrentItem(songTree->topLevelItem(index));
-		updateDetails();
-	}
-}
-
-QUSongItem* QUMainWindow::createSongTreeTopLevelItem(QUSongFile *song) {
-	QUSongItem *item = new QUSongItem(song);
-				
-	item->setText(0, song->songFileInfo().dir().dirName());
-	item->setIcon(0, QIcon(":/types/folder.png"));
-
-	if(song->artist() == song->songFileInfo().dir().dirName().section(" - ", 0, 0))
-		item->setIcon(1, QIcon(":/marks/tick.png"));
-	else if(song->artist().toLower() == song->songFileInfo().dir().dirName().section(" - ", 0, 0).toLower())
-		item->setIcon(1, QIcon(":/marks/tick_blue.png"));
-	else
-		item->setIcon(1, QIcon(":/marks/cross.png"));
-
-	if(song->title() == song->songFileInfo().dir().dirName().section(" - ", 1, 1))
-		item->setIcon(2, QIcon(":/marks/tick.png"));
-	else if(song->title().toLower() == song->songFileInfo().dir().dirName().section(" - ", 1, 1).toLower())
-		item->setIcon(2, QIcon(":/marks/tick_blue.png"));
-	else
-		item->setIcon(2, QIcon(":/marks/cross.png"));
-
-	if(song->hasMp3()) item->setIcon(3, QIcon(":/marks/tick.png")); else item->setIcon(3, QIcon(":/marks/cross.png")); 
-	if(song->hasCover()) item->setIcon(4, QIcon(":/marks/tick.png")); else item->setIcon(4, QIcon(":/marks/cross.png"));
-	if(song->hasBackground()) item->setIcon(5, QIcon(":/marks/tick.png")); else item->setIcon(5, QIcon(":/marks/cross.png"));
-	if(song->hasVideo()) item->setIcon(6, QIcon(":/marks/tick.png")); else item->setIcon(6, QIcon(":/marks/cross.png"));
-
-	songTree->addTopLevelItem(item);
-	
-	return item;
-}
-
-void QUMainWindow::createSongTreeTxtItem(QTreeWidgetItem *parent, QUSongFile *song) {
-	QUSongItem *txtItem = new QUSongItem(song);
-	
-	txtItem->setText(0, song->songFileInfo().fileName());
-	txtItem->setIcon(0, QIcon(":/types/text.png"));
-	txtItem->setFontColor(Qt::blue);
-	
-	parent->addChild(txtItem);
-	txtItem->setFlags(Qt::ItemIsEnabled);
-}
-
-void QUMainWindow::createSongTreeMp3Items(QTreeWidgetItem *parent, QUSongFile *song) {
-	QUSongItem *mp3Item;
-	QStringList mp3Files = song->songFileInfo().dir().entryList(QStringList("*.mp3"), QDir::Files);
-	
-	foreach(QString mp3File, mp3Files) {
-		mp3Item = new QUSongItem(song);
-		mp3Item->setText(0, mp3File);
-		mp3Item->setIcon(0, QIcon(":/types/music.png"));
-		
-		if(song->mp3().toLower() == mp3File.toLower())
-			mp3Item->setIcon(3, QIcon(":/marks/link.png"));
-		else
-			mp3Item->setFontColor(Qt::gray);
-		
-		parent->addChild(mp3Item);
-		mp3Item->setFlags(Qt::ItemIsEnabled);
-	}	
-}
-
-void QUMainWindow::createSongTreeJpgItems(QTreeWidgetItem *parent, QUSongFile *song) {
-	QUSongItem *jpgItem;
-	QStringList jpgFiles = song->songFileInfo().dir().entryList(QStringList("*.jpg"), QDir::Files);
-	
-	foreach(QString jpgFile, jpgFiles) {
-		jpgItem = new QUSongItem(song);
-		jpgItem->setText(0, jpgFile);
-		jpgItem->setIcon(0, QIcon(":/types/picture.png"));
-		
-		if(song->cover().toLower() == jpgFile.toLower()) {
-			jpgItem->setIcon(4, QIcon(":/marks/link.png"));
-			if(song->background().toLower() == jpgFile.toLower())
-				jpgItem->setIcon(5, QIcon(":/marks/link.png"));
-		} else if(song->background().toLower() == jpgFile.toLower())
-			jpgItem->setIcon(5, QIcon(":/marks/link.png"));
-		else
-			jpgItem->setFontColor(Qt::gray);
-
-		parent->addChild(jpgItem);
-		jpgItem->setFlags(Qt::ItemIsEnabled);
-	}	
-}
-
-void QUMainWindow::createSongTreeMpgItems(QTreeWidgetItem *parent, QUSongFile *song) {
-	QUSongItem *mpgItem;
-	QStringList mpgFiles = song->songFileInfo().dir().entryList(QStringList("*.mpg"), QDir::Files);
-	
-	foreach(QString mpgFile, mpgFiles) {
-		mpgItem = new QUSongItem(song);
-		mpgItem->setText(0, mpgFile);
-		mpgItem->setIcon(0, QIcon(":/types/film.png"));
-		
-		if(song->video().toLower() == mpgFile.toLower())
-			mpgItem->setIcon(6, QIcon(":/marks/link.png"));
-		else
-			mpgItem->setFontColor(Qt::gray);				
-		
-		parent->addChild(mpgItem);
-		mpgItem->setFlags(Qt::ItemIsEnabled);
-	}	
+	resizeToContents();
+	songTree->sortItems(0, Qt::AscendingOrder);
 }
 
 void QUMainWindow::updateImage() {
@@ -373,38 +278,50 @@ void QUMainWindow::resizeToContents() {
 void QUMainWindow::resetLink(QTreeWidgetItem *item, int column) {
 	QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
 	
-	if(!songItem)
+	if(!songItem || songItem->isToplevel())
 		return;
 	
 	QUSongFile *song = songItem->song();
 	
-	if( songItem->icon(3).isNull() and songItem->text(0).toLower().endsWith(".mp3") and column == 3 ) {
+	QString fileScheme("*." + QFileInfo(songItem->text(0)).suffix());
+	
+	if( songItem->icon(3).isNull() 
+			and QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive) 
+			and column == 3 ) {
 		song->setInfo("MP3", songItem->text(0));
 		song->save();
-	} else if( songItem->icon(4).isNull() and songItem->text(0).toLower().endsWith(".jpg") and column == 4 ) {
+	} else if( songItem->icon(4).isNull() 
+			and QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive) 
+			and column == 4 ) {
 		song->setInfo("COVER", songItem->text(0));
 		song->save();
-	} else if( songItem->icon(5).isNull() and songItem->text(0).toLower().endsWith(".jpg") and column == 5 ) {
+	} else if( songItem->icon(5).isNull() 
+			and QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive) 
+			and column == 5 ) {
 		song->setInfo("BACKGROUND", songItem->text(0));
 		song->save();
-	} else if( songItem->icon(6).isNull() and songItem->text(0).toLower().endsWith(".mpg") and column == 6 ) {
+	} else if( songItem->icon(6).isNull() 
+			and QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive) 
+			and column == 6 ) {
 		song->setInfo("VIDEO", songItem->text(0));
 		song->save();
 	}
 
-	createSongTree();
+	(dynamic_cast<QUSongItem*>(songItem->parent()))->update();
+	updateDetails();
+	
 	montyTalk();
 }
 
 void QUMainWindow::updateDetails() {
 	QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->currentItem());
 	
+	detailsTable->clearContents();
+	
 	if(!songItem)
 		return;
 	
 	QUSongFile *song = songItem->song();
-
-	detailsTable->clearContents();
 	
 	detailsTable->setItem(0, 0, new QTableWidgetItem(QIcon(":/types/user.png"), "Artist"));
 	detailsTable->setItem(1, 0, new QTableWidgetItem(QIcon(":/types/font.png"), "Title"));
@@ -425,12 +342,37 @@ void QUMainWindow::updateDetails() {
 
 	for(int i = 0; i < 6; i++)
 		detailsTable->item(i, 1)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
+	
+	// other song details, not editable
+	detailsTable->setItem(6, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "BPM"));
+	detailsTable->setItem(7, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Gap"));
+	detailsTable->setItem(8, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Start"));
+	detailsTable->setItem(9, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Videogap"));
+	detailsTable->setItem(10, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Relative"));
+	detailsTable->setItem(11, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Language"));
+	detailsTable->setItem(12, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Genre"));
+	detailsTable->setItem(13, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Edition"));
+
+	detailsTable->setItem(6, 1, new QTableWidgetItem(song->bpm()));
+	detailsTable->setItem(7, 1, new QTableWidgetItem(QString("%1 milliseconds").arg(song->gap())));
+	detailsTable->setItem(8, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->start())));
+	detailsTable->setItem(9, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->videogap())));
+	detailsTable->setItem(10, 1, new QTableWidgetItem(song->relative()));
+	detailsTable->setItem(11, 1, new QTableWidgetItem(song->language()));
+	detailsTable->setItem(12, 1, new QTableWidgetItem(song->genre()));
+	detailsTable->setItem(13, 1, new QTableWidgetItem(song->edition()));
+	
+	for(int i = 6; i < 14; i++) {
+		detailsTable->item(i, 0)->setFlags(Qt::ItemIsEnabled);
+		detailsTable->item(i, 1)->setFlags(0);
+	}
 }
 
 void QUMainWindow::saveSongChanges(QTableWidgetItem *item) {
 	QUDetailItem *detailItem = dynamic_cast<QUDetailItem*>(detailsTable->currentItem());
+	QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->currentItem());
 	
-	if(!detailItem)
+	if(!detailItem || !songItem)
 		return;
 	
 	QUSongFile *song = detailItem->song();
@@ -438,7 +380,9 @@ void QUMainWindow::saveSongChanges(QTableWidgetItem *item) {
 	song->setInfo(detailItem->tag(), detailItem->text());
 	song->save();
 	
-	createSongTree();
+	songItem->update();
+	
+	updateDetails(); // to show "n/a" if text was deleted completely
 }
 
 void QUMainWindow::checkAllTasks() {
@@ -467,98 +411,166 @@ void QUMainWindow::doTasks() {
 			if(taskList->item(1)->checkState() == Qt::Checked)
 				renameSongDir(song);
 			if(taskList->item(2)->checkState() == Qt::Checked)
-				renameSongTxt(song);
+				renameSongDirCheckedVideo(song);
 			if(taskList->item(3)->checkState() == Qt::Checked)
-				renameSongMp3(song);
+				renameSongTxt(song);
 			if(taskList->item(4)->checkState() == Qt::Checked)
-				renameSongCover(song);
+				renameSongMp3(song);
 			if(taskList->item(5)->checkState() == Qt::Checked)
-				renameSongBackground(song);
+				renameSongCover(song);
 			if(taskList->item(6)->checkState() == Qt::Checked)
+				renameSongBackground(song);
+			if(taskList->item(7)->checkState() == Qt::Checked)
 				renameSongVideo(song);
+			if(taskList->item(8)->checkState() == Qt::Checked)
+				renameSongVideogap(song);
 
 			song->save();
+			songItem->update();
 		}
 	}
-	createSongTree();
+
+	updateDetails();
 	montyTalk();
 }
 
 void QUMainWindow::useID3Tag(QUSongFile *song) {
+	QString done1("ID3Tag used for artist. Changed from: \"%1\" to:  \"%2\".");
+	QString done2("ID3Tag used for title. Changed from: \"%1\" to: \"%2\".");
+	QString fail("ID3Tag could NOT be used for artist and title.");
+	
 	QString oldArtist(song->artist());
 	QString oldTitle(song->title());
 	
 	if(song->useID3Tag()) {
-		addLogMsg("ID3Tag used for artist. Changed from: \"" + oldArtist + "\" to: \"" + song->artist() + "\".");
-		addLogMsg("ID3Tag used for title. Changed from: \"" + oldTitle + "\" to: \"" + song->title() + "\".");
+		addLogMsg(done1.arg(oldArtist).arg(song->artist()));
+		addLogMsg(done2.arg(oldTitle).arg(song->title()));
 	} else {
-		addLogMsg("ID3Tag could NOT be used for artist and title.");
+		addLogMsg(fail, 1);
 	}
 }
 
 void QUMainWindow::renameSongDir(QUSongFile *song) {
+	QString done("Song directory renamed from: \"%1\" to: \"%2\".");
+	QString fail("Song directory: \"%1\" was NOT renamed.");
+	
 	QString oldName(song->songFileInfo().dir().dirName());
 	
 	if(song->renameSongDir(song->artist() + " - " + song->title())) {
-		addLogMsg("Song directory renamed from: \"" + oldName + "\" to: \"" + song->songFileInfo().dir().dirName() + "\".");
+		addLogMsg(done.arg(oldName).arg(song->songFileInfo().dir().dirName()));
 	} else {
-		addLogMsg("Song directory: \"" + oldName + "\" was NOT renamed.");
+		addLogMsg(fail.arg(oldName), 1);
+	}
+}
+
+void QUMainWindow::renameSongDirCheckedVideo(QUSongFile *song) {
+	QString done("Song directory renamed from: \"%1\" to: \"%2\".");
+	QString fail("Song directory: \"%1\" was NOT renamed.");
+	
+	QString oldName(song->songFileInfo().dir().dirName());
+	QString newName("%1 - %2");
+	
+	if(song->hasVideo())
+		newName.append(" [VIDEO]");
+	
+	if(song->edition().contains("[SC]", Qt::CaseInsensitive))
+		newName.append(" [SC]");
+	
+	if(song->renameSongDir(newName.arg(song->artist()).arg(song->title()))) {
+		addLogMsg(done.arg(oldName).arg(song->songFileInfo().dir().dirName()));
+	} else {
+		addLogMsg(fail.arg(oldName), 1);
 	}
 }
 
 void QUMainWindow::renameSongTxt(QUSongFile *song) {
-
+	QString done("Song text file renamed from: \"%1\" to: \"%2\".");
+	QString fail("Song text file: \"%1\" was NOT renamed.");
+	
 	QString oldName(song->songFileInfo().fileName());
 	
 	if(song->renameSongTxt(song->artist() + " - " + song->title() + ".txt")) {
-		addLogMsg("Song text file renamed from: \"" + oldName + "\" to: \"" + song->songFileInfo().fileName() + "\".");
+		addLogMsg(done.arg(oldName).arg(song->songFileInfo().fileName()));
 	} else {
-		addLogMsg("Song text file: \"" + oldName + "\" was NOT renamed.");
+		addLogMsg(fail.arg(oldName), 1);
 	}	
 }
 
 void QUMainWindow::renameSongMp3(QUSongFile *song) {
+	QString done("Audio file renamed from: \"%1\" to: \"%2\".");
+	QString fail("Audio file: \"%1\" was NOT renamed.");
+	
 	QString oldName(song->mp3());
 	
-	if(song->renameSongMp3(song->artist() + " - " + song->title() + ".mp3")) {
-		addLogMsg("MP3 file renamed from: \"" + oldName + "\" to: \"" + song->mp3() + "\".");
+	if(song->renameSongMp3(song->artist() + " - " + song->title() + "." + QFileInfo(song->mp3()).suffix().toLower())) {
+		addLogMsg(done.arg(oldName).arg(song->mp3()));
 	} else {
-		addLogMsg("MP3 file: \"" + oldName + "\" was NOT renamed.");
-	}	
+		addLogMsg(fail.arg(oldName), 1);
+	}		
 }
 
 void QUMainWindow::renameSongCover(QUSongFile *song) {
+	QString done("Cover file renamed from: \"%1\" to: \"%2\".");
+	QString fail("Cover file: \"%1\" was NOT renamed.");
+
 	QString oldName(song->cover());
 	
-	if(song->renameSongCover(song->artist() + " - " + song->title() + " [CO].jpg")) {
-		addLogMsg("Cover file renamed from: \"" + oldName + "\" to: \"" + song->cover() + "\".");
+	if(song->renameSongCover(song->artist() + " - " + song->title() + " [CO]." + QFileInfo(song->cover()).suffix().toLower())) {
+		addLogMsg(done.arg(oldName).arg(song->cover()));
 	} else {
-		addLogMsg("Cover file: \"" + oldName + "\" was NOT renamed.");
+		addLogMsg(fail.arg(oldName), 1);
 	}	
 }
 
 void QUMainWindow::renameSongBackground(QUSongFile *song) {
+	QString done("Background file renamed from: \"%1\" to: \"%2\".");
+	QString fail("Background file: \"%1\" was NOT renamed.");
+	
 	QString oldName(song->background());
 	
-	if(song->renameSongBackground(song->artist() + " - " + song->title() + " [BG].jpg")) {
-		addLogMsg("Background file renamed from: \"" + oldName + "\" to: \"" + song->background() + "\".");
+	if(song->renameSongBackground(song->artist() + " - " + song->title() + " [BG]." + QFileInfo(song->background()).suffix().toLower())) {
+		addLogMsg(done.arg(oldName).arg(song->background()));
 	} else {
-		addLogMsg("Background file: \"" + oldName + "\" was NOT renamed.");
+		addLogMsg(fail.arg(oldName), 1);
 	}	
 }
 
 void QUMainWindow::renameSongVideo(QUSongFile *song) {
+	QString done("Video file renamed from: \"%1\" to: \"%2\".");
+	QString fail("Video file: \"%1\" was NOT renamed.");
+	
 	QString oldName(song->video());
 	
-	if(song->renameSongVideo(song->artist() + " - " + song->title() + ".mpg")) {
-		addLogMsg("Video file renamed from: \"" + oldName + "\" to: \"" + song->video() + "\".");
+	if(song->renameSongVideo(song->artist() + " - " + song->title() + "." + QFileInfo(song->video()).suffix().toLower())) {
+		addLogMsg(done.arg(oldName).arg(song->video()));
 	} else {
-		addLogMsg("Video file: \"" + oldName + "\" was NOT renamed.");
+		addLogMsg(fail.arg(oldName), 1);
 	}	
 }
 
-void QUMainWindow::addLogMsg(const QString &msg) {
+void QUMainWindow::renameSongVideogap(QUSongFile *song) {
+	QString done("Video file renamed from: \"%1\" to: \"%2\".");
+	QString fail("Video file: \"%1\" was NOT renamed.");
+	
+	QString oldName(song->video());
+	QString newName("%1 - %2 [VD#%3]." + QFileInfo(song->video()).suffix().toLower());
+	
+	if(song->renameSongVideo(newName.arg(song->artist()).arg(song->title()).arg(song->videogap()))) {
+		addLogMsg(done.arg(oldName).arg(song->video()));
+	} else {
+		addLogMsg(fail.arg(oldName), 1);
+	}		
+}
+
+void QUMainWindow::addLogMsg(const QString &msg, int type) {
 	log->insertItem(0, QDateTime::currentDateTime().toString("[hh:mm:ss] ") + msg);
+	
+	switch(type) {
+	case 1: log->item(0)->setIcon(QIcon(":/marks/error.png")); break;
+	case 2: log->item(0)->setIcon(QIcon(":/marks/help.png")); break;
+	default: log->item(0)->setIcon(QIcon(":/marks/information.png")); break;
+	}
+	
 }
 
 void QUMainWindow::aboutQt() {
@@ -566,7 +578,7 @@ void QUMainWindow::aboutQt() {
 }
 
 void QUMainWindow::aboutUman() {
-	QMessageBox::about(this, "About", "<b>UltraStar Manager</b><br>Version 1.3<br><br>©2008 by Marcel Taeumel<br><br><i>Tested By</i><br>Michael Grünewald");
+	QMessageBox::about(this, "About", "<b>UltraStar Manager</b><br>Version 1.4<br><br>©2008 by Marcel Taeumel<br><br><i>Tested By</i><br>Michael Grünewald");
 }
 
 void QUMainWindow::editTagOrder() {

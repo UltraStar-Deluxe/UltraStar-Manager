@@ -1,7 +1,6 @@
 #ifndef QUSONGITEM_H_
 #define QUSONGITEM_H_
 
-#include <QString>
 #include <QTreeWidgetItem>
 #include "QUSongFile.h"
 
@@ -11,14 +10,27 @@
  */
 class QUSongItem: public QTreeWidgetItem {	
 public:
-	QUSongItem(QUSongFile *song = 0);
-	~QUSongItem();
+	QUSongItem(QUSongFile *song = 0, bool isToplevel = false);
+	
+	void updateAsDirectory();
+	void updateAsTxt();
+	void updateAsMp3();
+	void updateAsPicture();
+	void updateAsVideo();
+	void updateAsUnknown();
+	
+	void update();
 	
 	QUSongFile* song() const {return _song;}
 	void setFontColor(const QColor &color);
 	
+	bool isToplevel() const { return _isToplevel; }
+	
 private:
 	QUSongFile *_song;
+	bool _isToplevel;
+
+	void clearContents();
 };
 
 #endif /*QUSONGITEM_H_*/

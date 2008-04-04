@@ -29,14 +29,9 @@ private slots:
 	void initTaskList();
 	void initMonty();
 	
+	void refreshSongs();
 	void createSongFiles();
 	void createSongTree();
-	
-	QUSongItem* createSongTreeTopLevelItem(QUSongFile *song);
-	void createSongTreeTxtItem(QTreeWidgetItem *parent, QUSongFile *song);
-	void createSongTreeMp3Items(QTreeWidgetItem *parent, QUSongFile *song);
-	void createSongTreeJpgItems(QTreeWidgetItem *parent, QUSongFile *song);
-	void createSongTreeMpgItems(QTreeWidgetItem *parent, QUSongFile *song);
 	
 	void updateDetails();
 	void updateImage();
@@ -51,11 +46,13 @@ private slots:
 	
 	void useID3Tag(QUSongFile *song);
 	void renameSongDir(QUSongFile *song);
+	void renameSongDirCheckedVideo(QUSongFile *song);
 	void renameSongTxt(QUSongFile *song);
 	void renameSongMp3(QUSongFile *song);
 	void renameSongCover(QUSongFile *song);
 	void renameSongBackground(QUSongFile *song);
 	void renameSongVideo(QUSongFile *song);
+	void renameSongVideogap(QUSongFile *song);
 	
 	void aboutQt();
 	void aboutUman();
@@ -68,7 +65,7 @@ private:
 	QDir _baseDir;
 	QList<QUSongFile*> _songs;
 	
-	void addLogMsg(const QString &msg);
+	void addLogMsg(const QString &msg, int type = 0);
 };
 
 #endif // QUMAINWINDOW_H

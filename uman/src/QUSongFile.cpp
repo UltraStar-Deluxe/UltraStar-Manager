@@ -4,6 +4,7 @@
 #include <QVariant>
 #include <QDir>
 #include <QSettings>
+#include <QMessageBox>
 
 #include "fileref.h"
 #include "tag.h"
@@ -37,9 +38,24 @@ bool QUSongFile::updateCache() {
 	while( !(line.startsWith(":") || _file.atEnd()) ) {
 		line = QString(_file.readLine());
 		
+		// read supported tags
+		bool isSupported = false;
 		foreach(QString tag, QUSongFile::tags()) {
-			if(line.startsWith("#" + tag + ":"))
-				setInfo(tag, line.section("#" + tag + ":", 0, 0, QString::SectionSkipEmpty));		
+			if(line.startsWith("#" + tag + ":")) {
+				setInfo(tag, line.section("#" + tag + ":", 0, 0, QString::SectionSkipEmpty));
+				isSupported = true;
+			}
+		}
+		
+		// read unsupported tags
+		if(!isSupported and line.startsWith("#")) {
+			QString uTag(line.section(":", 0, 0).remove("#").trimmed());
+			QString uValue(line.section("#" + uTag + ":", 0, 0, QString::SectionSkipEmpty));
+			
+			if(!uTag.isEmpty() and !uValue.isEmpty()) {
+				setInfo(uTag, uValue);
+				_foundUnsupportedTags << uTag;
+			}
 		}
 	}
 	
@@ -94,6 +110,24 @@ QStringList QUSongFile::tags() {
 }
 
 /*!
+ * Checks whether the configuration information about the
+ * tag order is correct (especially the count of the tags).
+ */
+void QUSongFile::verifyTags(QStringList &tags) {
+	QSettings settings;
+	
+	if(tags.size() != QUSongFile::tags().size()) {
+		settings.setValue("tagOrder", QVariant(QUSongFile::tags()));
+		
+		QMessageBox::warning(0, "Deprecated tag information detected", 
+				"The number of available tags in your configuration and that one this application offers are different.\n\n"
+				"The tag order was reset to its default order. Check out the options to set up your custom order again.");
+		
+		tags = QUSongFile::tags();
+	}	
+}
+
+/*!
  * Checks whether the mp3 file really exists and can be used by US.
  * \returns True if the mp3 specified by the song file really exists.
  */
@@ -141,6 +175,9 @@ bool QUSongFile::save() {
 	QSettings settings;
 	tags = settings.value("tagOrder", QUSongFile::tags()).toStringList();
 	
+	QUSongFile::verifyTags(tags);
+	
+	// write supported tags
 	foreach(QString tag, tags) {
 		if(_info.value(tag) != "") { // do not write empty tags
 			_file.write("#");
@@ -149,6 +186,15 @@ bool QUSongFile::save() {
 			_file.write(_info.value(tag).toLocal8Bit());
 			_file.write("\n");
 		}
+	}
+	
+	// write unsupported tags
+	foreach(QString uTag, _foundUnsupportedTags) {
+		_file.write("#");
+		_file.write(uTag.toLocal8Bit());
+		_file.write(":");
+		_file.write(_info.value(uTag).toLocal8Bit());
+		_file.write("\n");		
 	}
 	
 	foreach(QString line, _lyrics) {
@@ -271,4 +317,16 @@ bool QUSongFile::useID3Tag() {
 	setInfo("TITLE", TStringToQString(ref.tag()->title()));
 	
 	return true;
+}
+
+QStringList QUSongFile::allowedAudioFiles() {
+	return QString("*.mp3 *.ogg").split(" ");
+}
+
+QStringList QUSongFile::allowedPictureFiles() {
+	return QString("*.jpg *.png *.bmp").split(" ");
+}
+
+QStringList QUSongFile::allowedVideoFiles() {
+	return QString("*.mpg *.mpeg *.avi *.flv *.ogm").split(" ");
 }

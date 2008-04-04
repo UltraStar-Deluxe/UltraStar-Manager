@@ -2,13 +2,18 @@
 #include "QUSongFile.h"
 
 #include <QSettings>
+#include <QMessageBox>
 
 
 QUTagOrderDialog::QUTagOrderDialog(QWidget *parent): QDialog(parent) {
 	setupUi(this);
 	
 	QSettings settings;
-	tagList->addItems(settings.value("tagOrder", QVariant(QUSongFile::tags())).toStringList());
+	QStringList items = settings.value("tagOrder", QVariant(QUSongFile::tags())).toStringList();
+	
+	QUSongFile::verifyTags(items);
+		
+	tagList->addItems(items);
 	
 	connect(applyBtn, SIGNAL(clicked()), SLOT(saveOrder()));
 	connect(cancelBtn, SIGNAL(clicked()), SLOT(reject()));

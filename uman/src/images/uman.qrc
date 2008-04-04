@@ -8,6 +8,7 @@
     <qresource prefix="/bullets" >
         <file>bullet_arrow_down.png</file>
         <file>bullet_arrow_up.png</file>
+        <file>bullet_black.png</file>
     </qresource>
     <qresource prefix="/control" >
         <file>arrow_in.png</file>
@@ -24,6 +25,9 @@
         <file>cancel.png</file>
         <file>cross.png</file>
         <file>delete.png</file>
+        <file>error.png</file>
+        <file>help.png</file>
+        <file>information.png</file>
         <file>link.png</file>
         <file>tag.png</file>
         <file>tick.png</file>
