@@ -13,6 +13,8 @@ NEW FEATURES
   > PICTURE: jpg, png, bmp
 * more tags editable: EDITION, GENRE, LANGUAGE
 * refresh the song tree (re-inspect the song-folder for song files) with F5 or "Songs->Refresh"
+* nice icons for event log messages added to recognize warnings easier
+* new tasks for ID3 tag added: use ID3 tag for artist, title or genre now (artist and title splitted)
 BUG FIXES
 * file endings/suffixes preserved while renameing them
 * tags that are not recognized will not be dropped anymore when saveing the song text file

@@ -307,17 +307,54 @@ bool QUSongFile::renameSongVideo(const QString &newName) {
  * Reads the ID3 tag from the specified MP3-File (info has to be correct) and uses
  * artist and title information for the song file.
  */
-bool QUSongFile::useID3Tag() {
+bool QUSongFile::useID3TagForArtist() {
 	if(!hasMp3())
 		return false;
 	
 	TagLib::FileRef ref(mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
 	
-	setInfo("ARTIST", TStringToQString(ref.tag()->artist()));
-	setInfo("TITLE", TStringToQString(ref.tag()->title()));
+	QString newArtist(TStringToQString(ref.tag()->artist()));
+	
+	if(newArtist.isEmpty())
+		return false;
+	
+	setInfo("ARTIST", newArtist);
 	
 	return true;
 }
+
+bool QUSongFile::useID3TagForTitle() {
+	if(!hasMp3())
+		return false;
+	
+	TagLib::FileRef ref(mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+	
+	QString newTitle(TStringToQString(ref.tag()->title()));
+	
+	if(newTitle.isEmpty())
+		return false;
+	
+	setInfo("TITLE", newTitle);
+	
+	return true;
+}
+
+bool QUSongFile::useID3TagForGenre() {
+	if(!hasMp3())
+		return false;
+	
+	TagLib::FileRef ref(mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+	
+	QString newGenre(TStringToQString(ref.tag()->genre()));
+	
+	if(newGenre.isEmpty())
+		return false;
+	
+	setInfo("GENRE", newGenre);
+	
+	return true;
+}
+
 
 QStringList QUSongFile::allowedAudioFiles() {
 	return QString("*.mp3 *.ogg").split(" ");

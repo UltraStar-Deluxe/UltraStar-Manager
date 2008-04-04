@@ -58,7 +58,9 @@ public slots:
 	bool renameSongBackground(const QString &newName);
 	bool renameSongVideo(const QString &newName);
 	
-	bool useID3Tag();
+	bool useID3TagForArtist();
+	bool useID3TagForTitle();
+	bool useID3TagForGenre();
 	
 	static QStringList tags();
 	static void verifyTags(QStringList &tags);
