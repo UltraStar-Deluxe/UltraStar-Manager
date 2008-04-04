@@ -329,8 +329,12 @@ void QUMainWindow::updateDetails() {
 	detailsTable->setItem(3, 0, new QTableWidgetItem(QIcon(":/types/picture.png"), "Cover"));
 	detailsTable->setItem(4, 0, new QTableWidgetItem(QIcon(":/types/picture.png"), "Background"));
 	detailsTable->setItem(5, 0, new QTableWidgetItem(QIcon(":/types/film.png"), "Video"));
+	detailsTable->setItem(6, 0, new QTableWidgetItem(QIcon(":/types/genre.png"), "Genre"));
+	detailsTable->setItem(7, 0, new QTableWidgetItem(QIcon(":/types/edition.png"), "Edition"));
+	detailsTable->setItem(8, 0, new QTableWidgetItem(QIcon(":/types/language.png"), "Language"));
+
 	
-	for(int i = 0; i < 6; i++)
+	for(int i = 0; i < 9; i++)
 		detailsTable->item(i, 0)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	
 	detailsTable->setItem(0, 1, new QUDetailItem(song->artist(), "ARTIST", song));
@@ -339,30 +343,27 @@ void QUMainWindow::updateDetails() {
 	detailsTable->setItem(3, 1, new QUDetailItem(song->cover(), "COVER", song));
 	detailsTable->setItem(4, 1, new QUDetailItem(song->background(), "BACKGROUND", song));
 	detailsTable->setItem(5, 1, new QUDetailItem(song->video(), "VIDEO", song));
+	detailsTable->setItem(6, 1, new QUDetailItem(song->genre(), "GENRE", song));
+	detailsTable->setItem(7, 1, new QUDetailItem(song->edition(), "EDITION", song));
+	detailsTable->setItem(8, 1, new QUDetailItem(song->language(), "LANGUAGE", song));
 
-	for(int i = 0; i < 6; i++)
+	for(int i = 0; i < 9; i++)
 		detailsTable->item(i, 1)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 	
 	// other song details, not editable
-	detailsTable->setItem(6, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "BPM"));
-	detailsTable->setItem(7, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Gap"));
-	detailsTable->setItem(8, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Start"));
-	detailsTable->setItem(9, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Videogap"));
-	detailsTable->setItem(10, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Relative"));
-	detailsTable->setItem(11, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Language"));
-	detailsTable->setItem(12, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Genre"));
-	detailsTable->setItem(13, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Edition"));
+	detailsTable->setItem(9, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "BPM"));
+	detailsTable->setItem(10, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Gap"));
+	detailsTable->setItem(11, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Start"));
+	detailsTable->setItem(12, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Videogap"));
+	detailsTable->setItem(13, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Relative"));
 
-	detailsTable->setItem(6, 1, new QTableWidgetItem(song->bpm()));
-	detailsTable->setItem(7, 1, new QTableWidgetItem(QString("%1 milliseconds").arg(song->gap())));
-	detailsTable->setItem(8, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->start())));
-	detailsTable->setItem(9, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->videogap())));
-	detailsTable->setItem(10, 1, new QTableWidgetItem(song->relative()));
-	detailsTable->setItem(11, 1, new QTableWidgetItem(song->language()));
-	detailsTable->setItem(12, 1, new QTableWidgetItem(song->genre()));
-	detailsTable->setItem(13, 1, new QTableWidgetItem(song->edition()));
+	detailsTable->setItem(9, 1, new QTableWidgetItem(song->bpm()));
+	detailsTable->setItem(10, 1, new QTableWidgetItem(QString("%1 milliseconds").arg(song->gap())));
+	detailsTable->setItem(11, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->start())));
+	detailsTable->setItem(12, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->videogap())));
+	detailsTable->setItem(13, 1, new QTableWidgetItem(song->relative()));
 	
-	for(int i = 6; i < 14; i++) {
+	for(int i = 9; i < 14; i++) {
 		detailsTable->item(i, 0)->setFlags(Qt::ItemIsEnabled);
 		detailsTable->item(i, 1)->setFlags(0);
 	}
