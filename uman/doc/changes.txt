@@ -15,6 +15,8 @@ NEW FEATURES
 * refresh the song tree (re-inspect the song-folder for song files) with F5 or "Songs->Refresh"
 * nice icons for event log messages added to recognize warnings easier
 * new tasks for ID3 tag added: use ID3 tag for artist, title or genre now (artist and title splitted)
+* all songs in every subdirectory of the song folder is now recognized correctly
+  > see "Options" Menu to switch the relative path
 BUG FIXES
 * file endings/suffixes preserved while renameing them
 * tags that are not recognized will not be dropped anymore when saveing the song text file

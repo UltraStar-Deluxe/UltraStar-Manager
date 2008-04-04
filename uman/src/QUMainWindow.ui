@@ -640,6 +640,8 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionShowEventLog" />
     <addaction name="actionShowTaskList" />
     <addaction name="separator" />
+    <addaction name="actionShowRelativeSongPath" />
+    <addaction name="separator" />
     <addaction name="actionTagSaveOrder" />
    </widget>
    <addaction name="menuSongs" />
@@ -748,6 +750,20 @@ p, li { white-space: pre-wrap; }
   <action name="actionRefresh" >
    <property name="text" >
     <string>Refresh</string>
+   </property>
+  </action>
+  <action name="actionShowRelativeSongPath" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Show Relative Song Path</string>
+   </property>
+   <property name="statusTip" >
+    <string>If not checked, displays the song folder names only</string>
    </property>
   </action>
  </widget>

@@ -1,4 +1,5 @@
 #include "QUSongItem.h"
+#include "QUMainWindow.h"
 
 #include <QString>
 #include <QStringList>
@@ -7,6 +8,8 @@
 #include <QDir>
 #include <QIcon>
 #include <QRegExp>
+#include <QSettings>
+#include <QMessageBox>
 
 QUSongItem::QUSongItem(QUSongFile *song, bool isToplevel): 
 	QTreeWidgetItem(), 
@@ -43,7 +46,8 @@ void QUSongItem::update() {
 		return;
 	}
 	
-	this->updateAsDirectory();
+	QSettings settings;
+	this->updateAsDirectory(settings.value("showRelativeSongPath", QVariant(true)).toBool());
 	
 	QUSongItem *child;
 	QStringList fileNames = song()->songFileInfo().dir().entryList(
@@ -81,10 +85,14 @@ void QUSongItem::update() {
 /*!
  * Format this item as toplevel directory item.
  */
-void QUSongItem::updateAsDirectory() {
+void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	clearContents();
 	
-	this->setText(0, song()->songFileInfo().dir().dirName());
+	if(showRelativePath)
+		this->setText(0, QUMainWindow::_baseDir.relativeFilePath(song()->songFileInfo().path()));
+	else
+		this->setText(0, song()->songFileInfo().dir().dirName());
+	
 	this->setIcon(0, QIcon(":/types/folder.png"));
 	
 	QRegExp r("\\[.*\\]");

@@ -17,3 +17,4 @@ You want to know how many songs you've got? Well...there are <b>%1 songs</b>. No
 Hmmm...just in case you did not recognized: The last events are located on top of the event log.
 Did you remark these nice tooltips at the heading of each column in the song tree?
 Do you wonder why some tasks want to rename your file into <i>something.*</i>?<br><br>Well, your file suffix is preserved whatever it may be. So don't bother.
+The first *.txt file in any subdirectory of your song folder will be recognized as a song and listed in the song tree.

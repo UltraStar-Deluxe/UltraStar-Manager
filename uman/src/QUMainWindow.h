@@ -19,6 +19,8 @@ public:
 	QUMainWindow(QWidget *parent = 0);
 	~QUMainWindow();
 	
+	static QDir _baseDir;
+	
 private slots:
 	void initConfig();
 	void initWindow();
@@ -64,11 +66,14 @@ private slots:
 	
 	void montyTalk();
 	
+	void toggleRelativeSongPath(bool checked);
+	
 private:
-	QDir _baseDir;
 	QList<QUSongFile*> _songs;
 	
 	void addLogMsg(const QString &msg, int type = 0);
+	
+	void readSongDir(QList<QDir> &dirList);
 };
 
 #endif // QUMAINWINDOW_H

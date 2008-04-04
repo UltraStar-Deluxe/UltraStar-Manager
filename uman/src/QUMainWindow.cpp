@@ -18,6 +18,7 @@
 
 #include <QFileDialog>
 #include <QFileInfo>
+#include <QFileInfoList>
 #include <QProgressDialog>
 
 #include "QUSongFile.h"
@@ -26,6 +27,7 @@
 
 #include "QUTagOrderDialog.h"
 
+QDir QUMainWindow::_baseDir = QDir();
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	setupUi(this);
 	
@@ -73,6 +75,7 @@ void QUMainWindow::initConfig() {
 	actionShowTaskList->setChecked(settings.value("showTaskList", QVariant(true)).toBool());
 	actionShowEventLog->setChecked(settings.value("showEventLog", QVariant(true)).toBool());
 	actionAllowMonty->setChecked(settings.value("allowMonty", QVariant(true)).toBool());
+	actionShowRelativeSongPath->setChecked(settings.value("showRelativeSongPath", QVariant(true)).toBool());
 }
 
 /*!
@@ -99,6 +102,7 @@ void QUMainWindow::initMenu() {
 	//options
 	connect(actionShowEventLog, SIGNAL(toggled(bool)), log, SLOT(setVisible(bool)));
 	connect(actionShowTaskList, SIGNAL(toggled(bool)), taskFrame, SLOT(setVisible(bool)));
+	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
 	connect(actionTagSaveOrder, SIGNAL(triggered()), this, SLOT(editTagOrder()));
 	
 	// help
@@ -108,6 +112,7 @@ void QUMainWindow::initMenu() {
 	
 	actionAllowMonty->setIcon(QIcon(":/monty/normal.png"));
 	actionShowMonty->setIcon(QIcon(":/monty/happy.png"));
+	actionShowRelativeSongPath->setIcon(QIcon(":/types/folder.png"));
 }
 
 /*!
@@ -230,19 +235,44 @@ void QUMainWindow::refreshSongs() {
  * \sa CreateSongTree();
  */
 void QUMainWindow::createSongFiles() {
-	QStringList entries = _baseDir.entryList(QDir::NoDotAndDotDot | QDir::Dirs, QDir::Name);
-	QProgressDialog progress("Reading song files...", 0, 0, entries.size(), this);
+	QList<QDir> dirList;
+	dirList.append(QDir(_baseDir));
 	
+	QProgressDialog progress("Looking for songs...", 0, 0, 1, this);
 	progress.show();
 	
-	foreach(QString sub, entries) {
+	this->readSongDir(dirList);
+	
+	progress.setMaximum(dirList.size());
+	progress.setLabelText("Reading song files...");
+	
+	foreach(QDir dir, dirList) {
 		progress.setValue(progress.value() + 1);
 		
-		QDir subDir(_baseDir.path() + "/" + sub);
-		QStringList files = subDir.entryList(QStringList("*.txt"), QDir::Files);
+		QStringList files = dir.entryList(QStringList("*.txt"), QDir::Files);
 		
 		if(!files.isEmpty()) {
-			_songs.append(new QUSongFile(subDir.path() + "/" + files.first()));
+			_songs.append(new QUSongFile(QFileInfo(dir, files.first()).filePath()));
+		}
+	}
+}
+
+/*!
+ * Lists all available sub (and sub-sub a.s.o.) directories.
+ */
+void QUMainWindow::readSongDir(QList<QDir> &dirList) {
+	if(dirList.last().entryList(QDir::NoDotAndDotDot | QDir::Dirs, QDir::Name).isEmpty()) {
+		return;
+	} else {
+		QDir thisDir(dirList.last());
+		QStringList subDirs = dirList.last().entryList(QDir::NoDotAndDotDot | QDir::Dirs, QDir::Name);
+		
+		foreach(QString dir, subDirs) {
+			QDir newDir(thisDir);
+			newDir.cd(dir);
+			
+			dirList.append(newDir);
+			this->readSongDir(dirList);
 		}
 	}
 }
@@ -629,4 +659,22 @@ void QUMainWindow::montyTalk() {
 	
 	helpFrame->show();
 	monty->talk(montyLbl, helpLbl);
+}
+
+/*!
+ * Updates all toplevel items to display the relative song path
+ * or only the song directory - like selected.
+ */
+void QUMainWindow::toggleRelativeSongPath(bool checked) {
+	QSettings settings;
+	settings.setValue("showRelativeSongPath", QVariant(checked));
+	
+	QList<QUSongItem*> tmpList; // tmp list needed so avoid sorting problems
+	
+	for(int i = 0; i < songTree->topLevelItemCount(); i++)
+		tmpList.append(dynamic_cast<QUSongItem*>(songTree->topLevelItem(i)));
+	
+	foreach(QUSongItem *item, tmpList) {
+		item->updateAsDirectory(checked);
+	}
 }

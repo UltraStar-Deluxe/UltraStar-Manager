@@ -12,7 +12,7 @@ class QUSongItem: public QTreeWidgetItem {
 public:
 	QUSongItem(QUSongFile *song = 0, bool isToplevel = false);
 	
-	void updateAsDirectory();
+	void updateAsDirectory(bool showRelativePath = false);
 	void updateAsTxt();
 	void updateAsMp3();
 	void updateAsPicture();
