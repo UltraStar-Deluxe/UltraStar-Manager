@@ -2,7 +2,8 @@ TEMPLATE = app
 TARGET = uman
 QT += core \
     gui
-HEADERS += QUMonty.h \
+HEADERS += main.h \
+    QUMonty.h \
     QUTagOrderDialog.h \
     QUDetailItem.h \
     QUSongItem.h \

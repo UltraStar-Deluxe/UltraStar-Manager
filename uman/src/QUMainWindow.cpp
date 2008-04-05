@@ -1,3 +1,5 @@
+#include "main.h"
+
 #include "QUMainWindow.h"
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
@@ -88,7 +90,7 @@ void QUMainWindow::initConfig() {
  * Set up initial window size and title text.
  */
 void QUMainWindow::initWindow() {
-	setWindowTitle("UltraStar Manager");
+	setWindowTitle(QString("UltraStar Manager %1.%2").arg(MAJOR_VERSION).arg(MINOR_VERSION));
 	resize(1000, 600);
 	QList<int> sizes;
 	sizes << 700 << 300;
@@ -142,7 +144,7 @@ void QUMainWindow::initSongTree() {
 
 void QUMainWindow::initSongTreeHeader() {
 	QTreeWidgetItem *header = new QTreeWidgetItem();
-	header->setText(0, "Folder");
+	header->setText(0, QString("Folder (%1)").arg(_baseDir.path()));
 	header->setIcon(0, QIcon(":/types/folder.png"));
 	header->setText(1, "Artist");
 	header->setIcon(1, QIcon(":/types/user.png"));
@@ -682,7 +684,15 @@ void QUMainWindow::aboutQt() {
 }
 
 void QUMainWindow::aboutUman() {
-	QMessageBox::about(this, "About", "<b>UltraStar Manager</b><br>Version 1.4<br><br>©2008 by Marcel Taeumel<br><br><i>Tested By</i><br>Michael Grünewald");
+	QString aboutStr("<b>UltraStar Manager</b><br>"
+			"Version %1.%2.%3<br>"
+			"<br>"
+			"©2008 by Marcel Taeumel<br>"
+			"<br>"
+			"<i>Tested By</i><br>"
+			"Michael Grünewald");
+	
+	QMessageBox::about(this, "About", aboutStr.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION));
 }
 
 void QUMainWindow::editTagOrder() {
@@ -712,6 +722,8 @@ void QUMainWindow::changeSongDir() {
 		montyTalk();
 		
 		addLogMsg(QString("UltraStar song directory changed to: \"%1\".").arg(_baseDir.path()));
+		
+		songTree->headerItem()->setText(0, QString("Folder (%1)").arg(_baseDir.path()));
 	}
 }
 
