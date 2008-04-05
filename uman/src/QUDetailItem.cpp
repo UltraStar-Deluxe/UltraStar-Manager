@@ -130,22 +130,71 @@ void QUDetailItem::updateItemForMultipleSongs() {
 		this->setText("Multiple files selected.");
 	} else if(QString::compare(tag(), ARTIST_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText("");
+		
+		this->setText(songs().first()->artist());
+		for(int i = 0; i < songs().size(); i++) {
+			if(QString::compare(this->text(), songs()[i]->artist(), Qt::CaseInsensitive) != 0) {
+				this->setText("Click here to edit.");
+				break;
+			}
+		}
+		
 	} else if(QString::compare(tag(), LANGUAGE_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText("");
+				
+		this->setText(songs().first()->language());
+		for(int i = 0; i < songs().size(); i++) {
+			if(QString::compare(this->text(), songs()[i]->language(), Qt::CaseInsensitive) != 0) {
+				this->setText("Click here to edit.");
+				break;
+			}
+		}
+		
+		this->updateDefaultData(tag(), songs().first());
 	} else if(QString::compare(tag(), EDITION_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText("");
+		
+		this->setText(songs().first()->edition());
+		for(int i = 0; i < songs().size(); i++) {
+			if(QString::compare(this->text(), songs()[i]->edition(), Qt::CaseInsensitive) != 0) {
+				this->setText("Click here to edit.");
+				break;
+			}
+		}
+		// TODO: updateDefaultData if edition list present
 	} else if(QString::compare(tag(), GENRE_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText("");
+		
+		this->setText(songs().first()->genre());
+		for(int i = 0; i < songs().size(); i++) {
+			if(QString::compare(this->text(), songs()[i]->genre(), Qt::CaseInsensitive) != 0) {
+				this->setText("Click here to edit.");
+				break;
+			}
+		}
+		
+		this->updateDefaultData(tag(), songs().first());
 	} else if(QString::compare(tag(), YEAR_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText("");
+
+		this->setText(songs().first()->year());
+		for(int i = 0; i < songs().size(); i++) {
+			if(QString::compare(this->text(), songs()[i]->year(), Qt::CaseInsensitive) != 0) {
+				this->setText("Click here to edit.");
+				break;
+			}
+		}
+		// TODO: updateDefaultData if year list present
 	} else if(QString::compare(tag(), CREATOR_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText("");
+		
+		this->setText(songs().first()->creator());
+		for(int i = 0; i < songs().size(); i++) {
+			if(QString::compare(this->text(), songs()[i]->creator(), Qt::CaseInsensitive) != 0) {
+				this->setText("Click here to edit.");
+				break;
+			}
+		}
 	
 	} else if(QString::compare(tag(), MP3_TAG) == 0) {
 		this->setFlags(0);
