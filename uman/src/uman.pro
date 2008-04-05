@@ -2,14 +2,16 @@ TEMPLATE = app
 TARGET = uman
 QT += core \
     gui
-HEADERS += main.h \
+HEADERS += QUDropDownDelegate.h \
+    main.h \
     QUMonty.h \
     QUTagOrderDialog.h \
     QUDetailItem.h \
     QUSongItem.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += QUMonty.cpp \
+SOURCES += QUDropDownDelegate.cpp \
+    QUMonty.cpp \
     QUTagOrderDialog.cpp \
     QUDetailItem.cpp \
     QUSongItem.cpp \

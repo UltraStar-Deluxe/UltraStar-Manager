@@ -93,13 +93,13 @@ QStringList QUSongFile::tags() {
 	
 	result << "ARTIST";
 	result << "TITLE";
-	result << "MP3";
+	result << MP3_TAG;
 	result << "BPM";
 	result << "GAP";
-	result << "VIDEO";
+	result << VIDEO_TAG;
 	result << "VIDEOGAP";
-	result << "COVER";
-	result << "BACKGROUND";
+	result << COVER_TAG;
+	result << BACKGROUND_TAG;
 	result << "START";
 	result << "RELATIVE";
 	result << "EDITION";

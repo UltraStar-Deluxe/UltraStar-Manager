@@ -9,6 +9,11 @@
 #include <QMap>
 #include <QDir>
 
+#define MP3_TAG        "MP3"
+#define COVER_TAG      "COVER"
+#define BACKGROUND_TAG "BACKGROUND"
+#define VIDEO_TAG      "VIDEO"
+
 /*!
  * This class represents a data file which is used by UltraStar for every song.
  * It contains all tags that are available in US Deluxe 1.00.
@@ -64,6 +69,7 @@ public slots:
 	bool useID3TagForGenre();
 	
 	static QStringList tags();
+	
 	static void verifyTags(QStringList &tags);
 	static QStringList allowedAudioFiles();
 	static QStringList allowedPictureFiles();

@@ -26,6 +26,7 @@
 #include "QUSongFile.h"
 #include "QUDetailItem.h"
 #include "QUMonty.h"
+#include "QUDropDownDelegate.h"
 
 #include "fileref.h"
 #include "tag.h"
@@ -177,6 +178,9 @@ void QUMainWindow::initDetailsTable() {
 	detailsTable->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
 	
 	connect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(saveSongChanges(QTableWidgetItem*)));
+	
+	QUDropDownDelegate *comboDelegate = new QUDropDownDelegate(detailsTable);
+	detailsTable->setItemDelegateForColumn(1, comboDelegate);
 }
 
 void QUMainWindow::initTaskList() {
@@ -388,10 +392,10 @@ void QUMainWindow::updateDetails() {
 	
 	detailsTable->setItem(0, 1, new QUDetailItem(song->artist(), "ARTIST", song));
 	detailsTable->setItem(1, 1, new QUDetailItem(song->title(), "TITLE", song));
-	detailsTable->setItem(2, 1, new QUDetailItem(song->mp3(), "MP3", song));
-	detailsTable->setItem(3, 1, new QUDetailItem(song->cover(), "COVER", song));
-	detailsTable->setItem(4, 1, new QUDetailItem(song->background(), "BACKGROUND", song));
-	detailsTable->setItem(5, 1, new QUDetailItem(song->video(), "VIDEO", song));
+	detailsTable->setItem(2, 1, new QUDetailItem(song->mp3(), MP3_TAG, song));
+	detailsTable->setItem(3, 1, new QUDetailItem(song->cover(), COVER_TAG, song));
+	detailsTable->setItem(4, 1, new QUDetailItem(song->background(), BACKGROUND_TAG, song));
+	detailsTable->setItem(5, 1, new QUDetailItem(song->video(), VIDEO_TAG, song));
 	detailsTable->setItem(6, 1, new QUDetailItem(song->genre(), "GENRE", song));
 	detailsTable->setItem(7, 1, new QUDetailItem(song->edition(), "EDITION", song));
 	detailsTable->setItem(8, 1, new QUDetailItem(song->language(), "LANGUAGE", song));
