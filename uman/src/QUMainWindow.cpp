@@ -168,6 +168,17 @@ void QUMainWindow::initSongTreeHeader() {
 	header->setText(6, "Video");
 	header->setIcon(6, QIcon(":/types/film.png"));
 	header->setToolTip(6, "Shows whether the song text file points to a video file that can be found by UltraStar");
+
+	header->setText(7, "Language");
+	header->setIcon(7, QIcon(":/types/language.png"));
+	header->setText(8, "Edition");
+	header->setIcon(8, QIcon(":/types/edition.png"));
+	header->setText(9, "Genre");
+	header->setIcon(9, QIcon(":/types/genre.png"));
+	header->setText(10, "Year");
+	header->setIcon(10, QIcon(":/types/date.png"));
+	header->setText(11, "Creator");
+	header->setIcon(11, QIcon(":/types/creator.png"));
 	
 	songTree->setHeaderItem(header);	
 }
@@ -371,14 +382,25 @@ void QUMainWindow::resetLink(QTreeWidgetItem *item, int column) {
 }
 
 void QUMainWindow::updateDetails() {
-	QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->currentItem());
-	
 	detailsTable->clearContents();
 	
-	if(!songItem)
-		return;
+	// build a list with all songs
+	QList<QUSongFile*> songs;
 	
-	QUSongFile *song = songItem->song();
+	if(songTree->selectedItems().isEmpty()) { // nothing selected? Try to use the current item...
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->currentItem());
+		if(songItem)
+			songs.append(songItem->song());
+	} else { // look for all songs in the selection
+		foreach(QTreeWidgetItem *item, songTree->selectedItems()) {
+			QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+			if(songItem)
+				songs.append(songItem->song());			
+		}
+	}
+	
+	if(songs.isEmpty())
+		return;
 	
 	detailsTable->setItem(0, 0, new QTableWidgetItem(QIcon(":/types/font.png"), "Title"));
 	detailsTable->setItem(1, 0, new QTableWidgetItem(QIcon(":/types/user.png"), "Artist"));
@@ -398,24 +420,21 @@ void QUMainWindow::updateDetails() {
 	for(int i = 0; i < 12; i++)
 		detailsTable->item(i, 0)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	
-	detailsTable->setItem(0, 1, new QUDetailItem(song->title(), TITLE_TAG, song));
-	detailsTable->setItem(1, 1, new QUDetailItem(song->artist(), ARTIST_TAG, song));
-	detailsTable->setItem(2, 1, new QUDetailItem(song->language(), LANGUAGE_TAG, song));
-	detailsTable->setItem(3, 1, new QUDetailItem(song->edition(), EDITION_TAG, song));
-	detailsTable->setItem(4, 1, new QUDetailItem(song->genre(), GENRE_TAG, song));
-	detailsTable->setItem(5, 1, new QUDetailItem(song->year(), YEAR_TAG, song));
-	detailsTable->setItem(6, 1, new QUDetailItem(song->creator(), CREATOR_TAG, song));
+	detailsTable->setItem(0, 1, new QUDetailItem(TITLE_TAG, songs));
+	detailsTable->setItem(1, 1, new QUDetailItem(ARTIST_TAG, songs));
+	detailsTable->setItem(2, 1, new QUDetailItem(LANGUAGE_TAG, songs));
+	detailsTable->setItem(3, 1, new QUDetailItem(EDITION_TAG, songs));
+	detailsTable->setItem(4, 1, new QUDetailItem(GENRE_TAG, songs));
+	detailsTable->setItem(5, 1, new QUDetailItem(YEAR_TAG, songs));
+	detailsTable->setItem(6, 1, new QUDetailItem(CREATOR_TAG, songs));
 	
 	detailsTable->setItem(7, 1, new QTableWidgetItem());
 	
-	detailsTable->setItem(8, 1, new QUDetailItem(song->mp3(), MP3_TAG, song));
-	detailsTable->setItem(9, 1, new QUDetailItem(song->cover(), COVER_TAG, song));
-	detailsTable->setItem(10, 1, new QUDetailItem(song->background(), BACKGROUND_TAG, song));
-	detailsTable->setItem(11, 1, new QUDetailItem(song->video(), VIDEO_TAG, song));
+	detailsTable->setItem(8, 1, new QUDetailItem(MP3_TAG, songs));
+	detailsTable->setItem(9, 1, new QUDetailItem(COVER_TAG, songs));
+	detailsTable->setItem(10, 1, new QUDetailItem(BACKGROUND_TAG, songs));
+	detailsTable->setItem(11, 1, new QUDetailItem(VIDEO_TAG, songs));
 
-	for(int i = 0; i < 12; i++)
-		detailsTable->item(i, 1)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-	
 	detailsTable->item(7, 0)->setFlags(Qt::ItemIsEnabled);
 	detailsTable->item(7, 1)->setFlags(Qt::ItemIsEnabled);
 	
@@ -431,17 +450,15 @@ void QUMainWindow::updateDetails() {
 	
 	detailsTable->setItem(12, 1, new QTableWidgetItem());
 		
-	detailsTable->setItem(13, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->videogap())));
-	detailsTable->setItem(14, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->start())));
-	detailsTable->setItem(15, 1, new QTableWidgetItem(QString("%1 milliseconds").arg(song->end())));
-	detailsTable->setItem(16, 1, new QTableWidgetItem(song->relative()));
-	detailsTable->setItem(17, 1, new QTableWidgetItem(song->bpm()));
-	detailsTable->setItem(18, 1, new QTableWidgetItem(QString("%1 milliseconds").arg(song->gap())));
+	detailsTable->setItem(13, 1, new QUDetailItem(VIDEOGAP_TAG, songs));
+	detailsTable->setItem(14, 1, new QUDetailItem(START_TAG, songs));
+	detailsTable->setItem(15, 1, new QUDetailItem(END_TAG, songs));
+	detailsTable->setItem(16, 1, new QUDetailItem(RELATIVE_TAG, songs));
+	detailsTable->setItem(17, 1, new QUDetailItem(BPM_TAG, songs));
+	detailsTable->setItem(18, 1, new QUDetailItem(GAP_TAG, songs));
 	
-	for(int i = 12; i < 19; i++) {
+	for(int i = 12; i < 19; i++)
 		detailsTable->item(i, 0)->setFlags(Qt::ItemIsEnabled);
-		detailsTable->item(i, 1)->setFlags(0);
-	}
 	
 	// set up the splitter
 	detailsTable->setSpan(7, 0, 1, 2);
@@ -494,19 +511,36 @@ void QUMainWindow::updateStatusbar() {
 	this->statusBar()->showMessage(text.arg(artist).arg(title).arg(genre).arg(year));
 }
 
+/*!
+ * Save all changes of the details into the song file.
+ * \sa updateDetails()
+ */
 void QUMainWindow::saveSongChanges(QTableWidgetItem *item) {
 	QUDetailItem *detailItem = dynamic_cast<QUDetailItem*>(detailsTable->currentItem());
-	QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->currentItem());
 	
-	if(!detailItem || !songItem)
+	if(!detailItem)
 		return;
+
+	// save changes for each song
+	foreach(QUSongFile *song, detailItem->songs()) {
+		song->setInfo(detailItem->tag(), detailItem->text());
+		song->save();		
+	}
 	
-	QUSongFile *song = detailItem->song();
+	// update all selected items with these new details in the song tree
+	QList<QTreeWidgetItem*> selectedItems = songTree->selectedItems();
 	
-	song->setInfo(detailItem->tag(), detailItem->text());
-	song->save();
-	
-	songItem->update();
+	if(selectedItems.isEmpty()) { // no songs selected? Try the current item...
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->currentItem());
+		if(songItem)
+			songItem->update();
+	} else {
+		foreach(QTreeWidgetItem *i, selectedItems) {
+			QUSongItem *songItem = dynamic_cast<QUSongItem*>(i);
+			if(songItem)
+				songItem->update();			
+		}
+	}
 	
 	updateDetails(); // to show "n/a" if text was deleted completely
 }

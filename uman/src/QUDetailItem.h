@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QTableWidgetItem>
+#include <QList>
 #include "QUSongFile.h"
 
 /*!
@@ -11,17 +12,21 @@
  */
 class QUDetailItem: public QTableWidgetItem {	
 public:
-	QUDetailItem(const QString &text, const QString &tag, QUSongFile *song = 0);
-	~QUDetailItem();
+	QUDetailItem(const QString &tag, const QList<QUSongFile*> &songs);
+	
 	
 	QString tag() const {return _tag;}
-	QUSongFile* song() const {return _song;}
-	void setFontColor(const QColor &color);
+	
+	const QList<QUSongFile*>& songs() const {return _songs;}
 	
 private:
 	QString _tag;
-	QUSongFile *_song;
+	QList<QUSongFile*> _songs;
 	
+	void updateDefaultData(const QString &tag, QUSongFile *song);
+	void updateText(const QString &tag, QUSongFile *song);
+	
+	void updateItemForMultipleSongs();
 };
 
 #endif /*QUDETAILITEM_H_*/

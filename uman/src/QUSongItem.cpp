@@ -123,7 +123,13 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	if(song()->hasMp3()) this->setIcon(3, QIcon(":/marks/tick.png")); else this->setIcon(3, QIcon(":/marks/cross.png")); 
 	if(song()->hasCover()) this->setIcon(4, QIcon(":/marks/tick.png")); else this->setIcon(4, QIcon(":/marks/cross.png"));
 	if(song()->hasBackground()) this->setIcon(5, QIcon(":/marks/tick.png")); else this->setIcon(5, QIcon(":/marks/cross.png"));
-	if(song()->hasVideo()) this->setIcon(6, QIcon(":/marks/tick.png")); else this->setIcon(6, QIcon(":/marks/cross.png"));	
+	if(song()->hasVideo()) this->setIcon(6, QIcon(":/marks/tick.png")); else this->setIcon(6, QIcon(":/marks/cross.png"));
+	
+	this->setText(7, song()->language());
+	this->setText(8, song()->edition());
+	this->setText(9, song()->genre());
+	this->setText(10, song()->year());
+	this->setText(11, song()->creator());
 }
 
 void QUSongItem::updateAsTxt() {	

@@ -14,13 +14,14 @@ NEW FEATURES
 * new task: use the ID3 tag to retrieve the year
 * song details: default value for artist, title, year are from ID3 tag if present
 * most spoken languages added as default values for LANGUAGE tag
+* more columns in song tree to enable simple tag sorting (language, edition, ...)
+* you can edit some details for multiple selected songs now
 
 BUG FIXES
 * case-sensitive renaming works now under Windows ("abba" -> "ABBA")
 TODO
 * "append tasks" -> [KARAOKE]
 * "Guess"-Button
-* more columns in song tree to enable simple tag sorting
 
 changes from 1.3 to 1.4
 -----------------------
