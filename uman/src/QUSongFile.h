@@ -101,6 +101,8 @@ private:
 	QStringList _foundUnsupportedTags;
 	
 	bool updateCache();
+	
+	bool rename(QDir &dir, const QString &oldName, const QString &newName);
 };
 
 #endif /*QUSONGFILE_H_*/

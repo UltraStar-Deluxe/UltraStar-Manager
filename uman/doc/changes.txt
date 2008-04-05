@@ -12,7 +12,7 @@ NEW FEATURES
 * default tag save order changed due to compatibility
 * tag order in details changed to default tag save order :)
 BUG FIXES
-*
+* case-sensitive renaming works now under Windows ("abba" -> "ABBA")
 TODO
 * "append tasks" -> [KARAOKE]
 * "year from ID3 tag task"

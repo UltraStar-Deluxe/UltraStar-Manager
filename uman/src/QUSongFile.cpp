@@ -209,6 +209,23 @@ bool QUSongFile::save() {
 }
 
 /*!
+ * Rename a file or a directory. Try to enable case-sensitive renaming under
+ * Windows.
+ */
+bool QUSongFile::rename(QDir &dir, const QString &oldName, const QString &newName) {
+	bool result = true;
+	
+	if(oldName.length() == newName.length()) {
+		dir.rename(oldName, oldName + "_");
+		result = dir.rename(oldName + "_", newName);
+	} else {
+		result = dir.rename(oldName, newName);
+	}
+	
+	return result;
+}
+
+/*!
  * Try to rename the directory of the current song file.
  * \param newName the new name (avoid illegal characters for your OS)
  * \returns True on success, otherwise false.
@@ -217,7 +234,7 @@ bool QUSongFile::renameSongDir(const QString &newName) {
 	QDir dir(_fi.dir());	
 	dir.cdUp();
 	
-	bool result = dir.rename(_fi.dir().dirName(), newName);
+	bool result = rename(dir, _fi.dir().dirName(), newName);
 	
 	if(result) {
 		dir.cd(newName);
