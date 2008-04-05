@@ -1,5 +1,6 @@
 #include "QUDetailItem.h"
 #include "QUSongFile.h"
+#include "QUMonty.h"
 
 #include <QBrush>
 #include <QVariant>
@@ -23,6 +24,9 @@ QUDetailItem::QUDetailItem(const QString &text, const QString &tag, QUSongFile *
 	
 	if(QString::compare(tag, VIDEO_TAG) == 0)
 		dropDownData = song->songFileInfo().dir().entryList(QUSongFile::allowedVideoFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
+	
+	if(QString::compare(tag, GENRE_TAG) == 0)
+		dropDownData = monty->genres();
 	
 	this->setData(Qt::UserRole, QVariant(dropDownData));
 }

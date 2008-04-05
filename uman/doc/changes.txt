@@ -4,7 +4,11 @@ NEW FEATURES
 * show current song folder in header of first column in song tree
 * detail editor with auto-completion and default values added
   > e.g. list all audio files for the mp3 tag
- 
+* show progress bar whenever tasks are applied to more than 10 songs concurrently
+* some event log messages revised (more details)
+* default values for "genre" added
+  > http://www.id3.org/id3v2-00
+
 BUG FIXES
 *
 

@@ -93,9 +93,12 @@ void QUMainWindow::initConfig() {
 void QUMainWindow::initWindow() {
 	setWindowTitle(QString("UltraStar Manager %1.%2").arg(MAJOR_VERSION).arg(MINOR_VERSION));
 	resize(1000, 600);
+	
 	QList<int> sizes;
 	sizes << 700 << 300;
 	splitter->setSizes(sizes);
+	
+	progressFrame->hide();
 }
 
 void QUMainWindow::initMenu() {
@@ -396,7 +399,7 @@ void QUMainWindow::updateDetails() {
 	detailsTable->setItem(3, 1, new QUDetailItem(song->cover(), COVER_TAG, song));
 	detailsTable->setItem(4, 1, new QUDetailItem(song->background(), BACKGROUND_TAG, song));
 	detailsTable->setItem(5, 1, new QUDetailItem(song->video(), VIDEO_TAG, song));
-	detailsTable->setItem(6, 1, new QUDetailItem(song->genre(), "GENRE", song));
+	detailsTable->setItem(6, 1, new QUDetailItem(song->genre(), GENRE_TAG, song));
 	detailsTable->setItem(7, 1, new QUDetailItem(song->edition(), "EDITION", song));
 	detailsTable->setItem(8, 1, new QUDetailItem(song->language(), "LANGUAGE", song));
 	detailsTable->setItem(9, 1, new QUDetailItem(song->year(), "YEAR", song));
@@ -483,12 +486,21 @@ void QUMainWindow::uncheckAllTasks() {
  * \sa initTaskList();
  */
 void QUMainWindow::doTasks() {
+	QProgressDialog progressDlg("", 0, 0, 1, this);	
+	
+	if(songTree->selectedItems().size() > 10) {
+		progressDlg.setMaximum(songTree->selectedItems().size());
+		progressDlg.setValue(0);
+		progressDlg.setLabelText("Processing song files...");
+		progressDlg.show();
+	}
+	
 	foreach(QTreeWidgetItem *item, songTree->selectedItems()) {
 		QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
 
 		if(songItem) {	
 			QUSongFile *song = songItem->song();
-
+			
 			if(taskList->item(0)->checkState() == Qt::Checked)
 				useID3TagForArtist(song);
 			if(taskList->item(1)->checkState() == Qt::Checked)
@@ -515,48 +527,51 @@ void QUMainWindow::doTasks() {
 			song->save();
 			songItem->update();
 		}
+		
+		progressDlg.setValue(progressDlg.value() + 1);
 	}
 
 	updateDetails();
+	progressDlg.hide();
 	montyTalk();
 }
 
 void QUMainWindow::useID3TagForArtist(QUSongFile *song) {
-	QString done("ID3Tag used for artist. Changed from: \"%1\" to: \"%2\".");
-	QString fail("ID3Tag could NOT be used for artist.");
+	QString done("ID3Tag of \"%1\" used for artist. Changed from: \"%2\" to: \"%3\".");
+	QString fail("ID3Tag was NOT available to be used for artist: \"%1\"");
 	
 	QString oldArtist(song->artist());
 	
 	if(song->useID3TagForArtist()) {
-		addLogMsg(done.arg(oldArtist).arg(song->artist()));
+		addLogMsg(done.arg(song->mp3()).arg(oldArtist).arg(song->artist()));
 	} else {
-		addLogMsg(fail, 1);
+		addLogMsg(fail.arg(song->mp3()), 1);
 	}
 }
 
 void QUMainWindow::useID3TagForTitle(QUSongFile *song) {
-	QString done("ID3Tag used for title. Changed from: \"%1\" to: \"%2\".");
-	QString fail("ID3Tag could NOT be used for title.");
+	QString done("ID3Tag of \"%1\" used for title. Changed from: \"%2\" to: \"%3\".");
+	QString fail("ID3Tag was NOT available to be used for title: \"%1\"");
 	
 	QString oldTitle(song->title());
 	
 	if(song->useID3TagForTitle()) {
-		addLogMsg(done.arg(oldTitle).arg(song->title()));
+		addLogMsg(done.arg(song->mp3()).arg(oldTitle).arg(song->title()));
 	} else {
-		addLogMsg(fail, 1);
+		addLogMsg(fail.arg(song->mp3()), 1);
 	}	
 }
 
 void QUMainWindow::useID3TagForGenre(QUSongFile *song) {
-	QString done("ID3Tag used for genre. Changed from: \"%1\" to: \"%2\".");
-	QString fail("ID3Tag could NOT be used for genre.");
+	QString done("ID3Tag of \"%1\" used for genre. Changed from: \"%2\" to: \"%3\".");
+	QString fail("ID3Tag was NOT available to be used for genre: \"%1\"");
 	
 	QString oldGenre(song->genre());
 	
 	if(song->useID3TagForGenre()) {
-		addLogMsg(done.arg(oldGenre).arg(song->genre()));
+		addLogMsg(done.arg(song->mp3()).arg(oldGenre).arg(song->genre()));
 	} else {
-		addLogMsg(fail, 1);
+		addLogMsg(fail.arg(song->mp3()), 1);
 	}
 }
 

@@ -3,13 +3,28 @@
 #include <QFile>
 
 QUMonty::QUMonty() {
+	initMessages();
+	initGenres();
+}
+
+void QUMonty::initMessages() {
 	QFile f(":/txt/hints");
 	
 	if(f.open(QIODevice::ReadOnly | QIODevice::Text)) {
 		messages = QString(f.readAll()).split("\n");
 		f.close();
-	}
+	}	
 }
+
+void QUMonty::initGenres() {
+	QFile f(":/txt/genres");
+	
+	if(f.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		_genres = QString(f.readAll()).split("\n");
+		f.close();
+	}	
+}
+
 
 QUMonty* QUMonty::_instance = 0;
 QUMonty* QUMonty::instance() {

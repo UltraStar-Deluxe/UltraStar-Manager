@@ -21,6 +21,7 @@ public:
 	QPixmap pic(QUMonty::Status status = QUMonty::normal);
 	QString welcomeMsg(int songCount = -1);
 	void talk(QLabel *montyLbl, QLabel *msgLbl);
+	const QStringList& genres() const { return _genres; }
 	
 	void setSongCount(int c) { songCount = c; }
 	
@@ -32,6 +33,10 @@ private:
 
 	int songCount;
 	QStringList messages;
+	QStringList _genres;
+	
+	void initMessages();
+	void initGenres();
 };
 
 #endif /*QUMONTY_H_*/

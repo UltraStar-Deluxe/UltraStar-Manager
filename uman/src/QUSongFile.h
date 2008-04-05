@@ -13,6 +13,7 @@
 #define COVER_TAG      "COVER"
 #define BACKGROUND_TAG "BACKGROUND"
 #define VIDEO_TAG      "VIDEO"
+#define GENRE_TAG      "GENRE"
 
 /*!
  * This class represents a data file which is used by UltraStar for every song.
