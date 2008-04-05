@@ -373,11 +373,15 @@
            <bool>false</bool>
           </property>
           <property name="rowCount" >
-           <number>15</number>
+           <number>19</number>
           </property>
           <property name="columnCount" >
            <number>2</number>
           </property>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
           <row/>
           <row/>
           <row/>

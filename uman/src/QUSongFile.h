@@ -9,11 +9,23 @@
 #include <QMap>
 #include <QDir>
 
+#define TITLE_TAG      "TITLE"
+#define ARTIST_TAG     "ARTIST"
+#define LANGUAGE_TAG   "LANGUAGE"
+#define EDITION_TAG    "EDITION"
+#define GENRE_TAG      "GENRE"
+#define YEAR_TAG       "YEAR"
+#define CREATOR_TAG    "CREATOR"
 #define MP3_TAG        "MP3"
 #define COVER_TAG      "COVER"
 #define BACKGROUND_TAG "BACKGROUND"
 #define VIDEO_TAG      "VIDEO"
-#define GENRE_TAG      "GENRE"
+#define VIDEOGAP_TAG   "VIDEOGAP"
+#define START_TAG      "START"
+#define END_TAG        "END"
+#define RELATIVE_TAG   "RELATIVE"
+#define BPM_TAG        "BPM"
+#define GAP_TAG        "GAP"
 
 /*!
  * This class represents a data file which is used by UltraStar for every song.
@@ -42,6 +54,8 @@ public slots:
 	QString edition() const    {return _info.value("EDITION", QString("n/a"));}
 	QString genre() const      {return _info.value("GENRE", QString("n/a"));}
 	QString year() const       {return _info.value("YEAR", QString("n/a"));}
+	QString end() const        {return _info.value("END", QString("n/a"));}
+	QString creator() const    {return _info.value("CREATOR", QString("n/a"));}
 	
 	bool hasMp3() const;
 	bool hasCover() const;

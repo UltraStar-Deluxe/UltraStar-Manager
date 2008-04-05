@@ -8,9 +8,14 @@ NEW FEATURES
 * some event log messages revised (more details)
 * default values for "genre" added
   > http://www.id3.org/id3v2-00
-
+* new tags introduced: END, CREATOR
+* default tag save order changed due to compatibility
+* tag order in details changed to default tag save order :)
 BUG FIXES
 *
+TODO
+* "append tasks" -> [KARAOKE]
+* "year from ID3 tag task"
 
 changes from 1.3 to 1.4
 -----------------------

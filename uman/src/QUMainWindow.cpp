@@ -378,52 +378,89 @@ void QUMainWindow::updateDetails() {
 	
 	QUSongFile *song = songItem->song();
 	
-	detailsTable->setItem(0, 0, new QTableWidgetItem(QIcon(":/types/user.png"), "Artist"));
-	detailsTable->setItem(1, 0, new QTableWidgetItem(QIcon(":/types/font.png"), "Title"));
-	detailsTable->setItem(2, 0, new QTableWidgetItem(QIcon(":/types/music.png"), "MP3"));
-	detailsTable->setItem(3, 0, new QTableWidgetItem(QIcon(":/types/picture.png"), "Cover"));
-	detailsTable->setItem(4, 0, new QTableWidgetItem(QIcon(":/types/picture.png"), "Background"));
-	detailsTable->setItem(5, 0, new QTableWidgetItem(QIcon(":/types/film.png"), "Video"));
-	detailsTable->setItem(6, 0, new QTableWidgetItem(QIcon(":/types/genre.png"), "Genre"));
-	detailsTable->setItem(7, 0, new QTableWidgetItem(QIcon(":/types/edition.png"), "Edition"));
-	detailsTable->setItem(8, 0, new QTableWidgetItem(QIcon(":/types/language.png"), "Language"));
-	detailsTable->setItem(9, 0, new QTableWidgetItem(QIcon(":/types/date.png"), "Year"));
-
+	detailsTable->setItem(0, 0, new QTableWidgetItem(QIcon(":/types/font.png"), "Title"));
+	detailsTable->setItem(1, 0, new QTableWidgetItem(QIcon(":/types/user.png"), "Artist"));
+	detailsTable->setItem(2, 0, new QTableWidgetItem(QIcon(":/types/language.png"), "Language"));
+	detailsTable->setItem(3, 0, new QTableWidgetItem(QIcon(":/types/edition.png"), "Edition"));
+	detailsTable->setItem(4, 0, new QTableWidgetItem(QIcon(":/types/genre.png"), "Genre"));
+	detailsTable->setItem(5, 0, new QTableWidgetItem(QIcon(":/types/date.png"), "Year"));
+	detailsTable->setItem(6, 0, new QTableWidgetItem(QIcon(":/types/creator.png"), "Creator"));
 	
-	for(int i = 0; i < 10; i++)
+	detailsTable->setItem(7, 0, new QTableWidgetItem("File Tags"));
+	
+	detailsTable->setItem(8, 0, new QTableWidgetItem(QIcon(":/types/music.png"), "MP3"));
+	detailsTable->setItem(9, 0, new QTableWidgetItem(QIcon(":/types/picture.png"), "Cover"));
+	detailsTable->setItem(10, 0, new QTableWidgetItem(QIcon(":/types/picture.png"), "Background"));
+	detailsTable->setItem(11, 0, new QTableWidgetItem(QIcon(":/types/film.png"), "Video"));
+	
+	for(int i = 0; i < 12; i++)
 		detailsTable->item(i, 0)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	
-	detailsTable->setItem(0, 1, new QUDetailItem(song->artist(), "ARTIST", song));
-	detailsTable->setItem(1, 1, new QUDetailItem(song->title(), "TITLE", song));
-	detailsTable->setItem(2, 1, new QUDetailItem(song->mp3(), MP3_TAG, song));
-	detailsTable->setItem(3, 1, new QUDetailItem(song->cover(), COVER_TAG, song));
-	detailsTable->setItem(4, 1, new QUDetailItem(song->background(), BACKGROUND_TAG, song));
-	detailsTable->setItem(5, 1, new QUDetailItem(song->video(), VIDEO_TAG, song));
-	detailsTable->setItem(6, 1, new QUDetailItem(song->genre(), GENRE_TAG, song));
-	detailsTable->setItem(7, 1, new QUDetailItem(song->edition(), "EDITION", song));
-	detailsTable->setItem(8, 1, new QUDetailItem(song->language(), "LANGUAGE", song));
-	detailsTable->setItem(9, 1, new QUDetailItem(song->year(), "YEAR", song));
+	detailsTable->setItem(0, 1, new QUDetailItem(song->title(), TITLE_TAG, song));
+	detailsTable->setItem(1, 1, new QUDetailItem(song->artist(), ARTIST_TAG, song));
+	detailsTable->setItem(2, 1, new QUDetailItem(song->language(), LANGUAGE_TAG, song));
+	detailsTable->setItem(3, 1, new QUDetailItem(song->edition(), EDITION_TAG, song));
+	detailsTable->setItem(4, 1, new QUDetailItem(song->genre(), GENRE_TAG, song));
+	detailsTable->setItem(5, 1, new QUDetailItem(song->year(), YEAR_TAG, song));
+	detailsTable->setItem(6, 1, new QUDetailItem(song->creator(), CREATOR_TAG, song));
+	
+	detailsTable->setItem(7, 1, new QTableWidgetItem());
+	
+	detailsTable->setItem(8, 1, new QUDetailItem(song->mp3(), MP3_TAG, song));
+	detailsTable->setItem(9, 1, new QUDetailItem(song->cover(), COVER_TAG, song));
+	detailsTable->setItem(10, 1, new QUDetailItem(song->background(), BACKGROUND_TAG, song));
+	detailsTable->setItem(11, 1, new QUDetailItem(song->video(), VIDEO_TAG, song));
 
-	for(int i = 0; i < 10; i++)
+	for(int i = 0; i < 12; i++)
 		detailsTable->item(i, 1)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 	
-	// other song details, not editable
-	detailsTable->setItem(10, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "BPM"));
-	detailsTable->setItem(11, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Gap"));
-	detailsTable->setItem(12, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Start"));
-	detailsTable->setItem(13, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Videogap"));
-	detailsTable->setItem(14, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Relative"));
-
-	detailsTable->setItem(10, 1, new QTableWidgetItem(song->bpm()));
-	detailsTable->setItem(11, 1, new QTableWidgetItem(QString("%1 milliseconds").arg(song->gap())));
-	detailsTable->setItem(12, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->start())));
-	detailsTable->setItem(13, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->videogap())));
-	detailsTable->setItem(14, 1, new QTableWidgetItem(song->relative()));
+	detailsTable->item(7, 0)->setFlags(Qt::ItemIsEnabled);
+	detailsTable->item(7, 1)->setFlags(Qt::ItemIsEnabled);
 	
-	for(int i = 10; i < 15; i++) {
+	// other song details, not editable
+	detailsTable->setItem(12, 0, new QTableWidgetItem("Read-Only Tags"));
+	
+	detailsTable->setItem(13, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Videogap"));
+	detailsTable->setItem(14, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Start"));
+	detailsTable->setItem(15, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "End"));
+	detailsTable->setItem(16, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Relative"));
+	detailsTable->setItem(17, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "BPM"));
+	detailsTable->setItem(18, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Gap"));
+	
+	detailsTable->setItem(12, 1, new QTableWidgetItem());
+		
+	detailsTable->setItem(13, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->videogap())));
+	detailsTable->setItem(14, 1, new QTableWidgetItem(QString("%1 seconds").arg(song->start())));
+	detailsTable->setItem(15, 1, new QTableWidgetItem(QString("%1 milliseconds").arg(song->end())));
+	detailsTable->setItem(16, 1, new QTableWidgetItem(song->relative()));
+	detailsTable->setItem(17, 1, new QTableWidgetItem(song->bpm()));
+	detailsTable->setItem(18, 1, new QTableWidgetItem(QString("%1 milliseconds").arg(song->gap())));
+	
+	for(int i = 12; i < 19; i++) {
 		detailsTable->item(i, 0)->setFlags(Qt::ItemIsEnabled);
 		detailsTable->item(i, 1)->setFlags(0);
 	}
+	
+	// set up the splitter
+	detailsTable->setSpan(7, 0, 1, 2);
+	detailsTable->setSpan(12, 0, 1, 2);
+	
+	QList<int> rows; rows << 7 << 12;
+	QList<int> cols; cols << 0 << 1;
+	
+	foreach(int row, rows) {
+		foreach(int col, cols) {
+			detailsTable->item(row, col)->setFlags(Qt::ItemIsEnabled);
+			detailsTable->item(row, col)->setBackgroundColor(Qt::darkGray);
+			detailsTable->item(row, col)->setTextColor(Qt::white);
+			detailsTable->item(row, col)->setTextAlignment(Qt::AlignCenter);
+			
+			QFont font(detailsTable->item(row, col)->font());
+			font.setBold(true);
+			
+			detailsTable->item(row, col)->setFont(font);
+		}
+	}	
 }
 
 /*!

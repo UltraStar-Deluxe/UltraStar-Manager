@@ -91,21 +91,23 @@ void QUSongFile::setInfo(const QString &tag, const QString &value) {
 QStringList QUSongFile::tags() {
 	QStringList result;
 	
-	result << "ARTIST";
-	result << "TITLE";
+	result << TITLE_TAG;
+	result << ARTIST_TAG;
+	result << LANGUAGE_TAG;
+	result << EDITION_TAG;
+	result << GENRE_TAG;
+	result << YEAR_TAG;
+	result << CREATOR_TAG;
 	result << MP3_TAG;
-	result << "BPM";
-	result << "GAP";
-	result << VIDEO_TAG;
-	result << "VIDEOGAP";
 	result << COVER_TAG;
 	result << BACKGROUND_TAG;
-	result << "START";
-	result << "RELATIVE";
-	result << "EDITION";
-	result << "GENRE";
-	result << "LANGUAGE";
-	result << "YEAR";
+	result << VIDEO_TAG;
+	result << VIDEOGAP_TAG;
+	result << START_TAG;
+	result << END_TAG;
+	result << RELATIVE_TAG;
+	result << BPM_TAG;
+	result << GAP_TAG;
 	
 	return result;
 }

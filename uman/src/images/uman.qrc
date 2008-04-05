@@ -38,6 +38,7 @@
         <file>hints</file>
     </qresource>
     <qresource prefix="/types" >
+        <file>creator.png</file>
         <file>date.png</file>
         <file>edition.png</file>
         <file>film.png</file>
