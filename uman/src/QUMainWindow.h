@@ -50,6 +50,7 @@ private slots:
 	void useID3TagForArtist(QUSongFile *song);
 	void useID3TagForTitle(QUSongFile *song);
 	void useID3TagForGenre(QUSongFile *song);
+	void useID3TagForYear(QUSongFile *song);
 	
 	void renameSongDir(QUSongFile *song);
 	void renameSongDirCheckedVideo(QUSongFile *song);

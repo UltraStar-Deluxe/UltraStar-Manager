@@ -22,6 +22,7 @@ public:
 	QString welcomeMsg(int songCount = -1);
 	void talk(QLabel *montyLbl, QLabel *msgLbl);
 	const QStringList& genres() const { return _genres; }
+	const QStringList& languages() const { return _languages; }
 	
 	void setSongCount(int c) { songCount = c; }
 	
@@ -34,9 +35,11 @@ private:
 	int songCount;
 	QStringList messages;
 	QStringList _genres;
+	QStringList _languages;
 	
 	void initMessages();
 	void initGenres();
+	void initLanguages();
 };
 
 #endif /*QUMONTY_H_*/

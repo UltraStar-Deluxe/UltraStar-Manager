@@ -269,7 +269,7 @@ bool QUSongFile::renameSongMp3(const QString &newName) {
 	bool result = _fi.dir().rename(mp3(), newName);
 	
 	if(result) {
-		setInfo("MP3", newName);
+		setInfo(MP3_TAG, newName);
 	}
 	
 	return result;
@@ -285,7 +285,7 @@ bool QUSongFile::renameSongCover(const QString &newName) {
 	bool result = _fi.dir().rename(cover(), newName);
 	
 	if(result) {
-		setInfo("COVER", newName);
+		setInfo(COVER_TAG, newName);
 	}
 	
 	return result;
@@ -301,7 +301,7 @@ bool QUSongFile::renameSongBackground(const QString &newName) {
 	bool result = _fi.dir().rename(background(), newName);
 	
 	if(result) {
-		setInfo("BACKGROUND", newName);
+		setInfo(BACKGROUND_TAG, newName);
 	}
 	
 	return result;
@@ -317,7 +317,7 @@ bool QUSongFile::renameSongVideo(const QString &newName) {
 	bool result = _fi.dir().rename(video(), newName);
 	
 	if(result) {
-		setInfo("VIDEO", newName);
+		setInfo(VIDEO_TAG, newName);
 	}
 	
 	return result;
@@ -338,7 +338,7 @@ bool QUSongFile::useID3TagForArtist() {
 	if(newArtist.isEmpty())
 		return false;
 	
-	setInfo("ARTIST", newArtist);
+	setInfo(ARTIST_TAG, newArtist);
 	
 	return true;
 }
@@ -354,7 +354,7 @@ bool QUSongFile::useID3TagForTitle() {
 	if(newTitle.isEmpty())
 		return false;
 	
-	setInfo("TITLE", newTitle);
+	setInfo(TITLE_TAG, newTitle);
 	
 	return true;
 }
@@ -370,7 +370,23 @@ bool QUSongFile::useID3TagForGenre() {
 	if(newGenre.isEmpty())
 		return false;
 	
-	setInfo("GENRE", newGenre);
+	setInfo(GENRE_TAG, newGenre);
+	
+	return true;
+}
+
+bool QUSongFile::useID3TagForYear() {
+	if(!hasMp3())
+		return false;
+	
+	TagLib::FileRef ref(mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+	
+	QString newYear(QVariant(ref.tag()->year()).toString());
+	
+	if(newYear == "0")
+		return false;
+	
+	setInfo(YEAR_TAG, newYear);
 	
 	return true;
 }

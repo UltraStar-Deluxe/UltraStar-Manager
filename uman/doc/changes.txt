@@ -11,11 +11,16 @@ NEW FEATURES
 * new tags introduced: END, CREATOR
 * default tag save order changed due to compatibility
 * tag order in details changed to default tag save order :)
+* new task: use the ID3 tag to retrieve the year
+* song details: default value for artist, title, year are from ID3 tag if present
+* most spoken languages added as default values for LANGUAGE tag
+
 BUG FIXES
 * case-sensitive renaming works now under Windows ("abba" -> "ABBA")
 TODO
 * "append tasks" -> [KARAOKE]
-* "year from ID3 tag task"
+* "Guess"-Button
+* more columns in song tree to enable simple tag sorting
 
 changes from 1.3 to 1.4
 -----------------------

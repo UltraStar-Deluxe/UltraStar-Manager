@@ -82,6 +82,7 @@ public slots:
 	bool useID3TagForArtist();
 	bool useID3TagForTitle();
 	bool useID3TagForGenre();
+	bool useID3TagForYear();
 	
 	static QStringList tags();
 	

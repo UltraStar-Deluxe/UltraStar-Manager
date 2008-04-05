@@ -191,6 +191,7 @@ void QUMainWindow::initTaskList() {
 	tasks << "Use ID3 tag for artist";
 	tasks << "Use ID3 tag for title";
 	tasks << "Use ID3 tag for genre";
+	tasks << "Use ID3 tag for year";
 	tasks << "Rename directory to \"Artist - Title\"";
 	tasks << "Rename directory to \"Artist - Title [VIDEO] [SC]\" if checked or video present";
 	tasks << "Rename songtext file to \"Artist - Title.txt\"";
@@ -210,14 +211,15 @@ void QUMainWindow::initTaskList() {
 	taskList->item(0)->setIcon(QIcon(":/types/user.png"));
 	taskList->item(1)->setIcon(QIcon(":/types/font.png"));
 	taskList->item(2)->setIcon(QIcon(":/types/genre.png"));
-	taskList->item(3)->setIcon(QIcon(":/types/folder.png"));
+	taskList->item(3)->setIcon(QIcon(":/types/date.png"));
 	taskList->item(4)->setIcon(QIcon(":/types/folder.png"));
-	taskList->item(5)->setIcon(QIcon(":/types/text.png"));
-	taskList->item(6)->setIcon(QIcon(":/types/music.png"));
-	taskList->item(7)->setIcon(QIcon(":/types/picture.png"));
+	taskList->item(5)->setIcon(QIcon(":/types/folder.png"));
+	taskList->item(6)->setIcon(QIcon(":/types/text.png"));
+	taskList->item(7)->setIcon(QIcon(":/types/music.png"));
 	taskList->item(8)->setIcon(QIcon(":/types/picture.png"));
-	taskList->item(9)->setIcon(QIcon(":/types/film.png"));
+	taskList->item(9)->setIcon(QIcon(":/types/picture.png"));
 	taskList->item(10)->setIcon(QIcon(":/types/film.png"));
+	taskList->item(11)->setIcon(QIcon(":/types/film.png"));
 	
 	connect(taskBtn, SIGNAL(clicked()), this, SLOT(doTasks()));
 	connect(allTasksBtn, SIGNAL(clicked()), this, SLOT(checkAllTasks()));
@@ -482,13 +484,14 @@ void QUMainWindow::updateStatusbar() {
 	
 	TagLib::FileRef ref(fi.absoluteFilePath().toLocal8Bit().data());
 	
-	QString text("Audio file selected: ARTIST = \"%1\"; TITLE = \"%2\"; GENRE = \"%3\"");
+	QString text("Audio file selected: ARTIST = \"%1\"; TITLE = \"%2\"; GENRE = \"%3\"; YEAR = \"%4\"");
 	
 	QString artist(TStringToQString(ref.tag()->artist())); if(artist == "") artist = "n/a";
 	QString title(TStringToQString(ref.tag()->title())); if(title == "") title = "n/a";
 	QString genre(TStringToQString(ref.tag()->genre())); if(genre == "") genre = "n/a";
+	QString year(QVariant(ref.tag()->year()).toString()); if(year == "0") year = "n/a";
 	
-	this->statusBar()->showMessage(text.arg(artist).arg(title).arg(genre));
+	this->statusBar()->showMessage(text.arg(artist).arg(title).arg(genre).arg(year));
 }
 
 void QUMainWindow::saveSongChanges(QTableWidgetItem *item) {
@@ -545,20 +548,22 @@ void QUMainWindow::doTasks() {
 			if(taskList->item(2)->checkState() == Qt::Checked)
 				useID3TagForGenre(song);
 			if(taskList->item(3)->checkState() == Qt::Checked)
-				renameSongDir(song);
+				useID3TagForYear(song);
 			if(taskList->item(4)->checkState() == Qt::Checked)
-				renameSongDirCheckedVideo(song);
+				renameSongDir(song);
 			if(taskList->item(5)->checkState() == Qt::Checked)
-				renameSongTxt(song);
+				renameSongDirCheckedVideo(song);
 			if(taskList->item(6)->checkState() == Qt::Checked)
-				renameSongMp3(song);
+				renameSongTxt(song);
 			if(taskList->item(7)->checkState() == Qt::Checked)
-				renameSongCover(song);
+				renameSongMp3(song);
 			if(taskList->item(8)->checkState() == Qt::Checked)
-				renameSongBackground(song);
+				renameSongCover(song);
 			if(taskList->item(9)->checkState() == Qt::Checked)
-				renameSongVideo(song);
+				renameSongBackground(song);
 			if(taskList->item(10)->checkState() == Qt::Checked)
+				renameSongVideo(song);
+			if(taskList->item(11)->checkState() == Qt::Checked)
 				renameSongVideogap(song);
 
 			song->save();
@@ -607,6 +612,19 @@ void QUMainWindow::useID3TagForGenre(QUSongFile *song) {
 	
 	if(song->useID3TagForGenre()) {
 		addLogMsg(done.arg(song->mp3()).arg(oldGenre).arg(song->genre()));
+	} else {
+		addLogMsg(fail.arg(song->mp3()), 1);
+	}
+}
+
+void QUMainWindow::useID3TagForYear(QUSongFile *song) {
+	QString done("ID3Tag of \"%1\" used for year. Changed from: \"%2\" to: \"%3\".");
+	QString fail("ID3Tag was NOT available to be used for year: \"%1\"");
+	
+	QString oldYear(song->year());
+	
+	if(song->useID3TagForYear()) {
+		addLogMsg(done.arg(song->mp3()).arg(oldYear).arg(song->year()));
 	} else {
 		addLogMsg(fail.arg(song->mp3()), 1);
 	}

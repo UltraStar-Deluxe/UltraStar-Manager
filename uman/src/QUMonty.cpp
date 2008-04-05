@@ -5,6 +5,7 @@
 QUMonty::QUMonty() {
 	initMessages();
 	initGenres();
+	initLanguages();
 }
 
 void QUMonty::initMessages() {
@@ -25,6 +26,14 @@ void QUMonty::initGenres() {
 	}	
 }
 
+void QUMonty::initLanguages() {
+	QFile f(":/txt/languages");
+	
+	if(f.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		_languages = QString(f.readAll()).split("\n");
+		f.close();
+	}	
+}
 
 QUMonty* QUMonty::_instance = 0;
 QUMonty* QUMonty::instance() {

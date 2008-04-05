@@ -36,6 +36,7 @@
     <qresource prefix="/txt" >
         <file>genres</file>
         <file>hints</file>
+        <file>languages</file>
     </qresource>
     <qresource prefix="/types" >
         <file>creator.png</file>
