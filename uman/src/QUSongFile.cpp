@@ -215,6 +215,9 @@ bool QUSongFile::save() {
 bool QUSongFile::rename(QDir &dir, const QString &oldName, const QString &newName) {
 	bool result = true;
 	
+	if(QString::compare(oldName, newName, Qt::CaseSensitive) == 0)
+		return false;
+	
 	if(oldName.length() == newName.length()) {
 		dir.rename(oldName, oldName + "_");
 		result = dir.rename(oldName + "_", newName);

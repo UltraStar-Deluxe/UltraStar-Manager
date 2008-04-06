@@ -21,6 +21,7 @@ NEW FEATURES
 * tasks grouped
 * dockable widgets for details, tasks and event log added
 * application window state saved on exit
+* possibility added to reset the tag order to its default value in the options menu
 
 BUG FIXES
 * case-sensitive renaming works now under Windows ("abba" -> "ABBA")

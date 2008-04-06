@@ -731,7 +731,7 @@
      <bool>false</bool>
     </property>
     <property name="title" >
-     <string>Help</string>
+     <string>&amp;Help</string>
     </property>
     <addaction name="actionAllowMonty" />
     <addaction name="actionShowMonty" />
@@ -741,7 +741,7 @@
    </widget>
    <widget class="QMenu" name="menuSongs" >
     <property name="title" >
-     <string>Songs</string>
+     <string>&amp;Songs</string>
     </property>
     <addaction name="actionExpandAll" />
     <addaction name="actionCollapseAll" />
@@ -750,14 +750,14 @@
    </widget>
    <widget class="QMenu" name="menuOptions" >
     <property name="title" >
-     <string>Options</string>
+     <string>&amp;Options</string>
     </property>
     <addaction name="actionTagSaveOrder" />
     <addaction name="actionChangeSongDirectory" />
    </widget>
    <widget class="QMenu" name="menuView" >
     <property name="title" >
-     <string>View</string>
+     <string>&amp;View</string>
     </property>
     <addaction name="actionShowRelativeSongPath" />
     <addaction name="separator" />
@@ -770,7 +770,10 @@
   <widget class="QStatusBar" name="statusbar" />
   <action name="actionQt" >
    <property name="text" >
-    <string>About Qt...</string>
+    <string>About &amp;Qt...</string>
+   </property>
+   <property name="menuRole" >
+    <enum>QAction::AboutQtRole</enum>
    </property>
   </action>
   <action name="actionUman" >
@@ -778,12 +781,12 @@
     <iconset resource="images/uman.qrc" >:/icons/cup.png</iconset>
    </property>
    <property name="text" >
-    <string>About UltraStar Manager...</string>
+    <string>&amp;About UltraStar Manager...</string>
    </property>
   </action>
   <action name="actionExpandAll" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/control/arrow_out.png</iconset>
+    <iconset resource="images/uman.qrc" >:/control/expand.png</iconset>
    </property>
    <property name="text" >
     <string>Expand All</string>
@@ -794,7 +797,7 @@
   </action>
   <action name="actionCollapseAll" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/control/arrow_in.png</iconset>
+    <iconset resource="images/uman.qrc" >:/control/collapse.png</iconset>
    </property>
    <property name="text" >
     <string>Collapse All</string>
@@ -808,7 +811,7 @@
     <bool>true</bool>
    </property>
    <property name="text" >
-    <string>Tag Save Order...</string>
+    <string>&amp;Tag Save Order...</string>
    </property>
    <property name="statusTip" >
     <string>Modify the order in which tags will be saved into song files.</string>
@@ -827,7 +830,7 @@
   </action>
   <action name="actionShowMonty" >
    <property name="text" >
-    <string>Show Monty now</string>
+    <string>Show &amp;Monty now</string>
    </property>
    <property name="statusTip" >
     <string>Displays the last message from Monty the Mammoth.</string>
@@ -838,7 +841,7 @@
     <iconset resource="images/uman.qrc" >:/control/refresh.png</iconset>
    </property>
    <property name="text" >
-    <string>Refresh</string>
+    <string>&amp;Refresh</string>
    </property>
   </action>
   <action name="actionShowRelativeSongPath" >
@@ -849,7 +852,7 @@
     <bool>true</bool>
    </property>
    <property name="text" >
-    <string>Show Relative Song Path</string>
+    <string>&amp;Relative Song Path</string>
    </property>
    <property name="statusTip" >
     <string>If not checked, displays the song folder names only</string>
@@ -857,7 +860,7 @@
   </action>
   <action name="actionChangeSongDirectory" >
    <property name="text" >
-    <string>Change US Song Directory...</string>
+    <string>Change US Song &amp;Directory...</string>
    </property>
    <property name="statusTip" >
     <string>Reset the location where all US songs are located.</string>

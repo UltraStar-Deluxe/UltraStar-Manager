@@ -17,6 +17,7 @@ QUTagOrderDialog::QUTagOrderDialog(QWidget *parent): QDialog(parent) {
 	
 	connect(applyBtn, SIGNAL(clicked()), SLOT(saveOrder()));
 	connect(cancelBtn, SIGNAL(clicked()), SLOT(reject()));
+	connect(defaultBtn, SIGNAL(clicked()), SLOT(resetOrder()));
 }
 
 QUTagOrderDialog::~QUTagOrderDialog() {
@@ -31,4 +32,12 @@ void QUTagOrderDialog::saveOrder() {
 	settings.setValue("tagOrder", QVariant(tags));
 	
 	accept();
+}
+
+/*!
+ * Reset the order to the default value.
+ */
+void QUTagOrderDialog::resetOrder() {
+	tagList->clear();
+	tagList->addItems(QUSongFile::tags());
 }

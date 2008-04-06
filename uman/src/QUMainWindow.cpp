@@ -842,12 +842,17 @@ void QUMainWindow::renameSongVideogap(QUSongFile *song) {
 }
 
 void QUMainWindow::addLogMsg(const QString &msg, int type) {
+	if(type == 0 and disableInfoChk->isChecked())
+		return;
+	if(type == 1 and disableWarningChk->isChecked())
+		return;
+	
 	log->insertItem(0, QDateTime::currentDateTime().toString("[hh:mm:ss] ") + msg);
 	
 	switch(type) {
+	case 0: log->item(0)->setIcon(QIcon(":/marks/information.png")); break;
 	case 1: log->item(0)->setIcon(QIcon(":/marks/error.png")); break;
 	case 2: log->item(0)->setIcon(QIcon(":/marks/help.png")); break;
-	default: log->item(0)->setIcon(QIcon(":/marks/information.png")); break;
 	}
 	
 }

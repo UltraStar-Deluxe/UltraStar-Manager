@@ -14,6 +14,7 @@ public:
 
 private slots:
 	void saveOrder();
+	void resetOrder();
 };
 
 #endif /*QUTAGORDERDIALOG_H_*/
