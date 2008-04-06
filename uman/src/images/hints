@@ -28,3 +28,6 @@ I shall be quiet? Then uncheck <i>Help -> Allow Monty to talk</i>.
 The default values for an artist, a title and the year in the song details come from the ID3 tag.
 There is a task that enables you to set up missing files for a song automatically. That task looks for the first proper files (audio, picture, video) and uses that file if the present entry is invalid or missing.
 You can edit some details of many songs at once if you select some and use the <i>details table</i> to the upper right.
+If you drag&drop a dockable widget (song details, tasks, event log) over another dockable widget these two widgets <i>will melt together</i> to one new widget with tabs at the bottom.
+You can make a dockable widget (song details, tasks, event log) floatable if you double-click its title bar.
+Did you remark that the state of the application window as well as all dockable widgets are saved on exit?

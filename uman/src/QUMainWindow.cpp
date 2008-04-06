@@ -54,10 +54,9 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
  */
 QUMainWindow::~QUMainWindow() {
 	QSettings settings;
-	
-	settings.setValue("showTaskList", QVariant(actionShowTaskList->isChecked()));
-	settings.setValue("showEventLog", QVariant(actionShowEventLog->isChecked()));
 	settings.setValue("allowMonty", QVariant(actionAllowMonty->isChecked()));
+	
+	settings.setValue("windowState", QVariant(this->saveState()));
 }
 
 /*!
@@ -81,10 +80,9 @@ void QUMainWindow::initConfig() {
 	_baseDir.setPath(path);
 	
 	// read other settings
-	actionShowTaskList->setChecked(settings.value("showTaskList", QVariant(true)).toBool());
-	actionShowEventLog->setChecked(settings.value("showEventLog", QVariant(true)).toBool());
 	actionAllowMonty->setChecked(settings.value("allowMonty", QVariant(true)).toBool());
 	actionShowRelativeSongPath->setChecked(settings.value("showRelativeSongPath", QVariant(true)).toBool());
+	this->restoreState(settings.value("windowState", QVariant()).toByteArray());
 }
 
 /*!
@@ -92,11 +90,10 @@ void QUMainWindow::initConfig() {
  */
 void QUMainWindow::initWindow() {
 	setWindowTitle(QString("UltraStar Manager %1.%2").arg(MAJOR_VERSION).arg(MINOR_VERSION));
-	resize(1000, 600);
 	
-	QList<int> sizes;
-	sizes << 700 << 300;
-	splitter->setSizes(sizes);
+	addDockWidget(Qt::RightDockWidgetArea, detailsDock);
+	addDockWidget(Qt::RightDockWidgetArea, tasksDock);
+	addDockWidget(Qt::RightDockWidgetArea, eventsDock);
 }
 
 void QUMainWindow::initMenu() {
@@ -109,13 +106,18 @@ void QUMainWindow::initMenu() {
 	
 	actionRefresh->setShortcut(QKeySequence::fromString("F5"));
 	
-	//options
-	connect(actionShowEventLog, SIGNAL(toggled(bool)), log, SLOT(setVisible(bool)));
-	connect(actionShowTaskList, SIGNAL(toggled(bool)), taskFrame, SLOT(setVisible(bool)));
+	// view
+	this->menuView->addAction(detailsDock->toggleViewAction());
+	this->menuView->addAction(tasksDock->toggleViewAction());
+	this->menuView->addAction(eventsDock->toggleViewAction());
+
+	// options
 	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
 	connect(actionTagSaveOrder, SIGNAL(triggered()), this, SLOT(editTagOrder()));
 	connect(actionChangeSongDirectory, SIGNAL(triggered()), this, SLOT(changeSongDir()));
 	
+	actionShowRelativeSongPath->setIcon(QIcon(":/types/folder.png"));
+		
 	// help
 	connect(actionShowMonty, SIGNAL(triggered()), helpFrame, SLOT(show()));
 	connect(actionQt, SIGNAL(triggered()), this, SLOT(aboutQt()));
@@ -123,7 +125,6 @@ void QUMainWindow::initMenu() {
 	
 	actionAllowMonty->setIcon(QIcon(":/monty/normal.png"));
 	actionShowMonty->setIcon(QIcon(":/monty/happy.png"));
-	actionShowRelativeSongPath->setIcon(QIcon(":/types/folder.png"));
 }
 
 /*!
@@ -623,7 +624,12 @@ void QUMainWindow::doTasks() {
 		progressDlg.show();
 	}
 	
-	foreach(QTreeWidgetItem *item, songTree->selectedItems()) {
+	QList<QTreeWidgetItem*> itemList = songTree->selectedItems();
+	
+	if(itemList.isEmpty()) // if no songs are selected use the current item (which has also a song)
+		itemList.append(songTree->currentItem());
+	
+	foreach(QTreeWidgetItem *item, itemList) {
 		QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
 
 		if(songItem) {	

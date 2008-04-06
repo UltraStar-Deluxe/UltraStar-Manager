@@ -1,5 +1,7 @@
 changes from 1.4 to 1.5.0
 -------------------------
+* UI improved a little bit
+
 NEW FEATURES
 * show current song folder in header of first column in song tree
 * detail editor with auto-completion and default values added
@@ -17,10 +19,13 @@ NEW FEATURES
 * more columns in song tree to enable simple tag sorting (language, edition, ...)
 * you can edit some details for multiple selected songs now
 * tasks grouped
+* dockable widgets for details, tasks and event log added
+* application window state saved on exit
 
 BUG FIXES
 * case-sensitive renaming works now under Windows ("abba" -> "ABBA")
 * cannot select logically exclusive tasks anymore
+* tasks work for the current song now although no song item is "selected"
 
 TODO
 * "append tasks" -> [KARAOKE]
