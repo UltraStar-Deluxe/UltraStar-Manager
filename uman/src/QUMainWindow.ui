@@ -133,34 +133,6 @@
          </widget>
         </item>
         <item>
-         <widget class="QFrame" name="progressFrame" >
-          <property name="frameShape" >
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="frameShadow" >
-           <enum>QFrame::Raised</enum>
-          </property>
-          <layout class="QVBoxLayout" >
-           <item>
-            <widget class="QProgressBar" name="progressBar" >
-             <property name="value" >
-              <number>24</number>
-             </property>
-             <property name="alignment" >
-              <set>Qt::AlignRight</set>
-             </property>
-             <property name="invertedAppearance" >
-              <bool>false</bool>
-             </property>
-             <property name="format" >
-              <string>%v/%m</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
          <widget class="QFrame" name="helpFrame" >
           <property name="frameShape" >
            <enum>QFrame::NoFrame</enum>

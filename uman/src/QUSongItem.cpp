@@ -19,12 +19,6 @@ QUSongItem::QUSongItem(QUSongFile *song, bool isToplevel):
 		update();
 }
 
-void QUSongItem::setFontColor(const QColor &color) {
-	QBrush brush = foreground(0);
-	brush.setColor(color);
-	setForeground(0, brush);
-}
-
 /*!
  * Removes all icons from the cells in order to reset them.
  * Resets font color to black.
@@ -32,7 +26,7 @@ void QUSongItem::setFontColor(const QColor &color) {
 void QUSongItem::clearContents() {
 	for(int i = 0; i < this->columnCount(); i++) {
 		this->setIcon(i, QIcon());
-		this->setFontColor(Qt::black);
+		this->setTextColor(i, Qt::black);
 	}
 }
 
@@ -138,9 +132,9 @@ void QUSongItem::updateAsTxt() {
 	this->setIcon(0, QIcon(":/types/text.png"));
 	
 	if(QString::compare(this->text(0), song()->songFileInfo().fileName(), Qt::CaseInsensitive) != 0)
-		this->setFontColor(Qt::gray); // unnecessary song text file, not used
+		this->setTextColor(0, Qt::gray); // unnecessary song text file, not used
 	else
-		this->setFontColor(Qt::blue);
+		this->setTextColor(0, Qt::blue);
 }
 
 void QUSongItem::updateAsMp3() {
@@ -151,7 +145,7 @@ void QUSongItem::updateAsMp3() {
 	if(QString::compare(song()->mp3(), this->text(0), Qt::CaseInsensitive) == 0)
 		this->setIcon(3, QIcon(":/marks/link.png"));
 	else
-		this->setFontColor(Qt::gray); // unused mp3
+		this->setTextColor(0, Qt::gray); // unused mp3
 }
 
 void QUSongItem::updateAsPicture() {
@@ -172,7 +166,7 @@ void QUSongItem::updateAsPicture() {
 	}
 		
 	if(!used)
-		this->setFontColor(Qt::gray);
+		this->setTextColor(0, Qt::gray);
 }
 
 void QUSongItem::updateAsVideo() {
@@ -183,9 +177,41 @@ void QUSongItem::updateAsVideo() {
 	if(QString::compare(song()->video(), this->text(0), Qt::CaseInsensitive) == 0)
 		this->setIcon(6, QIcon(":/marks/link.png"));
 	else
-		this->setFontColor(Qt::gray);				
+		this->setTextColor(0, Qt::gray);				
 }
 
 void QUSongItem::updateAsUnknown() {
-	this->setFontColor(Qt::gray);
+	this->setTextColor(0, Qt::gray);
+}
+
+/*!
+ * Uses all child items (files) to guess missing files according to some
+ * common patterns: "cover", "[CO]" -> Cover; "back", "[BG]", -> Background, a.s.o.
+ */
+void QUSongItem::autoSetFiles() {
+	if(!isToplevel()) { // use parent (which should be toplevel) if this is not toplevel
+		(dynamic_cast<QUSongItem*>(this->parent()))->autoSetFiles();
+		return;
+	}
+	
+	for(int i = 0; i < this->childCount(); i++) {
+		QString fileName(this->child(i)->text(0));
+		QString fileScheme("*." + QFileInfo(fileName).suffix());
+		
+		if(QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+			if(!song()->hasMp3())
+				song()->setInfo(MP3_TAG, fileName);
+		} else if(QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+			if(!song()->hasVideo())
+				song()->setInfo(VIDEO_TAG, fileName);
+		} else if(QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+			QRegExp reCover("\\[CO\\]|cover", Qt::CaseInsensitive);
+			QRegExp reBackground("\\[BG\\]|back", Qt::CaseInsensitive);
+			
+			if(fileName.contains(reCover) and !song()->hasCover())
+				song()->setInfo(COVER_TAG, fileName);
+			else if(fileName.contains(reBackground) and !song()->hasBackground())
+				song()->setInfo(BACKGROUND_TAG, fileName);
+		}
+	}
 }

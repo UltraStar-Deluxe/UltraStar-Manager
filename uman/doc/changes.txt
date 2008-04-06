@@ -48,6 +48,8 @@ NEW FEATURES
   > tooltips of blue folder icons display all unsupported tags that where found
 * artist, title, genre is read from ID3 tag and shown in the statusbar when an audio file is selected
 * YEAR tag now editable due to support in UltraStar DX 1.1 (Alpha)
+* new task: look for the right files in the song directory automatically and use these files in the song file if needed
+
 BUG FIXES
 * file endings/suffixes preserved while renameing them
 * tags that are not recognized will not be dropped anymore when saveing the song text file

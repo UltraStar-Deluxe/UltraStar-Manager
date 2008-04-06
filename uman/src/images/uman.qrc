@@ -32,6 +32,7 @@
         <file>tag.png</file>
         <file>tick.png</file>
         <file>tick_blue.png</file>
+        <file>wand.png</file>
     </qresource>
     <qresource prefix="/txt" >
         <file>genres</file>

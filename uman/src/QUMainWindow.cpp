@@ -97,8 +97,6 @@ void QUMainWindow::initWindow() {
 	QList<int> sizes;
 	sizes << 700 << 300;
 	splitter->setSizes(sizes);
-	
-	progressFrame->hide();
 }
 
 void QUMainWindow::initMenu() {
@@ -199,6 +197,7 @@ void QUMainWindow::initDetailsTable() {
 
 void QUMainWindow::initTaskList() {
 	QStringList tasks;
+	tasks << "Set missing files automatically";
 	tasks << "Use ID3 tag for artist";
 	tasks << "Use ID3 tag for title";
 	tasks << "Use ID3 tag for genre";
@@ -219,18 +218,19 @@ void QUMainWindow::initTaskList() {
 		taskList->item(i)->setCheckState(Qt::Unchecked);
 	}
 	
-	taskList->item(0)->setIcon(QIcon(":/types/user.png"));
-	taskList->item(1)->setIcon(QIcon(":/types/font.png"));
-	taskList->item(2)->setIcon(QIcon(":/types/genre.png"));
-	taskList->item(3)->setIcon(QIcon(":/types/date.png"));
-	taskList->item(4)->setIcon(QIcon(":/types/folder.png"));
+	taskList->item(0)->setIcon(QIcon(":/marks/wand.png"));
+	taskList->item(1)->setIcon(QIcon(":/types/user.png"));
+	taskList->item(2)->setIcon(QIcon(":/types/font.png"));
+	taskList->item(3)->setIcon(QIcon(":/types/genre.png"));
+	taskList->item(4)->setIcon(QIcon(":/types/date.png"));
 	taskList->item(5)->setIcon(QIcon(":/types/folder.png"));
-	taskList->item(6)->setIcon(QIcon(":/types/text.png"));
-	taskList->item(7)->setIcon(QIcon(":/types/music.png"));
-	taskList->item(8)->setIcon(QIcon(":/types/picture.png"));
+	taskList->item(6)->setIcon(QIcon(":/types/folder.png"));
+	taskList->item(7)->setIcon(QIcon(":/types/text.png"));
+	taskList->item(8)->setIcon(QIcon(":/types/music.png"));
 	taskList->item(9)->setIcon(QIcon(":/types/picture.png"));
-	taskList->item(10)->setIcon(QIcon(":/types/film.png"));
+	taskList->item(10)->setIcon(QIcon(":/types/picture.png"));
 	taskList->item(11)->setIcon(QIcon(":/types/film.png"));
+	taskList->item(12)->setIcon(QIcon(":/types/film.png"));
 	
 	connect(taskBtn, SIGNAL(clicked()), this, SLOT(doTasks()));
 	connect(allTasksBtn, SIGNAL(clicked()), this, SLOT(checkAllTasks()));
@@ -353,25 +353,25 @@ void QUMainWindow::resetLink(QTreeWidgetItem *item, int column) {
 			and QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive) 
 			and column == 3 ) {
 		addLogMsg(QString("Audio file changed from \"%1\" to: \"%2\".").arg(song->mp3()).arg(songItem->text(0)));
-		song->setInfo("MP3", songItem->text(0));
+		song->setInfo(MP3_TAG, songItem->text(0));
 		song->save();
 	} else if( songItem->icon(4).isNull() 
 			and QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive) 
 			and column == 4 ) {
 		addLogMsg(QString("Cover changed from \"%1\" to: \"%2\".").arg(song->cover()).arg(songItem->text(0)));
-		song->setInfo("COVER", songItem->text(0));
+		song->setInfo(COVER_TAG, songItem->text(0));
 		song->save();
 	} else if( songItem->icon(5).isNull() 
 			and QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive) 
 			and column == 5 ) {
 		addLogMsg(QString("Background changed from \"%1\" to: \"%2\".").arg(song->background()).arg(songItem->text(0)));
-		song->setInfo("BACKGROUND", songItem->text(0));
+		song->setInfo(BACKGROUND_TAG, songItem->text(0));
 		song->save();
 	} else if( songItem->icon(6).isNull() 
 			and QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive) 
 			and column == 6 ) {
 		addLogMsg(QString("Video file changed from \"%1\" to: \"%2\".").arg(song->video()).arg(songItem->text(0)));
-		song->setInfo("VIDEO", songItem->text(0));
+		song->setInfo(VIDEO_TAG, songItem->text(0));
 		song->save();
 	}
 
@@ -476,6 +476,7 @@ void QUMainWindow::updateDetails() {
 			
 			QFont font(detailsTable->item(row, col)->font());
 			font.setBold(true);
+			// TODO: make the font smaller and the table row too
 			
 			detailsTable->item(row, col)->setFont(font);
 		}
@@ -556,7 +557,8 @@ void QUMainWindow::uncheckAllTasks() {
 }
 
 /*!
- * Does all checked tasks for all selected songs.
+ * Does all checked tasks for all selected songs. You can only select
+ * toplevel items (folders) which represent songs.
  * \sa initTaskList();
  */
 void QUMainWindow::doTasks() {
@@ -576,28 +578,30 @@ void QUMainWindow::doTasks() {
 			QUSongFile *song = songItem->song();
 			
 			if(taskList->item(0)->checkState() == Qt::Checked)
-				useID3TagForArtist(song);
+				songItem->autoSetFiles();
 			if(taskList->item(1)->checkState() == Qt::Checked)
-				useID3TagForTitle(song);
+				useID3TagForArtist(song);
 			if(taskList->item(2)->checkState() == Qt::Checked)
-				useID3TagForGenre(song);
+				useID3TagForTitle(song);
 			if(taskList->item(3)->checkState() == Qt::Checked)
-				useID3TagForYear(song);
+				useID3TagForGenre(song);
 			if(taskList->item(4)->checkState() == Qt::Checked)
-				renameSongDir(song);
+				useID3TagForYear(song);
 			if(taskList->item(5)->checkState() == Qt::Checked)
-				renameSongDirCheckedVideo(song);
+				renameSongDir(song);
 			if(taskList->item(6)->checkState() == Qt::Checked)
-				renameSongTxt(song);
+				renameSongDirCheckedVideo(song);
 			if(taskList->item(7)->checkState() == Qt::Checked)
-				renameSongMp3(song);
+				renameSongTxt(song);
 			if(taskList->item(8)->checkState() == Qt::Checked)
-				renameSongCover(song);
+				renameSongMp3(song);
 			if(taskList->item(9)->checkState() == Qt::Checked)
-				renameSongBackground(song);
+				renameSongCover(song);
 			if(taskList->item(10)->checkState() == Qt::Checked)
-				renameSongVideo(song);
+				renameSongBackground(song);
 			if(taskList->item(11)->checkState() == Qt::Checked)
+				renameSongVideo(song);
+			if(taskList->item(12)->checkState() == Qt::Checked)
 				renameSongVideogap(song);
 
 			song->save();

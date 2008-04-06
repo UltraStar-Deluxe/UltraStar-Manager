@@ -25,3 +25,4 @@ The tooltip of a blue folder displays you all unsupported tags that were found.
 Try to click on an audio file and see what appears on the status bar below...
 Did you notice that huge amount of default values for a genre in the song details? These genres originate from the good old ID3v1 specification as well as some custom Winamp extensions.
 I shall be quiet? Then uncheck <i>Help -> Allow Monty to talk</i>.
+The default values for an artist, a title and the year in the song details come from the ID3 tag.

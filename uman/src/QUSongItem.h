@@ -12,6 +12,7 @@ class QUSongItem: public QTreeWidgetItem {
 public:
 	QUSongItem(QUSongFile *song = 0, bool isToplevel = false);
 	
+	void update();
 	void updateAsDirectory(bool showRelativePath = false);
 	void updateAsTxt();
 	void updateAsMp3();
@@ -19,11 +20,9 @@ public:
 	void updateAsVideo();
 	void updateAsUnknown();
 	
-	void update();
+	void autoSetFiles();
 	
 	QUSongFile* song() const {return _song;}
-	void setFontColor(const QColor &color);
-	
 	bool isToplevel() const { return _isToplevel; }
 	
 private:
