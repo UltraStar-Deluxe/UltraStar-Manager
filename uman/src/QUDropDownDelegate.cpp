@@ -5,6 +5,7 @@
 #include <QString>
 #include <QVariant>
 #include <QTableWidgetItem>
+#include <QLineEdit>
 
 QUDropDownDelegate::QUDropDownDelegate(QObject *parent): QItemDelegate(parent) {
 }
@@ -35,6 +36,7 @@ void QUDropDownDelegate::setEditorData(
 		value = "";
 	
 	comboBox->setEditText(value);
+	comboBox->lineEdit()->selectAll();
 }
 
 void QUDropDownDelegate::setModelData(

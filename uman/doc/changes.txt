@@ -16,12 +16,17 @@ NEW FEATURES
 * most spoken languages added as default values for LANGUAGE tag
 * more columns in song tree to enable simple tag sorting (language, edition, ...)
 * you can edit some details for multiple selected songs now
+* tasks grouped
 
 BUG FIXES
 * case-sensitive renaming works now under Windows ("abba" -> "ABBA")
+* cannot select logically exclusive tasks anymore
+
 TODO
 * "append tasks" -> [KARAOKE]
-* "Guess"-Button
+* preserve symbols in directories -> square brackets ([...])
+* automatic selection (new first tasks?)
+* group tasks like details (with "seperator")
 
 changes from 1.3 to 1.4
 -----------------------

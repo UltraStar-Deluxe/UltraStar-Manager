@@ -195,6 +195,11 @@ void QUMainWindow::initDetailsTable() {
 	detailsTable->setItemDelegateForColumn(1, comboDelegate);
 }
 
+/*!
+ * Initializes all available tasks.
+ * \sa doTasks()
+ * \sa saveSongChanges()
+ */
 void QUMainWindow::initTaskList() {
 	QStringList tasks;
 	tasks << "Set missing files automatically";
@@ -232,9 +237,28 @@ void QUMainWindow::initTaskList() {
 	taskList->item(11)->setIcon(QIcon(":/types/film.png"));
 	taskList->item(12)->setIcon(QIcon(":/types/film.png"));
 	
+	// insert seperators
+	taskList->insertItem(0, "Preparatory Tasks");
+	taskList->insertItem(2, "ID3 Tag Tasks");
+	taskList->insertItem(7, "Renaming Tasks");
+	
+	QList<int> rows; rows << 0 << 2 << 7;
+	foreach(int row, rows) {
+		taskList->item(row)->setTextAlignment(Qt::AlignLeft);
+		taskList->item(row)->setFlags(Qt::ItemIsEnabled);		
+		taskList->item(row)->setBackgroundColor(Qt::darkGray);
+		taskList->item(row)->setTextColor(Qt::white);
+		
+		QFont f(taskList->item(row)->font());
+		f.setBold(true);
+		taskList->item(row)->setFont(f);
+	}
+	
+	// connect task buttons
 	connect(taskBtn, SIGNAL(clicked()), this, SLOT(doTasks()));
 	connect(allTasksBtn, SIGNAL(clicked()), this, SLOT(checkAllTasks()));
 	connect(noTasksBtn, SIGNAL(clicked()), this, SLOT(uncheckAllTasks()));
+	connect(taskList, SIGNAL(itemChanged(QListWidgetItem*)), this, SLOT(uncheckAllExclusiveTasks(QListWidgetItem*)));
 }
 
 void QUMainWindow::initMonty() {
@@ -547,13 +571,41 @@ void QUMainWindow::saveSongChanges(QTableWidgetItem *item) {
 }
 
 void QUMainWindow::checkAllTasks() {
-	for(int i = 0; i < taskList->count(); i++)
-		taskList->item(i)->setCheckState(Qt::Checked);
+	for(int i = 0; i < taskList->count(); i++) {
+		if(taskList->item(i)->flags() & Qt::ItemIsUserCheckable)
+			taskList->item(i)->setCheckState(Qt::Checked);
+	}
 }
 
 void QUMainWindow::uncheckAllTasks() {
-	for(int i = 0; i < taskList->count(); i++)
-		taskList->item(i)->setCheckState(Qt::Unchecked);	
+	for(int i = 0; i < taskList->count(); i++) {
+		if(taskList->item(i)->flags() & Qt::ItemIsUserCheckable)
+			taskList->item(i)->setCheckState(Qt::Unchecked);
+	}
+}
+
+/*!
+ * Unchecks all tasks that cannot be used with several other
+ * tasks together.
+ */
+void QUMainWindow::uncheckAllExclusiveTasks(QListWidgetItem *item) {
+	if(taskList->row(item) == 8 
+			and (item->checkState() == Qt::Checked)
+			and (taskList->item(9)->checkState() == Qt::Checked) ) {
+		taskList->item(9)->setCheckState(Qt::Unchecked);
+	} else if(taskList->row(item) == 9 
+			and (item->checkState() == Qt::Checked)
+			and (taskList->item(8)->checkState() == Qt::Checked) ) {
+		taskList->item(8)->setCheckState(Qt::Unchecked);
+	} else if(taskList->row(item) == 14 
+			and (item->checkState() == Qt::Checked)
+			and (taskList->item(15)->checkState() == Qt::Checked) ) {
+		taskList->item(15)->setCheckState(Qt::Unchecked);
+	} else if(taskList->row(item) == 15 
+			and (item->checkState() == Qt::Checked)
+			and (taskList->item(14)->checkState() == Qt::Checked) ) {
+		taskList->item(14)->setCheckState(Qt::Unchecked);
+	}	
 }
 
 /*!
@@ -577,31 +629,33 @@ void QUMainWindow::doTasks() {
 		if(songItem) {	
 			QUSongFile *song = songItem->song();
 			
-			if(taskList->item(0)->checkState() == Qt::Checked)
-				songItem->autoSetFiles();
 			if(taskList->item(1)->checkState() == Qt::Checked)
-				useID3TagForArtist(song);
-			if(taskList->item(2)->checkState() == Qt::Checked)
-				useID3TagForTitle(song);
+				songItem->autoSetFiles();
+			// seperator here
 			if(taskList->item(3)->checkState() == Qt::Checked)
-				useID3TagForGenre(song);
+				useID3TagForArtist(song);
 			if(taskList->item(4)->checkState() == Qt::Checked)
-				useID3TagForYear(song);
+				useID3TagForTitle(song);
 			if(taskList->item(5)->checkState() == Qt::Checked)
-				renameSongDir(song);
+				useID3TagForGenre(song);
 			if(taskList->item(6)->checkState() == Qt::Checked)
-				renameSongDirCheckedVideo(song);
-			if(taskList->item(7)->checkState() == Qt::Checked)
-				renameSongTxt(song);
+				useID3TagForYear(song);
+			// seperator here
 			if(taskList->item(8)->checkState() == Qt::Checked)
-				renameSongMp3(song);
+				renameSongDir(song);
 			if(taskList->item(9)->checkState() == Qt::Checked)
-				renameSongCover(song);
+				renameSongDirCheckedVideo(song);
 			if(taskList->item(10)->checkState() == Qt::Checked)
-				renameSongBackground(song);
+				renameSongTxt(song);
 			if(taskList->item(11)->checkState() == Qt::Checked)
-				renameSongVideo(song);
+				renameSongMp3(song);
 			if(taskList->item(12)->checkState() == Qt::Checked)
+				renameSongCover(song);
+			if(taskList->item(13)->checkState() == Qt::Checked)
+				renameSongBackground(song);
+			if(taskList->item(14)->checkState() == Qt::Checked)
+				renameSongVideo(song);
+			if(taskList->item(15)->checkState() == Qt::Checked)
 				renameSongVideogap(song);
 
 			song->save();
@@ -773,6 +827,7 @@ void QUMainWindow::renameSongVideogap(QUSongFile *song) {
 	QString oldName(song->video());
 	QString newName("%1 - %2 [VD#%3]." + QFileInfo(song->video()).suffix().toLower());
 	
+	// TODO: reanaming fails if there is no videogap :)
 	if(song->renameSongVideo(newName.arg(song->artist()).arg(song->title()).arg(song->videogap()))) {
 		addLogMsg(done.arg(oldName).arg(song->video()));
 	} else {

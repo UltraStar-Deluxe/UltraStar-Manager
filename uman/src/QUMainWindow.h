@@ -45,6 +45,7 @@ private slots:
 	
 	void checkAllTasks();
 	void uncheckAllTasks();
+	void uncheckAllExclusiveTasks(QListWidgetItem *item);
 	void doTasks();
 	
 	void useID3TagForArtist(QUSongFile *song);
