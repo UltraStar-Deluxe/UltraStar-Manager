@@ -596,22 +596,22 @@ void QUMainWindow::uncheckAllTasks() {
  * tasks together.
  */
 void QUMainWindow::uncheckAllExclusiveTasks(QListWidgetItem *item) {
-	if(taskList->row(item) == 8 
+	if(taskList->row(item) == 9 
+			and (item->checkState() == Qt::Checked)
+			and (taskList->item(10)->checkState() == Qt::Checked) ) {
+		taskList->item(10)->setCheckState(Qt::Unchecked);
+	} else if(taskList->row(item) == 10 
 			and (item->checkState() == Qt::Checked)
 			and (taskList->item(9)->checkState() == Qt::Checked) ) {
 		taskList->item(9)->setCheckState(Qt::Unchecked);
-	} else if(taskList->row(item) == 9 
+	} else if(taskList->row(item) == 15 
 			and (item->checkState() == Qt::Checked)
-			and (taskList->item(8)->checkState() == Qt::Checked) ) {
-		taskList->item(8)->setCheckState(Qt::Unchecked);
-	} else if(taskList->row(item) == 14 
+			and (taskList->item(16)->checkState() == Qt::Checked) ) {
+		taskList->item(16)->setCheckState(Qt::Unchecked);
+	} else if(taskList->row(item) == 16 
 			and (item->checkState() == Qt::Checked)
 			and (taskList->item(15)->checkState() == Qt::Checked) ) {
 		taskList->item(15)->setCheckState(Qt::Unchecked);
-	} else if(taskList->row(item) == 15 
-			and (item->checkState() == Qt::Checked)
-			and (taskList->item(14)->checkState() == Qt::Checked) ) {
-		taskList->item(14)->setCheckState(Qt::Unchecked);
 	}	
 }
 
