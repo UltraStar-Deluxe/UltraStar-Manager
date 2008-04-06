@@ -24,22 +24,16 @@ NEW FEATURES
 * application window state saved on exit
 * possibility added to reset the tag order to its default value in the options menu
 * a double-click on a txt-file opens its contents (read-only)
+* task modified: if you rename your song folder with [SC] and [VIDEO] tags, other 
+  present tags will be preserved and appended to the end of the folder name
+  > present (unknown) tags will be sorted
 
 BUG FIXES
 * case-sensitive renaming works now under Windows ("abba" -> "ABBA")
 * cannot select logically exclusive tasks anymore
 * tasks work for the current song now although no song item is "selected"
 * switch for case-sensitive auto completion in details to avoid renaming issues ("abba" -> "ABBA")
-
-TODO
-* "append tasks" -> [KARAOKE]
-* preserve symbols in directories -> square brackets ([...])
-* automatic selection (-> preparatory tasks)
-* playlists ... :)
-
-KNOWN BUGS
-* file endings are always shown lower-case....
-
+* modified task: if no #VIDEOGAP present the video file is renamed like #VIDEOGAP:0
 
 changes from 1.3 to 1.4
 -----------------------

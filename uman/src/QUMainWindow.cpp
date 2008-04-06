@@ -217,7 +217,7 @@ void QUMainWindow::initTaskList() {
 	tasks << "Use ID3 tag for genre";
 	tasks << "Use ID3 tag for year";
 	tasks << "Rename directory to \"Artist - Title\"";
-	tasks << "Rename directory to \"Artist - Title [VIDEO] [SC]\" if checked or video present";
+	tasks << "Rename directory to \"Artist - Title [VIDEO] [SC]\" if checked or video present. Keep other folder tags.";
 	tasks << "Rename songtext file to \"Artist - Title.txt\"";
 	tasks << "Rename audio file to \"Artist - Title.*\"";
 	tasks << "Rename cover to \"Artist - Title [CO].*\"";
@@ -248,7 +248,10 @@ void QUMainWindow::initTaskList() {
 	taskList->item(13)->setIcon(QIcon(":/types/film.png"));
 	
 	// set up tips
-	taskList->item(7)->setToolTip("Looks for <b>[SC]</b> in the <b>#EDITION</b> tag to find out whether it is checked or not.");
+	taskList->item(7)->setToolTip("Looks for <b>[SC]</b> in the <b>#EDITION</b> tag to find out whether it is checked or not.<br>"
+			"<br>"
+			"Other folder tags like <b>[KARAOKE]</b> will be appended to the end if present.");
+	taskList->item(13)->setToolTip("Uses <b>#VIDEOGAP:0</b> if tag not present.");
 	
 	// insert seperators
 	taskList->insertItem(0, "Preparatory Tasks");
@@ -771,6 +774,15 @@ void QUMainWindow::renameSongDirCheckedVideo(QUSongFile *song) {
 	if(song->edition().contains("[SC]", Qt::CaseInsensitive))
 		newName.append(" [SC]");
 	
+	// extract additional folder tags from old name -> "[...]"
+	QStringList folderTags(oldName.split("[").filter("]"));
+	folderTags.sort();
+	foreach(QString folderTag, folderTags) {
+		if(!folderTag.contains("sc", Qt::CaseInsensitive) and !folderTag.contains("video", Qt::CaseInsensitive))
+			newName.append(" [" + folderTag.trimmed());
+	}
+	
+	// do the renaming...
 	if(song->renameSongDir(newName.arg(song->artist()).arg(song->title()))) {
 		addLogMsg(done.arg(oldName).arg(song->songFileInfo().dir().dirName()));
 	} else {
@@ -850,8 +862,10 @@ void QUMainWindow::renameSongVideogap(QUSongFile *song) {
 	QString oldName(song->video());
 	QString newName("%1 - %2 [VD#%3]." + QFileInfo(song->video()).suffix().toLower());
 	
-	// TODO: reanaming fails if there is no videogap :)
-	if(song->renameSongVideo(newName.arg(song->artist()).arg(song->title()).arg(song->videogap()))) {
+	// set videogap 0 for the videoname
+	QString vgap(song->videogap()); if(vgap == "n/a") vgap = "0";
+	
+	if(song->renameSongVideo(newName.arg(song->artist()).arg(song->title()).arg(vgap))) {
 		addLogMsg(done.arg(oldName).arg(song->video()));
 	} else {
 		addLogMsg(fail.arg(oldName), 1);
@@ -975,9 +989,12 @@ void QUMainWindow::toggleCompleterChk(bool checked) {
  * Shows the content of the current song text file. (read-only)
  */
 void QUMainWindow::showSongTextFile(QTreeWidgetItem *item, int column) {
+	if(column != 0)
+		return;
+	
 	QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
 	
-	if(!songItem or (column != 0))
+	if(!songItem)
 		return;
 	
 	QString fileScheme("*." + QFileInfo(item->text(0)).suffix());
