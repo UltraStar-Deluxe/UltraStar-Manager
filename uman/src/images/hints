@@ -31,4 +31,5 @@ You can edit some details of many songs at once if you select some and use the <
 If you drag&drop a dockable widget (song details, tasks, event log) over another dockable widget these two widgets <i>will melt together</i> to one new widget with tabs at the bottom.
 You can make a dockable widget (song details, tasks, event log) floatable if you double-click its title bar.
 Did you remark that the state of the application window as well as all dockable widgets is saved on exit?
-Unsupported tags will be saved at last in the song file.
+Unsupported tags will be saved after all other tags in the song file.
+You have a problem with changing the artist tag because the auto completion wants to use the ID3 tag value? (e.g. "abba" -> "Abba")<br><br>Try to check <i>Use case-sensitive auto completion</i> under the details table.

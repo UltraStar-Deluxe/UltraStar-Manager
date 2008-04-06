@@ -74,6 +74,7 @@ private slots:
 	
 	void montyTalk();
 	
+	void showSongTextFile(QTreeWidgetItem *item, int column);
 	
 private:
 	QList<QUSongFile*> _songs;

@@ -2,7 +2,8 @@ TEMPLATE = app
 TARGET = uman
 QT += core \
     gui
-HEADERS += QUDropDownDelegate.h \
+HEADERS += QUTextDialog.h \
+    QUDropDownDelegate.h \
     main.h \
     QUMonty.h \
     QUTagOrderDialog.h \
@@ -10,7 +11,8 @@ HEADERS += QUDropDownDelegate.h \
     QUSongItem.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += QUDropDownDelegate.cpp \
+SOURCES += QUTextDialog.cpp \
+    QUDropDownDelegate.cpp \
     QUMonty.cpp \
     QUTagOrderDialog.cpp \
     QUDetailItem.cpp \
@@ -18,7 +20,8 @@ SOURCES += QUDropDownDelegate.cpp \
     QUSongFile.cpp \
     QUMainWindow.cpp \
     main.cpp
-FORMS += QUTagOrderDialog.ui \
+FORMS += QUTextDialog.ui \
+    QUTagOrderDialog.ui \
     QUMainWindow.ui
 RESOURCES += images/uman.qrc
 win32 { 

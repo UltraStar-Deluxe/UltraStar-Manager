@@ -33,6 +33,7 @@
 #include "tstring.h"
 
 #include "QUTagOrderDialog.h"
+#include "QUTextDialog.h"
 
 QDir QUMainWindow::_baseDir = QDir();
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
@@ -141,6 +142,8 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateStatusbar()));
 
 	connect(songTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(resetLink(QTreeWidgetItem*, int))); 
+	connect(songTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(showSongTextFile(QTreeWidgetItem*, int)));
+	
 	connect(songTree, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(resizeToContents()));
 	connect(songTree, SIGNAL(itemCollapsed(QTreeWidgetItem*)), this, SLOT(resizeToContents()));
 	
@@ -225,7 +228,7 @@ void QUMainWindow::initTaskList() {
 	taskList->addItems(tasks);
 	
 	for(int i = 0; i < taskList->count(); i++) {
-		taskList->item(i)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+		taskList->item(i)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable | Qt::ItemIsSelectable);
 		taskList->item(i)->setCheckState(Qt::Unchecked);
 	}
 	
@@ -243,6 +246,9 @@ void QUMainWindow::initTaskList() {
 	taskList->item(11)->setIcon(QIcon(":/types/picture.png"));
 	taskList->item(12)->setIcon(QIcon(":/types/film.png"));
 	taskList->item(13)->setIcon(QIcon(":/types/film.png"));
+	
+	// set up tips
+	taskList->item(7)->setToolTip("Looks for <b>[SC]</b> in the <b>#EDITION</b> tag to find out whether it is checked or not.");
 	
 	// insert seperators
 	taskList->insertItem(0, "Preparatory Tasks");
@@ -371,6 +377,9 @@ void QUMainWindow::resizeToContents() {
 }
 
 void QUMainWindow::resetLink(QTreeWidgetItem *item, int column) {
+	if(column < 3 or column > 6)
+		return;
+	
 	QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
 	
 	if(!songItem || songItem->isToplevel())
@@ -960,4 +969,25 @@ void QUMainWindow::toggleRelativeSongPath(bool checked) {
 void QUMainWindow::toggleCompleterChk(bool checked) {
 	QSettings settings;
 	settings.setValue("caseSensitiveAutoCompletion", QVariant(checked));
+}
+
+/*!
+ * Shows the content of the current song text file. (read-only)
+ */
+void QUMainWindow::showSongTextFile(QTreeWidgetItem *item, int column) {
+	QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+	
+	if(!songItem or (column != 0))
+		return;
+	
+	QString fileScheme("*." + QFileInfo(item->text(0)).suffix());
+	
+	if(QString::compare(fileScheme, "*.txt", Qt::CaseInsensitive) != 0)
+		return; // display only text files
+	
+	QUTextDialog *dlg = new QUTextDialog(songItem->song(), this);
+	
+	dlg->exec();
+	
+	delete dlg;
 }

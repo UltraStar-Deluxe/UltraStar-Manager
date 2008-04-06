@@ -23,6 +23,7 @@ NEW FEATURES
 * dockable widgets for details, tasks and event log added
 * application window state saved on exit
 * possibility added to reset the tag order to its default value in the options menu
+* a double-click on a txt-file opens its contents (read-only)
 
 BUG FIXES
 * case-sensitive renaming works now under Windows ("abba" -> "ABBA")
@@ -34,6 +35,10 @@ TODO
 * "append tasks" -> [KARAOKE]
 * preserve symbols in directories -> square brackets ([...])
 * automatic selection (-> preparatory tasks)
+* playlists ... :)
+
+KNOWN BUGS
+* file endings are always shown lower-case....
 
 
 changes from 1.3 to 1.4
