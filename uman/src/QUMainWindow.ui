@@ -420,6 +420,13 @@
               <column/>
              </widget>
             </item>
+            <item>
+             <widget class="QCheckBox" name="completerChk" >
+              <property name="text" >
+               <string>Use case-sensitive auto completion</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </widget>
          </widget>
@@ -810,6 +817,9 @@
    <property name="enabled" >
     <bool>true</bool>
    </property>
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >:/control/tag_disk.png</iconset>
+   </property>
    <property name="text" >
     <string>&amp;Tag Save Order...</string>
    </property>
@@ -859,11 +869,19 @@
    </property>
   </action>
   <action name="actionChangeSongDirectory" >
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >:/control/folder_note.png</iconset>
+   </property>
    <property name="text" >
-    <string>Change US Song &amp;Directory...</string>
+    <string>Song &amp;Directory...</string>
    </property>
    <property name="statusTip" >
     <string>Reset the location where all US songs are located.</string>
+   </property>
+  </action>
+  <action name="actionUse_Case_Insensitive_Tag_Completion" >
+   <property name="text" >
+    <string>Use Case-Insensitive Tag Completion</string>
    </property>
   </action>
  </widget>

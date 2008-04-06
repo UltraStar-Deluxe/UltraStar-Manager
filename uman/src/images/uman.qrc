@@ -14,8 +14,10 @@
         <file>check_tasks.png</file>
         <file>collapse.png</file>
         <file>expand.png</file>
+        <file>folder_note.png</file>
         <file>play32.png</file>
         <file>refresh.png</file>
+        <file>tag_disk.png</file>
         <file>textfile32.png</file>
         <file>uncheck_tasks.png</file>
         <file>wizard.png</file>
@@ -54,6 +56,7 @@
         <file>genre.png</file>
         <file>language.png</file>
         <file>music.png</file>
+        <file>photo.png</file>
         <file>picture.png</file>
         <file>text.png</file>
         <file>user.png</file>

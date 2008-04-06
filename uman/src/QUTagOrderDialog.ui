@@ -12,6 +12,9 @@
   <property name="windowTitle" >
    <string>Modify Tag Save Order</string>
   </property>
+  <property name="windowIcon" >
+   <iconset resource="images/uman.qrc" >:/control/tag_disk.png</iconset>
+  </property>
   <layout class="QVBoxLayout" >
    <property name="spacing" >
     <number>5</number>

@@ -394,6 +394,16 @@ bool QUSongFile::useID3TagForYear() {
 	return true;
 }
 
+bool QUSongFile::removeUnsupportedTags() {
+	foreach(QString uTag, _foundUnsupportedTags) {
+		_info.remove(uTag);
+	}
+	
+	_foundUnsupportedTags.clear();
+	
+	return true;
+}
+
 
 QStringList QUSongFile::allowedAudioFiles() {
 	return QString("*.mp3 *.ogg").split(" ");

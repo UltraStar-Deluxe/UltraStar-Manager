@@ -93,6 +93,7 @@ public slots:
 	
 	bool unsupportedTagsFound() const { return _foundUnsupportedTags.size() > 0; }
 	QString unsupportedTags() const { return _foundUnsupportedTags.join("\n#"); }
+	bool removeUnsupportedTags();
 	
 private:
 	QFileInfo _fi;

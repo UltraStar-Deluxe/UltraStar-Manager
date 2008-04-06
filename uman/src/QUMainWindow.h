@@ -62,10 +62,13 @@ private slots:
 	void renameSongVideo(QUSongFile *song);
 	void renameSongVideogap(QUSongFile *song);
 	
+	void removeUnsupportedTags(QUSongFile *song);
+	
 	void aboutQt();
 	void aboutUman();
 	
 	void toggleRelativeSongPath(bool checked);
+	void toggleCompleterChk(bool checked);
 	void editTagOrder();
 	void changeSongDir();
 	

@@ -82,6 +82,8 @@ void QUMainWindow::initConfig() {
 	// read other settings
 	actionAllowMonty->setChecked(settings.value("allowMonty", QVariant(true)).toBool());
 	actionShowRelativeSongPath->setChecked(settings.value("showRelativeSongPath", QVariant(true)).toBool());
+	completerChk->setChecked(settings.value("caseSensitiveAutoCompletion", QVariant(false)).toBool());
+	
 	this->restoreState(settings.value("windowState", QVariant()).toByteArray());
 }
 
@@ -149,24 +151,24 @@ void QUMainWindow::initSongTreeHeader() {
 	QTreeWidgetItem *header = new QTreeWidgetItem();
 	header->setText(0, QString("Folder (%1)").arg(_baseDir.path()));
 	header->setIcon(0, QIcon(":/types/folder.png"));
-	header->setText(1, "Artist");
+	//header->setText(1, "Artist");
 	header->setIcon(1, QIcon(":/types/user.png"));
-	header->setToolTip(1, "Shows whether your folder includes the artist correctly");
-	header->setText(2, "Title");
+	header->setToolTip(1, "Shows whether your folder includes the artist correctly:<br><i>Artist - Title ...</i>");
+	//header->setText(2, "Title");
 	header->setIcon(2, QIcon(":/types/font.png"));
-	header->setToolTip(2, "Shows whether your folder includes the title correctly");
-	header->setText(3, "Audio");
+	header->setToolTip(2, "Shows whether your folder includes the title correctly:<br><i>Artist - Title ...</i>");
+	//header->setText(3, "Audio");
 	header->setIcon(3, QIcon(":/types/music.png"));
-	header->setToolTip(3, "Shows whether the song text file points to an audio file that can be found by UltraStar");
-	header->setText(4, "Cover");
+	header->setToolTip(3, "Shows whether the song text file points to an <b>audio file</b> that can be found by UltraStar");
+	//header->setText(4, "Cover");
 	header->setIcon(4, QIcon(":/types/picture.png"));
-	header->setToolTip(4, "Shows whether the song text file points to a picture that can be found by UltraStar");
-	header->setText(5, "Background");
+	header->setToolTip(4, "Shows whether the song text file points to a <b>cover picture</b> that can be found by UltraStar");
+	//header->setText(5, "Background");
 	header->setIcon(5, QIcon(":/types/picture.png"));
-	header->setToolTip(5, "Shows whether the song text file points to a picture that can be found by UltraStar");
-	header->setText(6, "Video");
+	header->setToolTip(5, "Shows whether the song text file points to a <b>background picture</b> that can be found by UltraStar");
+	//header->setText(6, "Video");
 	header->setIcon(6, QIcon(":/types/film.png"));
-	header->setToolTip(6, "Shows whether the song text file points to a video file that can be found by UltraStar");
+	header->setToolTip(6, "Shows whether the song text file points to a <b>video file</b> that can be found by UltraStar");
 
 	header->setText(7, "Language");
 	header->setIcon(7, QIcon(":/types/language.png"));
@@ -194,6 +196,8 @@ void QUMainWindow::initDetailsTable() {
 	
 	QUDropDownDelegate *comboDelegate = new QUDropDownDelegate(detailsTable);
 	detailsTable->setItemDelegateForColumn(1, comboDelegate);
+	
+	connect(completerChk, SIGNAL(toggled(bool)), this, SLOT(toggleCompleterChk(bool)));
 }
 
 /*!
@@ -204,6 +208,7 @@ void QUMainWindow::initDetailsTable() {
 void QUMainWindow::initTaskList() {
 	QStringList tasks;
 	tasks << "Set missing files automatically";
+	tasks << "Remove unsupported tags";
 	tasks << "Use ID3 tag for artist";
 	tasks << "Use ID3 tag for title";
 	tasks << "Use ID3 tag for genre";
@@ -225,25 +230,26 @@ void QUMainWindow::initTaskList() {
 	}
 	
 	taskList->item(0)->setIcon(QIcon(":/marks/wand.png"));
-	taskList->item(1)->setIcon(QIcon(":/types/user.png"));
-	taskList->item(2)->setIcon(QIcon(":/types/font.png"));
-	taskList->item(3)->setIcon(QIcon(":/types/genre.png"));
-	taskList->item(4)->setIcon(QIcon(":/types/date.png"));
-	taskList->item(5)->setIcon(QIcon(":/types/folder.png"));
+	taskList->item(1)->setIcon(QIcon(":/types/folder_blue.png"));
+	taskList->item(2)->setIcon(QIcon(":/types/user.png"));
+	taskList->item(3)->setIcon(QIcon(":/types/font.png"));
+	taskList->item(4)->setIcon(QIcon(":/types/genre.png"));
+	taskList->item(5)->setIcon(QIcon(":/types/date.png"));
 	taskList->item(6)->setIcon(QIcon(":/types/folder.png"));
-	taskList->item(7)->setIcon(QIcon(":/types/text.png"));
-	taskList->item(8)->setIcon(QIcon(":/types/music.png"));
-	taskList->item(9)->setIcon(QIcon(":/types/picture.png"));
+	taskList->item(7)->setIcon(QIcon(":/types/folder.png"));
+	taskList->item(8)->setIcon(QIcon(":/types/text.png"));
+	taskList->item(9)->setIcon(QIcon(":/types/music.png"));
 	taskList->item(10)->setIcon(QIcon(":/types/picture.png"));
-	taskList->item(11)->setIcon(QIcon(":/types/film.png"));
+	taskList->item(11)->setIcon(QIcon(":/types/picture.png"));
 	taskList->item(12)->setIcon(QIcon(":/types/film.png"));
+	taskList->item(13)->setIcon(QIcon(":/types/film.png"));
 	
 	// insert seperators
 	taskList->insertItem(0, "Preparatory Tasks");
-	taskList->insertItem(2, "ID3 Tag Tasks");
-	taskList->insertItem(7, "Renaming Tasks");
+	taskList->insertItem(3, "ID3 Tag Tasks");
+	taskList->insertItem(8, "Renaming Tasks");
 	
-	QList<int> rows; rows << 0 << 2 << 7;
+	QList<int> rows; rows << 0 << 3 << 8;
 	foreach(int row, rows) {
 		taskList->item(row)->setTextAlignment(Qt::AlignLeft);
 		taskList->item(row)->setFlags(Qt::ItemIsEnabled);		
@@ -637,31 +643,33 @@ void QUMainWindow::doTasks() {
 			
 			if(taskList->item(1)->checkState() == Qt::Checked)
 				songItem->autoSetFiles();
+			if(taskList->item(2)->checkState() == Qt::Checked)
+				this->removeUnsupportedTags(song);
 			// seperator here
-			if(taskList->item(3)->checkState() == Qt::Checked)
-				useID3TagForArtist(song);
 			if(taskList->item(4)->checkState() == Qt::Checked)
-				useID3TagForTitle(song);
+				useID3TagForArtist(song);
 			if(taskList->item(5)->checkState() == Qt::Checked)
-				useID3TagForGenre(song);
+				useID3TagForTitle(song);
 			if(taskList->item(6)->checkState() == Qt::Checked)
+				useID3TagForGenre(song);
+			if(taskList->item(7)->checkState() == Qt::Checked)
 				useID3TagForYear(song);
 			// seperator here
-			if(taskList->item(8)->checkState() == Qt::Checked)
-				renameSongDir(song);
 			if(taskList->item(9)->checkState() == Qt::Checked)
-				renameSongDirCheckedVideo(song);
+				renameSongDir(song);
 			if(taskList->item(10)->checkState() == Qt::Checked)
-				renameSongTxt(song);
+				renameSongDirCheckedVideo(song);
 			if(taskList->item(11)->checkState() == Qt::Checked)
-				renameSongMp3(song);
+				renameSongTxt(song);
 			if(taskList->item(12)->checkState() == Qt::Checked)
-				renameSongCover(song);
+				renameSongMp3(song);
 			if(taskList->item(13)->checkState() == Qt::Checked)
-				renameSongBackground(song);
+				renameSongCover(song);
 			if(taskList->item(14)->checkState() == Qt::Checked)
-				renameSongVideo(song);
+				renameSongBackground(song);
 			if(taskList->item(15)->checkState() == Qt::Checked)
+				renameSongVideo(song);
+			if(taskList->item(16)->checkState() == Qt::Checked)
 				renameSongVideogap(song);
 
 			song->save();
@@ -841,6 +849,16 @@ void QUMainWindow::renameSongVideogap(QUSongFile *song) {
 	}		
 }
 
+void QUMainWindow::removeUnsupportedTags(QUSongFile *song) {
+	QStringList removedTags(song->unsupportedTags().split("\n#"));
+	
+	song->removeUnsupportedTags(); // always works until now :)
+	
+	foreach(QString removedTag, removedTags) {
+		addLogMsg(QString("Unsupported Tag removed: #%1").arg(removedTag));
+	}
+}
+
 void QUMainWindow::addLogMsg(const QString &msg, int type) {
 	if(type == 0 and disableInfoChk->isChecked())
 		return;
@@ -934,4 +952,12 @@ void QUMainWindow::toggleRelativeSongPath(bool checked) {
 		addLogMsg("Relative song paths are displayed in the song tree now.");
 	else
 		addLogMsg("Only song directories are displayed in the song tree now.");
+}
+
+/*!
+ * Toggle whether the completion for detail edition should be case-sensitive.
+ */
+void QUMainWindow::toggleCompleterChk(bool checked) {
+	QSettings settings;
+	settings.setValue("caseSensitiveAutoCompletion", QVariant(checked));
 }

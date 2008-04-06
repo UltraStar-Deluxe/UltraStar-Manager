@@ -6,6 +6,8 @@
 #include <QVariant>
 #include <QTableWidgetItem>
 #include <QLineEdit>
+#include <QCompleter>
+#include <QSettings>
 
 QUDropDownDelegate::QUDropDownDelegate(QObject *parent): QItemDelegate(parent) {
 }
@@ -18,6 +20,13 @@ QWidget* QUDropDownDelegate::createEditor(
 	QComboBox *editor = new QComboBox(parent);
 	
 	editor->setEditable(true);
+	editor->completer()->setCompletionMode(QCompleter::PopupCompletion);
+	
+	QSettings settings;
+	if(settings.value("caseSensitiveAutoCompletion", QVariant(false)).toBool())
+		editor->completer()->setCaseSensitivity(Qt::CaseSensitive);
+	else
+		editor->completer()->setCaseSensitivity(Qt::CaseInsensitive);
 	
 	return editor;
 }
