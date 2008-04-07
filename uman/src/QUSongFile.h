@@ -85,6 +85,7 @@ public slots:
 	bool useID3TagForYear();
 	
 	static QStringList tags();
+	static QStringList noteTypes();
 	
 	static void verifyTags(QStringList &tags);
 	static QStringList allowedAudioFiles();

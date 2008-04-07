@@ -2,7 +2,7 @@ If you double-click the cell where the row of an audio file and the <i>audio col
 You can edit the value of each tag in the details area in the upper right. Just double-click to enter edit mode.
 You can modify the order in which tags are saved to a song file by drag&drop these tags under <i>Options->Tag Save Order</i>.
 Did you remark that "tasks area" on the middle right? Just check the things you want to do, select some songs and then click on the start-button.
-You can hide the event log to the lower right by unchecking <i>Show Event Log</i> in the <i>Options</i> menu.
+You can hide the event log to the lower right by unchecking <i>Event Log</i> in the <i>View</i> menu.
 Do you want me to say something else? Tell everybody your requests on our <a href="http://sourceforge.net/projects/uman">SourceForge project website</a>.
 Some tags are not editable? Yeah, that's right. Several data stays unchanged because this tool doesn't enable you to modify GAP or BPM a.s.o.<br><br>You can use UltraStar itself very well for that.
 Did I hear you correctly? A missing feature?! Just click <a href="http://sourceforge.net/projects/uman">here</a> and tell it everyone - especially the developers.

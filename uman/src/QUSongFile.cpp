@@ -35,7 +35,7 @@ bool QUSongFile::updateCache() {
 		return false;
 	
 	QString line;
-	while( !(line.startsWith(":") || _file.atEnd()) ) {
+	while( !(QRegExp("[:\\*FE].*").exactMatch(line) || _file.atEnd()) ) {
 		line = QString(_file.readLine());
 		
 		// read supported tags
@@ -108,6 +108,17 @@ QStringList QUSongFile::tags() {
 	result << RELATIVE_TAG;
 	result << BPM_TAG;
 	result << GAP_TAG;
+	
+	return result;
+}
+
+QStringList QUSongFile::noteTypes() {
+	QStringList result;
+	
+	result << ":"; // normal
+	result << "*"; // golden note
+	result << "F"; // freestyle
+	result << "-"; // pause
 	
 	return result;
 }
