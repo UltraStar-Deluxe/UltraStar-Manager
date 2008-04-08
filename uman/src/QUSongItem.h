@@ -20,8 +20,6 @@ public:
 	void updateAsVideo();
 	void updateAsUnknown();
 	
-	void autoSetFiles();
-	
 	QUSongFile* song() const {return _song;}
 	bool isToplevel() const { return _isToplevel; }
 	

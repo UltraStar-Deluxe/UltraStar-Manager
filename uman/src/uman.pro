@@ -2,7 +2,14 @@ TEMPLATE = app
 TARGET = uman
 QT += core \
     gui
-HEADERS += QUTextDialog.h \
+HEADERS += tasks/QUPreparatoryTask.h \
+    tasks/QURenameTask.h \
+    tasks/QUTaskList.h \
+    tasks/QUTaskItem.h \
+    tasks/QUAudioTagTask.h \
+    tasks/QUAbstractTask.h \
+    QU.h \
+    QUTextDialog.h \
     QUDropDownDelegate.h \
     main.h \
     QUMonty.h \
@@ -11,7 +18,13 @@ HEADERS += QUTextDialog.h \
     QUSongItem.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += QUTextDialog.cpp \
+SOURCES += tasks/QUPreparatoryTask.cpp \
+    tasks/QURenameTask.cpp \
+    tasks/QUAudioTagTask.cpp \
+    tasks/QUTaskList.cpp \
+    tasks/QUTaskItem.cpp \
+    tasks/QUAbstractTask.cpp \
+    QUTextDialog.cpp \
     QUDropDownDelegate.cpp \
     QUMonty.cpp \
     QUTagOrderDialog.cpp \
@@ -29,4 +42,5 @@ win32 {
     LIBS += -L"../lib" \
         -ltag
 }
-INCLUDEPATH += ../include/taglib
+INCLUDEPATH += ../include/taglib \
+    tasks

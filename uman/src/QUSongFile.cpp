@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QSettings>
 #include <QMessageBox>
+#include <QFileInfoList>
 
 #include "fileref.h"
 #include "tag.h"
@@ -223,7 +224,7 @@ bool QUSongFile::save() {
  * Rename a file or a directory. Try to enable case-sensitive renaming under
  * Windows.
  */
-bool QUSongFile::rename(QDir &dir, const QString &oldName, const QString &newName) {
+bool QUSongFile::rename(QDir dir, const QString &oldName, const QString &newName) {
 	bool result = true;
 	
 	if(QString::compare(oldName, newName, Qt::CaseSensitive) == 0)
@@ -242,179 +243,251 @@ bool QUSongFile::rename(QDir &dir, const QString &oldName, const QString &newNam
 /*!
  * Try to rename the directory of the current song file.
  * \param newName the new name (avoid illegal characters for your OS)
- * \returns True on success, otherwise false.
  */
-bool QUSongFile::renameSongDir(const QString &newName) {
+void QUSongFile::renameSongDir(const QString &newName) {
 	QDir dir(_fi.dir());	
 	dir.cdUp();
 	
-	bool result = rename(dir, _fi.dir().dirName(), newName);
+	QString oldName(_fi.dir().dirName());
 	
-	if(result) {
-		dir.cd(newName);
-		_fi.setFile(dir.path() + "/" + _fi.fileName());
+	if(!rename(dir, oldName, newName)) {
+		emit finished(QString("Could NOT rename the song directory \"%1\" to \"%2\".").arg(oldName).arg(newName), QU::warning);
+		return;
 	}
+		
+	dir.cd(newName);
+	_fi.setFile(dir.path() + "/" + _fi.fileName());
 	
-	return result;
+	emit finished(QString("Song directory renamed from: \"%1\" to: \"%2\".").arg(oldName).arg(newName), QU::information);
 }
 
 /*!
  * Try to rename the song file itself.
  * \param newName the new name (avoid illegal characters for your OS)
- * \returns True on success, otherwise false.
  */
-bool QUSongFile::renameSongTxt(const QString &newName) {
-	bool result = _fi.dir().rename(_fi.fileName(), newName);
+void QUSongFile::renameSongTxt(const QString &newName) {
+	QString oldName(_fi.fileName());
 	
-	if(result) {
-		_fi.setFile(_fi.dir().path() + "/" + newName);
+	if(!rename(_fi.dir(), oldName, newName)) {
+		emit finished(QString("Could NOT rename the song file \"%1\" to \"%2\".").arg(oldName).arg(newName), QU::warning);
+		return;
 	}
 	
-	return result;	
+	_fi.setFile(_fi.dir().path() + "/" + newName);
+	
+	emit finished(QString("Song file renamed from: \"%1\" to: \"%2\".").arg(oldName).arg(newName), QU::information);
 }
 
 /*!
  * Try to rename the mp3 file of the current song file. The information about the
  * current mp3 file has to be correct or the file cannot be found and renamed.
  * \param newName the new name (avoid illegal characters for your OS)
- * \returns True on success, otherwise false.
  */
-bool QUSongFile::renameSongMp3(const QString &newName) {
-	bool result = _fi.dir().rename(mp3(), newName);
+void QUSongFile::renameSongMp3(const QString &newName) {
+	QString oldName(mp3());
 	
-	if(result) {
-		setInfo(MP3_TAG, newName);
+	if(!rename(_fi.dir(), oldName, newName)) {
+		emit finished(QString("Could NOT rename the audio file \"%1\" to \"%2\".").arg(oldName).arg(newName), QU::warning);
+		return;
 	}
 	
-	return result;
+	setInfo(MP3_TAG, newName);
+	
+	emit finished(QString("Audio file renamed from: \"%1\" to: \"%2\".").arg(oldName).arg(newName), QU::information);
 }
 
 /*!
  * Try to rename the cover picture file of the current song file. The information about the
  * current cover has to be correct or the file cannot be found and renamed.
  * \param newName the new name (avoid illegal characters for your OS)
- * \returns True on success, otherwise false.
  */
-bool QUSongFile::renameSongCover(const QString &newName) {
-	bool result = _fi.dir().rename(cover(), newName);
+void QUSongFile::renameSongCover(const QString &newName) {
+	QString oldName(cover());
 	
-	if(result) {
-		setInfo(COVER_TAG, newName);
+	if(!rename(_fi.dir(), oldName, newName)) {
+		emit finished(QString("Could NOT rename the cover picture \"%1\" to \"%2\".").arg(oldName).arg(newName), QU::warning);
+		return;
 	}
 	
-	return result;
+	setInfo(COVER_TAG, newName);
+	
+	emit finished(QString("Cover picture renamed from: \"%1\" to: \"%2\".").arg(oldName).arg(newName), QU::information);
 }
 
 /*!
  * Try to rename the background picture file of the current song file. The information about the
  * current background has to be correct or the file cannot be found and renamed.
  * \param newName the new name (avoid illegal characters for your OS)
- * \returns True on success, otherwise false.
  */
-bool QUSongFile::renameSongBackground(const QString &newName) {
-	bool result = _fi.dir().rename(background(), newName);
+void QUSongFile::renameSongBackground(const QString &newName) {
+	QString oldName(background());
 	
-	if(result) {
-		setInfo(BACKGROUND_TAG, newName);
+	if(!rename(_fi.dir(), oldName, newName)) {
+		emit finished(QString("Could NOT rename the background picture \"%1\" to \"%2\".").arg(oldName).arg(newName), QU::warning);
+		return;
 	}
 	
-	return result;
+	setInfo(BACKGROUND_TAG, newName);
+	
+	emit finished(QString("Background picture renamed from: \"%1\" to: \"%2\".").arg(oldName).arg(newName), QU::information);
 }
 
 /*!
  * Try to rename the video file of the current song file. The information about the
  * current video has to be correct or the file cannot be found and renamed.
  * \param newName the new name (avoid illegal characters for your OS)
- * \returns True on success, otherwise false.
  */
-bool QUSongFile::renameSongVideo(const QString &newName) {
-	bool result = _fi.dir().rename(video(), newName);
+void QUSongFile::renameSongVideo(const QString &newName) {
+	QString oldName(video());
 	
-	if(result) {
-		setInfo(VIDEO_TAG, newName);
+	if(!rename(_fi.dir(), oldName, newName)) {
+		emit finished(QString("Could NOT rename the video file \"%1\" to \"%2\".").arg(oldName).arg(newName), QU::warning);
+		return;
 	}
 	
-	return result;
+	setInfo(VIDEO_TAG, newName);
+	
+	emit finished(QString("Video file renamed from: \"%1\" to: \"%2\".").arg(oldName).arg(newName), QU::information);
 }
 
 /*!
  * Reads the ID3 tag from the specified MP3-File (info has to be correct) and uses
  * artist and title information for the song file.
  */
-bool QUSongFile::useID3TagForArtist() {
-	if(!hasMp3())
-		return false;
+void QUSongFile::useID3TagForArtist() {
+	if(!hasMp3()) {
+		emit finished(QString("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for artist.").arg(this->artist()).arg(this->title()), QU::warning);
+		return;
+	}
 	
 	TagLib::FileRef ref(mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
 	
+	QString oldArtist(this->artist());
 	QString newArtist(TStringToQString(ref.tag()->artist()));
 	
-	if(newArtist.isEmpty())
-		return false;
+	if(newArtist.isEmpty()) {
+		emit finished(QString("The audio file %1 does not contain ID3 tag information about an artist.").arg(this->mp3()), QU::warning);
+		return;
+	}
 	
 	setInfo(ARTIST_TAG, newArtist);
-	
-	return true;
+	emit finished(QString("ID3 tag of \"%1\" used for artist. Changed from: \"%2\" to: \"%3\".").arg(this->mp3()).arg(oldArtist).arg(this->artist()), QU::information);
 }
 
-bool QUSongFile::useID3TagForTitle() {
-	if(!hasMp3())
-		return false;
+void QUSongFile::useID3TagForTitle() {
+	if(!hasMp3()) {
+		emit finished(QString("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for title.").arg(this->artist()).arg(this->title()), QU::warning);
+		return;
+	}
 	
 	TagLib::FileRef ref(mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
 	
+	QString oldTitle(this->title());
 	QString newTitle(TStringToQString(ref.tag()->title()));
 	
-	if(newTitle.isEmpty())
-		return false;
+	if(newTitle.isEmpty()) {
+		emit finished(QString("The audio file %1 does not contain ID3 tag information about a title.").arg(this->mp3()), QU::warning);
+		return;
+	}
 	
 	setInfo(TITLE_TAG, newTitle);
-	
-	return true;
+	emit finished(QString("ID3 tag of \"%1\" used for title. Changed from: \"%2\" to: \"%3\".").arg(this->mp3()).arg(oldTitle).arg(this->title()), QU::information);
 }
 
-bool QUSongFile::useID3TagForGenre() {
-	if(!hasMp3())
-		return false;
+void QUSongFile::useID3TagForGenre() {
+	if(!hasMp3()) {
+		emit finished(QString("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for genre.").arg(this->artist()).arg(this->title()), QU::warning);
+		return;
+	}
 	
 	TagLib::FileRef ref(mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
 	
+	QString oldGenre(this->genre());
 	QString newGenre(TStringToQString(ref.tag()->genre()));
 	
-	if(newGenre.isEmpty())
-		return false;
+	if(newGenre.isEmpty()) {
+		emit finished(QString("The audio file %1 does not contain ID3 tag information about a genre.").arg(this->mp3()), QU::warning);
+		return;
+	}
 	
 	setInfo(GENRE_TAG, newGenre);
-	
-	return true;
+	emit finished(QString("ID3 tag of \"%1\" used for genre. Changed from: \"%2\" to: \"%3\".").arg(this->mp3()).arg(oldGenre).arg(this->genre()), QU::information);
 }
 
-bool QUSongFile::useID3TagForYear() {
-	if(!hasMp3())
-		return false;
+void QUSongFile::useID3TagForYear() {
+	if(!hasMp3()) {
+		emit finished(QString("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for year.").arg(this->artist()).arg(this->title()), QU::warning);
+		return;
+	}
 	
 	TagLib::FileRef ref(mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
 	
+	QString oldYear(this->year());
 	QString newYear(QVariant(ref.tag()->year()).toString());
 	
-	if(newYear == "0")
-		return false;
+	if(newYear == "0") {
+		emit finished(QString("The audio file %1 does not contain ID3 tag information about a year.").arg(this->mp3()), QU::warning);
+		return;
+	}
 	
 	setInfo(YEAR_TAG, newYear);
-	
-	return true;
+	emit finished(QString("ID3 tag of \"%1\" used for year. Changed from: \"%2\" to: \"%3\".").arg(this->mp3()).arg(oldYear).arg(this->year()), QU::information);
 }
 
-bool QUSongFile::removeUnsupportedTags() {
+void QUSongFile::removeUnsupportedTags() {
+	if(!this->unsupportedTagsFound()) {
+		emit finished(QString("The song \"%1 - %2\" has no unsupported tags.").arg(this->artist()).arg(this->title()), QU::information);
+		return;
+	}
+	
 	foreach(QString uTag, _foundUnsupportedTags) {
 		_info.remove(uTag);
+		emit finished(QString("Unsupported tag removed: #%1.").arg(uTag), QU::information);
 	}
 	
 	_foundUnsupportedTags.clear();
-	
-	return true;
 }
 
+/*!
+ * Uses all files in the song directory to guess missing files according to some
+ * common patterns: "cover", "[CO]" -> Cover; "back", "[BG]", -> Background, a.s.o.
+ */
+void QUSongFile::autoSetFiles() {
+	QFileInfoList files = this->songFileInfo().dir().entryInfoList(
+			QUSongFile::allowedAudioFiles() + QUSongFile::allowedPictureFiles() + QUSongFile::allowedVideoFiles(), 
+			QDir::Files);
+	
+	foreach(QFileInfo fi, files) {
+		QString fileScheme("*." + fi.suffix());
+		
+		if(QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+			if(!this->hasMp3()) {
+				this->setInfo(MP3_TAG, fi.fileName());
+				emit finished(QString("Assigned \"%1\" as audio file for \"%2 - %3\".").arg(mp3()).arg(artist()).arg(title()), QU::information);
+			}
+		} else if(QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+			if(!this->hasVideo()) {
+				this->setInfo(VIDEO_TAG, fi.fileName());
+				emit finished(QString("Assigned \"%1\" as video file for \"%2 - %3\".").arg(video()).arg(artist()).arg(title()), QU::information);
+			}
+		} else if(QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+			QRegExp reCover("\\[CO\\]|cover", Qt::CaseInsensitive);
+			QRegExp reBackground("\\[BG\\]|back", Qt::CaseInsensitive);
+			
+			if(fi.fileName().contains(reCover) && !this->hasCover()) {
+				this->setInfo(COVER_TAG, fi.fileName());
+				emit finished(QString("Assigned \"%1\" as cover picture for \"%2 - %3\".").arg(cover()).arg(artist()).arg(title()), QU::information);
+			} else if(fi.fileName().contains(reBackground) && !this->hasBackground()) {
+				this->setInfo(BACKGROUND_TAG, fi.fileName());
+				emit finished(QString("Assigned \"%1\" as background picture for \"%2 - %3\".").arg(background()).arg(artist()).arg(title()), QU::information);
+			}
+		}
+	}
+}
+
+/*
+ * STATIC MEMBERS
+ */
 
 QStringList QUSongFile::allowedAudioFiles() {
 	return QString("*.mp3 *.ogg").split(" ");

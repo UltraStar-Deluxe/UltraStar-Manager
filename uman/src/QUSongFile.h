@@ -9,6 +9,8 @@
 #include <QMap>
 #include <QDir>
 
+#include "QU.h"
+
 #define TITLE_TAG      "TITLE"
 #define ARTIST_TAG     "ARTIST"
 #define LANGUAGE_TAG   "LANGUAGE"
@@ -72,17 +74,17 @@ public slots:
 	void setInfo(const QString &key, const QString &value);
 	
 	bool save();
-	bool renameSongDir(const QString &newName);
-	bool renameSongTxt(const QString &newName);
-	bool renameSongMp3(const QString &newName);
-	bool renameSongCover(const QString &newName);
-	bool renameSongBackground(const QString &newName);
-	bool renameSongVideo(const QString &newName);
+	void renameSongDir(const QString &newName);
+	void renameSongTxt(const QString &newName);
+	void renameSongMp3(const QString &newName);
+	void renameSongCover(const QString &newName);
+	void renameSongBackground(const QString &newName);
+	void renameSongVideo(const QString &newName);
 	
-	bool useID3TagForArtist();
-	bool useID3TagForTitle();
-	bool useID3TagForGenre();
-	bool useID3TagForYear();
+	void useID3TagForArtist();
+	void useID3TagForTitle();
+	void useID3TagForGenre();
+	void useID3TagForYear();
 	
 	static QStringList tags();
 	static QStringList noteTypes();
@@ -94,7 +96,12 @@ public slots:
 	
 	bool unsupportedTagsFound() const { return _foundUnsupportedTags.size() > 0; }
 	QString unsupportedTags() const { return _foundUnsupportedTags.join("\n#"); }
-	bool removeUnsupportedTags();
+	void removeUnsupportedTags();
+	
+	void autoSetFiles();
+	
+signals:
+	void finished(const QString &message, QU::EventMessageTypes type);
 	
 private:
 	QFileInfo _fi;
@@ -105,7 +112,7 @@ private:
 	
 	bool updateCache();
 	
-	bool rename(QDir &dir, const QString &oldName, const QString &newName);
+	bool rename(QDir dir, const QString &oldName, const QString &newName);
 };
 
 #endif /*QUSONGFILE_H_*/

@@ -72,8 +72,8 @@ void QUSongItem::update() {
 		}
 	}
 	
-	if(this->treeWidget())
-		this->treeWidget()->setCurrentItem(this);
+//	if(this->treeWidget())
+//		this->treeWidget()->setCurrentItem(this);
 }
 
 /*!
@@ -83,7 +83,7 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	clearContents();
 	
 	if(showRelativePath)
-		this->setText(0, QUMainWindow::_baseDir.relativeFilePath(song()->songFileInfo().path()));
+		this->setText(0, QUMainWindow::BaseDir.relativeFilePath(song()->songFileInfo().path()));
 	else
 		this->setText(0, song()->songFileInfo().dir().dirName());
 	
@@ -182,36 +182,4 @@ void QUSongItem::updateAsVideo() {
 
 void QUSongItem::updateAsUnknown() {
 	this->setTextColor(0, Qt::gray);
-}
-
-/*!
- * Uses all child items (files) to guess missing files according to some
- * common patterns: "cover", "[CO]" -> Cover; "back", "[BG]", -> Background, a.s.o.
- */
-void QUSongItem::autoSetFiles() {
-	if(!isToplevel()) { // use parent (which should be toplevel) if this is not toplevel
-		(dynamic_cast<QUSongItem*>(this->parent()))->autoSetFiles();
-		return;
-	}
-	
-	for(int i = 0; i < this->childCount(); i++) {
-		QString fileName(this->child(i)->text(0));
-		QString fileScheme("*." + QFileInfo(fileName).suffix());
-		
-		if(QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-			if(!song()->hasMp3())
-				song()->setInfo(MP3_TAG, fileName);
-		} else if(QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-			if(!song()->hasVideo())
-				song()->setInfo(VIDEO_TAG, fileName);
-		} else if(QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-			QRegExp reCover("\\[CO\\]|cover", Qt::CaseInsensitive);
-			QRegExp reBackground("\\[BG\\]|back", Qt::CaseInsensitive);
-			
-			if(fileName.contains(reCover) and !song()->hasCover())
-				song()->setInfo(COVER_TAG, fileName);
-			else if(fileName.contains(reBackground) and !song()->hasBackground())
-				song()->setInfo(BACKGROUND_TAG, fileName);
-		}
-	}
 }

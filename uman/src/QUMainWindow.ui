@@ -454,7 +454,7 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="QListWidget" name="taskList" >
+             <widget class="QUTaskList" name="taskList" >
               <property name="sizePolicy" >
                <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
                 <horstretch>0</horstretch>
@@ -888,6 +888,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QUTaskList</class>
+   <extends>QListWidget</extends>
+   <header>QUTaskList.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="images/uman.qrc" />
  </resources>

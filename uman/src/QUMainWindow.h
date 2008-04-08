@@ -8,6 +8,8 @@
 #include "QUSongItem.h"
 #include "ui_QUMainWindow.h"
 
+#include "QU.h"
+
 /*!
  * This class represents the main user interface of uman. All important tasks
  * will be offered to the user here.
@@ -19,7 +21,7 @@ public:
 	QUMainWindow(QWidget *parent = 0);
 	~QUMainWindow();
 	
-	static QDir _baseDir;
+	static QDir BaseDir;
 	
 private slots:
 	void initConfig();
@@ -43,26 +45,7 @@ private slots:
 	
 	void saveSongChanges(QTableWidgetItem *item);
 	
-	void checkAllTasks();
-	void uncheckAllTasks();
-	void uncheckAllExclusiveTasks(QListWidgetItem *item);
 	void doTasks();
-	
-	void useID3TagForArtist(QUSongFile *song);
-	void useID3TagForTitle(QUSongFile *song);
-	void useID3TagForGenre(QUSongFile *song);
-	void useID3TagForYear(QUSongFile *song);
-	
-	void renameSongDir(QUSongFile *song);
-	void renameSongDirCheckedVideo(QUSongFile *song);
-	void renameSongTxt(QUSongFile *song);
-	void renameSongMp3(QUSongFile *song);
-	void renameSongCover(QUSongFile *song);
-	void renameSongBackground(QUSongFile *song);
-	void renameSongVideo(QUSongFile *song);
-	void renameSongVideogap(QUSongFile *song);
-	
-	void removeUnsupportedTags(QUSongFile *song);
 	
 	void aboutQt();
 	void aboutUman();
@@ -76,10 +59,10 @@ private slots:
 	
 	void showSongTextFile(QTreeWidgetItem *item, int column);
 	
+	void addLogMsg(const QString &msg, QU::EventMessageTypes type = QU::information);
+	
 private:
 	QList<QUSongFile*> _songs;
-	
-	void addLogMsg(const QString &msg, int type = 0);
 	
 	void readSongDir(QList<QDir> &dirList);
 };

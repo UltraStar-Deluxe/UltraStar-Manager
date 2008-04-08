@@ -35,7 +35,7 @@
 #include "QUTagOrderDialog.h"
 #include "QUTextDialog.h"
 
-QDir QUMainWindow::_baseDir = QDir();
+QDir QUMainWindow::BaseDir = QDir();
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	setupUi(this);
 	
@@ -78,7 +78,7 @@ void QUMainWindow::initConfig() {
 	} else {
 		path = settings.value("songPath").toString();
 	}
-	_baseDir.setPath(path);
+	BaseDir.setPath(path);
 	
 	// read other settings
 	actionAllowMonty->setChecked(settings.value("allowMonty", QVariant(true)).toBool());
@@ -152,7 +152,7 @@ void QUMainWindow::initSongTree() {
 
 void QUMainWindow::initSongTreeHeader() {
 	QTreeWidgetItem *header = new QTreeWidgetItem();
-	header->setText(0, QString("Folder (%1)").arg(_baseDir.path()));
+	header->setText(0, QString("Folder (%1)").arg(BaseDir.path()));
 	header->setIcon(0, QIcon(":/types/folder.png"));
 	//header->setText(1, "Artist");
 	header->setIcon(1, QIcon(":/types/user.png"));
@@ -208,73 +208,12 @@ void QUMainWindow::initDetailsTable() {
  * \sa doTasks()
  * \sa saveSongChanges()
  */
-void QUMainWindow::initTaskList() {
-	QStringList tasks;
-	tasks << "Set missing files automatically";
-	tasks << "Remove unsupported tags";
-	tasks << "Use ID3 tag for artist";
-	tasks << "Use ID3 tag for title";
-	tasks << "Use ID3 tag for genre";
-	tasks << "Use ID3 tag for year";
-	tasks << "Rename directory to \"Artist - Title\"";
-	tasks << "Rename directory to \"Artist - Title [VIDEO] [SC]\" if checked or video present. Keep other folder tags.";
-	tasks << "Rename songtext file to \"Artist - Title.txt\"";
-	tasks << "Rename audio file to \"Artist - Title.*\"";
-	tasks << "Rename cover to \"Artist - Title [CO].*\"";
-	tasks << "Rename background to \"Artist - Title [BG].*\"";
-	tasks << "Rename video to \"Artist - Title.*\"";
-	tasks << "Rename video to \"Artist - Title [VD#*].*\" consider VIDEOGAP";
-	
-	taskList->addItems(tasks);
-	
-	for(int i = 0; i < taskList->count(); i++) {
-		taskList->item(i)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable | Qt::ItemIsSelectable);
-		taskList->item(i)->setCheckState(Qt::Unchecked);
-	}
-	
-	taskList->item(0)->setIcon(QIcon(":/marks/wand.png"));
-	taskList->item(1)->setIcon(QIcon(":/types/folder_blue.png"));
-	taskList->item(2)->setIcon(QIcon(":/types/user.png"));
-	taskList->item(3)->setIcon(QIcon(":/types/font.png"));
-	taskList->item(4)->setIcon(QIcon(":/types/genre.png"));
-	taskList->item(5)->setIcon(QIcon(":/types/date.png"));
-	taskList->item(6)->setIcon(QIcon(":/types/folder.png"));
-	taskList->item(7)->setIcon(QIcon(":/types/folder.png"));
-	taskList->item(8)->setIcon(QIcon(":/types/text.png"));
-	taskList->item(9)->setIcon(QIcon(":/types/music.png"));
-	taskList->item(10)->setIcon(QIcon(":/types/picture.png"));
-	taskList->item(11)->setIcon(QIcon(":/types/picture.png"));
-	taskList->item(12)->setIcon(QIcon(":/types/film.png"));
-	taskList->item(13)->setIcon(QIcon(":/types/film.png"));
-	
-	// set up tips
-	taskList->item(7)->setToolTip("Looks for <b>[SC]</b> in the <b>#EDITION</b> tag to find out whether it is checked or not.<br>"
-			"<br>"
-			"Other folder tags like <b>[KARAOKE]</b> will be appended to the end if present.");
-	taskList->item(13)->setToolTip("Uses <b>#VIDEOGAP:0</b> if tag not present.");
-	
-	// insert seperators
-	taskList->insertItem(0, "Preparatory Tasks");
-	taskList->insertItem(3, "ID3 Tag Tasks");
-	taskList->insertItem(8, "Renaming Tasks");
-	
-	QList<int> rows; rows << 0 << 3 << 8;
-	foreach(int row, rows) {
-		taskList->item(row)->setTextAlignment(Qt::AlignLeft);
-		taskList->item(row)->setFlags(Qt::ItemIsEnabled);		
-		taskList->item(row)->setBackgroundColor(Qt::darkGray);
-		taskList->item(row)->setTextColor(Qt::white);
-		
-		QFont f(taskList->item(row)->font());
-		f.setBold(true);
-		taskList->item(row)->setFont(f);
-	}
-	
+void QUMainWindow::initTaskList() {	
 	// connect task buttons
 	connect(taskBtn, SIGNAL(clicked()), this, SLOT(doTasks()));
-	connect(allTasksBtn, SIGNAL(clicked()), this, SLOT(checkAllTasks()));
-	connect(noTasksBtn, SIGNAL(clicked()), this, SLOT(uncheckAllTasks()));
-	connect(taskList, SIGNAL(itemChanged(QListWidgetItem*)), this, SLOT(uncheckAllExclusiveTasks(QListWidgetItem*)));
+	connect(allTasksBtn, SIGNAL(clicked()), taskList, SLOT(checkAllTasks()));
+	connect(noTasksBtn, SIGNAL(clicked()), taskList, SLOT(uncheckAllTasks()));
+	connect(taskList, SIGNAL(itemChanged(QListWidgetItem*)), taskList, SLOT(uncheckAllExclusiveTasks(QListWidgetItem*)));
 }
 
 void QUMainWindow::initMonty() {
@@ -293,6 +232,11 @@ void QUMainWindow::initMonty() {
 void QUMainWindow::refreshSongs() {
 	songTree->clear();
 	updateDetails();
+	
+	foreach(QUSongFile *song, _songs) {
+		disconnect(song, 0, 0, 0);
+	}
+	
 	qDeleteAll(_songs);
 	_songs.clear();
 	
@@ -306,7 +250,7 @@ void QUMainWindow::refreshSongs() {
  */
 void QUMainWindow::createSongFiles() {
 	QList<QDir> dirList;
-	dirList.append(QDir(_baseDir));
+	dirList.append(QDir(BaseDir));
 	
 	QProgressDialog progress("Looking for songs...", 0, 0, 1, this);
 	progress.show();
@@ -323,6 +267,8 @@ void QUMainWindow::createSongFiles() {
 		
 		if(!files.isEmpty()) {
 			_songs.append(new QUSongFile(QFileInfo(dir, files.first()).filePath()));
+			// enable event log
+			connect(_songs.last(), SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 		}
 	}
 }
@@ -589,44 +535,6 @@ void QUMainWindow::saveSongChanges(QTableWidgetItem *item) {
 	updateDetails(); // to show "n/a" if text was deleted completely
 }
 
-void QUMainWindow::checkAllTasks() {
-	for(int i = 0; i < taskList->count(); i++) {
-		if(taskList->item(i)->flags() & Qt::ItemIsUserCheckable)
-			taskList->item(i)->setCheckState(Qt::Checked);
-	}
-}
-
-void QUMainWindow::uncheckAllTasks() {
-	for(int i = 0; i < taskList->count(); i++) {
-		if(taskList->item(i)->flags() & Qt::ItemIsUserCheckable)
-			taskList->item(i)->setCheckState(Qt::Unchecked);
-	}
-}
-
-/*!
- * Unchecks all tasks that cannot be used with several other
- * tasks together.
- */
-void QUMainWindow::uncheckAllExclusiveTasks(QListWidgetItem *item) {
-	if(taskList->row(item) == 9 
-			and (item->checkState() == Qt::Checked)
-			and (taskList->item(10)->checkState() == Qt::Checked) ) {
-		taskList->item(10)->setCheckState(Qt::Unchecked);
-	} else if(taskList->row(item) == 10 
-			and (item->checkState() == Qt::Checked)
-			and (taskList->item(9)->checkState() == Qt::Checked) ) {
-		taskList->item(9)->setCheckState(Qt::Unchecked);
-	} else if(taskList->row(item) == 15 
-			and (item->checkState() == Qt::Checked)
-			and (taskList->item(16)->checkState() == Qt::Checked) ) {
-		taskList->item(16)->setCheckState(Qt::Unchecked);
-	} else if(taskList->row(item) == 16 
-			and (item->checkState() == Qt::Checked)
-			and (taskList->item(15)->checkState() == Qt::Checked) ) {
-		taskList->item(15)->setCheckState(Qt::Unchecked);
-	}	
-}
-
 /*!
  * Does all checked tasks for all selected songs. You can only select
  * toplevel items (folders) which represent songs.
@@ -652,37 +560,7 @@ void QUMainWindow::doTasks() {
 
 		if(songItem) {	
 			QUSongFile *song = songItem->song();
-			
-			if(taskList->item(1)->checkState() == Qt::Checked)
-				songItem->autoSetFiles();
-			if(taskList->item(2)->checkState() == Qt::Checked)
-				this->removeUnsupportedTags(song);
-			// seperator here
-			if(taskList->item(4)->checkState() == Qt::Checked)
-				useID3TagForArtist(song);
-			if(taskList->item(5)->checkState() == Qt::Checked)
-				useID3TagForTitle(song);
-			if(taskList->item(6)->checkState() == Qt::Checked)
-				useID3TagForGenre(song);
-			if(taskList->item(7)->checkState() == Qt::Checked)
-				useID3TagForYear(song);
-			// seperator here
-			if(taskList->item(9)->checkState() == Qt::Checked)
-				renameSongDir(song);
-			if(taskList->item(10)->checkState() == Qt::Checked)
-				renameSongDirCheckedVideo(song);
-			if(taskList->item(11)->checkState() == Qt::Checked)
-				renameSongTxt(song);
-			if(taskList->item(12)->checkState() == Qt::Checked)
-				renameSongMp3(song);
-			if(taskList->item(13)->checkState() == Qt::Checked)
-				renameSongCover(song);
-			if(taskList->item(14)->checkState() == Qt::Checked)
-				renameSongBackground(song);
-			if(taskList->item(15)->checkState() == Qt::Checked)
-				renameSongVideo(song);
-			if(taskList->item(16)->checkState() == Qt::Checked)
-				renameSongVideogap(song);
+			taskList->doTasksOn(song);
 
 			song->save();
 			songItem->update();
@@ -696,196 +574,10 @@ void QUMainWindow::doTasks() {
 	montyTalk();
 }
 
-void QUMainWindow::useID3TagForArtist(QUSongFile *song) {
-	QString done("ID3Tag of \"%1\" used for artist. Changed from: \"%2\" to: \"%3\".");
-	QString fail("ID3Tag was NOT available to be used for artist: \"%1\"");
-	
-	QString oldArtist(song->artist());
-	
-	if(song->useID3TagForArtist()) {
-		addLogMsg(done.arg(song->mp3()).arg(oldArtist).arg(song->artist()));
-	} else {
-		addLogMsg(fail.arg(song->mp3()), 1);
-	}
-}
-
-void QUMainWindow::useID3TagForTitle(QUSongFile *song) {
-	QString done("ID3Tag of \"%1\" used for title. Changed from: \"%2\" to: \"%3\".");
-	QString fail("ID3Tag was NOT available to be used for title: \"%1\"");
-	
-	QString oldTitle(song->title());
-	
-	if(song->useID3TagForTitle()) {
-		addLogMsg(done.arg(song->mp3()).arg(oldTitle).arg(song->title()));
-	} else {
-		addLogMsg(fail.arg(song->mp3()), 1);
-	}	
-}
-
-void QUMainWindow::useID3TagForGenre(QUSongFile *song) {
-	QString done("ID3Tag of \"%1\" used for genre. Changed from: \"%2\" to: \"%3\".");
-	QString fail("ID3Tag was NOT available to be used for genre: \"%1\"");
-	
-	QString oldGenre(song->genre());
-	
-	if(song->useID3TagForGenre()) {
-		addLogMsg(done.arg(song->mp3()).arg(oldGenre).arg(song->genre()));
-	} else {
-		addLogMsg(fail.arg(song->mp3()), 1);
-	}
-}
-
-void QUMainWindow::useID3TagForYear(QUSongFile *song) {
-	QString done("ID3Tag of \"%1\" used for year. Changed from: \"%2\" to: \"%3\".");
-	QString fail("ID3Tag was NOT available to be used for year: \"%1\"");
-	
-	QString oldYear(song->year());
-	
-	if(song->useID3TagForYear()) {
-		addLogMsg(done.arg(song->mp3()).arg(oldYear).arg(song->year()));
-	} else {
-		addLogMsg(fail.arg(song->mp3()), 1);
-	}
-}
-
-void QUMainWindow::renameSongDir(QUSongFile *song) {
-	QString done("Song directory renamed from: \"%1\" to: \"%2\".");
-	QString fail("Song directory: \"%1\" was NOT renamed.");
-	
-	QString oldName(song->songFileInfo().dir().dirName());
-	
-	if(song->renameSongDir(song->artist() + " - " + song->title())) {
-		addLogMsg(done.arg(oldName).arg(song->songFileInfo().dir().dirName()));
-	} else {
-		addLogMsg(fail.arg(oldName), 1);
-	}
-}
-
-void QUMainWindow::renameSongDirCheckedVideo(QUSongFile *song) {
-	QString done("Song directory renamed from: \"%1\" to: \"%2\".");
-	QString fail("Song directory: \"%1\" was NOT renamed.");
-	
-	QString oldName(song->songFileInfo().dir().dirName());
-	QString newName("%1 - %2");
-	
-	if(song->hasVideo())
-		newName.append(" [VIDEO]");
-	
-	if(song->edition().contains("[SC]", Qt::CaseInsensitive))
-		newName.append(" [SC]");
-	
-	// extract additional folder tags from old name -> "[...]"
-	QStringList folderTags(oldName.split("[").filter("]"));
-	folderTags.sort();
-	foreach(QString folderTag, folderTags) {
-		if(!folderTag.contains("sc", Qt::CaseInsensitive) and !folderTag.contains("video", Qt::CaseInsensitive))
-			newName.append(" [" + folderTag.trimmed());
-	}
-	
-	// do the renaming...
-	if(song->renameSongDir(newName.arg(song->artist()).arg(song->title()))) {
-		addLogMsg(done.arg(oldName).arg(song->songFileInfo().dir().dirName()));
-	} else {
-		addLogMsg(fail.arg(oldName), 1);
-	}
-}
-
-void QUMainWindow::renameSongTxt(QUSongFile *song) {
-	QString done("Song text file renamed from: \"%1\" to: \"%2\".");
-	QString fail("Song text file: \"%1\" was NOT renamed.");
-	
-	QString oldName(song->songFileInfo().fileName());
-	
-	if(song->renameSongTxt(song->artist() + " - " + song->title() + ".txt")) {
-		addLogMsg(done.arg(oldName).arg(song->songFileInfo().fileName()));
-	} else {
-		addLogMsg(fail.arg(oldName), 1);
-	}	
-}
-
-void QUMainWindow::renameSongMp3(QUSongFile *song) {
-	QString done("Audio file renamed from: \"%1\" to: \"%2\".");
-	QString fail("Audio file: \"%1\" was NOT renamed.");
-	
-	QString oldName(song->mp3());
-	
-	if(song->renameSongMp3(song->artist() + " - " + song->title() + "." + QFileInfo(song->mp3()).suffix().toLower())) {
-		addLogMsg(done.arg(oldName).arg(song->mp3()));
-	} else {
-		addLogMsg(fail.arg(oldName), 1);
-	}		
-}
-
-void QUMainWindow::renameSongCover(QUSongFile *song) {
-	QString done("Cover file renamed from: \"%1\" to: \"%2\".");
-	QString fail("Cover file: \"%1\" was NOT renamed.");
-
-	QString oldName(song->cover());
-	
-	if(song->renameSongCover(song->artist() + " - " + song->title() + " [CO]." + QFileInfo(song->cover()).suffix().toLower())) {
-		addLogMsg(done.arg(oldName).arg(song->cover()));
-	} else {
-		addLogMsg(fail.arg(oldName), 1);
-	}	
-}
-
-void QUMainWindow::renameSongBackground(QUSongFile *song) {
-	QString done("Background file renamed from: \"%1\" to: \"%2\".");
-	QString fail("Background file: \"%1\" was NOT renamed.");
-	
-	QString oldName(song->background());
-	
-	if(song->renameSongBackground(song->artist() + " - " + song->title() + " [BG]." + QFileInfo(song->background()).suffix().toLower())) {
-		addLogMsg(done.arg(oldName).arg(song->background()));
-	} else {
-		addLogMsg(fail.arg(oldName), 1);
-	}	
-}
-
-void QUMainWindow::renameSongVideo(QUSongFile *song) {
-	QString done("Video file renamed from: \"%1\" to: \"%2\".");
-	QString fail("Video file: \"%1\" was NOT renamed.");
-	
-	QString oldName(song->video());
-	
-	if(song->renameSongVideo(song->artist() + " - " + song->title() + "." + QFileInfo(song->video()).suffix().toLower())) {
-		addLogMsg(done.arg(oldName).arg(song->video()));
-	} else {
-		addLogMsg(fail.arg(oldName), 1);
-	}	
-}
-
-void QUMainWindow::renameSongVideogap(QUSongFile *song) {
-	QString done("Video file renamed from: \"%1\" to: \"%2\".");
-	QString fail("Video file: \"%1\" was NOT renamed.");
-	
-	QString oldName(song->video());
-	QString newName("%1 - %2 [VD#%3]." + QFileInfo(song->video()).suffix().toLower());
-	
-	// set videogap 0 for the videoname
-	QString vgap(song->videogap()); if(vgap == "n/a") vgap = "0";
-	
-	if(song->renameSongVideo(newName.arg(song->artist()).arg(song->title()).arg(vgap))) {
-		addLogMsg(done.arg(oldName).arg(song->video()));
-	} else {
-		addLogMsg(fail.arg(oldName), 1);
-	}		
-}
-
-void QUMainWindow::removeUnsupportedTags(QUSongFile *song) {
-	QStringList removedTags(song->unsupportedTags().split("\n#"));
-	
-	song->removeUnsupportedTags(); // always works until now :)
-	
-	foreach(QString removedTag, removedTags) {
-		addLogMsg(QString("Unsupported Tag removed: #%1").arg(removedTag));
-	}
-}
-
-void QUMainWindow::addLogMsg(const QString &msg, int type) {
-	if(type == 0 and disableInfoChk->isChecked())
+void QUMainWindow::addLogMsg(const QString &msg, QU::EventMessageTypes type) {
+	if(type == QU::information and disableInfoChk->isChecked())
 		return;
-	if(type == 1 and disableWarningChk->isChecked())
+	if(type == QU::warning and disableWarningChk->isChecked())
 		return;
 	
 	log->insertItem(0, QDateTime::currentDateTime().toString("[hh:mm:ss] ") + msg);
@@ -934,15 +626,15 @@ void QUMainWindow::changeSongDir() {
 	
 	if(!path.isEmpty()) {
 		settings.setValue("songPath", QVariant(path));
-		_baseDir.setPath(path);
+		BaseDir.setPath(path);
 		refreshSongs();
 		
 		monty->setSongCount(_songs.size());
 		montyTalk();
 		
-		addLogMsg(QString("UltraStar song directory changed to: \"%1\".").arg(_baseDir.path()));
+		addLogMsg(QString("UltraStar song directory changed to: \"%1\".").arg(BaseDir.path()));
 		
-		songTree->headerItem()->setText(0, QString("Folder (%1)").arg(_baseDir.path()));
+		songTree->headerItem()->setText(0, QString("Folder (%1)").arg(BaseDir.path()));
 	}
 }
 
