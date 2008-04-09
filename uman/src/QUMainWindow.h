@@ -61,6 +61,8 @@ private slots:
 	
 	void addLogMsg(const QString &msg, QU::EventMessageTypes type = QU::information);
 	
+	QList<QUSongFile*> selectedSongs();
+	
 private:
 	QList<QUSongFile*> _songs;
 	

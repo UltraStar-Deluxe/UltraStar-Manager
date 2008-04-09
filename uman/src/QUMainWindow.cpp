@@ -27,6 +27,7 @@
 #include "QUDetailItem.h"
 #include "QUMonty.h"
 #include "QUDropDownDelegate.h"
+#include "QUDetailsTable.h"
 
 #include "fileref.h"
 #include "tag.h"
@@ -187,18 +188,8 @@ void QUMainWindow::initSongTreeHeader() {
 	songTree->setHeaderItem(header);	
 }
 
-void QUMainWindow::initDetailsTable() {
-	detailsTable->verticalHeader()->hide();
-	detailsTable->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-	detailsTable->setHorizontalHeaderLabels(QStringList() << "Tag" << "Value");
-	
-	detailsTable->horizontalHeader()->setResizeMode(0, QHeaderView::Interactive);
-	detailsTable->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
-	
+void QUMainWindow::initDetailsTable() {	
 	connect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(saveSongChanges(QTableWidgetItem*)));
-	
-	QUDropDownDelegate *comboDelegate = new QUDropDownDelegate(detailsTable);
-	detailsTable->setItemDelegateForColumn(1, comboDelegate);
 	
 	connect(completerChk, SIGNAL(toggled(bool)), this, SLOT(toggleCompleterChk(bool)));
 }
@@ -364,112 +355,18 @@ void QUMainWindow::resetLink(QTreeWidgetItem *item, int column) {
 		song->save();
 	}
 
-	(dynamic_cast<QUSongItem*>(songItem->parent()))->update();
 	updateDetails();
+	(dynamic_cast<QUSongItem*>(songItem->parent()))->update();
 	
 	montyTalk();
 }
 
 void QUMainWindow::updateDetails() {
-	detailsTable->clearContents();
+	disconnect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(saveSongChanges(QTableWidgetItem*)));
 	
-	// build a list with all songs
-	QList<QUSongFile*> songs;
+	detailsTable->updateValueColumn(this->selectedSongs());
 	
-	if(songTree->selectedItems().isEmpty()) { // nothing selected? Try to use the current item...
-		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->currentItem());
-		if(songItem)
-			songs.append(songItem->song());
-	} else { // look for all songs in the selection
-		foreach(QTreeWidgetItem *item, songTree->selectedItems()) {
-			QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
-			if(songItem)
-				songs.append(songItem->song());			
-		}
-	}
-	
-	if(songs.isEmpty())
-		return;
-	
-	detailsTable->setItem(0, 0, new QTableWidgetItem(QIcon(":/types/font.png"), "Title"));
-	detailsTable->setItem(1, 0, new QTableWidgetItem(QIcon(":/types/user.png"), "Artist"));
-	detailsTable->setItem(2, 0, new QTableWidgetItem(QIcon(":/types/language.png"), "Language"));
-	detailsTable->setItem(3, 0, new QTableWidgetItem(QIcon(":/types/edition.png"), "Edition"));
-	detailsTable->setItem(4, 0, new QTableWidgetItem(QIcon(":/types/genre.png"), "Genre"));
-	detailsTable->setItem(5, 0, new QTableWidgetItem(QIcon(":/types/date.png"), "Year"));
-	detailsTable->setItem(6, 0, new QTableWidgetItem(QIcon(":/types/creator.png"), "Creator"));
-	
-	detailsTable->setItem(7, 0, new QTableWidgetItem("File Tags"));
-	
-	detailsTable->setItem(8, 0, new QTableWidgetItem(QIcon(":/types/music.png"), "MP3"));
-	detailsTable->setItem(9, 0, new QTableWidgetItem(QIcon(":/types/picture.png"), "Cover"));
-	detailsTable->setItem(10, 0, new QTableWidgetItem(QIcon(":/types/picture.png"), "Background"));
-	detailsTable->setItem(11, 0, new QTableWidgetItem(QIcon(":/types/film.png"), "Video"));
-	
-	for(int i = 0; i < 12; i++)
-		detailsTable->item(i, 0)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-	
-	detailsTable->setItem(0, 1, new QUDetailItem(TITLE_TAG, songs));
-	detailsTable->setItem(1, 1, new QUDetailItem(ARTIST_TAG, songs));
-	detailsTable->setItem(2, 1, new QUDetailItem(LANGUAGE_TAG, songs));
-	detailsTable->setItem(3, 1, new QUDetailItem(EDITION_TAG, songs));
-	detailsTable->setItem(4, 1, new QUDetailItem(GENRE_TAG, songs));
-	detailsTable->setItem(5, 1, new QUDetailItem(YEAR_TAG, songs));
-	detailsTable->setItem(6, 1, new QUDetailItem(CREATOR_TAG, songs));
-	
-	detailsTable->setItem(7, 1, new QTableWidgetItem());
-	
-	detailsTable->setItem(8, 1, new QUDetailItem(MP3_TAG, songs));
-	detailsTable->setItem(9, 1, new QUDetailItem(COVER_TAG, songs));
-	detailsTable->setItem(10, 1, new QUDetailItem(BACKGROUND_TAG, songs));
-	detailsTable->setItem(11, 1, new QUDetailItem(VIDEO_TAG, songs));
-
-	detailsTable->item(7, 0)->setFlags(Qt::ItemIsEnabled);
-	detailsTable->item(7, 1)->setFlags(Qt::ItemIsEnabled);
-	
-	// other song details, not editable
-	detailsTable->setItem(12, 0, new QTableWidgetItem("Read-Only Tags"));
-	
-	detailsTable->setItem(13, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Videogap"));
-	detailsTable->setItem(14, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Start"));
-	detailsTable->setItem(15, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "End"));
-	detailsTable->setItem(16, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Relative"));
-	detailsTable->setItem(17, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "BPM"));
-	detailsTable->setItem(18, 0, new QTableWidgetItem(QIcon(":/bullets/bullet_black.png"), "Gap"));
-	
-	detailsTable->setItem(12, 1, new QTableWidgetItem());
-		
-	detailsTable->setItem(13, 1, new QUDetailItem(VIDEOGAP_TAG, songs));
-	detailsTable->setItem(14, 1, new QUDetailItem(START_TAG, songs));
-	detailsTable->setItem(15, 1, new QUDetailItem(END_TAG, songs));
-	detailsTable->setItem(16, 1, new QUDetailItem(RELATIVE_TAG, songs));
-	detailsTable->setItem(17, 1, new QUDetailItem(BPM_TAG, songs));
-	detailsTable->setItem(18, 1, new QUDetailItem(GAP_TAG, songs));
-	
-	for(int i = 12; i < 19; i++)
-		detailsTable->item(i, 0)->setFlags(Qt::ItemIsEnabled);
-	
-	// set up the splitter
-	detailsTable->setSpan(7, 0, 1, 2);
-	detailsTable->setSpan(12, 0, 1, 2);
-	
-	QList<int> rows; rows << 7 << 12;
-	QList<int> cols; cols << 0 << 1;
-	
-	foreach(int row, rows) {
-		foreach(int col, cols) {
-			detailsTable->item(row, col)->setFlags(Qt::ItemIsEnabled);
-			detailsTable->item(row, col)->setBackgroundColor(Qt::darkGray);
-			detailsTable->item(row, col)->setTextColor(Qt::white);
-			detailsTable->item(row, col)->setTextAlignment(Qt::AlignCenter);
-			
-			QFont font(detailsTable->item(row, col)->font());
-			font.setBold(true);
-			// TODO: make the font smaller and the table row too
-			
-			detailsTable->item(row, col)->setFont(font);
-		}
-	}	
+	connect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(saveSongChanges(QTableWidgetItem*)));
 }
 
 /*!
@@ -505,7 +402,7 @@ void QUMainWindow::updateStatusbar() {
  * Save all changes of the details into the song file.
  * \sa updateDetails()
  */
-void QUMainWindow::saveSongChanges(QTableWidgetItem *item) {
+void QUMainWindow::saveSongChanges(QTableWidgetItem *item) {	
 	QUDetailItem *detailItem = dynamic_cast<QUDetailItem*>(detailsTable->currentItem());
 	
 	if(!detailItem)
@@ -699,4 +596,25 @@ void QUMainWindow::showSongTextFile(QTreeWidgetItem *item, int column) {
 	dlg->exec();
 	
 	delete dlg;
+}
+
+/*!
+ * \returns All selected songs in the song tree.
+ */
+QList<QUSongFile*> QUMainWindow::selectedSongs() {
+	QList<QUSongFile*> songs;
+	
+	if(songTree->selectedItems().isEmpty()) { // nothing selected? Try to use the current item...
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->currentItem());
+		if(songItem)
+			songs.append(songItem->song());
+	} else { // look for all songs in the selection
+		foreach(QTreeWidgetItem *item, songTree->selectedItems()) {
+			QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+			if(songItem)
+				songs.append(songItem->song());			
+		}
+	}
+	
+	return songs;
 }

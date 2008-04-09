@@ -12,11 +12,12 @@
  */
 class QUDetailItem: public QTableWidgetItem {	
 public:
+	QUDetailItem(const QString &tag);
 	QUDetailItem(const QString &tag, const QList<QUSongFile*> &songs);
-	
 	
 	QString tag() const {return _tag;}
 	
+	void setSongs(const QList<QUSongFile*> &songs);
 	const QList<QUSongFile*>& songs() const {return _songs;}
 	
 private:

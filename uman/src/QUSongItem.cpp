@@ -74,6 +74,7 @@ void QUSongItem::update() {
 	
 //	if(this->treeWidget())
 //		this->treeWidget()->setCurrentItem(this);
+	this->setSelected(true);
 }
 
 /*!

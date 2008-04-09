@@ -8,17 +8,30 @@
 
 #include <QBrush>
 #include <QVariant>
+#include <QMessageBox>
+
+QUDetailItem::QUDetailItem(const QString &tag): 
+	QTableWidgetItem(),
+	_tag(tag)
+{}
 
 QUDetailItem::QUDetailItem(const QString &tag, const QList<QUSongFile*> &songs):
 	QTableWidgetItem(),
-	_tag(tag),
-	_songs(songs)
+	_tag(tag)
 {
+	this->setSongs(songs);
+}
+
+void QUDetailItem::setSongs(const QList<QUSongFile*> &songs) {
+	_songs = songs;
+	
 	if(songs.size() == 1) {
-		this->updateText(tag, songs.first());
-		this->updateDefaultData(tag, songs.first());
-	} else {
+		this->updateText(this->tag(), songs.first());
+		this->updateDefaultData(this->tag(), songs.first());
+	} else if(songs.size() > 1) {
 		this->updateItemForMultipleSongs();
+	} else {
+		this->setText("");
 	}
 }
 
@@ -95,12 +108,16 @@ void QUDetailItem::updateText(const QString &tag, QUSongFile *song) {
 		this->setText(song->creator());
 	
 	} else if(QString::compare(tag, MP3_TAG) == 0) {
+		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 		this->setText(song->mp3());
 	} else if(QString::compare(tag, COVER_TAG) == 0) {
+		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 		this->setText(song->cover());
 	} else if(QString::compare(tag, BACKGROUND_TAG) == 0) {
+		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 		this->setText(song->background());
 	} else if(QString::compare(tag, VIDEO_TAG) == 0) {
+		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 		this->setText(song->video());
 	
 	} else if(QString::compare(tag, VIDEOGAP_TAG) == 0) {
