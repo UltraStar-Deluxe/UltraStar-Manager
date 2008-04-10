@@ -48,7 +48,6 @@ void QUDetailsTable::initTagColumn() {
 	this->setItem(12, 0, new QUTagItem(QIcon(":/types/film.png"), tr("Video")));
 
 	this->initSeparator(tr("Control Tags"), 13);
-	
 	this->setItem(14, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Videogap")));
 	this->setItem(15, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Start")));
 	this->setItem(16, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("End")));
@@ -58,8 +57,7 @@ void QUDetailsTable::initTagColumn() {
 }
 
 void QUDetailsTable::initValueColumn() {
-	// separator here
-	
+	/* separator here - skip a row */
 	this->setItem(1, 1, new QUDetailItem(TITLE_TAG));
 	this->setItem(2, 1, new QUDetailItem(ARTIST_TAG));
 	this->setItem(3, 1, new QUDetailItem(LANGUAGE_TAG));
@@ -68,15 +66,13 @@ void QUDetailsTable::initValueColumn() {
 	this->setItem(6, 1, new QUDetailItem(YEAR_TAG));
 	this->setItem(7, 1, new QUDetailItem(CREATOR_TAG));
 
-	// separator here
-	
+	/* separator here - skip a row */
 	this->setItem(9, 1, new QUDetailItem(MP3_TAG));
 	this->setItem(10, 1, new QUDetailItem(COVER_TAG));
 	this->setItem(11, 1, new QUDetailItem(BACKGROUND_TAG));
 	this->setItem(12, 1, new QUDetailItem(VIDEO_TAG));
 	
-	// separator here
-
+	/* separator here - skip a row */
 	this->setItem(14, 1, new QUDetailItem(VIDEOGAP_TAG));
 	this->setItem(15, 1, new QUDetailItem(START_TAG));
 	this->setItem(16, 1, new QUDetailItem(END_TAG));

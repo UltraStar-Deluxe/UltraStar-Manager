@@ -56,9 +56,12 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
  */
 QUMainWindow::~QUMainWindow() {
 	QSettings settings;
-	settings.setValue("allowMonty", QVariant(actionAllowMonty->isChecked()));
-	
+	settings.setValue("allowMonty", QVariant(actionAllowMonty->isChecked()));	
 	settings.setValue("windowState", QVariant(this->saveState()));
+	
+	settings.setValue("disableInfoMessages", QVariant(disableInfoChk->isChecked()));
+	settings.setValue("disableWarningMessages", QVariant(disableWarningChk->isChecked()));
+	settings.setValue("disableSaveMessages", QVariant(disableSaveChk->isChecked()));
 }
 
 /*!
@@ -85,6 +88,10 @@ void QUMainWindow::initConfig() {
 	actionAllowMonty->setChecked(settings.value("allowMonty", QVariant(true)).toBool());
 	actionShowRelativeSongPath->setChecked(settings.value("showRelativeSongPath", QVariant(true)).toBool());
 	completerChk->setChecked(settings.value("caseSensitiveAutoCompletion", QVariant(false)).toBool());
+	
+	disableInfoChk->setChecked(settings.value("disableInfoMessages", QVariant(false)).toBool());
+	disableWarningChk->setChecked(settings.value("disableWarningMessages", QVariant(false)).toBool());
+	disableSaveChk->setChecked(settings.value("disableSaveMessages", QVariant(true)).toBool());
 	
 	this->restoreState(settings.value("windowState", QVariant()).toByteArray());
 }
@@ -142,7 +149,7 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateDetails()));
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateStatusbar()));
 
-	connect(songTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(resetLink(QTreeWidgetItem*, int))); 
+	connect(songTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(editSongSetFileLink(QTreeWidgetItem*, int))); 
 	connect(songTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(showSongTextFile(QTreeWidgetItem*, int)));
 	
 	connect(songTree, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(resizeToContents()));
@@ -189,19 +196,19 @@ void QUMainWindow::initSongTreeHeader() {
 }
 
 void QUMainWindow::initDetailsTable() {	
-	connect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(saveSongChanges(QTableWidgetItem*)));
+	connect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(editSongSetDetail(QTableWidgetItem*)));
 	
 	connect(completerChk, SIGNAL(toggled(bool)), this, SLOT(toggleCompleterChk(bool)));
 }
 
 /*!
  * Initializes all available tasks.
- * \sa doTasks()
- * \sa saveSongChanges()
+ * \sa editSongApplyTasks()
+ * \sa editSongSetDetail()
  */
 void QUMainWindow::initTaskList() {	
 	// connect task buttons
-	connect(taskBtn, SIGNAL(clicked()), this, SLOT(doTasks()));
+	connect(taskBtn, SIGNAL(clicked()), this, SLOT(editSongApplyTasks()));
 	connect(allTasksBtn, SIGNAL(clicked()), taskList, SLOT(checkAllTasks()));
 	connect(noTasksBtn, SIGNAL(clicked()), taskList, SLOT(uncheckAllTasks()));
 	connect(taskList, SIGNAL(itemChanged(QListWidgetItem*)), taskList, SLOT(uncheckAllExclusiveTasks(QListWidgetItem*)));
@@ -316,7 +323,48 @@ void QUMainWindow::resizeToContents() {
 		songTree->resizeColumnToContents(i);
 }
 
-void QUMainWindow::resetLink(QTreeWidgetItem *item, int column) {
+void QUMainWindow::updateDetails() {
+	disconnect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(editSongSetDetail(QTableWidgetItem*)));
+	
+	detailsTable->updateValueColumn(this->selectedSongs());
+	
+	connect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(editSongSetDetail(QTableWidgetItem*)));
+}
+
+/*!
+ * Displays ID3 tag information of a selected MP3 file in the status bar.
+ */
+void QUMainWindow::updateStatusbar() {
+	QUSongItem *item = dynamic_cast<QUSongItem*>(songTree->currentItem());
+	
+	if(!item)
+		return;
+	
+	QFileInfo fi(item->song()->songFileInfo().dir(), item->text(0));
+	QString fileScheme("*." + fi.suffix());
+	
+	if(!QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		this->statusBar()->clearMessage();
+		return; // read only audio files for ID3 tag
+	}
+	
+	TagLib::FileRef ref(fi.absoluteFilePath().toLocal8Bit().data());
+	
+	QString text("Audio file selected: ARTIST = \"%1\"; TITLE = \"%2\"; GENRE = \"%3\"; YEAR = \"%4\"");
+	
+	QString artist(TStringToQString(ref.tag()->artist())); if(artist == "") artist = "n/a";
+	QString title(TStringToQString(ref.tag()->title())); if(title == "") title = "n/a";
+	QString genre(TStringToQString(ref.tag()->genre())); if(genre == "") genre = "n/a";
+	QString year(QVariant(ref.tag()->year()).toString()); if(year == "0") year = "n/a";
+	
+	this->statusBar()->showMessage(text.arg(artist).arg(title).arg(genre).arg(year));
+}
+
+/*!
+ * Save all changes of the details into the song file.
+ * \sa updateDetails()
+ */
+void QUMainWindow::editSongSetFileLink(QTreeWidgetItem *item, int column) {
 	if(column < 3 or column > 6)
 		return;
 	
@@ -361,48 +409,8 @@ void QUMainWindow::resetLink(QTreeWidgetItem *item, int column) {
 	montyTalk();
 }
 
-void QUMainWindow::updateDetails() {
-	disconnect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(saveSongChanges(QTableWidgetItem*)));
-	
-	detailsTable->updateValueColumn(this->selectedSongs());
-	
-	connect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(saveSongChanges(QTableWidgetItem*)));
-}
 
-/*!
- * Displays ID3 tag information of a selected MP3 file in the status bar.
- */
-void QUMainWindow::updateStatusbar() {
-	QUSongItem *item = dynamic_cast<QUSongItem*>(songTree->currentItem());
-	
-	if(!item)
-		return;
-	
-	QFileInfo fi(item->song()->songFileInfo().dir(), item->text(0));
-	QString fileScheme("*." + fi.suffix());
-	
-	if(!QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-		this->statusBar()->clearMessage();
-		return; // read only audio files for ID3 tag
-	}
-	
-	TagLib::FileRef ref(fi.absoluteFilePath().toLocal8Bit().data());
-	
-	QString text("Audio file selected: ARTIST = \"%1\"; TITLE = \"%2\"; GENRE = \"%3\"; YEAR = \"%4\"");
-	
-	QString artist(TStringToQString(ref.tag()->artist())); if(artist == "") artist = "n/a";
-	QString title(TStringToQString(ref.tag()->title())); if(title == "") title = "n/a";
-	QString genre(TStringToQString(ref.tag()->genre())); if(genre == "") genre = "n/a";
-	QString year(QVariant(ref.tag()->year()).toString()); if(year == "0") year = "n/a";
-	
-	this->statusBar()->showMessage(text.arg(artist).arg(title).arg(genre).arg(year));
-}
-
-/*!
- * Save all changes of the details into the song file.
- * \sa updateDetails()
- */
-void QUMainWindow::saveSongChanges(QTableWidgetItem *item) {	
+void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {	
 	QUDetailItem *detailItem = dynamic_cast<QUDetailItem*>(detailsTable->currentItem());
 	
 	if(!detailItem)
@@ -437,7 +445,7 @@ void QUMainWindow::saveSongChanges(QTableWidgetItem *item) {
  * toplevel items (folders) which represent songs.
  * \sa initTaskList();
  */
-void QUMainWindow::doTasks() {
+void QUMainWindow::editSongApplyTasks() {
 	QProgressDialog progressDlg("", 0, 0, 1, this);	
 	
 	if(songTree->selectedItems().size() > 10) {
@@ -476,6 +484,8 @@ void QUMainWindow::addLogMsg(const QString &msg, QU::EventMessageTypes type) {
 		return;
 	if(type == QU::warning and disableWarningChk->isChecked())
 		return;
+	if(type == QU::saving and disableSaveChk->isChecked())
+		return;
 	
 	log->insertItem(0, QDateTime::currentDateTime().toString("[hh:mm:ss] ") + msg);
 	
@@ -483,6 +493,7 @@ void QUMainWindow::addLogMsg(const QString &msg, QU::EventMessageTypes type) {
 	case 0: log->item(0)->setIcon(QIcon(":/marks/information.png")); break;
 	case 1: log->item(0)->setIcon(QIcon(":/marks/error.png")); break;
 	case 2: log->item(0)->setIcon(QIcon(":/marks/help.png")); break;
+	case 3: log->item(0)->setIcon(QIcon(":/marks/disk.png")); break;
 	}
 	
 }

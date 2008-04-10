@@ -41,11 +41,10 @@ private slots:
 	void updateStatusbar();
 	void updateImage();
 	void resizeToContents();
-	void resetLink(QTreeWidgetItem *item, int column);
 	
-	void saveSongChanges(QTableWidgetItem *item);
-	
-	void doTasks();
+	void editSongSetFileLink(QTreeWidgetItem *item, int column);
+	void editSongSetDetail(QTableWidgetItem *item);
+	void editSongApplyTasks();
 	
 	void aboutQt();
 	void aboutUman();

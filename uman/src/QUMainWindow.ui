@@ -715,6 +715,19 @@
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QCheckBox" name="disableSaveChk" >
+              <property name="text" >
+               <string>Disable save messages</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="images/uman.qrc" >:/marks/disk.png</iconset>
+              </property>
+              <property name="checked" >
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
            </layout>
           </widget>
          </widget>

@@ -1,11 +1,21 @@
 changes from 1.5.1 to 1.6.0
 ---------------------------
 NEW FEATURES
+* new editable tags: VIDEOGAP, START, END
 
 BUG FIXES
+* details do not show "n/a seconds" anymore, but only "n/a"
+* selected songs will not be unselected after applying a task anymore
 
 TODO
 * verify the 'E' at the end of a song (data)
+* case-sensitive renaming issues with file names....argh...
+* enable the user the switch between german and english as application language
+* reports... (plain text and html)
+* spinbox delegate for VIDEOGAP, START, END (?)
+* song playlists
+* a new COMMENT tag which is not supported by UltraStar but makes it easier to append some phrase to a song
+  > e.g. "bad video quality"
 
 changes from 1.5.0 to 1.5.1
 ---------------------------

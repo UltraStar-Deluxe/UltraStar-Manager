@@ -183,8 +183,10 @@ bool QUSongFile::save() {
 	
 	_file.setFileName(_fi.filePath());
 	
-	if(!_file.open(QIODevice::WriteOnly | QIODevice::Text))
+	if(!_file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+		emit finished(QString("Save error! The song file \"%1\" was NOT saved.").arg(this->songFileInfo().fileName()), QU::warning);
 		return false;
+	}
 	
 	QStringList tags;
 	QSettings settings;
@@ -217,6 +219,8 @@ bool QUSongFile::save() {
 	}
 	
 	_file.close();
+	
+	emit finished(QString("The song file \"%1\" was saved successfully.").arg(this->songFileInfo().fileName()), QU::saving);
 	return true;
 }
 

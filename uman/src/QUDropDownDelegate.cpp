@@ -8,6 +8,7 @@
 #include <QLineEdit>
 #include <QCompleter>
 #include <QSettings>
+#include <QRegExp>
 
 QUDropDownDelegate::QUDropDownDelegate(QObject *parent): QItemDelegate(parent) {
 }
@@ -43,8 +44,11 @@ void QUDropDownDelegate::setEditorData(
 	
 	if(value == "n/a")
 		value = "";
+
+	if(QRegExp("(-*)(\\d*|\\d*,\\d*|n/a) (seconds|milliseconds)").exactMatch(value))
+		value.remove(QRegExp("(seconds|milliseconds|n/a)"));
 	
-	comboBox->setEditText(value);
+	comboBox->setEditText(value.trimmed());
 	comboBox->lineEdit()->selectAll();
 }
 

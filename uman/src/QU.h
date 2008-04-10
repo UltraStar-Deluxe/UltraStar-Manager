@@ -10,7 +10,8 @@ public:
 	enum EventMessageType {
 		information,
 		warning,
-		help
+		help,
+		saving
 	};
 	Q_DECLARE_FLAGS(EventMessageTypes, EventMessageType)
 	
