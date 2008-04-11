@@ -150,6 +150,9 @@ void QUDetailItem::updateText(const QString &tag, QUSongFile *song) {
 			this->setText(QString("%1 milliseconds").arg(song->gap()));
 		else
 			this->setText(song->gap());
+	} else if(QString::compare(tag, COMMENT_TAG) == 0) {
+		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
+		this->setText(song->comment());
 	}
 }
 
@@ -256,5 +259,16 @@ void QUDetailItem::updateItemForMultipleSongs() {
 	} else if(QString::compare(tag(), GAP_TAG) == 0) {
 		this->setFlags(0);
 		this->setText("Multiple files selected.");
+	} else if(QString::compare(tag(), COMMENT_TAG) == 0) {
+		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
+		
+		this->setText(songs().first()->comment());
+		for(int i = 0; i < songs().size(); i++) {
+			if(QString::compare(this->text(), songs()[i]->comment(), Qt::CaseInsensitive) != 0) {
+				this->setText("Click here to edit.");
+				break;
+			}
+		}
+		// TODO: updateDefaultData if comment list present
 	}
 }

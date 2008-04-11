@@ -5,6 +5,7 @@ NEW FEATURES
 * drag&drop a file from die explorer into the song tree to
   1. copy that file to the song folder
   2. use that file according to its type (discard previous tags if used)
+* new (inofficial) tag: COMMENT
 
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"

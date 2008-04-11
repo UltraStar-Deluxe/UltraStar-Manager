@@ -109,6 +109,7 @@ QStringList QUSongFile::tags() {
 	result << RELATIVE_TAG;
 	result << BPM_TAG;
 	result << GAP_TAG;
+	result << COMMENT_TAG;
 	
 	return result;
 }

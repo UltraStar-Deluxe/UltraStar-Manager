@@ -396,11 +396,13 @@
                <bool>false</bool>
               </property>
               <property name="rowCount" >
-               <number>20</number>
+               <number>22</number>
               </property>
               <property name="columnCount" >
                <number>2</number>
               </property>
+              <row/>
+              <row/>
               <row/>
               <row/>
               <row/>

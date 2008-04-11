@@ -28,6 +28,7 @@
 #define RELATIVE_TAG   "RELATIVE"
 #define BPM_TAG        "BPM"
 #define GAP_TAG        "GAP"
+#define COMMENT_TAG    "COMMENT" /* not supported by UltraStar */
 
 /*!
  * This class represents a data file which is used by UltraStar for every song.
@@ -58,6 +59,7 @@ public slots:
 	QString year() const       {return _info.value("YEAR", QString("n/a"));}
 	QString end() const        {return _info.value("END", QString("n/a"));}
 	QString creator() const    {return _info.value("CREATOR", QString("n/a"));}
+	QString comment() const    {return _info.value(COMMENT_TAG, QString("n/a"));}
 	
 	bool hasMp3() const;
 	bool hasCover() const;

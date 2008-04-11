@@ -11,7 +11,7 @@
 #include <QMessageBox>
 
 QUDetailsTable::QUDetailsTable(QWidget *parent): QTableWidget(parent) {
-	this->setRowCount(20);
+	this->setRowCount(22);
 	this->setColumnCount(2);
 	
 	// setup headers
@@ -32,7 +32,7 @@ QUDetailsTable::QUDetailsTable(QWidget *parent): QTableWidget(parent) {
 }
 
 void QUDetailsTable::initTagColumn() {	
-	this->initSeparator(tr("Info Tags"), 0);
+	this->initSeparator(tr("Information"), 0);
 	this->setItem(1, 0, new QUTagItem(QIcon(":/types/font.png"), tr("Title")));
 	this->setItem(2, 0, new QUTagItem(QIcon(":/types/user.png"), tr("Artist")));
 	this->setItem(3, 0, new QUTagItem(QIcon(":/types/language.png"), tr("Language")));
@@ -41,19 +41,22 @@ void QUDetailsTable::initTagColumn() {
 	this->setItem(6, 0, new QUTagItem(QIcon(":/types/date.png"), tr("Year")));
 	this->setItem(7, 0, new QUTagItem(QIcon(":/types/creator.png"), tr("Creator")));
 	
-	this->initSeparator(tr("File Tags"), 8);
+	this->initSeparator(tr("Files"), 8);
 	this->setItem(9, 0, new QUTagItem(QIcon(":/types/music.png"), tr("MP3")));
 	this->setItem(10, 0, new QUTagItem(QIcon(":/types/picture.png"), tr("Cover")));
 	this->setItem(11, 0, new QUTagItem(QIcon(":/types/picture.png"), tr("Background")));
 	this->setItem(12, 0, new QUTagItem(QIcon(":/types/film.png"), tr("Video")));
 
-	this->initSeparator(tr("Control Tags"), 13);
+	this->initSeparator(tr("Control"), 13);
 	this->setItem(14, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Videogap")));
 	this->setItem(15, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Start")));
 	this->setItem(16, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("End")));
 	this->setItem(17, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Relative")));
 	this->setItem(18, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("BPM")));
 	this->setItem(19, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Gap")));
+	
+	this->initSeparator(tr("Inofficial"), 20);
+	this->setItem(21, 0, new QUTagItem(QIcon(":/types/comment.png"), tr("Comment")));
 }
 
 void QUDetailsTable::initValueColumn() {
@@ -79,6 +82,9 @@ void QUDetailsTable::initValueColumn() {
 	this->setItem(17, 1, new QUDetailItem(RELATIVE_TAG));
 	this->setItem(18, 1, new QUDetailItem(BPM_TAG));
 	this->setItem(19, 1, new QUDetailItem(GAP_TAG));
+	
+	/* separator here - skip a row */
+	this->setItem(21, 1, new QUDetailItem(COMMENT_TAG));
 }
 
 void QUDetailsTable::initSeparator(const QString &text, int row) {
