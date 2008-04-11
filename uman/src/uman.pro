@@ -2,7 +2,8 @@ TEMPLATE = app
 TARGET = uman
 QT += core \
     gui
-HEADERS += details/QUTagItem.h \
+HEADERS += QUSongTree.h \
+    details/QUTagItem.h \
     details/QUDetailsTable.h \
     details/QUDetailItem.h \
     tasks/QUPreparatoryTask.h \
@@ -20,7 +21,8 @@ HEADERS += details/QUTagItem.h \
     QUSongItem.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += details/QUTagItem.cpp \
+SOURCES += QUSongTree.cpp \
+    details/QUTagItem.cpp \
     details/QUDetailsTable.cpp \
     details/QUDetailItem.cpp \
     tasks/QUPreparatoryTask.cpp \

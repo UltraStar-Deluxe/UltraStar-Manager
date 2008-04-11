@@ -9,6 +9,9 @@
     <height>518</height>
    </rect>
   </property>
+  <property name="acceptDrops" >
+   <bool>false</bool>
+  </property>
   <property name="windowTitle" >
    <string>S</string>
   </property>
@@ -43,12 +46,18 @@
          <number>5</number>
         </property>
         <item>
-         <widget class="QTreeWidget" name="songTree" >
+         <widget class="QUSongTree" name="songTree" >
           <property name="sizePolicy" >
            <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="acceptDrops" >
+           <bool>true</bool>
+          </property>
+          <property name="dragDropMode" >
+           <enum>QAbstractItemView::DropOnly</enum>
           </property>
           <property name="alternatingRowColors" >
            <bool>true</bool>
@@ -63,7 +72,7 @@
            <bool>true</bool>
           </property>
           <property name="columnCount" >
-           <number>13</number>
+           <number>12</number>
           </property>
           <column>
            <property name="text" >
@@ -123,11 +132,6 @@
           <column>
            <property name="text" >
             <string>12</string>
-           </property>
-          </column>
-          <column>
-           <property name="text" >
-            <string>13</string>
            </property>
           </column>
          </widget>
@@ -912,6 +916,11 @@
    <class>QUDetailsTable</class>
    <extends>QTableWidget</extends>
    <header>QUDetailsTable.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QUSongTree</class>
+   <extends>QTreeWidget</extends>
+   <header>QUSongTree.h</header>
   </customwidget>
  </customwidgets>
  <resources>

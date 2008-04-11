@@ -28,7 +28,6 @@ private slots:
 	void initWindow();
 	void initMenu();
 	void initSongTree();
-	void initSongTreeHeader();
 	void initDetailsTable();
 	void initTaskList();
 	void initMonty();

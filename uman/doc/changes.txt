@@ -2,6 +2,9 @@ changes from 1.5.1 to 1.6.0
 ---------------------------
 NEW FEATURES
 * new editable tags: VIDEOGAP, START, END
+* drag&drop a file from die explorer into the song tree to
+  1. copy that file to the song folder
+  2. use that file according to its type (discard previous tags if used)
 
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"
@@ -16,6 +19,9 @@ TODO
 * song playlists
 * a new COMMENT tag which is not supported by UltraStar but makes it easier to append some phrase to a song
   > e.g. "bad video quality"
+* refresh for selected songs (not only rebuild the whole tree)
+* introduce a flag to QUSongFile to check whether saving is necessary or not
+* PopUp-Menu for Songtree...
 
 changes from 1.5.0 to 1.5.1
 ---------------------------

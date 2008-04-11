@@ -462,31 +462,58 @@ void QUSongFile::autoSetFiles() {
 			QDir::Files);
 	
 	foreach(QFileInfo fi, files) {
-		QString fileScheme("*." + fi.suffix());
-		
-		if(QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-			if(!this->hasMp3()) {
-				this->setInfo(MP3_TAG, fi.fileName());
-				emit finished(QString("Assigned \"%1\" as audio file for \"%2 - %3\".").arg(mp3()).arg(artist()).arg(title()), QU::information);
-			}
-		} else if(QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-			if(!this->hasVideo()) {
-				this->setInfo(VIDEO_TAG, fi.fileName());
-				emit finished(QString("Assigned \"%1\" as video file for \"%2 - %3\".").arg(video()).arg(artist()).arg(title()), QU::information);
-			}
-		} else if(QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-			QRegExp reCover("\\[CO\\]|cover", Qt::CaseInsensitive);
-			QRegExp reBackground("\\[BG\\]|back", Qt::CaseInsensitive);
-			
-			if(fi.fileName().contains(reCover) && !this->hasCover()) {
-				this->setInfo(COVER_TAG, fi.fileName());
-				emit finished(QString("Assigned \"%1\" as cover picture for \"%2 - %3\".").arg(cover()).arg(artist()).arg(title()), QU::information);
-			} else if(fi.fileName().contains(reBackground) && !this->hasBackground()) {
-				this->setInfo(BACKGROUND_TAG, fi.fileName());
-				emit finished(QString("Assigned \"%1\" as background picture for \"%2 - %3\".").arg(background()).arg(artist()).arg(title()), QU::information);
-			}
-		}
+		autoSetFile(fi);
 	}
+}
+
+/*!
+ * Uses the filename of the given QFileInfo object to assign it to a proper tag.
+ * \param file That file will be used for auto-set.
+ * \param force Use the file although the present tag is correct/valid.
+ */
+void QUSongFile::autoSetFile(const QFileInfo &fi, bool force) {
+	QString fileScheme("*." + fi.suffix());
+	
+	if(QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		if(!this->hasMp3() || force) {
+			this->setInfo(MP3_TAG, fi.fileName());
+			emit finished(QString("Assigned \"%1\" as audio file for \"%2 - %3\".").arg(mp3()).arg(artist()).arg(title()), QU::information);
+		}
+	} else if(QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		if(!this->hasVideo() || force) {
+			this->setInfo(VIDEO_TAG, fi.fileName());
+			emit finished(QString("Assigned \"%1\" as video file for \"%2 - %3\".").arg(video()).arg(artist()).arg(title()), QU::information);
+		}
+	} else if(QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		QRegExp reCover("\\[CO\\]|cove?r?", Qt::CaseInsensitive);
+		QRegExp reBackground("\\[BG\\]|back", Qt::CaseInsensitive);
+		
+		if(fi.fileName().contains(reCover) && (!this->hasCover() || force) ) {
+			this->setInfo(COVER_TAG, fi.fileName());
+			emit finished(QString("Assigned \"%1\" as cover picture for \"%2 - %3\".").arg(cover()).arg(artist()).arg(title()), QU::information);
+		} else if(fi.fileName().contains(reBackground) && (!this->hasBackground() || force) ) {
+			this->setInfo(BACKGROUND_TAG, fi.fileName());
+			emit finished(QString("Assigned \"%1\" as background picture for \"%2 - %3\".").arg(background()).arg(artist()).arg(title()), QU::information);
+		}
+	}	
+}
+
+/*!
+ * Copy a file to the song folder and force its usage for a proper
+ * tag. (e.g. blubb.mp3 will be used as #MP3).
+ * \sa autoSetFiles()
+ */
+void QUSongFile::useExternalFile(const QString &filePath) {
+	QFileInfo source(filePath);
+	QFileInfo destination(this->songFileInfo().dir(), source.fileName());
+	
+	if(!QFile::copy(source.filePath(), destination.filePath())) {
+		emit finished(QString("Could not copy the file \"%1\" to \"%2\".").arg(source.fileName()).arg(destination.path()), QU::warning);
+		return;
+	}
+	
+	emit finished(QString("The file \"%1\" was successfully copied to \"%2\".").arg(source.fileName()).arg(destination.path()), QU::saving);
+	this->autoSetFile(destination, true);
 }
 
 /*

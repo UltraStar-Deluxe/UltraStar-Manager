@@ -98,7 +98,9 @@ public slots:
 	QString unsupportedTags() const { return _foundUnsupportedTags.join("\n#"); }
 	void removeUnsupportedTags();
 	
+	void useExternalFile(const QString &filePath);
 	void autoSetFiles();
+	void autoSetFile(const QFileInfo &fi, bool force = false);
 	
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
