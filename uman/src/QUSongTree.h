@@ -4,6 +4,7 @@
 #include <QTreeWidget>
 #include <QDragEnterEvent>
 #include <QDropEvent>
+#include <QPoint>
 
 class QUSongTree: public QTreeWidget {
 	Q_OBJECT
@@ -11,6 +12,9 @@ class QUSongTree: public QTreeWidget {
 public:
 	QUSongTree(QWidget *parent = 0);
 	void initHorizontalHeader();
+
+public slots:
+	void showContextMenu(const QPoint &point);
 	
 private:
 	

@@ -2,7 +2,10 @@ TEMPLATE = app
 TARGET = uman
 QT += core \
     gui
-HEADERS += QUSongTree.h \
+HEADERS += threads/QUTaskThread.h \
+    threads/QUAbstractThread.h \
+    QUProgressDialog.h \
+    QUSongTree.h \
     details/QUTagItem.h \
     details/QUDetailsTable.h \
     details/QUDetailItem.h \
@@ -21,7 +24,10 @@ HEADERS += QUSongTree.h \
     QUSongItem.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += QUSongTree.cpp \
+SOURCES += threads/QUTaskThread.cpp \
+    threads/QUAbstractThread.cpp \
+    QUProgressDialog.cpp \
+    QUSongTree.cpp \
     details/QUTagItem.cpp \
     details/QUDetailsTable.cpp \
     details/QUDetailItem.cpp \
@@ -39,7 +45,8 @@ SOURCES += QUSongTree.cpp \
     QUSongFile.cpp \
     QUMainWindow.cpp \
     main.cpp
-FORMS += QUTextDialog.ui \
+FORMS += QUProgressDialog.ui \
+    QUTextDialog.ui \
     QUTagOrderDialog.ui \
     QUMainWindow.ui
 RESOURCES += images/uman.qrc
@@ -50,4 +57,6 @@ win32 {
 }
 INCLUDEPATH += ../include/taglib \
     tasks \
-    details
+    details \
+    threads
+CONFIG += debug

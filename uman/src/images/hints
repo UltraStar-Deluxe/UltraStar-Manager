@@ -35,3 +35,4 @@ Unsupported tags will be saved after all other tags in the song file.
 You have a problem with changing the artist tag because the auto completion wants to use the ID3 tag value? (e.g. "abba" -> "Abba")<br><br>Try to check <i>Use case-sensitive auto completion</i> under the details table.
 If you double-click a text file you'll see its contents.
 Did you know that you can drag one or more files from the <i>file explorer</i> onto a song in the tree to <i>copy</i> and use/assign this or these files automatically for that song?
+Files that appear <i>striked-out</i> and <i>gray</i> cannot be used anywhere and are useless to UltraStar.

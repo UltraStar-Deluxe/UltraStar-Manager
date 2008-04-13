@@ -18,7 +18,7 @@ QUDetailsTable::QUDetailsTable(QWidget *parent): QTableWidget(parent) {
 	this->verticalHeader()->hide();
 	this->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 	
-	this->setHorizontalHeaderLabels(QStringList() << "Tag" << "Value");
+	this->setHorizontalHeaderLabels(QStringList() << tr("Tag") << tr("Value"));
 	this->horizontalHeader()->setResizeMode(0, QHeaderView::Interactive);
 	this->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
 	

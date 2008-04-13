@@ -45,8 +45,7 @@ void QUSongItem::update() {
 	
 	QUSongItem *child;
 	QStringList fileNames = song()->songFileInfo().dir().entryList(
-			QStringList("*.txt") + QUSongFile::allowedAudioFiles() + QUSongFile::allowedPictureFiles() + QUSongFile::allowedVideoFiles(), 
-			QDir::Files);
+			QStringList("*"), QDir::Files);
 	
 	qDeleteAll(this->takeChildren());
 	
@@ -125,6 +124,7 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	this->setText(9, song()->genre());
 	this->setText(10, song()->year());
 	this->setText(11, song()->creator());
+	this->setText(12, song()->comment());
 }
 
 void QUSongItem::updateAsTxt() {	
@@ -132,10 +132,14 @@ void QUSongItem::updateAsTxt() {
 	
 	this->setIcon(0, QIcon(":/types/text.png"));
 	
-	if(QString::compare(this->text(0), song()->songFileInfo().fileName(), Qt::CaseInsensitive) != 0)
+	if(QString::compare(this->text(0), song()->songFileInfo().fileName(), Qt::CaseInsensitive) != 0) {
 		this->setTextColor(0, Qt::gray); // unnecessary song text file, not used
-	else
+		QFont f(this->font(0));
+		f.setStrikeOut(true);
+		this->setFont(0, f);
+	} else {
 		this->setTextColor(0, Qt::blue);
+	}
 }
 
 void QUSongItem::updateAsMp3() {
@@ -183,4 +187,7 @@ void QUSongItem::updateAsVideo() {
 
 void QUSongItem::updateAsUnknown() {
 	this->setTextColor(0, Qt::gray);
+	QFont f(this->font(0));
+	f.setStrikeOut(true);
+	this->setFont(0, f);
 }

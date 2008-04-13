@@ -40,6 +40,7 @@ public:
 		removeUnsupportedTags
 	};
 	Q_DECLARE_FLAGS(PreparatoryTaskModes, PreparatoryTaskMode)
+	
 };
 
 #endif /*QU_H_*/

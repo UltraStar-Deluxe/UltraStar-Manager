@@ -35,6 +35,9 @@
 
 #include "QUTagOrderDialog.h"
 #include "QUTextDialog.h"
+#include "QUProgressDialog.h"
+
+#include "QUTaskThread.h"
 
 QDir QUMainWindow::BaseDir = QDir();
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
@@ -408,37 +411,20 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
  * toplevel items (folders) which represent songs.
  * \sa initTaskList();
  */
-void QUMainWindow::editSongApplyTasks() {
-	QProgressDialog progressDlg("", 0, 0, 1, this);	
-	
-	if(songTree->selectedItems().size() > 10) {
-		progressDlg.setMaximum(songTree->selectedItems().size());
-		progressDlg.setValue(0);
-		progressDlg.setLabelText("Processing song files...");
-		progressDlg.show();
-	}
-	
+void QUMainWindow::editSongApplyTasks() {		
 	QList<QTreeWidgetItem*> itemList = songTree->selectedItems();
 	
 	if(itemList.isEmpty()) // if no songs are selected use the current item (which has also a song)
 		itemList.append(songTree->currentItem());
 	
-	foreach(QTreeWidgetItem *item, itemList) {
-		QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+	QUTaskThread *thread = new QUTaskThread(itemList, taskList);
+	QUProgressDialog dlg(thread, this);
+	
+	dlg.exec();
 
-		if(songItem) {	
-			QUSongFile *song = songItem->song();
-			taskList->doTasksOn(song);
-
-			song->save();
-			songItem->update();
-		}
-		
-		progressDlg.setValue(progressDlg.value() + 1);
-	}
-
+	delete thread;
+	
 	updateDetails();
-	progressDlg.hide();
 	montyTalk();
 }
 
