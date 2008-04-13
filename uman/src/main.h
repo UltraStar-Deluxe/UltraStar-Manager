@@ -4,6 +4,6 @@
 #define MAJOR_VERSION 0x0001
 #define MINOR_VERSION 0x0006
 #define PATCH_VERSION 0x0000
-#define BUILD $rev$
+#define BUILD $Rev$
 
 #endif /*MAIN_H_*/
