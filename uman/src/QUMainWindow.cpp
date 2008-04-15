@@ -37,8 +37,6 @@
 #include "QUTextDialog.h"
 #include "QUProgressDialog.h"
 
-#include "QUTaskThread.h"
-
 QDir QUMainWindow::BaseDir = QDir();
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	setupUi(this);
@@ -215,24 +213,22 @@ void QUMainWindow::refreshSongs() {
 void QUMainWindow::createSongFiles() {
 	QList<QDir> dirList;
 	dirList.append(QDir(BaseDir));
-	
-	QProgressDialog progress("Looking for songs...", 0, 0, 1, this);
-	progress.show();
-	
-	this->readSongDir(dirList);
-	
-	progress.setMaximum(dirList.size());
-	progress.setLabelText("Reading song files...");
-	
-	foreach(QDir dir, dirList) {
-		progress.setValue(progress.value() + 1);
 		
+	this->readSongDir(dirList);
+
+	QUProgressDialog dlg("Reading song files...", dirList.size(), this);
+	dlg.setPixmap(":/types/folder.png");
+	dlg.show();
+	
+	foreach(QDir dir, dirList) {		
 		QStringList files = dir.entryList(QStringList("*.txt"), QDir::Files);
+		
+		dlg.update(dir.dirName());
 		
 		if(!files.isEmpty()) {
 			_songs.append(new QUSongFile(QFileInfo(dir, files.first()).filePath()));
 			// enable event log
-			//connect(_songs.last(), SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+			connect(_songs.last(), SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 		}
 	}
 }
@@ -381,12 +377,19 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 	
 	if(!detailItem)
 		return;
+	
+	QUProgressDialog dlg(QString("Applying new value for %1 to all selected songs...").arg(detailItem->tag()), 
+			detailItem->songs().size(), this);
+	dlg.show();
 
 	// save changes for each song
 	foreach(QUSongFile *song, detailItem->songs()) {
+		dlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+		
 		song->setInfo(detailItem->tag(), detailItem->text());
 		song->save();		
 	}
+	dlg.hide();
 	
 	// update all selected items with these new details in the song tree
 	QList<QTreeWidgetItem*> selectedItems = songTree->selectedItems();
@@ -396,10 +399,16 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 		if(songItem)
 			songItem->update();
 	} else {
+		QUProgressDialog dlg2("Refreshing song tree...", selectedItems.size(), this);
+		dlg2.setPixmap(":/types/folder.png");
+		dlg2.show();
+		
 		foreach(QTreeWidgetItem *i, selectedItems) {
+			dlg2.update(i->text(0));
+			
 			QUSongItem *songItem = dynamic_cast<QUSongItem*>(i);
 			if(songItem)
-				songItem->update();			
+				songItem->update();
 		}
 	}
 	
@@ -417,12 +426,23 @@ void QUMainWindow::editSongApplyTasks() {
 	if(itemList.isEmpty()) // if no songs are selected use the current item (which has also a song)
 		itemList.append(songTree->currentItem());
 	
-	QUTaskThread *thread = new QUTaskThread(itemList, taskList);
-	QUProgressDialog dlg("Applying all checked tasks to all selected songs...", itemList, thread, this);
+	QUProgressDialog dlg("Applying all checked tasks to all selected songs...", itemList.size(), this);
+	dlg.show();
 	
-	dlg.exec();
-	delete thread;
-	
+	foreach(QTreeWidgetItem *item, itemList) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+		
+		if(songItem) {
+			QUSongFile *song = songItem->song();
+			dlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+			
+			taskList->doTasksOn(song);
+		
+			song->save();
+			songItem->update();
+		}
+	}
+		
 	updateDetails();
 	montyTalk();
 }

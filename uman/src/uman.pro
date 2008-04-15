@@ -53,6 +53,5 @@ win32 {
 }
 INCLUDEPATH += ../include/taglib \
     tasks \
-    details \
-    jobs
+    details
 CONFIG += debug

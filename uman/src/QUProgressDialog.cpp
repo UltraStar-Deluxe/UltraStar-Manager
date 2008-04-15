@@ -1,74 +1,53 @@
 #include "QUProgressDialog.h"
-#include "QUSongItem.h"
 #include <QPixmap>
 
-#define HIDE_LIMIT 2 // shows the dialog only ABOVE that limit of operations
+#define HIDE_LIMIT 2 // only show this dialog above HIDE_LIMIT
 
 /*!
  * \param thread The thread which is executed. Will be deleted after finishing.
  * \param parent parent object
  */
 QUProgressDialog::QUProgressDialog(
-		const QString &info, 
-		const QList<QTreeWidgetItem*> &items, 
-		QUAbstractThread *thread, 
+		const QString &info,
+		int maximum,
 		QWidget *parent): QDialog(parent)
 {
 	setupUi(this);
-	progress->setRange(0, thread->count());
+	
+	this->setWindowFlags(Qt::Tool | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+	
+	progress->setRange(0, maximum);
 	progress->setValue(0);
-	
-	t = thread;
-	
-	connect(t, SIGNAL(finished()), this, SLOT(updateItems()));
-	connect(t, SIGNAL(continued(const QString&)), this, SLOT(update(const QString &)));
-	
-	this->startTimer(1000);
-	
-	currentSongLbl->setWordWrap(true);
-	currentSongLbl->setAlignment(Qt::AlignTop);
-	currentSongIcon->setAlignment(Qt::AlignTop);
-	
+		
 	infoTextLbl->setText(info);
-	
-	this->items = items;
 }
 
+void QUProgressDialog::show() {
+	if(progress->maximum() > HIDE_LIMIT)
+		QDialog::show();
+}
+		
+/*!
+ * Updates the information of which items is being processed and increases the
+ * counter by one.
+ */
 void QUProgressDialog::update(const QString &itemText) {
+	if(!this->isVisible())
+		return;
+	
 	progress->setValue(progress->value() + 1);
 	currentSongLbl->setText(itemText);
+	timeLbl->setText(QString("%1 of %2").arg(progress->value()).arg(progress->maximum()));
+	
+	QWidget::repaint();
 }
 
-void QUProgressDialog::updateItems() {
-	currentSongLbl->setText(tr("Refreshing song tree..."));
-	currentSongIcon->setPixmap(QPixmap(":/control/refresh.png"));
+void QUProgressDialog::setInformation(const QString &infoText) {
+	infoTextLbl->setText(infoText);
 	
-//	foreach(QTreeWidgetItem *item, items) {
-//		QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
-//		
-//		if(songItem)
-//			songItem->update();
-//	}
-//	
-	//this->accept();
+	QWidget::repaint();
 }
 
-int QUProgressDialog::exec() {
-	t->start();
-	
-	if(t->count() > HIDE_LIMIT) {	
-		return QDialog::exec();
-	} else {
-		t->wait();
-	}
-	
-	return 1;
-}
-
-void QUProgressDialog::timerEvent(QTimerEvent *event) {
-	time = time.addSecs(1);
-	timeLbl->setText(QString("%1:%2:%3")
-			.arg(time.hour(), 2, 10, QChar('0'))
-			.arg(time.minute(), 2, 10, QChar('0'))
-			.arg(time.second(), 2, 10, QChar('0')));
+void QUProgressDialog::setPixmap(const QString &fileName) {
+	currentSongIcon->setPixmap(fileName);
 }

@@ -1,16 +1,19 @@
 <ui version="4.0" >
  <class>QUProgressDialog</class>
  <widget class="QDialog" name="QUProgressDialog" >
+  <property name="windowModality" >
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
     <width>236</width>
-    <height>150</height>
+    <height>122</height>
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>Dialog</string>
+   <string>Progress</string>
   </property>
   <layout class="QVBoxLayout" >
    <property name="spacing" >
@@ -190,7 +193,10 @@
           <string/>
          </property>
          <property name="pixmap" >
-          <pixmap resource="images/uman.qrc" >:/types/folder.png</pixmap>
+          <pixmap resource="images/uman.qrc" >:/types/text.png</pixmap>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
          </property>
         </widget>
        </item>
@@ -205,8 +211,11 @@
          <property name="text" >
           <string>Current Song...</string>
          </property>
+         <property name="alignment" >
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         </property>
          <property name="wordWrap" >
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -235,57 +244,11 @@
           </sizepolicy>
          </property>
          <property name="text" >
-          <string>00:00:00</string>
+          <string>...</string>
          </property>
         </widget>
        </item>
       </layout>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="Line" name="line_2" >
-     <property name="orientation" >
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" >
-     <property name="spacing" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>5</number>
-     </property>
-     <property name="rightMargin" >
-      <number>5</number>
-     </property>
-     <property name="bottomMargin" >
-      <number>5</number>
-     </property>
-     <item>
-      <spacer>
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" >
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="cancelBtn" >
-       <property name="text" >
-        <string>Cancel</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="images/uman.qrc" >:/marks/cancel.png</iconset>
-       </property>
-      </widget>
      </item>
     </layout>
    </item>

@@ -3,33 +3,24 @@
 
 #include <QString>
 #include <QDialog>
-#include <QTimerEvent>
-#include <QTime>
-#include <QTreeWidgetItem>
-#include <QList>
 
-#include "QUAbstractThread.h"
 #include "ui_QUProgressDialog.h"
 
 class QUProgressDialog: public QDialog, private Ui::QUProgressDialog {
 	Q_OBJECT
 	
 public:
-	QUProgressDialog(const QString &info, const QList<QTreeWidgetItem*> &items, QUAbstractThread *thread, QWidget *parent = 0);
+	QUProgressDialog(const QString &info, int maximum, QWidget *parent = 0);
 	
-	int exec();
+	virtual void show();
 	
-protected:
-	void timerEvent(QTimerEvent *event);
-	
-private slots:
+public slots:
 	void update(const QString &itemText);
-	void updateItems();
+	void setInformation(const QString &infoText);
+	void setMaximum(int maximum) { progress->setMaximum(maximum); }
 	
-private:
-	QUAbstractThread *t;
-	QTime time;
-	QList<QTreeWidgetItem*> items;
+	void setPixmap(const QString &fileName);
+	
 };
 
 #endif /*QUPROGRESSDIALOG_H_*/
