@@ -6,6 +6,7 @@
 #include <QUrl>
 #include <QIcon>
 #include <QMenu>
+#include <QList>
 
 #include "QUProgressDialog.h"
 
@@ -61,18 +62,55 @@ bool QUSongTree::dropMimeData (QTreeWidgetItem *parent, int index, const QMimeDa
 	if(!item)
 		return false;
 	
-	if(data->urls().size() > FILE_DROP_LIMIT)
-		if(QMessageBox::question(this, tr("Confirm Copy Operation"), QString(tr("You want to copy %1 files. Are you sure?")).arg(data->urls().size()), 
+	return this->copyFilesToSong(data->urls(), item);
+}
+
+QStringList QUSongTree::mimeTypes() const {
+	return QStringList("text/uri-list");
+}
+
+/*!
+ * Shows a context menu with actions for all selected items/songs.
+ */
+void QUSongTree::showContextMenu(const QPoint &point) {
+	if(!this->itemAt(point))
+		return; // no item clicked
+	
+	QMenu menu(this);
+	
+	menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()), QKeySequence::fromString("F5"));
+	
+	this->fillContextMenu(menu, point);
+	
+	menu.exec(this->mapToGlobal(point));
+}
+
+/*!
+ * Appends actions to the menu according to the selected item.
+ */
+void QUSongTree::fillContextMenu(QMenu &menu, const QPoint &point) {
+	QUSongItem *item = dynamic_cast<QUSongItem*>(this->currentItem());
+	
+	if(!item || item->isToplevel())
+		return;
+	
+	menu.addSeparator();
+	menu.addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), QKeySequence::fromString("Del"));
+}
+
+bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
+	if(files.size() > FILE_DROP_LIMIT)
+		if(QMessageBox::question(this, tr("Confirm Copy Operation"), QString(tr("You want to copy %1 files. Are you sure?")).arg(files.size()), 
 			QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No)
 			return false;
 	
 	bool dataUsed = false;
 	
-	QUProgressDialog dlg(QString("Copy & Use files for the song: \"%1 - %2\"...").arg(item->song()->artist()).arg(item->song()->title()), data->urls().size(), this);
+	QUProgressDialog dlg(QString("Copy & Use files for the song: \"%1 - %2\"...").arg(item->song()->artist()).arg(item->song()->title()), files.size(), this);
 	dlg.setPixmap(":/marks/disk.png");
 	dlg.show();
 	
-	foreach(QUrl url, data->urls()) {
+	foreach(QUrl url, files) {
 		dlg.update(url.toLocalFile());
 		
 		if(!QFileInfo(url.toLocalFile()).isDir()) {
@@ -90,20 +128,58 @@ bool QUSongTree::dropMimeData (QTreeWidgetItem *parent, int index, const QMimeDa
 	return true;
 }
 
-QStringList QUSongTree::mimeTypes() const {
-	return QStringList("text/uri-list");
+void QUSongTree::refreshSelectedItems() {
+	QList<QTreeWidgetItem*> items = this->selectedItems();
+	
+	if(items.isEmpty())
+		items.append(this->currentItem());
+	
+	QUProgressDialog dlg("Refreshing selected songs...", items.size(), this);
+	dlg.setPixmap(":/types/folder.png");
+	dlg.show();
+	
+	foreach(QTreeWidgetItem *item, items) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+		
+		if(songItem) {
+			dlg.update(songItem->song()->songFileInfo().dir().dirName());
+			
+			songItem->update();
+		}
+	}
+	
+	emit itemSelectionChanged(); // update details
 }
 
-void QUSongTree::showContextMenu(const QPoint &point) {
-	QUSongItem *item = dynamic_cast<QUSongItem*>(this->itemAt(point));
+void QUSongTree::keyPressEvent(QKeyEvent *event) {
+	if(event->key() == Qt::Key_Delete) {		
+		this->deleteCurrentItem();
+	} else {
+		QTreeWidget::keyPressEvent(event);
+	}
+}
+
+/*!
+ * Delete the current item, which should represent a file and not a folder
+ * because folder items can be selected and are top-level.
+ */
+void QUSongTree::deleteCurrentItem() {
+	QUSongItem *item = dynamic_cast<QUSongItem*>(this->currentItem());
 	
-	if(!item)
+	if(!item || item->isToplevel())
+		return; // only allow to delete files which cannot be selected - no directories
+	
+	if( QMessageBox::question(this, tr("Confirm Delete Operation"), QString(tr("Do you really want to delete \"%1\"?")).arg(item->text(0)),
+			QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No )
 		return;
 	
-	QMenu menu(this);
-	menu.addAction(tr("Hey!"));
+	if(QFile::remove(QFileInfo(item->song()->songFileInfo().dir(), item->text(0)).filePath()))
+		emit finished(QString(tr("The file \"%1\" was deleted successfully.")).arg(item->text(0)), QU::information);
+	else
+		emit finished(QString(tr("The file \"%1\" was NOT deleted.")).arg(item->text(0)), QU::warning);
 	
+	this->setCurrentItem(item->parent());
+	item->update();
 	
-	menu.exec(this->mapToGlobal(point));
-	// TODO: Implement Context Menu
+	emit itemSelectionChanged(); // update details
 }

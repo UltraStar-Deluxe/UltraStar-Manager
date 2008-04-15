@@ -7,6 +7,11 @@ NEW FEATURES
   2. use that file according to its type (discard previous tags if used)
 * new (inofficial) tag: COMMENT
 * new progress dialogs for long operations
+* it is now possible to refresh only the selected songs instead of the whole song tree
+  > could be necessary if you e.g. modified the song dir outside of the application
+* context menu in song tree added
+  > refresh selected songs
+  > delete current file (shortcut: "del")
 
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"
@@ -31,6 +36,7 @@ TODO
 * extract cover from MP3
 * preview pictures, audio files
 * new column: "has unused files"
+* new task: remove unused files
 
 changes from 1.5.0 to 1.5.1
 ---------------------------

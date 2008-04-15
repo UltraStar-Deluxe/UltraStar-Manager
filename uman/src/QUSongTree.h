@@ -5,6 +5,12 @@
 #include <QDragEnterEvent>
 #include <QDropEvent>
 #include <QPoint>
+#include <QList>
+#include <QMenu>
+#include <QKeyEvent>
+
+#include "QU.h"
+#include "QUSongItem.h"
 
 class QUSongTree: public QTreeWidget {
 	Q_OBJECT
@@ -15,12 +21,24 @@ public:
 
 public slots:
 	void showContextMenu(const QPoint &point);
+	void refreshSelectedItems();
 	
+private slots:
+	void deleteCurrentItem();
+	
+protected:
+	virtual void keyPressEvent(QKeyEvent *event);
+
 private:
-	
 	virtual bool dropMimeData(QTreeWidgetItem *parent, int index, const QMimeData *data, Qt::DropAction action);
 	virtual QStringList mimeTypes() const;
 	
+	bool copyFilesToSong(const QList<QUrl> &files, QUSongItem *item);
+	
+	void fillContextMenu(QMenu &menu, const QPoint &point);
+	
+signals:
+	void finished(const QString &message, QU::EventMessageTypes type);
 };
 
 #endif /*QUSONGTREE_H_*/

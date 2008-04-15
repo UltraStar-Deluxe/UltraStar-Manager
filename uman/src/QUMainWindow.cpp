@@ -115,9 +115,12 @@ void QUMainWindow::initMenu() {
 	connect(actionExpandAll, SIGNAL(triggered()), this, SLOT(resizeToContents()));
 	connect(actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(collapseAll()));
 	connect(actionCollapseAll, SIGNAL(triggered()), this, SLOT(resizeToContents()));
-	connect(actionRefresh, SIGNAL(triggered()), this, SLOT(refreshSongs()));
+	connect(actionRefresh, SIGNAL(triggered()), this, SLOT(refreshAllSongs()));
+	connect(actionRefreshSelected, SIGNAL(triggered()), songTree, SLOT(refreshSelectedItems()));
 	
-	actionRefresh->setShortcut(QKeySequence::fromString("F5"));
+	actionRefreshSelected->setShortcut(QKeySequence::fromString("F5"));
+	actionRefresh->setShortcut(QKeySequence::fromString("Shift+F5"));
+	
 	
 	// view
 	this->menuView->addAction(detailsDock->toggleViewAction());
@@ -152,12 +155,14 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateStatusbar()));
 
 	connect(songTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(editSongSetFileLink(QTreeWidgetItem*, int))); 
-	connect(songTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(showSongTextFile(QTreeWidgetItem*, int)));
+	connect(songTree, SIGNAL(itemActivated(QTreeWidgetItem*, int)), this, SLOT(showSongTextFile(QTreeWidgetItem*, int)));
 	
 	connect(songTree, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(resizeToContents()));
 	connect(songTree, SIGNAL(itemCollapsed(QTreeWidgetItem*)), this, SLOT(resizeToContents()));
 	
-	refreshSongs();
+	connect(songTree, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+	
+	refreshAllSongs();
 }
 
 void QUMainWindow::initDetailsTable() {	
@@ -192,7 +197,7 @@ void QUMainWindow::initMonty() {
 /*!
  * Re-reads all possible song files and builds a new song tree.
  */
-void QUMainWindow::refreshSongs() {
+void QUMainWindow::refreshAllSongs() {
 	songTree->clear();
 	updateDetails();
 	
@@ -473,7 +478,7 @@ void QUMainWindow::aboutQt() {
 
 void QUMainWindow::aboutUman() {
 	QString aboutStr("<b>UltraStar Manager</b><br>"
-			"Version %1.%2.%3 <tt><small>%4</small></tt><br>"
+			"Version %1.%2.%3 %4><br>"
 			"<br>"
 			"©2008 by Marcel Taeumel<br>"
 			"<br>"
@@ -508,7 +513,7 @@ void QUMainWindow::changeSongDir() {
 	if(!path.isEmpty()) {
 		settings.setValue("songPath", QVariant(path));
 		BaseDir.setPath(path);
-		refreshSongs();
+		refreshAllSongs();
 		
 		monty->setSongCount(_songs.size());
 		montyTalk();

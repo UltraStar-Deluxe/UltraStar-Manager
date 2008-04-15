@@ -32,7 +32,7 @@ private slots:
 	void initTaskList();
 	void initMonty();
 	
-	void refreshSongs();
+	void refreshAllSongs();
 	void createSongFiles();
 	void createSongTree();
 	

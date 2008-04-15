@@ -74,6 +74,12 @@
           <property name="sortingEnabled" >
            <bool>true</bool>
           </property>
+          <property name="animated" >
+           <bool>false</bool>
+          </property>
+          <property name="allColumnsShowFocus" >
+           <bool>false</bool>
+          </property>
           <property name="columnCount" >
            <number>13</number>
           </property>
@@ -784,6 +790,7 @@
     <addaction name="actionExpandAll" />
     <addaction name="actionCollapseAll" />
     <addaction name="separator" />
+    <addaction name="actionRefreshSelected" />
     <addaction name="actionRefresh" />
    </widget>
    <widget class="QMenu" name="menuOptions" >
@@ -878,11 +885,8 @@
    </property>
   </action>
   <action name="actionRefresh" >
-   <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/control/refresh.png</iconset>
-   </property>
    <property name="text" >
-    <string>&amp;Refresh</string>
+    <string>&amp;Refresh All</string>
    </property>
   </action>
   <action name="actionShowRelativeSongPath" >
@@ -913,6 +917,14 @@
   <action name="actionUse_Case_Insensitive_Tag_Completion" >
    <property name="text" >
     <string>Use Case-Insensitive Tag Completion</string>
+   </property>
+  </action>
+  <action name="actionRefreshSelected" >
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >:/control/refresh.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Refresh &amp;Selected</string>
    </property>
   </action>
  </widget>

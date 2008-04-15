@@ -11,6 +11,7 @@
         <file>bullet_black.png</file>
     </qresource>
     <qresource prefix="/control" >
+        <file>bin.png</file>
         <file>check_tasks.png</file>
         <file>collapse.png</file>
         <file>expand.png</file>

@@ -11,7 +11,7 @@
 #include <QSettings>
 #include <QMessageBox>
 
-QUSongItem::QUSongItem(QUSongFile *song, bool isToplevel): 
+QUSongItem::QUSongItem(QUSongFile *song, bool isToplevel):
 	QTreeWidgetItem(), 
 	_song(song), 
 	_isToplevel(isToplevel) {
