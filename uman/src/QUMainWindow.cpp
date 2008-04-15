@@ -161,6 +161,7 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(itemCollapsed(QTreeWidgetItem*)), this, SLOT(resizeToContents()));
 	
 	connect(songTree, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+	connect(songTree, SIGNAL(songCreated(QUSongFile*)), this, SLOT(appendSong(QUSongFile*)));
 	
 	refreshAllSongs();
 }
@@ -192,6 +193,10 @@ void QUMainWindow::initMonty() {
 	
 	if(!actionAllowMonty->isChecked())
 		helpFrame->hide();
+}
+
+void QUMainWindow::appendSong(QUSongFile *song) {
+	_songs.append(song);
 }
 
 /*!
@@ -265,8 +270,7 @@ void QUMainWindow::readSongDir(QList<QDir> &dirList) {
  */
 void QUMainWindow::createSongTree() {
 	foreach(QUSongFile* song, _songs) {
-		QUSongItem *top = new QUSongItem(song, true);
-		songTree->addTopLevelItem(top);
+		songTree->addTopLevelItem(new QUSongItem(song, true));
 	}
 	
 	resizeToContents();

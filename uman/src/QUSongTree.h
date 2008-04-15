@@ -34,11 +34,14 @@ private:
 	virtual QStringList mimeTypes() const;
 	
 	bool copyFilesToSong(const QList<QUrl> &files, QUSongItem *item);
+	bool dropSongFiles(const QList<QUrl> &urls);
 	
 	void fillContextMenu(QMenu &menu, const QPoint &point);
 	
+	
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
+	void songCreated(QUSongFile *song);
 };
 
 #endif /*QUSONGTREE_H_*/

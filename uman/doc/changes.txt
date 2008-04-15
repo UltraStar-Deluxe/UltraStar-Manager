@@ -12,6 +12,8 @@ NEW FEATURES
 * context menu in song tree added
   > refresh selected songs
   > delete current file (shortcut: "del")
+* song text files can be dropped into the song tree (not on items) to create a new folder and
+  copy the file into that folder
 
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"

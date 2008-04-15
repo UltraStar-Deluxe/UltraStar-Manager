@@ -32,6 +32,8 @@ private slots:
 	void initTaskList();
 	void initMonty();
 	
+	void appendSong(QUSongFile *song);
+	
 	void refreshAllSongs();
 	void createSongFiles();
 	void createSongTree();

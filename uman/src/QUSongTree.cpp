@@ -1,5 +1,6 @@
 #include "QUSongTree.h"
 #include "QUSongItem.h"
+#include "QUSongFile.h"
 #include "QUMainWindow.h"
 
 #include <QMessageBox>
@@ -54,8 +55,11 @@ void QUSongTree::initHorizontalHeader() {
 }
 
 bool QUSongTree::dropMimeData (QTreeWidgetItem *parent, int index, const QMimeData *data, Qt::DropAction action) {
-	if(!parent || data->urls().isEmpty())
+	if(data->urls().isEmpty())
 		return false;
+	
+	if(!parent)
+		return dropSongFiles(data->urls());
 	
 	QUSongItem *item = dynamic_cast<QUSongItem*>(parent);
 	
@@ -123,6 +127,44 @@ bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
 		item->song()->save();
 		item->update();
 		emit itemSelectionChanged(); // update details
+	}
+	
+	return true;
+}
+
+/*!
+ * Create new song directories for dropped song text files and copy that file to
+ * the new created directory.
+ */
+bool QUSongTree::dropSongFiles(const QList<QUrl> &urls) {	
+	foreach(QUrl url, urls) {
+		QFileInfo fi(url.toLocalFile());
+		
+		if(fi.suffix() == SONG_FILE_SUFFIX) {
+			QUSongFile tmp(fi.filePath());
+			
+			QString newSongDirName = QString("%1 - %2").arg(tmp.artist()).arg(tmp.title());
+			
+			if(QUMainWindow::BaseDir.mkdir(newSongDirName)) {
+				QDir newSongDir(QUMainWindow::BaseDir); 
+				if(newSongDir.cd(newSongDirName)) {
+					QFileInfo newFi(newSongDir, fi.fileName());
+					if(QFile::copy(fi.filePath(), newFi.filePath())) {
+						QUSongFile *newSong = new QUSongFile(newFi.filePath());
+						this->addTopLevelItem(new QUSongItem(newSong, true));
+						
+						emit finished(QString(tr("New song included to your song collection: \"%1 - %2\".")).arg(newSong->artist()).arg(newSong->title()), QU::information);
+						emit songCreated(newSong);
+					} else {
+						emit finished(QString(tr("Could not copy song file \"%1\" to new song directory \"%2\"!")).arg(fi.fileName()).arg(newSongDirName), QU::warning);
+					}
+				} else {
+					emit finished(QString(tr("Could not change to new song directory \"%1\"!")).arg(newSongDirName), QU::warning);
+				}
+			} else {
+				emit finished(QString(tr("Could not create new song directory \"%1\"!")).arg(newSongDirName), QU::warning);
+			}
+		}
 	}
 	
 	return true;
