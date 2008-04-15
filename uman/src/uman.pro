@@ -2,9 +2,7 @@ TEMPLATE = app
 TARGET = uman
 QT += core \
     gui
-HEADERS += threads/QUTaskThread.h \
-    threads/QUAbstractThread.h \
-    QUProgressDialog.h \
+HEADERS += QUProgressDialog.h \
     QUSongTree.h \
     details/QUTagItem.h \
     details/QUDetailsTable.h \
@@ -24,9 +22,7 @@ HEADERS += threads/QUTaskThread.h \
     QUSongItem.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += threads/QUTaskThread.cpp \
-    threads/QUAbstractThread.cpp \
-    QUProgressDialog.cpp \
+SOURCES += QUProgressDialog.cpp \
     QUSongTree.cpp \
     details/QUTagItem.cpp \
     details/QUDetailsTable.cpp \
@@ -58,5 +54,5 @@ win32 {
 INCLUDEPATH += ../include/taglib \
     tasks \
     details \
-    threads
+    jobs
 CONFIG += debug

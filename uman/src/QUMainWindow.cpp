@@ -94,7 +94,7 @@ void QUMainWindow::initConfig() {
 	
 	disableInfoChk->setChecked(settings.value("disableInfoMessages", QVariant(false)).toBool());
 	disableWarningChk->setChecked(settings.value("disableWarningMessages", QVariant(false)).toBool());
-	disableSaveChk->setChecked(settings.value("disableSaveMessages", QVariant(true)).toBool());
+	disableSaveChk->setChecked(settings.value("disableSaveMessages", QVariant(false)).toBool());
 	
 	this->restoreState(settings.value("windowState", QVariant()).toByteArray());
 }
@@ -232,7 +232,7 @@ void QUMainWindow::createSongFiles() {
 		if(!files.isEmpty()) {
 			_songs.append(new QUSongFile(QFileInfo(dir, files.first()).filePath()));
 			// enable event log
-			connect(_songs.last(), SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+			//connect(_songs.last(), SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 		}
 	}
 }
@@ -418,10 +418,9 @@ void QUMainWindow::editSongApplyTasks() {
 		itemList.append(songTree->currentItem());
 	
 	QUTaskThread *thread = new QUTaskThread(itemList, taskList);
-	QUProgressDialog dlg(thread, this);
+	QUProgressDialog dlg("Applying all checked tasks to all selected songs...", itemList, thread, this);
 	
 	dlg.exec();
-
 	delete thread;
 	
 	updateDetails();
@@ -453,14 +452,14 @@ void QUMainWindow::aboutQt() {
 
 void QUMainWindow::aboutUman() {
 	QString aboutStr("<b>UltraStar Manager</b><br>"
-			"Version %1.%2.%3<br>"
+			"Version %1.%2.%3 #%4<br>"
 			"<br>"
 			"©2008 by Marcel Taeumel<br>"
 			"<br>"
 			"<i>Tested By</i><br>"
 			"Michael Grünewald");
 	
-	QMessageBox::about(this, "About", aboutStr.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION));
+	QMessageBox::about(this, "About", aboutStr.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION).arg(QString(SVN_REVISION).remove(QRegExp("\\D"))));
 }
 
 void QUMainWindow::editTagOrder() {

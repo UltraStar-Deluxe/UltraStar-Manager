@@ -12,6 +12,7 @@ class QUSongItem: public QTreeWidgetItem {
 public:
 	QUSongItem(QUSongFile *song = 0, bool isToplevel = false);
 	
+	void update();
 	void updateAsDirectory(bool showRelativePath = false);
 	void updateAsTxt();
 	void updateAsMp3();
@@ -21,9 +22,6 @@ public:
 	
 	QUSongFile* song() const { return _song; }
 	bool isToplevel() const { return _isToplevel; }
-	
-public slots:
-	void update();
 	
 private:
 	QUSongFile *_song;

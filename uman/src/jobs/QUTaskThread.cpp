@@ -12,16 +12,14 @@ QUTaskThread::QUTaskThread(const QList<QTreeWidgetItem*> &items, QUTaskList *tas
 }
 
 void QUTaskThread::run() {
+	qRegisterMetaType<QU::EventMessageTypes>("QU::EventMessageTypes");
+	
 	foreach(QUSongItem *item, _songItems) {
 		QUSongFile *song = item->song();
 		
 		emit continued(QString("%1 - %2").arg(song->artist()).arg(song->title()));
 		
 		_taskList->doTasksOn(song);
-
 		song->save();
-		
-		QMetaObject::invokeMethod(item, SLOT(update()));
-		//item->update(); // not possible in secondary thread!
 	}
 }

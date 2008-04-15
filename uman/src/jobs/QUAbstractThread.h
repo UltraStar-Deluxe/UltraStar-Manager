@@ -1,14 +1,14 @@
-#ifndef QUABSTRACTTHREAD_H_
-#define QUABSTRACTTHREAD_H_
+#ifndef QUABSTRACTJOB_H_
+#define QUABSTRACTJOB_H_
 
-#include <QThread>
+#include <QObject>
 #include <QString>
 
-class QUAbstractThread: public QThread {
+class QUAbstractJob: public QObject {
 	Q_OBJECT
 	
 public:
-	QUAbstractThread(QObject *parent = 0);
+	QUAbstractJob(QObject *parent = 0);
 	
 	virtual int count() const = 0; //!< \returns the number of possible "continued" signal emitations
 	
@@ -16,4 +16,4 @@ signals:
 	void continued(const QString &text);
 };
 
-#endif /*QUABSTRACTTHREAD_H_*/
+#endif /*QUABSTRACTJOB_H_*/
