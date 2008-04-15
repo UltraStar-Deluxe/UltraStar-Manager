@@ -70,9 +70,7 @@ void QUSongItem::update() {
 			child->updateAsUnknown();
 		}
 	}
-	
-//	if(this->treeWidget())
-//		this->treeWidget()->setCurrentItem(this);
+
 	this->setSelected(true);
 }
 
@@ -119,12 +117,12 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	if(song()->hasBackground()) this->setIcon(5, QIcon(":/marks/tick.png")); else this->setIcon(5, QIcon(":/marks/cross.png"));
 	if(song()->hasVideo()) this->setIcon(6, QIcon(":/marks/tick.png")); else this->setIcon(6, QIcon(":/marks/cross.png"));
 	
-	this->setText(7, song()->language());
-	this->setText(8, song()->edition());
-	this->setText(9, song()->genre());
-	this->setText(10, song()->year());
-	this->setText(11, song()->creator());
-	this->setText(12, song()->comment());
+	this->setText(8, song()->language());
+	this->setText(9, song()->edition());
+	this->setText(10, song()->genre());
+	this->setText(11, song()->year());
+	this->setText(12, song()->creator());
+	this->setText(13, song()->comment());
 }
 
 void QUSongItem::updateAsTxt() {	
@@ -137,6 +135,8 @@ void QUSongItem::updateAsTxt() {
 		QFont f(this->font(0));
 		f.setStrikeOut(true);
 		this->setFont(0, f);
+		
+		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon();
 	} else {
 		this->setTextColor(0, Qt::blue);
 	}
@@ -149,8 +149,10 @@ void QUSongItem::updateAsMp3() {
 	
 	if(QString::compare(song()->mp3(), this->text(0), Qt::CaseInsensitive) == 0)
 		this->setIcon(3, QIcon(":/marks/link.png"));
-	else
+	else {
 		this->setTextColor(0, Qt::gray); // unused mp3
+		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon();
+	}
 }
 
 void QUSongItem::updateAsPicture() {
@@ -170,8 +172,10 @@ void QUSongItem::updateAsPicture() {
 		used = true;
 	}
 		
-	if(!used)
+	if(!used) {
 		this->setTextColor(0, Qt::gray);
+		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon();
+	}
 }
 
 void QUSongItem::updateAsVideo() {
@@ -181,8 +185,10 @@ void QUSongItem::updateAsVideo() {
 	
 	if(QString::compare(song()->video(), this->text(0), Qt::CaseInsensitive) == 0)
 		this->setIcon(6, QIcon(":/marks/link.png"));
-	else
-		this->setTextColor(0, Qt::gray);				
+	else {
+		this->setTextColor(0, Qt::gray);
+		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon();
+	}
 }
 
 void QUSongItem::updateAsUnknown() {
@@ -190,4 +196,10 @@ void QUSongItem::updateAsUnknown() {
 	QFont f(this->font(0));
 	f.setStrikeOut(true);
 	this->setFont(0, f);
+	
+	(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon();
+}
+
+void QUSongItem::showUnusedFilesIcon() {
+	this->setIcon(7, QIcon(":/types/unused_files.png"));
 }

@@ -63,6 +63,7 @@
         <file>photo.png</file>
         <file>picture.png</file>
         <file>text.png</file>
+        <file>unused_files.png</file>
         <file>user.png</file>
     </qresource>
 </RCC>

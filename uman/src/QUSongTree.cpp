@@ -38,18 +38,21 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(6, QIcon(":/types/film.png"));
 	header->setToolTip(6, tr("Shows whether the song text file points to a <b>video file</b> that can be found by UltraStar"));
 
-	header->setText(7, tr("Language"));
-	header->setIcon(7, QIcon(":/types/language.png"));
-	header->setText(8, tr("Edition"));
-	header->setIcon(8, QIcon(":/types/edition.png"));
-	header->setText(9, tr("Genre"));
-	header->setIcon(9, QIcon(":/types/genre.png"));
-	header->setText(10, tr("Year"));
-	header->setIcon(10, QIcon(":/types/date.png"));
-	header->setText(11, tr("Creator"));
-	header->setIcon(11, QIcon(":/types/creator.png"));
-	header->setText(12, tr("Comment"));
-	header->setIcon(12, QIcon(":/types/comment.png"));
+	header->setIcon(7, QIcon(":/types/unused_files.png"));
+	header->setToolTip(7, tr("Shows whether your folder contains unused files."));
+	
+	header->setText(8, tr("Language"));
+	header->setIcon(8, QIcon(":/types/language.png"));
+	header->setText(9, tr("Edition"));
+	header->setIcon(9, QIcon(":/types/edition.png"));
+	header->setText(10, tr("Genre"));
+	header->setIcon(10, QIcon(":/types/genre.png"));
+	header->setText(11, tr("Year"));
+	header->setIcon(11, QIcon(":/types/date.png"));
+	header->setText(12, tr("Creator"));
+	header->setIcon(12, QIcon(":/types/creator.png"));
+	header->setText(13, tr("Comment"));
+	header->setIcon(13, QIcon(":/types/comment.png"));
 	
 	this->setHeaderItem(header);	
 }

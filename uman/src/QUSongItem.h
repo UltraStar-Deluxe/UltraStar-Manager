@@ -23,6 +23,8 @@ public:
 	QUSongFile* song() const { return _song; }
 	bool isToplevel() const { return _isToplevel; }
 	
+	void showUnusedFilesIcon();
+	
 private:
 	QUSongFile *_song;
 	bool _isToplevel;

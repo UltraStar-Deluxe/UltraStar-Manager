@@ -14,6 +14,7 @@ NEW FEATURES
   > delete current file (shortcut: "del")
 * song text files can be dropped into the song tree (not on items) to create a new folder and
   copy the file into that folder
+* new column: unused files found
 
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"
@@ -37,7 +38,6 @@ TODO
 * drag&drop files into the song tree itself to create a new song-directory
 * extract cover from MP3
 * preview pictures, audio files
-* new column: "has unused files"
 * new task: remove unused files
 
 changes from 1.5.0 to 1.5.1
