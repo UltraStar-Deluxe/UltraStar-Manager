@@ -1,4 +1,5 @@
 #include "main.h"
+#include "version.h"
 
 #include "QUMainWindow.h"
 #include <QTreeWidget>
@@ -479,7 +480,7 @@ void QUMainWindow::aboutUman() {
 			"<i>Tested By</i><br>"
 			"Michael Grünewald");
 	
-	QMessageBox::about(this, "About", aboutStr.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION).arg(QString(SVN_REVISION).remove(QRegExp("\\D"))));
+	QMessageBox::about(this, "About", aboutStr.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION).arg(revision));
 }
 
 void QUMainWindow::editTagOrder() {

@@ -7,6 +7,8 @@
 #include <QIcon>
 #include <QMenu>
 
+#include "QUProgressDialog.h"
+
 #define FILE_DROP_LIMIT 10
 
 QUSongTree::QUSongTree(QWidget *parent): QTreeWidget(parent) {
@@ -66,7 +68,13 @@ bool QUSongTree::dropMimeData (QTreeWidgetItem *parent, int index, const QMimeDa
 	
 	bool dataUsed = false;
 	
+	QUProgressDialog dlg(QString("Copy & Use files for the song: \"%1 - %2\"...").arg(item->song()->artist()).arg(item->song()->title()), data->urls().size(), this);
+	dlg.setPixmap(":/marks/disk.png");
+	dlg.show();
+	
 	foreach(QUrl url, data->urls()) {
+		dlg.update(url.toLocalFile());
+		
 		if(!QFileInfo(url.toLocalFile()).isDir()) {
 			item->song()->useExternalFile(url.toLocalFile());
 			dataUsed = true;

@@ -6,12 +6,14 @@ NEW FEATURES
   1. copy that file to the song folder
   2. use that file according to its type (discard previous tags if used)
 * new (inofficial) tag: COMMENT
+* new progress dialogs for long operations
 
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"
 * selected songs will not be unselected after applying a task anymore
 * list now all file-types in a subfolder to determine unnecessary files
-  > gray + striked-out = useless :) 
+  > gray + striked-out = useless :)
+* progress dialog also shown for renaming lots of 
 
 TODO
 * verify the 'E' at the end of a song (data)
@@ -29,7 +31,6 @@ TODO
 * extract cover from MP3
 * preview pictures, audio files
 * new column: "has unused files"
-* progress bar for multiple-songs-tag-renaming ops :)
 
 changes from 1.5.0 to 1.5.1
 ---------------------------

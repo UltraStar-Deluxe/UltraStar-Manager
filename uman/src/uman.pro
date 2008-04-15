@@ -55,3 +55,8 @@ INCLUDEPATH += ../include/taglib \
     tasks \
     details
 CONFIG += debug
+QMAKE_EXTRA_TARGETS += revtarget
+PRE_TARGETDEPS += version.h
+revtarget.target = version.h
+revtarget.commands = @echo "const char *revision = \"r$(shell svnversion .)\";" > $$revtarget.target
+revtarget.depends = $$SOURCES $$HEADERS $$FORMS
