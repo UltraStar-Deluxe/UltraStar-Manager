@@ -482,7 +482,7 @@ void QUMainWindow::aboutQt() {
 
 void QUMainWindow::aboutUman() {
 	QString aboutStr("<b>UltraStar Manager</b><br>"
-			"Version %1.%2.%3 %4><br>"
+			"Version %1.%2.%3 #%4<br>"
 			"<br>"
 			"©2008 by Marcel Taeumel<br>"
 			"<br>"
@@ -493,7 +493,7 @@ void QUMainWindow::aboutUman() {
 			.arg(MAJOR_VERSION)
 			.arg(MINOR_VERSION)
 			.arg(PATCH_VERSION)
-			.arg(revision));
+			.arg(QString(revision).remove(QRegExp("(.*:)|\\D"))));
 }
 
 void QUMainWindow::editTagOrder() {

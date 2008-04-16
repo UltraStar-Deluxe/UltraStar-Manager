@@ -154,7 +154,10 @@ bool QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 					QFileInfo newFi(newSongDir, fi.fileName());
 					if(QFile::copy(fi.filePath(), newFi.filePath())) {
 						QUSongFile *newSong = new QUSongFile(newFi.filePath());
-						this->addTopLevelItem(new QUSongItem(newSong, true));
+						QUSongItem *newItem = new QUSongItem(newSong, true);
+						this->addTopLevelItem(newItem);
+						
+						newItem->setSelected(true);
 						
 						emit finished(QString(tr("New song included to your song collection: \"%1 - %2\".")).arg(newSong->artist()).arg(newSong->title()), QU::information);
 						emit songCreated(newSong);
