@@ -46,6 +46,78 @@
          <number>5</number>
         </property>
         <item>
+         <widget class="QFrame" name="filterFrame" >
+          <property name="frameShape" >
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow" >
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QHBoxLayout" >
+           <property name="spacing" >
+            <number>5</number>
+           </property>
+           <property name="leftMargin" >
+            <number>5</number>
+           </property>
+           <property name="topMargin" >
+            <number>5</number>
+           </property>
+           <property name="rightMargin" >
+            <number>5</number>
+           </property>
+           <property name="bottomMargin" >
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLineEdit" name="filterEdit" >
+             <property name="toolTip" >
+              <string>Enter a regular expression and press the filter button to the right.</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="filterBtn" >
+             <property name="enabled" >
+              <bool>false</bool>
+             </property>
+             <property name="toolTip" >
+              <string>Apply filter to song tree</string>
+             </property>
+             <property name="text" >
+              <string>Filter</string>
+             </property>
+             <property name="icon" >
+              <iconset resource="images/uman.qrc" >:/control/filter.png</iconset>
+             </property>
+             <property name="toolButtonStyle" >
+              <enum>Qt::ToolButtonTextBesideIcon</enum>
+             </property>
+             <property name="autoRaise" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="filterCancelBtn" >
+             <property name="toolTip" >
+              <string>Clear filter</string>
+             </property>
+             <property name="text" >
+              <string>...</string>
+             </property>
+             <property name="icon" >
+              <iconset resource="images/uman.qrc" >:/marks/cancel.png</iconset>
+             </property>
+             <property name="autoRaise" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
          <widget class="QUSongTree" name="songTree" >
           <property name="sizePolicy" >
            <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
@@ -174,7 +246,7 @@
             <number>0</number>
            </property>
            <property name="rightMargin" >
-            <number>0</number>
+            <number>5</number>
            </property>
            <property name="bottomMargin" >
             <number>0</number>
@@ -815,6 +887,7 @@
      <string>&amp;View</string>
     </property>
     <addaction name="actionShowRelativeSongPath" />
+    <addaction name="actionFilter" />
     <addaction name="separator" />
    </widget>
    <addaction name="menuSongs" />
@@ -1000,6 +1073,17 @@
    </property>
    <property name="text" >
     <string>Save &amp;All Changes</string>
+   </property>
+  </action>
+  <action name="actionFilter" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >:/control/filter.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Filter</string>
    </property>
   </action>
  </widget>

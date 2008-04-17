@@ -67,12 +67,16 @@ private slots:
 	
 	void addLogMsg(const QString &msg, QU::EventMessageTypes type = QU::information);
 	
-	QList<QUSongFile*> selectedSongs();
+	void updateFilterButton();
+	void applyFilter();
+	void removeFilter();
 	
 private:
 	QList<QUSongFile*> _songs;
 	
 	void readSongDir(QList<QDir> &dirList);
+	
+	QList<QUSongFile*> selectedSongs();
 };
 
 #endif // QUMAINWINDOW_H

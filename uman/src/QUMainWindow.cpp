@@ -134,6 +134,12 @@ void QUMainWindow::initWindow() {
 	addDockWidget(Qt::RightDockWidgetArea, detailsDock);
 	addDockWidget(Qt::RightDockWidgetArea, tasksDock);
 	addDockWidget(Qt::RightDockWidgetArea, eventsDock);
+	
+	filterFrame->hide();
+	
+	connect(filterEdit, SIGNAL(textChanged(const QString&)), this, SLOT(updateFilterButton()));
+	connect(filterBtn, SIGNAL(clicked()), this, SLOT(applyFilter()));
+	connect(filterCancelBtn, SIGNAL(clicked()), this, SLOT(removeFilter()));
 }
 
 void QUMainWindow::initMenu() {
@@ -153,11 +159,14 @@ void QUMainWindow::initMenu() {
 	
 	// view
 	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
+	connect(actionFilter, SIGNAL(toggled(bool)), filterFrame, SLOT(setVisible(bool)));
 	
 	this->menuView->addAction(detailsDock->toggleViewAction());
 	this->menuView->addAction(tasksDock->toggleViewAction());
 	this->menuView->addAction(eventsDock->toggleViewAction());
 	this->menuView->addAction(this->toolBar->toggleViewAction());
+	
+	actionFilter->setShortcut(QKeySequence::fromString("Ctrl+F"));
 
 	// options
 	connect(actionAutoSave, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
@@ -675,4 +684,23 @@ QList<QUSongFile*> QUMainWindow::selectedSongs() {
 	}
 	
 	return songs;
+}
+
+void QUMainWindow::updateFilterButton() {
+	filterBtn->setEnabled(true);
+}
+
+void QUMainWindow::applyFilter() {
+	filterBtn->setEnabled(false);
+	songTree->filterItems(filterEdit->text());
+}
+
+/*!
+ * Shows all items in the song tree again.
+ */
+void QUMainWindow::removeFilter() {
+	filterEdit->setText("");
+	filterBtn->setEnabled(false);
+	songTree->filterItems("");
+	actionFilter->setChecked(false);
 }

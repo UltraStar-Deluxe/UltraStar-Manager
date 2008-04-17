@@ -8,6 +8,7 @@
 #include <QIcon>
 #include <QMenu>
 #include <QList>
+#include <QRegExp>
 
 #include "QUProgressDialog.h"
 
@@ -70,6 +71,15 @@ bool QUSongTree::hasUnsavedChanges() const {
 	return result;
 }
 
+/*!
+ * Overloaded to clear hidden items.
+ */
+void QUSongTree::clear() {
+	qDeleteAll(_hiddenItems);
+	_hiddenItems.clear();
+	QTreeWidget::clear();
+}
+
 void QUSongTree::saveUnsavedChanges() {
 	QUProgressDialog dlg(tr("Saving unsaved changes..."), this->topLevelItemCount(), this);
 	dlg.show();
@@ -88,6 +98,56 @@ void QUSongTree::saveUnsavedChanges() {
 	}
 	
 	emit itemSelectionChanged(); // update details
+}
+
+/*!
+ * Hides all items from the tree which do not match the filter. An empty string
+ * will remove the filter and show all items again. Selected items will be
+ * unselected if hidden.
+ */
+void QUSongTree::filterItems(const QString &regexp) {
+	this->addTopLevelItems(_hiddenItems);
+	_hiddenItems.clear();
+
+	if(regexp.isEmpty()) {	
+		emit finished(tr("Filter removed. All songs are visible now."), QU::information);
+		return;
+	}
+	
+	QRegExp rx(regexp, Qt::CaseInsensitive);
+	
+	// collect all toplevel items
+	QList<QTreeWidgetItem*> topLevelItems;
+	for(int i = 0; i < this->topLevelItemCount(); i++)
+		topLevelItems.append(this->topLevelItem(i));
+	
+	QUProgressDialog progress("Applying filter...", topLevelItems.size(), this);
+	progress.setPixmap(":/control/filter.png");
+	progress.show();
+	
+	foreach(QTreeWidgetItem *item, topLevelItems) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+		
+		if(songItem) {
+			QUSongFile *song = songItem->song();
+			
+			progress.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+			
+			if( !(
+				song->artist().contains(rx) ||
+				song->title().contains(rx) ||
+				song->genre().contains(rx) ||
+				song->year().contains(rx) ||
+				song->edition().contains(rx) ||
+				song->creator().contains(rx) ||
+				song->language().contains(rx)
+			) )
+				_hiddenItems.append(this->takeTopLevelItem(this->indexOfTopLevelItem(item)));
+		}
+	}
+	
+	emit itemSelectionChanged(); // update details
+	emit finished(QString(tr("Filter applied: \"%1\"")).arg(regexp), QU::information);
 }
 
 bool QUSongTree::dropMimeData (QTreeWidgetItem *parent, int index, const QMimeData *data, Qt::DropAction action) {
