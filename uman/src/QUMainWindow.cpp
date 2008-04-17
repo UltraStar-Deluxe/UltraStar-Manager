@@ -137,7 +137,7 @@ void QUMainWindow::initWindow() {
 	
 	filterFrame->hide();
 	
-	connect(filterEdit, SIGNAL(textChanged(const QString&)), this, SLOT(updateFilterButton()));
+	connect(filterEdit, SIGNAL(returnPressed()), this, SLOT(applyFilter()));
 	connect(filterBtn, SIGNAL(clicked()), this, SLOT(applyFilter()));
 	connect(filterCancelBtn, SIGNAL(clicked()), this, SLOT(removeFilter()));
 }
@@ -159,7 +159,7 @@ void QUMainWindow::initMenu() {
 	
 	// view
 	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
-	connect(actionFilter, SIGNAL(toggled(bool)), filterFrame, SLOT(setVisible(bool)));
+	connect(actionFilter, SIGNAL(toggled(bool)), this, SLOT(toggleFilterFrame(bool)));
 	
 	this->menuView->addAction(detailsDock->toggleViewAction());
 	this->menuView->addAction(tasksDock->toggleViewAction());
@@ -686,12 +686,16 @@ QList<QUSongFile*> QUMainWindow::selectedSongs() {
 	return songs;
 }
 
-void QUMainWindow::updateFilterButton() {
-	filterBtn->setEnabled(true);
+void QUMainWindow::toggleFilterFrame(bool checked) {
+	filterFrame->setVisible(checked);
+	
+	if(checked) {
+		filterEdit->setFocus();
+		filterEdit->selectAll();
+	}
 }
 
 void QUMainWindow::applyFilter() {
-	filterBtn->setEnabled(false);
 	songTree->filterItems(filterEdit->text());
 }
 
@@ -700,7 +704,6 @@ void QUMainWindow::applyFilter() {
  */
 void QUMainWindow::removeFilter() {
 	filterEdit->setText("");
-	filterBtn->setEnabled(false);
 	songTree->filterItems("");
 	actionFilter->setChecked(false);
 }

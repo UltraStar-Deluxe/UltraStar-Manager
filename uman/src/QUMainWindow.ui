@@ -79,7 +79,7 @@
            <item>
             <widget class="QToolButton" name="filterBtn" >
              <property name="enabled" >
-              <bool>false</bool>
+              <bool>true</bool>
              </property>
              <property name="toolTip" >
               <string>Apply filter to song tree</string>
