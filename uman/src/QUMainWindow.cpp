@@ -157,6 +157,7 @@ void QUMainWindow::initMenu() {
 	this->menuView->addAction(detailsDock->toggleViewAction());
 	this->menuView->addAction(tasksDock->toggleViewAction());
 	this->menuView->addAction(eventsDock->toggleViewAction());
+	this->menuView->addAction(this->toolBar->toggleViewAction());
 
 	// options
 	connect(actionAutoSave, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));

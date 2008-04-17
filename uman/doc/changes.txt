@@ -15,6 +15,9 @@ NEW FEATURES
 * song text files can be dropped into the song tree (not on items) to create a new folder and
   copy the file into that folder
 * new column: unused files found
+* it is now possible to disable "save-on-change"
+  > you will have to save the song files yourself
+* toolbar added
 
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"
