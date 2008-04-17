@@ -792,6 +792,9 @@
     <property name="title" >
      <string>&amp;Songs</string>
     </property>
+    <addaction name="actionSaveSelected" />
+    <addaction name="actionSaveAll" />
+    <addaction name="separator" />
     <addaction name="actionExpandAll" />
     <addaction name="actionCollapseAll" />
     <addaction name="separator" />
@@ -802,6 +805,8 @@
     <property name="title" >
      <string>&amp;Options</string>
     </property>
+    <addaction name="actionAutoSave" />
+    <addaction name="separator" />
     <addaction name="actionTagSaveOrder" />
     <addaction name="actionChangeSongDirectory" />
    </widget>
@@ -930,6 +935,33 @@
    </property>
    <property name="text" >
     <string>Refresh &amp;Selected</string>
+   </property>
+  </action>
+  <action name="actionAutoSave" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>&amp;Save Automatically</string>
+   </property>
+   <property name="statusTip" >
+    <string>Save all changes in a song automatically to the song file.</string>
+   </property>
+  </action>
+  <action name="actionSaveSelected" >
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >:/control/save.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Save Selected</string>
+   </property>
+  </action>
+  <action name="actionSaveAll" >
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >:/control/save_all.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Save &amp;All Changes</string>
    </property>
   </action>
  </widget>

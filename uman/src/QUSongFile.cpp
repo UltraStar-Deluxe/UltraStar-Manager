@@ -1,4 +1,5 @@
 #include "QUSongFile.h"
+#include "QUMonty.h"
 
 #include <QByteArray>
 #include <QVariant>
@@ -16,7 +17,7 @@
  * \param file an existing US song file (normally a *.txt)
  * \param parent parent for Qt object tree
  */
-QUSongFile::QUSongFile(const QString &file, QObject *parent): QObject(parent) {
+QUSongFile::QUSongFile(const QString &file, QObject *parent): QObject(parent), _hasUnsavedChanges(false) {
 	_fi.setFile(file);
 	updateCache();
 }
@@ -177,15 +178,22 @@ bool QUSongFile::hasVideo() const {
 
 /*!
  * Creates a complete new song file for US. Any old data will be overwritten.
+ * \param force Indicates whether to save the file although automatic file save was
+ * disabled.
  * \returns True on success, otherwise false.
  */
-bool QUSongFile::save() {
+bool QUSongFile::save(bool force) {
+	if(!force && !monty->autoSaveEnabled()) {
+		_hasUnsavedChanges = true;
+		return true;
+	}
+	
 	QFile::remove(_fi.filePath());
 	
 	_file.setFileName(_fi.filePath());
 	
 	if(!_file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-		emit finished(QString("Save error! The song file \"%1\" was NOT saved.").arg(this->songFileInfo().fileName()), QU::warning);
+		emit finished(QString(tr("Save error! The song file \"%1\" was NOT saved.")).arg(this->songFileInfo().fileName()), QU::warning);
 		return false;
 	}
 	
@@ -222,6 +230,7 @@ bool QUSongFile::save() {
 	_file.close();
 	
 	emit finished(QString("The song file \"%1\" was saved successfully.").arg(this->songFileInfo().fileName()), QU::saving);
+	_hasUnsavedChanges = false;
 	return true;
 }
 

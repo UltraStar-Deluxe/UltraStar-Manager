@@ -26,6 +26,8 @@ public:
 	
 	void setSongCount(int c) { songCount = c; }
 	
+	bool autoSaveEnabled() const;
+	
 protected:
 	QUMonty();
 	

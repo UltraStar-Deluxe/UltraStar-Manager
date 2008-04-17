@@ -43,6 +43,8 @@ public:
 	QUSongFile(const QString &file, QObject *parent = 0);
 	~QUSongFile();
 	
+	bool hasUnsavedChanges() const { return _hasUnsavedChanges; }
+	
 public slots:
 	QString artist() const     {return _info.value("ARTIST", QString("n/a"));}
 	QString title() const      {return _info.value("TITLE", QString("n/a"));}
@@ -77,7 +79,7 @@ public slots:
 	
 	void setInfo(const QString &key, const QString &value);
 	
-	bool save();
+	bool save(bool force = false);
 	void renameSongDir(const QString &newName);
 	void renameSongTxt(const QString &newName);
 	void renameSongMp3(const QString &newName);
@@ -115,9 +117,9 @@ private:
 	QMap<QString, QString> _info;
 	QStringList _lyrics;
 	QStringList _foundUnsupportedTags;
+	bool _hasUnsavedChanges;
 	
 	bool updateCache();
-	
 	bool rename(QDir dir, const QString &oldName, const QString &newName);
 };
 

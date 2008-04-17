@@ -123,6 +123,16 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	this->setText(11, song()->year());
 	this->setText(12, song()->creator());
 	this->setText(13, song()->comment());
+	
+	// indicate unsaved changes
+	QFont f(this->font(0));
+	
+	if(song()->hasUnsavedChanges())
+		f.setBold(true);
+	else
+		f.setBold(false);
+	
+	this->setFont(0, f);
 }
 
 void QUSongItem::updateAsTxt() {	

@@ -1,6 +1,7 @@
 #include "QUMonty.h"
 
 #include <QFile>
+#include <QSettings>
 
 QUMonty::QUMonty() {
 	initMessages();
@@ -72,4 +73,9 @@ QString QUMonty::welcomeMsg(int numberOfSongs) {
 void QUMonty::talk(QLabel *montyLbl, QLabel *msgLbl) {
 	montyLbl->setPixmap(pic((QUMonty::Status)(qrand() % 4)));
 	msgLbl->setText(messages[qrand() % messages.size()].arg(songCount));
+}
+
+bool QUMonty::autoSaveEnabled() const {
+	QSettings settings;
+	return settings.value("autoSave", QVariant(true)).toBool();
 }

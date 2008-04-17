@@ -57,6 +57,39 @@ void QUSongTree::initHorizontalHeader() {
 	this->setHeaderItem(header);	
 }
 
+bool QUSongTree::hasUnsavedChanges() const {
+	bool result = false;
+	
+	for(int i = 0; i < this->topLevelItemCount(); i++) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->topLevelItem(i));
+		
+		if(songItem)
+			result |= songItem->song()->hasUnsavedChanges();
+	}
+	
+	return result;
+}
+
+void QUSongTree::saveUnsavedChanges() {
+	QUProgressDialog dlg(tr("Saving unsaved changes..."), this->topLevelItemCount(), this);
+	dlg.show();
+	
+	for(int i = 0; i < this->topLevelItemCount(); i++) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->topLevelItem(i));
+		
+		if(songItem) {
+			dlg.update(songItem->song()->songFileInfo().fileName());
+			
+			if(songItem->song()->hasUnsavedChanges()) {
+				songItem->song()->save(true);
+				songItem->update();
+			}
+		}
+	}
+	
+	emit itemSelectionChanged(); // update details
+}
+
 bool QUSongTree::dropMimeData (QTreeWidgetItem *parent, int index, const QMimeData *data, Qt::DropAction action) {
 	if(data->urls().isEmpty())
 		return false;
@@ -86,6 +119,7 @@ void QUSongTree::showContextMenu(const QPoint &point) {
 	QMenu menu(this);
 	
 	menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()), QKeySequence::fromString("F5"));
+	menu.addAction(QIcon(":/control/save.png"), tr("Save"), this, SLOT(saveSelectedSongs()), QKeySequence::fromString("Ctrl+S"));
 	
 	this->fillContextMenu(menu, point);
 	
@@ -192,6 +226,29 @@ void QUSongTree::refreshSelectedItems() {
 		if(songItem) {
 			dlg.update(songItem->song()->songFileInfo().dir().dirName());
 			
+			songItem->update();
+		}
+	}
+	
+	emit itemSelectionChanged(); // update details
+}
+
+void QUSongTree::saveSelectedSongs() {
+	QList<QTreeWidgetItem*> items = this->selectedItems();
+	
+	if(items.isEmpty())
+		items.append(this->currentItem());
+	
+	QUProgressDialog dlg("Saving selected songs...", items.size(), this);
+	dlg.show();
+	
+	foreach(QTreeWidgetItem *item, items) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+		
+		if(songItem) {
+			dlg.update(songItem->song()->songFileInfo().fileName());
+			
+			songItem->song()->save(true);
 			songItem->update();
 		}
 	}

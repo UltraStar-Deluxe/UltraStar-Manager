@@ -64,6 +64,8 @@ QUMainWindow::~QUMainWindow() {
 	settings.setValue("disableInfoMessages", QVariant(disableInfoChk->isChecked()));
 	settings.setValue("disableWarningMessages", QVariant(disableWarningChk->isChecked()));
 	settings.setValue("disableSaveMessages", QVariant(disableSaveChk->isChecked()));
+	
+	settings.setValue("autoSave", QVariant(actionAutoSave->isChecked()));
 }
 
 /*!
@@ -96,6 +98,8 @@ void QUMainWindow::initConfig() {
 	disableSaveChk->setChecked(settings.value("disableSaveMessages", QVariant(false)).toBool());
 	
 	this->restoreState(settings.value("windowState", QVariant()).toByteArray());
+	
+	actionAutoSave->setChecked(settings.value("autoSave", QVariant(true)).toBool());
 }
 
 /*!
@@ -111,6 +115,8 @@ void QUMainWindow::initWindow() {
 
 void QUMainWindow::initMenu() {
 	// song
+	connect(actionSaveSelected, SIGNAL(triggered()), songTree, SLOT(saveSelectedSongs()));
+	connect(actionSaveAll, SIGNAL(triggered()), songTree, SLOT(saveUnsavedChanges()));
 	connect(actionExpandAll, SIGNAL(triggered()), songTree, SLOT(expandAll()));
 	connect(actionExpandAll, SIGNAL(triggered()), this, SLOT(resizeToContents()));
 	connect(actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(collapseAll()));
@@ -120,15 +126,17 @@ void QUMainWindow::initMenu() {
 	
 	actionRefreshSelected->setShortcut(QKeySequence::fromString("F5"));
 	actionRefresh->setShortcut(QKeySequence::fromString("Shift+F5"));
-	
+	actionSaveSelected->setShortcut(QKeySequence::fromString("Shift+F5"));
 	
 	// view
+	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
+	
 	this->menuView->addAction(detailsDock->toggleViewAction());
 	this->menuView->addAction(tasksDock->toggleViewAction());
 	this->menuView->addAction(eventsDock->toggleViewAction());
 
 	// options
-	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
+	connect(actionAutoSave, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
 	connect(actionTagSaveOrder, SIGNAL(triggered()), this, SLOT(editTagOrder()));
 	connect(actionChangeSongDirectory, SIGNAL(triggered()), this, SLOT(changeSongDir()));
 	
@@ -567,6 +575,11 @@ void QUMainWindow::toggleCompleterChk(bool checked) {
 	settings.setValue("caseSensitiveAutoCompletion", QVariant(checked));
 }
 
+void QUMainWindow::toggleAutoSaveChk(bool checked) {
+	QSettings settings;
+	settings.setValue("autoSave", QVariant(checked));	
+}
+
 /*!
  * Shows the content of the current song text file. (read-only)
  */
@@ -579,10 +592,8 @@ void QUMainWindow::showSongTextFile(QTreeWidgetItem *item, int column) {
 	if(!songItem)
 		return;
 	
-	QString fileScheme("*." + QFileInfo(item->text(0)).suffix());
-	
-	if(QString::compare(fileScheme, "*.txt", Qt::CaseInsensitive) != 0)
-		return; // display only text files
+	if(QString::compare(item->text(0), songItem->song()->songFileInfo().fileName(), Qt::CaseInsensitive) != 0)
+		return; // display only the current song text file
 	
 	QUTextDialog *dlg = new QUTextDialog(songItem->song(), this);
 	

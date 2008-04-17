@@ -30,12 +30,7 @@ TODO
 * reports... (plain text and html)
 * spinbox delegate for VIDEOGAP, START, END (?)
 * song playlists
-* a new COMMENT tag which is not supported by UltraStar but makes it easier to append some phrase to a song
-  > e.g. "bad video quality"
-* refresh for selected songs (not only rebuild the whole tree)
 * introduce a flag to QUSongFile to check whether saving is necessary or not
-* PopUp-Menu for Songtree...
-* drag&drop files into the song tree itself to create a new song-directory
 * extract cover from MP3
 * preview pictures, audio files
 * new task: remove unused files

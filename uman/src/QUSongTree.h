@@ -19,9 +19,13 @@ public:
 	QUSongTree(QWidget *parent = 0);
 	void initHorizontalHeader();
 
+	bool hasUnsavedChanges() const;
+	
 public slots:
 	void showContextMenu(const QPoint &point);
 	void refreshSelectedItems();
+	void saveSelectedSongs();
+	void saveUnsavedChanges();
 	
 private slots:
 	void deleteCurrentItem();
