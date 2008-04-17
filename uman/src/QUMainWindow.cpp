@@ -69,6 +69,29 @@ QUMainWindow::~QUMainWindow() {
 }
 
 /*!
+ * Overloaded to ensure that all changes are saved before closing this application.
+ */
+void QUMainWindow::closeEvent(QCloseEvent *event) {
+	if(songTree->hasUnsavedChanges()) {
+		QMessageBox::StandardButtons result = QMessageBox::question(this, 
+				tr("Unsaved Changes"), 
+				tr("Songs have been modified. Save changes?"), 
+				QMessageBox::Yes | QMessageBox::No | QMessageBox::Abort, 
+				QMessageBox::Abort);
+		if(result == QMessageBox::No)
+			event->accept();
+		else if(result == QMessageBox::Abort)
+			event->ignore();
+		else if(result == QMessageBox::Yes) {
+			songTree->saveUnsavedChanges();
+			event->accept();
+		}
+	} else {
+		event->accept();
+	}
+}
+
+/*!
  * Initializes the windows registry entry for uman. Lets the user
  * choose a path where the song files are located.
  */
@@ -126,7 +149,7 @@ void QUMainWindow::initMenu() {
 	
 	actionRefreshSelected->setShortcut(QKeySequence::fromString("F5"));
 	actionRefresh->setShortcut(QKeySequence::fromString("Shift+F5"));
-	actionSaveSelected->setShortcut(QKeySequence::fromString("Shift+F5"));
+	actionSaveSelected->setShortcut(QKeySequence::fromString("Ctrl+S"));
 	
 	// view
 	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
@@ -211,6 +234,20 @@ void QUMainWindow::appendSong(QUSongFile *song) {
  * Re-reads all possible song files and builds a new song tree.
  */
 void QUMainWindow::refreshAllSongs() {
+	if(songTree->hasUnsavedChanges()) {
+		QMessageBox::StandardButtons result = QMessageBox::question(this, 
+				tr("Unsaved Changes"), 
+				tr("Songs have been modified. Save changes?"), 
+				QMessageBox::Yes | QMessageBox::No | QMessageBox::Abort, 
+				QMessageBox::Abort);
+		if(result == QMessageBox::Abort)
+			return;
+		else if(result == QMessageBox::Yes)
+			songTree->saveUnsavedChanges();
+	}
+	
+	// -------------------------------------
+		
 	songTree->clear();
 	updateDetails();
 	
@@ -517,6 +554,20 @@ void QUMainWindow::editTagOrder() {
  * UltraStar songs can be found.
  */
 void QUMainWindow::changeSongDir() {
+	if(songTree->hasUnsavedChanges()) {
+		QMessageBox::StandardButtons result = QMessageBox::question(this, 
+				tr("Unsaved Changes"), 
+				tr("Songs have been modified. Save changes?"), 
+				QMessageBox::Yes | QMessageBox::No | QMessageBox::Abort, 
+				QMessageBox::Abort);
+		if(result == QMessageBox::Abort)
+			return;
+		else if(result == QMessageBox::Yes)
+			songTree->saveUnsavedChanges();
+	}
+	
+	// ---------------------------------------------------------
+	
 	QSettings settings;
 	QString path = settings.value("songPath").toString();
 	
@@ -577,7 +628,9 @@ void QUMainWindow::toggleCompleterChk(bool checked) {
 
 void QUMainWindow::toggleAutoSaveChk(bool checked) {
 	QSettings settings;
-	settings.setValue("autoSave", QVariant(checked));	
+	settings.setValue("autoSave", QVariant(checked));
+	
+	actionSaveAll->setEnabled(!checked);
 }
 
 /*!

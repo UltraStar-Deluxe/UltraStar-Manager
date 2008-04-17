@@ -39,3 +39,4 @@ Files that appear <i>striked-out</i> and <i>gray</i> cannot be used anywhere and
 Did you know that there is a context-menu in the song tree? Try to click the right mouse button on a file or a song directory and see what happens...
 You can delete a single file by pushing the delete key on your keyboard or choosing <i>Delete</i> in the context menu of that file.
 If you drag&drop a song text file from your explorer into the song tree (not at an item), a new folder will be created and your file will be copied to that new location.<br><br>So you can easily add new songs to you collection.
+Whenever a folder appears bold there are unsaved changes. Don't forget to save them!

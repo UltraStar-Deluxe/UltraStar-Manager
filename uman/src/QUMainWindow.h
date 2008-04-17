@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QList>
 #include <QDir>
+#include <QCloseEvent>
 
 #include "QUSongItem.h"
 #include "ui_QUMainWindow.h"
@@ -22,6 +23,9 @@ public:
 	~QUMainWindow();
 	
 	static QDir BaseDir;
+	
+protected:
+	virtual void closeEvent(QCloseEvent *event);
 	
 private slots:
 	void initConfig();
