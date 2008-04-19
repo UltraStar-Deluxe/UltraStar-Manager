@@ -37,6 +37,7 @@
 #include "QUTagOrderDialog.h"
 #include "QUTextDialog.h"
 #include "QUProgressDialog.h"
+#include "QUReportDialog.h"
 
 QDir QUMainWindow::BaseDir = QDir();
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
@@ -156,6 +157,9 @@ void QUMainWindow::initMenu() {
 	actionRefreshSelected->setShortcut(QKeySequence::fromString("F5"));
 	actionRefresh->setShortcut(QKeySequence::fromString("Shift+F5"));
 	actionSaveSelected->setShortcut(QKeySequence::fromString("Ctrl+S"));
+	
+	// reports
+	connect(actionNewReport, SIGNAL(triggered()), this, SLOT(reportCreate()));
 	
 	// view
 	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
@@ -706,4 +710,18 @@ void QUMainWindow::removeFilter() {
 	filterEdit->setText("");
 	songTree->filterItems("");
 	actionFilter->setChecked(false);
+}
+
+void QUMainWindow::reportCreate() {
+	QUReportDialog *dlg = new QUReportDialog(songTree, this);
+	
+	
+	
+	if(dlg->exec()) {
+		
+	} else {
+		
+	}
+	
+	delete dlg;
 }

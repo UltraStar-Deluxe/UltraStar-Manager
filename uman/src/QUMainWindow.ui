@@ -890,7 +890,14 @@
     <addaction name="actionFilter" />
     <addaction name="separator" />
    </widget>
+   <widget class="QMenu" name="menu_Reports" >
+    <property name="title" >
+     <string>&amp;Reports</string>
+    </property>
+    <addaction name="actionNewReport" />
+   </widget>
    <addaction name="menuSongs" />
+   <addaction name="menu_Reports" />
    <addaction name="menuView" />
    <addaction name="menuOptions" />
    <addaction name="menuAbout_Qt" />
@@ -1084,6 +1091,11 @@
    </property>
    <property name="text" >
     <string>&amp;Filter</string>
+   </property>
+  </action>
+  <action name="actionNewReport" >
+   <property name="text" >
+    <string>&amp;Create New Report...</string>
    </property>
   </action>
  </widget>

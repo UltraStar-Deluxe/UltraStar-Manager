@@ -20,6 +20,8 @@ public:
 	void initHorizontalHeader();
 
 	bool hasUnsavedChanges() const;
+	bool hasHiddenItems() const { return !_hiddenItems.isEmpty(); }
+	
 	void clear();
 	
 public slots:

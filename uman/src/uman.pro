@@ -2,8 +2,10 @@ TEMPLATE = app
 TARGET = uman
 QT += core \
     gui
-HEADERS += QUProgressDialog.h \
-    QUSongTree.h \
+HEADERS += QUReportDialog.h \
+    songtree/QUSongTree.h \
+    songtree/QUSongItem.h \
+    QUProgressDialog.h \
     details/QUTagItem.h \
     details/QUDetailsTable.h \
     details/QUDetailItem.h \
@@ -19,11 +21,12 @@ HEADERS += QUProgressDialog.h \
     main.h \
     QUMonty.h \
     QUTagOrderDialog.h \
-    QUSongItem.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += QUProgressDialog.cpp \
-    QUSongTree.cpp \
+SOURCES += QUReportDialog.cpp \
+    songtree/QUSongTree.cpp \
+    songtree/QUSongItem.cpp \
+    QUProgressDialog.cpp \
     details/QUTagItem.cpp \
     details/QUDetailsTable.cpp \
     details/QUDetailItem.cpp \
@@ -37,11 +40,11 @@ SOURCES += QUProgressDialog.cpp \
     QUDropDownDelegate.cpp \
     QUMonty.cpp \
     QUTagOrderDialog.cpp \
-    QUSongItem.cpp \
     QUSongFile.cpp \
     QUMainWindow.cpp \
     main.cpp
-FORMS += QUProgressDialog.ui \
+FORMS += QUReportDialog.ui \
+    QUProgressDialog.ui \
     QUTextDialog.ui \
     QUTagOrderDialog.ui \
     QUMainWindow.ui
@@ -53,10 +56,14 @@ win32 {
 }
 INCLUDEPATH += ../include/taglib \
     tasks \
-    details
+    details \
+    songtree
 CONFIG += debug
 QMAKE_EXTRA_TARGETS += revtarget
 PRE_TARGETDEPS += version.h
 revtarget.target = version.h
-revtarget.commands = @echo "const char *revision = \"r$(shell svnversion .)\";" > $$revtarget.target
-revtarget.depends = $$SOURCES $$HEADERS $$FORMS
+revtarget.commands = @echo \
+    "const char *revision = \"r$(shell svnversion .)\";" > $$revtarget.target
+revtarget.depends = $$SOURCES \
+    $$HEADERS \
+    $$FORMS

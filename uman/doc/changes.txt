@@ -19,13 +19,15 @@ NEW FEATURES
   > you will have to save the song files yourself then
 * toolbar added
 * filter for the song tree added
+* extended selection in "edit tag save order" used
+  > now you can drag&drop multiple tags at once
 
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"
 * selected songs will not be unselected after applying a task anymore
 * list now all file-types in a subfolder to determine unnecessary files
   > gray + striked-out = useless :)
-* progress dialog also shown for renaming lots of 
+* progress dialog also shown for renaming lots of details ("mass-tagging")
 
 TODO
 * verify the 'E' at the end of a song (data)
@@ -34,10 +36,10 @@ TODO
 * reports... (plain text and html)
 * spinbox delegate for VIDEOGAP, START, END (?)
 * song playlists
-* introduce a flag to QUSongFile to check whether saving is necessary or not
 * extract cover from MP3
 * preview pictures, audio files
 * new task: remove unused files
+* switch the current text file in a folder (!!!)
 
 changes from 1.5.0 to 1.5.1
 ---------------------------

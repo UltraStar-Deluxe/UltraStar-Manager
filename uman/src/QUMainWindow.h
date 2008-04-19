@@ -71,6 +71,8 @@ private slots:
 	void applyFilter();
 	void removeFilter();
 	
+	void reportCreate();
+	
 private:
 	QList<QUSongFile*> _songs;
 	
