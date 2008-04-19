@@ -2,7 +2,10 @@ TEMPLATE = app
 TARGET = uman
 QT += core \
     gui
-HEADERS += QUReportDialog.h \
+HEADERS += reports/QUReportItem.h \
+    reports/QUSongTagData.h \
+    reports/QUAbstractReportData.h \
+    QUReportDialog.h \
     songtree/QUSongTree.h \
     songtree/QUSongItem.h \
     QUProgressDialog.h \
@@ -23,7 +26,10 @@ HEADERS += QUReportDialog.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += QUReportDialog.cpp \
+SOURCES += reports/QUReportItem.cpp \
+    reports/QUSongTagData.cpp \
+    reports/QUAbstractReportData.cpp \
+    QUReportDialog.cpp \
     songtree/QUSongTree.cpp \
     songtree/QUSongItem.cpp \
     QUProgressDialog.cpp \
@@ -57,7 +63,8 @@ win32 {
 INCLUDEPATH += ../include/taglib \
     tasks \
     details \
-    songtree
+    songtree \
+    reports
 CONFIG += debug
 QMAKE_EXTRA_TARGETS += revtarget
 PRE_TARGETDEPS += version.h

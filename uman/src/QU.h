@@ -41,6 +41,11 @@ public:
 	};
 	Q_DECLARE_FLAGS(PreparatoryTaskModes, PreparatoryTaskMode)
 	
+	enum ReportDataType {
+		text,
+		icon
+	};
+	Q_DECLARE_FLAGS(ReportDataTypes, ReportDataType)	
 };
 
 #endif /*QU_H_*/

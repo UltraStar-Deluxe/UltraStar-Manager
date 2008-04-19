@@ -715,13 +715,9 @@ void QUMainWindow::removeFilter() {
 void QUMainWindow::reportCreate() {
 	QUReportDialog *dlg = new QUReportDialog(songTree, this);
 	
-	
-	
-	if(dlg->exec()) {
-		
-	} else {
-		
-	}
+	connect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+	dlg->exec();
+	disconnect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 	
 	delete dlg;
 }
