@@ -44,6 +44,7 @@ public:
 	~QUSongFile();
 	
 	bool hasUnsavedChanges() const { return _hasUnsavedChanges; }
+	void setFile(const QString &file);
 	
 public slots:
 	QString artist() const     {return _info.value("ARTIST", QString("n/a"));}

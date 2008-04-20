@@ -21,6 +21,8 @@ NEW FEATURES
 * filter for the song tree added
 * extended selection in "edit tag save order" used
   > now you can drag&drop multiple tags at once
+* double-click on an unused txt-file uses that file for the song in the folder
+  > useful if you keep several valid song text files in one folder (NOT RECOMMENDED!)
 
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"

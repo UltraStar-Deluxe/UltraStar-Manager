@@ -18,11 +18,18 @@
  * \param parent parent for Qt object tree
  */
 QUSongFile::QUSongFile(const QString &file, QObject *parent): QObject(parent), _hasUnsavedChanges(false) {
-	_fi.setFile(file);
-	updateCache();
+	this->setFile(file);
 }
 
 QUSongFile::~QUSongFile() {
+}
+
+/*!
+ * Here you can set up a new file that will be used for this song.
+ */
+void QUSongFile::setFile(const QString &file) {
+	_fi.setFile(file);
+	updateCache();
 }
 
 /*!
@@ -36,6 +43,12 @@ bool QUSongFile::updateCache() {
 	if(!_file.open(QIODevice::ReadOnly | QIODevice::Text))
 		return false;
 	
+	// clear contents
+	_lyrics.clear();
+	_info.clear();
+	_foundUnsupportedTags.clear();
+	
+	// read new content
 	QString line;
 	while( !(QRegExp("[:\\*FE].*").exactMatch(line) || _file.atEnd()) ) {
 		line = QString(_file.readLine());
@@ -61,7 +74,6 @@ bool QUSongFile::updateCache() {
 		}
 	}
 	
-	_lyrics.clear();
 	_lyrics << line;
 	
 	while(!_file.atEnd()) {

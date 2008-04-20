@@ -68,6 +68,7 @@ private slots:
 	void addLogMsg(const QString &msg, QU::EventMessageTypes type = QU::information);
 	
 	void toggleFilterFrame(bool checked);
+	void toggleFilterNegateBtn();
 	void applyFilter();
 	void removeFilter();
 	

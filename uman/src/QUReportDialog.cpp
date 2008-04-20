@@ -15,12 +15,12 @@ QUReportDialog::QUReportDialog(QUSongTree *songTree, QWidget *parent): QDialog(p
 	setupUi(this);
 	
 	if(songTree->hasHiddenItems())
-		infoTextLbl->setText(tr("You applied a filter to your songs. The report will only be created for the songs that match the filter."));
+		infoTextLbl->setText(tr("You applied a filter to your songs. The report will only be created for the songs that are visible in the song tree."));
 	else
 		infoTextLbl->setText(tr("Select the columns you want to see in the report. Drag & drop them to change their order. Songs will be sorted after the first column."));
 
 	if(songTree->topLevelItemCount() == 0) {
-		infoTextLbl->setText(tr("The report will be empty because no song matches the filter."));
+		infoTextLbl->setText(tr("The report will be empty because no song is visible in the song tree."));
 		infoIconLbl->setPixmap(QPixmap(":/marks/error.png"));
 	}
 	

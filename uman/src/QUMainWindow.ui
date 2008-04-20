@@ -72,10 +72,13 @@
            <item>
             <widget class="QToolButton" name="filterNegateBtn" >
              <property name="text" >
-              <string>N</string>
+              <string/>
+             </property>
+             <property name="icon" >
+              <iconset resource="images/uman.qrc" >:/marks/plus.png</iconset>
              </property>
              <property name="checkable" >
-              <bool>true</bool>
+              <bool>false</bool>
              </property>
              <property name="autoRaise" >
               <bool>true</bool>
@@ -1106,7 +1109,7 @@
     <iconset resource="images/uman.qrc" >:/control/filter.png</iconset>
    </property>
    <property name="text" >
-    <string>&amp;Filter</string>
+    <string>&amp;Filter Songs</string>
    </property>
   </action>
   <action name="actionNewReport" >

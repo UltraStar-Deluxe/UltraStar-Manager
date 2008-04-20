@@ -147,9 +147,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 					song->creator().contains(rx) ||
 					song->language().contains(rx);
 
-				if(!matchesInfoTag && !(mode & QU::negateFilter))
-					filterInfo = true;
-				else if(matchesInfoTag && (mode & QU::negateFilter))
+				if(!matchesInfoTag)
 					filterInfo = true;
 				else
 					filterInfo = false;
@@ -162,9 +160,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 					song->background().contains(rx) ||
 					song->video().contains(rx);
 
-				if(!matchesFileTag && !(mode & QU::negateFilter))
-					filterFile = true;
-				else if(matchesFileTag && (mode & QU::negateFilter))
+				if(!matchesFileTag)
 					filterFile = true;
 				else
 					filterFile = false;				
@@ -179,15 +175,17 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 					song->bpm().contains(rx) ||
 					song->gap().contains(rx);
 
-				if(!matchesControlTag && !(mode & QU::negateFilter))
-					filterCtrl = true;
-				else if(matchesControlTag && (mode & QU::negateFilter))
+				if(!matchesControlTag)
 					filterCtrl = true;
 				else
 					filterCtrl = false;		
 			}
 			
-			if(filterInfo && filterFile && filterCtrl)
+			if( 
+				(filterInfo && filterFile && filterCtrl && !(mode.testFlag(QU::negateFilter)))
+				||
+				(!(filterInfo && filterFile && filterCtrl) && (mode.testFlag(QU::negateFilter)))
+			)
 				_hiddenItems.append(this->takeTopLevelItem(this->indexOfTopLevelItem(item)));
 		}
 	}

@@ -143,6 +143,7 @@ void QUMainWindow::initWindow() {
 	connect(filterEdit, SIGNAL(returnPressed()), this, SLOT(applyFilter()));
 	connect(filterBtn, SIGNAL(clicked()), this, SLOT(applyFilter()));
 	connect(filterCancelBtn, SIGNAL(clicked()), this, SLOT(removeFilter()));
+	connect(filterNegateBtn, SIGNAL(clicked()), this, SLOT(toggleFilterNegateBtn()));
 	
 	filterTypeCombo->addItems(QStringList() << tr("All Tags") << tr("Information Tags") << tr("File Tags") << tr("Control Tags"));
 	filterTypeCombo->setCurrentIndex(0);
@@ -663,17 +664,20 @@ void QUMainWindow::showSongTextFile(QTreeWidgetItem *item, int column) {
 	
 	QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
 	
-	if(!songItem)
+	if(!songItem || songItem->isToplevel())
 		return;
 	
-	if(QString::compare(item->text(0), songItem->song()->songFileInfo().fileName(), Qt::CaseInsensitive) != 0)
-		return; // display only the current song text file
-	
-	QUTextDialog *dlg = new QUTextDialog(songItem->song(), this);
-	
-	dlg->exec();
-	
-	delete dlg;
+	if(QString::compare(item->text(0), songItem->song()->songFileInfo().fileName(), Qt::CaseInsensitive) == 0) {
+		QUTextDialog *dlg = new QUTextDialog(songItem->song(), this);
+		dlg->exec();
+		delete dlg;
+	} else if(item->text(0).endsWith(SONG_FILE_SUFFIX, Qt::CaseInsensitive)) {
+		// use this song text file for the folder
+		songItem->song()->setFile(QFileInfo(songItem->song()->songFileInfo().dir(), item->text(0)).filePath());
+
+		songTree->setCurrentItem(songItem->parent());
+		songItem->update();
+	}
 }
 
 /*!
@@ -706,10 +710,20 @@ void QUMainWindow::toggleFilterFrame(bool checked) {
 	}
 }
 
+void QUMainWindow::toggleFilterNegateBtn() {
+	if(filterNegateBtn->text() == "negate") {
+		filterNegateBtn->setText("");
+		filterNegateBtn->setIcon(QIcon(":/marks/plus.png"));
+	} else {
+		filterNegateBtn->setText("negate");
+		filterNegateBtn->setIcon(QIcon(":/marks/minus.png"));		
+	}
+}
+
 void QUMainWindow::applyFilter() {
 	int modes = 0;
 	
-	if(filterNegateBtn->isChecked())
+	if(filterNegateBtn->text() == "negate")
 		modes |= QU::negateFilter;
 	
 	if(filterTypeCombo->currentIndex() == 0)
