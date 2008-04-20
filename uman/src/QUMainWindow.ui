@@ -70,11 +70,27 @@
             <number>0</number>
            </property>
            <item>
+            <widget class="QToolButton" name="filterNegateBtn" >
+             <property name="text" >
+              <string>N</string>
+             </property>
+             <property name="checkable" >
+              <bool>true</bool>
+             </property>
+             <property name="autoRaise" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QLineEdit" name="filterEdit" >
              <property name="toolTip" >
               <string>Enter a regular expression and press the filter button to the right.</string>
              </property>
             </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="filterTypeCombo" />
            </item>
            <item>
             <widget class="QToolButton" name="filterBtn" >

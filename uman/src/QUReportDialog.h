@@ -20,6 +20,7 @@ private:
 	QUSongTree *_songTree;
 	
 	void initReportList();
+	QString useImageFromResource(const QString &item, QDir dest);
 	
 private slots:
 	void createHtmlReport();

@@ -45,7 +45,15 @@ public:
 		text,
 		icon
 	};
-	Q_DECLARE_FLAGS(ReportDataTypes, ReportDataType)	
+	Q_DECLARE_FLAGS(ReportDataTypes, ReportDataType)
+	
+	enum FilterMode {
+		informationTags = 0x01,
+		fileTags = 0x02,
+		controlTags = 0x04,
+		negateFilter = 0x10
+	};
+	Q_DECLARE_FLAGS(FilterModes, FilterMode)
 };
 
 #endif /*QU_H_*/

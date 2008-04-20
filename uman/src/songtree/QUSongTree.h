@@ -30,7 +30,7 @@ public slots:
 	void saveSelectedSongs();
 	void saveUnsavedChanges();
 	
-	void filterItems(const QString &regexp);
+	void filterItems(const QString &regexp, QU::FilterModes mode = QU::informationTags);
 	
 private slots:
 	void deleteCurrentItem();

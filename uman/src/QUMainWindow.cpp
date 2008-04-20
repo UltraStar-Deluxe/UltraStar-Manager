@@ -136,11 +136,18 @@ void QUMainWindow::initWindow() {
 	addDockWidget(Qt::RightDockWidgetArea, tasksDock);
 	addDockWidget(Qt::RightDockWidgetArea, eventsDock);
 	
+	// init filter area
+	
 	filterFrame->hide();
 	
 	connect(filterEdit, SIGNAL(returnPressed()), this, SLOT(applyFilter()));
 	connect(filterBtn, SIGNAL(clicked()), this, SLOT(applyFilter()));
 	connect(filterCancelBtn, SIGNAL(clicked()), this, SLOT(removeFilter()));
+	
+	filterTypeCombo->addItems(QStringList() << tr("All Tags") << tr("Information Tags") << tr("File Tags") << tr("Control Tags"));
+	filterTypeCombo->setCurrentIndex(0);
+	
+	filterNegateBtn->setChecked(false);
 }
 
 void QUMainWindow::initMenu() {
@@ -700,7 +707,24 @@ void QUMainWindow::toggleFilterFrame(bool checked) {
 }
 
 void QUMainWindow::applyFilter() {
-	songTree->filterItems(filterEdit->text());
+	int modes = 0;
+	
+	if(filterNegateBtn->isChecked())
+		modes |= QU::negateFilter;
+	
+	if(filterTypeCombo->currentIndex() == 0)
+		modes |= QU::informationTags | QU::fileTags | QU::controlTags;
+	
+	if(filterTypeCombo->currentIndex() == 1)
+		modes |= QU::informationTags;
+
+	if(filterTypeCombo->currentIndex() == 2)
+		modes |= QU::fileTags;
+
+	if(filterTypeCombo->currentIndex() == 3)
+		modes |= QU::controlTags;
+	
+	songTree->filterItems(filterEdit->text(), (QU::FilterModes) modes);
 }
 
 /*!

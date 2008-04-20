@@ -105,7 +105,7 @@ void QUSongTree::saveUnsavedChanges() {
  * will remove the filter and show all items again. Selected items will be
  * unselected if hidden.
  */
-void QUSongTree::filterItems(const QString &regexp) {
+void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 	this->addTopLevelItems(_hiddenItems);
 	_hiddenItems.clear();
 
@@ -133,15 +133,61 @@ void QUSongTree::filterItems(const QString &regexp) {
 			
 			progress.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
 			
-			if( !(
-				song->artist().contains(rx) ||
-				song->title().contains(rx) ||
-				song->genre().contains(rx) ||
-				song->year().contains(rx) ||
-				song->edition().contains(rx) ||
-				song->creator().contains(rx) ||
-				song->language().contains(rx)
-			) )
+			bool filterInfo = true;
+			bool filterFile = true;
+			bool filterCtrl = true;
+			
+			if(mode.testFlag(QU::informationTags)) {
+				bool matchesInfoTag =
+					song->artist().contains(rx) ||
+					song->title().contains(rx) ||
+					song->genre().contains(rx) ||
+					song->year().contains(rx) ||
+					song->edition().contains(rx) ||
+					song->creator().contains(rx) ||
+					song->language().contains(rx);
+
+				if(!matchesInfoTag && !(mode & QU::negateFilter))
+					filterInfo = true;
+				else if(matchesInfoTag && (mode & QU::negateFilter))
+					filterInfo = true;
+				else
+					filterInfo = false;
+			} 
+			
+			if(mode.testFlag(QU::fileTags)) {
+				bool matchesFileTag =
+					song->mp3().contains(rx) ||
+					song->cover().contains(rx) ||
+					song->background().contains(rx) ||
+					song->video().contains(rx);
+
+				if(!matchesFileTag && !(mode & QU::negateFilter))
+					filterFile = true;
+				else if(matchesFileTag && (mode & QU::negateFilter))
+					filterFile = true;
+				else
+					filterFile = false;				
+			}
+			
+			if(mode.testFlag(QU::controlTags)) {
+				bool matchesControlTag =
+					song->videogap().contains(rx) ||
+					song->start().contains(rx) ||
+					song->end().contains(rx) ||
+					song->relative().contains(rx) ||
+					song->bpm().contains(rx) ||
+					song->gap().contains(rx);
+
+				if(!matchesControlTag && !(mode & QU::negateFilter))
+					filterCtrl = true;
+				else if(matchesControlTag && (mode & QU::negateFilter))
+					filterCtrl = true;
+				else
+					filterCtrl = false;		
+			}
+			
+			if(filterInfo && filterFile && filterCtrl)
 				_hiddenItems.append(this->takeTopLevelItem(this->indexOfTopLevelItem(item)));
 		}
 	}
