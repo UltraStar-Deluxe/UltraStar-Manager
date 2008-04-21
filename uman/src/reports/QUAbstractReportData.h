@@ -16,6 +16,8 @@ public:
 	virtual QString data(QUSongFile *song) = 0;
 	virtual QString headerData() = 0;
 	
+	virtual void sort(QList<QUSongFile*> &songs) = 0;
+	
 	const QIcon& icon() const { return _icon; }
 	const QString& description() const { return _description; }
 	const QString& toolTip() const { return _toolTip; }

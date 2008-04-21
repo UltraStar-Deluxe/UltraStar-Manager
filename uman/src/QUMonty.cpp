@@ -2,6 +2,8 @@
 
 #include <QFile>
 #include <QSettings>
+#include <QPixmap>
+#include <QFileInfo>
 
 QUMonty::QUMonty() {
 	initMessages();
@@ -78,4 +80,39 @@ void QUMonty::talk(QLabel *montyLbl, QLabel *msgLbl) {
 bool QUMonty::autoSaveEnabled() const {
 	QSettings settings;
 	return settings.value("autoSave", QVariant(true)).toBool();
+}
+
+/*!
+ * Extract a resource (e.g. an image/icon) to a subdirectory of the report output
+ * path and return a relative path to that resource.
+ * \param item The resource to extract (e.g. ":/accept.png")
+ * \param dest Directory of the report, NOT the subdirectory for the image
+ * \returns Relative local path to the resource.
+ */
+QString QUMonty::useImageFromResource(const QString &item, QDir dest) {
+	if(!dest.cd("images")) {
+		dest.mkdir("images");
+		if(!dest.cd("images")) {
+//			emit finished(tr("Subdirectory for images could not be created!"), QU::warning);
+			return QString();
+		}
+	}
+	
+	QPixmap pixmap(item);
+	QFileInfo fi(dest, QFileInfo(item).fileName());
+	
+	if(fi.exists()) {
+		dest.cdUp();
+		return dest.relativeFilePath(fi.filePath());		
+	}
+	
+	if(!pixmap.save(fi.filePath())) {
+//		emit finished(QString(tr("The resource file \"%1\" could NOT be saved.")).arg(fi.filePath()), QU::warning);
+		return QString();
+	}
+	
+//	emit finished(QString(tr("The resource file \"%1\" was extracted successfully.")).arg(fi.filePath()), QU::information);
+	
+	dest.cdUp();
+	return dest.relativeFilePath(fi.filePath());
 }

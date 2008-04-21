@@ -16,6 +16,12 @@ public:
 	virtual QString data(QUSongFile *song);
 	virtual QString headerData();
 	
+	// sorting
+	virtual void sort(QList<QUSongFile*> &songs);
+	
+	static bool artistLessThan (QUSongFile *s1, QUSongFile *s2) { return QString::compare(s1->artist(), s2->artist(), Qt::CaseInsensitive) < 0; }
+	static bool titleLessThan (QUSongFile *s1, QUSongFile *s2) { return QString::compare(s1->title(), s2->title(), Qt::CaseInsensitive) < 0; }
+	
 private:
 	QString _tag;
 };

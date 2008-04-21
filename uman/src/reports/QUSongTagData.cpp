@@ -8,23 +8,23 @@ QUSongTagData::QUSongTagData(const QString &tag, QObject *parent): QUAbstractRep
 		this->setIcon(QIcon(":/types/user.png"));
 		this->setDescription(tr("Artist"));
 	} else if(QString::compare(_tag, TITLE_TAG, Qt::CaseInsensitive) == 0) {
-			this->setIcon(QIcon(":/types/font.png"));
-			this->setDescription(tr("Title"));
+		this->setIcon(QIcon(":/types/font.png"));
+		this->setDescription(tr("Title"));
 	} else if(QString::compare(_tag, LANGUAGE_TAG, Qt::CaseInsensitive) == 0) {
-			this->setIcon(QIcon(":/types/language.png"));
-			this->setDescription(tr("Language"));
+		this->setIcon(QIcon(":/types/language.png"));
+		this->setDescription(tr("Language"));
 	} else if(QString::compare(_tag, EDITION_TAG, Qt::CaseInsensitive) == 0) {
-			this->setIcon(QIcon(":/types/edition.png"));
-			this->setDescription(tr("Edition"));
+		this->setIcon(QIcon(":/types/edition.png"));
+		this->setDescription(tr("Edition"));
 	} else if(QString::compare(_tag, GENRE_TAG, Qt::CaseInsensitive) == 0) {
-			this->setIcon(QIcon(":/types/genre.png"));
-			this->setDescription(tr("Genre"));
+		this->setIcon(QIcon(":/types/genre.png"));
+		this->setDescription(tr("Genre"));
 	} else if(QString::compare(_tag, YEAR_TAG, Qt::CaseInsensitive) == 0) {
-			this->setIcon(QIcon(":/types/date.png"));
-			this->setDescription(tr("Year"));
+		this->setIcon(QIcon(":/types/date.png"));
+		this->setDescription(tr("Year"));
 	} else if(QString::compare(_tag, CREATOR_TAG, Qt::CaseInsensitive) == 0) {
-			this->setIcon(QIcon(":/types/creator.png"));
-			this->setDescription(tr("Creator"));
+		this->setIcon(QIcon(":/types/creator.png"));
+		this->setDescription(tr("Creator"));
 	}
 }
 
@@ -49,4 +49,11 @@ QString QUSongTagData::data(QUSongFile *song) {
 
 QString QUSongTagData::headerData() {
 	return this->description();
+}
+
+void QUSongTagData::sort(QList<QUSongFile*> &songs) {
+	if(QString::compare(_tag, ARTIST_TAG, Qt::CaseInsensitive) == 0)
+		qStableSort(songs.begin(), songs.end(), QUSongTagData::artistLessThan);
+	if(QString::compare(_tag, TITLE_TAG, Qt::CaseInsensitive) == 0)
+		qStableSort(songs.begin(), songs.end(), QUSongTagData::titleLessThan);
 }

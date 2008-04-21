@@ -6,6 +6,7 @@
 #include <QPixmap>
 #include <QString>
 #include <QLabel>
+#include <QDir>
 
 class QUMonty {
 public:
@@ -27,6 +28,8 @@ public:
 	void setSongCount(int c) { songCount = c; }
 	
 	bool autoSaveEnabled() const;
+	
+	QString useImageFromResource(const QString &item, QDir dest);
 	
 protected:
 	QUMonty();

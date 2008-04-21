@@ -4,6 +4,7 @@
 #include "QU.h"
 #include "QUSongTree.h"
 #include "QUSongTagData.h"
+#include "QUBooleanSongData.h"
 #include "QUReportItem.h"
 
 #include <QDialog>
@@ -20,7 +21,6 @@ private:
 	QUSongTree *_songTree;
 	
 	void initReportList();
-	QString useImageFromResource(const QString &item, QDir dest);
 	
 private slots:
 	void createHtmlReport();

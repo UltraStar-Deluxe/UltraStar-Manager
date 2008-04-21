@@ -1,8 +1,12 @@
 TEMPLATE = app
 TARGET = uman
 QT += core \
-    gui
-HEADERS += reports/QUReportItem.h \
+    gui \
+    xml
+HEADERS += reports/QUBooleanSongData.h \
+    reports/QUAbstractReport.h \
+    reports/QUHtmlReport.h \
+    reports/QUReportItem.h \
     reports/QUSongTagData.h \
     reports/QUAbstractReportData.h \
     QUReportDialog.h \
@@ -26,7 +30,10 @@ HEADERS += reports/QUReportItem.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += reports/QUReportItem.cpp \
+SOURCES += reports/QUBooleanSongData.cpp \
+    reports/QUAbstractReport.cpp \
+    reports/QUHtmlReport.cpp \
+    reports/QUReportItem.cpp \
     reports/QUSongTagData.cpp \
     reports/QUAbstractReportData.cpp \
     QUReportDialog.cpp \
