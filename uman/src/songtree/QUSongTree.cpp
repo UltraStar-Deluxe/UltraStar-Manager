@@ -32,9 +32,9 @@ void QUSongTree::initHorizontalHeader() {
 	header->setToolTip(2, tr("Shows whether your folder includes the title correctly:<br><i>Artist - Title ...</i>"));
 	header->setIcon(3, QIcon(":/types/music.png"));
 	header->setToolTip(3, tr("Shows whether the song text file points to an <b>audio file</b> that can be found by UltraStar"));
-	header->setIcon(4, QIcon(":/types/picture.png"));
+	header->setIcon(4, QIcon(":/types/cover.png"));
 	header->setToolTip(4, tr("Shows whether the song text file points to a <b>cover picture</b> that can be found by UltraStar"));
-	header->setIcon(5, QIcon(":/types/picture.png"));
+	header->setIcon(5, QIcon(":/types/background.png"));
 	header->setToolTip(5, tr("Shows whether the song text file points to a <b>background picture</b> that can be found by UltraStar"));
 	header->setIcon(6, QIcon(":/types/film.png"));
 	header->setToolTip(6, tr("Shows whether the song text file points to a <b>video file</b> that can be found by UltraStar"));

@@ -56,7 +56,9 @@
         <file>languages</file>
     </qresource>
     <qresource prefix="/types" >
+        <file>background.png</file>
         <file>comment.png</file>
+        <file>cover.png</file>
         <file>creator.png</file>
         <file>date.png</file>
         <file>edition.png</file>

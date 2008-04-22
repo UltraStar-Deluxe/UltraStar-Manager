@@ -7,10 +7,10 @@ QUBooleanSongData::QUBooleanSongData(const QString &tag, QObject *parent): QUAbs
 		this->setIcon(QIcon(":/types/music.png"));
 		this->setDescription(tr("Audio file exists?"));
 	} else if(QString::compare(_tag, COVER_TAG, Qt::CaseInsensitive) == 0) {
-		this->setIcon(QIcon(":/types/picture.png"));
+		this->setIcon(QIcon(":/types/cover.png"));
 		this->setDescription(tr("Cover file exists?"));
 	} else if(QString::compare(_tag, BACKGROUND_TAG, Qt::CaseInsensitive) == 0) {
-		this->setIcon(QIcon(":/types/picture.png"));
+		this->setIcon(QIcon(":/types/background.png"));
 		this->setDescription(tr("Background file exists?"));
 	} else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/film.png"));
@@ -44,9 +44,9 @@ QString QUBooleanSongData::headerIconData() {
 	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0)
 		return ":/types/music.png";
 	else if(QString::compare(_tag, COVER_TAG, Qt::CaseInsensitive) == 0)
-		return ":/types/picture.png";
+		return ":/types/cover.png";
 	else if(QString::compare(_tag, BACKGROUND_TAG, Qt::CaseInsensitive) == 0)
-		return ":/types/picture.png";
+		return ":/types/background.png";
 	else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0)
 		return ":/types/film.png";
 	

@@ -43,8 +43,8 @@ void QUDetailsTable::initTagColumn() {
 	
 	this->initSeparator(tr("Files"), 8);
 	this->setItem(9, 0, new QUTagItem(QIcon(":/types/music.png"), tr("MP3")));
-	this->setItem(10, 0, new QUTagItem(QIcon(":/types/picture.png"), tr("Cover")));
-	this->setItem(11, 0, new QUTagItem(QIcon(":/types/picture.png"), tr("Background")));
+	this->setItem(10, 0, new QUTagItem(QIcon(":/types/cover.png"), tr("Cover")));
+	this->setItem(11, 0, new QUTagItem(QIcon(":/types/background.png"), tr("Background")));
 	this->setItem(12, 0, new QUTagItem(QIcon(":/types/film.png"), tr("Video")));
 
 	this->initSeparator(tr("Control"), 13);

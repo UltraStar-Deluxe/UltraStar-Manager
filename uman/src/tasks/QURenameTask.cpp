@@ -27,11 +27,11 @@ QURenameTask::QURenameTask(QU::RenameTaskModes mode, QObject *parent):
 		this->setDescription("Rename audio file to \"Artist - Title.*\"");
 		break;
 	case QU::renameCoverFile:
-		this->setIcon(QIcon(":/types/picture.png"));
+		this->setIcon(QIcon(":/types/cover.png"));
 		this->setDescription("Rename cover to \"Artist - Title [CO].*\"");
 		break;
 	case QU::renameBackgroundFile:
-		this->setIcon(QIcon(":/types/picture.png"));
+		this->setIcon(QIcon(":/types/background.png"));
 		this->setDescription("Rename background to \"Artist - Title [BG].*\"");
 		break;
 	case QU::renameVideoFile:
