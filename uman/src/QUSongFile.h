@@ -12,7 +12,7 @@
 #include "QU.h"
 
 #define SONG_FILE_SUFFIX "txt"
-#define N_A "n/a"
+#define N_A "-"
 
 #define TITLE_TAG      "TITLE"
 #define ARTIST_TAG     "ARTIST"

@@ -122,19 +122,19 @@ void QUDetailItem::updateText(const QString &tag, QUSongFile *song) {
 	
 	} else if(QString::compare(tag, VIDEOGAP_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		if(song->videogap() != "n/a")
+		if(song->videogap() != N_A)
 			this->setText(QString("%1 seconds").arg(song->videogap()));
 		else
 			this->setText(song->videogap());
 	} else if(QString::compare(tag, START_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		if(song->start() != "n/a")
+		if(song->start() != N_A)
 			this->setText(QString("%1 seconds").arg(song->start()));
 		else
 			this->setText(song->start());
 	} else if(QString::compare(tag, END_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		if(song->end() != "n/a")
+		if(song->end() != N_A)
 			this->setText(QString("%1 milliseconds").arg(song->end()));
 		else
 			this->setText(song->end());
@@ -146,7 +146,7 @@ void QUDetailItem::updateText(const QString &tag, QUSongFile *song) {
 		this->setText(song->bpm());
 	} else if(QString::compare(tag, GAP_TAG) == 0) {
 		this->setFlags(0);
-		if(song->gap() != "n/a")
+		if(song->gap() != N_A)
 			this->setText(QString("%1 milliseconds").arg(song->gap()));
 		else
 			this->setText(song->gap());

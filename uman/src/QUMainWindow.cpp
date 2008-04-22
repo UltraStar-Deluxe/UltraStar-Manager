@@ -391,10 +391,10 @@ void QUMainWindow::updateStatusbar() {
 	
 	QString text("Audio file selected: ARTIST = \"%1\"; TITLE = \"%2\"; GENRE = \"%3\"; YEAR = \"%4\"");
 	
-	QString artist(TStringToQString(ref.tag()->artist())); if(artist == "") artist = "n/a";
-	QString title(TStringToQString(ref.tag()->title())); if(title == "") title = "n/a";
-	QString genre(TStringToQString(ref.tag()->genre())); if(genre == "") genre = "n/a";
-	QString year(QVariant(ref.tag()->year()).toString()); if(year == "0") year = "n/a";
+	QString artist(TStringToQString(ref.tag()->artist())); if(artist == "") artist = N_A;
+	QString title(TStringToQString(ref.tag()->title())); if(title == "") title = N_A;
+	QString genre(TStringToQString(ref.tag()->genre())); if(genre == "") genre = N_A;
+	QString year(QVariant(ref.tag()->year()).toString()); if(year == "0") year = N_A;
 	
 	this->statusBar()->showMessage(text.arg(artist).arg(title).arg(genre).arg(year));
 }
@@ -489,7 +489,7 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 		}
 	}
 	
-	updateDetails(); // to show "n/a" if text was deleted completely
+	updateDetails(); // to show N_A if text was deleted completely
 }
 
 /*!

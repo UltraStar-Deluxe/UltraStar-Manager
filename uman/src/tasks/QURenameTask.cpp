@@ -100,7 +100,7 @@ void QURenameTask::renameSongVideoSpecial(QUSongFile *song) {
 	QString newName("%1 - %2 [VD#%3]." + QFileInfo(song->video()).suffix().toLower());
 	
 	// set videogap 0 for the videoname
-	QString vgap(song->videogap()); if(vgap == "n/a") vgap = "0";
+	QString vgap(song->videogap()); if(vgap == N_A) vgap = "0";
 	
 	song->renameSongVideo(newName.arg(song->artist()).arg(song->title()).arg(vgap));
 }

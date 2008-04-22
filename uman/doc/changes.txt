@@ -24,6 +24,7 @@ NEW FEATURES
 * double-click on an unused txt-file uses that file for the song in the folder
   > useful if you keep several valid song text files in one folder (NOT RECOMMENDED!)
 * html reports added
+* "n/a" replaced with "-"
 
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"
@@ -40,7 +41,6 @@ TODO
 * song playlists
 * preview pictures
 * new task: remove unused files
-* complete sorting methods for QUSongTagData
 
 DEFERRED FOR FUTURE RELEASE
 * extract cover from MP3

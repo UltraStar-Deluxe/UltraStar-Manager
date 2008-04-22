@@ -42,11 +42,11 @@ void QUDropDownDelegate::setEditorData(
 	
 	comboBox->addItems(index.model()->data(index, Qt::UserRole).toStringList());
 	
-	if(value == "n/a")
+	if(QString::compare(value, N_A, Qt::CaseSensitive) == 0)
 		value = "";
 
-	if(QRegExp("(-*)(\\d*|\\d*,\\d*|n/a) (seconds|milliseconds)").exactMatch(value))
-		value.remove(QRegExp("(seconds|milliseconds|n/a)"));
+	if(QRegExp("(-*)(\\d*|\\d*,\\d*) (seconds|milliseconds)").exactMatch(value))
+		value.remove(QRegExp("(seconds|milliseconds)"));
 	
 	comboBox->setEditText(value.trimmed());
 	comboBox->lineEdit()->selectAll();
