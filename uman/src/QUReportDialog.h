@@ -21,6 +21,7 @@ private:
 	QUSongTree *_songTree;
 	
 	void initReportList();
+	void fetchDataAndSongs(QList<QUAbstractReportData*> &data, QList<QUSongFile*> &songs);
 	
 private slots:
 	void createHtmlReport();

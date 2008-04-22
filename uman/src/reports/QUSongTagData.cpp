@@ -52,6 +52,9 @@ QString QUSongTagData::headerData() {
 }
 
 void QUSongTagData::sort(QList<QUSongFile*> &songs) {
+	if(this->next())
+		this->next()->sort(songs);
+	
 	if(QString::compare(_tag, ARTIST_TAG, Qt::CaseInsensitive) == 0)
 		qStableSort(songs.begin(), songs.end(), QUSongTagData::artistLessThan);
 	if(QString::compare(_tag, TITLE_TAG, Qt::CaseInsensitive) == 0)

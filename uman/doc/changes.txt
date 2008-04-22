@@ -23,6 +23,7 @@ NEW FEATURES
   > now you can drag&drop multiple tags at once
 * double-click on an unused txt-file uses that file for the song in the folder
   > useful if you keep several valid song text files in one folder (NOT RECOMMENDED!)
+* html reports added
 
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"
@@ -35,13 +36,14 @@ TODO
 * verify the 'E' at the end of a song (data)
 * case-sensitive renaming issues with file names....argh...
 * enable the user the switch between german and english as application language
-* reports... (plain text and html)
-* spinbox delegate for VIDEOGAP, START, END (?)
+* reports... (plain text)
 * song playlists
-* extract cover from MP3
-* preview pictures, audio files
+* preview pictures
 * new task: remove unused files
-* !!! sorting of columns in reports (not only the first) !!!
+
+DEFERRED FOR FUTURE RELEASE
+* extract cover from MP3
+* preview audio files
 
 changes from 1.5.0 to 1.5.1
 ---------------------------

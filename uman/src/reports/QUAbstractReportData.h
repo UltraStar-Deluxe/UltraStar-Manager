@@ -16,18 +16,22 @@ public:
 	virtual QString data(QUSongFile *song) = 0;
 	virtual QString headerData() = 0;
 	
-	virtual void sort(QList<QUSongFile*> &songs) = 0;
-	
 	const QIcon& icon() const { return _icon; }
 	const QString& description() const { return _description; }
 	const QString& toolTip() const { return _toolTip; }
 	QU::ReportDataTypes type() const { return _type; }
+	
+	virtual void sort(QList<QUSongFile*> &songs) = 0;
+	
+	QUAbstractReportData* next() const { return _next; }
+	void setNext(QUAbstractReportData *next) { _next = next; }
 	
 private:
 	QIcon   _icon;
 	QString _description;
 	QString _toolTip;
 	QU::ReportDataTypes _type;
+	QUAbstractReportData *_next;
 
 protected:
 	void setIcon(const QIcon &icon) { _icon = icon; }

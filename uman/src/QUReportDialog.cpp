@@ -18,7 +18,7 @@ QUReportDialog::QUReportDialog(QUSongTree *songTree, QWidget *parent): QDialog(p
 	if(songTree->hasHiddenItems())
 		infoTextLbl->setText(tr("You applied a filter to your songs. The report will only be created for the songs that are visible in the song tree."));
 	else
-		infoTextLbl->setText(tr("Select the columns you want to see in the report. Drag & drop them to change their order. Songs will be sorted after the first column."));
+		infoTextLbl->setText(tr("Select the columns you want to see in the report. Drag & drop them to change their order. Songs will be sorted alphabetically."));
 
 	if(songTree->topLevelItemCount() == 0) {
 		infoTextLbl->setText(tr("The report will be empty because no song is visible in the song tree."));
@@ -57,27 +57,10 @@ void QUReportDialog::createHtmlReport() {
 	if(!fi.fileName().isEmpty()) {
 		settings.setValue("reportPath", QVariant(fi.path())); // remember folder
 		
-		// prepare elements for report
-
 		QList<QUAbstractReportData*> reportData;
 		QList<QUSongFile*> songFiles;
 
-		for(int i = 0; i < reportList->count(); i++) {
-			QUReportItem *item = dynamic_cast<QUReportItem*>(reportList->item(i));
-
-			if(item && item->checkState() == Qt::Checked)
-				reportData.append(item->data());
-		}
-
-		for(int i = 0; i < _songTree->topLevelItemCount(); i++) {
-			QUSongItem *songItem = dynamic_cast<QUSongItem*>(_songTree->topLevelItem(i));
-
-			if(songItem)
-				songFiles.append(songItem->song());
-		}
-		
-		if(!reportData.isEmpty())
-			reportData.first()->sort(songFiles);
+		this->fetchDataAndSongs(reportData, songFiles);
 
 		QUHtmlReport report(songFiles, reportData, fi);
 		report.save();
@@ -88,4 +71,32 @@ void QUReportDialog::createHtmlReport() {
 	} else {
 		emit finished(tr("Report could not be created."), QU::warning);
 	}
+}
+
+/*!
+ * Looks for all checked report data columns and all visible songs in the song tree. Fills the results
+ * in two lists.
+ */
+void QUReportDialog::fetchDataAndSongs(QList<QUAbstractReportData*> &data, QList<QUSongFile*> &songs) {
+	for(int i = 0; i < reportList->count(); i++) {
+		QUReportItem *item = dynamic_cast<QUReportItem*>(reportList->item(i));
+
+		if(item && item->checkState() == Qt::Checked) {
+			item->data()->setNext(0); // clear previous connections
+			if(!data.isEmpty())
+				data.last()->setNext(item->data());
+			
+			data.append(item->data());
+		}
+	}
+
+	for(int i = 0; i < _songTree->topLevelItemCount(); i++) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(_songTree->topLevelItem(i));
+
+		if(songItem)
+			songs.append(songItem->song());
+	}
+	
+	if(!data.isEmpty())
+		data.first()->sort(songs);
 }
