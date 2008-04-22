@@ -18,6 +18,24 @@ QUBooleanSongData::QUBooleanSongData(const QString &tag, QObject *parent): QUAbs
 	}
 }
 
+QString QUBooleanSongData::textData(QUSongFile *song) {
+	bool result = false;
+	
+	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0)
+		result = song->hasMp3();
+	else if(QString::compare(_tag, COVER_TAG, Qt::CaseInsensitive) == 0)
+		result = song->hasCover();
+	else if(QString::compare(_tag, BACKGROUND_TAG, Qt::CaseInsensitive) == 0)
+		result = song->hasBackground();
+	else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0)
+		result = song->hasVideo();
+
+	if(result)
+		return tr("yes");
+	else
+		return tr("no");	
+}
+
 QString QUBooleanSongData::iconData(QUSongFile *song) {
 	bool result = false;
 	

@@ -25,6 +25,7 @@ private:
 	
 private slots:
 	void createHtmlReport();
+	void createPlainTextReport();
 	
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);

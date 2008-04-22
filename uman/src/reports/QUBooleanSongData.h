@@ -9,7 +9,7 @@ class QUBooleanSongData : public QUAbstractReportData {
 public:
 	QUBooleanSongData(const QString &tag, QObject *parent = 0);
 	
-	virtual QString textData(QUSongFile *song) { return QString(); }
+	virtual QString textData(QUSongFile *song);
 	virtual QString iconData(QUSongFile *song);
 	
 	virtual QString headerTextData();

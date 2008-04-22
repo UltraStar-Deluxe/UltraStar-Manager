@@ -1,5 +1,6 @@
 #include "QUReportDialog.h"
 #include "QUHtmlReport.h"
+#include "QUPlainTextReport.h"
 
 #include <QFileDialog>
 #include <QSettings>
@@ -27,6 +28,7 @@ QUReportDialog::QUReportDialog(QUSongTree *songTree, QWidget *parent): QDialog(p
 	
 	connect(doneBtn, SIGNAL(clicked()), this, SLOT(accept()));
 	connect(createHtmlBtn, SIGNAL(clicked()), this, SLOT(createHtmlReport()));
+	connect(createPlainTextBtn, SIGNAL(clicked()), this, SLOT(createPlainTextReport()));
 	
 	initReportList();
 }
@@ -63,6 +65,33 @@ void QUReportDialog::createHtmlReport() {
 		this->fetchDataAndSongs(reportData, songFiles);
 
 		QUHtmlReport report(songFiles, reportData, fi);
+		report.save();
+
+		emit finished(QString(tr("Report created successfully to: \"%1\".")).arg(fi.filePath()), QU::information);
+
+		QDesktopServices::openUrl(QUrl::fromLocalFile(fi.filePath()));
+	} else {
+		emit finished(tr("Report could not be created."), QU::warning);
+	}
+}
+
+void QUReportDialog::createPlainTextReport() {
+	QSettings settings;
+	QFileInfo fi(QDir(settings.value("reportPath").toString()), "report.txt");
+
+	fi.setFile(QFileDialog::getSaveFileName(this, tr("Save Report"),
+		fi.filePath(),
+		tr("Report (*.txt)")));
+	
+	if(!fi.fileName().isEmpty()) {
+		settings.setValue("reportPath", QVariant(fi.path())); // remember folder
+		
+		QList<QUAbstractReportData*> reportData;
+		QList<QUSongFile*> songFiles;
+
+		this->fetchDataAndSongs(reportData, songFiles);
+
+		QUPlainTextReport report(songFiles, reportData, fi);
 		report.save();
 
 		emit finished(QString(tr("Report created successfully to: \"%1\".")).arg(fi.filePath()), QU::information);

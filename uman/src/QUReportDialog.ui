@@ -187,7 +187,7 @@
        <item>
         <widget class="QToolButton" name="createPlainTextBtn" >
          <property name="enabled" >
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
