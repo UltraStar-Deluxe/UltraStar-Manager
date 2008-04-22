@@ -12,6 +12,7 @@
 #include "QU.h"
 
 #define SONG_FILE_SUFFIX "txt"
+#define N_A "n/a"
 
 #define TITLE_TAG      "TITLE"
 #define ARTIST_TAG     "ARTIST"
@@ -46,25 +47,34 @@ public:
 	bool hasUnsavedChanges() const { return _hasUnsavedChanges; }
 	void setFile(const QString &file);
 	
+	// sorting functions
+	static bool artistLessThan (QUSongFile *s1, QUSongFile *s2)   { return QString::compare(s1->artist(), s2->artist(), Qt::CaseInsensitive) < 0; }
+	static bool titleLessThan (QUSongFile *s1, QUSongFile *s2)    { return QString::compare(s1->title(), s2->title(), Qt::CaseInsensitive) < 0; }
+	static bool languageLessThan (QUSongFile *s1, QUSongFile *s2) { return QString::compare(s1->language(), s2->language(), Qt::CaseInsensitive) < 0; }
+	static bool editionLessThan (QUSongFile *s1, QUSongFile *s2)  { return QString::compare(s1->edition(), s2->edition(), Qt::CaseInsensitive) < 0; }
+	static bool genreLessThan (QUSongFile *s1, QUSongFile *s2)    { return QString::compare(s1->genre(), s2->genre(), Qt::CaseInsensitive) < 0; }
+	static bool yearLessThan (QUSongFile *s1, QUSongFile *s2)     { return QString::compare(s1->year(), s2->year(), Qt::CaseInsensitive) < 0; }
+	static bool creatorLessThan (QUSongFile *s1, QUSongFile *s2)  { return QString::compare(s1->creator(), s2->creator(), Qt::CaseInsensitive) < 0; }
+	
 public slots:
-	QString artist() const     {return _info.value("ARTIST", QString("n/a"));}
-	QString title() const      {return _info.value("TITLE", QString("n/a"));}
-	QString mp3() const        {return _info.value("MP3", QString("n/a"));}
-	QString bpm() const        {return _info.value("BPM", QString("n/a"));}
-	QString gap() const        {return _info.value("GAP", QString("n/a"));}
-	QString video() const      {return _info.value("VIDEO", QString("n/a"));}
-	QString videogap() const   {return _info.value("VIDEOGAP", QString("n/a"));}
-	QString cover() const      {return _info.value("COVER", QString("n/a"));}
-	QString background() const {return _info.value("BACKGROUND", QString("n/a"));}
-	QString start() const      {return _info.value("START", QString("n/a"));}
-	QString language() const   {return _info.value("LANGUAGE", QString("n/a"));}
-	QString relative() const   {return _info.value("RELATIVE", QString("n/a"));}
-	QString edition() const    {return _info.value("EDITION", QString("n/a"));}
-	QString genre() const      {return _info.value("GENRE", QString("n/a"));}
-	QString year() const       {return _info.value("YEAR", QString("n/a"));}
-	QString end() const        {return _info.value("END", QString("n/a"));}
-	QString creator() const    {return _info.value("CREATOR", QString("n/a"));}
-	QString comment() const    {return _info.value(COMMENT_TAG, QString("n/a"));}
+	QString artist() const     {return _info.value("ARTIST", QString(N_A));}
+	QString title() const      {return _info.value("TITLE", QString(N_A));}
+	QString mp3() const        {return _info.value("MP3", QString(N_A));}
+	QString bpm() const        {return _info.value("BPM", QString(N_A));}
+	QString gap() const        {return _info.value("GAP", QString(N_A));}
+	QString video() const      {return _info.value("VIDEO", QString(N_A));}
+	QString videogap() const   {return _info.value("VIDEOGAP", QString(N_A));}
+	QString cover() const      {return _info.value("COVER", QString(N_A));}
+	QString background() const {return _info.value("BACKGROUND", QString(N_A));}
+	QString start() const      {return _info.value("START", QString(N_A));}
+	QString language() const   {return _info.value("LANGUAGE", QString(N_A));}
+	QString relative() const   {return _info.value("RELATIVE", QString(N_A));}
+	QString edition() const    {return _info.value("EDITION", QString(N_A));}
+	QString genre() const      {return _info.value("GENRE", QString(N_A));}
+	QString year() const       {return _info.value("YEAR", QString(N_A));}
+	QString end() const        {return _info.value("END", QString(N_A));}
+	QString creator() const    {return _info.value("CREATOR", QString(N_A));}
+	QString comment() const    {return _info.value(COMMENT_TAG, QString(N_A));}
 	
 	bool hasMp3() const;
 	bool hasCover() const;

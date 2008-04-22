@@ -2,7 +2,6 @@
 
 QUBooleanSongData::QUBooleanSongData(const QString &tag, QObject *parent): QUAbstractReportData(parent) {
 	_tag = tag;
-	this->setType(QU::icon);
 	
 	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/music.png"));
@@ -19,7 +18,7 @@ QUBooleanSongData::QUBooleanSongData(const QString &tag, QObject *parent): QUAbs
 	}
 }
 
-QString QUBooleanSongData::data(QUSongFile *song) {
+QString QUBooleanSongData::iconData(QUSongFile *song) {
 	bool result = false;
 	
 	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0)
@@ -37,6 +36,26 @@ QString QUBooleanSongData::data(QUSongFile *song) {
 		return ":/marks/cross.png";
 }
 
-QString QUBooleanSongData::headerData() {
+QString QUBooleanSongData::headerTextData() {
 	return this->description();
+}
+
+QString QUBooleanSongData::headerIconData() {
+	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0)
+		return ":/types/music.png";
+	else if(QString::compare(_tag, COVER_TAG, Qt::CaseInsensitive) == 0)
+		return ":/types/picture.png";
+	else if(QString::compare(_tag, BACKGROUND_TAG, Qt::CaseInsensitive) == 0)
+		return ":/types/picture.png";
+	else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0)
+		return ":/types/film.png";
+	
+	return QString();
+}
+
+void QUBooleanSongData::sort(QList<QUSongFile*> &songs) {
+	if(this->next())
+		this->next()->sort(songs);
+	
+	
 }

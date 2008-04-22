@@ -2,7 +2,6 @@
 
 QUSongTagData::QUSongTagData(const QString &tag, QObject *parent): QUAbstractReportData(parent) {
 	_tag = tag;
-	this->setType(QU::text);
 	
 	if(QString::compare(_tag, ARTIST_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/user.png"));
@@ -28,7 +27,7 @@ QUSongTagData::QUSongTagData(const QString &tag, QObject *parent): QUAbstractRep
 	}
 }
 
-QString QUSongTagData::data(QUSongFile *song) {
+QString QUSongTagData::textData(QUSongFile *song) {
 	if(QString::compare(_tag, ARTIST_TAG, Qt::CaseInsensitive) == 0)
 		return song->artist();
 	if(QString::compare(_tag, TITLE_TAG, Qt::CaseInsensitive) == 0)
@@ -47,7 +46,7 @@ QString QUSongTagData::data(QUSongFile *song) {
 		return QString();
 }
 
-QString QUSongTagData::headerData() {
+QString QUSongTagData::headerTextData() {
 	return this->description();
 }
 
@@ -56,7 +55,17 @@ void QUSongTagData::sort(QList<QUSongFile*> &songs) {
 		this->next()->sort(songs);
 	
 	if(QString::compare(_tag, ARTIST_TAG, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongTagData::artistLessThan);
-	if(QString::compare(_tag, TITLE_TAG, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongTagData::titleLessThan);
+		qStableSort(songs.begin(), songs.end(), QUSongFile::artistLessThan);
+	else if(QString::compare(_tag, TITLE_TAG, Qt::CaseInsensitive) == 0)
+		qStableSort(songs.begin(), songs.end(), QUSongFile::titleLessThan);
+	else if(QString::compare(_tag, LANGUAGE_TAG, Qt::CaseInsensitive) == 0)
+		qStableSort(songs.begin(), songs.end(), QUSongFile::languageLessThan);
+	else if(QString::compare(_tag, EDITION_TAG, Qt::CaseInsensitive) == 0)
+		qStableSort(songs.begin(), songs.end(), QUSongFile::editionLessThan);
+	else if(QString::compare(_tag, GENRE_TAG, Qt::CaseInsensitive) == 0)
+		qStableSort(songs.begin(), songs.end(), QUSongFile::genreLessThan);
+	else if(QString::compare(_tag, YEAR_TAG, Qt::CaseInsensitive) == 0)
+		qStableSort(songs.begin(), songs.end(), QUSongFile::yearLessThan);
+	else if(QString::compare(_tag, CREATOR_TAG, Qt::CaseInsensitive) == 0)
+		qStableSort(songs.begin(), songs.end(), QUSongFile::creatorLessThan);
 }

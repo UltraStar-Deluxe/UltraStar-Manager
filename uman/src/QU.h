@@ -41,12 +41,6 @@ public:
 	};
 	Q_DECLARE_FLAGS(PreparatoryTaskModes, PreparatoryTaskMode)
 	
-	enum ReportDataType {
-		text,
-		icon
-	};
-	Q_DECLARE_FLAGS(ReportDataTypes, ReportDataType)
-	
 	enum FilterMode {
 		informationTags = 0x01,
 		fileTags = 0x02,

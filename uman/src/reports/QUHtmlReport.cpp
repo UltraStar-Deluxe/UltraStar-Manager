@@ -26,7 +26,24 @@ QUHtmlReport::QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAb
 
 	foreach(QUAbstractReportData *rd, reportDataList) {
 		QDomElement th = _report.createElement("th");
-		th.appendChild(_report.createTextNode(rd->headerData()));
+		
+		if(!rd->headerIconData().isEmpty()) {
+			QDomElement img = _report.createElement("img");
+			QDomAttr src = _report.createAttribute("src");
+			QDomAttr alt = _report.createAttribute("alt");
+			QDomAttr title = _report.createAttribute("title");
+			
+			src.setNodeValue(monty->useImageFromResource(rd->headerIconData(), _fi.dir()));
+			alt.setNodeValue(rd->headerTextData());
+			title.setNodeValue(rd->headerTextData());
+			
+			img.setAttributeNode(src);
+			img.setAttributeNode(alt);
+			img.setAttributeNode(title);
+			
+			th.appendChild(img);
+		} else if(!rd->headerTextData().isEmpty())
+			th.appendChild(_report.createTextNode(rd->headerTextData()));
 		
 		table.childNodes().at(0).appendChild(th);
 	}
@@ -38,16 +55,23 @@ QUHtmlReport::QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAb
 		foreach(QUAbstractReportData *rd, reportDataList) {
 			QDomElement td = _report.createElement("td");
 			
-			if(rd->type() == QU::text)
-				td.appendChild(_report.createTextNode(rd->data(song)));
-			else if(rd->type() == QU::icon) {
+			if(!rd->iconData(song).isEmpty()) {
 				QDomElement img = _report.createElement("img");
 				QDomAttr src = _report.createAttribute("src");
+				QDomAttr alt = _report.createAttribute("alt");
+				QDomAttr title = _report.createAttribute("title");
 				
-				src.setNodeValue(monty->useImageFromResource(rd->data(song), _fi.dir()));
+				src.setNodeValue(monty->useImageFromResource(rd->iconData(song), _fi.dir()));
+				alt.setNodeValue(rd->textData(song));
+				title.setNodeValue(rd->textData(song));
+				
 				img.setAttributeNode(src);
+				img.setAttributeNode(alt);
+				img.setAttributeNode(title);
 				
 				td.appendChild(img);
+			} else if(!rd->textData(song).isEmpty()) {
+				td.appendChild(_report.createTextNode(rd->textData(song)));
 			}
 			
 			tr.appendChild(td);			

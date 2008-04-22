@@ -4,5 +4,4 @@ QUAbstractReportData::QUAbstractReportData(QObject *parent): QObject(parent), _n
 	this->setIcon(QIcon());
 	this->setDescription("");
 	this->setToolTip("");
-	this->setType(QU::text);
 }

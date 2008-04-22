@@ -13,15 +13,13 @@ class QUSongTagData: public QUAbstractReportData {
 public:
 	QUSongTagData(const QString &tag, QObject *parent = 0);
 	
-	virtual QString data(QUSongFile *song);
-	virtual QString headerData();
+	virtual QString textData(QUSongFile *song);
+	virtual QString iconData(QUSongFile *song) { return QString(); }
 	
-	// sorting
-	virtual void sort(QList<QUSongFile*> &songs);
+	virtual QString headerTextData();
+	virtual QString headerIconData() { return QString(); }
 	
-	static bool artistLessThan (QUSongFile *s1, QUSongFile *s2) { return QString::compare(s1->artist(), s2->artist(), Qt::CaseInsensitive) < 0; }
-	static bool titleLessThan (QUSongFile *s1, QUSongFile *s2) { return QString::compare(s1->title(), s2->title(), Qt::CaseInsensitive) < 0; }
-	
+	virtual void sort(QList<QUSongFile*> &songs);	
 private:
 	QString _tag;
 };

@@ -9,10 +9,13 @@ class QUBooleanSongData : public QUAbstractReportData {
 public:
 	QUBooleanSongData(const QString &tag, QObject *parent = 0);
 	
-	virtual QString data(QUSongFile *song);
-	virtual QString headerData();
+	virtual QString textData(QUSongFile *song) { return QString(); }
+	virtual QString iconData(QUSongFile *song);
 	
-	virtual void sort(QList<QUSongFile*> &songs) {} // cannot sort right now
+	virtual QString headerTextData();
+	virtual QString headerIconData();
+	
+	virtual void sort(QList<QUSongFile*> &songs);
 	
 private:
 	QString _tag;

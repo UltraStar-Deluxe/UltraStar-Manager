@@ -40,6 +40,7 @@ TODO
 * song playlists
 * preview pictures
 * new task: remove unused files
+* complete sorting methods for QUSongTagData
 
 DEFERRED FOR FUTURE RELEASE
 * extract cover from MP3
