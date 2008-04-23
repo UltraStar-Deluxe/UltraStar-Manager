@@ -1,4 +1,5 @@
 #include "QUPlainTextReport.h"
+#include "QUProgressDialog.h"
 
 #include <QTextStream>
 
@@ -34,7 +35,13 @@ QUPlainTextReport::QUPlainTextReport(const QList<QUSongFile*> &songFiles, const 
 	out << QString(lineSize, '=') << endl;
 	
 	// content
+	QUProgressDialog pDlg("Creating html report...", songFiles.size());
+	pDlg.setPixmap(":/types/folder.png");
+	pDlg.show();
+	
 	foreach(QUSongFile *song, songFiles) {
+		pDlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+		
 		for(int i = 0; i < reportDataList.size(); i++) {		
 			out.setFieldWidth(0);
 			out << " | ";

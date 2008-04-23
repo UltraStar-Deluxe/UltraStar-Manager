@@ -1,5 +1,6 @@
 #include "QUHtmlReport.h"
 #include "QUMonty.h"
+#include "QUProgressDialog.h"
 
 #include <QDomNodeList>
 
@@ -49,7 +50,13 @@ QUHtmlReport::QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAb
 	}
 	
 	// content
+	QUProgressDialog pDlg("Creating html report...", songFiles.size());
+	pDlg.setPixmap(":/types/folder.png");
+	pDlg.show();
+	
 	foreach(QUSongFile *song, songFiles) {
+		pDlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+		
 		QDomElement tr = _report.createElement("tr");
 		
 		foreach(QUAbstractReportData *rd, reportDataList) {

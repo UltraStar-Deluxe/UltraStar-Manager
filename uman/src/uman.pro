@@ -3,7 +3,8 @@ TARGET = uman
 QT += core \
     gui \
     xml
-HEADERS += reports/QUPlainTextReport.h \
+HEADERS += QUMessageBox.h \
+    reports/QUPlainTextReport.h \
     reports/QUBooleanSongData.h \
     reports/QUAbstractReport.h \
     reports/QUHtmlReport.h \
@@ -31,7 +32,8 @@ HEADERS += reports/QUPlainTextReport.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += reports/QUPlainTextReport.cpp \
+SOURCES += QUMessageBox.cpp \
+    reports/QUPlainTextReport.cpp \
     reports/QUBooleanSongData.cpp \
     reports/QUAbstractReport.cpp \
     reports/QUHtmlReport.cpp \
@@ -58,7 +60,8 @@ SOURCES += reports/QUPlainTextReport.cpp \
     QUSongFile.cpp \
     QUMainWindow.cpp \
     main.cpp
-FORMS += QUReportDialog.ui \
+FORMS += QUMessageBox.ui \
+    QUReportDialog.ui \
     QUProgressDialog.ui \
     QUTextDialog.ui \
     QUTagOrderDialog.ui \

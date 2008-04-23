@@ -38,6 +38,7 @@
 #include "QUTextDialog.h"
 #include "QUProgressDialog.h"
 #include "QUReportDialog.h"
+#include "QUMessageBox.h"
 
 QDir QUMainWindow::BaseDir = QDir();
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
@@ -74,16 +75,17 @@ QUMainWindow::~QUMainWindow() {
  */
 void QUMainWindow::closeEvent(QCloseEvent *event) {
 	if(songTree->hasUnsavedChanges()) {
-		QMessageBox::StandardButtons result = QMessageBox::question(this, 
-				tr("Unsaved Changes"), 
-				tr("Songs have been modified. Save changes?"), 
-				QMessageBox::Yes | QMessageBox::No | QMessageBox::Abort, 
-				QMessageBox::Abort);
-		if(result == QMessageBox::No)
+		QUMessageBox::Results result = QUMessageBox::ask(this, 
+				tr("Quit"), 
+				tr("Songs have been modified."),
+				":/control/save_all.png", tr("Save all changes."),
+				":/control/bin.png", tr("Discard all changes."),
+				":/marks/cancel.png", tr("Cancel this action."));
+		if(result == QUMessageBox::second)
 			event->accept();
-		else if(result == QMessageBox::Abort)
+		else if(result == QUMessageBox::third)
 			event->ignore();
-		else if(result == QMessageBox::Yes) {
+		else if(result == QUMessageBox::first) {
 			songTree->saveUnsavedChanges();
 			event->accept();
 		}
@@ -257,14 +259,15 @@ void QUMainWindow::appendSong(QUSongFile *song) {
  */
 void QUMainWindow::refreshAllSongs() {
 	if(songTree->hasUnsavedChanges()) {
-		QMessageBox::StandardButtons result = QMessageBox::question(this, 
-				tr("Unsaved Changes"), 
-				tr("Songs have been modified. Save changes?"), 
-				QMessageBox::Yes | QMessageBox::No | QMessageBox::Abort, 
-				QMessageBox::Abort);
-		if(result == QMessageBox::Abort)
+		QUMessageBox::Results result = QUMessageBox::ask(this, 
+				tr("Rebuild Song Tree"), 
+				tr("Songs have been modified."),
+				":/control/save_all.png", tr("Save all changes."),
+				":/control/bin.png", tr("Discard all changes."),
+				":/marks/cancel.png", tr("Cancel this action."));
+		if(result == QUMessageBox::third)
 			return;
-		else if(result == QMessageBox::Yes)
+		else if(result == QUMessageBox::first)
 			songTree->saveUnsavedChanges();
 	}
 	
@@ -577,14 +580,15 @@ void QUMainWindow::editTagOrder() {
  */
 void QUMainWindow::changeSongDir() {
 	if(songTree->hasUnsavedChanges()) {
-		QMessageBox::StandardButtons result = QMessageBox::question(this, 
-				tr("Unsaved Changes"), 
-				tr("Songs have been modified. Save changes?"), 
-				QMessageBox::Yes | QMessageBox::No | QMessageBox::Abort, 
-				QMessageBox::Abort);
-		if(result == QMessageBox::Abort)
+		QUMessageBox::Results result = QUMessageBox::ask(this, 
+				tr("Change Song Directory"), 
+				tr("Songs have been modified."),
+				":/control/save_all.png", tr("Save all changes."),
+				":/control/bin.png", tr("Discard all changes."),
+				":/marks/cancel.png", tr("Cancel this action."));
+		if(result == QUMessageBox::third)
 			return;
-		else if(result == QMessageBox::Yes)
+		else if(result == QUMessageBox::first)
 			songTree->saveUnsavedChanges();
 	}
 	
