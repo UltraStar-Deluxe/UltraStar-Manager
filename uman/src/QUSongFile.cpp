@@ -1,5 +1,6 @@
 #include "QUSongFile.h"
 #include "QUMonty.h"
+#include "QUMessageBox.h"
 
 #include <QByteArray>
 #include <QVariant>
@@ -148,10 +149,14 @@ void QUSongFile::verifyTags(QStringList &tags) {
 	if(tags.size() != QUSongFile::tags().size()) {
 		settings.setValue("tagOrder", QVariant(QUSongFile::tags()));
 		
-		QMessageBox::warning(0, "Deprecated tag information detected", 
-				"The number of available tags in your configuration and that one this application offers are different.\n\n"
-				"The tag order was reset to its default order. Check out the options to set up your custom order again.");
-		
+		QUMessageBox::ask(0, 
+				tr("Deprecated tag information detected"), 
+				tr(
+						"The number of available tags in your configuration and that one this application offers are different.<br><br>"
+						"The tag order was reset to its <b>default order</b>. Check out the <b>options</b> to set up your custom order again."
+				),
+				":/marks/accept.png", tr("Continue"));
+				
 		tags = QUSongFile::tags();
 	}	
 }
