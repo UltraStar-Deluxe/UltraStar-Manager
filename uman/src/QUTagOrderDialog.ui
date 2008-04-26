@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>239</width>
-    <height>169</height>
+    <width>242</width>
+    <height>159</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -17,66 +17,150 @@
   </property>
   <layout class="QVBoxLayout" >
    <property name="spacing" >
-    <number>5</number>
+    <number>0</number>
    </property>
    <property name="leftMargin" >
-    <number>5</number>
+    <number>0</number>
    </property>
    <property name="topMargin" >
-    <number>5</number>
+    <number>0</number>
    </property>
    <property name="rightMargin" >
-    <number>5</number>
+    <number>0</number>
    </property>
    <property name="bottomMargin" >
-    <number>5</number>
+    <number>0</number>
    </property>
+   <item>
+    <widget class="QFrame" name="frame" >
+     <property name="palette" >
+      <palette>
+       <active>
+        <colorrole role="Base" >
+         <brush brushstyle="SolidPattern" >
+          <color alpha="255" >
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Window" >
+         <brush brushstyle="SolidPattern" >
+          <color alpha="255" >
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+       <inactive>
+        <colorrole role="Base" >
+         <brush brushstyle="SolidPattern" >
+          <color alpha="255" >
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Window" >
+         <brush brushstyle="SolidPattern" >
+          <color alpha="255" >
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </inactive>
+       <disabled>
+        <colorrole role="Base" >
+         <brush brushstyle="SolidPattern" >
+          <color alpha="255" >
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Window" >
+         <brush brushstyle="SolidPattern" >
+          <color alpha="255" >
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </disabled>
+      </palette>
+     </property>
+     <property name="autoFillBackground" >
+      <bool>true</bool>
+     </property>
+     <property name="frameShadow" >
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" >
+      <item>
+       <widget class="QLabel" name="infoIconLbl" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text" >
+         <string/>
+        </property>
+        <property name="pixmap" >
+         <pixmap resource="images/uman.qrc" >:/marks/information.png</pixmap>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label" >
+        <property name="text" >
+         <string>Drag &amp; drop the tags do edit their order.</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <property name="wordWrap" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="Line" name="line" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
    <item>
     <layout class="QHBoxLayout" >
      <property name="spacing" >
       <number>5</number>
      </property>
-     <item>
-      <widget class="QLabel" name="label_2" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text" >
-        <string/>
-       </property>
-       <property name="pixmap" >
-        <pixmap resource="images/uman.qrc" >:/marks/information.png</pixmap>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label" >
-       <property name="text" >
-        <string>Drag &amp; drop the tags do edit their order.</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer>
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" >
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" >
-     <property name="spacing" >
+     <property name="leftMargin" >
+      <number>5</number>
+     </property>
+     <property name="topMargin" >
+      <number>5</number>
+     </property>
+     <property name="rightMargin" >
+      <number>5</number>
+     </property>
+     <property name="bottomMargin" >
       <number>5</number>
      </property>
      <item>
@@ -114,15 +198,6 @@
        </property>
        <item>
         <widget class="QPushButton" name="defaultBtn" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="statusTip" >
-          <string>Reset the tag order to the default order.</string>
-         </property>
          <property name="text" >
           <string>Default</string>
          </property>
@@ -142,40 +217,22 @@
         </spacer>
        </item>
        <item>
-        <widget class="QToolButton" name="applyBtn" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
+        <widget class="QPushButton" name="applyBtn" >
          <property name="text" >
           <string>Apply</string>
          </property>
          <property name="icon" >
           <iconset resource="images/uman.qrc" >:/marks/accept.png</iconset>
          </property>
-         <property name="toolButtonStyle" >
-          <enum>Qt::ToolButtonTextBesideIcon</enum>
-         </property>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="cancelBtn" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
+        <widget class="QPushButton" name="cancelBtn" >
          <property name="text" >
           <string>Cancel</string>
          </property>
          <property name="icon" >
           <iconset resource="images/uman.qrc" >:/marks/cancel.png</iconset>
-         </property>
-         <property name="toolButtonStyle" >
-          <enum>Qt::ToolButtonTextBesideIcon</enum>
          </property>
         </widget>
        </item>

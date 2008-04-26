@@ -42,6 +42,8 @@ TODO
 * case-sensitive renaming issues with file names....argh...
 * preview pictures
 * new task: remove unused files
+* translate Monty's phrases
+* consistent dialog look&feel
 
 DEFERRED FOR FUTURE RELEASE
 * extract cover from MP3
