@@ -38,7 +38,7 @@ private slots:
 	
 	void appendSong(QUSongFile *song);
 	
-	void refreshAllSongs();
+	void refreshAllSongs(bool force = false);
 	void createSongFiles();
 	void createSongTree();
 	

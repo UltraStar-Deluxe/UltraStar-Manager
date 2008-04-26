@@ -971,7 +971,7 @@ HTML-Bericht</translation>
     <message>
         <location filename="QUSongFile.cpp" line="286"/>
         <source>Could NOT rename the song directory &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>Umbenennen fehlgeschlagen! Verzeichnis &quot;%1&quot; konnt nicht nach &quot;%2&quot; umbenannt werden.</translation>
+        <translation>Umbenennen fehlgeschlagen! Verzeichnis &quot;%1&quot; konnte nicht nach &quot;%2&quot; umbenannt werden.</translation>
     </message>
     <message>
         <location filename="QUSongFile.cpp" line="293"/>
@@ -981,7 +981,7 @@ HTML-Bericht</translation>
     <message>
         <location filename="QUSongFile.cpp" line="304"/>
         <source>Could NOT rename the song file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>Umbenennen fehlgeschlagen! Songdatei &quot;%1&quot; konnt nicht nach &quot;%2&quot; umbenannt werden.</translation>
+        <translation type="unfinished">Umbenennen fehlgeschlagen! Songdatei &quot;%1&quot; konnte nicht nach &quot;%2&quot; umbenannt werden.</translation>
     </message>
     <message>
         <location filename="QUSongFile.cpp" line="310"/>
@@ -991,7 +991,7 @@ HTML-Bericht</translation>
     <message>
         <location filename="QUSongFile.cpp" line="322"/>
         <source>Could NOT rename the audio file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>Umbenennen fehlgeschlagen! Audio-Datei &quot;%1&quot; konnt nicht nach &quot;%2&quot; umbenannt werden.</translation>
+        <translation type="unfinished">Umbenennen fehlgeschlagen! Audio-Datei &quot;%1&quot; konnte nicht nach &quot;%2&quot; umbenannt werden.</translation>
     </message>
     <message>
         <location filename="QUSongFile.cpp" line="328"/>
@@ -1001,7 +1001,7 @@ HTML-Bericht</translation>
     <message>
         <location filename="QUSongFile.cpp" line="340"/>
         <source>Could NOT rename the cover picture &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>Umbenennen fehlgeschlagen! Cover &quot;%1&quot; konnt nicht nach &quot;%2&quot; umbenannt werden.</translation>
+        <translation type="unfinished">Umbenennen fehlgeschlagen! Cover &quot;%1&quot; konnte nicht nach &quot;%2&quot; umbenannt werden.</translation>
     </message>
     <message>
         <location filename="QUSongFile.cpp" line="346"/>
@@ -1011,7 +1011,7 @@ HTML-Bericht</translation>
     <message>
         <location filename="QUSongFile.cpp" line="358"/>
         <source>Could NOT rename the background picture &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>Umbenennen fehlgeschlagen! Hintergrund &quot;%1&quot; konnt nicht nach &quot;%2&quot; umbenannt werden.</translation>
+        <translation type="unfinished">Umbenennen fehlgeschlagen! Hintergrund &quot;%1&quot; konnte nicht nach &quot;%2&quot; umbenannt werden.</translation>
     </message>
     <message>
         <location filename="QUSongFile.cpp" line="364"/>
@@ -1021,7 +1021,7 @@ HTML-Bericht</translation>
     <message>
         <location filename="QUSongFile.cpp" line="376"/>
         <source>Could NOT rename the video file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>Umbenennen fehlgeschlagen! Video &quot;%1&quot; konnt nicht nach &quot;%2&quot; umbenannt werden.</translation>
+        <translation type="unfinished">Umbenennen fehlgeschlagen! Video &quot;%1&quot; konnte nicht nach &quot;%2&quot; umbenannt werden.</translation>
     </message>
     <message>
         <location filename="QUSongFile.cpp" line="382"/>

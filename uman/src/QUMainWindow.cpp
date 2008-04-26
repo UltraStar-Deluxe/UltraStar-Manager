@@ -251,8 +251,8 @@ void QUMainWindow::appendSong(QUSongFile *song) {
 /*!
  * Re-reads all possible song files and builds a new song tree.
  */
-void QUMainWindow::refreshAllSongs() {
-	if(songTree->hasUnsavedChanges()) {
+void QUMainWindow::refreshAllSongs(bool force) {
+	if(!force && songTree->hasUnsavedChanges()) {
 		QUMessageBox::Results result = QUMessageBox::ask(this, 
 				tr("Rebuild Song Tree"), 
 				tr("Songs have been modified."),
@@ -591,19 +591,19 @@ void QUMainWindow::changeSongDir() {
 	QSettings settings;
 	QString path = settings.value("songPath").toString();
 	
-	path = QFileDialog::getExistingDirectory(this, "Choose your UltraStar song directory", path);
+	path = QFileDialog::getExistingDirectory(this, tr("Choose your UltraStar song directory:"), path);
 	
 	if(!path.isEmpty()) {
 		settings.setValue("songPath", QVariant(path));
 		BaseDir.setPath(path);
-		refreshAllSongs();
+		refreshAllSongs(true);
 		
 		monty->setSongCount(_songs.size());
 		montyTalk();
 		
 		addLogMsg(QString(tr("UltraStar song directory changed to: \"%1\".")).arg(BaseDir.path()));
 		
-		songTree->headerItem()->setText(0, QString("Folder (%1)").arg(BaseDir.path()));
+		songTree->headerItem()->setText(0, QString(tr("Folder (%1)")).arg(BaseDir.path()));
 	}
 }
 
