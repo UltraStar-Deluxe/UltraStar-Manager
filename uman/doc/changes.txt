@@ -23,10 +23,12 @@ NEW FEATURES
   > now you can drag&drop multiple tags at once
 * double-click on an unused txt-file uses that file for the song in the folder
   > useful if you keep several valid song text files in one folder (NOT RECOMMENDED!)
-* html reports added
-* plain text reports added
+* html & plain text reports added
+  > F2 or "Songs > New Report"
 * "n/a" replaced with "-"
 * new messagebox style
+* application language "german" added
+  > Options > Language > German
 
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"
@@ -38,8 +40,6 @@ BUG FIXES
 TODO
 * verify the 'E' at the end of a song (data)
 * case-sensitive renaming issues with file names....argh...
-* enable the user the switch between german and english as application language
-* header/footer for reports
 * preview pictures
 * new task: remove unused files
 
@@ -47,6 +47,7 @@ DEFERRED FOR FUTURE RELEASE
 * extract cover from MP3
 * preview audio files
 * manage song playlists
+* header/footer for reports
 
 changes from 1.5.0 to 1.5.1
 ---------------------------

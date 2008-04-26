@@ -883,6 +883,8 @@
     <property name="title" >
      <string>&amp;Songs</string>
     </property>
+    <addaction name="actionNewReport" />
+    <addaction name="separator" />
     <addaction name="actionSaveSelected" />
     <addaction name="actionSaveAll" />
     <addaction name="separator" />
@@ -896,10 +898,19 @@
     <property name="title" >
      <string>&amp;Options</string>
     </property>
+    <widget class="QMenu" name="menu_Language" >
+     <property name="title" >
+      <string>&amp;Language</string>
+     </property>
+     <addaction name="actionLangEnglish" />
+     <addaction name="actionLangGerman" />
+    </widget>
     <addaction name="actionAutoSave" />
     <addaction name="separator" />
     <addaction name="actionTagSaveOrder" />
     <addaction name="actionChangeSongDirectory" />
+    <addaction name="separator" />
+    <addaction name="menu_Language" />
    </widget>
    <widget class="QMenu" name="menuView" >
     <property name="title" >
@@ -909,14 +920,7 @@
     <addaction name="actionFilter" />
     <addaction name="separator" />
    </widget>
-   <widget class="QMenu" name="menu_Reports" >
-    <property name="title" >
-     <string>&amp;Reports</string>
-    </property>
-    <addaction name="actionNewReport" />
-   </widget>
    <addaction name="menuSongs" />
-   <addaction name="menu_Reports" />
    <addaction name="menuView" />
    <addaction name="menuOptions" />
    <addaction name="menuAbout_Qt" />
@@ -947,6 +951,10 @@
    <addaction name="actionSaveSelected" />
    <addaction name="actionSaveAll" />
    <addaction name="actionAutoSave" />
+   <addaction name="actionNewReport" />
+   <addaction name="separator" />
+   <addaction name="actionShowRelativeSongPath" />
+   <addaction name="actionFilter" />
    <addaction name="separator" />
    <addaction name="actionExpandAll" />
    <addaction name="actionCollapseAll" />
@@ -954,8 +962,6 @@
    <addaction name="separator" />
    <addaction name="actionTagSaveOrder" />
    <addaction name="actionChangeSongDirectory" />
-   <addaction name="separator" />
-   <addaction name="actionUman" />
   </widget>
   <action name="actionQt" >
    <property name="text" >
@@ -1016,11 +1022,17 @@
    <property name="checked" >
     <bool>true</bool>
    </property>
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >:/monty/normal.png</iconset>
+   </property>
    <property name="text" >
     <string>Allow Monty to talk</string>
    </property>
   </action>
   <action name="actionShowMonty" >
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >:/monty/happy.png</iconset>
+   </property>
    <property name="text" >
     <string>Show &amp;Monty now</string>
    </property>
@@ -1030,7 +1042,7 @@
   </action>
   <action name="actionRefresh" >
    <property name="text" >
-    <string>&amp;Rebuild Tree</string>
+    <string>Rebuild &amp;Tree</string>
    </property>
   </action>
   <action name="actionShowRelativeSongPath" >
@@ -1039,6 +1051,9 @@
    </property>
    <property name="checked" >
     <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >:/control/folder_realtive.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Relative Song Path</string>
@@ -1058,17 +1073,12 @@
     <string>Reset the location where all US songs are located.</string>
    </property>
   </action>
-  <action name="actionUse_Case_Insensitive_Tag_Completion" >
-   <property name="text" >
-    <string>Use Case-Insensitive Tag Completion</string>
-   </property>
-  </action>
   <action name="actionRefreshSelected" >
    <property name="icon" >
     <iconset resource="images/uman.qrc" >:/control/refresh.png</iconset>
    </property>
    <property name="text" >
-    <string>Refresh &amp;Selected</string>
+    <string>&amp;Refresh Selected</string>
    </property>
   </action>
   <action name="actionAutoSave" >
@@ -1113,8 +1123,33 @@
    </property>
   </action>
   <action name="actionNewReport" >
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >:/control/report.png</iconset>
+   </property>
    <property name="text" >
-    <string>&amp;Create New Report...</string>
+    <string>&amp;New Report...</string>
+   </property>
+  </action>
+  <action name="actionLangEnglish" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >:/lang/us.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;English</string>
+   </property>
+  </action>
+  <action name="actionLangGerman" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >:/lang/de.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;German (Deutsch)</string>
    </property>
   </action>
  </widget>

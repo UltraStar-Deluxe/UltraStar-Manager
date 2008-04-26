@@ -65,9 +65,9 @@ QString QUMonty::welcomeMsg(int numberOfSongs) {
 	if(numberOfSongs >= 0)
 		songCount = numberOfSongs;
 	
-	QString welcomeStr("Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the button below and I will disappear for now.<br>"
+	QString welcomeStr(QObject::tr("Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the button below and I will disappear for now.<br>"
 				"<br>"
-				"You have a nice collection of <b>%1 songs</b> there. Are they managed well yet?");
+				"You have a nice collection of <b>%1 songs</b> there. Are they managed well yet?"));
 	
 	return welcomeStr.arg(songCount);
 }

@@ -272,15 +272,12 @@ Html Report</string>
       </spacer>
      </item>
      <item>
-      <widget class="QToolButton" name="doneBtn" >
+      <widget class="QPushButton" name="doneBtn" >
        <property name="text" >
         <string>Done</string>
        </property>
        <property name="icon" >
         <iconset resource="images/uman.qrc" >:/marks/accept.png</iconset>
-       </property>
-       <property name="toolButtonStyle" >
-        <enum>Qt::ToolButtonTextBesideIcon</enum>
        </property>
       </widget>
      </item>

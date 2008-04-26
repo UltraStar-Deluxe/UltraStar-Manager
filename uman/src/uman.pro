@@ -86,3 +86,4 @@ revtarget.commands = @echo \
 revtarget.depends = $$SOURCES \
     $$HEADERS \
     $$FORMS
+TRANSLATIONS = uman_de.ts

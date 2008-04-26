@@ -35,7 +35,7 @@ QUPlainTextReport::QUPlainTextReport(const QList<QUSongFile*> &songFiles, const 
 	out << QString(lineSize, '=') << endl;
 	
 	// content
-	QUProgressDialog pDlg("Creating html report...", songFiles.size());
+	QUProgressDialog pDlg(tr("Creating plain text report..."), songFiles.size());
 	pDlg.setPixmap(":/types/folder.png");
 	pDlg.show();
 	

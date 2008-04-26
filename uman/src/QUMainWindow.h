@@ -74,6 +74,10 @@ private slots:
 	
 	void reportCreate();
 	
+	// translations
+	void enableEnglish();
+	void enableGerman();
+	
 private:
 	QList<QUSongFile*> _songs;
 	

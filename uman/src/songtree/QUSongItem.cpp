@@ -87,7 +87,7 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	
 	if(song()->unsupportedTagsFound()) {
 		this->setIcon(0, QIcon(":/types/folder_blue.png"));
-		this->setToolTip(0, "Unsupported Tags:\n#" + song()->unsupportedTags());
+		this->setToolTip(0, QObject::tr("Unsupported Tags:\n#") + song()->unsupportedTags());
 	} else {
 		this->setIcon(0, QIcon(":/types/folder.png"));
 		this->setToolTip(0, "");

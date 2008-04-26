@@ -18,7 +18,10 @@
         <file>expand.png</file>
         <file>filter.png</file>
         <file>folder_note.png</file>
+        <file>folder_realtive.png</file>
+        <file>house.png</file>
         <file>play32.png</file>
+        <file>quit.png</file>
         <file>refresh.png</file>
         <file>report.png</file>
         <file>save.png</file>
@@ -30,6 +33,11 @@
     </qresource>
     <qresource prefix="/icons" >
         <file>cup.png</file>
+    </qresource>
+    <qresource prefix="/lang" >
+        <file>de.png</file>
+        <file>uman_de.qm</file>
+        <file>us.png</file>
     </qresource>
     <qresource prefix="/marks" >
         <file>accept.png</file>

@@ -7,17 +7,17 @@
 #include <QFont>
 
 QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
-	this->appendSeparator("Preparatory Tasks");
+	this->appendSeparator(tr("Preparatory Tasks"));
 	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::autoAssignFiles)));
 	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::removeUnsupportedTags)));
 	
-	this->appendSeparator("ID3 Tag Tasks");
+	this->appendSeparator(tr("ID3 Tag Tasks"));
 	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useArtist)));
 	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useTitle)));
 	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useGenre)));
 	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useYear)));
 	
-	this->appendSeparator("Renaming Tasks");
+	this->appendSeparator(tr("Renaming Tasks"));
 	this->addItem(new QUTaskItem(new QURenameTask(QU::renameDirectory)));
 	this->addItem(new QUTaskItem(new QURenameTask(QU::renameDirectorySpecial)));
 	this->addItem(new QUTaskItem(new QURenameTask(QU::renameSongFile)));

@@ -123,19 +123,19 @@ void QUDetailItem::updateText(const QString &tag, QUSongFile *song) {
 	} else if(QString::compare(tag, VIDEOGAP_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 		if(song->videogap() != N_A)
-			this->setText(QString("%1 seconds").arg(song->videogap()));
+			this->setText(QString(QObject::tr("%1 seconds")).arg(song->videogap()));
 		else
 			this->setText(song->videogap());
 	} else if(QString::compare(tag, START_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 		if(song->start() != N_A)
-			this->setText(QString("%1 seconds").arg(song->start()));
+			this->setText(QString(QObject::tr("%1 seconds")).arg(song->start()));
 		else
 			this->setText(song->start());
 	} else if(QString::compare(tag, END_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 		if(song->end() != N_A)
-			this->setText(QString("%1 milliseconds").arg(song->end()));
+			this->setText(QString(QObject::tr("%1 milliseconds")).arg(song->end()));
 		else
 			this->setText(song->end());
 	} else if(QString::compare(tag, RELATIVE_TAG) == 0) {
@@ -147,7 +147,7 @@ void QUDetailItem::updateText(const QString &tag, QUSongFile *song) {
 	} else if(QString::compare(tag, GAP_TAG) == 0) {
 		this->setFlags(0);
 		if(song->gap() != N_A)
-			this->setText(QString("%1 milliseconds").arg(song->gap()));
+			this->setText(QString(QObject::tr("%1 milliseconds")).arg(song->gap()));
 		else
 			this->setText(song->gap());
 	} else if(QString::compare(tag, COMMENT_TAG) == 0) {
@@ -159,14 +159,14 @@ void QUDetailItem::updateText(const QString &tag, QUSongFile *song) {
 void QUDetailItem::updateItemForMultipleSongs() {
 	if(QString::compare(tag(), TITLE_TAG) == 0) {
 		this->setFlags(0);
-		this->setText("Multiple files selected.");
+		this->setText(QObject::tr("Multiple files selected."));
 	} else if(QString::compare(tag(), ARTIST_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 		
 		this->setText(songs().first()->artist());
 		for(int i = 0; i < songs().size(); i++) {
 			if(QString::compare(this->text(), songs()[i]->artist(), Qt::CaseInsensitive) != 0) {
-				this->setText("Click here to edit.");
+				this->setText(QObject::tr("Click here to edit."));
 				break;
 			}
 		}
@@ -177,7 +177,7 @@ void QUDetailItem::updateItemForMultipleSongs() {
 		this->setText(songs().first()->language());
 		for(int i = 0; i < songs().size(); i++) {
 			if(QString::compare(this->text(), songs()[i]->language(), Qt::CaseInsensitive) != 0) {
-				this->setText("Click here to edit.");
+				this->setText(QObject::tr("Click here to edit."));
 				break;
 			}
 		}
@@ -189,7 +189,7 @@ void QUDetailItem::updateItemForMultipleSongs() {
 		this->setText(songs().first()->edition());
 		for(int i = 0; i < songs().size(); i++) {
 			if(QString::compare(this->text(), songs()[i]->edition(), Qt::CaseInsensitive) != 0) {
-				this->setText("Click here to edit.");
+				this->setText(QObject::tr("Click here to edit."));
 				break;
 			}
 		}
@@ -200,7 +200,7 @@ void QUDetailItem::updateItemForMultipleSongs() {
 		this->setText(songs().first()->genre());
 		for(int i = 0; i < songs().size(); i++) {
 			if(QString::compare(this->text(), songs()[i]->genre(), Qt::CaseInsensitive) != 0) {
-				this->setText("Click here to edit.");
+				this->setText(QObject::tr("Click here to edit."));
 				break;
 			}
 		}
@@ -212,7 +212,7 @@ void QUDetailItem::updateItemForMultipleSongs() {
 		this->setText(songs().first()->year());
 		for(int i = 0; i < songs().size(); i++) {
 			if(QString::compare(this->text(), songs()[i]->year(), Qt::CaseInsensitive) != 0) {
-				this->setText("Click here to edit.");
+				this->setText(QObject::tr("Click here to edit."));
 				break;
 			}
 		}
@@ -223,49 +223,49 @@ void QUDetailItem::updateItemForMultipleSongs() {
 		this->setText(songs().first()->creator());
 		for(int i = 0; i < songs().size(); i++) {
 			if(QString::compare(this->text(), songs()[i]->creator(), Qt::CaseInsensitive) != 0) {
-				this->setText("Click here to edit.");
+				this->setText(QObject::tr("Click here to edit."));
 				break;
 			}
 		}
 	
 	} else if(QString::compare(tag(), MP3_TAG) == 0) {
 		this->setFlags(0);
-		this->setText("Multiple files selected.");
+		this->setText(QObject::tr("Multiple files selected."));
 	} else if(QString::compare(tag(), COVER_TAG) == 0) {
 		this->setFlags(0);
-		this->setText("Multiple files selected.");
+		this->setText(QObject::tr("Multiple files selected."));
 	} else if(QString::compare(tag(), BACKGROUND_TAG) == 0) {
 		this->setFlags(0);
-		this->setText("Multiple files selected.");
+		this->setText(QObject::tr("Multiple files selected."));
 	} else if(QString::compare(tag(), VIDEO_TAG) == 0) {
 		this->setFlags(0);
-		this->setText("Multiple files selected.");
+		this->setText(QObject::tr("Multiple files selected."));
 	
 	} else if(QString::compare(tag(), VIDEOGAP_TAG) == 0) {
 		this->setFlags(0);
-		this->setText("Multiple files selected.");
+		this->setText(QObject::tr("Multiple files selected."));
 	} else if(QString::compare(tag(), START_TAG) == 0) {
 		this->setFlags(0);
-		this->setText("Multiple files selected.");
+		this->setText(QObject::tr("Multiple files selected."));
 	} else if(QString::compare(tag(), END_TAG) == 0) {
 		this->setFlags(0);
-		this->setText("Multiple files selected.");
+		this->setText(QObject::tr("Multiple files selected."));
 	} else if(QString::compare(tag(), RELATIVE_TAG) == 0) {
 		this->setFlags(0);
-		this->setText("Multiple files selected.");
+		this->setText(QObject::tr("Multiple files selected."));
 	} else if(QString::compare(tag(), BPM_TAG) == 0) {
 		this->setFlags(0);
-		this->setText("Multiple files selected.");
+		this->setText(QObject::tr("Multiple files selected."));
 	} else if(QString::compare(tag(), GAP_TAG) == 0) {
 		this->setFlags(0);
-		this->setText("Multiple files selected.");
+		this->setText(QObject::tr("Multiple files selected."));
 	} else if(QString::compare(tag(), COMMENT_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 		
 		this->setText(songs().first()->comment());
 		for(int i = 0; i < songs().size(); i++) {
 			if(QString::compare(this->text(), songs()[i]->comment(), Qt::CaseInsensitive) != 0) {
-				this->setText("Click here to edit.");
+				this->setText(QObject::tr("Click here to edit."));
 				break;
 			}
 		}

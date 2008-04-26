@@ -98,14 +98,11 @@ void QUMainWindow::closeEvent(QCloseEvent *event) {
  * Initializes the windows registry entry for uman. Lets the user
  * choose a path where the song files are located.
  */
-void QUMainWindow::initConfig() {
-	QCoreApplication::setOrganizationName("HPI");
-	QCoreApplication::setApplicationName("UltraStar Manager");
-	     
+void QUMainWindow::initConfig() {	
+	QSettings settings;	
 	QString path;
-	QSettings settings;
 	if(!settings.contains("songPath")) {
-		path = QFileDialog::getExistingDirectory(this, "Choose your UltraStar song directory");
+		path = QFileDialog::getExistingDirectory(this, tr("Choose your UltraStar song directory:"));
 	
 		if(!path.isEmpty())
 			settings.setValue("songPath", QVariant(path));
@@ -132,14 +129,13 @@ void QUMainWindow::initConfig() {
  * Set up initial window size and title text.
  */
 void QUMainWindow::initWindow() {
-	setWindowTitle(QString("UltraStar Manager %1.%2").arg(MAJOR_VERSION).arg(MINOR_VERSION));
+	setWindowTitle(QString(tr("UltraStar Manager %1.%2")).arg(MAJOR_VERSION).arg(MINOR_VERSION));
 	
 	addDockWidget(Qt::RightDockWidgetArea, detailsDock);
 	addDockWidget(Qt::RightDockWidgetArea, tasksDock);
 	addDockWidget(Qt::RightDockWidgetArea, eventsDock);
 	
 	// init filter area
-	
 	filterFrame->hide();
 	
 	connect(filterEdit, SIGNAL(returnPressed()), this, SLOT(applyFilter()));
@@ -154,7 +150,8 @@ void QUMainWindow::initWindow() {
 }
 
 void QUMainWindow::initMenu() {
-	// song
+	// songs menu
+	connect(actionNewReport, SIGNAL(triggered()), this, SLOT(reportCreate()));
 	connect(actionSaveSelected, SIGNAL(triggered()), songTree, SLOT(saveSelectedSongs()));
 	connect(actionSaveAll, SIGNAL(triggered()), songTree, SLOT(saveUnsavedChanges()));
 	connect(actionExpandAll, SIGNAL(triggered()), songTree, SLOT(expandAll()));
@@ -164,14 +161,13 @@ void QUMainWindow::initMenu() {
 	connect(actionRefresh, SIGNAL(triggered()), this, SLOT(refreshAllSongs()));
 	connect(actionRefreshSelected, SIGNAL(triggered()), songTree, SLOT(refreshSelectedItems()));
 	
+	actionNewReport->setShortcut(QKeySequence::fromString("F2"));
 	actionRefreshSelected->setShortcut(QKeySequence::fromString("F5"));
 	actionRefresh->setShortcut(QKeySequence::fromString("Shift+F5"));
 	actionSaveSelected->setShortcut(QKeySequence::fromString("Ctrl+S"));
+	actionSaveAll->setShortcut(QKeySequence::fromString("Ctrl+Shift+S"));
 	
-	// reports
-	connect(actionNewReport, SIGNAL(triggered()), this, SLOT(reportCreate()));
-	
-	// view
+	// view menu
 	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
 	connect(actionFilter, SIGNAL(toggled(bool)), this, SLOT(toggleFilterFrame(bool)));
 	
@@ -182,20 +178,18 @@ void QUMainWindow::initMenu() {
 	
 	actionFilter->setShortcut(QKeySequence::fromString("Ctrl+F"));
 
-	// options
+	// options menu
 	connect(actionAutoSave, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
 	connect(actionTagSaveOrder, SIGNAL(triggered()), this, SLOT(editTagOrder()));
 	connect(actionChangeSongDirectory, SIGNAL(triggered()), this, SLOT(changeSongDir()));
 	
-	actionShowRelativeSongPath->setIcon(QIcon(":/types/folder.png"));
-		
-	// help
+	connect(actionLangEnglish, SIGNAL(triggered()), this, SLOT(enableEnglish()));
+	connect(actionLangGerman, SIGNAL(triggered()), this, SLOT(enableGerman()));
+			
+	// help menu
 	connect(actionShowMonty, SIGNAL(triggered()), helpFrame, SLOT(show()));
 	connect(actionQt, SIGNAL(triggered()), this, SLOT(aboutQt()));
 	connect(actionUman, SIGNAL(triggered()), this, SLOT(aboutUman()));
-	
-	actionAllowMonty->setIcon(QIcon(":/monty/normal.png"));
-	actionShowMonty->setIcon(QIcon(":/monty/happy.png"));
 }
 
 /*!
@@ -297,7 +291,7 @@ void QUMainWindow::createSongFiles() {
 		
 	this->readSongDir(dirList);
 
-	QUProgressDialog dlg("Reading song files...", dirList.size(), this);
+	QUProgressDialog dlg(tr("Reading song files..."), dirList.size(), this);
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 	
@@ -392,7 +386,7 @@ void QUMainWindow::updateStatusbar() {
 	
 	TagLib::FileRef ref(fi.absoluteFilePath().toLocal8Bit().data());
 	
-	QString text("Audio file selected: ARTIST = \"%1\"; TITLE = \"%2\"; GENRE = \"%3\"; YEAR = \"%4\"");
+	QString text(tr("Audio file selected: ARTIST = \"%1\"; TITLE = \"%2\"; GENRE = \"%3\"; YEAR = \"%4\""));
 	
 	QString artist(TStringToQString(ref.tag()->artist())); if(artist == "") artist = N_A;
 	QString title(TStringToQString(ref.tag()->title())); if(title == "") title = N_A;
@@ -422,25 +416,25 @@ void QUMainWindow::editSongSetFileLink(QTreeWidgetItem *item, int column) {
 	if( songItem->icon(3).isNull() 
 			and QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive) 
 			and column == 3 ) {
-		addLogMsg(QString("Audio file changed from \"%1\" to: \"%2\".").arg(song->mp3()).arg(songItem->text(0)));
+		addLogMsg(QString(tr("Audio file changed from \"%1\" to: \"%2\".")).arg(song->mp3()).arg(songItem->text(0)));
 		song->setInfo(MP3_TAG, songItem->text(0));
 		song->save();
 	} else if( songItem->icon(4).isNull() 
 			and QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive) 
 			and column == 4 ) {
-		addLogMsg(QString("Cover changed from \"%1\" to: \"%2\".").arg(song->cover()).arg(songItem->text(0)));
+		addLogMsg(QString(tr("Cover changed from \"%1\" to: \"%2\".")).arg(song->cover()).arg(songItem->text(0)));
 		song->setInfo(COVER_TAG, songItem->text(0));
 		song->save();
 	} else if( songItem->icon(5).isNull() 
 			and QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive) 
 			and column == 5 ) {
-		addLogMsg(QString("Background changed from \"%1\" to: \"%2\".").arg(song->background()).arg(songItem->text(0)));
+		addLogMsg(QString(tr("Background changed from \"%1\" to: \"%2\".")).arg(song->background()).arg(songItem->text(0)));
 		song->setInfo(BACKGROUND_TAG, songItem->text(0));
 		song->save();
 	} else if( songItem->icon(6).isNull() 
 			and QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive) 
 			and column == 6 ) {
-		addLogMsg(QString("Video file changed from \"%1\" to: \"%2\".").arg(song->video()).arg(songItem->text(0)));
+		addLogMsg(QString(tr("Video file changed from \"%1\" to: \"%2\".")).arg(song->video()).arg(songItem->text(0)));
 		song->setInfo(VIDEO_TAG, songItem->text(0));
 		song->save();
 	}
@@ -458,7 +452,7 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 	if(!detailItem)
 		return;
 	
-	QUProgressDialog dlg(QString("Applying new value for %1 to all selected songs...").arg(detailItem->tag()), 
+	QUProgressDialog dlg(QString(tr("Applying new value for %1 to all selected songs...")).arg(detailItem->tag()), 
 			detailItem->songs().size(), this);
 	dlg.show();
 
@@ -479,7 +473,7 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 		if(songItem)
 			songItem->update();
 	} else {
-		QUProgressDialog dlg2("Refreshing song tree...", selectedItems.size(), this);
+		QUProgressDialog dlg2(tr("Refreshing song tree..."), selectedItems.size(), this);
 		dlg2.setPixmap(":/types/folder.png");
 		dlg2.show();
 		
@@ -506,7 +500,7 @@ void QUMainWindow::editSongApplyTasks() {
 	if(itemList.isEmpty()) // if no songs are selected use the current item (which has also a song)
 		itemList.append(songTree->currentItem());
 	
-	QUProgressDialog dlg("Applying all checked tasks to all selected songs...", itemList.size(), this);
+	QUProgressDialog dlg(tr("Applying all checked tasks to all selected songs..."), itemList.size(), this);
 	dlg.show();
 	
 	foreach(QTreeWidgetItem *item, itemList) {
@@ -551,13 +545,13 @@ void QUMainWindow::aboutQt() {
 }
 
 void QUMainWindow::aboutUman() {
-	QString aboutStr("<b>UltraStar Manager</b><br>"
+	QString aboutStr(tr("<b>UltraStar Manager</b><br>"
 			"Version %1.%2.%3 #%4<br>"
 			"<br>"
 			"©2008 by Marcel Taeumel<br>"
 			"<br>"
 			"<i>Tested By</i><br>"
-			"Michael Grünewald");
+			"Michael Grünewald"));
 	
 	QMessageBox::about(this, "About", aboutStr
 			.arg(MAJOR_VERSION)
@@ -607,7 +601,7 @@ void QUMainWindow::changeSongDir() {
 		monty->setSongCount(_songs.size());
 		montyTalk();
 		
-		addLogMsg(QString("UltraStar song directory changed to: \"%1\".").arg(BaseDir.path()));
+		addLogMsg(QString(tr("UltraStar song directory changed to: \"%1\".")).arg(BaseDir.path()));
 		
 		songTree->headerItem()->setText(0, QString("Folder (%1)").arg(BaseDir.path()));
 	}
@@ -639,9 +633,9 @@ void QUMainWindow::toggleRelativeSongPath(bool checked) {
 	}
 	
 	if(checked)
-		addLogMsg("Relative song paths are displayed in the song tree now.");
+		addLogMsg(tr("Relative song paths are displayed in the song tree now."));
 	else
-		addLogMsg("Only song directories are displayed in the song tree now.");
+		addLogMsg(tr("Only song directories are displayed in the song tree now."));
 }
 
 /*!
@@ -763,3 +757,46 @@ void QUMainWindow::reportCreate() {
 	
 	delete dlg;
 }
+
+/*!
+ * Changes the application language to english.
+ */
+void QUMainWindow::enableEnglish() {
+	actionLangGerman->setChecked(false);
+	actionLangEnglish->setChecked(true);
+	
+	QSettings settings;
+	settings.setValue("language", QVariant("en_EN"));
+	
+	// ---------------
+	
+	QUMessageBox::Results result = QUMessageBox::ask(this, 
+			tr("Change Language"), 
+			tr("Application language changed to <b>English</b>. You need to restart UltraStar Manager to take effect."),
+			":/control/quit.png", tr("Quit UltraStar Manager."),
+			":/marks/accept.png", tr("Continue."));
+	if(result == QUMessageBox::first)
+		this->close();
+}
+
+/*!
+ * Changes the application language to german.
+ */
+void QUMainWindow::enableGerman() {
+	actionLangGerman->setChecked(true);
+	actionLangEnglish->setChecked(false);	
+	
+	QSettings settings;
+	settings.setValue("language", QVariant("de_DE"));
+
+	// ---------------
+	
+	QUMessageBox::Results result = QUMessageBox::ask(this, 
+			tr("Change Language"), 
+			tr("Application language changed to <b>German</b>. You need to restart UltraStar Manager to take effect."),
+			":/control/quit.png", tr("Quit UltraStar Manager."),
+			":/marks/accept.png", tr("Continue."));
+	if(result == QUMessageBox::first)
+		this->close();
+}
+

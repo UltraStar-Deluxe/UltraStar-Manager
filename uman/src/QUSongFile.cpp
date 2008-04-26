@@ -8,6 +8,7 @@
 #include <QSettings>
 #include <QMessageBox>
 #include <QFileInfoList>
+#include <QApplication>
 
 #include "fileref.h"
 #include "tag.h"
@@ -149,7 +150,7 @@ void QUSongFile::verifyTags(QStringList &tags) {
 	if(tags.size() != QUSongFile::tags().size()) {
 		settings.setValue("tagOrder", QVariant(QUSongFile::tags()));
 		
-		QUMessageBox::ask(0, 
+		QUMessageBox::ask(QApplication::activeWindow(), 
 				tr("Deprecated tag information detected"), 
 				tr(
 						"The number of available tags in your configuration and that one this application offers are different.<br><br>"
@@ -246,7 +247,7 @@ bool QUSongFile::save(bool force) {
 	
 	_file.close();
 	
-	emit finished(QString("The song file \"%1\" was saved successfully.").arg(this->songFileInfo().fileName()), QU::saving);
+	emit finished(QString(tr("The song file \"%1\" was saved successfully.")).arg(this->songFileInfo().fileName()), QU::saving);
 	_hasUnsavedChanges = false;
 	return true;
 }
@@ -282,14 +283,14 @@ void QUSongFile::renameSongDir(const QString &newName) {
 	QString oldName(_fi.dir().dirName());
 	
 	if(!rename(dir, oldName, newName)) {
-		emit finished(QString("Could NOT rename the song directory \"%1\" to \"%2\".").arg(oldName).arg(newName), QU::warning);
+		emit finished(QString(tr("Could NOT rename the song directory \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::warning);
 		return;
 	}
 		
 	dir.cd(newName);
 	_fi.setFile(dir.path() + "/" + _fi.fileName());
 	
-	emit finished(QString("Song directory renamed from: \"%1\" to: \"%2\".").arg(oldName).arg(newName), QU::information);
+	emit finished(QString(tr("Song directory renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::information);
 }
 
 /*!
@@ -300,13 +301,13 @@ void QUSongFile::renameSongTxt(const QString &newName) {
 	QString oldName(_fi.fileName());
 	
 	if(!rename(_fi.dir(), oldName, newName)) {
-		emit finished(QString("Could NOT rename the song file \"%1\" to \"%2\".").arg(oldName).arg(newName), QU::warning);
+		emit finished(QString(tr("Could NOT rename the song file \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::warning);
 		return;
 	}
 	
 	_fi.setFile(_fi.dir().path() + "/" + newName);
 	
-	emit finished(QString("Song file renamed from: \"%1\" to: \"%2\".").arg(oldName).arg(newName), QU::information);
+	emit finished(QString(tr("Song file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::information);
 }
 
 /*!
@@ -318,13 +319,13 @@ void QUSongFile::renameSongMp3(const QString &newName) {
 	QString oldName(mp3());
 	
 	if(!rename(_fi.dir(), oldName, newName)) {
-		emit finished(QString("Could NOT rename the audio file \"%1\" to \"%2\".").arg(oldName).arg(newName), QU::warning);
+		emit finished(QString(tr("Could NOT rename the audio file \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::warning);
 		return;
 	}
 	
 	setInfo(MP3_TAG, newName);
 	
-	emit finished(QString("Audio file renamed from: \"%1\" to: \"%2\".").arg(oldName).arg(newName), QU::information);
+	emit finished(QString(tr("Audio file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::information);
 }
 
 /*!
@@ -336,13 +337,13 @@ void QUSongFile::renameSongCover(const QString &newName) {
 	QString oldName(cover());
 	
 	if(!rename(_fi.dir(), oldName, newName)) {
-		emit finished(QString("Could NOT rename the cover picture \"%1\" to \"%2\".").arg(oldName).arg(newName), QU::warning);
+		emit finished(QString(tr("Could NOT rename the cover picture \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::warning);
 		return;
 	}
 	
 	setInfo(COVER_TAG, newName);
 	
-	emit finished(QString("Cover picture renamed from: \"%1\" to: \"%2\".").arg(oldName).arg(newName), QU::information);
+	emit finished(QString(tr("Cover picture renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::information);
 }
 
 /*!
@@ -354,13 +355,13 @@ void QUSongFile::renameSongBackground(const QString &newName) {
 	QString oldName(background());
 	
 	if(!rename(_fi.dir(), oldName, newName)) {
-		emit finished(QString("Could NOT rename the background picture \"%1\" to \"%2\".").arg(oldName).arg(newName), QU::warning);
+		emit finished(QString(tr("Could NOT rename the background picture \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::warning);
 		return;
 	}
 	
 	setInfo(BACKGROUND_TAG, newName);
 	
-	emit finished(QString("Background picture renamed from: \"%1\" to: \"%2\".").arg(oldName).arg(newName), QU::information);
+	emit finished(QString(tr("Background picture renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::information);
 }
 
 /*!
@@ -372,13 +373,13 @@ void QUSongFile::renameSongVideo(const QString &newName) {
 	QString oldName(video());
 	
 	if(!rename(_fi.dir(), oldName, newName)) {
-		emit finished(QString("Could NOT rename the video file \"%1\" to \"%2\".").arg(oldName).arg(newName), QU::warning);
+		emit finished(QString(tr("Could NOT rename the video file \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::warning);
 		return;
 	}
 	
 	setInfo(VIDEO_TAG, newName);
 	
-	emit finished(QString("Video file renamed from: \"%1\" to: \"%2\".").arg(oldName).arg(newName), QU::information);
+	emit finished(QString(tr("Video file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::information);
 }
 
 /*!
@@ -387,7 +388,7 @@ void QUSongFile::renameSongVideo(const QString &newName) {
  */
 void QUSongFile::useID3TagForArtist() {
 	if(!hasMp3()) {
-		emit finished(QString("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for artist.").arg(this->artist()).arg(this->title()), QU::warning);
+		emit finished(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for artist.")).arg(this->artist()).arg(this->title()), QU::warning);
 		return;
 	}
 	
@@ -397,17 +398,17 @@ void QUSongFile::useID3TagForArtist() {
 	QString newArtist(TStringToQString(ref.tag()->artist()));
 	
 	if(newArtist.isEmpty()) {
-		emit finished(QString("The audio file %1 does not contain ID3 tag information about an artist.").arg(this->mp3()), QU::warning);
+		emit finished(QString(tr("The audio file %1 does not contain ID3 tag information about an artist.")).arg(this->mp3()), QU::warning);
 		return;
 	}
 	
 	setInfo(ARTIST_TAG, newArtist);
-	emit finished(QString("ID3 tag of \"%1\" used for artist. Changed from: \"%2\" to: \"%3\".").arg(this->mp3()).arg(oldArtist).arg(this->artist()), QU::information);
+	emit finished(QString(tr("ID3 tag of \"%1\" used for artist. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3()).arg(oldArtist).arg(this->artist()), QU::information);
 }
 
 void QUSongFile::useID3TagForTitle() {
 	if(!hasMp3()) {
-		emit finished(QString("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for title.").arg(this->artist()).arg(this->title()), QU::warning);
+		emit finished(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for title.")).arg(this->artist()).arg(this->title()), QU::warning);
 		return;
 	}
 	
@@ -417,17 +418,17 @@ void QUSongFile::useID3TagForTitle() {
 	QString newTitle(TStringToQString(ref.tag()->title()));
 	
 	if(newTitle.isEmpty()) {
-		emit finished(QString("The audio file %1 does not contain ID3 tag information about a title.").arg(this->mp3()), QU::warning);
+		emit finished(QString(tr("The audio file %1 does not contain ID3 tag information about a title.")).arg(this->mp3()), QU::warning);
 		return;
 	}
 	
 	setInfo(TITLE_TAG, newTitle);
-	emit finished(QString("ID3 tag of \"%1\" used for title. Changed from: \"%2\" to: \"%3\".").arg(this->mp3()).arg(oldTitle).arg(this->title()), QU::information);
+	emit finished(QString(tr("ID3 tag of \"%1\" used for title. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3()).arg(oldTitle).arg(this->title()), QU::information);
 }
 
 void QUSongFile::useID3TagForGenre() {
 	if(!hasMp3()) {
-		emit finished(QString("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for genre.").arg(this->artist()).arg(this->title()), QU::warning);
+		emit finished(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for genre.")).arg(this->artist()).arg(this->title()), QU::warning);
 		return;
 	}
 	
@@ -437,17 +438,17 @@ void QUSongFile::useID3TagForGenre() {
 	QString newGenre(TStringToQString(ref.tag()->genre()));
 	
 	if(newGenre.isEmpty()) {
-		emit finished(QString("The audio file %1 does not contain ID3 tag information about a genre.").arg(this->mp3()), QU::warning);
+		emit finished(QString(tr("The audio file %1 does not contain ID3 tag information about a genre.")).arg(this->mp3()), QU::warning);
 		return;
 	}
 	
 	setInfo(GENRE_TAG, newGenre);
-	emit finished(QString("ID3 tag of \"%1\" used for genre. Changed from: \"%2\" to: \"%3\".").arg(this->mp3()).arg(oldGenre).arg(this->genre()), QU::information);
+	emit finished(QString(tr("ID3 tag of \"%1\" used for genre. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3()).arg(oldGenre).arg(this->genre()), QU::information);
 }
 
 void QUSongFile::useID3TagForYear() {
 	if(!hasMp3()) {
-		emit finished(QString("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for year.").arg(this->artist()).arg(this->title()), QU::warning);
+		emit finished(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for year.")).arg(this->artist()).arg(this->title()), QU::warning);
 		return;
 	}
 	
@@ -457,23 +458,23 @@ void QUSongFile::useID3TagForYear() {
 	QString newYear(QVariant(ref.tag()->year()).toString());
 	
 	if(newYear == "0") {
-		emit finished(QString("The audio file %1 does not contain ID3 tag information about a year.").arg(this->mp3()), QU::warning);
+		emit finished(QString(tr("The audio file %1 does not contain ID3 tag information about a year.")).arg(this->mp3()), QU::warning);
 		return;
 	}
 	
 	setInfo(YEAR_TAG, newYear);
-	emit finished(QString("ID3 tag of \"%1\" used for year. Changed from: \"%2\" to: \"%3\".").arg(this->mp3()).arg(oldYear).arg(this->year()), QU::information);
+	emit finished(QString(tr("ID3 tag of \"%1\" used for year. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3()).arg(oldYear).arg(this->year()), QU::information);
 }
 
 void QUSongFile::removeUnsupportedTags() {
 	if(!this->unsupportedTagsFound()) {
-		emit finished(QString("The song \"%1 - %2\" has no unsupported tags.").arg(this->artist()).arg(this->title()), QU::information);
+		emit finished(QString(tr("The song \"%1 - %2\" has no unsupported tags.")).arg(this->artist()).arg(this->title()), QU::information);
 		return;
 	}
 	
 	foreach(QString uTag, _foundUnsupportedTags) {
 		_info.remove(uTag);
-		emit finished(QString("Unsupported tag removed: #%1.").arg(uTag), QU::information);
+		emit finished(QString(tr("Unsupported tag removed: #%1.")).arg(uTag), QU::information);
 	}
 	
 	_foundUnsupportedTags.clear();
@@ -509,7 +510,7 @@ void QUSongFile::autoSetFile(const QFileInfo &fi, bool force) {
 	} else if(QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		if(!this->hasVideo() || force) {
 			this->setInfo(VIDEO_TAG, fi.fileName());
-			emit finished(QString("Assigned \"%1\" as video file for \"%2 - %3\".").arg(video()).arg(artist()).arg(title()), QU::information);
+			emit finished(QString(tr("Assigned \"%1\" as video file for \"%2 - %3\".")).arg(video()).arg(artist()).arg(title()), QU::information);
 		}
 	} else if(QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QRegExp reCover("\\[CO\\]|cove?r?", Qt::CaseInsensitive);
@@ -517,10 +518,10 @@ void QUSongFile::autoSetFile(const QFileInfo &fi, bool force) {
 		
 		if(fi.fileName().contains(reCover) && (!this->hasCover() || force) ) {
 			this->setInfo(COVER_TAG, fi.fileName());
-			emit finished(QString("Assigned \"%1\" as cover picture for \"%2 - %3\".").arg(cover()).arg(artist()).arg(title()), QU::information);
+			emit finished(QString(tr("Assigned \"%1\" as cover picture for \"%2 - %3\".")).arg(cover()).arg(artist()).arg(title()), QU::information);
 		} else if(fi.fileName().contains(reBackground) && (!this->hasBackground() || force) ) {
 			this->setInfo(BACKGROUND_TAG, fi.fileName());
-			emit finished(QString("Assigned \"%1\" as background picture for \"%2 - %3\".").arg(background()).arg(artist()).arg(title()), QU::information);
+			emit finished(QString(tr("Assigned \"%1\" as background picture for \"%2 - %3\".")).arg(background()).arg(artist()).arg(title()), QU::information);
 		}
 	}	
 }
@@ -535,11 +536,11 @@ void QUSongFile::useExternalFile(const QString &filePath) {
 	QFileInfo destination(this->songFileInfo().dir(), source.fileName());
 	
 	if(!QFile::copy(source.filePath(), destination.filePath())) {
-		emit finished(QString("Could not copy the file \"%1\" to \"%2\".").arg(source.fileName()).arg(destination.path()), QU::warning);
+		emit finished(QString(tr("Could not copy the file \"%1\" to \"%2\".")).arg(source.fileName()).arg(destination.path()), QU::warning);
 		return;
 	}
 	
-	emit finished(QString("The file \"%1\" was successfully copied to \"%2\".").arg(source.fileName()).arg(destination.path()), QU::saving);
+	emit finished(QString(tr("The file \"%1\" was successfully copied to \"%2\".")).arg(source.fileName()).arg(destination.path()), QU::saving);
 	this->autoSetFile(destination, true);
 }
 

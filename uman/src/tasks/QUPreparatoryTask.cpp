@@ -7,11 +7,11 @@ QUPreparatoryTask::QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *par
 	switch(_mode) {
 	case QU::autoAssignFiles:
 		this->setIcon(QIcon(":/marks/wand.png"));
-		this->setDescription("Assign missing files automatically");
+		this->setDescription(tr("Assign missing files automatically"));
 		break;
 	case QU::removeUnsupportedTags:
 		this->setIcon(QIcon(":/types/folder_blue.png"));
-		this->setDescription("Remove unsupported tags");
+		this->setDescription(tr("Remove unsupported tags"));
 		break;
 	}
 }

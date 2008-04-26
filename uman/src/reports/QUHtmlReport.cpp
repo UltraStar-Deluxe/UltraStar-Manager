@@ -20,7 +20,7 @@ QUHtmlReport::QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAb
 	head.appendChild(title);
 	body.appendChild(table);
 	
-	title.appendChild(_report.createTextNode(QObject::tr("UltraStar Manager - Song Report")));
+	title.appendChild(_report.createTextNode(tr("UltraStar Manager - Song Report")));
 	
 	// header
 	table.appendChild(_report.createElement("tr"));
@@ -50,7 +50,7 @@ QUHtmlReport::QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAb
 	}
 	
 	// content
-	QUProgressDialog pDlg("Creating html report...", songFiles.size());
+	QUProgressDialog pDlg(tr("Creating html report..."), songFiles.size());
 	pDlg.setPixmap(":/types/folder.png");
 	pDlg.show();
 	

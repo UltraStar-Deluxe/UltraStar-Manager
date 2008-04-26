@@ -2,6 +2,7 @@
 #include "QUSongItem.h"
 #include "QUSongFile.h"
 #include "QUMainWindow.h"
+#include "QUMessageBox.h"
 
 #include <QMessageBox>
 #include <QUrl>
@@ -23,7 +24,7 @@ QUSongTree::QUSongTree(QWidget *parent): QTreeWidget(parent) {
 
 void QUSongTree::initHorizontalHeader() {
 	QTreeWidgetItem *header = new QTreeWidgetItem();
-	header->setText(0, QString("Folder (%1)").arg(QUMainWindow::BaseDir.path()));
+	header->setText(0, QString(tr("Folder (%1)")).arg(QUMainWindow::BaseDir.path()));
 	header->setIcon(0, QIcon(":/types/folder.png"));
 
 	header->setIcon(1, QIcon(":/types/user.png"));
@@ -121,7 +122,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 	for(int i = 0; i < this->topLevelItemCount(); i++)
 		topLevelItems.append(this->topLevelItem(i));
 	
-	QUProgressDialog progress("Applying filter...", topLevelItems.size(), this);
+	QUProgressDialog progress(tr("Applying filter..."), topLevelItems.size(), this);
 	progress.setPixmap(":/control/filter.png");
 	progress.show();
 	
@@ -251,7 +252,7 @@ bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
 	
 	bool dataUsed = false;
 	
-	QUProgressDialog dlg(QString("Copy & Use files for the song: \"%1 - %2\"...").arg(item->song()->artist()).arg(item->song()->title()), files.size(), this);
+	QUProgressDialog dlg(QString(tr("Copy & Use files for the song: \"%1 - %2\"...")).arg(item->song()->artist()).arg(item->song()->title()), files.size(), this);
 	dlg.setPixmap(":/marks/disk.png");
 	dlg.show();
 	
@@ -320,7 +321,7 @@ void QUSongTree::refreshSelectedItems() {
 	if(items.isEmpty())
 		items.append(this->currentItem());
 	
-	QUProgressDialog dlg("Refreshing selected songs...", items.size(), this);
+	QUProgressDialog dlg(tr("Refreshing selected songs..."), items.size(), this);
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 	
@@ -343,7 +344,7 @@ void QUSongTree::saveSelectedSongs() {
 	if(items.isEmpty())
 		items.append(this->currentItem());
 	
-	QUProgressDialog dlg("Saving selected songs...", items.size(), this);
+	QUProgressDialog dlg(tr("Saving selected songs..."), items.size(), this);
 	dlg.show();
 	
 	foreach(QTreeWidgetItem *item, items) {

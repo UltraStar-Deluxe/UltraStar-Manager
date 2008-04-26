@@ -9,39 +9,39 @@ QURenameTask::QURenameTask(QU::RenameTaskModes mode, QObject *parent):
 	switch(_mode) {
 	case QU::renameDirectory:
 		this->setIcon(QIcon(":/types/folder.png"));
-		this->setDescription("Rename directory to \"Artist - Title\"");
+		this->setDescription(tr("Rename directory to \"Artist - Title\""));
 		break;
 	case QU::renameDirectorySpecial:
 		this->setIcon(QIcon(":/types/folder.png"));
-		this->setDescription("Rename directory to \"Artist - Title [VIDEO] [SC]\" if checked or video present. Keep other folder tags.");
-		this->setToolTip("Looks for <b>[SC]</b> in the <b>#EDITION</b> tag to find out whether it is checked or not.<br>"
+		this->setDescription(tr("Rename directory to \"Artist - Title [VIDEO] [SC]\" if checked or video present. Keep other folder tags."));
+		this->setToolTip(tr("Looks for <b>[SC]</b> in the <b>#EDITION</b> tag to find out whether it is checked or not.<br>"
 					"<br>"
-					"Other folder tags like <b>[KARAOKE]</b> will be appended to the end if present.");
+					"Other folder tags like <b>[KARAOKE]</b> will be appended to the end if present."));
 		break;
 	case QU::renameSongFile:
 		this->setIcon(QIcon(":/types/text.png"));
-		this->setDescription("Rename songtext file to \"Artist - Title.txt\"");
+		this->setDescription(tr("Rename songtext file to \"Artist - Title.txt\""));
 		break;
 	case QU::renameAudioFile:
 		this->setIcon(QIcon(":/types/music.png"));
-		this->setDescription("Rename audio file to \"Artist - Title.*\"");
+		this->setDescription(tr("Rename audio file to \"Artist - Title.*\""));
 		break;
 	case QU::renameCoverFile:
 		this->setIcon(QIcon(":/types/cover.png"));
-		this->setDescription("Rename cover to \"Artist - Title [CO].*\"");
+		this->setDescription(tr("Rename cover to \"Artist - Title [CO].*\""));
 		break;
 	case QU::renameBackgroundFile:
 		this->setIcon(QIcon(":/types/background.png"));
-		this->setDescription("Rename background to \"Artist - Title [BG].*\"");
+		this->setDescription(tr("Rename background to \"Artist - Title [BG].*\""));
 		break;
 	case QU::renameVideoFile:
 		this->setIcon(QIcon(":/types/film.png"));
-		this->setDescription("Rename video to \"Artist - Title.*\"");
+		this->setDescription(tr("Rename video to \"Artist - Title.*\""));
 		break;
 	case QU::renameVideoFileSpecial:
 		this->setIcon(QIcon(":/types/film.png"));
-		this->setDescription("Rename video to \"Artist - Title [VD#*].*\" consider VIDEOGAP");
-		this->setToolTip("Uses <b>#VIDEOGAP:0</b> if tag not present.");
+		this->setDescription(tr("Rename video to \"Artist - Title [VD#*].*\" consider VIDEOGAP"));
+		this->setToolTip(tr("Uses <b>#VIDEOGAP:0</b> if tag not present."));
 		break;
 	}
 }
