@@ -18,7 +18,8 @@ public:
 	};
 	
 	static QUMonty* instance();
-		
+	void initMessages(const QString &source);
+	
 	QPixmap pic(QUMonty::Status status = QUMonty::normal);
 	QString welcomeMsg(int songCount = -1);
 	void talk(QLabel *montyLbl, QLabel *msgLbl);
@@ -42,7 +43,6 @@ private:
 	QStringList _genres;
 	QStringList _languages;
 	
-	void initMessages();
 	void initGenres();
 	void initLanguages();
 };

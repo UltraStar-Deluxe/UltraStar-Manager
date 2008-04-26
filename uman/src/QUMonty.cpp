@@ -6,13 +6,13 @@
 #include <QFileInfo>
 
 QUMonty::QUMonty() {
-	initMessages();
+	initMessages(":/txt/hints");
 	initGenres();
 	initLanguages();
 }
 
-void QUMonty::initMessages() {
-	QFile f(":/txt/hints");
+void QUMonty::initMessages(const QString &source) {
+	QFile f(source);
 	
 	if(f.open(QIODevice::ReadOnly | QIODevice::Text)) {
 		messages = QString(f.readAll()).split("\n");

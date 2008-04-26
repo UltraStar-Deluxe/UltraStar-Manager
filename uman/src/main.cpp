@@ -1,4 +1,5 @@
 #include "QUMainWindow.h"
+#include "QUMonty.h"
 
 #include <QtGui>
 #include <QApplication>
@@ -22,8 +23,10 @@ int main(int argc, char *argv[]) {
 	QString lang = settings.value("language", QVariant(QLocale::system().name())).toString();
 
 	if(QString::compare(lang, "de_DE", Qt::CaseInsensitive) == 0) {	
-		if(umanTranslator.load(":/lang/uman_de.qm"))
+		if(umanTranslator.load(":/lang/uman_de.qm")) {
 			app.installTranslator(&umanTranslator);
+			monty->initMessages(":/txt/hints_de");
+		}
 	}	
 	
     QUMainWindow w;
