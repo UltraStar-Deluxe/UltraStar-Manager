@@ -10,6 +10,8 @@ QUTextDialog::QUTextDialog(QUSongFile *song, QWidget *parent): QDialog(parent) {
 	
 	this->setWindowTitle(song->songFileInfo().filePath());
 	this->initContent(song);
+	
+	textLbl->setText(tr("The content of the song text file is <b>read-only</b>. Line numbers auto-generated."));
 }
 
 /*!

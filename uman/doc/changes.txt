@@ -29,6 +29,7 @@ NEW FEATURES
 * new messagebox style
 * application language "german" added
   > Options > Language > German
+  > Monty talks german! (Monty spricht deutsch! :)
 
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"
@@ -42,8 +43,7 @@ TODO
 * case-sensitive renaming issues with file names....argh...
 * preview pictures
 * new task: remove unused files
-* translate Monty's phrases
-* consistent dialog look&feel
+* new task: remove invalid file tags from song
 
 DEFERRED FOR FUTURE RELEASE
 * extract cover from MP3

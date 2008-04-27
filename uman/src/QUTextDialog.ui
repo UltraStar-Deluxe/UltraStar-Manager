@@ -127,12 +127,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_3" >
+       <widget class="QLabel" name="textLbl" >
         <property name="text" >
-         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">The content of the song text file is &lt;span style=" font-weight:600; color:#000000;">read-only&lt;/span>&lt;span style=" color:#000000;">. Line numbers auto-generated.&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
+         <string>...</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
