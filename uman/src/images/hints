@@ -1,15 +1,15 @@
 If you double-click the cell where the row of an audio file and the <i>audio column</i> cross, you can immediately set your song to use this audio file in UltraStar.<br><br>This works also für pictures and videos.
-You can edit the value of each tag in the details area in the upper right. Just double-click to enter edit mode.
-You can modify the order in which tags are saved to a song file by drag&drop these tags under <i>Options->Tag Save Order</i>.
-Did you remark that "tasks area" on the middle right? Just check the things you want to do, select some songs and then click on the start-button.
-You can hide the event log to the lower right by unchecking <i>Event Log</i> in the <i>View</i> menu.
-Do you want me to say something else? Tell everybody your requests on our <a href="http://sourceforge.net/projects/uman">SourceForge project website</a>.
-Some tags are not editable? Yeah, that's right. Several data stays unchanged because this tool doesn't enable you to modify GAP or BPM a.s.o.<br><br>You can use UltraStar itself very well for that.
-Did I hear you correctly? A missing feature?! Just click <a href="http://sourceforge.net/projects/uman">here</a> and tell it everyone - especially the developers.
+You can edit the value of each tag in the details area. Just double-click the right cell there to enter the edit mode of a specific value.
+You can modify the order in which tags are saved to a song file by drag&drop these tags under <i>Options > Tag Save Order...</i>.
+Did you remark that "tasks area"? Just check the things you want to do, select some songs and then click on the button labeled with "Run".<br><br>You can also hit <i>Ctrl+F5</i>.
+You can hide the event log by unchecking <i>View > Event Log</i>.<br><br>This works also for song details and the tasks area.
+Do you want me to say something else? Tell everybody your requests on our <a href="http://uman.sf.net">SourceForge project website</a>.
+Some tags are not editable? Yeah, that's right. Several data stay unchanged because this tool doesn't enable you to modify GAP or BPM a.s.o.<br><br>You can use UltraStar itself very well for that.
+Did I hear you correctly? A missing feature?! Just click <a href="http://uman.sf.net">here</a> and tell it everyone - especially the developers.
 You can also send a mail to <a href="mailto:saiya_mg@users.sourceforge.net">any developer</a> and give feedback.
 The "Songs" menu enables you to expand or collapse the whole song tree. That means you will either see only directories of your songs or all files you can use.
 You are missing a video for your favourite song? Check out <a href="http://www.youtube.com">Youtube</a>!
-Whenever a task could not be done you can see it in the event log to the lower right. Mostly a file could not be found or invalid characters (e.g. '?') are used to rename something.<br><br>Be aware that <i>UltraStar</i> can display more characters than you can use under <i>Windows</i> for a file.
+Whenever a task could not be done you can see it in the event log. Mostly a file could not be found or invalid characters (e.g. '?') are used to rename something.<br><br>Be aware that <i>UltraStar</i> can display more characters than you can use under <i>Windows</i> for a file.
 Did you notice that there are green and blue ticks for the song tree? Blue ones tell you that your song directory is named correctly after <i>Artist - Title</i> not case-sensitive while green ones are case-sensitive.
 The <i>chain</i> beside a picture, audio or video file signals you that it can be found by UltraStar correctly.<br><br>You can reset chains by double-click the correct column.
 Files are unused by UltraStar whenever they appear gray.
@@ -19,7 +19,7 @@ Did you remark these nice tooltips at the heading of each column in the song tre
 Do you wonder why some tasks want to rename your file into <i>something.*</i>?<br><br>Well, your file suffix is preserved whatever it may be. So don't bother.
 The first *.txt file in any subdirectory of your song folder will be recognized as a song and listed in the song tree.
 There is a song missing which is found by UltraStar instead? That cannot be!<br><br>Well...please report it on the <a href="http://sourceforge.net/projects/uman">project website</a> and include details where that song is located.
-You can turn of these relative paths in the folder column by uncheck <i>Options -> Show Relative Song Path</i>.
+You can turn of these relative paths in the folder column by uncheck <i>View > Relative Song Path</i>.
 What are <b>blue folders</b>? If a tag is found in a song text file that will not be recognized by UltraStar then this song is marked with a blue folder.<br><br>That's not bad at all. These tags will stay untouched.
 The tooltip of a blue folder displays you all unsupported tags that were found.
 Try to click on an audio file and see what appears on the status bar below...
@@ -27,7 +27,7 @@ Did you notice that huge amount of default values for a genre in the song detail
 I shall be quiet? Then uncheck <i>Help -> Allow Monty to talk</i>.
 The default values for an artist, a title and the year in the song details come from the ID3 tag.
 There is a task that enables you to set up missing files for a song automatically. That task looks for the first proper files (audio, picture, video) and uses that file if the present entry is invalid or missing.
-You can edit some details of many songs at once if you select some and use the <i>details table</i> to the upper right.
+You can edit some details of many songs at once if you select some and use the <i>details table</i>.
 If you drag&drop a dockable widget (song details, tasks, event log) over another dockable widget these two widgets <i>will melt together</i> to one new widget with tabs at the bottom.
 You can make a dockable widget (song details, tasks, event log) floatable if you double-click its title bar.
 Did you remark that the state of the application window as well as all dockable widgets is saved on exit?
@@ -37,8 +37,8 @@ If you double-click a text file you'll see its contents.
 Did you know that you can drag one or more files from the <i>file explorer</i> onto a song in the tree to <i>copy</i> and use/assign this or these files automatically for that song?
 Files that appear <i>striked-out</i> and <i>gray</i> cannot be used anywhere and are useless to UltraStar.
 Did you know that there is a context-menu in the song tree? Try to click the right mouse button on a file or a song directory and see what happens...
-You can delete a single file by pushing the delete key on your keyboard or choosing <i>Delete</i> in the context menu of that file.
+You can delete a single file by pushing the delete key on your keyboard or choosing <i>Delete</i> in the context menu of that file.<br><br><b>Attention! You can delete song text files!</b>
 If you drag&drop a song text file from your explorer into the song tree (not at an item), a new folder will be created and your file will be copied to that new location.<br><br>So you can easily add new songs to you collection.
 Whenever a folder appears bold there are unsaved changes. Don't forget to save them!
-You can filter the song tree. Just hit <i>Ctrl+F</i> and type some regular expression. Then press the filter button. All information tags will be considered.
+You can filter the song tree. Just hit <i>Ctrl+F</i> and type some regular expression. Then press the filter button.
 Did you ever create a <i>report</i> of you songs? No?<br><br>Try <i>Songs > New Report ...</i>

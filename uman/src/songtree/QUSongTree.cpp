@@ -13,7 +13,7 @@
 
 #include "QUProgressDialog.h"
 
-#define FILE_DROP_LIMIT 10
+#define FILE_DROP_LIMIT 5
 
 QUSongTree::QUSongTree(QWidget *parent): QTreeWidget(parent) {
 	this->setAcceptDrops(true);
@@ -245,10 +245,15 @@ void QUSongTree::fillContextMenu(QMenu &menu, const QPoint &point) {
 }
 
 bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
-	if(files.size() > FILE_DROP_LIMIT)
-		if(QMessageBox::question(this, tr("Confirm Copy Operation"), QString(tr("You want to copy %1 files. Are you sure?")).arg(files.size()), 
-			QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No)
+	if(files.size() > FILE_DROP_LIMIT) {
+		QUMessageBox::Results result = QUMessageBox::ask(this, 
+				tr("Copy Files"),
+				QString(tr("You want to copy <b>%1</b> files to <b>\"%2\"</b>.")).arg(files.size()).arg(item->song()->songFileInfo().dir().path()),
+				":/control/save_all.png", tr("Copy these files."),
+				":/marks/cancel.png", tr("Cancel copy operation."));
+		if(result == QUMessageBox::second)
 			return false;
+	}
 	
 	bool dataUsed = false;
 	
@@ -379,8 +384,12 @@ void QUSongTree::deleteCurrentItem() {
 	if(!item || item->isToplevel())
 		return; // only allow to delete files which cannot be selected - no directories
 	
-	if( QMessageBox::question(this, tr("Confirm Delete Operation"), QString(tr("Do you really want to delete \"%1\"?")).arg(item->text(0)),
-			QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No )
+	QUMessageBox::Results result = QUMessageBox::ask(this, 
+			tr("Delete File"),
+			QString(tr("<b>\"%1\"</b> will be deleted permanently. You cannot undo a delete operation.")).arg(item->text(0)),
+			":/control/bin.png", tr("Delete this file."),
+			":/marks/cancel.png", tr("Cancel delete operation."));
+	if(result == QUMessageBox::second)
 		return;
 	
 	if(QFile::remove(QFileInfo(item->song()->songFileInfo().dir(), item->text(0)).filePath()))
