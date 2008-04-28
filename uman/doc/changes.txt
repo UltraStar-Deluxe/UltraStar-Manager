@@ -5,6 +5,7 @@ NEW FEATURES
 * drag&drop a file from die explorer into the song tree to
   1. copy that file to the song folder
   2. use that file according to its type (discard previous tags if used)
+  > if you try to drop more than 5 files you will be asked to confirm.
 * new (inofficial) tag: COMMENT
 * new progress dialogs for long operations
 * it is now possible to refresh only the selected songs instead of the whole song tree
@@ -14,7 +15,7 @@ NEW FEATURES
   > delete current file (shortcut: "del")
 * song text files can be dropped into the song tree (not on items) to create a new folder and
   copy the file into that folder
-* new column: unused files found
+* new column: "unused files found"
 * it is now possible to disable "save-on-change"
   > you will have to save the song files yourself then
 * toolbar added
@@ -40,10 +41,12 @@ BUG FIXES
 
 TODO
 * verify the 'E' at the end of a song (data)
-* case-sensitive renaming issues with file names....argh...
 * preview pictures
-* new task: remove unused files
-* new task: remove invalid file tags from song
+* new task: "remove unused files" (clear/delete task)
+  > without undo!
+* new task: "remove invalid file tags" from song (clear/delete task
+  > e.g. clear the song tag "#COVER:blubb.jpg" if the cover file "blubb.jpg" is NOT present
+  > without undo!
 
 DEFERRED FOR FUTURE RELEASE
 * extract cover from MP3
