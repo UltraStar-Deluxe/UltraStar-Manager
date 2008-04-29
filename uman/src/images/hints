@@ -42,3 +42,4 @@ If you drag&drop a song text file from your explorer into the song tree (not at 
 Whenever a folder appears bold there are unsaved changes. Don't forget to save them!
 You can filter the song tree. Just hit <i>Ctrl+F</i> and type some regular expression. Then press the filter button.
 Did you ever create a <i>report</i> of you songs? No?<br><br>Try <i>Songs > New Report ...</i>
+If you double-click a picture file you'll get a preview of it.

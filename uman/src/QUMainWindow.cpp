@@ -39,6 +39,7 @@
 #include "QUProgressDialog.h"
 #include "QUReportDialog.h"
 #include "QUMessageBox.h"
+#include "QUPictureDialog.h"
 
 QDir QUMainWindow::BaseDir = QDir();
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
@@ -204,7 +205,7 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateStatusbar()));
 
 	connect(songTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(editSongSetFileLink(QTreeWidgetItem*, int))); 
-	connect(songTree, SIGNAL(itemActivated(QTreeWidgetItem*, int)), this, SLOT(showSongTextFile(QTreeWidgetItem*, int)));
+	connect(songTree, SIGNAL(itemActivated(QTreeWidgetItem*, int)), this, SLOT(showFileContent(QTreeWidgetItem*, int)));
 	
 	connect(songTree, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(resizeToContents()));
 	connect(songTree, SIGNAL(itemCollapsed(QTreeWidgetItem*)), this, SLOT(resizeToContents()));
@@ -654,9 +655,10 @@ void QUMainWindow::toggleAutoSaveChk(bool checked) {
 }
 
 /*!
- * Shows the content of the current song text file. (read-only)
+ * Shows the content of the current file. Another text-file will be set as new song text
+ * file.
  */
-void QUMainWindow::showSongTextFile(QTreeWidgetItem *item, int column) {
+void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
 	if(column != 0)
 		return;
 	
@@ -664,6 +666,8 @@ void QUMainWindow::showSongTextFile(QTreeWidgetItem *item, int column) {
 	
 	if(!songItem || songItem->isToplevel())
 		return;
+	
+	QString fileScheme("*." + QFileInfo(songItem->text(0)).suffix());
 	
 	if(QString::compare(item->text(0), songItem->song()->songFileInfo().fileName(), Qt::CaseInsensitive) == 0) {
 		QUTextDialog *dlg = new QUTextDialog(songItem->song(), this);
@@ -675,6 +679,9 @@ void QUMainWindow::showSongTextFile(QTreeWidgetItem *item, int column) {
 
 		songTree->setCurrentItem(songItem->parent());
 		songItem->update();
+	} else if(QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		QUPictureDialog dlg(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(0)).filePath(), this);
+		dlg.exec();
 	}
 }
 

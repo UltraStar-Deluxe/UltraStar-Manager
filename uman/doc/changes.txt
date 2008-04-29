@@ -39,6 +39,8 @@ NEW FEATURES
 * new task: "clear invalid file-related tags" from song (clean-up task)
   > e.g. clear the song tag "#COVER:blubb.jpg" if the cover file "blubb.jpg" is NOT present
   > without undo!
+* simple picture preview added
+  > double-click on a picture file
   
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"
@@ -49,9 +51,9 @@ BUG FIXES
 * song lyrics not corrupted anymore if started with a pause/break ("-")
 
 TODO
-* preview pictures
+* finish translation into german
 
-DEFERRED FOR FUTURE RELEASE
+SCHEDULED FOR FUTURE RELEASE
 * extract cover from MP3
 * preview audio files
 * manage song playlists
