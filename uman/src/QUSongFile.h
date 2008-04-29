@@ -124,6 +124,9 @@ public slots:
 	void autoSetFiles();
 	void autoSetFile(const QFileInfo &fi, bool force = false);
 	
+	void deleteUnusedFiles();
+	void clearInvalidFileTags();
+	
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
 	

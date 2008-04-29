@@ -71,6 +71,7 @@
         <file>creator.png</file>
         <file>date.png</file>
         <file>edition.png</file>
+        <file>file_delete.png</file>
         <file>film.png</file>
         <file>folder.png</file>
         <file>folder_blue.png</file>
@@ -81,6 +82,7 @@
         <file>page_code.png</file>
         <file>photo.png</file>
         <file>picture.png</file>
+        <file>tag_delete.png</file>
         <file>text.png</file>
         <file>unused_files.png</file>
         <file>user.png</file>

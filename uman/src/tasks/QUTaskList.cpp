@@ -3,6 +3,7 @@
 #include "QUPreparatoryTask.h"
 #include "QUAudioTagTask.h"
 #include "QURenameTask.h"
+#include "QUCleanTask.h"
 
 #include <QFont>
 
@@ -26,6 +27,10 @@ QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
 	this->addItem(new QUTaskItem(new QURenameTask(QU::renameBackgroundFile)));
 	this->addItem(new QUTaskItem(new QURenameTask(QU::renameVideoFile)));
 	this->addItem(new QUTaskItem(new QURenameTask(QU::renameVideoFileSpecial)));
+	
+	this->appendSeparator(tr("Clean-Up Tasks"));
+	this->addItem(new QUTaskItem(new QUCleanTask(QU::unusedFiles)));
+	this->addItem(new QUTaskItem(new QUCleanTask(QU::invalidFileTags)));
 }
 
 void QUTaskList::doTasksOn(QUSongFile *song) {

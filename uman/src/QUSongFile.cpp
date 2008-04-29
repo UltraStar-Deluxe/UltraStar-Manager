@@ -571,6 +571,52 @@ void QUSongFile::useExternalFile(const QString &filePath) {
 	this->autoSetFile(destination, true);
 }
 
+/*!
+ * Deletes any file in the song directory which is not used by the song itself.
+ */
+void QUSongFile::deleteUnusedFiles() {
+	QFileInfoList fiList = _fi.dir().entryInfoList(QDir::Files, QDir::Name);
+	
+	foreach(QFileInfo fi, fiList) {
+		bool isUsed = false;
+		if(QString::compare(fi.fileName(), this->mp3(), Qt::CaseInsensitive) == 0)
+			isUsed = true;
+		if(QString::compare(fi.fileName(), this->cover(), Qt::CaseInsensitive) == 0)
+			isUsed = true;
+		if(QString::compare(fi.fileName(), this->background(), Qt::CaseInsensitive) == 0)
+			isUsed = true;
+		if(QString::compare(fi.fileName(), this->video(), Qt::CaseInsensitive) == 0)
+			isUsed = true;
+		if(QString::compare(fi.fileName(), this->songFileInfo().fileName(), Qt::CaseInsensitive) == 0)
+			isUsed = true;
+		
+		if(!isUsed && QFile::remove(fi.filePath()))
+			emit finished(QString(tr("File removed successfully: \"%1\".")).arg(fi.filePath()), QU::information);
+	}
+}
+
+void QUSongFile::clearInvalidFileTags() {
+	if( (this->mp3() != N_A || this->start() != N_A || this->end() != N_A) && !this->hasMp3()) {
+		this->setInfo(MP3_TAG, "");
+		this->setInfo(START_TAG, "");
+		this->setInfo(END_TAG, "");
+		emit finished(QString(tr("Audio file tag removed for \"%1 - %2\".")).arg(this->artist()).arg(this->title()), QU::information);
+	}
+	if(this->cover() != N_A && !this->hasCover()) {
+		this->setInfo(COVER_TAG, "");
+		emit finished(QString(tr("Cover tag removed for \"%1 - %2\".")).arg(this->artist()).arg(this->title()), QU::information);
+	}
+	if(this->background() != N_A && !this->hasBackground()) {
+		this->setInfo(BACKGROUND_TAG, "");
+		emit finished(QString(tr("Background tag removed for \"%1 - %2\".")).arg(this->artist()).arg(this->title()), QU::information);
+	}
+	if( (this->video() != N_A || this->videogap() != N_A) && !this->hasVideo()) {
+		this->setInfo(VIDEO_TAG, "");
+		this->setInfo(VIDEOGAP_TAG, "");
+		emit finished(QString(tr("Video tag removed for \"%1 - %2\".")).arg(this->artist()).arg(this->title()), QU::information);
+	}
+}
+
 /*
  * STATIC MEMBERS
  */

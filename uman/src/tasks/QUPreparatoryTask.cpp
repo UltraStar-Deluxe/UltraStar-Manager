@@ -8,6 +8,10 @@ QUPreparatoryTask::QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *par
 	case QU::autoAssignFiles:
 		this->setIcon(QIcon(":/marks/wand.png"));
 		this->setDescription(tr("Assign missing files automatically"));
+		this->setToolTip(tr("<b>#MP3</b> ... first audio file found.<br>"
+				"<b>#COVER</b> ... first picture file, including pattern: <i>[CO]|cove?r?</i>.<br>"
+				"<b>#BACKGROUND</b> ... first picture file, including pattern: <i>[BG]|back</i>.<br>"
+				"<b>#VIDEO</b> ... first video file found."));
 		break;
 	case QU::removeUnsupportedTags:
 		this->setIcon(QIcon(":/types/folder_blue.png"));

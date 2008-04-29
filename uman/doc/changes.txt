@@ -33,7 +33,12 @@ NEW FEATURES
   > Monty talks german! (Monty spricht deutsch! :)
 * append an 'E' after end of lyrics to the song file if there is none
 * keep all other stuff after the song end mark 'E'
-  > a empty lines will be removed from the song text file
+  > all empty lines will be removed from the song text file
+* new task: "delete unused files" (clean-up task)
+  > without undo!
+* new task: "clear invalid file-related tags" from song (clean-up task)
+  > e.g. clear the song tag "#COVER:blubb.jpg" if the cover file "blubb.jpg" is NOT present
+  > without undo!
   
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"
@@ -45,11 +50,6 @@ BUG FIXES
 
 TODO
 * preview pictures
-* new task: "remove unused files" (clear/delete task)
-  > without undo!
-* new task: "remove invalid file tags" from song (clear/delete task
-  > e.g. clear the song tag "#COVER:blubb.jpg" if the cover file "blubb.jpg" is NOT present
-  > without undo!
 
 DEFERRED FOR FUTURE RELEASE
 * extract cover from MP3

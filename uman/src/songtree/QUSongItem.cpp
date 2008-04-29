@@ -96,6 +96,7 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	QRegExp r("\\[.*\\]");
 	r.setMinimal(true);
 	
+	// create a pattern without any folder tags: [SC], [VIDEO], a.s.o.
 	QString pattern(song()->songFileInfo().dir().dirName().remove(r).trimmed());
 	
 	if(QString::compare(song()->artist(), pattern.section(" - ", 0, 0), Qt::CaseSensitive) == 0)

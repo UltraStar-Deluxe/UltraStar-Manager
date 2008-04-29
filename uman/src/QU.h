@@ -41,6 +41,12 @@ public:
 	};
 	Q_DECLARE_FLAGS(PreparatoryTaskModes, PreparatoryTaskMode)
 	
+	enum CleanTaskMode {
+		unusedFiles,
+		invalidFileTags
+	};
+	Q_DECLARE_FLAGS(CleanTaskModes, CleanTaskMode)
+	
 	enum FilterMode {
 		informationTags = 0x01,
 		fileTags = 0x02,
