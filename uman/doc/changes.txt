@@ -31,16 +31,19 @@ NEW FEATURES
 * application language "german" added
   > Options > Language > German
   > Monty talks german! (Monty spricht deutsch! :)
-
+* append an 'E' after end of lyrics to the song file if there is none
+* keep all other stuff after the song end mark 'E'
+  > a empty lines will be removed from the song text file
+  
 BUG FIXES
 * details do not show "n/a seconds" anymore, but only "n/a"
 * selected songs will not be unselected after applying a task anymore
 * list now all file-types in a subfolder to determine unnecessary files
   > gray + striked-out = useless :)
 * progress dialog also shown while renaming lots of details ("mass-tagging")
+* song lyrics not corrupted anymore if started with a pause/break ("-")
 
 TODO
-* verify the 'E' at the end of a song (data)
 * preview pictures
 * new task: "remove unused files" (clear/delete task)
   > without undo!

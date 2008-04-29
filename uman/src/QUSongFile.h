@@ -130,8 +130,11 @@ signals:
 private:
 	QFileInfo _fi;
 	QFile     _file;
-	QMap<QString, QString> _info;
-	QStringList _lyrics;
+	
+	QMap<QString, QString> _info; // song header
+	QStringList _lyrics;          // lyrics
+	QStringList _footer;          // other stuff after the end mark 'E' in the song file
+	
 	QStringList _foundUnsupportedTags;
 	bool _hasUnsavedChanges;
 	

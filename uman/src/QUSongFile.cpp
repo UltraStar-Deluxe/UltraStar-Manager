@@ -36,7 +36,8 @@ void QUSongFile::setFile(const QString &file) {
 
 /*!
  * Reads the US data file and loads all data into memory. This is needed to be done
- * before any changes can be made.
+ * before any changes can be made. You cannot send event messages here because a song
+ * is connected _after_ the first update of the internal cache.
  * \returns True on success, otherwise false.
  */
 bool QUSongFile::updateCache() {
@@ -46,13 +47,18 @@ bool QUSongFile::updateCache() {
 		return false;
 	
 	// clear contents
+	_footer.clear();
 	_lyrics.clear();
 	_info.clear();
 	_foundUnsupportedTags.clear();
 	
-	// read new content
+	/*
+	 * Read the header and write all tags into memory. The headers end is assumed
+	 * when a line starts with ':', '*', 'F', 'E' or '-'. See the UltraStar documentation
+	 * about information to these lines.
+	 */
 	QString line;
-	while( !(QRegExp("[:\\*FE].*").exactMatch(line) || _file.atEnd()) ) {
+	while( !(QRegExp("[:\\*FE\\-].*").exactMatch(line) || _file.atEnd()) ) {
 		line = QString(_file.readLine());
 		
 		// read supported tags
@@ -76,12 +82,24 @@ bool QUSongFile::updateCache() {
 		}
 	}
 	
-	_lyrics << line;
-	
-	while(!_file.atEnd()) {
+	// read lyrics + other stuff (distinct them)
+	while( !_file.atEnd() ) {
+		if(QRegExp("[:\\*F\\-].*").exactMatch(line))
+			_lyrics << line;
+		else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.trimmed().isEmpty())
+			_footer << line;
+
 		line = QString(_file.readLine());
-		_lyrics << line;
 	}
+
+	// use last line buffer
+	// TODO: a little bit dirty here (duplicate code)
+	if(QRegExp("[:\\*F\\-].*").exactMatch(line))
+		_lyrics << line;
+	else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.trimmed().isEmpty())
+		_footer << line;
+
+	
 	
 	_file.close();
 	return true;
@@ -241,9 +259,18 @@ bool QUSongFile::save(bool force) {
 		_file.write("\n");		
 	}
 	
+	// write lyrics
 	foreach(QString line, _lyrics) {
 		_file.write(line.toLocal8Bit());
 	}
+	
+	// write song ending
+	_file.write("E\n");
+	
+	// write footer
+	foreach(QString line, _footer) {
+		_file.write(line.toLocal8Bit());
+	}	
 	
 	_file.close();
 	
