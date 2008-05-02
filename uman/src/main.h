@@ -3,7 +3,7 @@
 
 #define MAJOR_VERSION 0x0001
 #define MINOR_VERSION 0x0006
-#define PATCH_VERSION 0x0000
+#define PATCH_VERSION 0x0001
 #define SVN_REVISION "$Rev$"
 
 #endif /*MAIN_H_*/

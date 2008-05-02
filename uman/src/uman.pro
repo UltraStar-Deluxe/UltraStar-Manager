@@ -3,6 +3,7 @@ TARGET = uman
 QT += core \
     gui \
     xml
+CONFIG += debug
 HEADERS += QUPictureDialog.h \
     tasks/QUCleanTask.h \
     QUMessageBox.h \
@@ -72,17 +73,22 @@ FORMS += QUPictureDialog.ui \
     QUTagOrderDialog.ui \
     QUMainWindow.ui
 RESOURCES += images/uman.qrc
-win32 { 
-    RC_FILE = uman.rc
-    LIBS += -L"../lib" \
-        -ltag
-}
-INCLUDEPATH += ../include/taglib \
-    tasks \
+TRANSLATIONS = uman_de.ts
+INCLUDEPATH += tasks \
     details \
     songtree \
     reports
-CONFIG += debug
+win32 { 
+    RC_FILE = uman.rc
+    INCLUDEPATH += ../include/taglib
+    LIBS += -L"../lib" \
+        -ltag
+}
+unix { 
+    INCLUDEPATH += /usr/include/taglib
+    LIBS += -L"/usr/lib" \
+        -ltag
+}
 QMAKE_EXTRA_TARGETS += revtarget
 PRE_TARGETDEPS += version.h
 revtarget.target = version.h
@@ -91,4 +97,3 @@ revtarget.commands = @echo \
 revtarget.depends = $$SOURCES \
     $$HEADERS \
     $$FORMS
-TRANSLATIONS = uman_de.ts

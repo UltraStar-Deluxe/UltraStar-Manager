@@ -50,9 +50,6 @@ BUG FIXES
 * progress dialog also shown while renaming lots of details ("mass-tagging")
 * song lyrics not corrupted anymore if started with a pause/break ("-")
 
-TODO
-* finish translation into german
-
 SCHEDULED FOR FUTURE RELEASE
 * extract cover from MP3
 * preview audio files

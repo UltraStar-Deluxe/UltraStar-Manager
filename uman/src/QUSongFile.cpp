@@ -59,7 +59,7 @@ bool QUSongFile::updateCache() {
 	 */
 	QString line;
 	while( !(QRegExp("[:\\*FE\\-].*").exactMatch(line) || _file.atEnd()) ) {
-		line = QString(_file.readLine());
+		line = QString::fromLocal8Bit(_file.readLine());
 		
 		// read supported tags
 		bool isSupported = false;
@@ -89,7 +89,7 @@ bool QUSongFile::updateCache() {
 		else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.trimmed().isEmpty())
 			_footer << line;
 
-		line = QString(_file.readLine());
+		line = QString::fromLocal8Bit(_file.readLine());
 	}
 
 	// use last line buffer
@@ -286,8 +286,10 @@ bool QUSongFile::save(bool force) {
 bool QUSongFile::rename(QDir dir, const QString &oldName, const QString &newName) {
 	bool result = true;
 	
-	if(QString::compare(oldName, newName, Qt::CaseSensitive) == 0)
+	if(QString::compare(oldName, newName, Qt::CaseSensitive) == 0) {
+		emit finished(QString(tr("Old name and new name match: \"%1\"")).arg(oldName), QU::warning);
 		return false;
+	}
 	
 	if(oldName.length() == newName.length()) {
 		dir.rename(oldName, oldName + "_");

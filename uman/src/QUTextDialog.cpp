@@ -21,7 +21,7 @@ void QUTextDialog::initContent(QUSongFile *song) {
 	QFile f(song->songFileInfo().filePath());
 	
 	if(f.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		QStringList lines(QString(f.readAll()).split("\n"));
+		QStringList lines(QString::fromLocal8Bit(f.readAll()).split("\n"));
 		
 		for(int i = 0; i < lines.size(); i++) { // format line numbers
 			lines[i].prepend(QString("<font color=#808080>%1 </font>").arg(i + 1, 3, 10, QChar('0')));
