@@ -21,12 +21,12 @@ class QUMainWindow : public QMainWindow, private Ui::QUMainWindow {
 public:
 	QUMainWindow(QWidget *parent = 0);
 	~QUMainWindow();
-	
+
 	static QDir BaseDir;
-	
+
 protected:
 	virtual void closeEvent(QCloseEvent *event);
-	
+
 private slots:
 	void initConfig();
 	void initWindow();
@@ -35,55 +35,50 @@ private slots:
 	void initDetailsTable();
 	void initTaskList();
 	void initMonty();
-	
+
 	void appendSong(QUSongFile *song);
-	
+
 	void refreshAllSongs(bool force = false);
 	void createSongFiles();
-	void createSongTree();
-	
+
 	void updateDetails();
 	void updateStatusbar();
-	void updateImage();
-	void resizeToContents();
-	
+
 	void editSongSetFileLink(QTreeWidgetItem *item, int column);
 	void editSongSetDetail(QTableWidgetItem *item);
 	void editSongApplyTasks();
-	
+
 	void aboutQt();
 	void aboutUman();
-	
+
 	void toggleRelativeSongPath(bool checked);
 	void toggleCompleterChk(bool checked);
 	void toggleAutoSaveChk(bool checked);
-	
+
 	void editTagOrder();
 	void changeSongDir();
-	
+
 	void montyTalk();
-	
+
 	void showFileContent(QTreeWidgetItem *item, int column);
-	
+
 	void addLogMsg(const QString &msg, QU::EventMessageTypes type = QU::information);
-	
+
 	void toggleFilterFrame(bool checked);
 	void toggleFilterNegateBtn();
 	void applyFilter();
 	void removeFilter();
-	
+
 	void reportCreate();
-	
+
 	// translations
 	void enableEnglish();
 	void enableGerman();
-	
+
 private:
 	QList<QUSongFile*> _songs;
-	
+
 	void readSongDir(QList<QDir> &dirList);
-	
-	QList<QUSongFile*> selectedSongs();
 };
 
 #endif // QUMAINWINDOW_H
