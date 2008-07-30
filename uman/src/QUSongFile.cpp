@@ -299,8 +299,8 @@ bool QUSongFile::rename(QDir dir, const QString &oldName, const QString &newName
 	}
 
 	if(oldName.length() == newName.length()) {
-		dir.rename(oldName, oldName + "_");
-		result = dir.rename(oldName + "_", newName);
+		dir.rename(oldName, "_" + oldName);
+		result = dir.rename("_" + oldName, newName);
 	} else {
 		result = dir.rename(oldName, newName);
 	}

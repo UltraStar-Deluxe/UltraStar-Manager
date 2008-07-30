@@ -58,6 +58,8 @@ class QUSongFile: public QObject {
 	Q_PROPERTY(QString end READ end)
 	Q_PROPERTY(QString creator READ creator)
 	// additional properties
+	Q_PROPERTY(QString dir READ dir)
+	Q_PROPERTY(QString txt READ txt)
 	Q_PROPERTY(bool hasMp3 READ hasMp3)
 	Q_PROPERTY(bool hasCover READ hasCover)
 	Q_PROPERTY(bool hasBackground READ hasBackground)
@@ -104,6 +106,9 @@ public slots:
 	QString end() const        {return _info.value(END_TAG,        QString(N_A));}
 	QString creator() const    {return _info.value(CREATOR_TAG,    QString(N_A));}
 	QString comment() const    {return _info.value(COMMENT_TAG,    QString(N_A));}
+
+	QString dir() const {return _fi.dir().dirName();}
+	QString txt() const {return _fi.fileName();}
 
 	bool hasMp3() const;
 	bool hasCover() const;
