@@ -4,18 +4,61 @@ NEW FEATURES
 * rename tasks are now scriptable
   > see task-def folder
   > create easily new rename tasks
+* first pre-defined value for EDITION in song details: "[SC]-Songs"
 
 BUG FIXES
 * minor change in object renaming
   > "oldName" now renamed to "_oldName" then to "newName"
+  > try to switch CO and BG, then rename the files with tasks, you'll see... :)
+
+KNOWN BUGS
+* cannot sort after columns with ticks/crosses
+  > look maybe at QIconEngineV2
+* artist/title detection works not correctly for more than one hyphen
+  > "Farin Urlaub - Unter - Wasser" :) (regard the blanks around the hyphen!)
+* .kar files will not be recognized as valid song text files
+  > maybe define a list of valid file endings for a song text file
 
 TODO
-* GUI for editing rename tasks 
+* GUI for editing rename tasks
+* exclusive rename tasks
 * checksums for SC-checked song files
-* extract cover from MP3
+* get cover picture
+  > extract cover from MP3
+  > from amazon ;)
 * preview audio files
 * manage song playlists
+  > load, save, edit
+  > create auto-playlists
 * header/footer for reports
+* display number of all and selected songs
+* detect and handle duplicates
+* add song path to report
+* re-design filter categories
+  > Apply more than one filter?
+* new column if tags contain characters which cannot be used in files/folders
+  > tick/cross
+* enable the user to append any custom []-tag to a file/folder
+  > manage these custom/unknown []-tags
+  > available through context menu? (list []-tags, ...)
+* inactive song text files in a folder (*.txt) are greyed out and striked-through
+  > why not only greyed out?
+* show supported audio/video files somewhere
+* re-organize folder structure with tasks (will be a new category I think)
+  > Songs/Artist - Title (default)
+  > Songs/Artist/Artist - Title
+  > Songs/Edition/Artist - Title
+  > Songs/Genre/Title - Artist
+  > ...
+
+NICE TO HAVE
+* allow []-tags in song title
+  > e.g. "Nothing else matters [video]"
+  > now search for this tag in UltraStar, very cool :)
+  > maybe manage through tasks or so...
+* some nicer way to display ID3-tag data of audio files
+* extract readable lyrics and export them, maybe into some report or so
+* some extended help system in the application (lowest priority, Monty works well :))
 
 changes from 1.5.1 to 1.6.0
 ---------------------------
