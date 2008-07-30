@@ -10,7 +10,7 @@
 #include <QVariant>
 #include <QMessageBox>
 
-QUDetailItem::QUDetailItem(const QString &tag): 
+QUDetailItem::QUDetailItem(const QString &tag):
 	QTableWidgetItem(),
 	_tag(tag)
 {}
@@ -24,7 +24,7 @@ QUDetailItem::QUDetailItem(const QString &tag, const QList<QUSongFile*> &songs):
 
 void QUDetailItem::setSongs(const QList<QUSongFile*> &songs) {
 	_songs = songs;
-	
+
 	if(songs.size() == 1) {
 		this->updateText(this->tag(), songs.first());
 		this->updateDefaultData(this->tag(), songs.first());
@@ -37,19 +37,19 @@ void QUDetailItem::setSongs(const QList<QUSongFile*> &songs) {
 
 void QUDetailItem::updateDefaultData(const QString &tag, QUSongFile *song) {
 	QStringList dropDownData;
-	
+
 	if(QString::compare(tag, MP3_TAG) == 0)
 		dropDownData = song->songFileInfo().dir().entryList(QUSongFile::allowedAudioFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
-	
+
 	else if(QString::compare(tag, COVER_TAG) == 0)
 		dropDownData = song->songFileInfo().dir().entryList(QUSongFile::allowedPictureFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
 
 	else if(QString::compare(tag, BACKGROUND_TAG) == 0)
 		dropDownData = song->songFileInfo().dir().entryList(QUSongFile::allowedPictureFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
-	
+
 	else if(QString::compare(tag, VIDEO_TAG) == 0)
 		dropDownData = song->songFileInfo().dir().entryList(QUSongFile::allowedVideoFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
-	
+
 	else if(QString::compare(tag, GENRE_TAG) == 0)
 		dropDownData = monty->genres();
 
@@ -80,7 +80,10 @@ void QUDetailItem::updateDefaultData(const QString &tag, QUSongFile *song) {
 				dropDownData << year;
 		}
 	}
-	
+	else if(QString::compare(tag, EDITION_TAG) == 0) {
+		dropDownData << "[SC]-Songs";
+	}
+
 	this->setData(Qt::UserRole, QVariant(dropDownData));
 }
 
@@ -106,7 +109,7 @@ void QUDetailItem::updateText(const QString &tag, QUSongFile *song) {
 	} else if(QString::compare(tag, CREATOR_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 		this->setText(song->creator());
-	
+
 	} else if(QString::compare(tag, MP3_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 		this->setText(song->mp3());
@@ -119,7 +122,7 @@ void QUDetailItem::updateText(const QString &tag, QUSongFile *song) {
 	} else if(QString::compare(tag, VIDEO_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 		this->setText(song->video());
-	
+
 	} else if(QString::compare(tag, VIDEOGAP_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 		if(song->videogap() != N_A)
@@ -162,7 +165,7 @@ void QUDetailItem::updateItemForMultipleSongs() {
 		this->setText(QObject::tr("Multiple files selected."));
 	} else if(QString::compare(tag(), ARTIST_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		
+
 		this->setText(songs().first()->artist());
 		for(int i = 0; i < songs().size(); i++) {
 			if(QString::compare(this->text(), songs()[i]->artist(), Qt::CaseInsensitive) != 0) {
@@ -170,10 +173,10 @@ void QUDetailItem::updateItemForMultipleSongs() {
 				break;
 			}
 		}
-		
+
 	} else if(QString::compare(tag(), LANGUAGE_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-				
+
 		this->setText(songs().first()->language());
 		for(int i = 0; i < songs().size(); i++) {
 			if(QString::compare(this->text(), songs()[i]->language(), Qt::CaseInsensitive) != 0) {
@@ -181,11 +184,11 @@ void QUDetailItem::updateItemForMultipleSongs() {
 				break;
 			}
 		}
-		
+
 		this->updateDefaultData(tag(), songs().first());
 	} else if(QString::compare(tag(), EDITION_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		
+
 		this->setText(songs().first()->edition());
 		for(int i = 0; i < songs().size(); i++) {
 			if(QString::compare(this->text(), songs()[i]->edition(), Qt::CaseInsensitive) != 0) {
@@ -196,7 +199,7 @@ void QUDetailItem::updateItemForMultipleSongs() {
 		// TODO: updateDefaultData if edition list present
 	} else if(QString::compare(tag(), GENRE_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		
+
 		this->setText(songs().first()->genre());
 		for(int i = 0; i < songs().size(); i++) {
 			if(QString::compare(this->text(), songs()[i]->genre(), Qt::CaseInsensitive) != 0) {
@@ -204,7 +207,7 @@ void QUDetailItem::updateItemForMultipleSongs() {
 				break;
 			}
 		}
-		
+
 		this->updateDefaultData(tag(), songs().first());
 	} else if(QString::compare(tag(), YEAR_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
@@ -219,7 +222,7 @@ void QUDetailItem::updateItemForMultipleSongs() {
 		// TODO: updateDefaultData if year list present
 	} else if(QString::compare(tag(), CREATOR_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		
+
 		this->setText(songs().first()->creator());
 		for(int i = 0; i < songs().size(); i++) {
 			if(QString::compare(this->text(), songs()[i]->creator(), Qt::CaseInsensitive) != 0) {
@@ -227,7 +230,7 @@ void QUDetailItem::updateItemForMultipleSongs() {
 				break;
 			}
 		}
-	
+
 	} else if(QString::compare(tag(), MP3_TAG) == 0) {
 		this->setFlags(0);
 		this->setText(QObject::tr("Multiple files selected."));
@@ -240,7 +243,7 @@ void QUDetailItem::updateItemForMultipleSongs() {
 	} else if(QString::compare(tag(), VIDEO_TAG) == 0) {
 		this->setFlags(0);
 		this->setText(QObject::tr("Multiple files selected."));
-	
+
 	} else if(QString::compare(tag(), VIDEOGAP_TAG) == 0) {
 		this->setFlags(0);
 		this->setText(QObject::tr("Multiple files selected."));
@@ -261,7 +264,7 @@ void QUDetailItem::updateItemForMultipleSongs() {
 		this->setText(QObject::tr("Multiple files selected."));
 	} else if(QString::compare(tag(), COMMENT_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		
+
 		this->setText(songs().first()->comment());
 		for(int i = 0; i < songs().size(); i++) {
 			if(QString::compare(this->text(), songs()[i]->comment(), Qt::CaseInsensitive) != 0) {

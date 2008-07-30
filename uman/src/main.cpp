@@ -13,17 +13,17 @@ void initLanguage(QApplication&, QTranslator&);
 
 int main(int argc, char *argv[]) {
 	initApplication();
-	
+
 	QApplication app(argc, argv);
 	QTranslator  tr;
-	
+
 	initLanguage(app, tr);
-	
+
     QUMainWindow mainWindow;
     app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
-    
+
     mainWindow.show();
-    
+
     return app.exec();
 }
 
@@ -33,9 +33,9 @@ int main(int argc, char *argv[]) {
  */
 void initApplication() {
 	Q_INIT_RESOURCE(uman);
-	
+
 	qsrand(QDateTime::currentDateTime().toTime_t());
-	
+
 	QCoreApplication::setOrganizationName("HPI");
 	QCoreApplication::setApplicationName("UltraStar Manager");
 }
@@ -53,24 +53,24 @@ void initLanguage(QApplication &app, QTranslator &t) {
 	if(lang.isEmpty()) {
 		lang = QLocale::system().name();
 		settingFound = false;
-		
+
 		settings.setValue("language", QVariant(lang)); // remember this language (system local)
 	}
-	
-	if(QString::compare(lang, "de_DE", Qt::CaseInsensitive) == 0) {	
+
+	if(QString::compare(lang, "de_DE", Qt::CaseInsensitive) == 0) {
 		if(t.load(":/lang/uman_de.qm")) {
 			app.installTranslator(&t);
 			monty->initMessages(":/txt/hints_de");
 		}
 	}
-	
+
 	// message needs to be here because it can be translated only after installing
 	// the translator
 	if(!settingFound)
-		QUMessageBox::ask(0, 
-				QObject::tr("Init Language"), 
+		QUMessageBox::ask(0,
+				QObject::tr("Init Language"),
 				QObject::tr("There was no configuration setting about your language.Your <b>system language</b> will be used if possible.<br>"
 						"<br>"
-						"See <b>Options > Language</b> to change this."), 
+						"See <b>Options > Language</b> to change this."),
 				":/marks/accept.png", QObject::tr("Continue."));
 }
