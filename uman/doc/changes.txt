@@ -1,7 +1,21 @@
 changes from 1.6.0 to 1.7.0
 ---------------------------
+NEW FEATURES
+* rename tasks are now scriptable
+  > see task-def folder
+  > create easily new rename tasks
+
+BUG FIXES
+* minor change in object renaming
+  > "oldName" now renamed to "_oldName" then to "newName"
+
 TODO
-- checksums for SC-checked song files
+* GUI for editing rename tasks 
+* checksums for SC-checked song files
+* extract cover from MP3
+* preview audio files
+* manage song playlists
+* header/footer for reports
 
 changes from 1.5.1 to 1.6.0
 ---------------------------
@@ -54,12 +68,6 @@ BUG FIXES
   > gray + striked-out = useless :)
 * progress dialog also shown while renaming lots of details ("mass-tagging")
 * song lyrics not corrupted anymore if started with a pause/break ("-")
-
-SCHEDULED FOR FUTURE RELEASE
-* extract cover from MP3
-* preview audio files
-* manage song playlists
-* header/footer for reports
 
 changes from 1.5.0 to 1.5.1
 ---------------------------
