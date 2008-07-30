@@ -5,38 +5,52 @@
 #include "QURenameTask.h"
 #include "QUCleanTask.h"
 
+#include <QCoreApplication>
 #include <QFont>
+#include <QDir>
+#include <QFile>
+#include <QFileInfoList>
+#include <QMessageBox>
 
 QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
+	QList<QDomDocument*> tasks = this->loadTaskFiles(); // pre-configured tasks
+
 	this->appendSeparator(tr("Preparatory Tasks"));
-	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::autoAssignFiles)));
-	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::removeUnsupportedTags)));
-	
+//	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::autoAssignFiles)));
+//	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::removeUnsupportedTags)));
+
 	this->appendSeparator(tr("ID3 Tag Tasks"));
-	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useArtist)));
-	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useTitle)));
-	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useGenre)));
-	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useYear)));
-	
+//	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useArtist)));
+//	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useTitle)));
+//	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useGenre)));
+//	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useYear)));
+
 	this->appendSeparator(tr("Renaming Tasks"));
-	this->addItem(new QUTaskItem(new QURenameTask(QU::renameDirectory)));
-	this->addItem(new QUTaskItem(new QURenameTask(QU::renameDirectorySpecial)));
-	this->addItem(new QUTaskItem(new QURenameTask(QU::renameSongFile)));
-	this->addItem(new QUTaskItem(new QURenameTask(QU::renameAudioFile)));
-	this->addItem(new QUTaskItem(new QURenameTask(QU::renameCoverFile)));
-	this->addItem(new QUTaskItem(new QURenameTask(QU::renameBackgroundFile)));
-	this->addItem(new QUTaskItem(new QURenameTask(QU::renameVideoFile)));
-	this->addItem(new QUTaskItem(new QURenameTask(QU::renameVideoFileSpecial)));
-	
+	foreach(QDomDocument* task, tasks) {
+		if( QString::compare("rename", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 )
+			this->addItem(new QUTaskItem(new QURenameTask(task)));
+	}
+//	this->addItem(new QUTaskItem(new QURenameTask(QU::renameDirectory)));
+//	this->addItem(new QUTaskItem(new QURenameTask(QU::renameDirectorySpecial)));
+//	this->addItem(new QUTaskItem(new QURenameTask(QU::renameSongFile)));
+//	this->addItem(new QUTaskItem(new QURenameTask(QU::renameAudioFile)));
+//	this->addItem(new QUTaskItem(new QURenameTask(QU::renameCoverFile)));
+//	this->addItem(new QUTaskItem(new QURenameTask(QU::renameBackgroundFile)));
+//	this->addItem(new QUTaskItem(new QURenameTask(QU::renameVideoFile)));
+//	this->addItem(new QUTaskItem(new QURenameTask(QU::renameVideoFileSpecial)));
+
 	this->appendSeparator(tr("Clean-Up Tasks"));
-	this->addItem(new QUTaskItem(new QUCleanTask(QU::unusedFiles)));
-	this->addItem(new QUTaskItem(new QUCleanTask(QU::invalidFileTags)));
+//	this->addItem(new QUTaskItem(new QUCleanTask(QU::unusedFiles)));
+//	this->addItem(new QUTaskItem(new QUCleanTask(QU::invalidFileTags)));
+
+	qDeleteAll(tasks);
+	tasks.clear();
 }
 
 void QUTaskList::doTasksOn(QUSongFile *song) {
 	for(int i = 0; i < this->count(); i++) {
 		QUTaskItem *item = dynamic_cast<QUTaskItem*>(this->item(i));
-		
+
 		if(item && item->checkState() == Qt::Checked)
 			item->task()->startOn(song);
 	}
@@ -63,31 +77,31 @@ void QUTaskList::uncheckAllTasks() {
 void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
 	if(item->checkState() == Qt::Unchecked)
 		return;
-	
+
 	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(item);
-	
+
 	if(!taskItem)
 		return;
-	
+
 	QURenameTask *task = dynamic_cast<QURenameTask*>(taskItem->task());
-	
+
 	if(!task)
 		return;
-	
+
 	for(int i = 0; i < this->count(); i++) {
 		if(this->item(i)->checkState() == Qt::Unchecked)
 			continue;
-		
+
 		QUTaskItem *exclusiveTaskItem = dynamic_cast<QUTaskItem*>(this->item(i));
-		
+
 		if(!exclusiveTaskItem)
 			continue;
-		
+
 		QURenameTask *exclusiveTask = dynamic_cast<QURenameTask*>(exclusiveTaskItem->task());
-		
+
 		if(!exclusiveTask)
 			continue;
-		
+
 		if( ((task->mode() == QU::renameDirectory) && (exclusiveTask->mode() == QU::renameDirectorySpecial))
 			||
 			((task->mode() == QU::renameDirectorySpecial) && (exclusiveTask->mode() == QU::renameDirectory))
@@ -100,11 +114,35 @@ void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
 	}
 }
 
+/*!
+ * Opens all XML-Files which could be task configurations.
+ */
+QList<QDomDocument*> QUTaskList::loadTaskFiles() {
+	QList<QDomDocument*> tasks;
+
+	QDir taskDir = QCoreApplication::applicationDirPath();
+	// TODO: Make task config path available through registry - not hard-coded.
+	taskDir.cd("t");
+
+	QFileInfoList taskFiList = taskDir.entryInfoList(QStringList("*.xml"), QDir::Files);
+
+	foreach(QFileInfo taskFi, taskFiList) {
+		QFile file(taskFi.filePath());
+		if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+			QDomDocument *newTask = new QDomDocument(taskFi.fileName());
+			newTask->setContent(file.readAll());
+			tasks.append(newTask);
+		}
+	}
+
+	return tasks;
+}
+
 void QUTaskList::appendSeparator(const QString &text) {
 	QListWidgetItem *separator = new QListWidgetItem(text);
 
 	separator->setTextAlignment(Qt::AlignLeft);
-	separator->setFlags(Qt::ItemIsEnabled);		
+	separator->setFlags(Qt::ItemIsEnabled);
 	separator->setBackgroundColor(Qt::darkGray);
 	separator->setTextColor(Qt::white);
 

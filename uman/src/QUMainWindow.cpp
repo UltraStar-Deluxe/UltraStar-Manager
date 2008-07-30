@@ -232,7 +232,9 @@ void QUMainWindow::initTaskList() {
 	connect(taskBtn, SIGNAL(clicked()), this, SLOT(editSongApplyTasks()));
 	connect(allTasksBtn, SIGNAL(clicked()), taskList, SLOT(checkAllTasks()));
 	connect(noTasksBtn, SIGNAL(clicked()), taskList, SLOT(uncheckAllTasks()));
+
 	connect(taskList, SIGNAL(itemChanged(QListWidgetItem*)), taskList, SLOT(uncheckAllExclusiveTasks(QListWidgetItem*)));
+	connect(taskList, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 }
 
 void QUMainWindow::initMonty() {
@@ -302,6 +304,7 @@ void QUMainWindow::createSongFiles() {
 		dlg.update(dir.dirName());
 
 		if(!files.isEmpty()) {
+			// TODO: What about more txt files in a folder? Really choose the first one? Hmmm...
 			_songs.append(new QUSongFile(QFileInfo(dir, files.first()).filePath()));
 			// enable event log
 			connect(_songs.last(), SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
