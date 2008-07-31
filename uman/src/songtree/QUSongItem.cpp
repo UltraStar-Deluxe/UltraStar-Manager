@@ -216,6 +216,9 @@ void QUSongItem::updateAsUnknown() {
 
 void QUSongItem::showUnusedFilesIcon() {
 	this->setIcon(UNUSED_FILES_COLUMN, QIcon(":/types/unused_files.png"));
+
+	// used for sorting, should be smaller than zero
+	this->setData(UNUSED_FILES_COLUMN, Qt::UserRole, QVariant(-1));
 }
 
 void QUSongItem::setTick(int column, bool isBlue) {
@@ -237,6 +240,8 @@ void QUSongItem::setCross(int column) {
 
 /*!
  * Replace base function completely. See Qt source code.
+ *
+ * Used to sort "icon only" columns.
  */
 bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	int column = treeWidget() ? treeWidget()->sortColumn() : 0;
@@ -248,6 +253,7 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case COVER_COLUMN:
 	case BACKGROUND_COLUMN:
 	case VIDEO_COLUMN:
+	case UNUSED_FILES_COLUMN:
 		return this->data(column, Qt::UserRole).toInt() < other.data(column, Qt::UserRole).toInt(); break;
 	default:
 		return text(column) < other.text(column);

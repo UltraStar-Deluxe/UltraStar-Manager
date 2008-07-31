@@ -12,6 +12,7 @@ BUG FIXES
   > try to switch CO and BG, then rename the files with tasks, you'll see... :)
 * you can now sort after the columns with ticks and crosses
   > a cross is "smaller" than a tick
+* fixed sorting for "unused files" column
 
 KNOWN BUGS
 * artist/title detection works not correctly for more than one hyphen
