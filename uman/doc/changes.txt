@@ -10,10 +10,10 @@ BUG FIXES
 * minor change in object renaming
   > "oldName" now renamed to "_oldName" then to "newName"
   > try to switch CO and BG, then rename the files with tasks, you'll see... :)
+* you can now sort after the columns with ticks and crosses
+  > a cross is "smaller" than a tick
 
 KNOWN BUGS
-* cannot sort after columns with ticks/crosses
-  > look maybe at QIconEngineV2
 * artist/title detection works not correctly for more than one hyphen
   > "Farin Urlaub - Unter - Wasser" :) (regard the blanks around the hyphen!)
 * .kar files will not be recognized as valid song text files

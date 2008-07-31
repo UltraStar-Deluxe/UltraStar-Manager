@@ -12,8 +12,8 @@
 #include <QMessageBox>
 
 QUSongItem::QUSongItem(QUSongFile *song, bool isToplevel):
-	QTreeWidgetItem(), 
-	_song(song), 
+	QTreeWidgetItem(),
+	_song(song),
 	_isToplevel(isToplevel) {
 	if(isToplevel)
 		update();
@@ -39,25 +39,25 @@ void QUSongItem::update() {
 		(dynamic_cast<QUSongItem*>(this->parent()))->update();
 		return;
 	}
-	
+
 	QSettings settings;
 	this->updateAsDirectory(settings.value("showRelativeSongPath", QVariant(true)).toBool());
-	
+
 	QUSongItem *child;
 	QStringList fileNames = song()->songFileInfo().dir().entryList(
 			QStringList("*"), QDir::Files);
-	
+
 	qDeleteAll(this->takeChildren());
-	
+
 	for(int i = 0; i < fileNames.size(); i++) {
 		child = new QUSongItem(song());
 		this->addChild(child);
-				
-		child->setText(0, fileNames[i]); // set filename for first column
+
+		child->setText(FOLDER_COLUMN, fileNames[i]); // set filename for first column
 		child->setFlags(Qt::ItemIsEnabled); // do not allow selection
-		
+
 		QString fileScheme("*." + QFileInfo(fileNames[i]).suffix());
-		
+
 		if(QString::compare(fileScheme, "*.txt", Qt::CaseInsensitive) == 0) {
 			child->updateAsTxt();
 		} else if(QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
@@ -79,138 +79,177 @@ void QUSongItem::update() {
  */
 void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	clearContents();
-	
+
 	if(showRelativePath)
-		this->setText(0, QUMainWindow::BaseDir.relativeFilePath(song()->songFileInfo().path()));
+		this->setText(FOLDER_COLUMN, QUMainWindow::BaseDir.relativeFilePath(song()->songFileInfo().path()));
 	else
-		this->setText(0, song()->songFileInfo().dir().dirName());
-	
+		this->setText(FOLDER_COLUMN, song()->songFileInfo().dir().dirName());
+
 	if(song()->unsupportedTagsFound()) {
-		this->setIcon(0, QIcon(":/types/folder_blue.png"));
-		this->setToolTip(0, QObject::tr("Unsupported Tags:\n#") + song()->unsupportedTags());
+		this->setIcon(FOLDER_COLUMN, QIcon(":/types/folder_blue.png"));
+		this->setToolTip(FOLDER_COLUMN, QObject::tr("Unsupported Tags:\n#") + song()->unsupportedTags());
 	} else {
-		this->setIcon(0, QIcon(":/types/folder.png"));
-		this->setToolTip(0, "");
+		this->setIcon(FOLDER_COLUMN, QIcon(":/types/folder.png"));
+		this->setToolTip(FOLDER_COLUMN, "");
 	}
-	
+
 	QRegExp r("\\[.*\\]");
 	r.setMinimal(true);
-	
+
 	// create a pattern without any folder tags: [SC], [VIDEO], a.s.o.
+	// TODO: Fix bug for "Die Ärzte - Der - Titel"
 	QString pattern(song()->songFileInfo().dir().dirName().remove(r).trimmed());
-	
+
 	if(QString::compare(song()->artist(), pattern.section(" - ", 0, 0), Qt::CaseSensitive) == 0)
-		this->setIcon(1, QIcon(":/marks/tick.png"));
+		this->setTick(ARTIST_COLUMN);
 	else if(QString::compare(song()->artist(), pattern.section(" - ", 0, 0), Qt::CaseInsensitive) == 0)
-		this->setIcon(1, QIcon(":/marks/tick_blue.png"));
+		this->setTick(ARTIST_COLUMN, true);
 	else
-		this->setIcon(1, QIcon(":/marks/cross.png"));
+		this->setCross(ARTIST_COLUMN);
 
 	if(QString::compare(song()->title(), pattern.section(" - ", 1, 1), Qt::CaseSensitive) == 0)
-		this->setIcon(2, QIcon(":/marks/tick.png"));
+		this->setTick(TITLE_COLUMN);
 	else if(QString::compare(song()->title(), pattern.section(" - ", 1, 1), Qt::CaseInsensitive) == 0)
-		this->setIcon(2, QIcon(":/marks/tick_blue.png"));
+		this->setTick(TITLE_COLUMN, true);
 	else
-		this->setIcon(2, QIcon(":/marks/cross.png"));
+		this->setCross(TITLE_COLUMN);
 
-	if(song()->hasMp3()) this->setIcon(3, QIcon(":/marks/tick.png")); else this->setIcon(3, QIcon(":/marks/cross.png")); 
-	if(song()->hasCover()) this->setIcon(4, QIcon(":/marks/tick.png")); else this->setIcon(4, QIcon(":/marks/cross.png"));
-	if(song()->hasBackground()) this->setIcon(5, QIcon(":/marks/tick.png")); else this->setIcon(5, QIcon(":/marks/cross.png"));
-	if(song()->hasVideo()) this->setIcon(6, QIcon(":/marks/tick.png")); else this->setIcon(6, QIcon(":/marks/cross.png"));
-	
-	this->setText(8, song()->language());
-	this->setText(9, song()->edition());
-	this->setText(10, song()->genre());
-	this->setText(11, song()->year());
-	this->setText(12, song()->creator());
-	this->setText(13, song()->comment());
-	
+	if(song()->hasMp3())        this->setTick(MP3_COLUMN);        else this->setCross(MP3_COLUMN);
+	if(song()->hasCover())      this->setTick(COVER_COLUMN);      else this->setCross(COVER_COLUMN);
+	if(song()->hasBackground()) this->setTick(BACKGROUND_COLUMN); else this->setCross(BACKGROUND_COLUMN);
+	if(song()->hasVideo())      this->setTick(VIDEO_COLUMN);      else this->setCross(VIDEO_COLUMN);
+
+	this->setText(LANGUAGE_COLUMN, song()->language());
+	this->setText(EDITION_COLUMN,  song()->edition());
+	this->setText(GENRE_COLUMN,    song()->genre());
+	this->setText(YEAR_COLUMN,     song()->year());
+	this->setText(CREATOR_COLUMN,  song()->creator());
+	this->setText(COMMENT_COLUMN,  song()->comment());
+
 	// indicate unsaved changes
-	QFont f(this->font(0));
-	
+	// TODO: Do we really need to create a QFont object here? No convenience?!
+	QFont f(this->font(FOLDER_COLUMN));
+
 	if(song()->hasUnsavedChanges())
 		f.setBold(true);
 	else
 		f.setBold(false);
-	
-	this->setFont(0, f);
+
+	this->setFont(FOLDER_COLUMN, f);
 }
 
-void QUSongItem::updateAsTxt() {	
+void QUSongItem::updateAsTxt() {
 	clearContents();
-	
-	this->setIcon(0, QIcon(":/types/text.png"));
-	
-	if(QString::compare(this->text(0), song()->songFileInfo().fileName(), Qt::CaseInsensitive) != 0) {
-		this->setTextColor(0, Qt::gray); // unnecessary song text file, not used
-		QFont f(this->font(0));
+
+	this->setIcon(FOLDER_COLUMN, QIcon(":/types/text.png"));
+
+	if(QString::compare(this->text(FOLDER_COLUMN), song()->songFileInfo().fileName(), Qt::CaseInsensitive) != 0) {
+		this->setTextColor(FOLDER_COLUMN, Qt::gray); // unnecessary song text file, not used
+		QFont f(this->font(FOLDER_COLUMN));
 		f.setStrikeOut(true);
-		this->setFont(0, f);
-		
+		this->setFont(FOLDER_COLUMN, f);
+
+		// TODO: Are more than one song text files in one folder really "unused"?
 		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon();
 	} else {
-		this->setTextColor(0, Qt::blue);
+		this->setTextColor(FOLDER_COLUMN, Qt::blue);
 	}
 }
 
 void QUSongItem::updateAsMp3() {
 	clearContents();
-	
-	this->setIcon(0, QIcon(":/types/music.png"));
-	
-	if(QString::compare(song()->mp3(), this->text(0), Qt::CaseInsensitive) == 0)
-		this->setIcon(3, QIcon(":/marks/link.png"));
+
+	this->setIcon(FOLDER_COLUMN, QIcon(":/types/music.png"));
+
+	if(QString::compare(song()->mp3(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0)
+		this->setIcon(MP3_COLUMN, QIcon(":/marks/link.png"));
 	else {
-		this->setTextColor(0, Qt::gray); // unused mp3
+		this->setTextColor(FOLDER_COLUMN, Qt::gray); // unused mp3
 		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon();
 	}
 }
 
 void QUSongItem::updateAsPicture() {
 	clearContents();
-	
-	this->setIcon(0, QIcon(":/types/picture.png"));
-	
+
+	this->setIcon(FOLDER_COLUMN, QIcon(":/types/picture.png"));
+
 	bool used = false;
-		
-	if(QString::compare(song()->cover(), this->text(0), Qt::CaseInsensitive) == 0) {
-		this->setIcon(4, QIcon(":/marks/link.png"));
-		used = true; 
-	}
-	
-	if(QString::compare(song()->background(), this->text(0), Qt::CaseInsensitive) == 0) {
-		this->setIcon(5, QIcon(":/marks/link.png"));
+
+	if(QString::compare(song()->cover(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
+		this->setIcon(COVER_COLUMN, QIcon(":/marks/link.png"));
 		used = true;
 	}
-		
+
+	if(QString::compare(song()->background(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
+		this->setIcon(BACKGROUND_COLUMN, QIcon(":/marks/link.png"));
+		used = true;
+	}
+
 	if(!used) {
-		this->setTextColor(0, Qt::gray);
+		this->setTextColor(FOLDER_COLUMN, Qt::gray);
 		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon();
 	}
 }
 
 void QUSongItem::updateAsVideo() {
 	clearContents();
-	
-	this->setIcon(0, QIcon(":/types/film.png"));
-	
-	if(QString::compare(song()->video(), this->text(0), Qt::CaseInsensitive) == 0)
-		this->setIcon(6, QIcon(":/marks/link.png"));
+
+	this->setIcon(FOLDER_COLUMN, QIcon(":/types/film.png"));
+
+	if(QString::compare(song()->video(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0)
+		this->setIcon(VIDEO_COLUMN, QIcon(":/marks/link.png"));
 	else {
-		this->setTextColor(0, Qt::gray);
+		this->setTextColor(FOLDER_COLUMN, Qt::gray);
 		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon();
 	}
 }
 
 void QUSongItem::updateAsUnknown() {
-	this->setTextColor(0, Qt::gray);
-	QFont f(this->font(0));
+	this->setTextColor(FOLDER_COLUMN, Qt::gray);
+	QFont f(this->font(FOLDER_COLUMN));
 	f.setStrikeOut(true);
-	this->setFont(0, f);
-	
+	this->setFont(FOLDER_COLUMN, f);
+
 	(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon();
 }
 
 void QUSongItem::showUnusedFilesIcon() {
-	this->setIcon(7, QIcon(":/types/unused_files.png"));
+	this->setIcon(UNUSED_FILES_COLUMN, QIcon(":/types/unused_files.png"));
+}
+
+void QUSongItem::setTick(int column, bool isBlue) {
+	if(isBlue)
+		this->setIcon(column, QIcon(":/marks/tick_blue.png"));
+	else
+		this->setIcon(column, QIcon(":/marks/tick.png"));
+
+	// used for sorting, should be greater than a "cross" icon
+	this->setData(column, Qt::UserRole, QVariant(1));
+}
+
+void QUSongItem::setCross(int column) {
+	this->setIcon(column, QIcon(":/marks/cross.png"));
+
+	// used for sorting, should be smaller than a "tick" icon
+	this->setData(column, Qt::UserRole, QVariant(0));
+}
+
+/*!
+ * Replace base function completely. See Qt source code.
+ */
+bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
+	int column = treeWidget() ? treeWidget()->sortColumn() : 0;
+
+	switch(column) {
+	case ARTIST_COLUMN:
+	case TITLE_COLUMN:
+	case MP3_COLUMN:
+	case COVER_COLUMN:
+	case BACKGROUND_COLUMN:
+	case VIDEO_COLUMN:
+		return this->data(column, Qt::UserRole).toInt() < other.data(column, Qt::UserRole).toInt(); break;
+	default:
+		return text(column) < other.text(column);
+	}
 }
