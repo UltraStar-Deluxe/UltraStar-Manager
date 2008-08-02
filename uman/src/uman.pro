@@ -4,7 +4,12 @@ QT += core \
     gui \
     xml
 CONFIG += debug
-HEADERS += QUPictureDialog.h \
+HEADERS += tasks/renameTaskDialog/QURenameConditionDelegate.h \
+    tasks/renameTaskDialog/QURenameSourceDelegate.h \
+    tasks/renameTaskDialog/QURenameTextDelegate.h \
+    tasks/renameTaskDialog/QURenameDataTable.h \
+    tasks/renameTaskDialog/QURenameTaskDialog.h \
+    QUPictureDialog.h \
     tasks/QUCleanTask.h \
     QUMessageBox.h \
     reports/QUPlainTextReport.h \
@@ -35,7 +40,12 @@ HEADERS += QUPictureDialog.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += QUPictureDialog.cpp \
+SOURCES += tasks/renameTaskDialog/QURenameConditionDelegate.cpp \
+    tasks/renameTaskDialog/QURenameSourceDelegate.cpp \
+    tasks/renameTaskDialog/QURenameTextDelegate.cpp \
+    tasks/renameTaskDialog/QURenameDataTable.cpp \
+    tasks/renameTaskDialog/QURenameTaskDialog.cpp \
+    QUPictureDialog.cpp \
     tasks/QUCleanTask.cpp \
     QUMessageBox.cpp \
     reports/QUPlainTextReport.cpp \
@@ -65,7 +75,8 @@ SOURCES += QUPictureDialog.cpp \
     QUSongFile.cpp \
     QUMainWindow.cpp \
     main.cpp
-FORMS += QUPictureDialog.ui \
+FORMS += QURenameTaskDialog.ui \
+    QUPictureDialog.ui \
     QUMessageBox.ui \
     QUReportDialog.ui \
     QUProgressDialog.ui \
@@ -77,7 +88,8 @@ TRANSLATIONS = uman_de.ts
 INCLUDEPATH += tasks \
     details \
     songtree \
-    reports
+    reports \
+    tasks/renameTaskDialog
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib

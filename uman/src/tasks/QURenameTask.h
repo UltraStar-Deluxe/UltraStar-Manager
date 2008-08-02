@@ -5,6 +5,7 @@
 #include "QUAbstractTask.h"
 
 #include <QDomDocument>
+#include <QDomDocumentType>
 #include <QStringList>
 
 class QURenameData: public QObject {
@@ -30,9 +31,16 @@ public:
 
 	virtual void startOn(QUSongFile *song);
 
+	QString configFileName() const { return _configFileName; }
+	QString iconSource() const { return _iconSource; }
 	int group() const { return _group; }
+	QString target() const { return _target; }
+	QString schema() const { return _schema; }
+	QList<QURenameData*> data() const { return _data; }
 
 private:
+	QString _configFileName;
+	QString _iconSource; // used to determine the source path of the tasks icon
 	int _group; // used for exclusive tasks
 	QString _target;
 	QString _schema;

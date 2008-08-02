@@ -293,6 +293,8 @@ bool QUSongFile::save(bool force) {
 bool QUSongFile::rename(QDir dir, const QString &oldName, const QString &newName) {
 	bool result = true;
 
+	// TODO: Check given names: No traling dots, no trailing spaces, a.s.o.
+
 	if(QString::compare(oldName, newName, Qt::CaseSensitive) == 0) {
 		emit finished(QString(tr("Old name and new name match: \"%1\"")).arg(oldName), QU::warning);
 		return false;
@@ -640,4 +642,19 @@ QStringList QUSongFile::allowedPictureFiles() {
 
 QStringList QUSongFile::allowedVideoFiles() {
 	return QString("*.mpg *.mpeg *.avi *.flv *.ogm").split(" ");
+}
+
+/*!
+ * \returns a list of all possible targets used by rename tasks.
+ */
+QStringList QUSongFile::availableTargets() {
+	return QString("dir txt mp3 cover background video").split(" ");
+}
+
+QStringList QUSongFile::availableConditions() {
+	return QString("true hasMp3 hasCover hasBackground hasVideo isSongChecked").split(" ");
+}
+
+QStringList QUSongFile::availableSources() {
+	return QString("%1 %2 %3 artist title mp3 bpm gap video videogap cover background start language relative edition genre year end creator dir txt").arg(TEXT_SOURCE).arg(KEEP_SUFFIX_SOURCE).arg(UNKNOWN_TAGS_SOURCE).split(" ");
 }

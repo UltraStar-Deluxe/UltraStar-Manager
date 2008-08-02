@@ -3,6 +3,7 @@
 
 #include <QListWidget>
 #include <QDomDocument>
+#include <QDomAttr>
 
 #include "QU.h"
 #include "QUTaskItem.h"
@@ -20,6 +21,8 @@ public slots:
 	void checkAllTasks();
 	void uncheckAllTasks();
 	void uncheckAllExclusiveTasks(QListWidgetItem *item);
+
+	void editTask(QListWidgetItem *item);
 
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);

@@ -33,6 +33,10 @@
 #define GAP_TAG        "GAP"
 #define COMMENT_TAG    "COMMENT" /* not supported by UltraStar */
 
+#define TEXT_SOURCE         "*TEXT*"
+#define KEEP_SUFFIX_SOURCE  "*SUFFIX*"
+#define UNKNOWN_TAGS_SOURCE "*UNKNOWN_TAGS*"
+
 /*!
  * This class represents a data file which is used by UltraStar for every song.
  * It contains all tags that are available in US Deluxe 1.00.
@@ -145,6 +149,10 @@ public slots:
 	static QStringList allowedAudioFiles();
 	static QStringList allowedPictureFiles();
 	static QStringList allowedVideoFiles();
+
+	static QStringList availableTargets();
+	static QStringList availableConditions();
+	static QStringList availableSources();
 
 	bool unsupportedTagsFound() const { return _foundUnsupportedTags.size() > 0; }
 	QString unsupportedTags() const { return _foundUnsupportedTags.join("\n#"); }

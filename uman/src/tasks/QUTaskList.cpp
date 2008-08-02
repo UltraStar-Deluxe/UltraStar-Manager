@@ -4,6 +4,7 @@
 #include "QUAudioTagTask.h"
 #include "QURenameTask.h"
 #include "QUCleanTask.h"
+#include "QURenameTaskDialog.h"
 
 #include <QCoreApplication>
 #include <QFont>
@@ -40,6 +41,8 @@ QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
 
 	// do not allow to check two exclusive tasks
 	connect(this, SIGNAL(itemChanged(QListWidgetItem*)), SLOT(uncheckAllExclusiveTasks(QListWidgetItem*)));
+	// TODO: Enable task editing not through double-click?
+	connect(this, SIGNAL(itemDoubleClicked(QListWidgetItem*)), SLOT(editTask(QListWidgetItem*)));
 }
 
 void QUTaskList::doTasksOn(QUSongFile *song) {
@@ -106,6 +109,30 @@ void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
 }
 
 /*!
+ * Shows a dialog to edit the selected "rename" task if such a task is
+ * selected.
+ */
+void QUTaskList::editTask(QListWidgetItem *item) {
+	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(item);
+
+	if(!taskItem)
+		return;
+
+	QURenameTask *task = dynamic_cast<QURenameTask*>(taskItem->task());
+
+	if(!task)
+		return;
+
+	QURenameTaskDialog *dlg = new QURenameTaskDialog(task, this);
+
+	if(dlg->exec()) {
+
+	}
+
+	delete dlg;
+}
+
+/*!
  * Opens all XML-Files which could be task configurations.
  */
 QList<QDomDocument*> QUTaskList::loadTaskFiles() {
@@ -120,8 +147,12 @@ QList<QDomDocument*> QUTaskList::loadTaskFiles() {
 	foreach(QFileInfo taskFi, taskFiList) {
 		QFile file(taskFi.filePath());
 		if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-			QDomDocument *newTask = new QDomDocument(taskFi.fileName());
+			QDomDocument *newTask = new QDomDocument();
 			newTask->setContent(file.readAll());
+
+			// save current fileName for later use
+			newTask->firstChildElement("task").setAttribute("file", taskFi.fileName());
+
 			tasks.append(newTask);
 		}
 	}

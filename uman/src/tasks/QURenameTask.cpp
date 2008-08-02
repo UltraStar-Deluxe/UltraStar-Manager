@@ -8,6 +8,8 @@
 QURenameTask::QURenameTask(QDomDocument *taskConfig, QObject *parent):
 	QUAbstractTask(parent)
 {
+	this->_configFileName = taskConfig->firstChildElement("task").attribute("file", tr("unnamed.xml"));
+
 	// setup visual appearance
 	QDomElement general(taskConfig->firstChild().firstChildElement("general"));
 	if(!general.isNull()) {
@@ -16,6 +18,7 @@ QURenameTask::QURenameTask(QDomDocument *taskConfig, QObject *parent):
 		this->setToolTip(tr(general.firstChildElement("tooltip").firstChild().toCDATASection().data().trimmed().toLocal8Bit().data()));
 
 		this->_group = QVariant(general.attribute("group", "-1")).toInt();
+		this->_iconSource = general.firstChildElement("icon").attribute("resource");
 	}
 
 	// setup internal operations
@@ -68,6 +71,8 @@ void QURenameTask::startOn(QUSongFile *song) {
 				QStringList unknownTags(this->filterUnknownTags(song->property(this->_target.toLower().toLocal8Bit().data()).toString()));
 				if(!unknownTags.isEmpty())
 					schema = schema.arg(" " + unknownTags.join(" "));
+				else
+					schema = schema.arg("");
 			} else {
 				schema = schema.arg("");
 			}
