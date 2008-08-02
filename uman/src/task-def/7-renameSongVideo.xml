@@ -1,5 +1,5 @@
 <task>
-    <general type="rename" mode="custom">
+    <general type="rename" group="2">
         <icon resource=":/types/film.png" />
         <description>
             <![CDATA[Rename video to "Artist - Title.*"]]>

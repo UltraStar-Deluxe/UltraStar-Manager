@@ -14,6 +14,8 @@ QURenameTask::QURenameTask(QDomDocument *taskConfig, QObject *parent):
 		this->setIcon(QIcon(general.firstChildElement("icon").attribute("resource")));
 		this->setDescription(tr(general.firstChildElement("description").firstChild().toCDATASection().data().trimmed().toLocal8Bit().data()));
 		this->setToolTip(tr(general.firstChildElement("tooltip").firstChild().toCDATASection().data().trimmed().toLocal8Bit().data()));
+
+		this->_group = QVariant(general.attribute("group", "-1")).toInt();
 	}
 
 	// setup internal operations

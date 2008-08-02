@@ -37,6 +37,9 @@ QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
 
 	qDeleteAll(tasks);
 	tasks.clear();
+
+	// do not allow to check two exclusive tasks
+	connect(this, SIGNAL(itemChanged(QListWidgetItem*)), SLOT(uncheckAllExclusiveTasks(QListWidgetItem*)));
 }
 
 void QUTaskList::doTasksOn(QUSongFile *song) {
@@ -77,10 +80,13 @@ void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
 
 	QURenameTask *task = dynamic_cast<QURenameTask*>(taskItem->task());
 
-	if(!task)
+	if(!task or task->group() == -1)
 		return;
 
 	for(int i = 0; i < this->count(); i++) {
+		if(this->item(i) == item)
+			continue; // do not compare with current item
+
 		if(this->item(i)->checkState() == Qt::Unchecked)
 			continue;
 
@@ -94,16 +100,8 @@ void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
 		if(!exclusiveTask)
 			continue;
 
-		// TODO: Make this feature available through XML-Config files
-//		if( ((task->mode() == QU::renameDirectory) && (exclusiveTask->mode() == QU::renameDirectorySpecial))
-//			||
-//			((task->mode() == QU::renameDirectorySpecial) && (exclusiveTask->mode() == QU::renameDirectory))
-//			||
-//			((task->mode() == QU::renameVideoFile) && (exclusiveTask->mode() == QU::renameVideoFileSpecial))
-//			||
-//			((task->mode() == QU::renameVideoFileSpecial) && (exclusiveTask->mode() == QU::renameVideoFile))
-//		)
-//			exclusiveTaskItem->setCheckState(Qt::Unchecked);
+		if(task->group() == exclusiveTask->group())
+			exclusiveTaskItem->setCheckState(Qt::Unchecked);
 	}
 }
 

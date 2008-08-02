@@ -30,7 +30,10 @@ public:
 
 	virtual void startOn(QUSongFile *song);
 
+	int group() const { return _group; }
+
 private:
+	int _group; // used for exclusive tasks
 	QString _target;
 	QString _schema;
 	QList<QURenameData*> _data;

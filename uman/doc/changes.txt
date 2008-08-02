@@ -24,7 +24,6 @@ KNOWN BUGS
 
 TODO
 * GUI for editing rename tasks
-* exclusive rename tasks
 * checksums for SC-checked song files
 * get cover picture
   > extract cover from MP3
@@ -62,6 +61,7 @@ NICE TO HAVE
 * some nicer way to display ID3-tag data of audio files
 * extract readable lyrics and export them, maybe into some report or so
 * some extended help system in the application (lowest priority, Monty works well :))
+* be able to cancel big tasks
 
 changes from 1.5.1 to 1.6.0
 ---------------------------
