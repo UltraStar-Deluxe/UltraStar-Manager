@@ -13,6 +13,9 @@ BUG FIXES
 * you can now sort after the columns with ticks and crosses
   > a cross is "smaller" than a tick
 * fixed sorting for "unused files" column
+* fixed an application crash where Qt found a file with a trailing dot by ignoring
+  that dot and where TagLib did not found that file which produced a null pointer
+  exception
 
 KNOWN BUGS
 * artist/title detection works not correctly for more than one hyphen

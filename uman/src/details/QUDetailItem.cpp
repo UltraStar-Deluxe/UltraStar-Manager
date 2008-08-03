@@ -59,7 +59,7 @@ void QUDetailItem::updateDefaultData(const QString &tag, QUSongFile *song) {
 	else if(QString::compare(tag, ARTIST_TAG) == 0) {
 		if(song->hasMp3()) {
 			TagLib::FileRef ref(song->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
-			QString artist(TStringToQString(ref.tag()->artist()));
+			QString artist(ref.isNull() ? "" : TStringToQString(ref.tag()->artist()));
 			if(!artist.isEmpty())
 				dropDownData << artist;
 		}
@@ -67,7 +67,7 @@ void QUDetailItem::updateDefaultData(const QString &tag, QUSongFile *song) {
 	else if(QString::compare(tag, TITLE_TAG) == 0) {
 		if(song->hasMp3()) {
 			TagLib::FileRef ref(song->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
-			QString title(TStringToQString(ref.tag()->title()));
+			QString title(ref.isNull() ? "" : TStringToQString(ref.tag()->title()));
 			if(!title.isEmpty())
 				dropDownData << title;
 		}
@@ -75,7 +75,7 @@ void QUDetailItem::updateDefaultData(const QString &tag, QUSongFile *song) {
 	else if(QString::compare(tag, YEAR_TAG) == 0) {
 		if(song->hasMp3()) {
 			TagLib::FileRef ref(song->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
-			QString year(QVariant(ref.tag()->year()).toString());
+			QString year(ref.isNull()? "0" : QVariant(ref.tag()->year()).toString());
 			if(year != "0")
 				dropDownData << year;
 		}

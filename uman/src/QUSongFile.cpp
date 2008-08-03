@@ -288,12 +288,12 @@ bool QUSongFile::save(bool force) {
 
 /*!
  * Rename a file or a directory. Try to enable case-sensitive renaming under
- * Windows.
+ * Windows by inserting an additional step with a preceding "_".
  */
 bool QUSongFile::rename(QDir dir, const QString &oldName, const QString &newName) {
 	bool result = true;
 
-	// TODO: Check given names: No traling dots, no trailing spaces, a.s.o.
+	// TOFIX: Check given names: No traling dots, no trailing spaces, a.s.o.
 
 	if(QString::compare(oldName, newName, Qt::CaseSensitive) == 0) {
 		emit finished(QString(tr("Old name and new name match: \"%1\"")).arg(oldName), QU::warning);
