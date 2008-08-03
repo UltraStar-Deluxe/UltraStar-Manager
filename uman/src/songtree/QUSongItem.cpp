@@ -222,13 +222,15 @@ void QUSongItem::showUnusedFilesIcon() {
 }
 
 void QUSongItem::setTick(int column, bool isBlue) {
-	if(isBlue)
+	if(isBlue) {
 		this->setIcon(column, QIcon(":/marks/tick_blue.png"));
-	else
+		// used for sorting, should be greater than a "cross" icon
+		this->setData(column, Qt::UserRole, QVariant(1));
+	} else {
 		this->setIcon(column, QIcon(":/marks/tick.png"));
-
-	// used for sorting, should be greater than a "cross" icon
-	this->setData(column, Qt::UserRole, QVariant(1));
+		// used for sorting, should be greater than a "cross" icon
+		this->setData(column, Qt::UserRole, QVariant(2));
+	}
 }
 
 void QUSongItem::setCross(int column) {
