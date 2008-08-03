@@ -4,6 +4,8 @@ NEW FEATURES
 * rename tasks are now scriptable
   > see task-def folder
   > create easily new rename tasks
+* context menu for rename tasks added
+  > edit rename tasks by double-click or through the context menu
 * first pre-defined value for EDITION in song details: "[SC]-Songs"
 
 BUG FIXES
@@ -26,7 +28,6 @@ KNOWN BUGS
   contains "illegal" characters like '?'
 
 TODO
-* GUI for editing rename tasks
 * checksums for SC-checked song files
 * get cover picture
   > extract cover from MP3

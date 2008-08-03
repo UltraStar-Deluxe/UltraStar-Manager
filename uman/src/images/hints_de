@@ -42,4 +42,7 @@ Wenn du Songdateien von außerhalb zwischen andere Songs auf den Song-Baum ziehst
 Ein fettgedrucktes Songverzeichnis signalisiert ungespeicherte Änderungen. Speichern nicht vergessen!
 Du kannst die %1 Songs deiner riesigen Sammlung filtern. Drücke <i>Strg+F</i> und tippe einen regulären Ausdruck ein. Bestätige dies mit <i>Enter</i>.
 Hast du schonmal einen <i>Bericht</i> deiner Songs erzeugt? Noch nicht?<br><br>Dann wähle mal <i>Songs > Neuer Bericht...</i>
-Wenn du einen Doppelklick auf ein Bild macht, bekommst du es angezeigt.
+Wenn du einen Doppelklick auf ein Bild machst, bekommst du es angezeigt.
+Du kannst Aufgaben, welche Ordner und Dateien umbenennen, entfernen, indem du die zugehörige Konfigurationsdatei im Anwendungspfad löschst.
+Wenn du einen Doppelklick auf eine Umbenennungsaufgabe machst, kannst du sie bearbeiten.
+Die Aufgabenliste hat ein Kontextmenü, welches es dir ermöglicht, neue Aufgaben anzulegen oder vorhandene zu bearbeiten.

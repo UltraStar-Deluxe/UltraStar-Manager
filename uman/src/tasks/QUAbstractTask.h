@@ -9,16 +9,16 @@
 
 class QUAbstractTask: public QObject {
 	Q_OBJECT
-	
+
 public:
 	QUAbstractTask(QObject *parent = 0);
-	
+
 	virtual void startOn(QUSongFile *song) = 0;
-	
+
 	const QIcon& icon() const { return _icon; }
-	const QString& description() const { return _description; }
-	const QString& toolTip() const { return _toolTip; }
-	
+	virtual QString description() const { return _description; }
+	virtual QString toolTip() const { return _toolTip; }
+
 private:
 	QIcon   _icon;
 	QString _description;

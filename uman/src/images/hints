@@ -43,3 +43,6 @@ Whenever a folder appears bold there are unsaved changes. Don't forget to save t
 You can filter the song tree. Just hit <i>Ctrl+F</i> and type some regular expression. Then press the filter button.
 Did you ever create a <i>report</i> of you songs? No?<br><br>Try <i>Songs > New Report ...</i>
 If you double-click a picture file you'll get a preview of it.
+You can delete a rename task by deleting its configuration file in the application directory.
+If you make a double-click on a rename task in the task list you can modify that task.
+There is a context menu in the task list which enables you to add and edit rename tasks.

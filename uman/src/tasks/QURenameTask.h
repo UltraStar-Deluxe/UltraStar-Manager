@@ -30,6 +30,8 @@ public:
 	~QURenameTask() { qDeleteAll(_data); _data.clear(); }
 
 	virtual void startOn(QUSongFile *song);
+	virtual QString description() const { return tr(QUAbstractTask::description().toLocal8Bit().data()); }
+	virtual QString toolTip() const { return tr(QUAbstractTask::toolTip().toLocal8Bit().data()); }
 
 	QString configFileName() const { return _configFileName; }
 	QString iconSource() const { return _iconSource; }

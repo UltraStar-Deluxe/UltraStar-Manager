@@ -76,8 +76,10 @@ void QURenameTaskDialog::initDialog() {
 	this->fillIconCombo(":/marks");
 	this->fillIconCombo(":/control");
 
-	connect(exclusiveChk, SIGNAL(stateChanged(int)), this, SLOT(controlGroupSpin(int)));
+	exclusiveChk->setCheckState(Qt::Unchecked);
+	groupSpin->setEnabled(false);
 
+	connect(exclusiveChk, SIGNAL(stateChanged(int)), this, SLOT(controlGroupSpin(int)));
 	connect(addDataBtn, SIGNAL(clicked()), SLOT(addData()));
 	connect(removeDataBtn, SIGNAL(clicked()), SLOT(removeData()));
 
