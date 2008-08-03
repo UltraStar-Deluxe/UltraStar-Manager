@@ -14,6 +14,20 @@
 #include <QMessageBox>
 
 QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
+	this->resetTaskList();
+
+	// do not allow to check two exclusive tasks
+	connect(this, SIGNAL(itemChanged(QListWidgetItem*)), SLOT(uncheckAllExclusiveTasks(QListWidgetItem*)));
+	// TODO: Enable task editing not through double-click?
+	connect(this, SIGNAL(itemDoubleClicked(QListWidgetItem*)), SLOT(editTask(QListWidgetItem*)));
+}
+
+/*!
+ * Clear the list and refill it. Should be used to reload custom (rename) tasks.
+ */
+void QUTaskList::resetTaskList() {
+	this->clear();
+
 	QList<QDomDocument*> tasks = this->loadTaskFiles(); // pre-configured tasks
 
 	this->appendSeparator(tr("Preparatory Tasks"));
@@ -38,11 +52,6 @@ QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
 
 	qDeleteAll(tasks);
 	tasks.clear();
-
-	// do not allow to check two exclusive tasks
-	connect(this, SIGNAL(itemChanged(QListWidgetItem*)), SLOT(uncheckAllExclusiveTasks(QListWidgetItem*)));
-	// TODO: Enable task editing not through double-click?
-	connect(this, SIGNAL(itemDoubleClicked(QListWidgetItem*)), SLOT(editTask(QListWidgetItem*)));
 }
 
 void QUTaskList::doTasksOn(QUSongFile *song) {
@@ -126,7 +135,7 @@ void QUTaskList::editTask(QListWidgetItem *item) {
 	QURenameTaskDialog *dlg = new QURenameTaskDialog(task, this);
 
 	if(dlg->exec()) {
-
+		this->resetTaskList();
 	}
 
 	delete dlg;

@@ -656,5 +656,5 @@ QStringList QUSongFile::availableConditions() {
 }
 
 QStringList QUSongFile::availableSources() {
-	return QString("%1 %2 %3 artist title mp3 bpm gap video videogap cover background start language relative edition genre year end creator dir txt").arg(TEXT_SOURCE).arg(KEEP_SUFFIX_SOURCE).arg(UNKNOWN_TAGS_SOURCE).split(" ");
+	return QString("%1 %2 %3 artist title mp3 bpm gap video videogap cover background start language relative edition genre year end creator comment dir txt").arg(TEXT_SOURCE).arg(KEEP_SUFFIX_SOURCE).arg(UNKNOWN_TAGS_SOURCE).split(" ");
 }

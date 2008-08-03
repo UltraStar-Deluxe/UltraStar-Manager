@@ -20,6 +20,7 @@ private slots:
 	void addData();
 	void removeData();
 
+	void saveRenameTask();
 	void saveRenameTask(const QString &filePath);
 	void saveRenameTaskAs();
 

@@ -61,6 +61,7 @@ class QUSongFile: public QObject {
 	Q_PROPERTY(QString year READ year)
 	Q_PROPERTY(QString end READ end)
 	Q_PROPERTY(QString creator READ creator)
+	Q_PROPERTY(QString comment READ comment)
 	// additional properties
 	Q_PROPERTY(QString dir READ dir)
 	Q_PROPERTY(QString txt READ txt)

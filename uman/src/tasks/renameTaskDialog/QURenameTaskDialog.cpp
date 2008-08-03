@@ -50,7 +50,7 @@ QURenameTaskDialog::QURenameTaskDialog(QURenameTask *task, QWidget *parent): QDi
 			dataTable->item(dataTable->rowCount() - 1, 2)->setText(data->_text);
 		} else if(!data->_source.isEmpty()) {
 			dataTable->item(dataTable->rowCount() - 1, 1)->setText(data->_source);
-			dataTable->item(dataTable->rowCount() - 1, 2)->setText(data->_default);
+			dataTable->item(dataTable->rowCount() - 1, 2)->setText(data->_default.isEmpty() ? N_A : data->_default);
 		} else if(data->_keepUnknownTags) {
 			dataTable->item(dataTable->rowCount() - 1, 1)->setText(UNKNOWN_TAGS_SOURCE);
 		}
@@ -60,7 +60,9 @@ QURenameTaskDialog::QURenameTaskDialog(QURenameTask *task, QWidget *parent): QDi
 	_fileName = task->configFileName();
 
 	// connect buttons
+	connect(saveBtn, SIGNAL(clicked()), this, SLOT(saveRenameTask()));
 	connect(saveAsBtn, SIGNAL(clicked()), this, SLOT(saveRenameTaskAs()));
+	connect(cancelBtn, SIGNAL(clicked()), this, SLOT(reject()));
 }
 
 /*!
@@ -99,6 +101,11 @@ void QURenameTaskDialog::removeData() {
 	dataTable->removeLastRow();
 }
 
+void QURenameTaskDialog::saveRenameTask() {
+	this->saveRenameTask(QCoreApplication::applicationDirPath() + "/task-def/" + this->_fileName);
+	this->accept();
+}
+
 /*!
  * Collect the info which is present in this dialog, create a DOM document and save the
  * XML config file to disk.
@@ -117,10 +124,14 @@ void QURenameTaskDialog::saveRenameTask(const QString &filePath) {
 		general.setAttribute("group", QVariant(groupSpin->value()).toString());
 	icon.setAttribute("resource", iconCombo->itemData(iconCombo->currentIndex()).toString());
 
-	QDomCDATASection cdataDescr = doc.createCDATASection(descriptionEdit->text());
-	description.appendChild(cdataDescr);
-	QDomCDATASection cdataToolt = doc.createCDATASection(toolTipEdit->toPlainText());
-	tooltip.appendChild(cdataToolt);
+	if(!descriptionEdit->text().isEmpty()) {
+		QDomCDATASection cdataDescr = doc.createCDATASection(descriptionEdit->text());
+		description.appendChild(cdataDescr);
+	}
+	if(!toolTipEdit->toPlainText().isEmpty()) {
+		QDomCDATASection cdataToolt = doc.createCDATASection(toolTipEdit->toPlainText());
+		tooltip.appendChild(cdataToolt);
+	}
 
 	rename.setAttribute("target", targetCombo->currentText());
 	rename.setAttribute("schema", schemaEdit->text());
@@ -139,7 +150,8 @@ void QURenameTaskDialog::saveRenameTask(const QString &filePath) {
 			data.setAttribute("keepUnknownTags", "true");
 		else if(!dataTable->item(row, 1)->text().isEmpty()) {
 			data.setAttribute("source", dataTable->item(row, 1)->text());
-			data.setAttribute("default", dataTable->item(row, 2)->text());
+			if(dataTable->item(row, 2)->text() != N_A)
+				data.setAttribute("default", dataTable->item(row, 2)->text());
 		}
 
 		rename.appendChild(data);
@@ -156,8 +168,10 @@ void QURenameTaskDialog::saveRenameTask(const QString &filePath) {
 }
 
 void QURenameTaskDialog::saveRenameTaskAs() {
-	QString filePath = QFileDialog::getSaveFileName(this, tr("Save task config"), QCoreApplication::applicationDirPath(), tr("Task Configurations (*.xml)"));
+	QString filePath = QFileDialog::getSaveFileName(this, tr("Save task config"), QCoreApplication::applicationDirPath() + "/task-def", tr("Task Configurations (*.xml)"));
 
-	if(!filePath.isEmpty())
+	if(!filePath.isEmpty()) {
 		this->saveRenameTask(filePath);
+		this->accept();
+	}
 }

@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>327</width>
-    <height>347</height>
+    <height>376</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -16,16 +16,7 @@
    <property name="spacing" >
     <number>0</number>
    </property>
-   <property name="leftMargin" >
-    <number>0</number>
-   </property>
-   <property name="topMargin" >
-    <number>0</number>
-   </property>
-   <property name="rightMargin" >
-    <number>0</number>
-   </property>
-   <property name="bottomMargin" >
+   <property name="margin" >
     <number>0</number>
    </property>
    <item>
@@ -127,7 +118,7 @@
 &lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
 &lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:8pt;">Select proper &lt;/span>&lt;span style=" font-size:8pt; font-weight:600;">target&lt;/span>&lt;span style=" font-size:8pt;"> and create a custom &lt;/span>&lt;span style=" font-size:8pt; font-weight:600;">schema&lt;/span>&lt;span style=" font-size:8pt;"> for the renaming operation.&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">Select a proper &lt;span style=" font-weight:600;">target&lt;/span> and create a custom &lt;span style=" font-weight:600;">schema&lt;/span> for the renaming operation.&lt;/p>&lt;/body>&lt;/html></string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -152,16 +143,7 @@ p, li { white-space: pre-wrap; }
      <property name="spacing" >
       <number>5</number>
      </property>
-     <property name="leftMargin" >
-      <number>5</number>
-     </property>
-     <property name="topMargin" >
-      <number>5</number>
-     </property>
-     <property name="rightMargin" >
-      <number>5</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin" >
       <number>5</number>
      </property>
      <item>
@@ -195,7 +177,7 @@ p, li { white-space: pre-wrap; }
            <property name="orientation" >
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0" >
             <size>
              <width>68</width>
              <height>17</height>
@@ -268,7 +250,9 @@ p, li { white-space: pre-wrap; }
              <string>Cup</string>
             </property>
             <property name="icon" >
-             <iconset/>
+             <iconset>
+              <normaloff/>
+             </iconset>
             </property>
            </item>
           </widget>
@@ -278,7 +262,7 @@ p, li { white-space: pre-wrap; }
            <property name="orientation" >
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0" >
             <size>
              <width>40</width>
              <height>20</height>
@@ -360,7 +344,13 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="schemaEdit" />
+        <widget class="QLineEdit" name="schemaEdit" >
+         <property name="font" >
+          <font>
+           <family>Lucida Console</family>
+          </font>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QToolButton" name="addDataBtn" >
@@ -368,7 +358,8 @@ p, li { white-space: pre-wrap; }
           <string>...</string>
          </property>
          <property name="icon" >
-          <iconset resource="images/uman.qrc" >:/bullets/plus_small.png</iconset>
+          <iconset resource="images/uman.qrc" >
+           <normaloff>:/bullets/plus_small.png</normaloff>:/bullets/plus_small.png</iconset>
          </property>
          <property name="autoRaise" >
           <bool>true</bool>
@@ -381,7 +372,8 @@ p, li { white-space: pre-wrap; }
           <string>...</string>
          </property>
          <property name="icon" >
-          <iconset resource="images/uman.qrc" >:/bullets/minus_small.png</iconset>
+          <iconset resource="images/uman.qrc" >
+           <normaloff>:/bullets/minus_small.png</normaloff>:/bullets/minus_small.png</iconset>
          </property>
          <property name="autoRaise" >
           <bool>true</bool>
@@ -396,7 +388,7 @@ p, li { white-space: pre-wrap; }
          <property name="sizeType" >
           <enum>QSizePolicy::Fixed</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>16</width>
            <height>22</height>
@@ -413,11 +405,23 @@ p, li { white-space: pre-wrap; }
        </property>
        <item>
         <widget class="QURenameDataTable" name="dataTable" >
+         <property name="editTriggers" >
+          <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+         </property>
+         <property name="alternatingRowColors" >
+          <bool>true</bool>
+         </property>
          <property name="selectionMode" >
           <enum>QAbstractItemView::SingleSelection</enum>
          </property>
          <property name="selectionBehavior" >
-          <enum>QAbstractItemView::SelectRows</enum>
+          <enum>QAbstractItemView::SelectItems</enum>
+         </property>
+         <property name="gridStyle" >
+          <enum>Qt::DashLine</enum>
+         </property>
+         <property name="cornerButtonEnabled" >
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -444,7 +448,8 @@ p, li { white-space: pre-wrap; }
             <string>...</string>
            </property>
            <property name="icon" >
-            <iconset resource="images/uman.qrc" >:/bullets/arrow_up_small.png</iconset>
+            <iconset resource="images/uman.qrc" >
+             <normaloff>:/bullets/arrow_up_small.png</normaloff>:/bullets/arrow_up_small.png</iconset>
            </property>
            <property name="autoRaise" >
             <bool>true</bool>
@@ -469,7 +474,8 @@ p, li { white-space: pre-wrap; }
             <string>...</string>
            </property>
            <property name="icon" >
-            <iconset resource="images/uman.qrc" >:/bullets/arrow_down_small.png</iconset>
+            <iconset resource="images/uman.qrc" >
+             <normaloff>:/bullets/arrow_down_small.png</normaloff>:/bullets/arrow_down_small.png</iconset>
            </property>
            <property name="autoRaise" >
             <bool>true</bool>
@@ -481,7 +487,7 @@ p, li { white-space: pre-wrap; }
            <property name="orientation" >
             <enum>Qt::Vertical</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0" >
             <size>
              <width>13</width>
              <height>44</height>
@@ -507,16 +513,7 @@ p, li { white-space: pre-wrap; }
      <property name="spacing" >
       <number>5</number>
      </property>
-     <property name="leftMargin" >
-      <number>5</number>
-     </property>
-     <property name="topMargin" >
-      <number>5</number>
-     </property>
-     <property name="rightMargin" >
-      <number>5</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin" >
       <number>5</number>
      </property>
      <item>
@@ -525,7 +522,8 @@ p, li { white-space: pre-wrap; }
         <string>Save As...</string>
        </property>
        <property name="icon" >
-        <iconset resource="images/uman.qrc" >:/control/save_as.png</iconset>
+        <iconset resource="images/uman.qrc" >
+         <normaloff>:/control/save_as.png</normaloff>:/control/save_as.png</iconset>
        </property>
       </widget>
      </item>
@@ -535,7 +533,8 @@ p, li { white-space: pre-wrap; }
         <string>Save</string>
        </property>
        <property name="icon" >
-        <iconset resource="images/uman.qrc" >:/control/save.png</iconset>
+        <iconset resource="images/uman.qrc" >
+         <normaloff>:/control/save.png</normaloff>:/control/save.png</iconset>
        </property>
       </widget>
      </item>
@@ -544,7 +543,7 @@ p, li { white-space: pre-wrap; }
        <property name="orientation" >
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0" >
         <size>
          <width>40</width>
          <height>20</height>
@@ -558,7 +557,8 @@ p, li { white-space: pre-wrap; }
         <string>Cancel</string>
        </property>
        <property name="icon" >
-        <iconset resource="images/uman.qrc" >:/marks/cancel.png</iconset>
+        <iconset resource="images/uman.qrc" >
+         <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
        </property>
       </widget>
      </item>

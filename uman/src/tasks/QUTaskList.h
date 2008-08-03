@@ -18,6 +18,8 @@ public:
 	void doTasksOn(QUSongFile *song);
 
 public slots:
+	void resetTaskList();
+
 	void checkAllTasks();
 	void uncheckAllTasks();
 	void uncheckAllExclusiveTasks(QListWidgetItem *item);
