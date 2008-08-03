@@ -12,6 +12,7 @@ class QURenameTaskDialog: public QDialog, private Ui::QURenameTaskDialog {
 
 public:
 	QURenameTaskDialog(QURenameTask *task, QWidget *parent = 0);
+	QURenameTaskDialog(QWidget *parent = 0);
 
 private slots:
 	void fillIconCombo(const QString &resourcePath);
@@ -21,11 +22,16 @@ private slots:
 	void removeData();
 
 	void saveRenameTask();
-	void saveRenameTask(const QString &filePath);
+	bool saveRenameTask(const QString &filePath);
 	void saveRenameTaskAs();
+
+signals:
+	void finished(const QString &message, QU::EventMessageTypes type);
 
 private:
 	QString _fileName;
+
+	void initDialog();
 };
 
 #endif /* QURENAMETASKDIALOG_H_ */

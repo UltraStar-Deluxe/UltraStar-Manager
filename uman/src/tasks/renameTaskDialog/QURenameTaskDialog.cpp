@@ -15,28 +15,18 @@
 #include <QDomCDATASection>
 
 QURenameTaskDialog::QURenameTaskDialog(QURenameTask *task, QWidget *parent): QDialog(parent) {
-	setupUi(this);
+	this->initDialog();
 
-	targetCombo->clear();
-	targetCombo->addItems(QUSongFile::availableTargets());
 	targetCombo->setCurrentIndex(targetCombo->findText(task->target(), Qt::MatchContains));
 
 	descriptionEdit->setText(task->description());
 	toolTipEdit->setPlainText(task->toolTip());
 
-	iconCombo->clear();
-	this->fillIconCombo(":/types");
-	this->fillIconCombo(":/marks");
-	this->fillIconCombo(":/control");
 	iconCombo->setCurrentIndex(iconCombo->findText(QFileInfo(task->iconSource()).fileName()));
 
-	connect(exclusiveChk, SIGNAL(stateChanged(int)), this, SLOT(controlGroupSpin(int)));
 	exclusiveChk->setCheckState(task->group() < 0 ? Qt::Unchecked : Qt::Checked);
 	this->controlGroupSpin(exclusiveChk->checkState());
 	groupSpin->setValue(task->group());
-
-	connect(addDataBtn, SIGNAL(clicked()), SLOT(addData()));
-	connect(removeDataBtn, SIGNAL(clicked()), SLOT(removeData()));
 
 	schemaEdit->setText(task->schema());
 	foreach(QURenameData *data, task->data()) {
@@ -56,11 +46,43 @@ QURenameTaskDialog::QURenameTaskDialog(QURenameTask *task, QWidget *parent): QDi
 		}
 	}
 
+	this->setWindowIcon(QIcon(":/control/pencil.png"));
 	this->setWindowTitle(QString("Edit Task: \"%1\"").arg(task->configFileName()));
 	_fileName = task->configFileName();
 
-	// connect buttons
+	// normal save button only available in edit mode
+	saveBtn->setEnabled(true);
 	connect(saveBtn, SIGNAL(clicked()), this, SLOT(saveRenameTask()));
+}
+
+QURenameTaskDialog::QURenameTaskDialog(QWidget *parent): QDialog(parent) {
+	this->initDialog();
+}
+
+/*!
+ * General setup for a blank rename task.
+ */
+void QURenameTaskDialog::initDialog() {
+	setupUi(this);
+
+	this->setWindowIcon(QIcon(":/marks/plus.png"));
+	this->setWindowTitle(QString("Add Task: \"%1\"").arg("unnamed.xml"));
+
+	targetCombo->clear();
+	targetCombo->addItems(QUSongFile::availableTargets());
+
+	iconCombo->clear();
+	this->fillIconCombo(":/types");
+	this->fillIconCombo(":/marks");
+	this->fillIconCombo(":/control");
+
+	connect(exclusiveChk, SIGNAL(stateChanged(int)), this, SLOT(controlGroupSpin(int)));
+
+	connect(addDataBtn, SIGNAL(clicked()), SLOT(addData()));
+	connect(removeDataBtn, SIGNAL(clicked()), SLOT(removeData()));
+
+	// connect buttons
+	saveBtn->setEnabled(false);
 	connect(saveAsBtn, SIGNAL(clicked()), this, SLOT(saveRenameTaskAs()));
 	connect(cancelBtn, SIGNAL(clicked()), this, SLOT(reject()));
 }
@@ -102,15 +124,17 @@ void QURenameTaskDialog::removeData() {
 }
 
 void QURenameTaskDialog::saveRenameTask() {
-	this->saveRenameTask(QCoreApplication::applicationDirPath() + "/task-def/" + this->_fileName);
-	this->accept();
+	if(this->saveRenameTask(QCoreApplication::applicationDirPath() + "/task-def/" + this->_fileName))
+		this->accept();
+	else
+		this->reject();
 }
 
 /*!
  * Collect the info which is present in this dialog, create a DOM document and save the
  * XML config file to disk.
  */
-void QURenameTaskDialog::saveRenameTask(const QString &filePath) {
+bool QURenameTaskDialog::saveRenameTask(const QString &filePath) {
 	QDomDocument doc;
 	QDomElement task = doc.createElement("task");                   doc.appendChild(task);
 	QDomElement general = doc.createElement("general");            task.appendChild(general);
@@ -164,6 +188,12 @@ void QURenameTaskDialog::saveRenameTask(const QString &filePath) {
 		QTextStream out(&file);
 		out << doc.toString(4);
 		file.close();
+
+		emit finished(QString(tr("The task file \"%1\" was saved successfully.")).arg(filePath), QU::saving);
+		return true;
+	} else {
+		emit finished(QString(tr("The task file \"%1\" was NOT saved.")).arg(filePath), QU::warning);
+		return false;
 	}
 }
 
@@ -171,7 +201,9 @@ void QURenameTaskDialog::saveRenameTaskAs() {
 	QString filePath = QFileDialog::getSaveFileName(this, tr("Save task config"), QCoreApplication::applicationDirPath() + "/task-def", tr("Task Configurations (*.xml)"));
 
 	if(!filePath.isEmpty()) {
-		this->saveRenameTask(filePath);
-		this->accept();
+		if(this->saveRenameTask(filePath))
+			this->accept();
+		else
+			this->reject();
 	}
 }

@@ -525,16 +525,8 @@ p, li { white-space: pre-wrap; }
         <iconset resource="images/uman.qrc" >
          <normaloff>:/control/save_as.png</normaloff>:/control/save_as.png</iconset>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="saveBtn" >
-       <property name="text" >
-        <string>Save</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="images/uman.qrc" >
-         <normaloff>:/control/save.png</normaloff>:/control/save.png</iconset>
+       <property name="autoDefault" >
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -552,6 +544,17 @@ p, li { white-space: pre-wrap; }
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="saveBtn" >
+       <property name="text" >
+        <string>Save</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="images/uman.qrc" >
+         <normaloff>:/control/save.png</normaloff>:/control/save.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="cancelBtn" >
        <property name="text" >
         <string>Cancel</string>
@@ -559,6 +562,9 @@ p, li { white-space: pre-wrap; }
        <property name="icon" >
         <iconset resource="images/uman.qrc" >
          <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
+       </property>
+       <property name="autoDefault" >
+        <bool>false</bool>
        </property>
       </widget>
      </item>

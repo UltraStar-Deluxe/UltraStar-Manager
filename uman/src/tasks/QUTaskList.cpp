@@ -19,7 +19,27 @@ QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
 	// do not allow to check two exclusive tasks
 	connect(this, SIGNAL(itemChanged(QListWidgetItem*)), SLOT(uncheckAllExclusiveTasks(QListWidgetItem*)));
 	// TODO: Enable task editing not through double-click?
-	connect(this, SIGNAL(itemDoubleClicked(QListWidgetItem*)), SLOT(editTask(QListWidgetItem*)));
+	connect(this, SIGNAL(itemDoubleClicked(QListWidgetItem*)), SLOT(editTask()));
+
+	// context menu
+	setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
+}
+
+/*!
+ * Shows a context menu with actions for custom rename tasks.
+ */
+void QUTaskList::showContextMenu(const QPoint &point) {
+	QMenu menu(this);
+
+	menu.addAction(QIcon(":/marks/plus.png"), tr("Add rename task..."), this, SLOT(addTask()));
+
+	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(this->itemAt(point));
+	if(taskItem)
+		if(dynamic_cast<QURenameTask*>(taskItem->task()))
+			menu.addAction(QIcon(":/control/pencil.png"), tr("Edit rename task..."), this, SLOT(editTask()));
+
+	menu.exec(this->mapToGlobal(point));
 }
 
 /*!
@@ -117,12 +137,24 @@ void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
 	}
 }
 
+void QUTaskList::addTask() {
+	QURenameTaskDialog *dlg = new QURenameTaskDialog(this);
+	connect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
+
+	if(dlg->exec()) {
+		this->resetTaskList();
+		emit finished(tr("Task list was refreshed successfully."), QU::information);
+	}
+
+	delete dlg;
+}
+
 /*!
  * Shows a dialog to edit the selected "rename" task if such a task is
  * selected.
  */
-void QUTaskList::editTask(QListWidgetItem *item) {
-	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(item);
+void QUTaskList::editTask() {
+	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(this->currentItem());
 
 	if(!taskItem)
 		return;
@@ -133,9 +165,11 @@ void QUTaskList::editTask(QListWidgetItem *item) {
 		return;
 
 	QURenameTaskDialog *dlg = new QURenameTaskDialog(task, this);
+	connect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
 
 	if(dlg->exec()) {
 		this->resetTaskList();
+		emit finished(tr("Task list was refreshed successfully."), QU::information);
 	}
 
 	delete dlg;
