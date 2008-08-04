@@ -123,6 +123,7 @@ void QUSongTree::saveUnsavedChanges() {
 
 		if(songItem) {
 			dlg.update(songItem->song()->songFileInfo().fileName());
+			if(dlg.cancelled()) break;
 
 			if(songItem->song()->hasUnsavedChanges()) {
 				songItem->song()->save(true);
@@ -155,7 +156,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 	for(int i = 0; i < this->topLevelItemCount(); i++)
 		topLevelItems.append(this->topLevelItem(i));
 
-	QUProgressDialog progress(tr("Applying filter..."), topLevelItems.size(), this);
+	QUProgressDialog progress(tr("Applying filter..."), topLevelItems.size(), this, false);
 	progress.setPixmap(":/control/filter.png");
 	progress.show();
 
@@ -166,6 +167,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 			QUSongFile *song = songItem->song();
 
 			progress.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+			if(progress.cancelled()) break;
 
 			bool filterInfo = true;
 			bool filterFile = true;
@@ -296,6 +298,7 @@ bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
 
 	foreach(QUrl url, files) {
 		dlg.update(url.toLocalFile());
+		if(dlg.cancelled()) break;
 
 		if(!QFileInfo(url.toLocalFile()).isDir()) {
 			item->song()->useExternalFile(url.toLocalFile());
@@ -359,7 +362,7 @@ void QUSongTree::refreshSelectedItems() {
 	if(items.isEmpty())
 		items.append(this->currentItem());
 
-	QUProgressDialog dlg(tr("Refreshing selected songs..."), items.size(), this);
+	QUProgressDialog dlg(tr("Refreshing selected songs..."), items.size(), this, false);
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 
@@ -368,6 +371,7 @@ void QUSongTree::refreshSelectedItems() {
 
 		if(songItem) {
 			dlg.update(songItem->song()->songFileInfo().dir().dirName());
+			if(dlg.cancelled()) break;
 
 			songItem->update();
 		}
@@ -395,6 +399,7 @@ void QUSongTree::saveSelectedSongs() {
 
 		if(songItem) {
 			dlg.update(songItem->song()->songFileInfo().fileName());
+			if(dlg.cancelled()) break;
 
 			songItem->song()->save(true);
 			songItem->update();

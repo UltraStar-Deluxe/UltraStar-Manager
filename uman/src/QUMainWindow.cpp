@@ -301,6 +301,7 @@ void QUMainWindow::createSongFiles() {
 		QStringList files = dir.entryList(QStringList("*.txt"), QDir::Files);
 
 		dlg.update(dir.dirName());
+		if(dlg.cancelled()) break;
 
 		if(!files.isEmpty()) {
 			// TODO: What about more txt files in a folder? Really choose the first one? Hmmm...
@@ -431,6 +432,7 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 	// save changes for each song
 	foreach(QUSongFile *song, detailItem->songs()) {
 		dlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+		if(dlg.cancelled()) break;
 
 		song->setInfo(detailItem->tag(), detailItem->text());
 		song->save();
@@ -438,27 +440,7 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 	dlg.hide();
 
 	// update all selected items with these new details in the song tree
-	QList<QTreeWidgetItem*> selectedItems = songTree->selectedItems();
-
-	if(selectedItems.isEmpty()) { // no songs selected? Try the current item...
-		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->currentItem());
-		if(songItem)
-			songItem->update();
-	} else {
-		QUProgressDialog dlg2(tr("Refreshing song tree..."), selectedItems.size(), this);
-		dlg2.setPixmap(":/types/folder.png");
-		dlg2.show();
-
-		foreach(QTreeWidgetItem *i, selectedItems) {
-			dlg2.update(i->text(0));
-
-			QUSongItem *songItem = dynamic_cast<QUSongItem*>(i);
-			if(songItem)
-				songItem->update();
-		}
-	}
-
-	updateDetails(); // to show N_A if text was deleted completely
+	songTree->refreshSelectedItems();
 }
 
 /*!
@@ -480,7 +462,9 @@ void QUMainWindow::editSongApplyTasks() {
 
 		if(songItem) {
 			QUSongFile *song = songItem->song();
+
 			dlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+			if(dlg.cancelled()) break;
 
 			taskList->doTasksOn(song);
 

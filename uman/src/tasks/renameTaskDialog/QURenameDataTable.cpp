@@ -15,6 +15,10 @@ QURenameDataTable::QURenameDataTable(QWidget *parent): QTableWidget(parent) {
 	this->horizontalHeader()->setResizeMode(1, QHeaderView::Interactive);
 	this->horizontalHeader()->setResizeMode(2, QHeaderView::Stretch);
 
+	this->horizontalHeaderItem(0)->setToolTip(tr("Placeholder will be replaced with<br>source data if condition is fullfilled."));
+	this->horizontalHeaderItem(1)->setToolTip(tr("Static or dynamic source data for a placeholder."));
+	this->horizontalHeaderItem(2)->setToolTip(tr("Simple text for static source data or a default value<br>if the dynamic source data is <b>not available</b>."));
+
 	this->setItemDelegateForColumn(0, new QURenameConditionDelegate(this));
 	this->setItemDelegateForColumn(1, new QURenameSourceDelegate(this));
 	this->setItemDelegateForColumn(2, new QURenameTextDelegate(this));

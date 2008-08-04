@@ -4,86 +4,87 @@
 
 #include <QDomNodeList>
 
-QUHtmlReport::QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAbstractReportData*> &reportDataList, const QFileInfo &fi, QObject *parent): 
-	QUAbstractReport(songFiles, reportDataList, fi, parent) 
+QUHtmlReport::QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAbstractReportData*> &reportDataList, const QFileInfo &fi, QObject *parent):
+	QUAbstractReport(songFiles, reportDataList, fi, parent)
 {
 	QDomElement html = _report.createElement("html");
 	QDomElement head = _report.createElement("head");
 	QDomElement title = _report.createElement("title");
 	QDomElement body = _report.createElement("body");
 	QDomElement table = _report.createElement("table");
-	
+
 	_report.appendChild(html);
-	
+
 	html.appendChild(head);
 	html.appendChild(body);
 	head.appendChild(title);
 	body.appendChild(table);
-	
+
 	title.appendChild(_report.createTextNode(tr("UltraStar Manager - Song Report")));
-	
+
 	// header
 	table.appendChild(_report.createElement("tr"));
 
 	foreach(QUAbstractReportData *rd, reportDataList) {
 		QDomElement th = _report.createElement("th");
-		
+
 		if(!rd->headerIconData().isEmpty()) {
 			QDomElement img = _report.createElement("img");
 			QDomAttr src = _report.createAttribute("src");
 			QDomAttr alt = _report.createAttribute("alt");
 			QDomAttr title = _report.createAttribute("title");
-			
+
 			src.setNodeValue(monty->useImageFromResource(rd->headerIconData(), _fi.dir()));
 			alt.setNodeValue(rd->headerTextData());
 			title.setNodeValue(rd->headerTextData());
-			
+
 			img.setAttributeNode(src);
 			img.setAttributeNode(alt);
 			img.setAttributeNode(title);
-			
+
 			th.appendChild(img);
 		} else if(!rd->headerTextData().isEmpty())
 			th.appendChild(_report.createTextNode(rd->headerTextData()));
-		
+
 		table.childNodes().at(0).appendChild(th);
 	}
-	
+
 	// content
 	QUProgressDialog pDlg(tr("Creating html report..."), songFiles.size());
 	pDlg.setPixmap(":/types/folder.png");
 	pDlg.show();
-	
+
 	foreach(QUSongFile *song, songFiles) {
 		pDlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
-		
+		if(pDlg.cancelled()) break;
+
 		QDomElement tr = _report.createElement("tr");
-		
+
 		foreach(QUAbstractReportData *rd, reportDataList) {
 			QDomElement td = _report.createElement("td");
-			
+
 			if(!rd->iconData(song).isEmpty()) {
 				QDomElement img = _report.createElement("img");
 				QDomAttr src = _report.createAttribute("src");
 				QDomAttr alt = _report.createAttribute("alt");
 				QDomAttr title = _report.createAttribute("title");
-				
+
 				src.setNodeValue(monty->useImageFromResource(rd->iconData(song), _fi.dir()));
 				alt.setNodeValue(rd->textData(song));
 				title.setNodeValue(rd->textData(song));
-				
+
 				img.setAttributeNode(src);
 				img.setAttributeNode(alt);
 				img.setAttributeNode(title);
-				
+
 				td.appendChild(img);
 			} else if(!rd->textData(song).isEmpty()) {
 				td.appendChild(_report.createTextNode(rd->textData(song)));
 			}
-			
-			tr.appendChild(td);			
+
+			tr.appendChild(td);
 		}
-		
+
 		table.appendChild(tr);
 	}
 }
