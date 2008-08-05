@@ -73,6 +73,7 @@
     <file>languages</file>
   </qresource>
   <qresource prefix="/types" >
+    <file>folder_go.png</file>
     <file>background.png</file>
     <file>comment.png</file>
     <file>cover.png</file>

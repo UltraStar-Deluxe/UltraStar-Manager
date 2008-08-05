@@ -22,7 +22,7 @@ public:
 	QUMainWindow(QWidget *parent = 0);
 	~QUMainWindow();
 
-	static QDir BaseDir;
+	static QDir BaseDir; // UltraStar song folder
 
 protected:
 	virtual void closeEvent(QCloseEvent *event);

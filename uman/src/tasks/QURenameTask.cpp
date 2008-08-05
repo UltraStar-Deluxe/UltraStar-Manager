@@ -85,8 +85,13 @@ void QURenameTask::startOn(QUSongFile *song) {
 	while(schema.contains("%"))
 		schema = schema.arg("");
 
+	// a '/' stands for the root with path renaming -> remove it!
+	while(schema.startsWith("/"))
+		schema.remove(0, 1);
+
 	     if (QString::compare(this->_target, "dir", Qt::CaseInsensitive) == 0)        song->renameSongDir(schema);
-	else if (QString::compare(this->_target, "txt", Qt::CaseInsensitive) == 0)        song->renameSongTxt(schema);
+	else if (QString::compare(this->_target, "path", Qt::CaseInsensitive) == 0)       song->moveAllFiles(schema);
+    else if (QString::compare(this->_target, "txt", Qt::CaseInsensitive) == 0)        song->renameSongTxt(schema);
 	else if (QString::compare(this->_target, "mp3", Qt::CaseInsensitive) == 0)        song->renameSongMp3(schema);
 	else if (QString::compare(this->_target, "cover", Qt::CaseInsensitive) == 0)      song->renameSongCover(schema);
 	else if (QString::compare(this->_target, "background", Qt::CaseInsensitive) == 0) song->renameSongBackground(schema);

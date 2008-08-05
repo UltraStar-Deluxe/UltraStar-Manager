@@ -1,0 +1,12 @@
+<task>
+    <general group="3" type="rename" >
+        <icon resource=":/types/folder_go.png" />
+        <description><![CDATA[Change path to "Edition/Artist - Title"]]></description>
+        <tooltip><![CDATA[Songs will be organized in subdirectories by their edition.]]></tooltip>
+    </general>
+    <rename target="path" schema="%1/%2 - %3" >
+        <data default="_unknown" source="edition" />
+        <data source="artist" />
+        <data source="title" />
+    </rename>
+</task>

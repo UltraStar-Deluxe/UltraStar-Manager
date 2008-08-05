@@ -581,10 +581,16 @@ void QUMainWindow::toggleRelativeSongPath(bool checked) {
 
 	QList<QUSongItem*> tmpList; // tmp list needed so avoid sorting problems
 
+	QUProgressDialog dlg(checked ? tr("Show relative song path for each song...") : tr("Show song folder for each song..."), songTree->topLevelItemCount(), this, false);
+	dlg.setPixmap(":/types/folder.png");
+	dlg.show();
+
 	for(int i = 0; i < songTree->topLevelItemCount(); i++)
 		tmpList.append(dynamic_cast<QUSongItem*>(songTree->topLevelItem(i)));
 
 	foreach(QUSongItem *item, tmpList) {
+		dlg.update(item->song()->songFileInfo().dir().dirName());
+
 		item->updateAsDirectory(checked);
 	}
 

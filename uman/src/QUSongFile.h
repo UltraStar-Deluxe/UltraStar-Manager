@@ -113,6 +113,7 @@ public slots:
 	QString comment() const    {return _info.value(COMMENT_TAG,    QString(N_A));}
 
 	QString dir() const {return _fi.dir().dirName();}
+	QString path() const {return _fi.path();}
 	QString txt() const {return _fi.fileName();}
 
 	bool hasMp3() const;
@@ -166,12 +167,13 @@ public slots:
 	void deleteUnusedFiles();
 	void clearInvalidFileTags();
 
+	void moveAllFiles(const QString &newRelativePath);
+
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
 
 private:
 	QFileInfo _fi;
-	QFile     _file;
 
 	QMap<QString, QString> _info; // song header
 	QStringList _lyrics;          // lyrics

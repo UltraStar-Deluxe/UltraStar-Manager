@@ -1,5 +1,6 @@
 #include "QUSongFile.h"
 #include "QUMonty.h"
+#include "QUMainWindow.h"
 #include "QUMessageBox.h"
 
 #include <QByteArray>
@@ -9,6 +10,7 @@
 #include <QMessageBox>
 #include <QFileInfoList>
 #include <QApplication>
+#include <QFile>
 
 #include "fileref.h"
 #include "tag.h"
@@ -41,6 +43,7 @@ void QUSongFile::setFile(const QString &file) {
  * \returns True on success, otherwise false.
  */
 bool QUSongFile::updateCache() {
+	QFile _file;
 	_file.setFileName(_fi.filePath());
 
 	if(!_file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -233,6 +236,7 @@ bool QUSongFile::save(bool force) {
 
 	QFile::remove(_fi.filePath());
 
+	QFile _file;
 	_file.setFileName(_fi.filePath());
 
 	if(!_file.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -293,18 +297,16 @@ bool QUSongFile::save(bool force) {
 bool QUSongFile::rename(QDir dir, const QString &oldName, const QString &newName) {
 	bool result = true;
 
-	// TOFIX: Check given names: No traling dots, no trailing spaces, a.s.o.
-
-	if(QString::compare(oldName, newName, Qt::CaseSensitive) == 0) {
+	if(QString::compare(oldName, newName.trimmed(), Qt::CaseSensitive) == 0) {
 		emit finished(QString(tr("Old name and new name match: \"%1\"")).arg(oldName), QU::warning);
 		return false;
 	}
 
-	if(oldName.length() == newName.length()) {
+	if(oldName.length() == newName.trimmed().length()) {
 		dir.rename(oldName, "_" + oldName);
-		result = dir.rename("_" + oldName, newName);
+		result = dir.rename("_" + oldName, newName.trimmed());
 	} else {
-		result = dir.rename(oldName, newName);
+		result = dir.rename(oldName, newName.trimmed());
 	}
 
 	return result;
@@ -628,6 +630,57 @@ void QUSongFile::clearInvalidFileTags() {
 	}
 }
 
+/*!
+ * Move all files in a song directory to a new location. This includes also files which
+ * are not currently used by the song itself.
+ * \param newRelativePath new relative path for the song; is relative to the UltraStar song folder
+ */
+void QUSongFile::moveAllFiles(const QString &newRelativePath) {
+	QString source = QUMainWindow::BaseDir.relativeFilePath(_fi.path());
+	QString destination = newRelativePath;
+
+	if(QString::compare(source, destination, Qt::CaseSensitive) == 0) {
+		emit finished(tr("Old path and new path match! Cannot change song path."), QU::warning);
+		return;
+	}
+
+	if(!QUMainWindow::BaseDir.mkpath(newRelativePath)) {
+		emit finished(tr("Could not create new song path."), QU::warning);
+		return;
+	}
+
+	// move files to new location
+	bool allFilesCopied = true;
+	foreach(QFileInfo fi, _fi.dir().entryInfoList(QDir::Files | QDir::NoDotAndDotDot)) {
+		QString from = fi.filePath();
+		QString to = QFileInfo(QUMainWindow::BaseDir, destination + "/" + fi.fileName()).filePath();
+
+		if(!QFile::rename(from, to)) {
+			emit finished(QString(tr("Failed to move \"%1\" to \"%2\".")).arg(from).arg(to), QU::warning);
+			allFilesCopied = false;
+		} else
+			emit finished(QString(tr("The file \"%1\" was successfully moved to \"%2\".")).arg(from).arg(to), QU::saving);
+	}
+
+	if(!allFilesCopied) {
+		emit finished(QString(tr("Could NOT copy all files of the song \"%2\" to a new location. Check out \"%1\" for the files which were copied.")).arg(newRelativePath).arg(QString("%1 - %2").arg(artist()).arg(title())), QU::warning);
+		return;
+	}
+
+	// remove empty folders
+	QDir oldDir = _fi.dir();
+	while(!oldDir.isRoot() and oldDir.entryList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot).isEmpty() and oldDir != QUMainWindow::BaseDir) {
+		QString dirName = oldDir.dirName();
+		oldDir.cdUp();
+		if(!oldDir.rmdir(dirName))
+			emit finished(QString(tr("Could not remove old, empty folder \"%1\".")).arg(dirName), QU::warning);
+	}
+
+	// change internal song location
+	_fi = QFileInfo(QUMainWindow::BaseDir, destination + "/" + _fi.fileName()).filePath();
+	emit finished(QString(tr("Location of song \"%1 - %2\" successfully changed to \"%3\" in your UltraStar song folder.")).arg(artist()).arg(title()).arg(newRelativePath), QU::information);
+}
+
 /*
  * STATIC MEMBERS
  */
@@ -648,7 +701,7 @@ QStringList QUSongFile::allowedVideoFiles() {
  * \returns a list of all possible targets used by rename tasks.
  */
 QStringList QUSongFile::availableTargets() {
-	return QString("dir txt mp3 cover background video").split(" ");
+	return QString("dir path txt mp3 cover background video").split(" ");
 }
 
 QStringList QUSongFile::availableConditions() {

@@ -1,0 +1,11 @@
+<task>
+    <general group="3" type="rename" >
+        <icon resource=":/types/folder_go.png" />
+        <description><![CDATA[Change path to "Artist - Title" (default)]]></description>
+        <tooltip><![CDATA[All songs will be in the UltraStar song folder with a custom subdirectory for each one.]]></tooltip>
+    </general>
+    <rename target="path" schema="%1 - %2" >
+        <data source="artist" />
+        <data source="title" />
+    </rename>
+</task>

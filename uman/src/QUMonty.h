@@ -16,25 +16,25 @@ public:
 		back = 2,
 		happy = 3
 	};
-	
+
 	static QUMonty* instance();
 	void initMessages(const QString &source);
-	
+
 	QPixmap pic(QUMonty::Status status = QUMonty::normal);
 	QString welcomeMsg(int songCount = -1);
 	void talk(QLabel *montyLbl, QLabel *msgLbl);
 	const QStringList& genres() const { return _genres; }
 	const QStringList& languages() const { return _languages; }
-	
+
 	void setSongCount(int c) { songCount = c; }
-	
+
 	bool autoSaveEnabled() const;
-	
+
 	QString useImageFromResource(const QString &item, QDir dest);
-	
+
 protected:
 	QUMonty();
-	
+
 private:
 	static QUMonty* _instance;
 
@@ -42,7 +42,7 @@ private:
 	QStringList messages;
 	QStringList _genres;
 	QStringList _languages;
-	
+
 	void initGenres();
 	void initLanguages();
 };

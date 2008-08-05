@@ -11,6 +11,14 @@ NEW FEATURES
   > most long operations can be cancelled
   > only if a cancellation would lead to an inconsistent state it is
     not possible
+* new target for rename tasks "path"
+  > change the complete path of a song
+  > pay attention to default values for paths that may be empty!
+* re-organize folder structure with rename tasks
+  > Songs/Artist - Title (default)
+  > Songs/Artist/Title
+  > Songs/Edition/Artist - Title
+  > Songs/Genre/Title - Artist
 
 BUG FIXES
 * minor change in object renaming
@@ -54,12 +62,8 @@ TODO
 * inactive song text files in a folder (*.txt) are greyed out and striked-through
   > why not only greyed out?
 * show supported audio/video files somewhere
-* re-organize folder structure with tasks (will be a new category I think)
-  > Songs/Artist - Title (default)
-  > Songs/Artist/Artist - Title
-  > Songs/Edition/Artist - Title
-  > Songs/Genre/Title - Artist
-  > ...
+
+* filter log entries
 
 NICE TO HAVE
 * allow []-tags in song title

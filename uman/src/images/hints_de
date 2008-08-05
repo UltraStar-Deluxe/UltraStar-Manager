@@ -46,3 +46,4 @@ Wenn du einen Doppelklick auf ein Bild machst, bekommst du es angezeigt.
 Du kannst Aufgaben, welche Ordner und Dateien umbenennen, entfernen, indem du die zugehörige Konfigurationsdatei im Anwendungspfad löschst.
 Wenn du einen Doppelklick auf eine Umbenennungsaufgabe machst, kannst du sie bearbeiten.
 Die Aufgabenliste hat ein Kontextmenü, welches es dir ermöglicht, neue Aufgaben anzulegen oder vorhandene zu bearbeiten.
+Einige Vorgänge können nicht abgebrochen werden, weil dies zu einem inkonsistenten Zustand führen würde, z.B. Filter anwenden.
