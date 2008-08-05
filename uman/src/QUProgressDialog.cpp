@@ -1,5 +1,6 @@
 #include "QUProgressDialog.h"
 #include <QPixmap>
+#include <QTimer>
 
 #define HIDE_LIMIT 2 // only show this dialog above HIDE_LIMIT
 
@@ -11,7 +12,7 @@ QUProgressDialog::QUProgressDialog(
 		const QString &info,
 		int maximum,
 		QWidget *parent,
-		bool beResponsive): QDialog(parent), _cancelled(false), _beResponsive(beResponsive)
+		bool beResponsive): QDialog(parent), _cancelled(false), _beResponsive(beResponsive), _time(0)
 {
 	setupUi(this);
 
@@ -22,10 +23,11 @@ QUProgressDialog::QUProgressDialog(
 
 	infoTextLbl->setText(info);
 
-	if(beResponsive)
+	if(beResponsive) {
 		connect(cancelBtn, SIGNAL(clicked()), this, SLOT(cancel()));
-	else {
-		suspendBtn->setEnabled(false);
+		timeLbl->setText("00:00:00");
+		QTimer::singleShot(1000, this, SLOT(updateTime()));
+	} else {
 		cancelBtn->setEnabled(false);
 		timeLbl->setText(tr("n/a"));
 	}
@@ -55,16 +57,19 @@ void QUProgressDialog::update(const QString &itemText) {
 
 }
 
-void QUProgressDialog::setInformation(const QString &infoText) {
-	infoTextLbl->setText(infoText);
-
-	QWidget::repaint();
-}
-
 void QUProgressDialog::setPixmap(const QString &fileName) {
 	currentSongIcon->setPixmap(fileName);
 }
 
 void QUProgressDialog::cancel() {
 	_cancelled = true;
+}
+
+void QUProgressDialog::updateTime() {
+	_time += 1;
+	timeLbl->setText(QString("%1:%2:%3")
+			.arg((int)(_time / 3600), 2, 10, QChar('0'))
+			.arg((int)(_time / 60), 2, 10, QChar('0'))
+			.arg((int)(_time % 60), 2, 10, QChar('0')));
+	QTimer::singleShot(1000, this, SLOT(updateTime()));
 }

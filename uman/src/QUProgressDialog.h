@@ -18,17 +18,18 @@ public:
 
 public slots:
 	void update(const QString &itemText);
-	void setInformation(const QString &infoText);
 	void setMaximum(int maximum) { progress->setMaximum(maximum); }
 
 	void setPixmap(const QString &fileName);
 
 private slots:
 	void cancel();
+	void updateTime();
 
 private:
 	bool _cancelled;
 	bool _beResponsive; // you can only cancel an operation with a responsive progress dialog
+	int  _time;
 };
 
 #endif /*QUPROGRESSDIALOG_H_*/

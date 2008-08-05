@@ -266,17 +266,6 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="suspendBtn" >
-       <property name="text" >
-        <string>Pause</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="images/uman.qrc" >
-         <normaloff>:/control/pause.png</normaloff>:/control/pause.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="cancelBtn" >
        <property name="text" >
         <string>Cancel</string>

@@ -7,6 +7,10 @@ NEW FEATURES
 * context menu for rename tasks added
   > edit rename tasks by double-click or through the context menu
 * first pre-defined value for EDITION in song details: "[SC]-Songs"
+* added a cancel button and a real time indicator to progress bar
+  > most long operations can be cancelled
+  > only if a cancellation would lead to an inconsistent state it is
+    not possible
 
 BUG FIXES
 * minor change in object renaming
@@ -65,7 +69,6 @@ NICE TO HAVE
 * some nicer way to display ID3-tag data of audio files
 * extract readable lyrics and export them, maybe into some report or so
 * some extended help system in the application (lowest priority, Monty works well :))
-* be able to cancel big tasks
 
 changes from 1.5.1 to 1.6.0
 ---------------------------
