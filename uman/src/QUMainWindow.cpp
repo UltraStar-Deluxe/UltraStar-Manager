@@ -356,11 +356,11 @@ void QUMainWindow::updatePreviewTree() {
 
 	QUSongItem *item = dynamic_cast<QUSongItem*>(songTree->currentItem());
 
-	if(!item)
-		return;
-
-	QFileInfo fi(item->song()->songFileInfo().dir(), item->text(0));
-	previewTree->showFileInformation(fi);
+	if(item) {
+		QFileInfo fi(item->song()->songFileInfo().dir(), item->text(0));
+		previewTree->showFileInformation(fi);
+	} else
+		previewTree->showFileInformation(QFileInfo());
 }
 
 /*!

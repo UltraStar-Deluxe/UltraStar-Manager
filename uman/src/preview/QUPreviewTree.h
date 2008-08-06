@@ -29,6 +29,10 @@ private:
 	QTreeWidgetItem *extra;
 
 	QTreeWidgetItem* createInfoItem(const QString &tag, const QString &value);
+
+	void showAudioFileInformation(const QFileInfo &fi);
+	void showPictureFileInformation(const QFileInfo &fi);
+	void showVideoFileInformation(const QFileInfo &fi);
 };
 
 #endif /* QUPREVIEWTREE_H_ */
