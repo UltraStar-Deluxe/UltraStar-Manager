@@ -100,16 +100,16 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	// TOFIX: Fix bug for "Die Ärzte - Der - Titel"
 	QString pattern(song()->songFileInfo().dir().dirName().remove(r).trimmed());
 
-	if(QString::compare(song()->artist(), pattern.section(" - ", 0, 0), Qt::CaseSensitive) == 0)
+	if(QString::compare(QUSongFile::withoutUnsupportedCharacters(song()->artist()), pattern.section(" - ", 0, 0), Qt::CaseSensitive) == 0)
 		this->setTick(ARTIST_COLUMN);
-	else if(QString::compare(song()->artist(), pattern.section(" - ", 0, 0), Qt::CaseInsensitive) == 0)
+	else if(QString::compare(QUSongFile::withoutUnsupportedCharacters(song()->artist()), pattern.section(" - ", 0, 0), Qt::CaseInsensitive) == 0)
 		this->setTick(ARTIST_COLUMN, true);
 	else
 		this->setCross(ARTIST_COLUMN);
 
-	if(QString::compare(song()->title(), pattern.section(" - ", 1, 1), Qt::CaseSensitive) == 0)
+	if(QString::compare(QUSongFile::withoutUnsupportedCharacters(song()->title()), pattern.section(" - ", 1, 1), Qt::CaseSensitive) == 0)
 		this->setTick(TITLE_COLUMN);
-	else if(QString::compare(song()->title(), pattern.section(" - ", 1, 1), Qt::CaseInsensitive) == 0)
+	else if(QString::compare(QUSongFile::withoutUnsupportedCharacters(song()->title()), pattern.section(" - ", 1, 1), Qt::CaseInsensitive) == 0)
 		this->setTick(TITLE_COLUMN, true);
 	else
 		this->setCross(TITLE_COLUMN);

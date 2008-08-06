@@ -25,6 +25,8 @@ private slots:
 	bool saveRenameTask(const QString &filePath);
 	void saveRenameTaskAs();
 
+	void updateMoveButtons(int row, int column);
+
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
 

@@ -24,6 +24,25 @@ QURenameDataTable::QURenameDataTable(QWidget *parent): QTableWidget(parent) {
 	this->setItemDelegateForColumn(2, new QURenameTextDelegate(this));
 }
 
+void QURenameDataTable::fillData(const QList<QURenameData*> &dataList) {
+	foreach(QURenameData *data, dataList) {
+		this->appendRow();
+		this->item(this->rowCount() - 1, 0)->setText(data->_if.isEmpty() ? "true" : data->_if);
+
+		if(data->_keepSuffix) {
+			this->item(this->rowCount() - 1, 1)->setText(KEEP_SUFFIX_SOURCE);
+		} else if(!data->_text.isEmpty()) {
+			this->item(this->rowCount() - 1, 1)->setText(TEXT_SOURCE);
+			this->item(this->rowCount() - 1, 2)->setText(data->_text);
+		} else if(!data->_source.isEmpty()) {
+			this->item(this->rowCount() - 1, 1)->setText(data->_source);
+			this->item(this->rowCount() - 1, 2)->setText(data->_default.isEmpty() ? N_A : data->_default);
+		} else if(data->_keepUnknownTags) {
+			this->item(this->rowCount() - 1, 1)->setText(UNKNOWN_TAGS_SOURCE);
+		}
+	}
+}
+
 void QURenameDataTable::appendRow() {
 	this->setRowCount(this->rowCount() + 1);
 
@@ -40,8 +59,42 @@ void QURenameDataTable::appendRow() {
 
 	this->verticalHeader()->setResizeMode(this->rowCount() - 1, QHeaderView::Fixed);
 	this->verticalHeader()->resizeSection(this->rowCount() - 1, 20);
+
+	this->setCurrentCell(this->rowCount() - 1, this->currentColumn());
 }
 
 void QURenameDataTable::removeLastRow() {
 	this->setRowCount(this->rowCount() - 1);
+
+	this->setCurrentCell(this->rowCount() - 1, this->currentColumn());
+}
+
+void QURenameDataTable::moveUpCurrentRow() {
+	if(this->currentRow() < 1)
+		return; // always at first or empty
+
+	for(int column = 0; column < this->columnCount(); column++) {
+		QTableWidgetItem *currentItem = this->takeItem(this->currentRow(), column);
+		QTableWidgetItem *upperItem = this->takeItem(this->currentRow() - 1, column);
+
+		this->setItem(this->currentRow(), column, upperItem);
+		this->setItem(this->currentRow() - 1, column, currentItem);
+	}
+
+	setCurrentCell(this->currentRow() - 1, this->currentColumn());
+}
+
+void QURenameDataTable::moveDownCurrentRow() {
+	if(this->currentRow() >= this->rowCount() - 1)
+		return; // always at last
+
+	for(int column = 0; column < this->columnCount(); column++) {
+		QTableWidgetItem *currentItem = this->takeItem(this->currentRow(), column);
+		QTableWidgetItem *lowerItem = this->takeItem(this->currentRow() + 1, column);
+
+		this->setItem(this->currentRow(), column, lowerItem);
+		this->setItem(this->currentRow() + 1, column, currentItem);
+	}
+
+	setCurrentCell(this->currentRow() + 1, this->currentColumn());
 }

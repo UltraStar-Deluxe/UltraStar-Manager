@@ -29,22 +29,8 @@ QURenameTaskDialog::QURenameTaskDialog(QURenameTask *task, QWidget *parent): QDi
 	groupSpin->setValue(task->group());
 
 	schemaEdit->setText(task->schema());
-	foreach(QURenameData *data, task->data()) {
-		dataTable->appendRow();
-		dataTable->item(dataTable->rowCount() - 1, 0)->setText(data->_if.isEmpty() ? "true" : data->_if);
-
-		if(data->_keepSuffix) {
-			dataTable->item(dataTable->rowCount() - 1, 1)->setText(KEEP_SUFFIX_SOURCE);
-		} else if(!data->_text.isEmpty()) {
-			dataTable->item(dataTable->rowCount() - 1, 1)->setText(TEXT_SOURCE);
-			dataTable->item(dataTable->rowCount() - 1, 2)->setText(data->_text);
-		} else if(!data->_source.isEmpty()) {
-			dataTable->item(dataTable->rowCount() - 1, 1)->setText(data->_source);
-			dataTable->item(dataTable->rowCount() - 1, 2)->setText(data->_default.isEmpty() ? N_A : data->_default);
-		} else if(data->_keepUnknownTags) {
-			dataTable->item(dataTable->rowCount() - 1, 1)->setText(UNKNOWN_TAGS_SOURCE);
-		}
-	}
+	dataTable->fillData(task->data());
+	removeDataBtn->setEnabled(task->data().size() > 0);
 
 	this->setWindowIcon(QIcon(":/control/pencil.png"));
 	this->setWindowTitle(QString("Edit Task: \"%1\"").arg(task->configFileName()));
@@ -79,6 +65,8 @@ void QURenameTaskDialog::initDialog() {
 	exclusiveChk->setCheckState(Qt::Unchecked);
 	groupSpin->setEnabled(false);
 
+	removeDataBtn->setEnabled(false);
+
 	connect(exclusiveChk, SIGNAL(stateChanged(int)), this, SLOT(controlGroupSpin(int)));
 	connect(addDataBtn, SIGNAL(clicked()), SLOT(addData()));
 	connect(removeDataBtn, SIGNAL(clicked()), SLOT(removeData()));
@@ -87,6 +75,11 @@ void QURenameTaskDialog::initDialog() {
 	saveBtn->setEnabled(false);
 	connect(saveAsBtn, SIGNAL(clicked()), this, SLOT(saveRenameTaskAs()));
 	connect(cancelBtn, SIGNAL(clicked()), this, SLOT(reject()));
+	connect(moveUpBtn, SIGNAL(clicked()), dataTable, SLOT(moveUpCurrentRow()));
+	connect(moveDownBtn, SIGNAL(clicked()), dataTable, SLOT(moveDownCurrentRow()));
+
+	connect(dataTable, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(updateMoveButtons(int, int)));
+	this->updateMoveButtons(0, 0);
 }
 
 /*!
@@ -115,6 +108,9 @@ void QURenameTaskDialog::controlGroupSpin(int exclusiveState) {
 void QURenameTaskDialog::addData() {
 	dataTable->appendRow();
 	schemaEdit->insert("%" + QVariant(dataTable->rowCount()).toString());
+
+	this->removeDataBtn->setEnabled(true);
+	this->updateMoveButtons(dataTable->currentRow(), dataTable->currentColumn());
 }
 
 /*!
@@ -123,6 +119,9 @@ void QURenameTaskDialog::addData() {
 void QURenameTaskDialog::removeData() {
 	schemaEdit->setText(schemaEdit->text().remove("%" + QVariant(dataTable->rowCount()).toString()));
 	dataTable->removeLastRow();
+
+	this->removeDataBtn->setEnabled(dataTable->rowCount() > 0);
+	this->updateMoveButtons(dataTable->currentRow(), dataTable->currentColumn());
 }
 
 void QURenameTaskDialog::saveRenameTask() {
@@ -208,4 +207,14 @@ void QURenameTaskDialog::saveRenameTaskAs() {
 		else
 			this->reject();
 	}
+}
+
+/*!
+ * Enable or disable the move up/down buttons, according to which action is currently
+ * possible.
+ */
+void QURenameTaskDialog::updateMoveButtons(int row, int column) {
+	emit finished(QString("%1, %2, %3, %4").arg(row).arg(column).arg(dataTable->rowCount()).arg(dataTable->columnCount()), QU::information);
+	moveUpBtn->setEnabled(!(row < 1) and (row < dataTable->rowCount()));
+	moveDownBtn->setEnabled(!(row >= dataTable->rowCount() - 1) and (row >= 0));
 }

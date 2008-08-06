@@ -89,6 +89,16 @@ void QURenameTask::startOn(QUSongFile *song) {
 	while(schema.startsWith("/"))
 		schema.remove(0, 1);
 
+	// remove unsupported characters (windows only)
+	schema = QUSongFile::withoutUnsupportedCharacters(schema);
+
+	// you cannot use trailing dots
+//	while(schema.endsWith("."))
+//		schema.remove(schema.length() - 1, 1);
+
+	// you must not use trailing spaces - could corrupt the file system
+	schema = schema.trimmed();
+
 	     if (QString::compare(this->_target, "dir", Qt::CaseInsensitive) == 0)        song->renameSongDir(schema);
 	else if (QString::compare(this->_target, "path", Qt::CaseInsensitive) == 0)       song->moveAllFiles(schema);
     else if (QString::compare(this->_target, "txt", Qt::CaseInsensitive) == 0)        song->renameSongTxt(schema);

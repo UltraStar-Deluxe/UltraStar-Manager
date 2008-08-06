@@ -13,7 +13,6 @@ NEW FEATURES
     not possible
 * new target for rename tasks "path"
   > change the complete path of a song
-  > pay attention to default values for paths that may be empty!
 * re-organize folder structure with rename tasks
   > Songs/Artist - Title (default)
   > Songs/Artist/Title
@@ -40,7 +39,6 @@ KNOWN BUGS
   contains "illegal" characters like '?'
 
 TODO
-* checksums for SC-checked song files
 * get cover picture
   > extract cover from MP3
   > from amazon ;)
@@ -62,8 +60,13 @@ TODO
 * inactive song text files in a folder (*.txt) are greyed out and striked-through
   > why not only greyed out?
 * show supported audio/video files somewhere
-
+* made change path tasks exclusive to change folder tasks
+  > redesign the order of these tasks
 * filter log entries
+  > button for "clear"
+* inofficial album tag
+* make column tests in 1 and2 editable
+  > according to renaming style of the user
 
 NICE TO HAVE
 * allow []-tags in song title
@@ -71,8 +74,10 @@ NICE TO HAVE
   > now search for this tag in UltraStar, very cool :)
   > maybe manage through tasks or so...
 * some nicer way to display ID3-tag data of audio files
+  > some kind of preview window - also for database statistics
 * extract readable lyrics and export them, maybe into some report or so
 * some extended help system in the application (lowest priority, Monty works well :))
+* checksums for SC-checked song files
 
 changes from 1.5.1 to 1.6.0
 ---------------------------

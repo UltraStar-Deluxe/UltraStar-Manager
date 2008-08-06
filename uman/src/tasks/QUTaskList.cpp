@@ -39,6 +39,9 @@ void QUTaskList::showContextMenu(const QPoint &point) {
 		if(dynamic_cast<QURenameTask*>(taskItem->task()))
 			menu.addAction(QIcon(":/control/pencil.png"), tr("Edit rename task..."), this, SLOT(editTask()));
 
+	menu.addSeparator();
+	menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh tasks"), this, SLOT(resetTaskList()));
+
 	menu.exec(this->mapToGlobal(point));
 }
 
@@ -185,7 +188,7 @@ QList<QDomDocument*> QUTaskList::loadTaskFiles() {
 	// TODO: Make task config path available through registry - not hard-coded.
 	taskDir.cd("task-def");
 
-	QFileInfoList taskFiList = taskDir.entryInfoList(QStringList("*.xml"), QDir::Files);
+	QFileInfoList taskFiList = taskDir.entryInfoList(QStringList("*.xml"), QDir::Files, QDir::Name);
 
 	foreach(QFileInfo taskFi, taskFiList) {
 		QFile file(taskFi.filePath());

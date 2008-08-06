@@ -92,6 +92,8 @@ public:
 	static bool hasBackgroundLessThan (QUSongFile *s1, QUSongFile *s2)  { return !s1->hasBackground() && s2->hasBackground(); }
 	static bool hasVideoLessThan (QUSongFile *s1, QUSongFile *s2)       { return !s1->hasVideo() && s2->hasVideo(); }
 
+	static QString withoutUnsupportedCharacters (const QString &text);
+
 public slots:
 	QString artist() const     {return _info.value(ARTIST_TAG,     QString(N_A));}
 	QString title() const      {return _info.value(TITLE_TAG,      QString(N_A));}

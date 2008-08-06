@@ -415,7 +415,7 @@ p, li { white-space: pre-wrap; }
           <enum>QAbstractItemView::SingleSelection</enum>
          </property>
          <property name="selectionBehavior" >
-          <enum>QAbstractItemView::SelectItems</enum>
+          <enum>QAbstractItemView::SelectRows</enum>
          </property>
          <property name="gridStyle" >
           <enum>Qt::DashLine</enum>

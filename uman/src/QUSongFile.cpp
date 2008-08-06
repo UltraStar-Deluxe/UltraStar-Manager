@@ -37,6 +37,22 @@ void QUSongFile::setFile(const QString &file) {
 }
 
 /*!
+ * Removes all characters of the given text that cannot be used in a file or
+ * directory name.
+ *
+ * Path separator '/' is not removed.
+ *
+ * \param text A single line of text without line breaks.
+ */
+QString QUSongFile::withoutUnsupportedCharacters (const QString &text) {
+	QString cleanText = text;
+#ifdef Q_OS_WIN32
+	cleanText.remove(QRegExp("[\\\:\\*\\?\"\\|<>]"));
+#endif
+	return cleanText;
+}
+
+/*!
  * Reads the US data file and loads all data into memory. This is needed to be done
  * before any changes can be made. You cannot send event messages here because a song
  * is connected _after_ the first update of the internal cache.
@@ -639,19 +655,19 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 	QString source = QUMainWindow::BaseDir.relativeFilePath(_fi.path());
 	QString destination = newRelativePath;
 
-	if(QString::compare(source, destination, Qt::CaseSensitive) == 0) {
-		emit finished(tr("Old path and new path match! Cannot change song path."), QU::warning);
+	if(QString::compare(source, destination, Qt::CaseInsensitive) == 0) {
+		emit finished(QString(tr("Old path and new path match! Cannot change song path to: \"%1\"")).arg(destination), QU::warning);
 		return;
 	}
 
 	if(!QUMainWindow::BaseDir.mkpath(newRelativePath)) {
-		emit finished(tr("Could not create new song path."), QU::warning);
+		emit finished(QString(tr("Could not create new song path: \"%1\"")).arg(newRelativePath), QU::warning);
 		return;
 	}
 
 	// move files to new location
 	bool allFilesCopied = true;
-	foreach(QFileInfo fi, _fi.dir().entryInfoList(QDir::Files | QDir::NoDotAndDotDot)) {
+	foreach(QFileInfo fi, _fi.dir().entryInfoList(QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot)) {
 		QString from = fi.filePath();
 		QString to = QFileInfo(QUMainWindow::BaseDir, destination + "/" + fi.fileName()).filePath();
 
@@ -663,7 +679,7 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 	}
 
 	if(!allFilesCopied) {
-		emit finished(QString(tr("Could NOT copy all files of the song \"%2\" to a new location. Check out \"%1\" for the files which were copied.")).arg(newRelativePath).arg(QString("%1 - %2").arg(artist()).arg(title())), QU::warning);
+		emit finished(QString(tr("Could NOT move all files of the song \"%2\" to a new location. Check out \"%1\" for the files which were copied.")).arg(newRelativePath).arg(QString("%1 - %2").arg(artist()).arg(title())), QU::warning);
 		return;
 	}
 
@@ -673,7 +689,7 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 		QString dirName = oldDir.dirName();
 		oldDir.cdUp();
 		if(!oldDir.rmdir(dirName))
-			emit finished(QString(tr("Could not remove old, empty folder \"%1\".")).arg(dirName), QU::warning);
+			emit finished(QString(tr("Could not remove old, empty folder \"%1\". Please do it manually.")).arg(dirName), QU::warning);
 	}
 
 	// change internal song location
