@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>979</width>
-    <height>518</height>
+    <height>567</height>
    </rect>
   </property>
   <property name="acceptDrops" >
@@ -16,23 +16,23 @@
    <string>S</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="images/uman.qrc" >:/icons/cup.png</iconset>
+   <iconset resource="images/uman.qrc" >
+    <normaloff>:/icons/cup.png</normaloff>:/icons/cup.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>48</y>
+     <width>979</width>
+     <height>498</height>
+    </rect>
+   </property>
    <layout class="QVBoxLayout" >
     <property name="spacing" >
      <number>5</number>
     </property>
-    <property name="leftMargin" >
-     <number>0</number>
-    </property>
-    <property name="topMargin" >
-     <number>0</number>
-    </property>
-    <property name="rightMargin" >
-     <number>0</number>
-    </property>
-    <property name="bottomMargin" >
+    <property name="margin" >
      <number>0</number>
     </property>
     <item>
@@ -75,7 +75,8 @@
               <string/>
              </property>
              <property name="icon" >
-              <iconset resource="images/uman.qrc" >:/marks/plus.png</iconset>
+              <iconset resource="images/uman.qrc" >
+               <normaloff>:/marks/plus.png</normaloff>:/marks/plus.png</iconset>
              </property>
              <property name="checkable" >
               <bool>false</bool>
@@ -107,7 +108,8 @@
               <string>Filter</string>
              </property>
              <property name="icon" >
-              <iconset resource="images/uman.qrc" >:/control/filter.png</iconset>
+              <iconset resource="images/uman.qrc" >
+               <normaloff>:/control/filter.png</normaloff>:/control/filter.png</iconset>
              </property>
              <property name="toolButtonStyle" >
               <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -126,7 +128,8 @@
               <string>...</string>
              </property>
              <property name="icon" >
-              <iconset resource="images/uman.qrc" >:/marks/cancel.png</iconset>
+              <iconset resource="images/uman.qrc" >
+               <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
              </property>
              <property name="autoRaise" >
               <bool>true</bool>
@@ -290,7 +293,7 @@
                <property name="sizeType" >
                 <enum>QSizePolicy::Preferred</enum>
                </property>
-               <property name="sizeHint" >
+               <property name="sizeHint" stdset="0" >
                 <size>
                  <width>20</width>
                  <height>1</height>
@@ -410,7 +413,7 @@
                  <property name="orientation" >
                   <enum>Qt::Horizontal</enum>
                  </property>
-                 <property name="sizeHint" >
+                 <property name="sizeHint" stdset="0" >
                   <size>
                    <width>40</width>
                    <height>20</height>
@@ -445,20 +448,19 @@
            <string>Song Details</string>
           </property>
           <widget class="QWidget" name="dockWidgetContents" >
+           <property name="geometry" >
+            <rect>
+             <x>0</x>
+             <y>22</y>
+             <width>484</width>
+             <height>89</height>
+            </rect>
+           </property>
            <layout class="QVBoxLayout" >
             <property name="spacing" >
              <number>0</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
@@ -482,7 +484,7 @@
                </size>
               </property>
               <property name="editTriggers" >
-               <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::NoEditTriggers</set>
+               <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
               </property>
               <property name="showDropIndicator" stdset="0" >
                <bool>true</bool>
@@ -554,20 +556,19 @@
            <string>Tasks</string>
           </property>
           <widget class="QWidget" name="dockWidgetContents_2" >
+           <property name="geometry" >
+            <rect>
+             <x>0</x>
+             <y>22</y>
+             <width>484</width>
+             <height>115</height>
+            </rect>
+           </property>
            <layout class="QVBoxLayout" >
             <property name="spacing" >
              <number>2</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
@@ -612,7 +613,8 @@
                  <string>Run</string>
                 </property>
                 <property name="icon" >
-                 <iconset resource="images/uman.qrc" >:/control/play32.png</iconset>
+                 <iconset resource="images/uman.qrc" >
+                  <normaloff>:/control/play32.png</normaloff>:/control/play32.png</iconset>
                 </property>
                 <property name="iconSize" >
                  <size>
@@ -636,7 +638,7 @@
                 <property name="orientation" >
                  <enum>Qt::Horizontal</enum>
                 </property>
-                <property name="sizeHint" >
+                <property name="sizeHint" stdset="0" >
                  <size>
                   <width>40</width>
                   <height>20</height>
@@ -663,7 +665,8 @@
                      <string>Uncheck All</string>
                     </property>
                     <property name="icon" >
-                     <iconset resource="images/uman.qrc" >:/control/uncheck_tasks.png</iconset>
+                     <iconset resource="images/uman.qrc" >
+                      <normaloff>:/control/uncheck_tasks.png</normaloff>:/control/uncheck_tasks.png</iconset>
                     </property>
                     <property name="autoRaise" >
                      <bool>true</bool>
@@ -679,7 +682,8 @@
                      <string>Check All</string>
                     </property>
                     <property name="icon" >
-                     <iconset resource="images/uman.qrc" >:/control/check_tasks.png</iconset>
+                     <iconset resource="images/uman.qrc" >
+                      <normaloff>:/control/check_tasks.png</normaloff>:/control/check_tasks.png</iconset>
                     </property>
                     <property name="toolButtonStyle" >
                      <enum>Qt::ToolButtonIconOnly</enum>
@@ -699,7 +703,7 @@
                   <property name="sizeType" >
                    <enum>QSizePolicy::Minimum</enum>
                   </property>
-                  <property name="sizeHint" >
+                  <property name="sizeHint" stdset="0" >
                    <size>
                     <width>20</width>
                     <height>10</height>
@@ -716,25 +720,58 @@
          </widget>
         </item>
         <item>
+         <widget class="QDockWidget" name="previewDock" >
+          <property name="windowTitle" >
+           <string>Preview</string>
+          </property>
+          <widget class="QWidget" name="dockWidgetContents_4" >
+           <property name="geometry" >
+            <rect>
+             <x>0</x>
+             <y>22</y>
+             <width>484</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout" >
+            <property name="spacing" >
+             <number>0</number>
+            </property>
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QUPreviewTree" name="previewTree" >
+              <column>
+               <property name="text" >
+                <string>1</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
          <widget class="QDockWidget" name="eventsDock" >
           <property name="windowTitle" >
            <string>Event Log</string>
           </property>
           <widget class="QWidget" name="dockWidgetContents_3" >
+           <property name="geometry" >
+            <rect>
+             <x>0</x>
+             <y>22</y>
+             <width>484</width>
+             <height>131</height>
+            </rect>
+           </property>
            <layout class="QVBoxLayout" >
             <property name="spacing" >
              <number>0</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
@@ -817,7 +854,8 @@
                <string>Disable information events</string>
               </property>
               <property name="icon" >
-               <iconset resource="images/uman.qrc" >:/marks/information.png</iconset>
+               <iconset resource="images/uman.qrc" >
+                <normaloff>:/marks/information.png</normaloff>:/marks/information.png</iconset>
               </property>
              </widget>
             </item>
@@ -827,7 +865,8 @@
                <string>Disable warnings</string>
               </property>
               <property name="icon" >
-               <iconset resource="images/uman.qrc" >:/marks/error.png</iconset>
+               <iconset resource="images/uman.qrc" >
+                <normaloff>:/marks/error.png</normaloff>:/marks/error.png</iconset>
               </property>
              </widget>
             </item>
@@ -837,7 +876,8 @@
                <string>Disable save messages</string>
               </property>
               <property name="icon" >
-               <iconset resource="images/uman.qrc" >:/marks/disk.png</iconset>
+               <iconset resource="images/uman.qrc" >
+                <normaloff>:/marks/disk.png</normaloff>:/marks/disk.png</iconset>
               </property>
               <property name="checked" >
                <bool>true</bool>
@@ -860,7 +900,7 @@
      <x>0</x>
      <y>0</y>
      <width>979</width>
-     <height>19</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAbout_Qt" >
@@ -925,8 +965,25 @@
    <addaction name="menuOptions" />
    <addaction name="menuAbout_Qt" />
   </widget>
-  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QStatusBar" name="statusbar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>546</y>
+     <width>979</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
   <widget class="QToolBar" name="toolBar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>22</y>
+     <width>979</width>
+     <height>26</height>
+    </rect>
+   </property>
    <property name="windowTitle" >
     <string>Toolbar</string>
    </property>
@@ -973,7 +1030,8 @@
   </action>
   <action name="actionUman" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/icons/cup.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/icons/cup.png</normaloff>:/icons/cup.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;About UltraStar Manager...</string>
@@ -981,7 +1039,8 @@
   </action>
   <action name="actionExpandAll" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/control/expand.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/control/expand.png</normaloff>:/control/expand.png</iconset>
    </property>
    <property name="text" >
     <string>Expand All</string>
@@ -992,7 +1051,8 @@
   </action>
   <action name="actionCollapseAll" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/control/collapse.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/control/collapse.png</normaloff>:/control/collapse.png</iconset>
    </property>
    <property name="text" >
     <string>Collapse All</string>
@@ -1006,7 +1066,8 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/control/tag_disk.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/control/tag_disk.png</normaloff>:/control/tag_disk.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Tag Save Order...</string>
@@ -1023,7 +1084,8 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/monty/normal.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/monty/normal.png</normaloff>:/monty/normal.png</iconset>
    </property>
    <property name="text" >
     <string>Allow Monty to talk</string>
@@ -1031,7 +1093,8 @@
   </action>
   <action name="actionShowMonty" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/monty/happy.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/monty/happy.png</normaloff>:/monty/happy.png</iconset>
    </property>
    <property name="text" >
     <string>Show &amp;Monty now</string>
@@ -1053,7 +1116,8 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/control/folder_realtive.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/control/folder_realtive.png</normaloff>:/control/folder_realtive.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Relative Song Path</string>
@@ -1064,7 +1128,8 @@
   </action>
   <action name="actionChangeSongDirectory" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/control/folder_note.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/control/folder_note.png</normaloff>:/control/folder_note.png</iconset>
    </property>
    <property name="text" >
     <string>Song &amp;Directory...</string>
@@ -1075,7 +1140,8 @@
   </action>
   <action name="actionRefreshSelected" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/control/refresh.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/control/refresh.png</normaloff>:/control/refresh.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Refresh Selected</string>
@@ -1086,7 +1152,8 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/control/auto_save.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/control/auto_save.png</normaloff>:/control/auto_save.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Save Automatically</string>
@@ -1097,7 +1164,8 @@
   </action>
   <action name="actionSaveSelected" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/control/save.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/control/save.png</normaloff>:/control/save.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Save Selected</string>
@@ -1105,7 +1173,8 @@
   </action>
   <action name="actionSaveAll" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/control/save_all.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/control/save_all.png</normaloff>:/control/save_all.png</iconset>
    </property>
    <property name="text" >
     <string>Save &amp;All Changes</string>
@@ -1116,7 +1185,8 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/control/filter.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/control/filter.png</normaloff>:/control/filter.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Filter Songs</string>
@@ -1124,7 +1194,8 @@
   </action>
   <action name="actionNewReport" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/control/report.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/control/report.png</normaloff>:/control/report.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;New Report...</string>
@@ -1135,7 +1206,8 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/lang/us.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/lang/us.png</normaloff>:/lang/us.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;English</string>
@@ -1146,7 +1218,8 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >:/lang/de.png</iconset>
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/lang/de.png</normaloff>:/lang/de.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;German (Deutsch)</string>
@@ -1168,6 +1241,11 @@
    <class>QUSongTree</class>
    <extends>QTreeWidget</extends>
    <header>QUSongTree.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QUPreviewTree</class>
+   <extends>QTreeWidget</extends>
+   <header>QUPreviewTree.h</header>
   </customwidget>
  </customwidgets>
  <resources>

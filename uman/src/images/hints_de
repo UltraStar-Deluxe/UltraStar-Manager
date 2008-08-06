@@ -22,7 +22,7 @@ Es wird ein Song nicht angezeigt, welcher aber von UltraStar gefunden wird? Das 
 Du kannst die relativen Pfade im Song-Baum ausschalten, wenn du <i>Ansicht > Relativer Songpfad</i> abwählst.
 Was sind <b>blaue Ordner</b>? Wenn in einer Songdatei ein Tag gefunden wird, der nicht von UltraStar erkannt werden kann, wird dieser Song mit einem blauen Ordner markiert.<br><br>Das ist nichts schlimmes. Diese Tags werden nicht verändert.
 Der Tooltip eines blauen Ordners zeigt dir alle nicht unterstützten Tags, die gefunden wurden.
-Versuch mal auf eine Audio-Datei zu klicken und beobachte dabei die Statuszeile...
+Versuch mal auf eine Audio-Datei zu klicken und beobachte das Vorschaufenster...
 Hast du schon die riesige Anzahl von Werten für den Genre-Tag in den Songdetails bemerkt? Diese Genres stammen aus der guten alten ID3v1-Spezifikation sowie einigen Winamp-Erweiterungen.
 Ich soll ruhig sein? Dann wähle einfach <i>Hilfe > Monty darf reden</i> ab.
 Die Standardwerte für Interpret, Titel und Jahr stammen aus dem ID3-Tag sofern vorhanden.

@@ -22,7 +22,7 @@ There is a song missing which is found by UltraStar instead? That cannot be!<br>
 You can turn of these relative paths in the folder column by uncheck <i>View > Relative Song Path</i>.
 What are <b>blue folders</b>? If a tag is found in a song text file that will not be recognized by UltraStar then this song is marked with a blue folder.<br><br>That's not bad at all. These tags will stay untouched.
 The tooltip of a blue folder displays you all unsupported tags that were found.
-Try to click on an audio file and see what appears on the status bar below...
+Try to click on an audio file and see what appears in the preview window below...
 Did you notice that huge amount of default values for a genre in the song details? These genres originate from the good old ID3v1 specification as well as some custom Winamp extensions.
 I shall be quiet? Then uncheck <i>Help -> Allow Monty to talk</i>.
 The default values for an artist, a title and the year in the song details come from the ID3 tag.

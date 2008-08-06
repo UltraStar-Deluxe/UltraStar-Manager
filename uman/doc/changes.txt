@@ -18,6 +18,10 @@ NEW FEATURES
   > Songs/Artist/Title
   > Songs/Edition/Artist - Title
   > Songs/Genre/Title - Artist
+* new preview window added
+  > displays database statistics, e.g. song count
+  > shows ID3 tag information of current audio file
+  > ID3 tag status bar information removed
 
 BUG FIXES
 * minor change in object renaming
@@ -47,7 +51,6 @@ TODO
   > load, save, edit
   > create auto-playlists
 * header/footer for reports
-* display number of all and selected songs
 * detect and handle duplicates
 * add song path to report
 * re-design filter categories
@@ -65,7 +68,7 @@ TODO
 * filter log entries
   > button for "clear"
 * inofficial album tag
-* make column tests in 1 and2 editable
+* make column tests in 1 and 2 editable
   > according to renaming style of the user
 
 NICE TO HAVE
@@ -73,8 +76,6 @@ NICE TO HAVE
   > e.g. "Nothing else matters [video]"
   > now search for this tag in UltraStar, very cool :)
   > maybe manage through tasks or so...
-* some nicer way to display ID3-tag data of audio files
-  > some kind of preview window - also for database statistics
 * extract readable lyrics and export them, maybe into some report or so
 * some extended help system in the application (lowest priority, Monty works well :))
 * checksums for SC-checked song files

@@ -165,6 +165,9 @@ p, li { white-space: pre-wrap; }
          </property>
          <item>
           <widget class="QComboBox" name="targetCombo" >
+           <property name="toolTip" >
+            <string>The target specifies the object on which the renaming will be done.</string>
+           </property>
            <item>
             <property name="text" >
              <string>mp3</string>

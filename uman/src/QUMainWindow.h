@@ -42,7 +42,7 @@ private slots:
 	void createSongFiles();
 
 	void updateDetails();
-	void updateStatusbar();
+	void updatePreviewTree();
 
 	void editSongSetFileLink(QTreeWidgetItem *item, int column);
 	void editSongSetDetail(QTableWidgetItem *item);

@@ -4,7 +4,9 @@ QT += core \
     gui \
     xml
 CONFIG += debug
-HEADERS += tasks/renameTaskDialog/QURenameConditionDelegate.h \
+HEADERS += details/QUDropDownDelegate.h \
+    preview/QUPreviewTree.h \
+    tasks/renameTaskDialog/QURenameConditionDelegate.h \
     tasks/renameTaskDialog/QURenameSourceDelegate.h \
     tasks/renameTaskDialog/QURenameTextDelegate.h \
     tasks/renameTaskDialog/QURenameDataTable.h \
@@ -34,13 +36,14 @@ HEADERS += tasks/renameTaskDialog/QURenameConditionDelegate.h \
     tasks/QUAbstractTask.h \
     QU.h \
     QUTextDialog.h \
-    QUDropDownDelegate.h \
     main.h \
     QUMonty.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += tasks/renameTaskDialog/QURenameConditionDelegate.cpp \
+SOURCES += details/QUDropDownDelegate.cpp \
+    preview/QUPreviewTree.cpp \
+    tasks/renameTaskDialog/QURenameConditionDelegate.cpp \
     tasks/renameTaskDialog/QURenameSourceDelegate.cpp \
     tasks/renameTaskDialog/QURenameTextDelegate.cpp \
     tasks/renameTaskDialog/QURenameDataTable.cpp \
@@ -69,7 +72,6 @@ SOURCES += tasks/renameTaskDialog/QURenameConditionDelegate.cpp \
     tasks/QUTaskItem.cpp \
     tasks/QUAbstractTask.cpp \
     QUTextDialog.cpp \
-    QUDropDownDelegate.cpp \
     QUMonty.cpp \
     QUTagOrderDialog.cpp \
     QUSongFile.cpp \
@@ -89,7 +91,8 @@ INCLUDEPATH += tasks \
     details \
     songtree \
     reports \
-    tasks/renameTaskDialog
+    tasks/renameTaskDialog \
+    preview
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib

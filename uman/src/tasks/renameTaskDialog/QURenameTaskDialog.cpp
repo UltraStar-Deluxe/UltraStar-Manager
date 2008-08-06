@@ -214,7 +214,6 @@ void QURenameTaskDialog::saveRenameTaskAs() {
  * possible.
  */
 void QURenameTaskDialog::updateMoveButtons(int row, int column) {
-	emit finished(QString("%1, %2, %3, %4").arg(row).arg(column).arg(dataTable->rowCount()).arg(dataTable->columnCount()), QU::information);
 	moveUpBtn->setEnabled(!(row < 1) and (row < dataTable->rowCount()));
 	moveDownBtn->setEnabled(!(row >= dataTable->rowCount() - 1) and (row >= 0));
 }

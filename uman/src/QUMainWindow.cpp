@@ -134,6 +134,7 @@ void QUMainWindow::initWindow() {
 
 	addDockWidget(Qt::RightDockWidgetArea, detailsDock);
 	addDockWidget(Qt::RightDockWidgetArea, tasksDock);
+	addDockWidget(Qt::RightDockWidgetArea, previewDock);
 	addDockWidget(Qt::RightDockWidgetArea, eventsDock);
 
 	// init filter area
@@ -174,6 +175,7 @@ void QUMainWindow::initMenu() {
 
 	this->menuView->addAction(detailsDock->toggleViewAction());
 	this->menuView->addAction(tasksDock->toggleViewAction());
+	this->menuView->addAction(previewDock->toggleViewAction());
 	this->menuView->addAction(eventsDock->toggleViewAction());
 	this->menuView->addAction(this->toolBar->toggleViewAction());
 
@@ -202,7 +204,7 @@ void QUMainWindow::initSongTree() {
 	songTree->initHorizontalHeader();
 
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateDetails()));
-	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateStatusbar()));
+	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updatePreviewTree()));
 
 	connect(songTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(editSongSetFileLink(QTreeWidgetItem*, int)));
 	connect(songTree, SIGNAL(itemActivated(QTreeWidgetItem*, int)), this, SLOT(showFileContent(QTreeWidgetItem*, int)));
@@ -281,6 +283,8 @@ void QUMainWindow::refreshAllSongs(bool force) {
 
 	createSongFiles();
 	songTree->fill(_songs);
+
+	updatePreviewTree();
 }
 
 /*!
@@ -341,32 +345,22 @@ void QUMainWindow::updateDetails() {
 }
 
 /*!
- * Displays ID3 tag information of a selected MP3 file in the status bar.
+ * Updates all preview information according to the current selection or dimension of the
+ * song tree.
  */
-void QUMainWindow::updateStatusbar() {
+void QUMainWindow::updatePreviewTree() {
+	previewTree->setSongCount(songTree->topLevelItemCount() + songTree->hiddenItemsCount());
+	previewTree->setSelectedSongCount(songTree->currentItem() ? qMax(songTree->selectedItems().size(), 1) : songTree->selectedItems().size());
+	previewTree->setVisibleSongCount(songTree->topLevelItemCount());
+	previewTree->setHiddenSongCount(songTree->hiddenItemsCount());
+
 	QUSongItem *item = dynamic_cast<QUSongItem*>(songTree->currentItem());
 
 	if(!item)
 		return;
 
 	QFileInfo fi(item->song()->songFileInfo().dir(), item->text(0));
-	QString fileScheme("*." + fi.suffix());
-
-	if(!QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-		this->statusBar()->clearMessage();
-		return; // read only audio files for ID3 tag
-	}
-
-	TagLib::FileRef ref(fi.absoluteFilePath().toLocal8Bit().data());
-
-	QString text(tr("Audio file selected: ARTIST = \"%1\"; TITLE = \"%2\"; GENRE = \"%3\"; YEAR = \"%4\""));
-
-	QString artist(TStringToQString(ref.tag()->artist())); if(artist == "") artist = N_A;
-	QString title(TStringToQString(ref.tag()->title())); if(title == "") title = N_A;
-	QString genre(TStringToQString(ref.tag()->genre())); if(genre == "") genre = N_A;
-	QString year(QVariant(ref.tag()->year()).toString()); if(year == "0") year = N_A;
-
-	this->statusBar()->showMessage(text.arg(artist).arg(title).arg(genre).arg(year));
+	previewTree->showFileInformation(fi);
 }
 
 /*!
@@ -746,4 +740,3 @@ void QUMainWindow::enableGerman() {
 	if(result == QUMessageBox::first)
 		this->close();
 }
-

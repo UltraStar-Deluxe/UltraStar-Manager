@@ -146,6 +146,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 
 	if(regexp.isEmpty()) {
 		emit finished(tr("Filter removed. All songs are visible now."), QU::information);
+		emit itemSelectionChanged(); // update details
 		return;
 	}
 

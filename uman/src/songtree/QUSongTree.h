@@ -27,6 +27,8 @@ public:
 	QList<QUSongFile*> selectedSongs();
 	void fill(QList<QUSongFile*> songs);
 
+	int hiddenItemsCount() const { return _hiddenItems.size(); }
+
 public slots:
 	void showContextMenu(const QPoint &point);
 	void refreshSelectedItems();
