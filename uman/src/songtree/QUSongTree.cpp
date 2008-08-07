@@ -24,37 +24,39 @@ QUSongTree::QUSongTree(QWidget *parent): QTreeWidget(parent) {
 
 void QUSongTree::initHorizontalHeader() {
 	QTreeWidgetItem *header = new QTreeWidgetItem();
-	header->setText(0, QString(tr("Folder (%1)")).arg(QUMainWindow::BaseDir.path()));
-	header->setIcon(0, QIcon(":/types/folder.png"));
+	header->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(QUMainWindow::BaseDir.path()));
+	header->setIcon(FOLDER_COLUMN, QIcon(":/types/folder.png"));
 
-	header->setIcon(1, QIcon(":/types/user.png"));
-	header->setToolTip(1, tr("Shows whether your folder includes the artist correctly:<br><i>Artist - Title ...</i>"));
-	header->setIcon(2, QIcon(":/types/font.png"));
-	header->setToolTip(2, tr("Shows whether your folder includes the title correctly:<br><i>Artist - Title ...</i>"));
-	header->setIcon(3, QIcon(":/types/music.png"));
-	header->setToolTip(3, tr("Shows whether the song text file points to an <b>audio file</b> that can be found by UltraStar"));
-	header->setIcon(4, QIcon(":/types/cover.png"));
-	header->setToolTip(4, tr("Shows whether the song text file points to a <b>cover picture</b> that can be found by UltraStar"));
-	header->setIcon(5, QIcon(":/types/background.png"));
-	header->setToolTip(5, tr("Shows whether the song text file points to a <b>background picture</b> that can be found by UltraStar"));
-	header->setIcon(6, QIcon(":/types/film.png"));
-	header->setToolTip(6, tr("Shows whether the song text file points to a <b>video file</b> that can be found by UltraStar"));
+	header->setIcon(ARTIST_COLUMN, QIcon(":/types/user.png"));
+	header->setToolTip(ARTIST_COLUMN, tr("Shows whether your folder includes the artist correctly:<br><i>Artist - Title ...</i>"));
+	header->setIcon(TITLE_COLUMN, QIcon(":/types/font.png"));
+	header->setToolTip(TITLE_COLUMN, tr("Shows whether your folder includes the title correctly:<br><i>Artist - Title ...</i>"));
+	header->setIcon(MP3_COLUMN, QIcon(":/types/music.png"));
+	header->setToolTip(MP3_COLUMN, tr("Shows whether the song text file points to an <b>audio file</b> that can be found by UltraStar"));
+	header->setIcon(COVER_COLUMN, QIcon(":/types/cover.png"));
+	header->setToolTip(COVER_COLUMN, tr("Shows whether the song text file points to a <b>cover picture</b> that can be found by UltraStar"));
+	header->setIcon(BACKGROUND_COLUMN, QIcon(":/types/background.png"));
+	header->setToolTip(BACKGROUND_COLUMN, tr("Shows whether the song text file points to a <b>background picture</b> that can be found by UltraStar"));
+	header->setIcon(VIDEO_COLUMN, QIcon(":/types/film.png"));
+	header->setToolTip(VIDEO_COLUMN, tr("Shows whether the song text file points to a <b>video file</b> that can be found by UltraStar"));
 
-	header->setIcon(7, QIcon(":/types/unused_files.png"));
-	header->setToolTip(7, tr("Shows whether your folder contains unused files."));
+	header->setIcon(UNUSED_FILES_COLUMN, QIcon(":/types/unused_files.png"));
+	header->setToolTip(UNUSED_FILES_COLUMN, tr("Shows whether your folder contains unused files."));
+	header->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/text_stack.png"));
+	header->setToolTip(MULTIPLE_SONGS_COLUMN, tr("Shows whether your folder contains more than one song text file."));
 
-	header->setText(8, tr("Language"));
-	header->setIcon(8, QIcon(":/types/language.png"));
-	header->setText(9, tr("Edition"));
-	header->setIcon(9, QIcon(":/types/edition.png"));
-	header->setText(10, tr("Genre"));
-	header->setIcon(10, QIcon(":/types/genre.png"));
-	header->setText(11, tr("Year"));
-	header->setIcon(11, QIcon(":/types/date.png"));
-	header->setText(12, tr("Creator"));
-	header->setIcon(12, QIcon(":/types/creator.png"));
-	header->setText(13, tr("Comment"));
-	header->setIcon(13, QIcon(":/types/comment.png"));
+	header->setText(LANGUAGE_COLUMN, tr("Language"));
+	header->setIcon(LANGUAGE_COLUMN, QIcon(":/types/language.png"));
+	header->setText(EDITION_COLUMN, tr("Edition"));
+	header->setIcon(EDITION_COLUMN, QIcon(":/types/edition.png"));
+	header->setText(GENRE_COLUMN, tr("Genre"));
+	header->setIcon(GENRE_COLUMN, QIcon(":/types/genre.png"));
+	header->setText(YEAR_COLUMN, tr("Year"));
+	header->setIcon(YEAR_COLUMN, QIcon(":/types/date.png"));
+	header->setText(CREATOR_COLUMN, tr("Creator"));
+	header->setIcon(CREATOR_COLUMN, QIcon(":/types/creator.png"));
+	header->setText(COMMENT_COLUMN, tr("Comment"));
+	header->setIcon(COMMENT_COLUMN, QIcon(":/types/comment.png"));
 
 	this->setHeaderItem(header);
 }
@@ -111,7 +113,7 @@ void QUSongTree::fill(QList<QUSongFile*> songs) {
 	}
 
 	this->resizeToContents();
-	this->sortItems(0, Qt::AscendingOrder);
+	this->sortItems(FOLDER_COLUMN, Qt::AscendingOrder);
 }
 
 void QUSongTree::saveUnsavedChanges() {
@@ -431,16 +433,16 @@ void QUSongTree::deleteCurrentItem() {
 
 	QUMessageBox::Results result = QUMessageBox::ask(this,
 			tr("Delete File"),
-			QString(tr("<b>\"%1\"</b> will be deleted permanently. You cannot undo a delete operation.")).arg(item->text(0)),
+			QString(tr("<b>\"%1\"</b> will be deleted permanently. You cannot undo a delete operation.")).arg(item->text(FOLDER_COLUMN)),
 			":/control/bin.png", tr("Delete this file."),
 			":/marks/cancel.png", tr("Cancel delete operation."));
 	if(result == QUMessageBox::second)
 		return;
 
-	if(QFile::remove(QFileInfo(item->song()->songFileInfo().dir(), item->text(0)).filePath()))
-		emit finished(QString(tr("The file \"%1\" was deleted successfully.")).arg(item->text(0)), QU::information);
+	if(QFile::remove(QFileInfo(item->song()->songFileInfo().dir(), item->text(FOLDER_COLUMN)).filePath()))
+		emit finished(QString(tr("The file \"%1\" was deleted successfully.")).arg(item->text(FOLDER_COLUMN)), QU::information);
 	else
-		emit finished(QString(tr("The file \"%1\" was NOT deleted.")).arg(item->text(0)), QU::warning);
+		emit finished(QString(tr("The file \"%1\" was NOT deleted.")).arg(item->text(FOLDER_COLUMN)), QU::warning);
 
 	this->setCurrentItem(item->parent());
 	item->update();

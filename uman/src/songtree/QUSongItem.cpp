@@ -145,12 +145,12 @@ void QUSongItem::updateAsTxt() {
 
 	if(QString::compare(this->text(FOLDER_COLUMN), song()->songFileInfo().fileName(), Qt::CaseInsensitive) != 0) {
 		this->setTextColor(FOLDER_COLUMN, Qt::gray); // unnecessary song text file, not used
-		QFont f(this->font(FOLDER_COLUMN));
-		f.setStrikeOut(true);
-		this->setFont(FOLDER_COLUMN, f);
+//		QFont f(this->font(FOLDER_COLUMN));
+//		f.setStrikeOut(true);
+//		this->setFont(FOLDER_COLUMN, f);
 
-		// TODO: Are more than one song text files in one folder really "unused"?
-		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon();
+		// Show that there are multiple songs in this folder available.
+		(dynamic_cast<QUSongItem*>(this->parent()))->showMultipleSongsIcon();
 	} else {
 		this->setTextColor(FOLDER_COLUMN, Qt::blue);
 	}
@@ -221,6 +221,13 @@ void QUSongItem::showUnusedFilesIcon() {
 	this->setData(UNUSED_FILES_COLUMN, Qt::UserRole, QVariant(-1));
 }
 
+void QUSongItem::showMultipleSongsIcon() {
+	this->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/text_stack.png"));
+
+	// used for sorting, should be smaller than zero
+	this->setData(MULTIPLE_SONGS_COLUMN, Qt::UserRole, QVariant(-1));
+}
+
 void QUSongItem::setTick(int column, bool isBlue) {
 	if(isBlue) {
 		this->setIcon(column, QIcon(":/marks/tick_blue.png"));
@@ -256,6 +263,7 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case BACKGROUND_COLUMN:
 	case VIDEO_COLUMN:
 	case UNUSED_FILES_COLUMN:
+	case MULTIPLE_SONGS_COLUMN:
 		return this->data(column, Qt::UserRole).toInt() < other.data(column, Qt::UserRole).toInt(); break;
 	default:
 		return text(column) < other.text(column);

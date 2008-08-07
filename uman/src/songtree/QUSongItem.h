@@ -4,20 +4,21 @@
 #include <QTreeWidgetItem>
 #include "QUSongFile.h"
 
-#define FOLDER_COLUMN        0
-#define ARTIST_COLUMN        1
-#define TITLE_COLUMN         2
-#define MP3_COLUMN           3
-#define COVER_COLUMN         4
-#define BACKGROUND_COLUMN    5
-#define VIDEO_COLUMN         6
-#define UNUSED_FILES_COLUMN  7
-#define LANGUAGE_COLUMN      8
-#define EDITION_COLUMN       9
-#define GENRE_COLUMN        10
-#define YEAR_COLUMN         11
-#define CREATOR_COLUMN      12
-#define COMMENT_COLUMN      13
+#define FOLDER_COLUMN          0
+#define ARTIST_COLUMN          1
+#define TITLE_COLUMN           2
+#define MP3_COLUMN             3
+#define COVER_COLUMN           4
+#define BACKGROUND_COLUMN      5
+#define VIDEO_COLUMN           6
+#define UNUSED_FILES_COLUMN    7
+#define MULTIPLE_SONGS_COLUMN  8
+#define LANGUAGE_COLUMN        9
+#define EDITION_COLUMN        10
+#define GENRE_COLUMN          11
+#define YEAR_COLUMN           12
+#define CREATOR_COLUMN        13
+#define COMMENT_COLUMN        14
 
 /*!
  * This class encapsulates a pointer to a QUSongFile object to be able
@@ -39,6 +40,7 @@ public:
 	bool isToplevel() const { return _isToplevel; }
 
 	void showUnusedFilesIcon();
+	void showMultipleSongsIcon();
 
 	virtual bool operator< (const QTreeWidgetItem &other) const;
 

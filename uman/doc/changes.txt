@@ -25,6 +25,8 @@ NEW FEATURES
   > shows some information about picture files
   > shows recognized file types
 * new file type now recognized as song text "*.kar"
+* new column in song tree which indicates whether there are multiple
+  song text files in one folder
 
 BUG FIXES
 * minor change in object renaming
@@ -40,8 +42,6 @@ BUG FIXES
 KNOWN BUGS
 * artist/title detection works not correctly for more than one hyphen
   > "Farin Urlaub - Unter - Wasser" :) (regard the blanks around the hyphen!)
-* .kar files will not be recognized as valid song text files
-  > maybe define a list of valid file endings for a song text file
 * you cannot obtain a tick in the second and third column if the title/artist
   contains "illegal" characters like '?'
 
@@ -76,6 +76,9 @@ TODO
 * make visible status of columns in song tree saveable
   > could lead to more (by default invisible) columns
 * test UltraStar for "kar" as valid song text file ending
+* enable the user to choose which type of song text file of a folder
+  should be selected
+  > would be useful for selecting all karaoke files in each folder
 
 NICE TO HAVE
 * allow []-tags in song title

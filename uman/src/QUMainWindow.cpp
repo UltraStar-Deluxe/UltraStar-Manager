@@ -357,7 +357,7 @@ void QUMainWindow::updatePreviewTree() {
 	QUSongItem *item = dynamic_cast<QUSongItem*>(songTree->currentItem());
 
 	if(item) {
-		QFileInfo fi(item->song()->songFileInfo().dir(), item->text(0));
+		QFileInfo fi(item->song()->songFileInfo().dir(), item->text(FOLDER_COLUMN));
 		previewTree->showFileInformation(fi);
 	} else
 		previewTree->showFileInformation(QFileInfo());
@@ -378,31 +378,31 @@ void QUMainWindow::editSongSetFileLink(QTreeWidgetItem *item, int column) {
 
 	QUSongFile *song = songItem->song();
 
-	QString fileScheme("*." + QFileInfo(songItem->text(0)).suffix());
+	QString fileScheme("*." + QFileInfo(songItem->text(FOLDER_COLUMN)).suffix());
 
-	if( songItem->icon(3).isNull()
+	if( songItem->icon(MP3_COLUMN).isNull()
 			and QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)
-			and column == 3 ) {
-		addLogMsg(QString(tr("Audio file changed from \"%1\" to: \"%2\".")).arg(song->mp3()).arg(songItem->text(0)));
-		song->setInfo(MP3_TAG, songItem->text(0));
+			and column == MP3_COLUMN ) {
+		addLogMsg(QString(tr("Audio file changed from \"%1\" to: \"%2\".")).arg(song->mp3()).arg(songItem->text(FOLDER_COLUMN)));
+		song->setInfo(MP3_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
-	} else if( songItem->icon(4).isNull()
+	} else if( songItem->icon(COVER_COLUMN).isNull()
 			and QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)
-			and column == 4 ) {
-		addLogMsg(QString(tr("Cover changed from \"%1\" to: \"%2\".")).arg(song->cover()).arg(songItem->text(0)));
-		song->setInfo(COVER_TAG, songItem->text(0));
+			and column == COVER_COLUMN ) {
+		addLogMsg(QString(tr("Cover changed from \"%1\" to: \"%2\".")).arg(song->cover()).arg(songItem->text(FOLDER_COLUMN)));
+		song->setInfo(COVER_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
-	} else if( songItem->icon(5).isNull()
+	} else if( songItem->icon(BACKGROUND_COLUMN).isNull()
 			and QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)
-			and column == 5 ) {
-		addLogMsg(QString(tr("Background changed from \"%1\" to: \"%2\".")).arg(song->background()).arg(songItem->text(0)));
-		song->setInfo(BACKGROUND_TAG, songItem->text(0));
+			and column == BACKGROUND_COLUMN ) {
+		addLogMsg(QString(tr("Background changed from \"%1\" to: \"%2\".")).arg(song->background()).arg(songItem->text(FOLDER_COLUMN)));
+		song->setInfo(BACKGROUND_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
-	} else if( songItem->icon(6).isNull()
+	} else if( songItem->icon(VIDEO_COLUMN).isNull()
 			and QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)
-			and column == 6 ) {
-		addLogMsg(QString(tr("Video file changed from \"%1\" to: \"%2\".")).arg(song->video()).arg(songItem->text(0)));
-		song->setInfo(VIDEO_TAG, songItem->text(0));
+			and column == VIDEO_COLUMN ) {
+		addLogMsg(QString(tr("Video file changed from \"%1\" to: \"%2\".")).arg(song->video()).arg(songItem->text(FOLDER_COLUMN)));
+		song->setInfo(VIDEO_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	}
 
@@ -553,7 +553,7 @@ void QUMainWindow::changeSongDir() {
 
 		addLogMsg(QString(tr("UltraStar song directory changed to: \"%1\".")).arg(BaseDir.path()));
 
-		songTree->headerItem()->setText(0, QString(tr("Folder (%1)")).arg(BaseDir.path()));
+		songTree->headerItem()->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(BaseDir.path()));
 	}
 }
 
@@ -614,7 +614,7 @@ void QUMainWindow::toggleAutoSaveChk(bool checked) {
  * file.
  */
 void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
-	if(column != 0)
+	if(column != FOLDER_COLUMN)
 		return;
 
 	QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
@@ -622,9 +622,9 @@ void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
 	if(!songItem || songItem->isToplevel())
 		return;
 
-	QString fileScheme("*." + QFileInfo(songItem->text(0)).suffix());
+	QString fileScheme("*." + QFileInfo(songItem->text(FOLDER_COLUMN)).suffix());
 
-	if(QString::compare(item->text(0), songItem->song()->songFileInfo().fileName(), Qt::CaseInsensitive) == 0) {
+	if(QString::compare(item->text(FOLDER_COLUMN), songItem->song()->songFileInfo().fileName(), Qt::CaseInsensitive) == 0) {
 		// show the (raw) content of the current song text file
 		QUTextDialog *dlg = new QUTextDialog(songItem->song(), this);
 		dlg->exec();
@@ -632,12 +632,12 @@ void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
 	} else if(QUSongFile::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		// use this song text file for the folder now
 		// --> useful for more than one valid song text file per folder
-		songItem->song()->setFile(QFileInfo(songItem->song()->songFileInfo().dir(), item->text(0)).filePath());
+		songItem->song()->setFile(QFileInfo(songItem->song()->songFileInfo().dir(), item->text(FOLDER_COLUMN)).filePath());
 
 		songTree->setCurrentItem(songItem->parent());
 		songItem->update();
 	} else if(QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-		QUPictureDialog dlg(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(0)).filePath(), this);
+		QUPictureDialog dlg(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(FOLDER_COLUMN)).filePath(), this);
 		dlg.exec();
 	}
 }
