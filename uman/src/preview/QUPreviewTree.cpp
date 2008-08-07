@@ -31,12 +31,27 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 	general->setTextColor(0, Qt::darkGray);
 	general->setFirstColumnSpanned(true);
 
-	general->insertChild(SONG_COUNT_CHILD_INDEX, this->createInfoItem("Songs", N_A));
-	general->insertChild(SELECTED_SONG_COUNT_CHILD_INDEX, this->createInfoItem("Selected Songs", N_A));
-	general->insertChild(HIDDEN_SONG_COUNT_CHILD_INDEX, this->createInfoItem("Hidden Songs", N_A));
-	general->insertChild(VISIBLE_SONG_COUNT_CHILD_INDEX, this->createInfoItem("Visible Songs", N_A));
+	general->insertChild(SONG_COUNT_CHILD_INDEX, this->createInfoItem(tr("Songs"), N_A));
+	general->insertChild(SELECTED_SONG_COUNT_CHILD_INDEX, this->createInfoItem(tr("Selected Songs"), N_A));
+	general->insertChild(HIDDEN_SONG_COUNT_CHILD_INDEX, this->createInfoItem(tr("Hidden Songs"), N_A));
+	general->insertChild(VISIBLE_SONG_COUNT_CHILD_INDEX, this->createInfoItem(tr("Visible Songs"), N_A));
 
 	general->setExpanded(true);
+
+	// set up "types" toplevel item (totally static)
+
+	types = new QTreeWidgetItem();
+	this->addTopLevelItem(types);
+
+	types->setText(0, tr("Supported File Types"));
+	types->setFlags(Qt::ItemIsEnabled);
+	types->setTextColor(0, Qt::darkGray);
+	types->setFirstColumnSpanned(true);
+
+	types->addChild(this->createInfoItem(tr("Song"), QUSongFile::allowedSongFiles().join(" ")));
+	types->addChild(this->createInfoItem(tr("Audio"), QUSongFile::allowedAudioFiles().join(" ")));
+	types->addChild(this->createInfoItem(tr("Picture"), QUSongFile::allowedPictureFiles().join(" ")));
+	types->addChild(this->createInfoItem(tr("Video"), QUSongFile::allowedVideoFiles().join(" ")));
 
 	// set up "current" toplevel item
 

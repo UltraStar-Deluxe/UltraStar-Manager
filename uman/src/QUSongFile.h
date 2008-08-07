@@ -11,7 +11,6 @@
 
 #include "QU.h"
 
-#define SONG_FILE_SUFFIX "txt"
 #define N_A "-"
 
 #define TITLE_TAG      "TITLE"
@@ -150,6 +149,7 @@ public slots:
 	static QStringList noteTypes();
 
 	static void verifyTags(QStringList &tags);
+	static QStringList allowedSongFiles();
 	static QStringList allowedAudioFiles();
 	static QStringList allowedPictureFiles();
 	static QStringList allowedVideoFiles();

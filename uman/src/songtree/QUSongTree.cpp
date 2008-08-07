@@ -323,8 +323,9 @@ bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
 bool QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 	foreach(QUrl url, urls) {
 		QFileInfo fi(url.toLocalFile());
+		QString fileScheme("*." + fi.suffix());
 
-		if(fi.suffix() == SONG_FILE_SUFFIX) {
+		if(QUSongFile::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			QUSongFile tmp(fi.filePath());
 
 			QString newSongDirName = QString("%1 - %2").arg(tmp.artist()).arg(tmp.title());

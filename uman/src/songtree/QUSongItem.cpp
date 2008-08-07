@@ -58,7 +58,7 @@ void QUSongItem::update() {
 
 		QString fileScheme("*." + QFileInfo(fileNames[i]).suffix());
 
-		if(QString::compare(fileScheme, "*.txt", Qt::CaseInsensitive) == 0) {
+		if(QUSongFile::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsTxt();
 		} else if(QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsMp3();

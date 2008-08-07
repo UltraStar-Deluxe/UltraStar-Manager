@@ -302,13 +302,13 @@ void QUMainWindow::createSongFiles() {
 	dlg.show();
 
 	foreach(QDir dir, dirList) {
-		QStringList files = dir.entryList(QStringList("*.txt"), QDir::Files);
+		QStringList files = dir.entryList(QUSongFile::allowedSongFiles(), QDir::Files);
 
 		dlg.update(dir.dirName());
 		if(dlg.cancelled()) break;
 
 		if(!files.isEmpty()) {
-			// TODO: What about more txt files in a folder? Really choose the first one? Hmmm...
+			// TODO: What about more song files in a folder? Really choose the first one? Hmmm...
 			_songs.append(new QUSongFile(QFileInfo(dir, files.first()).filePath()));
 			// enable event log
 			connect(_songs.last(), SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
@@ -625,11 +625,13 @@ void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
 	QString fileScheme("*." + QFileInfo(songItem->text(0)).suffix());
 
 	if(QString::compare(item->text(0), songItem->song()->songFileInfo().fileName(), Qt::CaseInsensitive) == 0) {
+		// show the (raw) content of the current song text file
 		QUTextDialog *dlg = new QUTextDialog(songItem->song(), this);
 		dlg->exec();
 		delete dlg;
-	} else if(item->text(0).endsWith(SONG_FILE_SUFFIX, Qt::CaseInsensitive)) {
-		// use this song text file for the folder
+	} else if(QUSongFile::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		// use this song text file for the folder now
+		// --> useful for more than one valid song text file per folder
 		songItem->song()->setFile(QFileInfo(songItem->song()->songFileInfo().dir(), item->text(0)).filePath());
 
 		songTree->setCurrentItem(songItem->parent());

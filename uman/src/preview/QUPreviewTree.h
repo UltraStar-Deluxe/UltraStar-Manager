@@ -25,6 +25,7 @@ public slots:
 
 private:
 	QTreeWidgetItem *general;
+	QTreeWidgetItem *types;
 	QTreeWidgetItem *current;
 	QTreeWidgetItem *extra;
 

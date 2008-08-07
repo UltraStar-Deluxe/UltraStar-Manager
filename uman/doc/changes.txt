@@ -22,6 +22,9 @@ NEW FEATURES
   > displays database statistics, e.g. song count
   > shows ID3 tag information of current audio file
   > ID3 tag status bar information removed
+  > shows some information about picture files
+  > shows recognized file types
+* new file type now recognized as song text "*.kar"
 
 BUG FIXES
 * minor change in object renaming
@@ -70,6 +73,9 @@ TODO
 * inofficial album tag
 * make column tests in 1 and 2 editable
   > according to renaming style of the user
+* make visible status of columns in song tree saveable
+  > could lead to more (by default invisible) columns
+* test UltraStar for "kar" as valid song text file ending
 
 NICE TO HAVE
 * allow []-tags in song title

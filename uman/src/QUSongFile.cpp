@@ -20,6 +20,8 @@
  * Creates a new song file object.
  * \param file an existing US song file (normally a *.txt)
  * \param parent parent for Qt object tree
+ *
+ * \sa allowedSongFiles()
  */
 QUSongFile::QUSongFile(const QString &file, QObject *parent): QObject(parent), _hasUnsavedChanges(false) {
 	this->setFile(file);
@@ -701,12 +703,16 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
  * STATIC MEMBERS
  */
 
+QStringList QUSongFile::allowedSongFiles() {
+	return QString("*.txt *.kar").split(" ");
+}
+
 QStringList QUSongFile::allowedAudioFiles() {
 	return QString("*.mp3 *.ogg").split(" ");
 }
 
 QStringList QUSongFile::allowedPictureFiles() {
-	return QString("*.jpg *.png *.bmp").split(" ");
+	return QString("*.jpg *.png *.bmp *.gif").split(" ");
 }
 
 QStringList QUSongFile::allowedVideoFiles() {
