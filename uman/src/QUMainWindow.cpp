@@ -131,11 +131,13 @@ void QUMainWindow::initConfig() {
  */
 void QUMainWindow::initWindow() {
 	setWindowTitle(QString(tr("UltraStar Manager %1.%2")).arg(MAJOR_VERSION).arg(MINOR_VERSION));
+	resize(1000, 500);
 
 	addDockWidget(Qt::LeftDockWidgetArea, detailsDock);
 	addDockWidget(Qt::RightDockWidgetArea, tasksDock);
 	addDockWidget(Qt::LeftDockWidgetArea, previewDock); previewDock->hide();
 	addDockWidget(Qt::RightDockWidgetArea, eventsDock); eventsDock->hide();
+	addDockWidget(Qt::RightDockWidgetArea, playlistDock); playlistDock->hide();
 
 	// init filter area
 	filterFrame->hide();
@@ -176,16 +178,19 @@ void QUMainWindow::initMenu() {
 	detailsDock->toggleViewAction()->setIcon(QIcon(":/control/text_edit.png"));
 	tasksDock->toggleViewAction()->setIcon(QIcon(":/control/tasks.png"));
 	previewDock->toggleViewAction()->setIcon(QIcon(":/control/db_info.png"));
+	playlistDock->toggleViewAction()->setIcon(QIcon(":/control/playlist.png"));
 	eventsDock->toggleViewAction()->setIcon(QIcon(":/control/lightning.png"));
 
 	this->toolBar->addSeparator();
 	this->toolBar->addAction(detailsDock->toggleViewAction());
 	this->toolBar->addAction(tasksDock->toggleViewAction());
+	this->toolBar->addAction(playlistDock->toggleViewAction());
 	this->toolBar->addAction(previewDock->toggleViewAction());
 	this->toolBar->addAction(eventsDock->toggleViewAction());
 
 	this->menuView->addAction(detailsDock->toggleViewAction());
 	this->menuView->addAction(tasksDock->toggleViewAction());
+	this->menuView->addAction(playlistDock->toggleViewAction());
 	this->menuView->addAction(previewDock->toggleViewAction());
 	this->menuView->addAction(eventsDock->toggleViewAction());
 

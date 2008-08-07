@@ -4,7 +4,9 @@ QT += core \
     gui \
     xml
 CONFIG += debug
-HEADERS += details/QUDropDownDelegate.h \
+HEADERS += playlist/QUPlayListItem.h \
+    playlist/QUPlayList.h \
+    details/QUDropDownDelegate.h \
     preview/QUPreviewTree.h \
     tasks/renameTaskDialog/QURenameConditionDelegate.h \
     tasks/renameTaskDialog/QURenameSourceDelegate.h \
@@ -41,7 +43,9 @@ HEADERS += details/QUDropDownDelegate.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += details/QUDropDownDelegate.cpp \
+SOURCES += playlist/QUPlayListItem.cpp \
+    playlist/QUPlayList.cpp \
+    details/QUDropDownDelegate.cpp \
     preview/QUPreviewTree.cpp \
     tasks/renameTaskDialog/QURenameConditionDelegate.cpp \
     tasks/renameTaskDialog/QURenameSourceDelegate.cpp \
@@ -92,7 +96,8 @@ INCLUDEPATH += tasks \
     songtree \
     reports \
     tasks/renameTaskDialog \
-    preview
+    preview \
+    playlist
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib

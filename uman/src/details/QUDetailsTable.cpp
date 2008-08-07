@@ -13,25 +13,26 @@
 QUDetailsTable::QUDetailsTable(QWidget *parent): QTableWidget(parent) {
 	this->setRowCount(22);
 	this->setColumnCount(2);
-	
+
 	// setup headers
 	this->verticalHeader()->hide();
 	this->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-	
+
 	this->setHorizontalHeaderLabels(QStringList() << tr("Tag") << tr("Value"));
-	this->horizontalHeader()->setResizeMode(0, QHeaderView::Interactive);
+	this->horizontalHeader()->setResizeMode(0, QHeaderView::ResizeToContents);
 	this->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
-	
+	this->horizontalHeader()->hide();
+
 	// set value editor
 	QUDropDownDelegate *comboDelegate = new QUDropDownDelegate(this);
 	this->setItemDelegateForColumn(1, comboDelegate);
-	
+
 	// setup tag & value column
 	this->initTagColumn();
 	this->initValueColumn();
 }
 
-void QUDetailsTable::initTagColumn() {	
+void QUDetailsTable::initTagColumn() {
 	this->initSeparator(tr("Information"), 0);
 	this->setItem(1, 0, new QUTagItem(QIcon(":/types/font.png"), tr("Title")));
 	this->setItem(2, 0, new QUTagItem(QIcon(":/types/user.png"), tr("Artist")));
@@ -40,7 +41,7 @@ void QUDetailsTable::initTagColumn() {
 	this->setItem(5, 0, new QUTagItem(QIcon(":/types/genre.png"), tr("Genre")));
 	this->setItem(6, 0, new QUTagItem(QIcon(":/types/date.png"), tr("Year")));
 	this->setItem(7, 0, new QUTagItem(QIcon(":/types/creator.png"), tr("Creator")));
-	
+
 	this->initSeparator(tr("Files"), 8);
 	this->setItem(9, 0, new QUTagItem(QIcon(":/types/music.png"), tr("MP3")));
 	this->setItem(10, 0, new QUTagItem(QIcon(":/types/cover.png"), tr("Cover")));
@@ -54,7 +55,7 @@ void QUDetailsTable::initTagColumn() {
 	this->setItem(17, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Relative")));
 	this->setItem(18, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("BPM")));
 	this->setItem(19, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Gap")));
-	
+
 	this->initSeparator(tr("Inofficial"), 20);
 	this->setItem(21, 0, new QUTagItem(QIcon(":/types/comment.png"), tr("Comment")));
 }
@@ -74,7 +75,7 @@ void QUDetailsTable::initValueColumn() {
 	this->setItem(10, 1, new QUDetailItem(COVER_TAG));
 	this->setItem(11, 1, new QUDetailItem(BACKGROUND_TAG));
 	this->setItem(12, 1, new QUDetailItem(VIDEO_TAG));
-	
+
 	/* separator here - skip a row */
 	this->setItem(14, 1, new QUDetailItem(VIDEOGAP_TAG));
 	this->setItem(15, 1, new QUDetailItem(START_TAG));
@@ -82,42 +83,42 @@ void QUDetailsTable::initValueColumn() {
 	this->setItem(17, 1, new QUDetailItem(RELATIVE_TAG));
 	this->setItem(18, 1, new QUDetailItem(BPM_TAG));
 	this->setItem(19, 1, new QUDetailItem(GAP_TAG));
-	
+
 	/* separator here - skip a row */
 	this->setItem(21, 1, new QUDetailItem(COMMENT_TAG));
 }
 
 void QUDetailsTable::initSeparator(const QString &text, int row) {
 	QTableWidgetItem *separator = new QTableWidgetItem(text);
-	
+
 	separator->setFlags(Qt::ItemIsEnabled);
 	separator->setBackgroundColor(Qt::darkGray);
 	separator->setTextColor(Qt::white);
 	separator->setTextAlignment(Qt::AlignCenter);
-	
+
 	QFont font(separator->font());
 	font.setBold(true);
-	
+
 	separator->setFont(font);
-	
+
 	this->setItem(row, 0, separator);
 	this->setSpan(row, 0, 1, 2);
-	
+
 	this->verticalHeader()->setResizeMode(row, QHeaderView::Fixed);
 	this->verticalHeader()->resizeSection(row, 16);
-	
+
 }
 
-void QUDetailsTable::updateValueColumn(const QList<QUSongFile*> &songs) {	
+void QUDetailsTable::updateValueColumn(const QList<QUSongFile*> &songs) {
 	for(int i = 0; i < this->rowCount(); i++) {
 		QUDetailItem *detailItem = dynamic_cast<QUDetailItem*>(this->item(i, 1));
-		
+
 		if(!detailItem)
 			continue;
-		
+
 		detailItem->setSongs(songs);
 	}
-	
+
 	// disable user interaction if no song is selected
 	if(songs.isEmpty())
 		this->setEnabled(false);

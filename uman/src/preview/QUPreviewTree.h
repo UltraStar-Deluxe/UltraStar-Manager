@@ -13,6 +13,8 @@
 #include <QFileInfo>
 
 class QUPreviewTree: public QTreeWidget {
+	Q_OBJECT
+
 public:
 	QUPreviewTree(QWidget *parent = 0);
 

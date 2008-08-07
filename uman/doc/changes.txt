@@ -54,6 +54,7 @@ TODO
   > load, save, edit
   > create auto-playlists
   > verify a given playlist with the current song database
+  > custom order of songs in playlist (drag & drop)
 * header/footer for reports
 * detect and handle duplicates
 * add song path to report
