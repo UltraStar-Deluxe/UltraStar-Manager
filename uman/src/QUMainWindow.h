@@ -50,6 +50,7 @@ private slots:
 
 	void aboutQt();
 	void aboutUman();
+	void aboutTagLib();
 
 	void toggleRelativeSongPath(bool checked);
 	void toggleCompleterChk(bool checked);

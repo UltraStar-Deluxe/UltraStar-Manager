@@ -193,6 +193,7 @@ void QUMainWindow::initMenu() {
 	connect(actionShowMonty, SIGNAL(triggered()), helpFrame, SLOT(show()));
 	connect(actionQt, SIGNAL(triggered()), this, SLOT(aboutQt()));
 	connect(actionUman, SIGNAL(triggered()), this, SLOT(aboutUman()));
+	connect(actionTagLib, SIGNAL(triggered()), this, SLOT(aboutTagLib()));
 }
 
 /*!
@@ -508,6 +509,19 @@ void QUMainWindow::aboutUman() {
 			.arg(MINOR_VERSION)
 			.arg(PATCH_VERSION)
 			.arg(QString(revision).remove(QRegExp("(.*:)|\\D"))));
+}
+
+void QUMainWindow::aboutTagLib() {
+	QUMessageBox::ask(this,
+			tr("About TagLib"),
+			QString(tr("<b>TagLib Audio Meta-Data Library</b><br><br>"
+					"TagLib is a library for reading and editing the meta-data of several popular audio formats.<br><br>"
+					"Version: <b>%1.%2.%3</b><br><br>"
+					"Visit: <a href=\"http://developer.kde.org/~wheeler/taglib.html\">TagLib Homepage</a>"))
+					.arg(TAGLIB_MAJOR_VERSION)
+					.arg(TAGLIB_MINOR_VERSION)
+					.arg(TAGLIB_PATCH_VERSION),
+			":/marks/accept.png", tr("Continue."));
 }
 
 void QUMainWindow::editTagOrder() {

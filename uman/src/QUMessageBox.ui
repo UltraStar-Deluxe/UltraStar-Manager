@@ -9,7 +9,7 @@
     <x>0</x>
     <y>0</y>
     <width>228</width>
-    <height>119</height>
+    <height>135</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -22,16 +22,7 @@
    <property name="spacing" >
     <number>0</number>
    </property>
-   <property name="leftMargin" >
-    <number>0</number>
-   </property>
-   <property name="topMargin" >
-    <number>0</number>
-   </property>
-   <property name="rightMargin" >
-    <number>0</number>
-   </property>
-   <property name="bottomMargin" >
+   <property name="margin" >
     <number>0</number>
    </property>
    <item>
@@ -143,6 +134,9 @@
         <property name="wordWrap" >
          <bool>true</bool>
         </property>
+        <property name="openExternalLinks" >
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
      </layout>
@@ -171,7 +165,7 @@
        <property name="orientation" >
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0" >
         <size>
          <width>40</width>
          <height>20</height>
@@ -216,7 +210,8 @@
           <string>three</string>
          </property>
          <property name="icon" >
-          <iconset resource="images/uman.qrc" >:/marks/accept.png</iconset>
+          <iconset resource="images/uman.qrc" >
+           <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
          </property>
          <property name="shortcut" >
           <string>3</string>
@@ -230,7 +225,7 @@
        <property name="orientation" >
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0" >
         <size>
          <width>40</width>
          <height>20</height>

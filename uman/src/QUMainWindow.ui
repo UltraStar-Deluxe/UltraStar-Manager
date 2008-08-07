@@ -922,6 +922,7 @@
     <addaction name="actionShowMonty" />
     <addaction name="separator" />
     <addaction name="actionQt" />
+    <addaction name="actionTagLib" />
     <addaction name="actionUman" />
    </widget>
    <widget class="QMenu" name="menuSongs" >
@@ -1228,6 +1229,15 @@
    </property>
    <property name="text" >
     <string>&amp;German (Deutsch)</string>
+   </property>
+  </action>
+  <action name="actionTagLib" >
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/types/music.png</normaloff>:/types/music.png</iconset>
+   </property>
+   <property name="text" >
+    <string>About TagLib...</string>
    </property>
   </action>
  </widget>
