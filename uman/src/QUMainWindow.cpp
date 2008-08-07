@@ -132,9 +132,9 @@ void QUMainWindow::initConfig() {
 void QUMainWindow::initWindow() {
 	setWindowTitle(QString(tr("UltraStar Manager %1.%2")).arg(MAJOR_VERSION).arg(MINOR_VERSION));
 
-	addDockWidget(Qt::RightDockWidgetArea, detailsDock);
+	addDockWidget(Qt::LeftDockWidgetArea, detailsDock);
 	addDockWidget(Qt::RightDockWidgetArea, tasksDock);
-	addDockWidget(Qt::RightDockWidgetArea, previewDock);
+	addDockWidget(Qt::LeftDockWidgetArea, previewDock);
 	addDockWidget(Qt::RightDockWidgetArea, eventsDock);
 
 	// init filter area
