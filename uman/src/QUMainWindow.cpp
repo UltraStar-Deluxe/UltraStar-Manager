@@ -134,8 +134,8 @@ void QUMainWindow::initWindow() {
 
 	addDockWidget(Qt::LeftDockWidgetArea, detailsDock);
 	addDockWidget(Qt::RightDockWidgetArea, tasksDock);
-	addDockWidget(Qt::LeftDockWidgetArea, previewDock);
-	addDockWidget(Qt::RightDockWidgetArea, eventsDock);
+	addDockWidget(Qt::LeftDockWidgetArea, previewDock); previewDock->hide();
+	addDockWidget(Qt::RightDockWidgetArea, eventsDock); eventsDock->hide();
 
 	// init filter area
 	filterFrame->hide();
@@ -173,10 +173,23 @@ void QUMainWindow::initMenu() {
 	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
 	connect(actionFilter, SIGNAL(toggled(bool)), this, SLOT(toggleFilterFrame(bool)));
 
+	detailsDock->toggleViewAction()->setIcon(QIcon(":/control/text_edit.png"));
+	tasksDock->toggleViewAction()->setIcon(QIcon(":/control/tasks.png"));
+	previewDock->toggleViewAction()->setIcon(QIcon(":/control/db_info.png"));
+	eventsDock->toggleViewAction()->setIcon(QIcon(":/control/lightning.png"));
+
+	this->toolBar->addSeparator();
+	this->toolBar->addAction(detailsDock->toggleViewAction());
+	this->toolBar->addAction(tasksDock->toggleViewAction());
+	this->toolBar->addAction(previewDock->toggleViewAction());
+	this->toolBar->addAction(eventsDock->toggleViewAction());
+
 	this->menuView->addAction(detailsDock->toggleViewAction());
 	this->menuView->addAction(tasksDock->toggleViewAction());
 	this->menuView->addAction(previewDock->toggleViewAction());
 	this->menuView->addAction(eventsDock->toggleViewAction());
+
+	this->menuView->addSeparator();
 	this->menuView->addAction(this->toolBar->toggleViewAction());
 
 	actionFilter->setShortcut(QKeySequence::fromString("Ctrl+F"));

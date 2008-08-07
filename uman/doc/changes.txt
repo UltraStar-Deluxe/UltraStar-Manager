@@ -53,6 +53,7 @@ TODO
 * manage song playlists
   > load, save, edit
   > create auto-playlists
+  > verify a given playlist with the current song database
 * header/footer for reports
 * detect and handle duplicates
 * add song path to report

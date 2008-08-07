@@ -15,6 +15,8 @@
     <file>bullet_black.png</file>
   </qresource>
   <qresource prefix="/control" >
+    <file>text_edit.png</file>
+    <file>tasks.png</file>
     <file>auto_save.png</file>
     <file>bin.png</file>
     <file>save_as.png</file>
@@ -23,6 +25,8 @@
     <file>check_tasks.png</file>
     <file>collapse.png</file>
     <file>expand.png</file>
+    <file>lightning.png</file>
+    <file>db_info.png</file>
     <file>filter.png</file>
     <file>folder_note.png</file>
     <file>folder_realtive.png</file>
