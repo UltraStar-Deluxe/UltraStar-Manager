@@ -71,7 +71,7 @@ class QUSongFile: public QObject {
 	Q_PROPERTY(bool isSongChecked READ isSongChecked)
 
 public:
-	QUSongFile(const QString &file, QObject *parent = 0);
+	QUSongFile(const QString &filePath, QObject *parent = 0);
 	~QUSongFile();
 
 	bool hasUnsavedChanges() const { return _hasUnsavedChanges; }

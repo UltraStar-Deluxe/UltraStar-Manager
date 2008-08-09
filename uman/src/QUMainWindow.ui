@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>979</width>
+    <width>675</width>
     <height>753</height>
    </rect>
   </property>
@@ -24,11 +24,11 @@
     <rect>
      <x>0</x>
      <y>48</y>
-     <width>979</width>
+     <width>675</width>
      <height>684</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_3" >
+   <layout class="QHBoxLayout" name="horizontalLayout" >
     <property name="spacing" >
      <number>0</number>
     </property>
@@ -457,7 +457,7 @@
             <rect>
              <x>0</x>
              <y>22</y>
-             <width>484</width>
+             <width>329</width>
              <height>89</height>
             </rect>
            </property>
@@ -565,7 +565,7 @@
             <rect>
              <x>0</x>
              <y>22</y>
-             <width>484</width>
+             <width>329</width>
              <height>115</height>
             </rect>
            </property>
@@ -734,7 +734,7 @@
             <rect>
              <x>0</x>
              <y>22</y>
-             <width>484</width>
+             <width>329</width>
              <height>71</height>
             </rect>
            </property>
@@ -767,7 +767,7 @@
            </size>
           </property>
           <property name="toolTip" >
-           <string>Browse for playlists...</string>
+           <string/>
           </property>
           <property name="windowTitle" >
            <string>Playlist</string>
@@ -777,7 +777,7 @@
             <rect>
              <x>0</x>
              <y>22</y>
-             <width>484</width>
+             <width>329</width>
              <height>164</height>
             </rect>
            </property>
@@ -789,7 +789,7 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="QFrame" name="frame" >
+             <widget class="QFrame" name="frame_2" >
               <property name="palette" >
                <palette>
                 <active>
@@ -863,7 +863,7 @@
               <property name="frameShadow" >
                <enum>QFrame::Raised</enum>
               </property>
-              <layout class="QHBoxLayout" name="horizontalLayout" >
+              <layout class="QHBoxLayout" name="horizontalLayout_2" >
                <property name="spacing" >
                 <number>5</number>
                </property>
@@ -871,7 +871,7 @@
                 <number>5</number>
                </property>
                <item>
-                <widget class="QLabel" name="label" >
+                <widget class="QLabel" name="label_2" >
                  <property name="text" >
                   <string>Active List:</string>
                  </property>
@@ -911,7 +911,7 @@
              </widget>
             </item>
             <item>
-             <widget class="Line" name="line" >
+             <widget class="Line" name="line_2" >
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
@@ -926,7 +926,7 @@
                <number>5</number>
               </property>
               <item>
-               <widget class="QLabel" name="label_2" >
+               <widget class="QLabel" name="label_3" >
                 <property name="text" >
                  <string>Name:</string>
                 </property>
@@ -948,7 +948,7 @@
              <widget class="QUPlayList" name="playlist" />
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_2" >
+             <layout class="QHBoxLayout" name="horizontalLayout_4" >
               <property name="spacing" >
                <number>0</number>
               </property>
@@ -1041,7 +1041,7 @@
             <rect>
              <x>0</x>
              <y>22</y>
-             <width>484</width>
+             <width>329</width>
              <height>131</height>
             </rect>
            </property>
@@ -1177,7 +1177,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>979</width>
+     <width>675</width>
      <height>22</height>
     </rect>
    </property>
@@ -1249,7 +1249,7 @@
     <rect>
      <x>0</x>
      <y>732</y>
-     <width>979</width>
+     <width>675</width>
      <height>21</height>
     </rect>
    </property>
@@ -1259,7 +1259,7 @@
     <rect>
      <x>0</x>
      <y>22</y>
-     <width>979</width>
+     <width>675</width>
      <height>26</height>
     </rect>
    </property>
@@ -1516,6 +1516,11 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>QUPlayList</class>
+   <extends>QListWidget</extends>
+   <header>QUPlayList.h</header>
+  </customwidget>
+  <customwidget>
    <class>QUTaskList</class>
    <extends>QListWidget</extends>
    <header>QUTaskList.h</header>
@@ -1534,11 +1539,6 @@
    <class>QUPreviewTree</class>
    <extends>QTreeWidget</extends>
    <header>QUPreviewTree.h</header>
-  </customwidget>
-  <customwidget>
-   <class>QUPlayList</class>
-   <extends>QListWidget</extends>
-   <header>QUPlayList.h</header>
   </customwidget>
  </customwidgets>
  <resources>

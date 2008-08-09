@@ -6,7 +6,8 @@
 #include <QDir>
 #include <QCloseEvent>
 
-#include "QUSongItem.h"
+#include "QUSongFile.h"
+#include "QUPlaylistFile.h"
 #include "ui_QUMainWindow.h"
 
 #include "QU.h"
@@ -76,8 +77,14 @@ private slots:
 	void enableEnglish();
 	void enableGerman();
 
+	// playlists
+	void initPlayList();
+	void refreshAllPlaylists();
+	void createPlaylistFiles();
+
 private:
-	QList<QUSongFile*> _songs;
+	QList<QUSongFile*>     _songs;
+	QList<QUPlaylistFile*> _playlists;
 
 	void readSongDir(QList<QDir> &dirList);
 };

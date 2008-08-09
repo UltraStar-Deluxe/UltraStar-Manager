@@ -23,11 +23,12 @@
  *
  * \sa allowedSongFiles()
  */
-QUSongFile::QUSongFile(const QString &file, QObject *parent): QObject(parent), _hasUnsavedChanges(false) {
-	this->setFile(file);
+QUSongFile::QUSongFile(const QString &filePath, QObject *parent): QObject(parent), _hasUnsavedChanges(false) {
+	this->setFile(filePath);
 }
 
 QUSongFile::~QUSongFile() {
+	disconnect(this, 0, 0, 0);
 }
 
 /*!
@@ -252,6 +253,7 @@ bool QUSongFile::save(bool force) {
 		return true;
 	}
 
+	// TODO: replace with "QIODevice::Truncate"
 	QFile::remove(_fi.filePath());
 
 	QFile _file;

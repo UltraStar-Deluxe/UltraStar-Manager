@@ -24,7 +24,7 @@
 #include <QFileInfoList>
 #include <QProgressDialog>
 
-#include "QUSongFile.h"
+#include "QUSongItem.h"
 #include "QUDetailItem.h"
 #include "QUMonty.h"
 #include "QUDropDownDelegate.h"
@@ -54,6 +54,8 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	initTaskList();
 
 	initMonty();
+
+	initPlayList();
 }
 
 /*!
@@ -292,10 +294,6 @@ void QUMainWindow::refreshAllSongs(bool force) {
 
 	songTree->clear();
 	updateDetails();
-
-	foreach(QUSongFile *song, _songs) {
-		disconnect(song, 0, 0, 0);
-	}
 
 	qDeleteAll(_songs);
 	_songs.clear();
@@ -773,4 +771,57 @@ void QUMainWindow::enableGerman() {
 			":/marks/accept.png", tr("Continue."));
 	if(result == QUMessageBox::first)
 		this->close();
+}
+
+void QUMainWindow::initPlayList() {
+	// TODO: set up connections, playlist widget, ...
+
+	refreshAllPlaylists();
+}
+
+void QUMainWindow::refreshAllPlaylists() {
+	// TODO: save unsaved playlists
+
+	playlistCombo->clear();
+	playlistEdit->clear();
+	playlist->clear();
+
+	qDeleteAll(_playlists);
+	_playlists.clear();
+
+	createPlaylistFiles();
+
+	// TODO: connect songs with entries in playlist files
+	//playList->fill(_songs); <-- needs to be implemented
+
+	foreach(QUPlaylistFile *playlist, _playlists) {
+		playlistCombo->addItem(playlist->name());
+	}
+}
+
+/*!
+ * Open the default playlist path and create all playlist instances.
+ */
+void QUMainWindow::createPlaylistFiles() {
+	QDir playlistDir(QUPlaylistFile::dir());
+	QFileInfoList fiList = playlistDir.entryInfoList(QUPlaylistFile::allowedTypes(), QDir::Files);
+
+	QUProgressDialog dlg(tr("Reading playlist files..."), fiList.size(), this);
+	dlg.setPixmap(":/control/playlist.png");
+	dlg.show();
+
+	addLogMsg(playlistDir.path(), QU::information);
+
+	foreach(QFileInfo fi, fiList) {
+
+		addLogMsg(fi.fileName(), QU::information);
+
+		dlg.update(fi.fileName());
+		if(dlg.cancelled()) break;
+
+		_playlists.append(new QUPlaylistFile(fi.filePath()));
+
+		// enable event log
+		connect(_playlists.last(), SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+	}
 }
