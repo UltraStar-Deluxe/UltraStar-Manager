@@ -135,10 +135,11 @@ bool QUSongFile::updateCache() {
 void QUSongFile::setInfo(const QString &tag, const QString &value) {
 	if(value == "") {
 		_info.take(tag);
-		return;
+	} else {
+		_info[tag] = value.trimmed();
 	}
 
-	_info[tag] = value.trimmed();
+	emit dataChanged();
 }
 
 /*!

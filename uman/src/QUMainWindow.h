@@ -81,6 +81,12 @@ private slots:
 	void initPlayList();
 	void refreshAllPlaylists();
 	void createPlaylistFiles();
+	void setCurrentPlaylist(int index);
+	void updatePlaylistCombo();
+	void updateCurrentPlaylistConnections();
+	void updateCurrentPlaylistName(const QString &newName);
+	void saveCurrentPlaylist();
+	void saveCurrentPlaylistAs();
 
 private:
 	QList<QUSongFile*>     _songs;

@@ -18,9 +18,13 @@ public:
 
 	QString artistLink() const { return _artistLink; }
 	QString titleLink() const { return _titleLink; }
+	void setLinks(const QString &artistLink, const QString &titleLink);
 
 	void connectSong(QUSongFile* song);
 	void connectSong(const QList<QUSongFile*> &songs);
+	void disconnectSong() { _song = 0; }
+
+	bool hasUnsavedChanges() const;
 
 private:
 	QUSongFile *_song;

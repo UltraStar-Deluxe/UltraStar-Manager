@@ -1,9 +1,9 @@
 #include "QUPlayListItem.h"
 
-QUPlayListItem::QUPlayListItem(QUSongFile *song, QListWidget *parent): QListWidgetItem(parent) {
-	_textBuffer = QObject::tr("Item information not available.");
-	_song = song;
+#include <QFont>
 
+QUPlayListItem::QUPlayListItem(QUPlaylistEntry *entry, QListWidget *parent): QListWidgetItem(parent) {
+	_entry = entry;
 	updateData();
 }
 
@@ -11,12 +11,21 @@ QUPlayListItem::QUPlayListItem(QUSongFile *song, QListWidget *parent): QListWidg
  * Call this function to update all displayed information of this item.
  */
 void QUPlayListItem::updateData() {
-	if(_song) {
-		_textBuffer = QString("%1 - %2").arg(_song->artist()).arg(_song->title());
+	// remove visible "data changed" state
+	QFont f(this->font());
+	f.setBold(false);
+
+	if(entry()->song()) {
+		this->setText(QString("%1. %2 - %3").arg(listWidget()->row(this) + 1).arg(entry()->song()->artist()).arg(entry()->song()->title()));
 		this->setTextColor(Qt::black);
+
+		if(entry()->hasUnsavedChanges())
+			f.setBold(true);
+
 	} else {
+		this->setText(QString("%1. %2 - %3 (not found)").arg(listWidget()->row(this) + 1).arg(entry()->artistLink()).arg(entry()->titleLink()));
 		this->setTextColor(Qt::gray);
 	}
 
-	this->setText(_textBuffer);
+	this->setFont(f);
 }

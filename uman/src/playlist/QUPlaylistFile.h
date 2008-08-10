@@ -11,8 +11,8 @@
 #include <QSettings>
 #include <QStringList>
 
-#define NAME_TAG  "name"
-#define SONGS_TAG "songs"
+#define NAME_TAG  "Name"
+#define SONGS_TAG "Songs"
 
 class QUPlaylistFile: public QObject {
 	Q_OBJECT
@@ -21,14 +21,25 @@ public:
 	QUPlaylistFile(const QString &filePath, QObject *parent = 0);
 	~QUPlaylistFile();
 
+	void connectSongs(const QList<QUSongFile*> &songs);
+	void disconnectSongs();
+
 	static QDir dir();
 	static void setDir(const QDir &dir);
 	static QStringList allowedTypes();
 
 	bool save();
 
+	void setName(const QString &name) { _name = name; _nameChanged = true; }
 	QString name() const { return _name; }
+
+	void setFileInfo(const QFileInfo &newFi) { _fi = newFi; }
 	QFileInfo fileInfo() const { return _fi; }
+
+	int count() const { return _playlist.count(); }
+	QUPlaylistEntry* entry(int index);
+
+	bool hasUnsavedChanges() const;
 
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
@@ -38,6 +49,8 @@ private:
 	QString                 _name;
 	QStringList             _comments; // comments at the beginning of a playlist file
 	QList<QUPlaylistEntry*> _playlist;
+
+	bool _nameChanged;
 };
 
 #endif /* QUPLAYLISTFILE_H_ */

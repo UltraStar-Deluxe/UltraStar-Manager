@@ -4,7 +4,7 @@
 #include <QFile>
 #include <QRegExp>
 
-QUPlaylistFile::QUPlaylistFile(const QString &filePath, QObject *parent): QObject(parent) {
+QUPlaylistFile::QUPlaylistFile(const QString &filePath, QObject *parent): QObject(parent), _nameChanged(false) {
 	_fi.setFile(filePath);
 
 	QFile file(filePath);
@@ -48,6 +48,25 @@ QUPlaylistFile::~QUPlaylistFile() {
 }
 
 /*!
+ * Find proper songs for this playlist. All songs has to be loaded for this operation
+ * to succeed.
+ */
+void QUPlaylistFile::connectSongs(const QList<QUSongFile*> &songs) {
+	foreach(QUPlaylistEntry *entry, _playlist) {
+		entry->connectSong(songs);
+	}
+}
+
+/*!
+ * Removes the connections to songs in all playlist entries.
+ */
+void QUPlaylistFile::disconnectSongs() {
+	foreach(QUPlaylistEntry *entry, _playlist) {
+		entry->disconnectSong();
+	}
+}
+
+/*!
  * \returns directory of the current playlistFile location
  */
 QDir QUPlaylistFile::dir() {
@@ -85,19 +104,39 @@ bool QUPlaylistFile::save() {
 
 	// write name of playlist
 	file.write(QString("#%1: %2\n").arg(NAME_TAG).arg(_name).toLocal8Bit());
+	_nameChanged = false;
 
 	// write song links
 	file.write(QString("#%1:\n").arg(SONGS_TAG).toLocal8Bit());
 	foreach(QUPlaylistEntry *entry, _playlist) {
-		if(!entry->song()) {
+		if(!entry->song())
 			emit finished(QString(tr("Warning! The playlist entry \"%1 : %2\" may NOT be found by UltraStar!")).arg(entry->artistLink()).arg(entry->titleLink()), QU::warning);
-			file.write(QString("%1 : %2\n").arg(entry->artistLink()).arg(entry->titleLink()).toLocal8Bit());
-		} else {
-			file.write(QString("%1 : %2\n").arg(entry->song()->artist()).arg(entry->song()->title()).toLocal8Bit());
-		}
+		else
+			entry->setLinks(entry->song()->artist(), entry->song()->title());
+
+		file.write(QString("%1 : %2\n").arg(entry->artistLink()).arg(entry->titleLink()).toLocal8Bit());
 	}
 
 	file.close();
 	emit finished(QString(tr("The playlist file \"%1\" was saved successfully.")).arg(_fi.fileName()), QU::saving);
 	return true;
+}
+
+QUPlaylistEntry* QUPlaylistFile::entry(int index) {
+	if(index < 0 or index >= _playlist.size())
+		return 0;
+
+	return _playlist.at(index);
+}
+
+bool QUPlaylistFile::hasUnsavedChanges() const {
+	if(_nameChanged)
+		return true;
+
+	foreach(QUPlaylistEntry *entry, _playlist) {
+		if(entry->hasUnsavedChanges())
+			return true;
+	}
+
+	return false;
 }

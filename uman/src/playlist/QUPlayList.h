@@ -3,6 +3,7 @@
 
 #include "QU.h"
 #include "QUSongFile.h"
+#include "QUPlaylistFile.h"
 #include "QUPlayListItem.h"
 
 #include <QDir>
@@ -14,6 +15,15 @@ class QUPlayList: public QListWidget {
 
 public:
 	QUPlayList(QWidget *parent = 0);
+
+	void setItems(QUPlaylistFile *playlist);
+
+public slots:
+	void updateItems();
+
+signals:
+	void finished(const QString &message, QU::EventMessageTypes type);
+
 };
 
 #endif /* QUPLAYLIST_H_ */

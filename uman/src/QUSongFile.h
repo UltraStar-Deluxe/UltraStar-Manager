@@ -173,6 +173,7 @@ public slots:
 
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
+	void dataChanged();
 
 private:
 	QFileInfo _fi;

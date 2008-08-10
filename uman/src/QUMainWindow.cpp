@@ -292,6 +292,12 @@ void QUMainWindow::refreshAllSongs(bool force) {
 
 	// -------------------------------------
 
+	foreach(QUPlaylistFile *_playlist, _playlists) {
+		_playlist->disconnectSongs();
+		playlist->updateItems();
+		updatePlaylistCombo();
+	}
+
 	songTree->clear();
 	updateDetails();
 
@@ -302,6 +308,7 @@ void QUMainWindow::refreshAllSongs(bool force) {
 	songTree->fill(_songs);
 
 	updatePreviewTree();
+	updateCurrentPlaylistConnections();
 }
 
 /*!
@@ -325,10 +332,15 @@ void QUMainWindow::createSongFiles() {
 		if(dlg.cancelled()) break;
 
 		if(!files.isEmpty()) {
+			QUSongFile *newSong = new QUSongFile(QFileInfo(dir, files.first()).filePath());
 			// TODO: What about more song files in a folder? Really choose the first one? Hmmm...
-			_songs.append(new QUSongFile(QFileInfo(dir, files.first()).filePath()));
+			_songs.append(newSong);
 			// enable event log
-			connect(_songs.last(), SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+			connect(newSong, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+			// connect changes in song files with an update in the current playlist
+			connect(newSong, SIGNAL(dataChanged()), playlist, SLOT(updateItems()));
+			connect(newSong, SIGNAL(dataChanged()), this, SLOT(updatePlaylistCombo()));
+			connect(newSong, SIGNAL(dataChanged()), this, SLOT(updateCurrentPlaylistConnections()));
 		}
 	}
 }
@@ -776,6 +788,14 @@ void QUMainWindow::enableGerman() {
 void QUMainWindow::initPlayList() {
 	// TODO: set up connections, playlist widget, ...
 
+	connect(playlistCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setCurrentPlaylist(int)));
+	connect(playlist, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+	connect(playlistEdit, SIGNAL(textEdited(const QString&)), this, SLOT(updateCurrentPlaylistName(const QString&)));
+	connect(savePlaylistBtn, SIGNAL(clicked()), this, SLOT(saveCurrentPlaylist()));
+	connect(savePlaylistAsBtn, SIGNAL(clicked()), this, SLOT(saveCurrentPlaylistAs()));
+
+	playlistCombo->view()->setTextElideMode(Qt::ElideRight);
+
 	refreshAllPlaylists();
 }
 
@@ -791,12 +811,11 @@ void QUMainWindow::refreshAllPlaylists() {
 
 	createPlaylistFiles();
 
-	// TODO: connect songs with entries in playlist files
-	//playList->fill(_songs); <-- needs to be implemented
-
 	foreach(QUPlaylistFile *playlist, _playlists) {
-		playlistCombo->addItem(playlist->name());
+		playlistCombo->addItem(QString("%1 (%2)").arg(playlist->name()).arg(playlist->fileInfo().fileName()));
 	}
+
+	playlistCombo->setCurrentIndex(0);
 }
 
 /*!
@@ -810,12 +829,7 @@ void QUMainWindow::createPlaylistFiles() {
 	dlg.setPixmap(":/control/playlist.png");
 	dlg.show();
 
-	addLogMsg(playlistDir.path(), QU::information);
-
 	foreach(QFileInfo fi, fiList) {
-
-		addLogMsg(fi.fileName(), QU::information);
-
 		dlg.update(fi.fileName());
 		if(dlg.cancelled()) break;
 
@@ -823,5 +837,82 @@ void QUMainWindow::createPlaylistFiles() {
 
 		// enable event log
 		connect(_playlists.last(), SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+	}
+}
+
+/*!
+ * Shows the playlist with the given index in the playlist widget.
+ */
+void QUMainWindow::setCurrentPlaylist(int index) {
+	if(index < 0 or index >= _playlists.size())
+		return;
+
+	// connect songs with playlist entries
+	_playlists.at(index)->connectSongs(_songs);
+
+	playlist->setItems(_playlists.at(index));
+	playlistEdit->setText(_playlists.at(index)->name());
+}
+
+/*!
+ * Looks for changes in the playlists and updates the combo box.
+ */
+void QUMainWindow::updatePlaylistCombo() {
+	for(int i = 0; i < _playlists.size(); i++) {
+		if(_playlists.at(i)->hasUnsavedChanges())
+			playlistCombo->setItemText(i, QString("%1* (%2)").arg(_playlists.at(i)->name()).arg(_playlists.at(i)->fileInfo().fileName()));
+		else
+			playlistCombo->setItemText(i, QString("%1 (%2)").arg(_playlists.at(i)->name()).arg(_playlists.at(i)->fileInfo().fileName()));
+	}
+}
+
+void QUMainWindow::updateCurrentPlaylistConnections() {
+	if(playlistCombo->currentIndex() < 0 or playlistCombo->currentIndex() >= _playlists.size())
+		return;
+
+	// connect songs with playlist entries
+	_playlists.at(playlistCombo->currentIndex())->connectSongs(_songs);
+
+	playlist->updateItems();
+}
+
+void QUMainWindow::updateCurrentPlaylistName(const QString &newName) {
+	if(playlistCombo->currentIndex() < 0 or playlistCombo->currentIndex() >= _playlists.size())
+		return;
+
+	// connect songs with playlist entries
+	_playlists.at(playlistCombo->currentIndex())->setName(newName);
+
+	updatePlaylistCombo();
+}
+
+void QUMainWindow::saveCurrentPlaylist() {
+	if(playlistCombo->currentIndex() < 0 or playlistCombo->currentIndex() >= _playlists.size())
+		return;
+
+	_playlists.at(playlistCombo->currentIndex())->save();
+
+	updatePlaylistCombo();
+	playlist->updateItems();
+}
+
+void QUMainWindow::saveCurrentPlaylistAs() {
+	if(playlistCombo->currentIndex() < 0 or playlistCombo->currentIndex() >= _playlists.size())
+		return;
+
+	QString filePath = QFileDialog::getSaveFileName(this, tr("Save playlist as..."), QUPlaylistFile::dir().path(), QString("UltraStar Playlists (%1)").arg(QUPlaylistFile::allowedTypes().join(" ")));
+
+	if(!filePath.isEmpty()) {
+		QFileInfo oldFi = _playlists.at(playlistCombo->currentIndex())->fileInfo();
+
+		// make current playlist to new playlist and save it
+		_playlists.at(playlistCombo->currentIndex())->setFileInfo(QFileInfo(filePath));
+		this->saveCurrentPlaylist();
+
+		// restore old playlist
+		_playlists.append(new QUPlaylistFile(oldFi.filePath()));
+		connect(_playlists.last(), SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+
+		playlistCombo->addItem(QString("%1 (%2)").arg(_playlists.last()->name()).arg(_playlists.last()->fileInfo().fileName()));
 	}
 }
