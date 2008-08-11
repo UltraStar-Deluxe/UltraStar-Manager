@@ -21,7 +21,9 @@ public:
 public slots:
 	void refreshAllPlaylists(QList<QUSongFile*> *songRef);
 	void disconnectPlaylists();
+
 	void update();
+	void updateAll();
 
 private slots:
 	void createPlaylistFiles();
@@ -45,6 +47,7 @@ private:
 	QList<QUSongFile*>     *_songsRef;
 
 	int currentPlaylistIndex(int index = -1) const;
+	void setAreaEnabled(bool enabled = true);
 };
 
 #endif /* QUPLAYLISTAREA_H_ */

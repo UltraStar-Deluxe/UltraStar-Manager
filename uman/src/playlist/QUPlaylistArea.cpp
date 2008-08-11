@@ -16,6 +16,7 @@ QUPlaylistArea::QUPlaylistArea(QWidget *parent): QWidget(parent) {
 	connect(playlistEdit, SIGNAL(textEdited(const QString&)), this, SLOT(updateCurrentPlaylistName(const QString&)));
 	connect(savePlaylistBtn, SIGNAL(clicked()), this, SLOT(saveCurrentPlaylist()));
 	connect(savePlaylistAsBtn, SIGNAL(clicked()), this, SLOT(saveCurrentPlaylistAs()));
+	connect(createPlaylistBtn, SIGNAL(clicked()), this, SLOT(addPlaylist()));
 
 	playlistCombo->view()->setTextElideMode(Qt::ElideRight);
 }
@@ -33,8 +34,11 @@ void QUPlaylistArea::disconnectPlaylists() {
 }
 
 void QUPlaylistArea::refreshAllPlaylists(QList<QUSongFile*> *songsRef) {
+	// VERY IMPORTANT! Take a reference to the song list of the main window.
+	// Only a reading access is intended.
 	_songsRef = songsRef;
 
+	// Clear all present playlist data.
 	playlistCombo->clear();
 	playlistEdit->clear();
 	playlist->clear();
@@ -42,6 +46,10 @@ void QUPlaylistArea::refreshAllPlaylists(QList<QUSongFile*> *songsRef) {
 	qDeleteAll(_playlists);
 	_playlists.clear();
 
+	// Disable not needed controls.
+	this->setAreaEnabled(false);
+
+	// Create new content.
 	createPlaylistFiles();
 
 	playlistCombo->setCurrentIndex(0);
@@ -53,6 +61,23 @@ void QUPlaylistArea::refreshAllPlaylists(QList<QUSongFile*> *songsRef) {
 void QUPlaylistArea::update() {
 	updatePlaylistCombo();
 	updateCurrentPlaylistConnections();
+}
+
+/*!
+ * Like update() but sets all song connections.
+ */
+void QUPlaylistArea::updateAll() {
+	QUProgressDialog dlg(tr("Check playlists for new songs..."), _playlists.size(), this, false);
+	dlg.setPixmap(":/control/playlist.png");
+	dlg.show();
+
+	foreach(QUPlaylistFile *playlist, _playlists) {
+		dlg.update(playlist->name());
+
+		playlist->connectSongs(*_songsRef);
+	}
+
+	update();
 }
 
 /*!
@@ -158,8 +183,9 @@ void QUPlaylistArea::saveCurrentPlaylistAs() {
 		_playlists.at(currentPlaylistIndex())->setFileInfo(QFileInfo(filePath));
 		this->saveCurrentPlaylist();
 
-		// restore old playlist
-		this->addPlaylist(oldFi.filePath());
+		// restore old playlist, not needed for new, not-existent playlists
+		if(oldFi.exists())
+			this->addPlaylist(oldFi.filePath());
 	}
 }
 
@@ -167,7 +193,7 @@ void QUPlaylistArea::saveCurrentPlaylistAs() {
  * Creates a new, empty playlist.
  */
 void QUPlaylistArea::addPlaylist() {
-	QString fileName = tr("unnamed%1.upl");
+	QString fileName = tr("new_playlist%1.upl");
 	int i = 0;
 	QFileInfo newFi(QUPlaylistFile::dir(), fileName.arg(""));
 
@@ -175,11 +201,12 @@ void QUPlaylistArea::addPlaylist() {
 		newFi.setFile(newFi.dir(), fileName.arg(i++));
 
 	QUPlaylistFile *newPlaylist = new QUPlaylistFile(newFi.filePath());
-	newPlaylist->setName(tr("unnamed"));
+	newPlaylist->setName(tr("New Playlist"));
 
 	connect(newPlaylist, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
 
 	_playlists.append(newPlaylist);
+	this->setAreaEnabled(true);
 
 	playlistCombo->addItem(
 			QString("%1 (%2)")
@@ -189,6 +216,10 @@ void QUPlaylistArea::addPlaylist() {
 
 	playlistCombo->setCurrentIndex(playlistCombo->count() - 1); // select this new, empty playlist
 	this->updatePlaylistCombo();
+
+	// Enable the user to start editing the name of the new playlist.
+	playlistEdit->setFocus();
+	playlistEdit->selectAll();
 }
 
 /*!
@@ -200,6 +231,7 @@ void QUPlaylistArea::addPlaylist(const QString &filePath) {
 	connect(newPlaylist, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
 
 	_playlists.append(newPlaylist);
+	this->setAreaEnabled(true);
 
 	playlistCombo->addItem(
 			QString("%1 (%2)")
@@ -229,4 +261,17 @@ int QUPlaylistArea::currentPlaylistIndex(int index) const {
 		return -1;
 
 	return index;
+}
+
+/*!
+ * Used to disable all controls that will not be needed when no playlists
+ * are present.
+ */
+void QUPlaylistArea::setAreaEnabled(bool enabled) {
+	playlist->setEnabled(enabled);
+	savePlaylistBtn->setEnabled(enabled);
+	savePlaylistAsBtn->setEnabled(enabled);
+	removePlaylistBtn->setEnabled(enabled);
+	playlistCombo->setHidden(!enabled);
+	comboLbl->setText(enabled ? tr("Active List:") : tr("No playlists found. Try another folder:"));
 }

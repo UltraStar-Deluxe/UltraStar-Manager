@@ -306,7 +306,7 @@ void QUMainWindow::refreshAllSongs(bool force) {
 	songTree->fill(_songs);
 
 	updatePreviewTree();
-	playlistArea->update();
+	playlistArea->updateAll();
 }
 
 /*!
