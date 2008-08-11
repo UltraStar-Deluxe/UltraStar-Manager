@@ -306,7 +306,7 @@ void QUMainWindow::refreshAllSongs(bool force) {
 	songTree->fill(_songs);
 
 	updatePreviewTree();
-	playlistArea->updateCurrentPlaylistConnections();
+	playlistArea->update();
 }
 
 /*!
@@ -335,10 +335,8 @@ void QUMainWindow::createSongFiles() {
 			_songs.append(newSong);
 			// enable event log
 			connect(newSong, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
-			// connect changes in song files with an update in the current playlist
-			connect(newSong, SIGNAL(dataChanged()), playlistArea, SLOT(updatePlaylistItems()));
-			connect(newSong, SIGNAL(dataChanged()), playlistArea, SLOT(updatePlaylistCombo()));
-			connect(newSong, SIGNAL(dataChanged()), playlistArea, SLOT(updateCurrentPlaylistConnections()));
+			// connect changes in song files with an update in the playlist area
+			connect(newSong, SIGNAL(dataChanged()), playlistArea, SLOT(update()));
 		}
 	}
 }

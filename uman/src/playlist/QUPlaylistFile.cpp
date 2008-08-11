@@ -130,7 +130,7 @@ QUPlaylistEntry* QUPlaylistFile::entry(int index) {
 }
 
 bool QUPlaylistFile::hasUnsavedChanges() const {
-	if(_nameChanged)
+	if(_nameChanged or !_fi.exists())
 		return true;
 
 	foreach(QUPlaylistEntry *entry, _playlist) {

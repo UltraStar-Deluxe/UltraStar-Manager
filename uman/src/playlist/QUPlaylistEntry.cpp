@@ -27,7 +27,7 @@ void QUPlaylistEntry::connectSong(QUSongFile* song) {
  */
 void QUPlaylistEntry::connectSong(const QList<QUSongFile*> &songs) {
 	if(_song)
-		return; // disconnect a song first!
+		return; // disconnect a song first!, for performance issues (consider a big song DB...)
 
 	foreach(QUSongFile *song, songs) {
 		this->connectSong(song);

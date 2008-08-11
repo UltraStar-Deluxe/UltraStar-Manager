@@ -20,18 +20,22 @@ public:
 
 public slots:
 	void refreshAllPlaylists(QList<QUSongFile*> *songRef);
+	void disconnectPlaylists();
+	void update();
+
+private slots:
 	void createPlaylistFiles();
 	void setCurrentPlaylist(int index);
-
-	void disconnectPlaylists();
 
 	void updatePlaylistCombo();
 	void updateCurrentPlaylistConnections();
 	void updateCurrentPlaylistName(const QString &newName);
-	void updatePlaylistItems();
 
 	void saveCurrentPlaylist();
 	void saveCurrentPlaylistAs();
+
+	void addPlaylist();
+	void addPlaylist(const QString &filePath);
 
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
@@ -40,6 +44,7 @@ private:
 	QList<QUPlaylistFile*>  _playlists;
 	QList<QUSongFile*>     *_songsRef;
 
+	int currentPlaylistIndex(int index = -1) const;
 };
 
 #endif /* QUPLAYLISTAREA_H_ */

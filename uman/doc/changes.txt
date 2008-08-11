@@ -81,6 +81,7 @@ TODO
 * enable the user to choose which type of song text file of a folder
   should be selected
   > would be useful for selecting all karaoke files in each folder
+* new menu entries for "add rename task" and "edit rename tasks"
 
 NICE TO HAVE
 * allow []-tags in song title
