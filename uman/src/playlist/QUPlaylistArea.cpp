@@ -1,12 +1,14 @@
 #include "QUPlaylistArea.h"
 
 #include "QUProgressDialog.h"
+#include "QUMessageBox.h"
 
 #include <QFileDialog>
 #include <QDir>
 #include <QFileInfo>
 #include <QFileInfoList>
 #include <QList>
+#include <QFile>
 
 QUPlaylistArea::QUPlaylistArea(QWidget *parent): QWidget(parent) {
 	setupUi(this);
@@ -17,6 +19,8 @@ QUPlaylistArea::QUPlaylistArea(QWidget *parent): QWidget(parent) {
 	connect(savePlaylistBtn, SIGNAL(clicked()), this, SLOT(saveCurrentPlaylist()));
 	connect(savePlaylistAsBtn, SIGNAL(clicked()), this, SLOT(saveCurrentPlaylistAs()));
 	connect(createPlaylistBtn, SIGNAL(clicked()), this, SLOT(addPlaylist()));
+	connect(setPlaylistFolderBtn, SIGNAL(clicked()), this, SLOT(changePlaylistDir()));
+	connect(removePlaylistBtn, SIGNAL(clicked()), this, SLOT(removeCurrentPlaylist()));
 
 	playlistCombo->view()->setTextElideMode(Qt::ElideRight);
 }
@@ -53,6 +57,9 @@ void QUPlaylistArea::refreshAllPlaylists(QList<QUSongFile*> *songsRef) {
 	createPlaylistFiles();
 
 	playlistCombo->setCurrentIndex(0);
+
+	// update window title of parent dock widget with current playlist path
+	playlistPathLbl->setText(QString(tr("<font color=#808080>%1</font>")).arg(QUPlaylistFile::dir().path()));
 }
 
 /*!
@@ -71,10 +78,9 @@ void QUPlaylistArea::updateAll() {
 	dlg.setPixmap(":/control/playlist.png");
 	dlg.show();
 
-	foreach(QUPlaylistFile *playlist, _playlists) {
-		dlg.update(playlist->name());
-
-		playlist->connectSongs(*_songsRef);
+	foreach(QUPlaylistFile *_playlist, _playlists) {
+		dlg.update(_playlist->name());
+		_playlist->connectSongs(*_songsRef);
 	}
 
 	update();
@@ -134,7 +140,8 @@ void QUPlaylistArea::updatePlaylistCombo() {
 			playlistCombo->setItemText(i, heading.arg(""));
 	}
 
-	playlistCombo->model()->sort(0);
+	// TOFIX: Sorting switches current combobox index - why?
+	//playlistCombo->model()->sort(0);
 }
 
 /*!
@@ -269,9 +276,67 @@ int QUPlaylistArea::currentPlaylistIndex(int index) const {
  */
 void QUPlaylistArea::setAreaEnabled(bool enabled) {
 	playlist->setEnabled(enabled);
+	playlistEdit->setEnabled(enabled);
 	savePlaylistBtn->setEnabled(enabled);
 	savePlaylistAsBtn->setEnabled(enabled);
 	removePlaylistBtn->setEnabled(enabled);
 	playlistCombo->setHidden(!enabled);
 	comboLbl->setText(enabled ? tr("Active List:") : tr("No playlists found. Try another folder:"));
+}
+
+/*!
+ * Select a new folder and look there for new playlists. Old ones are discarded.
+ */
+void QUPlaylistArea::changePlaylistDir() {
+	QString newPath = QFileDialog::getExistingDirectory(this, tr("Select a location for playlists"), QUPlaylistFile::dir().path());
+
+	if(!newPath.isEmpty()) {
+		QUPlaylistFile::setDir(QDir(newPath));
+
+		refreshAllPlaylists(_songsRef);
+
+		emit finished(QString("Folder for playlists changed to: \"%1\"").arg(newPath), QU::information);
+	}
+}
+
+void QUPlaylistArea::removeCurrentPlaylist() {
+	if(currentPlaylistIndex() < 0)
+		return;
+
+	QUMessageBox::Results result = QUMessageBox::ask(this,
+			tr("Delete Playlist"),
+			QString(tr("<b>\"%1 (%2)\"</b> will be deleted permanently. You cannot undo a delete operation."))
+				.arg(_playlists.at(currentPlaylistIndex())->name())
+				.arg(_playlists.at(currentPlaylistIndex())->fileInfo().fileName()),
+			":/control/bin.png", tr("Delete this playlist."),
+			":/marks/cancel.png", tr("Cancel delete operation."));
+	if(result == QUMessageBox::second)
+		return;
+
+	// --------------------------------------------
+
+	if( QFile::remove(_playlists.at(currentPlaylistIndex())->fileInfo().filePath()) )
+		emit finished(QString(tr("The playlist file \"%1\" was removed successfully.")).arg(_playlists.at(currentPlaylistIndex())->fileInfo().filePath()), QU::information);
+	else
+		emit finished(QString(tr("The playlist file \"%1\" could NOT be removed. Does it exist?")).arg(_playlists.at(currentPlaylistIndex())->fileInfo().filePath()), QU::warning);
+
+	int tmpIndex = currentPlaylistIndex();
+	QString tmpName = _playlists.at(currentPlaylistIndex())->name();
+
+	for(int i = 0; i < playlistCombo->count(); i++) {
+		int ref = playlistCombo->itemData(i).toInt();
+		if( ref > tmpIndex ) // There should be NO double indices! >=?
+			playlistCombo->setItemData(i, ref - 1);
+	}
+
+	// remove data structures
+	playlistCombo->removeItem(playlistCombo->currentIndex());
+
+	delete _playlists.at(tmpIndex);
+	_playlists.removeAt(tmpIndex);
+
+	if(playlistCombo->count() == 0)
+		this->setAreaEnabled(false);
+
+	emit finished(QString(tr("The playlist \"%1\" was removed successfully.")).arg(tmpName), QU::information);
 }

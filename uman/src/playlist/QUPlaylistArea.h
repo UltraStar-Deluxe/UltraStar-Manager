@@ -39,6 +39,10 @@ private slots:
 	void addPlaylist();
 	void addPlaylist(const QString &filePath);
 
+	void changePlaylistDir();
+
+	void removeCurrentPlaylist();
+
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
 
