@@ -166,3 +166,18 @@ bool QUPlaylistFile::removeEntry(QUPlaylistEntry *entry) {
 	_playlistChanged = true;
 	return true;
 }
+
+void QUPlaylistFile::changeOrder(const QList<QUPlaylistEntry*> &newOrder) {
+	if(newOrder.size() != this->count())
+		return;
+
+	foreach(QUPlaylistEntry *entry, newOrder) {
+		if(!_playlist.contains(entry)) {
+			emit finished(QString("The order of the playlist \"%1\" could NOT be changed. The new order misses an entry.").arg(name()), QU::warning);
+			return;
+		}
+	}
+
+	_playlist = newOrder;
+	_playlistChanged = true;
+}

@@ -9,12 +9,14 @@
 #include <QFileInfoList>
 #include <QList>
 #include <QFile>
+#include <QMessageBox>
 
 QUPlaylistArea::QUPlaylistArea(QWidget *parent): QWidget(parent) {
 	setupUi(this);
 
 	connect(playlist, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
 	connect(playlist, SIGNAL(removePlaylistEntryRequested(QUPlaylistEntry*)), this, SLOT(removeCurrentPlaylistEntry(QUPlaylistEntry*)));
+	connect(playlist, SIGNAL(orderChanged(QList<QUPlaylistEntry*>)), this, SLOT(changeCurrentPlaylistOrder(QList<QUPlaylistEntry*>)));
 
 	connect(playlistCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setCurrentPlaylist(int)));
 	connect(playlistEdit, SIGNAL(textEdited(const QString&)), this, SLOT(updateCurrentPlaylistName(const QString&)));
@@ -371,5 +373,18 @@ void QUPlaylistArea::removeCurrentPlaylistEntry(QUPlaylistEntry *entry) {
 
 	_playlists.at(currentPlaylistIndex())->removeEntry(entry);
 
+	updatePlaylistCombo();
+}
+
+/*!
+ * Due to internal drag&drop move.
+ */
+void QUPlaylistArea::changeCurrentPlaylistOrder(QList<QUPlaylistEntry*> newOrder) {
+	if(currentPlaylistIndex() < 0)
+		return;
+
+	_playlists.at(currentPlaylistIndex())->changeOrder(newOrder);
+
+	playlist->updateItems();
 	updatePlaylistCombo();
 }

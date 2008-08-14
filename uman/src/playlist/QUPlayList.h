@@ -10,6 +10,7 @@
 #include <QListWidget>
 #include <QListWidgetItem>
 #include <QKeyEvent>
+#include <QDropEvent>
 
 class QUPlayList: public QListWidget {
 	Q_OBJECT
@@ -26,10 +27,12 @@ public slots:
 
 protected:
 	virtual void keyPressEvent(QKeyEvent *event);
+	virtual void dropEvent(QDropEvent *event);
 
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
 	void removePlaylistEntryRequested(QUPlaylistEntry *entry);
+	void orderChanged(QList<QUPlaylistEntry*> newOrder);
 
 private slots:
 	void removeSelectedItems();

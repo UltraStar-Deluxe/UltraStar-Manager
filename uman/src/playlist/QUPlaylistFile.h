@@ -44,6 +44,8 @@ public:
 	bool addEntry(QUSongFile *song);
 	bool removeEntry(QUPlaylistEntry *entry);
 
+	void changeOrder(const QList<QUPlaylistEntry*> &newOrder);
+
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
 

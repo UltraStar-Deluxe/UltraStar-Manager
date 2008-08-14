@@ -46,6 +46,8 @@ private slots:
 	void removeCurrentPlaylist();
 	void removeCurrentPlaylistEntry(QUPlaylistEntry *entry);
 
+	void changeCurrentPlaylistOrder(QList<QUPlaylistEntry*> newOrder);
+
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
 

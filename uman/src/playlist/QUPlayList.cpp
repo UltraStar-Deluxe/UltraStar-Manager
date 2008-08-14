@@ -1,6 +1,8 @@
 #include "QUPlayList.h"
 
 #include <QMenu>
+#include <QMessageBox>
+#include <QList>
 
 QUPlayList::QUPlayList(QWidget *parent): QListWidget(parent) {
 	this->setAlternatingRowColors(true);
@@ -37,6 +39,26 @@ void QUPlayList::keyPressEvent(QKeyEvent *event) {
 	} else {
 		QListWidget::keyPressEvent(event);
 	}
+}
+
+/*!
+ * Internal Move is enabled. We need to apply all changes of the order of the entries
+ * to the underlying playlist.
+ */
+void QUPlayList::dropEvent (QDropEvent *event) {
+	QListWidget::dropEvent(event);
+
+	// create a list with the new QUPlaylistEntry order
+	QList<QUPlaylistEntry*> newOrder;
+	for(int row = 0; row < this->count(); row++) {
+		QUPlayListItem *pItem = dynamic_cast<QUPlayListItem*>(item(row));
+
+		if(!pItem)
+			continue;
+
+		newOrder.append(pItem->entry());
+	}
+	emit orderChanged(newOrder);
 }
 
 /*!
