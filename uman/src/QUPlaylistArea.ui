@@ -205,7 +205,14 @@
     </layout>
    </item>
    <item>
-    <widget class="QUPlayList" name="playlist" />
+    <widget class="QUPlayList" name="playlist" >
+     <property name="selectionMode" >
+      <enum>QAbstractItemView::ExtendedSelection</enum>
+     </property>
+     <property name="selectionRectVisible" >
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4" >

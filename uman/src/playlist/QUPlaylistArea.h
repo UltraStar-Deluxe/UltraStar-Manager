@@ -44,6 +44,7 @@ private slots:
 	void changePlaylistDir();
 
 	void removeCurrentPlaylist();
+	void removeCurrentPlaylistEntry(QUPlaylistEntry *entry);
 
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);

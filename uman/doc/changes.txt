@@ -27,6 +27,10 @@ NEW FEATURES
 * new file type now recognized as song text "*.kar"
 * new column in song tree which indicates whether there are multiple
   song text files in one folder
+* manage song playlists
+  > load, save, edit
+  > connect playlist entries to songs in the song tree, quickly find all
+    playlist changes
 
 BUG FIXES
 * minor change in object renaming

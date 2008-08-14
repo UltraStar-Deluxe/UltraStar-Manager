@@ -9,6 +9,7 @@
 #include <QDir>
 #include <QListWidget>
 #include <QListWidgetItem>
+#include <QKeyEvent>
 
 class QUPlayList: public QListWidget {
 	Q_OBJECT
@@ -20,10 +21,18 @@ public:
 	void appendItem(QUPlaylistEntry *entry);
 
 public slots:
+	void showContextMenu(const QPoint &point);
 	void updateItems();
+
+protected:
+	virtual void keyPressEvent(QKeyEvent *event);
 
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
+	void removePlaylistEntryRequested(QUPlaylistEntry *entry);
+
+private slots:
+	void removeSelectedItems();
 
 };
 

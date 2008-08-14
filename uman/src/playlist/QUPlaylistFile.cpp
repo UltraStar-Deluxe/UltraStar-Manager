@@ -158,11 +158,11 @@ bool QUPlaylistFile::addEntry(QUSongFile *song) {
 	return true;
 }
 
-bool QUPlaylistFile::removeEntry(int index) {
-	if(index < 0 or index >= _playlist.size())
+bool QUPlaylistFile::removeEntry(QUPlaylistEntry *entry) {
+	if(!entry)
 		return false;
 
-	_playlist.removeAt(index);
+	_playlist.removeAll(entry); // return value should be 1 (or 0)
 	_playlistChanged = true;
 	return true;
 }

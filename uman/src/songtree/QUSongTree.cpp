@@ -10,6 +10,7 @@
 #include <QMenu>
 #include <QList>
 #include <QRegExp>
+#include <QByteArray>
 
 #include "QUProgressDialog.h"
 

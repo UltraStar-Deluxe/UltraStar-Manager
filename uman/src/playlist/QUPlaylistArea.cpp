@@ -13,14 +13,17 @@
 QUPlaylistArea::QUPlaylistArea(QWidget *parent): QWidget(parent) {
 	setupUi(this);
 
-	connect(playlistCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setCurrentPlaylist(int)));
 	connect(playlist, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
+	connect(playlist, SIGNAL(removePlaylistEntryRequested(QUPlaylistEntry*)), this, SLOT(removeCurrentPlaylistEntry(QUPlaylistEntry*)));
+
+	connect(playlistCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setCurrentPlaylist(int)));
 	connect(playlistEdit, SIGNAL(textEdited(const QString&)), this, SLOT(updateCurrentPlaylistName(const QString&)));
 	connect(savePlaylistBtn, SIGNAL(clicked()), this, SLOT(saveCurrentPlaylist()));
 	connect(savePlaylistAsBtn, SIGNAL(clicked()), this, SLOT(saveCurrentPlaylistAs()));
 	connect(createPlaylistBtn, SIGNAL(clicked()), this, SLOT(addPlaylist()));
 	connect(setPlaylistFolderBtn, SIGNAL(clicked()), this, SLOT(changePlaylistDir()));
 	connect(removePlaylistBtn, SIGNAL(clicked()), this, SLOT(removeCurrentPlaylist()));
+
 
 	playlistCombo->view()->setTextElideMode(Qt::ElideRight);
 }
@@ -360,4 +363,13 @@ void QUPlaylistArea::removeCurrentPlaylist() {
 		this->setAreaEnabled(false);
 
 	emit finished(QString(tr("The playlist \"%1\" was removed successfully.")).arg(tmpName), QU::information);
+}
+
+void QUPlaylistArea::removeCurrentPlaylistEntry(QUPlaylistEntry *entry) {
+	if(currentPlaylistIndex() < 0)
+		return;
+
+	_playlists.at(currentPlaylistIndex())->removeEntry(entry);
+
+	updatePlaylistCombo();
 }

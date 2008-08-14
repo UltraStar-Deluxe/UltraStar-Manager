@@ -42,7 +42,7 @@ public:
 	bool hasUnsavedChanges() const;
 
 	bool addEntry(QUSongFile *song);
-	bool removeEntry(int index);
+	bool removeEntry(QUPlaylistEntry *entry);
 
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
