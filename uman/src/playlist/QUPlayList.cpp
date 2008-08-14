@@ -15,6 +15,10 @@ void QUPlayList::setItems(QUPlaylistFile *playlist) {
 	}
 }
 
+void QUPlayList::appendItem(QUPlaylistEntry *entry) {
+	this->addItem(new QUPlayListItem(entry, this));
+}
+
 void QUPlayList::updateItems() {
 	for(int i = 0; i < this->count(); i++) {
 		dynamic_cast<QUPlayListItem*>(this->item(i))->updateData();

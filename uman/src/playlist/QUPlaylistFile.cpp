@@ -4,7 +4,7 @@
 #include <QFile>
 #include <QRegExp>
 
-QUPlaylistFile::QUPlaylistFile(const QString &filePath, QObject *parent): QObject(parent), _nameChanged(false) {
+QUPlaylistFile::QUPlaylistFile(const QString &filePath, QObject *parent): QObject(parent), _nameChanged(false), _playlistChanged(false) {
 	_fi.setFile(filePath);
 
 	QFile file(filePath);
@@ -72,11 +72,15 @@ void QUPlaylistFile::disconnectSongs() {
 QDir QUPlaylistFile::dir() {
 	QSettings settings;
 
-	QDir defaultDir = QUMainWindow::BaseDir;
-	defaultDir.cdUp();
-	defaultDir.cd("playlists"); // default location of playlistFiles, relative to song dir
+	if(!settings.contains("playlistFilePath")) {
+		QDir defaultDir = QUMainWindow::BaseDir;
+		defaultDir.cdUp();
+		defaultDir.cd("playlists"); // default location of playlistFiles, relative to song dir
 
-	return QDir(settings.value("playlistFilePath", defaultDir.path()).toString());
+		settings.setValue("playlistFilePath", defaultDir.path());
+	}
+
+	return QDir(settings.value("playlistFilePath").toString());
 }
 
 void QUPlaylistFile::setDir(const QDir &dir) {
@@ -93,7 +97,7 @@ bool QUPlaylistFile::save() {
 	QFile file(_fi.filePath());
 
 	if(!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)) {
-		emit finished(QString(tr("Save error! The playlist file \"%1\" was NOT saved.")).arg(_fi.fileName()), QU::warning);
+		emit finished(QString(tr("Save error! The playlist file \"%1\" was NOT saved.")).arg(_fi.filePath()), QU::warning);
 		return false;
 	}
 
@@ -105,12 +109,13 @@ bool QUPlaylistFile::save() {
 	// write name of playlist
 	file.write(QString("#%1: %2\n").arg(NAME_TAG).arg(_name).toLocal8Bit());
 	_nameChanged = false;
+	_playlistChanged = false;
 
 	// write song links
 	file.write(QString("#%1:\n").arg(SONGS_TAG).toLocal8Bit());
 	foreach(QUPlaylistEntry *entry, _playlist) {
 		if(!entry->song())
-			emit finished(QString(tr("Warning! The playlist entry \"%1 : %2\" may NOT be found by UltraStar!")).arg(entry->artistLink()).arg(entry->titleLink()), QU::warning);
+			emit finished(QString(tr("Warning! The playlist entry \"%1 - %2\" may NOT be found by UltraStar!")).arg(entry->artistLink()).arg(entry->titleLink()), QU::warning);
 		else
 			entry->setLinks(entry->song()->artist(), entry->song()->title());
 
@@ -118,7 +123,7 @@ bool QUPlaylistFile::save() {
 	}
 
 	file.close();
-	emit finished(QString(tr("The playlist file \"%1\" was saved successfully.")).arg(_fi.fileName()), QU::saving);
+	emit finished(QString(tr("The playlist file \"%1\" was saved successfully.")).arg(_fi.filePath()), QU::saving);
 	return true;
 }
 
@@ -130,7 +135,7 @@ QUPlaylistEntry* QUPlaylistFile::entry(int index) {
 }
 
 bool QUPlaylistFile::hasUnsavedChanges() const {
-	if(_nameChanged or !_fi.exists())
+	if(_nameChanged or _playlistChanged or !_fi.exists())
 		return true;
 
 	foreach(QUPlaylistEntry *entry, _playlist) {
@@ -139,4 +144,25 @@ bool QUPlaylistFile::hasUnsavedChanges() const {
 	}
 
 	return false;
+}
+
+bool QUPlaylistFile::addEntry(QUSongFile *song) {
+	if(!song)
+		return false; // only add entries with valid songs
+
+	QUPlaylistEntry *newEntry = new QUPlaylistEntry(song->artist(), song->title(), this);
+	newEntry->connectSong(song);
+
+	_playlist.append(newEntry);
+	_playlistChanged = true;
+	return true;
+}
+
+bool QUPlaylistFile::removeEntry(int index) {
+	if(index < 0 or index >= _playlist.size())
+		return false;
+
+	_playlist.removeAt(index);
+	_playlistChanged = true;
+	return true;
 }

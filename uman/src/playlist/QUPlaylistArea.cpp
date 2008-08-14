@@ -87,6 +87,25 @@ void QUPlaylistArea::updateAll() {
 }
 
 /*!
+ * Create a new entry in the current playlist for the given song.
+ */
+void QUPlaylistArea::addSongToCurrentPlaylist(QUSongFile *song) {
+	if(!song)
+		return;
+
+	if(currentPlaylistIndex() < 0) {
+		emit finished(QString("Could NOT add song \"%1 - %2\" to playlist. Try to create a new one.").arg(song->artist()).arg(song->title()), QU::warning);
+		return;
+	}
+
+	if(!_playlists.at(currentPlaylistIndex())->addEntry(song))
+		return;
+
+	updatePlaylistCombo(); // indicate changes
+	playlist->appendItem(_playlists.at(currentPlaylistIndex())->entry(_playlists.at(currentPlaylistIndex())->count() - 1));
+}
+
+/*!
  * Open the default playlist path and create all playlist instances.
  */
 void QUPlaylistArea::createPlaylistFiles() {
@@ -131,8 +150,8 @@ void QUPlaylistArea::updatePlaylistCombo() {
 
 		QString heading = "%1%3 (%2)";
 		heading = heading
-			.arg(_playlists.at(currentPlaylistIndex(i))->name())
-			.arg(_playlists.at(currentPlaylistIndex(i))->fileInfo().fileName());
+			.arg( _playlists.at(currentPlaylistIndex(i))->name() )
+			.arg( QUPlaylistFile::dir().relativeFilePath(_playlists.at(currentPlaylistIndex(i))->fileInfo().filePath()) );
 
 		if(_playlists.at(currentPlaylistIndex(i))->hasUnsavedChanges())
 			playlistCombo->setItemText(i, heading.arg("*"));
@@ -193,6 +212,9 @@ void QUPlaylistArea::saveCurrentPlaylistAs() {
 		// restore old playlist, not needed for new, not-existent playlists
 		if(oldFi.exists())
 			this->addPlaylist(oldFi.filePath());
+
+		// file should exists now
+		savePlaylistBtn->setEnabled(true);
 	}
 }
 
@@ -200,14 +222,7 @@ void QUPlaylistArea::saveCurrentPlaylistAs() {
  * Creates a new, empty playlist.
  */
 void QUPlaylistArea::addPlaylist() {
-	QString fileName = tr("new_playlist%1.upl");
-	int i = 0;
-	QFileInfo newFi(QUPlaylistFile::dir(), fileName.arg(""));
-
-	while(newFi.exists())
-		newFi.setFile(newFi.dir(), fileName.arg(i++));
-
-	QUPlaylistFile *newPlaylist = new QUPlaylistFile(newFi.filePath());
+	QUPlaylistFile *newPlaylist = new QUPlaylistFile(QFileInfo(QUPlaylistFile::dir(), "???").filePath());
 	newPlaylist->setName(tr("New Playlist"));
 
 	connect(newPlaylist, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
@@ -282,6 +297,11 @@ void QUPlaylistArea::setAreaEnabled(bool enabled) {
 	removePlaylistBtn->setEnabled(enabled);
 	playlistCombo->setHidden(!enabled);
 	comboLbl->setText(enabled ? tr("Active List:") : tr("No playlists found. Try another folder:"));
+
+	if(!enabled) {
+		playlist->clear();
+		playlistEdit->clear();
+	}
 }
 
 /*!
@@ -323,6 +343,7 @@ void QUPlaylistArea::removeCurrentPlaylist() {
 	int tmpIndex = currentPlaylistIndex();
 	QString tmpName = _playlists.at(currentPlaylistIndex())->name();
 
+	// update the index references in the userdata of each playlistCombo item
 	for(int i = 0; i < playlistCombo->count(); i++) {
 		int ref = playlistCombo->itemData(i).toInt();
 		if( ref > tmpIndex ) // There should be NO double indices! >=?

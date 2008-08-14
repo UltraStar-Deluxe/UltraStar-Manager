@@ -935,7 +935,7 @@
      </layout>
     </item>
    </layout>
-   <widget class="QWidget" name="" >
+   <widget class="QWidget" name="layoutWidget" >
     <property name="geometry" >
      <rect>
       <x>0</x>
@@ -981,6 +981,8 @@
     <addaction name="separator" />
     <addaction name="actionSaveSelected" />
     <addaction name="actionSaveAll" />
+    <addaction name="separator" />
+    <addaction name="actionSendToPlaylist" />
     <addaction name="separator" />
     <addaction name="actionExpandAll" />
     <addaction name="actionCollapseAll" />
@@ -1286,6 +1288,15 @@
    </property>
    <property name="text" >
     <string>About TagLib...</string>
+   </property>
+  </action>
+  <action name="actionSendToPlaylist" >
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/control/playlist_to.png</normaloff>:/control/playlist_to.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Send To Playlist</string>
    </property>
   </action>
  </widget>

@@ -15,6 +15,7 @@
     <file>bullet_black.png</file>
   </qresource>
   <qresource prefix="/control" >
+    <file>playlist_to.png</file>
     <file>text_edit.png</file>
     <file>tasks.png</file>
     <file>auto_save.png</file>

@@ -17,6 +17,7 @@ public:
 	QUPlayList(QWidget *parent = 0);
 
 	void setItems(QUPlaylistFile *playlist);
+	void appendItem(QUPlaylistEntry *entry);
 
 public slots:
 	void updateItems();

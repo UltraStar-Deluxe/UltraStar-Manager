@@ -168,12 +168,14 @@ void QUMainWindow::initMenu() {
 	connect(actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(resizeToContents()));
 	connect(actionRefresh, SIGNAL(triggered()), this, SLOT(refreshAllSongs()));
 	connect(actionRefreshSelected, SIGNAL(triggered()), songTree, SLOT(refreshSelectedItems()));
+	connect(actionSendToPlaylist, SIGNAL(triggered()), songTree, SLOT(sendSelectedSongsToPlaylist()));
 
 	actionNewReport->setShortcut(QKeySequence::fromString("F2"));
 	actionRefreshSelected->setShortcut(QKeySequence::fromString("F5"));
 	actionRefresh->setShortcut(QKeySequence::fromString("Shift+F5"));
 	actionSaveSelected->setShortcut(QKeySequence::fromString("Ctrl+S"));
 	actionSaveAll->setShortcut(QKeySequence::fromString("Ctrl+Shift+S"));
+	actionSendToPlaylist->setShortcut(QKeySequence::fromString("Ctrl+P"));
 
 	// view menu
 	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
@@ -237,6 +239,8 @@ void QUMainWindow::initSongTree() {
 
 	connect(songTree, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 	connect(songTree, SIGNAL(songCreated(QUSongFile*)), this, SLOT(appendSong(QUSongFile*)));
+
+	connect(songTree, SIGNAL(songToPlaylistRequested(QUSongFile*)), playlistArea, SLOT(addSongToCurrentPlaylist(QUSongFile*)));
 
 	refreshAllSongs();
 }

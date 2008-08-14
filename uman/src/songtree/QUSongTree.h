@@ -41,9 +41,11 @@ public slots:
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
 	void songCreated(QUSongFile *song);
+	void songToPlaylistRequested(QUSongFile *song);
 
 private slots:
 	void deleteCurrentItem();
+	void sendSelectedSongsToPlaylist();
 
 protected:
 	virtual void keyPressEvent(QKeyEvent *event);

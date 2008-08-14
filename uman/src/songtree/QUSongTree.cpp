@@ -263,6 +263,7 @@ void QUSongTree::showContextMenu(const QPoint &point) {
 
 	menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()), QKeySequence::fromString("F5"));
 	menu.addAction(QIcon(":/control/save.png"), tr("Save"), this, SLOT(saveSelectedSongs()), QKeySequence::fromString("Ctrl+S"));
+	menu.addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
 
 	this->fillContextMenu(menu, point);
 
@@ -270,7 +271,7 @@ void QUSongTree::showContextMenu(const QPoint &point) {
 }
 
 /*!
- * Appends actions to the menu according to the selected item.
+ * Appends actions to the menu according to the selected item/file.
  */
 void QUSongTree::fillContextMenu(QMenu &menu, const QPoint &point) {
 	QUSongItem *item = dynamic_cast<QUSongItem*>(this->currentItem());
@@ -448,4 +449,21 @@ void QUSongTree::deleteCurrentItem() {
 	item->update();
 
 	emit itemSelectionChanged(); // update details
+}
+
+/*!
+ * Send all selected songs to the current playlist.
+ */
+void QUSongTree::sendSelectedSongsToPlaylist() {
+	QList<QTreeWidgetItem*> items = this->selectedItems();
+
+	if(items.isEmpty())
+		items.append(this->currentItem());
+
+	foreach(QTreeWidgetItem *item, items) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+
+		if(songItem)
+			emit songToPlaylistRequested(songItem->song());
+	}
 }

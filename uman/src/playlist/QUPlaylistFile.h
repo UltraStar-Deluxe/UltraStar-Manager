@@ -41,6 +41,9 @@ public:
 
 	bool hasUnsavedChanges() const;
 
+	bool addEntry(QUSongFile *song);
+	bool removeEntry(int index);
+
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
 
@@ -51,6 +54,7 @@ private:
 	QList<QUPlaylistEntry*> _playlist;
 
 	bool _nameChanged;
+	bool _playlistChanged;
 };
 
 #endif /* QUPLAYLISTFILE_H_ */

@@ -82,6 +82,7 @@ TODO
   should be selected
   > would be useful for selecting all karaoke files in each folder
 * new menu entries for "add rename task" and "edit rename tasks"
+* check whether UltraStar looks in subdirectories of "Playlists" for playlists
 
 NICE TO HAVE
 * allow []-tags in song title
