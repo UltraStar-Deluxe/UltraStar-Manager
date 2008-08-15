@@ -31,6 +31,8 @@ NEW FEATURES
   > load, save, edit
   > connect playlist entries to songs in the song tree, quickly find all
     playlist changes
+* splash screen at application startup
+  > for more responsiveness
 
 BUG FIXES
 * minor change in object renaming
