@@ -111,6 +111,42 @@ void QUPlaylistArea::addSongToCurrentPlaylist(QUSongFile *song) {
 }
 
 /*!
+ * \returns true, if one of the loaded playlists has unsaved changes
+ */
+bool QUPlaylistArea::hasUnsavedChanges() {
+	foreach(QUPlaylistFile *list, _playlists) {
+		if(list->hasUnsavedChanges())
+			return true;
+	}
+
+	return false;
+}
+
+/*!
+ * Save all playlists that have unsaved changes.
+ */
+void QUPlaylistArea::saveUnsavedChanges() {
+	foreach(QUPlaylistFile *list, _playlists) {
+		if(!list->hasUnsavedChanges())
+			continue;
+
+		if(list->fileInfo().exists())
+			list->save();
+		else {
+			QString filePath = QFileDialog::getSaveFileName(this, QString(tr("Save playlist \"%1\" as...")).arg(list->name()), QUPlaylistFile::dir().path(), QString("UltraStar Playlists (%1)").arg(QUPlaylistFile::allowedTypes().join(" ")));
+
+			if(!filePath.isEmpty()) {
+				list->setFileInfo(QFileInfo(filePath));
+				list->save();
+			} else {
+				emit finished(QString(tr("The new playlist \"%1\" was not saved.")).arg(list->name()), QU::information);
+			}
+		}
+	}
+
+}
+
+/*!
  * Open the default playlist path and create all playlist instances.
  */
 void QUPlaylistArea::createPlaylistFiles() {
@@ -313,6 +349,21 @@ void QUPlaylistArea::setAreaEnabled(bool enabled) {
  * Select a new folder and look there for new playlists. Old ones are discarded.
  */
 void QUPlaylistArea::changePlaylistDir() {
+	if(this->hasUnsavedChanges()) {
+		QUMessageBox::Results result = QUMessageBox::ask(this,
+				tr("Change Playlist Directory"),
+				tr("Playlists have been modified."),
+				":/control/save_all.png", tr("Save all changed playlists."),
+				":/control/bin.png", tr("Discard all changes."),
+				":/marks/cancel.png", tr("Cancel this action."));
+		if(result == QUMessageBox::first)
+			this->saveUnsavedChanges();
+		else if(result == QUMessageBox::third)
+			return;
+	}
+
+	// --------------------------------------------
+
 	QString newPath = QFileDialog::getExistingDirectory(this, tr("Select a location for playlists"), QUPlaylistFile::dir().path());
 
 	if(!newPath.isEmpty()) {

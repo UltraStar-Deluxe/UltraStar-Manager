@@ -77,24 +77,39 @@ QUMainWindow::~QUMainWindow() {
  * Overloaded to ensure that all changes are saved before closing this application.
  */
 void QUMainWindow::closeEvent(QCloseEvent *event) {
+	QUMessageBox::Results result;
+
 	if(songTree->hasUnsavedChanges()) {
-		QUMessageBox::Results result = QUMessageBox::ask(this,
+		result = QUMessageBox::ask(this,
 				tr("Quit"),
-				tr("Songs have been modified."),
-				":/control/save_all.png", tr("Save all changes."),
+				tr("<b>Songs</b> have been modified."),
+				":/control/save_all.png", tr("Save all changed songs."),
 				":/control/bin.png", tr("Discard all changes."),
 				":/marks/cancel.png", tr("Cancel this action."));
-		if(result == QUMessageBox::second)
-			event->accept();
-		else if(result == QUMessageBox::third)
-			event->ignore();
-		else if(result == QUMessageBox::first) {
+		if(result == QUMessageBox::first)
 			songTree->saveUnsavedChanges();
-			event->accept();
+		else if(result == QUMessageBox::third) {
+			event->ignore();
+			return;
 		}
-	} else {
-		event->accept();
 	}
+
+	if(playlistArea->hasUnsavedChanges()) {
+		result = QUMessageBox::ask(this,
+				tr("Quit"),
+				tr("<b>Playlists</b> have been modified."),
+				":/control/save_all.png", tr("Save all changed playlists."),
+				":/control/bin.png", tr("Discard all changes."),
+				":/marks/cancel.png", tr("Cancel this action."));
+		if(result == QUMessageBox::first)
+			playlistArea->saveUnsavedChanges();
+		else if(result == QUMessageBox::third) {
+			event->ignore();
+			return;
+		}
+	}
+
+	event->accept();
 }
 
 /*!

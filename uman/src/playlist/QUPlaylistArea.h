@@ -27,6 +27,9 @@ public slots:
 
 	void addSongToCurrentPlaylist(QUSongFile *song);
 
+	bool hasUnsavedChanges();
+	void saveUnsavedChanges();
+
 private slots:
 	void createPlaylistFiles();
 	void setCurrentPlaylist(int index);
