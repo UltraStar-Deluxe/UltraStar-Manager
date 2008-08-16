@@ -7,11 +7,12 @@ NEW FEATURES
 * context menu for rename tasks added
   > edit rename tasks by double-click or through the context menu
 * first pre-defined value for EDITION in song details: "[SC]-Songs"
-* added a cancel button and a real time indicator to progress bar
+* added a cancel button and a elapsed time indicator to progress bar
   > most long operations can be cancelled
   > only if a cancellation would lead to an inconsistent state it is
-    not possible
-* new target for rename tasks "path"
+    not possible (e.g. refreshing the song tree after modifying a detail for
+		multiple songs)
+* new target for rename tasks: "path"
   > change the complete path of a song
 * re-organize folder structure with rename tasks
   > Songs/Artist - Title (default)
@@ -23,7 +24,8 @@ NEW FEATURES
   > shows ID3 tag information of current audio file
   > ID3 tag status bar information removed
   > shows some information about picture files
-  > shows recognized file types
+  > shows recognized file types (you'll need to expand that node with a
+	  double-click)
 * new file type now recognized as song text "*.kar"
 * new column in song tree which indicates whether there are multiple
   song text files in one folder
@@ -31,6 +33,7 @@ NEW FEATURES
   > load, save, edit
   > connect playlist entries to songs in the song tree, quickly find all
     playlist changes
+  > custom order of songs in playlist (drag & drop)
 * splash screen at application startup
   > for more responsiveness
 
@@ -44,23 +47,25 @@ BUG FIXES
 * fixed an application crash where Qt found a file with a trailing dot by ignoring
   that dot and where TagLib did not found that file which produced a null pointer
   exception
+* inactive song text files in a folder (*.txt) are greyed out only now
+  > double-click on them to make them active (as before)
 
-KNOWN BUGS
+KNOWN BUGS (to fix)
 * artist/title detection works not correctly for more than one hyphen
   > "Farin Urlaub - Unter - Wasser" :) (regard the blanks around the hyphen!)
 * you cannot obtain a tick in the second and third column if the title/artist
   contains "illegal" characters like '?'
 
-TODO
+TODO (for 1.7.0)
+! a blue or orange cross in the file-related columns
+  > indicates a tag-value with points to a non-existent file
+	> red cross only for empty file-related tags
+! enable the user to create custom/inofficial song tags
+  > such as #COMMENTS (remove it as rename source?)
+	> #ALBUM (?)
 * get cover picture
   > extract cover from MP3
   > from amazon ;)
-* preview audio files
-* manage song playlists
-  > load, save, edit
-  > create auto-playlists
-  > verify a given playlist with the current song database
-  > custom order of songs in playlist (drag & drop)
 * header/footer for reports
 * detect and handle duplicates
 * add song path to report
@@ -71,14 +76,11 @@ TODO
 * enable the user to append any custom []-tag to a file/folder
   > manage these custom/unknown []-tags
   > available through context menu? (list []-tags, ...)
-* inactive song text files in a folder (*.txt) are greyed out and striked-through
-  > why not only greyed out?
 * show supported audio/video files somewhere
 * made change path tasks exclusive to change folder tasks
   > redesign the order of these tasks
 * filter log entries
   > button for "clear"
-* inofficial album tag
 * make column tests in 1 and 2 editable
   > according to renaming style of the user
 * make visible status of columns in song tree saveable
@@ -88,9 +90,11 @@ TODO
   should be selected
   > would be useful for selecting all karaoke files in each folder
 * new menu entries for "add rename task" and "edit rename tasks"
+  > maybe custom menu entries for each "dock"?!
 * check whether UltraStar looks in subdirectories of "Playlists" for playlists
+* add to playlist context menu "remove invalid entries"
 
-NICE TO HAVE
+NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title
   > e.g. "Nothing else matters [video]"
   > now search for this tag in UltraStar, very cool :)
@@ -98,6 +102,7 @@ NICE TO HAVE
 * extract readable lyrics and export them, maybe into some report or so
 * some extended help system in the application (lowest priority, Monty works well :))
 * checksums for SC-checked song files
+* preview audio files
 
 changes from 1.5.1 to 1.6.0
 ---------------------------
