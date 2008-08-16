@@ -158,6 +158,9 @@ public slots:
 	static QStringList availableTargets();
 	static QStringList availableConditions();
 	static QStringList availableSources();
+	static QStringList availableSpecialSources();
+	static QStringList availableCommonSources();
+	static QStringList availableCustomSources();
 
 	bool unsupportedTagsFound() const { return _foundUnsupportedTags.size() > 0; }
 	QString unsupportedTags() const { return _foundUnsupportedTags.join("\n#"); }

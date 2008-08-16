@@ -29,7 +29,15 @@ void QURenameSourceDelegate::setEditorData(
 
 	QComboBox *comboBox = static_cast<QComboBox*>(editor);
 
-	comboBox->addItems(QUSongFile::availableSources());
+	comboBox->addItems(QUSongFile::availableSpecialSources());
+	for(int i = 0; i < comboBox->count(); i++)
+		comboBox->setItemData(i, Qt::darkGray, Qt::ForegroundRole);
+
+	comboBox->addItems(QUSongFile::availableCommonSources());
+	int i = comboBox->count();
+	comboBox->addItems(QUSongFile::availableCustomSources());
+	for(; i < comboBox->count(); i++)
+		comboBox->setItemData(i, Qt::blue, Qt::ForegroundRole);
 
 	comboBox->setCurrentIndex(comboBox->findText(value, Qt::MatchContains));
 }

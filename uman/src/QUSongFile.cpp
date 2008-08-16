@@ -743,11 +743,28 @@ QStringList QUSongFile::availableConditions() {
 QStringList QUSongFile::availableSources() {
 	QStringList result;
 
+	result << availableSpecialSources();
+	result << availableCommonSources();
+	result << availableCustomSources();
+
+	return result;
+}
+
+QStringList QUSongFile::availableSpecialSources() {
+	QStringList result;
+
 	// special sources
 	result << TEXT_SOURCE << KEEP_SUFFIX_SOURCE << UNKNOWN_TAGS_SOURCE;
 
-	// common sources
-	result << QString("artist title mp3 bpm gap video videogap cover background start language relative edition genre year end creator dir txt").split(" ");
+	return result;
+}
+
+QStringList QUSongFile::availableCommonSources() {
+	return QString("artist title mp3 bpm gap video videogap cover background start language relative edition genre year end creator dir txt").split(" ");
+}
+
+QStringList QUSongFile::availableCustomSources() {
+	QStringList result;
 
 	// custom sources
 	foreach(QString customTag, customTags()) {
