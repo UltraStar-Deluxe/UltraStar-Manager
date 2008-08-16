@@ -47,5 +47,5 @@ You can delete a rename task by deleting its configuration file in the applicati
 If you make a double-click on a rename task in the task list you can modify that task.
 There is a context menu in the task list which enables you to add and edit rename tasks.
 Some operations cannot be cancelled because that would lead to an inconsistent state, e.g. applying a filter.
-You can expand and collapse the categories in the preview window by double-clicking their names.
+You can expand and collapse the categories in the database info window by double-clicking their names.
 A blue cross in the song tree indicates that the value for a file-related tag (e.g. #cover) was set but the file does not exist.

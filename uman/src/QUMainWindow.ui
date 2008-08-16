@@ -730,7 +730,7 @@
         <item>
          <widget class="QDockWidget" name="previewDock" >
           <property name="windowTitle" >
-           <string>Preview</string>
+           <string>Database Infos</string>
           </property>
           <widget class="QWidget" name="dockWidgetContents_4" >
            <property name="geometry" >
