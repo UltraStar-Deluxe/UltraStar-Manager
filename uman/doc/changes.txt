@@ -36,6 +36,9 @@ NEW FEATURES
   > custom order of songs in playlist (drag & drop)
 * splash screen at application startup
   > for more responsiveness
+* a blue cross in the file-related columns
+  > indicates a tag-value with points to a non-existent file
+  > red cross only for empty file-related tags
 
 BUG FIXES
 * minor change in object renaming
@@ -57,12 +60,9 @@ KNOWN BUGS (to fix)
   contains "illegal" characters like '?'
 
 TODO (for 1.7.0)
-! a blue or orange cross in the file-related columns
-  > indicates a tag-value with points to a non-existent file
-	> red cross only for empty file-related tags
 ! enable the user to create custom/inofficial song tags
   > such as #COMMENTS (remove it as rename source?)
-	> #ALBUM (?)
+  > #ALBUM (?)
 * get cover picture
   > extract cover from MP3
   > from amazon ;)

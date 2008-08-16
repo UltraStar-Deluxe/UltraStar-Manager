@@ -147,7 +147,7 @@ void QUMainWindow::initConfig() {
  * Set up initial window size and title text.
  */
 void QUMainWindow::initWindow() {
-	setWindowTitle(QString(tr("UltraStar Manager %1.%2")).arg(MAJOR_VERSION).arg(MINOR_VERSION));
+	setWindowTitle(tr("UltraStar Manager"));
 	resize(1000, 500);
 
 	addDockWidget(Qt::LeftDockWidgetArea, detailsDock);

@@ -114,10 +114,10 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	else
 		this->setCross(TITLE_COLUMN);
 
-	if(song()->hasMp3())        this->setTick(MP3_COLUMN);        else this->setCross(MP3_COLUMN);
-	if(song()->hasCover())      this->setTick(COVER_COLUMN);      else this->setCross(COVER_COLUMN);
-	if(song()->hasBackground()) this->setTick(BACKGROUND_COLUMN); else this->setCross(BACKGROUND_COLUMN);
-	if(song()->hasVideo())      this->setTick(VIDEO_COLUMN);      else this->setCross(VIDEO_COLUMN);
+	if(song()->hasMp3())        this->setTick(MP3_COLUMN);        else if(song()->mp3() != N_A) this->setCross(MP3_COLUMN, true);               else this->setCross(MP3_COLUMN);
+	if(song()->hasCover())      this->setTick(COVER_COLUMN);      else if(song()->cover() != N_A) this->setCross(COVER_COLUMN, true);           else this->setCross(COVER_COLUMN);
+	if(song()->hasBackground()) this->setTick(BACKGROUND_COLUMN); else if(song()->background() != N_A) this->setCross(BACKGROUND_COLUMN, true); else this->setCross(BACKGROUND_COLUMN);
+	if(song()->hasVideo())      this->setTick(VIDEO_COLUMN);      else if(song()->video() != N_A) this->setCross(VIDEO_COLUMN, true);           else this->setCross(VIDEO_COLUMN);
 
 	this->setText(LANGUAGE_COLUMN, song()->language());
 	this->setText(EDITION_COLUMN,  song()->edition());
@@ -240,11 +240,16 @@ void QUSongItem::setTick(int column, bool isBlue) {
 	}
 }
 
-void QUSongItem::setCross(int column) {
-	this->setIcon(column, QIcon(":/marks/cross.png"));
-
-	// used for sorting, should be smaller than a "tick" icon
-	this->setData(column, Qt::UserRole, QVariant(0));
+void QUSongItem::setCross(int column, bool isBlue) {
+	if(isBlue) {
+		this->setIcon(column, QIcon(":/marks/cross_blue.png"));
+		// used for sorting, should be smaller than a "tick" icon
+		this->setData(column, Qt::UserRole, QVariant(-1));
+	} else {
+		this->setIcon(column, QIcon(":/marks/cross.png"));
+		// used for sorting, should be smaller than a "tick" icon
+		this->setData(column, Qt::UserRole, QVariant(0));
+	}
 }
 
 /*!

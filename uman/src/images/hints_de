@@ -48,3 +48,4 @@ Wenn du einen Doppelklick auf eine Umbenennungsaufgabe machst, kannst du sie bea
 Die Aufgabenliste hat ein Kontextmenü, welches es dir ermöglicht, neue Aufgaben anzulegen oder vorhandene zu bearbeiten.
 Einige Vorgänge können nicht abgebrochen werden, weil dies zu einem inkonsistenten Zustand führen würde, z.B. Filter anwenden.
 Du kannst die Kategorien im Vorschaufenster ein- und ausklappen, indem du auf deren Namen einen Doppelklick machst.
+Ein blaues Kreuz im Songbaum bedeutet, dass ein dateibezogener Tag (z.B. #cover) einen Wert hat, wobei die Datei nicht existiert.

@@ -50,7 +50,7 @@ private:
 
 	void clearContents();
 	void setTick(int column, bool isBlue = false); //!< used to set special user data for sorting which is not shown
-	void setCross(int column); //!< used to set special user data for sorting which is not shown
+	void setCross(int column, bool isBlue = false); //!< used to set special user data for sorting which is not shown
 };
 
 #endif /*QUSONGITEM_H_*/
