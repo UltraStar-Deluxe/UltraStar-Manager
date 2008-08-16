@@ -56,8 +56,8 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(YEAR_COLUMN, QIcon(":/types/date.png"));
 	header->setText(CREATOR_COLUMN, tr("Creator"));
 	header->setIcon(CREATOR_COLUMN, QIcon(":/types/creator.png"));
-	header->setText(COMMENT_COLUMN, tr("Comment"));
-	header->setIcon(COMMENT_COLUMN, QIcon(":/types/comment.png"));
+//	header->setText(COMMENT_COLUMN, tr("Comment"));
+//	header->setIcon(COMMENT_COLUMN, QIcon(":/types/comment.png"));
 
 	this->setHeaderItem(header);
 }

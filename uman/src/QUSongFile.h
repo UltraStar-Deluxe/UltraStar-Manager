@@ -30,11 +30,11 @@
 #define RELATIVE_TAG   "RELATIVE"
 #define BPM_TAG        "BPM"
 #define GAP_TAG        "GAP"
-#define COMMENT_TAG    "COMMENT" /* not supported by UltraStar */
 
 #define TEXT_SOURCE         "*TEXT*"
 #define KEEP_SUFFIX_SOURCE  "*SUFFIX*"
 #define UNKNOWN_TAGS_SOURCE "*UNKNOWN_TAGS*"
+#define CUSTOM_TAG_SUFFIX   " (custom)"
 
 /*!
  * This class represents a data file which is used by UltraStar for every song.
@@ -60,7 +60,6 @@ class QUSongFile: public QObject {
 	Q_PROPERTY(QString year READ year)
 	Q_PROPERTY(QString end READ end)
 	Q_PROPERTY(QString creator READ creator)
-	Q_PROPERTY(QString comment READ comment)
 	// additional properties
 	Q_PROPERTY(QString dir READ dir)
 	Q_PROPERTY(QString txt READ txt)
@@ -111,7 +110,8 @@ public slots:
 	QString year() const       {return _info.value(YEAR_TAG,       QString(N_A));}
 	QString end() const        {return _info.value(END_TAG,        QString(N_A));}
 	QString creator() const    {return _info.value(CREATOR_TAG,    QString(N_A));}
-	QString comment() const    {return _info.value(COMMENT_TAG,    QString(N_A));}
+
+	QString customTag(const QString &tag) const {return _info.value(tag.toUpper(), QString(N_A));}
 
 	QString dir() const {return _fi.dir().dirName();}
 	QString path() const {return _fi.path();}

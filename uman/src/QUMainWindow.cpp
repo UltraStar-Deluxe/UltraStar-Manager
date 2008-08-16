@@ -40,6 +40,7 @@
 #include "QUReportDialog.h"
 #include "QUMessageBox.h"
 #include "QUPictureDialog.h"
+#include "QUCustomTagsDialog.h"
 
 QDir QUMainWindow::BaseDir = QDir();
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
@@ -224,6 +225,7 @@ void QUMainWindow::initMenu() {
 	connect(actionAutoSave, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
 	connect(actionTagSaveOrder, SIGNAL(triggered()), this, SLOT(editTagOrder()));
 	connect(actionChangeSongDirectory, SIGNAL(triggered()), this, SLOT(changeSongDir()));
+	connect(actionCustomTags, SIGNAL(triggered()), this, SLOT(editCustomTags()));
 
 	connect(actionLangEnglish, SIGNAL(triggered()), this, SLOT(enableEnglish()));
 	connect(actionLangGerman, SIGNAL(triggered()), this, SLOT(enableGerman()));
@@ -323,6 +325,7 @@ void QUMainWindow::refreshAllSongs(bool force) {
 
 	createSongFiles();
 	songTree->fill(_songs);
+	monty->setSongCount(_songs.size()); // sometimes, Monty talks about your song count...
 
 	updatePreviewTree();
 	playlistArea->updateAll();
@@ -605,13 +608,47 @@ void QUMainWindow::changeSongDir() {
 		BaseDir.setPath(path);
 		refreshAllSongs(true);
 
-		monty->setSongCount(_songs.size());
 		montyTalk();
 
 		addLogMsg(QString(tr("UltraStar song directory changed to: \"%1\".")).arg(BaseDir.path()));
 
 		songTree->headerItem()->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(BaseDir.path()));
 	}
+}
+
+/*!
+ * Enables the user to setup custom tags. Modified songs need to be saved first, because
+ * the whole song tree (database) will be rebuild. This is an easy way to update the (un-)supported tags
+ * for each song. :)
+ */
+void QUMainWindow::editCustomTags() {
+	if(songTree->hasUnsavedChanges()) {
+		QUMessageBox::Results result = QUMessageBox::ask(this,
+				tr("Custom Tags"),
+				tr("Songs have been modified."),
+				":/control/save_all.png", tr("Save all changes."),
+				":/control/bin.png", tr("Discard all changes."),
+				":/marks/cancel.png", tr("Cancel this action."));
+		if(result == QUMessageBox::third)
+			return;
+		else if(result == QUMessageBox::first)
+			songTree->saveUnsavedChanges();
+	}
+
+	// ---------------------------------------------------------
+
+	QUCustomTagsDialog *dlg = new QUCustomTagsDialog(this);
+
+	if(dlg->exec()) {
+		this->refreshAllSongs(true);
+		detailsTable->reset();
+
+		this->addLogMsg(QString(tr("Custom tags changed to: \"%1\"")).arg(QUSongFile::customTags().join(", ")), QU::information);
+	}
+
+	delete dlg;
+
+	montyTalk();
 }
 
 void QUMainWindow::montyTalk() {

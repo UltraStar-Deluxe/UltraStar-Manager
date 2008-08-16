@@ -165,7 +165,6 @@ QStringList QUSongFile::tags() {
 	result << RELATIVE_TAG;
 	result << BPM_TAG;
 	result << GAP_TAG;
-	result << COMMENT_TAG;
 
 	// all custom tags that will be supported
 	result << customTags();
@@ -281,11 +280,11 @@ bool QUSongFile::save(bool force) {
 
 	// write supported tags
 	foreach(QString tag, tags) {
-		if(_info.value(tag) != "") { // do not write empty tags
+		if(_info.value(tag.toUpper()) != "") { // do not write empty tags
 			_file.write("#");
-			_file.write(tag.toLocal8Bit());
+			_file.write(tag.toUpper().toLocal8Bit());
 			_file.write(":");
-			_file.write(_info.value(tag).toLocal8Bit());
+			_file.write(_info.value(tag.toUpper()).toLocal8Bit());
 			_file.write("\n");
 		}
 	}
@@ -742,5 +741,18 @@ QStringList QUSongFile::availableConditions() {
 }
 
 QStringList QUSongFile::availableSources() {
-	return QString("%1 %2 %3 artist title mp3 bpm gap video videogap cover background start language relative edition genre year end creator comment dir txt").arg(TEXT_SOURCE).arg(KEEP_SUFFIX_SOURCE).arg(UNKNOWN_TAGS_SOURCE).split(" ");
+	QStringList result;
+
+	// special sources
+	result << TEXT_SOURCE << KEEP_SUFFIX_SOURCE << UNKNOWN_TAGS_SOURCE;
+
+	// common sources
+	result << QString("artist title mp3 bpm gap video videogap cover background start language relative edition genre year end creator dir txt").split(" ");
+
+	// custom sources
+	foreach(QString customTag, customTags()) {
+		result << (customTag + CUSTOM_TAG_SUFFIX);
+	}
+
+	return result;
 }

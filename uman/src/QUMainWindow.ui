@@ -178,7 +178,7 @@
            <bool>false</bool>
           </property>
           <property name="columnCount" >
-           <number>15</number>
+           <number>14</number>
           </property>
           <column>
            <property name="text" >
@@ -248,11 +248,6 @@
           <column>
            <property name="text" >
             <string>14</string>
-           </property>
-          </column>
-          <column>
-           <property name="text" >
-            <string>15</string>
            </property>
           </column>
          </widget>
@@ -515,36 +510,6 @@
               <property name="cornerButtonEnabled" >
                <bool>false</bool>
               </property>
-              <property name="rowCount" >
-               <number>22</number>
-              </property>
-              <property name="columnCount" >
-               <number>2</number>
-              </property>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <column/>
-              <column/>
              </widget>
             </item>
             <item>
@@ -1008,6 +973,7 @@
     <addaction name="separator" />
     <addaction name="actionTagSaveOrder" />
     <addaction name="actionChangeSongDirectory" />
+    <addaction name="actionCustomTags" />
     <addaction name="separator" />
     <addaction name="menu_Language" />
    </widget>
@@ -1300,6 +1266,11 @@
    </property>
    <property name="text" >
     <string>Send To Playlist</string>
+   </property>
+  </action>
+  <action name="actionCustomTags" >
+   <property name="text" >
+    <string>Custom Tags...</string>
    </property>
   </action>
  </widget>

@@ -9,16 +9,18 @@
 
 class QUDetailsTable: public QTableWidget {
 	Q_OBJECT
-	
+
 public:
 	QUDetailsTable(QWidget *parent = 0);
-	
+
 	void updateValueColumn(const QList<QUSongFile*> &songs);
+
+	void reset();
 
 private:
 	void initTagColumn();
 	void initValueColumn();
-	
+
 	void initSeparator(const QString &text, int row);
 };
 

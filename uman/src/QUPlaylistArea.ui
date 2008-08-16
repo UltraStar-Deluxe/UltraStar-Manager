@@ -232,13 +232,7 @@
        </property>
        <property name="icon" >
         <iconset resource="images/uman.qrc" >
-         <normaloff>:/bullets/plus_small.png</normaloff>:/bullets/plus_small.png</iconset>
-       </property>
-       <property name="iconSize" >
-        <size>
-         <width>10</width>
-         <height>10</height>
-        </size>
+         <normaloff>:/marks/add.png</normaloff>:/marks/add.png</iconset>
        </property>
        <property name="toolButtonStyle" >
         <enum>Qt::ToolButtonTextBesideIcon</enum>

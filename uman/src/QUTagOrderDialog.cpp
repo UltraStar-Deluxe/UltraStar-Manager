@@ -7,14 +7,16 @@
 
 QUTagOrderDialog::QUTagOrderDialog(QWidget *parent): QDialog(parent) {
 	setupUi(this);
-	
+
 	QSettings settings;
 	QStringList items = settings.value("tagOrder", QVariant(QUSongFile::tags())).toStringList();
-	
+
 	QUSongFile::verifyTags(items);
-		
-	tagList->addItems(items);
-	
+
+	foreach(QString item, items) {
+		tagList->addItem(item.toUpper());
+	}
+
 	connect(applyBtn, SIGNAL(clicked()), SLOT(saveOrder()));
 	connect(cancelBtn, SIGNAL(clicked()), SLOT(reject()));
 	connect(defaultBtn, SIGNAL(clicked()), SLOT(resetOrder()));
@@ -27,10 +29,10 @@ void QUTagOrderDialog::saveOrder() {
 	QStringList tags;
 	for(int i = 0; i < tagList->count(); i++)
 		tags << tagList->item(i)->text();
-		
+
 	QSettings settings;
 	settings.setValue("tagOrder", QVariant(tags));
-	
+
 	accept();
 }
 

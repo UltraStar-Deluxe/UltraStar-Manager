@@ -362,7 +362,7 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="icon" >
           <iconset resource="images/uman.qrc" >
-           <normaloff>:/bullets/plus_small.png</normaloff>:/bullets/plus_small.png</iconset>
+           <normaloff>:/marks/add.png</normaloff>:/marks/add.png</iconset>
          </property>
          <property name="autoRaise" >
           <bool>true</bool>
@@ -376,7 +376,7 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="icon" >
           <iconset resource="images/uman.qrc" >
-           <normaloff>:/bullets/minus_small.png</normaloff>:/bullets/minus_small.png</iconset>
+           <normaloff>:/marks/delete.png</normaloff>:/marks/delete.png</iconset>
          </property>
          <property name="autoRaise" >
           <bool>true</bool>

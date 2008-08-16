@@ -153,9 +153,9 @@ void QUDetailItem::updateText(const QString &tag, QUSongFile *song) {
 			this->setText(QString(QObject::tr("%1 milliseconds")).arg(song->gap()));
 		else
 			this->setText(song->gap());
-	} else if(QString::compare(tag, COMMENT_TAG) == 0) {
+	} else if( QUSongFile::customTags().contains(tag, Qt::CaseInsensitive) ) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText(song->comment());
+		this->setText(song->customTag(tag));
 	}
 }
 
@@ -262,16 +262,15 @@ void QUDetailItem::updateItemForMultipleSongs() {
 	} else if(QString::compare(tag(), GAP_TAG) == 0) {
 		this->setFlags(0);
 		this->setText(QObject::tr("Multiple files selected."));
-	} else if(QString::compare(tag(), COMMENT_TAG) == 0) {
+	} else if( QUSongFile::customTags().contains(tag(), Qt::CaseInsensitive) ) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 
-		this->setText(songs().first()->comment());
+		this->setText( songs().first()->customTag(tag()) );
 		for(int i = 0; i < songs().size(); i++) {
-			if(QString::compare(this->text(), songs()[i]->comment(), Qt::CaseInsensitive) != 0) {
+			if(QString::compare(this->text(), songs()[i]->customTag(tag()), Qt::CaseInsensitive) != 0) {
 				this->setText(QObject::tr("Click here to edit."));
 				break;
 			}
 		}
-		// TODO: updateDefaultData if comment list present
 	}
 }

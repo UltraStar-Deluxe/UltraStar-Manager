@@ -58,6 +58,7 @@ private slots:
 
 	void editTagOrder();
 	void changeSongDir();
+	void editCustomTags();
 
 	void montyTalk();
 

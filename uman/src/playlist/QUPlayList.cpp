@@ -70,7 +70,7 @@ void QUPlayList::showContextMenu(const QPoint &point) {
 
 	QMenu menu(this);
 
-	menu.addAction(QIcon(":/control/bin.png"), tr("Remove from list"), this, SLOT(removeSelectedItems()), QKeySequence::fromString("Del"));
+	menu.addAction(QIcon(":/marks/delete.png"), tr("Remove from list"), this, SLOT(removeSelectedItems()), QKeySequence::fromString("Del"));
 
 	menu.exec(this->mapToGlobal(point));
 }

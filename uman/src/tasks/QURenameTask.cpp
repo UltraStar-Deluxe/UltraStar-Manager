@@ -63,7 +63,13 @@ void QURenameTask::startOn(QUSongFile *song) {
 			} else if (!currentData->_text.isEmpty()) {
 				schema = schema.arg(currentData->_text);
 			} else if (!currentData->_source.isEmpty()) {
-				QString value = song->property(currentData->_source.toLower().toLocal8Bit().data()).toString();
+				QString value;
+
+				if(currentData->_source.endsWith(CUSTOM_TAG_SUFFIX, Qt::CaseInsensitive))
+					value = song->customTag(currentData->_source.section(CUSTOM_TAG_SUFFIX, 0, 0, QString::SectionDefault | QString::SectionCaseInsensitiveSeps));
+				else
+					value = song->property(currentData->_source.toLower().toLocal8Bit().data()).toString();
+
 				if(value == N_A)
 					value = currentData->_default;
 				schema = schema.arg(value);

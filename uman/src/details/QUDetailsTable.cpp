@@ -11,7 +11,6 @@
 #include <QMessageBox>
 
 QUDetailsTable::QUDetailsTable(QWidget *parent): QTableWidget(parent) {
-	this->setRowCount(22);
 	this->setColumnCount(2);
 
 	// setup headers
@@ -28,8 +27,7 @@ QUDetailsTable::QUDetailsTable(QWidget *parent): QTableWidget(parent) {
 	this->setItemDelegateForColumn(1, comboDelegate);
 
 	// setup tag & value column
-	this->initTagColumn();
-	this->initValueColumn();
+	this->reset();
 }
 
 void QUDetailsTable::initTagColumn() {
@@ -56,8 +54,12 @@ void QUDetailsTable::initTagColumn() {
 	this->setItem(18, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("BPM")));
 	this->setItem(19, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Gap")));
 
-	this->initSeparator(tr("Inofficial"), 20);
-	this->setItem(21, 0, new QUTagItem(QIcon(":/types/comment.png"), tr("Comment")));
+	this->initSeparator(tr("Custom"), 20);
+	//this->setItem(21, 0, new QUTagItem(QIcon(":/types/comment.png"), tr("Comment")));
+	int i = 0;
+	foreach(QString customTag, QUSongFile::customTags()) {
+		this->setItem(21 + (i++), 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), customTag));
+	}
 }
 
 void QUDetailsTable::initValueColumn() {
@@ -85,7 +87,11 @@ void QUDetailsTable::initValueColumn() {
 	this->setItem(19, 1, new QUDetailItem(GAP_TAG));
 
 	/* separator here - skip a row */
-	this->setItem(21, 1, new QUDetailItem(COMMENT_TAG));
+//	this->setItem(21, 1, new QUDetailItem(COMMENT_TAG));
+	int i = 0;
+	foreach(QString customTag, QUSongFile::customTags()) {
+		this->setItem(21 + (i++), 1, new QUDetailItem(customTag));
+	}
 }
 
 void QUDetailsTable::initSeparator(const QString &text, int row) {
@@ -124,4 +130,15 @@ void QUDetailsTable::updateValueColumn(const QList<QUSongFile*> &songs) {
 		this->setEnabled(false);
 	else
 		this->setEnabled(true);
+}
+
+/*!
+ * Re-initializes all rows according to the actual custom tags.
+ */
+void QUDetailsTable::reset() {
+	this->setRowCount(21 + QUSongFile::customTags().size());
+
+	// setup tag & value column
+	this->initTagColumn();
+	this->initValueColumn();
 }
