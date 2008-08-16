@@ -86,8 +86,8 @@ bool QUSongFile::updateCache() {
 		// read supported tags
 		bool isSupported = false;
 		foreach(QString tag, QUSongFile::tags()) {
-			if(line.startsWith("#" + tag + ":")) {
-				setInfo(tag, line.section("#" + tag + ":", 0, 0, QString::SectionSkipEmpty));
+			if(line.startsWith("#" + tag + ":", Qt::CaseInsensitive)) {
+				setInfo(tag, line.section("#" + tag + ":", 0, 0, QString::SectionSkipEmpty | QString::SectionCaseInsensitiveSeps));
 				isSupported = true;
 			}
 		}
@@ -134,16 +134,16 @@ bool QUSongFile::updateCache() {
  */
 void QUSongFile::setInfo(const QString &tag, const QString &value) {
 	if(value == "") {
-		_info.take(tag);
+		_info.take(tag.toUpper());
 	} else {
-		_info[tag] = value.trimmed();
+		_info[tag.toUpper()] = value.trimmed();
 	}
 
 	emit dataChanged();
 }
 
 /*!
- * \returns A list of strings with all available tags.
+ * \returns A list of strings with all available tags. Custom tags are included.
  */
 QStringList QUSongFile::tags() {
 	QStringList result;
@@ -167,7 +167,15 @@ QStringList QUSongFile::tags() {
 	result << GAP_TAG;
 	result << COMMENT_TAG;
 
+	// all custom tags that will be supported
+	result << customTags();
+
 	return result;
+}
+
+QStringList QUSongFile::customTags() {
+	QSettings settings;
+	return settings.value("customTags", QStringList()).toStringList();
 }
 
 QStringList QUSongFile::noteTypes() {

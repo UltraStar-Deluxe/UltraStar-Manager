@@ -146,6 +146,7 @@ public slots:
 	void useID3TagForYear();
 
 	static QStringList tags();
+	static QStringList customTags();
 	static QStringList noteTypes();
 
 	static void verifyTags(QStringList &tags);

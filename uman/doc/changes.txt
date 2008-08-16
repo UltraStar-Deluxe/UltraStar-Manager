@@ -52,6 +52,8 @@ BUG FIXES
   exception
 * inactive song text files in a folder (*.txt) are greyed out only now
   > double-click on them to make them active (as before)
+* tags which are not upper-case (e.g. "#artist") are now recognized correctly
+  > will be saved upper-case
 
 KNOWN BUGS (to fix)
 * artist/title detection works not correctly for more than one hyphen
