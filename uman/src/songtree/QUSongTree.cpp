@@ -24,6 +24,8 @@ QUSongTree::QUSongTree(QWidget *parent): QTreeWidget(parent) {
 }
 
 void QUSongTree::initHorizontalHeader() {
+	this->setColumnCount(14 + QUSongFile::customTags().count());
+
 	QTreeWidgetItem *header = new QTreeWidgetItem();
 	header->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(QUMainWindow::BaseDir.path()));
 	header->setIcon(FOLDER_COLUMN, QIcon(":/types/folder.png"));
@@ -56,8 +58,13 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(YEAR_COLUMN, QIcon(":/types/date.png"));
 	header->setText(CREATOR_COLUMN, tr("Creator"));
 	header->setIcon(CREATOR_COLUMN, QIcon(":/types/creator.png"));
-//	header->setText(COMMENT_COLUMN, tr("Comment"));
-//	header->setIcon(COMMENT_COLUMN, QIcon(":/types/comment.png"));
+
+	int i = 0;
+	foreach(QString customTag, QUSongFile::customTags()) {
+		header->setText(FIRST_CUSTOM_TAG_COLUMN + i, customTag);
+//		header->setIcon(FIRST_CUSTOM_TAG_COLUMN + i, QIcon(":/types/comment.png"));
+		i++;
+	}
 
 	this->setHeaderItem(header);
 }
@@ -109,6 +116,8 @@ QList<QUSongFile*> QUSongTree::selectedSongs() {
  * Creates a new entry for each given song.
  */
 void QUSongTree::fill(QList<QUSongFile*> songs) {
+	this->initHorizontalHeader();
+
 	foreach(QUSongFile* song, songs) {
 		this->addTopLevelItem(new QUSongItem(song, true));
 	}
@@ -176,6 +185,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 			bool filterInfo = true;
 			bool filterFile = true;
 			bool filterCtrl = true;
+			bool filterCstm = true;
 
 			if(mode.testFlag(QU::informationTags)) {
 				bool matchesInfoTag =
@@ -221,10 +231,23 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 					filterCtrl = false;
 			}
 
+			if(mode.testFlag(QU::customTags)) {
+				bool matchesCustomTag = false;
+
+				foreach(QString customTag, QUSongFile::customTags()) {
+					matchesCustomTag = matchesCustomTag || song->customTag(customTag).contains(rx);
+				}
+
+				if(!matchesCustomTag)
+					filterCstm = true;
+				else
+					filterCstm = false;
+			}
+
 			if(
-				(filterInfo && filterFile && filterCtrl && !(mode.testFlag(QU::negateFilter)))
+				(filterInfo && filterFile && filterCtrl && filterCstm && !(mode.testFlag(QU::negateFilter)))
 				||
-				(!(filterInfo && filterFile && filterCtrl) && (mode.testFlag(QU::negateFilter)))
+				(!(filterInfo && filterFile && filterCtrl && filterCstm) && (mode.testFlag(QU::negateFilter)))
 			)
 				_hiddenItems.append(this->takeTopLevelItem(this->indexOfTopLevelItem(item)));
 		}

@@ -14,7 +14,7 @@ public:
 		saving
 	};
 	Q_DECLARE_FLAGS(EventMessageTypes, EventMessageType)
-	
+
 	enum AudioTagTaskMode {
 		useArtist,
 		useTitle,
@@ -22,7 +22,7 @@ public:
 		useYear
 	};
 	Q_DECLARE_FLAGS(AudioTagTaskModes, AudioTagTaskMode)
-	
+
 	enum RenameTaskMode {
 		renameDirectory,
 		renameDirectorySpecial, // use and preserve folder tags ([VIDEO], [SC], ...)
@@ -34,23 +34,24 @@ public:
 		renameVideoFileSpecial // use videogap [VD#0]
 	};
 	Q_DECLARE_FLAGS(RenameTaskModes, RenameTaskMode)
-	
+
 	enum PreparatoryTaskMode {
 		autoAssignFiles,
 		removeUnsupportedTags
 	};
 	Q_DECLARE_FLAGS(PreparatoryTaskModes, PreparatoryTaskMode)
-	
+
 	enum CleanTaskMode {
 		unusedFiles,
 		invalidFileTags
 	};
 	Q_DECLARE_FLAGS(CleanTaskModes, CleanTaskMode)
-	
+
 	enum FilterMode {
 		informationTags = 0x01,
 		fileTags = 0x02,
 		controlTags = 0x04,
+		customTags = 0x08,
 		negateFilter = 0x10
 	};
 	Q_DECLARE_FLAGS(FilterModes, FilterMode)

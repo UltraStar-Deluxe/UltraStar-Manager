@@ -764,12 +764,5 @@ QStringList QUSongFile::availableCommonSources() {
 }
 
 QStringList QUSongFile::availableCustomSources() {
-	QStringList result;
-
-	// custom sources
-	foreach(QString customTag, customTags()) {
-		result << (customTag + CUSTOM_TAG_SUFFIX);
-	}
-
-	return result;
+	return customTags();
 }

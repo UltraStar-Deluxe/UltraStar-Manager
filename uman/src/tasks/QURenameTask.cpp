@@ -65,8 +65,8 @@ void QURenameTask::startOn(QUSongFile *song) {
 			} else if (!currentData->_source.isEmpty()) {
 				QString value;
 
-				if(currentData->_source.endsWith(CUSTOM_TAG_SUFFIX, Qt::CaseInsensitive))
-					value = song->customTag(currentData->_source.section(CUSTOM_TAG_SUFFIX, 0, 0, QString::SectionDefault | QString::SectionCaseInsensitiveSeps));
+				if(QUSongFile::availableCustomSources().contains(currentData->_source, Qt::CaseInsensitive))
+					value = song->customTag(currentData->_source);
 				else
 					value = song->property(currentData->_source.toLower().toLocal8Bit().data()).toString();
 

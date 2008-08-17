@@ -34,7 +34,6 @@
 #define TEXT_SOURCE         "*TEXT*"
 #define KEEP_SUFFIX_SOURCE  "*SUFFIX*"
 #define UNKNOWN_TAGS_SOURCE "*UNKNOWN_TAGS*"
-#define CUSTOM_TAG_SUFFIX   " (custom)"
 
 /*!
  * This class represents a data file which is used by UltraStar for every song.

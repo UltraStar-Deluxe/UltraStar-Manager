@@ -124,7 +124,12 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	this->setText(GENRE_COLUMN,    song()->genre());
 	this->setText(YEAR_COLUMN,     song()->year());
 	this->setText(CREATOR_COLUMN,  song()->creator());
-//	this->setText(COMMENT_COLUMN,  song()->comment());
+
+	// show custom tags
+	int i = 0;
+	foreach(QString customTag, QUSongFile::customTags()) {
+		this->setText(FIRST_CUSTOM_TAG_COLUMN + (i++), song()->customTag(customTag));
+	}
 
 	// indicate unsaved changes
 	// TODO: Do we really need to create a QFont object here? No convenience?!

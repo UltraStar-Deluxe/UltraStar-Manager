@@ -40,7 +40,9 @@ NEW FEATURES
   > indicates a tag-value with points to a non-existent file
   > red cross only for empty file-related tags
 * create custom song tags, e.g. #COMMENT
-  > use them as sources for rename tasks
+  > use them as sources for rename tasks (the blue entries in the sources combo box)
+  > added as a new filter target
+  > contents displayed in the last columns of the song tree
 
 BUG FIXES
 * minor change in object renaming

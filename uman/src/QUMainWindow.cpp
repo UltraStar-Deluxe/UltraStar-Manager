@@ -167,7 +167,7 @@ void QUMainWindow::initWindow() {
 	connect(filterCancelBtn, SIGNAL(clicked()), this, SLOT(removeFilter()));
 	connect(filterNegateBtn, SIGNAL(clicked()), this, SLOT(toggleFilterNegateBtn()));
 
-	filterTypeCombo->addItems(QStringList() << tr("All Tags") << tr("Information Tags") << tr("File Tags") << tr("Control Tags"));
+	filterTypeCombo->addItems(QStringList() << tr("All Tags") << tr("Information Tags") << tr("File Tags") << tr("Control Tags") << tr("Custom Tags"));
 	filterTypeCombo->setCurrentIndex(0);
 
 	filterNegateBtn->setChecked(false);
@@ -762,7 +762,7 @@ void QUMainWindow::applyFilter() {
 		modes |= QU::negateFilter;
 
 	if(filterTypeCombo->currentIndex() == 0)
-		modes |= QU::informationTags | QU::fileTags | QU::controlTags;
+		modes |= QU::informationTags | QU::fileTags | QU::controlTags | QU::customTags;
 
 	if(filterTypeCombo->currentIndex() == 1)
 		modes |= QU::informationTags;
@@ -772,6 +772,9 @@ void QUMainWindow::applyFilter() {
 
 	if(filterTypeCombo->currentIndex() == 3)
 		modes |= QU::controlTags;
+
+	if(filterTypeCombo->currentIndex() == 4)
+		modes |= QU::customTags;
 
 	songTree->filterItems(filterEdit->text(), (QU::FilterModes) modes);
 }
