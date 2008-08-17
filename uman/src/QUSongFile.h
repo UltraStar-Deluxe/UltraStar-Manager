@@ -61,6 +61,9 @@ class QUSongFile: public QObject {
 	Q_PROPERTY(QString creator READ creator)
 	// additional properties
 	Q_PROPERTY(QString dir READ dir)
+	Q_PROPERTY(QString path READ path)
+	Q_PROPERTY(QString filePath READ filePath)
+	Q_PROPERTY(QString relativeFilePath READ relativeFilePath)
 	Q_PROPERTY(QString txt READ txt)
 	Q_PROPERTY(bool hasMp3 READ hasMp3)
 	Q_PROPERTY(bool hasCover READ hasCover)
@@ -76,18 +79,22 @@ public:
 	void setFile(const QString &file);
 
 	// sorting functions
-	static bool artistLessThan (QUSongFile *s1, QUSongFile *s2)   { return QString::compare(s1->artist(), s2->artist(), Qt::CaseInsensitive) < 0; }
-	static bool titleLessThan (QUSongFile *s1, QUSongFile *s2)    { return QString::compare(s1->title(), s2->title(), Qt::CaseInsensitive) < 0; }
-	static bool languageLessThan (QUSongFile *s1, QUSongFile *s2) { return QString::compare(s1->language(), s2->language(), Qt::CaseInsensitive) < 0; }
-	static bool editionLessThan (QUSongFile *s1, QUSongFile *s2)  { return QString::compare(s1->edition(), s2->edition(), Qt::CaseInsensitive) < 0; }
-	static bool genreLessThan (QUSongFile *s1, QUSongFile *s2)    { return QString::compare(s1->genre(), s2->genre(), Qt::CaseInsensitive) < 0; }
-	static bool yearLessThan (QUSongFile *s1, QUSongFile *s2)     { return QString::compare(s1->year(), s2->year(), Qt::CaseInsensitive) < 0; }
-	static bool creatorLessThan (QUSongFile *s1, QUSongFile *s2)  { return QString::compare(s1->creator(), s2->creator(), Qt::CaseInsensitive) < 0; }
+	static bool artistLessThan (QUSongFile *s1, QUSongFile *s2);
+	static bool titleLessThan (QUSongFile *s1, QUSongFile *s2);
+	static bool languageLessThan (QUSongFile *s1, QUSongFile *s2);
+	static bool editionLessThan (QUSongFile *s1, QUSongFile *s2);
+	static bool genreLessThan (QUSongFile *s1, QUSongFile *s2);
+	static bool yearLessThan (QUSongFile *s1, QUSongFile *s2);
+	static bool creatorLessThan (QUSongFile *s1, QUSongFile *s2);
 
-	static bool hasMp3LessThan (QUSongFile *s1, QUSongFile *s2)         { return !s1->hasMp3() && s2->hasMp3(); }
-	static bool hasCoverLessThan (QUSongFile *s1, QUSongFile *s2)       { return !s1->hasCover() && s2->hasCover(); }
-	static bool hasBackgroundLessThan (QUSongFile *s1, QUSongFile *s2)  { return !s1->hasBackground() && s2->hasBackground(); }
-	static bool hasVideoLessThan (QUSongFile *s1, QUSongFile *s2)       { return !s1->hasVideo() && s2->hasVideo(); }
+	static bool pathLessThan (QUSongFile *s1, QUSongFile *s2);
+	static bool filePathLessThan (QUSongFile *s1, QUSongFile *s2);
+	static bool relativeFilePathLessThan (QUSongFile *s1, QUSongFile *s2);
+
+	static bool hasMp3LessThan (QUSongFile *s1, QUSongFile *s2);
+	static bool hasCoverLessThan (QUSongFile *s1, QUSongFile *s2);
+	static bool hasBackgroundLessThan (QUSongFile *s1, QUSongFile *s2);
+	static bool hasVideoLessThan (QUSongFile *s1, QUSongFile *s2);
 
 	static QString withoutUnsupportedCharacters (const QString &text);
 
@@ -114,6 +121,8 @@ public slots:
 
 	QString dir() const {return _fi.dir().dirName();}
 	QString path() const {return _fi.path();}
+	QString filePath() const {return _fi.filePath();}
+	QString relativeFilePath() const;
 	QString txt() const {return _fi.fileName();}
 
 	bool hasMp3() const;

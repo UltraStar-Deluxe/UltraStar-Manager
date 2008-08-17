@@ -39,6 +39,34 @@ void QUSongFile::setFile(const QString &file) {
 	updateCache();
 }
 
+/* SORTING FUNCTIONS BEGIN */
+
+bool QUSongFile::artistLessThan (QUSongFile *s1, QUSongFile *s2)   { return QString::compare(s1->artist(), s2->artist(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::titleLessThan (QUSongFile *s1, QUSongFile *s2)    { return QString::compare(s1->title(), s2->title(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::languageLessThan (QUSongFile *s1, QUSongFile *s2) { return QString::compare(s1->language(), s2->language(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::editionLessThan (QUSongFile *s1, QUSongFile *s2)  { return QString::compare(s1->edition(), s2->edition(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::genreLessThan (QUSongFile *s1, QUSongFile *s2)    { return QString::compare(s1->genre(), s2->genre(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::yearLessThan (QUSongFile *s1, QUSongFile *s2)     { return QString::compare(s1->year(), s2->year(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::creatorLessThan (QUSongFile *s1, QUSongFile *s2)  { return QString::compare(s1->creator(), s2->creator(), Qt::CaseInsensitive) < 0; }
+
+bool QUSongFile::pathLessThan (QUSongFile *s1, QUSongFile *s2)             { return QString::compare(s1->path(), s2->path(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::filePathLessThan (QUSongFile *s1, QUSongFile *s2)         { return QString::compare(s1->filePath(), s2->filePath(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::relativeFilePathLessThan (QUSongFile *s1, QUSongFile *s2) { return QString::compare(s1->relativeFilePath(), s2->relativeFilePath(), Qt::CaseInsensitive) < 0; }
+
+bool QUSongFile::hasMp3LessThan (QUSongFile *s1, QUSongFile *s2)         { return !s1->hasMp3() && s2->hasMp3(); }
+bool QUSongFile::hasCoverLessThan (QUSongFile *s1, QUSongFile *s2)       { return !s1->hasCover() && s2->hasCover(); }
+bool QUSongFile::hasBackgroundLessThan (QUSongFile *s1, QUSongFile *s2)  { return !s1->hasBackground() && s2->hasBackground(); }
+bool QUSongFile::hasVideoLessThan (QUSongFile *s1, QUSongFile *s2)       { return !s1->hasVideo() && s2->hasVideo(); }
+
+/* SORTING FUNCTIONS END */
+
+/*!
+ * \returns The relative file path of this song to the base dir.
+ */
+QString QUSongFile::relativeFilePath() const {
+	return QUMainWindow::BaseDir.relativeFilePath(_fi.filePath());
+}
+
 /*!
  * Removes all characters of the given text that cannot be used in a file or
  * directory name.

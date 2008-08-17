@@ -47,6 +47,10 @@ void QUReportDialog::initReportList() {
 	reportList->addItem(new QUReportItem(new QUBooleanSongData(BACKGROUND_TAG)));
 	reportList->addItem(new QUReportItem(new QUBooleanSongData(VIDEO_TAG)));
 
+	reportList->addItem(new QUReportItem(new QUSongFileData("path")));
+	reportList->addItem(new QUReportItem(new QUSongFileData("filePath")));
+	reportList->addItem(new QUReportItem(new QUSongFileData("relativeFilePath")));
+
 	// custom tags
 	foreach(QString customTag, QUSongFile::customTags()) {
 		reportList->addItem(new QUReportItem(new QUSongTagData(customTag)));
@@ -69,7 +73,7 @@ void QUReportDialog::createHtmlReport() {
 
 		this->fetchDataAndSongs(reportData, songFiles);
 
-		QUHtmlReport report(songFiles, reportData, fi);
+		QUHtmlReport report(songFiles, reportData, fi, showBaseDirChk->checkState() == Qt::Checked);
 		report.save();
 
 		emit finished(QString(tr("Report created successfully to: \"%1\".")).arg(fi.filePath()), QU::information);
@@ -96,7 +100,7 @@ void QUReportDialog::createPlainTextReport() {
 
 		this->fetchDataAndSongs(reportData, songFiles);
 
-		QUPlainTextReport report(songFiles, reportData, fi);
+		QUPlainTextReport report(songFiles, reportData, fi, showBaseDirChk->checkState() == Qt::Checked);
 		report.save();
 
 		emit finished(QString(tr("Report created successfully to: \"%1\".")).arg(fi.filePath()), QU::information);

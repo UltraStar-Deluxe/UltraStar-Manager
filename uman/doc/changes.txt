@@ -45,6 +45,9 @@ NEW FEATURES
   > added as a new filter target
   > contents displayed in the last columns of the song tree
   > can be used for reports
+* show song paths in the report
+  > for each song in the table
+  > at first the path for the current songs directory
 
 BUG FIXES
 * minor change in object renaming

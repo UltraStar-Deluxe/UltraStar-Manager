@@ -1,10 +1,11 @@
 #include "QUPlainTextReport.h"
 #include "QUProgressDialog.h"
+#include "QUMainWindow.h"
 
 #include <QTextStream>
 
-QUPlainTextReport::QUPlainTextReport(const QList<QUSongFile*> &songFiles, const QList<QUAbstractReportData*> &reportDataList, const QFileInfo &fi, QObject *parent):
-	QUAbstractReport(songFiles, reportDataList, fi, parent)
+QUPlainTextReport::QUPlainTextReport(const QList<QUSongFile*> &songFiles, const QList<QUAbstractReportData*> &reportDataList, const QFileInfo &fi, bool showBaseDir, QObject *parent):
+	QUAbstractReport(songFiles, reportDataList, fi, showBaseDir, parent)
 {
 	QTextStream out(&_content);
 	out.setFieldAlignment(QTextStream::AlignLeft);
@@ -22,6 +23,9 @@ QUPlainTextReport::QUPlainTextReport(const QList<QUSongFile*> &songFiles, const 
 	}
 
 	// heading
+	if(showBaseDir)
+		out << QString(tr("Songs Path: \"%1\"")).arg(QUMainWindow::BaseDir.path()) << endl << endl;
+
 	int lineSize = 0;
 	for(int i = 0; i < reportDataList.size(); i++) {
 		out.setFieldWidth(0);

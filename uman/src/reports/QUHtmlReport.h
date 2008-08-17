@@ -7,12 +7,17 @@
 
 class QUHtmlReport: public QUAbstractReport {
 	Q_OBJECT
-	
+
 public:
-	QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAbstractReportData*> &reportDataList, const QFileInfo &fi, QObject *parent = 0);
-	
+	QUHtmlReport(
+			const QList<QUSongFile*> &songFiles,
+			const QList<QUAbstractReportData*> &reportDataList,
+			const QFileInfo &fi,
+			bool showBaseDir = false,
+			QObject *parent = 0);
+
 	virtual QString content() const;
-	
+
 private:
 	QDomDocument _report;
 };

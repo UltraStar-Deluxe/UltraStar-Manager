@@ -5,12 +5,17 @@
 
 class QUPlainTextReport: public QUAbstractReport {
 	Q_OBJECT
-	
+
 public:
-	QUPlainTextReport(const QList<QUSongFile*> &songFiles, const QList<QUAbstractReportData*> &reportDataList, const QFileInfo &fi, QObject *parent = 0);
-	
+	QUPlainTextReport(
+			const QList<QUSongFile*> &songFiles,
+			const QList<QUAbstractReportData*> &reportDataList,
+			const QFileInfo &fi,
+			bool showBaseDir = false,
+			QObject *parent = 0);
+
 	virtual QString content() const;
-	
+
 private:
 	QString _content;
 };

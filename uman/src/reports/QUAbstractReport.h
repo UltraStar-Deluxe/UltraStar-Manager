@@ -11,17 +11,23 @@
 
 class QUAbstractReport: public QObject {
 	Q_OBJECT
-	
+
 public:
-	QUAbstractReport(const QList<QUSongFile*> &songFiles, const QList<QUAbstractReportData*> &reportDataList, const QFileInfo &fi, QObject *parent = 0);
-	
+	QUAbstractReport(
+			const QList<QUSongFile*> &songFiles,
+			const QList<QUAbstractReportData*> &reportDataList,
+			const QFileInfo &fi,
+			bool showBaseDir = false,
+			QObject *parent = 0);
+
 	virtual QString content() const = 0;
 	void save();
-	
+
 protected:
 	QList<QUAbstractReportData*> _reportDataList;
-	QList<QUSongFile*> _songFiles;
-	QFileInfo _fi;
+	QList<QUSongFile*>           _songFiles;
+	QFileInfo                    _fi;
+	bool                         _showBaseDir;
 };
 
 #endif /*QUABSTRACTREPORT_H_*/

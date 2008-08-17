@@ -1,16 +1,18 @@
 #include "QUHtmlReport.h"
 #include "QUMonty.h"
 #include "QUProgressDialog.h"
+#include "QUMainWindow.h"
 
 #include <QDomNodeList>
 
-QUHtmlReport::QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAbstractReportData*> &reportDataList, const QFileInfo &fi, QObject *parent):
-	QUAbstractReport(songFiles, reportDataList, fi, parent)
+QUHtmlReport::QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAbstractReportData*> &reportDataList, const QFileInfo &fi, bool showBaseDir, QObject *parent):
+	QUAbstractReport(songFiles, reportDataList, fi, showBaseDir, parent)
 {
 	QDomElement html = _report.createElement("html");
 	QDomElement head = _report.createElement("head");
 	QDomElement title = _report.createElement("title");
 	QDomElement body = _report.createElement("body");
+	QDomElement div = _report.createElement("div");
 	QDomElement table = _report.createElement("table");
 
 	_report.appendChild(html);
@@ -18,11 +20,14 @@ QUHtmlReport::QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAb
 	html.appendChild(head);
 	html.appendChild(body);
 	head.appendChild(title);
+	if(showBaseDir) body.appendChild(div);
 	body.appendChild(table);
 
 	title.appendChild(_report.createTextNode(tr("UltraStar Manager - Song Report")));
 
 	// header
+	div.appendChild(_report.createTextNode(QString(tr("Songs Path: \"%1\"")).arg(QUMainWindow::BaseDir.path())));
+
 	table.appendChild(_report.createElement("tr"));
 
 	foreach(QUAbstractReportData *rd, reportDataList) {
