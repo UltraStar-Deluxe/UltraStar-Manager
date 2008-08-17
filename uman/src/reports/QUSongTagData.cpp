@@ -2,7 +2,7 @@
 
 QUSongTagData::QUSongTagData(const QString &tag, QObject *parent): QUAbstractReportData(parent) {
 	_tag = tag;
-	
+
 	if(QString::compare(_tag, ARTIST_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/user.png"));
 		this->setDescription(tr("Artist"));
@@ -24,6 +24,9 @@ QUSongTagData::QUSongTagData(const QString &tag, QObject *parent): QUAbstractRep
 	} else if(QString::compare(_tag, CREATOR_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/creator.png"));
 		this->setDescription(tr("Creator"));
+	} else if(QUSongFile::customTags().contains(tag, Qt::CaseInsensitive)) {
+//		this->setIcon(QIcon(":/types/creator.png"));
+		this->setDescription(tag);
 	}
 }
 
@@ -42,8 +45,10 @@ QString QUSongTagData::textData(QUSongFile *song) {
 		return song->year();
 	if(QString::compare(_tag, CREATOR_TAG, Qt::CaseInsensitive) == 0)
 		return song->creator();
-	else
-		return QString();
+	if(QUSongFile::customTags().contains(_tag, Qt::CaseInsensitive))
+		return song->customTag(_tag);
+
+	return QString();
 }
 
 QString QUSongTagData::headerTextData() {
@@ -53,7 +58,7 @@ QString QUSongTagData::headerTextData() {
 void QUSongTagData::sort(QList<QUSongFile*> &songs) {
 	if(this->next())
 		this->next()->sort(songs);
-	
+
 	if(QString::compare(_tag, ARTIST_TAG, Qt::CaseInsensitive) == 0)
 		qStableSort(songs.begin(), songs.end(), QUSongFile::artistLessThan);
 	else if(QString::compare(_tag, TITLE_TAG, Qt::CaseInsensitive) == 0)
@@ -68,4 +73,6 @@ void QUSongTagData::sort(QList<QUSongFile*> &songs) {
 		qStableSort(songs.begin(), songs.end(), QUSongFile::yearLessThan);
 	else if(QString::compare(_tag, CREATOR_TAG, Qt::CaseInsensitive) == 0)
 		qStableSort(songs.begin(), songs.end(), QUSongFile::creatorLessThan);
+
+	// TODO: sort custom tag columns
 }

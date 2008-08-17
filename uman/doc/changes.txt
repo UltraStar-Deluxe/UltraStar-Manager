@@ -19,7 +19,7 @@ NEW FEATURES
   > Songs/Artist/Title
   > Songs/Edition/Artist - Title
   > Songs/Genre/Title - Artist
-* new preview window added
+* new database info window/dock added
   > displays database statistics, e.g. song count
   > shows ID3 tag information of current audio file
   > ID3 tag status bar information removed
@@ -27,6 +27,7 @@ NEW FEATURES
   > shows recognized file types (you'll need to expand that node with a
 	  double-click)
 * new file type now recognized as song text "*.kar"
+  > although not supported by UltraStar Deluxe
 * new column in song tree which indicates whether there are multiple
   song text files in one folder
 * manage song playlists
@@ -43,6 +44,7 @@ NEW FEATURES
   > use them as sources for rename tasks (the blue entries in the sources combo box)
   > added as a new filter target
   > contents displayed in the last columns of the song tree
+  > can be used for reports
 
 BUG FIXES
 * minor change in object renaming
@@ -64,6 +66,7 @@ KNOWN BUGS (to fix)
   > "Farin Urlaub - Unter - Wasser" :) (regard the blanks around the hyphen!)
 * you cannot obtain a tick in the second and third column if the title/artist
   contains "illegal" characters like '?'
+* you cannot sort after a custom tag column in the report
 
 TODO (for 1.7.0)
 * get cover picture
@@ -79,22 +82,17 @@ TODO (for 1.7.0)
 * enable the user to append any custom []-tag to a file/folder
   > manage these custom/unknown []-tags
   > available through context menu? (list []-tags, ...)
-* show supported audio/video files somewhere
-* made change path tasks exclusive to change folder tasks
-  > redesign the order of these tasks
 * filter log entries
   > button for "clear"
 * make column tests in 1 and 2 editable
   > according to renaming style of the user
 * make visible status of columns in song tree saveable
   > could lead to more (by default invisible) columns
-* test UltraStar for "kar" as valid song text file ending
 * enable the user to choose which type of song text file of a folder
   should be selected
   > would be useful for selecting all karaoke files in each folder
 * new menu entries for "add rename task" and "edit rename tasks"
   > maybe custom menu entries for each "dock"?!
-* check whether UltraStar looks in subdirectories of "Playlists" for playlists
 * add to playlist context menu "remove invalid entries"
 
 NICE TO HAVE (but not necessary in 1.7.0)
