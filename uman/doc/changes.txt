@@ -54,6 +54,7 @@ NEW FEATURES
   against "Artist - Title" in the appropriate song tree column
 * tooltips for "unused files" and "multiple songs" column added
   > displays the files affected
+* Monty talks now in a white speech bubble.
 
 BUG FIXES
 * minor change in object renaming
@@ -90,7 +91,6 @@ TODO (for 1.7.0)
   > from amazon ;)
 * header/footer for reports
 * detect and handle duplicates
-* add song path to report
 * re-design filter categories
   > Apply more than one filter?
 * new column if tags contain characters which cannot be used in files/folders
@@ -110,6 +110,9 @@ TODO (for 1.7.0)
 * new menu entries for "add rename task" and "edit rename tasks"
   > maybe custom menu entries for each "dock"?!
 * add to playlist context menu "remove invalid entries"
+* scriptable "ID3 tag tasks"
+  > custom mapping for "ID3 tag" to "Song tag"
+  > could be used to map "Album" from MP3 zu custom #ALBUM tag
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title

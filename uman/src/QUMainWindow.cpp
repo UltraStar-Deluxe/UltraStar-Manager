@@ -287,6 +287,7 @@ void QUMainWindow::initMonty() {
 	helpLbl->setText(monty->welcomeMsg(_songs.size()));
 
 	connect(hideMontyBtn, SIGNAL(clicked()), helpFrame, SLOT(hide()));
+	connect(talkMontyBtn, SIGNAL(clicked()), this, SLOT(montyTalk()));
 
 	if(!actionAllowMonty->isChecked())
 		helpFrame->hide();

@@ -98,35 +98,33 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	r.setMinimal(true);
 
 	// create a pattern without any folder tags: [SC], [VIDEO], a.s.o.
-	// TOFIX: Fix bug for "Die Ärzte - Der - Titel"
 	QString pattern(song()->songFileInfo().dir().dirName().remove(r).trimmed());
 	QString toolTip = "\"%2\" %3 \"%1\"";
+	QString part1, part2;
 
-	if(QString::compare(QUSongFile::withoutUnsupportedCharacters(song()->artist()), pattern.section(" - ", 0, 0), Qt::CaseSensitive) == 0)
+	/* artist column */
+	part1 = QUSongFile::withoutUnsupportedCharacters(song()->artist());
+	part2 = QUSongFile::withoutUnsupportedCharacters(pattern.section(" - ", 0, 0));
+
+	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
 		this->setTick(ARTIST_COLUMN);
-	else if(QString::compare(QUSongFile::withoutUnsupportedCharacters(song()->artist()), pattern.section(" - ", 0, 0), Qt::CaseInsensitive) == 0)
-		this->setTick(ARTIST_COLUMN, true, toolTip
-				.arg(QUSongFile::withoutUnsupportedCharacters(song()->artist()))
-				.arg(pattern.section(" - ", 0, 0))
-				.arg(QObject::trUtf8(CHAR_UTF8_APPROX)));
+	else if(QString::compare(part1, part2, Qt::CaseInsensitive) == 0)
+		this->setTick(ARTIST_COLUMN, true, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_APPROX)));
 	else
-		this->setCross(ARTIST_COLUMN, false, toolTip
-				.arg(QUSongFile::withoutUnsupportedCharacters(song()->artist()))
-				.arg(pattern.section(" - ", 0, 0))
-				.arg(QObject::trUtf8(CHAR_UTF8_NEQUAL)));
+		this->setCross(ARTIST_COLUMN, false, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_NEQUAL)));
 
-	if(QString::compare(QUSongFile::withoutUnsupportedCharacters(song()->title()), pattern.section(" - ", 1), Qt::CaseSensitive) == 0)
+	/* title column */
+	part1 = QUSongFile::withoutUnsupportedCharacters(song()->title());
+	part2 = QUSongFile::withoutUnsupportedCharacters(pattern.section(" - ", 1));
+
+	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
 		this->setTick(TITLE_COLUMN);
-	else if(QString::compare(QUSongFile::withoutUnsupportedCharacters(song()->title()), pattern.section(" - ", 1), Qt::CaseInsensitive) == 0)
-		this->setTick(TITLE_COLUMN, true, toolTip
-				.arg(QUSongFile::withoutUnsupportedCharacters(song()->title()))
-				.arg(pattern.section(" - ", 1))
-				.arg(QObject::trUtf8(CHAR_UTF8_APPROX)));
+	else if(QString::compare(part1, part2, Qt::CaseInsensitive) == 0)
+		this->setTick(TITLE_COLUMN, true, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_APPROX)));
 	else
-		this->setCross(TITLE_COLUMN, false, toolTip
-				.arg(QUSongFile::withoutUnsupportedCharacters(song()->title()))
-				.arg(pattern.section(" - ", 1))
-				.arg(QObject::trUtf8(CHAR_UTF8_NEQUAL)));
+		this->setCross(TITLE_COLUMN, false, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_NEQUAL)));
+
+	/* file-related columns */
 
 	     if(song()->hasMp3())     this->setTick(MP3_COLUMN);
 	else if(song()->mp3() != N_A) this->setCross(MP3_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->mp3()));
@@ -143,6 +141,8 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	     if(song()->hasVideo())     this->setTick(VIDEO_COLUMN);
 	else if(song()->video() != N_A) this->setCross(VIDEO_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->video()));
 	else                            this->setCross(VIDEO_COLUMN);
+
+	/* other tag columns */
 
 	this->setText(LANGUAGE_COLUMN, song()->language());
 	this->setText(EDITION_COLUMN,  song()->edition());

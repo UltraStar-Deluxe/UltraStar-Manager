@@ -5,6 +5,16 @@
     <file>monty/normal.png</file>
     <file>monty/seated.png</file>
   </qresource>
+  <qresource prefix="/bubble" >
+    <file>speech8.png</file>
+    <file>speech1.png</file>
+    <file>speech2.png</file>
+    <file>speech3.png</file>
+    <file>speech4.png</file>
+    <file>speech5.png</file>
+    <file>speech6.png</file>
+    <file>speech7.png</file>
+  </qresource>
   <qresource prefix="/bullets" >
     <file>arrow_down_small.png</file>
     <file>bullet_star.png</file>
@@ -17,6 +27,7 @@
     <file>playlist_to.png</file>
     <file>text_edit.png</file>
     <file>tasks.png</file>
+    <file>eye.png</file>
     <file>auto_save.png</file>
     <file>bin.png</file>
     <file>folder_page.png</file>
