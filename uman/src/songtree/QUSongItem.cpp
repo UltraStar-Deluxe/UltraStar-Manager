@@ -27,6 +27,7 @@ void QUSongItem::clearContents() {
 	for(int i = 0; i < this->columnCount(); i++) {
 		this->setIcon(i, QIcon());
 		this->setTextColor(i, Qt::black);
+		this->setToolTip(i, "");
 	}
 }
 
@@ -173,13 +174,11 @@ void QUSongItem::updateAsTxt() {
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/text.png"));
 
 	if(QString::compare(this->text(FOLDER_COLUMN), song()->songFileInfo().fileName(), Qt::CaseInsensitive) != 0) {
-		this->setTextColor(FOLDER_COLUMN, Qt::gray); // unnecessary song text file, not used
-//		QFont f(this->font(FOLDER_COLUMN));
-//		f.setStrikeOut(true);
-//		this->setFont(FOLDER_COLUMN, f);
+		// unnecessary song text file, not used
+		this->setTextColor(FOLDER_COLUMN, Qt::gray);
 
 		// Show that there are multiple songs in this folder available.
-		(dynamic_cast<QUSongItem*>(this->parent()))->showMultipleSongsIcon();
+		(dynamic_cast<QUSongItem*>(this->parent()))->showMultipleSongsIcon(this->text(FOLDER_COLUMN));
 	} else {
 		this->setTextColor(FOLDER_COLUMN, Qt::blue);
 	}
@@ -194,7 +193,7 @@ void QUSongItem::updateAsMp3() {
 		this->setIcon(MP3_COLUMN, QIcon(":/marks/link.png"));
 	else {
 		this->setTextColor(FOLDER_COLUMN, Qt::gray); // unused mp3
-		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon();
+		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
 	}
 }
 
@@ -217,7 +216,7 @@ void QUSongItem::updateAsPicture() {
 
 	if(!used) {
 		this->setTextColor(FOLDER_COLUMN, Qt::gray);
-		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon();
+		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
 	}
 }
 
@@ -230,7 +229,7 @@ void QUSongItem::updateAsVideo() {
 		this->setIcon(VIDEO_COLUMN, QIcon(":/marks/link.png"));
 	else {
 		this->setTextColor(FOLDER_COLUMN, Qt::gray);
-		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon();
+		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
 	}
 }
 
@@ -240,18 +239,30 @@ void QUSongItem::updateAsUnknown() {
 	f.setStrikeOut(true);
 	this->setFont(FOLDER_COLUMN, f);
 
-	(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon();
+	(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
 }
 
-void QUSongItem::showUnusedFilesIcon() {
+void QUSongItem::showUnusedFilesIcon(QString fileName) {
 	this->setIcon(UNUSED_FILES_COLUMN, QIcon(":/types/unused_files.png"));
+
+	if(this->toolTip(UNUSED_FILES_COLUMN).isEmpty())
+		this->setToolTip(UNUSED_FILES_COLUMN, QObject::tr("Unused files found:")); // headline for the tooltip
+
+	if(!fileName.isEmpty())
+		this->setToolTip(UNUSED_FILES_COLUMN, QString("%1\n* %2").arg(this->toolTip(UNUSED_FILES_COLUMN)).arg(fileName));
 
 	// used for sorting, should be smaller than zero
 	this->setData(UNUSED_FILES_COLUMN, Qt::UserRole, QVariant(-1));
 }
 
-void QUSongItem::showMultipleSongsIcon() {
+void QUSongItem::showMultipleSongsIcon(QString fileName) {
 	this->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/text_stack.png"));
+
+	if(this->toolTip(MULTIPLE_SONGS_COLUMN).isEmpty())
+		this->setToolTip(MULTIPLE_SONGS_COLUMN, QString(QObject::tr("Multiple songs found:\n* %1 (active)")).arg(song()->songFileInfo().fileName())); // headline for the tooltip
+
+	if(!fileName.isEmpty())
+		this->setToolTip(MULTIPLE_SONGS_COLUMN, QString("%1\n* %2").arg(this->toolTip(MULTIPLE_SONGS_COLUMN)).arg(fileName));
 
 	// used for sorting, should be smaller than zero
 	this->setData(MULTIPLE_SONGS_COLUMN, Qt::UserRole, QVariant(-1));

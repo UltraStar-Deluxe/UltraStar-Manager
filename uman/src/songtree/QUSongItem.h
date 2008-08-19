@@ -41,8 +41,8 @@ public:
 	QUSongFile* song() const { return _song; }
 	bool isToplevel() const { return _isToplevel; }
 
-	void showUnusedFilesIcon();
-	void showMultipleSongsIcon();
+	void showUnusedFilesIcon(QString fileName = "");
+	void showMultipleSongsIcon(QString fileName = "");
 
 	virtual bool operator< (const QTreeWidgetItem &other) const;
 

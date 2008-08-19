@@ -52,6 +52,8 @@ NEW FEATURES
   > gives the user more infos about the state of a song
 * name of folder is now compared without illegal characters (e.g. '?', ':')
   against "Artist - Title" in the appropriate song tree column
+* tooltips for "unused files" and "multiple songs" column added
+  > displays the files affected
 
 BUG FIXES
 * minor change in object renaming
