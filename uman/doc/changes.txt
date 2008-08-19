@@ -48,6 +48,10 @@ NEW FEATURES
 * show song paths in the report
   > for each song in the table
   > at first the path for the current songs directory
+* tooltips for (blue) ticks/crosses in the song tree added
+  > gives the user more infos about the state of a song
+* name of folder is now compared without illegal characters (e.g. '?', ':')
+  against "Artist - Title" in the appropriate song tree column
 
 BUG FIXES
 * minor change in object renaming
@@ -63,15 +67,22 @@ BUG FIXES
   > double-click on them to make them active (as before)
 * tags which are not upper-case (e.g. "#artist") are now recognized correctly
   > will be saved upper-case
-
-KNOWN BUGS (to fix)
-* artist/title detection works not correctly for more than one hyphen
+* artist/title detection works now correctly for more than one hyphen
   > "Farin Urlaub - Unter - Wasser" :) (regard the blanks around the hyphen!)
-* you cannot obtain a tick in the second and third column if the title/artist
-  contains "illegal" characters like '?'
+  > the first occurence of " - " splits the artist from the title now
+  
+KNOWN BUGS (to fix)
+
 * you cannot sort after a custom tag column in the report
 
 TODO (for 1.7.0)
+* note somewhere the origin of the icons/graphics
+  > Diagona Icons (http://www.pinvoke.com/)
+	>>> http://creativecommons.org/licenses/by/3.0/
+	> Fugue Icons (http://www.pinvoke.com/)
+	>>> http://creativecommons.org/licenses/by/3.0/
+	> Silk Icons (http://www.famfamfam.com/)
+	> 4 Monty Icons (http://fasticon.com/freeware/, http://dirceuveiga.com.br/eg/)
 * get cover picture
   > extract cover from MP3
   > from amazon ;)

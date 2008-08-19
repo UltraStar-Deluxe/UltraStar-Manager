@@ -2,6 +2,7 @@
 #define QUSONGITEM_H_
 
 #include <QTreeWidgetItem>
+#include "QU.h"
 #include "QUSongFile.h"
 
 #define FOLDER_COLUMN          0
@@ -50,8 +51,8 @@ private:
 	bool _isToplevel;
 
 	void clearContents();
-	void setTick(int column, bool isBlue = false); //!< used to set special user data for sorting which is not shown
-	void setCross(int column, bool isBlue = false); //!< used to set special user data for sorting which is not shown
+	void setTick(int column, bool isBlue = false, QString toolTip = "");
+	void setCross(int column, bool isBlue = false, QString toolTip = "");
 };
 
 #endif /*QUSONGITEM_H_*/

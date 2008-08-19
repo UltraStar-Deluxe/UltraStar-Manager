@@ -98,10 +98,6 @@ void QURenameTask::startOn(QUSongFile *song) {
 	// remove unsupported characters (windows only)
 	schema = QUSongFile::withoutUnsupportedCharacters(schema);
 
-	// you cannot use trailing dots
-//	while(schema.endsWith("."))
-//		schema.remove(schema.length() - 1, 1);
-
 	// you must not use trailing spaces - could corrupt the file system
 	schema = schema.trimmed();
 

@@ -62,7 +62,7 @@ void QUSongTree::initHorizontalHeader() {
 	int i = 0;
 	foreach(QString customTag, QUSongFile::customTags()) {
 		header->setText(FIRST_CUSTOM_TAG_COLUMN + i, customTag);
-//		header->setIcon(FIRST_CUSTOM_TAG_COLUMN + i, QIcon(":/types/comment.png"));
+		header->setIcon(FIRST_CUSTOM_TAG_COLUMN + i, QIcon(":/bullets/bullet_star.png"));
 		i++;
 	}
 

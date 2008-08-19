@@ -12,8 +12,10 @@ QUCustomTagsDialog::QUCustomTagsDialog(QWidget *parent): QDialog(parent) {
 
 	tagList->addItems(QUSongFile::customTags());
 
-	for(int row = 0; row < tagList->count(); row++)
+	for(int row = 0; row < tagList->count(); row++) {
 		tagList->item(row)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsDragEnabled);
+		tagList->item(row)->setIcon(QIcon(":/bullets/bullet_star.png"));
+	}
 
 	removeBtn->setEnabled(tagList->count() > 0);
 }
@@ -31,7 +33,7 @@ void QUCustomTagsDialog::save() {
 }
 
 void QUCustomTagsDialog::addTag() {
-	QListWidgetItem *newItem = new QListWidgetItem(tr("New Custom Tag"));
+	QListWidgetItem *newItem = new QListWidgetItem(QIcon(":/bullets/bullet_star.png"), tr("New Custom Tag"));
 	newItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsDragEnabled);
 
 	tagList->addItem(newItem);

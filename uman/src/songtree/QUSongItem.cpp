@@ -99,25 +99,49 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	// create a pattern without any folder tags: [SC], [VIDEO], a.s.o.
 	// TOFIX: Fix bug for "Die Ärzte - Der - Titel"
 	QString pattern(song()->songFileInfo().dir().dirName().remove(r).trimmed());
+	QString toolTip = "\"%2\" %3 \"%1\"";
 
 	if(QString::compare(QUSongFile::withoutUnsupportedCharacters(song()->artist()), pattern.section(" - ", 0, 0), Qt::CaseSensitive) == 0)
 		this->setTick(ARTIST_COLUMN);
 	else if(QString::compare(QUSongFile::withoutUnsupportedCharacters(song()->artist()), pattern.section(" - ", 0, 0), Qt::CaseInsensitive) == 0)
-		this->setTick(ARTIST_COLUMN, true);
+		this->setTick(ARTIST_COLUMN, true, toolTip
+				.arg(QUSongFile::withoutUnsupportedCharacters(song()->artist()))
+				.arg(pattern.section(" - ", 0, 0))
+				.arg(QObject::trUtf8(CHAR_UTF8_APPROX)));
 	else
-		this->setCross(ARTIST_COLUMN);
+		this->setCross(ARTIST_COLUMN, false, toolTip
+				.arg(QUSongFile::withoutUnsupportedCharacters(song()->artist()))
+				.arg(pattern.section(" - ", 0, 0))
+				.arg(QObject::trUtf8(CHAR_UTF8_NEQUAL)));
 
-	if(QString::compare(QUSongFile::withoutUnsupportedCharacters(song()->title()), pattern.section(" - ", 1, 1), Qt::CaseSensitive) == 0)
+	if(QString::compare(QUSongFile::withoutUnsupportedCharacters(song()->title()), pattern.section(" - ", 1), Qt::CaseSensitive) == 0)
 		this->setTick(TITLE_COLUMN);
-	else if(QString::compare(QUSongFile::withoutUnsupportedCharacters(song()->title()), pattern.section(" - ", 1, 1), Qt::CaseInsensitive) == 0)
-		this->setTick(TITLE_COLUMN, true);
+	else if(QString::compare(QUSongFile::withoutUnsupportedCharacters(song()->title()), pattern.section(" - ", 1), Qt::CaseInsensitive) == 0)
+		this->setTick(TITLE_COLUMN, true, toolTip
+				.arg(QUSongFile::withoutUnsupportedCharacters(song()->title()))
+				.arg(pattern.section(" - ", 1))
+				.arg(QObject::trUtf8(CHAR_UTF8_APPROX)));
 	else
-		this->setCross(TITLE_COLUMN);
+		this->setCross(TITLE_COLUMN, false, toolTip
+				.arg(QUSongFile::withoutUnsupportedCharacters(song()->title()))
+				.arg(pattern.section(" - ", 1))
+				.arg(QObject::trUtf8(CHAR_UTF8_NEQUAL)));
 
-	if(song()->hasMp3())        this->setTick(MP3_COLUMN);        else if(song()->mp3() != N_A) this->setCross(MP3_COLUMN, true);               else this->setCross(MP3_COLUMN);
-	if(song()->hasCover())      this->setTick(COVER_COLUMN);      else if(song()->cover() != N_A) this->setCross(COVER_COLUMN, true);           else this->setCross(COVER_COLUMN);
-	if(song()->hasBackground()) this->setTick(BACKGROUND_COLUMN); else if(song()->background() != N_A) this->setCross(BACKGROUND_COLUMN, true); else this->setCross(BACKGROUND_COLUMN);
-	if(song()->hasVideo())      this->setTick(VIDEO_COLUMN);      else if(song()->video() != N_A) this->setCross(VIDEO_COLUMN, true);           else this->setCross(VIDEO_COLUMN);
+	     if(song()->hasMp3())     this->setTick(MP3_COLUMN);
+	else if(song()->mp3() != N_A) this->setCross(MP3_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->mp3()));
+	else                          this->setCross(MP3_COLUMN);
+
+	     if(song()->hasCover())     this->setTick(COVER_COLUMN);
+	else if(song()->cover() != N_A) this->setCross(COVER_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->cover()));
+	else                            this->setCross(COVER_COLUMN);
+
+	     if(song()->hasBackground())     this->setTick(BACKGROUND_COLUMN);
+	else if(song()->background() != N_A) this->setCross(BACKGROUND_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->background()));
+	else                                 this->setCross(BACKGROUND_COLUMN);
+
+	     if(song()->hasVideo())     this->setTick(VIDEO_COLUMN);
+	else if(song()->video() != N_A) this->setCross(VIDEO_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->video()));
+	else                            this->setCross(VIDEO_COLUMN);
 
 	this->setText(LANGUAGE_COLUMN, song()->language());
 	this->setText(EDITION_COLUMN,  song()->edition());
@@ -233,7 +257,7 @@ void QUSongItem::showMultipleSongsIcon() {
 	this->setData(MULTIPLE_SONGS_COLUMN, Qt::UserRole, QVariant(-1));
 }
 
-void QUSongItem::setTick(int column, bool isBlue) {
+void QUSongItem::setTick(int column, bool isBlue, QString toolTip) {
 	if(isBlue) {
 		this->setIcon(column, QIcon(":/marks/tick_blue.png"));
 		// used for sorting, should be greater than a "cross" icon
@@ -243,9 +267,11 @@ void QUSongItem::setTick(int column, bool isBlue) {
 		// used for sorting, should be greater than a "cross" icon
 		this->setData(column, Qt::UserRole, QVariant(2));
 	}
+
+	this->setToolTip(column, toolTip);
 }
 
-void QUSongItem::setCross(int column, bool isBlue) {
+void QUSongItem::setCross(int column, bool isBlue, QString toolTip) {
 	if(isBlue) {
 		this->setIcon(column, QIcon(":/marks/cross_blue.png"));
 		// used for sorting, should be smaller than a "tick" icon
@@ -255,6 +281,8 @@ void QUSongItem::setCross(int column, bool isBlue) {
 		// used for sorting, should be smaller than a "tick" icon
 		this->setData(column, Qt::UserRole, QVariant(0));
 	}
+
+	this->setToolTip(column, toolTip);
 }
 
 /*!

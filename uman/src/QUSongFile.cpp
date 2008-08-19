@@ -78,7 +78,14 @@ QString QUSongFile::relativeFilePath() const {
 QString QUSongFile::withoutUnsupportedCharacters (const QString &text) {
 	QString cleanText = text;
 #ifdef Q_OS_WIN32
-	cleanText.remove(QRegExp("[\\\:\\*\\?\"\\|<>]"));
+	cleanText.remove(QRegExp("[\\\\:\\*\\?\"\\|<>]"));
+
+	// remove trailing dots
+	while(cleanText.endsWith("."))
+		cleanText.remove(cleanText.length() - 1, 1);
+
+	while (cleanText.startsWith("."))
+		cleanText.remove(0, 1);
 #endif
 	return cleanText;
 }

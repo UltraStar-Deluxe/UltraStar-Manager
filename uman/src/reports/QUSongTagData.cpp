@@ -25,7 +25,7 @@ QUSongTagData::QUSongTagData(const QString &tag, QObject *parent): QUAbstractRep
 		this->setIcon(QIcon(":/types/creator.png"));
 		this->setDescription(tr("Creator"));
 	} else if(QUSongFile::customTags().contains(tag, Qt::CaseInsensitive)) {
-//		this->setIcon(QIcon(":/types/creator.png"));
+		this->setIcon(QIcon(":/bullets/bullet_star.png"));
 		this->setDescription(tag);
 	}
 }

@@ -6,9 +6,8 @@
     <file>monty/seated.png</file>
   </qresource>
   <qresource prefix="/bullets" >
-    <file>bullet_arrow_down.png</file>
-    <file>bullet_arrow_up.png</file>
     <file>arrow_down_small.png</file>
+    <file>bullet_star.png</file>
     <file>arrow_up_small.png</file>
     <file>minus_small.png</file>
     <file>plus_small.png</file>

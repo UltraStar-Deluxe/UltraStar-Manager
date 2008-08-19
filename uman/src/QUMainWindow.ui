@@ -23,9 +23,9 @@
    <property name="geometry" >
     <rect>
      <x>0</x>
-     <y>48</y>
+     <y>47</y>
      <width>675</width>
-     <height>684</height>
+     <height>685</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2" >
@@ -357,6 +357,13 @@
                 </spacer>
                </item>
                <item>
+                <widget class="QPushButton" name="pushButton" >
+                 <property name="text" >
+                  <string>PushButton</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QPushButton" name="hideMontyBtn" >
                  <property name="text" >
                   <string>Hide</string>
@@ -386,9 +393,9 @@
            <property name="geometry" >
             <rect>
              <x>0</x>
-             <y>22</y>
-             <width>329</width>
-             <height>126</height>
+             <y>20</y>
+             <width>332</width>
+             <height>130</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" >
@@ -464,9 +471,9 @@
            <property name="geometry" >
             <rect>
              <x>0</x>
-             <y>22</y>
-             <width>329</width>
-             <height>151</height>
+             <y>20</y>
+             <width>332</width>
+             <height>153</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" >
@@ -633,9 +640,9 @@
            <property name="geometry" >
             <rect>
              <x>0</x>
-             <y>22</y>
-             <width>329</width>
-             <height>108</height>
+             <y>20</y>
+             <width>332</width>
+             <height>111</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout" >
@@ -676,8 +683,8 @@
            <property name="geometry" >
             <rect>
              <x>0</x>
-             <y>22</y>
-             <width>329</width>
+             <y>20</y>
+             <width>332</width>
              <height>16</height>
             </rect>
            </property>
@@ -704,9 +711,9 @@
            <property name="geometry" >
             <rect>
              <x>0</x>
-             <y>22</y>
-             <width>329</width>
-             <height>169</height>
+             <y>20</y>
+             <width>332</width>
+             <height>171</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" >
@@ -853,7 +860,7 @@
      <x>0</x>
      <y>0</y>
      <width>675</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAbout_Qt" >
@@ -936,7 +943,7 @@
    <property name="geometry" >
     <rect>
      <x>0</x>
-     <y>22</y>
+     <y>21</y>
      <width>675</width>
      <height>26</height>
     </rect>

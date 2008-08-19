@@ -58,7 +58,7 @@ void QUDetailsTable::initTagColumn() {
 	//this->setItem(21, 0, new QUTagItem(QIcon(":/types/comment.png"), tr("Comment")));
 	int i = 0;
 	foreach(QString customTag, QUSongFile::customTags()) {
-		this->setItem(21 + (i++), 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), customTag));
+		this->setItem(21 + (i++), 0, new QUTagItem(QIcon(":/bullets/bullet_star.png"), customTag));
 	}
 }
 

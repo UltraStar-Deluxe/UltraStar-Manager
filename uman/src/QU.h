@@ -3,6 +3,9 @@
 
 #include <QObject>
 
+#define CHAR_UTF8_APPROX "\xe2\x89\x88"
+#define CHAR_UTF8_NEQUAL "\xe2\x89\xa0"
+
 //! This class provides global flags and enumerations.
 class QU: QObject {
 	Q_OBJECT
