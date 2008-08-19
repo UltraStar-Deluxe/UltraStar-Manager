@@ -12,6 +12,10 @@
   <property name="windowTitle" >
    <string>Custom Tags</string>
   </property>
+  <property name="windowIcon" >
+   <iconset resource="images/uman.qrc" >
+    <normaloff>:/control/tag_custom.png</normaloff>:/control/tag_custom.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_3" >
    <property name="spacing" >
     <number>0</number>

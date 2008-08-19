@@ -201,14 +201,13 @@ void QUMainWindow::initMenu() {
 	tasksDock->toggleViewAction()->setIcon(QIcon(":/control/tasks.png"));
 	previewDock->toggleViewAction()->setIcon(QIcon(":/control/db_info.png"));
 	playlistDock->toggleViewAction()->setIcon(QIcon(":/control/playlist.png"));
-	eventsDock->toggleViewAction()->setIcon(QIcon(":/control/lightning.png"));
+	eventsDock->toggleViewAction()->setIcon(QIcon(":/control/log.png"));
 
-	this->toolBar->addSeparator();
-	this->toolBar->addAction(detailsDock->toggleViewAction());
-	this->toolBar->addAction(tasksDock->toggleViewAction());
-	this->toolBar->addAction(playlistDock->toggleViewAction());
-	this->toolBar->addAction(previewDock->toggleViewAction());
-	this->toolBar->addAction(eventsDock->toggleViewAction());
+	this->viewBar->addAction(detailsDock->toggleViewAction());
+	this->viewBar->addAction(tasksDock->toggleViewAction());
+	this->viewBar->addAction(playlistDock->toggleViewAction());
+	this->viewBar->addAction(previewDock->toggleViewAction());
+	this->viewBar->addAction(eventsDock->toggleViewAction());
 
 	this->menuView->addAction(detailsDock->toggleViewAction());
 	this->menuView->addAction(tasksDock->toggleViewAction());
@@ -216,8 +215,14 @@ void QUMainWindow::initMenu() {
 	this->menuView->addAction(previewDock->toggleViewAction());
 	this->menuView->addAction(eventsDock->toggleViewAction());
 
+	// insert toggle view actions for the toolbars
 	this->menuView->addSeparator();
-	this->menuView->addAction(this->toolBar->toggleViewAction());
+
+	QMenu *showToolbarMenu = this->menuView->addMenu(tr("Toolbars"));
+
+	showToolbarMenu->addAction(this->songsBar->toggleViewAction());
+	showToolbarMenu->addAction(this->viewBar->toggleViewAction());
+	showToolbarMenu->addAction(this->optionsBar->toggleViewAction());
 
 	actionFilter->setShortcut(QKeySequence::fromString("Ctrl+F"));
 

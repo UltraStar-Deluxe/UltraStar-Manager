@@ -1,7 +1,7 @@
 Wenn du einen Doppelklick in die Zelle machst, wo sich die Zeile für eine <i>Audio-Datei</i> und die <i>Audio-Spalte</i> kreuzen, kannst du sofort festlegen, dass der Song genau diese Audio-Datei unter UltraStar nutzen soll.<br><br>Die ganze Sache funktioniert auch für Cover, Hintergründe und Videos.
 Du kannst den Wert von fast allen Tags eines Songs bearbeiten, wenn du einen Song auswählst und einen Doppelklick in die gewünschte Zelle der <i>Detail-Tabelle</i> machst.
 Du kannst die Reihenfolge verändern, in der Tags in die Songdateien geschrieben werden.<br><br><i>Einstellungen > Tag-Speicher-Reihenfolge...</i>
-Hast du schon den <i>Aufgabenbereich</i> bemerkt? Wähle einfach die Aufgaben aus, die du erledigt haben möchtest, selektiere ein paar Songs und klicke auf den Knopf <i>Los!</i>.
+Hast du schon den <i>Aufgabenbereich</i> bemerkt? Wähle einfach die Aufgaben aus, die du erledigt haben möchtest, selektiere ein paar Songs und klicke auf den Knopf <i>Los!</i>.<br><br>Du kannst auch <i>Strg+R</i> drücken.
 Du kannst das Ereignisprotokoll verstecken, in dem du <i>Ansicht > Ereignisprotokoll</i> abwählst.<br><br>Das funktioniert auch mit den Songdetails und dem Aufgabenbereich.
 Soll ich irgendwas anderes sagen? Anregungen und Wünsche wirst du jederzeit auf unserer <a href="http://uman.sf.net">SourceForge-Projekt-Website</a> los.
 Einige Tags kann man nicht bearbeiten? Japs, das ist beabsichtigt. Einige Daten werden unverändert in die Songdateien zurückgeschrieben, z. B. GAP oder BPM.<br><br>Du kannst UltraStars eingebaute Editorfunktionen sehr gut dafür benutzen.

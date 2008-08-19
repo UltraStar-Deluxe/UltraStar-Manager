@@ -26,6 +26,8 @@
   <qresource prefix="/control" >
     <file>playlist_to.png</file>
     <file>text_edit.png</file>
+    <file>log.png</file>
+    <file>tag_custom.png</file>
     <file>tasks.png</file>
     <file>eye.png</file>
     <file>auto_save.png</file>

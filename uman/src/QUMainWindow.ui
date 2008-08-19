@@ -1121,17 +1121,17 @@
     </rect>
    </property>
   </widget>
-  <widget class="QToolBar" name="toolBar" >
+  <widget class="QToolBar" name="songsBar" >
    <property name="geometry" >
     <rect>
      <x>0</x>
      <y>21</y>
-     <width>912</width>
+     <width>193</width>
      <height>26</height>
     </rect>
    </property>
    <property name="windowTitle" >
-    <string>Toolbar</string>
+    <string>Songs</string>
    </property>
    <property name="movable" >
     <bool>true</bool>
@@ -1151,20 +1151,77 @@
    <attribute name="toolBarBreak" >
     <bool>false</bool>
    </attribute>
-   <addaction name="actionSaveSelected" />
-   <addaction name="actionSaveAll" />
-   <addaction name="actionAutoSave" />
    <addaction name="actionNewReport" />
    <addaction name="separator" />
-   <addaction name="actionShowRelativeSongPath" />
-   <addaction name="actionFilter" />
+   <addaction name="actionSaveSelected" />
+   <addaction name="actionSaveAll" />
+   <addaction name="separator" />
+   <addaction name="actionSendToPlaylist" />
    <addaction name="separator" />
    <addaction name="actionExpandAll" />
    <addaction name="actionCollapseAll" />
    <addaction name="actionRefreshSelected" />
+  </widget>
+  <widget class="QToolBar" name="optionsBar" >
+   <property name="geometry" >
+    <rect>
+     <x>193</x>
+     <y>21</y>
+     <width>164</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="windowTitle" >
+    <string>Options</string>
+   </property>
+   <property name="iconSize" >
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionAutoSave" />
    <addaction name="separator" />
    <addaction name="actionTagSaveOrder" />
    <addaction name="actionChangeSongDirectory" />
+   <addaction name="actionCustomTags" />
+   <addaction name="separator" />
+   <addaction name="actionLangEnglish" />
+   <addaction name="actionLangGerman" />
+  </widget>
+  <widget class="QToolBar" name="viewBar" >
+   <property name="geometry" >
+    <rect>
+     <x>357</x>
+     <y>21</y>
+     <width>555</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="windowTitle" >
+    <string>View</string>
+   </property>
+   <property name="iconSize" >
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionShowRelativeSongPath" />
+   <addaction name="actionFilter" />
+   <addaction name="separator" />
   </widget>
   <action name="actionQt" >
    <property name="text" >
@@ -1390,6 +1447,10 @@
    </property>
   </action>
   <action name="actionCustomTags" >
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/control/tag_custom.png</normaloff>:/control/tag_custom.png</iconset>
+   </property>
    <property name="text" >
     <string>Custom Tags...</string>
    </property>

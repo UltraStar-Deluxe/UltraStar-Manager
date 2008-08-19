@@ -55,6 +55,7 @@ NEW FEATURES
 * tooltips for "unused files" and "multiple songs" column added
   > displays the files affected
 * Monty talks now in a white speech bubble.
+* toolbar splitted in more toolbars
 
 BUG FIXES
 * minor change in object renaming
