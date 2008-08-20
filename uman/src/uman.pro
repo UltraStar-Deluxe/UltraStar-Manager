@@ -4,7 +4,8 @@ QT += core \
     gui \
     xml
 CONFIG += debug
-HEADERS += reports/QUSongFileData.h \
+HEADERS += songtree/QUColumnAction.h \
+    reports/QUSongFileData.h \
     QUCustomTagsDialog.h \
     playlist/QUPlaylistArea.h \
     playlist/QUPlaylistFile.h \
@@ -48,7 +49,8 @@ HEADERS += reports/QUSongFileData.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += reports/QUSongFileData.cpp \
+SOURCES += songtree/QUColumnAction.cpp \
+    reports/QUSongFileData.cpp \
     QUCustomTagsDialog.cpp \
     playlist/QUPlaylistArea.cpp \
     playlist/QUPlaylistFile.cpp \

@@ -30,7 +30,6 @@ public:
 	int hiddenItemsCount() const { return _hiddenItems.size(); }
 
 public slots:
-	void showContextMenu(const QPoint &point);
 	void refreshSelectedItems();
 	void resizeToContents();
 	void saveSelectedSongs();
@@ -47,6 +46,11 @@ private slots:
 	void deleteCurrentItem();
 	void sendSelectedSongsToPlaylist();
 
+	void showItemMenu(const QPoint &point);
+	void showHeaderMenu(const QPoint &point);
+
+	void toggleColumn(bool show, int index);
+
 protected:
 	virtual void keyPressEvent(QKeyEvent *event);
 
@@ -58,8 +62,6 @@ private:
 
 	bool copyFilesToSong(const QList<QUrl> &files, QUSongItem *item);
 	bool dropSongFiles(const QList<QUrl> &urls);
-
-	void fillContextMenu(QMenu &menu, const QPoint &point);
 };
 
 #endif /*QUSONGTREE_H_*/

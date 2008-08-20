@@ -56,6 +56,9 @@ NEW FEATURES
   > displays the files affected
 * Monty talks now in a white speech bubble.
 * toolbar splitted in more toolbars
+* context menu for song tree header added (right-click)
+  > show/hide various columns
+  > state of columns saved
 
 BUG FIXES
 * minor change in object renaming
@@ -103,13 +106,9 @@ TODO (for 1.7.0)
   > button for "clear"
 * make column tests in 1 and 2 editable
   > according to renaming style of the user
-* make visible status of columns in song tree saveable
-  > could lead to more (by default invisible) columns
 * enable the user to choose which type of song text file of a folder
   should be selected
   > would be useful for selecting all karaoke files in each folder
-* new menu entries for "add rename task" and "edit rename tasks"
-  > maybe custom menu entries for each "dock"?!
 * add to playlist context menu "remove invalid entries"
 * scriptable "ID3 tag tasks"
   > custom mapping for "ID3 tag" to "Song tag"

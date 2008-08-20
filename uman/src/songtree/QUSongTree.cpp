@@ -1,6 +1,7 @@
 #include "QUSongTree.h"
 #include "QUSongItem.h"
 #include "QUSongFile.h"
+#include "QUColumnAction.h"
 #include "QUMainWindow.h"
 #include "QUMessageBox.h"
 
@@ -11,6 +12,8 @@
 #include <QList>
 #include <QRegExp>
 #include <QByteArray>
+#include <QAction>
+#include <QHeaderView>
 
 #include "QUProgressDialog.h"
 
@@ -18,9 +21,14 @@
 
 QUSongTree::QUSongTree(QWidget *parent): QTreeWidget(parent) {
 	this->setAcceptDrops(true);
-	this->setContextMenuPolicy(Qt::CustomContextMenu);
 
-	connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
+	// enable context menu for items
+	this->setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showItemMenu(const QPoint&)));
+
+	// enable context menu for header
+	this->header()->setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(this->header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showHeaderMenu(const QPoint&)));
 }
 
 void QUSongTree::initHorizontalHeader() {
@@ -67,6 +75,9 @@ void QUSongTree::initHorizontalHeader() {
 	}
 
 	this->setHeaderItem(header);
+
+	QSettings settings;
+	this->header()->restoreState(settings.value("songTreeState", QVariant()).toByteArray());
 }
 
 bool QUSongTree::hasUnsavedChanges() const {
@@ -277,34 +288,61 @@ QStringList QUSongTree::mimeTypes() const {
 }
 
 /*!
- * Shows a context menu with actions for all selected items/songs.
+ * Appends actions to the menu according to the selected item/file.
  */
-void QUSongTree::showContextMenu(const QPoint &point) {
+void QUSongTree::showItemMenu(const QPoint &point) {
 	if(!this->itemAt(point))
 		return; // no item clicked
 
 	QMenu menu(this);
-
 	menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()), QKeySequence::fromString("F5"));
 	menu.addAction(QIcon(":/control/save.png"), tr("Save"), this, SLOT(saveSelectedSongs()), QKeySequence::fromString("Ctrl+S"));
 	menu.addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
 
-	this->fillContextMenu(menu, point);
+	QUSongItem *item = dynamic_cast<QUSongItem*>(this->currentItem());
+
+	if(item && !item->isToplevel()) {
+		menu.addSeparator();
+		menu.addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), QKeySequence::fromString("Del"));
+	}
 
 	menu.exec(this->mapToGlobal(point));
 }
 
 /*!
- * Appends actions to the menu according to the selected item/file.
+ * Enables the user to show/hide various columns.
  */
-void QUSongTree::fillContextMenu(QMenu &menu, const QPoint &point) {
-	QUSongItem *item = dynamic_cast<QUSongItem*>(this->currentItem());
+void QUSongTree::showHeaderMenu(const QPoint &point) {
+	QMenu menu(this);
+	QMenu customTagsMenu(tr("Custom Tags"), this);
 
-	if(!item || item->isToplevel())
-		return;
+	for(int i = 0; i < headerItem()->columnCount(); i++) {
+		if(headerItem()->text(i).isEmpty() or i == FOLDER_COLUMN)
+			continue;
+
+		QUColumnAction *a = new QUColumnAction(headerItem()->text(i), i); // save the logical index of this column
+		a->setChecked(!header()->isSectionHidden(i));
+
+		connect(a, SIGNAL(columnToggled(bool, int)), this, SLOT(toggleColumn(bool, int)));
+
+		if(QUSongFile::customTags().contains(a->text(), Qt::CaseInsensitive))
+			customTagsMenu.addAction(a);
+		else
+			menu.addAction(a);
+	}
 
 	menu.addSeparator();
-	menu.addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), QKeySequence::fromString("Del"));
+	menu.addMenu(&customTagsMenu);
+
+	menu.exec(this->mapToGlobal(point));
+}
+
+void QUSongTree::toggleColumn(bool show, int index) {
+	this->header()->setSectionHidden(index, !show);
+	this->resizeToContents();
+
+	QSettings settings;
+	settings.setValue("songTreeState", QVariant(header()->saveState()));
 }
 
 bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
