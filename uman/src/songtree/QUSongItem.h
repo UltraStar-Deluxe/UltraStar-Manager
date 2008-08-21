@@ -14,13 +14,15 @@
 #define VIDEO_COLUMN           6
 #define UNUSED_FILES_COLUMN    7
 #define MULTIPLE_SONGS_COLUMN  8
-#define LANGUAGE_COLUMN        9
-#define EDITION_COLUMN        10
-#define GENRE_COLUMN          11
-#define YEAR_COLUMN           12
-#define CREATOR_COLUMN        13
+#define ARTIST_COLUMN_EX       9
+#define TITLE_COLUMN_EX       10
+#define LANGUAGE_COLUMN       11
+#define EDITION_COLUMN        12
+#define GENRE_COLUMN          13
+#define YEAR_COLUMN           14
+#define CREATOR_COLUMN        15
 
-#define FIRST_CUSTOM_TAG_COLUMN 14
+#define FIRST_CUSTOM_TAG_COLUMN 16
 
 /*!
  * This class encapsulates a pointer to a QUSongFile object to be able

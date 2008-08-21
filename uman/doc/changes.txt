@@ -59,6 +59,8 @@ NEW FEATURES
 * context menu for song tree header added (right-click)
   > show/hide various columns
   > state of columns saved
+* two new columns in the song tree (artist, title)
+  > hidden by default
 
 BUG FIXES
 * minor change in object renaming

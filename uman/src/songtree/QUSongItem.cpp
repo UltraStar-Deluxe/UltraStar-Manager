@@ -144,6 +144,9 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 
 	/* other tag columns */
 
+	this->setText(ARTIST_COLUMN_EX, song()->artist());
+	this->setText(TITLE_COLUMN_EX,  song()->title());
+
 	this->setText(LANGUAGE_COLUMN, song()->language());
 	this->setText(EDITION_COLUMN,  song()->edition());
 	this->setText(GENRE_COLUMN,    song()->genre());

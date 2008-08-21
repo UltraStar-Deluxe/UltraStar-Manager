@@ -32,7 +32,7 @@ QUSongTree::QUSongTree(QWidget *parent): QTreeWidget(parent) {
 }
 
 void QUSongTree::initHorizontalHeader() {
-	this->setColumnCount(14 + QUSongFile::customTags().count());
+	this->setColumnCount(16 + QUSongFile::customTags().count());
 
 	QTreeWidgetItem *header = new QTreeWidgetItem();
 	header->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(QUMainWindow::BaseDir.path()));
@@ -56,6 +56,11 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/text_stack.png"));
 	header->setToolTip(MULTIPLE_SONGS_COLUMN, tr("Shows whether your folder contains more than one song text file."));
 
+	header->setText(ARTIST_COLUMN_EX, tr("Artist"));
+	header->setIcon(ARTIST_COLUMN_EX, QIcon(":/types/user.png"));
+	header->setText(TITLE_COLUMN_EX, tr("Title"));
+	header->setIcon(TITLE_COLUMN_EX, QIcon(":/types/font.png"));
+
 	header->setText(LANGUAGE_COLUMN, tr("Language"));
 	header->setIcon(LANGUAGE_COLUMN, QIcon(":/types/language.png"));
 	header->setText(EDITION_COLUMN, tr("Edition"));
@@ -74,8 +79,12 @@ void QUSongTree::initHorizontalHeader() {
 		i++;
 	}
 
+	// set up default header
 	this->setHeaderItem(header);
+	this->header()->setSectionHidden(ARTIST_COLUMN_EX, true);
+	this->header()->setSectionHidden(TITLE_COLUMN_EX, true);
 
+	// load custom setup
 	QSettings settings;
 	this->header()->restoreState(settings.value("songTreeState", QVariant()).toByteArray());
 }

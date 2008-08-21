@@ -181,6 +181,9 @@
       </item>
       <item>
        <widget class="QFrame" name="helpFrame" >
+        <property name="autoFillBackground" >
+         <bool>false</bool>
+        </property>
         <property name="frameShape" >
          <enum>QFrame::NoFrame</enum>
         </property>
