@@ -9,6 +9,7 @@
 #include <QFileInfo>
 #include <QTextStream>
 #include <QPixmap>
+#include <QFileInfoList>
 
 #include <QUrl>
 #include <QDesktopServices>
@@ -25,6 +26,8 @@ QUReportDialog::QUReportDialog(QUSongTree *songTree, QWidget *parent): QDialog(p
 		infoTextLbl->setText(tr("The report will be empty because no song is visible in the song tree."));
 		infoIconLbl->setPixmap(QPixmap(":/marks/error.png"));
 	}
+
+	initStyleCombo();
 
 	connect(doneBtn, SIGNAL(clicked()), this, SLOT(accept()));
 	connect(createHtmlBtn, SIGNAL(clicked()), this, SLOT(createHtmlReport()));
@@ -57,6 +60,19 @@ void QUReportDialog::initReportList() {
 	}
 }
 
+void QUReportDialog::initStyleCombo() {
+	// look for available style sheets
+	QDir cssDir = QCoreApplication::applicationDirPath();
+	// TODO: Make css path available through registry - not hard-coded.
+	cssDir.cd("styles");
+
+	QFileInfoList cssFiList = cssDir.entryInfoList(QStringList("*.css"), QDir::Files, QDir::Name);
+
+	foreach(QFileInfo cssFi, cssFiList) {
+		styleCombo->addItem(cssFi.fileName(), cssFi.filePath());
+	}
+}
+
 void QUReportDialog::createHtmlReport() {
 	QSettings settings;
 	QFileInfo fi(QDir(settings.value("reportPath").toString()), "report.html");
@@ -73,7 +89,12 @@ void QUReportDialog::createHtmlReport() {
 
 		this->fetchDataAndSongs(reportData, songFiles);
 
-		QUHtmlReport report(songFiles, reportData, fi, showBaseDirChk->checkState() == Qt::Checked);
+		QUHtmlReport report(
+				songFiles,
+				reportData,
+				fi,
+				showBaseDirChk->checkState() == Qt::Checked,
+				styleCombo->itemData(styleCombo->currentIndex()).toString()); // css file path is saved in user data of current combobox item
 		report.save();
 
 		emit finished(QString(tr("Report created successfully to: \"%1\".")).arg(fi.filePath()), QU::information);

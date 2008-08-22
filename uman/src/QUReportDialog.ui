@@ -212,6 +212,16 @@ Plain Text Report</string>
         </widget>
        </item>
        <item>
+        <widget class="Line" name="line_3" >
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="styleCombo" />
+       </item>
+       <item>
         <widget class="QToolButton" name="createHtmlBtn" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >

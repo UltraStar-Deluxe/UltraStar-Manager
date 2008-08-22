@@ -14,6 +14,7 @@ public:
 			const QList<QUAbstractReportData*> &reportDataList,
 			const QFileInfo &fi,
 			bool showBaseDir = false,
+			const QString &cssFilePath = QString(),
 			QObject *parent = 0);
 
 	virtual QString content() const;

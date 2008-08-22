@@ -65,6 +65,7 @@ NEW FEATURES
 * "open" added to context menu for files in song tree
   > same function as double-click on a file (or "Enter")
 * classes "odd" and "even" added to HTML report
+* style sheet for HTML report added
 
 BUG FIXES
 * minor change in object renaming

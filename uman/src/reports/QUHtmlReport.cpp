@@ -4,22 +4,31 @@
 #include "QUMainWindow.h"
 
 #include <QDomNodeList>
+#include <QFile>
 
-QUHtmlReport::QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAbstractReportData*> &reportDataList, const QFileInfo &fi, bool showBaseDir, QObject *parent):
+QUHtmlReport::QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAbstractReportData*> &reportDataList, const QFileInfo &fi, bool showBaseDir, const QString &cssFilePath, QObject *parent):
 	QUAbstractReport(songFiles, reportDataList, fi, showBaseDir, parent)
 {
 	QDomElement html = _report.createElement("html");
 	QDomElement head = _report.createElement("head");
 	QDomElement title = _report.createElement("title");
 	QDomElement body = _report.createElement("body");
-	QDomElement div = _report.createElement("div");
+	QDomElement div = _report.createElement("div"); div.setAttribute("class", "path");
 	QDomElement table = _report.createElement("table");
 
 	_report.appendChild(html);
 
 	html.appendChild(head);
 	html.appendChild(body);
+
 	head.appendChild(title);
+	// insert ref to style sheet
+	QDomElement link = _report.createElement("link");
+	link.setAttribute("href", QFileInfo(cssFilePath).fileName());
+	link.setAttribute("txpe", "text/css");
+	link.setAttribute("rel", "stylesheet");
+	head.appendChild(link);
+
 	if(showBaseDir) body.appendChild(div);
 	body.appendChild(table);
 
@@ -94,6 +103,9 @@ QUHtmlReport::QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAb
 
 		table.appendChild(tr);
 	}
+
+	// copy style sheet to destination
+	QFile::copy(cssFilePath, QFileInfo(_fi.dir(), QFileInfo(cssFilePath).fileName()).filePath());
 }
 
 QString QUHtmlReport::content() const {

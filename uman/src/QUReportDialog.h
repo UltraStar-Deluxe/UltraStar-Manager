@@ -22,6 +22,7 @@ private:
 	QUSongTree *_songTree;
 
 	void initReportList();
+	void initStyleCombo();
 	void fetchDataAndSongs(QList<QUAbstractReportData*> &data, QList<QUSongFile*> &songs);
 
 private slots:
