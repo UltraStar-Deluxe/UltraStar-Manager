@@ -51,6 +51,8 @@ private slots:
 
 	void toggleColumn(bool show, int index);
 
+	void openCurrentFile();
+
 protected:
 	virtual void keyPressEvent(QKeyEvent *event);
 

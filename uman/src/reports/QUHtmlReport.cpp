@@ -58,12 +58,14 @@ QUHtmlReport::QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAb
 	QUProgressDialog pDlg(tr("Creating html report..."), songFiles.size());
 	pDlg.setPixmap(":/types/folder.png");
 	pDlg.show();
+	bool odd = true;
 
 	foreach(QUSongFile *song, songFiles) {
 		pDlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
 		if(pDlg.cancelled()) break;
 
 		QDomElement tr = _report.createElement("tr");
+		tr.setAttribute("class", odd ? "odd" : "even"); odd = !odd;
 
 		foreach(QUAbstractReportData *rd, reportDataList) {
 			QDomElement td = _report.createElement("td");

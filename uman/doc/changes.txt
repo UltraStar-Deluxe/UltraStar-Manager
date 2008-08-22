@@ -61,6 +61,10 @@ NEW FEATURES
   > state of columns saved
 * two new columns in the song tree (artist, title)
   > hidden by default
+* new shortcut: hit F12 to change the song directory
+* "open" added to context menu for files in song tree
+  > same function as double-click on a file (or "Enter")
+* classes "odd" and "even" added to HTML report
 
 BUG FIXES
 * minor change in object renaming
@@ -97,8 +101,17 @@ TODO (for 1.7.0)
   > from amazon ;)
 * header/footer for reports
 * detect and handle duplicates
+
 * re-design filter categories
   > Apply more than one filter?
+* special views of the song tree
+  > only double-entries
+  
+* new entry in context menu for a folder
+  > "delete complete directory"
+  > to remove double songs
+  > or better "melt" double entries?
+
 * new column if tags contain characters which cannot be used in files/folders
   > tick/cross
 * enable the user to append any custom []-tag to a file/folder

@@ -312,6 +312,7 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 
 	if(item && !item->isToplevel()) {
 		menu.addSeparator();
+		menu.addAction(tr("Open"), this, SLOT(openCurrentFile()));
 		menu.addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), QKeySequence::fromString("Del"));
 	}
 
@@ -352,6 +353,13 @@ void QUSongTree::toggleColumn(bool show, int index) {
 
 	QSettings settings;
 	settings.setValue("songTreeState", QVariant(header()->saveState()));
+}
+
+/*!
+ * Emits the proper signal to open the current file. (See QUMainWindow)
+ */
+void QUSongTree::openCurrentFile() {
+	emit itemActivated(this->currentItem(), FOLDER_COLUMN);
 }
 
 bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {

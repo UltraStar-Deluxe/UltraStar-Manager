@@ -24,6 +24,9 @@
 #include <QFileInfoList>
 #include <QProgressDialog>
 
+#include <QDesktopServices>
+#include <QUrl>
+
 #include "QUSongItem.h"
 #include "QUDetailItem.h"
 #include "QUMonty.h"
@@ -235,6 +238,8 @@ void QUMainWindow::initMenu() {
 	connect(actionLangEnglish, SIGNAL(triggered()), this, SLOT(enableEnglish()));
 	connect(actionLangGerman, SIGNAL(triggered()), this, SLOT(enableGerman()));
 
+	actionChangeSongDirectory->setShortcut(QKeySequence::fromString("F12"));
+
 	// help menu
 	connect(actionShowMonty, SIGNAL(triggered()), helpFrame, SLOT(show()));
 	connect(actionQt, SIGNAL(triggered()), this, SLOT(aboutQt()));
@@ -421,7 +426,7 @@ void QUMainWindow::updatePreviewTree() {
  * \sa updateDetails()
  */
 void QUMainWindow::editSongSetFileLink(QTreeWidgetItem *item, int column) {
-	if(column < 3 or column > 6)
+	if(column < MP3_COLUMN or column > VIDEO_COLUMN)
 		return;
 
 	QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
@@ -739,6 +744,12 @@ void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
 	} else if(QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QUPictureDialog dlg(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(FOLDER_COLUMN)).filePath(), this);
 		dlg.exec();
+	} else if(QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive) or QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		QFileInfo fi(songItem->song()->path(), songItem->text(FOLDER_COLUMN));
+		if( !QDesktopServices::openUrl(QUrl(fi.filePath())) )
+			addLogMsg(QString(tr("Could NOT open file: \"%1\".")).arg(fi.filePath()), QU::warning);
+		else
+			addLogMsg(QString(tr("File was opened successfully: \"%1\".")).arg(fi.filePath()), QU::information);
 	}
 }
 
