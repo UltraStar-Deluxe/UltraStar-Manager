@@ -21,6 +21,18 @@ public:
 
 private:
 	QDomDocument _report;
+	QFileInfo    _css;
+
+	QDomElement html();
+
+	void createHead();
+	void createBody();
+
+	void appendBasePath(QDomNode &parent);
+	void appendSongsTable(QDomNode &parent);
+
+	void appendSongsTableHead(QDomNode &parent);
+	void appendSongsTableBody(QDomNode &parent);
 };
 
 #endif /*QUHTMLREPORT_H_*/

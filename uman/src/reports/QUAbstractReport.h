@@ -24,6 +24,12 @@ public:
 	void save();
 
 protected:
+	QList<QUAbstractReportData*> reportDataList() const { return _reportDataList; }
+	QList<QUSongFile*>           songs() const { return _songFiles; }
+	QFileInfo                    fileInfo() const { return _fi; }
+	bool                         showBasePath() const { return _showBaseDir; }
+
+private:
 	QList<QUAbstractReportData*> _reportDataList;
 	QList<QUSongFile*>           _songFiles;
 	QFileInfo                    _fi;
