@@ -2,6 +2,7 @@
 #define QU_H_
 
 #include <QObject>
+#include <QString>
 
 #define CHAR_UTF8_APPROX "\xe2\x89\x88"
 #define CHAR_UTF8_NEQUAL "\xe2\x89\xa0"
@@ -58,6 +59,8 @@ public:
 		negateFilter = 0x10
 	};
 	Q_DECLARE_FLAGS(FilterModes, FilterMode)
+
+	static QString withoutFolderTags(const QString &text);
 };
 
 #endif /*QU_H_*/

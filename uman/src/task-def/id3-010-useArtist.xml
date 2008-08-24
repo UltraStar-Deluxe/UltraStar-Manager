@@ -1,0 +1,12 @@
+<task>
+    <general type="id3">
+        <icon resource=":/types/user.png" />
+        <description>
+            <![CDATA[Use ID3 tag for artist.]]>
+        </description>
+    </general>
+
+    <id3 target="artist" schema="%1">
+        <data source="artist" ignoreEmpty="targetfull"/>
+    </id3>
+</task>

@@ -771,6 +771,20 @@ QStringList QUSongFile::availableTargets() {
 	return QString("dir path txt mp3 cover background video").split(" ");
 }
 
+/*!
+ * \returns a list of all possible targets used by audiotag tasks.
+ */
+QStringList QUSongFile::availableInfoTargets() {
+	return QString("artist title language edition genre year creator").split(" ");
+}
+
+/*!
+ * \returns a list of all possible custom targets used by audiotag tasks.
+ */
+QStringList QUSongFile::availableCustomTargets() {
+	return customTags();
+}
+
 QStringList QUSongFile::availableConditions() {
 	return QString("true hasMp3 hasCover hasBackground hasVideo isSongChecked").split(" ");
 }

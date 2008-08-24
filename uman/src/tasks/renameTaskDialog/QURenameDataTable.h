@@ -14,7 +14,7 @@ public:
 	QURenameDataTable(QWidget *parent = 0);
 
 public slots:
-	void fillData(const QList<QURenameData*> &dataList);
+	void fillData(const QList<QUScriptData*> &dataList);
 
 	void appendRow();
 	void removeLastRow();

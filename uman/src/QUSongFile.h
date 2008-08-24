@@ -96,7 +96,7 @@ public:
 	static bool hasBackgroundLessThan (QUSongFile *s1, QUSongFile *s2);
 	static bool hasVideoLessThan (QUSongFile *s1, QUSongFile *s2);
 
-	static QString withoutUnsupportedCharacters (const QString &text);
+	static QString withoutUnsupportedCharacters (const QString &text); // TODO: move to QU.cpp
 
 public slots:
 	QString artist() const     {return _info.value(ARTIST_TAG,     QString(N_A));}
@@ -164,7 +164,11 @@ public slots:
 	static QStringList allowedVideoFiles();
 
 	static QStringList availableTargets();
+	static QStringList availableInfoTargets();
+	static QStringList availableCustomTargets();
+
 	static QStringList availableConditions();
+
 	static QStringList availableSources();
 	static QStringList availableSpecialSources();
 	static QStringList availableCommonSources();

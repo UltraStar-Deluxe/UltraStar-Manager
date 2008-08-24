@@ -1,0 +1,16 @@
+<task>
+    <general type="id3" group="10">
+        <icon resource=":/types/font.png" />
+        <description>
+            <![CDATA[Append "[VIDEO]" to title if video present.]]>
+        </description>
+        <tooltip>
+            <![CDATA[Do not use ID3 tag information.]]>
+        </tooltip>
+    </general>
+
+    <id3 target="title" schema="%1%2">
+        <data source="target" />
+        <data text=" [VIDEO]" if="hasVideo" />
+    </id3>
+</task>

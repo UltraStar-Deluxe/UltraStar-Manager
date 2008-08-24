@@ -312,8 +312,8 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 
 	if(item && !item->isToplevel()) {
 		menu.addSeparator();
-		menu.addAction(tr("Open"), this, SLOT(openCurrentFile()));
-		menu.addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), QKeySequence::fromString("Del"));
+		menu.addAction(tr("Open"), this, SLOT(openCurrentFile()), Qt::Key_Return);
+		menu.addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), Qt::Key_Delete);
 	}
 
 	menu.exec(this->mapToGlobal(point));

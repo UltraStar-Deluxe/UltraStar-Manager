@@ -1,0 +1,12 @@
+<task>
+    <general type="id3" group="10">
+        <icon resource=":/types/font.png" />
+        <description>
+            <![CDATA[Use ID3 tag for title.]]>
+        </description>
+    </general>
+
+    <id3 target="title" schema="%1">
+        <data source="title" ignoreEmpty="targetfull"/>
+    </id3>
+</task>

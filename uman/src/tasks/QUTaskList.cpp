@@ -58,10 +58,10 @@ void QUTaskList::resetTaskList() {
 	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::removeUnsupportedTags)));
 
 	this->appendSeparator(tr("ID3 Tag Tasks"));
-	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useArtist)));
-	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useTitle)));
-	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useGenre)));
-	this->addItem(new QUTaskItem(new QUAudioTagTask(QU::useYear)));
+	foreach(QDomDocument* task, tasks) {
+		if( QString::compare("id3", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 )
+			this->addItem(new QUTaskItem(new QUAudioTagTask(task)));
+	}
 
 	this->appendSeparator(tr("Renaming Tasks"));
 	foreach(QDomDocument* task, tasks) {
@@ -113,7 +113,7 @@ void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
 	if(!taskItem)
 		return;
 
-	QURenameTask *task = dynamic_cast<QURenameTask*>(taskItem->task());
+	QUScriptableTask *task = dynamic_cast<QUScriptableTask*>(taskItem->task());
 
 	if(!task or task->group() == -1)
 		return;
@@ -130,7 +130,7 @@ void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
 		if(!exclusiveTaskItem)
 			continue;
 
-		QURenameTask *exclusiveTask = dynamic_cast<QURenameTask*>(exclusiveTaskItem->task());
+		QUScriptableTask *exclusiveTask = dynamic_cast<QUScriptableTask*>(exclusiveTaskItem->task());
 
 		if(!exclusiveTask)
 			continue;

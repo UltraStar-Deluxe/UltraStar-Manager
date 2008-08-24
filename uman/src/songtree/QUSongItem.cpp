@@ -94,16 +94,13 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 		this->setToolTip(FOLDER_COLUMN, "");
 	}
 
-	QRegExp r("\\[.*\\]");
-	r.setMinimal(true);
-
-	// create a pattern without any folder tags: [SC], [VIDEO], a.s.o.
-	QString pattern(song()->songFileInfo().dir().dirName().remove(r).trimmed());
+	QString pattern = QU::withoutFolderTags(song()->songFileInfo().dir().dirName());
 	QString toolTip = "\"%2\" %3 \"%1\"";
 	QString part1, part2;
 
 	/* artist column */
 	part1 = QUSongFile::withoutUnsupportedCharacters(song()->artist());
+	part1 = QU::withoutFolderTags(part1);
 	part2 = QUSongFile::withoutUnsupportedCharacters(pattern.section(" - ", 0, 0));
 
 	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
@@ -115,6 +112,7 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 
 	/* title column */
 	part1 = QUSongFile::withoutUnsupportedCharacters(song()->title());
+	part1 = QU::withoutFolderTags(part1);
 	part2 = QUSongFile::withoutUnsupportedCharacters(pattern.section(" - ", 1));
 
 	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)

@@ -1,0 +1,12 @@
+<task>
+    <general type="id3">
+        <icon resource=":/types/genre.png" />
+        <description>
+            <![CDATA[Use ID3 tag for genre.]]>
+        </description>
+    </general>
+
+    <id3 target="genre" schema="%1">
+        <data source="genre" ignoreEmpty="targetfull"/>
+    </id3>
+</task>

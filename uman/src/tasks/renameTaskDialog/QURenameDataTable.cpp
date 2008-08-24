@@ -24,8 +24,8 @@ QURenameDataTable::QURenameDataTable(QWidget *parent): QTableWidget(parent) {
 	this->setItemDelegateForColumn(2, new QURenameTextDelegate(this));
 }
 
-void QURenameDataTable::fillData(const QList<QURenameData*> &dataList) {
-	foreach(QURenameData *data, dataList) {
+void QURenameDataTable::fillData(const QList<QUScriptData*> &dataList) {
+	foreach(QUScriptData *data, dataList) {
 		this->appendRow();
 		this->item(this->rowCount() - 1, 0)->setText(data->_if.isEmpty() ? "true" : data->_if);
 

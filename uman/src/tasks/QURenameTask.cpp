@@ -6,21 +6,8 @@
 #include <QRegExp>
 
 QURenameTask::QURenameTask(QDomDocument *taskConfig, QObject *parent):
-	QUAbstractTask(parent)
+	QUScriptableTask(taskConfig, parent)
 {
-	this->_configFileName = taskConfig->firstChildElement("task").attribute("file", tr("unnamed.xml"));
-
-	// setup visual appearance
-	QDomElement general(taskConfig->firstChild().firstChildElement("general"));
-	if(!general.isNull()) {
-		this->setIcon(QIcon(general.firstChildElement("icon").attribute("resource")));
-		this->setDescription(general.firstChildElement("description").firstChild().toCDATASection().data().trimmed().toLocal8Bit().data());
-		this->setToolTip(general.firstChildElement("tooltip").firstChild().toCDATASection().data().trimmed().toLocal8Bit().data());
-
-		this->_group = QVariant(general.attribute("group", "-1")).toInt();
-		this->_iconSource = general.firstChildElement("icon").attribute("resource");
-	}
-
 	// setup internal operations
 	QDomElement rename(taskConfig->firstChild().firstChildElement("rename"));
 	if(!rename.isNull()) {
@@ -30,7 +17,7 @@ QURenameTask::QURenameTask(QDomDocument *taskConfig, QObject *parent):
 		for(int i = 0; i < rename.childNodes().size(); i++) {
 			QDomElement data = rename.childNodes().at(i).toElement();
 			if(!data.isNull() and data.tagName() == "data") {
-				QURenameData *newData = new QURenameData();
+				QUScriptData *newData = new QUScriptData();
 				newData->_source = data.attribute("source");
 				newData->_text = data.attribute("text");
 				newData->_if = data.attribute("if");
@@ -56,7 +43,7 @@ QURenameTask::QURenameTask(QDomDocument *taskConfig, QObject *parent):
 void QURenameTask::startOn(QUSongFile *song) {
 	QString schema = this->_schema.trimmed(); // DO NOT overwrite the template!
 
-	foreach(QURenameData* currentData, _data) {
+	foreach(QUScriptData* currentData, _data) {
 		if(currentData->_if.isEmpty() or song->property(currentData->_if.toLocal8Bit().data()).toBool()) {
 			if(currentData->_keepSuffix) {
 				schema = schema.arg(QFileInfo(song->property(this->_target.toLower().toLocal8Bit().data()).toString()).suffix().toLower());

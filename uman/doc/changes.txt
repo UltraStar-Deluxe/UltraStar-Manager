@@ -66,6 +66,7 @@ NEW FEATURES
   > same function as double-click on a file (or "Enter")
 * classes "odd" and "even" added to HTML report
 * first style sheet for HTML report added
+* "ID3 tasks" are now scriptable
 
 BUG FIXES
 * minor change in object renaming

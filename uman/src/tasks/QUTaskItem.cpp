@@ -12,7 +12,7 @@ QUTaskItem::QUTaskItem(QUAbstractTask *task):
 	this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 	this->setCheckState(Qt::Unchecked);
 
-	if(dynamic_cast<QURenameTask*>(task))
+	if(dynamic_cast<QUScriptableTask*>(task))
 		this->setFlags(this->flags() | Qt::ItemIsSelectable);
 }
 
