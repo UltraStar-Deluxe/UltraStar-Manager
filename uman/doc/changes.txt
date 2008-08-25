@@ -67,6 +67,7 @@ NEW FEATURES
 * classes "odd" and "even" added to HTML report
 * first style sheet for HTML report added
 * "ID3 tasks" are now scriptable
+* "*.mp4" files now recognized as valid video files
 
 BUG FIXES
 * minor change in object renaming

@@ -761,7 +761,7 @@ QStringList QUSongFile::allowedPictureFiles() {
 }
 
 QStringList QUSongFile::allowedVideoFiles() {
-	return QString("*.mpg *.mpeg *.avi *.flv *.ogm").split(" ");
+	return QString("*.mpg *.mpeg *.avi *.flv *.ogm *.mp4").split(" ");
 }
 
 /*!
