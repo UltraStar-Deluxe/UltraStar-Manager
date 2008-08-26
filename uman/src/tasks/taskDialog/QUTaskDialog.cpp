@@ -12,8 +12,6 @@
 QUTaskDialog::QUTaskDialog(QUScriptableTask *task, QWidget *parent): QDialog(parent) {
 	initDialog();
 
-	targetCombo->setCurrentIndex(targetCombo->findText(task->target(), Qt::MatchContains));
-
 	descriptionEdit->setText(task->description());
 	toolTipEdit->setPlainText(task->toolTip());
 
@@ -32,8 +30,8 @@ QUTaskDialog::QUTaskDialog(QUScriptableTask *task, QWidget *parent): QDialog(par
 
 	removeDataBtn->setEnabled(task->data().size() > 0);
 
-	this->setWindowIcon(QIcon(":/control/pencil.png"));
-	this->setWindowTitle(QString("Edit Task: \"%1\"").arg(task->configFileName()));
+	this->setWindowIcon(QIcon(":/control/tasks_edit.png"));
+	this->setWindowTitle(QString(tr("Edit Task: \"%1\"")).arg(task->configFileName()));
 	_fileName = task->configFileName();
 
 	// normal save button only available in edit mode
@@ -51,8 +49,8 @@ QUTaskDialog::QUTaskDialog(QWidget *parent): QDialog(parent) {
 void QUTaskDialog::initDialog() {
 	setupUi(this);
 
-	this->setWindowIcon(QIcon(":/marks/plus.png"));
-	this->setWindowTitle(QString("Add Task: \"%1\"").arg("unnamed.xml"));
+	this->setWindowIcon(QIcon(":/control/tasks_add.png"));
+	this->setWindowTitle(tr("Add Task"));
 
 	targetCombo->clear();
 
@@ -148,4 +146,54 @@ void QUTaskDialog::saveTaskAs() {
 void QUTaskDialog::updateMoveButtons(int row, int column) {
 	moveUpBtn->setEnabled(!(row < 1) and (row < dataTable->rowCount()));
 	moveDownBtn->setEnabled(!(row >= dataTable->rowCount() - 1) and (row >= 0));
+}
+
+/*!
+ * Save the contents of a DOM document into a file.
+ */
+bool QUTaskDialog::saveDocument(const QString &filePath) {
+	QFile file(filePath);
+
+	if(file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+		QTextStream out(&file);
+		out << _doc.toString(4);
+		file.close();
+
+		emit finished(QString(tr("The task file \"%1\" was saved successfully.")).arg(filePath), QU::saving);
+		return true;
+	} else {
+		emit finished(QString(tr("The task file \"%1\" was NOT saved.")).arg(filePath), QU::warning);
+		return false;
+	}
+}
+
+/*!
+ * Append the general part of a task config file to a given parent element.
+ */
+void QUTaskDialog::appendGeneral(QDomElement &parent, QU::ScriptableTaskTypes type) {
+	QDomElement general = _doc.createElement("general");
+
+	QDomElement icon = _doc.createElement("icon");               general.appendChild(icon);
+	QDomElement description = _doc.createElement("description"); general.appendChild(description);
+	QDomElement tooltip = _doc.createElement("tooltip");         general.appendChild(tooltip);
+
+	if(type == QU::renameTask)
+		general.setAttribute("type", "rename");
+	else if(type == QU::audioTagTask)
+		general.setAttribute("type", "id3");
+
+	if(exclusiveChk->checkState() == Qt::Checked)
+		general.setAttribute("group", QVariant(groupSpin->value()).toString());
+	icon.setAttribute("resource", iconCombo->itemData(iconCombo->currentIndex()).toString());
+
+	if(!descriptionEdit->text().isEmpty()) {
+		QDomCDATASection cdataDescr = _doc.createCDATASection(descriptionEdit->text());
+		description.appendChild(cdataDescr);
+	}
+	if(!toolTipEdit->toPlainText().isEmpty()) {
+		QDomCDATASection cdataToolt = _doc.createCDATASection(toolTipEdit->toPlainText());
+		tooltip.appendChild(cdataToolt);
+	}
+
+	parent.appendChild(general);
 }

@@ -71,8 +71,16 @@ void QUAudioTagTask::startOn(QUSongFile *song) {
 	}
 }
 
-QStringList QUAudioTagTask::availableID3Sources() {
-	return QString("artist title genre year target targetfull").split(" ");
+QStringList QUAudioTagTask::availableSources() {
+	return availableCommonSources() + availableSpecialSources();
+}
+
+QStringList QUAudioTagTask::availableSpecialSources() {
+	return QString("target targetfull").split(" ");
+}
+
+QStringList QUAudioTagTask::availableCommonSources() {
+	return QString("artist title genre year album").split(" ");
 }
 
 QStringList QUAudioTagTask::availableTargets() {
@@ -130,6 +138,13 @@ QString QUAudioTagTask::year() {
 	if(year == "0") year = "";
 
 	return year;
+}
+
+QString QUAudioTagTask::album() {
+	if(this->ref().isNull())
+		return QString();
+
+	return TStringToQString(ref().tag()->album());
 }
 
 QString QUAudioTagTask::currentContent() {

@@ -22,6 +22,7 @@ class QUAudioTagTask: public QUScriptableTask {
 	Q_PROPERTY(QString title READ title)
 	Q_PROPERTY(QString genre READ genre)
 	Q_PROPERTY(QString year READ year)
+	Q_PROPERTY(QString album READ album)
 
 	Q_PROPERTY(QString target READ currentContent)
 	Q_PROPERTY(QString targetfull READ currentContentAll)
@@ -31,7 +32,9 @@ public:
 
 	virtual void startOn(QUSongFile *song);
 
-	static QStringList availableID3Sources();
+	static QStringList availableSources();
+	static QStringList availableSpecialSources();
+	static QStringList availableCommonSources();
 
 	static QStringList availableTargets();
 	static QStringList availableInfoTargets();
@@ -46,6 +49,7 @@ private:
 	QString title();
 	QString genre();
 	QString year();
+	QString album();
 
 	QString currentContent();
 	QString currentContentAll();

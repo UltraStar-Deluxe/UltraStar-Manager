@@ -5,9 +5,6 @@
 #define KEEP_SUFFIX_SOURCE  "*SUFFIX*"
 #define UNKNOWN_TAGS_SOURCE "*UNKNOWN_TAGS*"
 
-#define TARGET_AS_SOURCE     "*TARGET*"
-#define TARGETFULL_AS_SOURCE "*TARGET_FULL*"
-
 #include "QU.h"
 #include "QUAbstractTask.h"
 
@@ -54,6 +51,7 @@ public:
 	QString schema() const { return _schema; }
 	QList<QUScriptData*> data() const { return _data; }
 
+	static QStringList availableSources();
 	static QStringList availableCustomSources();
 	static QStringList availableConditions();
 

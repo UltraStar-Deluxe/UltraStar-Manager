@@ -3,6 +3,7 @@
 #include "QUTaskConditionDelegate.h"
 #include "QUTaskSourceDelegate.h"
 #include "QUTaskTextDelegate.h"
+#include "QUDefaultDelegate.h"
 
 #include <QHeaderView>
 
@@ -20,14 +21,16 @@ QUTaskDataTable::QUTaskDataTable(QWidget *parent): QTableWidget(parent) {
 }
 
 void QUTaskDataTable::fillData(const QList<QUScriptData*> &dataList, QU::ScriptableTaskTypes type) {
-	if(type == QU::audioTagTask)
-		;
-	else if (type == QU::renameTask) {
-		this->setItemDelegateForColumn(0, new QUTaskConditionDelegate(this));
-		this->setItemDelegateForColumn(1, new QUTaskSourceDelegate(type, this));
-		this->setItemDelegateForColumn(2, new QUTaskTextDelegate(this));
-	}
+	// set up custom editors
+	this->setItemDelegateForColumn(0, new QUTaskConditionDelegate(this));
+	this->setItemDelegateForColumn(1, new QUTaskSourceDelegate(type, this));
 
+	if(type == QU::audioTagTask)
+		this->setItemDelegateForColumn(2, new QUDefaultDelegate(this));
+	else if (type == QU::renameTask)
+		this->setItemDelegateForColumn(2, new QUTaskTextDelegate(this));
+
+	// fill the data
 	foreach(QUScriptData *data, dataList) {
 		this->appendRow();
 		this->item(this->rowCount() - 1, 0)->setText(data->_if.isEmpty() ? "true" : data->_if);
@@ -43,6 +46,9 @@ void QUTaskDataTable::fillData(const QList<QUScriptData*> &dataList, QU::Scripta
 		} else if(data->_keepUnknownTags) {
 			this->item(this->rowCount() - 1, 1)->setText(UNKNOWN_TAGS_SOURCE);
 		}
+
+		if(type == QU::audioTagTask and !data->_ignoreEmpty.isEmpty())
+			this->item(this->rowCount() - 1, 2)->setText(data->_ignoreEmpty);
 	}
 }
 
@@ -53,7 +59,7 @@ void QUTaskDataTable::appendRow() {
 		QTableWidgetItem *newItem = new QTableWidgetItem;
 
 		     if(column == 0) newItem->setText(QUScriptableTask::availableConditions().first());
-		else if(column == 1) newItem->setText(QURenameTask::availableSources().first());
+		else if(column == 1) newItem->setText(QUScriptableTask::availableSources().first());
 		else
 			newItem->setText(N_A);
 

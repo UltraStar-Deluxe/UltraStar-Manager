@@ -25,11 +25,10 @@ void QUTaskTextDelegate::setEditorData(
 
 	QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
 
-	lineEdit->setText(value.trimmed());
-
 	if(QString::compare(value, N_A, Qt::CaseSensitive) == 0)
 		value = "";
 
+	lineEdit->setText(value.trimmed());
 	lineEdit->selectAll();
 }
 

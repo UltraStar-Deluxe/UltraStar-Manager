@@ -5,6 +5,9 @@
 #include "QUScriptableTask.h"
 
 #include <QDialog>
+#include <QString>
+#include <QDomDocument>
+#include <QDomElement>
 
 #include "ui_QUTaskDialog.h"
 
@@ -32,10 +35,14 @@ signals:
 
 protected:
 	QString _fileName;
+	QDomDocument _doc;
 
 	void initDialog();
 
 	virtual bool saveTask(const QString &filePath) = 0;
+	bool saveDocument(const QString &filePath);
+
+	void appendGeneral(QDomElement &parent, QU::ScriptableTaskTypes type);
 };
 
 #endif /* QUTASKDIALOG_H_ */

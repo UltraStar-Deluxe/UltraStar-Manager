@@ -3,7 +3,6 @@
 
 #include "QU.h"
 #include "QURenameTask.h"
-
 #include "QUTaskDialog.h"
 
 class QURenameTaskDialog: public QUTaskDialog {
@@ -15,6 +14,9 @@ public:
 
 protected:
 	virtual bool saveTask(const QString &filePath);
+
+private:
+	void init(QUScriptableTask *task = 0);
 
 };
 

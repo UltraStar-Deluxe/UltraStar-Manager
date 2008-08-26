@@ -1,38 +1,45 @@
-#include "QUTaskConditionDelegate.h"
-#include "QUScriptableTask.h"
+#include "QUDefaultDelegate.h"
 
 #include <QComboBox>
 #include <QString>
 #include <QVariant>
-#include <QTableWidgetItem>
+#include <QLineEdit>
 
-QUTaskConditionDelegate::QUTaskConditionDelegate(QObject *parent): QItemDelegate(parent) {
+QUDefaultDelegate::QUDefaultDelegate(QObject *parent): QItemDelegate(parent) {
 }
 
-QWidget* QUTaskConditionDelegate::createEditor(
+QWidget* QUDefaultDelegate::createEditor(
 		QWidget *parent,
 		const QStyleOptionViewItem &/*option*/,
 		const QModelIndex &/*index*/) const
 {
 	QComboBox *editor = new QComboBox(parent);
-	editor->addItems(QUScriptableTask::availableConditions());
-	editor->setItemData(0, Qt::darkGray, Qt::ForegroundRole); // should be the "true" entry
-	editor->setEditable(false);
+
+	editor->addItems(QUAudioTagTask::availableSpecialSources());
+	for(int i = 0; i < editor->count(); i++)
+		editor->setItemData(i, Qt::darkGray, Qt::ForegroundRole);
+
+	editor->setEditable(true);
 
 	return editor;
 }
 
-void QUTaskConditionDelegate::setEditorData(
+void QUDefaultDelegate::setEditorData(
 		QWidget *editor,
 		const QModelIndex &index) const
 {
 	QString value = index.model()->data(index, Qt::DisplayRole).toString();
 
 	QComboBox *comboBox = static_cast<QComboBox*>(editor);
-	comboBox->setCurrentIndex(comboBox->findText(value, Qt::MatchContains));
+
+	if(QString::compare(value, N_A, Qt::CaseSensitive) == 0)
+		value = "";
+
+	comboBox->setEditText(value);
+	comboBox->lineEdit()->selectAll();
 }
 
-void QUTaskConditionDelegate::setModelData(
+void QUDefaultDelegate::setModelData(
 		QWidget *editor,
 		QAbstractItemModel *model,
 		const QModelIndex &index) const
@@ -41,10 +48,13 @@ void QUTaskConditionDelegate::setModelData(
 
 	QString value = comboBox->currentText();
 
+	if(value == "")
+		value = N_A;
+
 	model->setData(index, QVariant(value), Qt::EditRole);
 }
 
-void QUTaskConditionDelegate::updateEditorGeometry(
+void QUDefaultDelegate::updateEditorGeometry(
 		QWidget *editor,
 		const QStyleOptionViewItem &option,
 		const QModelIndex &/*index*/) const

@@ -1,11 +1,11 @@
 changes from 1.6.0 to 1.7.0
 ---------------------------
 NEW FEATURES
-* rename tasks are now scriptable
+* "rename tasks" and "song/ID3 tag tasks" are now scriptable
   > see task-def folder
-  > create easily new rename tasks
-* context menu for rename tasks added
-  > edit rename tasks by double-click or through the context menu
+  > create easily new custom tasks
+* context menu for scriptable tasks added
+  > edit these tasks by double-click or through the context menu
 * first pre-defined value for EDITION in song details: "[SC]-Songs"
 * added a cancel button and a elapsed time indicator to progress bar
   > most long operations can be cancelled
@@ -66,7 +66,6 @@ NEW FEATURES
   > same function as double-click on a file (or "Enter")
 * classes "odd" and "even" added to HTML report
 * first style sheet for HTML report added
-* "ID3 tasks" are now scriptable
 * "*.mp4" files now recognized as valid video files
 
 BUG FIXES

@@ -20,6 +20,18 @@ QUScriptableTask::QUScriptableTask(QDomDocument *taskConfig, QObject *parent): Q
 	}
 }
 
+/*!
+ * Just for convenience.
+ */
+QStringList QUScriptableTask::availableSources() {
+	QStringList result;
+
+	// special sources
+	result << TEXT_SOURCE;// << KEEP_SUFFIX_SOURCE << UNKNOWN_TAGS_SOURCE;
+
+	return result;
+}
+
 QStringList QUScriptableTask::availableCustomSources() {
 	return QUSongFile::customTags();
 }

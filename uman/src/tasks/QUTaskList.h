@@ -29,8 +29,10 @@ public slots:
 	void uncheckAllTasks();
 	void uncheckAllExclusiveTasks(QListWidgetItem *item);
 
-	void addTask();
-	void editTask();
+	void addAudioTagTask();
+	void addRenameTask();
+
+	void editCurrentTask();
 
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);

@@ -1,18 +1,16 @@
-#ifndef QUTASKSOURCEDELEGATE_H_
-#define QUTASKSOURCEDELEGATE_H_
+#ifndef QUDEFAULTDELEGATE_H_
+#define QUDEFAULTDELEGATE_H_
 
 #include "QU.h"
-#include "QURenameTask.h"
 #include "QUAudioTagTask.h"
 
 #include <QItemDelegate>
-#include <QComboBox>
 
-class QUTaskSourceDelegate: public QItemDelegate {
+class QUDefaultDelegate: public QItemDelegate {
 	Q_OBJECT
 
 public:
-	QUTaskSourceDelegate(QU::ScriptableTaskTypes type, QObject *parent = 0);
+	QUDefaultDelegate(QObject *parent = 0);
 
 	QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
@@ -20,11 +18,6 @@ public:
 	void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
 
 	void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-
-private:
-	QU::ScriptableTaskTypes _type;
-
-	void setItems(QComboBox *comboBox) const;
 };
 
-#endif /*QUTASKSOURCEDELEGATE_H_*/
+#endif /* QUDEFAULTDELEGATE_H_ */

@@ -4,7 +4,9 @@ QT += core \
     gui \
     xml
 CONFIG += debug
-HEADERS += tasks/taskDialog/QUTaskSourceDelegate.h \
+HEADERS += tasks/taskDialog/QUDefaultDelegate.h \
+    tasks/taskDialog/QUAudioTagTaskDialog.h \
+    tasks/taskDialog/QUTaskSourceDelegate.h \
     tasks/taskDialog/QUTaskTextDelegate.h \
     tasks/taskDialog/QUTaskConditionDelegate.h \
     tasks/taskDialog/QUTaskDataTable.h \
@@ -51,7 +53,9 @@ HEADERS += tasks/taskDialog/QUTaskSourceDelegate.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += tasks/taskDialog/QUTaskSourceDelegate.cpp \
+SOURCES += tasks/taskDialog/QUDefaultDelegate.cpp \
+    tasks/taskDialog/QUAudioTagTaskDialog.cpp \
+    tasks/taskDialog/QUTaskSourceDelegate.cpp \
     tasks/taskDialog/QUTaskTextDelegate.cpp \
     tasks/taskDialog/QUTaskConditionDelegate.cpp \
     tasks/taskDialog/QUTaskDataTable.cpp \

@@ -4,6 +4,7 @@
 #include "QUAudioTagTask.h"
 #include "QURenameTask.h"
 #include "QUCleanTask.h"
+#include "QUAudioTagTaskDialog.h"
 #include "QURenameTaskDialog.h"
 
 #include <QCoreApplication>
@@ -19,7 +20,7 @@ QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
 	// do not allow to check two exclusive tasks
 	connect(this, SIGNAL(itemChanged(QListWidgetItem*)), SLOT(uncheckAllExclusiveTasks(QListWidgetItem*)));
 	// TODO: Enable task editing not through double-click?
-	connect(this, SIGNAL(itemDoubleClicked(QListWidgetItem*)), SLOT(editTask()));
+	connect(this, SIGNAL(itemDoubleClicked(QListWidgetItem*)), SLOT(editCurrentTask()));
 
 	// context menu
 	setContextMenuPolicy(Qt::CustomContextMenu);
@@ -32,15 +33,17 @@ QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
 void QUTaskList::showContextMenu(const QPoint &point) {
 	QMenu menu(this);
 
-	menu.addAction(QIcon(":/marks/plus.png"), tr("Add rename task..."), this, SLOT(addTask()));
+	menu.addAction(QIcon(":/marks/add.png"), tr("Add song/ID3 tag task..."), this, SLOT(addAudioTagTask()));
+	menu.addAction(QIcon(":/marks/add.png"), tr("Add rename task..."), this, SLOT(addRenameTask()));
+	menu.addSeparator();
 
 	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(this->itemAt(point));
 	if(taskItem)
-		if(dynamic_cast<QURenameTask*>(taskItem->task()))
-			menu.addAction(QIcon(":/control/pencil.png"), tr("Edit rename task..."), this, SLOT(editTask()));
+		if(dynamic_cast<QUScriptableTask*>(taskItem->task()))
+			menu.addAction(QIcon(":/control/pencil.png"), tr("Edit..."), this, SLOT(editCurrentTask()));
 
 	menu.addSeparator();
-	menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh tasks"), this, SLOT(resetTaskList()));
+	menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(resetTaskList()));
 
 	menu.exec(this->mapToGlobal(point));
 }
@@ -140,7 +143,19 @@ void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
 	}
 }
 
-void QUTaskList::addTask() {
+void QUTaskList::addAudioTagTask() {
+	QUAudioTagTaskDialog *dlg = new QUAudioTagTaskDialog(this);
+	connect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
+
+	if(dlg->exec()) {
+		this->resetTaskList();
+		emit finished(tr("Task list was refreshed successfully."), QU::information);
+	}
+
+	delete dlg;
+}
+
+void QUTaskList::addRenameTask() {
 	QURenameTaskDialog *dlg = new QURenameTaskDialog(this);
 	connect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
 
@@ -156,18 +171,21 @@ void QUTaskList::addTask() {
  * Shows a dialog to edit the selected "rename" task if such a task is
  * selected.
  */
-void QUTaskList::editTask() {
+void QUTaskList::editCurrentTask() {
 	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(this->currentItem());
 
 	if(!taskItem)
 		return;
 
-	QURenameTask *task = dynamic_cast<QURenameTask*>(taskItem->task());
+	QUTaskDialog *dlg;
 
-	if(!task)
+	if( dynamic_cast<QURenameTask*>(taskItem->task()) )
+		dlg = new QURenameTaskDialog(dynamic_cast<QURenameTask*>(taskItem->task()), this);
+	else if( dynamic_cast<QUAudioTagTask*>(taskItem->task()) )
+		dlg = new QUAudioTagTaskDialog(dynamic_cast<QUAudioTagTask*>(taskItem->task()), this);
+	else
 		return;
 
-	QURenameTaskDialog *dlg = new QURenameTaskDialog(task, this);
 	connect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
 
 	if(dlg->exec()) {

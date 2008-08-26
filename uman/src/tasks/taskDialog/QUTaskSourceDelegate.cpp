@@ -1,6 +1,5 @@
 #include "QUTaskSourceDelegate.h"
 
-#include <QComboBox>
 #include <QString>
 #include <QVariant>
 #include <QLineEdit>
@@ -14,7 +13,7 @@ QWidget* QUTaskSourceDelegate::createEditor(
 		const QModelIndex &/*index*/) const
 {
 	QComboBox *editor = new QComboBox(parent);
-
+	this->setItems(editor);
 	editor->setEditable(false);
 
 	return editor;
@@ -27,16 +26,6 @@ void QUTaskSourceDelegate::setEditorData(
 	QString value = index.model()->data(index, Qt::DisplayRole).toString();
 
 	QComboBox *comboBox = static_cast<QComboBox*>(editor);
-
-	comboBox->addItems(QURenameTask::availableSpecialSources());
-	for(int i = 0; i < comboBox->count(); i++)
-		comboBox->setItemData(i, Qt::darkGray, Qt::ForegroundRole);
-
-	comboBox->addItems(QURenameTask::availableCommonSources());
-	int i = comboBox->count();
-	comboBox->addItems(QUScriptableTask::availableCustomSources());
-	for(; i < comboBox->count(); i++)
-		comboBox->setItemData(i, Qt::blue, Qt::ForegroundRole);
 
 	comboBox->setCurrentIndex(comboBox->findText(value, Qt::MatchContains));
 }
@@ -59,4 +48,25 @@ void QUTaskSourceDelegate::updateEditorGeometry(
 		const QModelIndex &/*index*/) const
 {
 	editor->setGeometry(option.rect);
+}
+
+void QUTaskSourceDelegate::setItems(QComboBox *comboBox) const {
+	if(_type == QU::renameTask) {
+		comboBox->addItems(QURenameTask::availableSpecialSources());
+		for(int i = 0; i < comboBox->count(); i++)
+			comboBox->setItemData(i, Qt::darkGray, Qt::ForegroundRole);
+
+		comboBox->addItems(QURenameTask::availableCommonSources());
+		int i = comboBox->count();
+		comboBox->addItems(QUScriptableTask::availableCustomSources());
+		for(; i < comboBox->count(); i++)
+			comboBox->setItemData(i, Qt::blue, Qt::ForegroundRole);
+
+	} else if(_type == QU::audioTagTask) {
+		comboBox->addItems(QUScriptableTask::availableSources() + QUAudioTagTask::availableSpecialSources());
+		for(int i = 0; i < comboBox->count(); i++)
+			comboBox->setItemData(i, Qt::darkGray, Qt::ForegroundRole);
+
+		comboBox->addItems(QUAudioTagTask::availableCommonSources());
+	}
 }

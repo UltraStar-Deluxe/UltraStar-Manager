@@ -12,6 +12,10 @@
   <property name="windowTitle" >
    <string>Edit Rename Task</string>
   </property>
+  <property name="windowIcon" >
+   <iconset resource="images/uman.qrc" >
+    <normaloff>:/control/tasks_add.png</normaloff>:/control/tasks_add.png</iconset>
+  </property>
   <layout class="QVBoxLayout" >
    <property name="spacing" >
     <number>0</number>
@@ -112,13 +116,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="infoLabel" >
+       <widget class="QLabel" name="infoLbl" >
         <property name="text" >
-         <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">Select a proper &lt;span style=" font-weight:600;">target&lt;/span> and create a custom &lt;span style=" font-weight:600;">schema&lt;/span> for the renaming operation.&lt;/p>&lt;/body>&lt;/html></string>
+         <string>...</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
