@@ -95,8 +95,8 @@ void QURenameTask::startOn(QUSongFile *song) {
 	else if (QString::compare(this->_target, "cover", Qt::CaseInsensitive) == 0)      song->renameSongCover(schema);
 	else if (QString::compare(this->_target, "background", Qt::CaseInsensitive) == 0) song->renameSongBackground(schema);
 	else if (QString::compare(this->_target, "video", Qt::CaseInsensitive) == 0)      song->renameSongVideo(schema);
-	// TODO: What's with unknown targets?! Error Message?
-
+	else
+		emit finished(QString(tr("Invalid target: %1")).arg(this->_target), QU::warning);
 }
 
 /*!

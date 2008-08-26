@@ -10,7 +10,12 @@ QUAudioTagTaskDialog::QUAudioTagTaskDialog(QWidget *parent): QUTaskDialog(parent
 }
 
 void QUAudioTagTaskDialog::init(QUScriptableTask *task) {
-	targetCombo->addItems(QUAudioTagTask::availableTargets());
+	targetCombo->addItems(QUAudioTagTask::availableInfoTargets());
+	int i = targetCombo->count();
+	targetCombo->addItems(QUScriptableTask::availableCustomSources());
+	for(; i < targetCombo->count(); i++)
+		targetCombo->setItemData(i, Qt::blue, Qt::ForegroundRole);
+
 	if(task)
 		targetCombo->setCurrentIndex(targetCombo->findText(task->target(), Qt::MatchContains));
 

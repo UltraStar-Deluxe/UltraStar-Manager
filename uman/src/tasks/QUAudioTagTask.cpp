@@ -67,7 +67,16 @@ void QUAudioTagTask::startOn(QUSongFile *song) {
 	schema = schema.trimmed();
 
 	if(availableTargets().contains(_target, Qt::CaseInsensitive)) {
+		QString old = this->currentContentAll();
 		song->setInfo(_target, schema);
+		emit finished(QString(tr("The song tag \"%1\" of \"%4 - %5\" was changed from \"%2\" to \"%3\"."))
+				.arg(_target)
+				.arg(old)
+				.arg(this->currentContentAll())
+				.arg(song->artist())
+				.arg(song->title()), QU::information);
+	} else {
+		emit finished(QString(tr("The song tag \"%1\" is NOT VALID.")).arg(_target), QU::warning);
 	}
 }
 

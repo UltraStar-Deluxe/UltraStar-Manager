@@ -62,14 +62,22 @@ void QUTaskList::resetTaskList() {
 
 	this->appendSeparator(tr("Song/ID3 Tag Tasks"));
 	foreach(QDomDocument* task, tasks) {
-		if( QString::compare("id3", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 )
-			this->addItem(new QUTaskItem(new QUAudioTagTask(task)));
+		if( QString::compare("id3", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 ) {
+			QUAudioTagTask *newTask = new QUAudioTagTask(task);
+			this->addItem(new QUTaskItem(newTask));
+
+			connect(newTask, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
+		}
 	}
 
 	this->appendSeparator(tr("Renaming Tasks"));
 	foreach(QDomDocument* task, tasks) {
-		if( QString::compare("rename", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 )
-			this->addItem(new QUTaskItem(new QURenameTask(task)));
+		if( QString::compare("rename", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 ) {
+			QURenameTask *newTask = new QURenameTask(task);
+			this->addItem(new QUTaskItem(newTask));
+
+			connect(newTask, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
+		}
 	}
 
 	this->appendSeparator(tr("Clean-Up Tasks"));
