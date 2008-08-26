@@ -5,6 +5,7 @@
 #include <QList>
 #include <QDir>
 #include <QCloseEvent>
+#include <QAction>
 
 #include "QUSongFile.h"
 #include "ui_QUMainWindow.h"
@@ -34,6 +35,7 @@ private slots:
 	void initSongTree();
 	void initDetailsTable();
 	void initTaskList();
+	void initEventLog();
 	void initMonty();
 
 	void appendSong(QUSongFile *song);
@@ -65,6 +67,8 @@ private slots:
 	void showFileContent(QTreeWidgetItem *item, int column);
 
 	void addLogMsg(const QString &msg, QU::EventMessageTypes type = QU::information);
+	void saveLog();
+	void clearLog();
 
 	void toggleFilterFrame(bool checked);
 	void toggleFilterNegateBtn();
@@ -79,6 +83,10 @@ private slots:
 
 private:
 	QList<QUSongFile*>     _songs;
+
+	QAction               *_noInfos;
+	QAction               *_noWarnings;
+	QAction               *_noSaveHints;
 
 	void readSongDir(QList<QDir> &dirList);
 };

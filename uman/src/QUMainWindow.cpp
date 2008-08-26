@@ -22,6 +22,7 @@
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QFileInfoList>
+#include <QTextStream>
 #include <QProgressDialog>
 
 #include <QDesktopServices>
@@ -51,6 +52,7 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 
 	initWindow();
 	initMenu();
+	initEventLog();
 	initConfig();
 
 	initSongTree();
@@ -66,15 +68,7 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
  * Save configuration for next application start.
  */
 QUMainWindow::~QUMainWindow() {
-	QSettings settings;
-	settings.setValue("allowMonty", QVariant(actionAllowMonty->isChecked()));
-	settings.setValue("windowState", QVariant(this->saveState()));
 
-	settings.setValue("disableInfoMessages", QVariant(disableInfoChk->isChecked()));
-	settings.setValue("disableWarningMessages", QVariant(disableWarningChk->isChecked()));
-	settings.setValue("disableSaveMessages", QVariant(disableSaveChk->isChecked()));
-
-	settings.setValue("autoSave", QVariant(actionAutoSave->isChecked()));
 }
 
 /*!
@@ -113,6 +107,18 @@ void QUMainWindow::closeEvent(QCloseEvent *event) {
 		}
 	}
 
+	QSettings settings;
+	settings.setValue("allowMonty", QVariant(actionAllowMonty->isChecked()));
+	settings.setValue("windowState", QVariant(this->saveState()));
+
+	settings.setValue("disableInfoMessages", QVariant(_noInfos->isChecked()));
+	settings.setValue("disableWarningMessages", QVariant(_noWarnings->isChecked()));
+	settings.setValue("disableSaveMessages", QVariant(_noSaveHints->isChecked()));
+
+	settings.setValue("autoSave", QVariant(actionAutoSave->isChecked()));
+
+	this->saveLog();
+
 	event->accept();
 }
 
@@ -137,10 +143,6 @@ void QUMainWindow::initConfig() {
 	actionAllowMonty->setChecked(settings.value("allowMonty", QVariant(true)).toBool());
 	actionShowRelativeSongPath->setChecked(settings.value("showRelativeSongPath", QVariant(true)).toBool());
 	completerChk->setChecked(settings.value("caseSensitiveAutoCompletion", QVariant(false)).toBool());
-
-	disableInfoChk->setChecked(settings.value("disableInfoMessages", QVariant(false)).toBool());
-	disableWarningChk->setChecked(settings.value("disableWarningMessages", QVariant(false)).toBool());
-	disableSaveChk->setChecked(settings.value("disableSaveMessages", QVariant(false)).toBool());
 
 	this->restoreState(settings.value("windowState", QVariant()).toByteArray());
 
@@ -295,6 +297,31 @@ void QUMainWindow::initTaskList() {
 	connect(noTasksBtn, SIGNAL(clicked()), taskList, SLOT(uncheckAllTasks()));
 
 	connect(taskList, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+}
+
+void QUMainWindow::initEventLog() {
+	logOptionsBtn->setMenu(new QMenu);
+	logOptionsBtn->setPopupMode(QToolButton::InstantPopup);
+
+	_noInfos = new QAction(QIcon(":/marks/no_info.png"), tr("Discard Information"), 0);
+	_noInfos->setCheckable(true);
+	logOptionsBtn->menu()->addAction(_noInfos);
+
+	_noWarnings = new QAction(QIcon(":/marks/no_warning.png"), tr("Discard Warnings"), 0);
+	_noWarnings->setCheckable(true);
+	logOptionsBtn->menu()->addAction(_noWarnings);
+
+	_noSaveHints = new QAction(QIcon(":/marks/no_save.png"), tr("Discard Save Hints"), 0);
+	_noSaveHints->setCheckable(true);
+	logOptionsBtn->menu()->addAction(_noSaveHints);
+
+	QSettings settings;
+	_noInfos->setChecked(settings.value("disableInfoMessages", QVariant(false)).toBool());
+	_noWarnings->setChecked(settings.value("disableWarningMessages", QVariant(false)).toBool());
+	_noSaveHints->setChecked(settings.value("disableSaveMessages", QVariant(false)).toBool());
+
+	connect(logClearBtn, SIGNAL(clicked()), this, SLOT(clearLog()));
+	connect(logSaveBtn, SIGNAL(clicked()), this, SLOT(saveLog()));
 }
 
 void QUMainWindow::initMonty() {
@@ -535,22 +562,51 @@ void QUMainWindow::editSongApplyTasks() {
 }
 
 void QUMainWindow::addLogMsg(const QString &msg, QU::EventMessageTypes type) {
-	if(type == QU::information and disableInfoChk->isChecked())
+	if(type == QU::information and _noInfos->isChecked())
 		return;
-	if(type == QU::warning and disableWarningChk->isChecked())
+	if(type == QU::warning and _noWarnings->isChecked())
 		return;
-	if(type == QU::saving and disableSaveChk->isChecked())
+	if(type == QU::saving and _noSaveHints->isChecked())
 		return;
 
 	log->insertItem(0, QDateTime::currentDateTime().toString("[hh:mm:ss] ") + msg);
+	QListWidgetItem *lastItem = log->item(0);
 
 	switch(type) {
-	case 0: log->item(0)->setIcon(QIcon(":/marks/information.png")); break;
-	case 1: log->item(0)->setIcon(QIcon(":/marks/error.png")); break;
-	case 2: log->item(0)->setIcon(QIcon(":/marks/help.png")); break;
-	case 3: log->item(0)->setIcon(QIcon(":/marks/disk.png")); break;
+	case 0: lastItem->setIcon(QIcon(":/marks/information.png")); lastItem->setData(Qt::UserRole, "I"); break;
+	case 1: lastItem->setIcon(QIcon(":/marks/error.png")); lastItem->setData(Qt::UserRole, "!"); break;
+	case 2: lastItem->setIcon(QIcon(":/marks/help.png")); lastItem->setData(Qt::UserRole, "?"); break;
+	case 3: lastItem->setIcon(QIcon(":/marks/disk.png")); lastItem->setData(Qt::UserRole, "S"); break;
 	}
 
+}
+
+/*!
+ * Save the log a default location.
+ */
+void QUMainWindow::saveLog() {
+	if(log->count() == 0)
+		return;
+
+	QDir logDir = QDir(QCoreApplication::applicationDirPath()); logDir.mkdir("logs"); logDir.cd("logs");
+	QString filePath = QFileInfo(logDir, QString("%1.txt").arg(QDateTime::currentDateTime().toString("yyMMdd_hhmmss"))).filePath();
+	QFile file(filePath);
+
+	if(file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+		QTextStream out(&file);
+
+		for(int row = 0; row < log->count(); row++) {
+			out << QString("%1 %2").arg(log->item(row)->data(Qt::UserRole).toString()).arg(log->item(row)->text()) << endl;
+		}
+		file.close();
+
+		addLogMsg(QString(tr("The log file was saved to: \"%1\"")).arg(filePath), QU::saving);
+	} else
+		addLogMsg(QString(tr("The log file COULD NOT be saved.")).arg(filePath), QU::warning);
+}
+
+void QUMainWindow::clearLog() {
+	log->clear();
 }
 
 void QUMainWindow::aboutQt() {

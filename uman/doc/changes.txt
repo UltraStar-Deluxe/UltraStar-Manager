@@ -68,6 +68,7 @@ NEW FEATURES
 * classes "odd" and "even" added to HTML report
 * first style sheet for HTML report added
 * "*.mp4" files now recognized as valid video files
+* event logs are now saved on application exit or whenever you want
 
 BUG FIXES
 * minor change in object renaming
@@ -128,9 +129,6 @@ TODO (for 1.7.0)
   should be selected
   > would be useful for selecting all karaoke files in each folder
 * add to playlist context menu "remove invalid entries"
-* scriptable "ID3 tag tasks"
-  > custom mapping for "ID3 tag" to "Song tag"
-  > could be used to map "Album" from MP3 zu custom #ALBUM tag
 * add to installer: custom tag #comment (insert in registry)
 
 NICE TO HAVE (but not necessary in 1.7.0)

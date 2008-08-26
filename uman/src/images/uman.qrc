@@ -27,6 +27,7 @@
     <file>playlist_to.png</file>
     <file>text_edit.png</file>
     <file>tasks_add.png</file>
+    <file>filter_log.png</file>
     <file>log.png</file>
     <file>tag_custom.png</file>
     <file>tasks.png</file>
@@ -73,6 +74,9 @@
   <qresource prefix="/marks" >
     <file>accept.png</file>
     <file>add.png</file>
+    <file>no_warning.png</file>
+    <file>no_info.png</file>
+    <file>no_save.png</file>
     <file>cancel.png</file>
     <file>clock.png</file>
     <file>cross.png</file>

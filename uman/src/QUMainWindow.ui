@@ -593,7 +593,7 @@
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>133</height>
+           <height>142</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -671,7 +671,7 @@
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>157</height>
+           <height>166</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -867,7 +867,7 @@
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>114</height>
+           <height>123</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout" >
@@ -938,7 +938,7 @@
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>175</height>
+           <height>148</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -968,9 +968,9 @@
                <colorrole role="Base" >
                 <brush brushstyle="SolidPattern" >
                  <color alpha="255" >
-                  <red>234</red>
-                  <green>234</green>
-                  <blue>234</blue>
+                  <red>255</red>
+                  <green>255</green>
+                  <blue>255</blue>
                  </color>
                 </brush>
                </colorrole>
@@ -979,9 +979,9 @@
                <colorrole role="Base" >
                 <brush brushstyle="SolidPattern" >
                  <color alpha="255" >
-                  <red>234</red>
-                  <green>234</green>
-                  <blue>234</blue>
+                  <red>255</red>
+                  <green>255</green>
+                  <blue>255</blue>
                  </color>
                 </brush>
                </colorrole>
@@ -999,15 +999,6 @@
               </disabled>
              </palette>
             </property>
-            <property name="frameShape" >
-             <enum>QFrame::Box</enum>
-            </property>
-            <property name="frameShadow" >
-             <enum>QFrame::Plain</enum>
-            </property>
-            <property name="midLineWidth" >
-             <number>0</number>
-            </property>
             <property name="selectionMode" >
              <enum>QAbstractItemView::NoSelection</enum>
             </property>
@@ -1023,40 +1014,91 @@
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="disableInfoChk" >
-            <property name="text" >
-             <string>Disable information events</string>
+           <layout class="QHBoxLayout" name="horizontalLayout_5" >
+            <property name="spacing" >
+             <number>0</number>
             </property>
-            <property name="icon" >
-             <iconset resource="images/uman.qrc" >
-              <normaloff>:/marks/information.png</normaloff>:/marks/information.png</iconset>
+            <property name="sizeConstraint" >
+             <enum>QLayout::SetDefaultConstraint</enum>
             </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="disableWarningChk" >
-            <property name="text" >
-             <string>Disable warnings</string>
+            <property name="leftMargin" >
+             <number>0</number>
             </property>
-            <property name="icon" >
-             <iconset resource="images/uman.qrc" >
-              <normaloff>:/marks/error.png</normaloff>:/marks/error.png</iconset>
+            <property name="topMargin" >
+             <number>0</number>
             </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="disableSaveChk" >
-            <property name="text" >
-             <string>Disable save messages</string>
-            </property>
-            <property name="icon" >
-             <iconset resource="images/uman.qrc" >
-              <normaloff>:/marks/disk.png</normaloff>:/marks/disk.png</iconset>
-            </property>
-            <property name="checked" >
-             <bool>true</bool>
-            </property>
-           </widget>
+            <item>
+             <spacer name="horizontalSpacer" >
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QToolButton" name="logOptionsBtn" >
+              <property name="text" >
+               <string>Filter</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="images/uman.qrc" >
+                <normaloff>:/control/filter_log.png</normaloff>:/control/filter_log.png</iconset>
+              </property>
+              <property name="toolButtonStyle" >
+               <enum>Qt::ToolButtonTextBesideIcon</enum>
+              </property>
+              <property name="autoRaise" >
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="logSaveBtn" >
+              <property name="text" >
+               <string>Save</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="images/uman.qrc" >
+                <normaloff>:/control/save.png</normaloff>:/control/save.png</iconset>
+              </property>
+              <property name="toolButtonStyle" >
+               <enum>Qt::ToolButtonTextBesideIcon</enum>
+              </property>
+              <property name="autoRaise" >
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line_2" >
+              <property name="orientation" >
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="logClearBtn" >
+              <property name="text" >
+               <string>Clear</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="images/uman.qrc" >
+                <normaloff>:/control/bin.png</normaloff>:/control/bin.png</iconset>
+              </property>
+              <property name="toolButtonStyle" >
+               <enum>Qt::ToolButtonIconOnly</enum>
+              </property>
+              <property name="autoRaise" >
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
