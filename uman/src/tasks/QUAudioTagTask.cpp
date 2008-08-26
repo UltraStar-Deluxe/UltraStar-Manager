@@ -56,14 +56,6 @@ void QUAudioTagTask::startOn(QUSongFile *song) {
 	while(schema.contains("%"))
 		schema = schema.arg("");
 
-	// a '/' stands for the root with path renaming -> remove it!
-	while(schema.startsWith("/"))
-		schema.remove(0, 1);
-
-	// remove unsupported characters (windows only)
-	schema = QU::withoutUnsupportedCharacters(schema);
-
-	// you must not use trailing spaces - could corrupt the file system
 	schema = schema.trimmed();
 
 	if(availableTargets().contains(_target, Qt::CaseInsensitive)) {
@@ -89,7 +81,7 @@ QStringList QUAudioTagTask::availableSpecialSources() {
 }
 
 QStringList QUAudioTagTask::availableCommonSources() {
-	return QString("artist title genre year album").split(" ");
+	return QString("artist title album genre year track length bitrate").split(" ");
 }
 
 QStringList QUAudioTagTask::availableTargets() {
@@ -131,6 +123,13 @@ QString QUAudioTagTask::title() {
 	return TStringToQString(ref().tag()->title());
 }
 
+QString QUAudioTagTask::album() {
+	if(this->ref().isNull())
+		return QString();
+
+	return TStringToQString(ref().tag()->album());
+}
+
 QString QUAudioTagTask::genre() {
 	if(this->ref().isNull())
 		return QString();
@@ -149,11 +148,37 @@ QString QUAudioTagTask::year() {
 	return year;
 }
 
-QString QUAudioTagTask::album() {
+QString QUAudioTagTask::track() {
 	if(this->ref().isNull())
 		return QString();
 
-	return TStringToQString(ref().tag()->album());
+	QString track(QVariant(ref().tag()->track()).toString());
+
+	if(track == "0") track = "";
+
+	return track;
+}
+
+QString QUAudioTagTask::length() {
+	TagLib::FileRef ref = this->ref();
+
+	if(ref.isNull() or !ref.audioProperties())
+		return QString();
+
+	int length = ref.audioProperties()->length();
+
+	return QString("%1:%2").arg(length / 60).arg(length % 60, 2, 10, QChar('0'));
+}
+
+QString QUAudioTagTask::bitrate() {
+	TagLib::FileRef ref = this->ref();
+
+	if(ref.isNull() or !ref.audioProperties())
+		return QString();
+
+	int bitrate = ref.audioProperties()->bitrate();
+
+	return QVariant(bitrate).toString();
 }
 
 QString QUAudioTagTask::currentContent() {

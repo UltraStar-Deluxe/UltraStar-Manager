@@ -7,6 +7,7 @@ QUAudioTagTaskDialog::QUAudioTagTaskDialog(QUAudioTagTask *task, QWidget *parent
 QUAudioTagTaskDialog::QUAudioTagTaskDialog(QWidget *parent): QUTaskDialog(parent) {
 	init();
 	dataTable->fillData(QList<QUScriptData*>(), QU::audioTagTask); // for setting up custom delegates
+	this->setWindowTitle(tr("Add Song/ID3 Tag Task"));
 }
 
 void QUAudioTagTaskDialog::init(QUScriptableTask *task) {
@@ -19,7 +20,7 @@ void QUAudioTagTaskDialog::init(QUScriptableTask *task) {
 	if(task)
 		targetCombo->setCurrentIndex(targetCombo->findText(task->target(), Qt::MatchContains));
 
-	infoLbl->setText(tr("Select a proper <b>target tag</b> and create a custom <b>schema</b> for the operation."));
+	infoLbl->setText(tr("Select a proper <b>target tag</b> and create a custom <b>schema</b> for the operation. You can use <b>custom tags</b> as targets."));
 }
 
 /*!

@@ -13,6 +13,7 @@ QURenameTaskDialog::QURenameTaskDialog(QURenameTask *task, QWidget *parent): QUT
 QURenameTaskDialog::QURenameTaskDialog(QWidget *parent): QUTaskDialog(parent) {
 	init();
 	dataTable->fillData(QList<QUScriptData*>(), QU::renameTask); // for setting up custom delegates
+	this->setWindowTitle(tr("Add Rename Task"));
 }
 
 void QURenameTaskDialog::init(QUScriptableTask *task) {
@@ -20,7 +21,7 @@ void QURenameTaskDialog::init(QUScriptableTask *task) {
 	if(task)
 		targetCombo->setCurrentIndex(targetCombo->findText(task->target(), Qt::MatchContains));
 
-	infoLbl->setText(tr("Select a proper <b>target</b> and create a custom <b>schema</b> for the renaming operation."));
+	infoLbl->setText(tr("Select a proper <b>target</b> and create a custom <b>schema</b> for the renaming operation. You can use <b>custom tags</b> as sources."));
 }
 
 /*!

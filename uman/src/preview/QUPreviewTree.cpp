@@ -140,35 +140,39 @@ void QUPreviewTree::showFileInformation(const QFileInfo &fi) {
 	else if(QU::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive))
 		showPictureFileInformation(fi);
 	else if(QU::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive))
-			showVideoFileInformation(fi);
+		showVideoFileInformation(fi);
 }
 
 void QUPreviewTree::showAudioFileInformation(const QFileInfo &fi) {
 	current->addChild(this->createInfoItem(tr("Filename"), fi.fileName()));
 	current->addChild(this->createInfoItem(tr("Path"), fi.absolutePath()));
 	current->addChild(this->createInfoItem(tr("Type"), tr("audio file")));
-	current->addChild(this->createInfoItem(tr("Size"), QString("%1 Bytes").arg(fi.size())));
+	current->addChild(this->createInfoItem(tr("Size"), QString("%1 MiB").arg(fi.size() / 1024. / 1024., 0, 'f', 2)));
 
 	TagLib::FileRef ref(fi.absoluteFilePath().toLocal8Bit().data());
 
 	if(!ref.isNull()) {
-		TagLib::AudioProperties *prop = ref.audioProperties();
-
-		if(prop) {
-			extra->addChild(this->createInfoItem(tr("Length"), QString("%1:%2").arg(prop->length() / 60).arg(prop->length() % 60, 2, 10, QChar('0'))));
-		}
-
 		QString artist(TStringToQString(ref.tag()->artist())); if(artist == "") artist = N_A;
 		QString title(TStringToQString(ref.tag()->title())); if(title == "") title = N_A;
 		QString album(TStringToQString(ref.tag()->album())); if(album == "") album = N_A;
 		QString genre(TStringToQString(ref.tag()->genre())); if(genre == "") genre = N_A;
 		QString year(QVariant(ref.tag()->year()).toString()); if(year == "0") year = N_A;
+		QString track(QVariant(ref.tag()->track()).toString()); if(track == "0") track = N_A;
 
 		extra->addChild(this->createInfoItem(tr("Artist"), artist));
 		extra->addChild(this->createInfoItem(tr("Title"), title));
 		extra->addChild(this->createInfoItem(tr("Album"), album));
 		extra->addChild(this->createInfoItem(tr("Genre"), genre));
 		extra->addChild(this->createInfoItem(tr("Year"), year));
+		extra->addChild(this->createInfoItem(tr("Track"), track));
+
+		TagLib::AudioProperties *prop = ref.audioProperties();
+
+		if(prop) {
+			extra->addChild(this->createInfoItem(tr("Length"), QString("%1:%2 min").arg(prop->length() / 60).arg(prop->length() % 60, 2, 10, QChar('0'))));
+			extra->addChild(this->createInfoItem(tr("Bitrate"), QString("%1 kbit/s").arg(prop->bitrate())));
+		}
+
 
 		extra->setText(0, tr("Audio Properties"));
 		extra->setHidden(false);
@@ -181,7 +185,7 @@ void QUPreviewTree::showPictureFileInformation(const QFileInfo &fi) {
 	current->addChild(this->createInfoItem(tr("Filename"), fi.fileName()));
 	current->addChild(this->createInfoItem(tr("Path"), fi.absolutePath()));
 	current->addChild(this->createInfoItem(tr("Type"), tr("picture file")));
-	current->addChild(this->createInfoItem(tr("Size"), QString("%1 Bytes").arg(fi.size())));
+	current->addChild(this->createInfoItem(tr("Size"), QString("%1 KiB").arg(fi.size() / 1024., 0, 'f', 2)));
 
 	QImage img(fi.filePath());
 	extra->addChild(this->createInfoItem(tr("Dimensions"), QString("%1 x %2").arg(img.width()).arg(img.height())));
@@ -197,7 +201,7 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 	current->addChild(this->createInfoItem(tr("Filename"), fi.fileName()));
 	current->addChild(this->createInfoItem(tr("Path"), fi.absolutePath()));
 	current->addChild(this->createInfoItem(tr("Type"), tr("video file")));
-	current->addChild(this->createInfoItem(tr("Size"), QString("%1 Bytes").arg(fi.size())));
+	current->addChild(this->createInfoItem(tr("Size"), QString("%1 MiB").arg(fi.size() / 1024. / 1024., 0, 'f', 2)));
 
 //	extra->setText(0, tr("Video Properties"));
 //	extra->setHidden(false);

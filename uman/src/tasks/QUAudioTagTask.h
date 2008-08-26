@@ -20,9 +20,12 @@ class QUAudioTagTask: public QUScriptableTask {
 
 	Q_PROPERTY(QString artist READ artist)
 	Q_PROPERTY(QString title READ title)
+	Q_PROPERTY(QString album READ album)
 	Q_PROPERTY(QString genre READ genre)
 	Q_PROPERTY(QString year READ year)
-	Q_PROPERTY(QString album READ album)
+	Q_PROPERTY(QString track READ track)
+	Q_PROPERTY(QString length READ length)
+	Q_PROPERTY(QString bitrate READ bitrate)
 
 	Q_PROPERTY(QString target READ currentContent)
 	Q_PROPERTY(QString targetfull READ currentContentAll)
@@ -47,9 +50,12 @@ private:
 
 	QString artist();
 	QString title();
+	QString album();
 	QString genre();
 	QString year();
-	QString album();
+	QString track();
+	QString length();
+	QString bitrate();
 
 	QString currentContent();
 	QString currentContentAll();

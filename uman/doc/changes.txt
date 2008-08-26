@@ -16,7 +16,7 @@ NEW FEATURES
   > change the complete path of a song
 * re-organize folder structure with rename tasks
   > Songs/Artist - Title (default)
-  > Songs/Artist/Title
+  > Songs/Artist/Artist - Title
   > Songs/Edition/Artist - Title
   > Songs/Genre/Title - Artist
 * new database info window/dock added
@@ -42,6 +42,7 @@ NEW FEATURES
   > red cross only for empty file-related tags
 * create custom song tags, e.g. #COMMENT
   > use them as sources for rename tasks (the blue entries in the sources combo box)
+  > use them as targets for song/id3 tag tasks
   > added as a new filter target
   > contents displayed in the last columns of the song tree
   > can be used for reports
@@ -55,7 +56,7 @@ NEW FEATURES
 * tooltips for "unused files" and "multiple songs" column added
   > displays the files affected
 * Monty talks now in a white speech bubble.
-* toolbar splitted in more toolbars
+* toolbar splitted into more toolbars
 * context menu for song tree header added (right-click)
   > show/hide various columns
   > state of columns saved

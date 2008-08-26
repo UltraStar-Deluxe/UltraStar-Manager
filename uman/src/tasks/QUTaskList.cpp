@@ -32,10 +32,10 @@ QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
  */
 void QUTaskList::showContextMenu(const QPoint &point) {
 	QMenu menu(this);
+	QMenu *addMenu = menu.addMenu(QIcon(":/marks/add.png"), tr("Add"));
 
-	menu.addAction(QIcon(":/marks/add.png"), tr("Add song/ID3 tag task..."), this, SLOT(addAudioTagTask()));
-	menu.addAction(QIcon(":/marks/add.png"), tr("Add rename task..."), this, SLOT(addRenameTask()));
-	menu.addSeparator();
+	addMenu->addAction(tr("Song/ID3 Tag Task..."), this, SLOT(addAudioTagTask()));
+	addMenu->addAction(tr("Rename Task..."), this, SLOT(addRenameTask()));
 
 	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(this->itemAt(point));
 	if(taskItem)
@@ -43,7 +43,7 @@ void QUTaskList::showContextMenu(const QPoint &point) {
 			menu.addAction(QIcon(":/control/pencil.png"), tr("Edit..."), this, SLOT(editCurrentTask()));
 
 	menu.addSeparator();
-	menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(resetTaskList()));
+	menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh All"), this, SLOT(resetTaskList()));
 
 	menu.exec(this->mapToGlobal(point));
 }
