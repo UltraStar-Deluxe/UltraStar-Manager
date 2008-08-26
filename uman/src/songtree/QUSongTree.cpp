@@ -407,7 +407,7 @@ bool QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 		QFileInfo fi(url.toLocalFile());
 		QString fileScheme("*." + fi.suffix());
 
-		if(QUSongFile::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		if(QU::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			QUSongFile tmp(fi.filePath());
 
 			QString newSongDirName = QString("%1 - %2").arg(tmp.artist()).arg(tmp.title());

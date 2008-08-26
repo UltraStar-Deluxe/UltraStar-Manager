@@ -19,3 +19,11 @@ QUScriptableTask::QUScriptableTask(QDomDocument *taskConfig, QObject *parent): Q
 		this->_iconSource = general.firstChildElement("icon").attribute("resource");
 	}
 }
+
+QStringList QUScriptableTask::availableCustomSources() {
+	return QUSongFile::customTags();
+}
+
+QStringList QUScriptableTask::availableConditions() {
+	return QString("true hasMp3 hasCover hasBackground hasVideo isSongChecked").split(" ");
+}

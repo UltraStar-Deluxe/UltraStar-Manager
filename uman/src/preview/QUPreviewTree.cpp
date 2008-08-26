@@ -48,10 +48,10 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 	types->setTextColor(0, Qt::darkGray);
 	types->setFirstColumnSpanned(true);
 
-	types->addChild(this->createInfoItem(tr("Song"), QUSongFile::allowedSongFiles().join(" ")));
-	types->addChild(this->createInfoItem(tr("Audio"), QUSongFile::allowedAudioFiles().join(" ")));
-	types->addChild(this->createInfoItem(tr("Picture"), QUSongFile::allowedPictureFiles().join(" ")));
-	types->addChild(this->createInfoItem(tr("Video"), QUSongFile::allowedVideoFiles().join(" ")));
+	types->addChild(this->createInfoItem(tr("Song"), QU::allowedSongFiles().join(" ")));
+	types->addChild(this->createInfoItem(tr("Audio"), QU::allowedAudioFiles().join(" ")));
+	types->addChild(this->createInfoItem(tr("Picture"), QU::allowedPictureFiles().join(" ")));
+	types->addChild(this->createInfoItem(tr("Video"), QU::allowedVideoFiles().join(" ")));
 
 	// set up "current" toplevel item
 
@@ -135,11 +135,11 @@ void QUPreviewTree::showFileInformation(const QFileInfo &fi) {
 
 	QString fileScheme("*." + fi.suffix());
 
-	if(QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive))
+	if(QU::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive))
 		showAudioFileInformation(fi);
-	else if(QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive))
+	else if(QU::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive))
 		showPictureFileInformation(fi);
-	else if(QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive))
+	else if(QU::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive))
 			showVideoFileInformation(fi);
 }
 

@@ -1,5 +1,4 @@
 #include "QURenameTaskDialog.h"
-#include "QUSongFile.h"
 
 #include <QCoreApplication>
 #include <QDir>
@@ -55,7 +54,7 @@ void QURenameTaskDialog::initDialog() {
 	this->setWindowTitle(QString("Add Task: \"%1\"").arg("unnamed.xml"));
 
 	targetCombo->clear();
-	targetCombo->addItems(QUSongFile::availableTargets());
+	targetCombo->addItems(QURenameTask::availableTargets());
 
 	iconCombo->clear();
 	this->fillIconCombo(":/types");

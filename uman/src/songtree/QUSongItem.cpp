@@ -59,13 +59,13 @@ void QUSongItem::update() {
 
 		QString fileScheme("*." + QFileInfo(fileNames[i]).suffix());
 
-		if(QUSongFile::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		if(QU::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsTxt();
-		} else if(QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		} else if(QU::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsMp3();
-		} else if(QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		} else if(QU::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsPicture();
-		} else if(QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		} else if(QU::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsVideo();
 		} else {
 			child->updateAsUnknown();
@@ -99,9 +99,9 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	QString part1, part2;
 
 	/* artist column */
-	part1 = QUSongFile::withoutUnsupportedCharacters(song()->artist());
+	part1 = QU::withoutUnsupportedCharacters(song()->artist());
 	part1 = QU::withoutFolderTags(part1);
-	part2 = QUSongFile::withoutUnsupportedCharacters(pattern.section(" - ", 0, 0));
+	part2 = QU::withoutUnsupportedCharacters(pattern.section(" - ", 0, 0));
 
 	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
 		this->setTick(ARTIST_COLUMN);
@@ -111,9 +111,9 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 		this->setCross(ARTIST_COLUMN, false, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_NEQUAL)));
 
 	/* title column */
-	part1 = QUSongFile::withoutUnsupportedCharacters(song()->title());
+	part1 = QU::withoutUnsupportedCharacters(song()->title());
 	part1 = QU::withoutFolderTags(part1);
-	part2 = QUSongFile::withoutUnsupportedCharacters(pattern.section(" - ", 1));
+	part2 = QU::withoutUnsupportedCharacters(pattern.section(" - ", 1));
 
 	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
 		this->setTick(TITLE_COLUMN);

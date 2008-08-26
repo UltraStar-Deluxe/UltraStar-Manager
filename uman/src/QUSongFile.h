@@ -31,10 +31,6 @@
 #define BPM_TAG        "BPM"
 #define GAP_TAG        "GAP"
 
-#define TEXT_SOURCE         "*TEXT*"
-#define KEEP_SUFFIX_SOURCE  "*SUFFIX*"
-#define UNKNOWN_TAGS_SOURCE "*UNKNOWN_TAGS*"
-
 /*!
  * This class represents a data file which is used by UltraStar for every song.
  * It contains all tags that are available in US Deluxe 1.00.
@@ -96,8 +92,6 @@ public:
 	static bool hasBackgroundLessThan (QUSongFile *s1, QUSongFile *s2);
 	static bool hasVideoLessThan (QUSongFile *s1, QUSongFile *s2);
 
-	static QString withoutUnsupportedCharacters (const QString &text); // TODO: move to QU.cpp
-
 public slots:
 	QString artist() const     {return _info.value(ARTIST_TAG,     QString(N_A));}
 	QString title() const      {return _info.value(TITLE_TAG,      QString(N_A));}
@@ -158,21 +152,6 @@ public slots:
 	static QStringList noteTypes();
 
 	static void verifyTags(QStringList &tags);
-	static QStringList allowedSongFiles();
-	static QStringList allowedAudioFiles();
-	static QStringList allowedPictureFiles();
-	static QStringList allowedVideoFiles();
-
-	static QStringList availableTargets();
-	static QStringList availableInfoTargets();
-	static QStringList availableCustomTargets();
-
-	static QStringList availableConditions();
-
-	static QStringList availableSources();
-	static QStringList availableSpecialSources();
-	static QStringList availableCommonSources();
-	static QStringList availableCustomSources();
 
 	bool unsupportedTagsFound() const { return _foundUnsupportedTags.size() > 0; }
 	QString unsupportedTags() const { return _foundUnsupportedTags.join("\n#"); }

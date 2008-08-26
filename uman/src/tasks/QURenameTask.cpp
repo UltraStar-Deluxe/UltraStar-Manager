@@ -52,7 +52,7 @@ void QURenameTask::startOn(QUSongFile *song) {
 			} else if (!currentData->_source.isEmpty()) {
 				QString value;
 
-				if(QUSongFile::availableCustomSources().contains(currentData->_source, Qt::CaseInsensitive))
+				if(availableCustomSources().contains(currentData->_source, Qt::CaseInsensitive))
 					value = song->customTag(currentData->_source);
 				else
 					value = song->property(currentData->_source.toLower().toLocal8Bit().data()).toString();
@@ -83,7 +83,7 @@ void QURenameTask::startOn(QUSongFile *song) {
 		schema.remove(0, 1);
 
 	// remove unsupported characters (windows only)
-	schema = QUSongFile::withoutUnsupportedCharacters(schema);
+	schema = QU::withoutUnsupportedCharacters(schema);
 
 	// you must not use trailing spaces - could corrupt the file system
 	schema = schema.trimmed();
@@ -97,6 +97,36 @@ void QURenameTask::startOn(QUSongFile *song) {
 	else if (QString::compare(this->_target, "video", Qt::CaseInsensitive) == 0)      song->renameSongVideo(schema);
 	// TODO: What's with unknown targets?! Error Message?
 
+}
+
+/*!
+ * \returns a list of all possible targets used by rename tasks.
+ */
+QStringList QURenameTask::availableTargets() {
+	return QString("dir path txt mp3 cover background video").split(" ");
+}
+
+QStringList QURenameTask::availableSources() {
+	QStringList result;
+
+	result << availableSpecialSources();
+	result << availableCommonSources();
+	result << availableCustomSources();
+
+	return result;
+}
+
+QStringList QURenameTask::availableSpecialSources() {
+	QStringList result;
+
+	// special sources
+	result << TEXT_SOURCE << KEEP_SUFFIX_SOURCE << UNKNOWN_TAGS_SOURCE;
+
+	return result;
+}
+
+QStringList QURenameTask::availableCommonSources() {
+	return QString("artist title mp3 bpm gap video videogap cover background start language relative edition genre year end creator dir txt").split(" ");
 }
 
 /*!

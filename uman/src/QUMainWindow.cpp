@@ -357,7 +357,7 @@ void QUMainWindow::createSongFiles() {
 	dlg.show();
 
 	foreach(QDir dir, dirList) {
-		QStringList files = dir.entryList(QUSongFile::allowedSongFiles(), QDir::Files);
+		QStringList files = dir.entryList(QU::allowedSongFiles(), QDir::Files);
 
 		dlg.update(dir.dirName());
 		if(dlg.cancelled()) break;
@@ -439,25 +439,25 @@ void QUMainWindow::editSongSetFileLink(QTreeWidgetItem *item, int column) {
 	QString fileScheme("*." + QFileInfo(songItem->text(FOLDER_COLUMN)).suffix());
 
 	if( songItem->icon(MP3_COLUMN).isNull()
-			and QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)
+			and QU::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)
 			and column == MP3_COLUMN ) {
 		addLogMsg(QString(tr("Audio file changed from \"%1\" to: \"%2\".")).arg(song->mp3()).arg(songItem->text(FOLDER_COLUMN)));
 		song->setInfo(MP3_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	} else if( songItem->icon(COVER_COLUMN).isNull()
-			and QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)
+			and QU::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)
 			and column == COVER_COLUMN ) {
 		addLogMsg(QString(tr("Cover changed from \"%1\" to: \"%2\".")).arg(song->cover()).arg(songItem->text(FOLDER_COLUMN)));
 		song->setInfo(COVER_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	} else if( songItem->icon(BACKGROUND_COLUMN).isNull()
-			and QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)
+			and QU::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)
 			and column == BACKGROUND_COLUMN ) {
 		addLogMsg(QString(tr("Background changed from \"%1\" to: \"%2\".")).arg(song->background()).arg(songItem->text(FOLDER_COLUMN)));
 		song->setInfo(BACKGROUND_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	} else if( songItem->icon(VIDEO_COLUMN).isNull()
-			and QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)
+			and QU::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)
 			and column == VIDEO_COLUMN ) {
 		addLogMsg(QString(tr("Video file changed from \"%1\" to: \"%2\".")).arg(song->video()).arg(songItem->text(FOLDER_COLUMN)));
 		song->setInfo(VIDEO_TAG, songItem->text(FOLDER_COLUMN));
@@ -734,17 +734,17 @@ void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
 		QUTextDialog *dlg = new QUTextDialog(songItem->song(), this);
 		dlg->exec();
 		delete dlg;
-	} else if(QUSongFile::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+	} else if(QU::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		// use this song text file for the folder now
 		// --> useful for more than one valid song text file per folder
 		songItem->song()->setFile(QFileInfo(songItem->song()->songFileInfo().dir(), item->text(FOLDER_COLUMN)).filePath());
 
 		songTree->setCurrentItem(songItem->parent());
 		songItem->update();
-	} else if(QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+	} else if(QU::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QUPictureDialog dlg(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(FOLDER_COLUMN)).filePath(), this);
 		dlg.exec();
-	} else if(QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive) or QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+	} else if(QU::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive) or QU::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QFileInfo fi(songItem->song()->path(), songItem->text(FOLDER_COLUMN));
 		if( !QDesktopServices::openUrl(QUrl(fi.filePath())) )
 			addLogMsg(QString(tr("Could NOT open file: \"%1\".")).arg(fi.filePath()), QU::warning);

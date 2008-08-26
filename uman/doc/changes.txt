@@ -131,6 +131,7 @@ TODO (for 1.7.0)
 * scriptable "ID3 tag tasks"
   > custom mapping for "ID3 tag" to "Song tag"
   > could be used to map "Album" from MP3 zu custom #ALBUM tag
+* add to installer: custom tag #comment (insert in registry)
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title

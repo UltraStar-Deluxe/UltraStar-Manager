@@ -33,6 +33,10 @@ public:
 
 	static QStringList availableID3Sources();
 
+	static QStringList availableTargets();
+	static QStringList availableInfoTargets();
+	static QStringList availableCustomTargets();
+
 private:
 	QUSongFile *_currentSong;
 

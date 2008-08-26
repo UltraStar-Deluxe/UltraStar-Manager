@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QString>
+#include <QStringList>
+#include <QRegExp>
 
 #define CHAR_UTF8_APPROX "\xe2\x89\x88"
 #define CHAR_UTF8_NEQUAL "\xe2\x89\xa0"
@@ -18,26 +20,6 @@ public:
 		saving
 	};
 	Q_DECLARE_FLAGS(EventMessageTypes, EventMessageType)
-
-	enum AudioTagTaskMode {
-		useArtist,
-		useTitle,
-		useGenre,
-		useYear
-	};
-	Q_DECLARE_FLAGS(AudioTagTaskModes, AudioTagTaskMode)
-
-	enum RenameTaskMode {
-		renameDirectory,
-		renameDirectorySpecial, // use and preserve folder tags ([VIDEO], [SC], ...)
-		renameSongFile,
-		renameAudioFile,
-		renameCoverFile,
-		renameBackgroundFile,
-		renameVideoFile,
-		renameVideoFileSpecial // use videogap [VD#0]
-	};
-	Q_DECLARE_FLAGS(RenameTaskModes, RenameTaskMode)
 
 	enum PreparatoryTaskMode {
 		autoAssignFiles,
@@ -60,7 +42,16 @@ public:
 	};
 	Q_DECLARE_FLAGS(FilterModes, FilterMode)
 
+	static QStringList allowedSongFiles();
+	static QStringList allowedAudioFiles();
+	static QStringList allowedPictureFiles();
+	static QStringList allowedVideoFiles();
+
+	static QString withoutUnsupportedCharacters (const QString &text);
 	static QString withoutFolderTags(const QString &text);
+
+protected:
+	QU() {} // do not allow to make an instance of this object
 };
 
 #endif /*QU_H_*/

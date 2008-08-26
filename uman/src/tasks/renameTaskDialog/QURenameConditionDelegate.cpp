@@ -1,5 +1,5 @@
 #include "QURenameConditionDelegate.h"
-#include "QUSongFile.h"
+#include "QUScriptableTask.h"
 
 #include <QComboBox>
 #include <QString>
@@ -29,7 +29,7 @@ void QURenameConditionDelegate::setEditorData(
 
 	QComboBox *comboBox = static_cast<QComboBox*>(editor);
 
-	comboBox->addItems(QUSongFile::availableConditions());
+	comboBox->addItems(QUScriptableTask::availableConditions());
 	comboBox->setItemData(0, Qt::darkGray, Qt::ForegroundRole); // should be the "true" entry
 
 	comboBox->setCurrentIndex(comboBox->findText(value, Qt::MatchContains));

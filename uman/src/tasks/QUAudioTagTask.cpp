@@ -61,18 +61,36 @@ void QUAudioTagTask::startOn(QUSongFile *song) {
 		schema.remove(0, 1);
 
 	// remove unsupported characters (windows only)
-	schema = QUSongFile::withoutUnsupportedCharacters(schema);
+	schema = QU::withoutUnsupportedCharacters(schema);
 
 	// you must not use trailing spaces - could corrupt the file system
 	schema = schema.trimmed();
 
-	if(QUSongFile::availableInfoTargets().contains(_target, Qt::CaseInsensitive) or QUSongFile::availableCustomTargets().contains(_target, Qt::CaseInsensitive)) {
+	if(availableTargets().contains(_target, Qt::CaseInsensitive)) {
 		song->setInfo(_target, schema);
 	}
 }
 
 QStringList QUAudioTagTask::availableID3Sources() {
 	return QString("artist title genre year target targetfull").split(" ");
+}
+
+QStringList QUAudioTagTask::availableTargets() {
+	return availableInfoTargets() + availableCustomTargets();
+}
+
+/*!
+ * \returns a list of all possible targets used by audiotag tasks.
+ */
+QStringList QUAudioTagTask::availableInfoTargets() {
+	return QString("artist title language edition genre year creator").split(" ");
+}
+
+/*!
+ * \returns a list of all possible custom targets used by audiotag tasks.
+ */
+QStringList QUAudioTagTask::availableCustomTargets() {
+	return QUSongFile::customTags();
 }
 
 TagLib::FileRef QUAudioTagTask::ref() {
@@ -124,7 +142,7 @@ QString QUAudioTagTask::currentContentAll() {
 
 	QString value;
 
-	if(QUSongFile::availableCustomSources().contains(_target, Qt::CaseInsensitive))
+	if(availableCustomSources().contains(_target, Qt::CaseInsensitive))
 		value = _currentSong->customTag(_target);
 	else
 		value = _currentSong->property(_target.toLower().toLocal8Bit().data()).toString();

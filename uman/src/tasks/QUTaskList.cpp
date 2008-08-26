@@ -57,7 +57,7 @@ void QUTaskList::resetTaskList() {
 	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::autoAssignFiles)));
 	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::removeUnsupportedTags)));
 
-	this->appendSeparator(tr("ID3 Tag Tasks"));
+	this->appendSeparator(tr("Song/ID3 Tag Tasks"));
 	foreach(QDomDocument* task, tasks) {
 		if( QString::compare("id3", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 )
 			this->addItem(new QUTaskItem(new QUAudioTagTask(task)));

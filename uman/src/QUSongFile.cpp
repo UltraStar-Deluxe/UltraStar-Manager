@@ -68,29 +68,6 @@ QString QUSongFile::relativeFilePath() const {
 }
 
 /*!
- * Removes all characters of the given text that cannot be used in a file or
- * directory name.
- *
- * Path separator '/' is not removed.
- *
- * \param text A single line of text without line breaks.
- */
-QString QUSongFile::withoutUnsupportedCharacters (const QString &text) {
-	QString cleanText = text;
-#ifdef Q_OS_WIN32
-	cleanText.remove(QRegExp("[\\\\:\\*\\?\"\\|<>]"));
-
-	// remove trailing dots
-	while(cleanText.endsWith("."))
-		cleanText.remove(cleanText.length() - 1, 1);
-
-	while (cleanText.startsWith("."))
-		cleanText.remove(0, 1);
-#endif
-	return cleanText;
-}
-
-/*!
  * Reads the US data file and loads all data into memory. This is needed to be done
  * before any changes can be made. You cannot send event messages here because a song
  * is connected _after_ the first update of the internal cache.
@@ -589,7 +566,7 @@ void QUSongFile::removeUnsupportedTags() {
  */
 void QUSongFile::autoSetFiles() {
 	QFileInfoList files = this->songFileInfo().dir().entryInfoList(
-			QUSongFile::allowedAudioFiles() + QUSongFile::allowedPictureFiles() + QUSongFile::allowedVideoFiles(),
+			QU::allowedAudioFiles() + QU::allowedPictureFiles() + QU::allowedVideoFiles(),
 			QDir::Files);
 
 	foreach(QFileInfo fi, files) {
@@ -605,17 +582,17 @@ void QUSongFile::autoSetFiles() {
 void QUSongFile::autoSetFile(const QFileInfo &fi, bool force) {
 	QString fileScheme("*." + fi.suffix());
 
-	if(QUSongFile::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+	if(QU::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		if(!this->hasMp3() || force) {
 			this->setInfo(MP3_TAG, fi.fileName());
 			emit finished(QString("Assigned \"%1\" as audio file for \"%2 - %3\".").arg(mp3()).arg(artist()).arg(title()), QU::information);
 		}
-	} else if(QUSongFile::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+	} else if(QU::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		if(!this->hasVideo() || force) {
 			this->setInfo(VIDEO_TAG, fi.fileName());
 			emit finished(QString(tr("Assigned \"%1\" as video file for \"%2 - %3\".")).arg(video()).arg(artist()).arg(title()), QU::information);
 		}
-	} else if(QUSongFile::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+	} else if(QU::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QRegExp reCover("\\[CO\\]|cove?r?", Qt::CaseInsensitive);
 		QRegExp reBackground("\\[BG\\]|back", Qt::CaseInsensitive);
 
@@ -742,76 +719,4 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 	// change internal song location
 	_fi = QFileInfo(QUMainWindow::BaseDir, destination + "/" + _fi.fileName()).filePath();
 	emit finished(QString(tr("Location of song \"%1 - %2\" successfully changed to \"%3\" in your UltraStar song folder.")).arg(artist()).arg(title()).arg(newRelativePath), QU::information);
-}
-
-/*
- * STATIC MEMBERS
- */
-
-QStringList QUSongFile::allowedSongFiles() {
-	return QString("*.txt *.kar").split(" ");
-}
-
-QStringList QUSongFile::allowedAudioFiles() {
-	return QString("*.mp3 *.ogg").split(" ");
-}
-
-QStringList QUSongFile::allowedPictureFiles() {
-	return QString("*.jpg *.png *.bmp *.gif").split(" ");
-}
-
-QStringList QUSongFile::allowedVideoFiles() {
-	return QString("*.mpg *.mpeg *.avi *.flv *.ogm *.mp4").split(" ");
-}
-
-/*!
- * \returns a list of all possible targets used by rename tasks.
- */
-QStringList QUSongFile::availableTargets() {
-	return QString("dir path txt mp3 cover background video").split(" ");
-}
-
-/*!
- * \returns a list of all possible targets used by audiotag tasks.
- */
-QStringList QUSongFile::availableInfoTargets() {
-	return QString("artist title language edition genre year creator").split(" ");
-}
-
-/*!
- * \returns a list of all possible custom targets used by audiotag tasks.
- */
-QStringList QUSongFile::availableCustomTargets() {
-	return customTags();
-}
-
-QStringList QUSongFile::availableConditions() {
-	return QString("true hasMp3 hasCover hasBackground hasVideo isSongChecked").split(" ");
-}
-
-QStringList QUSongFile::availableSources() {
-	QStringList result;
-
-	result << availableSpecialSources();
-	result << availableCommonSources();
-	result << availableCustomSources();
-
-	return result;
-}
-
-QStringList QUSongFile::availableSpecialSources() {
-	QStringList result;
-
-	// special sources
-	result << TEXT_SOURCE << KEEP_SUFFIX_SOURCE << UNKNOWN_TAGS_SOURCE;
-
-	return result;
-}
-
-QStringList QUSongFile::availableCommonSources() {
-	return QString("artist title mp3 bpm gap video videogap cover background start language relative edition genre year end creator dir txt").split(" ");
-}
-
-QStringList QUSongFile::availableCustomSources() {
-	return customTags();
 }

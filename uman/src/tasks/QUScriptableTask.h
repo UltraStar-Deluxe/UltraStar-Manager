@@ -47,6 +47,9 @@ public:
 	QString schema() const { return _schema; }
 	QList<QUScriptData*> data() const { return _data; }
 
+	static QStringList availableCustomSources();
+	static QStringList availableConditions();
+
 protected:
 	QString _configFileName;
 	QString _iconSource; // used to determine the source path of the tasks icon

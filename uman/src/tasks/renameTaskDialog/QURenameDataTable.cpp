@@ -1,5 +1,5 @@
 #include "QURenameDataTable.h"
-#include "QUSongFile.h"
+#include "QURenameTask.h"
 
 #include "QURenameConditionDelegate.h"
 #include "QURenameSourceDelegate.h"
@@ -49,8 +49,8 @@ void QURenameDataTable::appendRow() {
 	for(int column = 0; column < this->columnCount(); column++) {
 		QTableWidgetItem *newItem = new QTableWidgetItem;
 
-		     if(column == 0) newItem->setText(QUSongFile::availableConditions().first());
-		else if(column == 1) newItem->setText(QUSongFile::availableSources().first());
+		     if(column == 0) newItem->setText(QUScriptableTask::availableConditions().first());
+		else if(column == 1) newItem->setText(QURenameTask::availableSources().first());
 		else
 			newItem->setText(N_A);
 

@@ -39,16 +39,16 @@ void QUDetailItem::updateDefaultData(const QString &tag, QUSongFile *song) {
 	QStringList dropDownData;
 
 	if(QString::compare(tag, MP3_TAG) == 0)
-		dropDownData = song->songFileInfo().dir().entryList(QUSongFile::allowedAudioFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
+		dropDownData = song->songFileInfo().dir().entryList(QU::allowedAudioFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
 
 	else if(QString::compare(tag, COVER_TAG) == 0)
-		dropDownData = song->songFileInfo().dir().entryList(QUSongFile::allowedPictureFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
+		dropDownData = song->songFileInfo().dir().entryList(QU::allowedPictureFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
 
 	else if(QString::compare(tag, BACKGROUND_TAG) == 0)
-		dropDownData = song->songFileInfo().dir().entryList(QUSongFile::allowedPictureFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
+		dropDownData = song->songFileInfo().dir().entryList(QU::allowedPictureFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
 
 	else if(QString::compare(tag, VIDEO_TAG) == 0)
-		dropDownData = song->songFileInfo().dir().entryList(QUSongFile::allowedVideoFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
+		dropDownData = song->songFileInfo().dir().entryList(QU::allowedVideoFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
 
 	else if(QString::compare(tag, GENRE_TAG) == 0)
 		dropDownData = monty->genres();
