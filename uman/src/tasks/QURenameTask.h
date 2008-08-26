@@ -1,10 +1,6 @@
 #ifndef QURENAMETASK_H_
 #define QURENAMETASK_H_
 
-#define TEXT_SOURCE         "*TEXT*"
-#define KEEP_SUFFIX_SOURCE  "*SUFFIX*"
-#define UNKNOWN_TAGS_SOURCE "*UNKNOWN_TAGS*"
-
 #include "QU.h"
 #include "QUScriptableTask.h"
 

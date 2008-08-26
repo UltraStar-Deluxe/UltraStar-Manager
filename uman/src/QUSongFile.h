@@ -11,8 +11,6 @@
 
 #include "QU.h"
 
-#define N_A "-"
-
 #define TITLE_TAG      "TITLE"
 #define ARTIST_TAG     "ARTIST"
 #define LANGUAGE_TAG   "LANGUAGE"

@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>QURenameTaskDialog</class>
- <widget class="QDialog" name="QURenameTaskDialog" >
+ <class>QUTaskDialog</class>
+ <widget class="QDialog" name="QUTaskDialog" >
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -112,7 +112,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label" >
+       <widget class="QLabel" name="infoLabel" >
         <property name="text" >
          <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 &lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
@@ -407,7 +407,7 @@ p, li { white-space: pre-wrap; }
         <number>0</number>
        </property>
        <item>
-        <widget class="QURenameDataTable" name="dataTable" >
+        <widget class="QUTaskDataTable" name="dataTable" >
          <property name="editTriggers" >
           <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
          </property>
@@ -577,9 +577,9 @@ p, li { white-space: pre-wrap; }
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QURenameDataTable</class>
+   <class>QUTaskDataTable</class>
    <extends>QTableWidget</extends>
-   <header>QURenameDataTable.h</header>
+   <header>QUTaskDataTable.h</header>
   </customwidget>
  </customwidgets>
  <resources>

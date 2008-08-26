@@ -4,7 +4,13 @@ QT += core \
     gui \
     xml
 CONFIG += debug
-HEADERS += tasks/QUScriptableTask.h \
+HEADERS += tasks/taskDialog/QUTaskSourceDelegate.h \
+    tasks/taskDialog/QUTaskTextDelegate.h \
+    tasks/taskDialog/QUTaskConditionDelegate.h \
+    tasks/taskDialog/QUTaskDataTable.h \
+    tasks/taskDialog/QUTaskDialog.h \
+    tasks/taskDialog/QURenameTaskDialog.h \
+    tasks/QUScriptableTask.h \
     songtree/QUColumnAction.h \
     reports/QUSongFileData.h \
     QUCustomTagsDialog.h \
@@ -15,11 +21,6 @@ HEADERS += tasks/QUScriptableTask.h \
     playlist/QUPlayList.h \
     details/QUDropDownDelegate.h \
     preview/QUPreviewTree.h \
-    tasks/renameTaskDialog/QURenameConditionDelegate.h \
-    tasks/renameTaskDialog/QURenameSourceDelegate.h \
-    tasks/renameTaskDialog/QURenameTextDelegate.h \
-    tasks/renameTaskDialog/QURenameDataTable.h \
-    tasks/renameTaskDialog/QURenameTaskDialog.h \
     QUPictureDialog.h \
     tasks/QUCleanTask.h \
     QUMessageBox.h \
@@ -50,7 +51,13 @@ HEADERS += tasks/QUScriptableTask.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += QU.cpp \
+SOURCES += tasks/taskDialog/QUTaskSourceDelegate.cpp \
+    tasks/taskDialog/QUTaskTextDelegate.cpp \
+    tasks/taskDialog/QUTaskConditionDelegate.cpp \
+    tasks/taskDialog/QUTaskDataTable.cpp \
+    tasks/taskDialog/QUTaskDialog.cpp \
+    tasks/taskDialog/QURenameTaskDialog.cpp \
+    QU.cpp \
     tasks/QUScriptableTask.cpp \
     songtree/QUColumnAction.cpp \
     reports/QUSongFileData.cpp \
@@ -62,11 +69,6 @@ SOURCES += QU.cpp \
     playlist/QUPlayList.cpp \
     details/QUDropDownDelegate.cpp \
     preview/QUPreviewTree.cpp \
-    tasks/renameTaskDialog/QURenameConditionDelegate.cpp \
-    tasks/renameTaskDialog/QURenameSourceDelegate.cpp \
-    tasks/renameTaskDialog/QURenameTextDelegate.cpp \
-    tasks/renameTaskDialog/QURenameDataTable.cpp \
-    tasks/renameTaskDialog/QURenameTaskDialog.cpp \
     QUPictureDialog.cpp \
     tasks/QUCleanTask.cpp \
     QUMessageBox.cpp \
@@ -96,9 +98,9 @@ SOURCES += QU.cpp \
     QUSongFile.cpp \
     QUMainWindow.cpp \
     main.cpp
-FORMS += QUCustomTagsDialog.ui \
+FORMS += QUTaskDialog.ui \
+    QUCustomTagsDialog.ui \
     QUPlaylistArea.ui \
-    QURenameTaskDialog.ui \
     QUPictureDialog.ui \
     QUMessageBox.ui \
     QUReportDialog.ui \
@@ -112,7 +114,7 @@ INCLUDEPATH += tasks \
     details \
     songtree \
     reports \
-    tasks/renameTaskDialog \
+    tasks/taskDialog \
     preview \
     playlist
 win32 { 

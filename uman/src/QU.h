@@ -6,6 +6,8 @@
 #include <QStringList>
 #include <QRegExp>
 
+#define N_A "-"
+
 #define CHAR_UTF8_APPROX "\xe2\x89\x88"
 #define CHAR_UTF8_NEQUAL "\xe2\x89\xa0"
 
@@ -41,6 +43,12 @@ public:
 		negateFilter = 0x10
 	};
 	Q_DECLARE_FLAGS(FilterModes, FilterMode)
+
+	enum ScriptableTaskType {
+		audioTagTask,
+		renameTask
+	};
+	Q_DECLARE_FLAGS(ScriptableTaskTypes, ScriptableTaskType)
 
 	static QStringList allowedSongFiles();
 	static QStringList allowedAudioFiles();
