@@ -51,6 +51,10 @@ private slots:
 	void showHeaderMenu(const QPoint &point);
 
 	void toggleColumn(bool show, int index);
+	void showAllColumns();
+	void showDefaultColumns();
+	void showTimeColumns();
+	void showCheckColumns();
 
 	void openCurrentFile();
 

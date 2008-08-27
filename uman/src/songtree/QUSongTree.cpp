@@ -382,6 +382,16 @@ void QUSongTree::showItemMenu(const QPoint &point) {
  */
 void QUSongTree::showHeaderMenu(const QPoint &point) {
 	QMenu menu(this);
+
+	QMenu presetsMenu(tr("Presets"));
+	presetsMenu.addAction(tr("All"), this, SLOT(showAllColumns()));
+	presetsMenu.addAction(tr("Default"), this, SLOT(showDefaultColumns()));
+	presetsMenu.addSeparator();
+	presetsMenu.addAction(tr("Spell && File Checking"), this, SLOT(showCheckColumns()));
+	presetsMenu.addAction(tr("Time Comparison"), this, SLOT(showTimeColumns()));
+	menu.addMenu(&presetsMenu);
+	menu.addSeparator();
+
 	QMenu customTagsMenu(tr("Custom Tags"), this); customTagsMenu.setIcon(QIcon(":/bullets/bullet_star.png"));
 	QMenu lengthsMenu(tr("Lengths"), this); lengthsMenu.setIcon(QIcon(":/types/time.png"));
 
@@ -417,6 +427,69 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 
 void QUSongTree::toggleColumn(bool show, int index) {
 	this->header()->setSectionHidden(index, !show);
+	this->resizeToContents();
+
+	QSettings settings;
+	settings.setValue("songTreeState", QVariant(header()->saveState()));
+}
+
+void QUSongTree::showAllColumns() {
+	for(int i = 0; i < headerItem()->columnCount(); i++)
+		header()->showSection(i);
+
+	this->resizeToContents();
+
+	QSettings settings;
+	settings.setValue("songTreeState", QVariant(header()->saveState()));
+}
+
+void QUSongTree::showDefaultColumns() {
+	for(int i = 0; i < headerItem()->columnCount(); i++)
+		header()->showSection(i);
+
+	this->header()->setSectionHidden(ARTIST_COLUMN_EX, true);
+	this->header()->setSectionHidden(TITLE_COLUMN_EX, true);
+	this->header()->setSectionHidden(LENGTH_COLUMN, true);
+	this->header()->setSectionHidden(LENGTH_DIFF_COLUMN, true);
+	this->header()->setSectionHidden(LENGTH_MP3_COLUMN, true);
+	this->header()->setSectionHidden(LENGTH_EFF_COLUMN, true);
+
+	this->resizeToContents();
+
+	QSettings settings;
+	settings.setValue("songTreeState", QVariant(header()->saveState()));
+}
+
+void QUSongTree::showTimeColumns() {
+	for(int i = 0; i < headerItem()->columnCount(); i++)
+		header()->hideSection(i);
+
+	this->header()->showSection(FOLDER_COLUMN);
+	this->header()->showSection(LENGTH_COLUMN);
+	this->header()->showSection(LENGTH_DIFF_COLUMN);
+	this->header()->showSection(LENGTH_MP3_COLUMN);
+	this->header()->showSection(LENGTH_EFF_COLUMN);
+
+	this->resizeToContents();
+
+	QSettings settings;
+	settings.setValue("songTreeState", QVariant(header()->saveState()));
+}
+
+void QUSongTree::showCheckColumns() {
+	for(int i = 0; i < headerItem()->columnCount(); i++)
+		header()->hideSection(i);
+
+	this->header()->showSection(FOLDER_COLUMN);
+	this->header()->showSection(ARTIST_COLUMN);
+	this->header()->showSection(TITLE_COLUMN);
+	this->header()->showSection(MP3_COLUMN);
+	this->header()->showSection(COVER_COLUMN);
+	this->header()->showSection(BACKGROUND_COLUMN);
+	this->header()->showSection(VIDEO_COLUMN);
+	this->header()->showSection(UNUSED_FILES_COLUMN);
+	this->header()->showSection(MULTIPLE_SONGS_COLUMN);
+
 	this->resizeToContents();
 
 	QSettings settings;
