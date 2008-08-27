@@ -5,6 +5,8 @@
 #include "QU.h"
 #include "QUSongFile.h"
 
+#define FIXED_COLUMN_COUNT    17
+
 #define FOLDER_COLUMN          0
 #define ARTIST_COLUMN          1
 #define TITLE_COLUMN           2
@@ -21,8 +23,9 @@
 #define GENRE_COLUMN          13
 #define YEAR_COLUMN           14
 #define CREATOR_COLUMN        15
+#define LENGTH_COLUMN         16
 
-#define FIRST_CUSTOM_TAG_COLUMN 16
+#define FIRST_CUSTOM_TAG_COLUMN 17
 
 /*!
  * This class encapsulates a pointer to a QUSongFile object to be able

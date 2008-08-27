@@ -64,7 +64,7 @@ NEW FEATURES
   > hidden by default
 * new shortcut: hit F12 to change the song directory
 * "open" added to context menu for files in song tree
-  > same function as double-click on a file (or "Enter")
+  > same function as double-click on a file (or "Enter" pressed)
 * classes "odd" and "even" added to HTML report
 * first style sheet for HTML report added
 * "*.mp4" files now recognized as valid video files
@@ -135,6 +135,7 @@ TODO (for 1.7.0)
   > would be useful for selecting all karaoke files in each folder
 * add to playlist context menu "remove invalid entries"
 * add to installer: custom tag #comment (insert in registry)
+* do not use only the count for "QUSongFile::verifyTags(QStringList&)"
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title
@@ -144,7 +145,6 @@ NICE TO HAVE (but not necessary in 1.7.0)
 * extract readable lyrics and export them, maybe into some report or so
 * some extended help system in the application (lowest priority, Monty works well :))
 * checksums for SC-checked song files
-* preview audio files
 
 changes from 1.5.1 to 1.6.0
 ---------------------------

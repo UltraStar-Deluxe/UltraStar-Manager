@@ -262,6 +262,29 @@ bool QUSongFile::isSongChecked() const {
 }
 
 /*!
+ * \returns the length of this song accoring to BPM and length of lyrics, in seconds
+ */
+int QUSongFile::length() const {
+	double bpm = QVariant(this->bpm().replace(",", ".")).toDouble();
+
+	if(bpm == 0.0)
+		return 0;
+
+	int beats = 0;
+	if(QString::compare(this->relative(), "yes", Qt::CaseInsensitive) == 0) {
+		foreach(QString line, _lyrics) {
+			if(line.startsWith("-"))
+				beats += QVariant(line.section(" ", 2, 2)).toInt(); // e.g. "- 48 64"
+		}
+	} else
+		beats = QVariant(_lyrics.last().section(" ", 1, 1)).toInt(); // use the number in the last line, e.g. ": 2000 5 60 boo", "- 2000"
+
+	double gap = QVariant(this->gap()).toDouble() / 1000;
+
+	return (beats / (bpm * 4)) * 60 + gap; // result in seconds
+}
+
+/*!
  * Creates a complete new song file for US. Any old data will be overwritten.
  * \param force Indicates whether to save the file although automatic file save was
  * disabled.

@@ -32,7 +32,7 @@ QUSongTree::QUSongTree(QWidget *parent): QTreeWidget(parent) {
 }
 
 void QUSongTree::initHorizontalHeader() {
-	this->setColumnCount(16 + QUSongFile::customTags().count());
+	this->setColumnCount(FIXED_COLUMN_COUNT + QUSongFile::customTags().count());
 
 	QTreeWidgetItem *header = new QTreeWidgetItem();
 	header->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(QUMainWindow::BaseDir.path()));
@@ -72,6 +72,10 @@ void QUSongTree::initHorizontalHeader() {
 	header->setText(CREATOR_COLUMN, tr("Creator"));
 	header->setIcon(CREATOR_COLUMN, QIcon(":/types/creator.png"));
 
+	header->setText(LENGTH_COLUMN, tr("Length"));
+	header->setIcon(LENGTH_COLUMN, QIcon(":/types/time.png"));
+	header->setToolTip(LENGTH_COLUMN, tr("Song length calculated from BPM and lyrics"));
+
 	int i = 0;
 	foreach(QString customTag, QUSongFile::customTags()) {
 		header->setText(FIRST_CUSTOM_TAG_COLUMN + i, customTag);
@@ -83,6 +87,7 @@ void QUSongTree::initHorizontalHeader() {
 	this->setHeaderItem(header);
 	this->header()->setSectionHidden(ARTIST_COLUMN_EX, true);
 	this->header()->setSectionHidden(TITLE_COLUMN_EX, true);
+	this->header()->setSectionHidden(LENGTH_COLUMN, true);
 
 	// load custom setup
 	QSettings settings;
@@ -302,7 +307,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 	}
 
 	emit itemSelectionChanged(); // update details
-	emit finished(QString(tr("Filter applied: \"%1\"")).arg(regexp), QU::information);
+	emit finished(QString(tr("Filter applied: \"%1\"%2")).arg(regexp).arg(mode.testFlag(QU::negateFilter) ? tr(", negated") : ""), QU::information);
 }
 
 bool QUSongTree::dropMimeData (QTreeWidgetItem *parent, int index, const QMimeData *data, Qt::DropAction action) {
@@ -437,7 +442,7 @@ void QUSongTree::hideAllButSelected() {
 	}
 
 	emit itemSelectionChanged(); // update details
-	emit finished(QString(tr("%1 songs are hidden now.")).arg(selectedItems.count()), QU::information);
+	emit finished(QString(tr("%1 songs are visible now.")).arg(selectedItems.count()), QU::information);
 }
 
 bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {

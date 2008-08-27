@@ -151,6 +151,8 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	this->setText(YEAR_COLUMN,     song()->year());
 	this->setText(CREATOR_COLUMN,  song()->creator());
 
+	this->setText(LENGTH_COLUMN, QString("%1:%2").arg(song()->length() / 60).arg(song()->length() % 60, 2, 10, QChar('0')));
+
 	// show custom tags
 	int i = 0;
 	foreach(QString customTag, QUSongFile::customTags()) {
