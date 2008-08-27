@@ -128,8 +128,37 @@ QList<QUSongFile*> QUSongTree::selectedSongs() {
 				songs.append(songItem->song());
 		}
 	}
+	// TODO: Refactor - melt with selectedSongItems()
 
 	return songs;
+}
+
+/*!
+ * \returns All selected song items or the current toplevel item if nothing was
+ * selected.
+ */
+QList<QUSongItem*> QUSongTree::selectedSongItems() {
+	QList<QUSongItem*> items;
+
+	if(this->selectedItems().isEmpty()) { // nothing selected? Try to use the current item...
+		QUSongItem *cItem = dynamic_cast<QUSongItem*>(this->currentItem());
+		if(cItem) {
+			if(cItem->isToplevel())
+				items.append(cItem);
+			else {
+				QUSongItem *pItem = dynamic_cast<QUSongItem*>(cItem->parent());
+				if(pItem) items.append(pItem); // just add toplevel items
+			}
+		}
+	} else { // look for all songs in the selection
+		foreach(QTreeWidgetItem *item, this->selectedItems()) {
+			QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+			if(songItem)
+				items.append(songItem);
+		}
+	}
+
+	return items;
 }
 
 /*!
@@ -173,8 +202,7 @@ void QUSongTree::saveUnsavedChanges() {
  * unselected if hidden.
  */
 void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
-	this->addTopLevelItems(_hiddenItems);
-	_hiddenItems.clear();
+	this->removeFilter();
 
 	if(regexp.isEmpty()) {
 		emit finished(tr("Filter removed. All songs are visible now."), QU::information);
@@ -308,6 +336,12 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 	menu.addAction(QIcon(":/control/save.png"), tr("Save"), this, SLOT(saveSelectedSongs()), QKeySequence::fromString("Ctrl+S"));
 	menu.addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
 
+	QMenu *filterMenu = menu.addMenu(tr("Hide"));
+	filterMenu->setIcon(QIcon(":/control/eye.png"));
+	filterMenu->addAction(tr("Selected Songs"), this, SLOT(hideSelected()));
+	filterMenu->addAction(tr("Only Selected Songs"), this, SLOT(hideSelectedOnly()));
+	filterMenu->addAction(tr("All But Selected Songs"), this, SLOT(hideAllButSelected()));
+
 	QUSongItem *item = dynamic_cast<QUSongItem*>(this->currentItem());
 
 	if(item && !item->isToplevel()) {
@@ -360,6 +394,50 @@ void QUSongTree::toggleColumn(bool show, int index) {
  */
 void QUSongTree::openCurrentFile() {
 	emit itemActivated(this->currentItem(), FOLDER_COLUMN);
+}
+
+/*!
+ * Add the selected Items to the hidden-list.
+ */
+void QUSongTree::hideSelected() {
+	QList<QUSongItem*> selectedItems = this->selectedSongItems();
+
+	if(selectedItems.isEmpty()) {
+		emit finished(tr("Could not hide any item."), QU::warning);
+		return;
+	}
+
+	foreach(QUSongItem *item, selectedItems) {
+		_hiddenItems.append(this->takeTopLevelItem(this->indexOfTopLevelItem(item)));
+	}
+
+	emit itemSelectionChanged(); // update details
+	emit finished(QString(tr("%1 songs added to invisible list.")).arg(selectedItems.count()), QU::information);
+}
+
+/*!
+ * Show all hidden items. Then hide the selected ones.
+ */
+void QUSongTree::hideSelectedOnly() {
+	this->removeFilter();
+	this->hideSelected();
+}
+
+/*!
+ * Hide all items but show the selected ones.
+ */
+void QUSongTree::hideAllButSelected() {
+	QList<QUSongItem*> selectedItems = this->selectedSongItems();
+
+	this->filterItems(".*", (QU::FilterModes) QU::informationTags | QU::negateFilter);
+
+	foreach(QUSongItem *item, selectedItems) {
+		this->addTopLevelItem(item);
+		_hiddenItems.removeAll(item);
+	}
+
+	emit itemSelectionChanged(); // update details
+	emit finished(QString(tr("%1 songs are hidden now.")).arg(selectedItems.count()), QU::information);
 }
 
 bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
@@ -545,4 +623,9 @@ void QUSongTree::sendSelectedSongsToPlaylist() {
 		if(songItem)
 			emit songToPlaylistRequested(songItem->song());
 	}
+}
+
+void QUSongTree::removeFilter() {
+	this->addTopLevelItems(_hiddenItems);
+	_hiddenItems.clear();
 }

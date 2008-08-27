@@ -54,6 +54,7 @@ public:
 	static QStringList allowedAudioFiles();
 	static QStringList allowedPictureFiles();
 	static QStringList allowedVideoFiles();
+	static QStringList allowedPlaylistFiles();
 
 	static QString withoutUnsupportedCharacters (const QString &text);
 	static QString withoutFolderTags(const QString &text);

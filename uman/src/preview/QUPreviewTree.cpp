@@ -52,6 +52,7 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 	types->addChild(this->createInfoItem(tr("Audio"), QU::allowedAudioFiles().join(" ")));
 	types->addChild(this->createInfoItem(tr("Picture"), QU::allowedPictureFiles().join(" ")));
 	types->addChild(this->createInfoItem(tr("Video"), QU::allowedVideoFiles().join(" ")));
+	types->addChild(this->createInfoItem(tr("Playlist"), QU::allowedPlaylistFiles().join(" ")));
 
 	// set up "current" toplevel item
 

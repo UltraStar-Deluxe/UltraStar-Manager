@@ -2,7 +2,7 @@ XPStyle on
 SetCompress off
 
 !define PRODUCTNAME "UltraStar Manager"
-!define PRODUCTVERSION "1.6.0"
+!define PRODUCTVERSION "1.7.0"
 Name "${PRODUCTNAME} ${PRODUCTVERSION}"
 
 !include "MUI.nsh"
@@ -60,7 +60,7 @@ Section "Application" SecCopyUI
 
     ;; Files
     SetOutPath "$INSTDIR"
-    File "UMan.exe"
+    File "uman.exe"
     File "changes.txt"
     File "libtag.dll"
     File "mingwm10.dll"
@@ -73,7 +73,7 @@ Section "Application" SecCopyUI
     ;; Start Menu
     !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
     CreateDirectory "$SMPROGRAMS\$STARTMENU_FOLDER"
-    CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\${PRODUCTNAME}.lnk" "$INSTDIR\UMan.exe"
+    CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\${PRODUCTNAME}.lnk" "$INSTDIR\uman.exe"
     CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall ${PRODUCTNAME}.lnk" "$INSTDIR\Uninstall.exe"
     !insertmacro MUI_STARTMENU_WRITE_END
 
@@ -81,8 +81,8 @@ Section "Application" SecCopyUI
     WriteRegStr HKLM "${UNINST_KEY}" "DisplayName" "${PRODUCTNAME}"
     WriteRegStr HKLM "${UNINST_KEY}" "UninstallString" '"$INSTDIR\Uninstall.exe"'
     WriteRegStr HKLM "${UNINST_KEY}" "InstallLocation" $INSTDIR
-    WriteRegStr HKLM "${UNINST_KEY}" "DisplayIcon" "$INSTDIR\UMan.exe,0"
-    WriteRegStr HKLM "${UNINST_KEY}" "Publisher" "UMan Community"
+    WriteRegStr HKLM "${UNINST_KEY}" "DisplayIcon" "$INSTDIR\uman.exe,0"
+    WriteRegStr HKLM "${UNINST_KEY}" "Publisher" "uman Community"
     WriteRegStr HKLM "${UNINST_KEY}" "DisplayVersion" "${PRODUCTVERSION}"
     WriteRegDWORD HKLM "${UNINST_KEY}" "NoModify" 1
     WriteRegDWORD HKLM "${UNINST_KEY}" "NoRepair" 1
@@ -92,7 +92,7 @@ SectionEnd
 
 Section "Uninstall"
     ;; Files
-    Delete "$INSTDIR\UMan.exe"
+    Delete "$INSTDIR\uman.exe"
     Delete "$INSTDIR\changes.txt"
     Delete "$INSTDIR\libtag.dll"
     Delete "$INSTDIR\mingwm10.dll"

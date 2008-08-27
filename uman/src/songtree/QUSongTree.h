@@ -25,6 +25,7 @@ public:
 	void clear();
 
 	QList<QUSongFile*> selectedSongs();
+	QList<QUSongItem*> selectedSongItems();
 	void fill(QList<QUSongFile*> songs);
 
 	int hiddenItemsCount() const { return _hiddenItems.size(); }
@@ -53,6 +54,10 @@ private slots:
 
 	void openCurrentFile();
 
+	void hideSelected();
+	void hideSelectedOnly();
+	void hideAllButSelected();
+
 protected:
 	virtual void keyPressEvent(QKeyEvent *event);
 
@@ -64,6 +69,8 @@ private:
 
 	bool copyFilesToSong(const QList<QUrl> &files, QUSongItem *item);
 	bool dropSongFiles(const QList<QUrl> &urls);
+
+	void removeFilter();
 };
 
 #endif /*QUSONGTREE_H_*/

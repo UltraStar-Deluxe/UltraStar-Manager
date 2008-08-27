@@ -26,7 +26,6 @@ public:
 
 	static QDir dir();
 	static void setDir(const QDir &dir);
-	static QStringList allowedTypes();
 
 	bool save();
 

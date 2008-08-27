@@ -89,10 +89,6 @@ void QUPlaylistFile::setDir(const QDir &dir) {
 	settings.setValue("playlistFilePath", dir.path());
 }
 
-QStringList QUPlaylistFile::allowedTypes() {
-	return QString("*.upl").split(" ");
-}
-
 bool QUPlaylistFile::save() {
 	QFile file(_fi.filePath());
 

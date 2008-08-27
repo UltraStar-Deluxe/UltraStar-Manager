@@ -70,6 +70,10 @@ NEW FEATURES
 * "*.mp4" files now recognized as valid video files
 * "*.divx" files now recognized as valid video files
 * event logs are now saved on application exit or whenever you want
+* "hide" added to context menu for selected songs
+  > hide selected
+  > hide only selected (discards a previous filter)
+  > hide all but selected
 
 BUG FIXES
 * minor change in object renaming

@@ -16,6 +16,10 @@ QStringList QU::allowedVideoFiles() {
 	return QString("*.mpg *.mpeg *.avi *.flv *.ogm *.mp4 *.divx").split(" ");
 }
 
+QStringList QU::allowedPlaylistFiles() {
+	return QString("*.upl").split(" ");
+}
+
 /*!
  * Removes all characters of the given text that cannot be used in a file or
  * directory name.
