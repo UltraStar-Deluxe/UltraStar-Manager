@@ -13,7 +13,7 @@ QStringList QU::allowedPictureFiles() {
 }
 
 QStringList QU::allowedVideoFiles() {
-	return QString("*.mpg *.mpeg *.avi *.flv *.ogm *.mp4").split(" ");
+	return QString("*.mpg *.mpeg *.avi *.flv *.ogm *.mp4 *.divx").split(" ");
 }
 
 /*!

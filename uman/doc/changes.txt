@@ -68,6 +68,7 @@ NEW FEATURES
 * classes "odd" and "even" added to HTML report
 * first style sheet for HTML report added
 * "*.mp4" files now recognized as valid video files
+* "*.divx" files now recognized as valid video files
 * event logs are now saved on application exit or whenever you want
 
 BUG FIXES
