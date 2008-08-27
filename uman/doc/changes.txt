@@ -74,6 +74,11 @@ NEW FEATURES
   > hide selected
   > hide only selected (discards a previous filter)
   > hide all but selected
+* 4 new columns in the song tree for time comparisons
+  > lyrics time
+  > audio file time
+  > total time
+  > warning indicator
 
 BUG FIXES
 * minor change in object renaming

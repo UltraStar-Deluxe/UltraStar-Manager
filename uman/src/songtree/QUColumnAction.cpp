@@ -6,6 +6,9 @@ QUColumnAction::QUColumnAction(const QString &text, const QVariant &userData, QO
 	this->setData(userData);
 	this->setCheckable(true);
 
+	if(userData.toInt() == LENGTH_DIFF_COLUMN)
+		this->setText(tr("Warnings"));
+
 	connect(this, SIGNAL(toggled(bool)), SLOT(toggleColumn(bool)));
 }
 

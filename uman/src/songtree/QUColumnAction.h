@@ -4,6 +4,8 @@
 #include <QAction>
 #include <QVariant>
 
+#include "QUSongItem.h"
+
 class QUColumnAction: public QAction {
 	Q_OBJECT
 

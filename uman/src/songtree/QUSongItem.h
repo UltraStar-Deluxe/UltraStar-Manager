@@ -5,7 +5,7 @@
 #include "QU.h"
 #include "QUSongFile.h"
 
-#define FIXED_COLUMN_COUNT    19
+#define FIXED_COLUMN_COUNT    20
 
 #define FOLDER_COLUMN          0
 #define ARTIST_COLUMN          1
@@ -16,18 +16,19 @@
 #define VIDEO_COLUMN           6
 #define UNUSED_FILES_COLUMN    7
 #define MULTIPLE_SONGS_COLUMN  8
-#define ARTIST_COLUMN_EX       9
-#define TITLE_COLUMN_EX       10
-#define LANGUAGE_COLUMN       11
-#define EDITION_COLUMN        12
-#define GENRE_COLUMN          13
-#define YEAR_COLUMN           14
-#define CREATOR_COLUMN        15
-#define LENGTH_COLUMN         16
-#define LENGTH_MP3_COLUMN     17
-#define LENGTH_EFF_COLUMN     18
+#define LENGTH_COLUMN          9
+#define LENGTH_DIFF_COLUMN    10
+#define LENGTH_MP3_COLUMN     11
+#define LENGTH_EFF_COLUMN     12
+#define ARTIST_COLUMN_EX      13
+#define TITLE_COLUMN_EX       14
+#define LANGUAGE_COLUMN       15
+#define EDITION_COLUMN        16
+#define GENRE_COLUMN          17
+#define YEAR_COLUMN           18
+#define CREATOR_COLUMN        19
 
-#define FIRST_CUSTOM_TAG_COLUMN 19
+#define FIRST_CUSTOM_TAG_COLUMN 20
 
 /*!
  * This class encapsulates a pointer to a QUSongFile object to be able
@@ -60,6 +61,11 @@ private:
 	void clearContents();
 	void setTick(int column, bool isBlue = false, QString toolTip = "");
 	void setCross(int column, bool isBlue = false, QString toolTip = "");
+
+	void updateSpellCheckColumns();
+	void updateFileCheckColumns();
+	void updateTimeCheckColumns();
+	void updateTextColumns();
 };
 
 #endif /*QUSONGITEM_H_*/

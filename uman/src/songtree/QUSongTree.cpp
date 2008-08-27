@@ -72,17 +72,20 @@ void QUSongTree::initHorizontalHeader() {
 	header->setText(CREATOR_COLUMN, tr("Creator"));
 	header->setIcon(CREATOR_COLUMN, QIcon(":/types/creator.png"));
 
-	header->setText(LENGTH_COLUMN, tr("Song Length"));
+	header->setText(LENGTH_COLUMN, tr("Song"));
 	header->setIcon(LENGTH_COLUMN, QIcon(":/types/time_song.png"));
 	header->setToolTip(LENGTH_COLUMN, tr("Song length calculated from BPM and lyrics"));
 
-	header->setText(LENGTH_MP3_COLUMN, tr("Audio Length"));
+	header->setIcon(LENGTH_DIFF_COLUMN, QIcon(":/types/time_warning.png"));
+	header->setToolTip(LENGTH_DIFF_COLUMN, tr("Indicates a problem with the difference of <i>song length</i> and <i>audio length</i>."));
+
+	header->setText(LENGTH_MP3_COLUMN, tr("Audio"));
 	header->setIcon(LENGTH_MP3_COLUMN, QIcon(":/types/time_mp3.png"));
 	header->setToolTip(LENGTH_MP3_COLUMN, tr("Shows length of audio file, if present."));
 
-	header->setText(LENGTH_EFF_COLUMN, tr("eff. Length"));
+	header->setText(LENGTH_EFF_COLUMN, tr("Total"));
 	header->setIcon(LENGTH_EFF_COLUMN, QIcon(":/types/time_eff.png"));
-	header->setToolTip(LENGTH_EFF_COLUMN, tr("Show the effective length: audio length - #START"));
+	header->setToolTip(LENGTH_EFF_COLUMN, tr("Show the effective length:<br><b>audio length - #START</b>"));
 
 	int i = 0;
 	foreach(QString customTag, QUSongFile::customTags()) {
@@ -96,6 +99,7 @@ void QUSongTree::initHorizontalHeader() {
 	this->header()->setSectionHidden(ARTIST_COLUMN_EX, true);
 	this->header()->setSectionHidden(TITLE_COLUMN_EX, true);
 	this->header()->setSectionHidden(LENGTH_COLUMN, true);
+	this->header()->setSectionHidden(LENGTH_DIFF_COLUMN, true);
 	this->header()->setSectionHidden(LENGTH_MP3_COLUMN, true);
 	this->header()->setSectionHidden(LENGTH_EFF_COLUMN, true);
 
@@ -382,7 +386,7 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 	QMenu lengthsMenu(tr("Lengths"), this); lengthsMenu.setIcon(QIcon(":/types/time.png"));
 
 	for(int i = 0; i < headerItem()->columnCount(); i++) {
-		if(headerItem()->text(i).isEmpty() or i == FOLDER_COLUMN)
+		if(i != LENGTH_DIFF_COLUMN and (headerItem()->text(i).isEmpty() or i == FOLDER_COLUMN))
 			continue;
 
 		QUColumnAction *a = new QUColumnAction(headerItem()->text(i), i); // save the logical index of this column
@@ -392,6 +396,7 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 
 		switch(i) {
 		case LENGTH_COLUMN:
+		case LENGTH_DIFF_COLUMN:
 		case LENGTH_MP3_COLUMN:
 		case LENGTH_EFF_COLUMN: lengthsMenu.addAction(a); break;
 		default:

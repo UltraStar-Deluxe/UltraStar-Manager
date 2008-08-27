@@ -134,13 +134,6 @@ bool QUSongFile::updateCache() {
 	else if(QString::compare(line, "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
 		_footer << line;
 
-
-	// debug S
-	if(!_footer.isEmpty())
-		QMessageBox::information(0, QString("%1 - %2").arg(artist()).arg(title()), _footer.join(""));
-	// debug E
-
-
 	_file.close();
 	return true;
 }

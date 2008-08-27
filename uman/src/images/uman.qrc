@@ -19,6 +19,8 @@
     <file>arrow_down_small.png</file>
     <file>bullet_star.png</file>
     <file>arrow_up_small.png</file>
+    <file>bullet_warning.png</file>
+    <file>bullet_cancel.png</file>
     <file>minus_small.png</file>
     <file>plus_small.png</file>
     <file>bullet_black.png</file>
@@ -120,6 +122,7 @@
     <file>font.png</file>
     <file>genre.png</file>
     <file>language.png</file>
+    <file>time_warning.png</file>
     <file>music.png</file>
     <file>page_code.png</file>
     <file>photo.png</file>
