@@ -72,9 +72,17 @@ void QUSongTree::initHorizontalHeader() {
 	header->setText(CREATOR_COLUMN, tr("Creator"));
 	header->setIcon(CREATOR_COLUMN, QIcon(":/types/creator.png"));
 
-	header->setText(LENGTH_COLUMN, tr("Length"));
-	header->setIcon(LENGTH_COLUMN, QIcon(":/types/time.png"));
+	header->setText(LENGTH_COLUMN, tr("Song Length"));
+	header->setIcon(LENGTH_COLUMN, QIcon(":/types/time_song.png"));
 	header->setToolTip(LENGTH_COLUMN, tr("Song length calculated from BPM and lyrics"));
+
+	header->setText(LENGTH_MP3_COLUMN, tr("Audio Length"));
+	header->setIcon(LENGTH_MP3_COLUMN, QIcon(":/types/time_mp3.png"));
+	header->setToolTip(LENGTH_MP3_COLUMN, tr("Shows length of audio file, if present."));
+
+	header->setText(LENGTH_EFF_COLUMN, tr("eff. Length"));
+	header->setIcon(LENGTH_EFF_COLUMN, QIcon(":/types/time_eff.png"));
+	header->setToolTip(LENGTH_EFF_COLUMN, tr("Show the effective length: audio length - #START"));
 
 	int i = 0;
 	foreach(QString customTag, QUSongFile::customTags()) {
@@ -88,6 +96,8 @@ void QUSongTree::initHorizontalHeader() {
 	this->header()->setSectionHidden(ARTIST_COLUMN_EX, true);
 	this->header()->setSectionHidden(TITLE_COLUMN_EX, true);
 	this->header()->setSectionHidden(LENGTH_COLUMN, true);
+	this->header()->setSectionHidden(LENGTH_MP3_COLUMN, true);
+	this->header()->setSectionHidden(LENGTH_EFF_COLUMN, true);
 
 	// load custom setup
 	QSettings settings;
@@ -172,7 +182,12 @@ QList<QUSongItem*> QUSongTree::selectedSongItems() {
 void QUSongTree::fill(QList<QUSongFile*> songs) {
 	this->initHorizontalHeader();
 
+	QUProgressDialog dlg(tr("Filling song tree..."), songs.size(), this, false);
+	dlg.setPixmap(":/types/folder.png");
+	dlg.show();
+
 	foreach(QUSongFile* song, songs) {
+		dlg.update(song->songFileInfo().dir().dirName());
 		this->addTopLevelItem(new QUSongItem(song, true));
 	}
 
@@ -363,7 +378,8 @@ void QUSongTree::showItemMenu(const QPoint &point) {
  */
 void QUSongTree::showHeaderMenu(const QPoint &point) {
 	QMenu menu(this);
-	QMenu customTagsMenu(tr("Custom Tags"), this);
+	QMenu customTagsMenu(tr("Custom Tags"), this); customTagsMenu.setIcon(QIcon(":/bullets/bullet_star.png"));
+	QMenu lengthsMenu(tr("Lengths"), this); lengthsMenu.setIcon(QIcon(":/types/time.png"));
 
 	for(int i = 0; i < headerItem()->columnCount(); i++) {
 		if(headerItem()->text(i).isEmpty() or i == FOLDER_COLUMN)
@@ -374,13 +390,21 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 
 		connect(a, SIGNAL(columnToggled(bool, int)), this, SLOT(toggleColumn(bool, int)));
 
-		if(QUSongFile::customTags().contains(a->text(), Qt::CaseInsensitive))
-			customTagsMenu.addAction(a);
-		else
-			menu.addAction(a);
+		switch(i) {
+		case LENGTH_COLUMN:
+		case LENGTH_MP3_COLUMN:
+		case LENGTH_EFF_COLUMN: lengthsMenu.addAction(a); break;
+		default:
+			if(QUSongFile::customTags().contains(a->text(), Qt::CaseInsensitive))
+				customTagsMenu.addAction(a);
+			else
+				menu.addAction(a);
+		}
+
 	}
 
 	menu.addSeparator();
+	menu.addMenu(&lengthsMenu);
 	menu.addMenu(&customTagsMenu);
 
 	menu.exec(this->mapToGlobal(point));
@@ -538,8 +562,6 @@ void QUSongTree::refreshSelectedItems() {
 
 		if(songItem) {
 			dlg.update(songItem->song()->songFileInfo().dir().dirName());
-			if(dlg.cancelled()) break;
-
 			songItem->update();
 		}
 	}

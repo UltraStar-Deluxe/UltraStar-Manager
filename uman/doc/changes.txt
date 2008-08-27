@@ -92,6 +92,7 @@ BUG FIXES
 * artist/title detection works now correctly for more than one hyphen
   > "Farin Urlaub - Unter - Wasser" :) (regard the blanks around the hyphen!)
   > the first occurence of " - " splits the artist from the title now
+* lyrics do not mess up anymore, if song text file contains lines with preceding whitespaces
   
 KNOWN BUGS (to fix)
 
@@ -136,6 +137,8 @@ TODO (for 1.7.0)
 * add to playlist context menu "remove invalid entries"
 * add to installer: custom tag #comment (insert in registry)
 * do not use only the count for "QUSongFile::verifyTags(QStringList&)"
+* show effective length of playlist in playlist dock
+* disable "talk" if monty is not allowed to talk
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title

@@ -10,7 +10,7 @@ QUPlaylistFile::QUPlaylistFile(const QString &filePath, QObject *parent): QObjec
 	QFile file(filePath);
 
 	if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		QString line = QString::fromLocal8Bit(file.readLine());
+		QString line = QString::fromLocal8Bit(file.readLine()).trimmed();
 
 		while(!line.startsWith(QString("#%1:").arg(SONGS_TAG), Qt::CaseInsensitive)) {
 			if(line.startsWith(QString("#%1:").arg(NAME_TAG), Qt::CaseInsensitive))
@@ -21,14 +21,14 @@ QUPlaylistFile::QUPlaylistFile(const QString &filePath, QObject *parent): QObjec
 			if(file.atEnd())
 				break;
 
-			line = QString::fromLocal8Bit(file.readLine());
+			line = QString::fromLocal8Bit(file.readLine()).trimmed();
 		}
 
 		while(!file.atEnd()) {
 			if(!line.startsWith(QString("#%1:").arg(SONGS_TAG), Qt::CaseInsensitive))
 				_playlist.append(new QUPlaylistEntry(line.section(":", 0, 0).trimmed(), line.section(":", 1, 1).trimmed(), this));
 
-			line = QString::fromLocal8Bit(file.readLine());
+			line = QString::fromLocal8Bit(file.readLine()).trimmed();
 		}
 
 		// use last line buffer
@@ -100,6 +100,7 @@ bool QUPlaylistFile::save() {
 	// write comments
 	foreach(QString comment, _comments) {
 		file.write(comment.toLocal8Bit());
+		file.write("\n");
 	}
 
 	// write name of playlist

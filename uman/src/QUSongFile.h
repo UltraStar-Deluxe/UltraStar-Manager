@@ -124,6 +124,8 @@ public slots:
 	bool isSongChecked() const; // for [SC]
 
 	int length() const;
+	int lengthMp3() const;
+	int lengthEffective() const;
 
 	QFileInfo songFileInfo() const {return _fi;} //!< \returns a file info for the current US song file
 

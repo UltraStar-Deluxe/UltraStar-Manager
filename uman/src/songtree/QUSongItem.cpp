@@ -151,7 +151,12 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	this->setText(YEAR_COLUMN,     song()->year());
 	this->setText(CREATOR_COLUMN,  song()->creator());
 
-	this->setText(LENGTH_COLUMN, QString("%1:%2").arg(song()->length() / 60).arg(song()->length() % 60, 2, 10, QChar('0')));
+	int length = song()->length();
+	this->setText(LENGTH_COLUMN, length == 0 ? N_A : QString("%1:%2").arg(length / 60).arg(length % 60, 2, 10, QChar('0')));
+	length = song()->lengthMp3();
+	this->setText(LENGTH_MP3_COLUMN, length == 0 ? N_A : QString("%1:%2").arg(length / 60).arg(length % 60, 2, 10, QChar('0')));
+	length = song()->lengthEffective();
+	this->setText(LENGTH_EFF_COLUMN, length == 0 ? N_A : QString("%1:%2").arg(length / 60).arg(length % 60, 2, 10, QChar('0')));
 
 	// show custom tags
 	int i = 0;

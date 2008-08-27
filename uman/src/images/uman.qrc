@@ -103,6 +103,9 @@
   <qresource prefix="/types" >
     <file>text_stack.png</file>
     <file>folder_go.png</file>
+    <file>time_song.png</file>
+    <file>time_eff.png</file>
+    <file>time_mp3.png</file>
     <file>background.png</file>
     <file>comment.png</file>
     <file>time.png</file>

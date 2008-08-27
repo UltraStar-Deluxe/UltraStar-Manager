@@ -12,6 +12,7 @@
 #include <QApplication>
 #include <QFile>
 
+#include "audioproperties.h"
 #include "fileref.h"
 #include "tag.h"
 #include "tstring.h"
@@ -93,7 +94,7 @@ bool QUSongFile::updateCache() {
 	 */
 	QString line;
 	while( !(QRegExp("[:\\*FE\\-].*").exactMatch(line) || _file.atEnd()) ) {
-		line = QString::fromLocal8Bit(_file.readLine());
+		line = QString::fromLocal8Bit(_file.readLine()).trimmed();
 
 		// read supported tags
 		bool isSupported = false;
@@ -120,19 +121,24 @@ bool QUSongFile::updateCache() {
 	while( !_file.atEnd() ) {
 		if(QRegExp("[:\\*F\\-].*").exactMatch(line))
 			_lyrics << line;
-		else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.trimmed().isEmpty())
+		else if(QString::compare(line, "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
 			_footer << line;
 
-		line = QString::fromLocal8Bit(_file.readLine());
+		line = QString::fromLocal8Bit(_file.readLine()).trimmed();
 	}
 
 	// use last line buffer
 	// TODO: a little bit dirty here (duplicate code)
 	if(QRegExp("[:\\*F\\-].*").exactMatch(line))
 		_lyrics << line;
-	else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.trimmed().isEmpty())
+	else if(QString::compare(line, "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
 		_footer << line;
 
+
+	// debug S
+	if(!_footer.isEmpty())
+		QMessageBox::information(0, QString("%1 - %2").arg(artist()).arg(title()), _footer.join(""));
+	// debug E
 
 
 	_file.close();
@@ -285,6 +291,22 @@ int QUSongFile::length() const {
 }
 
 /*!
+ * \returns the length of the audio file, if one exists
+ */
+int QUSongFile::lengthMp3() const {
+	TagLib::FileRef ref(this->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+
+	if(ref.isNull() or !ref.audioProperties())
+		return 0;
+
+	return ref.audioProperties()->length();
+}
+
+int QUSongFile::lengthEffective() const {
+	return qMax(0, this->lengthMp3() - QVariant(this->start()).toInt());
+}
+
+/*!
  * Creates a complete new song file for US. Any old data will be overwritten.
  * \param force Indicates whether to save the file although automatic file save was
  * disabled.
@@ -336,6 +358,7 @@ bool QUSongFile::save(bool force) {
 	// write lyrics
 	foreach(QString line, _lyrics) {
 		_file.write(line.toLocal8Bit());
+		_file.write("\n");
 	}
 
 	// write song ending
@@ -344,6 +367,7 @@ bool QUSongFile::save(bool force) {
 	// write footer
 	foreach(QString line, _footer) {
 		_file.write(line.toLocal8Bit());
+		_file.write("\n");
 	}
 
 	_file.close();
