@@ -161,8 +161,10 @@ void QUMainWindow::initWindow() {
 	addDockWidget(Qt::LeftDockWidgetArea, previewDock); previewDock->hide();
 	addDockWidget(Qt::RightDockWidgetArea, eventsDock); eventsDock->hide();
 	addDockWidget(Qt::RightDockWidgetArea, playlistDock); playlistDock->hide();
+	addDockWidget(Qt::RightDockWidgetArea, amazonDock); amazonDock->hide();
 
 	connect(playlistArea, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+	connect(amazonArea, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 
 	// init filter area
 	filterFrame->hide();
@@ -207,16 +209,19 @@ void QUMainWindow::initMenu() {
 	previewDock->toggleViewAction()->setIcon(QIcon(":/control/db_info.png"));
 	playlistDock->toggleViewAction()->setIcon(QIcon(":/control/playlist.png"));
 	eventsDock->toggleViewAction()->setIcon(QIcon(":/control/log.png"));
+	//amazonDock->toggleViewAction()->setIcon(QIcon(":/control/log.png"));
 
 	this->viewBar->addAction(detailsDock->toggleViewAction());
 	this->viewBar->addAction(tasksDock->toggleViewAction());
 	this->viewBar->addAction(playlistDock->toggleViewAction());
 	this->viewBar->addAction(previewDock->toggleViewAction());
 	this->viewBar->addAction(eventsDock->toggleViewAction());
+	//this->viewBar->addAction(amazonDock->toggleViewAction());
 
 	this->menuView->addAction(detailsDock->toggleViewAction());
 	this->menuView->addAction(tasksDock->toggleViewAction());
 	this->menuView->addAction(playlistDock->toggleViewAction());
+	this->menuView->addAction(amazonDock->toggleViewAction());
 	this->menuView->addAction(previewDock->toggleViewAction());
 	this->menuView->addAction(eventsDock->toggleViewAction());
 
@@ -247,6 +252,10 @@ void QUMainWindow::initMenu() {
 	connect(actionQt, SIGNAL(triggered()), this, SLOT(aboutQt()));
 	connect(actionUman, SIGNAL(triggered()), this, SLOT(aboutUman()));
 	connect(actionTagLib, SIGNAL(triggered()), this, SLOT(aboutTagLib()));
+
+
+	menuView->addAction("Blubb!", amazonArea, SLOT(blubb()));
+	menuView->addAction("Foobar!", amazonArea, SLOT(foobar()));
 }
 
 /*!

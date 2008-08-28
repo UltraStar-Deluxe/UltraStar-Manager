@@ -4,7 +4,10 @@ QT += core \
     gui \
     xml
 CONFIG += debug
-HEADERS += tasks/taskDialog/QUDefaultDelegate.h \
+HEADERS += amazon/QUCoverList.h \
+    amazon/QUCoverGroup.h \
+    amazon/QUAmazonArea.h \
+    tasks/taskDialog/QUDefaultDelegate.h \
     tasks/taskDialog/QUAudioTagTaskDialog.h \
     tasks/taskDialog/QUTaskSourceDelegate.h \
     tasks/taskDialog/QUTaskTextDelegate.h \
@@ -53,7 +56,10 @@ HEADERS += tasks/taskDialog/QUDefaultDelegate.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += tasks/taskDialog/QUDefaultDelegate.cpp \
+SOURCES += amazon/QUCoverList.cpp \
+    amazon/QUCoverGroup.cpp \
+    amazon/QUAmazonArea.cpp \
+    tasks/taskDialog/QUDefaultDelegate.cpp \
     tasks/taskDialog/QUAudioTagTaskDialog.cpp \
     tasks/taskDialog/QUTaskSourceDelegate.cpp \
     tasks/taskDialog/QUTaskTextDelegate.cpp \
@@ -102,7 +108,9 @@ SOURCES += tasks/taskDialog/QUDefaultDelegate.cpp \
     QUSongFile.cpp \
     QUMainWindow.cpp \
     main.cpp
-FORMS += QUTaskDialog.ui \
+FORMS += QUCoverGroup.ui \
+    QUAmazonArea.ui \
+    QUTaskDialog.ui \
     QUCustomTagsDialog.ui \
     QUPlaylistArea.ui \
     QUPictureDialog.ui \
@@ -120,7 +128,8 @@ INCLUDEPATH += tasks \
     reports \
     tasks/taskDialog \
     preview \
-    playlist
+    playlist \
+    amazon
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib

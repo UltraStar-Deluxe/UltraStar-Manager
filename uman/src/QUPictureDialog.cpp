@@ -1,22 +1,65 @@
 #include "QUPictureDialog.h"
 
+#include <QLabel>
 #include <QPixmap>
-#include <QIcon>
-#include <QGraphicsScene>
-#include <QGraphicsPixmapItem>
+#include <QVBoxLayout>
 
-QUPictureDialog::QUPictureDialog(const QString &file, QWidget *parent): QDialog(parent) {
+//#include <QIcon>
+//#include <QGraphicsScene>
+//#include <QGraphicsPixmapItem>
+
+QUPictureDialog::QUPictureDialog(const QString &filePath, QWidget *parent): QDialog(parent), _filePath(filePath) {
 	setupUi(this);
-	
-	QGraphicsScene *scene = new QGraphicsScene(gfx);
-	scene->addPixmap(QPixmap(file));
-	
-	gfx->setScene(scene);
-	gfx->centerOn(0, 0);
-	
+
+	QLabel *gfx = new QLabel(this);
+	gfx->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+	scrollArea->setWidget(gfx);
+
 	this->setWindowFlags(this->windowFlags() | Qt::WindowMaximizeButtonHint);
-	this->resize(300, 300);
-	
+
 	this->setWindowIcon(QIcon(":/types/picture.png"));
-	this->setWindowTitle(file);
+	infoLbl->setText(filePath);
+
+	connect(fitSizeBtn, SIGNAL(clicked()), this, SLOT(fitPicture()));
+	connect(fullSizeBtn, SIGNAL(clicked()), this, SLOT(fullPicture()));
+
+	fitSizeBtn->setShortcut(Qt::CTRL + Qt::Key_1);
+	fullSizeBtn->setShortcut(Qt::CTRL + Qt::Key_2);
+
+	this->fullPicture();
+
+	if(gfx->pixmap()) {
+		double ratio = (double)gfx->pixmap()->height() / (double)gfx->pixmap()->width();
+		if((ratio <= 2.0) and (ratio >= 0.5))
+			this->resize(INITIAL_WIDTH, (int)(ratio * INITIAL_WIDTH) + EXTRA_HEIGHT);
+	}
+}
+
+/*!
+ * Shows everything of the picture.
+ */
+void QUPictureDialog::fitPicture() {
+	QLabel *gfx = dynamic_cast<QLabel*>(scrollArea->widget());
+
+	if(!gfx)
+		return;
+
+	QPixmap pixmap(_filePath);
+
+	double viewportRatio = scrollArea->maximumViewportSize().width() / scrollArea->maximumViewportSize().height();
+	double gfxRatio      = pixmap.width() / pixmap.height();
+
+	if(viewportRatio >= gfxRatio)
+		gfx->setPixmap(pixmap.scaledToHeight(scrollArea->maximumViewportSize().height(), Qt::SmoothTransformation));
+	else
+		gfx->setPixmap(pixmap.scaledToWidth(scrollArea->maximumViewportSize().width(), Qt::SmoothTransformation));
+}
+
+void QUPictureDialog::fullPicture() {
+	QLabel *gfx = dynamic_cast<QLabel*>(scrollArea->widget());
+
+	if(!gfx)
+		return;
+
+	gfx->setPixmap(QPixmap(_filePath));
 }

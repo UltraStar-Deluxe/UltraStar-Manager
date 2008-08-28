@@ -593,7 +593,7 @@
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>142</height>
+           <height>133</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -661,6 +661,34 @@
        </widget>
       </item>
       <item>
+       <widget class="QDockWidget" name="amazonDock" >
+        <property name="windowTitle" >
+         <string>Amazon Associates Web Service</string>
+        </property>
+        <widget class="QWidget" name="dockWidgetContents_6" >
+         <property name="geometry" >
+          <rect>
+           <x>0</x>
+           <y>20</y>
+           <width>451</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_6" >
+          <property name="spacing" >
+           <number>0</number>
+          </property>
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QUAmazonArea" native="1" name="amazonArea" />
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item>
        <widget class="QDockWidget" name="tasksDock" >
         <property name="windowTitle" >
          <string>Tasks</string>
@@ -671,7 +699,7 @@
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>166</height>
+           <height>157</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -867,7 +895,7 @@
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>123</height>
+           <height>114</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout" >
@@ -938,7 +966,7 @@
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>148</height>
+           <height>139</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -1553,6 +1581,12 @@
    <class>QUPlaylistArea</class>
    <extends>QWidget</extends>
    <header>QUPlaylistArea.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QUAmazonArea</class>
+   <extends>QWidget</extends>
+   <header>QUAmazonArea.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
