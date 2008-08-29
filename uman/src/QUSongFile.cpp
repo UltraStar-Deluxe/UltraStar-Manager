@@ -344,8 +344,14 @@ QStringList QUSongFile::lyrics() const {
 				lastBeat = -1; // reset beat counter
 			}
 
-			result.last() += line.remove(linePrefix);
-			result.last().remove("\n");
+			line.remove("\n");
+
+			if(QRegExp("\\s*\\*.*").exactMatch(line)) // golden note
+				result.last() += line.remove(linePrefix).append("</b>").prepend("<b>");
+			else if(QRegExp("\\s*F.*").exactMatch(line)) // freestyle note
+				result.last() += line.remove(linePrefix).append("</i>").prepend("<i>");
+			else
+				result.last() += line.remove(linePrefix);
 		}
 	}
 
