@@ -20,6 +20,15 @@ QUDetailItem::QUDetailItem(const QString &tag, const QList<QUSongFile*> &songs):
 	_tag(tag)
 {
 	this->setSongs(songs);
+
+	// TODO: show tooltips - but how?
+//	virtual QVariant data(int role) const { return role == Qt::ToolTipRole ? _toolTip : QTableWidgetItem::data(role); }
+//	if(QString::compare(tag, END_TAG) == 0)
+//		_toolTip = QObject::tr("Resets the length of the audio file.");
+//	else if(QString::compare(tag, START_TAG) == 0)
+//		_toolTip = QObject::tr("Skip the first seconds of the song.");
+//	else if(QString::compare(tag, VIDEOGAP_TAG) == 0)
+//		_toolTip = QObject::tr("Skip the first seconds of the video.<br><br><i>Use negative values here with positive ones in <b>#START</b> to fix a short video file.</i>");
 }
 
 void QUDetailItem::setSongs(const QList<QUSongFile*> &songs) {
