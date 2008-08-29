@@ -7,6 +7,7 @@
 #include <QRegExp>
 
 #define N_A "-"
+#define NONE "(none)"
 
 #define CHAR_UTF8_APPROX "\xe2\x89\x88"
 #define CHAR_UTF8_NEQUAL "\xe2\x89\xa0"
@@ -50,6 +51,12 @@ public:
 	};
 	Q_DECLARE_FLAGS(ScriptableTaskTypes, ScriptableTaskType)
 
+	enum ImageSize {
+		mediumImage,
+		largeImage
+	};
+	Q_DECLARE_FLAGS(ImageSizes, ImageSize)
+
 	static QStringList allowedSongFiles();
 	static QStringList allowedAudioFiles();
 	static QStringList allowedPictureFiles();
@@ -59,6 +66,7 @@ public:
 	static QString withoutUnsupportedCharacters (const QString &text);
 	static QString withoutFolderTags(const QString &text);
 	static QString withoutLeadingBlanks(const QString &text);
+	static QString withoutAnyUmlaut(const QString &text);
 
 protected:
 	QU() {} // do not allow to make an instance of this object

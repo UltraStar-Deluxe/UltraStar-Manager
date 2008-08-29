@@ -45,7 +45,6 @@ private slots:
 
 	void updateDetails();
 	void updatePreviewTree();
-	void updateAmazonArea();
 
 	void editSongSetFileLink(QTreeWidgetItem *item, int column);
 	void editSongSetDetail(QTableWidgetItem *item);
@@ -82,6 +81,8 @@ private slots:
 	// translations
 	void enableEnglish();
 	void enableGerman();
+
+	void getCoversFromAmazon(QList<QUSongItem*> items);
 
 private:
 	QList<QUSongFile*>     _songs;

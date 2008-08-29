@@ -1,24 +1,25 @@
-#ifndef QUAMAZONAREA_H_
-#define QUAMAZONAREA_H_
+#ifndef QUAMAZONDIALOG_H_
+#define QUAMAZONDIALOG_H_
 
 #include "QU.h"
 #include "QUSongItem.h"
 #include "QUCoverGroup.h"
 
-#include <QWidget>
+#include <QDialog>
 #include <QList>
 #include <QString>
 #include <QVBoxLayout>
 
 #include "ui_QUAmazonArea.h"
 
-class QUAmazonArea: public QWidget, private Ui::QUAmazonArea {
+class QUAmazonDialog: public QDialog, private Ui::QUAmazonArea {
 	Q_OBJECT
 
 public:
-	QUAmazonArea(QWidget *parent = 0);
+	QUAmazonDialog(const QList<QUSongItem*> &items, QWidget *parent = 0);
 
-	void setSongItems(const QList<QUSongItem*> &items);
+private slots:
+	void getCovers();
 
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
@@ -26,7 +27,8 @@ signals:
 private:
 	QVBoxLayout         *_contentLayout;
 	QList<QUCoverGroup*> _groups;
-	QList<QUSongItem*>   _songItems;
+
+	void createGroups(const QList<QUSongItem*> &items);
 };
 
-#endif /* QUAMAZONAREA_H_ */
+#endif /* QUAMAZONDIALOG_H_ */

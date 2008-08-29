@@ -359,6 +359,7 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 	menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()), QKeySequence::fromString("F5"));
 	menu.addAction(QIcon(":/control/save.png"), tr("Save"), this, SLOT(saveSelectedSongs()), QKeySequence::fromString("Ctrl+S"));
 	menu.addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
+	menu.addAction(tr("Get Covers From Amazon..."), this, SLOT(requestCoversFromAmazon()));
 
 	QMenu *filterMenu = menu.addMenu(tr("Hide"));
 	filterMenu->setIcon(QIcon(":/control/eye.png"));
@@ -742,6 +743,14 @@ void QUSongTree::requestLyrics() {
 
 	if(cItem)
 		emit showLyricsRequested(cItem->song());
+}
+
+/*!
+ * Request covers for all selected songs (song items). Send the items so that they can be updates,
+ * if songs got new covers.
+ */
+void QUSongTree::requestCoversFromAmazon() {
+	emit coversFromAmazonRequested(this->selectedSongItems());
 }
 
 void QUSongTree::removeFilter() {

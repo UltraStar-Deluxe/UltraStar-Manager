@@ -148,6 +148,8 @@ TODO (for 1.7.0)
 * show effective length of playlist in playlist dock
 * disable "talk" if monty is not allowed to talk
 * new tasks for setting the #end tag to the song length
+* add selected "lengths/time" so preview tree
+* fix gif-support (amazon-covers, ..., files?)
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title

@@ -45,6 +45,7 @@
 #include "QUMessageBox.h"
 #include "QUPictureDialog.h"
 #include "QUCustomTagsDialog.h"
+#include "QUAmazonDialog.h"
 
 QDir QUMainWindow::BaseDir = QDir();
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
@@ -262,7 +263,6 @@ void QUMainWindow::initSongTree() {
 
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateDetails()));
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updatePreviewTree()));
-	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateAmazonArea()));
 
 	connect(songTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(editSongSetFileLink(QTreeWidgetItem*, int)));
 	connect(songTree, SIGNAL(itemActivated(QTreeWidgetItem*, int)), this, SLOT(showFileContent(QTreeWidgetItem*, int)));
@@ -275,6 +275,7 @@ void QUMainWindow::initSongTree() {
 
 	connect(songTree, SIGNAL(songToPlaylistRequested(QUSongFile*)), playlistArea, SLOT(addSongToCurrentPlaylist(QUSongFile*)));
 	connect(songTree, SIGNAL(showLyricsRequested(QUSongFile*)), this, SLOT(showLyrics(QUSongFile*)));
+	connect(songTree, SIGNAL(coversFromAmazonRequested(QList<QUSongItem*>)), this, SLOT(getCoversFromAmazon(QList<QUSongItem*>)));
 
 	refreshAllSongs();
 }
@@ -456,13 +457,6 @@ void QUMainWindow::updatePreviewTree() {
 		previewTree->showFileInformation(fi);
 	} else
 		previewTree->showFileInformation(QFileInfo());
-}
-
-/*!
- * Notice the amazonArea about the new selection.
- */
-void QUMainWindow::updateAmazonArea() {
-//	amazonArea->setSongItems(songTree->selectedSongItems());
 }
 
 /*!
@@ -937,4 +931,16 @@ void QUMainWindow::enableGerman() {
 			":/marks/accept.png", tr("Continue."));
 	if(result == QUMessageBox::first)
 		this->close();
+}
+
+void QUMainWindow::getCoversFromAmazon(QList<QUSongItem*> items) {
+	QUAmazonDialog *dlg = new QUAmazonDialog(items, this);
+	connect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+
+	if(dlg->exec()) {
+		;
+	}
+
+	disconnect(dlg, 0, 0, 0);
+	delete dlg;
 }

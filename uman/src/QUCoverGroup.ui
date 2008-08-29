@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>136</width>
-    <height>71</height>
+    <width>166</width>
+    <height>64</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -27,6 +27,12 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="minimumSize" >
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
      <property name="title" >
       <string>GroupBox</string>
      </property>
@@ -40,13 +46,16 @@
       <property name="spacing" >
        <number>0</number>
       </property>
+      <property name="sizeConstraint" >
+       <enum>QLayout::SetNoConstraint</enum>
+      </property>
       <property name="margin" >
        <number>0</number>
       </property>
       <item>
        <widget class="QUCoverList" name="list" >
         <property name="sizePolicy" >
-         <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+         <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -54,11 +63,14 @@
         <property name="minimumSize" >
          <size>
           <width>0</width>
-          <height>0</height>
+          <height>50</height>
          </size>
         </property>
         <property name="frameShape" >
          <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="verticalScrollBarPolicy" >
+         <enum>Qt::ScrollBarAsNeeded</enum>
         </property>
         <property name="horizontalScrollBarPolicy" >
          <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -88,7 +100,7 @@
          <enum>QListView::IconMode</enum>
         </property>
         <property name="uniformItemSizes" >
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>

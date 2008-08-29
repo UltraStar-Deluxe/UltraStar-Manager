@@ -2,11 +2,14 @@ TEMPLATE = app
 TARGET = uman
 QT += core \
     gui \
-    xml
+    xml \
+    network
 CONFIG += debug
-HEADERS += amazon/QUCoverList.h \
+HEADERS += amazon/QUAmazonResponse.h \
+    amazon/QUAmazonRequestUrl.h \
+    amazon/QUAmazonDialog.h \
+    amazon/QUCoverList.h \
     amazon/QUCoverGroup.h \
-    amazon/QUAmazonArea.h \
     tasks/taskDialog/QUDefaultDelegate.h \
     tasks/taskDialog/QUAudioTagTaskDialog.h \
     tasks/taskDialog/QUTaskSourceDelegate.h \
@@ -56,9 +59,11 @@ HEADERS += amazon/QUCoverList.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += amazon/QUCoverList.cpp \
+SOURCES += amazon/QUAmazonResponse.cpp \
+    amazon/QUAmazonRequestUrl.cpp \
+    amazon/QUAmazonDialog.cpp \
+    amazon/QUCoverList.cpp \
     amazon/QUCoverGroup.cpp \
-    amazon/QUAmazonArea.cpp \
     tasks/taskDialog/QUDefaultDelegate.cpp \
     tasks/taskDialog/QUAudioTagTaskDialog.cpp \
     tasks/taskDialog/QUTaskSourceDelegate.cpp \

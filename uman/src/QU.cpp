@@ -68,3 +68,14 @@ QString QU::withoutLeadingBlanks(const QString &text) {
 
 	return result;
 }
+
+QString QU::withoutAnyUmlaut(const QString &text) {
+	QString result = text;
+
+	result.replace("ä", "ae", Qt::CaseInsensitive);
+	result.replace("ö", "oe", Qt::CaseInsensitive);
+	result.replace("ü", "ue", Qt::CaseInsensitive);
+	result.replace("ß", "ss", Qt::CaseInsensitive);
+
+	return result;
+}

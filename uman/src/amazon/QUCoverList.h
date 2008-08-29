@@ -11,8 +11,6 @@ public:
 	QUCoverList(QWidget *parent = 0);
 
 	void addItem(QListWidgetItem *item);
-
-private:
 	void adjustMinimumHeight();
 };
 
