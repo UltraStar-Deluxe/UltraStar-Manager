@@ -42,10 +42,12 @@ signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
 	void songCreated(QUSongFile *song);
 	void songToPlaylistRequested(QUSongFile *song);
+	void showLyricsRequested(QUSongFile *song);
 
 private slots:
 	void deleteCurrentItem();
 	void sendSelectedSongsToPlaylist();
+	void requestLyrics();
 
 	void showItemMenu(const QPoint &point);
 	void showHeaderMenu(const QPoint &point);

@@ -127,6 +127,8 @@ public slots:
 	int lengthMp3() const;
 	int lengthEffective() const;
 
+	QStringList lyrics() const;
+
 	QFileInfo songFileInfo() const {return _fi;} //!< \returns a file info for the current US song file
 
 	QFileInfo mp3FileInfo() const {return QFileInfo(_fi.dir(), mp3());} //!< \returns a file info for the mp3 file

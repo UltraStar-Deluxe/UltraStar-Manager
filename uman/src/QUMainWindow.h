@@ -66,6 +66,7 @@ private slots:
 	void montyTalk();
 
 	void showFileContent(QTreeWidgetItem *item, int column);
+	void showLyrics(QUSongFile *song);
 
 	void addLogMsg(const QString &msg, QU::EventMessageTypes type = QU::information);
 	void saveLog();

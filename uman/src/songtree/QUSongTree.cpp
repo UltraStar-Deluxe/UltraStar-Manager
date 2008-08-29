@@ -368,9 +368,12 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 
 	QUSongItem *item = dynamic_cast<QUSongItem*>(this->currentItem());
 
+	menu.addSeparator();
+	menu.addAction(tr("Show Lyrics..."), this, SLOT(requestLyrics()), QKeySequence::fromString("Ctrl+L"));
+
 	if(item && !item->isToplevel()) {
 		menu.addSeparator();
-		menu.addAction(tr("Open"), this, SLOT(openCurrentFile()), Qt::Key_Return);
+		menu.addAction(tr("Open..."), this, SLOT(openCurrentFile()), Qt::Key_Return);
 		menu.addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), Qt::Key_Delete);
 	}
 
@@ -728,6 +731,17 @@ void QUSongTree::sendSelectedSongsToPlaylist() {
 		if(songItem)
 			emit songToPlaylistRequested(songItem->song());
 	}
+}
+
+/*!
+ * Request to show the lyrics of the current song. It is only possible to show the lyrics of one
+ * song. More songs could be selected.
+ */
+void QUSongTree::requestLyrics() {
+	QUSongItem *cItem = dynamic_cast<QUSongItem*>(this->currentItem());
+
+	if(cItem)
+		emit showLyricsRequested(cItem->song());
 }
 
 void QUSongTree::removeFilter() {

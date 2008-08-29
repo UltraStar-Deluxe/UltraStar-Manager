@@ -79,6 +79,10 @@ NEW FEATURES
   > audio file time
   > total time
   > warning indicator
+* you can display the (readable) lyrics of a song now
+  > Ctrl+L
+  > context menu in song tree
+  > "Songs > Show Lyrics..." menu
 
 BUG FIXES
 * minor change in object renaming

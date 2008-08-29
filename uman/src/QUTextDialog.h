@@ -9,12 +9,16 @@
 
 class QUTextDialog: public QDialog, private Ui::QUTextDialog {
 	Q_OBJECT
-	
+
 public:
-	QUTextDialog(QUSongFile *song, QWidget *parent = 0);
-	
+	QUTextDialog(QUSongFile *song, QWidget *parent = 0, bool showLyrics = false);
+
 private:
-	void initContent(QUSongFile *song);
+	void showLyrics(QUSongFile *song);
+	void showFile(QUSongFile *song);
+
+	void initFile(QUSongFile *song);
+	void initLyrics(QUSongFile *song);
 };
 
 #endif /*QUTEXTDIALOG_H_*/

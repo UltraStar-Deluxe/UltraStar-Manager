@@ -307,6 +307,52 @@ int QUSongFile::lengthEffective() const {
 }
 
 /*!
+ * \returns the song lyrics in a human readable format
+ */
+QStringList QUSongFile::lyrics() const {
+	QStringList _lyricsCopy = _lyrics;
+	QStringList result; result << QString();
+
+	QRegExp lineBreak("\\s*-.*");
+	QRegExp linePrefix("\\s*[:\\*F]\\s*\\d+\\s+\\d+\\s+-?\\d+\\s");
+
+	int lastBeat = -1;
+
+	foreach(QString line, _lyricsCopy) {
+		if(lineBreak.exactMatch(line)) {
+			result << QString();
+
+			line = line.remove("-").trimmed();
+			lastBeat = QVariant(line.section(" ", 0, 0, QString::SectionSkipEmpty)).toInt();
+
+			// insert an empty line?
+			if(this->relative() != N_A) {
+				int nextBeat = QVariant(line.section(" ", 1, 1, QString::SectionSkipEmpty)).toInt();
+				if(nextBeat - lastBeat > 20)
+					result << QString();
+				lastBeat = -1; // reset beat counter
+			}
+		} else {
+			if(lastBeat != -1) {
+				// insert an empty line?
+				QString lineCopy = line;
+				lineCopy.remove(QRegExp("[:\\*F]"));
+				int nextBeat = QVariant(lineCopy.section(" ", 0, 0, QString::SectionSkipEmpty)).toInt();
+
+				if(nextBeat - lastBeat > 20)
+					result << QString();
+				lastBeat = -1; // reset beat counter
+			}
+
+			result.last() += line.remove(linePrefix);
+			result.last().remove("\n");
+		}
+	}
+
+	return result;
+}
+
+/*!
  * Creates a complete new song file for US. Any old data will be overwritten.
  * \param force Indicates whether to save the file although automatic file save was
  * disabled.

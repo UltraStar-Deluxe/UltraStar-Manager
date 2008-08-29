@@ -1144,6 +1144,7 @@
     <addaction name="actionSaveAll" />
     <addaction name="separator" />
     <addaction name="actionSendToPlaylist" />
+    <addaction name="actionShowLyrics" />
     <addaction name="separator" />
     <addaction name="actionExpandAll" />
     <addaction name="actionCollapseAll" />
@@ -1525,6 +1526,11 @@
    </property>
    <property name="text" >
     <string>Custom Tags...</string>
+   </property>
+  </action>
+  <action name="actionShowLyrics" >
+   <property name="text" >
+    <string>Show Lyrics...</string>
    </property>
   </action>
  </widget>
