@@ -329,17 +329,15 @@ void QUSongItem::updateTimeCheckColumns() {
 	int timeDiffUpper = settings.value("timeDiffUpper", 30).toInt();
 
 	if(lengthMp3 >= length and timeDiff < timeDiffLower) {
-		; // well done ^_^
+		// well done ^_^
+
 ;	} else if(lengthMp3 > length and timeDiff < timeDiffUpper) {
 		this->setIcon(LENGTH_DIFF_COLUMN, QIcon(":/bullets/bullet_warning.png"));
-		// used for sorting, should be smaller than zero
-		this->setData(LENGTH_DIFF_COLUMN, Qt::UserRole, QVariant(-1));
 	} else {
 		this->setIcon(LENGTH_DIFF_COLUMN, QIcon(":/bullets/bullet_cancel.png"));
-		// used for sorting, should be smaller than zero
-		this->setData(LENGTH_DIFF_COLUMN, Qt::UserRole, QVariant(-2));
 	}
 
+	this->setData(LENGTH_DIFF_COLUMN, Qt::UserRole, QVariant(timeDiff * (-1))); // for sorting issues
 	this->setToolTip(LENGTH_DIFF_COLUMN, QString(QObject::tr("%1 seconds")).arg(timeDiff));
 }
 
