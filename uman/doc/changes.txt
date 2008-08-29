@@ -100,7 +100,6 @@ BUG FIXES
 * lyrics do not mess up anymore, if song text file contains lines with preceding whitespaces
   
 KNOWN BUGS (to fix)
-
 * you cannot sort after a custom tag column in the report
 
 TODO (for 1.7.0)

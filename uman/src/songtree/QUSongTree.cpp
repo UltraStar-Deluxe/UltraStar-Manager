@@ -85,7 +85,7 @@ void QUSongTree::initHorizontalHeader() {
 
 	header->setText(LENGTH_EFF_COLUMN, tr("Total"));
 	header->setIcon(LENGTH_EFF_COLUMN, QIcon(":/types/time_eff.png"));
-	header->setToolTip(LENGTH_EFF_COLUMN, tr("Show the effective length:<br><b>audio length - #START</b>"));
+	header->setToolTip(LENGTH_EFF_COLUMN, tr("Shows the effective length:<br><b>audio length - #START</b><br>or <b>#END</b> in seconds."));
 
 	int i = 0;
 	foreach(QString customTag, QUSongFile::customTags()) {

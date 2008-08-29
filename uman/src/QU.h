@@ -58,6 +58,7 @@ public:
 
 	static QString withoutUnsupportedCharacters (const QString &text);
 	static QString withoutFolderTags(const QString &text);
+	static QString withoutLeadingBlanks(const QString &text);
 
 protected:
 	QU() {} // do not allow to make an instance of this object

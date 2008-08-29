@@ -53,3 +53,18 @@ QString QU::withoutFolderTags(const QString &text) {
 
 	return result.remove(r).trimmed();
 }
+
+/*!
+ * Remove all leading spaces and tabs.
+ */
+QString QU::withoutLeadingBlanks(const QString &text) {
+	QString result = text;
+
+	while(result.startsWith(" "))
+		result.remove(0, 1);
+
+	while(result.startsWith("\t"))
+		result.remove(0, 1);
+
+	return result;
+}

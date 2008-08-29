@@ -94,13 +94,13 @@ bool QUSongFile::updateCache() {
 	 */
 	QString line;
 	while( !(QRegExp("[:\\*FE\\-].*").exactMatch(line) || _file.atEnd()) ) {
-		line = QString::fromLocal8Bit(_file.readLine()).trimmed();
+		line = QU::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
 
 		// read supported tags
 		bool isSupported = false;
 		foreach(QString tag, QUSongFile::tags()) {
 			if(line.startsWith("#" + tag + ":", Qt::CaseInsensitive)) {
-				setInfo(tag, line.section("#" + tag + ":", 0, 0, QString::SectionSkipEmpty | QString::SectionCaseInsensitiveSeps));
+				setInfo(tag, line.section("#" + tag + ":", 0, 0, QString::SectionSkipEmpty | QString::SectionCaseInsensitiveSeps).trimmed());
 				isSupported = true;
 			}
 		}
@@ -108,7 +108,7 @@ bool QUSongFile::updateCache() {
 		// read unsupported tags
 		if(!isSupported and line.startsWith("#")) {
 			QString uTag(line.section(":", 0, 0).remove("#").trimmed());
-			QString uValue(line.section("#" + uTag + ":", 0, 0, QString::SectionSkipEmpty));
+			QString uValue(line.section("#" + uTag + ":", 0, 0, QString::SectionSkipEmpty).trimmed());
 
 			if(!uTag.isEmpty() and !uValue.isEmpty()) {
 				setInfo(uTag, uValue);
@@ -124,7 +124,7 @@ bool QUSongFile::updateCache() {
 		else if(QString::compare(line, "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
 			_footer << line;
 
-		line = QString::fromLocal8Bit(_file.readLine()).trimmed();
+		line = QU::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
 	}
 
 	// use last line buffer
@@ -273,14 +273,14 @@ int QUSongFile::length() const {
 	if(QString::compare(this->relative(), "yes", Qt::CaseInsensitive) == 0) {
 		foreach(QString line, _lyrics) {
 			if(line.startsWith("-"))
-				beats += QVariant(line.section(" ", 2, 2)).toInt(); // e.g. "- 48 64"
+				beats += QVariant(line.section(" ", 2, 2, QString::SectionSkipEmpty)).toInt(); // e.g. "- 48 64"
 		}
 	} else
-		beats = QVariant(_lyrics.last().section(" ", 1, 1)).toInt(); // use the number in the last line, e.g. ": 2000 5 60 boo", "- 2000"
+		beats = QVariant(_lyrics.last().section(" ", 1, 1, QString::SectionSkipEmpty)).toInt(); // use the number in the last line, e.g. ": 2000 5 60 boo", "- 2000"
 
 	double gap = QVariant(this->gap()).toDouble() / 1000;
 
-	return (beats / (bpm * 4)) * 60 + gap; // result in seconds
+	return (int)((beats / (bpm * 4)) * 60 + gap); // result in seconds
 }
 
 /*!
@@ -296,7 +296,10 @@ int QUSongFile::lengthMp3() const {
 }
 
 int QUSongFile::lengthEffective() const {
-	return qMax(0, this->lengthMp3() - QVariant(this->start()).toInt());
+	if(this->end() != N_A)
+		return qMax(0, (int)(QVariant(this->end()).toDouble() / 1000));
+	else
+		return qMax(0, this->lengthMp3() - QVariant(this->start()).toInt());
 }
 
 /*!
@@ -351,7 +354,6 @@ bool QUSongFile::save(bool force) {
 	// write lyrics
 	foreach(QString line, _lyrics) {
 		_file.write(line.toLocal8Bit());
-		_file.write("\n");
 	}
 
 	// write song ending
@@ -360,7 +362,6 @@ bool QUSongFile::save(bool force) {
 	// write footer
 	foreach(QString line, _footer) {
 		_file.write(line.toLocal8Bit());
-		_file.write("\n");
 	}
 
 	_file.close();
