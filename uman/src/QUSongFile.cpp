@@ -297,7 +297,11 @@ int QUSongFile::lengthMp3() const {
 
 int QUSongFile::lengthEffective() const {
 	if(this->end() != N_A)
-		return qMax(0, (int)(QVariant(this->end()).toDouble() / 1000));
+		return qMax(
+				0,
+				qMin(
+						(int)(QVariant(this->end()).toDouble() / 1000),
+						this->lengthMp3() - QVariant(this->start()).toInt()));
 	else
 		return qMax(0, this->lengthMp3() - QVariant(this->start()).toInt());
 }

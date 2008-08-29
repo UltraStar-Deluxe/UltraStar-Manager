@@ -143,6 +143,7 @@ TODO (for 1.7.0)
 * do not use only the count for "QUSongFile::verifyTags(QStringList&)"
 * show effective length of playlist in playlist dock
 * disable "talk" if monty is not allowed to talk
+* new tasks for setting the #end tag to the song length
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title
