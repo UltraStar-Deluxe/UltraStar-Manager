@@ -23,6 +23,8 @@ public slots:
 
 	void setPixmap(const QString &fileName);
 
+	virtual void reject() { cancel(); }
+
 private slots:
 	void cancel();
 	void updateTime();

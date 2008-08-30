@@ -90,9 +90,6 @@ void QUCoverGroup::finishRequest(bool error) {
 			return;
 		}
 
-		if(_response->count() == 0)
-			showStatus(tr(" (No results.)"));
-
 		// TODO: Exception handling - disk full and so on..
 		QDir outDir(QCoreApplication::applicationDirPath());
 		outDir.mkdir("covers"); outDir.cd("covers");
@@ -106,6 +103,11 @@ void QUCoverGroup::finishRequest(bool error) {
 			foreach(QFileInfo fi, picFiList) {
 				QFile::remove(fi.filePath());
 			}
+		}
+
+		if(_response->count() == 0) {
+			showStatus(tr(" (No results.)"));
+			showCovers();
 		}
 
 		// start new downloads
@@ -140,9 +142,15 @@ void QUCoverGroup::finishRequest(bool error) {
 }
 
 QString QUCoverGroup::customDir() const {
-	 return QString("%1 - %2")
-		.arg(QU::withoutUnsupportedCharacters(_item->song()->artist()))
-		.arg(QU::withoutUnsupportedCharacters(_item->song()->title()));
+	 QString result = QU::withoutUnsupportedCharacters(
+			 QString("%1 - %2")
+				 .arg(_item->song()->artist())
+				 .arg(_item->song()->title())).trimmed();
+
+	 if(result.isEmpty())
+		 result = "_unknown";
+
+	 return result;
 }
 
 void QUCoverGroup::showCovers() {

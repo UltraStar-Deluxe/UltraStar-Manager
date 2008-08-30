@@ -168,6 +168,9 @@
          <property name="selectionBehavior" >
           <enum>QAbstractItemView::SelectRows</enum>
          </property>
+         <property name="selectionRectVisible" >
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>

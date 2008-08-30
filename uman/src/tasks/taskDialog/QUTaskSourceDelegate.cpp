@@ -67,6 +67,9 @@ void QUTaskSourceDelegate::setItems(QComboBox *comboBox) const {
 		for(int i = 0; i < comboBox->count(); i++)
 			comboBox->setItemData(i, Qt::darkGray, Qt::ForegroundRole);
 
-		comboBox->addItems(QUAudioTagTask::availableCommonSources());
+		foreach(QString commonSource, QUAudioTagTask::availableCommonSources()) {
+			comboBox->addItem(QIcon(":/control/id3.png"), commonSource);
+		}
+
 	}
 }

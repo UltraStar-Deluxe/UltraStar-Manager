@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>327</width>
-    <height>376</height>
+    <width>351</width>
+    <height>395</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -16,7 +16,7 @@
    <iconset resource="images/uman.qrc" >
     <normaloff>:/control/tasks_add.png</normaloff>:/control/tasks_add.png</iconset>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout" name="verticalLayout_2" >
    <property name="spacing" >
     <number>0</number>
    </property>
@@ -139,7 +139,7 @@
     </widget>
    </item>
    <item>
-    <layout class="QVBoxLayout" >
+    <layout class="QVBoxLayout" name="verticalLayout" >
      <property name="spacing" >
       <number>5</number>
      </property>
@@ -147,11 +147,170 @@
       <number>5</number>
      </property>
      <item>
-      <layout class="QGridLayout" >
+      <layout class="QGridLayout" name="gridLayout_2" >
+       <property name="spacing" >
+        <number>5</number>
+       </property>
+       <item row="0" column="0" >
+        <widget class="QLabel" name="label_2" >
+         <property name="text" >
+          <string>&amp;Description</string>
+         </property>
+         <property name="buddy" >
+          <cstring>descriptionEdit</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" >
+        <widget class="QLineEdit" name="descriptionEdit" />
+       </item>
+       <item row="1" column="0" >
+        <widget class="QLabel" name="label_3" >
+         <property name="text" >
+          <string>&amp;ToolTip</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         </property>
+         <property name="buddy" >
+          <cstring>toolTipEdit</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" >
+        <widget class="QTextEdit" name="toolTipEdit" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize" >
+          <size>
+           <width>16777215</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="tabChangesFocus" >
+          <bool>true</bool>
+         </property>
+         <property name="tabStopWidth" >
+          <number>80</number>
+         </property>
+         <property name="acceptRichText" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" >
+        <widget class="QLabel" name="label_4" >
+         <property name="text" >
+          <string>&amp;Icon</string>
+         </property>
+         <property name="buddy" >
+          <cstring>iconCombo</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" >
+        <layout class="QHBoxLayout" >
+         <property name="spacing" >
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QComboBox" name="iconCombo" >
+           <property name="frame" >
+            <bool>true</bool>
+           </property>
+           <item>
+            <property name="text" >
+             <string>Cup</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normaloff/>
+             </iconset>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0" >
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item row="3" column="0" >
+        <widget class="QLabel" name="label_5" >
+         <property name="text" >
+          <string>&amp;Group</string>
+         </property>
+         <property name="buddy" >
+          <cstring>groupSpin</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" >
+        <layout class="QHBoxLayout" >
+         <property name="spacing" >
+          <number>5</number>
+         </property>
+         <item>
+          <widget class="QSpinBox" name="groupSpin" >
+           <property name="sizePolicy" >
+            <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="exclusiveChk" >
+           <property name="text" >
+            <string>Exclusive task</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="Line" name="line_2" >
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QGridLayout" name="gridLayout" >
+       <property name="spacing" >
+        <number>5</number>
+       </property>
        <item row="0" column="0" >
         <widget class="QLabel" name="label_7" >
+         <property name="font" >
+          <font>
+           <pointsize>9</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text" >
           <string>&amp;Target</string>
+         </property>
+         <property name="margin" >
+          <number>5</number>
          </property>
          <property name="buddy" >
           <cstring>targetCombo</cstring>
@@ -191,73 +350,72 @@
         </layout>
        </item>
        <item row="1" column="0" >
-        <widget class="QLabel" name="label_2" >
+        <widget class="QLabel" name="label_6" >
+         <property name="font" >
+          <font>
+           <pointsize>9</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text" >
-          <string>&amp;Description</string>
+          <string>&amp;Schema</string>
+         </property>
+         <property name="margin" >
+          <number>5</number>
          </property>
          <property name="buddy" >
-          <cstring>descriptionEdit</cstring>
+          <cstring>schemaEdit</cstring>
          </property>
         </widget>
        </item>
        <item row="1" column="1" >
-        <widget class="QLineEdit" name="descriptionEdit" />
-       </item>
-       <item row="2" column="1" >
-        <widget class="QTextEdit" name="toolTipEdit" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize" >
-          <size>
-           <width>16777215</width>
-           <height>35</height>
-          </size>
-         </property>
-         <property name="tabChangesFocus" >
-          <bool>true</bool>
-         </property>
-         <property name="tabStopWidth" >
-          <number>80</number>
-         </property>
-         <property name="acceptRichText" >
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0" >
-        <widget class="QLabel" name="label_4" >
-         <property name="text" >
-          <string>&amp;Icon</string>
-         </property>
-         <property name="buddy" >
-          <cstring>iconCombo</cstring>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1" >
-        <layout class="QHBoxLayout" >
+        <layout class="QHBoxLayout" name="horizontalLayout" >
          <property name="spacing" >
           <number>0</number>
          </property>
          <item>
-          <widget class="QComboBox" name="iconCombo" >
-           <property name="frame" >
+          <widget class="QLineEdit" name="schemaEdit" >
+           <property name="minimumSize" >
+            <size>
+             <width>0</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="font" >
+            <font>
+             <family>Lucida Console</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="addDataBtn" >
+           <property name="text" >
+            <string>...</string>
+           </property>
+           <property name="icon" >
+            <iconset resource="images/uman.qrc" >
+             <normaloff>:/marks/add.png</normaloff>:/marks/add.png</iconset>
+           </property>
+           <property name="autoRaise" >
             <bool>true</bool>
            </property>
-           <item>
-            <property name="text" >
-             <string>Cup</string>
-            </property>
-            <property name="icon" >
-             <iconset>
-              <normaloff/>
-             </iconset>
-            </property>
-           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="removeDataBtn" >
+           <property name="text" >
+            <string>...</string>
+           </property>
+           <property name="icon" >
+            <iconset resource="images/uman.qrc" >
+             <normaloff>:/marks/delete.png</normaloff>:/marks/delete.png</iconset>
+           </property>
+           <property name="autoRaise" >
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
@@ -265,139 +423,18 @@
            <property name="orientation" >
             <enum>Qt::Horizontal</enum>
            </property>
+           <property name="sizeType" >
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
            <property name="sizeHint" stdset="0" >
             <size>
-             <width>40</width>
-             <height>20</height>
+             <width>16</width>
+             <height>22</height>
             </size>
            </property>
           </spacer>
          </item>
         </layout>
-       </item>
-       <item row="4" column="0" >
-        <widget class="QLabel" name="label_5" >
-         <property name="text" >
-          <string>&amp;Group</string>
-         </property>
-         <property name="buddy" >
-          <cstring>groupSpin</cstring>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1" >
-        <layout class="QHBoxLayout" >
-         <property name="spacing" >
-          <number>5</number>
-         </property>
-         <item>
-          <widget class="QSpinBox" name="groupSpin" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="exclusiveChk" >
-           <property name="text" >
-            <string>Exclusive task</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="2" column="0" >
-        <widget class="QLabel" name="label_3" >
-         <property name="text" >
-          <string>&amp;ToolTip</string>
-         </property>
-         <property name="alignment" >
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-         </property>
-         <property name="buddy" >
-          <cstring>toolTipEdit</cstring>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <widget class="Line" name="line_2" >
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" >
-       <property name="spacing" >
-        <number>2</number>
-       </property>
-       <item>
-        <widget class="QLabel" name="label_6" >
-         <property name="text" >
-          <string>&amp;Schema</string>
-         </property>
-         <property name="buddy" >
-          <cstring>schemaEdit</cstring>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="schemaEdit" >
-         <property name="font" >
-          <font>
-           <family>Lucida Console</family>
-          </font>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="addDataBtn" >
-         <property name="text" >
-          <string>...</string>
-         </property>
-         <property name="icon" >
-          <iconset resource="images/uman.qrc" >
-           <normaloff>:/marks/add.png</normaloff>:/marks/add.png</iconset>
-         </property>
-         <property name="autoRaise" >
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="removeDataBtn" >
-         <property name="text" >
-          <string>...</string>
-         </property>
-         <property name="icon" >
-          <iconset resource="images/uman.qrc" >
-           <normaloff>:/marks/delete.png</normaloff>:/marks/delete.png</iconset>
-         </property>
-         <property name="autoRaise" >
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType" >
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0" >
-          <size>
-           <width>16</width>
-           <height>22</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </item>

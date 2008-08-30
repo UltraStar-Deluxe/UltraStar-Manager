@@ -108,6 +108,8 @@ void QUTaskDialog::addData() {
 
 	this->removeDataBtn->setEnabled(true);
 	this->updateMoveButtons(dataTable->currentRow(), dataTable->currentColumn());
+
+//	dataCountLbl->setText(QVariant(dataTable->rowCount()).toString());
 }
 
 /*!
@@ -119,6 +121,8 @@ void QUTaskDialog::removeData() {
 
 	this->removeDataBtn->setEnabled(dataTable->rowCount() > 0);
 	this->updateMoveButtons(dataTable->currentRow(), dataTable->currentColumn());
+
+//	dataCountLbl->setText(QVariant(dataTable->rowCount()).toString());
 }
 
 void QUTaskDialog::saveTask() {

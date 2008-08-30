@@ -8,12 +8,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>236</width>
-    <height>152</height>
+    <width>278</width>
+    <height>154</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Progress</string>
+  </property>
+  <property name="modal" >
+   <bool>true</bool>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2" >
    <property name="spacing" >
@@ -273,6 +276,9 @@
        <property name="icon" >
         <iconset resource="images/uman.qrc" >
          <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
+       </property>
+       <property name="autoDefault" >
+        <bool>false</bool>
        </property>
       </widget>
      </item>

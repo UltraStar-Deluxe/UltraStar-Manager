@@ -52,9 +52,9 @@ void QUProgressDialog::update(const QString &itemText) {
 
 	// defer dialog appearance
 	if(!isVisible()) {
-		if(_startTime.msecsTo(QTime::currentTime()) >= MINIMUM_DURATION)
+		if(_startTime.msecsTo(QTime::currentTime()) >= MINIMUM_DURATION) {
 			QDialog::show();
-		else
+		} else
 			return;
 	}
 

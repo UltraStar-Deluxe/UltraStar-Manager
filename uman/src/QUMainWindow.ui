@@ -719,11 +719,18 @@
             </property>
             <item>
              <widget class="QToolButton" name="taskBtn" >
+              <property name="font" >
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="toolTip" >
                <string>Apply all checked tasks to all selected songs. (Ctrl+R)</string>
               </property>
               <property name="text" >
-               <string>Run</string>
+               <string>Run
+Tasks!</string>
               </property>
               <property name="icon" >
                <iconset resource="images/uman.qrc" >

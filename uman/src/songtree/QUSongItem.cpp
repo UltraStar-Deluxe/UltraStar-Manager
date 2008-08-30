@@ -366,18 +366,19 @@ void QUSongItem::updateTimeCheckColumns() {
 void QUSongItem::updateTextColumns() {
 	/* other tag columns */
 
-	this->setText(ARTIST_COLUMN_EX, song()->artist());
-	this->setText(TITLE_COLUMN_EX,  song()->title());
+	this->setText(ARTIST_COLUMN_EX, song()->artist());  if(song()->artist() != N_A) this->setToolTip(ARTIST_COLUMN_EX, song()->artist());
+	this->setText(TITLE_COLUMN_EX,  song()->title());   if(song()->title()  != N_A) this->setToolTip(TITLE_COLUMN_EX,  song()->title());
 
-	this->setText(LANGUAGE_COLUMN, song()->language());
-	this->setText(EDITION_COLUMN,  song()->edition());
-	this->setText(GENRE_COLUMN,    song()->genre());
-	this->setText(YEAR_COLUMN,     song()->year());
-	this->setText(CREATOR_COLUMN,  song()->creator());
+	this->setText(LANGUAGE_COLUMN, song()->language()); if(song()->language() != N_A) this->setToolTip(LANGUAGE_COLUMN,  song()->language());
+	this->setText(EDITION_COLUMN,  song()->edition());  if(song()->edition()  != N_A) this->setToolTip(EDITION_COLUMN,   song()->edition());
+	this->setText(GENRE_COLUMN,    song()->genre());    if(song()->genre()    != N_A) this->setToolTip(GENRE_COLUMN,     song()->genre());
+	this->setText(YEAR_COLUMN,     song()->year());     if(song()->year()     != N_A) this->setToolTip(YEAR_COLUMN,      song()->year());
+	this->setText(CREATOR_COLUMN,  song()->creator());  if(song()->creator()  != N_A) this->setToolTip(CREATOR_COLUMN,   song()->creator());
 
 	// show custom tags
 	int i = 0;
 	foreach(QString customTag, QUSongFile::customTags()) {
-		this->setText(FIRST_CUSTOM_TAG_COLUMN + (i++), song()->customTag(customTag));
+		this->setText(FIRST_CUSTOM_TAG_COLUMN + (i),      song()->customTag(customTag));
+		this->setToolTip(FIRST_CUSTOM_TAG_COLUMN + (i++), song()->customTag(customTag));
 	}
 }
