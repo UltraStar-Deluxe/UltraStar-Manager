@@ -2,6 +2,7 @@
 #include "QUAmazonRequestUrl.h"
 
 #include <QCoreApplication>
+#include <QSettings>
 
 #include <QVariant>
 #include <QHttpRequestHeader>
@@ -11,6 +12,7 @@
 
 QUCoverGroup::QUCoverGroup(QUSongItem *songItem, QWidget *parent):
 	QWidget(parent),
+	_item(songItem),
 	_response(0),
 	_waitForResult(false)
 {
@@ -18,14 +20,10 @@ QUCoverGroup::QUCoverGroup(QUSongItem *songItem, QWidget *parent):
 
 	list->setIconSize(QSize(COVER_ICON_WIDTH, COVER_ICON_HEIGHT));
 
-	if(songItem)
-		group->setTitle(QString("%1 - %2").arg(songItem->song()->artist()).arg(songItem->song()->title()));
-
-	_item = songItem;
+	showStatus("");
 
 	_http = new QHttp(this);
 	connect(_http, SIGNAL(stateChanged(int)), this, SLOT(showStateChange(int)));
-	connect(_http, SIGNAL(done(bool)), this, SLOT(showDone(bool)));
 	connect(_http, SIGNAL(done(bool)), this, SLOT(finishRequest(bool)));
 
 	_buffer = new QBuffer(this);
@@ -49,16 +47,8 @@ void QUCoverGroup::getCovers(const QString &endpoint, const QString &artistPrope
 	QUAmazonRequestUrl url(endpoint, artistProperty, titleProperty, _item->song());
 
 	_waitForResult = true;
-	_http->setHost(url.host());          // id == 1
-	_http->get(url.request(), _buffer);  // id == 2
-
-//	QHttpRequestHeader header("GET", url.request());
-//	header.setValue("Host", url.host());
-//	header.setValue("accept-enconding", "utf-8");
-//	_http->setHost(url.host());
-//	_http->request(header, 0, _buffer);
-//	emit finished(QString(tr("Request: %1")).arg(url.request()), QU::information);
-//	emit finished(QString(tr("Artist: %1 Title: %2")).arg(artistProperty).arg(titleProperty), QU::information);
+	_http->setHost(url.host());
+	_http->get(url.request(), _buffer);
 }
 
 void QUCoverGroup::previewActivePicture(QListWidgetItem *item) {
@@ -68,35 +58,18 @@ void QUCoverGroup::previewActivePicture(QListWidgetItem *item) {
 }
 
 void QUCoverGroup::showStateChange(int state) {
-	if(!_item)
-		return;
-
-	QString groupTitle = QString("%1 - %2 (%3)").arg(_item->song()->artist()).arg(_item->song()->title());
-
-	     if(state == QHttp::Unconnected) groupTitle = groupTitle.arg(tr("Not connected."));
-	else if(state == QHttp::HostLookup)  groupTitle = groupTitle.arg(tr("Lookup host..."));
-	else if(state == QHttp::Connecting)  groupTitle = groupTitle.arg(tr("Connecting..."));
-	else if(state == QHttp::Sending)     groupTitle = groupTitle.arg(tr("Sending..."));
-	else if(state == QHttp::Reading)     groupTitle = groupTitle.arg(tr("Reading..."));
-	else if(state == QHttp::Connected)   groupTitle = groupTitle.arg(tr("Connected."));
-	else if(state == QHttp::Closing)     groupTitle = groupTitle.arg(tr("Closing..."));
-	else                                 groupTitle = groupTitle.arg(tr("???"));
-
-	group->setTitle(groupTitle);
-}
-
-void QUCoverGroup::showDone(bool error) {
-	if(!_item)
-		return;
-
-	QString groupTitle = QString("%1 - %2 %3").arg(_item->song()->artist()).arg(_item->song()->title());
-
-	groupTitle = groupTitle.arg(error ? "*ERROR*" : "");
-
-	group->setTitle(groupTitle);
+//	     if(state == QHttp::Unconnected) showStatus(tr(" (Not connected.)"));
+//	else if(state == QHttp::HostLookup)  showStatus(tr(" (Lookup host...)"));
+//	else if(state == QHttp::Connecting)  showStatus(tr(" (Connecting...)"));
+	     if(state == QHttp::Sending)     showStatus(tr(" (Sending...)"));
+	else if(state == QHttp::Reading)     showStatus(tr(" (Reading...)"));
+//	else if(state == QHttp::Connected)   showStatus(tr(" (Connected.)"));
+//	else if(state == QHttp::Closing)     showStatus(tr(" (Closing...)"));
 }
 
 void QUCoverGroup::finishRequest(bool error) {
+	emit finished("QUCoverGroup::finishRequest entered...", QU::help);
+
 	// close all open files
 	foreach(QFile* download, _downloads) { download->close(); }
 	qDeleteAll(_downloads);
@@ -112,8 +85,13 @@ void QUCoverGroup::finishRequest(bool error) {
 		_response = new QUAmazonResponse(doc);
 		delete _buffer;	_buffer = new QBuffer(this);
 
-		if(!_response->isValid())
+		if(!_response->isValid()) {
+			showStatus(tr("Invalid request."));
 			return;
+		}
+
+		if(_response->count() == 0)
+			showStatus(tr(" (No results.)"));
 
 		// TODO: Exception handling - disk full and so on..
 		QDir outDir(QCoreApplication::applicationDirPath());
@@ -121,14 +99,18 @@ void QUCoverGroup::finishRequest(bool error) {
 
 		outDir.mkdir(customDir()); outDir.cd(customDir());
 
-		// remove old downloads
-		QFileInfoList picFiList = outDir.entryInfoList(QU::allowedPictureFiles(), QDir::Files, QDir::Name);
-		foreach(QFileInfo fi, picFiList) {
-			QFile::remove(fi.filePath());
+		// remove old downloads, if set
+		QSettings settings;
+		if(!settings.value("keepDownloads", false).toBool()) {
+			QFileInfoList picFiList = outDir.entryInfoList(QU::allowedPictureFiles(), QDir::Files, QDir::Name);
+			foreach(QFileInfo fi, picFiList) {
+				QFile::remove(fi.filePath());
+			}
 		}
 
 		// start new downloads
-		for(int i = 0; i < _response->count() and i < 5; i++) {
+		int amazonLimit = settings.value("amazonLimit", "5").toInt();
+		for(int i = 0; i < _response->count() and i < amazonLimit; i++) {
 			QFile *file;
 			// medium size
 //			file = new QFile(QFileInfo(outDir, QFileInfo(_response->url(i, QU::mediumImage).path()).fileName()).filePath(), this);
@@ -152,7 +134,8 @@ void QUCoverGroup::finishRequest(bool error) {
 		}
 
 	} else { // cover download finished
-		this->showCovers();
+		showStatus(QString(tr(" (%1 results)")).arg(_response->count()));
+		showCovers();
 	}
 }
 
@@ -221,4 +204,13 @@ void QUCoverGroup::copyCoverToSongPath() {
 
 	_item->song()->save();
 	_item->update();
+}
+
+void QUCoverGroup::showStatus(const QString &status) {
+	emit finished(QString("Status change: %1").arg(status), QU::information);
+
+	if(!_item)
+		return;
+
+	group->setTitle(QString("%1 - %2%3").arg(_item->song()->artist()).arg(_item->song()->title()).arg(status));
 }

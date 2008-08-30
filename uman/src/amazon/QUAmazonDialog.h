@@ -22,6 +22,12 @@ private slots:
 	void getCovers();
 	void accept();
 
+	void checkAllGroups();
+	void uncheckAllGroups();
+
+	void setLimit(const QString &limit);
+	void setKeepDownloads(int state);
+
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
 

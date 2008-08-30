@@ -220,15 +220,34 @@ void QUSongItem::setTick(int column, bool isBlue, QString toolTip) {
 	this->setToolTip(column, toolTip);
 }
 
-void QUSongItem::setCross(int column, bool isBlue, QString toolTip) {
-	if(isBlue) {
-		this->setIcon(column, QIcon(":/marks/cross_blue.png"));
+void QUSongItem::setCross(int column, bool isError, QString toolTip) {
+	if(isError) {
+		this->setIcon(column, QIcon(":/marks/cross_error.png"));
 		// used for sorting, should be smaller than a "tick" icon
 		this->setData(column, Qt::UserRole, QVariant(-1));
 	} else {
 		this->setIcon(column, QIcon(":/marks/cross.png"));
 		// used for sorting, should be smaller than a "tick" icon
 		this->setData(column, Qt::UserRole, QVariant(0));
+	}
+
+	this->setToolTip(column, toolTip);
+}
+
+void QUSongItem::setSmiley(int column, QU::SpellStates state, QString toolTip) {
+	switch(state) {
+	case QU::spellingOk:
+		this->setIcon(column, QIcon(":/marks/spell_ok.png"));
+		this->setData(column, Qt::UserRole, QVariant(0));
+		break;
+	case QU::spellingWarning:
+		this->setIcon(column, QIcon(":/marks/spell_warn.png"));
+		this->setData(column, Qt::UserRole, QVariant(-1));
+		break;
+	case QU::spellingError:
+		this->setIcon(column, QIcon(":/marks/spell_error.png"));
+		this->setData(column, Qt::UserRole, QVariant(-2));
+		break;
 	}
 
 	this->setToolTip(column, toolTip);
@@ -272,11 +291,11 @@ void QUSongItem::updateSpellCheckColumns() {
 	part2 = QU::withoutUnsupportedCharacters(pattern.section(" - ", 0, 0));
 
 	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
-		this->setTick(ARTIST_COLUMN);
+		this->setSmiley(ARTIST_COLUMN);
 	else if(QString::compare(part1, part2, Qt::CaseInsensitive) == 0)
-		this->setTick(ARTIST_COLUMN, true, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_APPROX)));
+		this->setSmiley(ARTIST_COLUMN, QU::spellingWarning, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_APPROX)));
 	else
-		this->setCross(ARTIST_COLUMN, false, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_NEQUAL)));
+		this->setSmiley(ARTIST_COLUMN, QU::spellingError, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_NEQUAL)));
 
 	/* title column */
 	part1 = QU::withoutUnsupportedCharacters(song()->title());
@@ -284,11 +303,11 @@ void QUSongItem::updateSpellCheckColumns() {
 	part2 = QU::withoutUnsupportedCharacters(pattern.section(" - ", 1));
 
 	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
-		this->setTick(TITLE_COLUMN);
+		this->setSmiley(TITLE_COLUMN);
 	else if(QString::compare(part1, part2, Qt::CaseInsensitive) == 0)
-		this->setTick(TITLE_COLUMN, true, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_APPROX)));
+		this->setSmiley(TITLE_COLUMN, QU::spellingWarning, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_APPROX)));
 	else
-		this->setCross(TITLE_COLUMN, false, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_NEQUAL)));
+		this->setSmiley(TITLE_COLUMN, QU::spellingError, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_NEQUAL)));
 }
 
 void QUSongItem::updateFileCheckColumns() {

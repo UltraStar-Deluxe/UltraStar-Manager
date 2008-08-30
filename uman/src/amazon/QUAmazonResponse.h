@@ -16,7 +16,7 @@ public:
 	QUAmazonResponse(const QDomDocument &response, QObject *parent = 0);
 
 	bool isValid() const { return _isValid; }
-	int count() const { return qMin(_count, _results.size()); }
+	int count() const { return _results.size(); }
 	QUrl url(int index, QU::ImageSizes size) const;
 
 private:

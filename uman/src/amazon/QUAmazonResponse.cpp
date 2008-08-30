@@ -37,9 +37,15 @@ void QUAmazonResponse::processResponse(const QDomElement &itemSearchResponse) {
 	QDomElement item = items.firstChildElement("Item");
 	while(!item.isNull()) {
 		QString mediumImgUrl = item.firstChildElement("MediumImage").firstChildElement("URL").firstChild().nodeValue();
-		QString largeImgUrl = item.firstChildElement("LargeImage").firstChildElement("URL").firstChild().nodeValue();
+		if(mediumImgUrl.isEmpty())
+			item.firstChildElement("ImageSets").firstChild().firstChildElement("MediumImage").firstChildElement("URL").firstChild().nodeValue();
 
-		_results.append(QPair<QUrl, QUrl>(QUrl(mediumImgUrl), QUrl(largeImgUrl)));
+		QString largeImgUrl = item.firstChildElement("LargeImage").firstChildElement("URL").firstChild().nodeValue();
+		if(largeImgUrl.isEmpty())
+			item.firstChildElement("ImageSets").firstChild().firstChildElement("LargeImage").firstChildElement("URL").firstChild().nodeValue();
+
+		if(!mediumImgUrl.isEmpty() or !largeImgUrl.isEmpty())
+			_results.append(QPair<QUrl, QUrl>(QUrl(mediumImgUrl), QUrl(largeImgUrl)));
 
 		item = item.nextSiblingElement("Item");
 	}

@@ -15,6 +15,7 @@
 
 #include <QSize>
 #include <QScrollBar>
+#include <QSettings>
 
 #include <QMessageBox>
 
@@ -32,6 +33,8 @@ QUAmazonDialog::QUAmazonDialog(const QList<QUSongItem*> &items, QWidget *parent)
     connect(getCoversBtn, SIGNAL(clicked()), this, SLOT(getCovers()));
     connect(applyBtn, SIGNAL(clicked()), this, SLOT(accept()));
     connect(cancelBtn, SIGNAL(clicked()), this, SLOT(reject()));
+    connect(checkAllBtn, SIGNAL(clicked()), this, SLOT(checkAllGroups()));
+    connect(uncheckAllBtn, SIGNAL(clicked()), this, SLOT(uncheckAllGroups()));
 
     endpointCombo->addItem(tr("United States (amazon.com)"), "http://ecs.amazonaws.com/onca/xml");
 	endpointCombo->addItem(tr("United Kingdom (amazon.co.uk)"), "http://ecs.amazonaws.co.uk/onca/xml");
@@ -48,6 +51,14 @@ QUAmazonDialog::QUAmazonDialog(const QList<QUSongItem*> &items, QWidget *parent)
 
 	artistCombo->addItems(QUSongFile::tags()); artistCombo->setCurrentIndex(artistCombo->findText(ARTIST_TAG));
 	titleCombo->addItems(QUSongFile::tags()); titleCombo->setCurrentIndex(titleCombo->findText(TITLE_TAG));
+
+	limitCombo->addItems(QStringList() << "5" << "10");
+	QSettings settings; limitCombo->setCurrentIndex(limitCombo->findText(settings.value("amazonLimit", "5").toString()));
+	connect(limitCombo, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(setLimit(const QString&)));
+
+	keepDownloadsChk->setCheckState(settings.value("keepDownloads", false).toBool() ? Qt::Checked : Qt::Unchecked);
+	connect(keepDownloadsChk, SIGNAL(stateChanged(int)), this, SLOT(setKeepDownloads(int)));
+
 
 	this->createGroups(items);
 }
@@ -97,4 +108,26 @@ void QUAmazonDialog::accept() {
 	}
 
 	QDialog::accept();
+}
+
+void QUAmazonDialog::checkAllGroups() {
+	foreach(QUCoverGroup *group, _groups) {
+		group->group->setChecked(true);
+	}
+}
+
+void QUAmazonDialog::uncheckAllGroups() {
+	foreach(QUCoverGroup *group, _groups) {
+		group->group->setChecked(false);
+	}
+}
+
+void QUAmazonDialog::setLimit(const QString &limit) {
+	QSettings settings;
+	settings.setValue("amazonLimit", QVariant(limit));
+}
+
+void QUAmazonDialog::setKeepDownloads(int state) {
+	QSettings settings;
+	settings.setValue("keepDownloads", QVariant(state == Qt::Checked ? true : false));
 }

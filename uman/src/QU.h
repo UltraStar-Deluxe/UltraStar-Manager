@@ -63,6 +63,13 @@ public:
 	};
 	Q_DECLARE_FLAGS(ImageSizes, ImageSize)
 
+	enum SpellState {
+		spellingOk,
+		spellingWarning,
+		spellingError
+	};
+	Q_DECLARE_FLAGS(SpellStates, SpellState)
+
 	static QStringList allowedSongFiles();
 	static QStringList allowedAudioFiles();
 	static QStringList allowedPictureFiles();

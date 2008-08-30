@@ -57,8 +57,8 @@
     <file>house.png</file>
     <file>play32.png</file>
     <file>quit.png</file>
-    <file>websearch32.png</file>
     <file>refresh.png</file>
+    <file>websearch.png</file>
     <file>report.png</file>
     <file>save.png</file>
     <file>save_all.png</file>
@@ -78,10 +78,14 @@
   </qresource>
   <qresource prefix="/marks" >
     <file>accept.png</file>
+    <file>cross_error.png</file>
     <file>add.png</file>
     <file>no_warning.png</file>
     <file>no_info.png</file>
     <file>no_save.png</file>
+    <file>spell_ok.png</file>
+    <file>spell_warn.png</file>
+    <file>spell_error.png</file>
     <file>cancel.png</file>
     <file>clock.png</file>
     <file>cross.png</file>

@@ -151,6 +151,7 @@ TODO (for 1.7.0)
 * new tasks for setting the #end tag to the song length
 * add selected "lengths/time" so preview tree
 * fix gif-support (amazon-covers, ..., files?)
+* crop covers to 1:1 (extra task?)
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title

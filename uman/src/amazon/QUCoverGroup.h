@@ -33,8 +33,6 @@ private slots:
 	void previewActivePicture(QListWidgetItem *item);
 
 	void showStateChange(int state);
-	void showDone(bool error);
-
 	void finishRequest(bool error);
 
 signals:
@@ -50,6 +48,8 @@ private:
 
 	QString customDir() const;
 	QString currentFilePath() const;
+
+	void showStatus(const QString &status);
 };
 
 #endif /* QUCOVERGROUP_H_ */

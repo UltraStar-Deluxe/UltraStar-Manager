@@ -63,7 +63,8 @@ private:
 
 	void clearContents();
 	void setTick(int column, bool isBlue = false, QString toolTip = "");
-	void setCross(int column, bool isBlue = false, QString toolTip = "");
+	void setCross(int column, bool isError = false, QString toolTip = "");
+	void setSmiley(int column, QU::SpellStates state = QU::spellingOk, QString toolTip = "");
 
 	void updateSpellCheckColumns();
 	void updateFileCheckColumns();
