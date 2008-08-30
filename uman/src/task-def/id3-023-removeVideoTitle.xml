@@ -1,15 +1,10 @@
 <task>
-    <general type="id3" group="10">
+    <general group="10" type="id3" >
         <icon resource=":/types/font.png" />
-        <description>
-            <![CDATA[Remove [...]-Tags from title.]]>
-        </description>
-        <tooltip>
-            <![CDATA[Do not use ID3 tag information.]]>
-        </tooltip>
+        <description><![CDATA[Change #TITLE. Remove [...]-Tags.]]></description>
+        <tooltip><![CDATA[Do not use ID3 tag information.]]></tooltip>
     </general>
-
-    <id3 target="title" schema="%1">
+    <id3 target="title" schema="%1" >
         <data source="target" />
     </id3>
 </task>
