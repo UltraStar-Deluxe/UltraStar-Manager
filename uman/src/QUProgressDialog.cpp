@@ -2,7 +2,9 @@
 #include <QPixmap>
 #include <QTimer>
 
-#define HIDE_LIMIT 2 // only show this dialog above HIDE_LIMIT
+#define HIDE_LIMIT       2 // only show this dialog above HIDE_LIMIT
+#define MINIMUM_DURATION 500 // show after milliseconds
+#define STEP_SIZE        3
 
 /*!
  * \param thread The thread which is executed. Will be deleted after finishing.
@@ -12,7 +14,7 @@ QUProgressDialog::QUProgressDialog(
 		const QString &info,
 		int maximum,
 		QWidget *parent,
-		bool beResponsive): QDialog(parent), _cancelled(false), _beResponsive(beResponsive), _time(0)
+		bool beResponsive): QDialog(parent), _cancelled(false), _beResponsive(beResponsive), _step(0), _progress(0)
 {
 	setupUi(this);
 
@@ -25,17 +27,18 @@ QUProgressDialog::QUProgressDialog(
 
 	if(beResponsive) {
 		connect(cancelBtn, SIGNAL(clicked()), this, SLOT(cancel()));
-		timeLbl->setText("00:00:00");
-		QTimer::singleShot(1000, this, SLOT(updateTime()));
+//		timeLbl->setText("00:00:00");
+//		QTimer::singleShot(1000, this, SLOT(updateTime()));
 	} else {
 		cancelBtn->setEnabled(false);
-		timeLbl->setText(tr("n/a"));
+//		timeLbl->setText(tr("n/a"));
 	}
 }
 
 void QUProgressDialog::show() {
-	if(progress->maximum() > HIDE_LIMIT)
-		QDialog::show();
+	startTime = QTime::currentTime();
+//	if(progress->maximum() > HIDE_LIMIT)
+//		QDialog::show();
 }
 
 /*!
@@ -43,12 +46,28 @@ void QUProgressDialog::show() {
  * counter by one.
  */
 void QUProgressDialog::update(const QString &itemText) {
-	if(!this->isVisible())
-		return;
+	// update internal data
+	_progress += 1;
+	_label = itemText;
 
-	progress->setValue(progress->value() + 1);
-	currentSongLbl->setText(itemText);
-	setWindowTitle(QString(tr("Progress (%1 of %2)")).arg(progress->value()).arg(progress->maximum()));
+	// defer dialog appearance
+	if(!isVisible()) {
+		if(startTime.msecsTo(QTime::currentTime()) >= MINIMUM_DURATION)
+			QDialog::show();
+		else
+			return;
+	}
+
+	// only show update in certain steps
+	if(++_step < STEP_SIZE)
+		return;
+	else
+		_step = 0;
+
+	progress->setValue(_progress);
+	currentSongLbl->setText(_label);
+	setWindowTitle(QString(tr("Progress (%1 of %2)")).arg(_progress).arg(progress->maximum()));
+	updateTime();
 
 	if(_beResponsive)
 		QCoreApplication::processEvents(); // <-- more responsive, less performance
@@ -66,10 +85,10 @@ void QUProgressDialog::cancel() {
 }
 
 void QUProgressDialog::updateTime() {
-	_time += 1;
+	int time = startTime.secsTo(QTime::currentTime());
 	timeLbl->setText(QString("%1:%2:%3")
-			.arg((int)(_time / 3600), 2, 10, QChar('0'))
-			.arg((int)(_time / 60), 2, 10, QChar('0'))
-			.arg((int)(_time % 60), 2, 10, QChar('0')));
-	QTimer::singleShot(1000, this, SLOT(updateTime()));
+			.arg((int)(time / 3600), 2, 10, QChar('0'))
+			.arg((int)(time / 60), 2, 10, QChar('0'))
+			.arg((int)(time % 60), 2, 10, QChar('0')));
+//	QTimer::singleShot(1000, this, SLOT(updateTime()));
 }

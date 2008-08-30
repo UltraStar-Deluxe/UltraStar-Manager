@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QDialog>
+#include <QTime>
 
 #include "ui_QUProgressDialog.h"
 
@@ -29,7 +30,11 @@ private slots:
 private:
 	bool _cancelled;
 	bool _beResponsive; // you can only cancel an operation with a responsive progress dialog
-	int  _time;
+	int  _step;
+
+	QTime startTime; // used to defer the task dialog
+	QString _label;
+	int     _progress;
 };
 
 #endif /*QUPROGRESSDIALOG_H_*/
