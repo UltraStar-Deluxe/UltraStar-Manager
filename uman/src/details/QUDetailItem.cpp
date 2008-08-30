@@ -20,15 +20,6 @@ QUDetailItem::QUDetailItem(const QString &tag, const QList<QUSongFile*> &songs):
 	_tag(tag)
 {
 	this->setSongs(songs);
-
-	// TODO: show tooltips - but how?
-//	virtual QVariant data(int role) const { return role == Qt::ToolTipRole ? _toolTip : QTableWidgetItem::data(role); }
-//	if(QString::compare(tag, END_TAG) == 0)
-//		_toolTip = QObject::tr("Resets the length of the audio file.");
-//	else if(QString::compare(tag, START_TAG) == 0)
-//		_toolTip = QObject::tr("Skip the first seconds of the song.");
-//	else if(QString::compare(tag, VIDEOGAP_TAG) == 0)
-//		_toolTip = QObject::tr("Skip the first seconds of the video.<br><br><i>Use negative values here with positive ones in <b>#START</b> to fix a short video file.</i>");
 }
 
 void QUDetailItem::setSongs(const QList<QUSongFile*> &songs) {
@@ -36,7 +27,7 @@ void QUDetailItem::setSongs(const QList<QUSongFile*> &songs) {
 
 	if(songs.size() == 1) {
 		this->updateText(this->tag(), songs.first());
-		this->updateDefaultData(this->tag(), songs.first());
+		this->updateDefaultData();
 	} else if(songs.size() > 1) {
 		this->updateItemForMultipleSongs();
 	} else {
@@ -44,56 +35,8 @@ void QUDetailItem::setSongs(const QList<QUSongFile*> &songs) {
 	}
 }
 
-void QUDetailItem::updateDefaultData(const QString &tag, QUSongFile *song) {
-	QStringList dropDownData;
-
-	if(QString::compare(tag, MP3_TAG) == 0)
-		dropDownData = song->songFileInfo().dir().entryList(QU::allowedAudioFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
-
-	else if(QString::compare(tag, COVER_TAG) == 0)
-		dropDownData = song->songFileInfo().dir().entryList(QU::allowedPictureFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
-
-	else if(QString::compare(tag, BACKGROUND_TAG) == 0)
-		dropDownData = song->songFileInfo().dir().entryList(QU::allowedPictureFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
-
-	else if(QString::compare(tag, VIDEO_TAG) == 0)
-		dropDownData = song->songFileInfo().dir().entryList(QU::allowedVideoFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
-
-	else if(QString::compare(tag, GENRE_TAG) == 0)
-		dropDownData = monty->genres();
-
-	else if(QString::compare(tag, LANGUAGE_TAG) == 0)
-		dropDownData = monty->languages();
-
-	else if(QString::compare(tag, ARTIST_TAG) == 0) {
-		if(song->hasMp3()) {
-			TagLib::FileRef ref(song->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
-			QString artist(ref.isNull() ? "" : TStringToQString(ref.tag()->artist()));
-			if(!artist.isEmpty())
-				dropDownData << artist;
-		}
-	}
-	else if(QString::compare(tag, TITLE_TAG) == 0) {
-		if(song->hasMp3()) {
-			TagLib::FileRef ref(song->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
-			QString title(ref.isNull() ? "" : TStringToQString(ref.tag()->title()));
-			if(!title.isEmpty())
-				dropDownData << title;
-		}
-	}
-	else if(QString::compare(tag, YEAR_TAG) == 0) {
-		if(song->hasMp3()) {
-			TagLib::FileRef ref(song->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
-			QString year(ref.isNull()? "0" : QVariant(ref.tag()->year()).toString());
-			if(year != "0")
-				dropDownData << year;
-		}
-	}
-	else if(QString::compare(tag, EDITION_TAG) == 0) {
-		dropDownData << "[SC]-Songs";
-	}
-
-	this->setData(Qt::UserRole, QVariant(dropDownData));
+void QUDetailItem::updateDefaultData() {
+	this->setData(Qt::UserRole, defaultData(songs().first()));
 }
 
 void QUDetailItem::updateText(const QString &tag, QUSongFile *song) {
@@ -183,6 +126,7 @@ void QUDetailItem::updateItemForMultipleSongs() {
 			}
 		}
 
+		this->updateDefaultDataForMultipleSongs();
 	} else if(QString::compare(tag(), LANGUAGE_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 
@@ -194,7 +138,7 @@ void QUDetailItem::updateItemForMultipleSongs() {
 			}
 		}
 
-		this->updateDefaultData(tag(), songs().first());
+		this->updateDefaultData();
 	} else if(QString::compare(tag(), EDITION_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 
@@ -205,7 +149,8 @@ void QUDetailItem::updateItemForMultipleSongs() {
 				break;
 			}
 		}
-		// TODO: updateDefaultData if edition list present
+
+		this->updateDefaultData();
 	} else if(QString::compare(tag(), GENRE_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 
@@ -217,7 +162,7 @@ void QUDetailItem::updateItemForMultipleSongs() {
 			}
 		}
 
-		this->updateDefaultData(tag(), songs().first());
+		this->updateDefaultData();
 	} else if(QString::compare(tag(), YEAR_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 
@@ -228,7 +173,8 @@ void QUDetailItem::updateItemForMultipleSongs() {
 				break;
 			}
 		}
-		// TODO: updateDefaultData if year list present
+
+		this->updateDefaultDataForMultipleSongs();
 	} else if(QString::compare(tag(), CREATOR_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 
@@ -282,4 +228,87 @@ void QUDetailItem::updateItemForMultipleSongs() {
 			}
 		}
 	}
+}
+
+void QUDetailItem::updateDefaultDataForMultipleSongs() {
+	if (data(Qt::UserRole).toStringList().size() >= 5)
+		return;
+
+	QStringList dropDownData;
+
+	int i = 0;
+	foreach(QUSongFile *song, songs()) {
+		i++;
+		dropDownData << defaultData(song);
+		if(i >= 5) {
+			dropDownData << "...";
+			break;
+		}
+	}
+
+	this->setData(Qt::UserRole, dropDownData);
+}
+
+QStringList QUDetailItem::defaultData(QUSongFile *song) {
+	// for performance reasons
+	if(!data(Qt::UserRole).toStringList().isEmpty()) {
+		if(QString::compare(tag(), GENRE_TAG) == 0) return data(Qt::UserRole).toStringList(); // there is no dynamic content
+		if(QString::compare(tag(), LANGUAGE_TAG) == 0) return data(Qt::UserRole).toStringList(); // there is no dynamic content
+		if(QString::compare(tag(), EDITION_TAG) == 0) return data(Qt::UserRole).toStringList(); // there is no dynamic content
+	}
+
+	// -----------------------------
+
+	QStringList dropDownData;
+
+	if(!song)
+		return dropDownData;
+
+	if(QString::compare(tag(), MP3_TAG) == 0)
+		dropDownData = song->songFileInfo().dir().entryList(QU::allowedAudioFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
+
+	else if(QString::compare(tag(), COVER_TAG) == 0)
+		dropDownData = song->songFileInfo().dir().entryList(QU::allowedPictureFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
+
+	else if(QString::compare(tag(), BACKGROUND_TAG) == 0)
+		dropDownData = song->songFileInfo().dir().entryList(QU::allowedPictureFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
+
+	else if(QString::compare(tag(), VIDEO_TAG) == 0)
+		dropDownData = song->songFileInfo().dir().entryList(QU::allowedVideoFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
+
+	else if(QString::compare(tag(), GENRE_TAG) == 0)
+		dropDownData = monty->genres();
+
+	else if(QString::compare(tag(), LANGUAGE_TAG) == 0)
+		dropDownData = monty->languages();
+
+	else if(QString::compare(tag(), ARTIST_TAG) == 0) {
+		if(song->hasMp3()) {
+			TagLib::FileRef ref(song->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+			QString artist(ref.isNull() ? "" : TStringToQString(ref.tag()->artist()));
+			if(!artist.isEmpty())
+				dropDownData << artist;
+		}
+	}
+	else if(QString::compare(tag(), TITLE_TAG) == 0) {
+		if(song->hasMp3()) {
+			TagLib::FileRef ref(song->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+			QString title(ref.isNull() ? "" : TStringToQString(ref.tag()->title()));
+			if(!title.isEmpty())
+				dropDownData << title;
+		}
+	}
+	else if(QString::compare(tag(), YEAR_TAG) == 0) {
+		if(song->hasMp3()) {
+			TagLib::FileRef ref(song->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+			QString year(ref.isNull()? "0" : QVariant(ref.tag()->year()).toString());
+			if(year != "0")
+				dropDownData << year;
+		}
+	}
+	else if(QString::compare(tag(), EDITION_TAG) == 0) {
+		dropDownData << "[SC]-Songs";
+	}
+
+	return dropDownData;
 }

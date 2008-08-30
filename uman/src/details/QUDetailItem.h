@@ -24,10 +24,13 @@ private:
 	QString _tag;
 	QList<QUSongFile*> _songs;
 
-	void updateDefaultData(const QString &tag, QUSongFile *song);
+	void updateDefaultData();
 	void updateText(const QString &tag, QUSongFile *song);
 
 	void updateItemForMultipleSongs();
+	void updateDefaultDataForMultipleSongs();
+
+	QStringList defaultData(QUSongFile *song);
 };
 
 #endif /*QUDETAILITEM_H_*/

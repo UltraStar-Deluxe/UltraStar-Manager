@@ -31,7 +31,7 @@
 #define YEAR_COLUMN           21
 #define CREATOR_COLUMN        22
 
-#define FIRST_CUSTOM_TAG_COLUMN 20
+#define FIRST_CUSTOM_TAG_COLUMN 23
 
 /*!
  * This class encapsulates a pointer to a QUSongFile object to be able

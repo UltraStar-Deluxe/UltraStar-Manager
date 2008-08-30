@@ -121,7 +121,7 @@ bool QUSongFile::updateCache() {
 	while( !_file.atEnd() ) {
 		if(QRegExp("[:\\*F\\-].*").exactMatch(line))
 			_lyrics << line;
-		else if(QString::compare(line, "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
+		else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
 			_footer << line;
 
 		line = QU::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
@@ -131,7 +131,7 @@ bool QUSongFile::updateCache() {
 	// TODO: a little bit dirty here (duplicate code)
 	if(QRegExp("[:\\*F\\-].*").exactMatch(line))
 		_lyrics << line;
-	else if(QString::compare(line, "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
+	else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
 		_footer << line;
 
 	_file.close();
