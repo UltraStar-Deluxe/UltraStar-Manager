@@ -16,22 +16,14 @@
    <string>Dialog</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="images/uman.qrc" >:/types/text.png</iconset>
+   <iconset resource="images/uman.qrc" >
+    <normaloff>:/types/text.png</normaloff>:/types/text.png</iconset>
   </property>
   <layout class="QVBoxLayout" >
    <property name="spacing" >
     <number>0</number>
    </property>
-   <property name="leftMargin" >
-    <number>0</number>
-   </property>
-   <property name="topMargin" >
-    <number>0</number>
-   </property>
-   <property name="rightMargin" >
-    <number>0</number>
-   </property>
-   <property name="bottomMargin" >
+   <property name="margin" >
     <number>0</number>
    </property>
    <item>
@@ -154,16 +146,7 @@
      <property name="spacing" >
       <number>5</number>
      </property>
-     <property name="leftMargin" >
-      <number>5</number>
-     </property>
-     <property name="topMargin" >
-      <number>5</number>
-     </property>
-     <property name="rightMargin" >
-      <number>5</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin" >
       <number>5</number>
      </property>
      <item>
@@ -228,7 +211,7 @@
          <property name="orientation" >
           <enum>Qt::Horizontal</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>40</width>
            <height>20</height>
@@ -239,10 +222,11 @@
        <item>
         <widget class="QPushButton" name="doneBtn" >
          <property name="text" >
-          <string>Done</string>
+          <string>OK</string>
          </property>
          <property name="icon" >
-          <iconset resource="images/uman.qrc" >:/marks/accept.png</iconset>
+          <iconset resource="images/uman.qrc" >
+           <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
          </property>
         </widget>
        </item>

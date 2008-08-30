@@ -234,7 +234,7 @@
      <item>
       <widget class="QPushButton" name="doneBtn" >
        <property name="text" >
-        <string>Done</string>
+        <string>OK</string>
        </property>
        <property name="icon" >
         <iconset resource="images/uman.qrc" >

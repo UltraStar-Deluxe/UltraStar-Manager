@@ -249,7 +249,7 @@
      <item>
       <widget class="QPushButton" name="applyBtn" >
        <property name="text" >
-        <string>Apply</string>
+        <string>OK</string>
        </property>
        <property name="icon" >
         <iconset resource="images/uman.qrc" >

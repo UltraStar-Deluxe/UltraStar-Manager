@@ -4,7 +4,7 @@
 
 #define HIDE_LIMIT       2 // only show this dialog above HIDE_LIMIT
 #define MINIMUM_DURATION 500 // show after milliseconds
-#define STEP_SIZE        3
+#define STEP_SIZE        500 // show every milliseconds
 
 /*!
  * \param thread The thread which is executed. Will be deleted after finishing.
@@ -14,7 +14,7 @@ QUProgressDialog::QUProgressDialog(
 		const QString &info,
 		int maximum,
 		QWidget *parent,
-		bool beResponsive): QDialog(parent), _cancelled(false), _beResponsive(beResponsive), _step(0), _progress(0)
+		bool beResponsive): QDialog(parent), _cancelled(false), _beResponsive(beResponsive), _progress(0)
 {
 	setupUi(this);
 
@@ -36,7 +36,7 @@ QUProgressDialog::QUProgressDialog(
 }
 
 void QUProgressDialog::show() {
-	startTime = QTime::currentTime();
+	_startTime = QTime::currentTime();
 //	if(progress->maximum() > HIDE_LIMIT)
 //		QDialog::show();
 }
@@ -52,17 +52,15 @@ void QUProgressDialog::update(const QString &itemText) {
 
 	// defer dialog appearance
 	if(!isVisible()) {
-		if(startTime.msecsTo(QTime::currentTime()) >= MINIMUM_DURATION)
+		if(_startTime.msecsTo(QTime::currentTime()) >= MINIMUM_DURATION)
 			QDialog::show();
 		else
 			return;
 	}
 
 	// only show update in certain steps
-	if(++_step < STEP_SIZE)
+	if(_lastStep.msecsTo(QTime::currentTime()) < STEP_SIZE)
 		return;
-	else
-		_step = 0;
 
 	progress->setValue(_progress);
 	currentSongLbl->setText(_label);
@@ -74,6 +72,8 @@ void QUProgressDialog::update(const QString &itemText) {
 	else
 		QWidget::repaint(); // <-- more performance, less responsive
 
+	// reset step timer
+	_lastStep = QTime::currentTime();
 }
 
 void QUProgressDialog::setPixmap(const QString &fileName) {
@@ -85,7 +85,7 @@ void QUProgressDialog::cancel() {
 }
 
 void QUProgressDialog::updateTime() {
-	int time = startTime.secsTo(QTime::currentTime());
+	int time = _startTime.secsTo(QTime::currentTime());
 	timeLbl->setText(QString("%1:%2:%3")
 			.arg((int)(time / 3600), 2, 10, QChar('0'))
 			.arg((int)(time / 60), 2, 10, QChar('0'))

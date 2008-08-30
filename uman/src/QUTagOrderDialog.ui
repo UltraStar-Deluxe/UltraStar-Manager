@@ -13,22 +13,14 @@
    <string>Modify Tag Save Order</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="images/uman.qrc" >:/control/tag_disk.png</iconset>
+   <iconset resource="images/uman.qrc" >
+    <normaloff>:/control/tag_disk.png</normaloff>:/control/tag_disk.png</iconset>
   </property>
   <layout class="QVBoxLayout" >
    <property name="spacing" >
     <number>0</number>
    </property>
-   <property name="leftMargin" >
-    <number>0</number>
-   </property>
-   <property name="topMargin" >
-    <number>0</number>
-   </property>
-   <property name="rightMargin" >
-    <number>0</number>
-   </property>
-   <property name="bottomMargin" >
+   <property name="margin" >
     <number>0</number>
    </property>
    <item>
@@ -151,16 +143,7 @@
      <property name="spacing" >
       <number>5</number>
      </property>
-     <property name="leftMargin" >
-      <number>5</number>
-     </property>
-     <property name="topMargin" >
-      <number>5</number>
-     </property>
-     <property name="rightMargin" >
-      <number>5</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin" >
       <number>5</number>
      </property>
      <item>
@@ -208,7 +191,7 @@
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>20</width>
            <height>40</height>
@@ -219,10 +202,11 @@
        <item>
         <widget class="QPushButton" name="applyBtn" >
          <property name="text" >
-          <string>Apply</string>
+          <string>OK</string>
          </property>
          <property name="icon" >
-          <iconset resource="images/uman.qrc" >:/marks/accept.png</iconset>
+          <iconset resource="images/uman.qrc" >
+           <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
          </property>
         </widget>
        </item>
@@ -232,7 +216,8 @@
           <string>Cancel</string>
          </property>
          <property name="icon" >
-          <iconset resource="images/uman.qrc" >:/marks/cancel.png</iconset>
+          <iconset resource="images/uman.qrc" >
+           <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
          </property>
         </widget>
        </item>

@@ -30,9 +30,9 @@ private slots:
 private:
 	bool _cancelled;
 	bool _beResponsive; // you can only cancel an operation with a responsive progress dialog
-	int  _step;
 
-	QTime startTime; // used to defer the task dialog
+	QTime   _startTime; // used to defer the task dialog
+	QTime   _lastStep;
 	QString _label;
 	int     _progress;
 };
