@@ -47,9 +47,9 @@ void QUDetailsTable::initTagColumn() {
 	this->setItem(12, 0, new QUTagItem(QIcon(":/types/film.png"), tr("Video")));
 
 	this->initSeparator(tr("Control"), 13);
-	this->setItem(14, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Videogap")));
-	this->setItem(15, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Start")));
-	this->setItem(16, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("End")));
+	this->setItem(14, 0, new QUTagItem(QIcon(":/types/videogap.png"), tr("Videogap")));
+	this->setItem(15, 0, new QUTagItem(QIcon(":/types/start.png"), tr("Start")));
+	this->setItem(16, 0, new QUTagItem(QIcon(":/types/end.png"), tr("End")));
 	this->setItem(17, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Relative")));
 	this->setItem(18, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("BPM")));
 	this->setItem(19, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Gap")));

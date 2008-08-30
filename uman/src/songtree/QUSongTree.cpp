@@ -88,13 +88,13 @@ void QUSongTree::initHorizontalHeader() {
 	header->setToolTip(LENGTH_EFF_COLUMN, tr("Shows the effective length:<br><b>audio length - #START</b>."));
 
 	header->setText(START_COLUMN, tr("Start"));
-	header->setIcon(START_COLUMN, QIcon(":/bullets/bullet_black.png"));
+	header->setIcon(START_COLUMN, QIcon(":/types/start.png"));
 	header->setToolTip(START_COLUMN, tr("Skips the first seconds of the song."));
 	header->setText(END_COLUMN, tr("End"));
-	header->setIcon(END_COLUMN, QIcon(":/bullets/bullet_black.png"));
+	header->setIcon(END_COLUMN, QIcon(":/types/end.png"));
 	header->setToolTip(END_COLUMN, tr("Resets the length of the audio file.<br><i>(in milliseconds)</i>"));
 	header->setText(VIDEOGAP_COLUMN, tr("Videogap"));
-	header->setIcon(VIDEOGAP_COLUMN, QIcon(":/bullets/bullet_black.png"));
+	header->setIcon(VIDEOGAP_COLUMN, QIcon(":/types/videogap.png"));
 	header->setToolTip(VIDEOGAP_COLUMN, tr("Skips the first seconds of the video.<br><br><i>Use negative values here with positive ones in <b>#START</b> to fix a short video file.</i>"));
 
 	int i = 0;
