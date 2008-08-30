@@ -74,18 +74,28 @@ void QUSongTree::initHorizontalHeader() {
 
 	header->setText(LENGTH_COLUMN, tr("Song"));
 	header->setIcon(LENGTH_COLUMN, QIcon(":/types/time_song.png"));
-	header->setToolTip(LENGTH_COLUMN, tr("Song length calculated from BPM and lyrics"));
+	header->setToolTip(LENGTH_COLUMN, tr("Song length calculated from BPM and lyrics."));
 
 	header->setIcon(LENGTH_DIFF_COLUMN, QIcon(":/types/time_warning.png"));
-	header->setToolTip(LENGTH_DIFF_COLUMN, tr("Indicates a problem with the difference of <i>song length</i> and <i>audio length</i>."));
+	header->setToolTip(LENGTH_DIFF_COLUMN, tr("Indicates a problem with the difference of <i>song length</i> and <i>audio length</i>.<br><br>The tooltip shows the difference."));
 
 	header->setText(LENGTH_MP3_COLUMN, tr("Audio"));
 	header->setIcon(LENGTH_MP3_COLUMN, QIcon(":/types/time_mp3.png"));
-	header->setToolTip(LENGTH_MP3_COLUMN, tr("Shows length of audio file, if present."));
+	header->setToolTip(LENGTH_MP3_COLUMN, tr("Shows length of audio file, if present.<br><br>Can be reset through <b>#END</b> tag."));
 
 	header->setText(LENGTH_EFF_COLUMN, tr("Total"));
 	header->setIcon(LENGTH_EFF_COLUMN, QIcon(":/types/time_eff.png"));
-	header->setToolTip(LENGTH_EFF_COLUMN, tr("Shows the effective length:<br><b>audio length - #START</b><br>or <b>#END</b> in seconds."));
+	header->setToolTip(LENGTH_EFF_COLUMN, tr("Shows the effective length:<br><b>audio length - #START</b>."));
+
+	header->setText(START_COLUMN, tr("Start"));
+	header->setIcon(START_COLUMN, QIcon(":/bullets/bullet_black.png"));
+	header->setToolTip(START_COLUMN, tr("Skips the first seconds of the song."));
+	header->setText(END_COLUMN, tr("End"));
+	header->setIcon(END_COLUMN, QIcon(":/bullets/bullet_black.png"));
+	header->setToolTip(END_COLUMN, tr("Resets the length of the audio file.<br><i>(in milliseconds)</i>"));
+	header->setText(VIDEOGAP_COLUMN, tr("Videogap"));
+	header->setIcon(VIDEOGAP_COLUMN, QIcon(":/bullets/bullet_black.png"));
+	header->setToolTip(VIDEOGAP_COLUMN, tr("Skips the first seconds of the video.<br><br><i>Use negative values here with positive ones in <b>#START</b> to fix a short video file.</i>"));
 
 	int i = 0;
 	foreach(QString customTag, QUSongFile::customTags()) {
@@ -102,6 +112,9 @@ void QUSongTree::initHorizontalHeader() {
 	this->header()->setSectionHidden(LENGTH_DIFF_COLUMN, true);
 	this->header()->setSectionHidden(LENGTH_MP3_COLUMN, true);
 	this->header()->setSectionHidden(LENGTH_EFF_COLUMN, true);
+	this->header()->setSectionHidden(START_COLUMN, true);
+	this->header()->setSectionHidden(END_COLUMN, true);
+	this->header()->setSectionHidden(VIDEOGAP_COLUMN, true);
 
 	// load custom setup
 	QSettings settings;
@@ -409,17 +422,19 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 		connect(a, SIGNAL(columnToggled(bool, int)), this, SLOT(toggleColumn(bool, int)));
 
 		switch(i) {
+		case START_COLUMN: lengthsMenu.addSeparator();
 		case LENGTH_COLUMN:
 		case LENGTH_DIFF_COLUMN:
 		case LENGTH_MP3_COLUMN:
-		case LENGTH_EFF_COLUMN: lengthsMenu.addAction(a); break;
+		case LENGTH_EFF_COLUMN:
+		case END_COLUMN:
+		case VIDEOGAP_COLUMN: lengthsMenu.addAction(a); break;
 		default:
 			if(QUSongFile::customTags().contains(a->text(), Qt::CaseInsensitive))
 				customTagsMenu.addAction(a);
 			else
 				menu.addAction(a);
 		}
-
 	}
 
 	menu.addSeparator();
@@ -457,6 +472,9 @@ void QUSongTree::showDefaultColumns() {
 	this->header()->setSectionHidden(LENGTH_DIFF_COLUMN, true);
 	this->header()->setSectionHidden(LENGTH_MP3_COLUMN, true);
 	this->header()->setSectionHidden(LENGTH_EFF_COLUMN, true);
+	this->header()->setSectionHidden(START_COLUMN, true);
+	this->header()->setSectionHidden(END_COLUMN, true);
+	this->header()->setSectionHidden(VIDEOGAP_COLUMN, true);
 
 	this->resizeToContents();
 
@@ -473,6 +491,9 @@ void QUSongTree::showTimeColumns() {
 	this->header()->showSection(LENGTH_DIFF_COLUMN);
 	this->header()->showSection(LENGTH_MP3_COLUMN);
 	this->header()->showSection(LENGTH_EFF_COLUMN);
+	this->header()->showSection(START_COLUMN);
+	this->header()->showSection(END_COLUMN);
+	this->header()->showSection(VIDEOGAP_COLUMN);
 
 	this->resizeToContents();
 

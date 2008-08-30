@@ -325,20 +325,23 @@ void QUSongItem::updateTimeCheckColumns() {
 
 	QSettings settings;
 	int timeDiff = lengthMp3 - length;
-	int timeDiffLower = settings.value("timeDiffLower", 15).toInt();
-	int timeDiffUpper = settings.value("timeDiffUpper", 30).toInt();
+	int timeDiffLower = settings.value("timeDiffLower", LOWER_TIME_BOUND_DEFAULT).toInt();
+	int timeDiffUpper = settings.value("timeDiffUpper", UPPER_TIME_BOUND_DEFAULT).toInt();
 
-	if(lengthMp3 >= length and timeDiff < timeDiffLower) {
-		// well done ^_^
-
-;	} else if(lengthMp3 > length and timeDiff < timeDiffUpper) {
+	if(lengthMp3 >= length and timeDiff <= timeDiffLower)
+		; // well done ^_^
+	else if(lengthMp3 > length and timeDiff <= timeDiffUpper)
 		this->setIcon(LENGTH_DIFF_COLUMN, QIcon(":/bullets/bullet_warning.png"));
-	} else {
+	else
 		this->setIcon(LENGTH_DIFF_COLUMN, QIcon(":/bullets/bullet_cancel.png"));
-	}
 
 	this->setData(LENGTH_DIFF_COLUMN, Qt::UserRole, QVariant(timeDiff * (-1))); // for sorting issues
 	this->setToolTip(LENGTH_DIFF_COLUMN, QString(QObject::tr("%1 seconds")).arg(timeDiff));
+
+	// show some time control tags
+	this->setText(START_COLUMN, song()->start());
+	this->setText(END_COLUMN, song()->end());
+	this->setText(VIDEOGAP_COLUMN, song()->videogap());
 }
 
 void QUSongItem::updateTextColumns() {

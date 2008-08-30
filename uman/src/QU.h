@@ -12,6 +12,10 @@
 #define CHAR_UTF8_APPROX "\xe2\x89\x88"
 #define CHAR_UTF8_NEQUAL "\xe2\x89\xa0"
 
+// used for time comparison and fixing
+#define LOWER_TIME_BOUND_DEFAULT 15
+#define UPPER_TIME_BOUND_DEFAULT 30
+
 //! This class provides global flags and enumerations.
 class QU: QObject {
 	Q_OBJECT
@@ -26,13 +30,15 @@ public:
 
 	enum PreparatoryTaskMode {
 		autoAssignFiles,
-		removeUnsupportedTags
+		removeUnsupportedTags,
+		fixAudioLength
 	};
 	Q_DECLARE_FLAGS(PreparatoryTaskModes, PreparatoryTaskMode)
 
 	enum CleanTaskMode {
 		unusedFiles,
-		invalidFileTags
+		invalidFileTags,
+		removeEndTag
 	};
 	Q_DECLARE_FLAGS(CleanTaskModes, CleanTaskMode)
 

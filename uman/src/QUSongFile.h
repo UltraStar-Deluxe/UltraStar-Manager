@@ -170,6 +170,9 @@ public slots:
 
 	void moveAllFiles(const QString &newRelativePath);
 
+	void fixAudioLength();
+	void removeEndTag();
+
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
 	void dataChanged();

@@ -17,6 +17,11 @@ QUPreparatoryTask::QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *par
 		this->setIcon(QIcon(":/types/folder_blue.png"));
 		this->setDescription(tr("Remove unsupported tags"));
 		break;
+	case QU::fixAudioLength:
+		this->setIcon(QIcon(":/types/time_mp3.png"));
+		this->setDescription(tr("Fix audio length via #END tag."));
+		this->setToolTip(tr("Sets <b>#END</b> to the length of the song if audio file present and longer than song. <b>Appends a little time buffer.</b>"));
+		break;
 	}
 }
 
@@ -28,5 +33,8 @@ void QUPreparatoryTask::startOn(QUSongFile *song) {
 	case QU::removeUnsupportedTags:
 		song->removeUnsupportedTags();
 		break;
-	}	
+	case QU::fixAudioLength:
+		song->fixAudioLength();
+		break;
+	}
 }

@@ -284,7 +284,7 @@ int QUSongFile::length() const {
 }
 
 /*!
- * \returns the length of the audio file, if one exists
+ * \returns the length of the audio file, if one exists. That length can be reset by the #END tag.
  */
 int QUSongFile::lengthMp3() const {
 	TagLib::FileRef ref(this->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
@@ -292,18 +292,18 @@ int QUSongFile::lengthMp3() const {
 	if(ref.isNull() or !ref.audioProperties())
 		return 0;
 
-	return ref.audioProperties()->length();
-}
-
-int QUSongFile::lengthEffective() const {
 	if(this->end() != N_A)
 		return qMax(
 				0,
 				qMin(
 						(int)(QVariant(this->end()).toDouble() / 1000),
-						this->lengthMp3()) - QVariant(this->start()).toInt());
+						ref.audioProperties()->length()) );
 	else
-		return qMax(0, this->lengthMp3() - QVariant(this->start()).toInt());
+		return ref.audioProperties()->length();
+}
+
+int QUSongFile::lengthEffective() const {
+	return qMax(0, this->lengthMp3() - QVariant(this->start()).toInt());
 }
 
 /*!
@@ -816,4 +816,52 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 	// change internal song location
 	_fi = QFileInfo(QUMainWindow::BaseDir, destination + "/" + _fi.fileName()).filePath();
 	emit finished(QString(tr("Location of song \"%1 - %2\" successfully changed to \"%3\" in your UltraStar song folder.")).arg(artist()).arg(title()).arg(newRelativePath), QU::information);
+}
+
+/*!
+ * Uses the #END tag to close the gap between length() and lengthMp3(). But only if an
+ * audio file is present and longer than the song.
+ *
+ * A little gap is appended.
+ */
+void QUSongFile::fixAudioLength() {
+	if(!hasMp3()) {
+		emit finished(QString(tr("Could not fix audio length because no audio file is present: \"%1 - %2\"")).arg(artist()).arg(title()), QU::warning);
+		return;
+	}
+
+	// remove present #END value
+	setInfo(END_TAG, "");
+
+	int length = this->length();
+	int lengthMp3 = this->lengthMp3(); // length of audio file because #END was set to 0
+
+	if(length > lengthMp3) {
+		emit finished(QString(tr("Could not fix audio length because audio file is shorter than song: \"%1 - %2\"")).arg(artist()).arg(title()), QU::warning);
+		return;
+	}
+
+	QSettings settings;
+	int timeDiffLower = settings.value("timeDiffLower", LOWER_TIME_BOUND_DEFAULT).toInt();
+	int end = length + timeDiffLower; // calculate the new #END value
+
+	if(end > lengthMp3) {
+		emit finished(QString(tr("Could not fix audio length because new value for #END would be greater than length of audio file: \"%1 - %2\"")).arg(artist()).arg(title()), QU::warning);
+		return;
+	}
+
+	// set new value for #END, in milliseconds
+	setInfo(END_TAG, QVariant(end * 1000).toString());
+
+	emit finished(QString(tr("Audio length was fixed for song \"%1 - %2\". #END changed to: %3")).arg(artist()).arg(title()).arg(end * 1000), QU::information);
+}
+
+/*!
+ * Clear the #END tag.
+ */
+void QUSongFile::removeEndTag() {
+	if(end() != N_A) {
+		setInfo(END_TAG, "");
+		emit finished(QString(tr("The tag #END was removed for: \"%1 - %2\"")).arg(artist()).arg(title()), QU::information);
+	}
 }

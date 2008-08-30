@@ -5,7 +5,7 @@
 #include "QU.h"
 #include "QUSongFile.h"
 
-#define FIXED_COLUMN_COUNT    20
+#define FIXED_COLUMN_COUNT    23
 
 #define FOLDER_COLUMN          0
 #define ARTIST_COLUMN          1
@@ -20,13 +20,16 @@
 #define LENGTH_DIFF_COLUMN    10
 #define LENGTH_MP3_COLUMN     11
 #define LENGTH_EFF_COLUMN     12
-#define ARTIST_COLUMN_EX      13
-#define TITLE_COLUMN_EX       14
-#define LANGUAGE_COLUMN       15
-#define EDITION_COLUMN        16
-#define GENRE_COLUMN          17
-#define YEAR_COLUMN           18
-#define CREATOR_COLUMN        19
+#define START_COLUMN          13
+#define END_COLUMN            14
+#define VIDEOGAP_COLUMN       15
+#define ARTIST_COLUMN_EX      16
+#define TITLE_COLUMN_EX       17
+#define LANGUAGE_COLUMN       18
+#define EDITION_COLUMN        19
+#define GENRE_COLUMN          20
+#define YEAR_COLUMN           21
+#define CREATOR_COLUMN        22
 
 #define FIRST_CUSTOM_TAG_COLUMN 20
 
