@@ -30,6 +30,7 @@ QUAmazonDialog::QUAmazonDialog(const QList<QUSongItem*> &items, QWidget *parent)
     scrollArea->setWidget(content);
 
     connect(getCoversBtn, SIGNAL(clicked()), this, SLOT(getCovers()));
+    connect(applyBtn, SIGNAL(clicked()), this, SLOT(accept()));
     connect(cancelBtn, SIGNAL(clicked()), this, SLOT(reject()));
 
     endpointCombo->addItem(tr("United States (amazon.com)"), "http://ecs.amazonaws.com/onca/xml");
@@ -82,20 +83,18 @@ void QUAmazonDialog::getCovers() {
 	}
 }
 
-//void QUAmazonDialog::foobar() {
-//	QDir covers(QCoreApplication::applicationDirPath()); covers.mkdir("covers"); covers.cd("covers");
-//
-//	QFileInfoList picFiList = covers.entryInfoList(QU::allowedPictureFiles(), QDir::Files, QDir::Name);
-//
-//	foreach(QFileInfo pic, picFiList) {
-//		QPixmap pixmap(pic.filePath());
-//		QListWidgetItem *newItem = new QListWidgetItem(QIcon(pixmap.scaledToWidth(COVER_ICON_WIDTH, Qt::SmoothTransformation)), QString("%1 x %2\nNew Line").arg(pixmap.width()).arg(pixmap.height()));
-//
-//		newItem->setData(Qt::UserRole, pic.filePath());
-//
-//		group1->list->addItem(newItem);
-////		group2->addItem(new QListWidgetItem(*newItem));
-////		group3->addItem(new QListWidgetItem(*newItem));
-////		group4->addItem(new QListWidgetItem(*newItem));
-//	}
-//}
+void QUAmazonDialog::accept() {
+	QUProgressDialog dlg(tr("Use covers for songs..."), _groups.size(), this, true);
+	dlg.setPixmap(":/types/cover.png");
+	dlg.show();
+
+	foreach(QUCoverGroup *group, _groups) {
+		dlg.update(group->group->title());
+		if(dlg.cancelled()) break;
+
+		if(group->group->isChecked())
+			group->copyCoverToSongPath();
+	}
+
+	QDialog::accept();
+}

@@ -184,3 +184,41 @@ void QUCoverGroup::showCovers() {
 		list->addItem(newItem);
 	}
 }
+
+/*!
+ * \returns file path of the current/selected image
+ */
+QString QUCoverGroup::currentFilePath() const {
+	QListWidgetItem *currentItem = list->currentItem();
+
+	if(!currentItem)
+		return QString();
+
+	return currentItem->data(Qt::UserRole).toString();
+}
+
+/*!
+ * Uses the selected cover for the song.
+ */
+void QUCoverGroup::copyCoverToSongPath() {
+	if(!_item)
+		return;
+
+	if(currentFilePath().isEmpty()) {
+		emit finished(QString(tr("No cover selected for: \"%1 - %2\"")).arg(_item->song()->artist()).arg(_item->song()->title()), QU::warning);
+		return;
+	}
+
+	QFileInfo target(_item->song()->songFileInfo().dir(), "cover_" + QFileInfo(currentFilePath()).fileName());
+
+	if(!QFile::copy(currentFilePath(), target.filePath())) {
+		emit finished(QString(tr("Could not copy the new cover \"%1\" to \"%2\".")).arg(currentFilePath()).arg(target.filePath()), QU::warning);
+		return;
+	}
+
+	// copy operation well done - now set the new cover
+	_item->song()->autoSetFile(target, true);
+
+	_item->song()->save();
+	_item->update();
+}

@@ -83,6 +83,7 @@ NEW FEATURES
   > Ctrl+L
   > context menu in song tree
   > "Songs > Show Lyrics..." menu
+* you can get your song covers from amazon now
 
 BUG FIXES
 * minor change in object renaming

@@ -20,6 +20,7 @@ public:
 
 private slots:
 	void getCovers();
+	void accept();
 
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);

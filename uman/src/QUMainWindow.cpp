@@ -938,7 +938,8 @@ void QUMainWindow::getCoversFromAmazon(QList<QUSongItem*> items) {
 	connect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 
 	if(dlg->exec()) {
-		;
+		updateDetails();
+		montyTalk();
 	}
 
 	disconnect(dlg, 0, 0, 0);

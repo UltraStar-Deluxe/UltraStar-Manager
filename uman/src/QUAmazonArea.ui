@@ -348,8 +348,11 @@
      </item>
      <item>
       <widget class="QPushButton" name="applyBtn" >
+       <property name="toolTip" >
+        <string>Copy the selected covers to the according song path.</string>
+       </property>
        <property name="text" >
-        <string>Apply</string>
+        <string>Use Covers</string>
        </property>
        <property name="icon" >
         <iconset resource="images/uman.qrc" >

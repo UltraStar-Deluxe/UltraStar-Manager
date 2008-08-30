@@ -27,6 +27,8 @@ public:
 	void getCovers(const QString &endpoint, const QString &artistProperty, const QString &titleProperty);
 	void showCovers();
 
+	void copyCoverToSongPath();
+
 private slots:
 	void previewActivePicture(QListWidgetItem *item);
 
@@ -47,6 +49,7 @@ private:
 	QList<QFile*>     _downloads;
 
 	QString customDir() const;
+	QString currentFilePath() const;
 };
 
 #endif /* QUCOVERGROUP_H_ */
