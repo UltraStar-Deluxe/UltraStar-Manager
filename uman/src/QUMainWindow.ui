@@ -651,8 +651,11 @@
           </item>
           <item>
            <widget class="QCheckBox" name="completerChk" >
+            <property name="toolTip" >
+             <string>If checked, the auto-completion considers the case of the input.</string>
+            </property>
             <property name="text" >
-             <string>Use case-sensitive auto completion</string>
+             <string>Case-sensitive </string>
             </property>
            </widget>
           </item>
