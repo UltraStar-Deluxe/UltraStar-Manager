@@ -14,6 +14,7 @@
 #include <QByteArray>
 #include <QAction>
 #include <QHeaderView>
+#include <QCursor>
 
 #include "QUProgressDialog.h"
 
@@ -369,29 +370,31 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 		return; // no item clicked
 
 	QMenu menu(this);
-	menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()), QKeySequence::fromString("F5"));
-	menu.addAction(QIcon(":/control/save.png"), tr("Save"), this, SLOT(saveSelectedSongs()), QKeySequence::fromString("Ctrl+S"));
-	menu.addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
-	menu.addAction(tr("Get Covers From Amazon..."), this, SLOT(requestCoversFromAmazon()));
-
-	QMenu *filterMenu = menu.addMenu(tr("Hide"));
-	filterMenu->setIcon(QIcon(":/control/eye.png"));
-	filterMenu->addAction(tr("Selected Songs"), this, SLOT(hideSelected()));
-	filterMenu->addAction(tr("Only Selected Songs"), this, SLOT(hideSelectedOnly()));
-	filterMenu->addAction(tr("All But Selected Songs"), this, SLOT(hideAllButSelected()));
 
 	QUSongItem *item = dynamic_cast<QUSongItem*>(this->currentItem());
 
-	menu.addSeparator();
-	menu.addAction(tr("Show Lyrics..."), this, SLOT(requestLyrics()), QKeySequence::fromString("Ctrl+L"));
-
 	if(item && !item->isToplevel()) {
-		menu.addSeparator();
+		// file menu
 		menu.addAction(tr("Open..."), this, SLOT(openCurrentFile()), Qt::Key_Return);
 		menu.addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), Qt::Key_Delete);
+	} else {
+		// song/folder menu
+		menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()), QKeySequence::fromString("F5"));
+		menu.addAction(QIcon(":/control/save.png"), tr("Save"), this, SLOT(saveSelectedSongs()), QKeySequence::fromString("Ctrl+S"));
+		menu.addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
+		menu.addAction(tr("Get Covers From Amazon..."), this, SLOT(requestCoversFromAmazon()));
+
+		QMenu *filterMenu = menu.addMenu(tr("Hide"));
+		filterMenu->setIcon(QIcon(":/control/eye.png"));
+		filterMenu->addAction(tr("Selected Songs"), this, SLOT(hideSelected()));
+		filterMenu->addAction(tr("Only Selected Songs"), this, SLOT(hideSelectedOnly()));
+		filterMenu->addAction(tr("All But Selected Songs"), this, SLOT(hideAllButSelected()));
+
+		menu.addSeparator();
+		menu.addAction(tr("Show Lyrics..."), this, SLOT(requestLyrics()), QKeySequence::fromString("Ctrl+L"));
 	}
 
-	menu.exec(this->mapToGlobal(point));
+	menu.exec(QCursor::pos());
 }
 
 /*!
@@ -441,7 +444,7 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 	menu.addMenu(&lengthsMenu);
 	menu.addMenu(&customTagsMenu);
 
-	menu.exec(this->mapToGlobal(point));
+	menu.exec(QCursor::pos());
 }
 
 void QUSongTree::toggleColumn(bool show, int index) {
