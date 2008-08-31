@@ -31,14 +31,17 @@ Qt::ItemFlags QUCoverModel::flags (const QModelIndex &index) const {
 }
 
 /*!
- * Append a new thumbnail of the cover (filePath) to the end of the list.
+ * Append a new thumbnail of the cover (filePath) to the end of the list. The thumbnail
+ * will be clipped to match a ratio of 1:1.
  */
 void QUCoverModel::addCover(const QString &filePath) {
 	QPixmap pixmap(filePath);
 
 	beginInsertRows(QModelIndex(), rowCount(), rowCount());
 
-	_iconList.append(QIcon(pixmap.scaledToWidth(COVER_ICON_WIDTH, Qt::SmoothTransformation)));
+	QPixmap tmp = pixmap.scaled(COVER_ICON_WIDTH, COVER_ICON_HEIGHT, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+
+	_iconList.append(QIcon(tmp.copy(0, 0, COVER_ICON_WIDTH, COVER_ICON_HEIGHT)));
 	_dimensionsList.append(pixmap.size());
 	_filePathList.append(filePath);
 

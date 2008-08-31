@@ -156,6 +156,7 @@ QString QUCoverGroup::customDir() const {
 
 void QUCoverGroup::showCovers() {
 	list->model()->clear();
+	list->hide();
 
 	QDir covers(QCoreApplication::applicationDirPath());
 
@@ -170,9 +171,7 @@ void QUCoverGroup::showCovers() {
 	foreach(QFileInfo pic, picFiList)
 		list->model()->addCover(pic.filePath());
 
-	if(list->model()->rowCount() == 0)
-		list->hide();
-	else {
+	if(list->model()->rowCount() > 0) {
 		// TODO: fix this mess! - I just want to see all content all the time ... T_T
 		list->show();
 
