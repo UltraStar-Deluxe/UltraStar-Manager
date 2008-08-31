@@ -678,12 +678,13 @@ void QUSongTree::refreshSelectedItems() {
 	}
 
 	// restore selection
-	setCurrentItem(songItems.last());
+	setCurrentItem(songItems.first());
 	foreach(QUSongItem *songItem, songItems) {
 		songItem->setSelected(true);
 		songItem->setExpanded(itemExpandedStates.first());
 		itemExpandedStates.pop_front();
 	}
+	scrollToItem(currentItem());
 
 	emit itemSelectionChanged(); // update details
 }

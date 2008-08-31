@@ -571,12 +571,13 @@ void QUMainWindow::editSongApplyTasks() {
 	}
 
 	// restore selection
-	songTree->setCurrentItem(songItems.last());
+	songTree->setCurrentItem(songItems.first());
 	foreach(QUSongItem *item, songItems) {
 		item->setSelected(true);
 		item->setExpanded(itemExpandedStates.first());
 		itemExpandedStates.pop_front();
 	}
+	songTree->scrollToItem(songTree->currentItem());
 
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateDetails()));
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updatePreviewTree()));
