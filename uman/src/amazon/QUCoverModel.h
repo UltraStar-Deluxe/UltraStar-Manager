@@ -21,6 +21,8 @@ public:
 	virtual QVariant data (const QModelIndex &index, int role = Qt::DisplayRole) const;
 	virtual int rowCount (const QModelIndex &parent = QModelIndex()) const;
 
+	virtual Qt::ItemFlags flags (const QModelIndex &index) const;
+
 	void addCover(const QString &filePath);
 	void clear();
 private:

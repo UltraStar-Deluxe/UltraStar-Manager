@@ -23,6 +23,13 @@ int QUCoverModel::rowCount (const QModelIndex &parent) const {
 	return _iconList.size();
 }
 
+Qt::ItemFlags QUCoverModel::flags (const QModelIndex &index) const {
+    if (index.isValid())
+        return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+
+    return 0;
+}
+
 /*!
  * Append a new thumbnail of the cover (filePath) to the end of the list.
  */

@@ -1,11 +1,13 @@
 #include "QUCoverList.h"
 
 #include <QVariant>
+#include <QMessageBox>
 
 QUCoverList::QUCoverList(QWidget *parent): QListView(parent) {
 	QUCoverModel *model = new QUCoverModel(this);
 
 	setModel(model);
+	setItemDelegate(new QUCoverItemDelegate(this));
 
 	connect(this, SIGNAL(activated(const QModelIndex&)), this, SLOT(passActivation(const QModelIndex&)));
 }
@@ -17,20 +19,10 @@ QString QUCoverList::currentFilePath() {
 	return model()->data(currentIndex(), Qt::UserRole).toString();
 }
 
-QUCoverModel* QUCoverList::model() {
+QUCoverModel* QUCoverList::model() const {
 	return dynamic_cast<QUCoverModel*>(QListView::model());
 }
 
 void QUCoverList::passActivation(const QModelIndex &index) {
 	emit coverActivated(model()->data(index, Qt::UserRole).toString());
 }
-
-/*!
- * Used to show almost all covers.
- */
-//void QUCoverList::adjustMinimumHeight() {
-//	QCoreApplication::processEvents(QEventLoop::AllEvents | QEventLoop::ExcludeUserInputEvents);
-//	setMinimumHeight((contentsSize().width() * contentsSize().height()) / qMax(1, viewport()->width()) + iconSize().height());
-//	QCoreApplication::processEvents(QEventLoop::AllEvents | QEventLoop::ExcludeUserInputEvents);
-//	setMinimumHeight(maximumViewportSize().height() + verticalScrollBar()->maximum());
-//}

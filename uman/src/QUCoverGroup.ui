@@ -5,9 +5,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>166</width>
-    <height>64</height>
+    <width>214</width>
+    <height>206</height>
    </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle" >
    <string>Form</string>
@@ -22,7 +28,7 @@
    <item>
     <widget class="QGroupBox" name="group" >
      <property name="sizePolicy" >
-      <sizepolicy vsizetype="Expanding" hsizetype="Preferred" >
+      <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -46,16 +52,13 @@
       <property name="spacing" >
        <number>0</number>
       </property>
-      <property name="sizeConstraint" >
-       <enum>QLayout::SetNoConstraint</enum>
-      </property>
       <property name="margin" >
        <number>0</number>
       </property>
       <item>
        <widget class="QUCoverList" name="list" >
         <property name="sizePolicy" >
-         <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -63,8 +66,11 @@
         <property name="minimumSize" >
          <size>
           <width>0</width>
-          <height>50</height>
+          <height>0</height>
          </size>
+        </property>
+        <property name="autoFillBackground" >
+         <bool>false</bool>
         </property>
         <property name="frameShape" >
          <enum>QFrame::NoFrame</enum>

@@ -5,7 +5,8 @@ QT += core \
     xml \
     network
 CONFIG += debug
-HEADERS += amazon/QUCoverModel.h \
+HEADERS += amazon/QUCoverItemDelegate.h \
+    amazon/QUCoverModel.h \
     amazon/QUAmazonResponse.h \
     amazon/QUAmazonRequestUrl.h \
     amazon/QUAmazonDialog.h \
@@ -60,7 +61,8 @@ HEADERS += amazon/QUCoverModel.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += amazon/QUCoverModel.cpp \
+SOURCES += amazon/QUCoverItemDelegate.cpp \
+    amazon/QUCoverModel.cpp \
     amazon/QUAmazonResponse.cpp \
     amazon/QUAmazonRequestUrl.cpp \
     amazon/QUAmazonDialog.cpp \

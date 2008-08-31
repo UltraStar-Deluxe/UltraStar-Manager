@@ -31,6 +31,7 @@ QUCoverGroup::QUCoverGroup(QUSongItem *songItem, QWidget *parent):
 //	list->setMinimumHeight(1);
 
 	connect(list, SIGNAL(coverActivated (const QString&)), this, SLOT(previewActivePicture(const QString&)));
+	connect(list, SIGNAL(finished(const QString&, QU::MessageTypes)), this, SIGNAL(finished(const QString&, QU::MessageTypes)));
 }
 
 void QUCoverGroup::getCovers(const QString &endpoint, const QString &artistProperty, const QString &titleProperty) {
@@ -168,6 +169,26 @@ void QUCoverGroup::showCovers() {
 
 	foreach(QFileInfo pic, picFiList)
 		list->model()->addCover(pic.filePath());
+
+	if(list->model()->rowCount() == 0)
+		list->hide();
+	else {
+		// TODO: fix this mess! - I just want to see all content all the time ... T_T
+		list->show();
+
+		int itemCount = list->model()->rowCount();
+
+		int maxItemHeight = 1;
+		for(int i = 0; i < itemCount; i++)
+			maxItemHeight = qMax(maxItemHeight, list->sizeHintForRow(i));
+
+		int rowCount = qRound((double)itemCount / 5.0);
+
+		if(rowCount * 5 < itemCount)
+			rowCount++;
+
+		list->setMinimumHeight(maxItemHeight * qMax(1, rowCount));
+	}
 }
 
 /*!

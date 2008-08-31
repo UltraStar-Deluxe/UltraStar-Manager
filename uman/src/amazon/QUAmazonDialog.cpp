@@ -23,7 +23,7 @@ QUAmazonDialog::QUAmazonDialog(const QList<QUSongItem*> &items, QWidget *parent)
 	setupUi(this);
 
 	_contentLayout = new QVBoxLayout;
-    _contentLayout->setSpacing(5);
+    _contentLayout->setSpacing(10);
     _contentLayout->setMargin(5);
     _contentLayout->setObjectName(QString::fromUtf8("contentLayout"));
 
