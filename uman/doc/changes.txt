@@ -84,6 +84,7 @@ NEW FEATURES
   > context menu in song tree
   > "Songs > Show Lyrics..." menu
 * you can get your song covers from amazon now
+* new icon for "unused files found"
 
 BUG FIXES
 * minor change in object renaming

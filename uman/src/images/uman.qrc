@@ -56,7 +56,6 @@
     <file>pencil.png</file>
     <file>house.png</file>
     <file>play32.png</file>
-    <file>quit.png</file>
     <file>refresh.png</file>
     <file>websearch.png</file>
     <file>report.png</file>
@@ -122,6 +121,7 @@
     <file>date.png</file>
     <file>edition.png</file>
     <file>file_delete.png</file>
+    <file>no_end.png</file>
     <file>film.png</file>
     <file>folder.png</file>
     <file>folder_blue.png</file>

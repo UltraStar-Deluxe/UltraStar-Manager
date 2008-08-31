@@ -87,7 +87,7 @@ void QUCoverGroup::finishRequest(bool error) {
 		delete _buffer;	_buffer = new QBuffer(this);
 
 		if(!_response->isValid()) {
-			showStatus(tr("Invalid request."));
+			showStatus(tr(" (Invalid request.)"));
 			return;
 		}
 

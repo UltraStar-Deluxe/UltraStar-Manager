@@ -18,6 +18,7 @@ QUCleanTask::QUCleanTask(QU::CleanTaskModes mode, QObject *parent):
 				"This includes <b>#VIDEOGAP</b> for invalid video files as well as <b>#START</b> and <b>#END</b> for invalid audio files."));
 		break;
 	case QU::removeEndTag:
+		this->setIcon(QIcon(":/types/no_end.png"));
 		this->setDescription(tr("Remove #END tag."));
 	}
 }
