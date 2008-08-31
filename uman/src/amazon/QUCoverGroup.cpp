@@ -30,7 +30,7 @@ QUCoverGroup::QUCoverGroup(QUSongItem *songItem, QWidget *parent):
 
 //	list->setMinimumHeight(1);
 
-	connect(list, SIGNAL(itemActivated (QListWidgetItem*)), this, SLOT(previewActivePicture(QListWidgetItem*)));
+	connect(list, SIGNAL(coverActivated (const QString&)), this, SLOT(previewActivePicture(const QString&)));
 }
 
 void QUCoverGroup::getCovers(const QString &endpoint, const QString &artistProperty, const QString &titleProperty) {
@@ -51,8 +51,8 @@ void QUCoverGroup::getCovers(const QString &endpoint, const QString &artistPrope
 	_http->get(url.request(), _buffer);
 }
 
-void QUCoverGroup::previewActivePicture(QListWidgetItem *item) {
-	QUPictureDialog *dlg = new QUPictureDialog(item->data(Qt::UserRole).toString(), this);
+void QUCoverGroup::previewActivePicture(const QString &filePath) {
+	QUPictureDialog *dlg = new QUPictureDialog(filePath, this);
 	dlg->exec();
 	delete dlg;
 }
@@ -154,7 +154,7 @@ QString QUCoverGroup::customDir() const {
 }
 
 void QUCoverGroup::showCovers() {
-	list->clear();
+	list->model()->clear();
 
 	QDir covers(QCoreApplication::applicationDirPath());
 
@@ -166,14 +166,8 @@ void QUCoverGroup::showCovers() {
 
 	QFileInfoList picFiList = covers.entryInfoList(QU::allowedPictureFiles(), QDir::Files, QDir::Name);
 
-	foreach(QFileInfo pic, picFiList) {
-//		QPixmap pixmap(pic.filePath());
-//		QListWidgetItem *newItem = new QListWidgetItem(QIcon(pixmap.scaledToWidth(COVER_ICON_WIDTH, Qt::SmoothTransformation)), QString("%1 x %2").arg(pixmap.width()).arg(pixmap.height()));
-//
-//		newItem->setData(Qt::UserRole, pic.filePath());
-
-		list->addItem(pic.filePath());
-	}
+	foreach(QFileInfo pic, picFiList)
+		list->model()->addCover(pic.filePath());
 }
 
 /*!

@@ -1,19 +1,28 @@
 #include "QUCoverList.h"
 
+#include <QVariant>
+
 QUCoverList::QUCoverList(QWidget *parent): QListView(parent) {
-	setModel(new QUCoverModel(this));
-}
+	QUCoverModel *model = new QUCoverModel(this);
 
-void QUCoverList::addItem(const QString &filePath) {
-//	QListWidget::addItem(item);
-}
+	setModel(model);
 
-void QUCoverList::clear() {
-
+	connect(this, SIGNAL(activated(const QModelIndex&)), this, SLOT(passActivation(const QModelIndex&)));
 }
 
 QString QUCoverList::currentFilePath() {
-	return "";
+	if(!currentIndex().isValid())
+		return QString();
+
+	return model()->data(currentIndex(), Qt::UserRole).toString();
+}
+
+QUCoverModel* QUCoverList::model() {
+	return dynamic_cast<QUCoverModel*>(QListView::model());
+}
+
+void QUCoverList::passActivation(const QModelIndex &index) {
+	emit coverActivated(model()->data(index, Qt::UserRole).toString());
 }
 
 /*!

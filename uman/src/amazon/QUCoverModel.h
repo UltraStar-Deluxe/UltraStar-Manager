@@ -1,10 +1,16 @@
 #ifndef QUCOVERMODEL_H_
 #define QUCOVERMODEL_H_
 
+#define COVER_ICON_WIDTH  64
+#define COVER_ICON_HEIGHT 64
+
 #include <QAbstractListModel>
 
 #include <QIcon>
 #include <QString>
+#include <QSize>
+#include <QStringList>
+#include <QList>
 
 class QUCoverModel: public QAbstractListModel {
 	Q_OBJECT
@@ -15,7 +21,12 @@ public:
 	virtual QVariant data (const QModelIndex &index, int role = Qt::DisplayRole) const;
 	virtual int rowCount (const QModelIndex &parent = QModelIndex()) const;
 
+	void addCover(const QString &filePath);
+	void clear();
 private:
+	QList<QIcon>   _iconList;
+	QList<QSize>   _dimensionsList;
+	QStringList    _filePathList;
 
 };
 

@@ -1,9 +1,6 @@
 #ifndef QUCOVERGROUP_H_
 #define QUCOVERGROUP_H_
 
-#define COVER_ICON_WIDTH  64
-#define COVER_ICON_HEIGHT 64
-
 #include "QU.h"
 #include "QUSongItem.h"
 #include "QUPictureDialog.h"
@@ -11,7 +8,6 @@
 
 #include <QWidget>
 #include <QSize>
-#include <QListWidgetItem>
 #include <QHttp>
 #include <QBuffer>
 #include <QFile>
@@ -30,7 +26,7 @@ public:
 	void copyCoverToSongPath();
 
 private slots:
-	void previewActivePicture(QListWidgetItem *item);
+	void previewActivePicture(const QString &filePath);
 
 	void showStateChange(int state);
 	void finishRequest(bool error);

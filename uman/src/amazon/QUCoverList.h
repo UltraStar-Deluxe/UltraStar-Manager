@@ -11,11 +11,16 @@ class QUCoverList: public QListView {
 
 public:
 	QUCoverList(QWidget *parent = 0);
-
-	void addItem(const QString &filePath);
-	void clear();
-
 	QString currentFilePath();
+
+	QUCoverModel* model();
+
+private slots:
+	void passActivation(const QModelIndex &index);
+
+signals:
+	void coverActivated(const QString &filePath);
+
 };
 
 #endif /* QUCOVERLIST_H_ */
