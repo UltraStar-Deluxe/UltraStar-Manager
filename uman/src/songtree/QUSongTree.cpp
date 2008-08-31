@@ -624,8 +624,16 @@ bool QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 			QUSongFile tmp(fi.filePath());
 
 			QString newSongDirName = QString("%1 - %2").arg(tmp.artist()).arg(tmp.title());
+			QString newSongDirNameBackup = newSongDirName;
 
-			if(QUMainWindow::BaseDir.mkdir(newSongDirName)) {
+			for(int i = 0; i < 500; i++) {
+				if(QUMainWindow::BaseDir.mkdir(newSongDirName))
+					break;
+
+				newSongDirName = QString("%1_%2").arg(newSongDirNameBackup).arg(i, 3, 10, QChar('0'));
+			}
+
+//			if(QUMainWindow::BaseDir.mkdir(newSongDirName)) {
 				QDir newSongDir(QUMainWindow::BaseDir);
 				if(newSongDir.cd(newSongDirName)) {
 					QFileInfo newFi(newSongDir, fi.fileName());
@@ -642,11 +650,11 @@ bool QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 						emit finished(QString(tr("Could not copy song file \"%1\" to new song directory \"%2\"!")).arg(fi.fileName()).arg(newSongDirName), QU::warning);
 					}
 				} else {
-					emit finished(QString(tr("Could not change to new song directory \"%1\"!")).arg(newSongDirName), QU::warning);
+					emit finished(QString(tr("Could not change to new song directory \"%1\"! Does it exist?")).arg(newSongDirName), QU::warning);
 				}
-			} else {
-				emit finished(QString(tr("Could not create new song directory \"%1\"!")).arg(newSongDirName), QU::warning);
-			}
+//			} else {
+//				emit finished(QString(tr("Could not create new song directory \"%1\"!")).arg(newSongDirName), QU::warning);
+//			}
 		}
 	}
 

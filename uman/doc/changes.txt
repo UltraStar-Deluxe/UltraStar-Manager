@@ -161,6 +161,9 @@ TODO (for 1.7.0)
 * "UmanScore"
   > multiple syllables in a line
 * progressbar for dropping song files in song tree
+* progressbar for "Hide"-Menu actions
+* progressbar for showing all songs (moving from hidden list ...)
+* find & replace in song tags
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title
