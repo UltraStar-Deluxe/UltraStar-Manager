@@ -539,29 +539,47 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
  * \sa initTaskList();
  */
 void QUMainWindow::editSongApplyTasks() {
-	QList<QTreeWidgetItem*> itemList = songTree->selectedItems();
+	QList<QUSongItem*> songItems = songTree->selectedSongItems();
+	QList<bool>        itemExpandedStates;
 
-	if(itemList.isEmpty()) // if no songs are selected use the current item (which has also a song)
-		itemList.append(songTree->currentItem());
+	if(songItems.isEmpty())
+		return;
 
-	QUProgressDialog dlg(tr("Applying all checked tasks to all selected songs..."), itemList.size(), this);
+	QUProgressDialog dlg(tr("Applying all checked tasks to all selected songs..."), songItems.size(), this);
 	dlg.show();
 
-	foreach(QTreeWidgetItem *item, itemList) {
-		QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+	disconnect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateDetails()));
+	disconnect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updatePreviewTree()));
 
-		if(songItem) {
-			QUSongFile *song = songItem->song();
+	foreach(QUSongItem *songItem, songItems) {
+		QUSongFile *song = songItem->song();
+		itemExpandedStates.append(songItem->isExpanded());
 
-			dlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
-			if(dlg.cancelled()) break;
+		dlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+		if(dlg.cancelled()) break;
 
-			taskList->doTasksOn(song);
+		taskList->doTasksOn(song);
 
-			song->save();
+		song->save();
+
+		if(songItem->isToplevel()) { // for performance reasons
+			songTree->takeTopLevelItem(songTree->indexOfTopLevelItem(songItem));
 			songItem->update();
-		}
+			songTree->addTopLevelItem(songItem);
+		} else
+			songItem->update();
 	}
+
+	// restore selection
+	songTree->setCurrentItem(songItems.last());
+	foreach(QUSongItem *item, songItems) {
+		item->setSelected(true);
+		item->setExpanded(itemExpandedStates.first());
+		itemExpandedStates.pop_front();
+	}
+
+	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateDetails()));
+	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updatePreviewTree()));
 
 	updateDetails();
 	montyTalk();

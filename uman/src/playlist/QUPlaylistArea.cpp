@@ -35,7 +35,13 @@ QUPlaylistArea::~QUPlaylistArea() {
 }
 
 void QUPlaylistArea::disconnectPlaylists() {
+	QUProgressDialog dlg(tr("Disconnect playlists from songs..."), _playlists.size(), this, false);
+	dlg.setPixmap(":/control/playlist.png");
+	dlg.show();
+
 	foreach(QUPlaylistFile *_playlist, _playlists) {
+		dlg.update(QString("%1 (%2)").arg(_playlist->name()).arg(_playlist->fileInfo().fileName()));
+
 		_playlist->disconnectSongs();
 		playlist->updateItems();
 		updatePlaylistCombo();
@@ -84,7 +90,7 @@ void QUPlaylistArea::updateAll() {
 	dlg.show();
 
 	foreach(QUPlaylistFile *_playlist, _playlists) {
-		dlg.update(_playlist->name());
+		dlg.update(QString("%1 (%2)").arg(_playlist->name()).arg(_playlist->fileInfo().fileName()));
 		_playlist->connectSongs(*_songsRef);
 	}
 
@@ -114,7 +120,13 @@ void QUPlaylistArea::addSongToCurrentPlaylist(QUSongFile *song) {
  * \returns true, if one of the loaded playlists has unsaved changes
  */
 bool QUPlaylistArea::hasUnsavedChanges() {
+	QUProgressDialog dlg(tr("Looking for unsaved playlists..."), _playlists.size(), this, false);
+	dlg.setPixmap(":/control/playlist.png");
+	dlg.show();
+
 	foreach(QUPlaylistFile *list, _playlists) {
+		dlg.update(QString("%1 (%2)").arg(list->name()).arg(list->fileInfo().fileName()));
+
 		if(list->hasUnsavedChanges())
 			return true;
 	}
@@ -185,6 +197,10 @@ void QUPlaylistArea::setCurrentPlaylist(int index) {
  * Looks for changes in the playlists and updates the combo box.
  */
 void QUPlaylistArea::updatePlaylistCombo() {
+	QUProgressDialog dlg(tr("Update playlists..."), _playlists.size(), this, false);
+	dlg.setPixmap(":/control/playlist.png");
+	dlg.show();
+
 	for(int i = 0; i < playlistCombo->count(); i++) {
 		if(currentPlaylistIndex(i) < 0)
 			continue;
@@ -193,6 +209,8 @@ void QUPlaylistArea::updatePlaylistCombo() {
 		heading = heading
 			.arg( _playlists.at(currentPlaylistIndex(i))->name() )
 			.arg( QUPlaylistFile::dir().relativeFilePath(_playlists.at(currentPlaylistIndex(i))->fileInfo().filePath()) );
+
+		dlg.update(heading.arg(""));
 
 		if(_playlists.at(currentPlaylistIndex(i))->hasUnsavedChanges())
 			playlistCombo->setItemText(i, heading.arg("*"));

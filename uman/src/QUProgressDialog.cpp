@@ -45,7 +45,7 @@ void QUProgressDialog::show() {
  * Updates the information of which items is being processed and increases the
  * counter by one.
  */
-void QUProgressDialog::update(const QString &itemText) {
+void QUProgressDialog::update(const QString &itemText, bool forceUpdate) {
 	// update internal data
 	_progress += 1;
 	_label = itemText;
@@ -59,7 +59,7 @@ void QUProgressDialog::update(const QString &itemText) {
 	}
 
 	// only show update in certain steps
-	if(_lastStep.msecsTo(QTime::currentTime()) < STEP_SIZE)
+	if(!forceUpdate and _lastStep.msecsTo(QTime::currentTime()) < STEP_SIZE)
 		return;
 
 	progress->setValue(_progress);
@@ -80,15 +80,36 @@ void QUProgressDialog::setPixmap(const QString &fileName) {
 	currentSongIcon->setPixmap(fileName);
 }
 
+void QUProgressDialog::setLabel(const QString &text) {
+	infoTextLbl->setText(text);
+}
+
 void QUProgressDialog::cancel() {
 	_cancelled = true;
 }
 
 void QUProgressDialog::updateTime() {
 	int time = _startTime.secsTo(QTime::currentTime());
-	timeLbl->setText(QString("%1:%2:%3")
-			.arg((int)(time / 3600), 2, 10, QChar('0'))
-			.arg((int)(time / 60), 2, 10, QChar('0'))
-			.arg((int)(time % 60), 2, 10, QChar('0')));
+	int speed = time > 0 ? _progress / time : 0;
+	int estTime	= speed > 0 ? progress->maximum() / speed : 0;
+
+	QString elapsedTime = QString(tr("%1:%2"))
+		.arg((int)(time / 60), 2, 10, QChar('0'))
+		.arg((int)(time % 60), 2, 10, QChar('0'));
+
+	QString estimatedTime;
+	if(estTime > 0) {
+		estimatedTime = QString(tr("<b>%1:%2</b>"))
+			.arg((int)(estTime / 60), 2, 10, QChar('0'))
+			.arg((int)(estTime % 60), 2, 10, QChar('0'));
+
+		timeLbl->setText(QString(tr("%1 of %2")).arg(elapsedTime).arg(estimatedTime));
+	} else
+		timeLbl->setText(elapsedTime);
+
+	if(time > 0)
+		speedLbl->setText(QString(tr("<b>%1</b> items/sec")).arg(speed));
+	else
+		speedLbl->setText("-");
 //	QTimer::singleShot(1000, this, SLOT(updateTime()));
 }

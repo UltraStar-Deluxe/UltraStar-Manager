@@ -730,7 +730,7 @@
               </property>
               <property name="text" >
                <string>Run
-Tasks!</string>
+Tasks</string>
               </property>
               <property name="icon" >
                <iconset resource="images/uman.qrc" >

@@ -167,12 +167,12 @@ void QUCoverGroup::showCovers() {
 	QFileInfoList picFiList = covers.entryInfoList(QU::allowedPictureFiles(), QDir::Files, QDir::Name);
 
 	foreach(QFileInfo pic, picFiList) {
-		QPixmap pixmap(pic.filePath());
-		QListWidgetItem *newItem = new QListWidgetItem(QIcon(pixmap.scaledToWidth(COVER_ICON_WIDTH, Qt::SmoothTransformation)), QString("%1 x %2").arg(pixmap.width()).arg(pixmap.height()));
+//		QPixmap pixmap(pic.filePath());
+//		QListWidgetItem *newItem = new QListWidgetItem(QIcon(pixmap.scaledToWidth(COVER_ICON_WIDTH, Qt::SmoothTransformation)), QString("%1 x %2").arg(pixmap.width()).arg(pixmap.height()));
+//
+//		newItem->setData(Qt::UserRole, pic.filePath());
 
-		newItem->setData(Qt::UserRole, pic.filePath());
-
-		list->addItem(newItem);
+		list->addItem(pic.filePath());
 	}
 }
 
@@ -180,12 +180,14 @@ void QUCoverGroup::showCovers() {
  * \returns file path of the current/selected image
  */
 QString QUCoverGroup::currentFilePath() const {
-	QListWidgetItem *currentItem = list->currentItem();
+	return list->currentFilePath();
 
-	if(!currentItem)
-		return QString();
-
-	return currentItem->data(Qt::UserRole).toString();
+//	QListWidgetItem *currentItem = list->currentItem();
+//
+//	if(!currentItem)
+//		return QString();
+//
+//	return currentItem->data(Qt::UserRole).toString();
 }
 
 /*!

@@ -654,22 +654,35 @@ bool QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 }
 
 void QUSongTree::refreshSelectedItems() {
-	QList<QTreeWidgetItem*> items = this->selectedItems();
+	QList<QUSongItem*> songItems = this->selectedSongItems();
+	QList<bool>        itemExpandedStates;
 
-	if(items.isEmpty())
-		items.append(this->currentItem());
+	if(songItems.isEmpty())
+		return;
 
-	QUProgressDialog dlg(tr("Refreshing selected songs..."), items.size(), this, false);
+	QUProgressDialog dlg(tr("Refreshing selected songs..."), songItems.size(), this, false);
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 
-	foreach(QTreeWidgetItem *item, items) {
-		QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+	foreach(QUSongItem *songItem, songItems) {
+		dlg.update(songItem->song()->songFileInfo().dir().dirName());
 
-		if(songItem) {
-			dlg.update(songItem->song()->songFileInfo().dir().dirName());
+		itemExpandedStates.append(songItem->isExpanded());
+
+		if(songItem->isToplevel()) { // for performance reasons...
+			takeTopLevelItem(indexOfTopLevelItem(songItem));
 			songItem->update();
-		}
+			addTopLevelItem(songItem);
+		} else
+			songItem->update();
+	}
+
+	// restore selection
+	setCurrentItem(songItems.last());
+	foreach(QUSongItem *songItem, songItems) {
+		songItem->setSelected(true);
+		songItem->setExpanded(itemExpandedStates.first());
+		itemExpandedStates.pop_front();
 	}
 
 	emit itemSelectionChanged(); // update details

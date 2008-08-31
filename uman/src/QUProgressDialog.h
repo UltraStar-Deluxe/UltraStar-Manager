@@ -18,10 +18,11 @@ public:
 	bool cancelled() const { return _cancelled; }
 
 public slots:
-	void update(const QString &itemText);
+	void update(const QString &itemText, bool forceUpdate = false);
 	void setMaximum(int maximum) { progress->setMaximum(maximum); }
 
 	void setPixmap(const QString &fileName);
+	void setLabel(const QString &text);
 
 	virtual void reject() { cancel(); }
 
