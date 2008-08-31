@@ -403,7 +403,7 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 void QUSongTree::showHeaderMenu(const QPoint &point) {
 	QMenu menu(this);
 
-	QMenu presetsMenu(tr("Presets"));
+	QMenu presetsMenu(tr("Presets")); presetsMenu.setIcon(QIcon(":/control/tree_presets.png"));
 	presetsMenu.addAction(tr("All"), this, SLOT(showAllColumns()));
 	presetsMenu.addAction(tr("Default"), this, SLOT(showDefaultColumns()));
 	presetsMenu.addSeparator();

@@ -118,10 +118,15 @@ TODO (for 1.7.0)
 	> 4 Monty Icons (http://fasticon.com/freeware/, http://dirceuveiga.com.br/eg/)
 * get cover picture
   > extract cover from MP3
-  > from amazon ;)
 * header/footer for reports
-* detect and handle duplicates
+  > global stats
+  > running number (extra column?)
+* reports for playlists
+  > lyrics for playlist songs/all songs ...
 
+* detect and handle duplicates
+  > http://de.wikipedia.org/wiki/Levenshtein-Distanz
+  
 * re-design filter categories
   > Apply more than one filter?
 * special views of the song tree
@@ -153,6 +158,9 @@ TODO (for 1.7.0)
 * add selected "lengths/time" so preview tree
 * fix gif-support (amazon-covers, ..., files?)
 * crop covers to 1:1 (extra task?)
+* "UmanScore"
+  > multiple syllables in a line
+* progressbar for dropping song files in song tree
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title

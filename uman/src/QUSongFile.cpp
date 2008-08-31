@@ -264,6 +264,9 @@ bool QUSongFile::isSongChecked() const {
  * \returns the length of this song accoring to BPM and length of lyrics, in seconds
  */
 int QUSongFile::length() const {
+	if(_lyrics.isEmpty())
+		return 0;
+
 	double bpm = QVariant(this->bpm().replace(",", ".")).toDouble();
 
 	if(bpm == 0.0)

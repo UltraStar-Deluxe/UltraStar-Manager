@@ -830,7 +830,7 @@ Tasks</string>
                   </property>
                   <property name="icon" >
                    <iconset resource="images/uman.qrc" >
-                    <normaloff>:/control/refresh.png</normaloff>:/control/refresh.png</iconset>
+                    <normaloff>:/control/check_tasks.png</normaloff>:/control/check_tasks.png</iconset>
                   </property>
                   <property name="toolButtonStyle" >
                    <enum>Qt::ToolButtonIconOnly</enum>

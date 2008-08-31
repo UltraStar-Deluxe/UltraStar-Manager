@@ -416,6 +416,9 @@ void QUMainWindow::createSongFiles() {
  * Reads recursively all available directories and puts them in the dirList.
  */
 void QUMainWindow::readSongDir(QList<QDir> &dirList) {
+	if(dirList.isEmpty())
+		return;
+
 	if(dirList.last().entryList(QDir::NoDotAndDotDot | QDir::Dirs, QDir::Name).isEmpty()) {
 		return;
 	} else {
@@ -574,8 +577,11 @@ void QUMainWindow::editSongApplyTasks() {
 	songTree->setCurrentItem(songItems.first());
 	foreach(QUSongItem *item, songItems) {
 		item->setSelected(true);
-		item->setExpanded(itemExpandedStates.first());
-		itemExpandedStates.pop_front();
+
+		if(!itemExpandedStates.isEmpty()) {
+			item->setExpanded(itemExpandedStates.first());
+			itemExpandedStates.pop_front();
+		}
 	}
 	songTree->scrollToItem(songTree->currentItem());
 
