@@ -103,6 +103,9 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(VIDEOGAP_COLUMN, QIcon(":/types/videogap.png"));
 	header->setToolTip(VIDEOGAP_COLUMN, tr("Skips the first seconds of the video.<br><br><i>Use negative values here with positive ones in <b>#START</b> to fix a short video file.</i>"));
 
+	header->setText(DUPLICATE_ID_COLUMN, "ID");
+	header->setToolTip(DUPLICATE_ID_COLUMN, tr("Indicate duplicate songs. <b>You should not see me.</b>"));
+
 	int i = 0;
 	foreach(QString customTag, QUSongFile::customTags()) {
 		header->setText(FIRST_CUSTOM_TAG_COLUMN + i, customTag);
@@ -121,6 +124,8 @@ void QUSongTree::initHorizontalHeader() {
 	this->header()->setSectionHidden(START_COLUMN, true);
 	this->header()->setSectionHidden(END_COLUMN, true);
 	this->header()->setSectionHidden(VIDEOGAP_COLUMN, true);
+
+	this->header()->setSectionHidden(DUPLICATE_ID_COLUMN, true);
 
 	// load custom setup
 	QSettings settings;
@@ -194,6 +199,26 @@ QList<QUSongItem*> QUSongTree::selectedSongItems() {
 			if(songItem)
 				items.append(songItem);
 		}
+	}
+
+	return items;
+}
+
+/*!
+ * \returns a list of all visible song items
+ */
+QList<QUSongItem*> QUSongTree::visibleSongItems() {
+	QList<QUSongItem*> items;
+
+	QList<QTreeWidgetItem*> topLevelItems;
+	for(int i = 0; i < this->topLevelItemCount(); i++)
+		topLevelItems.append(this->topLevelItem(i));
+
+	foreach(QTreeWidgetItem *item, topLevelItems) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+
+		if(songItem)
+			items.append(songItem);
 	}
 
 	return items;
@@ -342,8 +367,10 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 				(filterInfo && filterFile && filterCtrl && filterCstm && !(mode.testFlag(QU::negateFilter)))
 				||
 				(!(filterInfo && filterFile && filterCtrl && filterCstm) && (mode.testFlag(QU::negateFilter)))
-			)
-				_hiddenItems.append(this->takeTopLevelItem(this->indexOfTopLevelItem(item)));
+			) {
+				this->takeTopLevelItem(this->indexOfTopLevelItem(item));
+				_hiddenItems.append(songItem);
+			}
 		}
 	}
 
@@ -351,6 +378,65 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 
 //	emit itemSelectionChanged(); // update details
 	emit finished(QString(tr("Filter applied: \"%1\"%2")).arg(regexp).arg(mode.testFlag(QU::negateFilter) ? tr(", negated") : ""), QU::information);
+}
+
+/*!
+ * Show only songs which seem to be NOT unique. ^_^
+ */
+void QUSongTree::filterDuplicates() {
+	this->hideAll();
+
+	QList<QUSongItem*> allItems = _hiddenItems;
+	QList<QUSongItem*> workingList = allItems;
+	QList<QUSongItem*> uniqueList; // store unique items;
+
+	int nextID = 0;
+	QMap<QUSongItem*, int> id;
+
+	// sort after an invisible column to combine duplicate items
+	this->sortItems(DUPLICATE_ID_COLUMN, Qt::AscendingOrder);
+
+	QUProgressDialog dlg(tr("Looking for duplicate songs..."), allItems.size(), this);
+//	dlg.setPixmap(":/control/eye.png"); --> inserte a duplicate picture? show which songs we combine?
+	dlg.show();
+
+	foreach(QUSongItem *item, allItems) {
+		dlg.update(QString("%1 - %2").arg(item->song()->artist()).arg(item->song()->title()));
+		if(dlg.cancelled()) break;
+
+		bool isItemUnique = true;
+
+		foreach(QUSongItem *workingItem, workingList) {
+			if(item == workingItem)
+				continue; // ignore the same item
+
+			if(QUSongFile::equal(item->song(), workingItem->song())) {
+				if(id.contains(item)) {
+					id.insert(workingItem, id.value(item));
+				} else if(id.contains(workingItem)) {
+					id.insert(item, id.value(workingItem));
+				} else {
+					id.insert(item, nextID);
+					id.insert(workingItem, nextID);
+					nextID++;
+				}
+
+				this->addTopLevelItem(item);
+				this->addTopLevelItem(workingItem);
+
+				_hiddenItems.removeAll(item);
+				_hiddenItems.removeAll(workingItem);
+
+				isItemUnique = false;
+				break;
+			}
+		}
+
+		if(isItemUnique)
+			workingList.removeAll(item);
+	}
+
+	emit itemSelectionChanged();
 }
 
 bool QUSongTree::dropMimeData (QTreeWidgetItem *parent, int index, const QMimeData *data, Qt::DropAction action) {
@@ -401,6 +487,10 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 		filterMenu->addAction(tr("Selected Songs"), this, SLOT(hideSelected()));
 		filterMenu->addAction(tr("Selected Songs Only"), this, SLOT(hideSelectedOnly()));
 		filterMenu->addAction(tr("Unselected Songs"), this, SLOT(hideAllButSelected()));
+		filterMenu->addSeparator();
+		filterMenu->addAction(tr("All"), this, SLOT(hideAll()));
+
+		menu.addAction(tr("Filter Duplicates"), this, SLOT(filterDuplicates()));
 
 		menu.addSeparator();
 		menu.addAction(tr("Show Lyrics..."), this, SLOT(requestLyrics()), QKeySequence::fromString("Ctrl+L"));
@@ -471,6 +561,8 @@ void QUSongTree::showAllColumns() {
 	for(int i = 0; i < headerItem()->columnCount(); i++)
 		header()->showSection(i);
 
+	this->header()->setSectionHidden(DUPLICATE_ID_COLUMN, true);
+
 	this->resizeToContents();
 
 	QSettings settings;
@@ -536,31 +628,33 @@ void QUSongTree::showCheckColumns() {
 	settings.setValue("songTreeState", QVariant(header()->saveState()));
 }
 
-void QUSongTree::showCheckColumnsEx() {
-//	for(int i = 0; i < headerItem()->columnCount(); i++)
-//		header()->hideSection(i);
-//
-//	this->header()->showSection(FOLDER_COLUMN);
-//	this->header()->showSection(ARTIST_COLUMN);
-//	this->header()->showSection(TITLE_COLUMN);
-//	this->header()->showSection(MP3_COLUMN_EX);
-//	this->header()->showSection(COVER_COLUMN_EX);
-//	this->header()->showSection(BACKGROUND_COLUMN_EX);
-//	this->header()->showSection(VIDEO_COLUMN_EX);
-//	this->header()->showSection(UNUSED_FILES_COLUMN);
-//	this->header()->showSection(MULTIPLE_SONGS_COLUMN);
-//
-//	this->resizeToContents();
-//
-//	QSettings settings;
-//	settings.setValue("songTreeState", QVariant(header()->saveState()));
-}
-
 /*!
  * Emits the proper signal to open the current file. (See QUMainWindow)
  */
 void QUSongTree::openCurrentFile() {
 	emit itemActivated(this->currentItem(), FOLDER_COLUMN);
+}
+
+/*!
+ * Add all items to the invisible list.
+ */
+void QUSongTree::hideAll() {
+	QList<QUSongItem*> topLevelItems = visibleSongItems();
+
+	QUProgressDialog dlg(tr("Hiding all visible songs..."), topLevelItems.size(), this, false);
+	dlg.setPixmap(":/control/eye.png");
+	dlg.show();
+
+	clearSelection();
+
+	foreach(QUSongItem *item, topLevelItems) {
+		dlg.update(item->song()->songFileInfo().dir().dirName());
+
+		this->takeTopLevelItem(this->indexOfTopLevelItem(item));
+		_hiddenItems.append(item);
+	}
+
+	emit itemSelectionChanged();
 }
 
 /*!
@@ -584,7 +678,8 @@ void QUSongTree::hideSelected() {
 		dlg.update(item->song()->songFileInfo().dir().dirName());
 		if(dlg.cancelled()) break;
 
-		_hiddenItems.append(this->takeTopLevelItem(this->indexOfTopLevelItem(item)));
+		this->takeTopLevelItem(this->indexOfTopLevelItem(item));
+		_hiddenItems.append(item);
 	}
 
 	emit itemSelectionChanged(); // update details
@@ -743,7 +838,7 @@ void QUSongTree::refreshSelectedItems() {
 	if(songItems.isEmpty())
 		return;
 
-	QUProgressDialog dlg(tr("Refreshing selected songs..."), songItems.size(), this, true);
+	QUProgressDialog dlg(tr("Refreshing selected songs..."), songItems.size(), this, false);
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 
@@ -888,7 +983,7 @@ void QUSongTree::removeFilter() {
 	foreach(QTreeWidgetItem *hiddenItem, _hiddenItems) {
 		QUSongItem *songItem = dynamic_cast<QUSongItem*>(hiddenItem);
 
-		if(hiddenItem)
+		if(songItem)
 			dlg.update(songItem->song()->songFileInfo().dir().dirName());
 		else
 			dlg.update(N_A);

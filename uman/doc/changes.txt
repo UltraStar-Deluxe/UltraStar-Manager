@@ -87,6 +87,7 @@ NEW FEATURES
 * new icon for "unused files found"
 * alternative song tree view added (see View menu)
   > other icons for spell- / file-check columns
+* progressbar for dropping song files in song tree
 
 BUG FIXES
 * minor change in object renaming
@@ -165,8 +166,8 @@ TODO (for 1.7.0)
 * crop covers to 1:1 (extra task?)
 * "UmanScore"
   > multiple syllables in a line
-* progressbar for dropping song files in song tree
 * find & replace in song tags
+* PERF: how about processing items backwards and removing them from the tree?
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title

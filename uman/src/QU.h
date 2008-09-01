@@ -80,6 +80,7 @@ public:
 	static QString withoutFolderTags(const QString &text);
 	static QString withoutLeadingBlanks(const QString &text);
 	static QString withoutAnyUmlaut(const QString &text);
+	static QString withoutAnyUmlautEx(const QString &text);
 
 protected:
 	QU() {} // do not allow to make an instance of this object

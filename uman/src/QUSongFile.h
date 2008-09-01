@@ -90,6 +90,9 @@ public:
 	static bool hasBackgroundLessThan (QUSongFile *s1, QUSongFile *s2);
 	static bool hasVideoLessThan (QUSongFile *s1, QUSongFile *s2);
 
+	// comparing functions
+	static bool equal(QUSongFile *s1, QUSongFile *s2);
+
 public slots:
 	QString artist() const     {return _info.value(ARTIST_TAG,     QString(N_A));}
 	QString title() const      {return _info.value(TITLE_TAG,      QString(N_A));}

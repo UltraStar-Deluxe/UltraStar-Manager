@@ -79,3 +79,18 @@ QString QU::withoutAnyUmlaut(const QString &text) {
 
 	return result;
 }
+
+QString QU::withoutAnyUmlautEx(const QString &text) {
+	QString result = text;
+
+	result.replace("ä", "a", Qt::CaseInsensitive);
+	result.replace("ö", "o", Qt::CaseInsensitive);
+	result.replace("ü", "u", Qt::CaseInsensitive);
+	result.replace("ß", "s", Qt::CaseInsensitive);
+
+	result.replace("ô", "o", Qt::CaseInsensitive);
+	result.replace("è", "e", Qt::CaseInsensitive);
+	result.replace("é", "e", Qt::CaseInsensitive);
+
+	return result;
+}
