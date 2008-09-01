@@ -1,6 +1,8 @@
 #include "QUSongItem.h"
 #include "QUMainWindow.h"
 
+#include "QUSongTree.h"
+
 #include <QString>
 #include <QStringList>
 #include <QBrush>
@@ -180,6 +182,20 @@ void QUSongItem::updateAsUnknown() {
 	(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
 }
 
+/*!
+ * Used to switch to an "alternative" view mode.
+ * \sa altViewEnabled()
+ */
+void QUSongItem::updateSpellFileCheckColumns() {
+	if(!isToplevel()) { // use parent (which should be toplevel) if this is not toplevel
+		(dynamic_cast<QUSongItem*>(this->parent()))->updateSpellFileCheckColumns();
+		return;
+	}
+
+	updateSpellCheckColumns();
+	updateFileCheckColumns();
+}
+
 void QUSongItem::showUnusedFilesIcon(QString fileName) {
 	this->setIcon(UNUSED_FILES_COLUMN, QIcon(":/types/unused_files.png"));
 
@@ -206,30 +222,44 @@ void QUSongItem::showMultipleSongsIcon(QString fileName) {
 	this->setData(MULTIPLE_SONGS_COLUMN, Qt::UserRole, QVariant(-1));
 }
 
-void QUSongItem::setTick(int column, bool isBlue, QString toolTip) {
-	if(isBlue) {
-		this->setIcon(column, QIcon(":/marks/tick_blue.png"));
-		// used for sorting, should be greater than a "cross" icon
-		this->setData(column, Qt::UserRole, QVariant(1));
-	} else {
+void QUSongItem::setTick(int column) {
+	if(!altViewEnabled())
 		this->setIcon(column, QIcon(":/marks/tick.png"));
-		// used for sorting, should be greater than a "cross" icon
-		this->setData(column, Qt::UserRole, QVariant(2));
+	else {
+		     if(column == MP3_COLUMN)        this->setIcon(column, QIcon(":/types/music.png"));
+		else if(column == COVER_COLUMN)      this->setIcon(column, QIcon(":/types/picture.png"));
+		else if(column == BACKGROUND_COLUMN) this->setIcon(column, QIcon(":/types/picture.png"));
+		else if(column == VIDEO_COLUMN)      this->setIcon(column, QIcon(":/types/film.png"));
 	}
 
-	this->setToolTip(column, toolTip);
+	// used for sorting, should be greater than a "cross" icon
+	this->setData(column, Qt::UserRole, QVariant(1));
 }
 
-void QUSongItem::setCross(int column, bool isError, QString toolTip) {
-	if(isError) {
-		this->setIcon(column, QIcon(":/marks/cross_error.png"));
-		// used for sorting, should be smaller than a "tick" icon
-		this->setData(column, Qt::UserRole, QVariant(-1));
+void QUSongItem::setCross(int column, bool isWarning, QString toolTip) {
+
+	if(isWarning) {
+		if(!altViewEnabled())
+			this->setIcon(column, QIcon(":/marks/cross_error.png"));
+		else {
+				 if(column == MP3_COLUMN)        this->setIcon(column, QIcon(":/types/music_warn.png"));
+			else if(column == COVER_COLUMN)      this->setIcon(column, QIcon(":/types/picture_warn.png"));
+			else if(column == BACKGROUND_COLUMN) this->setIcon(column, QIcon(":/types/picture_warn.png"));
+			else if(column == VIDEO_COLUMN)      this->setIcon(column, QIcon(":/types/film_warn.png"));
+		}
 	} else {
-		this->setIcon(column, QIcon(":/marks/cross.png"));
-		// used for sorting, should be smaller than a "tick" icon
-		this->setData(column, Qt::UserRole, QVariant(0));
+		if(!altViewEnabled())
+			this->setIcon(column, QIcon(":/marks/cross.png"));
+		else if(column == MP3_COLUMN)
+			this->setIcon(column, QIcon(":/types/music_error.png"));
+		else
+			this->setIcon(column, QIcon());
 	}
+
+	if(isWarning)
+		this->setData(column, Qt::UserRole, QVariant(-1)); // used for sorting, should be smaller than a "tick" icon
+	else
+		this->setData(column, Qt::UserRole, QVariant(0)); // used for sorting, should be smaller than a "tick" icon
 
 	this->setToolTip(column, toolTip);
 }
@@ -237,7 +267,10 @@ void QUSongItem::setCross(int column, bool isError, QString toolTip) {
 void QUSongItem::setSmiley(int column, QU::SpellStates state, QString toolTip) {
 	switch(state) {
 	case QU::spellingOk:
-		this->setIcon(column, QIcon(":/marks/spell_ok.png"));
+		if(!altViewEnabled())
+			this->setIcon(column, QIcon(":/marks/spell_ok.png"));
+		else
+			this->setIcon(column, QIcon());
 		this->setData(column, Qt::UserRole, QVariant(0));
 		break;
 	case QU::spellingWarning:
@@ -278,6 +311,19 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	default:
 		return text(column) < other.text(column);
 	}
+}
+
+/*!
+ * Checks whether an alternative version of the song tree will be shown.
+ */
+bool QUSongItem::altViewEnabled() {
+	QSettings settings;
+	return settings.value("altSongTree", false).toBool();
+}
+
+void QUSongItem::setAltViewEnabled(bool enabled) {
+	QSettings settings;
+	settings.setValue("altSongTree", enabled);
 }
 
 void QUSongItem::updateSpellCheckColumns() {

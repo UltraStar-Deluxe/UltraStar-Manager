@@ -85,6 +85,8 @@ NEW FEATURES
   > "Songs > Show Lyrics..." menu
 * you can get your song covers from amazon now
 * new icon for "unused files found"
+* alternative song tree view added (see View menu)
+  > other icons for spell- / file-check columns
 
 BUG FIXES
 * minor change in object renaming
@@ -126,6 +128,7 @@ TODO (for 1.7.0)
 
 * detect and handle duplicates
   > http://de.wikipedia.org/wiki/Levenshtein-Distanz
+  > replace ',' ''' '-' 
   
 * re-design filter categories
   > Apply more than one filter?

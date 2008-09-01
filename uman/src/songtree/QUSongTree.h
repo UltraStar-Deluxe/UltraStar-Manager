@@ -59,6 +59,7 @@ private slots:
 	void showDefaultColumns();
 	void showTimeColumns();
 	void showCheckColumns();
+	void showCheckColumnsEx(); // other variant of display
 
 	void openCurrentFile();
 

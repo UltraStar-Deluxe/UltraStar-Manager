@@ -43,6 +43,7 @@ void QUSongTree::initHorizontalHeader() {
 	header->setToolTip(ARTIST_COLUMN, tr("Shows whether your folder includes the artist correctly:<br><i>Artist - Title ...</i>"));
 	header->setIcon(TITLE_COLUMN, QIcon(":/types/font.png"));
 	header->setToolTip(TITLE_COLUMN, tr("Shows whether your folder includes the title correctly:<br><i>Artist - Title ...</i>"));
+
 	header->setIcon(MP3_COLUMN, QIcon(":/types/music.png"));
 	header->setToolTip(MP3_COLUMN, tr("Shows whether the song text file points to an <b>audio file</b> that can be found by UltraStar"));
 	header->setIcon(COVER_COLUMN, QIcon(":/types/cover.png"));
@@ -522,6 +523,26 @@ void QUSongTree::showCheckColumns() {
 
 	QSettings settings;
 	settings.setValue("songTreeState", QVariant(header()->saveState()));
+}
+
+void QUSongTree::showCheckColumnsEx() {
+//	for(int i = 0; i < headerItem()->columnCount(); i++)
+//		header()->hideSection(i);
+//
+//	this->header()->showSection(FOLDER_COLUMN);
+//	this->header()->showSection(ARTIST_COLUMN);
+//	this->header()->showSection(TITLE_COLUMN);
+//	this->header()->showSection(MP3_COLUMN_EX);
+//	this->header()->showSection(COVER_COLUMN_EX);
+//	this->header()->showSection(BACKGROUND_COLUMN_EX);
+//	this->header()->showSection(VIDEO_COLUMN_EX);
+//	this->header()->showSection(UNUSED_FILES_COLUMN);
+//	this->header()->showSection(MULTIPLE_SONGS_COLUMN);
+//
+//	this->resizeToContents();
+//
+//	QSettings settings;
+//	settings.setValue("songTreeState", QVariant(header()->saveState()));
 }
 
 /*!

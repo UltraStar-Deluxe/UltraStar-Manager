@@ -57,6 +57,7 @@ private slots:
 	void toggleRelativeSongPath(bool checked);
 	void toggleCompleterChk(bool checked);
 	void toggleAutoSaveChk(bool checked);
+	void toggleAltSongTreeChk(bool checked);
 
 	void editTagOrder();
 	void changeSongDir();

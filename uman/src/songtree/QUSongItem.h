@@ -8,21 +8,27 @@
 #define FIXED_COLUMN_COUNT    23
 
 #define FOLDER_COLUMN          0
+
 #define ARTIST_COLUMN          1
 #define TITLE_COLUMN           2
+
 #define MP3_COLUMN             3
 #define COVER_COLUMN           4
 #define BACKGROUND_COLUMN      5
 #define VIDEO_COLUMN           6
+
 #define UNUSED_FILES_COLUMN    7
 #define MULTIPLE_SONGS_COLUMN  8
+
 #define LENGTH_COLUMN          9
 #define LENGTH_DIFF_COLUMN    10
 #define LENGTH_MP3_COLUMN     11
 #define LENGTH_EFF_COLUMN     12
+
 #define START_COLUMN          13
 #define END_COLUMN            14
 #define VIDEOGAP_COLUMN       15
+
 #define ARTIST_COLUMN_EX      16
 #define TITLE_COLUMN_EX       17
 #define LANGUAGE_COLUMN       18
@@ -49,6 +55,8 @@ public:
 	void updateAsVideo();
 	void updateAsUnknown();
 
+	void updateSpellFileCheckColumns();
+
 	QUSongFile* song() const { return _song; }
 	bool isToplevel() const { return _isToplevel; }
 
@@ -57,13 +65,16 @@ public:
 
 	virtual bool operator< (const QTreeWidgetItem &other) const;
 
+	static bool altViewEnabled();
+	static void setAltViewEnabled(bool enabled);
+
 private:
 	QUSongFile *_song;
 	bool _isToplevel;
 
 	void clearContents();
-	void setTick(int column, bool isBlue = false, QString toolTip = "");
-	void setCross(int column, bool isError = false, QString toolTip = "");
+	void setTick(int column);
+	void setCross(int column, bool isWarning = false, QString toolTip = "");
 	void setSmiley(int column, QU::SpellStates state = QU::spellingOk, QString toolTip = "");
 
 	void updateSpellCheckColumns();

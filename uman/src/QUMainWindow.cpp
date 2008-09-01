@@ -141,9 +141,10 @@ void QUMainWindow::initConfig() {
 	BaseDir.setPath(path);
 
 	// read other settings
-	actionAllowMonty->setChecked(settings.value("allowMonty", QVariant(true)).toBool());
-	actionShowRelativeSongPath->setChecked(settings.value("showRelativeSongPath", QVariant(true)).toBool());
-	completerChk->setChecked(settings.value("caseSensitiveAutoCompletion", QVariant(false)).toBool());
+	          actionAllowMonty->setChecked(settings.value("allowMonty", true).toBool());
+	actionShowRelativeSongPath->setChecked(settings.value("showRelativeSongPath", true).toBool());
+	         actionAltSongTree->setChecked(settings.value("altSongTree", false).toBool());
+	              completerChk->setChecked(settings.value("caseSensitiveAutoCompletion", false).toBool());
 
 	this->restoreState(settings.value("windowState", QVariant()).toByteArray());
 
@@ -204,6 +205,7 @@ void QUMainWindow::initMenu() {
 
 	// view menu
 	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
+	connect(actionAltSongTree, SIGNAL(toggled(bool)), this, SLOT(toggleAltSongTreeChk(bool)));
 	connect(actionFilter, SIGNAL(toggled(bool)), this, SLOT(toggleFilterFrame(bool)));
 
 	detailsDock->toggleViewAction()->setIcon(QIcon(":/control/text_edit.png"));
@@ -804,6 +806,28 @@ void QUMainWindow::toggleAutoSaveChk(bool checked) {
 	settings.setValue("autoSave", QVariant(checked));
 
 	actionSaveAll->setEnabled(!checked);
+}
+
+void QUMainWindow::toggleAltSongTreeChk(bool checked) {
+	QSettings settings;
+	if(settings.value("altSongTree", false) == checked)
+		return; // no change
+
+	settings.setValue("altSongTree", checked);
+
+	QUProgressDialog dlg(tr("Repainting song tree icons..."), songTree->topLevelItemCount(), this, false);
+	dlg.setPixmap(":/types/folder.png");
+	dlg.show();
+
+	for(int i = 0; i < songTree->topLevelItemCount(); i++) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
+
+		if(songItem) {
+			dlg.update(songItem->song()->songFileInfo().dir().dirName());
+
+			songItem->updateSpellFileCheckColumns();
+		}
+	}
 }
 
 /*!

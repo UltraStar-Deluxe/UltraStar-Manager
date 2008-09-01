@@ -1186,6 +1186,7 @@ Tasks</string>
      <string>&amp;View</string>
     </property>
     <addaction name="actionShowRelativeSongPath" />
+    <addaction name="actionAltSongTree" />
     <addaction name="actionFilter" />
     <addaction name="separator" />
    </widget>
@@ -1541,6 +1542,14 @@ Tasks</string>
   <action name="actionShowLyrics" >
    <property name="text" >
     <string>Show Lyrics...</string>
+   </property>
+  </action>
+  <action name="actionAltSongTree" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Alternative Song Tree</string>
    </property>
   </action>
  </widget>
