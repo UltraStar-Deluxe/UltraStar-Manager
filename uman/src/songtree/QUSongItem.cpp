@@ -227,8 +227,8 @@ void QUSongItem::setTick(int column) {
 		this->setIcon(column, QIcon(":/marks/tick.png"));
 	else {
 		     if(column == MP3_COLUMN)        this->setIcon(column, QIcon(":/types/music.png"));
-		else if(column == COVER_COLUMN)      this->setIcon(column, QIcon(":/types/picture.png"));
-		else if(column == BACKGROUND_COLUMN) this->setIcon(column, QIcon(":/types/picture.png"));
+		else if(column == COVER_COLUMN)      this->setIcon(column, QIcon(":/types/cover.png"));
+		else if(column == BACKGROUND_COLUMN) this->setIcon(column, QIcon(":/types/background.png"));
 		else if(column == VIDEO_COLUMN)      this->setIcon(column, QIcon(":/types/film.png"));
 	}
 

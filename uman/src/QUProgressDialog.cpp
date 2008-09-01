@@ -90,8 +90,9 @@ void QUProgressDialog::cancel() {
 
 void QUProgressDialog::updateTime() {
 	int time = _startTime.secsTo(QTime::currentTime());
-	int speed = time > 0 ? _progress / time : 0;
-	int estTime	= speed > 0 ? progress->maximum() / speed : 0;
+	double speed = time > 0 ? (double)_progress / (double)time : 0.0;
+	int iSpeed = qRound(speed);
+	int estTime	= speed > 0 ? (int)((double)progress->maximum() / speed) : 0;
 
 	QString elapsedTime = QString(tr("%1:%2"))
 		.arg((int)(time / 60), 2, 10, QChar('0'))
@@ -108,8 +109,7 @@ void QUProgressDialog::updateTime() {
 		timeLbl->setText(elapsedTime);
 
 	if(time > 0)
-		speedLbl->setText(QString(tr("<b>%1</b> items/sec")).arg(speed));
+		speedLbl->setText(QString(tr("<b>%1%2</b> items/sec")).arg(iSpeed == 0 ? "&lt;" : "").arg(qMax(1, iSpeed)));
 	else
 		speedLbl->setText("-");
-//	QTimer::singleShot(1000, this, SLOT(updateTime()));
 }

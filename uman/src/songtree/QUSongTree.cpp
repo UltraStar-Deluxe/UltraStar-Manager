@@ -388,8 +388,8 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 		QMenu *filterMenu = menu.addMenu(tr("Hide"));
 		filterMenu->setIcon(QIcon(":/control/eye.png"));
 		filterMenu->addAction(tr("Selected Songs"), this, SLOT(hideSelected()));
-		filterMenu->addAction(tr("Only Selected Songs"), this, SLOT(hideSelectedOnly()));
-		filterMenu->addAction(tr("All But Selected Songs"), this, SLOT(hideAllButSelected()));
+		filterMenu->addAction(tr("Selected Songs Only"), this, SLOT(hideSelectedOnly()));
+		filterMenu->addAction(tr("Unselected Songs"), this, SLOT(hideAllButSelected()));
 
 		menu.addSeparator();
 		menu.addAction(tr("Show Lyrics..."), this, SLOT(requestLyrics()), QKeySequence::fromString("Ctrl+L"));
@@ -821,6 +821,20 @@ void QUSongTree::requestCoversFromAmazon() {
 }
 
 void QUSongTree::removeFilter() {
-	this->addTopLevelItems(_hiddenItems);
+	QUProgressDialog dlg(tr("Removing current filter..."), _hiddenItems.size(), this, false);
+	dlg.setPixmap(":/types/folder.png");
+	dlg.show();
+
+	foreach(QTreeWidgetItem *hiddenItem, _hiddenItems) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(hiddenItem);
+
+		if(hiddenItem)
+			dlg.update(songItem->song()->songFileInfo().dir().dirName());
+		else
+			dlg.update(N_A);
+
+		this->addTopLevelItem(hiddenItem);
+	}
+
 	_hiddenItems.clear();
 }
