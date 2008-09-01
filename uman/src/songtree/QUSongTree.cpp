@@ -32,6 +32,10 @@ QUSongTree::QUSongTree(QWidget *parent): QTreeWidget(parent) {
 	connect(this->header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showHeaderMenu(const QPoint&)));
 }
 
+QUMainWindow* QUSongTree::parentWindow() const {
+	return dynamic_cast<QUMainWindow*>(parentWidget());
+}
+
 void QUSongTree::initHorizontalHeader() {
 	this->setColumnCount(FIXED_COLUMN_COUNT + QUSongFile::customTags().count());
 
@@ -348,8 +352,10 @@ bool QUSongTree::dropMimeData (QTreeWidgetItem *parent, int index, const QMimeDa
 	if(data->urls().isEmpty())
 		return false;
 
-	if(!parent)
-		return dropSongFiles(data->urls());
+	if(!parent) {
+		dropSongFiles(data->urls());
+		return true;
+	}
 
 	QUSongItem *item = dynamic_cast<QUSongItem*>(parent);
 
@@ -636,50 +642,84 @@ bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
  * Create new song directories for dropped song text files and copy that file to
  * the new created directory.
  */
-bool QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
+void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
+	QUProgressDialog dlg(tr("Including new songs to database..."), urls.size(), this);
+	dlg.show();
+
+	QList<QUSongItem*> newItems;
+
 	foreach(QUrl url, urls) {
 		QFileInfo fi(url.toLocalFile());
+
+		dlg.update(fi.fileName());
+		if(dlg.cancelled()) break;
+
 		QString fileScheme("*." + fi.suffix());
 
-		if(QU::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-			QUSongFile tmp(fi.filePath());
+		if(!QU::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+			emit finished(QString(tr("Invalid song file found: \"%1\". Cannot include those.")).arg(fi.filePath()), QU::warning);
+			continue;
+		}
 
-			QString newSongDirName = QString("%1 - %2").arg(tmp.artist()).arg(tmp.title());
-			QString newSongDirNameBackup = newSongDirName;
+		QUSongFile *newSong = new QUSongFile(fi.filePath());
 
-			for(int i = 0; i < 500; i++) {
-				if(QUMainWindow::BaseDir.mkdir(newSongDirName))
-					break;
+		createSongFolder(newSong);
 
-				newSongDirName = QString("%1_%2").arg(newSongDirNameBackup).arg(i, 3, 10, QChar('0'));
-			}
+		if(!QFile::copy(fi.filePath(), newSong->songFileInfo().filePath())) {
+			emit finished(QString(tr("Could not copy song file \"%1\" to new song directory \"%2\"!")).arg(fi.fileName()).arg(newSong->songFileInfo().path()), QU::warning);
+			continue;
+		}
 
-//			if(QUMainWindow::BaseDir.mkdir(newSongDirName)) {
-				QDir newSongDir(QUMainWindow::BaseDir);
-				if(newSongDir.cd(newSongDirName)) {
-					QFileInfo newFi(newSongDir, fi.fileName());
-					if(QFile::copy(fi.filePath(), newFi.filePath())) {
-						QUSongFile *newSong = new QUSongFile(newFi.filePath());
-						QUSongItem *newItem = new QUSongItem(newSong, true);
-						this->addTopLevelItem(newItem);
+		QUSongItem *newItem = new QUSongItem(newSong, true);
+		this->addTopLevelItem(newItem);
+		newItems.append(newItem);
 
-						newItem->setSelected(true);
+		emit finished(QString(tr("New song included to your song collection: \"%1 - %2\".")).arg(newSong->artist()).arg(newSong->title()), QU::information);
+		emit songCreated(newSong);
+	}
 
-						emit finished(QString(tr("New song included to your song collection: \"%1 - %2\".")).arg(newSong->artist()).arg(newSong->title()), QU::information);
-						emit songCreated(newSong);
-					} else {
-						emit finished(QString(tr("Could not copy song file \"%1\" to new song directory \"%2\"!")).arg(fi.fileName()).arg(newSongDirName), QU::warning);
-					}
-				} else {
-					emit finished(QString(tr("Could not change to new song directory \"%1\"! Does it exist?")).arg(newSongDirName), QU::warning);
-				}
-//			} else {
-//				emit finished(QString(tr("Could not create new song directory \"%1\"!")).arg(newSongDirName), QU::warning);
-//			}
+	// select new song items
+	QUMainWindow *parentWindow = this->parentWindow();
+	if(parentWindow) {
+		disconnect(this, SIGNAL(itemSelectionChanged()), parentWindow, SLOT(updateDetails()));
+		disconnect(this, SIGNAL(itemSelectionChanged()), parentWindow, SLOT(updatePreviewTree()));
+	}
+
+	foreach(QUSongItem *songItem, newItems)
+		songItem->setSelected(true);
+
+	if(parentWindow) {
+		connect(this, SIGNAL(itemSelectionChanged()), parentWindow, SLOT(updateDetails()));
+		connect(this, SIGNAL(itemSelectionChanged()), parentWindow, SLOT(updatePreviewTree()));
+	}
+
+	emit itemSelectionChanged();
+}
+
+/*!
+ * Try to create a basic folder for the new song according to the schema:
+ * "Artist - Title"
+ *
+ * Set the given song to that folder.
+ */
+void QUSongTree::createSongFolder(QUSongFile *song) {
+	QString newDirName = QU::withoutUnsupportedCharacters(QString("%1 - %2").arg(song->artist()).arg(song->title())).trimmed();
+
+	int i = 0;
+	QString tmp = newDirName;
+	QFileInfo fi(QUMainWindow::BaseDir, newDirName);
+	while(!QUMainWindow::BaseDir.mkdir(tmp)) {
+		if(!fi.exists()) {
+			emit finished(QString(tr("Could not create directory: \"%1\". Disk full?")).arg(fi.filePath()), QU::warning);
+			return;
+		} else {
+			tmp = QString("%1_%2").arg(newDirName).arg(i, 3, 10, QChar('0'));
+			i++;
+			fi.setFile(QUMainWindow::BaseDir, tmp);
 		}
 	}
 
-	return true;
+	song->setFile( QFileInfo(QDir(fi.filePath()), song->songFileInfo().fileName()).filePath() );
 }
 
 void QUSongTree::refreshSelectedItems() {
@@ -692,6 +732,8 @@ void QUSongTree::refreshSelectedItems() {
 	QUProgressDialog dlg(tr("Refreshing selected songs..."), songItems.size(), this, false);
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
+
+	clearSelection();
 
 	foreach(QUSongItem *songItem, songItems) {
 		dlg.update(songItem->song()->songFileInfo().dir().dirName());
@@ -706,16 +748,16 @@ void QUSongTree::refreshSelectedItems() {
 			songItem->update();
 	}
 
-	// restore selection
 	setCurrentItem(songItems.first());
 	foreach(QUSongItem *songItem, songItems) {
-		songItem->setSelected(true);
 		songItem->setExpanded(itemExpandedStates.first());
 		itemExpandedStates.pop_front();
 	}
-	scrollToItem(currentItem());
 
-	emit itemSelectionChanged(); // update details
+	scrollToItem(currentItem());
+	restoreSelection(songItems);
+
+//	emit itemSelectionChanged(); // update details
 }
 
 void QUSongTree::resizeToContents() {
@@ -837,4 +879,19 @@ void QUSongTree::removeFilter() {
 	}
 
 	_hiddenItems.clear();
+}
+
+/*!
+ * Restore a selection of items that was cleared before for performance reasons.
+ */
+void QUSongTree::restoreSelection(const QList<QUSongItem*> &selectedItems) {
+	QItemSelection selection;
+
+	foreach(QUSongItem *item, selectedItems) {
+		int row = indexOfTopLevelItem(item->isToplevel() ? item : item->parent());
+		QModelIndex start = model()->index(row, 0);
+		selection.append(QItemSelectionRange(start));
+	}
+
+	selectionModel()->select(selection, QItemSelectionModel::Select | QItemSelectionModel::Rows);
 }

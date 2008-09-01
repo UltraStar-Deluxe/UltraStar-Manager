@@ -438,6 +438,8 @@ void QUMainWindow::readSongDir(QList<QDir> &dirList) {
 }
 
 void QUMainWindow::updateDetails() {
+//	addLogMsg("QUMainWindow::updateDetails()", QU::help);
+
 	disconnect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(editSongSetDetail(QTableWidgetItem*)));
 
 	detailsTable->updateValueColumn(songTree->selectedSongs());
@@ -553,8 +555,7 @@ void QUMainWindow::editSongApplyTasks() {
 	QUProgressDialog dlg(tr("Applying all checked tasks to all selected songs..."), songItems.size(), this);
 	dlg.show();
 
-	disconnect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateDetails()));
-	disconnect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updatePreviewTree()));
+	songTree->clearSelection();
 
 	foreach(QUSongItem *songItem, songItems) {
 		QUSongFile *song = songItem->song();
@@ -578,17 +579,14 @@ void QUMainWindow::editSongApplyTasks() {
 	// restore selection
 	songTree->setCurrentItem(songItems.first());
 	foreach(QUSongItem *item, songItems) {
-		item->setSelected(true);
-
 		if(!itemExpandedStates.isEmpty()) {
 			item->setExpanded(itemExpandedStates.first());
 			itemExpandedStates.pop_front();
-		}
+		} else
+			break;
 	}
 	songTree->scrollToItem(songTree->currentItem());
-
-	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateDetails()));
-	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updatePreviewTree()));
+	songTree->restoreSelection(songItems);
 
 	updateDetails();
 	montyTalk();

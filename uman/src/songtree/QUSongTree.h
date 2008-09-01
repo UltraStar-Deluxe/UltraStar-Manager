@@ -12,11 +12,15 @@
 #include "QU.h"
 #include "QUSongItem.h"
 
+class QUMainWindow;
+
 class QUSongTree: public QTreeWidget {
 	Q_OBJECT
 
 public:
 	QUSongTree(QWidget *parent = 0);
+	QUMainWindow* parentWindow() const;
+
 	void initHorizontalHeader();
 
 	bool hasUnsavedChanges() const;
@@ -29,6 +33,8 @@ public:
 	void fill(QList<QUSongFile*> songs);
 
 	int hiddenItemsCount() const { return _hiddenItems.size(); }
+
+	void restoreSelection(const QList<QUSongItem*> &selectedItems);
 
 public slots:
 	void refreshSelectedItems();
@@ -77,7 +83,8 @@ private:
 	virtual QStringList mimeTypes() const;
 
 	bool copyFilesToSong(const QList<QUrl> &files, QUSongItem *item);
-	bool dropSongFiles(const QList<QUrl> &urls);
+	void dropSongFiles(const QList<QUrl> &urls);
+	void createSongFolder(QUSongFile *song);
 
 	void removeFilter();
 };

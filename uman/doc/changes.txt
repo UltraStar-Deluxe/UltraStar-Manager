@@ -109,6 +109,8 @@ BUG FIXES
   
 KNOWN BUGS (to fix)
 * you cannot sort after a custom tag column in the report
+* because uman wants to keep the current selection in the song tree as often as
+  possible, there are situations, in which the operations get terribly slow...
 
 TODO (for 1.7.0)
 * note somewhere the origin of the icons/graphics
