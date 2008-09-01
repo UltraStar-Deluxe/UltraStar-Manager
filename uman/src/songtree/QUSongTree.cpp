@@ -743,7 +743,7 @@ void QUSongTree::refreshSelectedItems() {
 	if(songItems.isEmpty())
 		return;
 
-	QUProgressDialog dlg(tr("Refreshing selected songs..."), songItems.size(), this, false);
+	QUProgressDialog dlg(tr("Refreshing selected songs..."), songItems.size(), this, true);
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 
