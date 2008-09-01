@@ -264,6 +264,9 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 	progress.setPixmap(":/control/filter.png");
 	progress.show();
 
+	QList<QUSongItem*> selectedItems = this->selectedSongItems();
+	clearSelection();
+
 	foreach(QTreeWidgetItem *item, topLevelItems) {
 		QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
 
@@ -344,7 +347,9 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 		}
 	}
 
-	emit itemSelectionChanged(); // update details
+	restoreSelection(selectedItems);
+
+//	emit itemSelectionChanged(); // update details
 	emit finished(QString(tr("Filter applied: \"%1\"%2")).arg(regexp).arg(mode.testFlag(QU::negateFilter) ? tr(", negated") : ""), QU::information);
 }
 
@@ -569,7 +574,16 @@ void QUSongTree::hideSelected() {
 		return;
 	}
 
+	QUProgressDialog dlg(tr("Hiding selected songs..."), selectedItems.size(), this, true);
+	dlg.setPixmap(":/types/folder.png");
+	dlg.show();
+
+	clearSelection();
+
 	foreach(QUSongItem *item, selectedItems) {
+		dlg.update(item->song()->songFileInfo().dir().dirName());
+		if(dlg.cancelled()) break;
+
 		_hiddenItems.append(this->takeTopLevelItem(this->indexOfTopLevelItem(item)));
 	}
 
@@ -863,9 +877,13 @@ void QUSongTree::requestCoversFromAmazon() {
 }
 
 void QUSongTree::removeFilter() {
+	QList<QUSongItem*> selectedItems = this->selectedSongItems();
+
 	QUProgressDialog dlg(tr("Removing current filter..."), _hiddenItems.size(), this, false);
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
+
+	clearSelection();
 
 	foreach(QTreeWidgetItem *hiddenItem, _hiddenItems) {
 		QUSongItem *songItem = dynamic_cast<QUSongItem*>(hiddenItem);
@@ -878,6 +896,8 @@ void QUSongTree::removeFilter() {
 		this->addTopLevelItem(hiddenItem);
 	}
 
+	restoreSelection(selectedItems);
+
 	_hiddenItems.clear();
 }
 
@@ -889,6 +909,10 @@ void QUSongTree::restoreSelection(const QList<QUSongItem*> &selectedItems) {
 
 	foreach(QUSongItem *item, selectedItems) {
 		int row = indexOfTopLevelItem(item->isToplevel() ? item : item->parent());
+
+		if(row == -1)
+			continue;
+
 		QModelIndex start = model()->index(row, 0);
 		selection.append(QItemSelectionRange(start));
 	}
