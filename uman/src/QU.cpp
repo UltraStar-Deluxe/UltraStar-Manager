@@ -1,4 +1,8 @@
 #include "QU.h"
+#include "QUMetaphoneString.h"
+
+#include <QList>
+#include <QPair>
 
 QStringList QU::allowedSongFiles() {
 	return QString("*.txt *.kar").split(" ");
@@ -89,8 +93,91 @@ QString QU::withoutAnyUmlautEx(const QString &text) {
 	result.replace("ß", "s", Qt::CaseInsensitive);
 
 	result.replace("ô", "o", Qt::CaseInsensitive);
-	result.replace("è", "e", Qt::CaseInsensitive);
 	result.replace("é", "e", Qt::CaseInsensitive);
+	result.replace("è", "e", Qt::CaseInsensitive);
 
 	return result;
+}
+
+/*!
+ * Checks whether the given tokens could be meant as equal.
+ */
+bool QU::equal(QString token1, QString token2, bool ignoreEmpty) {
+	// idea: the | of | to | in | on | and | at ... the | der | die | das | a | an | ein | einer | eine
+	QRegExp rx(" THE | DER | DIE | DAS | A | AN | EIN ");
+	rx.setCaseSensitivity(Qt::CaseInsensitive);
+	rx.setMinimal(true);
+
+	token1 = QU::withoutAnyUmlautEx(token1).toUpper();
+	token2 = QU::withoutAnyUmlautEx(token2).toUpper();
+
+	// replace special characters with whitespaces
+	for(int i = 0; i < token1.length(); i++) if(token1[i].category() != QChar::Letter_Uppercase) token1.remove(i, 1);
+	for(int i = 0; i < token2.length(); i++) if(token2[i].category() != QChar::Letter_Uppercase) token2.remove(i, 1);
+
+	// replace "lonely, unimportant" words
+	token1.replace(rx, " ");
+	token2.replace(rx, " ");
+
+	token1 = token1.trimmed();
+	token2 = token2.trimmed();
+
+	if( ignoreEmpty and (token1.isEmpty() or token2.isEmpty()) )
+		return false;
+
+	/* try to use the classic approach */
+	QString simpleToken1 = token1.simplified().remove(" ");
+	QString simpleToken2 = token2.simplified().remove(" ");
+	if( simpleToken1.contains(simpleToken2, Qt::CaseInsensitive) or simpleToken2.contains(simpleToken1, Qt::CaseInsensitive) )
+		return true;
+
+	/* Use MetaPhone */
+
+	QList<QPair<QString, QString> > mp1;
+	QList<QPair<QString, QString> > mp2;
+
+	foreach(QString text, token1.split(" ")) {
+		QUMetaphoneString mps(text);
+
+		QString m1, m2;
+		mps.doDoubleMetaphone(m1, m2);
+
+		mp1.append(QPair<QString, QString>(m1, m2));
+	}
+
+	foreach(QString text, token2.split(" ")) {
+		QUMetaphoneString mps(text);
+
+		QString m1, m2;
+		mps.doDoubleMetaphone(m1, m2);
+
+		mp2.append(QPair<QString, QString>(m1, m2));
+	}
+
+	int neededHits = qMin(mp1.size(), mp2.size());
+	int hits = 0;
+
+	for(int i = 0; i < mp1.size(); i++) {
+//		if(mp1.at(i).first.isEmpty())
+//			continue; // should not happen...
+
+		for(int j = 0; j < mp2.size(); j++) {
+//			if(mp2.at(j).first.isEmpty())
+//				continue; // should not happen...
+
+			if(mp1.at(i).first == mp2.at(j).first)
+				hits++;
+			else if(!mp2.at(j).second.isEmpty() and mp1.at(i).first == mp2.at(j).second)
+				hits++;
+			else if(!mp1.at(i).second.isEmpty() and mp1.at(i).second == mp2.at(j).first)
+				hits++;
+			else if(!mp1.at(i).second.isEmpty() and !mp2.at(j).second.isEmpty() and mp1.at(i).second == mp2.at(j).second)
+				hits++;
+
+			if(hits >= neededHits)
+				return true;
+		}
+	}
+
+	return false;
 }

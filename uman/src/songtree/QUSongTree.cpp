@@ -5,6 +5,8 @@
 #include "QUMainWindow.h"
 #include "QUMessageBox.h"
 
+#include "QUMetaphoneString.h"
+
 #include <QMessageBox>
 #include <QUrl>
 #include <QIcon>
@@ -125,7 +127,7 @@ void QUSongTree::initHorizontalHeader() {
 	this->header()->setSectionHidden(END_COLUMN, true);
 	this->header()->setSectionHidden(VIDEOGAP_COLUMN, true);
 
-	this->header()->setSectionHidden(DUPLICATE_ID_COLUMN, true);
+//	this->header()->setSectionHidden(DUPLICATE_ID_COLUMN, true);
 
 	// load custom setup
 	QSettings settings;
@@ -384,6 +386,19 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
  * Show only songs which seem to be NOT unique. ^_^
  */
 void QUSongTree::filterDuplicates() {
+
+//	QStringList test = QStringList() << "arzte" << "aerzte" << "artze" << "aertze" << "aertzte" << "artzte" << "ärzte";
+//
+//	foreach(QString s, test) {
+//		QUMetaphoneString m(s.toUpper());
+//		QString e1, e2;
+//		m.doDoubleMetaphone(e1, e2);
+//
+//		emit finished(QString("%3: %1, %2").arg(e1).arg(e2).arg(s), QU::information);
+//	}
+
+//	return;
+
 	this->hideAll();
 
 	QList<QUSongItem*> allItems = _hiddenItems;
@@ -394,6 +409,7 @@ void QUSongTree::filterDuplicates() {
 	QMap<QUSongItem*, int> id;
 
 	// sort after an invisible column to combine duplicate items
+	this->sortItems(FOLDER_COLUMN, Qt::AscendingOrder);
 	this->sortItems(DUPLICATE_ID_COLUMN, Qt::AscendingOrder);
 
 	QUProgressDialog dlg(tr("Looking for duplicate songs..."), allItems.size(), this);
@@ -413,18 +429,24 @@ void QUSongTree::filterDuplicates() {
 			if(QUSongFile::equal(item->song(), workingItem->song())) {
 				if(id.contains(item)) {
 					id.insert(workingItem, id.value(item));
+					workingItem->setText(DUPLICATE_ID_COLUMN, QString("%1").arg(id.value(item), 4, 10, QChar('0')));
 				} else if(id.contains(workingItem)) {
 					id.insert(item, id.value(workingItem));
+					item->setText(DUPLICATE_ID_COLUMN, QString("%1").arg(id.value(workingItem), 4, 10, QChar('0')));
 				} else {
 					id.insert(item, nextID);
 					id.insert(workingItem, nextID);
+
+					item->setText(DUPLICATE_ID_COLUMN, QString("%1").arg(nextID, 4, 10, QChar('0')));
+					workingItem->setText(DUPLICATE_ID_COLUMN, QString("%1").arg(nextID, 4, 10, QChar('0')));
+
 					nextID++;
 				}
 
 				this->addTopLevelItem(item);
-				this->addTopLevelItem(workingItem);
-
 				_hiddenItems.removeAll(item);
+
+				this->addTopLevelItem(workingItem);
 				_hiddenItems.removeAll(workingItem);
 
 				isItemUnique = false;
@@ -432,8 +454,10 @@ void QUSongTree::filterDuplicates() {
 			}
 		}
 
-		if(isItemUnique)
+		if(isItemUnique) {
 			workingList.removeAll(item);
+			item->setText(DUPLICATE_ID_COLUMN, N_A);
+		}
 	}
 
 	emit itemSelectionChanged();

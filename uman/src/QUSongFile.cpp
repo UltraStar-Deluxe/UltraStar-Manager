@@ -77,56 +77,7 @@ bool QUSongFile::hasVideoLessThan (QUSongFile *s1, QUSongFile *s2)       { retur
  * QChar::decomposition()
  */
 bool QUSongFile::equal(QUSongFile *s1, QUSongFile *s2) {
-	// idea: the | of | to | in | on | and | at ... the | der | die | das | a | an | ein | einer | eine
-	QRegExp rx(" the | der | die | das | a | an | ein ");
-	rx.setCaseSensitivity(Qt::CaseInsensitive);
-	rx.setMinimal(true);
-
-	/* FIRST: LOOK AT ARTISTS */
-
-	QString artistToken1 = QU::withoutAnyUmlaut(s1->artist()).toLower();
-	QString artistToken2 = QU::withoutAnyUmlaut(s2->artist()).toLower();
-
-	// replace special characters with whitespaces
-	for(int i = 0; i < artistToken1.length(); i++) if(artistToken1[i].category() != QChar::Letter_Lowercase) artistToken1[i] = ' ';
-	for(int i = 0; i < artistToken2.length(); i++) if(artistToken2[i].category() != QChar::Letter_Lowercase) artistToken2[i] = ' ';
-
-	// replace "lonely, unimportant" words
-	artistToken1.replace(rx, " ");
-	artistToken2.replace(rx, " ");
-
-	artistToken1 = artistToken1.trimmed();
-	artistToken2 = artistToken2.trimmed();
-
-	if( !artistToken1.contains(artistToken2, Qt::CaseInsensitive) && !artistToken2.contains(artistToken1, Qt::CaseInsensitive) )
-		return false; // we need at least appox. same artists
-
-	/* SECOND: LOOK AT TITLES */
-
-	QString titleToken1 = QU::withoutAnyUmlaut(s1->title()).toLower();
-	QString titleToken2 = QU::withoutAnyUmlaut(s2->title()).toLower();
-
-	// replace special characters with whitespaces
-	for(int i = 0; i < titleToken1.length(); i++) if(titleToken1[i].category() != QChar::Letter_Lowercase) titleToken1[i] = ' ';
-	for(int i = 0; i < titleToken2.length(); i++) if(titleToken2[i].category() != QChar::Letter_Lowercase) titleToken2[i] = ' ';
-
-	// replace "lonely, unimportant" words
-	titleToken1.replace(rx, " ");
-	titleToken2.replace(rx, " ");
-
-	titleToken1 = titleToken1.trimmed();
-	titleToken2 = titleToken2.trimmed();
-
-	if(titleToken1.isEmpty() or titleToken2.isEmpty())
-		return false; // empty titles make no sense
-
-	if( titleToken1.contains(titleToken2, Qt::CaseInsensitive) )
-		return true;
-
-	if( titleToken2.contains(titleToken1, Qt::CaseInsensitive) )
-		return true;
-
-	return false;
+	return ( QU::equal(s1->artist(), s2->artist()) and QU::equal(s1->title(), s2->title(), true) );
 }
 
 /* COMPARING FUNCTINOS END */

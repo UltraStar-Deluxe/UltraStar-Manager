@@ -5,7 +5,8 @@ QT += core \
     xml \
     network
 CONFIG += debug
-HEADERS += amazon/QUCoverItemDelegate.h \
+HEADERS += metaphone/QUMetaphoneString.h \
+    amazon/QUCoverItemDelegate.h \
     amazon/QUCoverModel.h \
     amazon/QUAmazonResponse.h \
     amazon/QUAmazonRequestUrl.h \
@@ -61,7 +62,8 @@ HEADERS += amazon/QUCoverItemDelegate.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += amazon/QUCoverItemDelegate.cpp \
+SOURCES += metaphone/QUMetaphoneString.cpp \
+    amazon/QUCoverItemDelegate.cpp \
     amazon/QUCoverModel.cpp \
     amazon/QUAmazonResponse.cpp \
     amazon/QUAmazonRequestUrl.cpp \
@@ -138,7 +140,8 @@ INCLUDEPATH += tasks \
     tasks/taskDialog \
     preview \
     playlist \
-    amazon
+    amazon \
+    metaphone
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib

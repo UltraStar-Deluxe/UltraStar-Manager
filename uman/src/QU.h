@@ -82,6 +82,8 @@ public:
 	static QString withoutAnyUmlaut(const QString &text);
 	static QString withoutAnyUmlautEx(const QString &text);
 
+	static bool equal(QString token1, QString token2, bool ignoreEmpty = false);
+
 protected:
 	QU() {} // do not allow to make an instance of this object
 };
