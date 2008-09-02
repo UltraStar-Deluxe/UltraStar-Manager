@@ -167,17 +167,19 @@ void QUMainWindow::initWindow() {
 	connect(playlistArea, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 
 	// init filter area
-	filterFrame->hide();
+	filterArea->hide();
 
-	connect(filterEdit, SIGNAL(returnPressed()), this, SLOT(applyFilter()));
-	connect(filterBtn, SIGNAL(clicked()), this, SLOT(applyFilter()));
-	connect(filterCancelBtn, SIGNAL(clicked()), this, SLOT(removeFilter()));
-	connect(filterNegateBtn, SIGNAL(clicked()), this, SLOT(toggleFilterNegateBtn()));
+	connect(filterArea->filterEdit, SIGNAL(returnPressed()), this, SLOT(applyFilter()));
+	connect(filterArea->filterBtn, SIGNAL(clicked()), this, SLOT(applyFilter()));
+	connect(filterArea->filterCancelBtn, SIGNAL(clicked()), this, SLOT(hideFilterArea()));
+	connect(filterArea->filterClearBtn, SIGNAL(clicked()), this, SLOT(removeFilter()));
+	connect(filterArea->filterNegateBtn, SIGNAL(clicked()), this, SLOT(toggleFilterNegateBtn()));
+	connect(filterArea->filterDuplicatesBtn, SIGNAL(clicked()), songTree, SLOT(filterDuplicates()));
 
-	filterTypeCombo->addItems(QStringList() << tr("All Tags") << tr("Information Tags") << tr("File Tags") << tr("Control Tags") << tr("Custom Tags"));
-	filterTypeCombo->setCurrentIndex(0);
+	filterArea->filterTypeCombo->addItems(QStringList() << tr("All Tags") << tr("Information Tags") << tr("File Tags") << tr("Control Tags") << tr("Custom Tags"));
+	filterArea->filterTypeCombo->setCurrentIndex(0);
 
-	filterNegateBtn->setChecked(false);
+	filterArea->filterNegateBtn->setChecked(false);
 }
 
 void QUMainWindow::initMenu() {
@@ -877,55 +879,58 @@ void QUMainWindow::showLyrics(QUSongFile *song) {
 }
 
 void QUMainWindow::toggleFilterFrame(bool checked) {
-	filterFrame->setVisible(checked);
+	filterArea->setVisible(checked);
 
 	if(checked) {
-		filterEdit->setFocus();
-		filterEdit->selectAll();
+		filterArea->filterEdit->setFocus();
+		filterArea->filterEdit->selectAll();
 	}
 }
 
 void QUMainWindow::toggleFilterNegateBtn() {
-	if(filterNegateBtn->text() == "negate") {
-		filterNegateBtn->setText("");
-		filterNegateBtn->setIcon(QIcon(":/marks/plus.png"));
+	if(filterArea->filterNegateBtn->text() == "negate") {
+		filterArea->filterNegateBtn->setText("");
+		filterArea->filterNegateBtn->setIcon(QIcon(":/marks/plus.png"));
 	} else {
-		filterNegateBtn->setText("negate");
-		filterNegateBtn->setIcon(QIcon(":/marks/minus.png"));
+		filterArea->filterNegateBtn->setText("negate");
+		filterArea->filterNegateBtn->setIcon(QIcon(":/marks/minus.png"));
 	}
 }
 
 void QUMainWindow::applyFilter() {
 	int modes = 0;
 
-	if(filterNegateBtn->text() == "negate")
+	if(filterArea->filterNegateBtn->text() == "negate")
 		modes |= QU::negateFilter;
 
-	if(filterTypeCombo->currentIndex() == 0)
+	if(filterArea->filterTypeCombo->currentIndex() == 0)
 		modes |= QU::informationTags | QU::fileTags | QU::controlTags | QU::customTags;
 
-	if(filterTypeCombo->currentIndex() == 1)
+	if(filterArea->filterTypeCombo->currentIndex() == 1)
 		modes |= QU::informationTags;
 
-	if(filterTypeCombo->currentIndex() == 2)
+	if(filterArea->filterTypeCombo->currentIndex() == 2)
 		modes |= QU::fileTags;
 
-	if(filterTypeCombo->currentIndex() == 3)
+	if(filterArea->filterTypeCombo->currentIndex() == 3)
 		modes |= QU::controlTags;
 
-	if(filterTypeCombo->currentIndex() == 4)
+	if(filterArea->filterTypeCombo->currentIndex() == 4)
 		modes |= QU::customTags;
 
-	songTree->filterItems(filterEdit->text(), (QU::FilterModes) modes);
+	songTree->filterItems(filterArea->filterEdit->text(), (QU::FilterModes) modes);
+}
+
+void QUMainWindow::hideFilterArea() {
+	actionFilter->setChecked(false);
 }
 
 /*!
  * Shows all items in the song tree again.
  */
 void QUMainWindow::removeFilter() {
-	filterEdit->setText("");
+	filterArea->filterEdit->setText("");
 	songTree->filterItems("");
-	actionFilter->setChecked(false);
 }
 
 void QUMainWindow::reportCreate() {

@@ -1,0 +1,157 @@
+<ui version="4.0" >
+ <class>QUFilterArea</class>
+ <widget class="QWidget" name="QUFilterArea" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>465</width>
+    <height>27</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout" >
+   <property name="spacing" >
+    <number>3</number>
+   </property>
+   <property name="leftMargin" >
+    <number>5</number>
+   </property>
+   <property name="topMargin" >
+    <number>5</number>
+   </property>
+   <property name="rightMargin" >
+    <number>5</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QToolButton" name="filterNegateBtn" >
+     <property name="toolTip" >
+      <string>A minus means, that the filter will be negated.</string>
+     </property>
+     <property name="text" >
+      <string/>
+     </property>
+     <property name="icon" >
+      <iconset resource="images/uman.qrc" >
+       <normaloff>:/marks/plus.png</normaloff>:/marks/plus.png</iconset>
+     </property>
+     <property name="checkable" >
+      <bool>false</bool>
+     </property>
+     <property name="autoRaise" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="filterEdit" >
+     <property name="toolTip" >
+      <string>Enter a regular expression and press the filter button to the right.</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="filterTypeCombo" />
+   </item>
+   <item>
+    <widget class="QToolButton" name="filterBtn" >
+     <property name="enabled" >
+      <bool>true</bool>
+     </property>
+     <property name="toolTip" >
+      <string>Apply filter to song tree</string>
+     </property>
+     <property name="text" >
+      <string>Filter</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="images/uman.qrc" >
+       <normaloff>:/control/filter.png</normaloff>:/control/filter.png</iconset>
+     </property>
+     <property name="toolButtonStyle" >
+      <enum>Qt::ToolButtonTextBesideIcon</enum>
+     </property>
+     <property name="autoRaise" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QToolButton" name="filterDuplicatesBtn" >
+     <property name="enabled" >
+      <bool>true</bool>
+     </property>
+     <property name="toolTip" >
+      <string>Apply filter to song tree</string>
+     </property>
+     <property name="text" >
+      <string>Duplicates</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="images/uman.qrc" >
+       <normaloff>:/control/duplicates.png</normaloff>:/control/duplicates.png</iconset>
+     </property>
+     <property name="toolButtonStyle" >
+      <enum>Qt::ToolButtonTextBesideIcon</enum>
+     </property>
+     <property name="autoRaise" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="Line" name="line" >
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QToolButton" name="filterClearBtn" >
+     <property name="toolTip" >
+      <string>Clear the current filter. Show all songs.</string>
+     </property>
+     <property name="text" >
+      <string>...</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="images/uman.qrc" >
+       <normaloff>:/control/broom.png</normaloff>:/control/broom.png</iconset>
+     </property>
+     <property name="autoRaise" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QToolButton" name="filterCancelBtn" >
+     <property name="toolTip" >
+      <string>Hide filter area</string>
+     </property>
+     <property name="text" >
+      <string/>
+     </property>
+     <property name="icon" >
+      <iconset resource="images/uman.qrc" >
+       <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
+     </property>
+     <property name="toolButtonStyle" >
+      <enum>Qt::ToolButtonIconOnly</enum>
+     </property>
+     <property name="autoRaise" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="images/uman.qrc" />
+ </resources>
+ <connections/>
+</ui>

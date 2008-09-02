@@ -164,24 +164,17 @@ bool QU::equal(QString token1, QString token2, bool ignoreEmpty) {
 //			if(mp2.at(j).first.isEmpty())
 //				continue; // should not happen...
 
-			if(QString::compare(mp1.at(i).first, mp2.at(j).first) == 0) {
-				qDebug("[fst, fst] mp1: %s mp2: %s", mp1.at(i).first.toAscii().data(), mp2.at(j).first.toAscii().data());
+			if(QString::compare(mp1.at(i).first, mp2.at(j).first) == 0)
 				hits++;
-			} else if(mp2.at(j).second.length() > 1 and mp1.at(i).first == mp2.at(j).second) {
-				qDebug("[fst, snd] mp1: %s mp2: %s", mp1.at(i).first.toAscii().data(), mp2.at(j).second.toAscii().data());
+			else if(mp2.at(j).second.length() > 1 and mp1.at(i).first == mp2.at(j).second)
 				hits++;
-			} else if(mp1.at(i).second.length() > 1 and mp1.at(i).second == mp2.at(j).first) {
-				qDebug("[snd, fst] mp1: %s mp2: %s", mp1.at(i).second.toAscii().data(), mp2.at(j).first.toAscii().data());
+			else if(mp1.at(i).second.length() > 1 and mp1.at(i).second == mp2.at(j).first)
 				hits++;
-			} else if(mp1.at(i).second.length() > 1 and mp2.at(j).second.length() > 1 and mp1.at(i).second == mp2.at(j).second) {
-				qDebug("[snd, snd] mp1: %s mp2: %s", mp1.at(i).second.toAscii().data(), mp2.at(j).second.toAscii().data());
+			else if(mp1.at(i).second.length() > 1 and mp2.at(j).second.length() > 1 and mp1.at(i).second == mp2.at(j).second)
 				hits++;
-			}
 
-			if(hits >= neededHits) {
-				qDebug("END> token1: %s (%d) token2: %s (%d)", token1.toAscii().data(), token1.split(" ").size(), token2.toAscii().data(), token2.split(" ").size());
+			if(hits >= neededHits)
 				return true;
-			}
 		}
 	}
 

@@ -28,6 +28,7 @@
   <qresource prefix="/control" >
     <file>playlist_to.png</file>
     <file>text_edit.png</file>
+    <file>duplicates.png</file>
     <file>tasks_add.png</file>
     <file>filter_log.png</file>
     <file>log.png</file>
@@ -36,6 +37,7 @@
     <file>id3.png</file>
     <file>tree_presets.png</file>
     <file>image_resize.png</file>
+    <file>broom.png</file>
     <file>tasks.png</file>
     <file>eye.png</file>
     <file>auto_save.png</file>

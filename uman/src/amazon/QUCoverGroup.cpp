@@ -195,13 +195,6 @@ void QUCoverGroup::showCovers() {
  */
 QString QUCoverGroup::currentFilePath() const {
 	return list->currentFilePath();
-
-//	QListWidgetItem *currentItem = list->currentItem();
-//
-//	if(!currentItem)
-//		return QString();
-//
-//	return currentItem->data(Qt::UserRole).toString();
 }
 
 /*!
@@ -231,8 +224,6 @@ void QUCoverGroup::copyCoverToSongPath() {
 }
 
 void QUCoverGroup::showStatus(const QString &status) {
-	emit finished(QString("Status change: %1").arg(status), QU::information);
-
 	if(!_item)
 		return;
 

@@ -5,7 +5,8 @@ QT += core \
     xml \
     network
 CONFIG += debug
-HEADERS += metaphone/QUMetaphoneString.h \
+HEADERS += filter/QUFilterArea.h \
+    metaphone/QUMetaphoneString.h \
     amazon/QUCoverItemDelegate.h \
     amazon/QUCoverModel.h \
     amazon/QUAmazonResponse.h \
@@ -62,7 +63,8 @@ HEADERS += metaphone/QUMetaphoneString.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += metaphone/QUMetaphoneString.cpp \
+SOURCES += filter/QUFilterArea.cpp \
+    metaphone/QUMetaphoneString.cpp \
     amazon/QUCoverItemDelegate.cpp \
     amazon/QUCoverModel.cpp \
     amazon/QUAmazonResponse.cpp \
@@ -119,7 +121,8 @@ SOURCES += metaphone/QUMetaphoneString.cpp \
     QUSongFile.cpp \
     QUMainWindow.cpp \
     main.cpp
-FORMS += QUCoverGroup.ui \
+FORMS += QUFilterArea.ui \
+    QUCoverGroup.ui \
     QUAmazonArea.ui \
     QUTaskDialog.ui \
     QUCustomTagsDialog.ui \
@@ -141,7 +144,8 @@ INCLUDEPATH += tasks \
     preview \
     playlist \
     amazon \
-    metaphone
+    metaphone \
+    filter
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib

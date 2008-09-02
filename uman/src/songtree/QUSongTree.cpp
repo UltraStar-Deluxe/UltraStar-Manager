@@ -386,19 +386,6 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
  * Show only songs which seem to be NOT unique. ^_^
  */
 void QUSongTree::filterDuplicates() {
-
-//	QStringList test = QStringList() << "2Raumwohnung" << "U2" << "wir" << "trafen" << "uns" << "in" << "einem" << "garten" << "one";
-//
-//	foreach(QString s, test) {
-//		QUMetaphoneString m(s.toUpper());
-//		QString e1, e2;
-//		m.doDoubleMetaphone(e1, e2);
-//
-//		emit finished(QString("%3: %1, %2").arg(e1).arg(e2).arg(s), QU::information);
-//	}
-//
-//	return;
-
 	this->hideAll();
 
 	QList<QUSongItem*> allItems = _hiddenItems;
@@ -461,6 +448,11 @@ void QUSongTree::filterDuplicates() {
 	}
 
 	emit itemSelectionChanged();
+
+	if(nextID > 0)
+		emit finished(QString(tr("Filter applied. Duplicates for %1 songs found.")).arg(nextID), QU::information);
+	else
+		emit finished(QString(tr("No duplicate songs found.")), QU::information);
 }
 
 bool QUSongTree::dropMimeData (QTreeWidgetItem *parent, int index, const QMimeData *data, Qt::DropAction action) {
@@ -513,8 +505,6 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 		filterMenu->addAction(tr("Unselected Songs"), this, SLOT(hideAllButSelected()));
 		filterMenu->addSeparator();
 		filterMenu->addAction(tr("All"), this, SLOT(hideAll()));
-
-		menu.addAction(tr("Filter Duplicates"), this, SLOT(filterDuplicates()));
 
 		menu.addSeparator();
 		menu.addAction(tr("Show Lyrics..."), this, SLOT(requestLyrics()), QKeySequence::fromString("Ctrl+L"));
