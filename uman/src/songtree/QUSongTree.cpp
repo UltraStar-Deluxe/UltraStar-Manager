@@ -105,7 +105,7 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(VIDEOGAP_COLUMN, QIcon(":/types/videogap.png"));
 	header->setToolTip(VIDEOGAP_COLUMN, tr("Skips the first seconds of the video.<br><br><i>Use negative values here with positive ones in <b>#START</b> to fix a short video file.</i>"));
 
-	header->setText(DUPLICATE_ID_COLUMN, "ID");
+//	header->setText(DUPLICATE_ID_COLUMN, "ID");
 	header->setToolTip(DUPLICATE_ID_COLUMN, tr("Indicate duplicate songs. <b>You should not see me.</b>"));
 
 	int i = 0;
@@ -127,7 +127,7 @@ void QUSongTree::initHorizontalHeader() {
 	this->header()->setSectionHidden(END_COLUMN, true);
 	this->header()->setSectionHidden(VIDEOGAP_COLUMN, true);
 
-//	this->header()->setSectionHidden(DUPLICATE_ID_COLUMN, true);
+	this->header()->setSectionHidden(DUPLICATE_ID_COLUMN, true);
 
 	// load custom setup
 	QSettings settings;
@@ -522,6 +522,7 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 	QMenu presetsMenu(tr("Presets")); presetsMenu.setIcon(QIcon(":/control/tree_presets.png"));
 	presetsMenu.addAction(tr("All"), this, SLOT(showAllColumns()));
 	presetsMenu.addAction(tr("Default"), this, SLOT(showDefaultColumns()));
+	presetsMenu.addAction(tr("Minimum"), this, SLOT(showMinimalColumns()));
 	presetsMenu.addSeparator();
 	presetsMenu.addAction(tr("Spell && File Checking"), this, SLOT(showCheckColumns()));
 	presetsMenu.addAction(tr("Time Comparison"), this, SLOT(showTimeColumns()));
@@ -601,6 +602,16 @@ void QUSongTree::showDefaultColumns() {
 
 	QSettings settings;
 	settings.setValue("songTreeState", QVariant(header()->saveState()));
+}
+
+/*!
+ * Hide all but the folder column.
+ */
+void QUSongTree::showMinimalColumns() {
+	for(int i = 0; i < headerItem()->columnCount(); i++)
+		header()->hideSection(i);
+
+	this->header()->showSection(FOLDER_COLUMN);
 }
 
 void QUSongTree::showTimeColumns() {
