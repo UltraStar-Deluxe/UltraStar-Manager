@@ -387,7 +387,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
  */
 void QUSongTree::filterDuplicates() {
 
-//	QStringList test = QStringList() << "arzte" << "aerzte" << "artze" << "aertze" << "aertzte" << "artzte" << "ärzte";
+//	QStringList test = QStringList() << "2Raumwohnung" << "U2" << "wir" << "trafen" << "uns" << "in" << "einem" << "garten" << "one";
 //
 //	foreach(QString s, test) {
 //		QUMetaphoneString m(s.toUpper());
@@ -396,7 +396,7 @@ void QUSongTree::filterDuplicates() {
 //
 //		emit finished(QString("%3: %1, %2").arg(e1).arg(e2).arg(s), QU::information);
 //	}
-
+//
 //	return;
 
 	this->hideAll();

@@ -87,14 +87,19 @@ QString QU::withoutAnyUmlaut(const QString &text) {
 QString QU::withoutAnyUmlautEx(const QString &text) {
 	QString result = text;
 
-	result.replace("ä", "a", Qt::CaseInsensitive);
-	result.replace("ö", "o", Qt::CaseInsensitive);
-	result.replace("ü", "u", Qt::CaseInsensitive);
-	result.replace("ß", "s", Qt::CaseInsensitive);
+	result.replace("ä", "ae", Qt::CaseInsensitive);
+	result.replace("ö", "oe", Qt::CaseInsensitive);
+	result.replace("ü", "ue", Qt::CaseInsensitive);
+	result.replace("ß", "ss", Qt::CaseInsensitive);
 
 	result.replace("ô", "o", Qt::CaseInsensitive);
 	result.replace("é", "e", Qt::CaseInsensitive);
 	result.replace("è", "e", Qt::CaseInsensitive);
+
+	result.replace("_", " ");
+	result.replace("-", " ");
+	result.replace("~", " ");
+	result.replace("#", " ");
 
 	return result;
 }
@@ -103,33 +108,25 @@ QString QU::withoutAnyUmlautEx(const QString &text) {
  * Checks whether the given tokens could be meant as equal.
  */
 bool QU::equal(QString token1, QString token2, bool ignoreEmpty) {
-	// idea: the | of | to | in | on | and | at ... the | der | die | das | a | an | ein | einer | eine
-	QRegExp rx(" THE | DER | DIE | DAS | A | AN | EIN ");
-	rx.setCaseSensitivity(Qt::CaseInsensitive);
-	rx.setMinimal(true);
-
 	token1 = QU::withoutAnyUmlautEx(token1).toUpper();
 	token2 = QU::withoutAnyUmlautEx(token2).toUpper();
 
-	// replace special characters with whitespaces
-	for(int i = 0; i < token1.length(); i++) if(token1[i].category() != QChar::Letter_Uppercase) token1.remove(i, 1);
-	for(int i = 0; i < token2.length(); i++) if(token2[i].category() != QChar::Letter_Uppercase) token2.remove(i, 1);
+	// remove special characters
+	for(int i = 0; i < token1.length(); i++) if(token1[i] != QChar(' ') and token1[i].category() != QChar::Letter_Uppercase) token1.remove(i, 1);
+	for(int i = 0; i < token2.length(); i++) if(token2[i] != QChar(' ') and token2[i].category() != QChar::Letter_Uppercase) token2.remove(i, 1);
 
 	// replace "lonely, unimportant" words
+	token1.append(' '); token1.prepend(' ');
+	token2.append(' '); token2.prepend(' ');
+	QRegExp rx(" THE | DER | DIE | DAS | A | AN | EIN ");
 	token1.replace(rx, " ");
 	token2.replace(rx, " ");
 
-	token1 = token1.trimmed();
-	token2 = token2.trimmed();
+	token1 = token1.simplified().trimmed();
+	token2 = token2.simplified().trimmed();
 
-	if( ignoreEmpty and (token1.isEmpty() or token2.isEmpty()) )
-		return false;
-
-	/* try to use the classic approach */
-	QString simpleToken1 = token1.simplified().remove(" ");
-	QString simpleToken2 = token2.simplified().remove(" ");
-	if( simpleToken1.contains(simpleToken2, Qt::CaseInsensitive) or simpleToken2.contains(simpleToken1, Qt::CaseInsensitive) )
-		return true;
+	if(token1.isEmpty() or token2.isEmpty())
+		return !ignoreEmpty;
 
 	/* Use MetaPhone */
 
@@ -157,25 +154,34 @@ bool QU::equal(QString token1, QString token2, bool ignoreEmpty) {
 	int neededHits = qMin(mp1.size(), mp2.size());
 	int hits = 0;
 
+
+	qDebug("BEGIN");
 	for(int i = 0; i < mp1.size(); i++) {
-//		if(mp1.at(i).first.isEmpty())
-//			continue; // should not happen...
+		if(mp1.at(i).first.isEmpty())
+			continue; // should not happen...
 
 		for(int j = 0; j < mp2.size(); j++) {
 //			if(mp2.at(j).first.isEmpty())
 //				continue; // should not happen...
 
-			if(mp1.at(i).first == mp2.at(j).first)
+			if(QString::compare(mp1.at(i).first, mp2.at(j).first) == 0) {
+				qDebug("[fst, fst] mp1: %s mp2: %s", mp1.at(i).first.toAscii().data(), mp2.at(j).first.toAscii().data());
 				hits++;
-			else if(!mp2.at(j).second.isEmpty() and mp1.at(i).first == mp2.at(j).second)
+			} else if(mp2.at(j).second.length() > 1 and mp1.at(i).first == mp2.at(j).second) {
+				qDebug("[fst, snd] mp1: %s mp2: %s", mp1.at(i).first.toAscii().data(), mp2.at(j).second.toAscii().data());
 				hits++;
-			else if(!mp1.at(i).second.isEmpty() and mp1.at(i).second == mp2.at(j).first)
+			} else if(mp1.at(i).second.length() > 1 and mp1.at(i).second == mp2.at(j).first) {
+				qDebug("[snd, fst] mp1: %s mp2: %s", mp1.at(i).second.toAscii().data(), mp2.at(j).first.toAscii().data());
 				hits++;
-			else if(!mp1.at(i).second.isEmpty() and !mp2.at(j).second.isEmpty() and mp1.at(i).second == mp2.at(j).second)
+			} else if(mp1.at(i).second.length() > 1 and mp2.at(j).second.length() > 1 and mp1.at(i).second == mp2.at(j).second) {
+				qDebug("[snd, snd] mp1: %s mp2: %s", mp1.at(i).second.toAscii().data(), mp2.at(j).second.toAscii().data());
 				hits++;
+			}
 
-			if(hits >= neededHits)
+			if(hits >= neededHits) {
+				qDebug("END> token1: %s (%d) token2: %s (%d)", token1.toAscii().data(), token1.split(" ").size(), token2.toAscii().data(), token2.split(" ").size());
 				return true;
+			}
 		}
 	}
 
