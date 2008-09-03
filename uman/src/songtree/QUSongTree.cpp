@@ -750,7 +750,53 @@ void QUSongTree::hideAllButSelected() {
  * Request the deletion for all selected songs.
  */
 void QUSongTree::requestDeleteSelectedSongs() {
-	emit finished("QUSongTree::requestDeleteSelectedSongs()", QU::information);
+	QList<QUSongItem*> selectedItems = selectedSongItems();
+
+	if(selectedItems.isEmpty())
+		return;
+
+	// ---------------------------------
+
+	QString infoText = QString(tr("You want to delete the following <b>%1</b> songs:<br>")).arg(selectedItems.size());
+
+	int i = 0;
+	foreach(QUSongItem *songItem, selectedItems) {
+		infoText.append(QString("<br><b>%1 - %2</b>").arg(songItem->song()->artist()).arg(songItem->song()->title()));
+		if(++i >= 5) {
+			infoText.append("<br>...");
+			break;
+		}
+	}
+
+	QUMessageBox::Results result = QUMessageBox::ask(this,
+			tr("Delete Songs"),
+			infoText,
+			":/control/bin.png", tr("Delete these songs."),
+			":/marks/cancel.png", tr("Cancel delete operation."),
+			"", "",
+			20);
+	if(result == QUMessageBox::second)
+		return;
+
+	// ----------------------------------
+
+	QUProgressDialog dlg(tr("Deleting selected songs..."), selectedItems.size(), this, true);
+	dlg.setPixmap(":/control/bin.png");
+	dlg.show();
+
+	clearSelection();
+
+	foreach(QUSongItem *songItem, selectedItems) {
+		dlg.update(songItem->song()->songFileInfo().dir().dirName());
+		if(dlg.cancelled()) break;
+
+		QUSongFile *song = songItem->song();
+		delete takeTopLevelItem(indexOfTopLevelItem(songItem));
+
+		emit deleteSongRequested(song);
+	}
+
+	emit itemSelectionChanged();
 }
 
 bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
@@ -774,7 +820,7 @@ bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
 		dlg.update(url.toLocalFile());
 		if(dlg.cancelled()) break;
 
-		if(!QFileInfo(url.toLocalFile()).isDir()) {
+		if(!QFileInfo(url.toLocalFile()).isDir()) { // do not copy directories
 			item->song()->useExternalFile(url.toLocalFile());
 			dataUsed = true;
 		}

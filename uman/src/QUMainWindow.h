@@ -39,7 +39,7 @@ private slots:
 	void initMonty();
 
 	void appendSong(QUSongFile *song);
-	void deleteSongs(QList<QUSongFile*> songs);
+	void deleteSong(QUSongFile *song);
 
 	void refreshAllSongs(bool force = false);
 	void createSongFiles();

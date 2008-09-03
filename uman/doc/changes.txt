@@ -170,6 +170,7 @@ TODO (for 1.7.0)
 * find & replace in song tags
 * PERF: how about processing items backwards and removing them from the tree?
 * custom rename (context menu, 2nd click, ...)
+* fix messagebox height if info label does not fill all white space
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title

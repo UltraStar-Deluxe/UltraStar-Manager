@@ -282,7 +282,7 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(showLyricsRequested(QUSongFile*)), this, SLOT(showLyrics(QUSongFile*)));
 	connect(songTree, SIGNAL(coversFromAmazonRequested(QList<QUSongItem*>)), this, SLOT(getCoversFromAmazon(QList<QUSongItem*>)));
 
-	connect(songTree, SIGNAL(deleteSongsRequested(QList<QUSongFile*>)), this, SLOT(deleteSongs(QList<QUSongFile*>)));
+	connect(songTree, SIGNAL(deleteSongRequested(QUSongFile*)), this, SLOT(deleteSong(QUSongFile*)));
 
 	refreshAllSongs();
 }
@@ -353,11 +353,11 @@ void QUMainWindow::appendSong(QUSongFile *song) {
 }
 
 /*!
- * Deletes the given songs (the whole directory). Song items have to be removed
+ * Deletes the given song (the whole directory). Song item has to be removed
  * from song tree before you call this function!
  */
-void QUMainWindow::deleteSongs(QList<QUSongFile*> songs) {
-	addLogMsg("QUMainWindow::deleteSongs(QList<QUSongFile*> songs)", QU::information);
+void QUMainWindow::deleteSong(QUSongFile *song) {
+
 }
 
 /*!

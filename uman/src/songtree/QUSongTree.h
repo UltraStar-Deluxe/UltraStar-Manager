@@ -52,7 +52,7 @@ signals:
 	void songToPlaylistRequested(QUSongFile *song);
 	void showLyricsRequested(QUSongFile *song);
 	void coversFromAmazonRequested(QList<QUSongItem*> items);
-	void deleteSongsRequested(QList<QUSongFile*> songs);
+	void deleteSongRequested(QUSongFile *song);
 
 private slots:
 	void deleteCurrentItem();
