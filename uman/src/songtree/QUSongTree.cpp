@@ -489,13 +489,13 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 
 	if(item && !item->isToplevel()) {
 		// file menu
-		menu.addAction(tr("Open..."), this, SLOT(openCurrentFile()), Qt::Key_Return);
+		menu.addAction(tr("Open"), this, SLOT(openCurrentFile()));
 		menu.addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), Qt::Key_Delete);
 	} else {
 		// song/folder menu
-		menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()), QKeySequence::fromString("F5"));
-		menu.addAction(QIcon(":/control/save.png"), tr("Save"), this, SLOT(saveSelectedSongs()), QKeySequence::fromString("Ctrl+S"));
-		menu.addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(requestDeleteSelectedSongs()));
+		menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),       Qt::Key_F5);
+		menu.addAction(QIcon(":/control/save.png"),    tr("Save"),    this, SLOT(saveSelectedSongs()),          Qt::CTRL + Qt::Key_S);
+		menu.addAction(QIcon(":/control/bin.png"),     tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()), Qt::SHIFT + Qt::Key_Delete);
 
 		menu.addSeparator();
 		menu.addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
@@ -510,7 +510,7 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 		filterMenu->addAction(tr("All"), this, SLOT(hideAll()));
 
 		menu.addSeparator();
-		menu.addAction(tr("Show Lyrics..."), this, SLOT(requestLyrics()), QKeySequence::fromString("Ctrl+L"));
+		menu.addAction(tr("Show Lyrics..."), this, SLOT(requestLyrics()), Qt::CTRL + Qt::Key_L);
 	}
 
 	menu.exec(QCursor::pos());

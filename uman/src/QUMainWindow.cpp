@@ -184,27 +184,29 @@ void QUMainWindow::initWindow() {
 
 void QUMainWindow::initMenu() {
 	// songs menu
-	connect(actionNewReport, SIGNAL(triggered()), this, SLOT(reportCreate()));
-	connect(actionSaveSelected, SIGNAL(triggered()), songTree, SLOT(saveSelectedSongs()));
-	connect(actionSaveAll, SIGNAL(triggered()), songTree, SLOT(saveUnsavedChanges()));
-	connect(actionDeleteSelected, SIGNAL(triggered()), songTree, SLOT(requestDeleteSelectedSongs()));
-	connect(actionExpandAll, SIGNAL(triggered()), songTree, SLOT(expandAll()));
-	connect(actionExpandAll, SIGNAL(triggered()), songTree, SLOT(resizeToContents()));
-	connect(actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(collapseAll()));
-	connect(actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(resizeToContents()));
-	connect(actionRefresh, SIGNAL(triggered()), this, SLOT(refreshAllSongs()));
+	connect(      actionNewReport, SIGNAL(triggered()), this, SLOT(reportCreate()));
+	connect(        actionRefresh, SIGNAL(triggered()), this, SLOT(refreshAllSongs()));
+
+	connect(   actionSaveSelected, SIGNAL(triggered()), songTree, SLOT(saveSelectedSongs()));
+	connect(        actionSaveAll, SIGNAL(triggered()), songTree, SLOT(saveUnsavedChanges()));
+	connect( actionDeleteSelected, SIGNAL(triggered()), songTree, SLOT(requestDeleteSelectedSongs()));
+	connect(      actionExpandAll, SIGNAL(triggered()), songTree, SLOT(expandAll()));
+	connect(      actionExpandAll, SIGNAL(triggered()), songTree, SLOT(resizeToContents()));
+	connect(    actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(collapseAll()));
+	connect(    actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(resizeToContents()));
 	connect(actionRefreshSelected, SIGNAL(triggered()), songTree, SLOT(refreshSelectedItems()));
 
-	connect(actionSendToPlaylist, SIGNAL(triggered()), songTree, SLOT(sendSelectedSongsToPlaylist()));
-	connect(actionShowLyrics, SIGNAL(triggered()), songTree, SLOT(requestLyrics()));
+	connect( actionSendToPlaylist, SIGNAL(triggered()), songTree, SLOT(sendSelectedSongsToPlaylist()));
+	connect(     actionShowLyrics, SIGNAL(triggered()), songTree, SLOT(requestLyrics()));
 
-	actionNewReport->setShortcut(QKeySequence::fromString("F2"));
-	actionRefreshSelected->setShortcut(QKeySequence::fromString("F5"));
-	actionRefresh->setShortcut(QKeySequence::fromString("Shift+F5"));
-	actionSaveSelected->setShortcut(QKeySequence::fromString("Ctrl+S"));
-	actionSaveAll->setShortcut(QKeySequence::fromString("Ctrl+Shift+S"));
-	actionSendToPlaylist->setShortcut(QKeySequence::fromString("Ctrl+P"));
-	actionShowLyrics->setShortcut(QKeySequence::fromString("Ctrl+L"));
+	      actionNewReport->setShortcut(Qt::Key_F2);
+	actionRefreshSelected->setShortcut(Qt::Key_F5);
+	        actionRefresh->setShortcut(Qt::SHIFT + Qt::Key_F5);
+	   actionSaveSelected->setShortcut(Qt::CTRL  + Qt::Key_S);
+	        actionSaveAll->setShortcut(Qt::CTRL  + Qt::SHIFT + Qt::Key_S);
+	 actionSendToPlaylist->setShortcut(Qt::CTRL  + Qt::Key_P);
+	     actionShowLyrics->setShortcut(Qt::CTRL  + Qt::Key_L);
+	 actionDeleteSelected->setShortcut(Qt::SHIFT + Qt::Key_Delete);
 
 	// view menu
 	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
@@ -238,7 +240,7 @@ void QUMainWindow::initMenu() {
 	showToolbarMenu->addAction(this->viewBar->toggleViewAction());
 	showToolbarMenu->addAction(this->optionsBar->toggleViewAction());
 
-	actionFilter->setShortcut(QKeySequence::fromString("Ctrl+F"));
+	actionFilter->setShortcut(Qt::CTRL + Qt::Key_F);
 
 	// options menu
 	connect(actionAutoSave, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
@@ -249,7 +251,7 @@ void QUMainWindow::initMenu() {
 	connect(actionLangEnglish, SIGNAL(triggered()), this, SLOT(enableEnglish()));
 	connect(actionLangGerman, SIGNAL(triggered()), this, SLOT(enableGerman()));
 
-	actionChangeSongDirectory->setShortcut(QKeySequence::fromString("F12"));
+	actionChangeSongDirectory->setShortcut(Qt::Key_F12);
 
 	// help menu
 	connect(actionShowMonty, SIGNAL(triggered()), helpFrame, SLOT(show()));

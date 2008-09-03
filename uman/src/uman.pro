@@ -5,7 +5,8 @@ QT += core \
     xml \
     network
 CONFIG += debug
-HEADERS += filter/QUFilterArea.h \
+HEADERS += tasks/tasks.h \
+    filter/QUFilterArea.h \
     metaphone/QUMetaphoneString.h \
     amazon/QUCoverItemDelegate.h \
     amazon/QUCoverModel.h \
@@ -161,7 +162,9 @@ QMAKE_EXTRA_TARGETS += revtarget
 PRE_TARGETDEPS += version.h
 revtarget.target = version.h
 revtarget.commands = @echo \
-    "const char *revision = \"r$(shell svnversion .)\";" > $$revtarget.target
+    "const char *revision = \"r$(shell svnversion .)\";" > $$revtarget.target \
+    && \
+    python getTaskText.py
 revtarget.depends = $$SOURCES \
     $$HEADERS \
     $$FORMS

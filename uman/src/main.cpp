@@ -12,7 +12,7 @@
 #include <QString>
 
 void initApplication();
-void initLanguage(QApplication&, QTranslator&);
+void initLanguage(QApplication&, QTranslator&, QSplashScreen&);
 
 int main(int argc, char *argv[]) {
 	initApplication();
@@ -21,10 +21,10 @@ int main(int argc, char *argv[]) {
 	QTranslator  tr;
 
 	QSplashScreen splash(QPixmap(":/icons/splash.png"));
-	splash.showMessage(QString(QObject::tr("Version %1.%2.%3 is loading...")).arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION), Qt::AlignBottom | Qt::AlignRight, Qt::white);
+//	splash.showMessage(QString(QObject::tr("Version %1.%2.%3 is loading...")).arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION), Qt::AlignBottom | Qt::AlignRight, Qt::white);
 	splash.show();
 
-	initLanguage(app, tr);
+	initLanguage(app, tr, splash);
 
     QUMainWindow mainWindow;
     app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
@@ -53,7 +53,7 @@ void initApplication() {
  * have to restart this application if you want to change its language. Uses the system
  * language if no registry setting is found.
  */
-void initLanguage(QApplication &app, QTranslator &t) {
+void initLanguage(QApplication &app, QTranslator &t, QSplashScreen &s) {
 	QSettings settings;
 	bool settingFound = true;
 	QString lang = settings.value("language").toString();
@@ -71,6 +71,8 @@ void initLanguage(QApplication &app, QTranslator &t) {
 			monty->initMessages(":/txt/hints_de");
 		}
 	}
+
+	s.showMessage(QString(QObject::tr("Version %1.%2.%3 is loading...")).arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION), Qt::AlignBottom | Qt::AlignRight, Qt::white);
 
 	// message needs to be here because it can be translated only after installing
 	// the translator

@@ -37,10 +37,6 @@ QUMessageBox::Results QUMessageBox::ask(
 {
 	QUMessageBox *dlg = new QUMessageBox(parent);
 
-//	if (your_height < minimumSizeHint().heigth() || your_height > maximumSizeHint().heigth()) {
-//		your_height = ;
-//	}
-
 	dlg->setWindowTitle(title);
 	dlg->message->setText(message);
 
