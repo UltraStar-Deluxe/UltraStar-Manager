@@ -34,9 +34,15 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 	general->setFirstColumnSpanned(true);
 
 	general->insertChild(SONG_COUNT_CHILD_INDEX, this->createInfoItem(tr("Songs"), N_A));
-	general->insertChild(SELECTED_SONG_COUNT_CHILD_INDEX, this->createInfoItem(tr("Selected Songs"), N_A));
 	general->insertChild(HIDDEN_SONG_COUNT_CHILD_INDEX, this->createInfoItem(tr("Hidden Songs"), N_A));
 	general->insertChild(VISIBLE_SONG_COUNT_CHILD_INDEX, this->createInfoItem(tr("Visible Songs"), N_A));
+
+	generalSelected = this->createInfoItem(tr("Selected Songs"), N_A);
+	general->insertChild(SELECTED_SONG_COUNT_CHILD_INDEX, generalSelected);
+
+	generalSelected->insertChild(SELECTED_SONG_LENGTH_INDEX, this->createInfoItem(tr("Song Length"), N_A));
+	generalSelected->insertChild(SELECTED_AUDIO_LENGTH_INDEX, this->createInfoItem(tr("Audio Length"), N_A));
+	generalSelected->insertChild(SELECTED_TOTAL_LENGTH_INDEX, this->createInfoItem(tr("Total Length"), N_A));
 
 	general->setExpanded(true);
 
@@ -124,6 +130,18 @@ void QUPreviewTree::setVisibleSongCount(int count) {
 
 	if(child)
 		child->setText(1, QVariant(count).toString());
+}
+
+void QUPreviewTree::setSelectedSongLength(int seconds) {
+	showSelectedLength( generalSelected->child(SELECTED_SONG_LENGTH_INDEX), seconds );
+}
+
+void QUPreviewTree::setSelectedAudioLength(int seconds) {
+	showSelectedLength( generalSelected->child(SELECTED_AUDIO_LENGTH_INDEX), seconds );
+}
+
+void QUPreviewTree::setSelectedTotalLength(int seconds) {
+	showSelectedLength( generalSelected->child(SELECTED_TOTAL_LENGTH_INDEX), seconds );
 }
 
 /*!
@@ -276,4 +294,11 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 	//	extra->setText(0, tr("Video Properties"));
 	//	extra->setHidden(false);
 
+}
+
+void QUPreviewTree::showSelectedLength(QTreeWidgetItem *child, int seconds) {
+	if(!child) return;
+
+	generalSelected->setExpanded(seconds != -1);
+	child->setText(1, seconds == -1 ? N_A : QString("%1:%2:%3").arg(seconds / 3600, 2, 10, QChar('0')).arg((seconds % 3600) / 60, 2, 10, QChar('0')).arg(seconds % 60, 2, 10, QChar('0')));
 }

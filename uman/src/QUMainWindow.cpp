@@ -459,6 +459,24 @@ void QUMainWindow::updatePreviewTree() {
 	previewTree->setVisibleSongCount(songTree->topLevelItemCount());
 	previewTree->setHiddenSongCount(songTree->hiddenItemsCount());
 
+	if(calculateTimeChk->checkState() == Qt::Checked) {
+		int totalSongTime = 0;
+		int totalAudioTime = 0;
+		int totalTotalTime = 0;
+		foreach(QUSongFile *song, songTree->selectedSongs()) {
+			totalSongTime += song->length();
+			totalAudioTime += song->lengthMp3();
+			totalTotalTime += song->lengthEffective();
+		}
+		previewTree->setSelectedSongLength(totalSongTime);
+		previewTree->setSelectedAudioLength(totalAudioTime);
+		previewTree->setSelectedTotalLength(totalTotalTime);
+	} else {
+		previewTree->setSelectedSongLength();
+		previewTree->setSelectedAudioLength();
+		previewTree->setSelectedTotalLength();
+	}
+
 	QUSongItem *item = dynamic_cast<QUSongItem*>(songTree->currentItem());
 
 	if(item) {

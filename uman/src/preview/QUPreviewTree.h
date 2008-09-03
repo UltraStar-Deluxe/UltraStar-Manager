@@ -1,10 +1,14 @@
 #ifndef QUPREVIEWTREE_H_
 #define QUPREVIEWTREE_H_
 
-#define SONG_COUNT_CHILD_INDEX          0
-#define SELECTED_SONG_COUNT_CHILD_INDEX 1
-#define HIDDEN_SONG_COUNT_CHILD_INDEX   2
-#define VISIBLE_SONG_COUNT_CHILD_INDEX  3
+#define SONG_COUNT_CHILD_INDEX           0
+#define HIDDEN_SONG_COUNT_CHILD_INDEX    1
+#define VISIBLE_SONG_COUNT_CHILD_INDEX   2
+#define SELECTED_SONG_COUNT_CHILD_INDEX  3
+
+#define SELECTED_SONG_LENGTH_INDEX  0
+#define SELECTED_AUDIO_LENGTH_INDEX 1
+#define SELECTED_TOTAL_LENGTH_INDEX 2
 
 #include "QU.h"
 
@@ -23,10 +27,16 @@ public slots:
 	void setSelectedSongCount(int count);
 	void setHiddenSongCount(int count);
 	void setVisibleSongCount(int count);
+
+	void setSelectedSongLength(int seconds = -1);
+	void setSelectedAudioLength(int seconds = -1);
+	void setSelectedTotalLength(int seconds = -1);
+
 	void showFileInformation(const QFileInfo &fi);
 
 private:
 	QTreeWidgetItem *general;
+	QTreeWidgetItem *generalSelected;
 	QTreeWidgetItem *types;
 	QTreeWidgetItem *current;
 	QTreeWidgetItem *extra;
@@ -36,6 +46,8 @@ private:
 	void showAudioFileInformation(const QFileInfo &fi);
 	void showPictureFileInformation(const QFileInfo &fi);
 	void showVideoFileInformation(const QFileInfo &fi);
+
+	void showSelectedLength(QTreeWidgetItem *child, int seconds);
 };
 
 #endif /* QUPREVIEWTREE_H_ */

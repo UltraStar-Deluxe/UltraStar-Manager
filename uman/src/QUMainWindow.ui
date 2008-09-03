@@ -505,7 +505,7 @@
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>142</height>
+           <height>138</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -586,7 +586,7 @@
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>166</height>
+           <height>160</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -789,7 +789,7 @@ Tasks</string>
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>123</height>
+           <height>138</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout" >
@@ -806,6 +806,13 @@ Tasks</string>
               <string>1</string>
              </property>
             </column>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="calculateTimeChk" >
+            <property name="text" >
+             <string>Show selected lengths</string>
+            </property>
            </widget>
           </item>
          </layout>
@@ -860,7 +867,7 @@ Tasks</string>
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>148</height>
+           <height>143</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >

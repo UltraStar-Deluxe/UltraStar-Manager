@@ -126,7 +126,7 @@ public slots:
 	bool hasVideo() const;
 	bool isSongChecked() const; // for [SC]
 
-	int length() const;
+	int length();
 	int lengthMp3() const;
 	int lengthEffective() const;
 
@@ -189,6 +189,8 @@ private:
 
 	QStringList _foundUnsupportedTags;
 	bool _hasUnsavedChanges;
+
+	int _songLength; // cached song length, calculated from lyrics + gap, -1 == not calculated
 
 	bool updateCache();
 	bool rename(QDir dir, const QString &oldName, const QString &newName);

@@ -24,7 +24,11 @@
  *
  * \sa allowedSongFiles()
  */
-QUSongFile::QUSongFile(const QString &filePath, QObject *parent): QObject(parent), _hasUnsavedChanges(false) {
+QUSongFile::QUSongFile(const QString &filePath, QObject *parent):
+	QObject(parent),
+	_hasUnsavedChanges(false),
+	_songLength(-1)
+{
 	this->setFile(filePath);
 }
 
@@ -107,6 +111,7 @@ bool QUSongFile::updateCache() {
 	_lyrics.clear();
 	_info.clear();
 	_foundUnsupportedTags.clear();
+	_songLength = -1;
 
 	/*
 	 * Read the header and write all tags into memory. The headers end is assumed
@@ -156,6 +161,7 @@ bool QUSongFile::updateCache() {
 		_footer << line;
 
 	_file.close();
+
 	return true;
 }
 
@@ -290,14 +296,21 @@ bool QUSongFile::isSongChecked() const {
 /*!
  * \returns the length of this song accoring to BPM and length of lyrics, in seconds
  */
-int QUSongFile::length() const {
-	if(_lyrics.isEmpty())
+int QUSongFile::length() {
+	if(_songLength > -1)
+		return _songLength; // use cache
+
+	if(_lyrics.isEmpty()) {
+		_songLength = 0;
 		return 0;
+	}
 
 	double bpm = QVariant(this->bpm().replace(",", ".")).toDouble();
 
-	if(bpm == 0.0)
+	if(bpm == 0.0) {
+		_songLength = 0;
 		return 0;
+	}
 
 	int beats = 0;
 	if(QString::compare(this->relative(), "yes", Qt::CaseInsensitive) == 0) {
@@ -310,7 +323,8 @@ int QUSongFile::length() const {
 
 	double gap = QVariant(this->gap()).toDouble() / 1000;
 
-	return (int)((beats / (bpm * 4)) * 60 + gap); // result in seconds
+	_songLength = qMax(0, (int)((beats / (bpm * 4)) * 60 + gap)); // result in seconds
+	return _songLength;
 }
 
 /*!

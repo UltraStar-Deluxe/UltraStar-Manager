@@ -91,6 +91,7 @@ NEW FEATURES
 * filter duplicate songs
 * new task: setting #end to song length
 * new task: removing end tag
+* show lengths of selected songs in preview tree
 
 BUG FIXES
 * minor change in object renaming
@@ -113,6 +114,10 @@ BUG FIXES
   
 KNOWN BUGS (to fix)
 * you cannot sort after a custom tag column in the report
+* Uninstaller does not delete
+  > "non-standard" tasks
+  > log files
+  > cached amazon cover downloads
 
 TODO (for 1.7.0)
 * note somewhere the origin of the icons/graphics
