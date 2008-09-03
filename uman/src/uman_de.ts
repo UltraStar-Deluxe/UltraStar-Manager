@@ -5,8 +5,168 @@
     <name></name>
     <message>
         <location filename="tasks/tasks.h" line="2"/>
-        <source>This is just a test.</source>
-        <translation type="unfinished"></translation>
+        <source>Change path to &quot;Artist - Title&quot; (default)</source>
+        <translation type="obsolete">Kopiere Song nach &quot;Interpret - Titel&quot; (standard)</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="3"/>
+        <source>All songs will be in the UltraStar song folder with a custom subdirectory for each one.</source>
+        <translation type="obsolete">Alle Songs landen im UltraStar-Songordner und erhalten ein eigenes Verzeichnis.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="4"/>
+        <source>Change path to &quot;Genre/Artist - Title&quot;</source>
+        <translation type="obsolete">Kopiere Song nach &quot;Genre/Interpret - Titel&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="5"/>
+        <source>Songs will be organized in subdirectories by their genres.</source>
+        <translation type="obsolete">Songs werden in Unterverzeichnissen nach ihren Genres organisiert.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="6"/>
+        <source>Change path to &quot;Edition/Artist - Title&quot;</source>
+        <translation type="obsolete">Kopiere Song nach &quot;Edition/Interpret - Titel&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="7"/>
+        <source>Songs will be organized in subdirectories by their edition.</source>
+        <translation type="obsolete">Songs werden in Unterverzeichnissen nach ihren Editionen organisiert.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="8"/>
+        <source>Change path to &quot;Artist/Artist - Title&quot;</source>
+        <translation type="obsolete">Kopiere Song nach &quot;Artist/Interpret - Titel&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="9"/>
+        <source>Songs will be organized in subdirectories by their artist.</source>
+        <translation type="obsolete">Songs werden in Unterverzeichnissen nach ihren Interpreten organisiert.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="10"/>
+        <source>Change path to &quot;Language/Artist - Title&quot;</source>
+        <translation type="obsolete">Kopiere Song nach &quot;Sprache/Interpret - Titel&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="11"/>
+        <source>Songs will be organized in subdirectories by their language.</source>
+        <translation type="obsolete">Songs werden in Unterverzeichnissen nach ihren Sprachen organisiert.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="12"/>
+        <source>Change path to &quot;Artist/Album/Artist - Title&quot;</source>
+        <translation type="obsolete">Kopiere Song nach &quot;Interpret/Album/Interpret - Titel&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="13"/>
+        <source>Songs will be organized in subdirectories by their artist and album.&lt;br&gt;&lt;b&gt;You need the custom tag #ALBUM for this task.&lt;/b&gt;</source>
+        <translation type="obsolete">Songs werden in Unterverzeichnissen nach ihren Interpreten und Alben organisiert.&lt;br&gt;&lt;b&gt;Der benutzerdefinierte Tag #ALBUM wird benötigt.&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="14"/>
+        <source>Rename directory to &quot;Artist - Title&quot;</source>
+        <translation type="obsolete">Benenne Ordner um nach &quot;Interpret - Titel&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="15"/>
+        <source>Rename directory to &quot;Artist - Title [VIDEO] [SC]&quot; if checked or video present. Keep other folder tags.</source>
+        <translation type="obsolete">Benenne Ordner um nach &quot;Interpret - Titel [VIDEO] [SC]&quot; sofern erforderlich. Behalte andere Ordner-Tags bei.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="16"/>
+        <source>Looks for &lt;b&gt;[SC]&lt;/b&gt; in the &lt;b&gt;#EDITION&lt;/b&gt; tag to find out whether it is checked or not.&lt;br&gt;&lt;br&gt;Other folder tags like &lt;b&gt;[KARAOKE]&lt;/b&gt; will be appended to the end if present.</source>
+        <translation type="obsolete">Sucht nach &lt;b&gt;[SC]&lt;/b&gt; im &lt;b&gt;#EDITION&lt;/b&gt;-Tag, um herauszufinden, ob ein Song &quot;checked&quot; ist oder nicht.&lt;br&gt;&lt;br&gt;Andere Ordner-Tags, wie &lt;b&gt;[KARAOKE]&lt;/b&gt;, bleiben erhalten und werden an den Ordnernamen angehangen.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="17"/>
+        <source>Rename songtext file to &quot;Artist - Title.txt&quot;</source>
+        <translation type="obsolete">Benenne Song-Datei um nach &quot;Interpret - Titel.txt&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="18"/>
+        <source>Rename audio file to &quot;Artist - Title.*&quot;</source>
+        <translation type="obsolete">Benenne Audio-Datei um nach &quot;Interpret - Titel.*&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="19"/>
+        <source>Rename cover to &quot;Artist - Title [CO].*&quot;</source>
+        <translation type="obsolete">Benenne Cover um nach &quot;Interpret - Titel [CO].*&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="20"/>
+        <source>Rename the cover file to a proper schema.&lt;br&gt;File endings will be preserved.</source>
+        <translation type="obsolete">Benenne die Bilddatei für das Cover nach einem bestimmten Schema um.&lt;br&gt;Dateiendungen werden beibehalten.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="21"/>
+        <source>Rename background to &quot;Artist - Title [BG].*&quot;</source>
+        <translation type="obsolete">Benenne Hintergrund um nach &quot;Interpret - Titel [BG].*&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="22"/>
+        <source>Rename video to &quot;Artist - Title.*&quot;</source>
+        <translation type="obsolete">Benenne Video um nach &quot;Interpret - Titel.*&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="23"/>
+        <source>Rename video to &quot;Artist - Title [VD#*].*&quot; consider VIDEOGAP</source>
+        <translation type="obsolete">Benenne Video um nach &quot;Interpret - Titel [VD#*].*&quot;, beachte VIDEOGAP</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="24"/>
+        <source>Uses &lt;b&gt;#VIDEOGAP:0&lt;/b&gt; if tag not present.</source>
+        <translation type="obsolete">Wählt &lt;b&gt;#VIDEOGAP:0&lt;/b&gt; wenn dieser Tag fehlt.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="25"/>
+        <source>Change #ARTIST via ID3 tag from audio file.</source>
+        <translation type="obsolete">Ändere #ARTIST mittels ID3-TAg der Audio-Datei.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="26"/>
+        <source>Change #TITLE via ID3 tag from audio file.</source>
+        <translation type="obsolete">Ändere #TITLE mittels ID3-TAg der Audio-Datei.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="27"/>
+        <source>Change #TITLE via ID3 tag from audio file. Append &quot;[VIDEO]&quot; if video present.</source>
+        <translation type="obsolete">Ändere #TITLE mittels ID3-Tag der Audio-Datei. Füge &quot;[VIDEO]&quot; an, wenn ein Video existiert.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="28"/>
+        <source>Change #TITLE. Append &quot;[VIDEO]&quot; if video present.</source>
+        <translation type="obsolete">Ändere #TITLE. Füge &quot;[VIDEO]&quot; an, wenn ein Video existiert.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="31"/>
+        <source>Do not use ID3 tag information.</source>
+        <translation type="obsolete">Keine ID3-Tag-Infos benutzen.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="30"/>
+        <source>Change #TITLE. Remove [...]-Tags.</source>
+        <translation type="obsolete">Ändere #TITLE. Entferne [...]-Tags.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="32"/>
+        <source>Change #GENRE via ID3 tag.</source>
+        <translation type="obsolete">Ändere #GENRE mittels ID3-Tag.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="33"/>
+        <source>Change #YEAR via ID3 tag.</source>
+        <translation type="obsolete">Ändere #YEAR mittels ID3-Tag.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="34"/>
+        <source>Change #ALBUM via ID3 tag</source>
+        <translation type="obsolete">Ändere #ALBUM mittels ID3-Tag</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="35"/>
+        <source>You need the custom tag #ALBUM for this task.</source>
+        <translation type="obsolete">Der benutzerdefinierte Tag #ALBUM ist für diesen Task erforderlich.</translation>
     </message>
 </context>
 <context>
@@ -44,22 +204,22 @@
         <translation>Hallo! Ich bin Monty das Mammut. Ich werde dir von Zeit zu Zeit Tipps geben. Drück&apos; einfach den Knopf unten und ich werde vorerst verschwinden.&lt;br&gt;&lt;br&gt;Du hast da eine nette Sammlung von &lt;b&gt;%1 Songs&lt;/b&gt;. Hast du auch alle gut verwaltet?</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="79"/>
+        <location filename="main.cpp" line="80"/>
         <source>Init Language</source>
         <translation>Sprache initialisieren</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="82"/>
+        <location filename="main.cpp" line="83"/>
         <source>There was no configuration setting about your language.Your &lt;b&gt;system language&lt;/b&gt; will be used if possible.&lt;br&gt;&lt;br&gt;See &lt;b&gt;Options &gt; Language&lt;/b&gt; to change this.</source>
         <translation>Es wurde keine Einstellung bezüglich deiner Sprache gefunden. Daher wird versucht, deine &lt;b&gt;Systemsprache&lt;/b&gt; zu benutzen.&lt;br&gt;&lt;br&gt;Dies kann unter &lt;b&gt;Einstellungen &gt; Sprache&lt;/b&gt; geändert werden.</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="83"/>
+        <location filename="main.cpp" line="84"/>
         <source>Continue.</source>
         <translation>Fortsetzen.</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="24"/>
+        <location filename="main.cpp" line="74"/>
         <source>Version %1.%2.%3 is loading...</source>
         <translation>Version %1.%2.%3 lädt...</translation>
     </message>
@@ -79,6 +239,171 @@
         <location filename="songtree/QUSongItem.cpp" line="375"/>
         <source>File not found: &quot;%1&quot;</source>
         <translation>Datei nicht gefunden: &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="2"/>
+        <source>Change path to &quot;Artist - Title&quot; (default)</source>
+        <translation>Kopiere Song nach &quot;Interpret - Titel&quot; (standard)</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="3"/>
+        <source>All songs will be in the UltraStar song folder with a custom subdirectory for each one.</source>
+        <translation>Alle Songs landen im UltraStar-Songordner und erhalten ein eigenes Verzeichnis.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="4"/>
+        <source>Change path to &quot;Genre/Artist - Title&quot;</source>
+        <translation>Kopiere Song nach &quot;Genre/Interpret - Titel&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="5"/>
+        <source>Songs will be organized in subdirectories by their genres.</source>
+        <translation>Songs werden in Unterverzeichnissen nach ihren Genres organisiert.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="6"/>
+        <source>Change path to &quot;Edition/Artist - Title&quot;</source>
+        <translation>Kopiere Song nach &quot;Edition/Interpret - Titel&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="7"/>
+        <source>Songs will be organized in subdirectories by their edition.</source>
+        <translation>Songs werden in Unterverzeichnissen nach ihren Editionen organisiert.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="8"/>
+        <source>Change path to &quot;Artist/Artist - Title&quot;</source>
+        <translation>Kopiere Song nach &quot;Artist/Interpret - Titel&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="9"/>
+        <source>Songs will be organized in subdirectories by their artist.</source>
+        <translation>Songs werden in Unterverzeichnissen nach ihren Interpreten organisiert.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="10"/>
+        <source>Change path to &quot;Language/Artist - Title&quot;</source>
+        <translation>Kopiere Song nach &quot;Sprache/Interpret - Titel&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="11"/>
+        <source>Songs will be organized in subdirectories by their language.</source>
+        <translation>Songs werden in Unterverzeichnissen nach ihren Sprachen organisiert.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="12"/>
+        <source>Change path to &quot;Artist/Album/Artist - Title&quot;</source>
+        <translation>Kopiere Song nach &quot;Interpret/Album/Interpret - Titel&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="13"/>
+        <source>Songs will be organized in subdirectories by their artist and album.&lt;br&gt;&lt;b&gt;You need the custom tag #ALBUM for this task.&lt;/b&gt;</source>
+        <translation>Songs werden in Unterverzeichnissen nach ihren Interpreten und Alben organisiert.&lt;br&gt;&lt;b&gt;Der benutzerdefinierte Tag #ALBUM wird benötigt.&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="14"/>
+        <source>Rename directory to &quot;Artist - Title&quot;</source>
+        <translation>Benenne Ordner um nach &quot;Interpret - Titel&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="15"/>
+        <source>Rename directory to &quot;Artist - Title [VIDEO] [SC]&quot; if checked or video present. Keep other folder tags.</source>
+        <translation>Benenne Ordner um nach &quot;Interpret - Titel [VIDEO] [SC]&quot; sofern erforderlich. Behalte andere Ordner-Tags bei.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="16"/>
+        <source>Looks for &lt;b&gt;[SC]&lt;/b&gt; in the &lt;b&gt;#EDITION&lt;/b&gt; tag to find out whether it is checked or not.&lt;br&gt;&lt;br&gt;Other folder tags like &lt;b&gt;[KARAOKE]&lt;/b&gt; will be appended to the end if present.</source>
+        <translation>Sucht nach &lt;b&gt;[SC]&lt;/b&gt; im &lt;b&gt;#EDITION&lt;/b&gt;-Tag, um herauszufinden, ob ein Song &quot;checked&quot; ist oder nicht.&lt;br&gt;&lt;br&gt;Andere Ordner-Tags, wie &lt;b&gt;[KARAOKE]&lt;/b&gt;, bleiben erhalten und werden an den Ordnernamen angehangen.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="17"/>
+        <source>Rename songtext file to &quot;Artist - Title.txt&quot;</source>
+        <translation>Benenne Song-Datei um nach &quot;Interpret - Titel.txt&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="18"/>
+        <source>Rename audio file to &quot;Artist - Title.*&quot;</source>
+        <translation>Benenne Audio-Datei um nach &quot;Interpret - Titel.*&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="19"/>
+        <source>Rename cover to &quot;Artist - Title [CO].*&quot;</source>
+        <translation>Benenne Cover um nach &quot;Interpret - Titel [CO].*&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="20"/>
+        <source>Rename the cover file to a proper schema.&lt;br&gt;File endings will be preserved.</source>
+        <translation>Benenne die Bilddatei für das Cover nach einem bestimmten Schema um.&lt;br&gt;Dateiendungen werden beibehalten.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="21"/>
+        <source>Rename background to &quot;Artist - Title [BG].*&quot;</source>
+        <translation>Benenne Hintergrund um nach &quot;Interpret - Titel [BG].*&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="22"/>
+        <source>Rename video to &quot;Artist - Title.*&quot;</source>
+        <translation>Benenne Video um nach &quot;Interpret - Titel.*&quot;</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="23"/>
+        <source>Rename video to &quot;Artist - Title [VD#*].*&quot; consider VIDEOGAP</source>
+        <translation>Benenne Video um nach &quot;Interpret - Titel [VD#*].*&quot;, beachte VIDEOGAP</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="24"/>
+        <source>Uses &lt;b&gt;#VIDEOGAP:0&lt;/b&gt; if tag not present.</source>
+        <translation>Wählt &lt;b&gt;#VIDEOGAP:0&lt;/b&gt; wenn dieser Tag fehlt.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="25"/>
+        <source>Change #ARTIST via ID3 tag from audio file.</source>
+        <translation>Ändere #ARTIST mittels ID3-TAg der Audio-Datei.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="26"/>
+        <source>Change #TITLE via ID3 tag from audio file.</source>
+        <translation>Ändere #TITLE mittels ID3-TAg der Audio-Datei.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="27"/>
+        <source>Change #TITLE via ID3 tag from audio file. Append &quot;[VIDEO]&quot; if video present.</source>
+        <translation>Ändere #TITLE mittels ID3-Tag der Audio-Datei. Füge &quot;[VIDEO]&quot; an, wenn ein Video existiert.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="28"/>
+        <source>Change #TITLE. Append &quot;[VIDEO]&quot; if video present.</source>
+        <translation>Ändere #TITLE. Füge &quot;[VIDEO]&quot; an, wenn ein Video existiert.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="31"/>
+        <source>Do not use ID3 tag information.</source>
+        <translation>Keine ID3-Tag-Infos benutzen.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="30"/>
+        <source>Change #TITLE. Remove [...]-Tags.</source>
+        <translation>Ändere #TITLE. Entferne [...]-Tags.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="32"/>
+        <source>Change #GENRE via ID3 tag.</source>
+        <translation>Ändere #GENRE mittels ID3-Tag.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="33"/>
+        <source>Change #YEAR via ID3 tag.</source>
+        <translation>Ändere #YEAR mittels ID3-Tag.</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="34"/>
+        <source>Change #ALBUM via ID3 tag</source>
+        <translation>Ändere #ALBUM mittels ID3-Tag</translation>
+    </message>
+    <message>
+        <location filename="tasks/tasks.h" line="35"/>
+        <source>You need the custom tag #ALBUM for this task.</source>
+        <translation>Der benutzerdefinierte Tag #ALBUM ist für diesen Task erforderlich.</translation>
     </message>
 </context>
 <context>
@@ -108,22 +433,22 @@ runterladen...</translation>
     <message>
         <location filename="QUAmazonArea.ui" line="208"/>
         <source>Artist</source>
-        <translation type="unfinished">Interpret</translation>
+        <translation>Interpret</translation>
     </message>
     <message>
         <location filename="QUAmazonArea.ui" line="225"/>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="QUAmazonArea.ui" line="242"/>
         <source>Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Limit</translation>
     </message>
     <message>
         <location filename="QUAmazonArea.ui" line="252"/>
         <source>Keep previous downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Downloads nicht löschen</translation>
     </message>
     <message>
         <location filename="QUAmazonArea.ui" line="403"/>
@@ -133,17 +458,17 @@ runterladen...</translation>
     <message>
         <location filename="QUAmazonArea.ui" line="451"/>
         <source>Copy the selected covers to the according song path.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiere die ausgewählten Cover in die zugehörigen Songpfade.</translation>
     </message>
     <message>
         <location filename="QUAmazonArea.ui" line="454"/>
         <source>Copy &amp;&amp; Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopieren &amp;&amp; Setzen</translation>
     </message>
     <message>
         <location filename="QUAmazonArea.ui" line="465"/>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
 </context>
 <context>
@@ -151,42 +476,42 @@ runterladen...</translation>
     <message>
         <location filename="amazon/QUAmazonDialog.cpp" line="39"/>
         <source>United States (amazon.com)</source>
-        <translation type="unfinished"></translation>
+        <translation>Verenigte Staaten (amazon.com)</translation>
     </message>
     <message>
         <location filename="amazon/QUAmazonDialog.cpp" line="40"/>
         <source>United Kingdom (amazon.co.uk)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vereinigtes Königreich (amazon.co.uk)</translation>
     </message>
     <message>
         <location filename="amazon/QUAmazonDialog.cpp" line="41"/>
         <source>Germany (amazon.de)</source>
-        <translation type="unfinished"></translation>
+        <translation>Deutschland (amazon.de)</translation>
     </message>
     <message>
         <location filename="amazon/QUAmazonDialog.cpp" line="42"/>
         <source>Canada (amazon.ca)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanada (amazon.ca)</translation>
     </message>
     <message>
         <location filename="amazon/QUAmazonDialog.cpp" line="43"/>
         <source>France (amazon.fr)</source>
-        <translation type="unfinished"></translation>
+        <translation>Frankreich (amazon.fr)</translation>
     </message>
     <message>
         <location filename="amazon/QUAmazonDialog.cpp" line="44"/>
         <source>Japan (amazon.jp)</source>
-        <translation type="unfinished"></translation>
+        <translation>Japan (amazon.jp)</translation>
     </message>
     <message>
         <location filename="amazon/QUAmazonDialog.cpp" line="70"/>
         <source>Creating cover groups...</source>
-        <translation type="unfinished"></translation>
+        <translation>Erzeuge Cover-Gruppen...</translation>
     </message>
     <message>
         <location filename="amazon/QUAmazonDialog.cpp" line="98"/>
         <source>Use covers for songs...</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzer Cover für Songs...</translation>
     </message>
 </context>
 <context>

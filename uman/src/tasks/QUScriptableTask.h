@@ -41,8 +41,8 @@ public:
 	QUScriptableTask(QDomDocument *taskConfig, QObject *parent = 0);
 	~QUScriptableTask() { qDeleteAll(_data); _data.clear(); }
 
-	virtual QString description() const { return tr(QUAbstractTask::description().toLocal8Bit().data()); }
-	virtual QString toolTip() const { return tr(QUAbstractTask::toolTip().toLocal8Bit().data()); }
+	virtual QString description() const { return QObject::tr(QUAbstractTask::description().toLocal8Bit().data()); }
+	virtual QString toolTip() const { return QObject::tr(QUAbstractTask::toolTip().toLocal8Bit().data()); }
 
 	QString configFileName() const { return _configFileName; }
 	QString iconSource() const { return _iconSource; }

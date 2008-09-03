@@ -21,7 +21,6 @@ int main(int argc, char *argv[]) {
 	QTranslator  tr;
 
 	QSplashScreen splash(QPixmap(":/icons/splash.png"));
-//	splash.showMessage(QString(QObject::tr("Version %1.%2.%3 is loading...")).arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION), Qt::AlignBottom | Qt::AlignRight, Qt::white);
 	splash.show();
 
 	initLanguage(app, tr, splash);

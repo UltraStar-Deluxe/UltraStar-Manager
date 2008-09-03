@@ -12,8 +12,9 @@
 QUTaskDialog::QUTaskDialog(QUScriptableTask *task, QWidget *parent): QDialog(parent) {
 	initDialog();
 
-	descriptionEdit->setText(task->description());
-	toolTipEdit->setPlainText(task->toolTip());
+	// use the basic implementation for untranslated text (should be english)
+	descriptionEdit->setText(task->QUAbstractTask::description());
+	toolTipEdit->setPlainText(task->QUAbstractTask::toolTip());
 
 	iconCombo->setCurrentIndex(iconCombo->findText(QFileInfo(task->iconSource()).fileName()));
 
