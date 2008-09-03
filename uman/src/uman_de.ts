@@ -2,174 +2,6 @@
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
 <defaultcodec></defaultcodec>
 <context>
-    <name></name>
-    <message>
-        <location filename="tasks/tasks.h" line="2"/>
-        <source>Change path to &quot;Artist - Title&quot; (default)</source>
-        <translation type="obsolete">Kopiere Song nach &quot;Interpret - Titel&quot; (standard)</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="3"/>
-        <source>All songs will be in the UltraStar song folder with a custom subdirectory for each one.</source>
-        <translation type="obsolete">Alle Songs landen im UltraStar-Songordner und erhalten ein eigenes Verzeichnis.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="4"/>
-        <source>Change path to &quot;Genre/Artist - Title&quot;</source>
-        <translation type="obsolete">Kopiere Song nach &quot;Genre/Interpret - Titel&quot;</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="5"/>
-        <source>Songs will be organized in subdirectories by their genres.</source>
-        <translation type="obsolete">Songs werden in Unterverzeichnissen nach ihren Genres organisiert.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="6"/>
-        <source>Change path to &quot;Edition/Artist - Title&quot;</source>
-        <translation type="obsolete">Kopiere Song nach &quot;Edition/Interpret - Titel&quot;</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="7"/>
-        <source>Songs will be organized in subdirectories by their edition.</source>
-        <translation type="obsolete">Songs werden in Unterverzeichnissen nach ihren Editionen organisiert.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="8"/>
-        <source>Change path to &quot;Artist/Artist - Title&quot;</source>
-        <translation type="obsolete">Kopiere Song nach &quot;Artist/Interpret - Titel&quot;</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="9"/>
-        <source>Songs will be organized in subdirectories by their artist.</source>
-        <translation type="obsolete">Songs werden in Unterverzeichnissen nach ihren Interpreten organisiert.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="10"/>
-        <source>Change path to &quot;Language/Artist - Title&quot;</source>
-        <translation type="obsolete">Kopiere Song nach &quot;Sprache/Interpret - Titel&quot;</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="11"/>
-        <source>Songs will be organized in subdirectories by their language.</source>
-        <translation type="obsolete">Songs werden in Unterverzeichnissen nach ihren Sprachen organisiert.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="12"/>
-        <source>Change path to &quot;Artist/Album/Artist - Title&quot;</source>
-        <translation type="obsolete">Kopiere Song nach &quot;Interpret/Album/Interpret - Titel&quot;</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="13"/>
-        <source>Songs will be organized in subdirectories by their artist and album.&lt;br&gt;&lt;b&gt;You need the custom tag #ALBUM for this task.&lt;/b&gt;</source>
-        <translation type="obsolete">Songs werden in Unterverzeichnissen nach ihren Interpreten und Alben organisiert.&lt;br&gt;&lt;b&gt;Der benutzerdefinierte Tag #ALBUM wird benötigt.&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="14"/>
-        <source>Rename directory to &quot;Artist - Title&quot;</source>
-        <translation type="obsolete">Benenne Ordner um nach &quot;Interpret - Titel&quot;</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="15"/>
-        <source>Rename directory to &quot;Artist - Title [VIDEO] [SC]&quot; if checked or video present. Keep other folder tags.</source>
-        <translation type="obsolete">Benenne Ordner um nach &quot;Interpret - Titel [VIDEO] [SC]&quot; sofern erforderlich. Behalte andere Ordner-Tags bei.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="16"/>
-        <source>Looks for &lt;b&gt;[SC]&lt;/b&gt; in the &lt;b&gt;#EDITION&lt;/b&gt; tag to find out whether it is checked or not.&lt;br&gt;&lt;br&gt;Other folder tags like &lt;b&gt;[KARAOKE]&lt;/b&gt; will be appended to the end if present.</source>
-        <translation type="obsolete">Sucht nach &lt;b&gt;[SC]&lt;/b&gt; im &lt;b&gt;#EDITION&lt;/b&gt;-Tag, um herauszufinden, ob ein Song &quot;checked&quot; ist oder nicht.&lt;br&gt;&lt;br&gt;Andere Ordner-Tags, wie &lt;b&gt;[KARAOKE]&lt;/b&gt;, bleiben erhalten und werden an den Ordnernamen angehangen.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="17"/>
-        <source>Rename songtext file to &quot;Artist - Title.txt&quot;</source>
-        <translation type="obsolete">Benenne Song-Datei um nach &quot;Interpret - Titel.txt&quot;</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="18"/>
-        <source>Rename audio file to &quot;Artist - Title.*&quot;</source>
-        <translation type="obsolete">Benenne Audio-Datei um nach &quot;Interpret - Titel.*&quot;</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="19"/>
-        <source>Rename cover to &quot;Artist - Title [CO].*&quot;</source>
-        <translation type="obsolete">Benenne Cover um nach &quot;Interpret - Titel [CO].*&quot;</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="20"/>
-        <source>Rename the cover file to a proper schema.&lt;br&gt;File endings will be preserved.</source>
-        <translation type="obsolete">Benenne die Bilddatei für das Cover nach einem bestimmten Schema um.&lt;br&gt;Dateiendungen werden beibehalten.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="21"/>
-        <source>Rename background to &quot;Artist - Title [BG].*&quot;</source>
-        <translation type="obsolete">Benenne Hintergrund um nach &quot;Interpret - Titel [BG].*&quot;</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="22"/>
-        <source>Rename video to &quot;Artist - Title.*&quot;</source>
-        <translation type="obsolete">Benenne Video um nach &quot;Interpret - Titel.*&quot;</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="23"/>
-        <source>Rename video to &quot;Artist - Title [VD#*].*&quot; consider VIDEOGAP</source>
-        <translation type="obsolete">Benenne Video um nach &quot;Interpret - Titel [VD#*].*&quot;, beachte VIDEOGAP</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="24"/>
-        <source>Uses &lt;b&gt;#VIDEOGAP:0&lt;/b&gt; if tag not present.</source>
-        <translation type="obsolete">Wählt &lt;b&gt;#VIDEOGAP:0&lt;/b&gt; wenn dieser Tag fehlt.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="25"/>
-        <source>Change #ARTIST via ID3 tag from audio file.</source>
-        <translation type="obsolete">Ändere #ARTIST mittels ID3-TAg der Audio-Datei.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="26"/>
-        <source>Change #TITLE via ID3 tag from audio file.</source>
-        <translation type="obsolete">Ändere #TITLE mittels ID3-TAg der Audio-Datei.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="27"/>
-        <source>Change #TITLE via ID3 tag from audio file. Append &quot;[VIDEO]&quot; if video present.</source>
-        <translation type="obsolete">Ändere #TITLE mittels ID3-Tag der Audio-Datei. Füge &quot;[VIDEO]&quot; an, wenn ein Video existiert.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="28"/>
-        <source>Change #TITLE. Append &quot;[VIDEO]&quot; if video present.</source>
-        <translation type="obsolete">Ändere #TITLE. Füge &quot;[VIDEO]&quot; an, wenn ein Video existiert.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="31"/>
-        <source>Do not use ID3 tag information.</source>
-        <translation type="obsolete">Keine ID3-Tag-Infos benutzen.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="30"/>
-        <source>Change #TITLE. Remove [...]-Tags.</source>
-        <translation type="obsolete">Ändere #TITLE. Entferne [...]-Tags.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="32"/>
-        <source>Change #GENRE via ID3 tag.</source>
-        <translation type="obsolete">Ändere #GENRE mittels ID3-Tag.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="33"/>
-        <source>Change #YEAR via ID3 tag.</source>
-        <translation type="obsolete">Ändere #YEAR mittels ID3-Tag.</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="34"/>
-        <source>Change #ALBUM via ID3 tag</source>
-        <translation type="obsolete">Ändere #ALBUM mittels ID3-Tag</translation>
-    </message>
-    <message>
-        <location filename="tasks/tasks.h" line="35"/>
-        <source>You need the custom tag #ALBUM for this task.</source>
-        <translation type="obsolete">Der benutzerdefinierte Tag #ALBUM ist für diesen Task erforderlich.</translation>
-    </message>
-</context>
-<context>
     <name>QObject</name>
     <message>
         <location filename="songtree/QUSongItem.cpp" line="404"/>
@@ -453,7 +285,7 @@ runterladen...</translation>
     <message>
         <location filename="QUAmazonArea.ui" line="403"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="QUAmazonArea.ui" line="451"/>
@@ -539,12 +371,12 @@ runterladen...</translation>
     <message>
         <location filename="tasks/QUAudioTagTask.cpp" line="64"/>
         <source>The song tag &quot;%1&quot; of &quot;%4 - %5&quot; was changed from &quot;%2&quot; to &quot;%3&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Song-Tag &quot;%1&quot; von &quot;%4 - %5&quot; wurde von &quot;%2&quot; auf &quot;%3&quot; geändert.</translation>
     </message>
     <message>
         <location filename="tasks/QUAudioTagTask.cpp" line="71"/>
         <source>The song tag &quot;%1&quot; is NOT VALID.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Song-Tag &quot;%1&quot; ist UNGÜLTIG.</translation>
     </message>
 </context>
 <context>
@@ -552,12 +384,12 @@ runterladen...</translation>
     <message>
         <location filename="tasks/taskDialog/QUAudioTagTaskDialog.cpp" line="10"/>
         <source>Add Song/ID3 Tag Task</source>
-        <translation type="unfinished"></translation>
+        <translation>Song/ID3-Tag-Aufgabe hinzufügen</translation>
     </message>
     <message>
         <location filename="tasks/taskDialog/QUAudioTagTaskDialog.cpp" line="23"/>
         <source>Select a proper &lt;b&gt;target tag&lt;/b&gt; and create a custom &lt;b&gt;schema&lt;/b&gt; for the operation. You can use &lt;b&gt;custom tags&lt;/b&gt; as targets.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle einen passenden &lt;b&gt;Ziel-Tag&lt;/b&gt; und erzeuge ein benutzerdefiniertes &lt;b&gt;Schema&lt;/b&gt; für die Operation. Du kannst &lt;b&gt;benutzerdefinierte Tags&lt;/b&gt; als Ziel nutzen.</translation>
     </message>
 </context>
 <context>
@@ -618,7 +450,7 @@ runterladen...</translation>
     <message>
         <location filename="tasks/QUCleanTask.cpp" line="22"/>
         <source>Remove #END tag.</source>
-        <translation type="unfinished"></translation>
+        <translation>#END-Tag entfernen.</translation>
     </message>
 </context>
 <context>
@@ -626,7 +458,7 @@ runterladen...</translation>
     <message>
         <location filename="songtree/QUColumnAction.cpp" line="10"/>
         <source>Warnings</source>
-        <translation type="unfinished"></translation>
+        <translation>Warnungen</translation>
     </message>
 </context>
 <context>
@@ -634,57 +466,57 @@ runterladen...</translation>
     <message>
         <location filename="QUCoverGroup.ui" line="19"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="QUCoverGroup.ui" line="43"/>
         <source>GroupBox</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="amazon/QUCoverGroup.cpp" line="39"/>
         <source>Could not get covers. No song was set.</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte keine Cover holen. Es wurde kein Song ausgewählt.</translation>
     </message>
     <message>
         <location filename="amazon/QUCoverGroup.cpp" line="44"/>
         <source>Could not get covers for &quot;%1 - %2&quot;. Http connection is busy.</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte keine Cover für &quot;%1 - %2&quot; holen. HTTP-Verbindung ist gerade beschäftigt.</translation>
     </message>
     <message>
         <location filename="amazon/QUCoverGroup.cpp" line="65"/>
         <source> (Sending...)</source>
-        <translation type="unfinished"></translation>
+        <translation> (Sende...)</translation>
     </message>
     <message>
         <location filename="amazon/QUCoverGroup.cpp" line="66"/>
         <source> (Reading...)</source>
-        <translation type="unfinished"></translation>
+        <translation> (Lese...)</translation>
     </message>
     <message>
         <location filename="amazon/QUCoverGroup.cpp" line="90"/>
         <source> (Invalid request.)</source>
-        <translation type="unfinished"></translation>
+        <translation> (Ungültige Anfrage.)</translation>
     </message>
     <message>
         <location filename="amazon/QUCoverGroup.cpp" line="110"/>
         <source> (No results.)</source>
-        <translation type="unfinished"></translation>
+        <translation> (Keine Ergebnisse.)</translation>
     </message>
     <message>
         <location filename="amazon/QUCoverGroup.cpp" line="140"/>
         <source> (%1 results)</source>
-        <translation type="unfinished"></translation>
+        <translation> (%1 Ergebnisse)</translation>
     </message>
     <message>
         <location filename="amazon/QUCoverGroup.cpp" line="208"/>
         <source>No cover selected for: &quot;%1 - %2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Cover für &quot;%1 - %2&quot; ausgewählt.</translation>
     </message>
     <message>
         <location filename="amazon/QUCoverGroup.cpp" line="215"/>
         <source>Could not copy the new cover &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das neue Cover konnte nicht von &quot;%1&quot; nach &quot;%2&quot; kopiert werden.</translation>
     </message>
 </context>
 <context>
@@ -692,32 +524,32 @@ runterladen...</translation>
     <message>
         <location filename="QUCustomTagsDialog.cpp" line="44"/>
         <source>New Custom Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierten Song-Tag erstellen</translation>
     </message>
     <message>
         <location filename="QUCustomTagsDialog.ui" line="13"/>
         <source>Custom Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierte Song-Tags</translation>
     </message>
     <message>
         <location filename="QUCustomTagsDialog.ui" line="121"/>
         <source>Double-click to edit. Drag &amp; drop the tags to change the order.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bearbeiten mittels Doppelklick. Mit Hilfe von Drag&amp;Drop kann die Reihenfolge geändert werden.</translation>
     </message>
     <message>
         <location filename="QUCustomTagsDialog.ui" line="193"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="QUCustomTagsDialog.ui" line="252"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="QUCustomTagsDialog.ui" line="266"/>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
 </context>
 <context>
@@ -845,7 +677,7 @@ runterladen...</translation>
     <message>
         <location filename="details/QUDetailsTable.cpp" line="57"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefiniert</translation>
     </message>
 </context>
 <context>
@@ -866,52 +698,52 @@ runterladen...</translation>
     <message>
         <location filename="QUFilterArea.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="QUFilterArea.ui" line="34"/>
         <source>A minus means, that the filter will be negated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Minus bedeutet, dass der Filterausdruck negiert wird.</translation>
     </message>
     <message>
         <location filename="QUFilterArea.ui" line="54"/>
         <source>Enter a regular expression and press the filter button to the right.</source>
-        <translation type="unfinished">Regulären Ausdruck eingeben und rechten Knopf drücken.</translation>
+        <translation>Regulären Ausdruck eingeben und rechten Knopf drücken.</translation>
     </message>
     <message>
         <location filename="QUFilterArea.ui" line="67"/>
         <source>Apply filter to song tree</source>
-        <translation type="unfinished">Filter auf den Song-Baum anwenden</translation>
+        <translation>Filter auf den Song-Baum anwenden</translation>
     </message>
     <message>
         <location filename="QUFilterArea.ui" line="70"/>
         <source>Filter</source>
-        <translation type="unfinished">Filter</translation>
+        <translation>Filter</translation>
     </message>
     <message>
         <location filename="QUFilterArea.ui" line="90"/>
         <source>Look for duplicate songs and show them in the song tree.</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche doppelte Songs und zeige diese im Song-Baum.</translation>
     </message>
     <message>
         <location filename="QUFilterArea.ui" line="93"/>
         <source>Duplicates</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplikate</translation>
     </message>
     <message>
         <location filename="QUFilterArea.ui" line="117"/>
         <source>Clear the current filter. Show all songs.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche den aktuellen Filter. Zeige alle Songs.</translation>
     </message>
     <message>
         <location filename="QUFilterArea.ui" line="120"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="QUFilterArea.ui" line="134"/>
         <source>Hide filter area</source>
-        <translation type="unfinished"></translation>
+        <translation>Filterbereich verstecken</translation>
     </message>
 </context>
 <context>
@@ -929,12 +761,12 @@ runterladen...</translation>
     <message>
         <location filename="reports/QUHtmlReport.cpp" line="60"/>
         <source>Songs Path: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Song-Pfad: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="reports/QUHtmlReport.cpp" line="112"/>
         <source>Creating HTML report...</source>
-        <translation type="unfinished"></translation>
+        <translation>Erzeuge HTML-Bericht...</translation>
     </message>
 </context>
 <context>
@@ -1022,17 +854,17 @@ runterladen...</translation>
     <message>
         <location filename="QUMainWindow.ui" line="806"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="129"/>
         <source>monty</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="334"/>
         <source>..information here...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="469"/>
@@ -1067,7 +899,7 @@ runterladen...</translation>
     <message>
         <location filename="QUMainWindow.ui" line="658"/>
         <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Strg+R</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="721"/>
@@ -1367,233 +1199,234 @@ runterladen...</translation>
     <message>
         <location filename="QUMainWindow.cpp" line="84"/>
         <source>&lt;b&gt;Songs&lt;/b&gt; have been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Songs&lt;/b&gt; wurden modifiziert.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="85"/>
         <source>Save all changed songs.</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichere alle geänderten Songs.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="99"/>
         <source>&lt;b&gt;Playlists&lt;/b&gt; have been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Playlisten&lt;/b&gt; wurden modifiziert.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="100"/>
         <source>Save all changed playlists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichere alle geänderten Playlisten.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="158"/>
         <source>UltraStar Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>UltraStar Manager</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="787"/>
         <source>Custom Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierte Song-Tags</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="237"/>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation>Werkzeugleisten</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="306"/>
         <source>Song/ID3 Tag Task...</source>
-        <translation type="unfinished"></translation>
+        <translation>Song/ID3-Tag-Aufgabe...</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="307"/>
         <source>Rename Task...</source>
-        <translation type="unfinished"></translation>
+        <translation>Umbenennungs-Aufgabe...</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="321"/>
         <source>Discard Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informationen verwerfen</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="325"/>
         <source>Discard Warnings</source>
-        <translation type="unfinished"></translation>
+        <translation>Warnungen verwerfen</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="329"/>
         <source>Discard Save Hints</source>
-        <translation type="unfinished"></translation>
+        <translation>Speicherhinweise verwerfen</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="370"/>
         <source>Could NOT delete file: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datei &quot;%1&quot; konnte NICHT GELÖSCHT werden.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="372"/>
         <source>File was deleted successfully: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei erfolgreich gelöscht: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="379"/>
         <source>Could NOT delete directory: &quot;%1&quot;. Maybe it is not empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordner konnte NICHT GELÖSCHT werden: &quot;%1&quot;. Vielleicht ist er nicht leer.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="381"/>
         <source>Directory was deleted successfully: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordner erfolgreich gelöscht: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="386"/>
         <source>Song was deleted successfully: &quot;%1 - %2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Song erfolgreich gelöscht: &quot;%1 - %2&quot;</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="691"/>
         <source>The log file was saved to: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Protokoll gesichert: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="693"/>
         <source>The log file COULD NOT be saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Ereignisprotokoll konnte nicht gespeichert werden.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="722"/>
         <source>About TagLib</source>
-        <translation type="unfinished"></translation>
+        <translation>Über TagLib</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="726"/>
         <source>&lt;b&gt;TagLib Audio Meta-Data Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;TagLib is a library for reading and editing the meta-data of several popular audio formats.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;&lt;br&gt;Visit: &lt;a href=&quot;http://developer.kde.org/~wheeler/taglib.html&quot;&gt;TagLib Homepage&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;TagLib Audio Meta-Data Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;TagLib ist eine Bibliothek zum Lesen und Schreiben von Metadaten vieler bekannter Audioformate.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;&lt;br&gt;Besuche: &lt;a href=&quot;http://developer.kde.org/~wheeler/taglib.html&quot;&gt;TagLib Homepage&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="806"/>
         <source>Custom tags changed to: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierte Song-Tags geändert auf: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="832"/>
         <source>Show relative song path for each song...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige relativen Pfad für jeden Song...</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="832"/>
         <source>Show song folder for each song...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige nur Ordner für jeden Song...</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="873"/>
         <source>Repainting song tree icons...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeichne Icons vom Song-Baum neu...</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="921"/>
         <source>Could NOT open file: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei konnte NICHT geöffnet werden: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="923"/>
         <source>File was opened successfully: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei wurde erfolgreich geöffnet: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="452"/>
         <source>Talk</source>
-        <translation type="unfinished"></translation>
+        <translation>Reden</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="567"/>
         <source>If checked, the auto-completion considers the case of the input.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn ausgewählt, beachte Groß-/Kleinschreibung bei der Autovervollständigung.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="570"/>
         <source>Case-sensitive </source>
-        <translation type="unfinished"></translation>
+        <translation>Groß-/Kleinschreibung beachten</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="644"/>
         <source>Run
 Tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufgaben
+ausführen</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="694"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinzufügen</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="784"/>
         <source>File Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei-Infos</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="814"/>
         <source>Show selected lengths</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige ausgewählte Zeiten</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="834"/>
         <source>Playlist</source>
-        <translation type="unfinished"></translation>
+        <translation>Playliste</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="992"/>
         <source>Save</source>
-        <translation type="unfinished">Speichern</translation>
+        <translation>Speichern</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1016"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Leeren</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1139"/>
         <source>Songs</source>
-        <translation type="unfinished"></translation>
+        <translation>Songs</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1180"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1213"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation>Ansicht</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1442"/>
         <source>About TagLib...</source>
-        <translation type="unfinished"></translation>
+        <translation>Über TagLib...</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1451"/>
         <source>Send To Playlist</source>
-        <translation type="unfinished"></translation>
+        <translation>An Playliste senden</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1460"/>
         <source>Custom Tags...</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierte Song-Tags...</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1465"/>
         <source>Show Lyrics...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige Lyrics...</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1473"/>
         <source>Alternative Song Tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternativen Song-Baum</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1482"/>
         <source>Delete Selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche Auswahl</translation>
     </message>
 </context>
 <context>
@@ -1601,37 +1434,37 @@ Tasks</source>
     <message>
         <location filename="QUMessageBox.ui" line="16"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="QUMessageBox.ui" line="129"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="QUMessageBox.ui" line="200"/>
         <source>PushButton</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="QUMessageBox.ui" line="193"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="QUMessageBox.ui" line="203"/>
         <source>2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="QUMessageBox.ui" line="210"/>
         <source>three</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="QUMessageBox.ui" line="217"/>
         <source>3</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1639,37 +1472,37 @@ Tasks</source>
     <message>
         <location filename="QUPictureDialog.ui" line="13"/>
         <source>Preview Picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Bildvorschau</translation>
     </message>
     <message>
         <location filename="QUPictureDialog.ui" line="123"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="QUPictureDialog.ui" line="190"/>
         <source>Fit to window (Ctrl+1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Optimale Höhe (Strg+1)</translation>
     </message>
     <message>
         <location filename="QUPictureDialog.ui" line="193"/>
         <source>Fit</source>
-        <translation type="unfinished"></translation>
+        <translation>Anpassen</translation>
     </message>
     <message>
         <location filename="QUPictureDialog.ui" line="207"/>
         <source>Original size (Ctrl+2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tatsächliche Größe (Strg+2)</translation>
     </message>
     <message>
         <location filename="QUPictureDialog.ui" line="210"/>
         <source>Full</source>
-        <translation type="unfinished"></translation>
+        <translation>Voll</translation>
     </message>
     <message>
         <location filename="QUPictureDialog.ui" line="237"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -1682,7 +1515,7 @@ Tasks</source>
     <message>
         <location filename="reports/QUPlainTextReport.cpp" line="36"/>
         <source>Songs Path: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Song-Pfad: &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
@@ -1690,7 +1523,7 @@ Tasks</source>
     <message>
         <location filename="playlist/QUPlayList.cpp" line="73"/>
         <source>Remove from list</source>
-        <translation type="unfinished"></translation>
+        <translation>Entfernen</translation>
     </message>
 </context>
 <context>
@@ -1698,187 +1531,187 @@ Tasks</source>
     <message>
         <location filename="QUPlaylistArea.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="QUPlaylistArea.ui" line="110"/>
         <source>(currentPath)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="358"/>
         <source>Active List:</source>
-        <translation type="unfinished"></translation>
+        <translation>Auswahl:</translation>
     </message>
     <message>
         <location filename="QUPlaylistArea.ui" line="221"/>
         <source>Choose playlist folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle Ordner für Playlisten...</translation>
     </message>
     <message>
         <location filename="QUPlaylistArea.ui" line="378"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="QUPlaylistArea.ui" line="258"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Name:</translation>
     </message>
     <message>
         <location filename="QUPlaylistArea.ui" line="265"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="QUPlaylistArea.ui" line="298"/>
         <source>Create</source>
-        <translation type="unfinished"></translation>
+        <translation>Neu</translation>
     </message>
     <message>
         <location filename="QUPlaylistArea.ui" line="315"/>
         <source>Save changes to current playlist</source>
-        <translation type="unfinished"></translation>
+        <translation>Änderungen für aktuelle Playliste speichern</translation>
     </message>
     <message>
         <location filename="QUPlaylistArea.ui" line="318"/>
         <source>Save</source>
-        <translation type="unfinished">Speichern</translation>
+        <translation>Speichern</translation>
     </message>
     <message>
         <location filename="QUPlaylistArea.ui" line="335"/>
         <source>Save current playlist with a new filename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuelle Playliste unter neuem Dateinamen speichern...</translation>
     </message>
     <message>
         <location filename="QUPlaylistArea.ui" line="338"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichern unter...</translation>
     </message>
     <message>
         <location filename="QUPlaylistArea.ui" line="375"/>
         <source>Remove current playlist</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuelle Playliste löschen</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="38"/>
         <source>Disconnect playlists from songs...</source>
-        <translation type="unfinished"></translation>
+        <translation>Playlisten von Songs entkoppeln...</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="73"/>
         <source>&lt;font color=#808080&gt;%1&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=#808080&gt;%1&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="88"/>
         <source>Check playlists for new songs...</source>
-        <translation type="unfinished"></translation>
+        <translation>Playlisten auf neue Songs überprüfen...</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="123"/>
         <source>Looking for unsaved playlists...</source>
-        <translation type="unfinished"></translation>
+        <translation>Geänderte Playlisten suchen...</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="148"/>
         <source>Save playlist &quot;%1&quot; as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Playliste &quot;%1&quot; speichern unter...</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="154"/>
         <source>The new playlist &quot;%1&quot; was not saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die neue Playliste &quot;%1&quot; wurde nicht gespeichert.</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="168"/>
         <source>Reading playlist files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lese Playlisten...</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="200"/>
         <source>Update playlists...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisiere Playlisten...</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="262"/>
         <source>Save playlist as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichere Playliste unter...</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="285"/>
         <source>New Playlist</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Playliste</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="358"/>
         <source>No playlists found. Try another folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Playlisten gefunden. Suchen:</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="372"/>
         <source>Change Playlist Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändere Ordner für Playlisten</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="373"/>
         <source>Playlists have been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Playlisten wurden modifiziert.</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="374"/>
         <source>Save all changed playlists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichere alle geänderten Playlisten.</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="375"/>
         <source>Discard all changes.</source>
-        <translation type="unfinished">Verwerfe alle Änderungen.</translation>
+        <translation>Verwerfe alle Änderungen.</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="376"/>
         <source>Cancel this action.</source>
-        <translation type="unfinished">Aktion abbrechen.</translation>
+        <translation>Aktion abbrechen.</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="385"/>
         <source>Select a location for playlists</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle einen Ordner für Playlisten</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="401"/>
         <source>Delete Playlist</source>
-        <translation type="unfinished"></translation>
+        <translation>Playliste löschen</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="402"/>
         <source>&lt;b&gt;&quot;%1 (%2)&quot;&lt;/b&gt; will be deleted permanently. You cannot undo a delete operation.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;&quot;%1 (%2)&quot;&lt;/b&gt; wird dauerhaft gelöscht. Dies kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="405"/>
         <source>Delete this playlist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Diese Playliste löschen.</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="406"/>
         <source>Cancel delete operation.</source>
-        <translation type="unfinished">Aktion abbrechen.</translation>
+        <translation>Aktion abbrechen.</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="413"/>
         <source>The playlist file &quot;%1&quot; was removed successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Playliste &quot;%1&quot; wurde erfolgreich gelöscht.</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="415"/>
         <source>The playlist file &quot;%1&quot; could NOT be removed. Does it exist?</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Playliste &quot;%1&quot; konnte NICHT gelöscht werden. Existiert sie?</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistArea.cpp" line="436"/>
         <source>The playlist &quot;%1&quot; was removed successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Playliste &quot;%1&quot; wurde erfolgreich gelöscht.</translation>
     </message>
 </context>
 <context>
@@ -1886,17 +1719,17 @@ Tasks</source>
     <message>
         <location filename="playlist/QUPlaylistFile.cpp" line="96"/>
         <source>Save error! The playlist file &quot;%1&quot; was NOT saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Speichern! Die Playliste &quot;%1&quot; wurde NICHT gespeichert.</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistFile.cpp" line="115"/>
         <source>Warning! The playlist entry &quot;%1 - %2&quot; may NOT be found by UltraStar!</source>
-        <translation type="unfinished"></translation>
+        <translation>Warnung! Der Playlisten-Eintra &quot;%1 - %2&quot; könnte von UltraStar NICHT gefunden werden!</translation>
     </message>
     <message>
         <location filename="playlist/QUPlaylistFile.cpp" line="123"/>
         <source>The playlist file &quot;%1&quot; was saved successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Playliste &quot;%1&quot; wurde erfolgreich gespeichert.</translation>
     </message>
 </context>
 <context>
@@ -1919,7 +1752,7 @@ Tasks</source>
     <message>
         <location filename="tasks/QUPreparatoryTask.cpp" line="22"/>
         <source>Fix audio length via #END tag.</source>
-        <translation type="unfinished"></translation>
+        <translation>Audio-Länge mittels #END-Tag reparieren.</translation>
     </message>
     <message>
         <location filename="tasks/QUPreparatoryTask.cpp" line="23"/>
