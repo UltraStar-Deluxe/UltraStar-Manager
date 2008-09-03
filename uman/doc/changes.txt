@@ -88,6 +88,9 @@ NEW FEATURES
 * alternative song tree view added (see View menu)
   > other icons for spell- / file-check columns
 * progressbar for dropping song files in song tree
+* filter duplicate songs
+* new task: setting #end to song length
+* new task: removing end tag
 
 BUG FIXES
 * minor change in object renaming
@@ -110,8 +113,6 @@ BUG FIXES
   
 KNOWN BUGS (to fix)
 * you cannot sort after a custom tag column in the report
-* because uman wants to keep the current selection in the song tree as often as
-  possible, there are situations, in which the operations get terribly slow...
 
 TODO (for 1.7.0)
 * note somewhere the origin of the icons/graphics
@@ -128,23 +129,15 @@ TODO (for 1.7.0)
   > running number (extra column?)
 * reports for playlists
   > lyrics for playlist songs/all songs ...
-
-* detect and handle duplicates
-  > http://de.wikipedia.org/wiki/Levenshtein-Distanz
-  > replace ',' ''' '-' 
   
 * re-design filter categories
   > Apply more than one filter?
-* special views of the song tree
-  > only double-entries
   
 * new entry in context menu for a folder
   > "delete complete directory"
   > to remove double songs
   > or better "melt" double entries?
 
-* new column if tags contain characters which cannot be used in files/folders
-  > tick/cross
 * enable the user to append any custom []-tag to a file/folder
   > manage these custom/unknown []-tags
   > available through context menu? (list []-tags, ...)
@@ -160,7 +153,6 @@ TODO (for 1.7.0)
 * do not use only the count for "QUSongFile::verifyTags(QStringList&)"
 * show effective length of playlist in playlist dock
 * disable "talk" if monty is not allowed to talk
-* new tasks for setting the #end tag to the song length
 * add selected "lengths/time" so preview tree
 * fix gif-support (amazon-covers, ..., files?)
 * crop covers to 1:1 (extra task?)
@@ -168,6 +160,7 @@ TODO (for 1.7.0)
   > multiple syllables in a line
 * find & replace in song tags
 * PERF: how about processing items backwards and removing them from the tree?
+* custom rename (context menu, 2nd click, ...)
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title

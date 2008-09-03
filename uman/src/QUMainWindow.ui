@@ -781,7 +781,7 @@ Tasks</string>
       <item>
        <widget class="QDockWidget" name="previewDock" >
         <property name="windowTitle" >
-         <string>Database Infos</string>
+         <string>File Information</string>
         </property>
         <widget class="QWidget" name="dockWidgetContents_4" >
          <property name="geometry" >

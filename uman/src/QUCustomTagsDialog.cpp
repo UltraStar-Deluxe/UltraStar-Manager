@@ -24,10 +24,18 @@ void QUCustomTagsDialog::save() {
 	QSettings settings;
 	QStringList customTags;
 
-	for(int row = 0; row < tagList->count(); row++)
-		customTags << tagList->item(row)->text();
+	for(int row = 0; row < tagList->count(); row++) {
+		QString customTag = tagList->item(row)->text().trimmed();
 
-	settings.setValue("customTags", customTags);
+		// remove whitespaces
+		for(int i = 0; i < customTag.length(); i++)
+			if(customTag[i].isSpace())
+				customTag.remove(i, 1);
+
+		customTags << customTag;
+	}
+
+	settings.setValue("customTags", customTags.join(" "));
 
 	this->accept();
 }

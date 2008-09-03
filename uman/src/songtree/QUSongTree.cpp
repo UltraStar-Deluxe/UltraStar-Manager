@@ -598,6 +598,8 @@ void QUSongTree::showDefaultColumns() {
 	this->header()->setSectionHidden(END_COLUMN, true);
 	this->header()->setSectionHidden(VIDEOGAP_COLUMN, true);
 
+	this->header()->setSectionHidden(DUPLICATE_ID_COLUMN, true);
+
 	this->resizeToContents();
 
 	QSettings settings;
@@ -612,6 +614,11 @@ void QUSongTree::showMinimalColumns() {
 		header()->hideSection(i);
 
 	this->header()->showSection(FOLDER_COLUMN);
+
+	this->resizeToContents();
+
+	QSettings settings;
+	settings.setValue("songTreeState", QVariant(header()->saveState()));
 }
 
 void QUSongTree::showTimeColumns() {
