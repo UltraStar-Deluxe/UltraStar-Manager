@@ -358,6 +358,9 @@ void QUMainWindow::appendSong(QUSongFile *song) {
  */
 void QUMainWindow::deleteSong(QUSongFile *song) {
 
+
+	_songs.removeAll(song);
+	delete song;
 }
 
 /*!
@@ -465,7 +468,7 @@ void QUMainWindow::updateDetails() {
  * song tree.
  */
 void QUMainWindow::updatePreviewTree() {
-	previewTree->setSongCount(songTree->topLevelItemCount() + songTree->hiddenItemsCount());
+	previewTree->setSongCount(_songs.size());
 	previewTree->setSelectedSongCount(songTree->currentItem() ? qMax(songTree->selectedItems().size(), 1) : songTree->selectedItems().size());
 	previewTree->setVisibleSongCount(songTree->topLevelItemCount());
 	previewTree->setHiddenSongCount(songTree->hiddenItemsCount());

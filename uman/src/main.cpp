@@ -80,5 +80,8 @@ void initLanguage(QApplication &app, QTranslator &t) {
 				QObject::tr("There was no configuration setting about your language.Your <b>system language</b> will be used if possible.<br>"
 						"<br>"
 						"See <b>Options > Language</b> to change this."),
-				":/marks/accept.png", QObject::tr("Continue."));
+				":/marks/accept.png", QObject::tr("Continue."),
+				"", "",
+				"", "",
+				50);
 }

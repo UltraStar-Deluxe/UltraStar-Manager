@@ -36,7 +36,10 @@ QUMessageBox::Results QUMessageBox::ask(
 		int widthChange)
 {
 	QUMessageBox *dlg = new QUMessageBox(parent);
-	dlg->resize(dlg->width() + widthChange, dlg->height());
+
+//	if (your_height < minimumSizeHint().heigth() || your_height > maximumSizeHint().heigth()) {
+//		your_height = ;
+//	}
 
 	dlg->setWindowTitle(title);
 	dlg->message->setText(message);
@@ -61,10 +64,10 @@ QUMessageBox::Results QUMessageBox::ask(
 		dlg->three->setFocus();
 	}
 
+	dlg->resize(dlg->width() + widthChange, dlg->minimumSizeHint().height());
+
 	dlg->exec();
-
 	QUMessageBox::Results r = dlg->result();
-
 	delete dlg;
 
 	return r;
