@@ -1072,6 +1072,8 @@ Tasks</string>
     <addaction name="actionSaveSelected" />
     <addaction name="actionSaveAll" />
     <addaction name="separator" />
+    <addaction name="actionDeleteSelected" />
+    <addaction name="separator" />
     <addaction name="actionSendToPlaylist" />
     <addaction name="actionShowLyrics" />
     <addaction name="separator" />
@@ -1469,6 +1471,15 @@ Tasks</string>
    </property>
    <property name="text" >
     <string>Alternative Song Tree</string>
+   </property>
+  </action>
+  <action name="actionDeleteSelected" >
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/control/bin.png</normaloff>:/control/bin.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Delete Selected</string>
    </property>
   </action>
  </widget>

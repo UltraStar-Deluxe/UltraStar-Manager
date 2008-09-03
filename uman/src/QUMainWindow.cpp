@@ -187,6 +187,7 @@ void QUMainWindow::initMenu() {
 	connect(actionNewReport, SIGNAL(triggered()), this, SLOT(reportCreate()));
 	connect(actionSaveSelected, SIGNAL(triggered()), songTree, SLOT(saveSelectedSongs()));
 	connect(actionSaveAll, SIGNAL(triggered()), songTree, SLOT(saveUnsavedChanges()));
+	connect(actionDeleteSelected, SIGNAL(triggered()), songTree, SLOT(requestDeleteSelectedSongs()));
 	connect(actionExpandAll, SIGNAL(triggered()), songTree, SLOT(expandAll()));
 	connect(actionExpandAll, SIGNAL(triggered()), songTree, SLOT(resizeToContents()));
 	connect(actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(collapseAll()));
@@ -281,6 +282,8 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(showLyricsRequested(QUSongFile*)), this, SLOT(showLyrics(QUSongFile*)));
 	connect(songTree, SIGNAL(coversFromAmazonRequested(QList<QUSongItem*>)), this, SLOT(getCoversFromAmazon(QList<QUSongItem*>)));
 
+	connect(songTree, SIGNAL(deleteSongsRequested(QList<QUSongFile*>)), this, SLOT(deleteSongs(QList<QUSongFile*>)));
+
 	refreshAllSongs();
 }
 
@@ -347,6 +350,14 @@ void QUMainWindow::initMonty() {
 
 void QUMainWindow::appendSong(QUSongFile *song) {
 	_songs.append(song);
+}
+
+/*!
+ * Deletes the given songs (the whole directory). Song items have to be removed
+ * from song tree before you call this function!
+ */
+void QUMainWindow::deleteSongs(QList<QUSongFile*> songs) {
+	addLogMsg("QUMainWindow::deleteSongs(QList<QUSongFile*> songs)", QU::information);
 }
 
 /*!

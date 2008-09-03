@@ -52,6 +52,7 @@ signals:
 	void songToPlaylistRequested(QUSongFile *song);
 	void showLyricsRequested(QUSongFile *song);
 	void coversFromAmazonRequested(QList<QUSongItem*> items);
+	void deleteSongsRequested(QList<QUSongFile*> songs);
 
 private slots:
 	void deleteCurrentItem();
@@ -75,6 +76,8 @@ private slots:
 	void hideSelected();
 	void hideSelectedOnly();
 	void hideAllButSelected();
+
+	void requestDeleteSelectedSongs();
 
 protected:
 	virtual void keyPressEvent(QKeyEvent *event);

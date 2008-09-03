@@ -92,6 +92,10 @@ NEW FEATURES
 * new task: setting #end to song length
 * new task: removing end tag
 * show lengths of selected songs in preview tree
+* two new tasks based on custom tags (will be installed by default)
+  > use the ID3 tag of the audio file for #ALBUM
+  > change song path to "artist/album/artist - title"
+  > you need the custom tag #ALBUM for that!
 
 BUG FIXES
 * minor change in object renaming

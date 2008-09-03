@@ -495,6 +495,9 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 		// song/folder menu
 		menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()), QKeySequence::fromString("F5"));
 		menu.addAction(QIcon(":/control/save.png"), tr("Save"), this, SLOT(saveSelectedSongs()), QKeySequence::fromString("Ctrl+S"));
+		menu.addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(requestDeleteSelectedSongs()));
+
+		menu.addSeparator();
 		menu.addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
 		menu.addAction(tr("Get Covers From Amazon..."), this, SLOT(requestCoversFromAmazon()));
 
@@ -741,6 +744,13 @@ void QUSongTree::hideAllButSelected() {
 
 	emit itemSelectionChanged(); // update details
 	emit finished(QString(tr("%1 songs are visible now.")).arg(selectedItems.count()), QU::information);
+}
+
+/*!
+ * Request the deletion for all selected songs.
+ */
+void QUSongTree::requestDeleteSelectedSongs() {
+	emit finished("QUSongTree::requestDeleteSelectedSongs()", QU::information);
 }
 
 bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {

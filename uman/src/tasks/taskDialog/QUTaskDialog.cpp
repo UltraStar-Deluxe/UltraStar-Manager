@@ -58,6 +58,7 @@ void QUTaskDialog::initDialog() {
 	this->fillIconCombo(":/types");
 	this->fillIconCombo(":/marks");
 	this->fillIconCombo(":/control");
+	this->fillIconCombo(":/bullets");
 
 	exclusiveChk->setCheckState(Qt::Unchecked);
 	groupSpin->setEnabled(false);
