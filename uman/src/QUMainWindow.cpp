@@ -357,10 +357,31 @@ void QUMainWindow::appendSong(QUSongFile *song) {
  * from song tree before you call this function!
  */
 void QUMainWindow::deleteSong(QUSongFile *song) {
+	QDir dir(song->songFileInfo().dir());
+	QString artist = song->artist();
+	QString title = song->title();
 
+	QFileInfoList fiList = dir.entryInfoList(QStringList("*.*"), QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot, QDir::Name);
+
+	foreach(QFileInfo fi, fiList) {
+		if(!QFile::remove(fi.filePath()))
+			addLogMsg(QString(tr("Could NOT delete file: \"%1\"")).arg(fi.filePath()), QU::warning);
+		else
+			addLogMsg(QString(tr("File was deleted successfully: \"%1\"")).arg(fi.filePath()), QU::information);
+	}
+
+	QString dirName = dir.dirName();
+	dir.cdUp();
+
+	if(!dir.rmdir(dirName))
+		addLogMsg(QString(tr("Could NOT delete directory: \"%1\". Maybe it is not empty.")).arg(song->songFileInfo().path()), QU::warning);
+	else
+		addLogMsg(QString(tr("Directory was deleted successfully: \"%1\"")).arg(song->songFileInfo().path()), QU::information);
 
 	_songs.removeAll(song);
 	delete song;
+
+	addLogMsg(QString(tr("Song was deleted successfully: \"%1 - %2\"")).arg(artist).arg(title), QU::information);
 }
 
 /*!

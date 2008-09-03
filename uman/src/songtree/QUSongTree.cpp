@@ -757,13 +757,13 @@ void QUSongTree::requestDeleteSelectedSongs() {
 
 	// ---------------------------------
 
-	QString infoText = QString(tr("You want to delete the following <b>%1</b> songs:<br>")).arg(selectedItems.size());
+	QString infoText = QString(tr("All files in the song directory will be deleted including the directory itself if it is not empty.<br><br>You want to delete the following <b>%1</b> songs:")).arg(selectedItems.size());
 
 	int i = 0;
 	foreach(QUSongItem *songItem, selectedItems) {
-		infoText.append(QString("<br><b>%1 - %2</b>").arg(songItem->song()->artist()).arg(songItem->song()->title()));
+		infoText.append(QString("<br>&nbsp;&nbsp;<b>%1 - %2</b>").arg(songItem->song()->artist()).arg(songItem->song()->title()));
 		if(++i >= 5) {
-			infoText.append("<br>...");
+			infoText.append("<br>&nbsp;&nbsp;...");
 			break;
 		}
 	}
@@ -774,7 +774,7 @@ void QUSongTree::requestDeleteSelectedSongs() {
 			":/control/bin.png", tr("Delete these songs."),
 			":/marks/cancel.png", tr("Cancel delete operation."),
 			"", "",
-			20);
+			50);
 	if(result == QUMessageBox::second)
 		return;
 
