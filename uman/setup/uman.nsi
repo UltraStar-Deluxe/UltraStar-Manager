@@ -2,7 +2,7 @@ XPStyle on
 SetCompress off
 
 !define PRODUCTNAME "UltraStar Manager"
-!define PRODUCTVERSION "1.7.0"
+!define PRODUCTVERSION "1.7.0-WIP"
 Name "${PRODUCTNAME} ${PRODUCTVERSION}"
 
 !include "MUI.nsh"
@@ -78,6 +78,7 @@ Section "Application" SecCopyUI
     File "task-def\003-changePathEditionArtistTitle.xml"
     File "task-def\004-changePathArtistTitle2.xml"
     File "task-def\005-changePathLanguageArtistTitle.xml"
+    File "task-def\006-changePathAlbum.xml"
     File "task-def\010-renameSongDir.xml"
     File "task-def\020-renameSongDirSpecial.xml"
     File "task-def\030-renameSongTxt.xml"
@@ -93,6 +94,7 @@ Section "Application" SecCopyUI
     File "task-def\id3-023-removeVideoTitle.xml"
     File "task-def\id3-030-useGenre.xml"
     File "task-def\id3-040-useYear.xml"
+    File "task-def\id3-050-useAlbum.xml"
     
     ;; setup initial reg values
     WriteRegStr HKCU "Software\HPI\${PRODUCTNAME}" "customTags" "Comment Album"
@@ -138,6 +140,7 @@ Section "Uninstall"
     Delete "$INSTDIR\task-def\003-changePathEditionArtistTitle.xml"
     Delete "$INSTDIR\task-def\004-changePathArtistTitle2.xml"
     Delete "$INSTDIR\task-def\005-changePathLanguageArtistTitle.xml"
+    Delete "$INSTDIR\task-def\006-changePathAlbum.xml"
     Delete "$INSTDIR\task-def\010-renameSongDir.xml"
     Delete "$INSTDIR\task-def\020-renameSongDirSpecial.xml"
     Delete "$INSTDIR\task-def\030-renameSongTxt.xml"
@@ -153,6 +156,7 @@ Section "Uninstall"
     Delete "$INSTDIR\task-def\id3-023-removeVideoTitle.xml"
     Delete "$INSTDIR\task-def\id3-030-useGenre.xml"
     Delete "$INSTDIR\task-def\id3-040-useYear.xml"
+    Delete "$INSTDIR\task-def\id3-040-useAlbum.xml"
     RMDir "$INSTDIR\task-def"
     RMDir "$INSTDIR"
   
