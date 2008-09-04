@@ -1,8 +1,10 @@
 #include "QUBooleanSongData.h"
 
+#include <QSettings>
+
 QUBooleanSongData::QUBooleanSongData(const QString &tag, QObject *parent): QUAbstractReportData(parent) {
 	_tag = tag;
-	
+
 	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/music.png"));
 		this->setDescription(tr("Audio file exists?"));
@@ -20,7 +22,7 @@ QUBooleanSongData::QUBooleanSongData(const QString &tag, QObject *parent): QUAbs
 
 QString QUBooleanSongData::textData(QUSongFile *song) {
 	bool result = false;
-	
+
 	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0)
 		result = song->hasMp3();
 	else if(QString::compare(_tag, COVER_TAG, Qt::CaseInsensitive) == 0)
@@ -33,25 +35,33 @@ QString QUBooleanSongData::textData(QUSongFile *song) {
 	if(result)
 		return tr("yes");
 	else
-		return tr("no");	
+		return tr("no");
 }
 
 QString QUBooleanSongData::iconData(QUSongFile *song) {
-	bool result = false;
-	
-	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0)
-		result = song->hasMp3();
-	else if(QString::compare(_tag, COVER_TAG, Qt::CaseInsensitive) == 0)
-		result = song->hasCover();
-	else if(QString::compare(_tag, BACKGROUND_TAG, Qt::CaseInsensitive) == 0)
-		result = song->hasBackground();
-	else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0)
-		result = song->hasVideo();
+	QSettings settings;
+	bool useAltIcons = settings.value("altSongTree", false).toBool();
 
-	if(result)
-		return ":/marks/tick.png";
-	else
-		return ":/marks/cross.png";
+	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0)
+		if (song->hasMp3())
+			return useAltIcons ? ":/types/music.png" : ":/marks/tick.png";
+		else
+			return useAltIcons ? "" : ":/marks/cross.png";
+	else if(QString::compare(_tag, COVER_TAG, Qt::CaseInsensitive) == 0)
+		if (song->hasCover())
+			return useAltIcons ? ":/types/cover.png" : ":/marks/tick.png";
+		else
+			return useAltIcons ? "" : ":/marks/cross.png";
+	else if(QString::compare(_tag, BACKGROUND_TAG, Qt::CaseInsensitive) == 0)
+		if (song->hasBackground())
+			return useAltIcons ? ":/types/background.png" : ":/marks/tick.png";
+		else
+			return useAltIcons ? "" : ":/marks/cross.png";
+	else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0)
+		if (song->hasVideo())
+			return useAltIcons ? ":/types/film.png" : ":/marks/tick.png";
+		else
+			return useAltIcons ? "" : ":/marks/cross.png";
 }
 
 QString QUBooleanSongData::headerTextData() {
@@ -67,14 +77,14 @@ QString QUBooleanSongData::headerIconData() {
 		return ":/types/background.png";
 	else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0)
 		return ":/types/film.png";
-	
+
 	return QString();
 }
 
 void QUBooleanSongData::sort(QList<QUSongFile*> &songs) {
 	if(this->next())
 		this->next()->sort(songs);
-	
+
 	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0)
 		qStableSort(songs.begin(), songs.end(), QUSongFile::hasMp3LessThan);
 	else if(QString::compare(_tag, COVER_TAG, Qt::CaseInsensitive) == 0)

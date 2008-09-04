@@ -3,6 +3,8 @@
 #include "QUProgressDialog.h"
 #include "QUMainWindow.h"
 
+#include "QUBooleanSongData.h"
+
 #include <QDomNodeList>
 #include <QFile>
 #include <QMessageBox>
@@ -161,7 +163,8 @@ void QUHtmlReport::appendSongsTableBody(QDomNode &parent) {
 			QDomElement a  = _report.createElement("a");
 			a.setAttribute("href", QString("#%1").arg(rn));
 
-			if(!rd->iconData(song).isEmpty()) {
+			QUBooleanSongData *bData = dynamic_cast<QUBooleanSongData*>(rd);
+			if(bData and !bData->iconData(song).isEmpty()) {
 				QDomElement img = _report.createElement("img");
 				QDomAttr src = _report.createAttribute("src");
 				QDomAttr alt = _report.createAttribute("alt");
@@ -181,7 +184,7 @@ void QUHtmlReport::appendSongsTableBody(QDomNode &parent) {
 				} else {
 					td.appendChild(img);
 				}
-			} else if(!rd->textData(song).isEmpty()) {
+			} else if(!bData and !rd->textData(song).isEmpty()) {
 				if(options().testFlag(QU::reportLinkLyrics)) {
 					a.appendChild(_report.createTextNode(rd->textData(song)));
 					td.appendChild(a);
