@@ -149,13 +149,16 @@ void QUHtmlReport::appendSongsTableBody(QDomNode &parent) {
 
 		/* running number */
 		QDomElement rtd = _report.createElement("td");
-		rtd.appendChild(_report.createTextNode(QString("%1.").arg(rn++)));
+		rtd.appendChild(_report.createTextNode(QString("%1.").arg(rn)));
 		rtd.setAttribute("class", "rn");
 		tr.appendChild(rtd);
 
 		/* selected columns */
 		foreach(QUAbstractReportData *rd, reportDataList()) {
 			QDomElement td = _report.createElement("td");
+
+			QDomElement a  = _report.createElement("a");
+			a.setAttribute("href", QString("#%1").arg(rn));
 
 			if(!rd->iconData(song).isEmpty()) {
 				QDomElement img = _report.createElement("img");
@@ -171,15 +174,26 @@ void QUHtmlReport::appendSongsTableBody(QDomNode &parent) {
 				img.setAttributeNode(alt);
 				img.setAttributeNode(title);
 
-				td.appendChild(img);
+				if(options().testFlag(QU::reportLinkLyrics)) {
+					a.appendChild(img);
+					td.appendChild(a);
+				} else {
+					td.appendChild(img);
+				}
 			} else if(!rd->textData(song).isEmpty()) {
-				td.appendChild(_report.createTextNode(rd->textData(song)));
+				if(options().testFlag(QU::reportLinkLyrics)) {
+					a.appendChild(_report.createTextNode(rd->textData(song)));
+					td.appendChild(a);
+				} else {
+					td.appendChild(_report.createTextNode(rd->textData(song)));
+				}
 			}
 
 			tr.appendChild(td);
 		}
 
 		tbody.appendChild(tr);
+		rn++;
 	}
 
 	parent.appendChild(tbody);
@@ -199,9 +213,11 @@ void QUHtmlReport::appendLyrics(QDomNode &parent) {
 		if(pDlg.cancelled()) break;
 
 		QDomElement div = _report.createElement("div");
+		if(options().testFlag(QU::reportLinkLyrics))
+			div.setAttribute("id", QVariant(rn).toString());
 
 		QDomElement h1 = _report.createElement("h1");
-		h1.appendChild(_report.createTextNode(QString("%3. %1 - %2").arg(song->artist()).arg(song->title()).arg(rn++)));
+		h1.appendChild(_report.createTextNode(QString("%3. %1 - %2").arg(song->artist()).arg(song->title()).arg(rn)));
 		div.appendChild(h1);
 
 		QString lyrics = "<root><p>";
@@ -215,5 +231,6 @@ void QUHtmlReport::appendLyrics(QDomNode &parent) {
 			div.appendChild(nodes.at(i));
 
 		parent.appendChild(div);
+		rn++;
 	}
 }
