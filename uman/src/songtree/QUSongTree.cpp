@@ -17,6 +17,7 @@
 #include <QAction>
 #include <QHeaderView>
 #include <QCursor>
+#include <QTime>
 
 #include "QUProgressDialog.h"
 
@@ -494,8 +495,9 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 	} else {
 		// song/folder menu
 		menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),       Qt::Key_F5);
-		menu.addAction(QIcon(":/control/save.png"),    tr("Save"),    this, SLOT(saveSelectedSongs()),          Qt::CTRL + Qt::Key_S);
+		menu.addAction(QIcon(":/control/save.png"),    tr("Save"),    this, SLOT(saveSelectedSongs()),          Qt::CTRL  + Qt::Key_S);
 		menu.addAction(QIcon(":/control/bin.png"),     tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()), Qt::SHIFT + Qt::Key_Delete);
+		menu.addAction(                                tr("Merge"),   this, SLOT(mergeSelectedSongs()),         Qt::CTRL  + Qt::Key_M);
 
 		menu.addSeparator();
 		menu.addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
@@ -761,11 +763,12 @@ void QUSongTree::requestDeleteSelectedSongs() {
 
 	int i = 0;
 	foreach(QUSongItem *songItem, selectedItems) {
-		infoText.append(QString("<br>&nbsp;&nbsp;<b>%1 - %2</b>").arg(songItem->song()->artist()).arg(songItem->song()->title()));
 		if(++i >= 5) {
 			infoText.append("<br>&nbsp;&nbsp;...");
 			break;
 		}
+
+		infoText.append(QString("<br>&nbsp;&nbsp;<b>%1 - %2</b>").arg(songItem->song()->artist()).arg(songItem->song()->title()));
 	}
 
 	QUMessageBox::Results result = QUMessageBox::ask(this,
@@ -797,6 +800,97 @@ void QUSongTree::requestDeleteSelectedSongs() {
 	}
 
 	emit itemSelectionChanged();
+}
+
+/*!
+ * Merge all selected songs with the first one in the selection.
+ *
+ * Copy all files of the source song into the directory of the target song. The sources
+ * song will then be deleted.
+ *
+ */
+void QUSongTree::mergeSelectedSongs() {
+	QList<QUSongItem*> selectedItems = selectedSongItems();
+
+	if(selectedItems.size() < 2) {
+		emit finished(tr("Too few songs selected. You have to merge at least 2 songs."), QU::warning);
+		return;
+	}
+
+	QUSongItem *currentSongItem = dynamic_cast<QUSongItem*>(currentItem());
+
+	if(!currentSongItem)
+		return;
+
+	selectedItems.removeAll(currentSongItem);
+
+	// ---------------------------------
+
+	QString infoText = QString(tr("You want to merge songs with <b>\"%1 - %2\"</b>. All files of the other songs will be moved to that song's path.<br><br>The following <b>%3</b> songs will disappear:"))
+		.arg(currentSongItem->song()->artist())
+		.arg(currentSongItem->song()->title())
+		.arg(selectedItems.size());
+
+	int i = 0;
+	foreach(QUSongItem *songItem, selectedItems) {
+		if(++i >= 5) {
+			infoText.append("<br>&nbsp;&nbsp;...");
+			break;
+		}
+
+		infoText.append(QString("<br>&nbsp;&nbsp;<b>%1 - %2</b>").arg(songItem->song()->artist()).arg(songItem->song()->title()));
+	}
+
+	QUMessageBox::Results result = QUMessageBox::ask(this,
+			tr("Merge Songs"),
+			infoText,
+			":/control/bin.png", tr("Merge these songs."),
+			":/marks/cancel.png", tr("Cancel merge operation."),
+			"", "",
+			100);
+	if(result == QUMessageBox::second)
+		return;
+
+	// ----------------------------------
+
+	QUProgressDialog dlg(QString(tr("Merging selected songs with \"%1 - %2\"...")).arg(currentSongItem->song()->artist()).arg(currentSongItem->song()->title()), selectedItems.size(), this);
+//	dlg.setPixmap(":/control/bin.png");
+	dlg.show();
+
+	clearSelection();
+
+	i = 0;
+	foreach(QUSongItem *songItem, selectedItems) {
+		dlg.update(songItem->song()->songFileInfo().dir().dirName());
+		if(dlg.cancelled()) break;
+
+		QDir dir(songItem->song()->songFileInfo().dir());
+
+		QFileInfoList fiList = dir.entryInfoList(QStringList("*.*"), QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot, QDir::Name);
+
+		bool allFilesCopied = true;
+		foreach(QFileInfo fi, fiList) {
+			QString target = QFileInfo(currentSongItem->song()->songFileInfo().dir(), QString("%1%2_%3").arg(i++, 3, 10, QChar('0')).arg(QTime::currentTime().toString("sszzz")).arg(fi.fileName())).filePath();
+
+			if(!QFile::copy(fi.filePath(), target)) {
+				allFilesCopied = false;
+				emit finished(QString(tr("Could NOT copy file \"%1\" to \"%2\".")).arg(fi.filePath()).arg(target), QU::warning);
+			} else
+				emit finished(QString(tr("File was copied successfully from \"%1\" to \"%2\".")).arg(fi.filePath()).arg(target), QU::information);
+		}
+
+		if(allFilesCopied) {
+			QUSongFile *song = songItem->song();
+			delete takeTopLevelItem(indexOfTopLevelItem(songItem));
+
+			emit deleteSongRequested(song);
+		} else {
+			emit finished(QString(tr("Not all files of \"%1 - %2\" were copied. Song will not be deleted. Merging failed.")).arg(songItem->song()->artist()).arg(songItem->song()->title()), QU::warning);
+		}
+	}
+
+	currentSongItem->update();
+	currentSongItem->setSelected(true);
 }
 
 bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
@@ -1049,6 +1143,9 @@ void QUSongTree::requestLyrics() {
 
 	if(cItem)
 		emit showLyricsRequested(cItem->song());
+
+	if(selectedSongItems().size() > 1)
+		emit finished(tr("You can only display the lyrics of one song at a time."), QU::information);
 }
 
 /*!

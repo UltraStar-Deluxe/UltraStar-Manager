@@ -54,6 +54,7 @@
     <file>collapse.png</file>
     <file>expand.png</file>
     <file>db_info.png</file>
+    <file>file_info.png</file>
     <file>filter.png</file>
     <file>folder_note.png</file>
     <file>folder_realtive.png</file>
@@ -71,6 +72,14 @@
   <qresource prefix="/icons" >
     <file>splash.png</file>
     <file>cup.png</file>
+    <file>uman128.png</file>
+    <file>uman32.png</file>
+    <file>uman48.png</file>
+    <file>uman64.png</file>
+    <file>uman72.png</file>
+    <file>uman96.png</file>
+    <file>uman16.png</file>
+    <file>uman24.png</file>
   </qresource>
   <qresource prefix="/lang" >
     <file>de.png</file>

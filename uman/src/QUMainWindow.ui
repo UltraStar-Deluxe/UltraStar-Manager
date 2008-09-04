@@ -17,7 +17,7 @@
   </property>
   <property name="windowIcon" >
    <iconset resource="images/uman.qrc" >
-    <normaloff>:/icons/cup.png</normaloff>:/icons/cup.png</iconset>
+    <normaloff>:/icons/uman16.png</normaloff>:/icons/uman16.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget" >
    <property name="geometry" >
@@ -801,6 +801,9 @@ Tasks</string>
           </property>
           <item>
            <widget class="QUPreviewTree" name="previewTree" >
+            <property name="textElideMode" >
+             <enum>Qt::ElideRight</enum>
+            </property>
             <column>
              <property name="text" >
               <string>1</string>
@@ -1073,6 +1076,7 @@ Tasks</string>
     <addaction name="actionSaveAll" />
     <addaction name="separator" />
     <addaction name="actionDeleteSelected" />
+    <addaction name="actionMergeSelected" />
     <addaction name="separator" />
     <addaction name="actionSendToPlaylist" />
     <addaction name="actionShowLyrics" />
@@ -1480,6 +1484,11 @@ Tasks</string>
    </property>
    <property name="text" >
     <string>Delete Selected</string>
+   </property>
+  </action>
+  <action name="actionMergeSelected" >
+   <property name="text" >
+    <string>Merge Selected</string>
    </property>
   </action>
  </widget>

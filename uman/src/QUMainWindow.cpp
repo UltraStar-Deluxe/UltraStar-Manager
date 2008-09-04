@@ -155,6 +155,17 @@ void QUMainWindow::initConfig() {
  * Set up initial window size and title text.
  */
 void QUMainWindow::initWindow() {
+	// create window icon
+	QIcon windowIcon;
+	windowIcon.addFile(":/icons/cup.png", QSize(16, 16));
+	windowIcon.addFile(":/icons/uman32.png", QSize(32, 32));
+	windowIcon.addFile(":/icons/uman48.png", QSize(48, 48));
+	windowIcon.addFile(":/icons/uman64.png", QSize(64, 64));
+	windowIcon.addFile(":/icons/uman72.png", QSize(72, 72));
+	windowIcon.addFile(":/icons/uman96.png", QSize(96, 96));
+	windowIcon.addFile(":/icons/uman128.png", QSize(128, 128));
+
+	setWindowIcon(windowIcon);
 	setWindowTitle(QString("%1%2").arg(tr("UltraStar Manager")).arg(WIP_TEXT));
 	resize(1000, 500);
 
@@ -190,6 +201,7 @@ void QUMainWindow::initMenu() {
 	connect(   actionSaveSelected, SIGNAL(triggered()), songTree, SLOT(saveSelectedSongs()));
 	connect(        actionSaveAll, SIGNAL(triggered()), songTree, SLOT(saveUnsavedChanges()));
 	connect( actionDeleteSelected, SIGNAL(triggered()), songTree, SLOT(requestDeleteSelectedSongs()));
+	connect(  actionMergeSelected, SIGNAL(triggered()), songTree, SLOT(mergeSelectedSongs()));
 	connect(      actionExpandAll, SIGNAL(triggered()), songTree, SLOT(expandAll()));
 	connect(      actionExpandAll, SIGNAL(triggered()), songTree, SLOT(resizeToContents()));
 	connect(    actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(collapseAll()));
@@ -207,6 +219,7 @@ void QUMainWindow::initMenu() {
 	 actionSendToPlaylist->setShortcut(Qt::CTRL  + Qt::Key_P);
 	     actionShowLyrics->setShortcut(Qt::CTRL  + Qt::Key_L);
 	 actionDeleteSelected->setShortcut(Qt::SHIFT + Qt::Key_Delete);
+	  actionMergeSelected->setShortcut(Qt::CTRL  + Qt::Key_M);
 
 	// view menu
 	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
@@ -215,7 +228,7 @@ void QUMainWindow::initMenu() {
 
 	detailsDock->toggleViewAction()->setIcon(QIcon(":/control/text_edit.png"));
 	tasksDock->toggleViewAction()->setIcon(QIcon(":/control/tasks.png"));
-	previewDock->toggleViewAction()->setIcon(QIcon(":/control/db_info.png"));
+	previewDock->toggleViewAction()->setIcon(QIcon(":/control/file_info.png"));
 	playlistDock->toggleViewAction()->setIcon(QIcon(":/control/playlist.png"));
 	eventsDock->toggleViewAction()->setIcon(QIcon(":/control/log.png"));
 

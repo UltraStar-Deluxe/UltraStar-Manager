@@ -79,6 +79,8 @@ private slots:
 
 	void requestDeleteSelectedSongs();
 
+	void mergeSelectedSongs();
+
 protected:
 	virtual void keyPressEvent(QKeyEvent *event);
 

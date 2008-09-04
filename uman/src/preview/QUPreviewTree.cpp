@@ -94,6 +94,7 @@ QTreeWidgetItem* QUPreviewTree::createInfoItem(const QString &tag, const QString
 
 	infoItem->setText(0, tag);
 	infoItem->setText(1, value);
+	if(value != N_A) infoItem->setToolTip(1, value);
 
 	QFont f(infoItem->font(0));
 	f.setBold(true);
