@@ -31,10 +31,12 @@ private:
 
 	void appendBasePath(QDomNode &parent);
 	void appendUserData(QDomNode &parent);
-	void appendSongsTable(QDomNode &parent);
 
+	void appendSongsTable(QDomNode &parent);
 	void appendSongsTableHead(QDomNode &parent);
 	void appendSongsTableBody(QDomNode &parent);
+
+	void appendLyrics(QDomNode &parent);
 };
 
 #endif /*QUHTMLREPORT_H_*/

@@ -5,6 +5,7 @@
 
 #include <QDomNodeList>
 #include <QFile>
+#include <QMessageBox>
 
 QUHtmlReport::QUHtmlReport(
 		const QList<QUSongFile*> &songFiles,
@@ -22,7 +23,8 @@ QUHtmlReport::QUHtmlReport(
 	this->createBody();
 
 	// copy style sheet to destination
-	QFile::copy(_css.filePath(), QFileInfo(fileInfo().dir(), _css.fileName()).filePath());
+	if(options.testFlag(QU::reportUseStyleSheet))
+		QFile::copy(_css.filePath(), QFileInfo(fileInfo().dir(), _css.fileName()).filePath());
 }
 
 QString QUHtmlReport::content() const {
@@ -48,7 +50,9 @@ void QUHtmlReport::createHead() {
 	link.setAttribute("rel", "stylesheet");
 
 	head.appendChild(title);
-	head.appendChild(link);
+
+	if(options().testFlag(QU::reportUseStyleSheet))
+		head.appendChild(link);
 
 	this->html().appendChild(head);
 }
@@ -59,6 +63,7 @@ void QUHtmlReport::createBody() {
 	appendBasePath(body);
 	appendUserData(body);
 	appendSongsTable(body);
+	appendLyrics(body);
 
 	this->html().appendChild(body);
 }
@@ -74,7 +79,7 @@ void QUHtmlReport::appendBasePath(QDomNode &parent) {
 
 void QUHtmlReport::appendUserData(QDomNode &parent) {
 	QDomElement div = _report.createElement("div");
-	div.appendChild(_report.createTextNode(userData().toString()));
+	div.appendChild(_report.createTextNode(QString("\"%1\"").arg(userData().toString())));
 	div.setAttribute("class", "userdata");
 
 	if(options().testFlag(QU::reportPrependUserData))
@@ -94,6 +99,10 @@ void QUHtmlReport::appendSongsTableHead(QDomNode &parent) {
 	QDomElement thead = _report.createElement("thead");
 	QDomElement tr    = _report.createElement("tr");
 
+	/* running number */
+	tr.appendChild(_report.createElement("th"));
+
+	/* selected columns */
 	foreach(QUAbstractReportData *rd, reportDataList()) {
 		QDomElement th = _report.createElement("th");
 
@@ -130,6 +139,7 @@ void QUHtmlReport::appendSongsTableBody(QDomNode &parent) {
 	pDlg.show();
 	bool odd = true;
 
+	int rn = 1;
 	foreach(QUSongFile *song, songs()) {
 		pDlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
 		if(pDlg.cancelled()) break;
@@ -137,6 +147,13 @@ void QUHtmlReport::appendSongsTableBody(QDomNode &parent) {
 		QDomElement tr = _report.createElement("tr");
 		tr.setAttribute("class", odd ? "odd" : "even"); odd = !odd;
 
+		/* running number */
+		QDomElement rtd = _report.createElement("td");
+		rtd.appendChild(_report.createTextNode(QString("%1.").arg(rn++)));
+		rtd.setAttribute("class", "rn");
+		tr.appendChild(rtd);
+
+		/* selected columns */
 		foreach(QUAbstractReportData *rd, reportDataList()) {
 			QDomElement td = _report.createElement("td");
 
@@ -166,4 +183,37 @@ void QUHtmlReport::appendSongsTableBody(QDomNode &parent) {
 	}
 
 	parent.appendChild(tbody);
+}
+
+void QUHtmlReport::appendLyrics(QDomNode &parent) {
+	if(!options().testFlag(QU::reportAppendLyrics))
+		return;
+
+	QUProgressDialog pDlg(tr("Appending lyrics..."), songs().size());
+	pDlg.setPixmap(":/types/text.png");
+	pDlg.show();
+
+	int rn = 1;
+	foreach(QUSongFile *song, songs()) {
+		pDlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+		if(pDlg.cancelled()) break;
+
+		QDomElement div = _report.createElement("div");
+
+		QDomElement h1 = _report.createElement("h1");
+		h1.appendChild(_report.createTextNode(QString("%3. %1 - %2").arg(song->artist()).arg(song->title()).arg(rn++)));
+		div.appendChild(h1);
+
+		QString lyrics = "<root><p>";
+		lyrics += song->lyrics().join("<br/>").replace("<br/><br/>", "</p><p>");
+		lyrics.append("</p></root>");
+
+		QDomDocument tmp; tmp.setContent(lyrics);
+		QDomNodeList nodes = tmp.firstChildElement("root").childNodes();
+
+		for(int i = 0; i < nodes.count(); i++)
+			div.appendChild(nodes.at(i));
+
+		parent.appendChild(div);
+	}
 }
