@@ -6,8 +6,15 @@
 #include <QDomNodeList>
 #include <QFile>
 
-QUHtmlReport::QUHtmlReport(const QList<QUSongFile*> &songFiles, const QList<QUAbstractReportData*> &reportDataList, const QFileInfo &fi, bool showBaseDir, const QString &cssFilePath, QObject *parent):
-	QUAbstractReport(songFiles, reportDataList, fi, showBaseDir, parent)
+QUHtmlReport::QUHtmlReport(
+		const QList<QUSongFile*> &songFiles,
+		const QList<QUAbstractReportData*> &reportDataList,
+		const QFileInfo &fi,
+		QU::ReportOptions options,
+		const QVariant &userData,
+		const QString &cssFilePath,
+		QObject *parent):
+	QUAbstractReport(songFiles, reportDataList, fi, options, userData, parent)
 {
 	_css.setFile(cssFilePath);
 
@@ -50,6 +57,7 @@ void QUHtmlReport::createBody() {
 	QDomElement body = _report.createElement("body");
 
 	appendBasePath(body);
+	appendUserData(body);
 	appendSongsTable(body);
 
 	this->html().appendChild(body);
@@ -60,8 +68,16 @@ void QUHtmlReport::appendBasePath(QDomNode &parent) {
 	div.appendChild(_report.createTextNode(QString(tr("Songs Path: \"%1\"")).arg(QUMainWindow::BaseDir.path())));
 	div.setAttribute("class", "path");
 
-	if(showBasePath())
+	if(options().testFlag(QU::reportPrependCurrentPath))
+		parent.appendChild(div);
+}
 
+void QUHtmlReport::appendUserData(QDomNode &parent) {
+	QDomElement div = _report.createElement("div");
+	div.appendChild(_report.createTextNode(userData().toString()));
+	div.setAttribute("class", "userdata");
+
+	if(options().testFlag(QU::reportPrependUserData))
 		parent.appendChild(div);
 }
 

@@ -18,6 +18,8 @@ public:
 	QUPlaylistArea(QWidget *parent = 0);
 	~QUPlaylistArea();
 
+	QList<QUPlaylistFile*> playlists() const { return _playlists; }
+
 public slots:
 	void refreshAllPlaylists(QList<QUSongFile*> *songRef);
 	void disconnectPlaylists();

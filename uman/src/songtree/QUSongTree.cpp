@@ -207,6 +207,15 @@ QList<QUSongItem*> QUSongTree::selectedSongItems() {
 	return items;
 }
 
+QList<QUSongFile*> QUSongTree::visibleSongs() {
+	QList<QUSongFile*> result;
+
+	foreach(QUSongItem *songItem, visibleSongItems())
+		result.append(songItem->song());
+
+	return result;
+}
+
 /*!
  * \returns a list of all visible song items
  */

@@ -14,26 +14,40 @@
 #include <QUrl>
 #include <QDesktopServices>
 
-QUReportDialog::QUReportDialog(QUSongTree *songTree, QWidget *parent): QDialog(parent), _songTree(songTree) {
+QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<QUSongFile*> &visibleSongs, const QList<QUPlaylistFile*> &allPlaylists, QWidget *parent):
+		QDialog(parent),
+		_allSongs(allSongs),
+		_visibleSongs(visibleSongs),
+		_allPlaylists(allPlaylists)
+{
 	setupUi(this);
 
-	if(songTree->hasHiddenItems())
-		infoTextLbl->setText(tr("You applied a filter to your songs. The report will only be created for the songs that are visible in the song tree."));
-	else
-		infoTextLbl->setText(tr("Select the columns you want to see in the report. Drag & drop them to change their order. Songs will be sorted alphabetically."));
+//	if(songTree->hasHiddenItems())
+//		infoTextLbl->setText(tr("You applied a filter to your songs. The report will only be created for the songs that are visible in the song tree."));
+//	else
+//		infoTextLbl->setText(tr("Select the columns you want to see in the report. Drag & drop them to change their order. Songs will be sorted alphabetically."));
+//
+//	if(songTree->topLevelItemCount() == 0) {
+//		infoTextLbl->setText(tr("The report will be empty because no song is visible in the song tree."));
+//		infoIconLbl->setPixmap(QPixmap(":/marks/error.png"));
+//	}
 
-	if(songTree->topLevelItemCount() == 0) {
-		infoTextLbl->setText(tr("The report will be empty because no song is visible in the song tree."));
-		infoIconLbl->setPixmap(QPixmap(":/marks/error.png"));
-	}
-
+	initReportList();
 	initStyleCombo();
+	initPlaylistCombo();
 
 	connect(doneBtn, SIGNAL(clicked()), this, SLOT(accept()));
 	connect(createHtmlBtn, SIGNAL(clicked()), this, SLOT(createHtmlReport()));
 	connect(createPlainTextBtn, SIGNAL(clicked()), this, SLOT(createPlainTextReport()));
 
-	initReportList();
+	connect(radioPlaylist, SIGNAL(toggled(bool)), this, SLOT(togglePlaylistSource(bool)));
+	togglePlaylistSource(false);
+
+	connect(useStyleChk, SIGNAL(toggled(bool)), this, SLOT(toggleStyleCombo(bool)));
+	useStyleChk->setChecked(true);
+
+	connect(appendLyricsChk, SIGNAL(toggled(bool)), this, SLOT(toggleAppendLyrics(bool)));
+	toggleAppendLyrics(false);
 }
 
 void QUReportDialog::initReportList() {
@@ -73,6 +87,12 @@ void QUReportDialog::initStyleCombo() {
 	}
 }
 
+void QUReportDialog::initPlaylistCombo() {
+	for(int i = 0; i < _allPlaylists.size(); i++) {
+		playlistCombo->addItem(_allPlaylists.at(i)->name(), i);
+	}
+}
+
 void QUReportDialog::createHtmlReport() {
 	QSettings settings;
 	QFileInfo fi(QDir(settings.value("reportPath").toString()), "report.html");
@@ -84,16 +104,14 @@ void QUReportDialog::createHtmlReport() {
 	if(!fi.fileName().isEmpty()) {
 		settings.setValue("reportPath", QVariant(fi.path())); // remember folder
 
-		QList<QUAbstractReportData*> reportData;
-		QList<QUSongFile*> songFiles;
-
-		this->fetchDataAndSongs(reportData, songFiles);
+		fetchData();
 
 		QUHtmlReport report(
-				songFiles,
-				reportData,
+				sortedSongs(),
+				_data,
 				fi,
-				showBaseDirChk->checkState() == Qt::Checked,
+				this->selectedOptions(),
+				this->currentPlaylistName(),
 				styleCombo->itemData(styleCombo->currentIndex()).toString()); // css file path is saved in user data of current combobox item
 		report.save();
 
@@ -116,12 +134,14 @@ void QUReportDialog::createPlainTextReport() {
 	if(!fi.fileName().isEmpty()) {
 		settings.setValue("reportPath", QVariant(fi.path())); // remember folder
 
-		QList<QUAbstractReportData*> reportData;
-		QList<QUSongFile*> songFiles;
+		this->fetchData();
 
-		this->fetchDataAndSongs(reportData, songFiles);
-
-		QUPlainTextReport report(songFiles, reportData, fi, showBaseDirChk->checkState() == Qt::Checked);
+		QUPlainTextReport report(
+				sortedSongs(),
+				_data,
+				fi,
+				this->selectedOptions(),
+				this->currentPlaylistName());
 		report.save();
 
 		emit finished(QString(tr("Report created successfully to: \"%1\".")).arg(fi.filePath()), QU::information);
@@ -133,29 +153,99 @@ void QUReportDialog::createPlainTextReport() {
 }
 
 /*!
- * Looks for all checked report data columns and all visible songs in the song tree. Fills the results
- * in two lists.
+ * Looks for all checked report data columns.
  */
-void QUReportDialog::fetchDataAndSongs(QList<QUAbstractReportData*> &data, QList<QUSongFile*> &songs) {
+void QUReportDialog::fetchData() {
+	_data.clear();
+
 	for(int i = 0; i < reportList->count(); i++) {
 		QUReportItem *item = dynamic_cast<QUReportItem*>(reportList->item(i));
 
 		if(item && item->checkState() == Qt::Checked) {
 			item->data()->setNext(0); // clear previous connections
-			if(!data.isEmpty())
-				data.last()->setNext(item->data());
+			if(!_data.isEmpty())
+				_data.last()->setNext(item->data());
 
-			data.append(item->data());
+			_data.append(item->data());
 		}
 	}
+}
 
-	for(int i = 0; i < _songTree->topLevelItemCount(); i++) {
-		QUSongItem *songItem = dynamic_cast<QUSongItem*>(_songTree->topLevelItem(i));
+/*!
+ * Sort the given songs according to the fetched song data. You need to call fetchData() first.
+ *
+ * \sa fetchData()
+ */
+QList<QUSongFile*> QUReportDialog::sortedSongs() {
+	QList<QUSongFile*> songs;
 
-		if(songItem)
-			songs.append(songItem->song());
+	if(radioAllSongs->isChecked()) {
+		songs = _allSongs;
+	} else if(radioVisibleSongs->isChecked()) {
+		songs = _visibleSongs;
+	} else if(radioPlaylist->isChecked()) {
+		int index = playlistCombo->itemData(playlistCombo->currentIndex(), Qt::UserRole).toInt();
+
+		if(index >= 0 and index < _allPlaylists.size())
+			songs << _allPlaylists.at(index)->connectedSongs();
 	}
 
-	if(!data.isEmpty())
-		data.first()->sort(songs);
+	if(!_data.isEmpty())
+		_data.first()->sort(songs);
+
+	return songs;
+}
+
+/*!
+ * \returns The selected options according to the checkboxes in the dialog.
+ */
+QU::ReportOptions QUReportDialog::selectedOptions() const {
+	QU::ReportOptions options;
+
+	if(showBaseDirChk->isEnabled() and showBaseDirChk->isChecked())
+		options |= QU::reportPrependCurrentPath;
+	if(showPlaylistName->isEnabled() and showPlaylistName->isChecked())
+		options |= QU::reportPrependUserData;
+	if(appendLyricsChk->isEnabled() and appendLyricsChk->isChecked())
+		options |= QU::reportAppendLyrics;
+	if(linkLyricsChk->isEnabled() and linkLyricsChk->isChecked())
+		options |= QU::reportLinkLyrics;
+	if(useStyleChk->isEnabled() and useStyleChk->isChecked())
+		options |= QU::reportUseStyleSheet;
+
+	return options;
+}
+
+/*!
+ * \returns The name of the selected playlist.
+ */
+QString QUReportDialog::currentPlaylistName() const {
+	int index = playlistCombo->itemData(playlistCombo->currentIndex(), Qt::UserRole).toInt();
+
+	if(index >= 0 and index < _allPlaylists.size())
+		return _allPlaylists.at(index)->name();
+	else
+		return "";
+}
+
+/*!
+ * Enables or disables the combobox for playlists according to your choice.
+ */
+void QUReportDialog::togglePlaylistSource(bool checked) {
+	playlistCombo->setEnabled(checked);
+	showPlaylistName->setEnabled(checked);
+}
+
+/*!
+ * Enables or disables the combobox for style sheets according to your choice.
+ */
+void QUReportDialog::toggleStyleCombo(bool checked) {
+	styleCombo->setEnabled(checked);
+}
+
+/*!
+ * Enables or disables the checkbox for linking lyrics according to your choice.
+ */
+void QUReportDialog::toggleAppendLyrics(bool checked) {
+	linkLyricsChk->setEnabled(checked);
 }

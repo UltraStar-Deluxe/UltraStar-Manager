@@ -70,6 +70,15 @@ public:
 	};
 	Q_DECLARE_FLAGS(SpellStates, SpellState)
 
+	enum ReportOption {
+		reportPrependCurrentPath = 0x01,
+		reportPrependUserData = 0x02,
+		reportAppendLyrics = 0x04,
+		reportLinkLyrics = 0x08,
+		reportUseStyleSheet = 0x10
+	};
+	Q_DECLARE_FLAGS(ReportOptions, ReportOption)
+
 	static QStringList allowedSongFiles();
 	static QStringList allowedAudioFiles();
 	static QStringList allowedPictureFiles();

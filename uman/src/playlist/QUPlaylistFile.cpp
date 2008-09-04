@@ -178,3 +178,17 @@ void QUPlaylistFile::changeOrder(const QList<QUPlaylistEntry*> &newOrder) {
 	_playlist = newOrder;
 	_playlistChanged = true;
 }
+
+/*!
+ * \returns A list of all connected songs.
+ */
+QList<QUSongFile*> QUPlaylistFile::connectedSongs() const {
+	QList<QUSongFile*> result;
+
+	foreach(QUPlaylistEntry *entry, _playlist) {
+		if(entry->song()) // can be NULL, if not connected to database
+			result.append(entry->song());
+	}
+
+	return result;
+}

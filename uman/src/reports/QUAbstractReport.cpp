@@ -7,13 +7,15 @@ QUAbstractReport::QUAbstractReport(
 		const QList<QUSongFile*> &songFiles,
 		const QList<QUAbstractReportData*> &reportDataList,
 		const QFileInfo &fi,
-		bool showBaseDir,
+		QU::ReportOptions options,
+		const QVariant &userData,
 		QObject *parent):
 	QObject(parent),
 	_reportDataList(reportDataList),
 	_songFiles(songFiles),
 	_fi(fi),
-	_showBaseDir(showBaseDir)
+	_options(options),
+	_userData(userData)
 {
 }
 

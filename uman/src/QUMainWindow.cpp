@@ -1002,7 +1002,7 @@ void QUMainWindow::removeFilter() {
 }
 
 void QUMainWindow::reportCreate() {
-	QUReportDialog *dlg = new QUReportDialog(songTree, this);
+	QUReportDialog *dlg = new QUReportDialog(_songs, songTree->visibleSongs(), playlistArea->playlists(), this);
 
 	connect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 	dlg->exec();

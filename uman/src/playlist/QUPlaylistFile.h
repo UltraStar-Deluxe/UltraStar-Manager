@@ -45,6 +45,8 @@ public:
 
 	void changeOrder(const QList<QUPlaylistEntry*> &newOrder);
 
+	QList<QUSongFile*> connectedSongs() const;
+
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
 

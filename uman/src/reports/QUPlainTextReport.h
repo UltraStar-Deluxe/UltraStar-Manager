@@ -13,7 +13,8 @@ public:
 			const QList<QUSongFile*> &songFiles,
 			const QList<QUAbstractReportData*> &reportDataList,
 			const QFileInfo &fi,
-			bool showBaseDir = false,
+			QU::ReportOptions options = 0,
+			const QVariant &userData = QVariant(),
 			QObject *parent = 0);
 
 	virtual QString content() const;
@@ -27,6 +28,7 @@ private:
 
 	void printHeading(QTextStream &out);
 	void printSongTable(QTextStream &out);
+	void printLyrics(QTextStream &out);
 };
 
 #endif /*QUPLAINTEXTREPORT_H_*/

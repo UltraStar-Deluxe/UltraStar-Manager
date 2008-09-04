@@ -13,7 +13,8 @@ public:
 			const QList<QUSongFile*> &songFiles,
 			const QList<QUAbstractReportData*> &reportDataList,
 			const QFileInfo &fi,
-			bool showBaseDir = false,
+			QU::ReportOptions options = 0,
+			const QVariant &userData = QVariant(),
 			const QString &cssFilePath = QString(),
 			QObject *parent = 0);
 
@@ -29,6 +30,7 @@ private:
 	void createBody();
 
 	void appendBasePath(QDomNode &parent);
+	void appendUserData(QDomNode &parent);
 	void appendSongsTable(QDomNode &parent);
 
 	void appendSongsTableHead(QDomNode &parent);

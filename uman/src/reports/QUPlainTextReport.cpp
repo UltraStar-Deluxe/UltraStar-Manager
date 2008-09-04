@@ -4,8 +4,14 @@
 
 #include <QTextStream>
 
-QUPlainTextReport::QUPlainTextReport(const QList<QUSongFile*> &songFiles, const QList<QUAbstractReportData*> &reportDataList, const QFileInfo &fi, bool showBaseDir, QObject *parent):
-	QUAbstractReport(songFiles, reportDataList, fi, showBaseDir, parent)
+QUPlainTextReport::QUPlainTextReport(
+		const QList<QUSongFile*> &songFiles,
+		const QList<QUAbstractReportData*> &reportDataList,
+		const QFileInfo &fi,
+		QU::ReportOptions options,
+		const QVariant &userData,
+		QObject *parent):
+	QUAbstractReport(songFiles, reportDataList, fi, options, userData, parent)
 {
 	computePaddings();
 
@@ -15,6 +21,7 @@ QUPlainTextReport::QUPlainTextReport(const QList<QUSongFile*> &songFiles, const 
 
 	printHeading(out);
 	printSongTable(out);
+	printLyrics(out);
 }
 
 QString QUPlainTextReport::content() const {
@@ -32,9 +39,17 @@ void QUPlainTextReport::computePaddings() {
 }
 
 void QUPlainTextReport::printHeading(QTextStream &out) {
-	if(showBasePath())
+	if(options().testFlag(QU::reportPrependCurrentPath))
 		out << QString(tr("Songs Path: \"%1\"")).arg(QUMainWindow::BaseDir.path()) << endl << endl;
 
+	if(options().testFlag(QU::reportPrependUserData))
+		out << QString("\"%1\"").arg(userData().toString()) << endl << endl;
+
+	/* running number */
+	out.setFieldWidth(0);
+	out << " " << QString(QVariant(songs().size()).toString().length(), QChar(' '));
+
+	/* selected columns */
 	int lineSize = 0;
 	for(int i = 0; i < reportDataList().size(); i++) {
 		out.setFieldWidth(0);
@@ -53,9 +68,14 @@ void QUPlainTextReport::printSongTable(QTextStream &out) {
 	pDlg.setPixmap(":/types/folder.png");
 	pDlg.show();
 
+	int rn = 1, max = QVariant(songs().size()).toString().length();
 	foreach(QUSongFile *song, songs()) {
 		pDlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
 		if(pDlg.cancelled()) break;
+
+		/* running number */
+		out.setFieldWidth(0);
+		out << " " << QString("%1").arg(rn++, max, 10, QChar('0'));
 
 		for(int i = 0; i < reportDataList().size(); i++) {
 			out.setFieldWidth(0);
@@ -65,5 +85,30 @@ void QUPlainTextReport::printSongTable(QTextStream &out) {
 		}
 		out.setFieldWidth(0);
 		out << " | " << endl;
+	}
+}
+
+void QUPlainTextReport::printLyrics(QTextStream &out) {
+	if(!options().testFlag(QU::reportAppendLyrics))
+		return;
+
+	QUProgressDialog pDlg(tr("Appending lyrics..."), songs().size());
+	pDlg.setPixmap(":/types/text.png");
+	pDlg.show();
+
+	out << endl << endl;
+
+	int i = 1;
+	foreach(QUSongFile *song, songs()) {
+		pDlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+		if(pDlg.cancelled()) break;
+
+		QString subheader = QString("%3. %1 - %2").arg(song->artist()).arg(song->title()).arg(i++, QVariant(songs().size()).toString().length(), 10, QChar('0'));
+
+		out << QString(subheader.length(), '-') << endl;
+		out << subheader << endl;
+		out << QString(subheader.length(), '-') << endl;
+
+		out << song->lyrics().join("\n").remove(QRegExp("<b>|</b>|<i>|</i>")) << endl << endl;
 	}
 }

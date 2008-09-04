@@ -368,7 +368,7 @@ QStringList QUSongFile::lyrics() const {
 	QStringList result; result << QString();
 
 	QRegExp lineBreak("\\s*-.*");
-	QRegExp linePrefix("\\s*[:\\*F]\\s*\\d+\\s+\\d+\\s+-?\\d+\\s");
+	QRegExp linePrefix("\\s*[:\\*F]\\s*-?\\d+\\s+\\d+\\s+-?\\d+\\s");
 
 	int lastBeat = -1;
 

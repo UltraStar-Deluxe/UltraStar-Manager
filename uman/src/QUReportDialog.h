@@ -2,7 +2,9 @@
 #define QUREPORTDIALOG_H_
 
 #include "QU.h"
-#include "QUSongTree.h"
+#include "QUSongFile.h"
+#include "QUPlaylistFile.h"
+
 #include "QUSongTagData.h"
 #include "QUBooleanSongData.h"
 #include "QUSongFileData.h"
@@ -16,21 +18,39 @@ class QUReportDialog: public QDialog, private Ui::QUReportDialog {
 	Q_OBJECT
 
 public:
-	QUReportDialog(QUSongTree *songTree, QWidget *parent = 0);
-
-private:
-	QUSongTree *_songTree;
-
-	void initReportList();
-	void initStyleCombo();
-	void fetchDataAndSongs(QList<QUAbstractReportData*> &data, QList<QUSongFile*> &songs);
+	QUReportDialog(
+			const QList<QUSongFile*> &allSongs,
+			const QList<QUSongFile*> &visibleSongs,
+			const QList<QUPlaylistFile*> &allPlaylists,
+			QWidget *parent = 0);
 
 private slots:
 	void createHtmlReport();
 	void createPlainTextReport();
 
+	void togglePlaylistSource(bool checked);
+	void toggleStyleCombo(bool checked);
+	void toggleAppendLyrics(bool checked);
+
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
+
+private:
+	QList<QUSongFile*> _allSongs;
+	QList<QUSongFile*> _visibleSongs;
+	QList<QUPlaylistFile*> _allPlaylists;
+
+	QList<QUAbstractReportData*> _data;
+
+	void initReportList();
+	void initStyleCombo();
+	void initPlaylistCombo();
+
+	void fetchData();
+	QList<QUSongFile*> sortedSongs();
+
+	QU::ReportOptions selectedOptions() const;
+	QString currentPlaylistName() const;
 };
 
 #endif /*QUREPORTDIALOG_H_*/
