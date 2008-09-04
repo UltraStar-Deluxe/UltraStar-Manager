@@ -88,6 +88,7 @@ void QUHtmlReport::appendUserData(QDomNode &parent) {
 
 void QUHtmlReport::appendSongsTable(QDomNode &parent) {
 	QDomElement table = _report.createElement("table");
+	table.setAttribute("class", "list");
 
 	appendSongsTableHead(table);
 	appendSongsTableBody(table);
@@ -207,12 +208,17 @@ void QUHtmlReport::appendLyrics(QDomNode &parent) {
 	pDlg.setPixmap(":/types/text.png");
 	pDlg.show();
 
+	QDomElement table = _report.createElement("table"); table.setAttribute("class", "lyrics");
+	QDomElement tr = _report.createElement("tr"); table.appendChild(tr);
+	QDomElement td = _report.createElement("td"); tr.appendChild(td);
+
 	int rn = 1;
 	foreach(QUSongFile *song, songs()) {
 		pDlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
 		if(pDlg.cancelled()) break;
 
 		QDomElement div = _report.createElement("div");
+		div.setAttribute("class", "song");
 		if(options().testFlag(QU::reportLinkLyrics))
 			div.setAttribute("id", QVariant(rn).toString());
 
@@ -230,7 +236,9 @@ void QUHtmlReport::appendLyrics(QDomNode &parent) {
 		for(int i = 0; i < nodes.count(); i++)
 			div.appendChild(nodes.at(i));
 
-		parent.appendChild(div);
+		td.appendChild(div);
 		rn++;
 	}
+
+	parent.appendChild(table);
 }
