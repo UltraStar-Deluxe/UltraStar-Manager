@@ -49,3 +49,4 @@ There is a context menu in the task list which enables you to add and edit renam
 Some operations cannot be cancelled because that would lead to an inconsistent state, e.g. applying a filter.
 You can expand and collapse the categories in the database info window by double-clicking their names.
 A blue cross in the song tree indicates that the value for a file-related tag (e.g. #cover) was set but the file does not exist.
+A song is <b>invalid</b> if it has no artist or title or a length of zero. That song will have a <b>light red background</b> in the song tree.

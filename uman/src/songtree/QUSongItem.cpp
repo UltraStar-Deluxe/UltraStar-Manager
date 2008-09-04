@@ -106,6 +106,7 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	updateFileCheckColumns();
 	updateTimeCheckColumns();
 	updateTextColumns();
+	updateBackground();
 }
 
 void QUSongItem::updateAsTxt() {
@@ -427,4 +428,14 @@ void QUSongItem::updateTextColumns() {
 		this->setText(FIRST_CUSTOM_TAG_COLUMN + (i),      song()->customTag(customTag));
 		this->setToolTip(FIRST_CUSTOM_TAG_COLUMN + (i++), song()->customTag(customTag));
 	}
+}
+
+void QUSongItem::updateBackground() {
+	if(!song()->isValid())
+		for(int i = 0; i < this->columnCount(); i++)
+			this->setBackgroundColor(i, QColor(255, 48, 48, 50));
+	else
+		for(int i = 0; i < this->columnCount(); i++)
+			this->setBackgroundColor(i, QColor(0, 0, 0, 0));
+
 }

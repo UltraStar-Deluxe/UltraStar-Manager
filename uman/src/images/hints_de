@@ -49,3 +49,4 @@ Die Aufgabenliste hat ein Kontextmenü, welches es dir ermöglicht, neue Aufgaben 
 Einige Vorgänge können nicht abgebrochen werden, weil dies zu einem inkonsistenten Zustand führen würde, z.B. Filter anwenden.
 Du kannst die Kategorien im DB-Info-Fenster ein- und ausklappen, indem du auf deren Namen einen Doppelklick machst.
 Ein blaues Kreuz im Songbaum bedeutet, dass ein dateibezogener Tag (z.B. #cover) einen Wert hat, wobei die Datei nicht existiert.
+Ein Song ist <b>ungültig</b>, wenn er keinen Interpreten oder keinen Titel besitzt, oder wenn die Länge Null ist.<br><br>Dieser Song wird einen <b>leicht rötlichen Hintergrund</b> im Song-Baum haben.

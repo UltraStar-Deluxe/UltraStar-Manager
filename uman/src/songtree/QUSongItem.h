@@ -83,6 +83,8 @@ private:
 	void updateFileCheckColumns();
 	void updateTimeCheckColumns();
 	void updateTextColumns();
+
+	void updateBackground();
 };
 
 #endif /*QUSONGITEM_H_*/

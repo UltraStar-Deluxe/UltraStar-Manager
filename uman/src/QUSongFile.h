@@ -72,6 +72,8 @@ public:
 	bool hasUnsavedChanges() const { return _hasUnsavedChanges; }
 	void setFile(const QString &file);
 
+	bool isValid();
+
 	// sorting functions
 	static bool artistLessThan (QUSongFile *s1, QUSongFile *s2);
 	static bool titleLessThan (QUSongFile *s1, QUSongFile *s2);

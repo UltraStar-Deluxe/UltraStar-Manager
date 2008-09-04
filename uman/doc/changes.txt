@@ -98,6 +98,12 @@ NEW FEATURES
   > you need the custom tag #ALBUM for that!
 * you can delete whole song directories now
   > useful for eleminate duplicate songs
+* your can merge multiple songs now
+  > copy all files into one folder
+* invalid songs get a light red background now
+  > no artist
+  > no title
+  > no song length -> no lyrics
 
 BUG FIXES
 * minor change in object renaming

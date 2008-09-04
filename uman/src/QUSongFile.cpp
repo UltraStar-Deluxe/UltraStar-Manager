@@ -44,6 +44,13 @@ void QUSongFile::setFile(const QString &file) {
 	updateCache();
 }
 
+/*!
+ * Checks whether this is a valid UltraStar song file.
+ */
+bool QUSongFile::isValid() {
+	return (length() > 0) and (artist() != N_A) and (title() != N_A);
+}
+
 /* SORTING FUNCTIONS BEGIN */
 
 bool QUSongFile::artistLessThan (QUSongFile *s1, QUSongFile *s2)   { return QString::compare(s1->artist(), s2->artist(), Qt::CaseInsensitive) < 0; }
@@ -315,11 +322,14 @@ int QUSongFile::length() {
 	int beats = 0;
 	if(QString::compare(this->relative(), "yes", Qt::CaseInsensitive) == 0) {
 		foreach(QString line, _lyrics) {
-			if(line.startsWith("-"))
-				beats += QVariant(line.section(" ", 2, 2, QString::SectionSkipEmpty)).toInt(); // e.g. "- 48 64"
+			QString l = line; l.insert(1, " "); // fix "-33 22"
+			if(l.startsWith("-"))
+				beats += QVariant(l.section(" ", 2, 2, QString::SectionSkipEmpty)).toInt(); // e.g. "- 48 64"
 		}
-	} else
-		beats = QVariant(_lyrics.last().section(" ", 1, 1, QString::SectionSkipEmpty)).toInt(); // use the number in the last line, e.g. ": 2000 5 60 boo", "- 2000"
+	} else {
+		QString l = _lyrics.last(); l.insert(1, " "); // fix "-44"
+		beats = QVariant(l.section(" ", 1, 1, QString::SectionSkipEmpty)).toInt(); // use the number in the last line, e.g. ": 2000 5 60 boo", "- 2000"
+	}
 
 	double gap = QVariant(this->gap()).toDouble() / 1000;
 
