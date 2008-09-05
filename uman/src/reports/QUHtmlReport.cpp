@@ -230,7 +230,7 @@ void QUHtmlReport::appendLyrics(QDomNode &parent) {
 		div.appendChild(h1);
 
 		QString lyrics = "<root><p>";
-		lyrics += song->lyrics().join("<br/>").replace("<br/><br/>", "</p><p>");
+		lyrics += song->lyrics().join("<br/>").replace("<br/><br/>", "</p><br/><p>");
 		lyrics.append("</p></root>");
 
 		QDomDocument tmp; tmp.setContent(lyrics);

@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>418</width>
-    <height>383</height>
+    <height>393</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -210,7 +210,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="" >
+       <widget class="QWidget" name="layoutWidget" >
         <layout class="QVBoxLayout" name="verticalLayout_3" >
          <property name="spacing" >
           <number>2</number>
@@ -493,6 +493,42 @@
              <number>5</number>
             </property>
             <item>
+             <widget class="QToolButton" name="createHtmlBtn" >
+              <property name="sizePolicy" >
+               <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize" >
+               <size>
+                <width>0</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="font" >
+               <font>
+                <pointsize>9</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text" >
+               <string>HTML Report</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="images/uman.qrc" >
+                <normaloff>:/types/page_code.png</normaloff>:/types/page_code.png</iconset>
+              </property>
+              <property name="toolButtonStyle" >
+               <enum>Qt::ToolButtonTextBesideIcon</enum>
+              </property>
+              <property name="autoRaise" >
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QToolButton" name="createPlainTextBtn" >
               <property name="enabled" >
                <bool>true</bool>
@@ -502,6 +538,12 @@
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="minimumSize" >
+               <size>
+                <width>0</width>
+                <height>25</height>
+               </size>
               </property>
               <property name="font" >
                <font>
@@ -516,36 +558,6 @@
               <property name="icon" >
                <iconset resource="images/uman.qrc" >
                 <normaloff>:/types/text.png</normaloff>:/types/text.png</iconset>
-              </property>
-              <property name="toolButtonStyle" >
-               <enum>Qt::ToolButtonTextBesideIcon</enum>
-              </property>
-              <property name="autoRaise" >
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="createHtmlBtn" >
-              <property name="sizePolicy" >
-               <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="font" >
-               <font>
-                <pointsize>9</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text" >
-               <string>Html Report</string>
-              </property>
-              <property name="icon" >
-               <iconset resource="images/uman.qrc" >
-                <normaloff>:/types/page_code.png</normaloff>:/types/page_code.png</iconset>
               </property>
               <property name="toolButtonStyle" >
                <enum>Qt::ToolButtonTextBesideIcon</enum>
