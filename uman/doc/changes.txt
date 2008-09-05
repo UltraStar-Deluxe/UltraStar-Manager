@@ -158,8 +158,6 @@ TODO (for 1.7.0)
 * enable the user to append any custom []-tag to a file/folder
   > manage these custom/unknown []-tags
   > available through context menu? (list []-tags, ...)
-* filter log entries
-  > button for "clear"
 * make column tests in 1 and 2 editable
   > according to renaming style of the user
 * enable the user to choose which type of song text file of a folder
@@ -176,9 +174,12 @@ TODO (for 1.7.0)
 * "UmanScore"
   > multiple syllables in a line
 * find & replace in song tags
-* PERF: how about processing items backwards and removing them from the tree?
 * custom rename (context menu, 2nd click, ...)
-* fix messagebox height if info label does not fill all white space
+* modify ID3 tags via song tags
+  > genre, year
+* watch a loaded song file for external changes
+  > force a reload of a song file
+  > keep attention to unsaved changes
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title
@@ -188,6 +189,7 @@ NICE TO HAVE (but not necessary in 1.7.0)
 * extract readable lyrics and export them, maybe into some report or so
 * some extended help system in the application (lowest priority, Monty works well :))
 * checksums for SC-checked song files
+* PERF: how about processing items backwards and removing them from the tree?
 
 changes from 1.5.1 to 1.6.0
 ---------------------------
