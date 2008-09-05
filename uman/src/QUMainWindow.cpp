@@ -449,13 +449,14 @@ void QUMainWindow::createSongFiles() {
 	dlg.show();
 
 	foreach(QDir dir, dirList) {
-		QStringList files = dir.entryList(QU::allowedSongFiles(), QDir::Files);
+		QFileInfoList songFiList = dir.entryInfoList(QU::allowedSongFiles(), QDir::Files, QDir::Name);
+		qStableSort(songFiList.begin(), songFiList.end(), QU::fileTypeLessThan);
 
 		dlg.update(dir.dirName());
 		if(dlg.cancelled()) break;
 
-		if(!files.isEmpty()) {
-			QUSongFile *newSong = new QUSongFile(QFileInfo(dir, files.first()).filePath());
+		if(!songFiList.isEmpty()) {
+			QUSongFile *newSong = new QUSongFile(songFiList.first().filePath());
 			// TODO: What about more song files in a folder? Really choose the first one? Hmmm...
 			_songs.append(newSong);
 			// enable event log

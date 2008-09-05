@@ -154,8 +154,6 @@ bool QU::equal(QString token1, QString token2, bool ignoreEmpty) {
 	int neededHits = qMin(mp1.size(), mp2.size());
 	int hits = 0;
 
-
-	qDebug("BEGIN");
 	for(int i = 0; i < mp1.size(); i++) {
 		if(mp1.at(i).first.isEmpty())
 			continue; // should not happen...
@@ -179,4 +177,51 @@ bool QU::equal(QString token1, QString token2, bool ignoreEmpty) {
 	}
 
 	return false;
+}
+
+/*!
+ * Sort the fileinfo according to the order of the appearance in the supported types.
+ */
+bool QU::fileTypeLessThan(const QFileInfo &fi1, const QFileInfo &fi2) {
+	QString suffix1 = QString("*.%1").arg(fi1.suffix());
+	QString suffix2 = QString("*.%1").arg(fi2.suffix());
+
+	if(allowedSongFiles().contains(suffix1) and allowedSongFiles().contains(suffix2)) {
+		foreach(QString type, allowedSongFiles()) {
+			if(QString::compare(type, suffix1, Qt::CaseInsensitive) == 0)
+				return true;
+			if(QString::compare(type, suffix2, Qt::CaseInsensitive) == 0)
+				return false;
+		}
+	} else if(allowedAudioFiles().contains(suffix1) and allowedAudioFiles().contains(suffix2)) {
+		foreach(QString type, allowedAudioFiles()) {
+			if(QString::compare(type, suffix1, Qt::CaseInsensitive) == 0)
+				return true;
+			if(QString::compare(type, suffix2, Qt::CaseInsensitive) == 0)
+				return false;
+		}
+	} else if(allowedPictureFiles().contains(suffix1) and allowedPictureFiles().contains(suffix2)) {
+		foreach(QString type, allowedPictureFiles()) {
+			if(QString::compare(type, suffix1, Qt::CaseInsensitive) == 0)
+				return true;
+			if(QString::compare(type, suffix2, Qt::CaseInsensitive) == 0)
+				return false;
+		}
+	} else if(allowedVideoFiles().contains(suffix1) and allowedVideoFiles().contains(suffix2)) {
+		foreach(QString type, allowedVideoFiles()) {
+			if(QString::compare(type, suffix1, Qt::CaseInsensitive) == 0)
+				return true;
+			if(QString::compare(type, suffix2, Qt::CaseInsensitive) == 0)
+				return false;
+		}
+	} else  if(allowedPlaylistFiles().contains(suffix1) and allowedPlaylistFiles().contains(suffix2)) {
+		foreach(QString type, allowedPlaylistFiles()) {
+			if(QString::compare(type, suffix1, Qt::CaseInsensitive) == 0)
+				return true;
+			if(QString::compare(type, suffix2, Qt::CaseInsensitive) == 0)
+				return false;
+		}
+	}
+
+	return (QString::compare(suffix1, suffix2) < 0);
 }

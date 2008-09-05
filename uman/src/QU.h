@@ -5,6 +5,7 @@
 #include <QString>
 #include <QStringList>
 #include <QRegExp>
+#include <QFileInfo>
 
 #define N_A "-"
 #define NONE "(none)"
@@ -92,6 +93,8 @@ public:
 	static QString withoutAnyUmlautEx(const QString &text);
 
 	static bool equal(QString token1, QString token2, bool ignoreEmpty = false);
+
+	static bool fileTypeLessThan(const QFileInfo &fi1, const QFileInfo &fi2);
 
 protected:
 	QU() {} // do not allow to make an instance of this object
