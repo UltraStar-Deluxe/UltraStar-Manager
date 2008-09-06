@@ -135,6 +135,8 @@ BUG FIXES
   > "Farin Urlaub - Unter - Wasser" :) (regard the blanks around the hyphen!)
   > the first occurence of " - " splits the artist from the title now
 * lyrics do not mess up anymore, if song text file contains lines with preceding whitespaces
+* freshly dropped songs into the song tree can now send (save) messages to event log
+  > you needed to rebuilt the whole tree up to now
   
 KNOWN BUGS (to fix)
 * you cannot sort after a custom tag column in the report

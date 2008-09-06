@@ -365,6 +365,14 @@ void QUMainWindow::initMonty() {
 
 void QUMainWindow::appendSong(QUSongFile *song) {
 	_songs.append(song);
+
+	// enable event log
+	connect(song, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+	// connect changes in song files with an update in the playlist area
+	connect(song, SIGNAL(dataChanged()), playlistArea, SLOT(update()));
+	// react to changes
+	connect(song, SIGNAL(externalSongFileChangeDetected(QUSongFile*)), this, SLOT(processExternalSongFileChange(QUSongFile*)));
+
 }
 
 /*!
@@ -457,14 +465,7 @@ void QUMainWindow::createSongFiles() {
 
 		if(!songFiList.isEmpty()) {
 			QUSongFile *newSong = new QUSongFile(songFiList.first().filePath());
-			// TODO: What about more song files in a folder? Really choose the first one? Hmmm...
-			_songs.append(newSong);
-			// enable event log
-			connect(newSong, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
-			// connect changes in song files with an update in the playlist area
-			connect(newSong, SIGNAL(dataChanged()), playlistArea, SLOT(update()));
-			// react to changes
-			connect(newSong, SIGNAL(externalSongFileChangeDetected(QUSongFile*)), this, SLOT(processExternalSongFileChange(QUSongFile*)));
+			this->appendSong(newSong);
 		}
 	}
 }
