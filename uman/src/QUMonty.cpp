@@ -9,40 +9,46 @@ QUMonty::QUMonty() {
 	initMessages(":/txt/hints");
 	initGenres();
 	initLanguages();
+
+	_watcher = new QFileSystemWatcher();
+}
+
+QUMonty::~QUMonty() {
+	delete _watcher;
 }
 
 void QUMonty::initMessages(const QString &source) {
 	QFile f(source);
-	
+
 	if(f.open(QIODevice::ReadOnly | QIODevice::Text)) {
 		messages = QString(f.readAll()).split("\n");
 		f.close();
-	}	
+	}
 }
 
 void QUMonty::initGenres() {
 	QFile f(":/txt/genres");
-	
+
 	if(f.open(QIODevice::ReadOnly | QIODevice::Text)) {
 		_genres = QString(f.readAll()).split("\n");
 		f.close();
-	}	
+	}
 }
 
 void QUMonty::initLanguages() {
 	QFile f(":/txt/languages");
-	
+
 	if(f.open(QIODevice::ReadOnly | QIODevice::Text)) {
 		_languages = QString(f.readAll()).split("\n");
 		f.close();
-	}	
+	}
 }
 
 QUMonty* QUMonty::_instance = 0;
 QUMonty* QUMonty::instance() {
 	if(_instance == 0)
 		_instance = new QUMonty();
-	
+
 	return _instance;
 }
 
@@ -64,11 +70,11 @@ QPixmap QUMonty::pic(QUMonty::Status status) {
 QString QUMonty::welcomeMsg(int numberOfSongs) {
 	if(numberOfSongs >= 0)
 		songCount = numberOfSongs;
-	
+
 	QString welcomeStr(QObject::tr("Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the button below and I will disappear for now.<br>"
 				"<br>"
 				"You have a nice collection of <b>%1 songs</b> there. Are they managed well yet?"));
-	
+
 	return welcomeStr.arg(songCount);
 }
 
@@ -97,22 +103,22 @@ QString QUMonty::useImageFromResource(const QString &item, QDir dest) {
 			return QString();
 		}
 	}
-	
+
 	QPixmap pixmap(item);
 	QFileInfo fi(dest, QFileInfo(item).fileName());
-	
+
 	if(fi.exists()) {
 		dest.cdUp();
-		return dest.relativeFilePath(fi.filePath());		
+		return dest.relativeFilePath(fi.filePath());
 	}
-	
+
 	if(!pixmap.save(fi.filePath())) {
 //		emit finished(QString(tr("The resource file \"%1\" could NOT be saved.")).arg(fi.filePath()), QU::warning);
 		return QString();
 	}
-	
+
 //	emit finished(QString(tr("The resource file \"%1\" was extracted successfully.")).arg(fi.filePath()), QU::information);
-	
+
 	dest.cdUp();
 	return dest.relativeFilePath(fi.filePath());
 }

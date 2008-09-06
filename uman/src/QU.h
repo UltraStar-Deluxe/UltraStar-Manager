@@ -21,6 +21,8 @@
 class QU: QObject {
 	Q_OBJECT
 public:
+	QU(QObject *parent = 0);
+
 	enum EventMessageType {
 		information,
 		warning,
@@ -95,9 +97,6 @@ public:
 	static bool equal(QString token1, QString token2, bool ignoreEmpty = false);
 
 	static bool fileTypeLessThan(const QFileInfo &fi1, const QFileInfo &fi2);
-
-protected:
-	QU() {} // do not allow to make an instance of this object
 };
 
 #endif /*QU_H_*/

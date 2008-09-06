@@ -104,6 +104,15 @@ NEW FEATURES
   > no artist
   > no title
   > no song length -> no lyrics
+* the setup creates two custom tags: #COMMENT, #ALBUM
+* new entries in context menu for a folder
+  > delete a whole song
+  > merge two songs (copy the files to one point)
+* extended reports
+  > use all, visible or playlist songs
+  > append song lyrics
+  > link songs to lyrics in HTML report
+* selected lengths are shown in "file information" dock
 
 BUG FIXES
 * minor change in object renaming
@@ -133,42 +142,36 @@ KNOWN BUGS (to fix)
 
 TODO (for 1.7.0)
 * note somewhere the origin of the icons/graphics
+    http://creativecommons.org/licenses/GPL/2.0/
   > Diagona Icons (http://www.pinvoke.com/)
 	>>> http://creativecommons.org/licenses/by/3.0/
 	> Fugue Icons (http://www.pinvoke.com/)
 	>>> http://creativecommons.org/licenses/by/3.0/
+    >>> CC License, BY 3.0
+    >>> "Attribution 3.0 Unported"
 	> Silk Icons (http://www.famfamfam.com/)
+    >>> http://creativecommons.org/licenses/by/2.5/
+    >>> CC License, BY 2.5
+    >>> "Attribution 2.5 Generic"
 	> 4 Monty Icons (http://fasticon.com/freeware/, http://dirceuveiga.com.br/eg/)
+    > Boomy Icons
+    >>> http://miloszwl.deviantart.com/
 * get cover picture
   > extract cover from MP3
 * header/footer for reports
   > global stats
   > running number (extra column?)
-* reports for playlists
-  > lyrics for playlist songs/all songs ...
-  
 * re-design filter categories
   > Apply more than one filter?
-  
-* new entry in context menu for a folder
-  > "delete complete directory"
-  > to remove double songs
-  > or better "melt" double entries?
-
 * enable the user to append any custom []-tag to a file/folder
   > manage these custom/unknown []-tags
   > available through context menu? (list []-tags, ...)
 * make column tests in 1 and 2 editable
   > according to renaming style of the user
-* enable the user to choose which type of song text file of a folder
-  should be selected
-  > would be useful for selecting all karaoke files in each folder
 * add to playlist context menu "remove invalid entries"
-* add to installer: custom tag #comment (insert in registry)
 * do not use only the count for "QUSongFile::verifyTags(QStringList&)"
 * show effective length of playlist in playlist dock
 * disable "talk" if monty is not allowed to talk
-* add selected "lengths/time" so preview tree
 * fix gif-support (amazon-covers, ..., files?)
 * crop covers to 1:1 (extra task?)
 * "UmanScore"
@@ -180,6 +183,11 @@ TODO (for 1.7.0)
 * watch a loaded song file for external changes
   > force a reload of a song file
   > keep attention to unsaved changes
+* manage covers for
+  > edition
+  > genre
+  > language
+  > folder
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title

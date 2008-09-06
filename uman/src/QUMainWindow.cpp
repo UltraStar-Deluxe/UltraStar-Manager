@@ -463,6 +463,8 @@ void QUMainWindow::createSongFiles() {
 			connect(newSong, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 			// connect changes in song files with an update in the playlist area
 			connect(newSong, SIGNAL(dataChanged()), playlistArea, SLOT(update()));
+			// react to changes
+			connect(newSong, SIGNAL(externalSongFileChangeDetected(QUSongFile*)), this, SLOT(processExternalSongFileChange(QUSongFile*)));
 		}
 	}
 }
@@ -1065,4 +1067,16 @@ void QUMainWindow::getCoversFromAmazon(QList<QUSongItem*> items) {
 
 	disconnect(dlg, 0, 0, 0);
 	delete dlg;
+}
+
+/*!
+ * Do everything to get back to a consistent state with the file system.
+ */
+void QUMainWindow::processExternalSongFileChange(QUSongFile *song) {
+	if(song->hasUnsavedChanges()) {
+		addLogMsg(QString("INCONSISTENT STATE! The song \"%1 - %2\" has unsaved changes and its persistent song file \"%3\" was modified externally. Save your changes or rebuild the tree manually.").arg(song->artist()).arg(song->title()).arg(song->songFileInfo().filePath()), QU::warning);
+		return;
+	}
+
+	addLogMsg(QString("Song file changed: \"%1\"").arg(song->songFileInfo().filePath()), QU::information);
 }

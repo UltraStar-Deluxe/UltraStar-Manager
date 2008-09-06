@@ -87,6 +87,9 @@ private slots:
 
 	void getCoversFromAmazon(QList<QUSongItem*> items);
 
+	// handle external changes
+	void processExternalSongFileChange(QUSongFile *song);
+
 private:
 	QList<QUSongFile*>     _songs;
 

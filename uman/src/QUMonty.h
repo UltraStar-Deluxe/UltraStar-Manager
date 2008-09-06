@@ -8,8 +8,12 @@
 #include <QLabel>
 #include <QDir>
 
+#include <QFileSystemWatcher>
+
 class QUMonty {
 public:
+	~QUMonty();
+
 	enum Status {
 		normal = 0,
 		seated = 1,
@@ -32,6 +36,8 @@ public:
 
 	QString useImageFromResource(const QString &item, QDir dest);
 
+	QFileSystemWatcher* watcher() const { return _watcher; }
+
 protected:
 	QUMonty();
 
@@ -42,6 +48,8 @@ private:
 	QStringList messages;
 	QStringList _genres;
 	QStringList _languages;
+
+	QFileSystemWatcher *_watcher;
 
 	void initGenres();
 	void initLanguages();

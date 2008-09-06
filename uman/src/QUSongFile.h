@@ -70,7 +70,7 @@ public:
 	~QUSongFile();
 
 	bool hasUnsavedChanges() const { return _hasUnsavedChanges; }
-	void setFile(const QString &file);
+	void setFile(const QString &filePath);
 
 	bool isValid();
 
@@ -178,9 +178,14 @@ public slots:
 	void fixAudioLength();
 	void removeEndTag();
 
+	// watch external song file changes
+	void songFileChanged(const QString &filePath);
+
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
 	void dataChanged();
+
+	void externalSongFileChangeDetected(QUSongFile *song);
 
 private:
 	QFileInfo _fi;

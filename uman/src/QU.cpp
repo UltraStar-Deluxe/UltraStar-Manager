@@ -4,6 +4,8 @@
 #include <QList>
 #include <QPair>
 
+QU::QU(QObject *parent): QObject(parent) {}
+
 QStringList QU::allowedSongFiles() {
 	return QString("*.txt *.kar").split(" ");
 }

@@ -62,6 +62,8 @@ QString QUBooleanSongData::iconData(QUSongFile *song) {
 			return useAltIcons ? ":/types/film.png" : ":/marks/tick.png";
 		else
 			return useAltIcons ? "" : ":/marks/cross.png";
+
+	return "";
 }
 
 QString QUBooleanSongData::headerTextData() {

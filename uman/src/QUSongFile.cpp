@@ -29,19 +29,33 @@ QUSongFile::QUSongFile(const QString &filePath, QObject *parent):
 	_hasUnsavedChanges(false),
 	_songLength(-1)
 {
+	connect(monty->watcher(), SIGNAL(fileChanged(const QString&)), this, SLOT(songFileChanged(const QString&)));
+
 	this->setFile(filePath);
 }
 
 QUSongFile::~QUSongFile() {
+	// do not watch for this file anymore
+	monty->watcher()->removePath(_fi.filePath());
+
 	disconnect(this, 0, 0, 0);
 }
 
 /*!
  * Here you can set up a new file that will be used for this song.
  */
-void QUSongFile::setFile(const QString &file) {
-	_fi.setFile(file);
+void QUSongFile::setFile(const QString &filePath) {
+	// remove old file from watching
+	monty->watcher()->removePath(_fi.filePath());
+	// no double entries
+	monty->watcher()->removePath(filePath);
+
+	// setup new file
+	_fi.setFile(filePath);
 	updateCache();
+
+	// watch for external changes
+	monty->watcher()->addPath(filePath);
 }
 
 /*!
@@ -424,14 +438,15 @@ bool QUSongFile::save(bool force) {
 		return true;
 	}
 
-	// TODO: replace with "QIODevice::Truncate"
-	QFile::remove(_fi.filePath());
+	// do not alarm changes originated by this program
+	monty->watcher()->removePath(_fi.filePath());
 
 	QFile _file;
 	_file.setFileName(_fi.filePath());
 
-	if(!_file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+	if(!_file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)) {
 		emit finished(QString(tr("Save error! The song file \"%1\" was NOT saved.")).arg(this->songFileInfo().fileName()), QU::warning);
+		monty->watcher()->addPath(_fi.filePath());
 		return false;
 	}
 
@@ -478,6 +493,10 @@ bool QUSongFile::save(bool force) {
 
 	emit finished(QString(tr("The song file \"%1\" was saved successfully.")).arg(this->songFileInfo().fileName()), QU::saving);
 	_hasUnsavedChanges = false;
+
+	// re-enable watching for changes
+	monty->watcher()->addPath(_fi.filePath());
+
 	return true;
 }
 
@@ -918,4 +937,14 @@ void QUSongFile::removeEndTag() {
 		setInfo(END_TAG, "");
 		emit finished(QString(tr("The tag #END was removed for: \"%1 - %2\"")).arg(artist()).arg(title()), QU::information);
 	}
+}
+
+/*!
+ * React to external change of the loaded song file.
+ */
+void QUSongFile::songFileChanged(const QString &filePath) {
+	if(_fi.filePath() != filePath)
+		return;
+
+	emit externalSongFileChangeDetected(this);
 }
