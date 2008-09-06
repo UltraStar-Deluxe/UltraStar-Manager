@@ -237,6 +237,14 @@ QList<QUSongItem*> QUSongTree::visibleSongItems() {
 }
 
 /*!
+ * \returns a list of all available song items in the tree. That items
+ * can be visible or hidden.
+ */
+QList<QUSongItem*> QUSongTree::allSongItems() {
+	return (visibleSongItems() << _hiddenItems);
+}
+
+/*!
  * Creates a new entry for each given song.
  */
 void QUSongTree::fill(QList<QUSongFile*> songs) {

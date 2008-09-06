@@ -32,6 +32,7 @@ public:
 	QList<QUSongItem*> selectedSongItems();
 	QList<QUSongFile*> visibleSongs();
 	QList<QUSongItem*> visibleSongItems();
+	QList<QUSongItem*> allSongItems();
 
 	void fill(QList<QUSongFile*> songs);
 

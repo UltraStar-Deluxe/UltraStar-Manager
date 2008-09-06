@@ -1078,5 +1078,15 @@ void QUMainWindow::processExternalSongFileChange(QUSongFile *song) {
 		return;
 	}
 
+	foreach(QUSongItem *songItem, songTree->allSongItems()) {
+		if(songItem->song() == song) {
+			song->updateCache();
+			songItem->update();
+
+			updateDetails();
+			break;
+		}
+	}
+
 	addLogMsg(QString("Song file changed: \"%1\"").arg(song->songFileInfo().filePath()), QU::information);
 }

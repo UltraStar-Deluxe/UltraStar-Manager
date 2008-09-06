@@ -72,6 +72,8 @@ public:
 	bool hasUnsavedChanges() const { return _hasUnsavedChanges; }
 	void setFile(const QString &filePath);
 
+	bool updateCache();
+
 	bool isValid();
 
 	// sorting functions
@@ -198,8 +200,6 @@ private:
 	bool _hasUnsavedChanges;
 
 	int _songLength; // cached song length, calculated from lyrics + gap, -1 == not calculated
-
-	bool updateCache();
 	bool rename(QDir dir, const QString &oldName, const QString &newName);
 };
 
