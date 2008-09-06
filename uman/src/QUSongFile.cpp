@@ -11,6 +11,7 @@
 #include <QFileInfoList>
 #include <QApplication>
 #include <QFile>
+#include <QChar>
 
 #include "audioproperties.h"
 #include "fileref.h"
@@ -374,6 +375,14 @@ int QUSongFile::lengthMp3() const {
 
 int QUSongFile::lengthEffective() const {
 	return qMax(0, this->lengthMp3() - QVariant(this->start()).toInt());
+}
+
+/*!
+ * Like lengthEffective() but with formatted output.
+ */
+QString QUSongFile::lengthEffectiveFormatted() const {
+	int l = lengthEffective();
+	return QString("%1:%2").arg(l / 60).arg(l % 60, 2, 10, QChar('0'));
 }
 
 /*!

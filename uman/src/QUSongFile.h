@@ -59,6 +59,8 @@ class QUSongFile: public QObject {
 	Q_PROPERTY(QString filePath READ filePath)
 	Q_PROPERTY(QString relativeFilePath READ relativeFilePath)
 	Q_PROPERTY(QString txt READ txt)
+	Q_PROPERTY(QString lengthTotal READ lengthEffectiveFormatted)
+
 	Q_PROPERTY(bool hasMp3 READ hasMp3)
 	Q_PROPERTY(bool hasCover READ hasCover)
 	Q_PROPERTY(bool hasBackground READ hasBackground)
@@ -133,6 +135,8 @@ public slots:
 	int length();
 	int lengthMp3() const;
 	int lengthEffective() const;
+
+	QString lengthEffectiveFormatted() const;
 
 	QStringList lyrics() const;
 

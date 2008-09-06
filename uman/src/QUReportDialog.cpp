@@ -64,6 +64,7 @@ void QUReportDialog::initReportList() {
 	reportList->addItem(new QUReportItem(new QUBooleanSongData(BACKGROUND_TAG)));
 	reportList->addItem(new QUReportItem(new QUBooleanSongData(VIDEO_TAG)));
 
+	reportList->addItem(new QUReportItem(new QUSongFileData("lengthTotal")));
 	reportList->addItem(new QUReportItem(new QUSongFileData("path")));
 	reportList->addItem(new QUReportItem(new QUSongFileData("filePath")));
 	reportList->addItem(new QUReportItem(new QUSongFileData("relativeFilePath")));

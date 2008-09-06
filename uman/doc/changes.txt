@@ -193,6 +193,10 @@ TODO (for 1.7.0)
   > genre
   > language
   > folder
+* prepend global stats to report
+  > total length
+  > count
+  > ...
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title

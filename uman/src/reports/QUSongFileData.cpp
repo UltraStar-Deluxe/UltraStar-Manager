@@ -14,6 +14,9 @@ QUSongFileData::QUSongFileData(const QString &property, QObject *parent): QUAbst
 	} else if(QString::compare(_property, "relativeFilePath", Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/control/folder_realtive.png"));
 		this->setDescription(tr("Relative Song File Path"));
+	} else if(QString::compare(_property, "lengthTotal", Qt::CaseInsensitive) == 0) {
+		this->setIcon(QIcon(":/types/time_eff.png"));
+		this->setDescription(tr("Length"));
 	}
 }
 

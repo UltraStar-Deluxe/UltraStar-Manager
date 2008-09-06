@@ -152,7 +152,7 @@ void QUHtmlReport::appendSongsTableBody(QDomNode &parent) {
 
 		/* running number */
 		QDomElement rtd = _report.createElement("td");
-		rtd.appendChild(_report.createTextNode(QString("%1.").arg(rn)));
+		rtd.appendChild(_report.createTextNode(QString("%1").arg(rn)));
 		rtd.setAttribute("class", "rn");
 		tr.appendChild(rtd);
 
