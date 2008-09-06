@@ -493,7 +493,7 @@ void QUMainWindow::readSongDir(QList<QDir> &dirList) {
 }
 
 void QUMainWindow::updateDetails() {
-	addLogMsg("QUMainWindow::updateDetails()", QU::help);
+//	addLogMsg("QUMainWindow::updateDetails()", QU::help);
 
 	disconnect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(editSongSetDetail(QTableWidgetItem*)));
 

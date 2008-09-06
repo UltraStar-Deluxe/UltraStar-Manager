@@ -163,8 +163,7 @@ PRE_TARGETDEPS += version.h
 revtarget.target = version.h
 revtarget.commands = @echo \
     "const char *revision = \"r$(shell svnversion .)\";" > $$revtarget.target \
-    && \
-    python getTaskText.py
+&&python getTaskText.py
 revtarget.depends = $$SOURCES \
     $$HEADERS \
     $$FORMS

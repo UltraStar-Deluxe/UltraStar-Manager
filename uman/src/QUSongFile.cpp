@@ -124,8 +124,10 @@ bool QUSongFile::updateCache() {
 	QFile _file;
 	_file.setFileName(_fi.filePath());
 
-	if(!_file.open(QIODevice::ReadOnly | QIODevice::Text))
+	if(!_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		emit finished(QString(tr("Could NOT open song file: \"%1\"")).arg(_fi.filePath()), QU::warning);
 		return false;
+	}
 
 	// clear contents
 	_footer.clear();

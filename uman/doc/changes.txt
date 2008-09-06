@@ -113,6 +113,9 @@ NEW FEATURES
   > append song lyrics
   > link songs to lyrics in HTML report
 * selected lengths are shown in "file information" dock
+* external changes in the song file will be noticed
+  > internal information are updated to new data
+  > cannot update if you still have unsaved changes
 
 BUG FIXES
 * minor change in object renaming

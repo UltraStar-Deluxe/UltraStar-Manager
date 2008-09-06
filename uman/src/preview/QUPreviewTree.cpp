@@ -6,7 +6,9 @@
 #include "tag.h"
 #include "tstring.h"
 
-// #include "avformat.h" /* ffmpeg */
+//extern "C" {
+//	#include "avformat.h" /* ffmpeg */
+//}
 
 #include <QStringList>
 #include <QHeaderView>
