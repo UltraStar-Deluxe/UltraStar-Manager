@@ -206,13 +206,13 @@ void QUMainWindow::initMenu() {
 	connect(      actionExpandAll, SIGNAL(triggered()), songTree, SLOT(resizeToContents()));
 	connect(    actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(collapseAll()));
 	connect(    actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(resizeToContents()));
-	connect(actionRefreshSelected, SIGNAL(triggered()), songTree, SLOT(refreshSelectedItems()));
+//	connect(actionRefreshSelected, SIGNAL(triggered()), songTree, SLOT(refreshSelectedItems()));
 
 	connect( actionSendToPlaylist, SIGNAL(triggered()), songTree, SLOT(sendSelectedSongsToPlaylist()));
 	connect(     actionShowLyrics, SIGNAL(triggered()), songTree, SLOT(requestLyrics()));
 
 	      actionNewReport->setShortcut(Qt::Key_F2);
-	actionRefreshSelected->setShortcut(Qt::Key_F5);
+//	actionRefreshSelected->setShortcut(Qt::Key_F5);
 	        actionRefresh->setShortcut(Qt::SHIFT + Qt::Key_F5);
 	   actionSaveSelected->setShortcut(Qt::CTRL  + Qt::Key_S);
 	        actionSaveAll->setShortcut(Qt::CTRL  + Qt::SHIFT + Qt::Key_S);
@@ -595,9 +595,15 @@ void QUMainWindow::editSongSetFileLink(QTreeWidgetItem *item, int column) {
 		song->save();
 	}
 
-	updateDetails();
-	(dynamic_cast<QUSongItem*>(songItem->parent()))->update();
+	if(songItem->parent()) {
+		QUSongItem *parentItem = dynamic_cast<QUSongItem*>(songItem->parent());
+		if(parentItem) {
+			parentItem->update(); // songItem becomes invalid after this; see QUSongItem::update()
+			songTree->setCurrentItem(parentItem);
+		}
+	}
 
+	updateDetails();
 	montyTalk();
 }
 
@@ -1110,6 +1116,7 @@ void QUMainWindow::processExternalSongFileChange(QUSongFile *song) {
 		if(songItem->song() == song) {
 			song->updateCache();
 			songItem->update();
+			songTree->setCurrentItem(songItem);
 
 			updateDetails();
 			break;

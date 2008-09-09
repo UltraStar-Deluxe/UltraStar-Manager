@@ -499,10 +499,11 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 		menu.addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), Qt::Key_Delete);
 	} else {
 		// song/folder menu
-		menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),       Qt::Key_F5);
+//		menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),       Qt::Key_F5);
 		menu.addAction(QIcon(":/control/save.png"),    tr("Save"),    this, SLOT(saveSelectedSongs()),          Qt::CTRL  + Qt::Key_S);
 		menu.addAction(QIcon(":/control/bin.png"),     tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()), Qt::SHIFT + Qt::Key_Delete);
-		menu.addAction(                                tr("Merge"),   this, SLOT(mergeSelectedSongs()),         Qt::CTRL  + Qt::Key_M);
+		QAction *a = menu.addAction(                                tr("Merge"),   this, SLOT(mergeSelectedSongs()),         Qt::CTRL  + Qt::Key_M);
+		if(selectedItems().size() < 2) a->setEnabled(false);
 
 		menu.addSeparator();
 		menu.addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
@@ -1023,46 +1024,46 @@ void QUSongTree::createSongFolder(QUSongFile *song) {
 	song->setFile( QFileInfo(QDir(fi.filePath()), song->songFileInfo().fileName()).filePath() );
 }
 
-void QUSongTree::refreshSelectedItems() {
-	QList<QUSongItem*> songItems = this->selectedSongItems();
-	QList<bool>        itemExpandedStates;
-
-	if(songItems.isEmpty())
-		return;
-
-	QUProgressDialog dlg(tr("Refreshing selected songs..."), songItems.size(), this);
-	dlg.setPixmap(":/types/folder.png");
-	dlg.show();
-
-	clearSelection();
-
-	foreach(QUSongItem *songItem, songItems) {
-		dlg.update(songItem->song()->songFileInfo().dir().dirName());
-		if(dlg.cancelled()) break;
-
-		itemExpandedStates.append(songItem->isExpanded());
-
-		if(songItem->isToplevel()) { // for performance reasons...
-			takeTopLevelItem(indexOfTopLevelItem(songItem));
-			songItem->update();
-			addTopLevelItem(songItem);
-		} else
-			songItem->update();
-	}
-
-	setCurrentItem(songItems.first());
-	foreach(QUSongItem *songItem, songItems) {
-		if(!itemExpandedStates.isEmpty()) {
-			songItem->setExpanded(itemExpandedStates.first());
-			itemExpandedStates.pop_front();
-		} else
-			break;
-	}
-	scrollToItem(currentItem());
-	restoreSelection(songItems);
-
-//	emit itemSelectionChanged(); // update details
-}
+//void QUSongTree::refreshSelectedItems() {
+//	QList<QUSongItem*> songItems = this->selectedSongItems();
+//	QList<bool>        itemExpandedStates;
+//
+//	if(songItems.isEmpty())
+//		return;
+//
+//	QUProgressDialog dlg(tr("Refreshing selected songs..."), songItems.size(), this, false);
+//	dlg.setPixmap(":/types/folder.png");
+//	dlg.show();
+//
+//	clearSelection();
+//
+//	foreach(QUSongItem *songItem, songItems) {
+//		dlg.update(songItem->song()->songFileInfo().dir().dirName());
+//		if(dlg.cancelled()) break;
+//
+//		itemExpandedStates.append(songItem->isExpanded());
+//
+//		if(songItem->isToplevel()) { // for performance reasons...
+//			takeTopLevelItem(indexOfTopLevelItem(songItem));
+//			songItem->update();
+//			addTopLevelItem(songItem);
+//		} else
+//			songItem->update();
+//	}
+//
+//	setCurrentItem(songItems.first());
+//	foreach(QUSongItem *songItem, songItems) {
+//		if(!itemExpandedStates.isEmpty()) {
+//			songItem->setExpanded(itemExpandedStates.first());
+//			itemExpandedStates.pop_front();
+//		} else
+//			break;
+//	}
+//	scrollToItem(currentItem());
+//	restoreSelection(songItems);
+//
+////	emit itemSelectionChanged(); // update details
+//}
 
 void QUSongTree::resizeToContents() {
 	for(int i = 0; i < this->columnCount(); i++)

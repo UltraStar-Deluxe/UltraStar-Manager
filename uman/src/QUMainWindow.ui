@@ -23,9 +23,9 @@
    <property name="geometry" >
     <rect>
      <x>0</x>
-     <y>47</y>
+     <y>48</y>
      <width>912</width>
-     <height>697</height>
+     <height>696</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_4" >
@@ -503,9 +503,9 @@
          <property name="geometry" >
           <rect>
            <x>0</x>
-           <y>20</y>
+           <y>22</y>
            <width>451</width>
-           <height>138</height>
+           <height>134</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -584,9 +584,9 @@
          <property name="geometry" >
           <rect>
            <x>0</x>
-           <y>20</y>
+           <y>22</y>
            <width>451</width>
-           <height>160</height>
+           <height>159</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -787,9 +787,9 @@ Tasks</string>
          <property name="geometry" >
           <rect>
            <x>0</x>
-           <y>20</y>
+           <y>22</y>
            <width>451</width>
-           <height>138</height>
+           <height>134</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout" >
@@ -840,7 +840,7 @@ Tasks</string>
          <property name="geometry" >
           <rect>
            <x>0</x>
-           <y>20</y>
+           <y>22</y>
            <width>451</width>
            <height>16</height>
           </rect>
@@ -868,9 +868,9 @@ Tasks</string>
          <property name="geometry" >
           <rect>
            <x>0</x>
-           <y>20</y>
+           <y>22</y>
            <width>451</width>
-           <height>143</height>
+           <height>141</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -1046,7 +1046,7 @@ Tasks</string>
      <x>0</x>
      <y>0</y>
      <width>912</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAbout_Qt" >
@@ -1084,7 +1084,6 @@ Tasks</string>
     <addaction name="actionExpandAll" />
     <addaction name="actionCollapseAll" />
     <addaction name="separator" />
-    <addaction name="actionRefreshSelected" />
     <addaction name="actionRefresh" />
    </widget>
    <widget class="QMenu" name="menuOptions" >
@@ -1134,8 +1133,8 @@ Tasks</string>
    <property name="geometry" >
     <rect>
      <x>0</x>
-     <y>21</y>
-     <width>193</width>
+     <y>22</y>
+     <width>191</width>
      <height>26</height>
     </rect>
    </property>
@@ -1174,9 +1173,9 @@ Tasks</string>
   <widget class="QToolBar" name="optionsBar" >
    <property name="geometry" >
     <rect>
-     <x>193</x>
-     <y>21</y>
-     <width>164</width>
+     <x>191</x>
+     <y>22</y>
+     <width>162</width>
      <height>26</height>
     </rect>
    </property>
@@ -1207,9 +1206,9 @@ Tasks</string>
   <widget class="QToolBar" name="viewBar" >
    <property name="geometry" >
     <rect>
-     <x>357</x>
-     <y>21</y>
-     <width>555</width>
+     <x>353</x>
+     <y>22</y>
+     <width>559</width>
      <height>26</height>
     </rect>
    </property>

@@ -39,7 +39,7 @@ public:
 	void restoreSelection(const QList<QUSongItem*> &selectedItems);
 
 public slots:
-	void refreshSelectedItems();
+//	void refreshSelectedItems();
 	void resizeToContents();
 	void saveSelectedSongs();
 	void saveUnsavedChanges();
