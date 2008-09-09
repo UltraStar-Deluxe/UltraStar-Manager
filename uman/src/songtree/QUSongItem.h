@@ -55,6 +55,9 @@ public:
 	void updateAsMp3();
 	void updateAsPicture();
 	void updateAsVideo();
+	void updateAsLicense();
+	void updateAsMidi();
+	void updateAsKaraoke();
 	void updateAsUnknown();
 
 	void updateSpellFileCheckColumns();

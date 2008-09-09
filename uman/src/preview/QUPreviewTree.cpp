@@ -58,11 +58,14 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 	types->setTextColor(0, Qt::darkGray);
 	types->setFirstColumnSpanned(true);
 
-	types->addChild(this->createInfoItem(tr("Song"), QU::allowedSongFiles().join(" ")));
-	types->addChild(this->createInfoItem(tr("Audio"), QU::allowedAudioFiles().join(" ")));
-	types->addChild(this->createInfoItem(tr("Picture"), QU::allowedPictureFiles().join(" ")));
-	types->addChild(this->createInfoItem(tr("Video"), QU::allowedVideoFiles().join(" ")));
-	types->addChild(this->createInfoItem(tr("Playlist"), QU::allowedPlaylistFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/text.png"), tr("Song"), QU::allowedSongFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/music.png"), tr("Audio"), QU::allowedAudioFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/picture.png"), tr("Picture"), QU::allowedPictureFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/film.png"), tr("Video"), QU::allowedVideoFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/control/playlist.png"), tr("Playlist"), QU::allowedPlaylistFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/license.png"), tr("License"), QU::allowedLicenseFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/midi.png"), tr("MIDI"), QU::allowedMidiFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/karaoke.png"), tr("Karaoke"), QU::allowedKaraokeFiles().join(" ")));
 
 	// set up "current" toplevel item
 
@@ -105,6 +108,14 @@ QTreeWidgetItem* QUPreviewTree::createInfoItem(const QString &tag, const QString
 	infoItem->setFlags(Qt::ItemIsEnabled);
 
 	return infoItem;
+}
+
+QTreeWidgetItem* QUPreviewTree::createInfoItem(const QIcon &icon, const QString &tag, const QString &value) {
+	QTreeWidgetItem *result = createInfoItem(tag, value);
+
+	result->setIcon(0, icon);
+
+	return result;
 }
 
 void QUPreviewTree::setSongCount(int count) {

@@ -12,6 +12,7 @@ class QUTextDialog: public QDialog, private Ui::QUTextDialog {
 
 public:
 	QUTextDialog(QUSongFile *song, QWidget *parent = 0, bool showLyrics = false);
+	QUTextDialog(const QString &filePath, QWidget *parent = 0);
 
 private:
 	void showLyrics(QUSongFile *song);

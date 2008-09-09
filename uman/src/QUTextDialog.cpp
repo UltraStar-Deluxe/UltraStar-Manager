@@ -14,6 +14,31 @@ QUTextDialog::QUTextDialog(QUSongFile *song, QWidget *parent, bool showLyrics): 
 		this->showFile(song);
 }
 
+QUTextDialog::QUTextDialog(const QString &filePath, QWidget *parent): QDialog(parent) {
+	setupUi(this);
+	connect(doneBtn, SIGNAL(clicked()), this, SLOT(accept()));
+
+	this->setWindowTitle(tr("Raw File Content"));
+	textLbl->setText(filePath);
+
+	QFile f(filePath);
+
+	if(f.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		QStringList lines(QString::fromLocal8Bit(f.readAll()).split("\n"));
+
+		for(int i = 0; i < lines.size(); i++) { // format line numbers
+			lines[i].prepend(QString("<font color=#808080>%1 </font>").arg(i + 1, 3, 10, QChar('0')));
+		}
+
+		QString content(lines.join("<br>"));
+
+		textEdit->insertHtml(content);
+		f.close();
+	}
+
+	textEdit->moveCursor(QTextCursor::Start);
+}
+
 void QUTextDialog::showLyrics(QUSongFile *song) {
 	this->setWindowTitle(tr("Lyrics"));
 	textLbl->setText(QString("%1 - %2").arg(song->artist()).arg(song->title()));

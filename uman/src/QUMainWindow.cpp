@@ -463,9 +463,12 @@ void QUMainWindow::createSongFiles() {
 		dlg.update(dir.dirName());
 		if(dlg.cancelled()) break;
 
-		if(!songFiList.isEmpty()) {
-			QUSongFile *newSong = new QUSongFile(songFiList.first().filePath());
-			this->appendSong(newSong);
+		foreach(QFileInfo fi, songFiList) {
+			if( !QU::allowedLicenseFiles().contains(fi.fileName(), Qt::CaseInsensitive) ) {
+				QUSongFile *newSong = new QUSongFile(songFiList.first().filePath());
+				this->appendSong(newSong);
+				break;
+			}
 		}
 	}
 }
@@ -922,6 +925,11 @@ void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
 		QUTextDialog *dlg = new QUTextDialog(songItem->song(), this);
 		dlg->exec();
 		delete dlg;
+	} else if(QU::allowedLicenseFiles().contains(songItem->text(FOLDER_COLUMN), Qt::CaseInsensitive)) {
+		// show the contents of the license
+		QUTextDialog *dlg = new QUTextDialog(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(FOLDER_COLUMN)).filePath(), this);
+		dlg->exec();
+		delete dlg;
 	} else if(QU::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		// use this song text file for the folder now
 		// --> useful for more than one valid song text file per folder
@@ -932,7 +940,7 @@ void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
 	} else if(QU::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QUPictureDialog dlg(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(FOLDER_COLUMN)).filePath(), this);
 		dlg.exec();
-	} else if(QU::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive) or QU::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+	} else if(QU::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive) or QU::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive) or QU::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QFileInfo fi(songItem->song()->path(), songItem->text(FOLDER_COLUMN));
 		if( !QDesktopServices::openUrl(QUrl(fi.filePath())) )
 			addLogMsg(QString(tr("Could NOT open file: \"%1\".")).arg(fi.filePath()), QU::warning);

@@ -61,7 +61,9 @@ void QUSongItem::update() {
 
 		QString fileScheme("*." + QFileInfo(fileNames[i]).suffix());
 
-		if(QU::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		if(QU::allowedLicenseFiles().contains(fileNames.at(i), Qt::CaseInsensitive)) {
+			child->updateAsLicense();
+		} else if(QU::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsTxt();
 		} else if(QU::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsMp3();
@@ -69,6 +71,10 @@ void QUSongItem::update() {
 			child->updateAsPicture();
 		} else if(QU::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsVideo();
+		} else if(QU::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+			child->updateAsMidi();
+		} else if(QU::allowedKaraokeFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+			child->updateAsKaraoke();
 		} else {
 			child->updateAsUnknown();
 		}
@@ -172,6 +178,33 @@ void QUSongItem::updateAsVideo() {
 		this->setTextColor(FOLDER_COLUMN, Qt::gray);
 		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
 	}
+}
+
+void QUSongItem::updateAsLicense() {
+	clearContents();
+
+	this->setIcon(FOLDER_COLUMN, QIcon(":/types/license.png"));
+
+	// special files, special color ^_^
+	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
+}
+
+void QUSongItem::updateAsMidi() {
+	clearContents();
+
+	this->setIcon(FOLDER_COLUMN, QIcon(":/types/midi.png"));
+
+	// special files, special color ^_^
+	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
+}
+
+void QUSongItem::updateAsKaraoke() {
+	clearContents();
+
+	this->setIcon(FOLDER_COLUMN, QIcon(":/types/karaoke.png"));
+
+	// special files, special color ^_^
+	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
 }
 
 void QUSongItem::updateAsUnknown() {

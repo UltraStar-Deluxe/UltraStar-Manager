@@ -969,6 +969,11 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 			continue;
 		}
 
+		if(QU::allowedLicenseFiles().contains(fi.fileName(), Qt::CaseInsensitive)) {
+			emit finished(QString(tr("Cannot include license files as songs: \"%1\"")).arg(fi.filePath()), QU::warning);
+			continue;
+		}
+
 		QUSongFile *newSong = new QUSongFile(fi.filePath());
 
 		createSongFolder(newSong);

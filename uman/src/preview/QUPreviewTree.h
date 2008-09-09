@@ -42,6 +42,7 @@ private:
 	QTreeWidgetItem *extra;
 
 	QTreeWidgetItem* createInfoItem(const QString &tag, const QString &value);
+	QTreeWidgetItem* createInfoItem(const QIcon &icon, const QString &tag, const QString &value);
 
 	void showAudioFileInformation(const QFileInfo &fi);
 	void showPictureFileInformation(const QFileInfo &fi);

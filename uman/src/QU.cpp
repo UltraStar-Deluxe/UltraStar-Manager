@@ -7,7 +7,19 @@
 QU::QU(QObject *parent): QObject(parent) {}
 
 QStringList QU::allowedSongFiles() {
-	return QString("*.txt *.kar").split(" ");
+	return QStringList("*.txt");
+}
+
+QStringList QU::allowedLicenseFiles() {
+	return QString("license.txt license.html license.htm").split(" ");
+}
+
+QStringList QU::allowedMidiFiles() {
+	return QString("*.mid *.midi").split(" ");
+}
+
+QStringList QU::allowedKaraokeFiles() {
+	return QStringList("*.kar");
 }
 
 QStringList QU::allowedAudioFiles() {
@@ -19,7 +31,7 @@ QStringList QU::allowedPictureFiles() {
 }
 
 QStringList QU::allowedVideoFiles() {
-	return QString("*.mpg *.mpeg *.avi *.flv *.ogm *.mp4 *.divx").split(" ");
+	return QString("*.mpg *.mpeg *.avi *.flv *.ogm *.mp4 *.divx *.wmv *.mov").split(" ");
 }
 
 QStringList QU::allowedPlaylistFiles() {

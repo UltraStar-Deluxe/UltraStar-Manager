@@ -26,8 +26,6 @@ NEW FEATURES
   > shows some information about picture files
   > shows recognized file types (you'll need to expand that node with a
 	  double-click)
-* new file type now recognized as song text "*.kar"
-  > although not supported by UltraStar Deluxe
 * new column in song tree which indicates whether there are multiple
   song text files in one folder
 * manage song playlists
@@ -116,6 +114,10 @@ NEW FEATURES
 * external changes in the song file will be noticed
   > internal information are updated to new data
   > cannot update if you still have unsaved changes
+* new supported file types
+  > midi files (*.mid *.midi)
+  > karaoke files (*.kar)
+  > license files (license.txt license.htm license.html)
 
 BUG FIXES
 * minor change in object renaming
@@ -197,6 +199,9 @@ TODO (for 1.7.0)
   > total length
   > count
   > ...
+* filter presets (more-button in filter area)
+  > duplicates
+	> ...
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title

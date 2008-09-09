@@ -83,6 +83,10 @@ public:
 	Q_DECLARE_FLAGS(ReportOptions, ReportOption)
 
 	static QStringList allowedSongFiles();
+	static QStringList allowedLicenseFiles();
+	static QStringList allowedMidiFiles();
+	static QStringList allowedKaraokeFiles();
+
 	static QStringList allowedAudioFiles();
 	static QStringList allowedPictureFiles();
 	static QStringList allowedVideoFiles();
