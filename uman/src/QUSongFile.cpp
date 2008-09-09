@@ -236,13 +236,7 @@ QStringList QUSongFile::tags() {
 
 QStringList QUSongFile::customTags() {
 	QSettings settings;
-	QStringList result = settings.value("customTags", "").toString().split(" ");
-
-	for(int i = 0; i < result.size(); i++)
-		if(result.at(i).isEmpty())
-			result.removeAt(i);
-
-	return result;
+	return settings.value("customTags").toString().split(" ", QString::SkipEmptyParts);
 }
 
 QStringList QUSongFile::noteTypes() {

@@ -3,39 +3,40 @@
 
 #include <QList>
 #include <QPair>
+#include <QSettings>
 
 QU::QU(QObject *parent): QObject(parent) {}
 
 QStringList QU::allowedSongFiles() {
-	return QStringList("*.txt");
+	return registryKey("allowedSongFiles", "*.txt");
 }
 
 QStringList QU::allowedLicenseFiles() {
-	return QString("license.txt license.html license.htm").split(" ");
+	return registryKey("allowedLicenseFiles", "license.txt license.html license.htm");
 }
 
 QStringList QU::allowedMidiFiles() {
-	return QString("*.mid *.midi").split(" ");
+	return registryKey("allowedMidiFiles", "*.mid *.midi");
 }
 
 QStringList QU::allowedKaraokeFiles() {
-	return QStringList("*.kar");
+	return registryKey("allowedKaraokeFiles", "*.kar");
 }
 
 QStringList QU::allowedAudioFiles() {
-	return QString("*.mp3 *.ogg").split(" ");
+	return registryKey("allowedAudioFiles", "*.mp3 *.ogg");
 }
 
 QStringList QU::allowedPictureFiles() {
-	return QString("*.jpg *.png *.bmp *.gif").split(" ");
+	return registryKey("allowedPictureFiles", "*.jpg *.png *.bmp *.gif");
 }
 
 QStringList QU::allowedVideoFiles() {
-	return QString("*.mpg *.mpeg *.avi *.flv *.ogm *.mp4 *.divx *.wmv *.mov").split(" ");
+	return registryKey("allowedVideoFiles", "*.mpg *.mpeg *.avi *.flv *.ogm *.mp4 *.divx *.wmv *.mov");
 }
 
 QStringList QU::allowedPlaylistFiles() {
-	return QString("*.upl").split(" ");
+	return registryKey("allowedPlaylistFiles", "*.upl");
 }
 
 /*!
@@ -238,4 +239,15 @@ bool QU::fileTypeLessThan(const QFileInfo &fi1, const QFileInfo &fi2) {
 	}
 
 	return (QString::compare(suffix1, suffix2) < 0);
+}
+
+/*!
+ * Looks for a value in the registry and sets the default, if key not present.
+ */
+QStringList QU::registryKey(const QString &key, const QString &defaultValue) {
+	QSettings settings;
+	if(!settings.contains(key))
+		settings.setValue(key, defaultValue);
+
+	return settings.value(key, defaultValue).toString().split(" ", QString::SkipEmptyParts);
 }

@@ -101,6 +101,9 @@ public:
 	static bool equal(QString token1, QString token2, bool ignoreEmpty = false);
 
 	static bool fileTypeLessThan(const QFileInfo &fi1, const QFileInfo &fi2);
+
+private:
+	static QStringList registryKey(const QString &key, const QString &defaultValue);
 };
 
 #endif /*QU_H_*/
