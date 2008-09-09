@@ -1,5 +1,4 @@
 #include "QUDetailItem.h"
-#include "QUSongFile.h"
 #include "QUMonty.h"
 
 #include "fileref.h"
@@ -15,20 +14,20 @@ QUDetailItem::QUDetailItem(const QString &tag):
 	_tag(tag)
 {}
 
-QUDetailItem::QUDetailItem(const QString &tag, const QList<QUSongFile*> &songs):
+QUDetailItem::QUDetailItem(const QString &tag, const QList<QUSongItem*> &songItems):
 	QTableWidgetItem(),
 	_tag(tag)
 {
-	this->setSongs(songs);
+	this->setSongItems(songItems);
 }
 
-void QUDetailItem::setSongs(const QList<QUSongFile*> &songs) {
-	_songs = songs;
+void QUDetailItem::setSongItems(const QList<QUSongItem*> &songItems) {
+	_songItems = songItems;
 
-	if(songs.size() == 1) {
-		this->updateText(this->tag(), songs.first());
+	if(songItems.size() == 1) {
+		this->updateText(this->tag(), songItems.first()->song());
 		this->updateDefaultData();
-	} else if(songs.size() > 1) {
+	} else if(songItems.size() > 1) {
 		this->updateItemForMultipleSongs();
 	} else {
 		this->setText("");
@@ -36,7 +35,7 @@ void QUDetailItem::setSongs(const QList<QUSongFile*> &songs) {
 }
 
 void QUDetailItem::updateDefaultData() {
-	this->setData(Qt::UserRole, defaultData(songs().first()));
+	this->setData(Qt::UserRole, defaultData(songItems().first()->song()));
 }
 
 void QUDetailItem::updateText(const QString &tag, QUSongFile *song) {
@@ -118,9 +117,9 @@ void QUDetailItem::updateItemForMultipleSongs() {
 	} else if(QString::compare(tag(), ARTIST_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 
-		this->setText(songs().first()->artist());
-		for(int i = 0; i < songs().size(); i++) {
-			if(QString::compare(this->text(), songs()[i]->artist(), Qt::CaseInsensitive) != 0) {
+		this->setText(songItems().first()->song()->artist());
+		for(int i = 0; i < songItems().size(); i++) {
+			if(QString::compare(this->text(), songItems().at(i)->song()->artist(), Qt::CaseInsensitive) != 0) {
 				this->setText(QObject::tr("Click here to edit."));
 				break;
 			}
@@ -130,9 +129,9 @@ void QUDetailItem::updateItemForMultipleSongs() {
 	} else if(QString::compare(tag(), LANGUAGE_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 
-		this->setText(songs().first()->language());
-		for(int i = 0; i < songs().size(); i++) {
-			if(QString::compare(this->text(), songs()[i]->language(), Qt::CaseInsensitive) != 0) {
+		this->setText(songItems().first()->song()->language());
+		for(int i = 0; i < songItems().size(); i++) {
+			if(QString::compare(this->text(), songItems().at(i)->song()->language(), Qt::CaseInsensitive) != 0) {
 				this->setText(QObject::tr("Click here to edit."));
 				break;
 			}
@@ -142,9 +141,9 @@ void QUDetailItem::updateItemForMultipleSongs() {
 	} else if(QString::compare(tag(), EDITION_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 
-		this->setText(songs().first()->edition());
-		for(int i = 0; i < songs().size(); i++) {
-			if(QString::compare(this->text(), songs()[i]->edition(), Qt::CaseInsensitive) != 0) {
+		this->setText(songItems().first()->song()->edition());
+		for(int i = 0; i < songItems().size(); i++) {
+			if(QString::compare(this->text(), songItems().at(i)->song()->edition(), Qt::CaseInsensitive) != 0) {
 				this->setText(QObject::tr("Click here to edit."));
 				break;
 			}
@@ -154,9 +153,9 @@ void QUDetailItem::updateItemForMultipleSongs() {
 	} else if(QString::compare(tag(), GENRE_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 
-		this->setText(songs().first()->genre());
-		for(int i = 0; i < songs().size(); i++) {
-			if(QString::compare(this->text(), songs()[i]->genre(), Qt::CaseInsensitive) != 0) {
+		this->setText(songItems().first()->song()->genre());
+		for(int i = 0; i < songItems().size(); i++) {
+			if(QString::compare(this->text(), songItems().at(i)->song()->genre(), Qt::CaseInsensitive) != 0) {
 				this->setText(QObject::tr("Click here to edit."));
 				break;
 			}
@@ -166,9 +165,9 @@ void QUDetailItem::updateItemForMultipleSongs() {
 	} else if(QString::compare(tag(), YEAR_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 
-		this->setText(songs().first()->year());
-		for(int i = 0; i < songs().size(); i++) {
-			if(QString::compare(this->text(), songs()[i]->year(), Qt::CaseInsensitive) != 0) {
+		this->setText(songItems().first()->song()->year());
+		for(int i = 0; i < songItems().size(); i++) {
+			if(QString::compare(this->text(), songItems().at(i)->song()->year(), Qt::CaseInsensitive) != 0) {
 				this->setText(QObject::tr("Click here to edit."));
 				break;
 			}
@@ -178,9 +177,9 @@ void QUDetailItem::updateItemForMultipleSongs() {
 	} else if(QString::compare(tag(), CREATOR_TAG) == 0) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 
-		this->setText(songs().first()->creator());
-		for(int i = 0; i < songs().size(); i++) {
-			if(QString::compare(this->text(), songs()[i]->creator(), Qt::CaseInsensitive) != 0) {
+		this->setText(songItems().first()->song()->creator());
+		for(int i = 0; i < songItems().size(); i++) {
+			if(QString::compare(this->text(), songItems().at(i)->song()->creator(), Qt::CaseInsensitive) != 0) {
 				this->setText(QObject::tr("Click here to edit."));
 				break;
 			}
@@ -220,9 +219,9 @@ void QUDetailItem::updateItemForMultipleSongs() {
 	} else if( QUSongFile::customTags().contains(tag(), Qt::CaseInsensitive) ) {
 		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
 
-		this->setText( songs().first()->customTag(tag()) );
-		for(int i = 0; i < songs().size(); i++) {
-			if(QString::compare(this->text(), songs()[i]->customTag(tag()), Qt::CaseInsensitive) != 0) {
+		this->setText( songItems().first()->song()->customTag(tag()) );
+		for(int i = 0; i < songItems().size(); i++) {
+			if(QString::compare(this->text(), songItems().at(i)->song()->customTag(tag()), Qt::CaseInsensitive) != 0) {
 				this->setText(QObject::tr("Click here to edit."));
 				break;
 			}
@@ -237,9 +236,9 @@ void QUDetailItem::updateDefaultDataForMultipleSongs() {
 	QStringList dropDownData;
 
 	int i = 0;
-	foreach(QUSongFile *song, songs()) {
+	foreach(QUSongItem *songItem, songItems()) {
 		i++;
-		dropDownData << defaultData(song);
+		dropDownData << defaultData(songItem->song());
 		if(i >= 5) {
 			dropDownData << "...";
 			break;

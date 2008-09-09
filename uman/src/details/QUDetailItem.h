@@ -4,7 +4,7 @@
 #include <QString>
 #include <QTableWidgetItem>
 #include <QList>
-#include "QUSongFile.h"
+#include "QUSongItem.h"
 
 /*!
  * This class encapsulates a pointer to a QUSongFile object for a QTableWidget
@@ -13,16 +13,16 @@
 class QUDetailItem: public QTableWidgetItem {
 public:
 	QUDetailItem(const QString &tag);
-	QUDetailItem(const QString &tag, const QList<QUSongFile*> &songs);
+	QUDetailItem(const QString &tag, const QList<QUSongItem*> &songItems);
 
 	QString tag() const {return _tag;}
 
-	void setSongs(const QList<QUSongFile*> &songs);
-	const QList<QUSongFile*>& songs() const {return _songs;}
+	void setSongItems(const QList<QUSongItem*> &songItems);
+	const QList<QUSongItem*>& songItems() const {return _songItems;}
 
 private:
 	QString _tag;
-	QList<QUSongFile*> _songs;
+	QList<QUSongItem*> _songItems;
 
 	void updateDefaultData();
 	void updateText(const QString &tag, QUSongFile *song);

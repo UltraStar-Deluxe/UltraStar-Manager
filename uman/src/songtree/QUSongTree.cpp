@@ -136,16 +136,17 @@ void QUSongTree::initHorizontalHeader() {
 }
 
 bool QUSongTree::hasUnsavedChanges() const {
-	bool result = false;
-
-	for(int i = 0; i < this->topLevelItemCount(); i++) {
-		QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->topLevelItem(i));
-
-		if(songItem)
-			result |= songItem->song()->hasUnsavedChanges();
+	foreach(QUSongItem *visibleItem, visibleSongItems()) {
+		if(visibleItem->song()->hasUnsavedChanges())
+			return true;
 	}
 
-	return result;
+	foreach(QUSongItem *hiddenItem, _hiddenItems) {
+		if(hiddenItem->song()->hasUnsavedChanges())
+			return true;
+	}
+
+	return false;
 }
 
 /*!
@@ -219,7 +220,7 @@ QList<QUSongFile*> QUSongTree::visibleSongs() {
 /*!
  * \returns a list of all visible song items
  */
-QList<QUSongItem*> QUSongTree::visibleSongItems() {
+QList<QUSongItem*> QUSongTree::visibleSongItems() const {
 	QList<QUSongItem*> items;
 
 	QList<QTreeWidgetItem*> topLevelItems;
@@ -244,44 +245,31 @@ QList<QUSongItem*> QUSongTree::allSongItems() {
 	return (visibleSongItems() << _hiddenItems);
 }
 
-/*!
- * Creates a new entry for each given song.
- */
-void QUSongTree::fill(QList<QUSongFile*> songs) {
-	this->initHorizontalHeader();
-
-	QUProgressDialog dlg(tr("Filling song tree..."), songs.size(), this, false);
-	dlg.setPixmap(":/types/folder.png");
-	dlg.show();
-
-	foreach(QUSongFile* song, songs) {
-		dlg.update(song->songFileInfo().dir().dirName());
-		this->addTopLevelItem(new QUSongItem(song, true));
-	}
-
-	this->resizeToContents();
-	this->sortItems(FOLDER_COLUMN, Qt::AscendingOrder);
-}
-
 void QUSongTree::saveUnsavedChanges() {
-	QUProgressDialog dlg(tr("Saving unsaved changes..."), this->topLevelItemCount(), this);
+	this->removeFilter();
+
+	QList<QUSongItem*> songItems = visibleSongItems(); // should be all
+
+	if(songItems.isEmpty())
+		return;
+
+	QUProgressDialog dlg(tr("Saving unsaved changes..."), songItems.size(), this);
 	dlg.show();
 
-	for(int i = 0; i < this->topLevelItemCount(); i++) {
-		QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->topLevelItem(i));
+	clearSelection();
 
-		if(songItem) {
-			dlg.update(songItem->song()->songFileInfo().fileName());
-			if(dlg.cancelled()) break;
+	foreach(QUSongItem *songItem, songItems) {
+		dlg.update(songItem->song()->songFileInfo().fileName());
+		if(dlg.cancelled()) break;
 
-			if(songItem->song()->hasUnsavedChanges()) {
-				songItem->song()->save(true);
-				songItem->update();
-			}
+		if(songItem->song()->hasUnsavedChanges()) {
+			songItem->song()->save(true);
+			songItem->update();
 		}
 	}
 
-	emit itemSelectionChanged(); // update details
+//	restoreSelection(songItems);
+	emit itemSelectionChanged();
 }
 
 /*!
@@ -1042,7 +1030,7 @@ void QUSongTree::refreshSelectedItems() {
 	if(songItems.isEmpty())
 		return;
 
-	QUProgressDialog dlg(tr("Refreshing selected songs..."), songItems.size(), this, false);
+	QUProgressDialog dlg(tr("Refreshing selected songs..."), songItems.size(), this);
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 
@@ -1050,6 +1038,7 @@ void QUSongTree::refreshSelectedItems() {
 
 	foreach(QUSongItem *songItem, songItems) {
 		dlg.update(songItem->song()->songFileInfo().dir().dirName());
+		if(dlg.cancelled()) break;
 
 		itemExpandedStates.append(songItem->isExpanded());
 
@@ -1063,10 +1052,12 @@ void QUSongTree::refreshSelectedItems() {
 
 	setCurrentItem(songItems.first());
 	foreach(QUSongItem *songItem, songItems) {
-		songItem->setExpanded(itemExpandedStates.first());
-		itemExpandedStates.pop_front();
+		if(!itemExpandedStates.isEmpty()) {
+			songItem->setExpanded(itemExpandedStates.first());
+			itemExpandedStates.pop_front();
+		} else
+			break;
 	}
-
 	scrollToItem(currentItem());
 	restoreSelection(songItems);
 
@@ -1079,27 +1070,25 @@ void QUSongTree::resizeToContents() {
 }
 
 void QUSongTree::saveSelectedSongs() {
-	QList<QTreeWidgetItem*> items = this->selectedItems();
+	QList<QUSongItem*> items = this->selectedSongItems();
 
 	if(items.isEmpty())
-		items.append(this->currentItem());
+		return;
 
 	QUProgressDialog dlg(tr("Saving selected songs..."), items.size(), this);
 	dlg.show();
 
-	foreach(QTreeWidgetItem *item, items) {
-		QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+	this->clearSelection();
 
-		if(songItem) {
-			dlg.update(songItem->song()->songFileInfo().fileName());
-			if(dlg.cancelled()) break;
+	foreach(QUSongItem *songItem, items) {
+		dlg.update(songItem->song()->songFileInfo().fileName());
+		if(dlg.cancelled()) break;
 
-			songItem->song()->save(true);
-			songItem->update();
-		}
+		songItem->song()->save(true);
+		songItem->update();
 	}
 
-	emit itemSelectionChanged(); // update details
+	restoreSelection(items);
 }
 
 void QUSongTree::keyPressEvent(QKeyEvent *event) {

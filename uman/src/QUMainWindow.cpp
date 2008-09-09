@@ -435,7 +435,6 @@ void QUMainWindow::refreshAllSongs(bool force) {
 	_songs.clear();
 
 	createSongFiles();
-	songTree->fill(_songs);
 	monty->setSongCount(_songs.size()); // sometimes, Monty talks about your song count...
 
 	updatePreviewTree();
@@ -443,14 +442,17 @@ void QUMainWindow::refreshAllSongs(bool force) {
 }
 
 /*!
- * Creates all instances of QUSongFile to fill the song tree.
+ * Creates all instances of QUSongFile to fill the song tree. Fills the song tree.
  * \sa CreateSongTree();
  */
 void QUMainWindow::createSongFiles() {
 	QList<QDir> dirList;
 	dirList.append(QDir(BaseDir));
 
+	// create a list of all sub-directories
 	this->readSongDir(dirList);
+	// initialize the header of the song tree
+	songTree->initHorizontalHeader();
 
 	QUProgressDialog dlg(tr("Reading song files..."), dirList.size(), this);
 	dlg.setPixmap(":/types/folder.png");
@@ -466,11 +468,18 @@ void QUMainWindow::createSongFiles() {
 		foreach(QFileInfo fi, songFiList) {
 			if( !QU::allowedLicenseFiles().contains(fi.fileName(), Qt::CaseInsensitive) ) {
 				QUSongFile *newSong = new QUSongFile(songFiList.first().filePath());
+
 				this->appendSong(newSong);
+				songTree->addTopLevelItem(new QUSongItem(newSong, true));
+
 				break;
 			}
 		}
 	}
+
+	// finish song tree initialization
+	songTree->resizeToContents();
+	songTree->sortItems(FOLDER_COLUMN, Qt::AscendingOrder);
 }
 
 /*!
@@ -501,7 +510,7 @@ void QUMainWindow::updateDetails() {
 
 	disconnect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(editSongSetDetail(QTableWidgetItem*)));
 
-	detailsTable->updateValueColumn(songTree->selectedSongs());
+	detailsTable->updateValueColumn(songTree->selectedSongItems());
 
 	connect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(editSongSetDetail(QTableWidgetItem*)));
 }
@@ -600,21 +609,27 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 		return;
 
 	QUProgressDialog dlg(QString(tr("Applying new value for %1 to all selected songs...")).arg(detailItem->tag()),
-			detailItem->songs().size(), this);
+			detailItem->songItems().size(), this);
 	dlg.show();
 
+	// capture contents, because they change if you change the selection
+	QList<QUSongItem*> selectedItems = detailItem->songItems();
+	QString tag = detailItem->tag();
+	QString text = detailItem->text();
+
+	songTree->clearSelection();
+
 	// save changes for each song
-	foreach(QUSongFile *song, detailItem->songs()) {
-		dlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+	foreach(QUSongItem *songItem, selectedItems) {
+		dlg.update(QString("%1 - %2").arg(songItem->song()->artist()).arg(songItem->song()->title()));
 		if(dlg.cancelled()) break;
 
-		song->setInfo(detailItem->tag(), detailItem->text());
-		song->save();
-	}
-	dlg.hide();
+		songItem->song()->setInfo(tag, text);
+		songItem->song()->save();
 
-	// update all selected items with these new details in the song tree
-	songTree->refreshSelectedItems();
+		songItem->update();
+	}
+	songTree->restoreSelection(selectedItems);
 }
 
 /*!
@@ -1001,8 +1016,12 @@ void QUMainWindow::applyFilter() {
 	songTree->filterItems(filterArea->filterEdit->text(), (QU::FilterModes) modes);
 }
 
+/*!
+ * Show all songs, if filter area is hidden.
+ */
 void QUMainWindow::hideFilterArea() {
 	actionFilter->setChecked(false);
+	removeFilter();
 }
 
 /*!

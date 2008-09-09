@@ -5,7 +5,7 @@
 #include <QList>
 
 #include "QU.h"
-#include "QUSongFile.h"
+#include "QUSongItem.h"
 
 class QUDetailsTable: public QTableWidget {
 	Q_OBJECT
@@ -13,7 +13,7 @@ class QUDetailsTable: public QTableWidget {
 public:
 	QUDetailsTable(QWidget *parent = 0);
 
-	void updateValueColumn(const QList<QUSongFile*> &songs);
+	void updateValueColumn(const QList<QUSongItem*> &songItems);
 
 	void reset();
 

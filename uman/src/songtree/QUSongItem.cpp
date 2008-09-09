@@ -80,7 +80,7 @@ void QUSongItem::update() {
 		}
 	}
 
-	this->setSelected(true);
+//	this->setSelected(true);
 }
 
 /*!

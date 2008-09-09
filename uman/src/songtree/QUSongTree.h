@@ -31,10 +31,8 @@ public:
 	QList<QUSongFile*> selectedSongs();
 	QList<QUSongItem*> selectedSongItems();
 	QList<QUSongFile*> visibleSongs();
-	QList<QUSongItem*> visibleSongItems();
+	QList<QUSongItem*> visibleSongItems() const;
 	QList<QUSongItem*> allSongItems();
-
-	void fill(QList<QUSongFile*> songs);
 
 	int hiddenItemsCount() const { return _hiddenItems.size(); }
 
