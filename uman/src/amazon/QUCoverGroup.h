@@ -31,6 +31,8 @@ private slots:
 	void showStateChange(int state);
 	void finishRequest(bool error);
 
+	void openAmazonSearchUrl();
+
 signals:
 	void finished(const QString &message, QU::EventMessageTypes type);
 
@@ -41,6 +43,7 @@ private:
 	QUAmazonResponse *_response;
 	bool              _waitForResult;
 	QList<QFile*>     _downloads;
+	QString           _endpoint;
 
 	QString customDir() const;
 	QString currentFilePath() const;

@@ -121,6 +121,7 @@ NEW FEATURES
   > license files (license.txt license.htm license.html)
 * new about dialog
   > take a look at (Help -> About)
+* "Buy" button added in amazon cover search :)
 
 BUG FIXES
 * minor change in object renaming
@@ -149,6 +150,8 @@ KNOWN BUGS (to fix)
   > "non-standard" tasks
   > log files
   > cached amazon cover downloads
+* short application hang under vista while getting covers from amazon
+  the first time after application start
 
 TODO (for 1.7.0)
 * get cover picture

@@ -5,6 +5,10 @@
 #include <QScrollBar>
 #include <QFile>
 
+#define RESET_GAP   2000
+#define SCROLL_STEP 1
+#define SCROLL_GAP  100
+
 QUAboutDialog::QUAboutDialog(QWidget *parent): QDialog(parent) {
 	setupUi(this);
 
@@ -28,15 +32,15 @@ void QUAboutDialog::scrollDown() {
 	QScrollBar *bar = credits->verticalScrollBar();
 
 	if(bar->value() >= bar->maximum())
-		QTimer::singleShot(2000, this, SLOT(resetText()));
+		QTimer::singleShot(RESET_GAP, this, SLOT(resetText()));
 	else {
-		bar->setValue(bar->value() + 1);
-		QTimer::singleShot(100, this, SLOT(scrollDown()));
+		bar->setValue(bar->value() + SCROLL_STEP);
+		QTimer::singleShot(SCROLL_GAP, this, SLOT(scrollDown()));
 	}
 }
 
 void QUAboutDialog::resetText() {
 	QScrollBar *bar = credits->verticalScrollBar();
 	bar->setValue(bar->minimum());
-	QTimer::singleShot(100, this, SLOT(scrollDown()));
+	QTimer::singleShot(SCROLL_GAP, this, SLOT(scrollDown()));
 }

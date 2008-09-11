@@ -2,6 +2,7 @@
 #include "QUAmazonRequestUrl.h"
 
 #include <QCoreApplication>
+#include <QDesktopServices>
 #include <QSettings>
 
 #include <QVariant>
@@ -32,6 +33,9 @@ QUCoverGroup::QUCoverGroup(QUSongItem *songItem, QWidget *parent):
 
 	connect(list, SIGNAL(coverActivated (const QString&)), this, SLOT(previewActivePicture(const QString&)));
 	connect(list, SIGNAL(finished(const QString&, QU::MessageTypes)), this, SIGNAL(finished(const QString&, QU::MessageTypes)));
+
+	connect(buyBtn, SIGNAL(clicked()), this, SLOT(openAmazonSearchUrl()));
+	buyBtn->setEnabled(false);
 }
 
 void QUCoverGroup::getCovers(const QString &endpoint, const QString &artistProperty, const QString &titleProperty) {
@@ -44,6 +48,9 @@ void QUCoverGroup::getCovers(const QString &endpoint, const QString &artistPrope
 		emit finished(QString(tr("Could not get covers for \"%1 - %2\". Http connection is busy.")).arg(_item->song()->artist()).arg(_item->song()->title()), QU::warning);
 		return;
 	}
+
+	_endpoint = endpoint; // cache the current endpoint, see showStatus();
+	buyBtn->setEnabled(true);
 
 	QUAmazonRequestUrl url(endpoint, artistProperty, titleProperty, _item->song());
 
@@ -69,8 +76,6 @@ void QUCoverGroup::showStateChange(int state) {
 }
 
 void QUCoverGroup::finishRequest(bool error) {
-	emit finished("QUCoverGroup::finishRequest entered...", QU::help);
-
 	// close all open files
 	foreach(QFile* download, _downloads) { download->close(); }
 	qDeleteAll(_downloads);
@@ -228,4 +233,15 @@ void QUCoverGroup::showStatus(const QString &status) {
 		return;
 
 	group->setTitle(QString("%1 - %2%3").arg(_item->song()->artist()).arg(_item->song()->title()).arg(status));
+}
+
+void QUCoverGroup::openAmazonSearchUrl() {
+	QString tmp = _endpoint;
+	QUrl url(tmp.replace("ecs", "www").remove("aws"));
+
+	url.setPath(QString("s/url=search-alias%3Daps&field-keywords=%1 %2").arg(_item->song()->artist()).arg(_item->song()->title()));
+	QDesktopServices::openUrl(url);
+
+	url.setPath(QString("s/url=search-alias%3Daps&field-keywords=%1").arg(_item->song()->artist()));
+	QDesktopServices::openUrl(url);
 }
