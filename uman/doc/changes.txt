@@ -119,6 +119,8 @@ NEW FEATURES
   > midi files (*.mid *.midi)
   > karaoke files (*.kar)
   > license files (license.txt license.htm license.html)
+* new about dialog
+  > take a look at (Help -> About)
 
 BUG FIXES
 * minor change in object renaming
@@ -149,21 +151,6 @@ KNOWN BUGS (to fix)
   > cached amazon cover downloads
 
 TODO (for 1.7.0)
-* note somewhere the origin of the icons/graphics
-    http://creativecommons.org/licenses/GPL/2.0/
-  > Diagona Icons (http://www.pinvoke.com/)
-	>>> http://creativecommons.org/licenses/by/3.0/
-	> Fugue Icons (http://www.pinvoke.com/)
-	>>> http://creativecommons.org/licenses/by/3.0/
-    >>> CC License, BY 3.0
-    >>> "Attribution 3.0 Unported"
-	> Silk Icons (http://www.famfamfam.com/)
-    >>> http://creativecommons.org/licenses/by/2.5/
-    >>> CC License, BY 2.5
-    >>> "Attribution 2.5 Generic"
-	> 4 Monty Icons (http://fasticon.com/freeware/, http://dirceuveiga.com.br/eg/)
-    > Boomy Icons
-    >>> http://miloszwl.deviantart.com/
 * get cover picture
   > extract cover from MP3
 * header/footer for reports

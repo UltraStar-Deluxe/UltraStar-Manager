@@ -119,6 +119,7 @@
     <file>genres</file>
     <file>hints</file>
     <file>hints_de</file>
+    <file>credits</file>
     <file>languages</file>
   </qresource>
   <qresource prefix="/types" >

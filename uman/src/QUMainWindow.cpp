@@ -1,5 +1,4 @@
 #include "main.h"
-#include "version.h"
 
 #include "QUMainWindow.h"
 #include <QTreeWidget>
@@ -46,6 +45,7 @@
 #include "QUPictureDialog.h"
 #include "QUCustomTagsDialog.h"
 #include "QUAmazonDialog.h"
+#include "QUAboutDialog.h"
 
 QDir QUMainWindow::BaseDir = QDir();
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
@@ -743,19 +743,21 @@ void QUMainWindow::aboutQt() {
 }
 
 void QUMainWindow::aboutUman() {
-	QString aboutStr(tr("<b>UltraStar Manager</b><br>"
-			"Version %1.%2.%3 #%4<br>"
-			"<br>"
-			"©2008 by Marcel Taeumel<br>"
-			"<br>"
-			"<i>Tested By</i><br>"
-			"Michael Grünewald"));
-
-	QMessageBox::about(this, "About", aboutStr
-			.arg(MAJOR_VERSION)
-			.arg(MINOR_VERSION)
-			.arg(PATCH_VERSION)
-			.arg(QString(revision).remove(QRegExp("(.*:)|\\D"))));
+	QUAboutDialog dlg(this);
+	dlg.exec();
+//	QString aboutStr(tr("<b>UltraStar Manager</b><br>"
+//			"Version %1.%2.%3 #%4<br>"
+//			"<br>"
+//			"©2008 by Marcel Taeumel<br>"
+//			"<br>"
+//			"<i>Tested By</i><br>"
+//			"Michael Grünewald"));
+//
+//	QMessageBox::about(this, "About", aboutStr
+//			.arg(MAJOR_VERSION)
+//			.arg(MINOR_VERSION)
+//			.arg(PATCH_VERSION)
+//			.arg(QString(revision).remove(QRegExp("(.*:)|\\D"))));
 }
 
 void QUMainWindow::aboutTagLib() {

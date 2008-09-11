@@ -5,7 +5,8 @@ QT += core \
     xml \
     network
 CONFIG += debug
-HEADERS += tasks/tasks.h \
+HEADERS += QUAboutDialog.h \
+    tasks/tasks.h \
     filter/QUFilterArea.h \
     metaphone/QUMetaphoneString.h \
     amazon/QUCoverItemDelegate.h \
@@ -64,7 +65,8 @@ HEADERS += tasks/tasks.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += filter/QUFilterArea.cpp \
+SOURCES += QUAboutDialog.cpp \
+    filter/QUFilterArea.cpp \
     metaphone/QUMetaphoneString.cpp \
     amazon/QUCoverItemDelegate.cpp \
     amazon/QUCoverModel.cpp \
@@ -122,7 +124,8 @@ SOURCES += filter/QUFilterArea.cpp \
     QUSongFile.cpp \
     QUMainWindow.cpp \
     main.cpp
-FORMS += QUFilterArea.ui \
+FORMS += QUAboutDialog.ui \
+    QUFilterArea.ui \
     QUCoverGroup.ui \
     QUAmazonArea.ui \
     QUTaskDialog.ui \
