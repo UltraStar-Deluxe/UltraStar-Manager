@@ -203,7 +203,8 @@ private:
 	QStringList _foundUnsupportedTags;
 	bool _hasUnsavedChanges;
 
-	int _songLength; // cached song length, calculated from lyrics + gap, -1 == not calculated
+	int     _songLength; // cached song length, calculated from lyrics + gap, -1 == not calculated
+
 	bool rename(QDir dir, const QString &oldName, const QString &newName);
 };
 

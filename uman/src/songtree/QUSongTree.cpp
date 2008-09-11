@@ -25,6 +25,7 @@
 
 QUSongTree::QUSongTree(QWidget *parent): QTreeWidget(parent) {
 	this->setAcceptDrops(true);
+	this->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
 	// enable context menu for items
 	this->setContextMenuPolicy(Qt::CustomContextMenu);

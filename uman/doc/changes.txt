@@ -35,7 +35,7 @@ NEW FEATURES
   > custom order of songs in playlist (drag & drop)
 * splash screen at application startup
   > for more responsiveness
-* a blue cross in the file-related columns
+* a cross with a small warning-symbol in the file-related columns
   > indicates a tag-value with points to a non-existent file
   > red cross only for empty file-related tags
 * create custom song tags, e.g. #COMMENT
@@ -57,6 +57,7 @@ NEW FEATURES
 * toolbar splitted into more toolbars
 * context menu for song tree header added (right-click)
   > show/hide various columns
+  > some presets
   > state of columns saved
 * two new columns in the song tree (artist, title)
   > hidden by default
@@ -187,9 +188,6 @@ TODO (for 1.7.0)
 * custom rename (context menu, 2nd click, ...)
 * modify ID3 tags via song tags
   > genre, year
-* watch a loaded song file for external changes
-  > force a reload of a song file
-  > keep attention to unsaved changes
 * manage covers for
   > edition
   > genre
@@ -202,6 +200,8 @@ TODO (for 1.7.0)
 * filter presets (more-button in filter area)
   > duplicates
 	> ...
+* add support for *.sco files (Scores?) per Song
+* always on top?
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title
@@ -211,6 +211,7 @@ NICE TO HAVE (but not necessary in 1.7.0)
 * extract readable lyrics and export them, maybe into some report or so
 * some extended help system in the application (lowest priority, Monty works well :))
 * checksums for SC-checked song files
+  > QCryptographicHash (md4, md5, sha1)
 * PERF: how about processing items backwards and removing them from the tree?
 
 changes from 1.5.1 to 1.6.0
