@@ -202,6 +202,7 @@ TODO (for 1.7.0)
 	> ...
 * add support for *.sco files (Scores?) per Song
 * always on top?
+* some task to fix lyrics which are always "upper-case"
 
 NICE TO HAVE (but not necessary in 1.7.0)
 * allow []-tags in song title

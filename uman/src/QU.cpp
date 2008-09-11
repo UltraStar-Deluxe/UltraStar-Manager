@@ -245,9 +245,16 @@ bool QU::fileTypeLessThan(const QFileInfo &fi1, const QFileInfo &fi2) {
  * Looks for a value in the registry and sets the default, if key not present.
  */
 QStringList QU::registryKey(const QString &key, const QString &defaultValue) {
+	static QMap<QString, QStringList> map;
+
+	if(map.contains(key))
+		return map.value(key);
+
 	QSettings settings;
 	if(!settings.contains(key))
 		settings.setValue(key, defaultValue);
 
-	return settings.value(key, defaultValue).toString().split(" ", QString::SkipEmptyParts);
+	map.insert(key, settings.value(key, defaultValue).toString().split(" ", QString::SkipEmptyParts));
+
+	return map.value(key);
 }
