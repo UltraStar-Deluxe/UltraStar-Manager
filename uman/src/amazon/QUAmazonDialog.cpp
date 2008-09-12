@@ -22,6 +22,8 @@
 QUAmazonDialog::QUAmazonDialog(const QList<QUSongItem*> &items, QWidget *parent): QDialog(parent) {
 	setupUi(this);
 
+	infoLbl->setText(tr("Choose valid local sources for the keywords <b>artist and title</b>. Only checked songs will be considered for downloading and setting. <b>Internet connection required.</b>"));
+
 	_contentLayout = new QVBoxLayout;
     _contentLayout->setSpacing(10);
     _contentLayout->setMargin(5);

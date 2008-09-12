@@ -112,7 +112,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label" >
+       <widget class="QLabel" name="infoLbl" >
         <property name="text" >
          <string>Internet connection required.</string>
         </property>
@@ -349,8 +349,8 @@ Amazon...</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>397</width>
-            <height>129</height>
+            <width>399</width>
+            <height>133</height>
            </rect>
           </property>
           <property name="sizePolicy" >
