@@ -22,15 +22,9 @@ QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<Q
 {
 	setupUi(this);
 
-//	if(songTree->hasHiddenItems())
-//		infoTextLbl->setText(tr("You applied a filter to your songs. The report will only be created for the songs that are visible in the song tree."));
-//	else
-//		infoTextLbl->setText(tr("Select the columns you want to see in the report. Drag & drop them to change their order. Songs will be sorted alphabetically."));
-//
-//	if(songTree->topLevelItemCount() == 0) {
-//		infoTextLbl->setText(tr("The report will be empty because no song is visible in the song tree."));
-//		infoIconLbl->setPixmap(QPixmap(":/marks/error.png"));
-//	}
+	infoTextLbl->setText(tr("Select the <b>columns</b> you want to see in the report. Drag & drop them to change their order. Songs of the <b>source</b> will be sorted alphabetically column by column.<br><br>You can <b>append and link</b> lyrics in HTML reports."));
+	radioAllSongs->setText(QString(tr("All Songs (%1)")).arg(allSongs.size()));
+	radioVisibleSongs->setText(QString(tr("Visible Songs (%1)")).arg(visibleSongs.size()));
 
 	initReportList();
 	initStyleCombo();
@@ -90,7 +84,7 @@ void QUReportDialog::initStyleCombo() {
 
 void QUReportDialog::initPlaylistCombo() {
 	for(int i = 0; i < _allPlaylists.size(); i++) {
-		playlistCombo->addItem(_allPlaylists.at(i)->name(), i);
+		playlistCombo->addItem(QString("%1 (%2)").arg(_allPlaylists.at(i)->name()).arg(_allPlaylists.at(i)->count()), i);
 	}
 }
 

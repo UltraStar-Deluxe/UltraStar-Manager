@@ -9,9 +9,6 @@ NEW FEATURES
 * first pre-defined value for EDITION in song details: "[SC]-Songs"
 * added a cancel button and a elapsed time indicator to progress bar
   > most long operations can be cancelled
-  > only if a cancellation would lead to an inconsistent state it is
-    not possible (e.g. refreshing the song tree after modifying a detail for
-		multiple songs)
 * new target for rename tasks: "path"
   > change the complete path of a song
 * re-organize folder structure with rename tasks
@@ -123,6 +120,7 @@ NEW FEATURES
   > take a look at (Help -> About)
 * "Buy" button added in amazon cover search :)
 * "Always On Top" added to options menu
+* supported file extensions are available through the registry now
 
 BUG FIXES
 * minor change in object renaming
@@ -202,6 +200,9 @@ NICE TO HAVE (but not necessary in 1.7.0)
 * some extended help system in the application (lowest priority, Monty works well :))
 * checksums for SC-checked song files
   > QCryptographicHash (md4, md5, sha1)
+* get a source for background pictures and videos
+  > need an API like Amazon Associates Web Service
+* virtual song folders for many song text files in one folder
 
 changes from 1.5.1 to 1.6.0
 ---------------------------

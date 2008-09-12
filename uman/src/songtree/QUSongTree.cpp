@@ -385,7 +385,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 
 	restoreSelection(selectedItems);
 
-//	emit itemSelectionChanged(); // update details
+	emit itemSelectionChanged(); // update details
 	emit finished(QString(tr("Filter applied: \"%1\"%2")).arg(regexp).arg(mode.testFlag(QU::negateFilter) ? tr(", negated") : ""), QU::information);
 }
 
