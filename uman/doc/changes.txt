@@ -122,13 +122,14 @@ NEW FEATURES
 * new about dialog
   > take a look at (Help -> About)
 * "Buy" button added in amazon cover search :)
+* "Always On Top" added to options menu
 
 BUG FIXES
 * minor change in object renaming
   > "oldName" now renamed to "_oldName" then to "newName"
   > try to switch CO and BG, then rename the files with tasks, you'll see... :)
 * you can now sort after the columns with ticks and crosses
-  > a cross is "smaller" than a tick
+  > e.g. a cross is "smaller" than a tick
 * fixed sorting for "unused files" column
 * fixed an application crash where Qt found a file with a trailing dot by ignoring
   that dot and where TagLib did not found that file which produced a null pointer
@@ -152,6 +153,8 @@ KNOWN BUGS (to fix)
   > cached amazon cover downloads
 * short application hang under vista while getting covers from amazon
   the first time after application start
+* cannot save "Always On Top" state to config because it's not possible to
+  reset that state on application startup (-> Qt 4.3.5 bug)
 
 TODO (for 1.7.0)
 * get cover picture
@@ -189,21 +192,16 @@ TODO (for 1.7.0)
   > ...
 * filter presets (more-button in filter area)
   > duplicates
-	> ...
+  > SC-Songs
+  > CC-Songs
+  > ...
 * add support for *.sco files (Scores?) per Song
-* always on top?
 * some task to fix lyrics which are always "upper-case"
 
 NICE TO HAVE (but not necessary in 1.7.0)
-* allow []-tags in song title
-  > e.g. "Nothing else matters [video]"
-  > now search for this tag in UltraStar, very cool :)
-  > maybe manage through tasks or so...
-* extract readable lyrics and export them, maybe into some report or so
 * some extended help system in the application (lowest priority, Monty works well :))
 * checksums for SC-checked song files
   > QCryptographicHash (md4, md5, sha1)
-* PERF: how about processing items backwards and removing them from the tree?
 
 changes from 1.5.1 to 1.6.0
 ---------------------------

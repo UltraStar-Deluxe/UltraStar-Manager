@@ -146,9 +146,9 @@ void QUMainWindow::initConfig() {
 	         actionAltSongTree->setChecked(settings.value("altSongTree", false).toBool());
 	              completerChk->setChecked(settings.value("caseSensitiveAutoCompletion", false).toBool());
 
-	this->restoreState(settings.value("windowState", QVariant()).toByteArray());
+	this->restoreState(settings.value("windowState").toByteArray());
 
-	actionAutoSave->setChecked(settings.value("autoSave", QVariant(true)).toBool());
+	actionAutoSave->setChecked(settings.value("autoSave", true).toBool());
 }
 
 /*!
@@ -257,6 +257,8 @@ void QUMainWindow::initMenu() {
 
 	// options menu
 	connect(actionAutoSave, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
+	connect(actionAlwaysOnTop, SIGNAL(toggled(bool)), this, SLOT(toggleAlwaysOnTop(bool)));
+
 	connect(actionTagSaveOrder, SIGNAL(triggered()), this, SLOT(editTagOrder()));
 	connect(actionChangeSongDirectory, SIGNAL(triggered()), this, SLOT(changeSongDir()));
 	connect(actionCustomTags, SIGNAL(triggered()), this, SLOT(editCustomTags()));
@@ -926,6 +928,24 @@ void QUMainWindow::toggleAltSongTreeChk(bool checked) {
 			songItem->updateSpellFileCheckColumns();
 		}
 	}
+}
+
+/*!
+ * Let the main window stay always in foreground.
+ */
+void QUMainWindow::toggleAlwaysOnTop(bool checked) {
+//	QSettings settings;
+//	if(settings.value("alwaysOnTop", false) == checked)
+//		return; // no change
+//
+//	settings.setValue("alwaysOnTop", checked);
+
+	if(checked)
+		this->setWindowFlags(this->windowFlags() | Qt::WindowStaysOnTopHint);
+	else
+		this->setWindowFlags(this->windowFlags() & !Qt::WindowStaysOnTopHint);
+
+	this->show();
 }
 
 /*!

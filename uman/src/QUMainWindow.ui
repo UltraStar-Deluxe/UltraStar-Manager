@@ -1098,6 +1098,7 @@ Tasks</string>
      <addaction name="actionLangGerman" />
     </widget>
     <addaction name="actionAutoSave" />
+    <addaction name="actionAlwaysOnTop" />
     <addaction name="separator" />
     <addaction name="actionTagSaveOrder" />
     <addaction name="actionChangeSongDirectory" />
@@ -1488,6 +1489,14 @@ Tasks</string>
   <action name="actionMergeSelected" >
    <property name="text" >
     <string>Merge Selected</string>
+   </property>
+  </action>
+  <action name="actionAlwaysOnTop" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Always On Top</string>
    </property>
   </action>
  </widget>
