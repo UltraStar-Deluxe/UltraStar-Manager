@@ -143,7 +143,7 @@ BUG FIXES
 * freshly dropped songs into the song tree can now send (save) messages to event log
   > you needed to rebuilt the whole tree up to now
   
-KNOWN BUGS (to fix)
+KNOWN BUGS
 * you cannot sort after a custom tag column in the report
 * Uninstaller does not delete
   > "non-standard" tasks
@@ -152,9 +152,9 @@ KNOWN BUGS (to fix)
 * short application hang under vista while getting covers from amazon
   the first time after application start
 * cannot save "Always On Top" state to config because it's not possible to
-  reset that state on application startup (-> Qt 4.3.5 bug)
+  reset that state on application startup (-> Qt 4.3.5 bug?)
 
-TODO (for 1.7.0)
+NICE TO HAVE (but not necessary in 1.7.0)
 * get cover picture
   > extract cover from MP3
 * header/footer for reports
@@ -195,14 +195,21 @@ TODO (for 1.7.0)
   > ...
 * add support for *.sco files (Scores?) per Song
 * some task to fix lyrics which are always "upper-case"
-
-NICE TO HAVE (but not necessary in 1.7.0)
 * some extended help system in the application (lowest priority, Monty works well :))
 * checksums for SC-checked song files
   > QCryptographicHash (md4, md5, sha1)
 * get a source for background pictures and videos
   > need an API like Amazon Associates Web Service
 * virtual song folders for many song text files in one folder
+* add covers and background pictures to reports
+* create an ISO file with MP3s from you collection
+  > let your friends be well prepared for the ultrastar evening
+* warn, if BGs are bigger than game resolution
+  > will be white otherwise
+* use next file in folder if txt is no valid song file
+  > no licenses
+* CO/BG slideshow show detect awful covers
+* you cannot search after a dot in UltraStar Deluxe 1.0.1a
 
 changes from 1.5.1 to 1.6.0
 ---------------------------
