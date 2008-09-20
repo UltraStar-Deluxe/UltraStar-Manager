@@ -1,6 +1,26 @@
 changes from 1.6.0 to 1.7.0
 ---------------------------
-NEW FEATURES
+NOTES
+* Still using Qt 4.3.5 because Qt 4.4.1 is terribly slow with QTreeWidget.
+* Next release will be 1.7.1 -> not so big.
+
+NEW FEATURES ("in a nutshell")
+* custom song tags possible
+* configurable, scriptable (and more) tasks
+* manage playlists
+* get covers from amazon
+* new file information dock
+  > song database statistics
+	> current file information (e.g. some ID3v2 tags of audio file)
+	> see all supported file types
+* extended configuration possible through registry
+  > supported file types
+	> custom tags (also with uman)
+* more report features added, e.g.:
+  > lyrics
+	> song length
+
+CHANGES (more detailed)
 * "rename tasks" and "song/ID3 tag tasks" are now scriptable
   > see task-def folder
   > create easily new custom tasks
@@ -154,12 +174,19 @@ KNOWN BUGS
 * cannot save "Always On Top" state to config because it's not possible to
   reset that state on application startup (-> Qt 4.3.5 bug?)
 
-NICE TO HAVE (but not necessary in 1.7.0)
+TODO (until 1.7.0)
+* disable "talk" if monty is not allowed to talk
+* fix gif-support (amazon-covers, ..., files?)
+* add support for *.sco files (Scores?) per Song
+* add "Get Covers from Amazon..." to "Song" menu
+  > not only in context menu of current selection in song tree
+* fix KNOWN BUG with Uninstaller (see that section above)
+
+DELAYED TO FURTHER RELEASE
 * get cover picture
   > extract cover from MP3
 * header/footer for reports
   > global stats
-  > running number (extra column?)
 * re-design filter categories
   > Apply more than one filter?
 * enable the user to append any custom []-tag to a file/folder
@@ -170,8 +197,6 @@ NICE TO HAVE (but not necessary in 1.7.0)
 * add to playlist context menu "remove invalid entries"
 * do not use only the count for "QUSongFile::verifyTags(QStringList&)"
 * show effective length of playlist in playlist dock
-* disable "talk" if monty is not allowed to talk
-* fix gif-support (amazon-covers, ..., files?)
 * crop covers to 1:1 (extra task?)
 * "UmanScore"
   > multiple syllables in a line
@@ -193,12 +218,11 @@ NICE TO HAVE (but not necessary in 1.7.0)
   > SC-Songs
   > CC-Songs
   > ...
-* add support for *.sco files (Scores?) per Song
 * some task to fix lyrics which are always "upper-case"
 * some extended help system in the application (lowest priority, Monty works well :))
 * checksums for SC-checked song files
   > QCryptographicHash (md4, md5, sha1)
-* get a source for background pictures and videos
+* get a web-source for background pictures and videos
   > need an API like Amazon Associates Web Service
 * virtual song folders for many song text files in one folder
 * add covers and background pictures to reports
@@ -206,10 +230,26 @@ NICE TO HAVE (but not necessary in 1.7.0)
   > let your friends be well prepared for the ultrastar evening
 * warn, if BGs are bigger than game resolution
   > will be white otherwise
+	> minification not supported by USdx
 * use next file in folder if txt is no valid song file
-  > no licenses
-* CO/BG slideshow show detect awful covers
+  > no license files
+* CO/BG slideshow -> detect awful covers
 * you cannot search after a dot in UltraStar Deluxe 1.0.1a
+  > workaround in uman?
+* drop zip files or whole folders in the song tree
+* show more from current artist (context menu, song tree)
+* properties of picture in "preview picture"
+* cover into reports (beside lyrics?)
+* correct the ratio for pictures
+  > by task
+	> 1:1 for covers
+	> n:m for backgrounds, according to resolution (ingame)
+	> detect selected resolution for UltraStar (read configs...)
+* list ratio of cover/background in song tree (extra column)
+* look for illegal lyrics
+  > e.g. ": 20 7ß 38 blubb" (false alpha-numeric..., USdx error)
+* detect not only song file changes but song folder changes
+  > new files...
 
 changes from 1.5.1 to 1.6.0
 ---------------------------

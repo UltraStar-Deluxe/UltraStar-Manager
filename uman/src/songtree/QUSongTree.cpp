@@ -930,7 +930,8 @@ bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
 	if(dataUsed) {
 		item->song()->save();
 		item->update();
-		emit itemSelectionChanged(); // update details
+		item->setSelected(true);
+//		emit itemSelectionChanged(); // update details
 	}
 
 	return true;
