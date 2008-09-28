@@ -2,7 +2,7 @@ changes from 1.6.0 to 1.7.0
 ---------------------------
 NOTES
 * Still using Qt 4.3.5 because Qt 4.4.1 is terribly slow with QTreeWidget.
-* Next release will be 1.7.1 -> not so big.
+* Next release will be 1.7.1 -> not so extensive.
 
 NEW FEATURES ("in a nutshell")
 * custom song tags possible
@@ -11,14 +11,14 @@ NEW FEATURES ("in a nutshell")
 * get covers from amazon
 * new file information dock
   > song database statistics
-	> current file information (e.g. some ID3v2 tags of audio file)
-	> see all supported file types
+  > current file information (e.g. some ID3v2 tags of audio file)
+  > see all supported file types
 * extended configuration possible through registry
   > supported file types
-	> custom tags (also with uman)
+  > custom tags (also with uman)
 * more report features added, e.g.:
   > lyrics
-	> song length
+  > song length
 
 CHANGES (more detailed)
 * "rename tasks" and "song/ID3 tag tasks" are now scriptable
@@ -173,6 +173,7 @@ KNOWN BUGS
   the first time after application start
 * cannot save "Always On Top" state to config because it's not possible to
   reset that state on application startup (-> Qt 4.3.5 bug?)
+* cannot sort after "videogap" column correctly
 
 TODO (until 1.7.0)
 * disable "talk" if monty is not allowed to talk
@@ -200,6 +201,8 @@ DELAYED TO FURTHER RELEASE
 * crop covers to 1:1 (extra task?)
 * "UmanScore"
   > multiple syllables in a line
+  > has video, audio, cover, background
+  > has additional information set (edition, creator, ...)
 * find & replace in song tags
 * custom rename (context menu, 2nd click, ...)
 * modify ID3 tags via song tags

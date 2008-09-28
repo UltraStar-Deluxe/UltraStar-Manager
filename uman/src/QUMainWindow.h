@@ -91,6 +91,9 @@ private slots:
 	// handle external changes
 	void processExternalSongFileChange(QUSongFile *song);
 
+	// internal easter eggs
+	void copyAudioToPath();
+
 private:
 	QList<QUSongFile*>     _songs;
 

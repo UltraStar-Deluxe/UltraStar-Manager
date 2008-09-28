@@ -23,9 +23,9 @@
    <property name="geometry" >
     <rect>
      <x>0</x>
-     <y>48</y>
+     <y>47</y>
      <width>912</width>
-     <height>696</height>
+     <height>697</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_4" >
@@ -503,9 +503,9 @@
          <property name="geometry" >
           <rect>
            <x>0</x>
-           <y>22</y>
+           <y>20</y>
            <width>451</width>
-           <height>134</height>
+           <height>138</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -584,9 +584,9 @@
          <property name="geometry" >
           <rect>
            <x>0</x>
-           <y>22</y>
+           <y>20</y>
            <width>451</width>
-           <height>159</height>
+           <height>160</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -787,9 +787,9 @@ Tasks</string>
          <property name="geometry" >
           <rect>
            <x>0</x>
-           <y>22</y>
+           <y>20</y>
            <width>451</width>
-           <height>134</height>
+           <height>138</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout" >
@@ -840,7 +840,7 @@ Tasks</string>
          <property name="geometry" >
           <rect>
            <x>0</x>
-           <y>22</y>
+           <y>20</y>
            <width>451</width>
            <height>16</height>
           </rect>
@@ -868,9 +868,9 @@ Tasks</string>
          <property name="geometry" >
           <rect>
            <x>0</x>
-           <y>22</y>
+           <y>20</y>
            <width>451</width>
-           <height>141</height>
+           <height>143</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -1046,7 +1046,7 @@ Tasks</string>
      <x>0</x>
      <y>0</y>
      <width>912</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAbout_Qt" >
@@ -1070,8 +1070,6 @@ Tasks</string>
     <property name="title" >
      <string>&amp;Songs</string>
     </property>
-    <addaction name="actionNewReport" />
-    <addaction name="separator" />
     <addaction name="actionSaveSelected" />
     <addaction name="actionSaveAll" />
     <addaction name="separator" />
@@ -1115,9 +1113,17 @@ Tasks</string>
     <addaction name="actionFilter" />
     <addaction name="separator" />
    </widget>
+   <widget class="QMenu" name="menuExtras" >
+    <property name="title" >
+     <string>Extras</string>
+    </property>
+    <addaction name="actionNewReport" />
+    <addaction name="actionBackupAudioFiles" />
+   </widget>
    <addaction name="menuSongs" />
    <addaction name="menuView" />
    <addaction name="menuOptions" />
+   <addaction name="menuExtras" />
    <addaction name="menuAbout_Qt" />
   </widget>
   <widget class="QStatusBar" name="statusbar" >
@@ -1134,8 +1140,8 @@ Tasks</string>
    <property name="geometry" >
     <rect>
      <x>0</x>
-     <y>22</y>
-     <width>191</width>
+     <y>21</y>
+     <width>164</width>
      <height>26</height>
     </rect>
    </property>
@@ -1160,8 +1166,6 @@ Tasks</string>
    <attribute name="toolBarBreak" >
     <bool>false</bool>
    </attribute>
-   <addaction name="actionNewReport" />
-   <addaction name="separator" />
    <addaction name="actionSaveSelected" />
    <addaction name="actionSaveAll" />
    <addaction name="separator" />
@@ -1174,9 +1178,9 @@ Tasks</string>
   <widget class="QToolBar" name="optionsBar" >
    <property name="geometry" >
     <rect>
-     <x>191</x>
-     <y>22</y>
-     <width>162</width>
+     <x>164</x>
+     <y>21</y>
+     <width>164</width>
      <height>26</height>
     </rect>
    </property>
@@ -1207,9 +1211,9 @@ Tasks</string>
   <widget class="QToolBar" name="viewBar" >
    <property name="geometry" >
     <rect>
-     <x>353</x>
-     <y>22</y>
-     <width>559</width>
+     <x>328</x>
+     <y>21</y>
+     <width>584</width>
      <height>26</height>
     </rect>
    </property>
@@ -1497,6 +1501,11 @@ Tasks</string>
    </property>
    <property name="text" >
     <string>Always On Top</string>
+   </property>
+  </action>
+  <action name="actionBackupAudioFiles" >
+   <property name="text" >
+    <string>Backup Audio Files...</string>
    </property>
   </action>
  </widget>

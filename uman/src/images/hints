@@ -48,5 +48,18 @@ If you make a double-click on a rename task in the task list you can modify that
 There is a context menu in the task list which enables you to add and edit rename tasks.
 Some operations cannot be cancelled because that would lead to an inconsistent state, e.g. applying a filter.
 You can expand and collapse the categories in the database info window by double-clicking their names.
-A blue cross in the song tree indicates that the value for a file-related tag (e.g. #cover) was set but the file does not exist.
+A cross with an exclamation mark in the song tree indicates that the value for a file-related tag (e.g. #cover) was set but the file does not exist.
 A song is <b>invalid</b> if it has no artist or title or a length of zero. That song will have a <b>light red background</b> in the song tree.
+If you want to integrate new songs via drag&drop in the song tree, it may be helpful to hide all other songs first.<br><br><i>Hide > All</i> (context menu)
+There are two types of context menus in the song tree. One for files and one for folders (whole songs).
+You can negate the regular expression for a filter if you click the plus button in front of the in put line.
+If you filter "abba|akon|dido", you will get all items that contain "abba", "akon" or "dido".
+Nearly all icons in the song tree have a tooltip. Just let the mouse cursor alone and wait 1-2 seconds. A hint will appear.
+You can see double songs if you press <i>Duplicates</i> in the filter area. Double songs will be listed together.
+Playlists will be connected to the current song database. Whenever a song will be changed, playlists will be updated automatically.<br><br>Changed playlists need to be saved.
+<i>Amazon Assiciates Web Service:</i><br><br>Covers will only be downloaded for songs that are checked. That applies also to "Copy & Set".
+You can expand a list of all supported file types if you double-click the corresponding headline in <i>File Information</i>.
+Editable tasks kann be modified via double-click. Additionally, a context menu is present - hit the right mouse button.
+The event log will be saved on exit in the application path.
+The head of the song tree has a context menu. Here you can show and hide columns. Presets offer a more convenient way to do this.
+You can display the lyrics of the current song via <i>Ctrl + L</i>

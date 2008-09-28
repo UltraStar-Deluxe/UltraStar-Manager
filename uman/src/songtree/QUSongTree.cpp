@@ -930,7 +930,9 @@ bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
 	if(dataUsed) {
 		item->song()->save();
 		item->update();
+		this->clearSelection();
 		item->setSelected(true);
+		this->scrollToItem(item, QAbstractItemView::EnsureVisible);
 //		emit itemSelectionChanged(); // update details
 	}
 
@@ -1127,6 +1129,7 @@ void QUSongTree::deleteCurrentItem() {
 
 	this->setCurrentItem(item->parent());
 	item->update();
+	this->scrollToItem(this->currentItem(), QAbstractItemView::EnsureVisible);
 
 	emit itemSelectionChanged(); // update details
 }

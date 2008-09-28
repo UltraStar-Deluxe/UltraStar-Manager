@@ -48,5 +48,18 @@ Wenn du einen Doppelklick auf eine Umbenennungsaufgabe machst, kannst du sie bea
 Die Aufgabenliste hat ein Kontextmenü, welches es dir ermöglicht, neue Aufgaben anzulegen oder vorhandene zu bearbeiten.
 Einige Vorgänge können nicht abgebrochen werden, weil dies zu einem inkonsistenten Zustand führen würde, z.B. Filter anwenden.
 Du kannst die Kategorien im DB-Info-Fenster ein- und ausklappen, indem du auf deren Namen einen Doppelklick machst.
-Ein blaues Kreuz im Songbaum bedeutet, dass ein dateibezogener Tag (z.B. #cover) einen Wert hat, wobei die Datei nicht existiert.
+Ein Kreuz mit Ausrufezeichen im Songbaum bedeutet, dass ein dateibezogener Tag (z.B. #cover) einen Wert hat, wobei die Datei nicht existiert.
 Ein Song ist <b>ungültig</b>, wenn er keinen Interpreten oder keinen Titel besitzt, oder wenn die Länge Null ist.<br><br>Dieser Song wird einen <b>leicht rötlichen Hintergrund</b> im Song-Baum haben.
+Wenn du per Drag&Drop neue Songs in deine Sammlung integrieren willst, bietet es sich eventuell an, über das Kontextmenu im Song-Baum alle Songs zu verstecken.<br><br><i>Verstecke > Alle</i>
+Es gibt zwei Varianten von Kontextmenüs im Song-Baum. Eins für Dateien und eins für Ordner (ganze Songs).
+Du kannst den regulären Ausdruck beim Filtern umkehren, indem du auf das Plus vor der Eingabezeile drückst.
+Wenn du nach "abba|akon|wizo" filterst, suchst du alles, was "abba", "akon" oder "wizo" enthält.
+Es gibt Tooltips zu fast allen Symbolen im Song-Baum. Lass den Cursor einfach 1-2 Sekunden stehen und der Hinweis erscheint.
+Du kannst dir doppelte Songs anzeigen lassen, wenn du im Filterbereich auf <i>Duplikate</i> klickst. Diese stehen dann immer zusammen im Song-Baum.
+Playlisten werden mit der aktuellen Songdatenbank verbunden. Sobald ein Song geändert wird, welcher in einer Playliste ist, wird auch diese aktualisiert.<br><br>Änderungen in Playlisten müssen jedoch manuell gespeichert werden.
+<i>Amazon Assiciates Web Service:</i><br><br>Es werden nur Covers zu den Songs runtergeladen, welche angewählt sind. Ebenso verhält es sich mit dem Kopieren und Setzen der Cover.
+Eine Liste der unterstützten Dateitypen kannst du ausklappen, indem du bei den <i>Datei-Infos</i> einen Doppelklick auf die zugehörige Überschrift machst.
+Die editierbaren Aufgaben kannst du mit einem Doppelklick bearbeiten. Alternativ ist auch ein Kontextmenü (Rechtsklick) vorhanden.
+Das Ereignisprotokoll wird beim Beenden im Programmpfad abgespeichert.
+Die Kopfzeile im Song-Baum besitzt ein Kontextmenü. Hier kann man Spalten an- und abwählen. Über Voreinstellungen kann man dies auch mit weniger Klicks erreichen.
+Mittels <i>Strg + L</i> kannst du dir die Lyrics des aktuellen Songs anzeigen lassen.

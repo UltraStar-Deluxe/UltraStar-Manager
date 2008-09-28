@@ -195,7 +195,6 @@ void QUMainWindow::initWindow() {
 
 void QUMainWindow::initMenu() {
 	// songs menu
-	connect(      actionNewReport, SIGNAL(triggered()), this, SLOT(reportCreate()));
 	connect(        actionRefresh, SIGNAL(triggered()), this, SLOT(refreshAllSongs()));
 
 	connect(   actionSaveSelected, SIGNAL(triggered()), songTree, SLOT(saveSelectedSongs()));
@@ -211,7 +210,6 @@ void QUMainWindow::initMenu() {
 	connect( actionSendToPlaylist, SIGNAL(triggered()), songTree, SLOT(sendSelectedSongsToPlaylist()));
 	connect(     actionShowLyrics, SIGNAL(triggered()), songTree, SLOT(requestLyrics()));
 
-	      actionNewReport->setShortcut(Qt::Key_F2);
 //	actionRefreshSelected->setShortcut(Qt::Key_F5);
 	        actionRefresh->setShortcut(Qt::SHIFT + Qt::Key_F5);
 	   actionSaveSelected->setShortcut(Qt::CTRL  + Qt::Key_S);
@@ -267,6 +265,12 @@ void QUMainWindow::initMenu() {
 	connect(actionLangGerman, SIGNAL(triggered()), this, SLOT(enableGerman()));
 
 	actionChangeSongDirectory->setShortcut(Qt::Key_F12);
+
+	// extras menu
+	connect(actionNewReport, SIGNAL(triggered()), this, SLOT(reportCreate()));
+	connect(actionBackupAudioFiles, SIGNAL(triggered()), this, SLOT(copyAudioToPath()));
+
+	actionNewReport->setShortcut(Qt::Key_F2);
 
 	// help menu
 	connect(actionShowMonty, SIGNAL(triggered()), helpFrame, SLOT(show()));
@@ -638,6 +642,7 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 		songItem->update();
 	}
 	songTree->restoreSelection(selectedItems);
+	songTree->scrollToItem(songTree->currentItem(), QAbstractItemView::EnsureVisible);
 }
 
 /*!
@@ -1146,4 +1151,31 @@ void QUMainWindow::processExternalSongFileChange(QUSongFile *song) {
 	}
 
 	addLogMsg(QString("Song file changed: \"%1\"").arg(song->songFileInfo().filePath()), QU::information);
+}
+
+/*!
+ * Select a path and copy all audio files of all songs to that path. (no public feature)
+ */
+void QUMainWindow::copyAudioToPath() {
+	QString target = QFileDialog::getExistingDirectory(this, tr("Choose backup destination..."));
+
+	if(target.isEmpty())
+		return;
+
+	QUProgressDialog dlg(tr("Backup audio files..."), _songs.size(), this);
+	dlg.setPixmap(":/types/music.png");
+	dlg.show();
+
+	foreach(QUSongFile *song, _songs) {
+		if(!song->hasMp3())
+			continue;
+
+		dlg.update(song->mp3FileInfo().fileName());
+		if(dlg.cancelled()) break;
+
+		// TODO: copy files
+		QFile::copy(song->mp3FileInfo().filePath(), QFileInfo(QDir(target), song->mp3FileInfo().fileName()).filePath());
+	}
+
+	addLogMsg(tr("Backup for audio files finished."), QU::information);
 }
