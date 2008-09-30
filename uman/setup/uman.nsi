@@ -2,7 +2,7 @@ XPStyle on
 SetCompress off
 
 !define PRODUCTNAME "UltraStar Manager"
-!define PRODUCTVERSION "1.7.0-WIP"
+!define PRODUCTVERSION "1.7.0"
 Name "${PRODUCTNAME} ${PRODUCTVERSION}"
 
 !include "MUI.nsh"
@@ -158,6 +158,8 @@ Section "Uninstall"
     Delete "$INSTDIR\task-def\id3-040-useYear.xml"
     Delete "$INSTDIR\task-def\id3-050-useAlbum.xml"
     RMDir "$INSTDIR\task-def"
+    RMDir /r "$INSTDIR\logs"
+    RMDir /r "$INSTDIR\covers"
     RMDir "$INSTDIR"
   
     ;; Start Menu
