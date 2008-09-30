@@ -1077,6 +1077,7 @@ Tasks</string>
     <addaction name="actionMergeSelected" />
     <addaction name="separator" />
     <addaction name="actionSendToPlaylist" />
+    <addaction name="actionGetCovers" />
     <addaction name="actionShowLyrics" />
     <addaction name="separator" />
     <addaction name="actionExpandAll" />
@@ -1506,6 +1507,11 @@ Tasks</string>
   <action name="actionBackupAudioFiles" >
    <property name="text" >
     <string>Backup Audio Files...</string>
+   </property>
+  </action>
+  <action name="actionGetCovers" >
+   <property name="text" >
+    <string>Get Covers From Amazon...</string>
    </property>
   </action>
  </widget>

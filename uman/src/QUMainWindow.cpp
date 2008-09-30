@@ -208,6 +208,7 @@ void QUMainWindow::initMenu() {
 //	connect(actionRefreshSelected, SIGNAL(triggered()), songTree, SLOT(refreshSelectedItems()));
 
 	connect( actionSendToPlaylist, SIGNAL(triggered()), songTree, SLOT(sendSelectedSongsToPlaylist()));
+	connect(      actionGetCovers, SIGNAL(triggered()), songTree, SLOT(requestCoversFromAmazon()));
 	connect(     actionShowLyrics, SIGNAL(triggered()), songTree, SLOT(requestLyrics()));
 
 //	actionRefreshSelected->setShortcut(Qt::Key_F5);

@@ -177,8 +177,6 @@ KNOWN BUGS
 * broken gif-support for amazon cover files
 
 TODO (until 1.7.0)
-* add "Get Covers from Amazon..." to "Song" menu
-  > not only in context menu of current selection in song tree
 * fix KNOWN BUG with Uninstaller (see that section above)
 
 DELAYED TO FURTHER RELEASE
