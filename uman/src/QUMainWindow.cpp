@@ -363,7 +363,7 @@ void QUMainWindow::initMonty() {
 	helpLbl->setText(monty->welcomeMsg(_songs.size()));
 
 	connect(hideMontyBtn, SIGNAL(clicked()), helpFrame, SLOT(hide()));
-	connect(talkMontyBtn, SIGNAL(clicked()), this, SLOT(montyTalk()));
+	connect(talkMontyBtn, SIGNAL(clicked()), this, SLOT(montyTalkNow()));
 
 	if(!actionAllowMonty->isChecked())
 		helpFrame->hide();
@@ -861,12 +861,16 @@ void QUMainWindow::editCustomTags() {
 	montyTalk();
 }
 
-void QUMainWindow::montyTalk() {
-	if(!actionAllowMonty->isChecked())
+void QUMainWindow::montyTalk(bool force) {
+	if(!force and !actionAllowMonty->isChecked())
 		return;
 
 	helpFrame->show();
 	monty->talk(montyLbl, helpLbl);
+}
+
+void QUMainWindow::montyTalkNow() {
+	montyTalk(true);
 }
 
 /*!

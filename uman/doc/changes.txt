@@ -176,7 +176,6 @@ KNOWN BUGS
 * cannot sort after "videogap" column correctly
 
 TODO (until 1.7.0)
-* disable "talk" if monty is not allowed to talk
 * fix gif-support (amazon-covers, ..., files?)
 * add support for *.sco files (Scores?) per Song
 * add "Get Covers from Amazon..." to "Song" menu

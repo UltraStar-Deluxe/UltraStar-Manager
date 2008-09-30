@@ -65,7 +65,8 @@ private slots:
 	void changeSongDir();
 	void editCustomTags();
 
-	void montyTalk();
+	void montyTalk(bool force = false);
+	void montyTalkNow();
 
 	void showFileContent(QTreeWidgetItem *item, int column);
 	void showLyrics(QUSongFile *song);
