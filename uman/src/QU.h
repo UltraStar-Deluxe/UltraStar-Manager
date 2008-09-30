@@ -86,6 +86,7 @@ public:
 	static QStringList allowedLicenseFiles();
 	static QStringList allowedMidiFiles();
 	static QStringList allowedKaraokeFiles();
+	static QStringList allowedScoreFiles();
 
 	static QStringList allowedAudioFiles();
 	static QStringList allowedPictureFiles();

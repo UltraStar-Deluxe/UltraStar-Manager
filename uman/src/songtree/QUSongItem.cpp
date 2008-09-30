@@ -75,6 +75,8 @@ void QUSongItem::update() {
 			child->updateAsMidi();
 		} else if(QU::allowedKaraokeFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsKaraoke();
+		} else if(QU::allowedScoreFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+			child->updateAsScore();
 		} else {
 			child->updateAsUnknown();
 		}
@@ -202,6 +204,15 @@ void QUSongItem::updateAsKaraoke() {
 	clearContents();
 
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/karaoke.png"));
+
+	// special files, special color ^_^
+	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
+}
+
+void QUSongItem::updateAsScore() {
+	clearContents();
+
+	this->setIcon(FOLDER_COLUMN, QIcon(":/types/score.png"));
 
 	// special files, special color ^_^
 	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);

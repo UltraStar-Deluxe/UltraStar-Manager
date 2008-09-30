@@ -58,6 +58,7 @@ public:
 	void updateAsLicense();
 	void updateAsMidi();
 	void updateAsKaraoke();
+	void updateAsScore();
 	void updateAsUnknown();
 
 	void updateSpellFileCheckColumns();

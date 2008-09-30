@@ -174,10 +174,9 @@ KNOWN BUGS
 * cannot save "Always On Top" state to config because it's not possible to
   reset that state on application startup (-> Qt 4.3.5 bug?)
 * cannot sort after "videogap" column correctly
+* broken gif-support for amazon cover files
 
 TODO (until 1.7.0)
-* fix gif-support (amazon-covers, ..., files?)
-* add support for *.sco files (Scores?) per Song
 * add "Get Covers from Amazon..." to "Song" menu
   > not only in context menu of current selection in song tree
 * fix KNOWN BUG with Uninstaller (see that section above)

@@ -23,6 +23,10 @@ QStringList QU::allowedKaraokeFiles() {
 	return registryKey("allowedKaraokeFiles", "*.kar");
 }
 
+QStringList QU::allowedScoreFiles() {
+	return registryKey("allowedScoreFiles", "*.sco");
+}
+
 QStringList QU::allowedAudioFiles() {
 	return registryKey("allowedAudioFiles", "*.mp3 *.ogg");
 }
