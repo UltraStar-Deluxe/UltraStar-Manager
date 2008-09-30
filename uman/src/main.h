@@ -5,6 +5,6 @@
 #define MINOR_VERSION 0x0007
 #define PATCH_VERSION 0x0000
 
-#define WIP_TEXT " *work in progress - do not distribute*"
+#define WIP_TEXT ""
 
 #endif /*MAIN_H_*/

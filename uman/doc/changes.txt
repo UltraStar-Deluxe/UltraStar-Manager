@@ -176,10 +176,7 @@ KNOWN BUGS
 * cannot sort after "videogap" column correctly
 * broken gif-support for amazon cover files
 
-TODO (until 1.7.0)
-* fix KNOWN BUG with Uninstaller (see that section above)
-
-DELAYED TO FURTHER RELEASE
+DELAYED TO NEXT RELEASE
 * get cover picture
   > extract cover from MP3
 * header/footer for reports
