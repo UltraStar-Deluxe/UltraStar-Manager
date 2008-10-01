@@ -139,7 +139,8 @@ FORMS += QUAboutDialog.ui \
     QUTagOrderDialog.ui \
     QUMainWindow.ui
 RESOURCES += images/uman.qrc
-TRANSLATIONS = uman_de.ts
+TRANSLATIONS = uman_de.ts \
+    uman_pl.ts
 INCLUDEPATH += tasks \
     details \
     songtree \
@@ -165,7 +166,12 @@ QMAKE_EXTRA_TARGETS += revtarget
 PRE_TARGETDEPS += version.h
 revtarget.target = version.h
 revtarget.commands = @echo \
-    "const char *revision = \"r$(shell svnversion .)\"; const char *date_time = \"$(shell date /T)$(shell time /T)\";" > $$revtarget.target \
+    "const char *revision = \"r$(shell svnversion .)\"; \
+    const \
+    char \
+    *date_time \
+    = \
+    \"$(shell date /T)$(shell time /T)\";" > $$revtarget.target \
 &&python getTaskText.py
 revtarget.depends = $$SOURCES \
     $$HEADERS \
