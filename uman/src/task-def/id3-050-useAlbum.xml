@@ -4,7 +4,7 @@
         <description><![CDATA[Change #ALBUM via ID3 tag]]></description>
         <tooltip><![CDATA[You need the custom tag #ALBUM for this task.]]></tooltip>
     </general>
-    <id3 target="" schema="%1" >
+    <id3 target="album" schema="%1" >
         <data ignoreEmpty="targetfull" source="album" />
     </id3>
 </task>

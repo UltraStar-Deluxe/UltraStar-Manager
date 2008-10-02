@@ -1,10 +1,54 @@
-changes from 1.7.0 to 1.7.1
----------------------------
-NEW FEATURES
+<---------------------------->
+< Changelog (1.7.0 to 1.7.1) >
+<---------------------------->
 
-BUG FIXES
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#  NEW FEATURES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
-KNOWN BUGS
+-
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+TASKS
+
+SONG TREE
+
+SONG DETAILS
+
+REPORTS
+  
+PLAYLIST SUPPORT
+
+FILTER SUPPORT
+
+PICTURE PREVIEW
+
+AMAZON COVER DOWNLOAD
+
+INTERNAL STUFF
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+TASKS
+* target for "id3-050-useAlbum.xml" was empty - is now "album"
+
+SONG TREE
+
+SONG DETAILS
+
+REPORTS
+  
+PLAYLIST SUPPORT
+
+FILTER SUPPORT
+
+PICTURE PREVIEW
+
+AMAZON COVER DOWNLOAD
+
+INTERNAL STUFF
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
 * you cannot sort after a custom tag column in the report
 * Uninstaller does not delete
   > "non-standard" tasks
@@ -15,76 +59,120 @@ KNOWN BUGS
 * cannot sort after "videogap" column correctly
 * broken gif-support for amazon cover files
 
-TODO (something from this list until 1.7.1)
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
+
+NEW STUFF
+* make hard-coded values editable
+  > lower and upper time bound
+  > line break gap in lyrics
+* create an ISO file with MP3s from you collection
+  > let your friends be well prepared for the ultrastar evening
 * get cover picture
   > extract cover from MP3
-* header/footer for reports
-  > global stats
-* re-design filter categories
-  > Apply more than one filter?
-* enable the user to append any custom []-tag to a file/folder
-  > manage these custom/unknown []-tags
-  > available through context menu? (list []-tags, ...)
-* make column tests in 1 and 2 editable
-  > according to renaming style of the user
-* add to playlist context menu "remove invalid entries"
-* do not use only the count for "QUSongFile::verifyTags(QStringList&)"
-* show effective length of playlist in playlist dock
-* crop covers to 1:1 (extra task?)
 * "UmanScore"
   > multiple syllables in a line
   > has video, audio, cover, background
   > has additional information set (edition, creator, ...)
 * find & replace in song tags
-* custom rename (context menu, 2nd click, ...)
-* modify ID3 tags via song tags
-  > genre, year
 * manage covers for
   > edition
   > genre
   > language
   > folder
-* prepend global stats to report
-  > total length
-  > count
-  > ...
-* filter presets (more-button in filter area)
-  > duplicates
-  > SC-Songs
-  > CC-Songs
-  > ...
-* some task to fix lyrics which are always "upper-case"
 * some extended help system in the application (lowest priority, Monty works well :))
 * checksums for SC-checked song files
   > QCryptographicHash (md4, md5, sha1)
 * get a web-source for background pictures and videos
   > need an API like Amazon Associates Web Service
-* virtual song folders for many song text files in one folder
-* add covers and background pictures to reports
-* create an ISO file with MP3s from you collection
-  > let your friends be well prepared for the ultrastar evening
-* warn, if BGs are bigger than game resolution
-  > will be white otherwise
-	> minification not supported by USdx
-* use next file in folder if txt is no valid song file
-  > no license files
 * CO/BG slideshow -> detect awful covers
-* you cannot search after a dot in UltraStar Deluxe 1.0.1a
-  > workaround in uman?
-* drop zip files or whole folders in the song tree
-* show more from current artist (context menu, song tree)
-* properties of picture in "preview picture"
-* cover into reports (beside lyrics?)
+* look for illegal/invalid lyrics
+  > e.g. ": 20 7ß 38 blubb" (false alpha-numeric..., USdx error)
+  
+TASKS
 * correct the ratio for pictures
   > by task
 	> 1:1 for covers
 	> n:m for backgrounds, according to resolution (ingame)
 	> detect selected resolution for UltraStar (read configs...)
+* crop covers to 1:1 (extra task?)
+  > resize and fill with color to ratio ??
+* some task to fix lyrics which are always "upper-case"
+* you cannot search after a dot in UltraStar Deluxe 1.0.1a
+  > workaround in uman?
+  > a task that removes all dots from artist/title?
+* modify ID3v2 tags via song tags
+  > genre, year
+
+SONG TREE
+* enable the user to append any custom []-tag to a file/folder
+  > manage these custom/unknown []-tags
+  > available through context menu? (list []-tags, ...)
+* make column tests in 1 and 2 editable
+  > according to renaming style of the user
 * list ratio of cover/background in song tree (extra column)
-* look for illegal lyrics
-  > e.g. ": 20 7ß 38 blubb" (false alpha-numeric..., USdx error)
+* custom rename (context menu, 2nd click, ...)
+* warn, if BGs are bigger than game resolution
+  > will be white otherwise
+	> minification not supported by USdx
+* show more from current artist (context menu, song tree)
+* virtual song folders for many song text files in one folder
+* drop zip files or whole folders in the song tree
+
+REPORTS
+* add a "to top" link to each song text
+* "remind settings" somehow in the report dialog
+* PDF-Report (song book feature?)
+* cover into reports (beside lyrics?)
+* header/footer for reports
+  > global stats
+* prepend global stats to report
+  > total length
+  > count
+  > ...
+* add covers and background pictures to reports
+  
+PLAYLIST SUPPORT
+* auto-create playlists by edition
+* handle duplicates in playlists
+  > UltraStar playlists are more like a subset of all songs
+  > not really playlists...
+* drag&drop from songs to the playlist
+  > consider selection! (broken?)
+* add to playlist context menu "remove invalid entries" 
+* show effective length of playlist in playlist dock
+
+FILTER SUPPORT
+* re-design filter categories
+  > Apply more than one filter?
+* filter presets (more-button in filter area)
+  > duplicates
+  > SC-Songs
+  > CC-Songs
+  > ...
+
+PICTURE PREVIEW
+* rename "preview picture" to "picture preview"
+* properties of picture in "preview picture"
+
+AMAZON COVER DOWNLOAD
+* add "overwrite present covers" option to amazon-cover-download
+  > auto rename downloaded covers ("Artist - Title [CO].jpg"?)
+
+INTERNAL STUFF
+* do not use only the count for "QUSongFile::verifyTags(QStringList&)"
+* use next file in folder if txt is no valid song file
+  > no license files
 * detect not only song file changes but song folder changes
   > new files...
+
+
+
+
+
+
+
+
+
 
 changes from 1.6.0 to 1.7.0
 ---------------------------
@@ -261,6 +349,7 @@ KNOWN BUGS
   reset that state on application startup (-> Qt 4.3.5 bug?)
 * cannot sort after "videogap" column correctly
 * broken gif-support for amazon cover files
+* target for "id3-050-useAlbum.xml" is empty - should be "album"
 
 changes from 1.5.1 to 1.6.0
 ---------------------------
