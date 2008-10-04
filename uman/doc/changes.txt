@@ -164,6 +164,7 @@ INTERNAL STUFF
   > no license files
 * detect not only song file changes but song folder changes
   > new files...
+* add support for "*.mkv" video files
 
 
 
