@@ -264,6 +264,7 @@ void QUMainWindow::initMenu() {
 
 	connect(actionLangEnglish, SIGNAL(triggered()), this, SLOT(enableEnglish()));
 	connect(actionLangGerman, SIGNAL(triggered()), this, SLOT(enableGerman()));
+	connect(actionLangPolish, SIGNAL(triggered()), this, SLOT(enablePolish()));
 
 	actionChangeSongDirectory->setShortcut(Qt::Key_F12);
 
@@ -1086,6 +1087,7 @@ void QUMainWindow::reportCreate() {
 void QUMainWindow::enableEnglish() {
 	actionLangGerman->setChecked(false);
 	actionLangEnglish->setChecked(true);
+	actionLangPolish->setChecked(false);
 
 	QSettings settings;
 	settings.setValue("language", QVariant("en_EN"));
@@ -1107,6 +1109,7 @@ void QUMainWindow::enableEnglish() {
 void QUMainWindow::enableGerman() {
 	actionLangGerman->setChecked(true);
 	actionLangEnglish->setChecked(false);
+	actionLangPolish->setChecked(false);
 
 	QSettings settings;
 	settings.setValue("language", QVariant("de_DE"));
@@ -1116,6 +1119,28 @@ void QUMainWindow::enableGerman() {
 	QUMessageBox::Results result = QUMessageBox::ask(this,
 			tr("Change Language"),
 			tr("Application language changed to <b>German</b>. You need to restart UltraStar Manager to take effect."),
+			":/control/quit.png", tr("Quit UltraStar Manager."),
+			":/marks/accept.png", tr("Continue."));
+	if(result == QUMessageBox::first)
+		this->close();
+}
+
+/*!
+ * Changes the application language to polish.
+ */
+void QUMainWindow::enablePolish() {
+	actionLangGerman->setChecked(false);
+	actionLangEnglish->setChecked(false);
+	actionLangPolish->setChecked(true);
+
+	QSettings settings;
+	settings.setValue("language", QVariant("pl_PL"));
+
+	// ---------------
+
+	QUMessageBox::Results result = QUMessageBox::ask(this,
+			tr("Change Language"),
+			tr("Application language changed to <b>Polish</b>. You need to restart UltraStar Manager to take effect."),
 			":/control/quit.png", tr("Quit UltraStar Manager."),
 			":/marks/accept.png", tr("Continue."));
 	if(result == QUMessageBox::first)

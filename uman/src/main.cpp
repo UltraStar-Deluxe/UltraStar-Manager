@@ -69,6 +69,11 @@ void initLanguage(QApplication &app, QTranslator &t, QSplashScreen &s) {
 			app.installTranslator(&t);
 			monty->initMessages(":/txt/hints_de");
 		}
+	} else if (QString::compare(lang, "pl_PL", Qt::CaseInsensitive) == 0) {
+		if(t.load(":/lang/uman_pl.qm")) {
+			app.installTranslator(&t);
+			monty->initMessages(":/txt/hints_pl");
+		}
 	}
 
 	s.showMessage(QString(QObject::tr("Version %1.%2.%3 is loading...")).arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION), Qt::AlignBottom | Qt::AlignRight, Qt::white);

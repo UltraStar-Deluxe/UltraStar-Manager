@@ -1095,6 +1095,7 @@ Tasks</string>
      </property>
      <addaction name="actionLangEnglish" />
      <addaction name="actionLangGerman" />
+     <addaction name="actionLangPolish" />
     </widget>
     <addaction name="actionAutoSave" />
     <addaction name="actionAlwaysOnTop" />
@@ -1512,6 +1513,15 @@ Tasks</string>
   <action name="actionGetCovers" >
    <property name="text" >
     <string>Get Covers From Amazon...</string>
+   </property>
+  </action>
+  <action name="actionLangPolish" >
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/lang/pl.png</normaloff>:/lang/pl.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Polish (język polski)</string>
    </property>
   </action>
  </widget>

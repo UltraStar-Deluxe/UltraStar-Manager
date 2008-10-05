@@ -86,6 +86,8 @@
   <qresource prefix="/lang" >
     <file>de.png</file>
     <file>uman_de.qm</file>
+    <file>uman_pl.qm</file>
+    <file>pl.png</file>
     <file>us.png</file>
   </qresource>
   <qresource prefix="/marks" >
@@ -119,6 +121,7 @@
   <qresource prefix="/txt" >
     <file>genres</file>
     <file>hints</file>
+    <file>hints_pl</file>
     <file>hints_de</file>
     <file>credits</file>
     <file>languages</file>
