@@ -30,6 +30,8 @@ INTERNAL STUFF
 
 TASKS
 * target for "id3-050-useAlbum.xml" was empty - is now "album"
+* no APP FREEZE anymore if you run a renaming task and the song title 
+  contains a '%'
 
 SONG TREE
 
@@ -61,9 +63,6 @@ NOT SORTED
   reset that state on application startup (-> Qt 4.3.5 bug?)
 * cannot sort after "videogap" column correctly
 * broken gif-support for amazon cover files
-
-TASKS
-* APP FREEZE if you run a renaming task and the song title contains a '%'
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 

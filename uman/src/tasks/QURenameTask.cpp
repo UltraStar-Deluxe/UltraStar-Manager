@@ -75,7 +75,7 @@ void QURenameTask::startOn(QUSongFile *song) {
 	}
 
 	// remove any unused placeholders
-	while(schema.contains("%"))
+	while(schema.contains(QRegExp("%\\d")))
 		schema = schema.arg("");
 
 	// a '/' stands for the root with path renaming -> remove it!
