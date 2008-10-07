@@ -497,11 +497,11 @@ void QUMainWindow::readSongDir(QList<QDir> &dirList) {
 	if(dirList.isEmpty())
 		return;
 
-	if(dirList.last().entryList(QDir::NoDotAndDotDot | QDir::Dirs, QDir::Name).isEmpty()) {
+	if(dirList.last().entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::NoSymLinks, QDir::Name).isEmpty()) {
 		return;
 	} else {
 		QDir thisDir(dirList.last());
-		QStringList subDirs = dirList.last().entryList(QDir::NoDotAndDotDot | QDir::Dirs, QDir::Name);
+		QStringList subDirs = dirList.last().entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::NoSymLinks, QDir::Name);
 
 		foreach(QString dir, subDirs) {
 			QDir newDir(thisDir);

@@ -46,6 +46,8 @@ PICTURE PREVIEW
 AMAZON COVER DOWNLOAD
 
 INTERNAL STUFF
+* song folder scan ignores symlinks now
+  > no indefinite loop possible anymore
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
@@ -62,10 +64,6 @@ NOT SORTED
 
 TASKS
 * APP FREEZE if you run a renaming task and the song title contains a '%'
-
-INTERNAL STUFF
-* song folder scan does not ignore links to other folder
-  > indefinite loop possible
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
