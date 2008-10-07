@@ -49,6 +49,7 @@ INTERNAL STUFF
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
+NOT SORTED
 * you cannot sort after a custom tag column in the report
 * Uninstaller does not delete
   > "non-standard" tasks
@@ -58,6 +59,13 @@ INTERNAL STUFF
   reset that state on application startup (-> Qt 4.3.5 bug?)
 * cannot sort after "videogap" column correctly
 * broken gif-support for amazon cover files
+
+TASKS
+* APP FREEZE if you run a renaming task and the song title contains a '%'
+
+INTERNAL STUFF
+* song folder scan does not ignore links to other folder
+  > indefinite loop possible
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
@@ -352,6 +360,9 @@ KNOWN BUGS
 * cannot sort after "videogap" column correctly
 * broken gif-support for amazon cover files
 * target for "id3-050-useAlbum.xml" is empty - should be "album"
+* APP FREEZE if you run a renaming task and the song title contains a '%'
+* song folder scan does not ignore links to other folder
+  > indefinite loop possible
 
 changes from 1.5.1 to 1.6.0
 ---------------------------
