@@ -117,6 +117,7 @@ SONG TREE
 * show more from current artist (context menu, song tree)
 * virtual song folders for many song text files in one folder
 * drop zip files or whole folders in the song tree
+* offer an option to "not resize to contents" all the time
 
 REPORTS
 * add a "to top" link to each song text
