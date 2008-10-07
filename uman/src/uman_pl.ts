@@ -565,7 +565,7 @@ Amazon...</translation>
     <message>
         <location filename="QUCustomTagsDialog.ui" line="121"/>
         <source>Double-click to edit. Drag &amp; drop the tags to change the order.</source>
-        <translation>Kliknij dw razy lewym przyciskiem myszki by rozpocząć edycję. Przeciągaj i opuszczaj etykiety by zamienić ich kolejność.</translation>
+        <translation>Kliknij dwa razy lewym przyciskiem myszki by rozpocząć edycję. Przeciągaj i opuszczaj etykiety by zamienić ich kolejność.</translation>
     </message>
     <message>
         <location filename="QUCustomTagsDialog.ui" line="193"/>
@@ -724,27 +724,27 @@ Amazon...</translation>
     <message>
         <location filename="QUFilterArea.ui" line="34"/>
         <source>A minus means, that the filter will be negated.</source>
-        <translation>Minus oznacza, że filtr nie zostanie zastosowany.</translation>
+        <translation>Minus oznacza, że wyniki filtrowania zostanią odwrócone.</translation>
     </message>
     <message>
         <location filename="QUFilterArea.ui" line="54"/>
         <source>Enter a regular expression and press the filter button to the right.</source>
-        <translation>Wpisz wybraną frazę i wciśnij przycisk filtrowania po prawej stronie.</translation>
+        <translation>Wpisz wybraną frazę i wciśnij przycisk filtruj po prawej stronie.</translation>
     </message>
     <message>
         <location filename="QUFilterArea.ui" line="67"/>
         <source>Apply filter to song tree</source>
-        <translation>Zastosuj filtr do drzewa utworów</translation>
+        <translation>Zastosuj filtrowanie na drzewku utworów</translation>
     </message>
     <message>
         <location filename="QUFilterArea.ui" line="70"/>
         <source>Filter</source>
-        <translation>Filtr</translation>
+        <translation>Filtruj</translation>
     </message>
     <message>
         <location filename="QUFilterArea.ui" line="90"/>
         <source>Look for duplicate songs and show them in the song tree.</source>
-        <translation>Poszukaj zduplikowanych utworów i pokaż je na drzewie utworów.</translation>
+        <translation>Poszukaj zduplikowanych utworów i pokaż je na drzewku utworów.</translation>
     </message>
     <message>
         <location filename="QUFilterArea.ui" line="93"/>
@@ -764,7 +764,7 @@ Amazon...</translation>
     <message>
         <location filename="QUFilterArea.ui" line="134"/>
         <source>Hide filter area</source>
-        <translation>Ukryj pasek filtrowania.</translation>
+        <translation>Ukryj pasek filtrowania</translation>
     </message>
 </context>
 <context>
@@ -920,7 +920,7 @@ Amazon...</translation>
     <message>
         <location filename="QUMainWindow.cpp" line="423"/>
         <source>Rebuild Song Tree</source>
-        <translation>Odśwież Drzewo Utworów</translation>
+        <translation>Odśwież Drzewko Utworów</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="839"/>
@@ -1025,17 +1025,17 @@ Amazon...</translation>
     <message>
         <location filename="QUMainWindow.cpp" line="901"/>
         <source>Relative song paths are displayed in the song tree now.</source>
-        <translation>Względne ścieżki utworów od teraz będą pokazywane na drzewie.</translation>
+        <translation>Aktualnie na drzewku utworów są wyświetlone pełne ścieżki do utworów.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="903"/>
         <source>Only song directories are displayed in the song tree now.</source>
-        <translation>Aktualnie na drzewie utworów wyświetlane są tylko katalogi utworów.</translation>
+        <translation>Aktualnie na drzewku utworów wyświetlane są tylko katalogi utworów.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="928"/>
         <source>Repainting song tree icons...</source>
-        <translation>Przerysowuję ikony drzewa utworów...</translation>
+        <translation>Przerysowuję ikony drzewka utworów...</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="999"/>
@@ -1120,12 +1120,12 @@ Amazon...</translation>
     <message>
         <location filename="QUMainWindow.ui" line="567"/>
         <source>If checked, the auto-completion considers the case of the input.</source>
-        <translation>Jeśli zaznaczone, to automatyczne uzupełnianie zostanie wykonane w oparciu o wprowadzone informacje.</translation>
+        <translation>Jeśli zaznaczone, to automatyczne uzupełnianie dostosuje się dokładnie do wprowadzonych danych.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="570"/>
         <source>Case-sensitive </source>
-        <translation>Uwzględniaj wielkość liter</translation>
+        <translation>Uwzględnianie wielkość liter</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="581"/>
@@ -1197,7 +1197,7 @@ Zadania</translation>
     <message>
         <location filename="QUMainWindow.ui" line="978"/>
         <source>Filter</source>
-        <translation>Filtr</translation>
+        <translation>Filtruj</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="995"/>
@@ -1267,12 +1267,12 @@ Zadania</translation>
     <message>
         <location filename="QUMainWindow.ui" line="1263"/>
         <source>Expand All</source>
-        <translation>Rozwiń wszystko</translation>
+        <translation>Rozwiń Wszystko</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1266"/>
         <source>Expands every node in the song tree.</source>
-        <translation>Rozwiń każdy węzeł na drzewie utworów.</translation>
+        <translation>Rozwiń każdy węzeł na drzewku utworów.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1275"/>
@@ -1282,12 +1282,12 @@ Zadania</translation>
     <message>
         <location filename="QUMainWindow.ui" line="1278"/>
         <source>Only shows all directories in the song tree.</source>
-        <translation>Pokazuj tylko całe katalogi na drzewie utworów.</translation>
+        <translation>Pokazuj tylko całe katalogi na drzewiku utworów.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1290"/>
         <source>&amp;Tag Save Order...</source>
-        <translation>&amp;Kolejność Zapisu Etykiet...</translation>
+        <translation>Kolejność Zapisu &amp;Etykiet...</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1293"/>
@@ -1312,7 +1312,7 @@ Zadania</translation>
     <message>
         <location filename="QUMainWindow.ui" line="1325"/>
         <source>Rebuild &amp;Tree</source>
-        <translation>Przebuduj &amp;Drzewo</translation>
+        <translation>Przebuduj &amp;Drzewko</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1340"/>
@@ -1402,7 +1402,7 @@ Zadania</translation>
     <message>
         <location filename="QUMainWindow.ui" line="1482"/>
         <source>Alternative Song Tree</source>
-        <translation>Alternatywne Drzewo Utworów</translation>
+        <translation>Alternatywne Drzewko Utworów</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1491"/>
@@ -2030,7 +2030,7 @@ Zadania</translation>
     <message>
         <location filename="tasks/taskDialog/QURenameTaskDialog.cpp" line="24"/>
         <source>Select a proper &lt;b&gt;target&lt;/b&gt; and create a custom &lt;b&gt;schema&lt;/b&gt; for the renaming operation. You can use &lt;b&gt;custom tags&lt;/b&gt; as sources.</source>
-        <translation>Wybierz właściwy &lt;b&gt;target&lt;/b&gt; i stwórz własny &lt;b&gt;schema&lt;/b&gt; dla modyfikowania nazw. Możesz użyć &lt;b&gt;custom tags&lt;/b&gt; jako źródła.</translation>
+        <translation>Wybierz właściwy &lt;b&gt;obiekt&lt;/b&gt; i stwórz własny &lt;b&gt;schemat&lt;/b&gt; dla modyfikowania nazw. Możesz użyć &lt;b&gt;własnych etykiet&lt;/b&gt; jako źródła.</translation>
     </message>
 </context>
 <context>
@@ -2038,7 +2038,7 @@ Zadania</translation>
     <message>
         <location filename="QUReportDialog.cpp" line="25"/>
         <source>Select the &lt;b&gt;columns&lt;/b&gt; you want to see in the report. Drag &amp; drop them to change their order. Songs of the &lt;b&gt;source&lt;/b&gt; will be sorted alphabetically column by column.&lt;br&gt;&lt;br&gt;You can &lt;b&gt;append and link&lt;/b&gt; lyrics in HTML reports.</source>
-        <translation>Wybierz &lt;b&gt;columns&lt;/b&gt; które mają być umieszczone na raporcie. Możesz je przeciągać i opuszczać, by zamienić ich kolejność. Utwory &lt;b&gt;source&lt;/b&gt; zostaną posortowane alfabetycznie kolumna po kolumnie.&lt;br&gt;&lt;br&gt;Możesz &lt;b&gt;append and link&lt;/b&gt; teksty piosenek w raporcie HTML.</translation>
+        <translation>Wybierz &lt;b&gt;kolumny&lt;/b&gt; które mają być umieszczone na raporcie. Możesz je przeciągać i opuszczać, by zamienić ich kolejność. Utwory &lt;b&gt;źródłowe&lt;/b&gt; zostaną posortowane alfabetycznie kolumna po kolumnie.&lt;br&gt;&lt;br&gt;Możesz &lt;b&gt;dołączyć&lt;/b&gt; teksty piosenek w raporcie HTML.</translation>
     </message>
     <message>
         <location filename="QUReportDialog.cpp" line="26"/>
@@ -2678,7 +2678,7 @@ Zadania</translation>
     <message>
         <location filename="songtree/QUSongTree.cpp" line="297"/>
         <source>Applying filter...</source>
-        <translation>Stosowanie filtra...</translation>
+        <translation>Stosowanie filtrowania...</translation>
     </message>
     <message>
         <location filename="songtree/QUSongTree.cpp" line="389"/>
@@ -2988,7 +2988,7 @@ Zadania</translation>
     <message>
         <location filename="songtree/QUSongTree.cpp" line="1179"/>
         <source>Removing current filter...</source>
-        <translation>Usuwanie filtra.</translation>
+        <translation>Usuwanie filtrowania...</translation>
     </message>
 </context>
 <context>
@@ -3039,17 +3039,17 @@ Zadania</translation>
     <message>
         <location filename="tasks/taskDialog/QUTaskDataTable.cpp" line="18"/>
         <source>Placeholder will be replaced with&lt;br&gt;source data if condition is fullfilled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Obiekt zostanie uwzględniony w zadaniu, jeśli spełnione będą poniższe warunki.</translation>
     </message>
     <message>
         <location filename="tasks/taskDialog/QUTaskDataTable.cpp" line="19"/>
         <source>Static or dynamic source data for a placeholder.</source>
-        <translation type="unfinished"></translation>
+        <translation>Stałe lub zmienne dane źródłowe dla obiektów zadania.</translation>
     </message>
     <message>
         <location filename="tasks/taskDialog/QUTaskDataTable.cpp" line="20"/>
         <source>Simple text for static source data or a default value&lt;br&gt;if the dynamic source data is &lt;b&gt;not available&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekst prosty dla Stałego źródła lub jego domyślna wartość&lt;br&gt;jeśli zmienne dane dla źródła są &lt;b&gt;niedostępne&lt;/b&gt;.</translation>
     </message>
 </context>
 <context>
@@ -3210,7 +3210,7 @@ Zadania</translation>
     <message>
         <location filename="tasks/QUTaskList.cpp" line="203"/>
         <source>Task list was refreshed successfully.</source>
-        <translation>Lista zadań została odświeżona</translation>
+        <translation>Lista zadań została odświeżona.</translation>
     </message>
 </context>
 <context>
