@@ -64,6 +64,9 @@ NOT SORTED
 * cannot sort after "videogap" column correctly
 * broken gif-support for amazon cover files
 
+PLAYLIST SUPPORT
+* active list will not be updated if you remove a playlist
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
 NEW STUFF
@@ -94,6 +97,8 @@ NEW STUFF
   > e.g. ": 20 7ß 38 blubb" (false alpha-numeric..., USdx error)
   
 TASKS
+! better error handling for "path change tasks"
+  > make it ACID! (at least atomic...)
 * correct the ratio for pictures
   > by task
 	> 1:1 for covers
@@ -123,6 +128,8 @@ SONG TREE
 * virtual song folders for many song text files in one folder
 * drop zip files or whole folders in the song tree
 * offer an option to "not resize to contents" all the time
+* add "Open in Explorer" to context menu
+  > only current, NOT all selected
 
 REPORTS
 * add a "to top" link to each song text
@@ -159,6 +166,9 @@ FILTER SUPPORT
 PICTURE PREVIEW
 * rename "preview picture" to "picture preview"
 * properties of picture in "preview picture"
+
+FILE PREVIEW
+* make song text files editable
 
 AMAZON COVER DOWNLOAD
 * add "overwrite present covers" option to amazon-cover-download
@@ -360,6 +370,7 @@ KNOWN BUGS
 * APP FREEZE if you run a renaming task and the song title contains a '%'
 * song folder scan does not ignore links to other folder
   > indefinite loop possible
+* active list will not be updated if you remove a playlist
 
 changes from 1.5.1 to 1.6.0
 ---------------------------
