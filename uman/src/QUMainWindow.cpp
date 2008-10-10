@@ -369,6 +369,25 @@ void QUMainWindow::initMonty() {
 
 	if(!actionAllowMonty->isChecked())
 		montyArea->hide();
+
+	montyArea->askFrame->hide();
+	montyArea->answerFrame->hide();
+
+	connect(montyArea->askMontyBtn, SIGNAL(clicked()), this, SLOT(montyAsk()));
+	connect(montyArea->acceptQuestionBtn, SIGNAL(clicked()), this, SLOT(montyAnswer()));
+
+	connect(montyArea->rejectQuestionBtn, SIGNAL(clicked()), montyArea->normalFrame, SLOT(show()));
+	connect(montyArea->rejectQuestionBtn, SIGNAL(clicked()), montyArea->askFrame, SLOT(hide()));
+	connect(montyArea->rejectQuestionBtn, SIGNAL(clicked()), this, SLOT(montyTalkNow()));
+
+	connect(montyArea->doneBtn, SIGNAL(clicked()), montyArea->normalFrame, SLOT(show()));
+	connect(montyArea->doneBtn, SIGNAL(clicked()), montyArea->answerFrame, SLOT(hide()));
+	connect(montyArea->doneBtn, SIGNAL(clicked()), this, SLOT(montyTalkNow()));
+
+	connect(montyArea->nextPhraseBtn, SIGNAL(clicked()), this, SLOT(montyNext()));
+	connect(montyArea->prevPhraseBtn, SIGNAL(clicked()), this, SLOT(montyPrev()));
+
+	connect(montyArea->lineEdit, SIGNAL(returnPressed()), this, SLOT(montyAnswer()));
 }
 
 void QUMainWindow::appendSong(QUSongFile *song) {
@@ -873,6 +892,31 @@ void QUMainWindow::montyTalk(bool force) {
 
 void QUMainWindow::montyTalkNow() {
 	montyTalk(true);
+}
+
+void QUMainWindow::montyAsk() {
+	montyArea->normalFrame->hide();
+	montyArea->askFrame->show();
+
+	montyArea->lineEdit->selectAll();
+	montyArea->lineEdit->setFocus();
+
+	montyArea->helpLbl->setText(tr("You can ask me something if you put some keywords in the <i>line edit</i> below and <i>accept</i>.<br><br>I'll try to understand and answer you. Multiple answers may be possible."));
+}
+
+void QUMainWindow::montyAnswer() {
+	montyArea->askFrame->hide();
+	montyArea->answerFrame->show();
+
+	monty->answer(montyArea->montyLbl, montyArea->helpLbl, montyArea->lineEdit->text());
+}
+
+void QUMainWindow::montyPrev() {
+	monty->answer(montyArea->montyLbl, montyArea->helpLbl, "", true);
+}
+
+void QUMainWindow::montyNext() {
+	monty->answer(montyArea->montyLbl, montyArea->helpLbl);
 }
 
 /*!

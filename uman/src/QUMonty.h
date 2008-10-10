@@ -26,7 +26,10 @@ public:
 
 	QPixmap pic(QUMonty::Status status = QUMonty::normal);
 	QString welcomeMsg(int songCount = -1);
+
 	void talk(QLabel *montyLbl, QLabel *msgLbl);
+	void answer(QLabel *montyLbl, QLabel *msgLbl, const QString &question = QString(), bool prev = false);
+
 	const QStringList& genres() const { return _genres; }
 	const QStringList& languages() const { return _languages; }
 

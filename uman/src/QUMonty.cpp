@@ -4,6 +4,7 @@
 #include <QSettings>
 #include <QPixmap>
 #include <QFileInfo>
+#include <QRegExp>
 
 QUMonty::QUMonty() {
 	initMessages(":/txt/hints");
@@ -81,6 +82,42 @@ QString QUMonty::welcomeMsg(int numberOfSongs) {
 void QUMonty::talk(QLabel *montyLbl, QLabel *msgLbl) {
 	montyLbl->setPixmap(pic((QUMonty::Status)(qrand() % 4)));
 	msgLbl->setText(messages[qrand() % messages.size()].arg(songCount));
+}
+
+/*!
+ * Searches for hints to the given question.
+ */
+void QUMonty::answer(QLabel *montyLbl, QLabel *msgLbl, const QString &question, bool prev) {
+	static QStringList answers;
+
+	if(!question.isEmpty()) {
+		answers.clear(); // process new question
+
+		QRegExp rx(question);
+		foreach(QString msg, messages) {
+			if(msg.contains(rx))
+				answers.append(msg);
+		}
+	}
+
+	if(answers.isEmpty()) {
+		montyLbl->setPixmap(pic((QUMonty::Status)(qrand() % 4)));
+		msgLbl->setText(QObject::tr("Sorry. I don't understand you."));
+		return;
+	}
+
+	// show next answer
+	QString out = prev ? answers.last() : answers.first();
+	if(!prev) {
+		answers.removeFirst();
+		answers.append(out);
+	} else {
+		answers.removeLast();
+		answers.prepend(out);
+	}
+
+	montyLbl->setPixmap(pic((QUMonty::Status)(qrand() % 4)));
+	msgLbl->setText(answers.first().arg(songCount));
 }
 
 bool QUMonty::autoSaveEnabled() const {

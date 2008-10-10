@@ -24,6 +24,10 @@ PICTURE PREVIEW
 
 AMAZON COVER DOWNLOAD
 
+MONTY
+* you can ask Monty something now
+  > better help feature, I think
+
 INTERNAL STUFF
 * support for "*.mkv" video files added
 
@@ -174,9 +178,6 @@ FILE PREVIEW
 AMAZON COVER DOWNLOAD
 * add "overwrite present covers" option to amazon-cover-download
   > auto rename downloaded covers ("Artist - Title [CO].jpg"?)
-
-MONTY
-* ask Monty something
 
 INTERNAL STUFF
 * do not use only the count for "QUSongFile::verifyTags(QStringList&)"

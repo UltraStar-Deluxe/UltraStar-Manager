@@ -67,6 +67,10 @@ private slots:
 
 	void montyTalk(bool force = false);
 	void montyTalkNow();
+	void montyAsk();
+	void montyAnswer();
+	void montyPrev();
+	void montyNext();
 
 	void showFileContent(QTreeWidgetItem *item, int column);
 	void showLyrics(QUSongFile *song);
