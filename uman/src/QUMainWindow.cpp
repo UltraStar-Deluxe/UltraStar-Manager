@@ -275,7 +275,7 @@ void QUMainWindow::initMenu() {
 	actionNewReport->setShortcut(Qt::Key_F2);
 
 	// help menu
-	connect(actionShowMonty, SIGNAL(triggered()), helpFrame, SLOT(show()));
+	connect(actionShowMonty, SIGNAL(triggered()), montyArea, SLOT(show()));
 	connect(actionQt, SIGNAL(triggered()), this, SLOT(aboutQt()));
 	connect(actionUman, SIGNAL(triggered()), this, SLOT(aboutUman()));
 	connect(actionTagLib, SIGNAL(triggered()), this, SLOT(aboutTagLib()));
@@ -361,14 +361,14 @@ void QUMainWindow::initEventLog() {
 }
 
 void QUMainWindow::initMonty() {
-	montyLbl->setPixmap(monty->pic(QUMonty::seated));
-	helpLbl->setText(monty->welcomeMsg(_songs.size()));
+	montyArea->montyLbl->setPixmap(monty->pic(QUMonty::seated));
+	montyArea->helpLbl->setText(monty->welcomeMsg(_songs.size()));
 
-	connect(hideMontyBtn, SIGNAL(clicked()), helpFrame, SLOT(hide()));
-	connect(talkMontyBtn, SIGNAL(clicked()), this, SLOT(montyTalkNow()));
+	connect(montyArea->hideMontyBtn, SIGNAL(clicked()), montyArea, SLOT(hide()));
+	connect(montyArea->talkMontyBtn, SIGNAL(clicked()), this, SLOT(montyTalkNow()));
 
 	if(!actionAllowMonty->isChecked())
-		helpFrame->hide();
+		montyArea->hide();
 }
 
 void QUMainWindow::appendSong(QUSongFile *song) {
@@ -867,8 +867,8 @@ void QUMainWindow::montyTalk(bool force) {
 	if(!force and !actionAllowMonty->isChecked())
 		return;
 
-	helpFrame->show();
-	monty->talk(montyLbl, helpLbl);
+	montyArea->show();
+	monty->talk(montyArea->montyLbl, montyArea->helpLbl);
 }
 
 void QUMainWindow::montyTalkNow() {

@@ -36,7 +36,7 @@ QStringList QU::allowedPictureFiles() {
 }
 
 QStringList QU::allowedVideoFiles() {
-	return registryKey("allowedVideoFiles", "*.mpg *.mpeg *.avi *.flv *.ogm *.mp4 *.divx *.wmv *.mov");
+	return registryKey("allowedVideoFiles", "*.mpg *.mpeg *.avi *.flv *.ogm *.mp4 *.divx *.wmv *.mov *.mkv");
 }
 
 QStringList QU::allowedPlaylistFiles() {

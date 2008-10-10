@@ -5,7 +5,8 @@ QT += core \
     xml \
     network
 CONFIG += debug
-HEADERS += QUAboutDialog.h \
+HEADERS += monty/QUMontyArea.h \
+    QUAboutDialog.h \
     tasks/tasks.h \
     filter/QUFilterArea.h \
     metaphone/QUMetaphoneString.h \
@@ -65,7 +66,8 @@ HEADERS += QUAboutDialog.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += QUAboutDialog.cpp \
+SOURCES += monty/QUMontyArea.cpp \
+    QUAboutDialog.cpp \
     filter/QUFilterArea.cpp \
     metaphone/QUMetaphoneString.cpp \
     amazon/QUCoverItemDelegate.cpp \
@@ -124,7 +126,8 @@ SOURCES += QUAboutDialog.cpp \
     QUSongFile.cpp \
     QUMainWindow.cpp \
     main.cpp
-FORMS += QUAboutDialog.ui \
+FORMS += QUMontyArea.ui \
+    QUAboutDialog.ui \
     QUFilterArea.ui \
     QUCoverGroup.ui \
     QUAmazonArea.ui \
@@ -150,7 +153,8 @@ INCLUDEPATH += tasks \
     playlist \
     amazon \
     metaphone \
-    filter
+    filter \
+    monty
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib
