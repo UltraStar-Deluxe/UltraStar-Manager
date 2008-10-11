@@ -3,6 +3,7 @@
 #include <QLabel>
 #include <QPixmap>
 #include <QVBoxLayout>
+#include <QFileInfo>
 
 //#include <QIcon>
 //#include <QGraphicsScene>
@@ -18,7 +19,6 @@ QUPictureDialog::QUPictureDialog(const QString &filePath, QWidget *parent): QDia
 	this->setWindowFlags(this->windowFlags() | Qt::WindowMaximizeButtonHint);
 
 	this->setWindowIcon(QIcon(":/types/picture.png"));
-	infoLbl->setText(filePath);
 
 	connect(fitSizeBtn, SIGNAL(clicked()), this, SLOT(fitPicture()));
 	connect(fullSizeBtn, SIGNAL(clicked()), this, SLOT(fullPicture()));
@@ -33,6 +33,17 @@ QUPictureDialog::QUPictureDialog(const QString &filePath, QWidget *parent): QDia
 		if((ratio <= 2.0) and (ratio >= 0.5))
 			this->resize(INITIAL_WIDTH, (int)(ratio * INITIAL_WIDTH) + EXTRA_HEIGHT);
 	}
+
+	// show file information
+	QString fileInfoTxt = tr("%4 [<b>Dimensions:</b>\t%1 x %2, \n<b>Size:</b>\t%3 KiB]");
+	QFileInfo fi(filePath);
+
+	fileInfoTxt = fileInfoTxt.arg(gfx->pixmap()->width());
+	fileInfoTxt = fileInfoTxt.arg(gfx->pixmap()->height());
+	fileInfoTxt = fileInfoTxt.arg(fi.size() / 1024., 0, 'f', 2);
+	fileInfoTxt = fileInfoTxt.arg(filePath);
+
+	infoLbl->setText(fileInfoTxt);
 }
 
 /*!

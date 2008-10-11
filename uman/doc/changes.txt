@@ -25,6 +25,7 @@ PLAYLIST SUPPORT
 FILTER SUPPORT
 
 PICTURE PREVIEW
+* dimensions and file size added to info label
 
 AMAZON COVER DOWNLOAD
 
@@ -176,10 +177,6 @@ FILTER SUPPORT
   > SC-Songs
   > CC-Songs
   > ...
-
-PICTURE PREVIEW
-* rename "preview picture" to "picture preview"
-* properties of picture in "preview picture"
 
 FILE PREVIEW
 * make song text files editable
