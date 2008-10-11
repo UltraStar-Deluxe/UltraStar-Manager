@@ -203,6 +203,19 @@ QString QUCoverGroup::currentFilePath() const {
 }
 
 /*!
+ * Deletes the current cover.
+ */
+void QUCoverGroup::deleteCurrentCover() {
+	if(!_item)
+		return;
+
+	if(!QFile::remove(_item->song()->coverFileInfo().filePath()))
+		emit finished(QString(tr("Could not delete current cover: \"%1\"")).arg(_item->song()->coverFileInfo().filePath()), QU::warning);
+	else
+		emit finished(QString(tr("Current cover was deleted successfully: \"%1\"")).arg(_item->song()->coverFileInfo().filePath()), QU::information);
+}
+
+/*!
  * Uses the selected cover for the song.
  */
 void QUCoverGroup::copyCoverToSongPath() {

@@ -3,6 +3,7 @@
 
 #include <QCoreApplication>
 #include <QDir>
+#include <QFile>
 #include <QFileInfo>
 #include <QFileInfoList>
 
@@ -105,8 +106,12 @@ void QUAmazonDialog::accept() {
 		dlg.update(group->group->title());
 		if(dlg.cancelled()) break;
 
-		if(group->group->isChecked())
+		if(group->group->isChecked()) {
+			if(deleteCurrentCoverChk->isChecked())
+				group->deleteCurrentCover();
+
 			group->copyCoverToSongPath();
+		}
 	}
 
 	QDialog::accept();

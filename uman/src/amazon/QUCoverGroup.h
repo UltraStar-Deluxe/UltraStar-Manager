@@ -23,6 +23,7 @@ public:
 	void getCovers(const QString &endpoint, const QString &artistProperty, const QString &titleProperty);
 	void showCovers();
 
+	void deleteCurrentCover();
 	void copyCoverToSongPath();
 
 private slots:

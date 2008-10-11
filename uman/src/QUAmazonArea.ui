@@ -349,8 +349,8 @@ Amazon...</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>399</width>
-            <height>133</height>
+            <width>397</width>
+            <height>129</height>
            </rect>
           </property>
           <property name="sizePolicy" >
@@ -432,6 +432,23 @@ Amazon...</string>
      <property name="margin" >
       <number>5</number>
      </property>
+     <item>
+      <widget class="QCheckBox" name="deleteCurrentCoverChk" >
+       <property name="toolTip" >
+        <string>Deletes the current cover before copy &amp; set the new one.</string>
+       </property>
+       <property name="text" >
+        <string>Delete Current Song Covers</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="images/uman.qrc" >
+         <normaloff>:/control/picture_minus.png</normaloff>:/control/picture_minus.png</iconset>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
      <item>
       <spacer name="horizontalSpacer" >
        <property name="orientation" >

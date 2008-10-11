@@ -28,6 +28,7 @@ PICTURE PREVIEW
 * dimensions and file size added to info label
 
 AMAZON COVER DOWNLOAD
+* added checkbox to delete the current cover before copy & set the new one
 
 MONTY
 * you can ask Monty something now
