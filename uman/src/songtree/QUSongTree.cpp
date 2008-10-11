@@ -18,6 +18,7 @@
 #include <QHeaderView>
 #include <QCursor>
 #include <QTime>
+#include <QDesktopServices>
 
 #include "QUProgressDialog.h"
 
@@ -519,6 +520,8 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 		filterMenu->addAction(tr("All"), this, SLOT(hideAll()));
 
 		menu.addSeparator();
+		menu.addAction(tr("Open With Explorer..."), this, SLOT(openCurrentFolder()));
+		menu.addAction(tr("Find More From Artist"), this, SLOT(showMoreCurrentArtist()));
 		menu.addAction(tr("Show Lyrics..."), this, SLOT(requestLyrics()), Qt::CTRL + Qt::Key_L);
 	}
 
@@ -680,6 +683,18 @@ void QUSongTree::openCurrentFile() {
 }
 
 /*!
+ * Open the current folder in the file explorer of the operating system.
+ */
+void QUSongTree::openCurrentFolder() {
+	QUSongItem *currentSongItem = dynamic_cast<QUSongItem*>(this->currentItem());
+
+	if(!currentSongItem)
+		return;
+
+	QDesktopServices::openUrl(QUrl::fromLocalFile(currentSongItem->song()->songFileInfo().path()));
+}
+
+/*!
  * Add all items to the invisible list.
  */
 void QUSongTree::hideAll() {
@@ -753,6 +768,18 @@ void QUSongTree::hideAllButSelected() {
 
 	emit itemSelectionChanged(); // update details
 	emit finished(QString(tr("%1 songs are visible now.")).arg(selectedItems.count()), QU::information);
+}
+
+/*!
+ * Shows all songs from the current artist.
+ */
+void QUSongTree::showMoreCurrentArtist() {
+	QUSongItem *currentSongItem = dynamic_cast<QUSongItem*>(this->currentItem());
+
+	if(!currentSongItem)
+		return;
+
+	this->filterItems(currentSongItem->song()->artist(), (QU::FilterModes) QU::informationTags);
 }
 
 /*!

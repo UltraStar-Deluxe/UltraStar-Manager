@@ -6,6 +6,10 @@
 
 * new language: Polish
 
+SONG TREE
+* show more from current artist
+* open current folder in file explorer
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 TASKS
@@ -100,6 +104,8 @@ NEW STUFF
 * CO/BG slideshow -> detect awful covers
 * look for illegal/invalid lyrics
   > e.g. ": 20 7ß 38 blubb" (false alpha-numeric..., USdx error)
+* top-ten
+  > artists
   
 TASKS
 ! better error handling for "path change tasks"
@@ -129,12 +135,13 @@ SONG TREE
 * warn, if BGs are bigger than game resolution
   > will be white otherwise
 	> minification not supported by USdx
-* show more from current artist (context menu, song tree)
 * virtual song folders for many song text files in one folder
 * drop zip files or whole folders in the song tree
 * offer an option to "not resize to contents" all the time
-* add "Open in Explorer" to context menu
-  > only current, NOT all selected
+* let the user choose rename task with target 'dir' which should be
+  done after dropping a song file in the tree
+  > maybe also 'path' and 'dir' possible
+  > better integration
 
 REPORTS
 * add a "to top" link to each song text
@@ -148,6 +155,8 @@ REPORTS
   > count
   > ...
 * add covers and background pictures to reports
+* new column
+  > is SC-checked?
   
 PLAYLIST SUPPORT
 * auto-create playlists by edition

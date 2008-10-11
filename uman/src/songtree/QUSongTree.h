@@ -72,11 +72,14 @@ private slots:
 	void showCheckColumns();
 
 	void openCurrentFile();
+	void openCurrentFolder();
 
 	void hideAll();
 	void hideSelected();
 	void hideSelectedOnly();
 	void hideAllButSelected();
+
+	void showMoreCurrentArtist();
 
 	void requestDeleteSelectedSongs();
 
