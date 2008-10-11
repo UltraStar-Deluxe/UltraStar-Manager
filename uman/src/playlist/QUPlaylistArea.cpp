@@ -425,10 +425,9 @@ void QUPlaylistArea::removeCurrentPlaylist() {
 	}
 
 	// remove data structures
-	playlistCombo->removeItem(playlistCombo->currentIndex());
-
 	delete _playlists.at(tmpIndex);
 	_playlists.removeAt(tmpIndex);
+	playlistCombo->removeItem(playlistCombo->currentIndex());
 
 	if(playlistCombo->count() == 0)
 		this->setAreaEnabled(false);

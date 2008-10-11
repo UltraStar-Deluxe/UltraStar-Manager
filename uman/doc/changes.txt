@@ -51,6 +51,7 @@ SONG DETAILS
 REPORTS
   
 PLAYLIST SUPPORT
+* active list will now be updated if you remove a playlist
 
 FILTER SUPPORT
 
@@ -74,9 +75,6 @@ NOT SORTED
   reset that state on application startup (-> Qt 4.3.5 bug?)
 * cannot sort after "videogap" column correctly
 * broken gif-support for amazon cover files
-
-PLAYLIST SUPPORT
-* active list will not be updated if you remove a playlist
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
