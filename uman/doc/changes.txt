@@ -21,6 +21,7 @@ SONG DETAILS
 REPORTS
   
 PLAYLIST SUPPORT
+* you can add a song to the playlist only once now
 
 FILTER SUPPORT
 

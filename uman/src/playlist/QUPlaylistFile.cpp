@@ -143,9 +143,19 @@ bool QUPlaylistFile::hasUnsavedChanges() const {
 	return false;
 }
 
+/*!
+ * You can only add each song once. It's more like a subset than a playlist.
+ */
 bool QUPlaylistFile::addEntry(QUSongFile *song) {
 	if(!song)
 		return false; // only add entries with valid songs
+
+	foreach(QUPlaylistEntry *entry, _playlist) { // TOOO: a progressbar helpful?! (for big playlists)
+		if(song == entry->song()) {
+			emit finished(QString(tr("The song \"%1 - %2\" is already in the current playlist. It was not added.")).arg(song->artist()).arg(song->title()), QU::warning);
+			return false;
+		}
+	}
 
 	QUPlaylistEntry *newEntry = new QUPlaylistEntry(song->artist(), song->title(), this);
 	newEntry->connectSong(song);
