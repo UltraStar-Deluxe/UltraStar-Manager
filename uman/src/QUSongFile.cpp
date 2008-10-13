@@ -12,11 +12,14 @@
 #include <QApplication>
 #include <QFile>
 #include <QChar>
+#include <QMap>
 
 #include "audioproperties.h"
 #include "fileref.h"
 #include "tag.h"
 #include "tstring.h"
+
+#include "math.h"
 
 /*!
  * Creates a new song file object.
@@ -136,6 +139,7 @@ bool QUSongFile::updateCache() {
 	_info.clear();
 	_foundUnsupportedTags.clear();
 	_songLength = -1;
+	_songSpeed = -1.0;
 
 	/*
 	 * Read the header and write all tags into memory. The headers end is assumed
@@ -377,6 +381,71 @@ int QUSongFile::lengthEffective() const {
 QString QUSongFile::lengthEffectiveFormatted() const {
 	int l = lengthEffective();
 	return QString("%1:%2").arg(l / 60).arg(l % 60, 2, 10, QChar('0'));
+}
+
+/*!
+ * Try to give a useful answer to the hardness of a song. For this, several parts
+ * are analysed and the fastest one will be returned.
+ *
+ * This is a little bit better than an average value of the whole song because some
+ * tricky ones (e.g. Nightwish) got a long slow end but a very fast start or middle
+ * part.
+ *
+ * I hope it will be useful. (saiya_mg)
+ *
+ * \returns the number of singable syllables per second (no freestyle or pauses)
+ */
+double QUSongFile::syllablesPerSecond(bool firstCalc) {
+	if(_songSpeed > -1.0 or !firstCalc)
+		return _songSpeed; // use cache
+
+	if(_lyrics.isEmpty()) {
+		_songSpeed = 0.0;
+		return 0.0;
+	}
+
+	double bpm = QVariant(this->bpm().replace(",", ".")).toDouble();
+
+	if(bpm == 0.0) {
+		_songSpeed = 0.0;
+		return 0.0;
+	}
+
+	QList<int> durations;
+
+	foreach(QString line, _lyrics) {
+		if(line.trimmed().startsWith(":") or line.trimmed().startsWith("*")) { // only singable notes (normal, golden)
+			QStringList syllable = line.split(" ", QString::SkipEmptyParts);
+
+			// singable syllables have a duration as second number
+			if(syllable.size() < 3)
+				continue;
+
+			durations.append(QVariant(syllable.at(2)).toInt()); // should be the duration of the syllable
+		}
+	}
+
+	if(durations.isEmpty()) {
+		_songSpeed = 0.0;
+		return 0.0;
+	}
+
+	int beatCount1 = 0;
+	int beatCount2 = 0;
+	int beatCount3 = 0;
+	for(int i = 0; i < durations.size() / 2; i++) {
+		beatCount1 += durations.at(i);
+		beatCount2 += durations.at(i + durations.size() / 4);
+		beatCount3 += durations.at(qMin(i + durations.size() / 2, durations.size())); // qMin to avoid an access violation
+	}
+
+	double result1 = ((durations.size() / 2.) / (beatCount1 / (bpm * 4))) / 60;
+	double result2 = ((durations.size() / 2.) / (beatCount2 / (bpm * 4))) / 60;
+	double result3 = ((durations.size() / 2.) / (beatCount3 / (bpm * 4))) / 60;
+
+	_songSpeed = qMax(result1, qMax(result2, result3));
+
+	return _songSpeed;
 }
 
 /*!

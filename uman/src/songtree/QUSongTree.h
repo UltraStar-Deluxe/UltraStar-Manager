@@ -85,6 +85,8 @@ private slots:
 
 	void mergeSelectedSongs();
 
+	void calculateSpeed();
+
 protected:
 	virtual void keyPressEvent(QKeyEvent *event);
 

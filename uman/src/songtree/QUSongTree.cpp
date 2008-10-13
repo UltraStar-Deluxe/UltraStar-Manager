@@ -98,6 +98,10 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(LENGTH_EFF_COLUMN, QIcon(":/types/time_eff.png"));
 	header->setToolTip(LENGTH_EFF_COLUMN, tr("Shows the effective length:<br><b>audio length - #START</b>."));
 
+	header->setText(SPEED_COLUMN, tr("Speed"));
+//	header->setIcon(SPEED_COLUMN, QIcon(":/types/time_eff.png"));
+	header->setToolTip(SPEED_COLUMN, tr("Shows the number of singable syllables per second. No freestyle or pauses included."));
+
 	header->setText(START_COLUMN, tr("Start"));
 	header->setIcon(START_COLUMN, QIcon(":/types/start.png"));
 	header->setToolTip(START_COLUMN, tr("Skips the first seconds of the song."));
@@ -126,6 +130,7 @@ void QUSongTree::initHorizontalHeader() {
 	this->header()->setSectionHidden(LENGTH_DIFF_COLUMN, true);
 	this->header()->setSectionHidden(LENGTH_MP3_COLUMN, true);
 	this->header()->setSectionHidden(LENGTH_EFF_COLUMN, true);
+	this->header()->setSectionHidden(SPEED_COLUMN, true);
 	this->header()->setSectionHidden(START_COLUMN, true);
 	this->header()->setSectionHidden(END_COLUMN, true);
 	this->header()->setSectionHidden(VIDEOGAP_COLUMN, true);
@@ -519,6 +524,8 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 		filterMenu->addSeparator();
 		filterMenu->addAction(tr("All"), this, SLOT(hideAll()));
 
+		menu.addAction(tr("Calculate Song Speed"), this, SLOT(calculateSpeed()));
+
 		menu.addSeparator();
 		menu.addAction(tr("Open With Explorer..."), this, SLOT(openCurrentFolder()));
 		menu.addAction(tr("Find More From Artist"), this, SLOT(showMoreCurrentArtist()));
@@ -609,6 +616,7 @@ void QUSongTree::showDefaultColumns() {
 	this->header()->setSectionHidden(LENGTH_DIFF_COLUMN, true);
 	this->header()->setSectionHidden(LENGTH_MP3_COLUMN, true);
 	this->header()->setSectionHidden(LENGTH_EFF_COLUMN, true);
+	this->header()->setSectionHidden(SPEED_COLUMN, true);
 	this->header()->setSectionHidden(START_COLUMN, true);
 	this->header()->setSectionHidden(END_COLUMN, true);
 	this->header()->setSectionHidden(VIDEOGAP_COLUMN, true);
@@ -645,6 +653,7 @@ void QUSongTree::showTimeColumns() {
 	this->header()->showSection(LENGTH_DIFF_COLUMN);
 	this->header()->showSection(LENGTH_MP3_COLUMN);
 	this->header()->showSection(LENGTH_EFF_COLUMN);
+	this->header()->showSection(SPEED_COLUMN);
 	this->header()->showSection(START_COLUMN);
 	this->header()->showSection(END_COLUMN);
 	this->header()->showSection(VIDEOGAP_COLUMN);
@@ -779,7 +788,8 @@ void QUSongTree::showMoreCurrentArtist() {
 	if(!currentSongItem)
 		return;
 
-	this->filterItems(currentSongItem->song()->artist(), (QU::FilterModes) QU::informationTags);
+	// TODO: look for more characters that could be in artist but are regexp things...
+	this->filterItems(currentSongItem->song()->artist().replace("+", "\\+"), (QU::FilterModes) QU::informationTags);
 }
 
 /*!
@@ -925,6 +935,29 @@ void QUSongTree::mergeSelectedSongs() {
 
 	currentSongItem->update();
 	currentSongItem->setSelected(true);
+}
+
+/*!
+ * Calculate and show the speed (singable syllables per minute) of the selected songs.
+ */
+void QUSongTree::calculateSpeed() {
+	QList<QUSongItem*> selectedItems = selectedSongItems();
+
+	QUProgressDialog dlg(tr("Calculate selected song speeds..."), selectedItems.size(), this);
+	dlg.show();
+
+	clearSelection();
+
+	foreach(QUSongItem *item, selectedItems) {
+		dlg.update(QString("%1 - %2").arg(item->song()->artist()).arg(item->song()->title()));
+		if(dlg.cancelled()) break;
+
+		item->song()->syllablesPerSecond(true);
+		item->update();
+	}
+
+	restoreSelection(selectedItems);
+//	emit itemSelectionChanged(); // update details
 }
 
 bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {

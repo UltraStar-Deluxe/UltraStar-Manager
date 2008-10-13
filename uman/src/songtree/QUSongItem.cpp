@@ -13,6 +13,9 @@
 #include <QSettings>
 #include <QMessageBox>
 
+#define LOWER_SPEED_BOUND_DEFAULT 2.5
+#define UPPER_SPEED_BOUND_DEFAULT 5.5
+
 QUSongItem::QUSongItem(QUSongFile *song, bool isToplevel):
 	QTreeWidgetItem(),
 	_song(song),
@@ -352,6 +355,7 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case LENGTH_DIFF_COLUMN:
 	case LENGTH_MP3_COLUMN:
 	case LENGTH_EFF_COLUMN:
+	case SPEED_COLUMN:
 		return this->data(column, Qt::UserRole).toInt() < other.data(column, Qt::UserRole).toInt(); break;
 	default:
 		return text(column) < other.text(column);
@@ -447,6 +451,30 @@ void QUSongItem::updateTimeCheckColumns() {
 
 	this->setData(LENGTH_DIFF_COLUMN, Qt::UserRole, QVariant(timeDiff * (-1))); // for sorting issues
 	this->setToolTip(LENGTH_DIFF_COLUMN, QString(QObject::tr("%1 seconds")).arg(timeDiff));
+
+	// show song speed
+	double speed = song()->syllablesPerSecond();
+
+	this->setData(SPEED_COLUMN, Qt::UserRole, (speed) * 1000); // for sorting issues
+
+	if(speed == -1.0) {
+		this->setText(SPEED_COLUMN, QObject::tr("Not calculated."));
+		this->setToolTip(SPEED_COLUMN, QObject::tr("Calculate the speed first."));
+	} else {
+		this->setText(SPEED_COLUMN, QString("%1").arg(speed, 2, 'f', 1, QChar('0')));
+
+		double speedLower = settings.value("speedLower", LOWER_SPEED_BOUND_DEFAULT).toDouble();
+		double speedUpper = settings.value("speedUpper", UPPER_SPEED_BOUND_DEFAULT).toDouble();
+
+		if(speed < speedLower)
+			this->setIcon(SPEED_COLUMN, QIcon(":/marks/speed_slow_turtle.png"));
+		else if(speed < speedUpper)
+			this->setIcon(SPEED_COLUMN, QIcon(":/marks/speed_med_cat.png"));
+		else
+			this->setIcon(SPEED_COLUMN, QIcon(":/marks/speed_fast_hamster.png"));
+
+		this->setToolTip(SPEED_COLUMN, QString("%1").arg(speed, 0, 'f'));
+	}
 
 	// show some time control tags
 	this->setText(START_COLUMN, song()->start());

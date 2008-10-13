@@ -135,6 +135,7 @@ public slots:
 	int length();
 	int lengthMp3() const;
 	int lengthEffective() const;
+	double syllablesPerSecond(bool firstCalc = false);
 
 	QString lengthEffectiveFormatted() const;
 
@@ -204,6 +205,7 @@ private:
 	bool _hasUnsavedChanges;
 
 	int     _songLength; // cached song length, calculated from lyrics + gap, -1 == not calculated
+	double  _songSpeed; // cached song speed
 
 	bool rename(QDir dir, const QString &oldName, const QString &newName);
 };

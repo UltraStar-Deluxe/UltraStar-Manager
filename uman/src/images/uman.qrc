@@ -104,6 +104,9 @@
     <file>spell_error.png</file>
     <file>cancel.png</file>
     <file>clock.png</file>
+    <file>speed_fast_hamster.png</file>
+    <file>speed_med_cat.png</file>
+    <file>speed_slow_turtle.png</file>
     <file>cross.png</file>
     <file>cross_blue.png</file>
     <file>delete.png</file>

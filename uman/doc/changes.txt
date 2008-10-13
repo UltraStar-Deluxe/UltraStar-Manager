@@ -9,6 +9,7 @@
 SONG TREE
 * show more from current artist
 * open current folder in file explorer
+* "song speed", new column
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
@@ -78,6 +79,9 @@ NOT SORTED
 * broken gif-support for amazon cover files
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
+
+ABOUT
+* http://www.iconarchive.com/category/animals/tiny-animals-icons-by-iconshock.html
 
 NEW STUFF
 * make hard-coded values editable
