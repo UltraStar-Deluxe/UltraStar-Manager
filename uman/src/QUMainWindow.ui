@@ -789,7 +789,7 @@ Tasks</string>
     <rect>
      <x>164</x>
      <y>21</y>
-     <width>164</width>
+     <width>187</width>
      <height>26</height>
     </rect>
    </property>
@@ -816,13 +816,14 @@ Tasks</string>
    <addaction name="separator" />
    <addaction name="actionLangEnglish" />
    <addaction name="actionLangGerman" />
+   <addaction name="actionLangPolish" />
   </widget>
   <widget class="QToolBar" name="viewBar" >
    <property name="geometry" >
     <rect>
-     <x>328</x>
+     <x>351</x>
      <y>21</y>
-     <width>584</width>
+     <width>561</width>
      <height>26</height>
     </rect>
    </property>
@@ -1078,6 +1079,10 @@ Tasks</string>
    </property>
   </action>
   <action name="actionShowLyrics" >
+   <property name="icon" >
+    <iconset resource="images/uman.qrc" >
+     <normaloff>:/types/text.png</normaloff>:/types/text.png</iconset>
+   </property>
    <property name="text" >
     <string>Show Lyrics...</string>
    </property>

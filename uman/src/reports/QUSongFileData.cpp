@@ -17,6 +17,9 @@ QUSongFileData::QUSongFileData(const QString &property, QObject *parent): QUAbst
 	} else if(QString::compare(_property, "lengthTotal", Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/time_eff.png"));
 		this->setDescription(tr("Length"));
+	} else if(QString::compare(_property, "speed", Qt::CaseInsensitive) == 0) {
+		this->setIcon(QIcon(":/marks/speed_slow_turtle.png"));
+		this->setDescription(tr("Speed"));
 	}
 }
 

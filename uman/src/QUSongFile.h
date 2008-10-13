@@ -60,6 +60,7 @@ class QUSongFile: public QObject {
 	Q_PROPERTY(QString relativeFilePath READ relativeFilePath)
 	Q_PROPERTY(QString txt READ txt)
 	Q_PROPERTY(QString lengthTotal READ lengthEffectiveFormatted)
+	Q_PROPERTY(QString speed READ speedFormatted)
 
 	Q_PROPERTY(bool hasMp3 READ hasMp3)
 	Q_PROPERTY(bool hasCover READ hasCover)
@@ -138,6 +139,7 @@ public slots:
 	double syllablesPerSecond(bool firstCalc = false);
 
 	QString lengthEffectiveFormatted() const;
+	QString speedFormatted();
 
 	QStringList lyrics() const;
 

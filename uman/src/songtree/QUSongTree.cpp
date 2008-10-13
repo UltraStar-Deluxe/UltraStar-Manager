@@ -528,8 +528,8 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 
 		menu.addSeparator();
 		menu.addAction(tr("Open With Explorer..."), this, SLOT(openCurrentFolder()));
-		menu.addAction(tr("Find More From Artist"), this, SLOT(showMoreCurrentArtist()));
-		menu.addAction(tr("Show Lyrics..."), this, SLOT(requestLyrics()), Qt::CTRL + Qt::Key_L);
+		menu.addAction(QIcon(":/types/user.png"), tr("Find More From Artist"), this, SLOT(showMoreCurrentArtist()));
+		menu.addAction(QIcon(":/types/text.png"), tr("Show Lyrics..."), this, SLOT(requestLyrics()), Qt::CTRL + Qt::Key_L);
 	}
 
 	menu.exec(QCursor::pos());

@@ -182,8 +182,10 @@ FILTER SUPPORT
   > CC-Songs
   > ...
 
-FILE PREVIEW
+FILE PREVIEW/LYRICS
 * make song text files editable
+* add current time instead of line number (?)
+  > beware of relative songs
 
 AMAZON COVER DOWNLOAD
 * add "overwrite present covers" option to amazon-cover-download

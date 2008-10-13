@@ -384,6 +384,14 @@ QString QUSongFile::lengthEffectiveFormatted() const {
 }
 
 /*!
+ * Like syllablesPerSecond() but with formatted output.
+ */
+QString QUSongFile::speedFormatted() {
+	double s = syllablesPerSecond(true);
+	return QString("%1").arg(s, 2, 'f', 1, QChar('0'));
+}
+
+/*!
  * Try to give a useful answer to the hardness of a song. For this, several parts
  * are analysed and the fastest one will be returned.
  *
