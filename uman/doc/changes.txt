@@ -10,6 +10,7 @@ TASKS
 * set timestamps to 0
 * fix spaces in lyrics
 * round #GAP to nearest integer
+* remove empty syllables
 
 SONG TREE
 * show more from current artist

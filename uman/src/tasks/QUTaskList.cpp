@@ -1,6 +1,7 @@
 #include "QUTaskList.h"
 
 #include "QUPreparatoryTask.h"
+#include "QULyricTask.h"
 #include "QUAudioTagTask.h"
 #include "QURenameTask.h"
 #include "QUCleanTask.h"
@@ -60,9 +61,12 @@ void QUTaskList::resetTaskList() {
 	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::autoAssignFiles)));
 	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::removeUnsupportedTags)));
 	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::fixAudioLength)));
-	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::fixTimeStamps)));
 	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::roundGap)));
-	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::fixSpaces)));
+
+	this->appendSeparator(tr("Lyric Tasks"));
+	this->addItem(new QUTaskItem(new QULyricTask(QU::fixTimeStamps)));
+	this->addItem(new QUTaskItem(new QULyricTask(QU::fixSpaces)));
+	this->addItem(new QUTaskItem(new QULyricTask(QU::removeEmptySyllables)));
 
 	this->appendSeparator(tr("Song/ID3 Tag Tasks"));
 	foreach(QDomDocument* task, tasks) {

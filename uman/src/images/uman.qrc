@@ -30,9 +30,11 @@
     <file>text_edit.png</file>
     <file>duplicates.png</file>
     <file>quit.png</file>
+    <file>space.png</file>
     <file>picture_minus.png</file>
     <file>tasks_add.png</file>
     <file>filter_log.png</file>
+    <file>empty_syllable.png</file>
     <file>database.png</file>
     <file>log.png</file>
     <file>tag_custom.png</file>
@@ -61,6 +63,7 @@
     <file>filter.png</file>
     <file>folder_note.png</file>
     <file>folder_realtive.png</file>
+    <file>zero.png</file>
     <file>pencil.png</file>
     <file>house.png</file>
     <file>play32.png</file>

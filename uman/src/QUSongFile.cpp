@@ -1167,6 +1167,38 @@ void QUSongFile::fixSpaces() {
 }
 
 /*!
+ * Removes empty syllables.
+ */
+void QUSongFile::removeEmptySyllables() {
+	convertLyricsFromRaw();
+
+	if(_melody.isEmpty() or _melody.first()->notes().isEmpty()) {
+		emit finished(QString(tr("Invalid lyrics: %1 - %2")).arg(artist()).arg(title()), QU::warning);
+		return;
+	}
+
+	foreach(QUSongLine *line, _melody) {
+		QList<QUSongNote*> emptyNotes;
+		foreach(QUSongNote *note, line->notes()) {
+			if(note->lyric().trimmed().isEmpty())
+				emptyNotes.append(note);
+		}
+
+		foreach(QUSongNote *note, emptyNotes) {
+			line->notes().removeAll(note);
+		}
+	}
+
+	convertLyricsToRaw();
+
+	// save memory
+	qDeleteAll(_melody);
+	_melody.clear();
+
+	emit finished(QString(tr("Empty syllables were removed successfully for \"%1 - %2\".")).arg(artist()).arg(title()), QU::information);
+}
+
+/*!
  * React to external change of the loaded song file.
  */
 void QUSongFile::songFileChanged(const QString &filePath) {
@@ -1251,12 +1283,13 @@ void QUSongFile::lyricsAddNote(QString line) {
 		QStringList lineSplit = line.trimmed().split(" ", QString::SkipEmptyParts);
 
 		if(lineSplit.size() < 4)
-			QMessageBox::critical(0, "Line too short!", line);
+			emit finished(QString(tr("Line too short: \"%1\"")).arg(line), QU::warning);
 		else {
 			QUSongNote::NoteType t = line.startsWith("F") ? QUSongNote::freestyle : (line.startsWith("*") ? QUSongNote::golden : QUSongNote::normal);
 
 			// extract the lyric/syllable
 			line.remove(QRegExp("[:\\*F]\\s*\\-?\\d+\\s+\\d+\\s+\\-?\\d+\\s"));
+			line.remove(QRegExp("[:\\*F]\\s*\\-?\\d+\\s+\\d+\\s+\\-?\\d+")); // if no syllable is present
 
 			QUSongNote *note = new QUSongNote(
 					t,

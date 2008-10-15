@@ -195,6 +195,7 @@ public slots:
 
 	void fixTimeStamps();
 	void fixSpaces();
+	void removeEmptySyllables();
 
 	// watch external song file changes
 	void songFileChanged(const QString &filePath);

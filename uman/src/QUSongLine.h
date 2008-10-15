@@ -41,7 +41,7 @@ public:
 	~QUSongLine();
 
 	void addNote(QUSongNote *newNote);
-	QList<QUSongNote*> notes() { return _notes; }
+	QList<QUSongNote*>& notes() { return _notes; }
 
 	int outTime() const { return _out; }
 	void setOutTime(int out) { _out = out; _useOutTime = true; }

@@ -35,11 +35,16 @@ public:
 		autoAssignFiles,
 		removeUnsupportedTags,
 		fixAudioLength,
-		fixTimeStamps,
-		roundGap,
-		fixSpaces
+		roundGap
 	};
 	Q_DECLARE_FLAGS(PreparatoryTaskModes, PreparatoryTaskMode)
+
+	enum LyricTaskMode {
+		fixTimeStamps,
+		fixSpaces,
+		removeEmptySyllables
+	};
+	Q_DECLARE_FLAGS(LyricTaskModes, LyricTaskMode)
 
 	enum CleanTaskMode {
 		unusedFiles,
