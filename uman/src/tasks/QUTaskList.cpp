@@ -60,6 +60,9 @@ void QUTaskList::resetTaskList() {
 	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::autoAssignFiles)));
 	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::removeUnsupportedTags)));
 	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::fixAudioLength)));
+	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::fixTimeStamps)));
+	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::roundGap)));
+	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::fixSpaces)));
 
 	this->appendSeparator(tr("Song/ID3 Tag Tasks"));
 	foreach(QDomDocument* task, tasks) {

@@ -34,7 +34,10 @@ public:
 	enum PreparatoryTaskMode {
 		autoAssignFiles,
 		removeUnsupportedTags,
-		fixAudioLength
+		fixAudioLength,
+		fixTimeStamps,
+		roundGap,
+		fixSpaces
 	};
 	Q_DECLARE_FLAGS(PreparatoryTaskModes, PreparatoryTaskMode)
 

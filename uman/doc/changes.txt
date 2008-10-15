@@ -6,6 +6,11 @@
 
 * new language: Polish
 
+TASKS
+* set timestamps to 0
+* fix spaces in lyrics
+* round #GAP to nearest integer
+
 SONG TREE
 * show more from current artist
 * open current folder in file explorer
@@ -128,6 +133,8 @@ TASKS
   > a task that removes all dots from artist/title?
 * modify ID3v2 tags via song tags
   > genre, year
+* fix gap/start note beat
+  > http://forum.ultra-star.de/posting.php?mode=reply&f=25&t=5512#pr45570
 
 SONG TREE
 * enable the user to append any custom []-tag to a file/folder
@@ -192,6 +199,10 @@ AMAZON COVER DOWNLOAD
   > auto rename downloaded covers ("Artist - Title [CO].jpg"?)
 
 INTERNAL STUFF
+! use internal XML data for melody/lyrics
+  <line out="22" in="25">
+    <note timestamp="123" duration="10" pitch="20" lyric="ah " freestyle="yes" golden="no"></note>
+  </line>
 * do not use only the count for "QUSongFile::verifyTags(QStringList&)"
 * use next file in folder if txt is no valid song file
   > no license files

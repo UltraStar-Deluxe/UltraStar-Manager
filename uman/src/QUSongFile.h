@@ -9,7 +9,12 @@
 #include <QMap>
 #include <QDir>
 
+#include <QDomDocument>
+#include <QDomElement>
+#include <QDomAttr>
+
 #include "QU.h"
+#include "QUSongLine.h"
 
 #define TITLE_TAG      "TITLE"
 #define ARTIST_TAG     "ARTIST"
@@ -185,7 +190,11 @@ public slots:
 	void moveAllFiles(const QString &newRelativePath);
 
 	void fixAudioLength();
+	void roundGap();
 	void removeEndTag();
+
+	void fixTimeStamps();
+	void fixSpaces();
 
 	// watch external song file changes
 	void songFileChanged(const QString &filePath);
@@ -210,6 +219,12 @@ private:
 	double  _songSpeed; // cached song speed
 
 	bool rename(QDir dir, const QString &oldName, const QString &newName);
+
+	// experimental: use another internal format for lyrics
+	QList<QUSongLine*> _melody;
+	void convertLyricsFromRaw();
+	void convertLyricsToRaw();
+	void lyricsAddNote(QString line);
 };
 
 #endif /*QUSONGFILE_H_*/

@@ -22,6 +22,16 @@ QUPreparatoryTask::QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *par
 		this->setDescription(tr("Fix audio length via #END tag."));
 		this->setToolTip(tr("Sets <b>#END</b> to the length of the song if audio file present and longer than song. <b>Appends a little time buffer.</b>"));
 		break;
+	case QU::fixTimeStamps:
+		this->setDescription(tr("Set first timestamp to 0."));
+		break;
+	case QU::roundGap:
+		this->setDescription(tr("Round #GAP to nearest integer."));
+		break;
+	case QU::fixSpaces:
+		this->setDescription(tr("Fix spaces at end of line."));
+		this->setToolTip(tr("Moves spaces from the end of line to the beginning of the next syllable."));
+		break;
 	}
 }
 
@@ -35,6 +45,15 @@ void QUPreparatoryTask::startOn(QUSongFile *song) {
 		break;
 	case QU::fixAudioLength:
 		song->fixAudioLength();
+		break;
+	case QU::fixTimeStamps:
+		song->fixTimeStamps();
+		break;
+	case QU::roundGap:
+		song->roundGap();
+		break;
+	case QU::fixSpaces:
+		song->fixSpaces();
 		break;
 	}
 }

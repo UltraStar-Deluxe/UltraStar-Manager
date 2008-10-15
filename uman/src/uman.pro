@@ -5,7 +5,8 @@ QT += core \
     xml \
     network
 CONFIG += debug
-HEADERS += monty/QUMontyArea.h \
+HEADERS += QUSongLine.h \
+    monty/QUMontyArea.h \
     QUAboutDialog.h \
     tasks/tasks.h \
     filter/QUFilterArea.h \
@@ -66,7 +67,8 @@ HEADERS += monty/QUMontyArea.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += monty/QUMontyArea.cpp \
+SOURCES += QUSongLine.cpp \
+    monty/QUMontyArea.cpp \
     QUAboutDialog.cpp \
     filter/QUFilterArea.cpp \
     metaphone/QUMetaphoneString.cpp \
