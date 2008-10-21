@@ -89,6 +89,9 @@ NOT SORTED
 ABOUT
 * http://www.iconarchive.com/category/animals/tiny-animals-icons-by-iconshock.html
 
+SOME AWESOME LYRIC SUPPORT (hmmm.....)
+* http://lyricwiki.org/LyricWiki:REST
+
 NEW STUFF
 * make hard-coded values editable
   > lower and upper time bound
