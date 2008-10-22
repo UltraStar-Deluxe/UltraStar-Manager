@@ -1,5 +1,6 @@
 #include "QUSongFile.h"
 #include "QUMonty.h"
+#include "QULogService.h"
 #include "QUMainWindow.h"
 #include "QUMessageBox.h"
 

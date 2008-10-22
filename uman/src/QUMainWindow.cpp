@@ -29,7 +29,10 @@
 
 #include "QUSongItem.h"
 #include "QUDetailItem.h"
+
 #include "QUMonty.h"
+#include "QULogService.h"
+
 #include "QUDropDownDelegate.h"
 #include "QUDetailsTable.h"
 
@@ -179,6 +182,7 @@ void QUMainWindow::initWindow() {
 	addDockWidget(Qt::RightDockWidgetArea, playlistDock); playlistDock->hide();
 
 	connect(playlistArea, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
+	connect(logSrv, SIGNAL(messageAdded(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 
 	// init filter area
 	filterArea->hide();

@@ -5,7 +5,8 @@ QT += core \
     xml \
     network
 CONFIG += debug
-HEADERS += tasks/QULyricTask.h \
+HEADERS += QULogService.h \
+    tasks/QULyricTask.h \
     QUSongLine.h \
     monty/QUMontyArea.h \
     QUAboutDialog.h \
@@ -68,7 +69,8 @@ HEADERS += tasks/QULyricTask.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += tasks/QULyricTask.cpp \
+SOURCES += QULogService.cpp \
+    tasks/QULyricTask.cpp \
     QUSongLine.cpp \
     monty/QUMontyArea.cpp \
     QUAboutDialog.cpp \
