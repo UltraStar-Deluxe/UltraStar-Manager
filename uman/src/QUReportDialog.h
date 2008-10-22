@@ -32,9 +32,6 @@ private slots:
 	void toggleStyleCombo(bool checked);
 	void toggleAppendLyrics(bool checked);
 
-signals:
-	void finished(const QString &message, QU::EventMessageTypes type);
-
 private:
 	QList<QUSongFile*> _allSongs;
 	QList<QUSongFile*> _visibleSongs;

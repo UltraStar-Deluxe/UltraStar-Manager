@@ -1,5 +1,6 @@
 #include "QUCoverGroup.h"
 #include "QUAmazonRequestUrl.h"
+#include "QULogService.h"
 
 #include <QCoreApplication>
 #include <QDesktopServices>
@@ -32,7 +33,6 @@ QUCoverGroup::QUCoverGroup(QUSongItem *songItem, QWidget *parent):
 //	list->setMinimumHeight(1);
 
 	connect(list, SIGNAL(coverActivated (const QString&)), this, SLOT(previewActivePicture(const QString&)));
-	connect(list, SIGNAL(finished(const QString&, QU::MessageTypes)), this, SIGNAL(finished(const QString&, QU::MessageTypes)));
 
 	connect(buyBtn, SIGNAL(clicked()), this, SLOT(openAmazonSearchUrl()));
 	buyBtn->setEnabled(false);
@@ -40,12 +40,12 @@ QUCoverGroup::QUCoverGroup(QUSongItem *songItem, QWidget *parent):
 
 void QUCoverGroup::getCovers(const QString &endpoint, const QString &artistProperty, const QString &titleProperty) {
 	if(!_item) {
-		emit finished(tr("Could not get covers. No song was set."), QU::warning);
+		logSrv->add(tr("Could not get covers. No song was set."), QU::warning);
 		return;
 	}
 
 	if(_http->hasPendingRequests() or _waitForResult) {
-		emit finished(QString(tr("Could not get covers for \"%1 - %2\". Http connection is busy.")).arg(_item->song()->artist()).arg(_item->song()->title()), QU::warning);
+		logSrv->add(QString(tr("Could not get covers for \"%1 - %2\". Http connection is busy.")).arg(_item->song()->artist()).arg(_item->song()->title()), QU::warning);
 		return;
 	}
 
@@ -210,9 +210,9 @@ void QUCoverGroup::deleteCurrentCover() {
 		return;
 
 	if(!QFile::remove(_item->song()->coverFileInfo().filePath()))
-		emit finished(QString(tr("Could not delete current cover: \"%1\"")).arg(_item->song()->coverFileInfo().filePath()), QU::warning);
+		logSrv->add(QString(tr("Could not delete current cover: \"%1\"")).arg(_item->song()->coverFileInfo().filePath()), QU::warning);
 	else
-		emit finished(QString(tr("Current cover was deleted successfully: \"%1\"")).arg(_item->song()->coverFileInfo().filePath()), QU::information);
+		logSrv->add(QString(tr("Current cover was deleted successfully: \"%1\"")).arg(_item->song()->coverFileInfo().filePath()), QU::information);
 }
 
 /*!
@@ -223,14 +223,14 @@ void QUCoverGroup::copyCoverToSongPath() {
 		return;
 
 	if(currentFilePath().isEmpty()) {
-		emit finished(QString(tr("No cover selected for: \"%1 - %2\"")).arg(_item->song()->artist()).arg(_item->song()->title()), QU::warning);
+		logSrv->add(QString(tr("No cover selected for: \"%1 - %2\"")).arg(_item->song()->artist()).arg(_item->song()->title()), QU::warning);
 		return;
 	}
 
 	QFileInfo target(_item->song()->songFileInfo().dir(), "cover_" + QFileInfo(currentFilePath()).fileName());
 
 	if(!QFile::copy(currentFilePath(), target.filePath())) {
-		emit finished(QString(tr("Could not copy the new cover \"%1\" to \"%2\".")).arg(currentFilePath()).arg(target.filePath()), QU::warning);
+		logSrv->add(QString(tr("Could not copy the new cover \"%1\" to \"%2\".")).arg(currentFilePath()).arg(target.filePath()), QU::warning);
 		return;
 	}
 

@@ -55,9 +55,6 @@ public:
 	static QStringList availableCustomSources();
 	static QStringList availableConditions();
 
-signals:
-	void finished(const QString &message, QU::EventMessageTypes type);
-
 protected:
 	QString _configFileName;
 	QString _iconSource; // used to determine the source path of the tasks icon

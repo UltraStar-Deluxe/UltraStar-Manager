@@ -201,7 +201,6 @@ public slots:
 	void songFileChanged(const QString &filePath);
 
 signals:
-	void finished(const QString &message, QU::EventMessageTypes type);
 	void dataChanged();
 
 	void externalSongFileChangeDetected(QUSongFile *song);

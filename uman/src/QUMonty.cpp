@@ -1,4 +1,5 @@
 #include "QUMonty.h"
+#include "QULogService.h"
 
 #include <QFile>
 #include <QSettings>
@@ -136,7 +137,7 @@ QString QUMonty::useImageFromResource(const QString &item, QDir dest) {
 	if(!dest.cd("images")) {
 		dest.mkdir("images");
 		if(!dest.cd("images")) {
-//			emit finished(tr("Subdirectory for images could not be created!"), QU::warning);
+//			logSrv->add(tr("Subdirectory for images could not be created!"), QU::warning);
 			return QString();
 		}
 	}
@@ -150,11 +151,11 @@ QString QUMonty::useImageFromResource(const QString &item, QDir dest) {
 	}
 
 	if(!pixmap.save(fi.filePath())) {
-//		emit finished(QString(tr("The resource file \"%1\" could NOT be saved.")).arg(fi.filePath()), QU::warning);
+//		logSrv->add(QString(tr("The resource file \"%1\" could NOT be saved.")).arg(fi.filePath()), QU::warning);
 		return QString();
 	}
 
-//	emit finished(QString(tr("The resource file \"%1\" was extracted successfully.")).arg(fi.filePath()), QU::information);
+//	logSrv->add(QString(tr("The resource file \"%1\" was extracted successfully.")).arg(fi.filePath()), QU::information);
 
 	dest.cdUp();
 	return dest.relativeFilePath(fi.filePath());

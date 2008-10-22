@@ -181,7 +181,6 @@ void QUMainWindow::initWindow() {
 	addDockWidget(Qt::RightDockWidgetArea, eventsDock); eventsDock->hide();
 	addDockWidget(Qt::RightDockWidgetArea, playlistDock); playlistDock->hide();
 
-	connect(playlistArea, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 	connect(logSrv, SIGNAL(messageAdded(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 
 	// init filter area
@@ -305,7 +304,6 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(itemExpanded(QTreeWidgetItem*)), songTree, SLOT(resizeToContents()));
 	connect(songTree, SIGNAL(itemCollapsed(QTreeWidgetItem*)), songTree, SLOT(resizeToContents()));
 
-	connect(songTree, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 	connect(songTree, SIGNAL(songCreated(QUSongFile*)), this, SLOT(appendSong(QUSongFile*)));
 
 	connect(songTree, SIGNAL(songToPlaylistRequested(QUSongFile*)), playlistArea, SLOT(addSongToCurrentPlaylist(QUSongFile*)));
@@ -338,8 +336,6 @@ void QUMainWindow::initTaskList() {
 	connect(taskBtn, SIGNAL(clicked()), this, SLOT(editSongApplyTasks()));
 	connect(allTasksBtn, SIGNAL(clicked()), taskList, SLOT(checkAllTasks()));
 	connect(noTasksBtn, SIGNAL(clicked()), taskList, SLOT(uncheckAllTasks()));
-
-	connect(taskList, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 }
 
 void QUMainWindow::initEventLog() {
@@ -400,8 +396,6 @@ void QUMainWindow::initMonty() {
 void QUMainWindow::appendSong(QUSongFile *song) {
 	_songs.append(song);
 
-	// enable event log
-	connect(song, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 	// connect changes in song files with an update in the playlist area
 	connect(song, SIGNAL(dataChanged()), playlistArea, SLOT(update()));
 	// react to changes
@@ -422,23 +416,23 @@ void QUMainWindow::deleteSong(QUSongFile *song) {
 
 	foreach(QFileInfo fi, fiList) {
 		if(!QFile::remove(fi.filePath()))
-			addLogMsg(QString(tr("Could NOT delete file: \"%1\"")).arg(fi.filePath()), QU::warning);
+			logSrv->add(QString(tr("Could NOT delete file: \"%1\"")).arg(fi.filePath()), QU::warning);
 		else
-			addLogMsg(QString(tr("File was deleted successfully: \"%1\"")).arg(fi.filePath()), QU::information);
+			logSrv->add(QString(tr("File was deleted successfully: \"%1\"")).arg(fi.filePath()), QU::information);
 	}
 
 	QString dirName = dir.dirName();
 	dir.cdUp();
 
 	if(!dir.rmdir(dirName))
-		addLogMsg(QString(tr("Could NOT delete directory: \"%1\". Maybe it is not empty.")).arg(song->songFileInfo().path()), QU::warning);
+		logSrv->add(QString(tr("Could NOT delete directory: \"%1\". Maybe it is not empty.")).arg(song->songFileInfo().path()), QU::warning);
 	else
-		addLogMsg(QString(tr("Directory was deleted successfully: \"%1\"")).arg(song->songFileInfo().path()), QU::information);
+		logSrv->add(QString(tr("Directory was deleted successfully: \"%1\"")).arg(song->songFileInfo().path()), QU::information);
 
 	_songs.removeAll(song);
 	delete song;
 
-	addLogMsg(QString(tr("Song was deleted successfully: \"%1 - %2\"")).arg(artist).arg(title), QU::information);
+	logSrv->add(QString(tr("Song was deleted successfully: \"%1 - %2\"")).arg(artist).arg(title), QU::information);
 }
 
 /*!
@@ -606,25 +600,25 @@ void QUMainWindow::editSongSetFileLink(QTreeWidgetItem *item, int column) {
 	if( songItem->icon(MP3_COLUMN).isNull()
 			and QU::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)
 			and column == MP3_COLUMN ) {
-		addLogMsg(QString(tr("Audio file changed from \"%1\" to: \"%2\".")).arg(song->mp3()).arg(songItem->text(FOLDER_COLUMN)));
+		logSrv->add(QString(tr("Audio file changed from \"%1\" to: \"%2\".")).arg(song->mp3()).arg(songItem->text(FOLDER_COLUMN)), QU::information);
 		song->setInfo(MP3_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	} else if( songItem->icon(COVER_COLUMN).isNull()
 			and QU::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)
 			and column == COVER_COLUMN ) {
-		addLogMsg(QString(tr("Cover changed from \"%1\" to: \"%2\".")).arg(song->cover()).arg(songItem->text(FOLDER_COLUMN)));
+		logSrv->add(QString(tr("Cover changed from \"%1\" to: \"%2\".")).arg(song->cover()).arg(songItem->text(FOLDER_COLUMN)), QU::information);
 		song->setInfo(COVER_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	} else if( songItem->icon(BACKGROUND_COLUMN).isNull()
 			and QU::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)
 			and column == BACKGROUND_COLUMN ) {
-		addLogMsg(QString(tr("Background changed from \"%1\" to: \"%2\".")).arg(song->background()).arg(songItem->text(FOLDER_COLUMN)));
+		logSrv->add(QString(tr("Background changed from \"%1\" to: \"%2\".")).arg(song->background()).arg(songItem->text(FOLDER_COLUMN)), QU::information);
 		song->setInfo(BACKGROUND_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	} else if( songItem->icon(VIDEO_COLUMN).isNull()
 			and QU::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)
 			and column == VIDEO_COLUMN ) {
-		addLogMsg(QString(tr("Video file changed from \"%1\" to: \"%2\".")).arg(song->video()).arg(songItem->text(FOLDER_COLUMN)));
+		logSrv->add(QString(tr("Video file changed from \"%1\" to: \"%2\".")).arg(song->video()).arg(songItem->text(FOLDER_COLUMN)), QU::information);
 		song->setInfo(VIDEO_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	}
@@ -764,9 +758,9 @@ void QUMainWindow::saveLog() {
 		}
 		file.close();
 
-		addLogMsg(QString(tr("The log file was saved to: \"%1\"")).arg(filePath), QU::saving);
+		logSrv->add(QString(tr("The log file was saved to: \"%1\"")).arg(filePath), QU::saving);
 	} else
-		addLogMsg(QString(tr("The log file COULD NOT be saved.")).arg(filePath), QU::warning);
+		logSrv->add(QString(tr("The log file COULD NOT be saved.")).arg(filePath), QU::warning);
 }
 
 void QUMainWindow::clearLog() {
@@ -847,7 +841,7 @@ void QUMainWindow::changeSongDir() {
 
 		montyTalk();
 
-		addLogMsg(QString(tr("UltraStar song directory changed to: \"%1\".")).arg(BaseDir.path()));
+		logSrv->add(QString(tr("UltraStar song directory changed to: \"%1\".")).arg(BaseDir.path()), QU::information);
 
 		songTree->headerItem()->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(BaseDir.path()));
 	}
@@ -880,7 +874,7 @@ void QUMainWindow::editCustomTags() {
 		this->refreshAllSongs(true);
 		detailsTable->reset();
 
-		this->addLogMsg(QString(tr("Custom tags changed to: \"%1\"")).arg(QUSongFile::customTags().join(", ")), QU::information);
+		logSrv->add(QString(tr("Custom tags changed to: \"%1\"")).arg(QUSongFile::customTags().join(", ")), QU::information);
 	}
 
 	delete dlg;
@@ -949,9 +943,9 @@ void QUMainWindow::toggleRelativeSongPath(bool checked) {
 	}
 
 	if(checked)
-		addLogMsg(tr("Relative song paths are displayed in the song tree now."));
+		logSrv->add(tr("Relative song paths are displayed in the song tree now."), QU::information);
 	else
-		addLogMsg(tr("Only song directories are displayed in the song tree now."));
+		logSrv->add(tr("Only song directories are displayed in the song tree now."), QU::information);
 }
 
 /*!
@@ -1047,9 +1041,9 @@ void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
 	} else if(QU::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive) or QU::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive) or QU::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QFileInfo fi(songItem->song()->path(), songItem->text(FOLDER_COLUMN));
 		if( !QDesktopServices::openUrl(QUrl(fi.filePath())) )
-			addLogMsg(QString(tr("Could NOT open file: \"%1\".")).arg(fi.filePath()), QU::warning);
+			logSrv->add(QString(tr("Could NOT open file: \"%1\".")).arg(fi.filePath()), QU::warning);
 		else
-			addLogMsg(QString(tr("File was opened successfully: \"%1\".")).arg(fi.filePath()), QU::information);
+			logSrv->add(QString(tr("File was opened successfully: \"%1\".")).arg(fi.filePath()), QU::information);
 	}
 }
 
@@ -1124,9 +1118,7 @@ void QUMainWindow::removeFilter() {
 void QUMainWindow::reportCreate() {
 	QUReportDialog *dlg = new QUReportDialog(_songs, songTree->visibleSongs(), playlistArea->playlists(), this);
 
-	connect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 	dlg->exec();
-	disconnect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 
 	delete dlg;
 }
@@ -1199,7 +1191,6 @@ void QUMainWindow::enablePolish() {
 
 void QUMainWindow::getCoversFromAmazon(QList<QUSongItem*> items) {
 	QUAmazonDialog *dlg = new QUAmazonDialog(items, this);
-	connect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 
 	if(dlg->exec()) {
 		updateDetails();
@@ -1215,7 +1206,7 @@ void QUMainWindow::getCoversFromAmazon(QList<QUSongItem*> items) {
  */
 void QUMainWindow::processExternalSongFileChange(QUSongFile *song) {
 	if(song->hasUnsavedChanges()) {
-		addLogMsg(QString("INCONSISTENT STATE! The song \"%1 - %2\" has unsaved changes and its persistent song file \"%3\" was modified externally. Save your changes or rebuild the tree manually.").arg(song->artist()).arg(song->title()).arg(song->songFileInfo().filePath()), QU::warning);
+		logSrv->add(QString("INCONSISTENT STATE! The song \"%1 - %2\" has unsaved changes and its persistent song file \"%3\" was modified externally. Save your changes or rebuild the tree manually.").arg(song->artist()).arg(song->title()).arg(song->songFileInfo().filePath()), QU::warning);
 		return;
 	}
 
@@ -1230,7 +1221,7 @@ void QUMainWindow::processExternalSongFileChange(QUSongFile *song) {
 		}
 	}
 
-	addLogMsg(QString("Song file changed: \"%1\"").arg(song->songFileInfo().filePath()), QU::information);
+	logSrv->add(QString("Song file changed: \"%1\"").arg(song->songFileInfo().filePath()), QU::information);
 }
 
 /*!
@@ -1257,5 +1248,5 @@ void QUMainWindow::copyAudioToPath() {
 		QFile::copy(song->mp3FileInfo().filePath(), QFileInfo(QDir(target), song->mp3FileInfo().fileName()).filePath());
 	}
 
-	addLogMsg(tr("Backup for audio files finished."), QU::information);
+	logSrv->add(tr("Backup for audio files finished."), QU::information);
 }

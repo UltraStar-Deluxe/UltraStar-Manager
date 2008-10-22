@@ -53,9 +53,6 @@ private slots:
 
 	void changeCurrentPlaylistOrder(QList<QUPlaylistEntry*> newOrder);
 
-signals:
-	void finished(const QString &message, QU::EventMessageTypes type);
-
 private:
 	QList<QUPlaylistFile*>  _playlists;
 	QList<QUSongFile*>     *_songsRef;

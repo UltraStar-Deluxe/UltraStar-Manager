@@ -1,4 +1,5 @@
 #include "QUTaskDialog.h"
+#include "QULogService.h"
 
 #include <QCoreApplication>
 #include <QDir>
@@ -165,10 +166,10 @@ bool QUTaskDialog::saveDocument(const QString &filePath) {
 		out << _doc.toString(4);
 		file.close();
 
-		emit finished(QString(tr("The task file \"%1\" was saved successfully.")).arg(filePath), QU::saving);
+		logSrv->add(QString(tr("The task file \"%1\" was saved successfully.")).arg(filePath), QU::saving);
 		return true;
 	} else {
-		emit finished(QString(tr("The task file \"%1\" was NOT saved.")).arg(filePath), QU::warning);
+		logSrv->add(QString(tr("The task file \"%1\" was NOT saved.")).arg(filePath), QU::warning);
 		return false;
 	}
 }

@@ -1,4 +1,5 @@
 #include "QURenameTask.h"
+#include "QULogService.h"
 
 #include <QFileInfo>
 #include <QVariant>
@@ -96,7 +97,7 @@ void QURenameTask::startOn(QUSongFile *song) {
 	else if (QString::compare(this->_target, "background", Qt::CaseInsensitive) == 0) song->renameSongBackground(schema);
 	else if (QString::compare(this->_target, "video", Qt::CaseInsensitive) == 0)      song->renameSongVideo(schema);
 	else
-		emit finished(QString(tr("Invalid target: %1")).arg(this->_target), QU::warning);
+		logSrv->add(QString(tr("Invalid target: %1")).arg(this->_target), QU::warning);
 }
 
 /*!

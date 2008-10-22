@@ -1,4 +1,5 @@
 #include "QUTaskList.h"
+#include "QULogService.h"
 
 #include "QUPreparatoryTask.h"
 #include "QULyricTask.h"
@@ -73,8 +74,6 @@ void QUTaskList::resetTaskList() {
 		if( QString::compare("id3", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 ) {
 			QUAudioTagTask *newTask = new QUAudioTagTask(task);
 			this->addItem(new QUTaskItem(newTask));
-
-			connect(newTask, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
 		}
 	}
 
@@ -83,8 +82,6 @@ void QUTaskList::resetTaskList() {
 		if( QString::compare("rename", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 ) {
 			QURenameTask *newTask = new QURenameTask(task);
 			this->addItem(new QUTaskItem(newTask));
-
-			connect(newTask, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
 		}
 	}
 
@@ -162,11 +159,10 @@ void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
 
 void QUTaskList::addAudioTagTask() {
 	QUAudioTagTaskDialog *dlg = new QUAudioTagTaskDialog(this);
-	connect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
 
 	if(dlg->exec()) {
 		this->resetTaskList();
-		emit finished(tr("Task list was refreshed successfully."), QU::information);
+		logSrv->add(tr("Task list was refreshed successfully."), QU::information);
 	}
 
 	delete dlg;
@@ -174,11 +170,10 @@ void QUTaskList::addAudioTagTask() {
 
 void QUTaskList::addRenameTask() {
 	QURenameTaskDialog *dlg = new QURenameTaskDialog(this);
-	connect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
 
 	if(dlg->exec()) {
 		this->resetTaskList();
-		emit finished(tr("Task list was refreshed successfully."), QU::information);
+		logSrv->add(tr("Task list was refreshed successfully."), QU::information);
 	}
 
 	delete dlg;
@@ -203,11 +198,9 @@ void QUTaskList::editCurrentTask() {
 	else
 		return;
 
-	connect(dlg, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
-
 	if(dlg->exec()) {
 		this->resetTaskList();
-		emit finished(tr("Task list was refreshed successfully."), QU::information);
+		logSrv->add(tr("Task list was refreshed successfully."), QU::information);
 	}
 
 	delete dlg;

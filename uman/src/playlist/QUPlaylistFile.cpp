@@ -1,5 +1,6 @@
 #include "QUPlaylistFile.h"
 #include "QUMainWindow.h"
+#include "QULogService.h"
 
 #include <QFile>
 #include <QRegExp>
@@ -93,7 +94,7 @@ bool QUPlaylistFile::save() {
 	QFile file(_fi.filePath());
 
 	if(!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)) {
-		emit finished(QString(tr("Save error! The playlist file \"%1\" was NOT saved.")).arg(_fi.filePath()), QU::warning);
+		logSrv->add(QString(tr("Save error! The playlist file \"%1\" was NOT saved.")).arg(_fi.filePath()), QU::warning);
 		return false;
 	}
 
@@ -112,7 +113,7 @@ bool QUPlaylistFile::save() {
 	file.write(QString("#%1:\n").arg(SONGS_TAG).toLocal8Bit());
 	foreach(QUPlaylistEntry *entry, _playlist) {
 		if(!entry->song())
-			emit finished(QString(tr("Warning! The playlist entry \"%1 - %2\" may NOT be found by UltraStar!")).arg(entry->artistLink()).arg(entry->titleLink()), QU::warning);
+			logSrv->add(QString(tr("Warning! The playlist entry \"%1 - %2\" may NOT be found by UltraStar!")).arg(entry->artistLink()).arg(entry->titleLink()), QU::warning);
 		else
 			entry->setLinks(entry->song()->artist(), entry->song()->title());
 
@@ -120,7 +121,7 @@ bool QUPlaylistFile::save() {
 	}
 
 	file.close();
-	emit finished(QString(tr("The playlist file \"%1\" was saved successfully.")).arg(_fi.filePath()), QU::saving);
+	logSrv->add(QString(tr("The playlist file \"%1\" was saved successfully.")).arg(_fi.filePath()), QU::saving);
 	return true;
 }
 
@@ -152,7 +153,7 @@ bool QUPlaylistFile::addEntry(QUSongFile *song) {
 
 	foreach(QUPlaylistEntry *entry, _playlist) { // TOOO: a progressbar helpful?! (for big playlists)
 		if(song == entry->song()) {
-			emit finished(QString(tr("The song \"%1 - %2\" is already in the current playlist. It was not added.")).arg(song->artist()).arg(song->title()), QU::warning);
+			logSrv->add(QString(tr("The song \"%1 - %2\" is already in the current playlist. It was not added.")).arg(song->artist()).arg(song->title()), QU::warning);
 			return false;
 		}
 	}
@@ -180,7 +181,7 @@ void QUPlaylistFile::changeOrder(const QList<QUPlaylistEntry*> &newOrder) {
 
 	foreach(QUPlaylistEntry *entry, newOrder) {
 		if(!_playlist.contains(entry)) {
-			emit finished(QString("The order of the playlist \"%1\" could NOT be changed. The new order misses an entry.").arg(name()), QU::warning);
+			logSrv->add(QString("The order of the playlist \"%1\" could NOT be changed. The new order misses an entry.").arg(name()), QU::warning);
 			return;
 		}
 	}

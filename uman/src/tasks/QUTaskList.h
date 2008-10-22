@@ -34,9 +34,6 @@ public slots:
 
 	void editCurrentTask();
 
-signals:
-	void finished(const QString &message, QU::EventMessageTypes type);
-
 private:
 	QList<QDomDocument*> loadTaskFiles();
 	void appendSeparator(const QString &text);

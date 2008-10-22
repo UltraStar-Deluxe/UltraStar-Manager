@@ -28,9 +28,6 @@ private slots:
 	void setLimit(const QString &limit);
 	void setKeepDownloads(int state);
 
-signals:
-	void finished(const QString &message, QU::EventMessageTypes type);
-
 private:
 	QVBoxLayout         *_contentLayout;
 	QList<QUCoverGroup*> _groups;

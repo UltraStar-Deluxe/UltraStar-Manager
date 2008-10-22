@@ -48,7 +48,6 @@ public slots:
 	void filterDuplicates();
 
 signals:
-	void finished(const QString &message, QU::EventMessageTypes type);
 	void songCreated(QUSongFile *song);
 	void songToPlaylistRequested(QUSongFile *song);
 	void showLyricsRequested(QUSongFile *song);

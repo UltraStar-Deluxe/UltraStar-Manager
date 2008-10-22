@@ -30,7 +30,6 @@ protected:
 	virtual void dropEvent(QDropEvent *event);
 
 signals:
-	void finished(const QString &message, QU::EventMessageTypes type);
 	void removePlaylistEntryRequested(QUPlaylistEntry *entry);
 	void orderChanged(QList<QUPlaylistEntry*> newOrder);
 

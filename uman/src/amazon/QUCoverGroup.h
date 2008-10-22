@@ -34,9 +34,6 @@ private slots:
 
 	void openAmazonSearchUrl();
 
-signals:
-	void finished(const QString &message, QU::EventMessageTypes type);
-
 private:
 	QHttp            *_http;
 	QUSongItem       *_item;

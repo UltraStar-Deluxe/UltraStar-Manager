@@ -30,9 +30,6 @@ protected slots:
 
 	void updateMoveButtons(int row, int column);
 
-signals:
-	void finished(const QString &message, QU::EventMessageTypes type);
-
 protected:
 	QString _fileName;
 	QDomDocument _doc;

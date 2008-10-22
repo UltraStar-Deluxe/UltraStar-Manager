@@ -2,6 +2,7 @@
 
 #include "QUProgressDialog.h"
 #include "QUMessageBox.h"
+#include "QULogService.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -14,7 +15,6 @@
 QUPlaylistArea::QUPlaylistArea(QWidget *parent): QWidget(parent) {
 	setupUi(this);
 
-	connect(playlist, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
 	connect(playlist, SIGNAL(removePlaylistEntryRequested(QUPlaylistEntry*)), this, SLOT(removeCurrentPlaylistEntry(QUPlaylistEntry*)));
 	connect(playlist, SIGNAL(orderChanged(QList<QUPlaylistEntry*>)), this, SLOT(changeCurrentPlaylistOrder(QList<QUPlaylistEntry*>)));
 
@@ -105,7 +105,7 @@ void QUPlaylistArea::addSongToCurrentPlaylist(QUSongFile *song) {
 		return;
 
 	if(currentPlaylistIndex() < 0) {
-		emit finished(QString("Could NOT add song \"%1 - %2\" to playlist. Try to create a new one.").arg(song->artist()).arg(song->title()), QU::warning);
+		logSrv->add(QString("Could NOT add song \"%1 - %2\" to playlist. Try to create a new one.").arg(song->artist()).arg(song->title()), QU::warning);
 		return;
 	}
 
@@ -151,7 +151,7 @@ void QUPlaylistArea::saveUnsavedChanges() {
 				list->setFileInfo(QFileInfo(filePath));
 				list->save();
 			} else {
-				emit finished(QString(tr("The new playlist \"%1\" was not saved.")).arg(list->name()), QU::information);
+				logSrv->add(QString(tr("The new playlist \"%1\" was not saved.")).arg(list->name()), QU::information);
 			}
 		}
 	}
@@ -284,8 +284,6 @@ void QUPlaylistArea::addPlaylist() {
 	QUPlaylistFile *newPlaylist = new QUPlaylistFile(QFileInfo(QUPlaylistFile::dir(), "???").filePath());
 	newPlaylist->setName(tr("New Playlist"));
 
-	connect(newPlaylist, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
-
 	_playlists.append(newPlaylist);
 	this->setAreaEnabled(true);
 
@@ -308,8 +306,6 @@ void QUPlaylistArea::addPlaylist() {
  */
 void QUPlaylistArea::addPlaylist(const QString &filePath) {
 	QUPlaylistFile *newPlaylist = new QUPlaylistFile(filePath);
-
-	connect(newPlaylist, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
 
 	_playlists.append(newPlaylist);
 	this->setAreaEnabled(true);
@@ -389,7 +385,7 @@ void QUPlaylistArea::changePlaylistDir() {
 
 		refreshAllPlaylists(_songsRef);
 
-		emit finished(QString("Folder for playlists changed to: \"%1\"").arg(newPath), QU::information);
+		logSrv->add(QString("Folder for playlists changed to: \"%1\"").arg(newPath), QU::information);
 	}
 }
 
@@ -410,9 +406,9 @@ void QUPlaylistArea::removeCurrentPlaylist() {
 	// --------------------------------------------
 
 	if( QFile::remove(_playlists.at(currentPlaylistIndex())->fileInfo().filePath()) )
-		emit finished(QString(tr("The playlist file \"%1\" was removed successfully.")).arg(_playlists.at(currentPlaylistIndex())->fileInfo().filePath()), QU::information);
+		logSrv->add(QString(tr("The playlist file \"%1\" was removed successfully.")).arg(_playlists.at(currentPlaylistIndex())->fileInfo().filePath()), QU::information);
 	else
-		emit finished(QString(tr("The playlist file \"%1\" could NOT be removed. Does it exist?")).arg(_playlists.at(currentPlaylistIndex())->fileInfo().filePath()), QU::warning);
+		logSrv->add(QString(tr("The playlist file \"%1\" could NOT be removed. Does it exist?")).arg(_playlists.at(currentPlaylistIndex())->fileInfo().filePath()), QU::warning);
 
 	int tmpIndex = currentPlaylistIndex();
 	QString tmpName = _playlists.at(currentPlaylistIndex())->name();
@@ -432,7 +428,7 @@ void QUPlaylistArea::removeCurrentPlaylist() {
 	if(playlistCombo->count() == 0)
 		this->setAreaEnabled(false);
 
-	emit finished(QString(tr("The playlist \"%1\" was removed successfully.")).arg(tmpName), QU::information);
+	logSrv->add(QString(tr("The playlist \"%1\" was removed successfully.")).arg(tmpName), QU::information);
 }
 
 void QUPlaylistArea::removeCurrentPlaylistEntry(QUPlaylistEntry *entry) {

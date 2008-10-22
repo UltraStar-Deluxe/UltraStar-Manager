@@ -82,7 +82,6 @@ void QUAmazonDialog::createGroups(const QList<QUSongItem*> &items) {
 		_contentLayout->addWidget(group);
 		_groups.append(group);
 
-		connect(group, SIGNAL(finished(const QString&, QU::EventMessageTypes)), this, SIGNAL(finished(const QString&, QU::EventMessageTypes)));
 		group->showCovers();
 	}
 }

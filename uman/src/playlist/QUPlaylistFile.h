@@ -47,9 +47,6 @@ public:
 
 	QList<QUSongFile*> connectedSongs() const;
 
-signals:
-	void finished(const QString &message, QU::EventMessageTypes type);
-
 private:
 	QFileInfo               _fi;
 	QString                 _name;
