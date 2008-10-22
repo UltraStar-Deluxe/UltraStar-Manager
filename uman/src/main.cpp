@@ -85,15 +85,13 @@ void initLanguage(QApplication &app, QTranslator &t, QSplashScreen &s) {
 	// message needs to be here because it can be translated only after installing
 	// the translator
 	if(!settingFound)
-		QUMessageBox::ask(0,
+		QUMessageBox::information(0,
 				QObject::tr("Init Language"),
 				QObject::tr("There was no configuration setting about your language.Your <b>system language</b> will be used if possible.<br>"
 						"<br>"
 						"See <b>Options > Language</b> to change this."),
-				":/marks/accept.png", QObject::tr("Continue."),
-				"", "",
-				"", "",
-				50);
+				BTN << ":/marks/accept.png" << QObject::tr("Continue."),
+				270);
 }
 
 void handlePreviousAppCrash() {
@@ -105,16 +103,14 @@ void handlePreviousAppCrash() {
 		return; // everything is ok
 	}
 
-	QUMessageBox::Results result = QUMessageBox::ask(0,
+	int result = QUMessageBox::critical(0,
 			QObject::tr("Application Crash Detected"),
 			QObject::tr("The UltraStar Manager did not exit successfully last time. Maybe you've chosen a <b>bad song folder</b>.<br>"
 					"<br>"
 					"Please report this problem <a href=\"http://uman.sf.net\">here</a>."),
-			":/marks/accept.png", QObject::tr("Try again."),
-			":/control/folder_note.png", QObject::tr("Select another song folder."),
-			"", "",
-			0, QU::error);
-	if(result == QUMessageBox::second) {
+			BTN	<< ":/marks/accept.png"        << QObject::tr("Try again.")
+			    << ":/control/folder_note.png" << QObject::tr("Select another song folder."));
+	if(result == 1) {
 		QSettings settings;
 		settings.remove("songPath");
 		settings.remove("playlistFilePath");

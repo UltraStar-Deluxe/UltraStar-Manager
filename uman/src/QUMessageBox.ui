@@ -8,12 +8,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>228</width>
-    <height>135</height>
+    <width>226</width>
+    <height>143</height>
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>Dialog</string>
+   <string>MessageBox</string>
   </property>
   <property name="modal" >
    <bool>true</bool>
@@ -126,7 +126,7 @@
       <item>
        <widget class="QLabel" name="message" >
         <property name="text" >
-         <string>...</string>
+         <string>This is an example message. You'll have to change it to fit your needs.</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -174,7 +174,7 @@
       </spacer>
      </item>
      <item>
-      <layout class="QVBoxLayout" >
+      <layout class="QVBoxLayout" name="buttonLayout" >
        <property name="spacing" >
         <number>5</number>
        </property>
@@ -187,34 +187,33 @@
        <item>
         <widget class="QPushButton" name="one" >
          <property name="text" >
-          <string>PushButton</string>
+          <string>Okay, I get it.</string>
          </property>
-         <property name="shortcut" >
-          <string>1</string>
+         <property name="icon" >
+          <iconset resource="images/uman.qrc" >
+           <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="two" >
          <property name="text" >
-          <string>PushButton</string>
+          <string>What do you mean?</string>
          </property>
-         <property name="shortcut" >
-          <string>2</string>
+         <property name="icon" >
+          <iconset resource="images/uman.qrc" >
+           <normaloff>:/marks/help.png</normaloff>:/marks/help.png</iconset>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="three" >
          <property name="text" >
-          <string>three</string>
+          <string>I'm outta here...</string>
          </property>
          <property name="icon" >
           <iconset resource="images/uman.qrc" >
-           <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
-         </property>
-         <property name="shortcut" >
-          <string>3</string>
+           <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
          </property>
         </widget>
        </item>

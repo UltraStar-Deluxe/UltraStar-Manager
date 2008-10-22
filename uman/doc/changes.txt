@@ -124,6 +124,7 @@ NEW STUFF
   > e.g. ": 20 7ß 38 blubb" (false alpha-numeric..., USdx error)
 * top-ten
   > artists
+* compare two song text files (which one is better?)
   
 TASKS
 ! better error handling for "path change tasks"

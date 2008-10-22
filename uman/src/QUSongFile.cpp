@@ -264,13 +264,12 @@ void QUSongFile::verifyTags(QStringList &tags) {
 	if(tags.size() != QUSongFile::tags().size()) {
 		settings.setValue("tagOrder", QVariant(QUSongFile::tags()));
 
-		QUMessageBox::ask(QApplication::activeWindow(),
+		QUMessageBox::information(QApplication::activeWindow(),
 				tr("Deprecated tag information detected"),
 				tr(
 						"The number of available tags in your configuration and that one this application offers are different.<br><br>"
 						"The tag order was reset to its <b>default order</b>. Check out the <b>options</b> to set up your custom order again."
-				),
-				":/marks/accept.png", tr("Continue"));
+				));
 
 		tags = QUSongFile::tags();
 	}

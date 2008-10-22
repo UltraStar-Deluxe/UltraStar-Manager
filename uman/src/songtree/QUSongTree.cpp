@@ -815,14 +815,13 @@ void QUSongTree::requestDeleteSelectedSongs() {
 		infoText.append(QString("<br>&nbsp;&nbsp;<b>%1 - %2</b>").arg(songItem->song()->artist()).arg(songItem->song()->title()));
 	}
 
-	QUMessageBox::Results result = QUMessageBox::ask(this,
+	int result = QUMessageBox::information(this,
 			tr("Delete Songs"),
 			infoText,
-			":/control/bin.png", tr("Delete these songs."),
-			":/marks/cancel.png", tr("Cancel delete operation."),
-			"", "",
-			50);
-	if(result == QUMessageBox::second)
+			BTN << ":/control/bin.png"  << tr("Delete these songs.")
+			    << ":/marks/cancel.png" << tr("Cancel delete operation."),
+			270);
+	if(result == 1)
 		return;
 
 	// ----------------------------------
@@ -885,14 +884,13 @@ void QUSongTree::mergeSelectedSongs() {
 		infoText.append(QString("<br>&nbsp;&nbsp;<b>%1 - %2</b>").arg(songItem->song()->artist()).arg(songItem->song()->title()));
 	}
 
-	QUMessageBox::Results result = QUMessageBox::ask(this,
+	int result = QUMessageBox::information(this,
 			tr("Merge Songs"),
 			infoText,
-			":/control/bin.png", tr("Merge these songs."),
-			":/marks/cancel.png", tr("Cancel merge operation."),
-			"", "",
-			100);
-	if(result == QUMessageBox::second)
+			BTN << ":/control/bin.png"  << tr("Merge these songs.")
+			    << ":/marks/cancel.png" << tr("Cancel merge operation."),
+			320);
+	if(result == 1)
 		return;
 
 	// ----------------------------------
@@ -962,12 +960,12 @@ void QUSongTree::calculateSpeed() {
 
 bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
 	if(files.size() > FILE_DROP_LIMIT) {
-		QUMessageBox::Results result = QUMessageBox::ask(this,
+		int result = QUMessageBox::information(this,
 				tr("Copy Files"),
 				QString(tr("You want to copy <b>%1</b> files to <b>\"%2\"</b>.")).arg(files.size()).arg(item->song()->songFileInfo().dir().path()),
-				":/control/save_all.png", tr("Copy these files."),
-				":/marks/cancel.png", tr("Cancel copy operation."));
-		if(result == QUMessageBox::second)
+				BTN << ":/control/save_all.png" << tr("Copy these files.")
+				    << ":/marks/cancel.png"     << tr("Cancel copy operation."));
+		if(result == 1)
 			return false;
 	}
 
@@ -1174,12 +1172,12 @@ void QUSongTree::deleteCurrentItem() {
 	if(!item || item->isToplevel())
 		return; // only allow to delete files which cannot be selected - no directories
 
-	QUMessageBox::Results result = QUMessageBox::ask(this,
+	int result = QUMessageBox::information(this,
 			tr("Delete File"),
 			QString(tr("<b>\"%1\"</b> will be deleted permanently. You cannot undo a delete operation.")).arg(item->text(FOLDER_COLUMN)),
-			":/control/bin.png", tr("Delete this file."),
-			":/marks/cancel.png", tr("Cancel delete operation."));
-	if(result == QUMessageBox::second)
+			BTN << ":/control/bin.png"  << tr("Delete this file.")
+			    << ":/marks/cancel.png" << tr("Cancel delete operation."));
+	if(result == 1)
 		return;
 
 	if(QFile::remove(QFileInfo(item->song()->songFileInfo().dir(), item->text(FOLDER_COLUMN)).filePath()))

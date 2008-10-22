@@ -76,33 +76,33 @@ QUMainWindow::~QUMainWindow() {
  * Overloaded to ensure that all changes are saved before closing this application.
  */
 void QUMainWindow::closeEvent(QCloseEvent *event) {
-	QUMessageBox::Results result;
+	int result;
 
 	if(songTree->hasUnsavedChanges()) {
-		result = QUMessageBox::ask(this,
+		result = QUMessageBox::information(this,
 				tr("Quit"),
 				tr("<b>Songs</b> have been modified."),
-				":/control/save_all.png", tr("Save all changed songs."),
-				":/control/bin.png", tr("Discard all changes."),
-				":/marks/cancel.png", tr("Cancel this action."));
-		if(result == QUMessageBox::first)
+				BTN << ":/control/save_all.png" << tr("Save all changed songs.")
+				    << ":/control/bin.png"      << tr("Discard all changes.")
+				    << ":/marks/cancel.png"     << tr("Cancel this action."));
+		if(result == 0)
 			songTree->saveUnsavedChanges();
-		else if(result == QUMessageBox::third) {
+		else if(result == 2) {
 			event->ignore();
 			return;
 		}
 	}
 
 	if(playlistArea->hasUnsavedChanges()) {
-		result = QUMessageBox::ask(this,
+		result = QUMessageBox::information(this,
 				tr("Quit"),
 				tr("<b>Playlists</b> have been modified."),
-				":/control/save_all.png", tr("Save all changed playlists."),
-				":/control/bin.png", tr("Discard all changes."),
-				":/marks/cancel.png", tr("Cancel this action."));
-		if(result == QUMessageBox::first)
+				BTN << ":/control/save_all.png" << tr("Save all changed playlists.")
+				    << ":/control/bin.png"      << tr("Discard all changes.")
+				    << ":/marks/cancel.png"     << tr("Cancel this action."));
+		if(result == 0)
 			playlistArea->saveUnsavedChanges();
-		else if(result == QUMessageBox::third) {
+		else if(result == 2) {
 			event->ignore();
 			return;
 		}
@@ -442,15 +442,15 @@ void QUMainWindow::deleteSong(QUSongFile *song) {
  */
 void QUMainWindow::refreshAllSongs(bool force) {
 	if(!force && songTree->hasUnsavedChanges()) {
-		QUMessageBox::Results result = QUMessageBox::ask(this,
+		int result = QUMessageBox::information(this,
 				tr("Rebuild Song Tree"),
 				tr("Songs have been modified."),
-				":/control/save_all.png", tr("Save all changes."),
-				":/control/bin.png", tr("Discard all changes."),
-				":/marks/cancel.png", tr("Cancel this action."));
-		if(result == QUMessageBox::third)
+				BTN << ":/control/save_all.png" << tr("Save all changes.")
+				    << ":/control/bin.png"      << tr("Discard all changes.")
+				    << ":/marks/cancel.png"     << tr("Cancel this action."));
+		if(result == 2)
 			return;
-		else if(result == QUMessageBox::first)
+		else if(result == 0)
 			songTree->saveUnsavedChanges();
 	}
 
@@ -792,7 +792,7 @@ void QUMainWindow::aboutUman() {
 }
 
 void QUMainWindow::aboutTagLib() {
-	QUMessageBox::ask(this,
+	QUMessageBox::information(this,
 			tr("About TagLib"),
 			QString(tr("<b>TagLib Audio Meta-Data Library</b><br><br>"
 					"TagLib is a library for reading and editing the meta-data of several popular audio formats.<br><br>"
@@ -800,8 +800,7 @@ void QUMainWindow::aboutTagLib() {
 					"Visit: <a href=\"http://developer.kde.org/~wheeler/taglib.html\">TagLib Homepage</a>"))
 					.arg(TAGLIB_MAJOR_VERSION)
 					.arg(TAGLIB_MINOR_VERSION)
-					.arg(TAGLIB_PATCH_VERSION),
-			":/marks/accept.png", tr("Continue."));
+					.arg(TAGLIB_PATCH_VERSION));
 }
 
 void QUMainWindow::editTagOrder() {
@@ -818,15 +817,15 @@ void QUMainWindow::editTagOrder() {
  */
 void QUMainWindow::changeSongDir() {
 	if(songTree->hasUnsavedChanges()) {
-		QUMessageBox::Results result = QUMessageBox::ask(this,
+		int result = QUMessageBox::information(this,
 				tr("Change Song Directory"),
 				tr("Songs have been modified."),
-				":/control/save_all.png", tr("Save all changes."),
-				":/control/bin.png", tr("Discard all changes."),
-				":/marks/cancel.png", tr("Cancel this action."));
-		if(result == QUMessageBox::third)
+				BTN << ":/control/save_all.png" << tr("Save all changes.")
+				    << ":/control/bin.png"      << tr("Discard all changes.")
+				    << ":/marks/cancel.png"     << tr("Cancel this action."));
+		if(result == 2)
 			return;
-		else if(result == QUMessageBox::first)
+		else if(result == 0)
 			songTree->saveUnsavedChanges();
 	}
 
@@ -857,15 +856,15 @@ void QUMainWindow::changeSongDir() {
  */
 void QUMainWindow::editCustomTags() {
 	if(songTree->hasUnsavedChanges()) {
-		QUMessageBox::Results result = QUMessageBox::ask(this,
+		int result = QUMessageBox::information(this,
 				tr("Custom Tags"),
 				tr("Songs have been modified."),
-				":/control/save_all.png", tr("Save all changes."),
-				":/control/bin.png", tr("Discard all changes."),
-				":/marks/cancel.png", tr("Cancel this action."));
-		if(result == QUMessageBox::third)
+				BTN << ":/control/save_all.png" << tr("Save all changes.")
+				    << ":/control/bin.png"      << tr("Discard all changes.")
+				    << ":/marks/cancel.png"     << tr("Cancel this action."));
+		if(result == 2)
 			return;
-		else if(result == QUMessageBox::first)
+		else if(result == 0)
 			songTree->saveUnsavedChanges();
 	}
 
@@ -1141,12 +1140,12 @@ void QUMainWindow::enableEnglish() {
 
 	// ---------------
 
-	QUMessageBox::Results result = QUMessageBox::ask(this,
+	int result = QUMessageBox::information(this,
 			tr("Change Language"),
 			tr("Application language changed to <b>English</b>. You need to restart UltraStar Manager to take effect."),
-			":/control/quit.png", tr("Quit UltraStar Manager."),
-			":/marks/accept.png", tr("Continue."));
-	if(result == QUMessageBox::first)
+			BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
+			    << ":/marks/accept.png" << tr("Continue."));
+	if(result == 0)
 		this->close();
 }
 
@@ -1163,12 +1162,12 @@ void QUMainWindow::enableGerman() {
 
 	// ---------------
 
-	QUMessageBox::Results result = QUMessageBox::ask(this,
+	int result = QUMessageBox::information(this,
 			tr("Change Language"),
 			tr("Application language changed to <b>German</b>. You need to restart UltraStar Manager to take effect."),
-			":/control/quit.png", tr("Quit UltraStar Manager."),
-			":/marks/accept.png", tr("Continue."));
-	if(result == QUMessageBox::first)
+			BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
+			    << ":/marks/accept.png" << tr("Continue."));
+	if(result == 0)
 		this->close();
 }
 
@@ -1185,12 +1184,12 @@ void QUMainWindow::enablePolish() {
 
 	// ---------------
 
-	QUMessageBox::Results result = QUMessageBox::ask(this,
+	int result = QUMessageBox::information(this,
 			tr("Change Language"),
 			tr("Application language changed to <b>Polish</b>. You need to restart UltraStar Manager to take effect."),
-			":/control/quit.png", tr("Quit UltraStar Manager."),
-			":/marks/accept.png", tr("Continue."));
-	if(result == QUMessageBox::first)
+			BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
+			    << ":/marks/accept.png" << tr("Continue."));
+	if(result == 0)
 		this->close();
 }
 

@@ -368,15 +368,15 @@ void QUPlaylistArea::setAreaEnabled(bool enabled) {
  */
 void QUPlaylistArea::changePlaylistDir() {
 	if(this->hasUnsavedChanges()) {
-		QUMessageBox::Results result = QUMessageBox::ask(this,
+		int result = QUMessageBox::information(this,
 				tr("Change Playlist Directory"),
 				tr("Playlists have been modified."),
-				":/control/save_all.png", tr("Save all changed playlists."),
-				":/control/bin.png", tr("Discard all changes."),
-				":/marks/cancel.png", tr("Cancel this action."));
-		if(result == QUMessageBox::first)
+				BTN << ":/control/save_all.png" << tr("Save all changed playlists.")
+				    << ":/control/bin.png"      << tr("Discard all changes.")
+				    << ":/marks/cancel.png"     << tr("Cancel this action."));
+		if(result == 0)
 			this->saveUnsavedChanges();
-		else if(result == QUMessageBox::third)
+		else if(result == 2)
 			return;
 	}
 
@@ -397,14 +397,14 @@ void QUPlaylistArea::removeCurrentPlaylist() {
 	if(currentPlaylistIndex() < 0)
 		return;
 
-	QUMessageBox::Results result = QUMessageBox::ask(this,
+	int result = QUMessageBox::information(this,
 			tr("Delete Playlist"),
 			QString(tr("<b>\"%1 (%2)\"</b> will be deleted permanently. You cannot undo a delete operation."))
 				.arg(_playlists.at(currentPlaylistIndex())->name())
 				.arg(_playlists.at(currentPlaylistIndex())->fileInfo().fileName()),
-			":/control/bin.png", tr("Delete this playlist."),
-			":/marks/cancel.png", tr("Cancel delete operation."));
-	if(result == QUMessageBox::second)
+			BTN << ":/control/bin.png"  << tr("Delete this playlist.")
+			    << ":/marks/cancel.png" << tr("Cancel delete operation."));
+	if(result == 1)
 		return;
 
 	// --------------------------------------------

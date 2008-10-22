@@ -2,80 +2,110 @@
 
 #include <QIcon>
 #include <QPixmap>
+#include <QVariant>
 
 QUMessageBox::QUMessageBox(QWidget *parent): QDialog(parent) {
 	setupUi(this);
 
 	this->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 
-	_result = QUMessageBox::none;
+	_choice = -1;
 
-	connect(one, SIGNAL(clicked()), this, SLOT(firstClicked()));
-	connect(two, SIGNAL(clicked()), this, SLOT(secondClicked()));
-	connect(three, SIGNAL(clicked()), this, SLOT(thirdClicked()));
-}
-
-void QUMessageBox::reject() {
-	// cannot reject
+	connect(&_buttonGroup, SIGNAL(buttonClicked(int)), this, SLOT(makeChoice(int)));
 }
 
 void QUMessageBox::closeEvent(QCloseEvent *event) {
-	if(_result == QUMessageBox::none) {
+	if(_choice == -1) {
 		event->ignore();
 	} else {
 		event->accept();
 	}
 }
 
-QUMessageBox::Results QUMessageBox::ask(
-		QWidget *parent,
-		const QString &title,
-		const QString &message,
-		const QString &icon1, const QString &text1,
-		const QString &icon2, const QString &text2,
-		const QString &icon3, const QString &text3,
-		int widthChange,
-		QU::EventMessageTypes type)
-{
+int QUMessageBox::information(QWidget *parent, const QString &title, const QString &msg, const QStringList &buttons, int widthHint, int defaultIndex) {
 	QUMessageBox *dlg = new QUMessageBox(parent);
 
-	dlg->setWindowTitle(title);
-	dlg->message->setText(message);
+	dlg->setIcon(":/marks/information.png");
 
-	if(type == QU::warning)
-		dlg->icon->setPixmap(QPixmap(":/marks/error.png"));
-	else if(type == QU::help)
-		dlg->icon->setPixmap(QPixmap(":/marks/help.png"));
-	else if(type == QU::error)
-		dlg->icon->setPixmap(QPixmap(":/marks/cancel.png"));
-	else
-		dlg->icon->setPixmap(QPixmap(":/marks/information.png"));
-
-	dlg->one->setIcon(QIcon(icon1));
-	dlg->one->setText(text1);
-	dlg->one->setFocus();
-
-	if(text2.isEmpty())
-		dlg->two->hide();
-	else {
-		dlg->two->setIcon(QIcon(icon2));
-		dlg->two->setText(text2);
-		dlg->two->setFocus();
-	}
-
-	if(text3.isEmpty())
-		dlg->three->hide();
-	else {
-		dlg->three->setIcon(QIcon(icon3));
-		dlg->three->setText(text3);
-		dlg->three->setFocus();
-	}
-
-	dlg->resize(dlg->width() + widthChange, dlg->minimumSizeHint().height());
-
-	dlg->exec();
-	QUMessageBox::Results r = dlg->result();
+	int result = dlg->showMessage(title, msg, buttons, defaultIndex, widthHint);
 	delete dlg;
+	return result;
+}
 
-	return r;
+int QUMessageBox::question(QWidget *parent, const QString &title, const QString &msg, const QStringList &buttons, int widthHint, int defaultIndex) {
+	QUMessageBox *dlg = new QUMessageBox(parent);
+
+	dlg->setIcon(":/marks/help.png");
+
+	int result = dlg->showMessage(title, msg, buttons, defaultIndex, widthHint);
+	delete dlg;
+	return result;
+}
+
+int QUMessageBox::warning(QWidget *parent, const QString &title, const QString &msg, const QStringList &buttons, int widthHint, int defaultIndex) {
+	QUMessageBox *dlg = new QUMessageBox(parent);
+
+	dlg->setIcon(":/marks/error.png");
+
+	int result = dlg->showMessage(title, msg, buttons, defaultIndex, widthHint);
+	delete dlg;
+	return result;
+}
+
+int QUMessageBox::critical(QWidget *parent, const QString &title, const QString &msg, const QStringList &buttons, int widthHint, int defaultIndex) {
+	QUMessageBox *dlg = new QUMessageBox(parent);
+
+	dlg->setIcon(":/marks/cancel.png");
+
+	int result = dlg->showMessage(title, msg, buttons, defaultIndex, widthHint);
+	delete dlg;
+	return result;
+}
+
+int QUMessageBox::showMessage(const QString &title, const QString &msg, const QStringList &buttons, int defaultIndex, int widthHint) {
+	/* debug start */
+	delete one;
+	delete two;
+	delete three;
+	/* debug end */
+
+	if(defaultIndex == -1)
+		defaultIndex = (buttons.size() / 2 - 1);
+
+	for(int i = 1; i < buttons.size(); i += 2) {
+		vboxLayout1->addWidget(createButton(
+				QIcon(buttons.at(i - 1)),
+				buttons.at(i),
+				(i - 1) / 2 == defaultIndex));
+	}
+
+	setWindowTitle(title);
+	message->setText(msg);
+
+	resize(widthHint > -1 ? widthHint : width(), minimumSizeHint().height());
+
+	exec();
+
+	return _choice;
+}
+
+QPushButton* QUMessageBox::createButton(const QIcon &icon, const QString &text, bool isDefault) {
+	QPushButton *btn = new QPushButton(icon, text, this);
+
+	if(isDefault)
+		btn->setFocus();
+
+	_buttonGroup.addButton(btn, _buttonGroup.buttons().size());
+	btn->setShortcut(QVariant(_buttonGroup.buttons().size()).toString());
+
+	return btn;
+}
+
+void QUMessageBox::setIcon(const QString &fileName) {
+	icon->setPixmap(QPixmap(fileName));
+}
+
+void QUMessageBox::makeChoice(int id) {
+	_choice = id;
+	this->accept();
 }

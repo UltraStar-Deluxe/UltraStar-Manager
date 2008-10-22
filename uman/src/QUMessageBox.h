@@ -1,8 +1,14 @@
 #ifndef QUMESSAGEBOX_H_
 #define QUMESSAGEBOX_H_
 
+// just vor convenience with message boxes
+#define BTN QStringList()
+
 #include <QDialog>
 #include <QCloseEvent>
+#include <QStringList>
+#include <QPushButton>
+#include <QMessageBox>
 
 #include "QU.h"
 
@@ -12,41 +18,30 @@ class QUMessageBox: public QDialog, private Ui::QUMessageBox {
 	Q_OBJECT
 
 public:
-	enum Result {
-		none,
-		first,
-		second,
-		third
-	};
-	Q_DECLARE_FLAGS(Results, Result);
-
-	static QUMessageBox::Results ask(
-			QWidget *parent,
-			const QString &title,
-			const QString &message,
-			const QString &icon1, const QString &text1,
-			const QString &icon2 = "", const QString &text2 = "",
-			const QString &icon3 = "", const QString &text3 = "",
-			int widthChange = 0,
-			QU::EventMessageTypes type = QU::information);
+	static int information(QWidget *parent, const QString &title, const QString &msg, const QStringList &buttons = QStringList() << ":/marks/accept.png" << "OK", int widthHint = -1, int defaultIndex = -1);
+	static int question   (QWidget *parent, const QString &title, const QString &msg, const QStringList &buttons = QStringList() << ":/marks/accept.png" << "OK", int widthHint = -1, int defaultIndex = -1);
+	static int warning    (QWidget *parent, const QString &title, const QString &msg, const QStringList &buttons = QStringList() << ":/marks/accept.png" << "OK", int widthHint = -1, int defaultIndex = -1);
+	static int critical   (QWidget *parent, const QString &title, const QString &msg, const QStringList &buttons = QStringList() << ":/marks/accept.png" << "OK", int widthHint = -1, int defaultIndex = -1);
 
 public slots:
-	virtual void reject();
+	virtual void reject() { /* cannot reject */ }
 
 protected:
 	QUMessageBox(QWidget *parent = 0);
 
-	QUMessageBox::Results result() const { return _result; }
-
+	int choice() const { return _choice; }
 	virtual void closeEvent(QCloseEvent *event);
 
 private slots:
-	void firstClicked() { _result = QUMessageBox::first; this->accept(); }
-	void secondClicked() { _result = QUMessageBox::second; this->accept(); }
-	void thirdClicked() { _result = QUMessageBox::third; this->accept(); }
+	void makeChoice(int id);
 
 private:
-	QUMessageBox::Results _result;
+	QButtonGroup _buttonGroup;
+	int _choice;
+
+	int showMessage(const QString &title, const QString &msg, const QStringList &buttons, int defaultIndex, int widthHint);
+	QPushButton* createButton(const QIcon &icon, const QString &text, bool isDefault = false);
+	void setIcon(const QString &fileName);
 };
 
 #endif /*QUMESSAGEBOX_H_*/
