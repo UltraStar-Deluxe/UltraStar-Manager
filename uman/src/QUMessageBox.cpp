@@ -1,6 +1,7 @@
 #include "QUMessageBox.h"
 
 #include <QIcon>
+#include <QPixmap>
 
 QUMessageBox::QUMessageBox(QWidget *parent): QDialog(parent) {
 	setupUi(this);
@@ -33,12 +34,22 @@ QUMessageBox::Results QUMessageBox::ask(
 		const QString &icon1, const QString &text1,
 		const QString &icon2, const QString &text2,
 		const QString &icon3, const QString &text3,
-		int widthChange)
+		int widthChange,
+		QU::EventMessageTypes type)
 {
 	QUMessageBox *dlg = new QUMessageBox(parent);
 
 	dlg->setWindowTitle(title);
 	dlg->message->setText(message);
+
+	if(type == QU::warning)
+		dlg->icon->setPixmap(QPixmap(":/marks/error.png"));
+	else if(type == QU::help)
+		dlg->icon->setPixmap(QPixmap(":/marks/help.png"));
+	else if(type == QU::error)
+		dlg->icon->setPixmap(QPixmap(":/marks/cancel.png"));
+	else
+		dlg->icon->setPixmap(QPixmap(":/marks/information.png"));
 
 	dlg->one->setIcon(QIcon(icon1));
 	dlg->one->setText(text1);

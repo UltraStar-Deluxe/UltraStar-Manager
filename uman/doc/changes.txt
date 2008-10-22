@@ -17,6 +17,10 @@ SONG TREE
 * open current folder in file explorer
 * "song speed", new column
 
+OTHER STUFF
+* app crashes will now be detected
+  > you can change your song folder on next app start
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 TASKS

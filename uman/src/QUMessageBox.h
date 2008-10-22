@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QCloseEvent>
 
+#include "QU.h"
+
 #include "ui_QUMessageBox.h"
 
 class QUMessageBox: public QDialog, private Ui::QUMessageBox {
@@ -25,7 +27,8 @@ public:
 			const QString &icon1, const QString &text1,
 			const QString &icon2 = "", const QString &text2 = "",
 			const QString &icon3 = "", const QString &text3 = "",
-			int widthChange = 0);
+			int widthChange = 0,
+			QU::EventMessageTypes type = QU::information);
 
 public slots:
 	virtual void reject();

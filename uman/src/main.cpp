@@ -10,9 +10,11 @@
 #include <QSplashScreen>
 #include <QPixmap>
 #include <QString>
+#include <QFile>
 
 void initApplication();
 void initLanguage(QApplication&, QTranslator&, QSplashScreen&);
+void handlePreviousAppCrash();
 
 int main(int argc, char *argv[]) {
 	initApplication();
@@ -24,6 +26,8 @@ int main(int argc, char *argv[]) {
 	splash.show();
 
 	initLanguage(app, tr, splash);
+
+	handlePreviousAppCrash();
 
     QUMainWindow mainWindow;
     app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
@@ -90,4 +94,29 @@ void initLanguage(QApplication &app, QTranslator &t, QSplashScreen &s) {
 				"", "",
 				"", "",
 				50);
+}
+
+void handlePreviousAppCrash() {
+	if(!QFile::exists("running.app")) {
+		QFile f("running.app");
+		f.open(QIODevice::WriteOnly);
+		f.close();
+
+		return; // everything is ok
+	}
+
+	QUMessageBox::Results result = QUMessageBox::ask(0,
+			QObject::tr("Application Crash Detected"),
+			QObject::tr("The UltraStar Manager did not exit successfully last time. Maybe you've chosen a <b>bad song folder</b>.<br>"
+					"<br>"
+					"Please report this problem <a href=\"http://uman.sf.net\">here</a>."),
+			":/marks/accept.png", QObject::tr("Try again."),
+			":/control/folder_note.png", QObject::tr("Select another song folder."),
+			"", "",
+			0, QU::error);
+	if(result == QUMessageBox::second) {
+		QSettings settings;
+		settings.remove("songPath");
+		settings.remove("playlistFilePath");
+	}
 }

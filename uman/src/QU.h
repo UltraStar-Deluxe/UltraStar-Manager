@@ -27,7 +27,8 @@ public:
 		information,
 		warning,
 		help,
-		saving
+		saving,
+		error
 	};
 	Q_DECLARE_FLAGS(EventMessageTypes, EventMessageType)
 

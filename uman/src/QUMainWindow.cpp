@@ -120,6 +120,9 @@ void QUMainWindow::closeEvent(QCloseEvent *event) {
 
 	this->saveLog();
 
+	// everything sould be fine from now on
+	QFile::remove("running.app");
+
 	event->accept();
 }
 
