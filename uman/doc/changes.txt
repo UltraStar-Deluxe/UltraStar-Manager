@@ -17,22 +17,19 @@ SONG TREE
 * open current folder in file explorer
 * "song speed", new column
 
-OTHER STUFF
-* app crashes will now be detected
-  > you can change your song folder on next app start
-  
-REPORTS
-* save last settings in the report dialog
-
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 TASKS
+-
 
 SONG TREE
+-
 
 SONG DETAILS
+-
 
 REPORTS
+* save last settings in the report dialog
   
 PLAYLIST SUPPORT
 * you can add a song to the playlist only once now
@@ -51,6 +48,8 @@ MONTY
 
 INTERNAL STUFF
 * support for "*.mkv" video files added
+* app crashes will now be detected
+  > you can change your song folder on next app start
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
@@ -60,19 +59,25 @@ TASKS
   contains a '%'
 
 SONG TREE
+-
 
 SONG DETAILS
+-
 
 REPORTS
+-
   
 PLAYLIST SUPPORT
 * active list will now be updated if you remove a playlist
 
 FILTER SUPPORT
+-
 
 PICTURE PREVIEW
+-
 
 AMAZON COVER DOWNLOAD
+-
 
 INTERNAL STUFF
 * song folder scan ignores symlinks now
@@ -145,8 +150,6 @@ TASKS
   > a task that removes all dots from artist/title?
 * modify ID3v2 tags via song tags
   > genre, year
-* fix gap/start note beat
-  > http://forum.ultra-star.de/posting.php?mode=reply&f=25&t=5512#pr45570
 
 SONG TREE
 * enable the user to append any custom []-tag to a file/folder

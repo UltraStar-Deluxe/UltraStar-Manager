@@ -94,7 +94,7 @@ void QUMonty::answer(QLabel *montyLbl, QLabel *msgLbl, const QString &question, 
 	if(!question.isEmpty()) {
 		answers.clear(); // process new question
 
-		QRegExp rx(question);
+		QRegExp rx(question, Qt::CaseInsensitive);
 		foreach(QString msg, messages) {
 			if(msg.contains(rx))
 				answers.append(msg);

@@ -553,7 +553,7 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 	menu.addSeparator();
 
 	QMenu customTagsMenu(tr("Custom Tags"), this); customTagsMenu.setIcon(QIcon(":/bullets/bullet_star.png"));
-	QMenu lengthsMenu(tr("Lengths"), this); lengthsMenu.setIcon(QIcon(":/types/time.png"));
+	QMenu lengthsMenu(tr("Time && Speed"), this); lengthsMenu.setIcon(QIcon(":/types/time.png"));
 
 	for(int i = 0; i < headerItem()->columnCount(); i++) {
 		if(i != LENGTH_DIFF_COLUMN and (headerItem()->text(i).isEmpty() or i == FOLDER_COLUMN))
@@ -565,6 +565,7 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 		connect(a, SIGNAL(columnToggled(bool, int)), this, SLOT(toggleColumn(bool, int)));
 
 		switch(i) {
+		case SPEED_COLUMN: lengthsMenu.addSeparator();
 		case START_COLUMN: lengthsMenu.addSeparator();
 		case LENGTH_COLUMN:
 		case LENGTH_DIFF_COLUMN:

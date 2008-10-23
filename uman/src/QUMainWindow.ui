@@ -1133,7 +1133,7 @@ Tasks</string>
      <normaloff>:/lang/pl.png</normaloff>:/lang/pl.png</iconset>
    </property>
    <property name="text" >
-    <string>Polish (język polski)</string>
+    <string>&amp;Polish (Polski)</string>
    </property>
   </action>
  </widget>
