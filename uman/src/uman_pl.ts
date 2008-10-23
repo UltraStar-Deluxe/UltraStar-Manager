@@ -240,37 +240,37 @@
     <message>
         <location filename="QUMonty.cpp" line="106"/>
         <source>Sorry. I don&apos;t understand you.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybacz. Nie wiem co chcesz zrobić.</translation>
     </message>
     <message>
         <location filename="main.cpp" line="107"/>
         <source>Application Crash Detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykryto Nieoczekiwane Zakończenie Pracy Aplikacji</translation>
     </message>
     <message>
         <location filename="main.cpp" line="110"/>
         <source>The UltraStar Manager did not exit successfully last time. Maybe you&apos;ve chosen a &lt;b&gt;bad song folder&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Please report this problem &lt;a href=&quot;http://uman.sf.net&quot;&gt;here&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Podczas ostatniej sesji UltraStar Manager nie został poprawnie zamknięty. Możliwe, że wybrany został niewłaściwy &lt;b&gt;katalog z utworami&lt;/b&gt;&lt;br&gt;Możesz zgłosić ten problem na &lt;a href=&quot;http://uman.sf.net&quot;&gt;stronie twórcy&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="main.cpp" line="112"/>
         <source>Try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spróbuj ponownie.</translation>
     </message>
     <message>
         <location filename="main.cpp" line="112"/>
         <source>Select another song folder.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz inny katalog z utworami.</translation>
     </message>
     <message>
         <location filename="songtree/QUSongItem.cpp" line="461"/>
         <source>Not calculated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie przeliczono.</translation>
     </message>
     <message>
         <location filename="songtree/QUSongItem.cpp" line="462"/>
         <source>Calculate the speed first.</source>
-        <translation type="unfinished"></translation>
+        <translation>Najpierw przelicz prędkość.</translation>
     </message>
 </context>
 <context>
@@ -376,12 +376,12 @@ Amazon...</translation>
     <message>
         <location filename="QUAmazonArea.ui" line="438"/>
         <source>Deletes the current cover before copy &amp; set the new one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuwa aktualną okładkę przed skopiowaniem i ustawieniem nowej.</translation>
     </message>
     <message>
         <location filename="QUAmazonArea.ui" line="441"/>
         <source>Delete Current Song Covers</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń Aktualne Okładki Utworów</translation>
     </message>
 </context>
 <context>
@@ -597,12 +597,12 @@ Amazon...</translation>
     <message>
         <location filename="amazon/QUCoverGroup.cpp" line="215"/>
         <source>Current cover was deleted successfully: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualna okładka została usunięta: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="amazon/QUCoverGroup.cpp" line="213"/>
         <source>Could not delete current cover: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie mogę usunąć aktualnej okładki: &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
@@ -850,22 +850,22 @@ Amazon...</translation>
     <message>
         <location filename="tasks/QULyricTask.cpp" line="10"/>
         <source>Set first timestamp to zero</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw pierwszą nutkę na zero</translation>
     </message>
     <message>
         <location filename="tasks/QULyricTask.cpp" line="14"/>
         <source>Fix spaces at end of line</source>
-        <translation type="unfinished"></translation>
+        <translation>Popraw puste pola na końcach linijek</translation>
     </message>
     <message>
         <location filename="tasks/QULyricTask.cpp" line="15"/>
         <source>Moves spaces from the end of line to the beginning of the next syllable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Przenieś puste pola z końca lini na początek następnej sylaby.</translation>
     </message>
     <message>
         <location filename="tasks/QULyricTask.cpp" line="19"/>
         <source>Remove empty syllables</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń puste sylaby</translation>
     </message>
 </context>
 <context>
@@ -1450,12 +1450,12 @@ Zadania</translation>
     <message>
         <location filename="QUMainWindow.ui" line="1039"/>
         <source>&amp;English</source>
-        <translation type="unfinished">&amp;Angielski (English)</translation>
+        <translation>&amp;Angielski (English)</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1051"/>
         <source>&amp;German (Deutsch)</source>
-        <translation type="unfinished">&amp;Niemiecki (Deutsch)</translation>
+        <translation>&amp;Niemiecki (Deutsch)</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1060"/>
@@ -1510,12 +1510,12 @@ Zadania</translation>
     <message>
         <location filename="QUMainWindow.cpp" line="904"/>
         <source>You can ask me something if you put some keywords in the &lt;i&gt;line edit&lt;/i&gt; below and &lt;i&gt;accept&lt;/i&gt;.&lt;br&gt;&lt;br&gt;I&apos;ll try to understand and answer you. Multiple answers may be possible.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeśli tylko chcesz - możesz mnie o coś zapytać. Po prostu wpisz w &lt;i&gt;poniższą linijkę&lt;/i&gt; słowa dotyczące interesującego Cię tematu. Spróbuję Cię zrozumieć i w miarę możłiwości odpowiedzieć. Możliwe że będę miał więcej niż jedną odpowiedź na nurtujące Cię zagadnienia.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.cpp" line="1185"/>
         <source>Application language changed to &lt;b&gt;Polish&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Język aplikacji został zmieniony na &lt;b&gt;Polski&lt;/b&gt;. Aby zmiany zostały uwzględnione niezbędne jest zamknięcie i ponowne uruchomienie UltraStar Manager&apos;a.</translation>
     </message>
     <message>
         <location filename="QUMainWindow.ui" line="1136"/>
@@ -1563,27 +1563,27 @@ Zadania</translation>
     <message>
         <location filename="QUMessageBox.ui" line="16"/>
         <source>MessageBox</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno Informacji</translation>
     </message>
     <message>
         <location filename="QUMessageBox.ui" line="129"/>
         <source>This is an example message. You&apos;ll have to change it to fit your needs.</source>
-        <translation type="unfinished"></translation>
+        <translation>To jest przykładowa wiadomość. Możesz ją zmienić w celu dopasowania do swoich potrzeb.</translation>
     </message>
     <message>
         <location filename="QUMessageBox.ui" line="190"/>
         <source>Okay, I get it.</source>
-        <translation type="unfinished"></translation>
+        <translation>OK Chwytam.</translation>
     </message>
     <message>
         <location filename="QUMessageBox.ui" line="201"/>
         <source>What do you mean?</source>
-        <translation type="unfinished"></translation>
+        <translation>Co masz na myśli?</translation>
     </message>
     <message>
         <location filename="QUMessageBox.ui" line="212"/>
         <source>I&apos;m outta here...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie ma mnie tutaj...</translation>
     </message>
 </context>
 <context>
@@ -1591,57 +1591,57 @@ Zadania</translation>
     <message>
         <location filename="QUMontyArea.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Forma</translation>
     </message>
     <message>
         <location filename="QUMontyArea.ui" line="59"/>
         <source>monty</source>
-        <translation type="unfinished">monty</translation>
+        <translation>monty</translation>
     </message>
     <message>
         <location filename="QUMontyArea.ui" line="259"/>
         <source>..information here...</source>
-        <translation type="unfinished">..tutaj informacje...</translation>
+        <translation>..tutaj informacje...</translation>
     </message>
     <message>
         <location filename="QUMontyArea.ui" line="392"/>
         <source>Ask</source>
-        <translation type="unfinished"></translation>
+        <translation>Pytaj</translation>
     </message>
     <message>
         <location filename="QUMontyArea.ui" line="409"/>
         <source>Listen</source>
-        <translation type="unfinished"></translation>
+        <translation>Słuchaj</translation>
     </message>
     <message>
         <location filename="QUMontyArea.ui" line="445"/>
         <source>Hide</source>
-        <translation type="unfinished">Ukryj</translation>
+        <translation>Ukryj</translation>
     </message>
     <message>
         <location filename="QUMontyArea.ui" line="492"/>
         <source>Tell me...</source>
-        <translation type="unfinished"></translation>
+        <translation>Powiedz mi...</translation>
     </message>
     <message>
         <location filename="QUMontyArea.ui" line="509"/>
         <source>Talk</source>
-        <translation type="unfinished">Mów</translation>
+        <translation>Mów</translation>
     </message>
     <message>
         <location filename="QUMontyArea.ui" line="559"/>
         <source>What did you say just before?</source>
-        <translation type="unfinished"></translation>
+        <translation>Co mówiłeś wcześniej?</translation>
     </message>
     <message>
         <location filename="QUMontyArea.ui" line="582"/>
         <source>Tell me more...</source>
-        <translation type="unfinished"></translation>
+        <translation>Powiedz coś więcej...</translation>
     </message>
     <message>
         <location filename="QUMontyArea.ui" line="605"/>
         <source>Thanks for your time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dziękuję za poświęcony czas.</translation>
     </message>
 </context>
 <context>
@@ -1649,7 +1649,7 @@ Zadania</translation>
     <message>
         <location filename="QUPictureDialog.ui" line="13"/>
         <source>Picture Preview</source>
-        <translation type="unfinished">Podgląd Obrazka</translation>
+        <translation>Podgląd Obrazka</translation>
     </message>
     <message>
         <location filename="QUPictureDialog.ui" line="123"/>
@@ -1685,7 +1685,8 @@ Zadania</translation>
         <location filename="QUPictureDialog.cpp" line="38"/>
         <source>%4 [&lt;b&gt;Dimensions:&lt;/b&gt;<byte value="x9"/>%1 x %2, 
 &lt;b&gt;Size:&lt;/b&gt;<byte value="x9"/>%3 KiB]</source>
-        <translation type="unfinished"></translation>
+        <translation>%4 [&lt;b&gt;Wymiary:&lt;/b&gt;<byte value="x9"/>%1 x %2,
+&lt;b&gt;Wielkość:&lt;/b&gt;<byte value="x9"/>%3 KiB]</translation>
     </message>
 </context>
 <context>
@@ -1922,7 +1923,7 @@ Zadania</translation>
     <message>
         <location filename="playlist/QUPlaylistFile.cpp" line="156"/>
         <source>The song &quot;%1 - %2&quot; is already in the current playlist. It was not added.</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwór &quot;%1 - %2&quot; znajduje się już na liście odtwarzania. Ten utwór nie został dodany.</translation>
     </message>
 </context>
 <context>
@@ -1945,7 +1946,7 @@ Zadania</translation>
     <message>
         <location filename="tasks/QUPreparatoryTask.cpp" line="22"/>
         <source>Fix audio length via #END tag</source>
-        <translation type="unfinished">Popraw długość utworu w oparciu o etykietę #END.</translation>
+        <translation>Popraw długość utworu w oparciu o etykietę #END</translation>
     </message>
     <message>
         <location filename="tasks/QUPreparatoryTask.cpp" line="23"/>
@@ -1955,7 +1956,7 @@ Zadania</translation>
     <message>
         <location filename="tasks/QUPreparatoryTask.cpp" line="27"/>
         <source>Round #GAP to nearest integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Przybliż #GAP do najbliższej liczby po przecinku.</translation>
     </message>
 </context>
 <context>
@@ -2646,32 +2647,32 @@ Zadania</translation>
     <message>
         <location filename="QUSongFile.cpp" line="1066"/>
         <source>#GAP changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>#GAP w &quot;%3 - %4&quot; został zmieniony z %1 na %2.</translation>
     </message>
     <message>
         <location filename="QUSongFile.cpp" line="1176"/>
         <source>Invalid lyrics: %1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Błędny Tekst Utworu: %1 - %2</translation>
     </message>
     <message>
         <location filename="QUSongFile.cpp" line="1126"/>
         <source>Timestamps were changed successfully for &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Przesunięto początkowe ustawienie nut w utworze &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
         <location filename="QUSongFile.cpp" line="1166"/>
         <source>Spaces were fixed successfully for &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>W  &quot;%1 - %2&quot; zostały poprawione puste pola.</translation>
     </message>
     <message>
         <location filename="QUSongFile.cpp" line="1198"/>
         <source>Empty syllables were removed successfully for &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Z  &quot;%1 - %2&quot; zostały usunięte puste sylaby.</translation>
     </message>
     <message>
         <location filename="QUSongFile.cpp" line="1286"/>
         <source>Line too short: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Za krótka linia: &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
@@ -2699,7 +2700,7 @@ Zadania</translation>
     <message>
         <location filename="reports/QUSongFileData.cpp" line="22"/>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Prędkość</translation>
     </message>
 </context>
 <context>
@@ -3220,37 +3221,37 @@ Zadania</translation>
     <message>
         <location filename="songtree/QUSongTree.cpp" line="102"/>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Prędkość</translation>
     </message>
     <message>
         <location filename="songtree/QUSongTree.cpp" line="104"/>
         <source>Shows the number of singable syllables per second. No freestyle or pauses included.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetla liczbę śpiewanych sylab na sekundę. Nie dotyczy to pauz oraz nutek freestyleowych.</translation>
     </message>
     <message>
         <location filename="songtree/QUSongTree.cpp" line="528"/>
         <source>Calculate Song Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Wylicz Prędkość Utworu</translation>
     </message>
     <message>
         <location filename="songtree/QUSongTree.cpp" line="531"/>
         <source>Open With Explorer...</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz W Eksploratorze...</translation>
     </message>
     <message>
         <location filename="songtree/QUSongTree.cpp" line="532"/>
         <source>Find More From Artist</source>
-        <translation type="unfinished"></translation>
+        <translation>Znajdź Więcej Tego Wykonawcy</translation>
     </message>
     <message>
         <location filename="songtree/QUSongTree.cpp" line="556"/>
         <source>Time &amp;&amp; Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Czas I Prędkość</translation>
     </message>
     <message>
         <location filename="songtree/QUSongTree.cpp" line="946"/>
         <source>Calculate selected song speeds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Wylicz prędkości wybranych utworów...</translation>
     </message>
 </context>
 <context>
@@ -3477,7 +3478,7 @@ Zadania</translation>
     <message>
         <location filename="tasks/QUTaskList.cpp" line="67"/>
         <source>Lyric Tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadania Tekstów Piosenki</translation>
     </message>
 </context>
 <context>

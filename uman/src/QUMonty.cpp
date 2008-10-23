@@ -23,7 +23,7 @@ void QUMonty::initMessages(const QString &source) {
 	QFile f(source);
 
 	if(f.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		messages = QString(f.readAll()).split("\n");
+		messages = QString::fromUtf8(f.readAll().data()).split("\n");
 		f.close();
 	}
 }

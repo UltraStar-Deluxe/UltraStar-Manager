@@ -1,65 +1,65 @@
-Jeœli masz wiêcej utworów audio w katalogu i klikniesz dwukrotnie na the miejsce ³¹czenia (rz¹d z plikiem audio i kolumnê z nutk¹) przypiszesz ten plik audio do tego utworu.<br><br>To dzia³a tak¿e dla grafiki i teledysków.
-Mo¿esz zmieniæ wartoœæ wiêkszoœci etykiet na szczegó³ach utworu. Kliknij dwukrotnie na wybranej komórce i wprowadŸ wybran¹ wartoœæ.
-Mo¿esz zamieniaæ kolejnoœæ etykiet w jakiej bêd¹ one zapisane do pliku TXT utworu. Wystarczy przeci¹gn¹æ i opuœciæ te etykiety w okienku <i>Opcje > Kolejnoœæ Zapisu Etykiet...</i>.
-Zauwa¿y³eœ "okienko z zadanimi"? Zaznacz co chcia³byœ zrobiæ, wybierz utwory a potem kliknij na przycisk "Uruchom".<br><br>Mo¿esz tak¿e nacisn¹æ  <i>Ctrl+R</i>.
-Mo¿esz ukryæ dziennik wydarzeñ po prostu odhaczaj¹c <i>Widok > Dziennik Wydarzeñ</i>.<br><br>To dzia³a tak¿e na w³aœciwoœci utworów i zadania.
-Chcesz mi jeszcze o czymœ powiedzieæ? Powiedz co Ciê gnêbi na <a href="http://uman.sf.net">Stronie projektu</a>, a byæ mo¿e zdo³amy Ci pomóc.
-Niektóre etykiety ni chc¹ daæ siê zmieniæ? Tak masz racjê, Wiele z danych pozostanie niezmieniona, bo to narzêdzie nie powinno s³u¿yæ do zmiany takich rzeczy jak prêdkoœæ BPM czy GAP. Do tego celu s³u¿y edytor w UltraStarze.
-Dobrze s³yszê? Brakuj¹ca funkcja?! Kliknij <a href="http://uman.sf.net">tutaj</a> i powiedz o niej wszystkim - zw³aszcza twórcom.
-W razie pytañ i sugestii mo¿esz wys³aæ e-mail który dotrze do <a href="mailto:saiya_mg@users.sourceforge.net">ka¿dego z twórców</a> i czekaæ na odzew.
-Menu "Utwory" umo¿liwia rozwiniêcie i zwiniêcie ca³ego drzewka utworów. Oznacza to, ¿e mo¿esz mieæ wgl¹d we wszystkie pliki które wystêpuj¹ we wszystkich utworach, lub widzieæ tylko ich nazwy katalogów.
+JeÅ›li masz wiÄ™cej utworÃ³w audio w katalogu i klikniesz dwukrotnie na the miejsce Å‚Ä…czenia (rzÄ…d z plikiem audio i kolumnÄ™ z nutkÄ…) przypiszesz ten plik audio do tego utworu.<br><br>To dziaÅ‚a takÅ¼e dla grafiki i teledyskÃ³w.
+MoÅ¼esz zmieniÄ‡ wartoÅ›Ä‡ wiÄ™kszoÅ›ci etykiet na szczegÃ³Å‚ach utworu. Kliknij dwukrotnie na wybranej komÃ³rce i wprowadÅº wybranÄ… wartoÅ›Ä‡.
+MoÅ¼esz zamieniaÄ‡ kolejnoÅ›Ä‡ etykiet w jakiej bÄ™dÄ… one zapisane do pliku TXT utworu. Wystarczy przeciÄ…gnÄ…Ä‡ i opuÅ›ciÄ‡ te etykiety w okienku <i>Opcje > KolejnoÅ›Ä‡ Zapisu Etykiet...</i>.
+ZauwaÅ¼yÅ‚eÅ› "okienko z zadanimi"? Zaznacz co chciaÅ‚byÅ› zrobiÄ‡, wybierz utwory a potem kliknij na przycisk "Uruchom".<br><br>MoÅ¼esz takÅ¼e nacisnÄ…Ä‡  <i>Ctrl+R</i>.
+MoÅ¼esz ukryÄ‡ dziennik wydarzeÅ„ po prostu odhaczajÄ…c <i>Widok > Dziennik WydarzeÅ„</i>.<br><br>To dziaÅ‚a takÅ¼e na wÅ‚aÅ›ciwoÅ›ci utworÃ³w i zadania.
+Chcesz mi jeszcze o czymÅ› powiedzieÄ‡? Powiedz co CiÄ™ gnÄ™bi na <a href="http://uman.sf.net">Stronie projektu</a>, a byÄ‡ moÅ¼e zdoÅ‚amy Ci pomÃ³c.
+NiektÃ³re etykiety ni chcÄ… daÄ‡ siÄ™ zmieniÄ‡? Tak masz racjÄ™, Wiele z danych pozostanie niezmieniona, bo to narzÄ™dzie nie powinno sÅ‚uÅ¼yÄ‡ do zmiany takich rzeczy jak prÄ™dkoÅ›Ä‡ BPM czy GAP. Do tego celu sÅ‚uÅ¼y edytor w UltraStarze.
+Dobrze sÅ‚yszÄ™? BrakujÄ…ca funkcja?! Kliknij <a href="http://uman.sf.net">tutaj</a> i powiedz o niej wszystkim - zwÅ‚aszcza twÃ³rcom.
+W razie pytaÅ„ i sugestii moÅ¼esz wysÅ‚aÄ‡ e-mail ktÃ³ry dotrze do <a href="mailto:saiya_mg@users.sourceforge.net">kaÅ¼dego z twÃ³rcÃ³w</a> i czekaÄ‡ na odzew.
+Menu "Utwory" umoÅ¼liwia rozwiniÄ™cie i zwiniÄ™cie caÅ‚ego drzewka utworÃ³w. Oznacza to, Å¼e moÅ¼esz mieÄ‡ wglÄ…d we wszystkie pliki ktÃ³re wystÄ™pujÄ… we wszystkich utworach, lub widzieÄ‡ tylko ich nazwy katalogÃ³w.
 Brakuje Ci teledysku do ulubionej piosenki? poszukaj go na <a href="http://www.youtube.com">Youtube</a>!
-Jeœli zadanie nie mo¿e byæ wykonane - dowiesz siê o tym z dziennika wydarzeñ. Wiêkszoœæ tego typu problemów wynika ze z³ych znaków np u¿ycie '?' do zmiany nazwy pliku.
-Zauwa¿y³eœ buŸki na drzewku utworów? Zielone oznaczaj¹, ¿e wszystko jest w porz¹dku. ¯ó³te sugeruj¹ ró¿nicê w wielkoœci znaków. Czerwone oznaczaj¹, ¿e nazwa katalogu ró¿ni siê od tej zadeklarowanej na etykietach utworu.
-<i>£añcuchy</i> pomiêdzy grafik¹, plikami audio i teledyskami informuj¹ o tym, ¿e pliki te bêd¹ widziane i u¿yte w UltraStarze<br><br>Mo¿esz odœwie¿yæ te po³¹czenia klikaj¹c na nich dwukrotnie.
-Pliki nieu¿ywane przez UltraStar'a maj¹ szary kolor.
-Tak tylko informacyjnie napomykam, ¿e masz <b>%1 utworów</b>. Ca³kiem nieŸle.<br><br>A masz do ka¿dego z nich ok³adkê, teledysk lub t³o? Nie??? Nooo to ju¿ wiesz za co bêdziesz robi³ w d³ugie zimowe wieczory.
-Hmmm...w razie gdybyœ nie wiedzia³: Ostatnie wydarzenie zawsze jest ulokowane na górze dziennika zdarzeñ.
-Sprawdza³eœ podpisy przy nag³ówkach kolumn drzewka utworów? Przytryzmaj nad nimi kursor myszki a dowiesz siê jakie znaczenie ma ka¿da z tych kolumn.
-Jeœli zastanawiasz siê dlaczego niektóre zadania chc¹ zmieniæ nazwê pliku na <i>coœtam.*</i>?<br><br>Otó¿ rozszerzenie pliku jest tutaj najistotniejsze, i bêdzie on widziany przez utwór jakkolwiek by nie zosta³ nazwany (oczywiœcie jeœli jest on tak¿e w takiej formie umieszczony w etykiecie).
-Pierwszy znaleziony plik *.txt w ka¿dym podfolderze wybranego jako katalog utworów miejsca bêdzie uznany za utwór, i umieszczony na drzewku utworów.
-Masz utwór który widzi UltraStar a nie jest on widoczny w UltraStar Managerze? Niemo¿liwe!<br><br>No dobrze... sprawdzimy to, jeœli podasz wiêcej szczegó³ów  na <a href="http://sourceforge.net/projects/uman">stronie projektu</a> nie zapomnij podaæ œcie¿ki gdzie znajduje siê ten utwór.
-Mo¿esz podejrzeæ pe³n¹ œcie¿kê do katalogu z utworem. Wystarczy zaznaczyæ <i>Widok > Dok³adna Œcie¿ka Utworu</i>.
-Co oznaczaj¹ <b>niebieskie<b> katalogi? Nie mniej nie wiêcej tylko to, ¿e w pliku TXT utworu znajduj¹ siê nierozpoznane etykiety.<br><br>Nie s¹ one szkodliwe, Te etykiety pozostan¹ przez program nietkniête. Chyba, ¿e za¿yczysz sobie by je usun¹æ.
-Jeœli najedziesz kursorem na niebieski katalog (o ile taki masz w swoich zbiorach) po chwili pojawi siê informacja o tym jakie etykiety uznane zosta³y za nierozpoznane. Czasami mo¿e to byæ po prostu b³¹d/literówka twórcy utworu.
-Spróbuj klikn¹æ dwukrotnie na pliku audio i patrz co siê stanie...
-Zauwa¿y³eœ du¿¹ ró¿norodnoœæ rodzajów muzyki w szczegó³ach utworów? Pochodz¹ one z etykiety ID3. Mo¿na a nawet powinno siê je nieco uogólniæ dla dobra póŸniejszego ich filtrowania w UltraStarze.
-Mam byæ cicho? Odhacz <i>Pomoc -> Dopuœæ Montiego do g³osu</i>.
-Domyœlne wartoœci dla wykonawcy, tytu³u i roku w szczegó³ach utworu pobierane s¹ z etykiety ID3.
-Jedno z zadañ pozwala na do³¹czenie brakuj¹cych w utworze plików. To zadanie szuka plików z brakuj¹c¹ zawartoœci¹ (muzyka, grafika, teledysk) które znajduj¹ siê w katalogu utworu.
-Mo¿esz zmieniaæ szczegó³u kilku utworów jednoczeœnie. W tym celu zaznacz je i wykorzystaj <i>tabelê szczegó³y</i>.
-Jeœli przeci¹gniesz i opuœcisz okienko z mo¿liwoœci¹ dokowania (szczegó³y utworu, zadania, dziennik wydarzeñ) nad inne okienko, oba okna zostan¹ po³¹czone. Pod tymi oknami pojawi siê pasek zak³adek z nazwami tych okien.
-Mo¿esz od³¹czyæ od aplikacji ruchome okna takie jak szczegó³y utworu, zadania czy dziennik wydarzeñ. Wystarczy klikn¹æ dwukrotnie w ich tytu³owy pasek.
-Czy zauwa¿y³eœ, ¿e pozycja wszystkich okien USM jest zapisywana przy wyjœciu? Mo¿esz je dowolnie przesuwaæ i ustawiaæ wed³ug potrzeb.
-Nierozpoznane etykiety bêd¹ ulokowane jako ostatnie w pliku TXT utworu.
-Masz problem ze zmian¹ nazwy wykonawcy, bo automatyczna zmiana za bardzo sugeruje siê etykietami ID3 (np. "abba" -> "Abba") a Ty koniecznie chcesz mieæ ABBA? <br><br>Spróbuj klikn¹æ na <i>Uwzglêdnianie wielkoœci liter</i> które znajduje siê pod tebel¹ szczegó³owych informacji.
-Jeœli klikniesz dwukrotnie na pliku z tekstem zobaczysz uka¿e Ci siê jego zawartoœæ.
-Czy wiesz, ¿e przeci¹gaj¹c i opuszczaj¹c jeden lub wiêcej plików z <i>eksploratora plików</i> do utworu na drzewku <i>kopiujesz</i> i automatycznie przypisujesz te pliki do utworu nad którym je opuœcisz?
-Pliki które pojawiaj¹ siê jako <i>przekreœlone</i> i <i>szare</i> zazwyczaj s¹ plikami nieu¿ywanymi i nieprzydatnymi w programie UltraStar. Mog¹ byæ usuniête. Zwa¿ jednak, ¿e niektórzy twórcy celowo zmieniaj¹ rozszerzenie plików np z muzyk¹. Tak wiêc jeœli nie widzisz pliku *.mp3 natomiast jest jakiœ inny "podejrzany" plik - sprawdŸ najpierw czy nie odpowiada on za muzykê. (etykieta #mp3 w tabelce Szczegó³y utworu -> Pliki)
-Czy wiesz, ¿e jest menu kontekstowe na drzewku utworów? Spróbuj klikn¹æ na katalogu, pliku, lub na szczycie drzewka i zobacz co siê stanie...
-Pojedyñcze pliki mo¿esz usuwaæ naciskaj¹c przycisk delete z klawiatury, lub wybieraj¹c <i>Usuñ</i> z menu kontekstowego tego pliku.ile.<br><br><b>UWA¯AJ by nie usun¹æ pochopnie wa¿nych dla siebie plików!</b>
-Jeœli przeci¹gniesz i opuœcisz plik TXT z explorera na drzewko utworów (lecz nie na jakiœ istniej¹cy katalog), zostanie utworzony nowy folder a ten plik zostanie w nim umieszczony.<br><br>W ten sposób mo¿esz ³atwo dodawaæa nowe utwory do swojej kolekcji.
-Jeœli nazwa katalogu jest pogrubiona oznacza to, ¿e s¹ w nim jakieœ niezapisane zmiany. Nie zapomnij ich zachowaæ!
-Mo¿esz odfiltrowywaæ zawartoœæ drzewka utworów. Po prostu naciœnij <i>CTRL+F</i> i wpisz jakieœ wyra¿enie. Potem kliknij na przycisk filtruj.
-Tworzy³eœ ju¿ <i>raport</i> swoich utworów? Nie?<br><br>Nie ma na co czekaæ <i>Utwory > Nowy Raport ...</i>
-Dwukrotne klikniêcie na plik obrazka pozwoli na jego podgl¹d.
-Mo¿esz usun¹æ zadanie zmiany nazwy poprzez usuniêcie jego pliku konfiguracji w katalogu aplikacji UltraStar Manager.
-Dwókrotne klikniêcie na zadaniu zmiany nazwy spowoduje, ¿e bêdziesz móg³ je zmodyfikowaæ.
-Zadania maja menu  kontekstowe, które pozwala dodawaæ i modyfikowaæ zadania zmian nazw.
-Niektóre czynnoœci nie mog¹ byæ anulowane, by nie doprowadziæ do sprzecznoœci na przyk³ad w zastosowanych filtrach.
-Mo¿esz rozwijaæ i zwijaæ kategorie informacji na oknie bazy danych poprzez dwukrotne klikniêcie na ich nazwach.
-Krzy¿yk z wykrzyknikiem na drzewku utworów zwraca uwagê na brak któregoœ z plików powi¹zanych z utworem. Na przyk³ad istnieje etykieta <b>#COVER:nazwapliku [CO].jpg</b> ale takiego pliku nie ma w  katalogu utworu.
-Utwór jest uznany za <b>b³êdny</b> jeœli nie ma wykonawcy, tytu³u lub jego d³ugoœæ wynosi zero. Taki utwór ma <b>lekko czerwone t³o</b> na drzewku utworów.
-Jeœli zamierzasz do³¹czyæ nowy utwór do drzewka utworów przez przeci¹ganie i opuszczanie plików, pomocne mo¿e byæ wczeœniejsze ukrycie innych utworów.<br><br><i>Ukryj > Wszystko</i> (menu kontekstowe)
-S¹ dwa rodzaje menu kontekstowego na drzewku utworów. Jedno dla poszczególnych plików i drugie dla katalogów (ca³ych utworów).
-Mo¿esz odwróciæ efekt filtrowania. Wystarczy, ¿e na pasku filtrowania klikniesz na ikonkê plus (+).
-Jeœli w pasku filtrowania wpiszesz "abba|akon|dido", i naciœniesz filtruj - wyœwietlone zostan¹ tylko te elementy które zawieraj¹ w nazwie "abba", "akon" lub "dido".
-Niemal wszystkie ikony drzewka utworów posiadaj¹ w³asne podpowiedzi. Po prostu przytrzymaj 1-2 sekundy kursor nad wybrana ikonk¹, a powinna pojawiæ siê informacja.
-Mo¿esz sprawdziæ czy masz zduplikowane utwory klikaj¹c na <i>Duplikaty</i> na pasku filtrowania. Zduplikowane utwory zostan¹ natycmiast wyœwietlone.
-Listy Odtwarzania po³¹czone s¹ z baz¹ danych utworów. Za ka¿dym razem, gdy utwór zostanie zmieniony, listy odtwarzania bêd¹ automatycznie zaktualizowane.<br><br>Zmienione listy odtwarzanie wymagaj¹ zapisania.
-<i>Us³uga Pobierania Danych z Amazon:</i><br><br>Ok³adki bêd¹ pobrane jedynie dla zaznaczonych utworów. Do³¹czenie ok³adek nastêpuje poprzez klikniêcie na "Kopiuj i Ustaw".
-Mo¿esz rozwin¹æ listê wszystkich rozpoznawanych typów plików poprzez dwukrotne klikniêcie na katalogu utworu.
-Zadanie które mo¿na modyfikowaæ podatne s¹ na podwójny kilk myszki :) Dodatkowo pod prawym przyciskiem myszki znajduje siê tam menu kontekstowe.
-Dziennik zdarzeñ jest zapisywany przy wyjœciu z programu w katalogu UltraStar Manager'a.
-Czubek drzewka utworów ma menu kontekstowe. Znajdziesz tam ustawienia zapewniaj¹ce dogodny widok dla aktualnie wykonywanej czynnoœci.
-Mo¿esz obejrzeæ tekst piosenki po prostu naciskaj¹c <i>Ctrl + L</i>
+JeÅ›li zadanie nie moÅ¼e byÄ‡ wykonane - dowiesz siÄ™ o tym z dziennika wydarzeÅ„. WiÄ™kszoÅ›Ä‡ tego typu problemÃ³w wynika ze zÅ‚ych znakÃ³w np uÅ¼ycie '?' do zmiany nazwy pliku.
+ZauwaÅ¼yÅ‚eÅ› buÅºki na drzewku utworÃ³w? Zielone oznaczajÄ…, Å¼e wszystko jest w porzÄ…dku. Å»Ã³Å‚te sugerujÄ… rÃ³Å¼nicÄ™ w wielkoÅ›ci znakÃ³w. Czerwone oznaczajÄ…, Å¼e nazwa katalogu rÃ³Å¼ni siÄ™ od tej zadeklarowanej na etykietach utworu.
+<i>ÅaÅ„cuchy</i> pomiÄ™dzy grafikÄ…, plikami audio i teledyskami informujÄ… o tym, Å¼e pliki te bÄ™dÄ… widziane i uÅ¼yte w UltraStarze<br><br>MoÅ¼esz odÅ›wieÅ¼yÄ‡ te poÅ‚Ä…czenia klikajÄ…c na nich dwukrotnie.
+Pliki nieuÅ¼ywane przez UltraStar'a majÄ… szary kolor.
+Tak tylko informacyjnie napomykam, Å¼e masz <b>%1 utworÃ³w</b>. CaÅ‚kiem nieÅºle.<br><br>A masz do kaÅ¼dego z nich okÅ‚adkÄ™, teledysk lub tÅ‚o? Nie??? Nooo to juÅ¼ wiesz za co bÄ™dziesz robiÅ‚ w dÅ‚ugie zimowe wieczory.
+Hmmm...w razie gdybyÅ› nie wiedziaÅ‚: Ostatnie wydarzenie zawsze jest ulokowane na gÃ³rze dziennika zdarzeÅ„.
+SprawdzaÅ‚eÅ› podpisy przy nagÅ‚Ã³wkach kolumn drzewka utworÃ³w? Przytryzmaj nad nimi kursor myszki a dowiesz siÄ™ jakie znaczenie ma kaÅ¼da z tych kolumn.
+JeÅ›li zastanawiasz siÄ™ dlaczego niektÃ³re zadania chcÄ… zmieniÄ‡ nazwÄ™ pliku na <i>coÅ›tam.*</i>?<br><br>OtÃ³Å¼ rozszerzenie pliku jest tutaj najistotniejsze, i bÄ™dzie on widziany przez utwÃ³r jakkolwiek by nie zostaÅ‚ nazwany (oczywiÅ›cie jeÅ›li jest on takÅ¼e w takiej formie umieszczony w etykiecie).
+Pierwszy znaleziony plik *.txt w kaÅ¼dym podfolderze wybranego jako katalog utworÃ³w miejsca bÄ™dzie uznany za utwÃ³r, i umieszczony na drzewku utworÃ³w.
+Masz utwÃ³r ktÃ³ry widzi UltraStar a nie jest on widoczny w UltraStar Managerze? NiemoÅ¼liwe!<br><br>No dobrze... sprawdzimy to, jeÅ›li podasz wiÄ™cej szczegÃ³Å‚Ã³w  na <a href="http://sourceforge.net/projects/uman">stronie projektu</a> nie zapomnij podaÄ‡ Å›cieÅ¼ki gdzie znajduje siÄ™ ten utwÃ³r.
+MoÅ¼esz podejrzeÄ‡ peÅ‚nÄ… Å›cieÅ¼kÄ™ do katalogu z utworem. Wystarczy zaznaczyÄ‡ <i>Widok > DokÅ‚adna ÅšcieÅ¼ka Utworu</i>.
+Co oznaczajÄ… <b>niebieskie<b> katalogi? Nie mniej nie wiÄ™cej tylko to, Å¼e w pliku TXT utworu znajdujÄ… siÄ™ nierozpoznane etykiety.<br><br>Nie sÄ… one szkodliwe, Te etykiety pozostanÄ… przez program nietkniÄ™te. Chyba, Å¼e zaÅ¼yczysz sobie by je usunÄ…Ä‡.
+JeÅ›li najedziesz kursorem na niebieski katalog (o ile taki masz w swoich zbiorach) po chwili pojawi siÄ™ informacja o tym jakie etykiety uznane zostaÅ‚y za nierozpoznane. Czasami moÅ¼e to byÄ‡ po prostu bÅ‚Ä…d/literÃ³wka twÃ³rcy utworu.
+SprÃ³buj kliknÄ…Ä‡ dwukrotnie na pliku audio i patrz co siÄ™ stanie...
+ZauwaÅ¼yÅ‚eÅ› duÅ¼Ä… rÃ³Å¼norodnoÅ›Ä‡ rodzajÃ³w muzyki w szczegÃ³Å‚ach utworÃ³w? PochodzÄ… one z etykiety ID3. MoÅ¼na a nawet powinno siÄ™ je nieco uogÃ³lniÄ‡ dla dobra pÃ³Åºniejszego ich filtrowania w UltraStarze.
+Mam byÄ‡ cicho? Odhacz <i>Pomoc -> DopuÅ›Ä‡ Montiego do gÅ‚osu</i>.
+DomyÅ›lne wartoÅ›ci dla wykonawcy, tytuÅ‚u i roku w szczegÃ³Å‚ach utworu pobierane sÄ… z etykiety ID3.
+Jedno z zadaÅ„ pozwala na doÅ‚Ä…czenie brakujÄ…cych w utworze plikÃ³w. To zadanie szuka plikÃ³w z brakujÄ…cÄ… zawartoÅ›ciÄ… (muzyka, grafika, teledysk) ktÃ³re znajdujÄ… siÄ™ w katalogu utworu.
+MoÅ¼esz zmieniaÄ‡ szczegÃ³Å‚u kilku utworÃ³w jednoczeÅ›nie. W tym celu zaznacz je i wykorzystaj <i>tabelÄ™ szczegÃ³Å‚y</i>.
+JeÅ›li przeciÄ…gniesz i opuÅ›cisz okienko z moÅ¼liwoÅ›ciÄ… dokowania (szczegÃ³Å‚y utworu, zadania, dziennik wydarzeÅ„) nad inne okienko, oba okna zostanÄ… poÅ‚Ä…czone. Pod tymi oknami pojawi siÄ™ pasek zakÅ‚adek z nazwami tych okien.
+MoÅ¼esz odÅ‚Ä…czyÄ‡ od aplikacji ruchome okna takie jak szczegÃ³Å‚y utworu, zadania czy dziennik wydarzeÅ„. Wystarczy kliknÄ…Ä‡ dwukrotnie w ich tytuÅ‚owy pasek.
+Czy zauwaÅ¼yÅ‚eÅ›, Å¼e pozycja wszystkich okien USM jest zapisywana przy wyjÅ›ciu? MoÅ¼esz je dowolnie przesuwaÄ‡ i ustawiaÄ‡ wedÅ‚ug potrzeb.
+Nierozpoznane etykiety bÄ™dÄ… ulokowane jako ostatnie w pliku TXT utworu.
+Masz problem ze zmianÄ… nazwy wykonawcy, bo automatyczna zmiana za bardzo sugeruje siÄ™ etykietami ID3 (np. "abba" -> "Abba") a Ty koniecznie chcesz mieÄ‡ ABBA? <br><br>SprÃ³buj kliknÄ…Ä‡ na <i>UwzglÄ™dnianie wielkoÅ›ci liter</i> ktÃ³re znajduje siÄ™ pod tebelÄ… szczegÃ³Å‚owych informacji.
+JeÅ›li klikniesz dwukrotnie na pliku z tekstem zobaczysz ukaÅ¼e Ci siÄ™ jego zawartoÅ›Ä‡.
+Czy wiesz, Å¼e przeciÄ…gajÄ…c i opuszczajÄ…c jeden lub wiÄ™cej plikÃ³w z <i>eksploratora plikÃ³w</i> do utworu na drzewku <i>kopiujesz</i> i automatycznie przypisujesz te pliki do utworu nad ktÃ³rym je opuÅ›cisz?
+Pliki ktÃ³re pojawiajÄ… siÄ™ jako <i>przekreÅ›lone</i> i <i>szare</i> zazwyczaj sÄ… plikami nieuÅ¼ywanymi i nieprzydatnymi w programie UltraStar. MogÄ… byÄ‡ usuniÄ™te. ZwaÅ¼ jednak, Å¼e niektÃ³rzy twÃ³rcy celowo zmieniajÄ… rozszerzenie plikÃ³w np z muzykÄ…. Tak wiÄ™c jeÅ›li nie widzisz pliku *.mp3 natomiast jest jakiÅ› inny "podejrzany" plik - sprawdÅº najpierw czy nie odpowiada on za muzykÄ™. (etykieta #mp3 w tabelce SzczegÃ³Å‚y utworu -> Pliki)
+Czy wiesz, Å¼e jest menu kontekstowe na drzewku utworÃ³w? SprÃ³buj kliknÄ…Ä‡ na katalogu, pliku, lub na szczycie drzewka i zobacz co siÄ™ stanie...
+PojedyÅ„cze pliki moÅ¼esz usuwaÄ‡ naciskajÄ…c przycisk delete z klawiatury, lub wybierajÄ…c <i>UsuÅ„</i> z menu kontekstowego tego pliku.ile.<br><br><b>UWAÅ»AJ by nie usunÄ…Ä‡ pochopnie waÅ¼nych dla siebie plikÃ³w!</b>
+JeÅ›li przeciÄ…gniesz i opuÅ›cisz plik TXT z explorera na drzewko utworÃ³w (lecz nie na jakiÅ› istniejÄ…cy katalog), zostanie utworzony nowy folder a ten plik zostanie w nim umieszczony.<br><br>W ten sposÃ³b moÅ¼esz Å‚atwo dodawaÄ‡a nowe utwory do swojej kolekcji.
+JeÅ›li nazwa katalogu jest pogrubiona oznacza to, Å¼e sÄ… w nim jakieÅ› niezapisane zmiany. Nie zapomnij ich zachowaÄ‡!
+MoÅ¼esz odfiltrowywaÄ‡ zawartoÅ›Ä‡ drzewka utworÃ³w. Po prostu naciÅ›nij <i>CTRL+F</i> i wpisz jakieÅ› wyraÅ¼enie. Potem kliknij na przycisk filtruj.
+TworzyÅ‚eÅ› juÅ¼ <i>raport</i> swoich utworÃ³w? Nie?<br><br>Nie ma na co czekaÄ‡ <i>Utwory > Nowy Raport ...</i>
+Dwukrotne klikniÄ™cie na plik obrazka pozwoli na jego podglÄ…d.
+MoÅ¼esz usunÄ…Ä‡ zadanie zmiany nazwy poprzez usuniÄ™cie jego pliku konfiguracji w katalogu aplikacji UltraStar Manager.
+DwÃ³krotne klikniÄ™cie na zadaniu zmiany nazwy spowoduje, Å¼e bÄ™dziesz mÃ³gÅ‚ je zmodyfikowaÄ‡.
+Zadania maja menu  kontekstowe, ktÃ³re pozwala dodawaÄ‡ i modyfikowaÄ‡ zadania zmian nazw.
+NiektÃ³re czynnoÅ›ci nie mogÄ… byÄ‡ anulowane, by nie doprowadziÄ‡ do sprzecznoÅ›ci na przykÅ‚ad w zastosowanych filtrach.
+MoÅ¼esz rozwijaÄ‡ i zwijaÄ‡ kategorie informacji na oknie bazy danych poprzez dwukrotne klikniÄ™cie na ich nazwach.
+KrzyÅ¼yk z wykrzyknikiem na drzewku utworÃ³w zwraca uwagÄ™ na brak ktÃ³regoÅ› z plikÃ³w powiÄ…zanych z utworem. Na przykÅ‚ad istnieje etykieta <b>#COVER:nazwapliku [CO].jpg</b> ale takiego pliku nie ma w  katalogu utworu.
+UtwÃ³r jest uznany za <b>bÅ‚Ä™dny</b> jeÅ›li nie ma wykonawcy, tytuÅ‚u lub jego dÅ‚ugoÅ›Ä‡ wynosi zero. Taki utwÃ³r ma <b>lekko czerwone tÅ‚o</b> na drzewku utworÃ³w.
+JeÅ›li zamierzasz doÅ‚Ä…czyÄ‡ nowy utwÃ³r do drzewka utworÃ³w przez przeciÄ…ganie i opuszczanie plikÃ³w, pomocne moÅ¼e byÄ‡ wczeÅ›niejsze ukrycie innych utworÃ³w.<br><br><i>Ukryj > Wszystko</i> (menu kontekstowe)
+SÄ… dwa rodzaje menu kontekstowego na drzewku utworÃ³w. Jedno dla poszczegÃ³lnych plikÃ³w i drugie dla katalogÃ³w (caÅ‚ych utworÃ³w).
+MoÅ¼esz odwrÃ³ciÄ‡ efekt filtrowania. Wystarczy, Å¼e na pasku filtrowania klikniesz na ikonkÄ™ plus (+).
+JeÅ›li w pasku filtrowania wpiszesz "abba|akon|dido", i naciÅ›niesz filtruj - wyÅ›wietlone zostanÄ… tylko te elementy ktÃ³re zawierajÄ… w nazwie "abba", "akon" lub "dido".
+Niemal wszystkie ikony drzewka utworÃ³w posiadajÄ… wÅ‚asne podpowiedzi. Po prostu przytrzymaj 1-2 sekundy kursor nad wybrana ikonkÄ…, a powinna pojawiÄ‡ siÄ™ informacja.
+MoÅ¼esz sprawdziÄ‡ czy masz zduplikowane utwory klikajÄ…c na <i>Duplikaty</i> na pasku filtrowania. Zduplikowane utwory zostanÄ… natycmiast wyÅ›wietlone.
+Listy Odtwarzania poÅ‚Ä…czone sÄ… z bazÄ… danych utworÃ³w. Za kaÅ¼dym razem, gdy utwÃ³r zostanie zmieniony, listy odtwarzania bÄ™dÄ… automatycznie zaktualizowane.<br><br>Zmienione listy odtwarzanie wymagajÄ… zapisania.
+<i>UsÅ‚uga Pobierania Danych z Amazon:</i><br><br>OkÅ‚adki bÄ™dÄ… pobrane jedynie dla zaznaczonych utworÃ³w. DoÅ‚Ä…czenie okÅ‚adek nastÄ™puje poprzez klikniÄ™cie na "Kopiuj i Ustaw".
+MoÅ¼esz rozwinÄ…Ä‡ listÄ™ wszystkich rozpoznawanych typÃ³w plikÃ³w poprzez dwukrotne klikniÄ™cie na katalogu utworu.
+Zadanie ktÃ³re moÅ¼na modyfikowaÄ‡ podatne sÄ… na podwÃ³jny kilk myszki :) Dodatkowo pod prawym przyciskiem myszki znajduje siÄ™ tam menu kontekstowe.
+Dziennik zdarzeÅ„ jest zapisywany przy wyjÅ›ciu z programu w katalogu UltraStar Manager'a.
+Czubek drzewka utworÃ³w ma menu kontekstowe. Znajdziesz tam ustawienia zapewniajÄ…ce dogodny widok dla aktualnie wykonywanej czynnoÅ›ci.
+MoÅ¼esz obejrzeÄ‡ tekst piosenki po prostu naciskajÄ…c <i>Ctrl + L</i>
