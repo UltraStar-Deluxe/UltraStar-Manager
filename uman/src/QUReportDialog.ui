@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>418</width>
-    <height>393</height>
+    <height>395</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -163,7 +163,7 @@
        <property name="childrenCollapsible" >
         <bool>false</bool>
        </property>
-       <widget class="QGroupBox" name="groupBox_2" >
+       <widget class="QGroupBox" name="columnsGroup" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Expanding" hsizetype="Preferred" >
           <horstretch>0</horstretch>
@@ -216,7 +216,7 @@
           <number>2</number>
          </property>
          <item>
-          <widget class="QGroupBox" name="groupBox" >
+          <widget class="QGroupBox" name="sourceGroup" >
            <property name="font" >
             <font>
              <weight>50</weight>
@@ -332,7 +332,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QGroupBox" name="groupBox_3" >
+          <widget class="QGroupBox" name="extraGroup" >
            <property name="title" >
             <string>Additional Options</string>
            </property>
@@ -392,20 +392,33 @@
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="linkLyricsChk" >
-              <property name="minimumSize" >
-               <size>
-                <width>0</width>
-                <height>20</height>
-               </size>
+             <layout class="QHBoxLayout" name="horizontalLayout_4" >
+              <property name="spacing" >
+               <number>0</number>
               </property>
-              <property name="toolTip" >
-               <string>For HTML reports only.</string>
+              <property name="leftMargin" >
+               <number>10</number>
               </property>
-              <property name="text" >
-               <string>Link Lyrics with Table</string>
+              <property name="topMargin" >
+               <number>0</number>
               </property>
-             </widget>
+              <item>
+               <widget class="QCheckBox" name="linkLyricsChk" >
+                <property name="minimumSize" >
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="toolTip" >
+                 <string>For HTML reports only.</string>
+                </property>
+                <property name="text" >
+                 <string>Link Lyrics with Table</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_2" >
@@ -466,7 +479,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QGroupBox" name="groupBox_4" >
+          <widget class="QGroupBox" name="createGroup" >
            <property name="title" >
             <string>Create</string>
            </property>
@@ -557,7 +570,7 @@
               </property>
               <property name="icon" >
                <iconset resource="images/uman.qrc" >
-                <normaloff>:/types/text.png</normaloff>:/types/text.png</iconset>
+                <normaloff>:/types/text_plain.png</normaloff>:/types/text_plain.png</iconset>
               </property>
               <property name="toolButtonStyle" >
                <enum>Qt::ToolButtonTextBesideIcon</enum>

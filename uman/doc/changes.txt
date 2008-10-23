@@ -20,6 +20,9 @@ SONG TREE
 OTHER STUFF
 * app crashes will now be detected
   > you can change your song folder on next app start
+  
+REPORTS
+* save last settings in the report dialog
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
@@ -166,7 +169,6 @@ SONG TREE
 
 REPORTS
 * add a "to top" link to each song text
-* "remind settings" somehow in the report dialog
 * PDF-Report (song book feature?)
 * cover into reports (beside lyrics?)
 * header/footer for reports
@@ -204,8 +206,7 @@ FILE PREVIEW/LYRICS
   > beware of relative songs
 
 AMAZON COVER DOWNLOAD
-* add "overwrite present covers" option to amazon-cover-download
-  > auto rename downloaded covers ("Artist - Title [CO].jpg"?)
+* auto rename downloaded covers ("Artist - Title [CO].jpg"?)
 
 INTERNAL STUFF
 ! use internal XML data for melody/lyrics

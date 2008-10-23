@@ -43,6 +43,13 @@ QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<Q
 
 	connect(appendLyricsChk, SIGNAL(toggled(bool)), this, SLOT(toggleAppendLyrics(bool)));
 	toggleAppendLyrics(false);
+
+	// -----
+	loadState();
+}
+
+QUReportDialog::~QUReportDialog() {
+	saveState();
 }
 
 void QUReportDialog::initReportList() {
@@ -88,6 +95,9 @@ void QUReportDialog::initPlaylistCombo() {
 	for(int i = 0; i < _allPlaylists.size(); i++) {
 		playlistCombo->addItem(QString("%1 (%2)").arg(_allPlaylists.at(i)->name()).arg(_allPlaylists.at(i)->count()), i);
 	}
+
+	radioPlaylist->setEnabled(!_allPlaylists.isEmpty());
+	playlistCombo->setEnabled(!_allPlaylists.isEmpty());
 }
 
 void QUReportDialog::createHtmlReport() {
@@ -229,7 +239,7 @@ QString QUReportDialog::currentPlaylistName() const {
  * Enables or disables the combobox for playlists according to your choice.
  */
 void QUReportDialog::togglePlaylistSource(bool checked) {
-	playlistCombo->setEnabled(checked);
+	playlistCombo->setEnabled(checked & !_allPlaylists.isEmpty());
 	showPlaylistName->setEnabled(checked);
 }
 
@@ -245,4 +255,75 @@ void QUReportDialog::toggleStyleCombo(bool checked) {
  */
 void QUReportDialog::toggleAppendLyrics(bool checked) {
 	linkLyricsChk->setEnabled(checked);
+}
+
+/*!
+ * Saves the current dialog state (checked elements a.s.o.) to registry.
+ */
+void QUReportDialog::saveState() {
+	int reportColumns = 0;
+	for(int row = 0; row < reportList->count(); row++) {
+		if(reportList->item(row)->checkState() == Qt::Checked)
+			reportColumns |= 1 << row;
+	}
+
+	int otherOptions = 0;
+
+	// current source
+	if(radioAllSongs->isChecked())     otherOptions |= 1 << 0;
+	if(radioVisibleSongs->isChecked()) otherOptions |= 1 << 1;
+	if(radioPlaylist->isChecked())     otherOptions |= 1 << 2;
+
+	// additional options
+	if(showBaseDirChk->isChecked())   otherOptions |= 1 << 3;
+	if(showPlaylistName->isChecked()) otherOptions |= 1 << 4;
+	if(appendLyricsChk->isChecked())  otherOptions |= 1 << 5;
+	if(linkLyricsChk->isChecked())    otherOptions |= 1 << 6;
+	if(useStyleChk->isChecked())      otherOptions |= 1 << 7;
+
+	// current combo box items
+	int playlistComboIndex = playlistCombo->currentIndex();
+	int styleComboIndex    = styleCombo->currentIndex();
+
+	// store values into registry
+	QSettings settings;
+	settings.setValue("reportColumns", reportColumns);
+	settings.setValue("reportOtherOptions", otherOptions);
+	settings.setValue("reportPlaylistComboIndex", playlistComboIndex);
+	settings.setValue("reportStyleComboIndex", styleComboIndex);
+}
+
+/*!
+ * Loads a dialog state (checked elements a.s.o.) from registry.
+ */
+void QUReportDialog::loadState() {
+	QSettings settings;
+	int reportColumns = settings.value("reportColumns", 3).toInt();
+
+	for(int row = 0; row < reportList->count(); row++) {
+		if(reportColumns & (1 << row))
+			reportList->item(row)->setCheckState(Qt::Checked);
+		else
+			reportList->item(row)->setCheckState(Qt::Unchecked);
+	}
+
+	int otherOptions = settings.value("reportOtherOptions", 1).toInt();;
+
+	// current source
+	    radioAllSongs->setChecked(otherOptions & (1 << 0));
+	radioVisibleSongs->setChecked(otherOptions & (1 << 1));
+	    radioPlaylist->setChecked(otherOptions & (1 << 2));
+
+	// additional options
+	  showBaseDirChk->setChecked(otherOptions & (1 << 3));
+	showPlaylistName->setChecked(otherOptions & (1 << 4));
+	 appendLyricsChk->setChecked(otherOptions & (1 << 5));
+	   linkLyricsChk->setChecked(otherOptions & (1 << 6));
+	     useStyleChk->setChecked(otherOptions & (1 << 7));
+
+	// current combo box items
+	int playlistComboIndex = settings.value("reportPlaylistComboIndex", 0).toInt();
+	int styleComboIndex    = settings.value("reportStyleComboIndex", 0).toInt();
+	playlistCombo->setCurrentIndex(playlistComboIndex >= playlistCombo->count() ? 0 : playlistComboIndex);
+	styleCombo->setCurrentIndex(styleComboIndex >= styleCombo->count() ? 0 : styleComboIndex);
 }

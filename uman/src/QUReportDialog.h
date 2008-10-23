@@ -23,6 +23,7 @@ public:
 			const QList<QUSongFile*> &visibleSongs,
 			const QList<QUPlaylistFile*> &allPlaylists,
 			QWidget *parent = 0);
+	~QUReportDialog();
 
 private slots:
 	void createHtmlReport();
@@ -48,6 +49,9 @@ private:
 
 	QU::ReportOptions selectedOptions() const;
 	QString currentPlaylistName() const;
+
+	void saveState();
+	void loadState();
 };
 
 #endif /*QUREPORTDIALOG_H_*/
