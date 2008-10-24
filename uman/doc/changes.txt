@@ -96,7 +96,7 @@ NOT SORTED
 * cannot sort after "videogap" column correctly
 * broken gif-support for amazon cover files
 
-~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  DEFERRED  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
 ABOUT
 * http://www.iconarchive.com/category/animals/tiny-animals-icons-by-iconshock.html

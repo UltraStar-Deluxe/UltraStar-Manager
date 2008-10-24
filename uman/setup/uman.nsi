@@ -102,6 +102,7 @@ Section "Application" SecCopyUI
 
     ;; remove old values
     DeleteRegValue HKCU "Software\HPI\${PRODUCTNAME}" "allowedVideoFiles"
+    DeleteRegValue HKCU "Software\HPI\${PRODUCTNAME}" "songTreeState"
 
     ;; Start Menu
     !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
