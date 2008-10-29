@@ -1,5 +1,7 @@
 #include "QULogService.h"
 
+#include <QMessageBox>
+
 QULogService::QULogService(QObject *parent): QObject(parent) {
 }
 

@@ -147,6 +147,7 @@ public slots:
 	QString speedFormatted();
 
 	QStringList lyrics() const;
+	QList<QUSongLine*> melody();
 
 	QFileInfo songFileInfo() const {return _fi;} //!< \returns a file info for the current US song file
 

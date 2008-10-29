@@ -81,6 +81,8 @@ QUMainWindow::~QUMainWindow() {
 void QUMainWindow::closeEvent(QCloseEvent *event) {
 	int result;
 
+	mediaplayer->stop();
+
 	if(songTree->hasUnsavedChanges()) {
 		result = QUMessageBox::information(this,
 				tr("Quit"),
@@ -180,6 +182,7 @@ void QUMainWindow::initWindow() {
 	addDockWidget(Qt::LeftDockWidgetArea, previewDock); previewDock->hide();
 	addDockWidget(Qt::RightDockWidgetArea, eventsDock); eventsDock->hide();
 	addDockWidget(Qt::RightDockWidgetArea, playlistDock); playlistDock->hide();
+	addDockWidget(Qt::BottomDockWidgetArea, mediaPlayerDock); //mediaPlayerDock->hide();
 
 	connect(logSrv, SIGNAL(messageAdded(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 
@@ -197,6 +200,9 @@ void QUMainWindow::initWindow() {
 	filterArea->filterTypeCombo->setCurrentIndex(0);
 
 	filterArea->filterNegateBtn->setChecked(false);
+
+	// init media player connections
+	connect(mediaplayer, SIGNAL(currentSongRequested()), this, SLOT(sendCurrentSongToMediaPlayer()));
 }
 
 void QUMainWindow::initMenu() {
@@ -242,12 +248,14 @@ void QUMainWindow::initMenu() {
 	this->viewBar->addAction(playlistDock->toggleViewAction());
 	this->viewBar->addAction(previewDock->toggleViewAction());
 	this->viewBar->addAction(eventsDock->toggleViewAction());
+//	this->viewBar->addAction(mediaPlayerDock->toggleViewAction()); /* add an icon - then uncomment */
 
 	this->menuView->addAction(detailsDock->toggleViewAction());
 	this->menuView->addAction(tasksDock->toggleViewAction());
 	this->menuView->addAction(playlistDock->toggleViewAction());
 	this->menuView->addAction(previewDock->toggleViewAction());
 	this->menuView->addAction(eventsDock->toggleViewAction());
+	this->menuView->addAction(mediaPlayerDock->toggleViewAction());
 
 	// insert toggle view actions for the toolbars
 	this->menuView->addSeparator();
@@ -1249,4 +1257,18 @@ void QUMainWindow::copyAudioToPath() {
 	}
 
 	logSrv->add(tr("Backup for audio files finished."), QU::information);
+}
+
+/*!
+ * This is used to necessary information to the media player so that a song can be played.
+ */
+void QUMainWindow::sendCurrentSongToMediaPlayer() {
+	QUSongItem *item = dynamic_cast<QUSongItem*>(songTree->currentItem());
+
+	if(!item) {
+		logSrv->add(tr("The song tree has no current item to play."), QU::warning);
+		return;
+	}
+
+	mediaplayer->setCurrentSong(*(item->song()));
 }

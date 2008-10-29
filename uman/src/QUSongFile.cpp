@@ -508,6 +508,11 @@ QStringList QUSongFile::lyrics() const {
 	return result;
 }
 
+QList<QUSongLine*> QUSongFile::melody() {
+	convertLyricsFromRaw();
+	return _melody;
+}
+
 /*!
  * Creates a complete new song file for US. Any old data will be overwritten.
  * \param force Indicates whether to save the file although automatic file save was
@@ -724,6 +729,7 @@ void QUSongFile::useID3TagForArtist() {
 		return;
 	}
 
+	// TOFIX: Possible App Crash!!! Check NULL Pointer!
 	TagLib::FileRef ref(mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
 
 	QString oldArtist(this->artist());

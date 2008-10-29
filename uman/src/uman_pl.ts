@@ -6,7 +6,7 @@
     <message>
         <location filename="QUMonty.cpp" line="78"/>
         <source>Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the button below and I will disappear for now.&lt;br&gt;&lt;br&gt;You have a nice collection of &lt;b&gt;%1 songs&lt;/b&gt; there. Are they managed well yet?</source>
-        <translation>Witaj! Nazywam się Mamut Monty. Od czasu do czasu będę służył Ci podpowiedziami. Jeśli chcesz się mnie pozbyć, naciśnij przycisk poniżej, a natychmiast  zniknę z Twoich oczu.&lt;br&gt;&lt;br&gt;Ilość utworów w aktualnie wybranym katalogu  - &lt;b&gt;%1&lt;/b&gt;. Uważasz, że wszystko z nimi w porządku?</translation>
+        <translation>Witaj! Nazywam się Mamut Monty. Od czasu do czasu będę służył Ci podpowiedziami. Jeśli chcesz się mnie pozbyć, naciśnij przycisk &lt;b&gt;Ukryj&lt;/b&gt; (poniżej), a natychmiast  zniknę z Twoich oczu.&lt;br&gt;&lt;br&gt;Ilość utworów w aktualnie wybranym katalogu  - &lt;b&gt;%1&lt;/b&gt;. Uważasz, że wszystko z nimi w porządku?</translation>
     </message>
     <message>
         <location filename="songtree/QUSongItem.cpp" line="453"/>
@@ -41,7 +41,7 @@
     <message>
         <location filename="main.cpp" line="92"/>
         <source>There was no configuration setting about your language.Your &lt;b&gt;system language&lt;/b&gt; will be used if possible.&lt;br&gt;&lt;br&gt;See &lt;b&gt;Options &gt; Language&lt;/b&gt; to change this.</source>
-        <translation>Nie znaleziono ustawień adekwatnych do używanego przez Ciebie języka. Wybrany został język &lt;b&gt;domyślny.&lt;/b&gt;&lt;br&gt;&lt;br&gt;Zobacz &lt;b&gt;Opcje &gt; Język&lt;/b&gt; by ustawić odpowiadający Ci język.</translation>
+        <translation>Aktualnie użyty język programu wybrany został na podstawie wersji językowej &lt;b&gt;systemu operacyjnego&lt;/b&gt; na którym został uruchomiony.&lt;br&gt;&lt;br&gt;Jeśli z jakichś względów ten język Ci nie odpowiada zobacz &lt;b&gt;Opcje &gt; Język&lt;/b&gt; i wybierz inne tłumaczenie.</translation>
     </message>
     <message>
         <location filename="main.cpp" line="93"/>

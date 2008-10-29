@@ -112,7 +112,7 @@
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>138</height>
+           <height>129</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -193,7 +193,7 @@
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>160</height>
+           <height>151</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -396,7 +396,7 @@ Tasks</string>
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>138</height>
+           <height>129</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout" >
@@ -467,6 +467,34 @@ Tasks</string>
        </widget>
       </item>
       <item>
+       <widget class="QDockWidget" name="mediaPlayerDock" >
+        <property name="windowTitle" >
+         <string>Media Player</string>
+        </property>
+        <widget class="QWidget" name="dockWidgetContents_6" >
+         <property name="geometry" >
+          <rect>
+           <x>0</x>
+           <y>20</y>
+           <width>451</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2" >
+          <property name="spacing" >
+           <number>0</number>
+          </property>
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QUMediaPlayer" native="1" name="mediaplayer" />
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item>
        <widget class="QDockWidget" name="eventsDock" >
         <property name="windowTitle" >
          <string>Event Log</string>
@@ -477,7 +505,7 @@ Tasks</string>
            <x>0</x>
            <y>20</y>
            <width>451</width>
-           <height>143</height>
+           <height>134</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" >
@@ -1174,6 +1202,12 @@ Tasks</string>
    <class>QUMontyArea</class>
    <extends>QWidget</extends>
    <header>QUMontyArea.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QUMediaPlayer</class>
+   <extends>QWidget</extends>
+   <header>QUMediaPlayer.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

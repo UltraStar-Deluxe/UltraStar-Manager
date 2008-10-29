@@ -100,6 +100,9 @@ private slots:
 	// internal easter eggs
 	void copyAudioToPath();
 
+	// interaction with media player
+	void sendCurrentSongToMediaPlayer();
+
 private:
 	QList<QUSongFile*>     _songs;
 

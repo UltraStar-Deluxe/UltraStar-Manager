@@ -5,7 +5,9 @@ QT += core \
     xml \
     network
 CONFIG += debug
-HEADERS += QULogService.h \
+HEADERS += mediaplayer/QUAutoCue.h \
+    mediaplayer/QUMediaPlayer.h \
+    QULogService.h \
     tasks/QULyricTask.h \
     QUSongLine.h \
     monty/QUMontyArea.h \
@@ -69,7 +71,9 @@ HEADERS += QULogService.h \
     QUTagOrderDialog.h \
     QUSongFile.h \
     QUMainWindow.h
-SOURCES += QULogService.cpp \
+SOURCES += mediaplayer/QUAutoCue.cpp \
+    mediaplayer/QUMediaPlayer.cpp \
+    QULogService.cpp \
     tasks/QULyricTask.cpp \
     QUSongLine.cpp \
     monty/QUMontyArea.cpp \
@@ -132,7 +136,8 @@ SOURCES += QULogService.cpp \
     QUSongFile.cpp \
     QUMainWindow.cpp \
     main.cpp
-FORMS += QUMontyArea.ui \
+FORMS += QUMediaPlayer.ui \
+    QUMontyArea.ui \
     QUAboutDialog.ui \
     QUFilterArea.ui \
     QUCoverGroup.ui \
@@ -160,12 +165,15 @@ INCLUDEPATH += tasks \
     amazon \
     metaphone \
     filter \
-    monty
+    monty \
+    mediaplayer
 win32 { 
     RC_FILE = uman.rc
-    INCLUDEPATH += ../include/taglib
+    INCLUDEPATH += ../include/taglib \
+        ../include/bass
     LIBS += -L"../lib" \
-        -ltag
+        -ltag \
+        -lbass
 }
 unix { 
     INCLUDEPATH += /usr/include/taglib
