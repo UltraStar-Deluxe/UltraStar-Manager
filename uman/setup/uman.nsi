@@ -21,7 +21,7 @@ OutFile "_files\uman-${PRODUCTVERSION}-win32-setup.exe"
 InstallDir "$PROGRAMFILES\${PRODUCTNAME}"
 InstallDirRegKey HKCU "Software\HPI\${PRODUCTNAME}" ""
 
-;; Vista...
+;; Vista UAC
 RequestExecutionLevel admin
 
 !define MUI_STARTMENUPAGE_DEFAULTFOLDER "${PRODUCTNAME}"
