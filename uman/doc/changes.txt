@@ -1,4 +1,173 @@
 <---------------------------->
+< Changelog (1.7.1 to 1.8.0) >
+<---------------------------->
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#  NEW FEATURES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+NOT SORTED
+* you cannot sort after a custom tag column in the report
+* Uninstaller does not delete
+  > "non-standard" tasks
+* short application hang under vista while getting covers from amazon
+  the first time after application start
+* cannot save "Always On Top" state to config because it's not possible to
+  reset that state on application startup (-> Qt 4.3.5 bug?)
+* cannot sort after "videogap" column correctly
+* broken gif-support for amazon cover files
+! update playlists if you delete a song -> crash on exit
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
+
+ABOUT
+* http://www.iconarchive.com/category/animals/tiny-animals-icons-by-iconshock.html
+
+SOME AWESOME LYRIC SUPPORT (hmmm.....)
+* http://lyricwiki.org/LyricWiki:REST
+
+NEW STUFF
+* make hard-coded values editable
+  > lower and upper time bound
+  > line break gap in lyrics
+* create an ISO file with MP3s from you collection
+  > let your friends be well prepared for the ultrastar evening
+* get cover picture
+  > extract cover from MP3
+* get background picture
+  > from imagesearch engines (flickr, google, yahoo...)
+* "UmanScore"
+  > multiple syllables in a line
+  > has video, audio, cover, background
+  > has additional information set (edition, creator, ...)
+* find & replace in song tags
+* manage covers for
+  > edition
+  > genre
+  > language
+  > folder
+* some extended help system in the application (lowest priority, Monty works well :))
+* checksums for SC-checked song files
+  > QCryptographicHash (md4, md5, sha1)
+* get a web-source for background pictures and videos
+  > need an API like Amazon Associates Web Service
+* CO/BG slideshow -> detect awful covers
+* look for illegal/invalid lyrics
+  > e.g. ": 20 7ß 38 blubb" (false alpha-numeric..., USdx error)
+* top-ten
+  > artists
+* compare two song text files (which one is better?)
+* add support for Stepmania
+  > BIIIIG TASK
+  
+TASKS
+! better error handling for "path change tasks"
+  > make it ACID! (at least atomic...)
+* correct the ratio for pictures
+  > by task
+	> 1:1 for covers
+	> n:m for backgrounds, according to resolution (ingame)
+	> detect selected resolution for UltraStar (read configs...)
+* crop covers to 1:1 (extra task?)
+  > resize and fill with color to ratio ??
+* some task to fix lyrics which are always "upper-case"
+* you cannot search after a dot in UltraStar Deluxe 1.0.1a
+  > workaround in uman?
+  > a task that removes all dots from artist/title?
+* modify ID3v2 tags via song tags
+  > genre, year
+* introduce "slots" to save checkstate of items in tasklist
+  > some predefined slots would be cool
+
+SONG TREE
+* enable the user to append any custom []-tag to a file/folder
+  > manage these custom/unknown []-tags
+  > available through context menu? (list []-tags, ...)
+* make column tests in 1 and 2 editable
+  > according to renaming style of the user
+* list ratio of cover/background in song tree (extra column)
+* custom rename (context menu, 2nd click, ...)
+* warn, if BGs are bigger than game resolution
+  > will be white otherwise
+	> minification not supported by USdx
+* virtual song folders for many song text files in one folder
+* drop zip files or whole folders in the song tree
+* offer an option to "not resize to contents" all the time
+* let the user choose rename task with target 'dir' which should be
+  done after dropping a song file in the tree
+  > maybe also 'path' and 'dir' possible
+  > better integration
+* add icon to toolbar for "hide" features (like context menu)
+
+SONG TREE ALTERNATIVE
+* create a cover view?
+* some SC-Filter/Overview?
+
+REPORTS
+* add a "to top" link to each song text
+* PDF-Report (song book feature?)
+* cover into reports (beside lyrics?)
+* header/footer for reports
+  > global stats
+* prepend global stats to report
+  > total length
+  > count
+  > ...
+* add covers and background pictures to reports
+* new column
+  > is SC-checked?
+  
+PLAYLIST SUPPORT
+* auto-create playlists by edition
+* handle duplicates in playlists
+  > UltraStar playlists are more like a subset of all songs
+  > not really playlists...
+* drag&drop from songs to the playlist
+  > consider selection! (broken?)
+* add to playlist context menu "remove invalid entries" 
+* show effective length of playlist in playlist dock
+
+FILTER SUPPORT
+* re-design filter categories
+  > Apply more than one filter?
+* filter presets (more-button in filter area)
+  > duplicates
+  > SC-Songs
+  > CC-Songs
+  > ...
+
+FILE PREVIEW/LYRICS
+* make song text files editable
+* add current time instead of line number (?)
+  > beware of relative songs
+
+AMAZON COVER DOWNLOAD
+* auto rename downloaded covers ("Artist - Title [CO].jpg"?)
+
+INTERNAL STUFF
+! use internal XML data for melody/lyrics
+  <line out="22" in="25">
+    <note timestamp="123" duration="10" pitch="20" lyric="ah " freestyle="yes" golden="no"></note>
+  </line>
+* do not use only the count for "QUSongFile::verifyTags(QStringList&)"
+* use next file in folder if txt is no valid song file
+  > no license files
+* detect not only song file changes but song folder changes
+  > new files...
+* read config.ini from ultrastar (->options?)
+* write some tests for basic song manipulating operations
+
+
+/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+
+
+<---------------------------->
 < Changelog (1.7.0 to 1.7.1) >
 <---------------------------->
 
@@ -95,138 +264,7 @@ NOT SORTED
   reset that state on application startup (-> Qt 4.3.5 bug?)
 * cannot sort after "videogap" column correctly
 * broken gif-support for amazon cover files
-
-~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  DEFERRED  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
-
-ABOUT
-* http://www.iconarchive.com/category/animals/tiny-animals-icons-by-iconshock.html
-
-SOME AWESOME LYRIC SUPPORT (hmmm.....)
-* http://lyricwiki.org/LyricWiki:REST
-
-NEW STUFF
-* make hard-coded values editable
-  > lower and upper time bound
-  > line break gap in lyrics
-* create an ISO file with MP3s from you collection
-  > let your friends be well prepared for the ultrastar evening
-* get cover picture
-  > extract cover from MP3
-* "UmanScore"
-  > multiple syllables in a line
-  > has video, audio, cover, background
-  > has additional information set (edition, creator, ...)
-* find & replace in song tags
-* manage covers for
-  > edition
-  > genre
-  > language
-  > folder
-* some extended help system in the application (lowest priority, Monty works well :))
-* checksums for SC-checked song files
-  > QCryptographicHash (md4, md5, sha1)
-* get a web-source for background pictures and videos
-  > need an API like Amazon Associates Web Service
-* CO/BG slideshow -> detect awful covers
-* look for illegal/invalid lyrics
-  > e.g. ": 20 7ß 38 blubb" (false alpha-numeric..., USdx error)
-* top-ten
-  > artists
-* compare two song text files (which one is better?)
-  
-TASKS
-! better error handling for "path change tasks"
-  > make it ACID! (at least atomic...)
-* correct the ratio for pictures
-  > by task
-	> 1:1 for covers
-	> n:m for backgrounds, according to resolution (ingame)
-	> detect selected resolution for UltraStar (read configs...)
-* crop covers to 1:1 (extra task?)
-  > resize and fill with color to ratio ??
-* some task to fix lyrics which are always "upper-case"
-* you cannot search after a dot in UltraStar Deluxe 1.0.1a
-  > workaround in uman?
-  > a task that removes all dots from artist/title?
-* modify ID3v2 tags via song tags
-  > genre, year
-
-SONG TREE
-* enable the user to append any custom []-tag to a file/folder
-  > manage these custom/unknown []-tags
-  > available through context menu? (list []-tags, ...)
-* make column tests in 1 and 2 editable
-  > according to renaming style of the user
-* list ratio of cover/background in song tree (extra column)
-* custom rename (context menu, 2nd click, ...)
-* warn, if BGs are bigger than game resolution
-  > will be white otherwise
-	> minification not supported by USdx
-* virtual song folders for many song text files in one folder
-* drop zip files or whole folders in the song tree
-* offer an option to "not resize to contents" all the time
-* let the user choose rename task with target 'dir' which should be
-  done after dropping a song file in the tree
-  > maybe also 'path' and 'dir' possible
-  > better integration
-
-REPORTS
-* add a "to top" link to each song text
-* PDF-Report (song book feature?)
-* cover into reports (beside lyrics?)
-* header/footer for reports
-  > global stats
-* prepend global stats to report
-  > total length
-  > count
-  > ...
-* add covers and background pictures to reports
-* new column
-  > is SC-checked?
-  
-PLAYLIST SUPPORT
-* auto-create playlists by edition
-* handle duplicates in playlists
-  > UltraStar playlists are more like a subset of all songs
-  > not really playlists...
-* drag&drop from songs to the playlist
-  > consider selection! (broken?)
-* add to playlist context menu "remove invalid entries" 
-* show effective length of playlist in playlist dock
-
-FILTER SUPPORT
-* re-design filter categories
-  > Apply more than one filter?
-* filter presets (more-button in filter area)
-  > duplicates
-  > SC-Songs
-  > CC-Songs
-  > ...
-
-FILE PREVIEW/LYRICS
-* make song text files editable
-* add current time instead of line number (?)
-  > beware of relative songs
-
-AMAZON COVER DOWNLOAD
-* auto rename downloaded covers ("Artist - Title [CO].jpg"?)
-
-INTERNAL STUFF
-! use internal XML data for melody/lyrics
-  <line out="22" in="25">
-    <note timestamp="123" duration="10" pitch="20" lyric="ah " freestyle="yes" golden="no"></note>
-  </line>
-* do not use only the count for "QUSongFile::verifyTags(QStringList&)"
-* use next file in folder if txt is no valid song file
-  > no license files
-* detect not only song file changes but song folder changes
-  > new files...
-* read config.ini from ultrastar (->options?)
-
-
-
-
-
+! update playlists if you delete a song -> crash on exit
 
 
 
