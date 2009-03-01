@@ -1,20 +1,33 @@
 TEMPLATE = app
 TARGET = uman
+DESTDIR = ../bin/1.8.0WIP
+MOC_DIR = tmp
+UI_DIR = ui
+OBJECTS_DIR = tmp
+RCC_DIR = tmp
 QT += core \
     gui \
     xml \
     network
-CONFIG += debug
-HEADERS += mediaplayer/QUAutoCue.h \
-    mediaplayer/QUMediaPlayer.h \
-    QULogService.h \
-    tasks/QULyricTask.h \
-    QUSongLine.h \
-    monty/QUMontyArea.h \
+CONFIG -= debug
+HEADERS += main.h \
+    QU.h \
+    QUMonty.h \
     QUAboutDialog.h \
-    tasks/tasks.h \
+    QUMainWindow.h \   
+    song/QUAbstractSongInfo.h \
+    song/QUSongFile.h \
+    song/QUSongLine.h \ 
+    mediaplayer/QUAutoCue.h \
+    mediaplayer/QUMediaPlayer.h \
+    support/QULogService.h \
+    support/QUMessageBox.h \
+    support/QUProgressDialog.h \
+    support/QUTextDialog.h \
+    support/QUPictureDialog.h \    
+    monty/QUMontyArea.h \
     filter/QUFilterArea.h \
-    metaphone/QUMetaphoneString.h \
+    filter/QUMetaphoneString.h \
     amazon/QUCoverItemDelegate.h \
     amazon/QUCoverModel.h \
     amazon/QUAmazonResponse.h \
@@ -22,6 +35,7 @@ HEADERS += mediaplayer/QUAutoCue.h \
     amazon/QUAmazonDialog.h \
     amazon/QUCoverList.h \
     amazon/QUCoverGroup.h \
+    tasks/tasks.h \
     tasks/taskDialog/QUDefaultDelegate.h \
     tasks/taskDialog/QUAudioTagTaskDialog.h \
     tasks/taskDialog/QUTaskSourceDelegate.h \
@@ -31,55 +45,53 @@ HEADERS += mediaplayer/QUAutoCue.h \
     tasks/taskDialog/QUTaskDialog.h \
     tasks/taskDialog/QURenameTaskDialog.h \
     tasks/QUScriptableTask.h \
-    songtree/QUColumnAction.h \
-    reports/QUSongFileData.h \
-    QUCustomTagsDialog.h \
-    playlist/QUPlaylistArea.h \
-    playlist/QUPlaylistFile.h \
-    playlist/QUPlaylistEntry.h \
-    playlist/QUPlayListItem.h \
-    playlist/QUPlayList.h \
-    details/QUDropDownDelegate.h \
-    preview/QUPreviewTree.h \
-    QUPictureDialog.h \
-    tasks/QUCleanTask.h \
-    QUMessageBox.h \
-    reports/QUPlainTextReport.h \
-    reports/QUBooleanSongData.h \
-    reports/QUAbstractReport.h \
-    reports/QUHtmlReport.h \
-    reports/QUReportItem.h \
-    reports/QUSongTagData.h \
-    reports/QUAbstractReportData.h \
-    QUReportDialog.h \
-    songtree/QUSongTree.h \
-    songtree/QUSongItem.h \
-    QUProgressDialog.h \
-    details/QUTagItem.h \
-    details/QUDetailsTable.h \
-    details/QUDetailItem.h \
+    tasks/QULyricTask.h \
     tasks/QUPreparatoryTask.h \
     tasks/QURenameTask.h \
     tasks/QUTaskList.h \
     tasks/QUTaskItem.h \
     tasks/QUAudioTagTask.h \
     tasks/QUAbstractTask.h \
-    QU.h \
-    QUTextDialog.h \
-    main.h \
-    QUMonty.h \
-    QUTagOrderDialog.h \
-    QUSongFile.h \
-    QUMainWindow.h
-SOURCES += mediaplayer/QUAutoCue.cpp \
-    mediaplayer/QUMediaPlayer.cpp \
-    QULogService.cpp \
-    tasks/QULyricTask.cpp \
-    QUSongLine.cpp \
-    monty/QUMontyArea.cpp \
+    tasks/QUCleanTask.h \    
+    preferences/QUCustomTagsDialog.h \
+    preferences/QUTagOrderDialog.h \
+    playlist/QUPlaylistArea.h \
+    playlist/QUPlaylistFile.h \
+    playlist/QUPlaylistEntry.h \
+    playlist/QUPlayListItem.h \
+    playlist/QUPlayList.h \
+    preview/QUPreviewTree.h \
+    report/QUSongFileData.h \
+    report/QUPlainTextReport.h \
+    report/QUBooleanSongData.h \
+    report/QUAbstractReport.h \
+    report/QUHtmlReport.h \
+    report/QUReportItem.h \
+    report/QUSongTagData.h \
+    report/QUAbstractReportData.h \
+    report/QUReportDialog.h \
+    songtree/QUColumnAction.h \
+    songtree/QUSongTree.h \
+    songtree/QUSongItem.h \
+    songdetails/QUTagItem.h \
+    songdetails/QUDetailsTable.h \
+    songdetails/QUDetailItem.h \
+    songdetails/QUDropDownDelegate.h
+SOURCES += main.cpp \
+    QU.cpp \
     QUAboutDialog.cpp \
+    QUMainWindow.cpp \
+    QUMonty.cpp \
+    mediaplayer/QUAutoCue.cpp \
+    mediaplayer/QUMediaPlayer.cpp \
+    support/QULogService.cpp \
+    support/QUProgressDialog.cpp \
+    support/QUTextDialog.cpp \
+    support/QUPictureDialog.cpp \
+    support/QUMessageBox.cpp \  
+    monty/QUMontyArea.cpp \
     filter/QUFilterArea.cpp \
-    metaphone/QUMetaphoneString.cpp \
+    filter/QUMetaphoneString.cpp \
     amazon/QUCoverItemDelegate.cpp \
     amazon/QUCoverModel.cpp \
     amazon/QUAmazonResponse.cpp \
@@ -95,78 +107,77 @@ SOURCES += mediaplayer/QUAutoCue.cpp \
     tasks/taskDialog/QUTaskDataTable.cpp \
     tasks/taskDialog/QUTaskDialog.cpp \
     tasks/taskDialog/QURenameTaskDialog.cpp \
-    QU.cpp \
+    tasks/QULyricTask.cpp \
     tasks/QUScriptableTask.cpp \
-    songtree/QUColumnAction.cpp \
-    reports/QUSongFileData.cpp \
-    QUCustomTagsDialog.cpp \
-    playlist/QUPlaylistArea.cpp \
-    playlist/QUPlaylistFile.cpp \
-    playlist/QUPlaylistEntry.cpp \
-    playlist/QUPlayListItem.cpp \
-    playlist/QUPlayList.cpp \
-    details/QUDropDownDelegate.cpp \
-    preview/QUPreviewTree.cpp \
-    QUPictureDialog.cpp \
-    tasks/QUCleanTask.cpp \
-    QUMessageBox.cpp \
-    reports/QUPlainTextReport.cpp \
-    reports/QUBooleanSongData.cpp \
-    reports/QUAbstractReport.cpp \
-    reports/QUHtmlReport.cpp \
-    reports/QUReportItem.cpp \
-    reports/QUSongTagData.cpp \
-    reports/QUAbstractReportData.cpp \
-    QUReportDialog.cpp \
-    songtree/QUSongTree.cpp \
-    songtree/QUSongItem.cpp \
-    QUProgressDialog.cpp \
-    details/QUTagItem.cpp \
-    details/QUDetailsTable.cpp \
-    details/QUDetailItem.cpp \
     tasks/QUPreparatoryTask.cpp \
     tasks/QURenameTask.cpp \
     tasks/QUAudioTagTask.cpp \
     tasks/QUTaskList.cpp \
     tasks/QUTaskItem.cpp \
-    tasks/QUAbstractTask.cpp \
-    QUTextDialog.cpp \
-    QUMonty.cpp \
-    QUTagOrderDialog.cpp \
-    QUSongFile.cpp \
-    QUMainWindow.cpp \
-    main.cpp
-FORMS += QUMediaPlayer.ui \
-    QUMontyArea.ui \
+    tasks/QUAbstractTask.cpp \    
+    tasks/QUCleanTask.cpp \
+    preferences/QUCustomTagsDialog.cpp \
+    preferences/QUTagOrderDialog.cpp \
+    playlist/QUPlaylistArea.cpp \
+    playlist/QUPlaylistFile.cpp \
+    playlist/QUPlaylistEntry.cpp \
+    playlist/QUPlayListItem.cpp \
+    playlist/QUPlayList.cpp \
+    preview/QUPreviewTree.cpp \
+    report/QUSongFileData.cpp \
+    report/QUPlainTextReport.cpp \
+    report/QUBooleanSongData.cpp \
+    report/QUAbstractReport.cpp \
+    report/QUHtmlReport.cpp \
+    report/QUReportItem.cpp \
+    report/QUSongTagData.cpp \
+    report/QUAbstractReportData.cpp \
+    report/QUReportDialog.cpp \
+    songtree/QUColumnAction.cpp \
+    songtree/QUSongTree.cpp \
+    songtree/QUSongItem.cpp \
+    songdetails/QUDropDownDelegate.cpp \
+    songdetails/QUTagItem.cpp \
+    songdetails/QUDetailsTable.cpp \
+    songdetails/QUDetailItem.cpp \
+    song/QUSongLine.cpp \
+    song/QUSongFile.cpp
+FORMS += QUMainWindow.ui \
     QUAboutDialog.ui \
-    QUFilterArea.ui \
-    QUCoverGroup.ui \
-    QUAmazonArea.ui \
-    QUTaskDialog.ui \
-    QUCustomTagsDialog.ui \
-    QUPlaylistArea.ui \
-    QUPictureDialog.ui \
-    QUMessageBox.ui \
-    QUReportDialog.ui \
-    QUProgressDialog.ui \
-    QUTextDialog.ui \
-    QUTagOrderDialog.ui \
-    QUMainWindow.ui
+    mediaplayer/QUMediaPlayer.ui \
+    monty/QUMontyArea.ui \
+    filter/QUFilterArea.ui \
+    amazon/QUCoverGroup.ui \
+    amazon/QUAmazonArea.ui \
+    tasks/taskDialog/QUTaskDialog.ui \
+    playlist/QUPlaylistArea.ui \
+    report/QUReportDialog.ui \
+    support/QUPictureDialog.ui \
+    support/QUMessageBox.ui \
+    support/QUProgressDialog.ui \
+    support/QUTextDialog.ui \
+    preferences/QUTagOrderDialog.ui \
+    preferences/QUCustomTagsDialog.ui
 RESOURCES += images/uman.qrc
-TRANSLATIONS = uman_de.ts \
-    uman_pl.ts
-INCLUDEPATH += tasks \
-    details \
+TRANSLATIONS = languages/uman_de.ts \
+    languages/uman_pl.ts
+INCLUDEPATH += . \
+    song \
+    songdetails \
     songtree \
-    reports \
+    report \
+    tasks \
     tasks/taskDialog \
     preview \
     playlist \
     amazon \
-    metaphone \
     filter \
     monty \
-    mediaplayer
+    mediaplayer \
+    support \
+    preferences \
+    ui
+
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib \

@@ -77,6 +77,7 @@
   </qresource>
   <qresource prefix="/icons" >
     <file>splash.png</file>
+    <file>splash2.png</file>
     <file>cup.png</file>
     <file>uman128.png</file>
     <file>uman32.png</file>

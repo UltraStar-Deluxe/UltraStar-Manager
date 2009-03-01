@@ -73,7 +73,7 @@ int QUMessageBox::showMessage(const QString &title, const QString &msg, const QS
 		defaultIndex = (buttons.size() / 2 - 1);
 
 	for(int i = 1; i < buttons.size(); i += 2) {
-		vboxLayout1->addWidget(createButton(
+		buttonLayout->addWidget(createButton(
 				QIcon(buttons.at(i - 1)),
 				buttons.at(i),
 				(i - 1) / 2 == defaultIndex));

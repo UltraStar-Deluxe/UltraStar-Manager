@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 	QApplication app(argc, argv);
 	QTranslator  tr;
 
-	QSplashScreen splash(QPixmap(":/icons/splash.png"));
+	QSplashScreen splash(QPixmap(":/icons/splash2.png"));
 	splash.show();
 
 	initLanguage(app, tr, splash);
@@ -80,7 +80,7 @@ void initLanguage(QApplication &app, QTranslator &t, QSplashScreen &s) {
 		}
 	}
 
-	s.showMessage(QString(QObject::tr("Version %1.%2.%3 is loading...")).arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION), Qt::AlignBottom | Qt::AlignRight, Qt::white);
+	s.showMessage(QString(QObject::tr("%1.%2.%3 is loading...")).arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION), Qt::AlignBottom | Qt::AlignRight, Qt::white);
 
 	// message needs to be here because it can be translated only after installing
 	// the translator

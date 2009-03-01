@@ -6,6 +6,7 @@
 
 QUAutoCue::QUAutoCue(QWidget *parent): QTextBrowser(parent), _stopRequested(false), _cueListIndex(-1) {
 	setFontFamily("Lucida Console");
+	setFontPointSize(12);
 }
 
 /*!
@@ -41,7 +42,17 @@ void QUAutoCue::reset(QUSongFile &song) {
 			else
 				time = qRound(gap) + qRound((note->timestamp / bpm) * 60000);
 
+			if(note->type == QUSongNote::golden)
+				setFontWeight(QFont::Bold);
+			else if(note->type == QUSongNote::freestyle)
+				setFontItalic(true);
+
+			setAlignment(Qt::AlignHCenter);
 			insertPlainText(note->lyric());
+
+			setFontWeight(QFont::Normal);
+			setFontItalic(false);
+
 			_cueList << QUCueInfo(time, pos, note->lyric().size());
 
 			pos += note->lyric().size();
@@ -55,6 +66,10 @@ void QUAutoCue::reset(QUSongFile &song) {
 			relTime += qRound((line->inTime() / bpm) * 60000);
 		}
 	}
+
+	QTextCursor tc = textCursor();
+	tc.setPosition(0);
+	setTextCursor(tc);
 }
 
 void QUAutoCue::play() {
