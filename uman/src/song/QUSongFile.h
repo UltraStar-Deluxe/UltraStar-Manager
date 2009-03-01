@@ -9,73 +9,22 @@
 #include <QMap>
 #include <QDir>
 
-#include <QDomDocument>
-#include <QDomElement>
-#include <QDomAttr>
-
 #include "QU.h"
 #include "QUSongLine.h"
-
-#define TITLE_TAG      "TITLE"
-#define ARTIST_TAG     "ARTIST"
-#define LANGUAGE_TAG   "LANGUAGE"
-#define EDITION_TAG    "EDITION"
-#define GENRE_TAG      "GENRE"
-#define YEAR_TAG       "YEAR"
-#define CREATOR_TAG    "CREATOR"
-#define MP3_TAG        "MP3"
-#define COVER_TAG      "COVER"
-#define BACKGROUND_TAG "BACKGROUND"
-#define VIDEO_TAG      "VIDEO"
-#define VIDEOGAP_TAG   "VIDEOGAP"
-#define START_TAG      "START"
-#define END_TAG        "END"
-#define RELATIVE_TAG   "RELATIVE"
-#define BPM_TAG        "BPM"
-#define GAP_TAG        "GAP"
+#include "QUSongInterface.h"
 
 /*!
  * This class represents a data file which is used by UltraStar for every song.
  * It contains all tags that are available in US Deluxe 1.00.
  */
-class QUSongFile: public QObject {
+class QUSongFile: public QUSongInterface {
 	Q_OBJECT
-	// normal tag properties
-	Q_PROPERTY(QString artist READ artist)
-	Q_PROPERTY(QString title READ title)
-	Q_PROPERTY(QString mp3 READ mp3)
-	Q_PROPERTY(QString bpm READ bpm)
-	Q_PROPERTY(QString gap READ gap)
-	Q_PROPERTY(QString video READ video)
-	Q_PROPERTY(QString videogap READ videogap)
-	Q_PROPERTY(QString cover READ cover)
-	Q_PROPERTY(QString background READ background)
-	Q_PROPERTY(QString start READ start)
-	Q_PROPERTY(QString language READ language)
-	Q_PROPERTY(QString relative READ relative)
-	Q_PROPERTY(QString edition READ edition)
-	Q_PROPERTY(QString genre READ genre)
-	Q_PROPERTY(QString year READ year)
-	Q_PROPERTY(QString end READ end)
-	Q_PROPERTY(QString creator READ creator)
-	// additional properties
-	Q_PROPERTY(QString dir READ dir)
-	Q_PROPERTY(QString path READ path)
-	Q_PROPERTY(QString filePath READ filePath)
-	Q_PROPERTY(QString relativeFilePath READ relativeFilePath)
-	Q_PROPERTY(QString txt READ txt)
-	Q_PROPERTY(QString lengthTotal READ lengthEffectiveFormatted)
-	Q_PROPERTY(QString speed READ speedFormatted)
-
-	Q_PROPERTY(bool hasMp3 READ hasMp3)
-	Q_PROPERTY(bool hasCover READ hasCover)
-	Q_PROPERTY(bool hasBackground READ hasBackground)
-	Q_PROPERTY(bool hasVideo READ hasVideo)
-	Q_PROPERTY(bool isSongChecked READ isSongChecked)
-
+    
 public:
 	QUSongFile(const QString &filePath, QObject *parent = 0);
 	~QUSongFile();
+
+    virtual void log(const QString &message, int type);
 
 	bool hasUnsavedChanges() const { return _hasUnsavedChanges; }
 	void setFile(const QString &filePath);
@@ -170,10 +119,6 @@ public slots:
 	void useID3TagForTitle();
 	void useID3TagForGenre();
 	void useID3TagForYear();
-
-	static QStringList tags();
-	static QStringList customTags();
-	static QStringList noteTypes();
 
 	static void verifyTags(QStringList &tags);
 

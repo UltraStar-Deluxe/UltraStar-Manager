@@ -2,6 +2,8 @@
 
 #include <QSettings>
 
+#include "QUSongSupport.h"
+
 QUCustomTagsDialog::QUCustomTagsDialog(QWidget *parent): QDialog(parent) {
 	setupUi(this);
 
@@ -10,7 +12,7 @@ QUCustomTagsDialog::QUCustomTagsDialog(QWidget *parent): QDialog(parent) {
 	connect(addBtn, SIGNAL(clicked()), this, SLOT(addTag()));
 	connect(removeBtn, SIGNAL(clicked()), this, SLOT(removeCurrentTag()));
 
-	tagList->addItems(QUSongFile::customTags());
+	tagList->addItems(QUSongSupport::availableCustomTags());
 
 	for(int row = 0; row < tagList->count(); row++) {
 		tagList->item(row)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsDragEnabled);

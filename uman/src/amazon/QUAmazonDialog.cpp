@@ -20,6 +20,8 @@
 
 #include <QMessageBox>
 
+#include "QUSongSupport.h"
+
 QUAmazonDialog::QUAmazonDialog(const QList<QUSongItem*> &items, QWidget *parent): QDialog(parent) {
 	setupUi(this);
 
@@ -52,8 +54,8 @@ QUAmazonDialog::QUAmazonDialog(const QList<QUSongItem*> &items, QWidget *parent)
 	artistCombo->addItem(NONE);
 	titleCombo->addItem(NONE);
 
-	artistCombo->addItems(QUSongFile::tags()); artistCombo->setCurrentIndex(artistCombo->findText(ARTIST_TAG));
-	titleCombo->addItems(QUSongFile::tags()); titleCombo->setCurrentIndex(titleCombo->findText(TITLE_TAG));
+	artistCombo->addItems(QUSongSupport::availableTags()); artistCombo->setCurrentIndex(artistCombo->findText(ARTIST_TAG));
+	titleCombo->addItems(QUSongSupport::availableTags()); titleCombo->setCurrentIndex(titleCombo->findText(TITLE_TAG));
 
 	limitCombo->addItems(QStringList() << "5" << "10");
 	QSettings settings; limitCombo->setCurrentIndex(limitCombo->findText(settings.value("amazonLimit", "5").toString()));

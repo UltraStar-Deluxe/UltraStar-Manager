@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = uman
-DESTDIR = ../bin/1.8.0WIP
+DESTDIR = ../bin/wip
 MOC_DIR = tmp
 UI_DIR = ui
 OBJECTS_DIR = tmp
@@ -14,8 +14,10 @@ HEADERS += main.h \
     QU.h \
     QUMonty.h \
     QUAboutDialog.h \
-    QUMainWindow.h \   
-    song/QUAbstractSongInfo.h \
+    QUMainWindow.h \
+    QUStringSupport.h \
+    QUSongSupport.h \
+    song/QUSongInterface.h \
     song/QUSongFile.h \
     song/QUSongLine.h \ 
     mediaplayer/QUAutoCue.h \
@@ -82,6 +84,8 @@ SOURCES += main.cpp \
     QUAboutDialog.cpp \
     QUMainWindow.cpp \
     QUMonty.cpp \
+    QUStringSupport.cpp \
+    QUSongSupport.cpp \
     mediaplayer/QUAutoCue.cpp \
     mediaplayer/QUMediaPlayer.cpp \
     support/QULogService.cpp \

@@ -10,6 +10,8 @@
 #include <QFont>
 #include <QMessageBox>
 
+#include "QUSongSupport.h"
+
 QUDetailsTable::QUDetailsTable(QWidget *parent): QTableWidget(parent) {
 	this->setColumnCount(2);
 
@@ -57,7 +59,7 @@ void QUDetailsTable::initTagColumn() {
 	this->initSeparator(tr("Custom"), 20);
 	//this->setItem(21, 0, new QUTagItem(QIcon(":/types/comment.png"), tr("Comment")));
 	int i = 0;
-	foreach(QString customTag, QUSongFile::customTags()) {
+	foreach(QString customTag, QUSongSupport::availableCustomTags()) {
 		this->setItem(21 + (i++), 0, new QUTagItem(QIcon(":/bullets/bullet_star.png"), customTag));
 	}
 }
@@ -89,7 +91,7 @@ void QUDetailsTable::initValueColumn() {
 	/* separator here - skip a row */
 //	this->setItem(21, 1, new QUDetailItem(COMMENT_TAG));
 	int i = 0;
-	foreach(QString customTag, QUSongFile::customTags()) {
+	foreach(QString customTag, QUSongSupport::availableCustomTags()) {
 		this->setItem(21 + (i++), 1, new QUDetailItem(customTag));
 	}
 }
@@ -133,7 +135,7 @@ void QUDetailsTable::updateValueColumn(const QList<QUSongItem*> &songItems) {
  * Re-initializes all rows according to the actual custom tags.
  */
 void QUDetailsTable::reset() {
-	this->setRowCount(21 + QUSongFile::customTags().size());
+	this->setRowCount(21 + QUSongSupport::availableCustomTags().size());
 
 	// setup tag & value column
 	this->initTagColumn();

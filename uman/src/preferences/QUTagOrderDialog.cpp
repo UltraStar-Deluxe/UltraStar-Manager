@@ -4,12 +4,13 @@
 #include <QSettings>
 #include <QMessageBox>
 
+#include "QUSongSupport.h"
 
 QUTagOrderDialog::QUTagOrderDialog(QWidget *parent): QDialog(parent) {
 	setupUi(this);
 
 	QSettings settings;
-	QStringList items = settings.value("tagOrder", QVariant(QUSongFile::tags())).toStringList();
+	QStringList items = settings.value("tagOrder", QVariant(QUSongSupport::availableTags())).toStringList();
 
 	QUSongFile::verifyTags(items);
 
@@ -41,5 +42,5 @@ void QUTagOrderDialog::saveOrder() {
  */
 void QUTagOrderDialog::resetOrder() {
 	tagList->clear();
-	tagList->addItems(QUSongFile::tags());
+	tagList->addItems(QUSongSupport::availableTags());
 }

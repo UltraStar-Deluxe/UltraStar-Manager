@@ -3,6 +3,9 @@
 
 #include <QVariant>
 
+#include "QUSongSupport.h"
+#include "QUStringSupport.h"
+
 QUAudioTagTask::QUAudioTagTask(QDomDocument *taskConfig, QObject *parent): QUScriptableTask(taskConfig), _currentSong(0) {
 	// setup internal operations
 	QDomElement id3(taskConfig->firstChild().firstChildElement("id3"));
@@ -100,7 +103,7 @@ QStringList QUAudioTagTask::availableInfoTargets() {
  * \returns a list of all possible custom targets used by audiotag tasks.
  */
 QStringList QUAudioTagTask::availableCustomTargets() {
-	return QUSongFile::customTags();
+	return QUSongSupport::availableCustomTags();
 }
 
 TagLib::FileRef QUAudioTagTask::ref() {
@@ -183,7 +186,7 @@ QString QUAudioTagTask::bitrate() {
 }
 
 QString QUAudioTagTask::currentContent() {
-	return QU::withoutFolderTags(currentContentAll());
+	return QUStringSupport::withoutFolderTags(currentContentAll());
 }
 
 QString QUAudioTagTask::currentContentAll() {

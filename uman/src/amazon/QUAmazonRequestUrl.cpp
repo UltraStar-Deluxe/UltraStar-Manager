@@ -1,4 +1,6 @@
 #include "QUAmazonRequestUrl.h"
+#include "QUSongSupport.h"
+#include "QUStringSupport.h"
 
 #include <QString>
 #include <QChar>
@@ -32,17 +34,17 @@ void QUAmazonRequestUrl::init(QUSongFile *song, const QString &artistProperty, c
 
 	if(QString::compare(artistProperty, NONE, Qt::CaseInsensitive) == 0)
 		query << QPair<QString, QString>("Artist", "");
-	else if(QUSongFile::customTags().contains(artistProperty, Qt::CaseInsensitive))
-		query << QPair<QString, QString>("Artist", toPercentEncoding(QU::withoutAnyUmlaut(song->customTag(artistProperty))));
+	else if(QUSongSupport::availableCustomTags().contains(artistProperty, Qt::CaseInsensitive))
+		query << QPair<QString, QString>("Artist", toPercentEncoding(QUStringSupport::withoutAnyUmlaut(song->customTag(artistProperty))));
 	else
-		query << QPair<QString, QString>("Artist", toPercentEncoding(QU::withoutAnyUmlaut(song->property(artistProperty.toLower().toLocal8Bit().data()).toString())));
+		query << QPair<QString, QString>("Artist", toPercentEncoding(QUStringSupport::withoutAnyUmlaut(song->property(artistProperty.toLower().toLocal8Bit().data()).toString())));
 
 	if(QString::compare(titleProperty, NONE, Qt::CaseInsensitive) == 0)
 		query << QPair<QString, QString>("Title", "");
-	else if(QUSongFile::customTags().contains(titleProperty, Qt::CaseInsensitive))
-		query << QPair<QString, QString>("Title", toPercentEncoding(QU::withoutAnyUmlaut(song->customTag(titleProperty))));
+	else if(QUSongSupport::availableCustomTags().contains(titleProperty, Qt::CaseInsensitive))
+		query << QPair<QString, QString>("Title", toPercentEncoding(QUStringSupport::withoutAnyUmlaut(song->customTag(titleProperty))));
 	else
-		query << QPair<QString, QString>("Title", toPercentEncoding(QU::withoutAnyUmlaut(song->property(titleProperty.toLower().toLocal8Bit().data()).toString())));
+		query << QPair<QString, QString>("Title", toPercentEncoding(QUStringSupport::withoutAnyUmlaut(song->property(titleProperty.toLower().toLocal8Bit().data()).toString())));
 
 	setQueryItems(query);
 }

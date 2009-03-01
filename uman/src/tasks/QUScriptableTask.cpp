@@ -5,6 +5,8 @@
 #include <QMessageBox>
 #include <QRegExp>
 
+#include "QUSongSupport.h"
+
 QUScriptableTask::QUScriptableTask(QDomDocument *taskConfig, QObject *parent): QUAbstractTask(parent) {
 	this->_configFileName = taskConfig->firstChildElement("task").attribute("file", tr("unnamed.xml"));
 
@@ -33,7 +35,7 @@ QStringList QUScriptableTask::availableSources() {
 }
 
 QStringList QUScriptableTask::availableCustomSources() {
-	return QUSongFile::customTags();
+	return QUSongSupport::availableCustomTags();
 }
 
 QStringList QUScriptableTask::availableConditions() {

@@ -13,6 +13,9 @@
 #include <QSettings>
 #include <QMessageBox>
 
+#include "QUSongSupport.h"
+#include "QUStringSupport.h"
+
 #define LOWER_SPEED_BOUND_DEFAULT 2.5
 #define UPPER_SPEED_BOUND_DEFAULT 5.5
 
@@ -64,21 +67,21 @@ void QUSongItem::update() {
 
 		QString fileScheme("*." + QFileInfo(fileNames[i]).suffix());
 
-		if(QU::allowedLicenseFiles().contains(fileNames.at(i), Qt::CaseInsensitive)) {
+		if(QUSongSupport::allowedLicenseFiles().contains(fileNames.at(i), Qt::CaseInsensitive)) {
 			child->updateAsLicense();
-		} else if(QU::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		} else if(QUSongSupport::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsTxt();
-		} else if(QU::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		} else if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsMp3();
-		} else if(QU::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		} else if(QUSongSupport::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsPicture();
-		} else if(QU::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		} else if(QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsVideo();
-		} else if(QU::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		} else if(QUSongSupport::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsMidi();
-		} else if(QU::allowedKaraokeFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		} else if(QUSongSupport::allowedKaraokeFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsKaraoke();
-		} else if(QU::allowedScoreFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		} else if(QUSongSupport::allowedScoreFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsScore();
 		} else {
 			child->updateAsUnknown();
@@ -376,14 +379,14 @@ void QUSongItem::setAltViewEnabled(bool enabled) {
 }
 
 void QUSongItem::updateSpellCheckColumns() {
-	QString pattern = QU::withoutFolderTags(song()->songFileInfo().dir().dirName());
+	QString pattern = QUStringSupport::withoutFolderTags(song()->songFileInfo().dir().dirName());
 	QString toolTip = "\"%2\" %3 \"%1\"";
 	QString part1, part2;
 
 	/* artist column */
-	part1 = QU::withoutUnsupportedCharacters(song()->artist());
-	part1 = QU::withoutFolderTags(part1);
-	part2 = QU::withoutUnsupportedCharacters(pattern.section(" - ", 0, 0));
+	part1 = QUStringSupport::withoutUnsupportedCharacters(song()->artist());
+	part1 = QUStringSupport::withoutFolderTags(part1);
+	part2 = QUStringSupport::withoutUnsupportedCharacters(pattern.section(" - ", 0, 0));
 
 	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
 		this->setSmiley(ARTIST_COLUMN);
@@ -393,9 +396,9 @@ void QUSongItem::updateSpellCheckColumns() {
 		this->setSmiley(ARTIST_COLUMN, QU::spellingError, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_NEQUAL)));
 
 	/* title column */
-	part1 = QU::withoutUnsupportedCharacters(song()->title());
-	part1 = QU::withoutFolderTags(part1);
-	part2 = QU::withoutUnsupportedCharacters(pattern.section(" - ", 1));
+	part1 = QUStringSupport::withoutUnsupportedCharacters(song()->title());
+	part1 = QUStringSupport::withoutFolderTags(part1);
+	part2 = QUStringSupport::withoutUnsupportedCharacters(pattern.section(" - ", 1));
 
 	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
 		this->setSmiley(TITLE_COLUMN);
@@ -496,7 +499,7 @@ void QUSongItem::updateTextColumns() {
 
 	// show custom tags
 	int i = 0;
-	foreach(QString customTag, QUSongFile::customTags()) {
+	foreach(QString customTag, QUSongSupport::availableCustomTags()) {
 		this->setText(FIRST_CUSTOM_TAG_COLUMN + (i),      song()->customTag(customTag));
 		this->setToolTip(FIRST_CUSTOM_TAG_COLUMN + (i++), song()->customTag(customTag));
 	}

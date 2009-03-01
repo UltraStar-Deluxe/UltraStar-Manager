@@ -2,9 +2,6 @@
 #define QU_H_
 
 #include <QObject>
-#include <QString>
-#include <QStringList>
-#include <QRegExp>
 #include <QFileInfo>
 
 #define N_A "-"
@@ -91,29 +88,7 @@ public:
 	};
 	Q_DECLARE_FLAGS(ReportOptions, ReportOption)
 
-	static QStringList allowedSongFiles();
-	static QStringList allowedLicenseFiles();
-	static QStringList allowedMidiFiles();
-	static QStringList allowedKaraokeFiles();
-	static QStringList allowedScoreFiles();
-
-	static QStringList allowedAudioFiles();
-	static QStringList allowedPictureFiles();
-	static QStringList allowedVideoFiles();
-	static QStringList allowedPlaylistFiles();
-
-	static QString withoutUnsupportedCharacters (const QString &text);
-	static QString withoutFolderTags(const QString &text);
-	static QString withoutLeadingBlanks(const QString &text);
-	static QString withoutAnyUmlaut(const QString &text);
-	static QString withoutAnyUmlautEx(const QString &text);
-
-	static bool equal(QString token1, QString token2, bool ignoreEmpty = false);
-
-	static bool fileTypeLessThan(const QFileInfo &fi1, const QFileInfo &fi2);
-
-private:
-	static QStringList registryKey(const QString &key, const QString &defaultValue);
+	static bool fileTypeLessThan(const QFileInfo &fi1, const QFileInfo &fi2);  
 };
 
 #endif /*QU_H_*/

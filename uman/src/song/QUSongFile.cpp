@@ -22,6 +22,10 @@
 
 #include "math.h"
 
+#include "QUMetaphoneString.h"
+#include "QUStringSupport.h"
+#include "QUSongSupport.h"
+
 /*!
  * Creates a new song file object.
  * \param file an existing US song file (normally a *.txt)
@@ -30,7 +34,7 @@
  * \sa allowedSongFiles()
  */
 QUSongFile::QUSongFile(const QString &filePath, QObject *parent):
-	QObject(parent),
+	QUSongInterface(parent),
 	_hasUnsavedChanges(false),
 	_songLength(-1)
 {
@@ -44,6 +48,13 @@ QUSongFile::~QUSongFile() {
 	monty->watcher()->removePath(_fi.filePath());
 
 	disconnect(this, 0, 0, 0);
+}
+
+/*!
+ * This is a wrapper to allow external plugins access to the log service.
+ */
+void QUSongFile::log(const QString &message, int type) {
+    logSrv->add(message, (QU::EventMessageTypes) type);
 }
 
 /*!
@@ -107,7 +118,7 @@ bool QUSongFile::hasVideoLessThan (QUSongFile *s1, QUSongFile *s2)       { retur
  * QChar::decomposition()
  */
 bool QUSongFile::equal(QUSongFile *s1, QUSongFile *s2) {
-	return ( QU::equal(s1->artist(), s2->artist()) and QU::equal(s1->title(), s2->title(), true) );
+	return ( QUMetaphoneString::equal(s1->artist(), s2->artist()) and QUMetaphoneString::equal(s1->title(), s2->title(), true) );
 }
 
 /* COMPARING FUNCTINOS END */
@@ -149,11 +160,11 @@ bool QUSongFile::updateCache() {
 	 */
 	QString line;
 	while( !(QRegExp("[:\\*FE\\-].*").exactMatch(line) || _file.atEnd()) ) {
-		line = QU::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
+		line = QUStringSupport::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
 
 		// read supported tags
 		bool isSupported = false;
-		foreach(QString tag, QUSongFile::tags()) {
+		foreach(QString tag, QUSongSupport::availableTags()) {
 			if(line.startsWith("#" + tag + ":", Qt::CaseInsensitive)) {
 				setInfo(tag, line.section("#" + tag + ":", 0, 0, QString::SectionSkipEmpty | QString::SectionCaseInsensitiveSeps).trimmed());
 				isSupported = true;
@@ -179,7 +190,7 @@ bool QUSongFile::updateCache() {
 		else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
 			_footer << line;
 
-		line = QU::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
+		line = QUStringSupport::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
 	}
 
 	// use last line buffer
@@ -210,60 +221,14 @@ void QUSongFile::setInfo(const QString &tag, const QString &value) {
 }
 
 /*!
- * \returns A list of strings with all available tags. Custom tags are included.
- */
-QStringList QUSongFile::tags() {
-	QStringList result;
-
-	result << TITLE_TAG;
-	result << ARTIST_TAG;
-	result << LANGUAGE_TAG;
-	result << EDITION_TAG;
-	result << GENRE_TAG;
-	result << YEAR_TAG;
-	result << CREATOR_TAG;
-	result << MP3_TAG;
-	result << COVER_TAG;
-	result << BACKGROUND_TAG;
-	result << VIDEO_TAG;
-	result << VIDEOGAP_TAG;
-	result << START_TAG;
-	result << END_TAG;
-	result << RELATIVE_TAG;
-	result << BPM_TAG;
-	result << GAP_TAG;
-
-	// all custom tags that will be supported
-	result << customTags();
-
-	return result;
-}
-
-QStringList QUSongFile::customTags() {
-	QSettings settings;
-	return settings.value("customTags").toString().split(" ", QString::SkipEmptyParts);
-}
-
-QStringList QUSongFile::noteTypes() {
-	QStringList result;
-
-	result << ":"; // normal
-	result << "*"; // golden note
-	result << "F"; // freestyle
-	result << "-"; // pause
-
-	return result;
-}
-
-/*!
  * Checks whether the configuration information about the
  * tag order is correct (especially the count of the tags).
  */
 void QUSongFile::verifyTags(QStringList &tags) {
 	QSettings settings;
 
-	if(tags.size() != QUSongFile::tags().size()) {
-		settings.setValue("tagOrder", QVariant(QUSongFile::tags()));
+	if(tags.size() != QUSongSupport::availableTags().size()) {
+		settings.setValue("tagOrder", QVariant(QUSongSupport::availableTags()));
 
 		QUMessageBox::information(QApplication::activeWindow(),
 				tr("Deprecated tag information detected"),
@@ -272,7 +237,7 @@ void QUSongFile::verifyTags(QStringList &tags) {
 						"The tag order was reset to its <b>default order</b>. Check out the <b>options</b> to set up your custom order again."
 				));
 
-		tags = QUSongFile::tags();
+		tags = QUSongSupport::availableTags();
 	}
 }
 
@@ -539,7 +504,7 @@ bool QUSongFile::save(bool force) {
 
 	QStringList tags;
 	QSettings settings;
-	tags = settings.value("tagOrder", QUSongFile::tags()).toStringList();
+	tags = settings.value("tagOrder", QUSongSupport::availableTags()).toStringList();
 
 	QUSongFile::verifyTags(tags);
 
@@ -824,7 +789,7 @@ void QUSongFile::removeUnsupportedTags() {
  */
 void QUSongFile::autoSetFiles() {
 	QFileInfoList files = this->songFileInfo().dir().entryInfoList(
-			QU::allowedAudioFiles() + QU::allowedPictureFiles() + QU::allowedVideoFiles(),
+			QUSongSupport::allowedAudioFiles() + QUSongSupport::allowedPictureFiles() +QUSongSupport::allowedVideoFiles(),
 			QDir::Files);
 
 	foreach(QFileInfo fi, files) {
@@ -840,17 +805,17 @@ void QUSongFile::autoSetFiles() {
 void QUSongFile::autoSetFile(const QFileInfo &fi, bool force) {
 	QString fileScheme("*." + fi.suffix());
 
-	if(QU::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+	if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		if(!this->hasMp3() || force) {
 			this->setInfo(MP3_TAG, fi.fileName());
 			logSrv->add(QString("Assigned \"%1\" as audio file for \"%2 - %3\".").arg(mp3()).arg(artist()).arg(title()), QU::information);
 		}
-	} else if(QU::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+	} else if(QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		if(!this->hasVideo() || force) {
 			this->setInfo(VIDEO_TAG, fi.fileName());
 			logSrv->add(QString(tr("Assigned \"%1\" as video file for \"%2 - %3\".")).arg(video()).arg(artist()).arg(title()), QU::information);
 		}
-	} else if(QU::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+	} else if(QUSongSupport::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QRegExp reCover("\\[CO\\]|cove?r?", Qt::CaseInsensitive);
 		QRegExp reBackground("\\[BG\\]|back", Qt::CaseInsensitive);
 

@@ -23,6 +23,9 @@
 
 #include "QUProgressDialog.h"
 
+#include "QUSongSupport.h"
+#include "QUStringSupport.h"
+
 #define FILE_DROP_LIMIT 5
 
 QUSongTree::QUSongTree(QWidget *parent): QTreeWidget(parent) {
@@ -43,7 +46,7 @@ QUMainWindow* QUSongTree::parentWindow() const {
 }
 
 void QUSongTree::initHorizontalHeader() {
-	this->setColumnCount(FIXED_COLUMN_COUNT + QUSongFile::customTags().count());
+	this->setColumnCount(FIXED_COLUMN_COUNT + QUSongSupport::availableCustomTags().count());
 
 	QTreeWidgetItem *header = new QTreeWidgetItem();
 	header->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(QUMainWindow::BaseDir.path()));
@@ -117,7 +120,7 @@ void QUSongTree::initHorizontalHeader() {
 	header->setToolTip(DUPLICATE_ID_COLUMN, tr("Indicate duplicate songs. <b>You should not see me.</b>"));
 
 	int i = 0;
-	foreach(QString customTag, QUSongFile::customTags()) {
+	foreach(QString customTag, QUSongSupport::availableCustomTags()) {
 		header->setText(FIRST_CUSTOM_TAG_COLUMN + i, customTag);
 		header->setIcon(FIRST_CUSTOM_TAG_COLUMN + i, QIcon(":/bullets/bullet_star.png"));
 		i++;
@@ -369,7 +372,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 			if(mode.testFlag(QU::customTags)) {
 				bool matchesCustomTag = false;
 
-				foreach(QString customTag, QUSongFile::customTags()) {
+				foreach(QString customTag, QUSongSupport::availableCustomTags()) {
 					matchesCustomTag = matchesCustomTag || song->customTag(customTag).contains(rx);
 				}
 
@@ -574,7 +577,7 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 		case END_COLUMN:
 		case VIDEOGAP_COLUMN: lengthsMenu.addAction(a); break;
 		default:
-			if(QUSongFile::customTags().contains(a->text(), Qt::CaseInsensitive))
+			if(QUSongSupport::availableCustomTags().contains(a->text(), Qt::CaseInsensitive))
 				customTagsMenu.addAction(a);
 			else
 				menu.addAction(a);
@@ -1017,12 +1020,12 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 
 		QString fileScheme("*." + fi.suffix());
 
-		if(!QU::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		if(!QUSongSupport::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			logSrv->add(QString(tr("Invalid song file found: \"%1\". Cannot include those.")).arg(fi.filePath()), QU::warning);
 			continue;
 		}
 
-		if(QU::allowedLicenseFiles().contains(fi.fileName(), Qt::CaseInsensitive)) {
+		if(QUSongSupport::allowedLicenseFiles().contains(fi.fileName(), Qt::CaseInsensitive)) {
 			logSrv->add(QString(tr("Cannot include license files as songs: \"%1\"")).arg(fi.filePath()), QU::warning);
 			continue;
 		}
@@ -1069,7 +1072,7 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
  * Set the given song to that folder.
  */
 void QUSongTree::createSongFolder(QUSongFile *song) {
-	QString newDirName = QU::withoutUnsupportedCharacters(QString("%1 - %2").arg(song->artist()).arg(song->title())).trimmed();
+	QString newDirName = QUStringSupport::withoutUnsupportedCharacters(QString("%1 - %2").arg(song->artist()).arg(song->title())).trimmed();
 
 	int i = 0;
 	QString tmp = newDirName;

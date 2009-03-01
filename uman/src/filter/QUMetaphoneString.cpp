@@ -1,5 +1,8 @@
 #include "QUMetaphoneString.h"
+#include "QUStringSupport.h"
 
+#include <QList>
+#include <QPair>
 #include <QRegExp>
 
 bool QUMetaphoneString::isSlavoGermanic() {
@@ -793,4 +796,79 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 		if(metaph2.size() > 4)
 			metaph2 = metaph2.left(4);
 	}
+}
+
+/*!
+ * Checks whether the given tokens could be meant as equal.
+ */
+bool QUMetaphoneString::equal(QString token1, QString token2, bool ignoreEmpty) {
+	token1 = QUStringSupport::withoutAnyUmlautEx(token1).toUpper();
+	token2 = QUStringSupport::withoutAnyUmlautEx(token2).toUpper();
+
+	// remove special characters
+	for(int i = 0; i < token1.length(); i++) if(token1[i] != QChar(' ') and token1[i].category() != QChar::Letter_Uppercase) token1.remove(i, 1);
+	for(int i = 0; i < token2.length(); i++) if(token2[i] != QChar(' ') and token2[i].category() != QChar::Letter_Uppercase) token2.remove(i, 1);
+
+	// replace "lonely, unimportant" words
+	token1.append(' '); token1.prepend(' ');
+	token2.append(' '); token2.prepend(' ');
+	QRegExp rx(" THE | DER | DIE | DAS | A | AN | EIN ");
+	token1.replace(rx, " ");
+	token2.replace(rx, " ");
+
+	token1 = token1.simplified().trimmed();
+	token2 = token2.simplified().trimmed();
+
+	if(token1.isEmpty() or token2.isEmpty())
+		return !ignoreEmpty;
+
+	/* Use MetaPhone */
+
+	QList<QPair<QString, QString> > mp1;
+	QList<QPair<QString, QString> > mp2;
+
+	foreach(QString text, token1.split(" ")) {
+		QUMetaphoneString mps(text);
+
+		QString m1, m2;
+		mps.doDoubleMetaphone(m1, m2);
+
+		mp1.append(QPair<QString, QString>(m1, m2));
+	}
+
+	foreach(QString text, token2.split(" ")) {
+		QUMetaphoneString mps(text);
+
+		QString m1, m2;
+		mps.doDoubleMetaphone(m1, m2);
+
+		mp2.append(QPair<QString, QString>(m1, m2));
+	}
+
+	int neededHits = qMin(mp1.size(), mp2.size());
+	int hits = 0;
+
+	for(int i = 0; i < mp1.size(); i++) {
+		if(mp1.at(i).first.isEmpty())
+			continue; // should not happen...
+
+		for(int j = 0; j < mp2.size(); j++) {
+//			if(mp2.at(j).first.isEmpty())
+//				continue; // should not happen...
+
+			if(QString::compare(mp1.at(i).first, mp2.at(j).first) == 0)
+				hits++;
+			else if(mp2.at(j).second.length() > 1 and mp1.at(i).first == mp2.at(j).second)
+				hits++;
+			else if(mp1.at(i).second.length() > 1 and mp1.at(i).second == mp2.at(j).first)
+				hits++;
+			else if(mp1.at(i).second.length() > 1 and mp2.at(j).second.length() > 1 and mp1.at(i).second == mp2.at(j).second)
+				hits++;
+
+			if(hits >= neededHits)
+				return true;
+		}
+	}
+
+	return false;
 }

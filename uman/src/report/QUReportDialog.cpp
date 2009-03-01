@@ -15,6 +15,8 @@
 #include <QUrl>
 #include <QDesktopServices>
 
+#include "QUSongSupport.h"
+
 QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<QUSongFile*> &visibleSongs, const QList<QUPlaylistFile*> &allPlaylists, QWidget *parent):
 		QDialog(parent),
 		_allSongs(allSongs),
@@ -73,7 +75,7 @@ void QUReportDialog::initReportList() {
 	reportList->addItem(new QUReportItem(new QUSongFileData("relativeFilePath")));
 
 	// custom tags
-	foreach(QString customTag, QUSongFile::customTags()) {
+	foreach(QString customTag, QUSongSupport::availableCustomTags()) {
 		reportList->addItem(new QUReportItem(new QUSongTagData(customTag)));
 	}
 }

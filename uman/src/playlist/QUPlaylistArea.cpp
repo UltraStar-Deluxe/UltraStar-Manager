@@ -12,6 +12,8 @@
 #include <QFile>
 #include <QMessageBox>
 
+#include "QUSongSupport.h"
+
 QUPlaylistArea::QUPlaylistArea(QWidget *parent): QWidget(parent) {
 	setupUi(this);
 
@@ -145,7 +147,7 @@ void QUPlaylistArea::saveUnsavedChanges() {
 		if(list->fileInfo().exists())
 			list->save();
 		else {
-			QString filePath = QFileDialog::getSaveFileName(this, QString(tr("Save playlist \"%1\" as...")).arg(list->name()), QUPlaylistFile::dir().path(), QString("UltraStar Playlists (%1)").arg(QU::allowedPlaylistFiles().join(" ")));
+			QString filePath = QFileDialog::getSaveFileName(this, QString(tr("Save playlist \"%1\" as...")).arg(list->name()), QUPlaylistFile::dir().path(), QString("UltraStar Playlists (%1)").arg(QUSongSupport::allowedPlaylistFiles().join(" ")));
 
 			if(!filePath.isEmpty()) {
 				list->setFileInfo(QFileInfo(filePath));
@@ -163,7 +165,7 @@ void QUPlaylistArea::saveUnsavedChanges() {
  */
 void QUPlaylistArea::createPlaylistFiles() {
 	QDir playlistDir(QUPlaylistFile::dir());
-	QFileInfoList fiList = playlistDir.entryInfoList(QU::allowedPlaylistFiles(), QDir::Files);
+	QFileInfoList fiList = playlistDir.entryInfoList(QUSongSupport::allowedPlaylistFiles(), QDir::Files);
 
 	QUProgressDialog dlg(tr("Reading playlist files..."), fiList.size(), this);
 	dlg.setPixmap(":/control/playlist.png");
@@ -259,7 +261,7 @@ void QUPlaylistArea::saveCurrentPlaylistAs() {
 	if(currentPlaylistIndex() < 0)
 		return;
 
-	QString filePath = QFileDialog::getSaveFileName(this, tr("Save playlist as..."), QUPlaylistFile::dir().path(), QString("UltraStar Playlists (%1)").arg(QU::allowedPlaylistFiles().join(" ")));
+	QString filePath = QFileDialog::getSaveFileName(this, tr("Save playlist as..."), QUPlaylistFile::dir().path(), QString("UltraStar Playlists (%1)").arg(QUSongSupport::allowedPlaylistFiles().join(" ")));
 
 	if(!filePath.isEmpty()) {
 		QFileInfo oldFi = _playlists.at(currentPlaylistIndex())->fileInfo();

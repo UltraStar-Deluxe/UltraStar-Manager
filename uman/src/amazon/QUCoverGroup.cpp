@@ -12,6 +12,9 @@
 #include <QMessageBox>
 #include <QDomDocument>
 
+#include "QUSongSupport.h"
+#include "QUStringSupport.h"
+
 QUCoverGroup::QUCoverGroup(QUSongItem *songItem, QWidget *parent):
 	QWidget(parent),
 	_item(songItem),
@@ -105,7 +108,7 @@ void QUCoverGroup::finishRequest(bool error) {
 		// remove old downloads, if set
 		QSettings settings;
 		if(!settings.value("keepDownloads", false).toBool()) {
-			QFileInfoList picFiList = outDir.entryInfoList(QU::allowedPictureFiles(), QDir::Files, QDir::Name);
+			QFileInfoList picFiList = outDir.entryInfoList(QUSongSupport::allowedPictureFiles(), QDir::Files, QDir::Name);
 			foreach(QFileInfo fi, picFiList) {
 				QFile::remove(fi.filePath());
 			}
@@ -148,7 +151,7 @@ void QUCoverGroup::finishRequest(bool error) {
 }
 
 QString QUCoverGroup::customDir() const {
-	 QString result = QU::withoutUnsupportedCharacters(
+	 QString result = QUStringSupport::withoutUnsupportedCharacters(
 			 QString("%1 - %2")
 				 .arg(_item->song()->artist())
 				 .arg(_item->song()->title())).trimmed();
@@ -171,7 +174,7 @@ void QUCoverGroup::showCovers() {
 	if(!covers.cd(customDir()))
 		return;
 
-	QFileInfoList picFiList = covers.entryInfoList(QU::allowedPictureFiles(), QDir::Files, QDir::Name);
+	QFileInfoList picFiList = covers.entryInfoList(QUSongSupport::allowedPictureFiles(), QDir::Files, QDir::Name);
 
 	foreach(QFileInfo pic, picFiList)
 		list->model()->addCover(pic.filePath());

@@ -6,6 +6,8 @@
 #include <QMessageBox>
 #include <QRegExp>
 
+#include "QUStringSupport.h"
+
 QURenameTask::QURenameTask(QDomDocument *taskConfig, QObject *parent):
 	QUScriptableTask(taskConfig, parent)
 {
@@ -84,7 +86,7 @@ void QURenameTask::startOn(QUSongFile *song) {
 		schema.remove(0, 1);
 
 	// remove unsupported characters (windows only)
-	schema = QU::withoutUnsupportedCharacters(schema);
+	schema = QUStringSupport::withoutUnsupportedCharacters(schema);
 
 	// you must not use trailing spaces - could corrupt the file system
 	schema = schema.trimmed();

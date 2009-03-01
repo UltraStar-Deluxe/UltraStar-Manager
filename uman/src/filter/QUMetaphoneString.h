@@ -27,6 +27,8 @@ public:
 
     bool anyStringAt(int start, int length, ... );
     void doDoubleMetaphone(QString &metaph, QString &metaph2);
+        
+    static bool equal(QString token1, QString token2, bool ignoreEmpty = false);
 
 private:
 	int  _length;

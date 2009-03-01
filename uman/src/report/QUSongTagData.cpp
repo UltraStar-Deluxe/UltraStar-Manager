@@ -1,4 +1,5 @@
 #include "QUSongTagData.h"
+#include "QUSongSupport.h"
 
 QUSongTagData::QUSongTagData(const QString &tag, QObject *parent): QUAbstractReportData(parent) {
 	_tag = tag;
@@ -24,7 +25,7 @@ QUSongTagData::QUSongTagData(const QString &tag, QObject *parent): QUAbstractRep
 	} else if(QString::compare(_tag, CREATOR_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/creator.png"));
 		this->setDescription(tr("Creator"));
-	} else if(QUSongFile::customTags().contains(tag, Qt::CaseInsensitive)) {
+	} else if(QUSongSupport::availableCustomTags().contains(tag, Qt::CaseInsensitive)) {
 		this->setIcon(QIcon(":/bullets/bullet_star.png"));
 		this->setDescription(tag);
 	}
@@ -45,7 +46,7 @@ QString QUSongTagData::textData(QUSongFile *song) {
 		return song->year();
 	if(QString::compare(_tag, CREATOR_TAG, Qt::CaseInsensitive) == 0)
 		return song->creator();
-	if(QUSongFile::customTags().contains(_tag, Qt::CaseInsensitive))
+	if(QUSongSupport::availableCustomTags().contains(_tag, Qt::CaseInsensitive))
 		return song->customTag(_tag);
 
 	return QString();

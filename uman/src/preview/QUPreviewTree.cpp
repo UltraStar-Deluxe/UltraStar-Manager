@@ -16,6 +16,8 @@
 #include <QMessageBox>
 #include <QImage>
 
+#include "QUSongSupport.h"
+
 QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 	this->setColumnCount(2);
 
@@ -58,15 +60,15 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 	types->setTextColor(0, Qt::darkGray);
 	types->setFirstColumnSpanned(true);
 
-	types->addChild(this->createInfoItem(QIcon(":/types/text.png"), tr("Song"), QU::allowedSongFiles().join(" ")));
-	types->addChild(this->createInfoItem(QIcon(":/types/music.png"), tr("Audio"), QU::allowedAudioFiles().join(" ")));
-	types->addChild(this->createInfoItem(QIcon(":/types/picture.png"), tr("Picture"), QU::allowedPictureFiles().join(" ")));
-	types->addChild(this->createInfoItem(QIcon(":/types/film.png"), tr("Video"), QU::allowedVideoFiles().join(" ")));
-	types->addChild(this->createInfoItem(QIcon(":/control/playlist.png"), tr("Playlist"), QU::allowedPlaylistFiles().join(" ")));
-	types->addChild(this->createInfoItem(QIcon(":/types/license.png"), tr("License"), QU::allowedLicenseFiles().join(" ")));
-	types->addChild(this->createInfoItem(QIcon(":/types/midi.png"), tr("MIDI"), QU::allowedMidiFiles().join(" ")));
-	types->addChild(this->createInfoItem(QIcon(":/types/karaoke.png"), tr("Karaoke"), QU::allowedKaraokeFiles().join(" ")));
-	types->addChild(this->createInfoItem(QIcon(":/types/score.png"), tr("Score"), QU::allowedScoreFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/text.png"), tr("Song"), QUSongSupport::allowedSongFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/music.png"), tr("Audio"), QUSongSupport::allowedAudioFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/picture.png"), tr("Picture"), QUSongSupport::allowedPictureFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/film.png"), tr("Video"), QUSongSupport::allowedVideoFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/control/playlist.png"), tr("Playlist"), QUSongSupport::allowedPlaylistFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/license.png"), tr("License"), QUSongSupport::allowedLicenseFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/midi.png"), tr("MIDI"), QUSongSupport::allowedMidiFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/karaoke.png"), tr("Karaoke"),QUSongSupport::allowedKaraokeFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/score.png"), tr("Score"), QUSongSupport::allowedScoreFiles().join(" ")));
 
 	// set up "current" toplevel item
 
@@ -171,11 +173,11 @@ void QUPreviewTree::showFileInformation(const QFileInfo &fi) {
 
 	QString fileScheme("*." + fi.suffix());
 
-	if(QU::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive))
+	if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive))
 		showAudioFileInformation(fi);
-	else if(QU::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive))
+	else if(QUSongSupport::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive))
 		showPictureFileInformation(fi);
-	else if(QU::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive))
+	else if(QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive))
 		showVideoFileInformation(fi);
 }
 

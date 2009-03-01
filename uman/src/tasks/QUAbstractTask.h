@@ -15,7 +15,7 @@ public:
 
 	virtual void startOn(QUSongFile *song) = 0;
 
-	const QIcon& icon() const { return _icon; }
+	QIcon icon() const { return _icon; }
 	virtual QString description() const { return _description; }
 	virtual QString toolTip() const { return _toolTip; }
 
