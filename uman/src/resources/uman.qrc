@@ -4,6 +4,17 @@
     <file>monty/happy.png</file>
     <file>monty/normal.png</file>
     <file>monty/seated.png</file>
+    <file>txt/genres</file>
+    <file>txt/hints</file>
+    <file>txt/hints_pl</file>
+    <file>txt/hints_de</file>
+    <file>txt/credits</file>
+    <file>txt/languages</file>
+    <file>lang/de.png</file>
+    <file>lang/uman_de.qm</file>
+    <file>lang/uman_pl.qm</file>
+    <file>lang/pl.png</file>
+    <file>lang/us.png</file>
   </qresource>
   <qresource prefix="/bubble" >
     <file>speech8.png</file>
@@ -88,13 +99,6 @@
     <file>uman16.png</file>
     <file>uman24.png</file>
   </qresource>
-  <qresource prefix="/lang" >
-    <file>de.png</file>
-    <file>uman_de.qm</file>
-    <file>uman_pl.qm</file>
-    <file>pl.png</file>
-    <file>us.png</file>
-  </qresource>
   <qresource prefix="/marks" >
     <file>accept.png</file>
     <file>cross_error.png</file>
@@ -125,14 +129,6 @@
     <file>tick.png</file>
     <file>tick_blue.png</file>
     <file>wand.png</file>
-  </qresource>
-  <qresource prefix="/txt" >
-    <file>genres</file>
-    <file>hints</file>
-    <file>hints_pl</file>
-    <file>hints_de</file>
-    <file>credits</file>
-    <file>languages</file>
   </qresource>
   <qresource prefix="/types" >
     <file>text_stack.png</file>

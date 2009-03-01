@@ -158,9 +158,9 @@ FORMS += QUMainWindow.ui \
     support/QUTextDialog.ui \
     preferences/QUTagOrderDialog.ui \
     preferences/QUCustomTagsDialog.ui
-RESOURCES += images/uman.qrc
-TRANSLATIONS = languages/uman_de.ts \
-    languages/uman_pl.ts
+RESOURCES += resources/uman.qrc
+TRANSLATIONS = resources/lang/uman_de.ts \
+    resources/lang/uman_pl.ts
 INCLUDEPATH += . \
     song \
     songdetails \
