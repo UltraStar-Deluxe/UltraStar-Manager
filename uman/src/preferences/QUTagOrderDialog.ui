@@ -5,18 +5,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>242</width>
-    <height>159</height>
+    <width>267</width>
+    <height>160</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Modify Tag Save Order</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="images/uman.qrc" >
+   <iconset resource="../resources/uman.qrc" >
     <normaloff>:/control/tag_disk.png</normaloff>:/control/tag_disk.png</iconset>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout" name="verticalLayout" >
    <property name="spacing" >
     <number>0</number>
    </property>
@@ -108,7 +108,7 @@
          <string/>
         </property>
         <property name="pixmap" >
-         <pixmap resource="images/uman.qrc" >:/marks/information.png</pixmap>
+         <pixmap resource="../resources/uman.qrc" >:/marks/information.png</pixmap>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -139,7 +139,42 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" >
+    <widget class="QListWidget" name="tagList" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="editTriggers" >
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="dragEnabled" >
+      <bool>true</bool>
+     </property>
+     <property name="dragDropMode" >
+      <enum>QAbstractItemView::InternalMove</enum>
+     </property>
+     <property name="alternatingRowColors" >
+      <bool>true</bool>
+     </property>
+     <property name="selectionMode" >
+      <enum>QAbstractItemView::ExtendedSelection</enum>
+     </property>
+     <property name="selectionBehavior" >
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="Line" name="line_2" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout" >
      <property name="spacing" >
       <number>5</number>
      </property>
@@ -147,88 +182,55 @@
       <number>5</number>
      </property>
      <item>
-      <widget class="QListWidget" name="tagList" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="editTriggers" >
-        <set>QAbstractItemView::NoEditTriggers</set>
-       </property>
-       <property name="dragEnabled" >
-        <bool>true</bool>
-       </property>
-       <property name="dragDropMode" >
-        <enum>QAbstractItemView::InternalMove</enum>
-       </property>
-       <property name="alternatingRowColors" >
-        <bool>true</bool>
-       </property>
-       <property name="selectionMode" >
-        <enum>QAbstractItemView::ExtendedSelection</enum>
-       </property>
-       <property name="selectionBehavior" >
-        <enum>QAbstractItemView::SelectRows</enum>
+      <widget class="QPushButton" name="defaultBtn" >
+       <property name="text" >
+        <string>Default</string>
        </property>
       </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
-        <number>2</number>
+      <spacer name="horizontalSpacer" >
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
        </property>
-       <item>
-        <widget class="QPushButton" name="defaultBtn" >
-         <property name="text" >
-          <string>Default</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0" >
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QPushButton" name="applyBtn" >
-         <property name="text" >
-          <string>OK</string>
-         </property>
-         <property name="icon" >
-          <iconset resource="images/uman.qrc" >
-           <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="cancelBtn" >
-         <property name="text" >
-          <string>Cancel</string>
-         </property>
-         <property name="icon" >
-          <iconset resource="images/uman.qrc" >
-           <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
-         </property>
-        </widget>
-       </item>
-      </layout>
+       <property name="sizeHint" stdset="0" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="applyBtn" >
+       <property name="text" >
+        <string>OK</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="../resources/uman.qrc" >
+         <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelBtn" >
+       <property name="text" >
+        <string>Cancel</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="../resources/uman.qrc" >
+         <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
   </layout>
  </widget>
  <resources>
-  <include location="images/uman.qrc" />
+  <include location="../resources/uman.qrc" />
+  <include location="../resources/uman.qrc" />
+  <include location="../resources/uman.qrc" />
  </resources>
  <connections/>
 </ui>

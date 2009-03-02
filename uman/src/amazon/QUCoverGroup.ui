@@ -79,7 +79,7 @@
            <string>Buy</string>
           </property>
           <property name="icon" >
-           <iconset resource="images/uman.qrc" >
+           <iconset resource="../resources/uman.qrc" >
             <normaloff>:/control/cart.png</normaloff>:/control/cart.png</iconset>
           </property>
           <property name="toolButtonStyle" >
@@ -160,7 +160,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="images/uman.qrc" />
+  <include location="../resources/uman.qrc" />
  </resources>
  <connections/>
 </ui>

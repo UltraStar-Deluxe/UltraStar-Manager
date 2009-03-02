@@ -13,7 +13,7 @@
    <string>About</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="images/uman.qrc" >
+   <iconset resource="resources/uman.qrc" >
     <normaloff>:/icons/cup.png</normaloff>:/icons/cup.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3" >
@@ -43,7 +43,7 @@
         <string/>
        </property>
        <property name="pixmap" >
-        <pixmap resource="images/uman.qrc" >:/icons/uman72.png</pixmap>
+        <pixmap resource="resources/uman.qrc" >:/icons/uman72.png</pixmap>
        </property>
       </widget>
      </item>
@@ -166,7 +166,7 @@ p, li { white-space: pre-wrap; }
         <string>OK</string>
        </property>
        <property name="icon" >
-        <iconset resource="images/uman.qrc" >
+        <iconset resource="resources/uman.qrc" >
          <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
        </property>
       </widget>
@@ -199,7 +199,7 @@ p, li { white-space: pre-wrap; }
   <zorder></zorder>
  </widget>
  <resources>
-  <include location="images/uman.qrc" />
+  <include location="resources/uman.qrc" />
  </resources>
  <connections>
   <connection>

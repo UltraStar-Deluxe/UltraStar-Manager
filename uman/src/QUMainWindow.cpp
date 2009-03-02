@@ -49,6 +49,7 @@
 #include "QUCustomTagsDialog.h"
 #include "QUAmazonDialog.h"
 #include "QUAboutDialog.h"
+#include "QUPluginDialog.h"
 
 #include "QUSongSupport.h"
 
@@ -287,6 +288,7 @@ void QUMainWindow::initMenu() {
 	// extras menu
 	connect(actionNewReport, SIGNAL(triggered()), this, SLOT(reportCreate()));
 	connect(actionBackupAudioFiles, SIGNAL(triggered()), this, SLOT(copyAudioToPath()));
+	connect(actionPlugins, SIGNAL(triggered()), this, SLOT(showPluginDialog()));
 
 	actionNewReport->setShortcut(Qt::Key_F2);
 
@@ -346,6 +348,8 @@ void QUMainWindow::initTaskList() {
 	connect(taskBtn, SIGNAL(clicked()), this, SLOT(editSongApplyTasks()));
 	connect(allTasksBtn, SIGNAL(clicked()), taskList, SLOT(checkAllTasks()));
 	connect(noTasksBtn, SIGNAL(clicked()), taskList, SLOT(uncheckAllTasks()));
+
+	taskList->reloadAllPlugins();
 }
 
 void QUMainWindow::initEventLog() {
@@ -1273,4 +1277,15 @@ void QUMainWindow::sendCurrentSongToMediaPlayer() {
 	}
 
 	mediaplayer->setCurrentSong(*(item->song()));
+}
+
+/*!
+ * Displays a dialog to manage plugins generally.
+ */
+void QUMainWindow::showPluginDialog() {
+	QUPluginDialog dlg(taskList->plugins(), this);
+
+	if(dlg.exec()) {
+		;
+	}
 }

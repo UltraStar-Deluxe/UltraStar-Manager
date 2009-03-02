@@ -6,12 +6,11 @@
 #include "QUSongFile.h"
 
 #include <QListWidget>
-#include <QDomDocument>
-#include <QDomAttr>
 #include <QPoint>
 #include <QList>
 #include <QMenu>
 #include <QKeyEvent>
+#include <QPluginLoader>
 
 class QUTaskList: public QListWidget {
 	Q_OBJECT
@@ -21,9 +20,13 @@ public:
 
 	void doTasksOn(QUSongFile *song);
 
+	QList<QPluginLoader*> plugins() const { return _plugins; };
+
 public slots:
 	void showContextMenu(const QPoint &point);
+
 	void resetTaskList();
+	void reloadAllPlugins();
 
 	void checkAllTasks();
 	void uncheckAllTasks();
@@ -35,7 +38,8 @@ public slots:
 	void editCurrentTask();
 
 private:
-	QList<QDomDocument*> loadTaskFiles();
+	QList<QPluginLoader*> _plugins;
+
 	void appendSeparator(const QString &text);
 };
 

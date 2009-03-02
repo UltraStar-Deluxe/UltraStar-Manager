@@ -13,7 +13,7 @@
    <string>New Report</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="images/uman.qrc" >
+   <iconset resource="../resources/uman.qrc" >
     <normaloff>:/control/report.png</normaloff>:/control/report.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_6" >
@@ -108,7 +108,7 @@
          <string/>
         </property>
         <property name="pixmap" >
-         <pixmap resource="images/uman.qrc" >:/marks/information.png</pixmap>
+         <pixmap resource="../resources/uman.qrc" >:/marks/information.png</pixmap>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -260,7 +260,7 @@
                <string>All Songs</string>
               </property>
               <property name="icon" >
-               <iconset resource="images/uman.qrc" >
+               <iconset resource="../resources/uman.qrc" >
                 <normaloff>:/control/database.png</normaloff>:/control/database.png</iconset>
               </property>
              </widget>
@@ -277,7 +277,7 @@
                <string>Visible Songs</string>
               </property>
               <property name="icon" >
-               <iconset resource="images/uman.qrc" >
+               <iconset resource="../resources/uman.qrc" >
                 <normaloff>:/control/eye.png</normaloff>:/control/eye.png</iconset>
               </property>
               <property name="checked" >
@@ -308,7 +308,7 @@
                  <string>Playlist:</string>
                 </property>
                 <property name="icon" >
-                 <iconset resource="images/uman.qrc" >
+                 <iconset resource="../resources/uman.qrc" >
                   <normaloff>:/control/playlist.png</normaloff>:/control/playlist.png</iconset>
                 </property>
                </widget>
@@ -530,7 +530,7 @@
                <string>HTML Report</string>
               </property>
               <property name="icon" >
-               <iconset resource="images/uman.qrc" >
+               <iconset resource="../resources/uman.qrc" >
                 <normaloff>:/types/page_code.png</normaloff>:/types/page_code.png</iconset>
               </property>
               <property name="toolButtonStyle" >
@@ -569,7 +569,7 @@
                <string>Plain Text Report</string>
               </property>
               <property name="icon" >
-               <iconset resource="images/uman.qrc" >
+               <iconset resource="../resources/uman.qrc" >
                 <normaloff>:/types/text_plain.png</normaloff>:/types/text_plain.png</iconset>
               </property>
               <property name="toolButtonStyle" >
@@ -629,7 +629,7 @@
         <string>OK</string>
        </property>
        <property name="icon" >
-        <iconset resource="images/uman.qrc" >
+        <iconset resource="../resources/uman.qrc" >
          <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
        </property>
       </widget>
@@ -639,7 +639,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="images/uman.qrc" />
+  <include location="../resources/uman.qrc" />
  </resources>
  <connections/>
 </ui>

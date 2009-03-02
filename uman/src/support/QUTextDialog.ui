@@ -16,7 +16,7 @@
    <string>Dialog</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="images/uman.qrc" >
+   <iconset resource="../resources/uman.qrc" >
     <normaloff>:/types/text.png</normaloff>:/types/text.png</iconset>
   </property>
   <layout class="QVBoxLayout" >
@@ -111,7 +111,7 @@
          <string/>
         </property>
         <property name="pixmap" >
-         <pixmap resource="images/uman.qrc" >:/marks/information.png</pixmap>
+         <pixmap resource="../resources/uman.qrc" >:/marks/information.png</pixmap>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -225,7 +225,7 @@
           <string>OK</string>
          </property>
          <property name="icon" >
-          <iconset resource="images/uman.qrc" >
+          <iconset resource="../resources/uman.qrc" >
            <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
          </property>
         </widget>
@@ -237,7 +237,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="images/uman.qrc" />
+  <include location="../resources/uman.qrc" />
  </resources>
  <connections/>
 </ui>

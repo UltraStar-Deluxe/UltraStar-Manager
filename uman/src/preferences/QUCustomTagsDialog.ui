@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>213</width>
+    <width>212</width>
     <height>160</height>
    </rect>
   </property>
@@ -13,7 +13,7 @@
    <string>Custom Tags</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="images/uman.qrc" >
+   <iconset resource="../resources/uman.qrc" >
     <normaloff>:/control/tag_custom.png</normaloff>:/control/tag_custom.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3" >
@@ -108,7 +108,7 @@
          <string/>
         </property>
         <property name="pixmap" >
-         <pixmap resource="images/uman.qrc" >:/marks/information.png</pixmap>
+         <pixmap resource="../resources/uman.qrc" >:/marks/information.png</pixmap>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -179,7 +179,7 @@
           <string>...</string>
          </property>
          <property name="icon" >
-          <iconset resource="images/uman.qrc" >
+          <iconset resource="../resources/uman.qrc" >
            <normaloff>:/marks/add.png</normaloff>:/marks/add.png</iconset>
          </property>
          <property name="autoRaise" >
@@ -193,7 +193,7 @@
           <string>...</string>
          </property>
          <property name="icon" >
-          <iconset resource="images/uman.qrc" >
+          <iconset resource="../resources/uman.qrc" >
            <normaloff>:/marks/delete.png</normaloff>:/marks/delete.png</iconset>
          </property>
          <property name="autoRaise" >
@@ -252,7 +252,7 @@
         <string>OK</string>
        </property>
        <property name="icon" >
-        <iconset resource="images/uman.qrc" >
+        <iconset resource="../resources/uman.qrc" >
          <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
        </property>
        <property name="default" >
@@ -266,7 +266,7 @@
         <string>Cancel</string>
        </property>
        <property name="icon" >
-        <iconset resource="images/uman.qrc" >
+        <iconset resource="../resources/uman.qrc" >
          <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
        </property>
       </widget>
@@ -276,7 +276,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="images/uman.qrc" />
+  <include location="../resources/uman.qrc" />
  </resources>
  <connections/>
 </ui>

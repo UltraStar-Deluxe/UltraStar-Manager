@@ -16,18 +16,10 @@
    <string>S</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="images/uman.qrc" >
+   <iconset resource="resources/uman.qrc" >
     <normaloff>:/icons/uman16.png</normaloff>:/icons/uman16.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>47</y>
-     <width>912</width>
-     <height>697</height>
-    </rect>
-   </property>
    <layout class="QHBoxLayout" name="horizontalLayout_4" >
     <property name="spacing" >
      <number>5</number>
@@ -107,14 +99,6 @@
          <string>Song Details</string>
         </property>
         <widget class="QWidget" name="dockWidgetContents" >
-         <property name="geometry" >
-          <rect>
-           <x>0</x>
-           <y>20</y>
-           <width>451</width>
-           <height>129</height>
-          </rect>
-         </property>
          <layout class="QVBoxLayout" >
           <property name="spacing" >
            <number>0</number>
@@ -188,14 +172,6 @@
          <string>Tasks</string>
         </property>
         <widget class="QWidget" name="dockWidgetContents_2" >
-         <property name="geometry" >
-          <rect>
-           <x>0</x>
-           <y>20</y>
-           <width>451</width>
-           <height>151</height>
-          </rect>
-         </property>
          <layout class="QVBoxLayout" >
           <property name="spacing" >
            <number>2</number>
@@ -252,7 +228,7 @@
 Tasks</string>
               </property>
               <property name="icon" >
-               <iconset resource="images/uman.qrc" >
+               <iconset resource="resources/uman.qrc" >
                 <normaloff>:/control/play32.png</normaloff>:/control/play32.png</iconset>
               </property>
               <property name="iconSize" >
@@ -301,7 +277,7 @@ Tasks</string>
                    <string>Add</string>
                   </property>
                   <property name="icon" >
-                   <iconset resource="images/uman.qrc" >
+                   <iconset resource="resources/uman.qrc" >
                     <normaloff>:/marks/add.png</normaloff>:/marks/add.png</iconset>
                   </property>
                   <property name="toolButtonStyle" >
@@ -331,7 +307,7 @@ Tasks</string>
                    <string>Uncheck All</string>
                   </property>
                   <property name="icon" >
-                   <iconset resource="images/uman.qrc" >
+                   <iconset resource="resources/uman.qrc" >
                     <normaloff>:/control/uncheck_tasks.png</normaloff>:/control/uncheck_tasks.png</iconset>
                   </property>
                   <property name="autoRaise" >
@@ -348,7 +324,7 @@ Tasks</string>
                    <string>Check All</string>
                   </property>
                   <property name="icon" >
-                   <iconset resource="images/uman.qrc" >
+                   <iconset resource="resources/uman.qrc" >
                     <normaloff>:/control/check_tasks.png</normaloff>:/control/check_tasks.png</iconset>
                   </property>
                   <property name="toolButtonStyle" >
@@ -391,14 +367,6 @@ Tasks</string>
          <string>File Information</string>
         </property>
         <widget class="QWidget" name="dockWidgetContents_4" >
-         <property name="geometry" >
-          <rect>
-           <x>0</x>
-           <y>20</y>
-           <width>451</width>
-           <height>129</height>
-          </rect>
-         </property>
          <layout class="QVBoxLayout" name="verticalLayout" >
           <property name="spacing" >
            <number>0</number>
@@ -433,8 +401,8 @@ Tasks</string>
        <widget class="QDockWidget" name="playlistDock" >
         <property name="minimumSize" >
          <size>
-          <width>0</width>
-          <height>0</height>
+          <width>80</width>
+          <height>38</height>
          </size>
         </property>
         <property name="toolTip" >
@@ -444,14 +412,6 @@ Tasks</string>
          <string>Playlist</string>
         </property>
         <widget class="QWidget" name="dockWidgetContents_5" >
-         <property name="geometry" >
-          <rect>
-           <x>0</x>
-           <y>20</y>
-           <width>451</width>
-           <height>16</height>
-          </rect>
-         </property>
          <layout class="QHBoxLayout" name="horizontalLayout" >
           <property name="spacing" >
            <number>0</number>
@@ -472,14 +432,6 @@ Tasks</string>
          <string>Media Player</string>
         </property>
         <widget class="QWidget" name="dockWidgetContents_6" >
-         <property name="geometry" >
-          <rect>
-           <x>0</x>
-           <y>20</y>
-           <width>451</width>
-           <height>16</height>
-          </rect>
-         </property>
          <layout class="QVBoxLayout" name="verticalLayout_2" >
           <property name="spacing" >
            <number>0</number>
@@ -500,14 +452,6 @@ Tasks</string>
          <string>Event Log</string>
         </property>
         <widget class="QWidget" name="dockWidgetContents_3" >
-         <property name="geometry" >
-          <rect>
-           <x>0</x>
-           <y>20</y>
-           <width>451</width>
-           <height>134</height>
-          </rect>
-         </property>
          <layout class="QVBoxLayout" >
           <property name="spacing" >
            <number>0</number>
@@ -613,7 +557,7 @@ Tasks</string>
                <string>Filter</string>
               </property>
               <property name="icon" >
-               <iconset resource="images/uman.qrc" >
+               <iconset resource="resources/uman.qrc" >
                 <normaloff>:/control/filter_log.png</normaloff>:/control/filter_log.png</iconset>
               </property>
               <property name="toolButtonStyle" >
@@ -630,7 +574,7 @@ Tasks</string>
                <string>Save</string>
               </property>
               <property name="icon" >
-               <iconset resource="images/uman.qrc" >
+               <iconset resource="resources/uman.qrc" >
                 <normaloff>:/control/save.png</normaloff>:/control/save.png</iconset>
               </property>
               <property name="toolButtonStyle" >
@@ -654,7 +598,7 @@ Tasks</string>
                <string>Clear</string>
               </property>
               <property name="icon" >
-               <iconset resource="images/uman.qrc" >
+               <iconset resource="resources/uman.qrc" >
                 <normaloff>:/control/bin.png</normaloff>:/control/bin.png</iconset>
               </property>
               <property name="toolButtonStyle" >
@@ -681,7 +625,7 @@ Tasks</string>
      <x>0</x>
      <y>0</y>
      <width>912</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAbout_Qt" >
@@ -699,6 +643,8 @@ Tasks</string>
     <addaction name="separator" />
     <addaction name="actionQt" />
     <addaction name="actionTagLib" />
+    <addaction name="actionAboutBASS" />
+    <addaction name="separator" />
     <addaction name="actionUman" />
    </widget>
    <widget class="QMenu" name="menuSongs" >
@@ -756,6 +702,8 @@ Tasks</string>
     </property>
     <addaction name="actionNewReport" />
     <addaction name="actionBackupAudioFiles" />
+    <addaction name="separator" />
+    <addaction name="actionPlugins" />
    </widget>
    <addaction name="menuSongs" />
    <addaction name="menuView" />
@@ -763,25 +711,8 @@ Tasks</string>
    <addaction name="menuExtras" />
    <addaction name="menuAbout_Qt" />
   </widget>
-  <widget class="QStatusBar" name="statusbar" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>744</y>
-     <width>912</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
+  <widget class="QStatusBar" name="statusbar" />
   <widget class="QToolBar" name="songsBar" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>21</y>
-     <width>164</width>
-     <height>26</height>
-    </rect>
-   </property>
    <property name="windowTitle" >
     <string>Songs</string>
    </property>
@@ -813,14 +744,6 @@ Tasks</string>
    <addaction name="actionRefreshSelected" />
   </widget>
   <widget class="QToolBar" name="optionsBar" >
-   <property name="geometry" >
-    <rect>
-     <x>164</x>
-     <y>21</y>
-     <width>187</width>
-     <height>26</height>
-    </rect>
-   </property>
    <property name="windowTitle" >
     <string>Options</string>
    </property>
@@ -847,14 +770,6 @@ Tasks</string>
    <addaction name="actionLangPolish" />
   </widget>
   <widget class="QToolBar" name="viewBar" >
-   <property name="geometry" >
-    <rect>
-     <x>351</x>
-     <y>21</y>
-     <width>561</width>
-     <height>26</height>
-    </rect>
-   </property>
    <property name="windowTitle" >
     <string>View</string>
    </property>
@@ -884,7 +799,7 @@ Tasks</string>
   </action>
   <action name="actionUman" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/icons/cup.png</normaloff>:/icons/cup.png</iconset>
    </property>
    <property name="text" >
@@ -893,7 +808,7 @@ Tasks</string>
   </action>
   <action name="actionExpandAll" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/control/expand.png</normaloff>:/control/expand.png</iconset>
    </property>
    <property name="text" >
@@ -905,7 +820,7 @@ Tasks</string>
   </action>
   <action name="actionCollapseAll" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/control/collapse.png</normaloff>:/control/collapse.png</iconset>
    </property>
    <property name="text" >
@@ -920,7 +835,7 @@ Tasks</string>
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/control/tag_disk.png</normaloff>:/control/tag_disk.png</iconset>
    </property>
    <property name="text" >
@@ -938,7 +853,7 @@ Tasks</string>
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/monty/normal.png</normaloff>:/monty/normal.png</iconset>
    </property>
    <property name="text" >
@@ -947,7 +862,7 @@ Tasks</string>
   </action>
   <action name="actionShowMonty" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/monty/happy.png</normaloff>:/monty/happy.png</iconset>
    </property>
    <property name="text" >
@@ -970,7 +885,7 @@ Tasks</string>
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/control/folder_realtive.png</normaloff>:/control/folder_realtive.png</iconset>
    </property>
    <property name="text" >
@@ -982,7 +897,7 @@ Tasks</string>
   </action>
   <action name="actionChangeSongDirectory" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/control/folder_note.png</normaloff>:/control/folder_note.png</iconset>
    </property>
    <property name="text" >
@@ -994,7 +909,7 @@ Tasks</string>
   </action>
   <action name="actionRefreshSelected" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/control/refresh.png</normaloff>:/control/refresh.png</iconset>
    </property>
    <property name="text" >
@@ -1006,7 +921,7 @@ Tasks</string>
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/control/auto_save.png</normaloff>:/control/auto_save.png</iconset>
    </property>
    <property name="text" >
@@ -1018,7 +933,7 @@ Tasks</string>
   </action>
   <action name="actionSaveSelected" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/control/save.png</normaloff>:/control/save.png</iconset>
    </property>
    <property name="text" >
@@ -1027,7 +942,7 @@ Tasks</string>
   </action>
   <action name="actionSaveAll" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/control/save_all.png</normaloff>:/control/save_all.png</iconset>
    </property>
    <property name="text" >
@@ -1039,7 +954,7 @@ Tasks</string>
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/control/filter.png</normaloff>:/control/filter.png</iconset>
    </property>
    <property name="text" >
@@ -1048,7 +963,7 @@ Tasks</string>
   </action>
   <action name="actionNewReport" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/control/report.png</normaloff>:/control/report.png</iconset>
    </property>
    <property name="text" >
@@ -1060,7 +975,7 @@ Tasks</string>
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/lang/us.png</normaloff>:/lang/us.png</iconset>
    </property>
    <property name="text" >
@@ -1072,7 +987,7 @@ Tasks</string>
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/lang/de.png</normaloff>:/lang/de.png</iconset>
    </property>
    <property name="text" >
@@ -1081,7 +996,7 @@ Tasks</string>
   </action>
   <action name="actionTagLib" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/types/music.png</normaloff>:/types/music.png</iconset>
    </property>
    <property name="text" >
@@ -1090,7 +1005,7 @@ Tasks</string>
   </action>
   <action name="actionSendToPlaylist" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/control/playlist_to.png</normaloff>:/control/playlist_to.png</iconset>
    </property>
    <property name="text" >
@@ -1099,7 +1014,7 @@ Tasks</string>
   </action>
   <action name="actionCustomTags" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/control/tag_custom.png</normaloff>:/control/tag_custom.png</iconset>
    </property>
    <property name="text" >
@@ -1108,7 +1023,7 @@ Tasks</string>
   </action>
   <action name="actionShowLyrics" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/types/text.png</normaloff>:/types/text.png</iconset>
    </property>
    <property name="text" >
@@ -1125,7 +1040,7 @@ Tasks</string>
   </action>
   <action name="actionDeleteSelected" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/control/bin.png</normaloff>:/control/bin.png</iconset>
    </property>
    <property name="text" >
@@ -1157,11 +1072,24 @@ Tasks</string>
   </action>
   <action name="actionLangPolish" >
    <property name="icon" >
-    <iconset resource="images/uman.qrc" >
+    <iconset resource="resources/uman.qrc" >
      <normaloff>:/lang/pl.png</normaloff>:/lang/pl.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Polish (Polski)</string>
+   </property>
+  </action>
+  <action name="actionAboutBASS" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="text" >
+    <string>About BASS...</string>
+   </property>
+  </action>
+  <action name="actionPlugins" >
+   <property name="text" >
+    <string>Plugins...</string>
    </property>
   </action>
  </widget>
@@ -1212,7 +1140,7 @@ Tasks</string>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="images/uman.qrc" />
+  <include location="resources/uman.qrc" />
  </resources>
  <connections/>
 </ui>

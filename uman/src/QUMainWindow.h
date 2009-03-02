@@ -103,6 +103,9 @@ private slots:
 	// interaction with media player
 	void sendCurrentSongToMediaPlayer();
 
+	// plugins
+	void showPluginDialog();
+
 private:
 	QList<QUSongFile*>     _songs;
 

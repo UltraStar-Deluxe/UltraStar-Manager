@@ -3,17 +3,17 @@
 
 #include <QListWidgetItem>
 
-#include "QUAbstractTask.h"
+#include "QUTaskPlugin.h"
 
 class QUTaskItem: public QListWidgetItem {
 public:
-	QUTaskItem(QUAbstractTask *task);
+	QUTaskItem(QUTask *task);
 	~QUTaskItem();
-	
-	QUAbstractTask* task() const { return _task; }
-	
+
+	QUTask* task() const { return _task; }
+
 private:
-	QUAbstractTask *_task;
+	QUTask *_task;
 };
 
 #endif /*QUTASKITEM_H_*/

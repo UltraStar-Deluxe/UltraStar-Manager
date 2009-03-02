@@ -1,7 +1,6 @@
 #include "QUTaskItem.h"
-#include "QURenameTask.h"
 
-QUTaskItem::QUTaskItem(QUAbstractTask *task):
+QUTaskItem::QUTaskItem(QUTask *task):
 	QListWidgetItem(),
 	_task(task)
 {
@@ -12,7 +11,7 @@ QUTaskItem::QUTaskItem(QUAbstractTask *task):
 	this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 	this->setCheckState(Qt::Unchecked);
 
-	if(dynamic_cast<QUScriptableTask*>(task))
+	if(task->isConfigurable())
 		this->setFlags(this->flags() | Qt::ItemIsSelectable);
 }
 

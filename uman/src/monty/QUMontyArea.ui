@@ -103,7 +103,7 @@
             <string/>
            </property>
            <property name="pixmap" >
-            <pixmap resource="images/uman.qrc" >:/bubble/speech1.png</pixmap>
+            <pixmap resource="../resources/uman.qrc" >:/bubble/speech1.png</pixmap>
            </property>
           </widget>
          </item>
@@ -119,7 +119,7 @@
             <string/>
            </property>
            <property name="pixmap" >
-            <pixmap resource="images/uman.qrc" >:/bubble/speech2.png</pixmap>
+            <pixmap resource="../resources/uman.qrc" >:/bubble/speech2.png</pixmap>
            </property>
            <property name="scaledContents" >
             <bool>true</bool>
@@ -138,7 +138,7 @@
             <string/>
            </property>
            <property name="pixmap" >
-            <pixmap resource="images/uman.qrc" >:/bubble/speech6.png</pixmap>
+            <pixmap resource="../resources/uman.qrc" >:/bubble/speech6.png</pixmap>
            </property>
           </widget>
          </item>
@@ -161,7 +161,7 @@
             <string/>
            </property>
            <property name="pixmap" >
-            <pixmap resource="images/uman.qrc" >:/bubble/speech4.png</pixmap>
+            <pixmap resource="../resources/uman.qrc" >:/bubble/speech4.png</pixmap>
            </property>
            <property name="scaledContents" >
             <bool>true</bool>
@@ -287,7 +287,7 @@
             <string/>
            </property>
            <property name="pixmap" >
-            <pixmap resource="images/uman.qrc" >:/bubble/speech5.png</pixmap>
+            <pixmap resource="../resources/uman.qrc" >:/bubble/speech5.png</pixmap>
            </property>
            <property name="scaledContents" >
             <bool>true</bool>
@@ -313,7 +313,7 @@
             <string/>
            </property>
            <property name="pixmap" >
-            <pixmap resource="images/uman.qrc" >:/bubble/speech8.png</pixmap>
+            <pixmap resource="../resources/uman.qrc" >:/bubble/speech8.png</pixmap>
            </property>
           </widget>
          </item>
@@ -329,7 +329,7 @@
             <string/>
            </property>
            <property name="pixmap" >
-            <pixmap resource="images/uman.qrc" >:/bubble/speech3.png</pixmap>
+            <pixmap resource="../resources/uman.qrc" >:/bubble/speech3.png</pixmap>
            </property>
            <property name="scaledContents" >
             <bool>true</bool>
@@ -348,7 +348,7 @@
             <string/>
            </property>
            <property name="pixmap" >
-            <pixmap resource="images/uman.qrc" >:/bubble/speech7.png</pixmap>
+            <pixmap resource="../resources/uman.qrc" >:/bubble/speech7.png</pixmap>
            </property>
           </widget>
          </item>
@@ -392,7 +392,7 @@
          <string>Ask</string>
         </property>
         <property name="icon" >
-         <iconset resource="images/uman.qrc" >
+         <iconset resource="../resources/uman.qrc" >
           <normaloff>:/marks/help.png</normaloff>:/marks/help.png</iconset>
         </property>
         <property name="toolButtonStyle" >
@@ -409,7 +409,7 @@
          <string>Listen</string>
         </property>
         <property name="icon" >
-         <iconset resource="images/uman.qrc" >
+         <iconset resource="../resources/uman.qrc" >
           <normaloff>:/types/comment.png</normaloff>:/types/comment.png</iconset>
         </property>
         <property name="toolButtonStyle" >
@@ -445,7 +445,7 @@
          <string>Hide</string>
         </property>
         <property name="icon" >
-         <iconset resource="images/uman.qrc" >
+         <iconset resource="../resources/uman.qrc" >
           <normaloff>:/control/eye.png</normaloff>:/control/eye.png</iconset>
         </property>
         <property name="toolButtonStyle" >
@@ -492,7 +492,7 @@
          <string>Tell me...</string>
         </property>
         <property name="icon" >
-         <iconset resource="images/uman.qrc" >
+         <iconset resource="../resources/uman.qrc" >
           <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
         </property>
         <property name="toolButtonStyle" >
@@ -509,7 +509,7 @@
          <string>Talk</string>
         </property>
         <property name="icon" >
-         <iconset resource="images/uman.qrc" >
+         <iconset resource="../resources/uman.qrc" >
           <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
         </property>
         <property name="toolButtonStyle" >
@@ -559,7 +559,7 @@
          <string>What did you say just before?</string>
         </property>
         <property name="icon" >
-         <iconset resource="images/uman.qrc" >
+         <iconset resource="../resources/uman.qrc" >
           <normaloff>:/bullets/bullet_black.png</normaloff>:/bullets/bullet_black.png</iconset>
         </property>
         <property name="toolButtonStyle" >
@@ -582,7 +582,7 @@
          <string>Tell me more...</string>
         </property>
         <property name="icon" >
-         <iconset resource="images/uman.qrc" >
+         <iconset resource="../resources/uman.qrc" >
           <normaloff>:/bullets/bullet_black.png</normaloff>:/bullets/bullet_black.png</iconset>
         </property>
         <property name="toolButtonStyle" >
@@ -605,7 +605,7 @@
          <string>Thanks for your time.</string>
         </property>
         <property name="icon" >
-         <iconset resource="images/uman.qrc" >
+         <iconset resource="../resources/uman.qrc" >
           <normaloff>:/bullets/bullet_black.png</normaloff>:/bullets/bullet_black.png</iconset>
         </property>
         <property name="toolButtonStyle" >
@@ -625,7 +625,7 @@
   <zorder>normalFrame</zorder>
  </widget>
  <resources>
-  <include location="images/uman.qrc" />
+  <include location="../resources/uman.qrc" />
  </resources>
  <connections/>
 </ui>

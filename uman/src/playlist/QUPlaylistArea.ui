@@ -224,7 +224,7 @@
            <string>...</string>
           </property>
           <property name="icon" >
-           <iconset resource="images/uman.qrc" >
+           <iconset resource="../resources/uman.qrc" >
             <normaloff>:/control/folder_explore.png</normaloff>:/control/folder_explore.png</iconset>
           </property>
           <property name="autoRaise" >
@@ -298,7 +298,7 @@
         <string>Create</string>
        </property>
        <property name="icon" >
-        <iconset resource="images/uman.qrc" >
+        <iconset resource="../resources/uman.qrc" >
          <normaloff>:/marks/add.png</normaloff>:/marks/add.png</iconset>
        </property>
        <property name="toolButtonStyle" >
@@ -318,7 +318,7 @@
         <string>Save</string>
        </property>
        <property name="icon" >
-        <iconset resource="images/uman.qrc" >
+        <iconset resource="../resources/uman.qrc" >
          <normaloff>:/control/save.png</normaloff>:/control/save.png</iconset>
        </property>
        <property name="toolButtonStyle" >
@@ -338,7 +338,7 @@
         <string>Save As...</string>
        </property>
        <property name="icon" >
-        <iconset resource="images/uman.qrc" >
+        <iconset resource="../resources/uman.qrc" >
          <normaloff>:/control/save_as.png</normaloff>:/control/save_as.png</iconset>
        </property>
        <property name="toolButtonStyle" >
@@ -378,7 +378,7 @@
         <string>...</string>
        </property>
        <property name="icon" >
-        <iconset resource="images/uman.qrc" >
+        <iconset resource="../resources/uman.qrc" >
          <normaloff>:/control/bin.png</normaloff>:/control/bin.png</iconset>
        </property>
        <property name="autoRaise" >
@@ -398,7 +398,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="images/uman.qrc" />
+  <include location="../resources/uman.qrc" />
  </resources>
  <connections/>
 </ui>

@@ -1,13 +1,13 @@
 #include "QUTaskList.h"
 #include "QULogService.h"
 
-#include "QUPreparatoryTask.h"
-#include "QULyricTask.h"
-#include "QUAudioTagTask.h"
-#include "QURenameTask.h"
-#include "QUCleanTask.h"
-#include "QUAudioTagTaskDialog.h"
-#include "QURenameTaskDialog.h"
+//#include "QUPreparatoryTask.h"
+//#include "QULyricTask.h"
+//#include "QUAudioTagTask.h"
+//#include "QURenameTask.h"
+//#include "QUCleanTask.h"
+//#include "QUAudioTagTaskDialog.h"
+//#include "QURenameTaskDialog.h"
 
 #include <QCoreApplication>
 #include <QFont>
@@ -15,10 +15,9 @@
 #include <QFile>
 #include <QFileInfoList>
 #include <QMessageBox>
+#include <QLibrary>
 
 QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
-	this->resetTaskList();
-
 	// do not allow to check two exclusive tasks
 	connect(this, SIGNAL(itemChanged(QListWidgetItem*)), SLOT(uncheckAllExclusiveTasks(QListWidgetItem*)));
 	// TODO: Enable task editing not through double-click?
@@ -33,65 +32,65 @@ QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
  * Shows a context menu with actions for custom rename tasks.
  */
 void QUTaskList::showContextMenu(const QPoint &point) {
-	QMenu menu(this);
-	QMenu *addMenu = menu.addMenu(QIcon(":/marks/add.png"), tr("Add"));
-
-	addMenu->addAction(tr("Song/ID3 Tag Task..."), this, SLOT(addAudioTagTask()));
-	addMenu->addAction(tr("Rename Task..."), this, SLOT(addRenameTask()));
-
-	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(this->itemAt(point));
-	if(taskItem)
-		if(dynamic_cast<QUScriptableTask*>(taskItem->task()))
-			menu.addAction(QIcon(":/control/pencil.png"), tr("Edit..."), this, SLOT(editCurrentTask()));
-
-	menu.addSeparator();
-	menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh All"), this, SLOT(resetTaskList()));
-
-	menu.exec(this->mapToGlobal(point));
+//	QMenu menu(this);
+//	QMenu *addMenu = menu.addMenu(QIcon(":/marks/add.png"), tr("Add"));
+//
+//	addMenu->addAction(tr("Song/ID3 Tag Task..."), this, SLOT(addAudioTagTask()));
+//	addMenu->addAction(tr("Rename Task..."), this, SLOT(addRenameTask()));
+//
+//	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(this->itemAt(point));
+//	if(taskItem)
+//		if(dynamic_cast<QUScriptableTask*>(taskItem->task()))
+//			menu.addAction(QIcon(":/control/pencil.png"), tr("Edit..."), this, SLOT(editCurrentTask()));
+//
+//	menu.addSeparator();
+//	menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh All"), this, SLOT(resetTaskList()));
+//
+//	menu.exec(this->mapToGlobal(point));
 }
 
 /*!
  * Clear the list and refill it. Should be used to reload custom (rename) tasks.
  */
 void QUTaskList::resetTaskList() {
-	this->clear();
-
-	QList<QDomDocument*> tasks = this->loadTaskFiles(); // pre-configured tasks
-
-	this->appendSeparator(tr("Preparatory Tasks"));
-	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::autoAssignFiles)));
-	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::removeUnsupportedTags)));
-	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::fixAudioLength)));
-	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::roundGap)));
-
-	this->appendSeparator(tr("Lyric Tasks"));
-	this->addItem(new QUTaskItem(new QULyricTask(QU::fixTimeStamps)));
-	this->addItem(new QUTaskItem(new QULyricTask(QU::fixSpaces)));
-	this->addItem(new QUTaskItem(new QULyricTask(QU::removeEmptySyllables)));
-
-	this->appendSeparator(tr("Song/ID3 Tag Tasks"));
-	foreach(QDomDocument* task, tasks) {
-		if( QString::compare("id3", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 ) {
-			QUAudioTagTask *newTask = new QUAudioTagTask(task);
-			this->addItem(new QUTaskItem(newTask));
-		}
-	}
-
-	this->appendSeparator(tr("Renaming Tasks"));
-	foreach(QDomDocument* task, tasks) {
-		if( QString::compare("rename", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 ) {
-			QURenameTask *newTask = new QURenameTask(task);
-			this->addItem(new QUTaskItem(newTask));
-		}
-	}
-
-	this->appendSeparator(tr("Clean-Up Tasks"));
-	this->addItem(new QUTaskItem(new QUCleanTask(QU::unusedFiles)));
-	this->addItem(new QUTaskItem(new QUCleanTask(QU::invalidFileTags)));
-	this->addItem(new QUTaskItem(new QUCleanTask(QU::removeEndTag)));
-
-	qDeleteAll(tasks);
-	tasks.clear();
+//	this->clear();
+//
+//	QList<QDomDocument*> tasks = this->loadTaskFiles(); // pre-configured tasks
+//
+//	this->appendSeparator(tr("Preparatory Tasks"));
+//	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::autoAssignFiles)));
+//	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::removeUnsupportedTags)));
+//	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::fixAudioLength)));
+//	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::roundGap)));
+//
+//	this->appendSeparator(tr("Lyric Tasks"));
+//	this->addItem(new QUTaskItem(new QULyricTask(QU::fixTimeStamps)));
+//	this->addItem(new QUTaskItem(new QULyricTask(QU::fixSpaces)));
+//	this->addItem(new QUTaskItem(new QULyricTask(QU::removeEmptySyllables)));
+//
+//	this->appendSeparator(tr("Song/ID3 Tag Tasks"));
+//	foreach(QDomDocument* task, tasks) {
+//		if( QString::compare("id3", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 ) {
+//			QUAudioTagTask *newTask = new QUAudioTagTask(task);
+//			this->addItem(new QUTaskItem(newTask));
+//		}
+//	}
+//
+//	this->appendSeparator(tr("Renaming Tasks"));
+//	foreach(QDomDocument* task, tasks) {
+//		if( QString::compare("rename", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 ) {
+//			QURenameTask *newTask = new QURenameTask(task);
+//			this->addItem(new QUTaskItem(newTask));
+//		}
+//	}
+//
+//	this->appendSeparator(tr("Clean-Up Tasks"));
+//	this->addItem(new QUTaskItem(new QUCleanTask(QU::unusedFiles)));
+//	this->addItem(new QUTaskItem(new QUCleanTask(QU::invalidFileTags)));
+//	this->addItem(new QUTaskItem(new QUCleanTask(QU::removeEndTag)));
+//
+//	qDeleteAll(tasks);
+//	tasks.clear();
 }
 
 void QUTaskList::doTasksOn(QUSongFile *song) {
@@ -130,9 +129,9 @@ void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
 	if(!taskItem)
 		return;
 
-	QUScriptableTask *task = dynamic_cast<QUScriptableTask*>(taskItem->task());
+	QUTask *task = taskItem->task();
 
-	if(!task or task->group() == -1)
+	if(task->group() == -1)
 		return;
 
 	for(int i = 0; i < this->count(); i++) {
@@ -147,10 +146,7 @@ void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
 		if(!exclusiveTaskItem)
 			continue;
 
-		QUScriptableTask *exclusiveTask = dynamic_cast<QUScriptableTask*>(exclusiveTaskItem->task());
-
-		if(!exclusiveTask)
-			continue;
+		QUTask *exclusiveTask = exclusiveTaskItem->task();
 
 		if(task->group() == exclusiveTask->group())
 			exclusiveTaskItem->setCheckState(Qt::Unchecked);
@@ -158,25 +154,25 @@ void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
 }
 
 void QUTaskList::addAudioTagTask() {
-	QUAudioTagTaskDialog *dlg = new QUAudioTagTaskDialog(this);
-
-	if(dlg->exec()) {
-		this->resetTaskList();
-		logSrv->add(tr("Task list was refreshed successfully."), QU::information);
-	}
-
-	delete dlg;
+//	QUAudioTagTaskDialog *dlg = new QUAudioTagTaskDialog(this);
+//
+//	if(dlg->exec()) {
+//		this->resetTaskList();
+//		logSrv->add(tr("Task list was refreshed successfully."), QU::information);
+//	}
+//
+//	delete dlg;
 }
 
 void QUTaskList::addRenameTask() {
-	QURenameTaskDialog *dlg = new QURenameTaskDialog(this);
-
-	if(dlg->exec()) {
-		this->resetTaskList();
-		logSrv->add(tr("Task list was refreshed successfully."), QU::information);
-	}
-
-	delete dlg;
+//	QURenameTaskDialog *dlg = new QURenameTaskDialog(this);
+//
+//	if(dlg->exec()) {
+//		this->resetTaskList();
+//		logSrv->add(tr("Task list was refreshed successfully."), QU::information);
+//	}
+//
+//	delete dlg;
 }
 
 /*!
@@ -184,54 +180,52 @@ void QUTaskList::addRenameTask() {
  * selected.
  */
 void QUTaskList::editCurrentTask() {
-	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(this->currentItem());
-
-	if(!taskItem)
-		return;
-
-	QUTaskDialog *dlg;
-
-	if( dynamic_cast<QURenameTask*>(taskItem->task()) )
-		dlg = new QURenameTaskDialog(dynamic_cast<QURenameTask*>(taskItem->task()), this);
-	else if( dynamic_cast<QUAudioTagTask*>(taskItem->task()) )
-		dlg = new QUAudioTagTaskDialog(dynamic_cast<QUAudioTagTask*>(taskItem->task()), this);
-	else
-		return;
-
-	if(dlg->exec()) {
-		this->resetTaskList();
-		logSrv->add(tr("Task list was refreshed successfully."), QU::information);
-	}
-
-	delete dlg;
+//	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(this->currentItem());
+//
+//	if(!taskItem)
+//		return;
+//
+//	QUTaskDialog *dlg;
+//
+//	if( dynamic_cast<QURenameTask*>(taskItem->task()) )
+//		dlg = new QURenameTaskDialog(dynamic_cast<QURenameTask*>(taskItem->task()), this);
+//	else if( dynamic_cast<QUAudioTagTask*>(taskItem->task()) )
+//		dlg = new QUAudioTagTaskDialog(dynamic_cast<QUAudioTagTask*>(taskItem->task()), this);
+//	else
+//		return;
+//
+//	if(dlg->exec()) {
+//		this->resetTaskList();
+//		logSrv->add(tr("Task list was refreshed successfully."), QU::information);
+//	}
+//
+//	delete dlg;
 }
 
-/*!
- * Opens all XML-Files which could be task configurations.
- */
-QList<QDomDocument*> QUTaskList::loadTaskFiles() {
-	QList<QDomDocument*> tasks;
+void QUTaskList::reloadAllPlugins() {
+	logSrv->add(tr("Looking for task plugins..."), QU::information);
 
-	QDir taskDir = QCoreApplication::applicationDirPath();
-	// TODO: Make task config path available through registry - not hard-coded.
-	taskDir.cd("task-def");
+	qDeleteAll(_plugins);
+	_plugins.clear();
 
-	QFileInfoList taskFiList = taskDir.entryInfoList(QStringList("*.xml"), QDir::Files, QDir::Name);
+	QDir pluginDir = QCoreApplication::applicationDirPath();
+	pluginDir.cd("plugins");
 
-	foreach(QFileInfo taskFi, taskFiList) {
-		QFile file(taskFi.filePath());
-		if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-			QDomDocument *newTask = new QDomDocument();
-			newTask->setContent(file.readAll());
+	QFileInfoList pluginFiList = pluginDir.entryInfoList(QStringList("*.*"), QDir::Files, QDir::Name);
 
-			// save current fileName for later use
-			newTask->firstChildElement("task").setAttribute("file", taskFi.fileName());
+	foreach(QFileInfo pluginFi, pluginFiList) {
+		if(!QLibrary::isLibrary(pluginFi.filePath()))
+			continue;
 
-			tasks.append(newTask);
+		QPluginLoader *ldr = new QPluginLoader(pluginFi.filePath(), this);
+		if(!ldr->load()) {
+			logSrv->add(ldr->errorString(), QU::warning);
+		} else {
+			_plugins << ldr;
 		}
 	}
 
-	return tasks;
+	logSrv->add(tr("Plugin loading finished."), QU::information);
 }
 
 void QUTaskList::appendSeparator(const QString &text) {

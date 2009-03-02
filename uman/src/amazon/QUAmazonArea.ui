@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>438</width>
+    <width>439</width>
     <height>323</height>
    </rect>
   </property>
@@ -104,7 +104,7 @@
          <string/>
         </property>
         <property name="pixmap" >
-         <pixmap resource="images/uman.qrc" >:/marks/information.png</pixmap>
+         <pixmap resource="../resources/uman.qrc" >:/marks/information.png</pixmap>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -191,7 +191,7 @@
 Amazon...</string>
          </property>
          <property name="icon" >
-          <iconset resource="images/uman.qrc" >
+          <iconset resource="../resources/uman.qrc" >
            <normaloff>:/control/websearch.png</normaloff>:/control/websearch.png</iconset>
          </property>
          <property name="iconSize" >
@@ -349,8 +349,8 @@ Amazon...</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>397</width>
-            <height>129</height>
+            <width>400</width>
+            <height>133</height>
            </rect>
           </property>
           <property name="sizePolicy" >
@@ -389,7 +389,7 @@ Amazon...</string>
             <string>...</string>
            </property>
            <property name="icon" >
-            <iconset resource="images/uman.qrc" >
+            <iconset resource="../resources/uman.qrc" >
              <normaloff>:/control/uncheck_tasks.png</normaloff>:/control/uncheck_tasks.png</iconset>
            </property>
            <property name="autoRaise" >
@@ -403,7 +403,7 @@ Amazon...</string>
             <string>...</string>
            </property>
            <property name="icon" >
-            <iconset resource="images/uman.qrc" >
+            <iconset resource="../resources/uman.qrc" >
              <normaloff>:/control/check_tasks.png</normaloff>:/control/check_tasks.png</iconset>
            </property>
            <property name="autoRaise" >
@@ -441,7 +441,7 @@ Amazon...</string>
         <string>Delete Current Song Covers</string>
        </property>
        <property name="icon" >
-        <iconset resource="images/uman.qrc" >
+        <iconset resource="../resources/uman.qrc" >
          <normaloff>:/control/picture_minus.png</normaloff>:/control/picture_minus.png</iconset>
        </property>
        <property name="checked" >
@@ -471,7 +471,7 @@ Amazon...</string>
         <string>Copy &amp;&amp; Set</string>
        </property>
        <property name="icon" >
-        <iconset resource="images/uman.qrc" >
+        <iconset resource="../resources/uman.qrc" >
          <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
        </property>
       </widget>
@@ -482,7 +482,7 @@ Amazon...</string>
         <string>Cancel</string>
        </property>
        <property name="icon" >
-        <iconset resource="images/uman.qrc" >
+        <iconset resource="../resources/uman.qrc" >
          <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
        </property>
       </widget>
@@ -492,7 +492,7 @@ Amazon...</string>
   </layout>
  </widget>
  <resources>
-  <include location="images/uman.qrc" />
+  <include location="../resources/uman.qrc" />
  </resources>
  <connections/>
 </ui>

@@ -10,7 +10,8 @@ QT += core \
     xml \
     network
 CONFIG -= debug
-HEADERS += main.h \
+HEADERS += plugins/QUPluginDialog.h \
+    main.h \
     QU.h \
     QUMonty.h \
     QUAboutDialog.h \
@@ -19,14 +20,14 @@ HEADERS += main.h \
     QUSongSupport.h \
     song/QUSongInterface.h \
     song/QUSongFile.h \
-    song/QUSongLine.h \ 
+    song/QUSongLine.h \
     mediaplayer/QUAutoCue.h \
     mediaplayer/QUMediaPlayer.h \
     support/QULogService.h \
     support/QUMessageBox.h \
     support/QUProgressDialog.h \
     support/QUTextDialog.h \
-    support/QUPictureDialog.h \    
+    support/QUPictureDialog.h \
     monty/QUMontyArea.h \
     filter/QUFilterArea.h \
     filter/QUMetaphoneString.h \
@@ -37,24 +38,6 @@ HEADERS += main.h \
     amazon/QUAmazonDialog.h \
     amazon/QUCoverList.h \
     amazon/QUCoverGroup.h \
-    tasks/tasks.h \
-    tasks/taskDialog/QUDefaultDelegate.h \
-    tasks/taskDialog/QUAudioTagTaskDialog.h \
-    tasks/taskDialog/QUTaskSourceDelegate.h \
-    tasks/taskDialog/QUTaskTextDelegate.h \
-    tasks/taskDialog/QUTaskConditionDelegate.h \
-    tasks/taskDialog/QUTaskDataTable.h \
-    tasks/taskDialog/QUTaskDialog.h \
-    tasks/taskDialog/QURenameTaskDialog.h \
-    tasks/QUScriptableTask.h \
-    tasks/QULyricTask.h \
-    tasks/QUPreparatoryTask.h \
-    tasks/QURenameTask.h \
-    tasks/QUTaskList.h \
-    tasks/QUTaskItem.h \
-    tasks/QUAudioTagTask.h \
-    tasks/QUAbstractTask.h \
-    tasks/QUCleanTask.h \    
     preferences/QUCustomTagsDialog.h \
     preferences/QUTagOrderDialog.h \
     playlist/QUPlaylistArea.h \
@@ -78,8 +61,12 @@ HEADERS += main.h \
     songdetails/QUTagItem.h \
     songdetails/QUDetailsTable.h \
     songdetails/QUDetailItem.h \
-    songdetails/QUDropDownDelegate.h
-SOURCES += main.cpp \
+    songdetails/QUDropDownDelegate.h \
+    tasks/QUTaskList.h \
+    tasks/QUTaskItem.h \
+    plugins/QUTaskPlugin.h
+SOURCES += plugins/QUPluginDialog.cpp \
+    main.cpp \
     QU.cpp \
     QUAboutDialog.cpp \
     QUMainWindow.cpp \
@@ -92,7 +79,7 @@ SOURCES += main.cpp \
     support/QUProgressDialog.cpp \
     support/QUTextDialog.cpp \
     support/QUPictureDialog.cpp \
-    support/QUMessageBox.cpp \  
+    support/QUMessageBox.cpp \
     monty/QUMontyArea.cpp \
     filter/QUFilterArea.cpp \
     filter/QUMetaphoneString.cpp \
@@ -103,23 +90,6 @@ SOURCES += main.cpp \
     amazon/QUAmazonDialog.cpp \
     amazon/QUCoverList.cpp \
     amazon/QUCoverGroup.cpp \
-    tasks/taskDialog/QUDefaultDelegate.cpp \
-    tasks/taskDialog/QUAudioTagTaskDialog.cpp \
-    tasks/taskDialog/QUTaskSourceDelegate.cpp \
-    tasks/taskDialog/QUTaskTextDelegate.cpp \
-    tasks/taskDialog/QUTaskConditionDelegate.cpp \
-    tasks/taskDialog/QUTaskDataTable.cpp \
-    tasks/taskDialog/QUTaskDialog.cpp \
-    tasks/taskDialog/QURenameTaskDialog.cpp \
-    tasks/QULyricTask.cpp \
-    tasks/QUScriptableTask.cpp \
-    tasks/QUPreparatoryTask.cpp \
-    tasks/QURenameTask.cpp \
-    tasks/QUAudioTagTask.cpp \
-    tasks/QUTaskList.cpp \
-    tasks/QUTaskItem.cpp \
-    tasks/QUAbstractTask.cpp \    
-    tasks/QUCleanTask.cpp \
     preferences/QUCustomTagsDialog.cpp \
     preferences/QUTagOrderDialog.cpp \
     playlist/QUPlaylistArea.cpp \
@@ -145,8 +115,11 @@ SOURCES += main.cpp \
     songdetails/QUDetailsTable.cpp \
     songdetails/QUDetailItem.cpp \
     song/QUSongLine.cpp \
-    song/QUSongFile.cpp
-FORMS += QUMainWindow.ui \
+    song/QUSongFile.cpp \
+    tasks/QUTaskList.cpp \
+    tasks/QUTaskItem.cpp
+FORMS += plugins/QUPluginDialog.ui \
+    QUMainWindow.ui \
     QUAboutDialog.ui \
     mediaplayer/QUMediaPlayer.ui \
     monty/QUMontyArea.ui \
@@ -180,8 +153,8 @@ INCLUDEPATH += . \
     mediaplayer \
     support \
     preferences \
-    ui
-
+    ui \
+    plugins
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib \

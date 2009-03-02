@@ -116,7 +116,7 @@
          <string/>
         </property>
         <property name="pixmap" >
-         <pixmap resource="images/uman.qrc" >:/marks/information.png</pixmap>
+         <pixmap resource="../resources/uman.qrc" >:/marks/information.png</pixmap>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -190,7 +190,7 @@
           <string>Okay, I get it.</string>
          </property>
          <property name="icon" >
-          <iconset resource="images/uman.qrc" >
+          <iconset resource="../resources/uman.qrc" >
            <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
          </property>
         </widget>
@@ -201,7 +201,7 @@
           <string>What do you mean?</string>
          </property>
          <property name="icon" >
-          <iconset resource="images/uman.qrc" >
+          <iconset resource="../resources/uman.qrc" >
            <normaloff>:/marks/help.png</normaloff>:/marks/help.png</iconset>
          </property>
         </widget>
@@ -212,7 +212,7 @@
           <string>I'm outta here...</string>
          </property>
          <property name="icon" >
-          <iconset resource="images/uman.qrc" >
+          <iconset resource="../resources/uman.qrc" >
            <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
          </property>
         </widget>
@@ -237,7 +237,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="images/uman.qrc" />
+  <include location="../resources/uman.qrc" />
  </resources>
  <connections/>
 </ui>
