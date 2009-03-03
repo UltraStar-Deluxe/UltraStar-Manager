@@ -27,7 +27,7 @@ class QFileInfo;
 
 class QUSongInterface: public QObject {
     Q_OBJECT
-	
+
     // normal tag properties
 	Q_PROPERTY(QString artist READ artist)
 	Q_PROPERTY(QString title READ title)
@@ -60,12 +60,12 @@ class QUSongInterface: public QObject {
 	Q_PROPERTY(bool hasBackground READ hasBackground)
 	Q_PROPERTY(bool hasVideo READ hasVideo)
 	Q_PROPERTY(bool isSongChecked READ isSongChecked)
-    
+
 public:
     QUSongInterface(QObject *parent = 0): QObject(parent) {}
-        
+
     virtual void log(const QString &message, int type) = 0;
-        
+
 	virtual QString artist() const = 0;
 	virtual QString title() const = 0;
 	virtual QString mp3() const = 0;
@@ -107,6 +107,13 @@ public:
 	virtual QString speedFormatted() = 0;
 
 	virtual QStringList lyrics() const = 0;
+
+	virtual QFileInfo songFileInfo() const = 0;
+
+	virtual QFileInfo mp3FileInfo() const = 0;
+	virtual QFileInfo coverFileInfo() const = 0;
+	virtual QFileInfo backgroundFileInfo() const = 0;
+	virtual QFileInfo videoFileInfo() const = 0;
 
 	virtual void setInfo(const QString &key, const QString &value) = 0;
 

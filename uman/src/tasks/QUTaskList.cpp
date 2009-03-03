@@ -17,6 +17,8 @@
 #include <QMessageBox>
 #include <QLibrary>
 
+#include "QUTaskPlugin.h"
+
 QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
 	// do not allow to check two exclusive tasks
 	connect(this, SIGNAL(itemChanged(QListWidgetItem*)), SLOT(uncheckAllExclusiveTasks(QListWidgetItem*)));
@@ -53,7 +55,7 @@ void QUTaskList::showContextMenu(const QPoint &point) {
  * Clear the list and refill it. Should be used to reload custom (rename) tasks.
  */
 void QUTaskList::resetTaskList() {
-//	this->clear();
+	this->clear();
 //
 //	QList<QDomDocument*> tasks = this->loadTaskFiles(); // pre-configured tasks
 //
@@ -76,7 +78,19 @@ void QUTaskList::resetTaskList() {
 //		}
 //	}
 //
-//	this->appendSeparator(tr("Renaming Tasks"));
+	foreach(QPluginLoader *ldr, _plugins) {
+		QUTaskFactory *factory = qobject_cast<QUTaskFactory*>(ldr->instance());
+
+		if(!factory)
+			continue;
+
+		this->appendSeparator(factory->name());
+		foreach(QUTask *task, factory->createTasks()) {
+			this->addItem(new QUTaskItem(task));
+		}
+	}
+
+	//QList<QUTask*> renameTasks = _plugins.first()->instance()
 //	foreach(QDomDocument* task, tasks) {
 //		if( QString::compare("rename", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 ) {
 //			QURenameTask *newTask = new QURenameTask(task);
@@ -226,6 +240,7 @@ void QUTaskList::reloadAllPlugins() {
 	}
 
 	logSrv->add(tr("Plugin loading finished."), QU::information);
+	this->resetTaskList();
 }
 
 void QUTaskList::appendSeparator(const QString &text) {
