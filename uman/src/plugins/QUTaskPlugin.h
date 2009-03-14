@@ -26,6 +26,7 @@ public:
 
 	// enable the user to create new configurrations for this plugin
 	virtual int addConfiguration(QWidget *parent = 0) = 0;
+	virtual bool canAddConfigurations() const = 0;
 };
 
 class QUTask {

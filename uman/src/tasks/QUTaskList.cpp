@@ -37,7 +37,8 @@ void QUTaskList::showContextMenu(const QPoint &point) {
 	QMenu *addMenu = menu.addMenu(QIcon(":/marks/add.png"), tr("Add"));
 
 	foreach(QUTaskFactoryProxy *fp, _factoryProxies) {
-		addMenu->addAction(QString("%1...").arg(fp->factory()->productName()), fp, SLOT(addConfiguration()));
+		if(fp->factory()->canAddConfigurations())
+			addMenu->addAction(QString("%1...").arg(fp->factory()->productName()), fp, SLOT(addConfiguration()));
 	}
 
 	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(this->itemAt(point));

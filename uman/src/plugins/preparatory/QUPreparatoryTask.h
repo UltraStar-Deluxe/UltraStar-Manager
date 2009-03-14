@@ -2,15 +2,15 @@
 #define QUPREPARATORYTASK_H_
 
 #include "QU.h"
-#include "QUAbstractTask.h"
+#include "QUSimpleTask.h"
 
-class QUPreparatoryTask : public QUAbstractTask {
+class QUPreparatoryTask : public QUSimpleTask {
 	Q_OBJECT
 	
 public:
 	QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *parent = 0);
 	
-	virtual void startOn(QUSongFile *song);
+	virtual void startOn(QUSongInterface *song);
 	
 private:
 	QU::PreparatoryTaskModes _mode;

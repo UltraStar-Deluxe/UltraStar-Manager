@@ -16,6 +16,8 @@ public:
 
     virtual QList<QUTask*> createTasks();
 
+	virtual bool canAddConfigurations() const { return true; }
+
 protected:
 	virtual QDir configurationDirectory() = 0;
 	virtual QUTask* createTask(QDomDocument *configuration) = 0;

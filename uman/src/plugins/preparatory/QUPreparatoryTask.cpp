@@ -1,7 +1,7 @@
 #include "QUPreparatoryTask.h"
 
 QUPreparatoryTask::QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *parent):
-	QUAbstractTask(parent),
+	QUSimpleTask(parent),
 	_mode(mode)
 {
 	switch(_mode) {
@@ -29,7 +29,7 @@ QUPreparatoryTask::QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *par
 	}
 }
 
-void QUPreparatoryTask::startOn(QUSongFile *song) {
+void QUPreparatoryTask::startOn(QUSongInterface *song) {
 	switch(_mode) {
 	case QU::autoAssignFiles:
 		song->autoSetFiles();

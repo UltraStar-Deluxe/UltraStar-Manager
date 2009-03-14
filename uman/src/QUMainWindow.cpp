@@ -347,7 +347,8 @@ void QUMainWindow::initTaskList() {
 	addTaskBtn->setPopupMode(QToolButton::InstantPopup);
 
 	foreach(QUTaskFactoryProxy *fp, taskList->factoryProxies()) {
-		addTaskBtn->menu()->addAction(QString("%1...").arg(fp->factory()->productName()), fp, SLOT(addConfiguration()));
+		if(fp->factory()->canAddConfigurations())
+			addTaskBtn->menu()->addAction(QString("%1...").arg(fp->factory()->productName()), fp, SLOT(addConfiguration()));
 	}
 
 	// connect task buttons
