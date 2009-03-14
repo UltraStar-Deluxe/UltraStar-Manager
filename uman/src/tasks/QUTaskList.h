@@ -23,6 +23,7 @@ public:
 	void doTasksOn(QUSongFile *song);
 
 	QList<QPluginLoader*> plugins() const { return _plugins; }
+	QList<QUTaskFactoryProxy*> factoryProxies() const { return _factoryProxies; }
 
 public slots:
 	void showContextMenu(const QPoint &point);
@@ -32,9 +33,6 @@ public slots:
 	void checkAllTasks();
 	void uncheckAllTasks();
 	void uncheckAllExclusiveTasks(QListWidgetItem *item);
-
-	void addAudioTagTask();
-	void addRenameTask();
 
 	void editCurrentTask();
 

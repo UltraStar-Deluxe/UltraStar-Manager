@@ -53,6 +53,8 @@
 
 #include "QUSongSupport.h"
 
+#include "QUTaskFactoryProxy.h"
+
 QDir QUMainWindow::BaseDir = QDir();
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	setupUi(this);
@@ -339,17 +341,19 @@ void QUMainWindow::initDetailsTable() {
  * \sa editSongSetDetail()
  */
 void QUMainWindow::initTaskList() {
+	taskList->reloadAllPlugins();
+
 	addTaskBtn->setMenu(new QMenu);
 	addTaskBtn->setPopupMode(QToolButton::InstantPopup);
-	addTaskBtn->menu()->addAction(tr("Song/ID3 Tag Task..."), taskList, SLOT(addAudioTagTask()));
-	addTaskBtn->menu()->addAction(tr("Rename Task..."), taskList, SLOT(addRenameTask()));
+
+	foreach(QUTaskFactoryProxy *fp, taskList->factoryProxies()) {
+		addTaskBtn->menu()->addAction(QString("%1...").arg(fp->factory()->productName()), fp, SLOT(addConfiguration()));
+	}
 
 	// connect task buttons
 	connect(taskBtn, SIGNAL(clicked()), this, SLOT(editSongApplyTasks()));
 	connect(allTasksBtn, SIGNAL(clicked()), taskList, SLOT(checkAllTasks()));
 	connect(noTasksBtn, SIGNAL(clicked()), taskList, SLOT(uncheckAllTasks()));
-
-	taskList->reloadAllPlugins();
 }
 
 void QUMainWindow::initEventLog() {

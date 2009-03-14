@@ -161,28 +161,6 @@ void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
 	}
 }
 
-void QUTaskList::addAudioTagTask() {
-//	QUAudioTagTaskDialog *dlg = new QUAudioTagTaskDialog(this);
-//
-//	if(dlg->exec()) {
-//		this->resetTaskList();
-//		logSrv->add(tr("Task list was refreshed successfully."), QU::information);
-//	}
-//
-//	delete dlg;
-}
-
-void QUTaskList::addRenameTask() {
-//	QURenameTaskDialog *dlg = new QURenameTaskDialog(this);
-//
-//	if(dlg->exec()) {
-//		this->resetTaskList();
-//		logSrv->add(tr("Task list was refreshed successfully."), QU::information);
-//	}
-//
-//	delete dlg;
-}
-
 /*!
  * Shows a dialog to edit the selected "rename" task if such a task is
  * selected.

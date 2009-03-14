@@ -22,6 +22,9 @@ NOT SORTED
 * broken gif-support for amazon cover files
 ! update playlists if you delete a song -> crash on exit
 
+NEW ONES
+* translation issues with plugins
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
 !! Pay attention to forum posts in us-forum and sf-forum.
