@@ -11,7 +11,7 @@ INCLUDEPATH += . \
     ../.. \
     ../../song \
     ../shared
-TARGET = preparatory
+TARGET = 1-preparatory
 TEMPLATE = lib
 CONFIG += plugin
 CONFIG -= debug

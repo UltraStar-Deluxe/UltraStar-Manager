@@ -33,7 +33,7 @@ INCLUDEPATH += . \
     ../.. \
     ../../song \
     ../shared
-TARGET = rename
+TARGET = 4-rename
 TEMPLATE = lib
 CONFIG += plugin
 CONFIG -= debug

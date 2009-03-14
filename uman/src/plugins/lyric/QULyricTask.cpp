@@ -1,7 +1,7 @@
 #include "QULyricTask.h"
 
 QULyricTask::QULyricTask(QU::LyricTaskModes mode, QObject *parent):
-	QUAbstractTask(parent),
+	QUSimpleTask(parent),
 	_mode(mode)
 {
 	switch(_mode) {
@@ -21,7 +21,7 @@ QULyricTask::QULyricTask(QU::LyricTaskModes mode, QObject *parent):
 	}
 }
 
-void QULyricTask::startOn(QUSongFile *song) {
+void QULyricTask::startOn(QUSongInterface *song) {
 	switch(_mode) {
 	case QU::fixTimeStamps:
 		song->fixTimeStamps();

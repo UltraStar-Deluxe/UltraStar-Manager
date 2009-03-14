@@ -34,7 +34,7 @@ INCLUDEPATH += . \
     ../../song \
     ../shared \
     ../../../include/taglib
-TARGET = audiotag
+TARGET = 3-audiotag
 TEMPLATE = lib
 CONFIG += plugin
 CONFIG -= debug

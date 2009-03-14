@@ -1,7 +1,7 @@
-#include "QUCleanTask.h"
+#include "QUCleanUpTask.h"
 
-QUCleanTask::QUCleanTask(QU::CleanTaskModes mode, QObject *parent):
-	QUAbstractTask(parent),
+QUCleanUpTask::QUCleanUpTask(QU::CleanTaskModes mode, QObject *parent):
+	QUSimpleTask(parent),
 	_mode(mode)
 {
 	switch(_mode) {
@@ -23,7 +23,7 @@ QUCleanTask::QUCleanTask(QU::CleanTaskModes mode, QObject *parent):
 	}
 }
 
-void QUCleanTask::startOn(QUSongFile *song) {
+void QUCleanUpTask::startOn(QUSongInterface *song) {
 	switch(_mode) {
 	case QU::unusedFiles:
 		song->deleteUnusedFiles();
