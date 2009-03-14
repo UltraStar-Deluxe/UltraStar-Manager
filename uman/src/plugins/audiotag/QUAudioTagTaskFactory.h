@@ -13,6 +13,10 @@ public:
 	QUAudioTagTaskFactory(QObject *parent = 0);
 
 	virtual QString name() const;
+	virtual QString productName() const;
+
+public slots:
+	virtual int addConfiguration(QWidget *parent = 0);
 
 protected:
 	virtual QDir configurationDirectory();

@@ -12,6 +12,8 @@
 #include <QKeyEvent>
 #include <QPluginLoader>
 
+class QUTaskFactoryProxy;
+
 class QUTaskList: public QListWidget {
 	Q_OBJECT
 
@@ -20,13 +22,12 @@ public:
 
 	void doTasksOn(QUSongFile *song);
 
-	QList<QPluginLoader*> plugins() const { return _plugins; };
+	QList<QPluginLoader*> plugins() const { return _plugins; }
 
 public slots:
 	void showContextMenu(const QPoint &point);
-
-	void resetTaskList();
 	void reloadAllPlugins();
+	void resetTaskList();
 
 	void checkAllTasks();
 	void uncheckAllTasks();
@@ -39,7 +40,9 @@ public slots:
 
 private:
 	QList<QPluginLoader*> _plugins;
+	QList<QUTaskFactoryProxy*> _factoryProxies;
 
+	void updateFactoryProxies();
 	void appendSeparator(const QString &text);
 };
 

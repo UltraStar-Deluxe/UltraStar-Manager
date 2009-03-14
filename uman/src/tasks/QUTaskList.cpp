@@ -16,6 +16,7 @@
 #include <QLibrary>
 
 #include "QUTaskPlugin.h"
+#include "QUTaskFactoryProxy.h"
 
 QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
 	// do not allow to check two exclusive tasks
@@ -32,21 +33,21 @@ QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
  * Shows a context menu with actions for custom rename tasks.
  */
 void QUTaskList::showContextMenu(const QPoint &point) {
-//	QMenu menu(this);
-//	QMenu *addMenu = menu.addMenu(QIcon(":/marks/add.png"), tr("Add"));
-//
-//	addMenu->addAction(tr("Song/ID3 Tag Task..."), this, SLOT(addAudioTagTask()));
-//	addMenu->addAction(tr("Rename Task..."), this, SLOT(addRenameTask()));
-//
-//	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(this->itemAt(point));
-//	if(taskItem)
-//		if(dynamic_cast<QUScriptableTask*>(taskItem->task()))
-//			menu.addAction(QIcon(":/control/pencil.png"), tr("Edit..."), this, SLOT(editCurrentTask()));
-//
-//	menu.addSeparator();
-//	menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh All"), this, SLOT(resetTaskList()));
-//
-//	menu.exec(this->mapToGlobal(point));
+	QMenu menu(this);
+	QMenu *addMenu = menu.addMenu(QIcon(":/marks/add.png"), tr("Add"));
+
+	foreach(QUTaskFactoryProxy *fp, _factoryProxies) {
+		addMenu->addAction(QString("%1...").arg(fp->factory()->productName()), fp, SLOT(addConfiguration()));
+	}
+
+	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(this->itemAt(point));
+	if(taskItem && taskItem->task()->isConfigurable())
+		menu.addAction(QIcon(":/control/pencil.png"), tr("Edit..."), this, SLOT(editCurrentTask()));
+
+	menu.addSeparator();
+	menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh All"), this, SLOT(resetTaskList()));
+
+	menu.exec(this->mapToGlobal(point));
 }
 
 /*!
@@ -76,14 +77,9 @@ void QUTaskList::resetTaskList() {
 //		}
 //	}
 //
-	foreach(QPluginLoader *ldr, _plugins) {
-		QUTaskFactory *factory = qobject_cast<QUTaskFactory*>(ldr->instance());
-
-		if(!factory)
-			continue;
-
-		this->appendSeparator(factory->name());
-		foreach(QUTask *task, factory->createTasks()) {
+	foreach(QUTaskFactoryProxy *fp, _factoryProxies) {
+		this->appendSeparator(fp->factory()->name());
+		foreach(QUTask *task, fp->factory()->createTasks()) {
 			this->addItem(new QUTaskItem(task));
 		}
 	}
@@ -226,8 +222,23 @@ void QUTaskList::reloadAllPlugins() {
 		}
 	}
 
+	this->updateFactoryProxies();
 	logSrv->add(tr("Plugin loading finished."), QU::information);
 	this->resetTaskList();
+}
+
+void QUTaskList::updateFactoryProxies() {
+	qDeleteAll(_factoryProxies);
+	_factoryProxies.clear();
+
+	foreach(QPluginLoader *ldr, _plugins) {
+		QUTaskFactory *factory = qobject_cast<QUTaskFactory*>(ldr->instance());
+
+		if(!factory)
+			continue;
+
+		_factoryProxies << new QUTaskFactoryProxy(factory, this, this);
+	}
 }
 
 void QUTaskList::appendSeparator(const QString &text) {

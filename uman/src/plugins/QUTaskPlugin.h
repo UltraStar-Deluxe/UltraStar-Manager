@@ -17,8 +17,15 @@ public:
     // create all tasks based on their configurations
     virtual QList<QUTask*> createTasks() = 0;
 
-    // give it a name so it can be displayed better
+	// use a name to group all kinds of products of this factory
     virtual QString name() const = 0;
+
+	// use product names to give correct information about what is being added
+	// in case of adding a configuration
+	virtual QString productName() const = 0;
+
+	// enable the user to create new configurrations for this plugin
+	virtual int addConfiguration(QWidget *parent = 0) = 0;
 };
 
 class QUTask {

@@ -1,5 +1,6 @@
 #include "QURenameTaskFactory.h"
 #include "QURenameTask.h"
+#include "QURenameTaskDialog.h"
 
 #include <QCoreApplication>
 
@@ -7,6 +8,10 @@ QURenameTaskFactory::QURenameTaskFactory(QObject *parent): QUScriptableTaskFacto
 
 QString QURenameTaskFactory::name() const {
 	return tr("Rename Tasks");
+}
+
+QString QURenameTaskFactory::productName() const {
+	return tr("Rename Task");
 }
 
 QDir QURenameTaskFactory::configurationDirectory() {
@@ -21,6 +26,10 @@ QUTask* QURenameTaskFactory::createTask(QDomDocument *configuration) {
 	} else {
 		return 0;
 	}
+}
+
+int QURenameTaskFactory::addConfiguration(QWidget *parent) {
+	return QURenameTaskDialog(0, parent).exec();
 }
 
 Q_EXPORT_PLUGIN2(qurenametaskfactory, QURenameTaskFactory);

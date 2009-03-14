@@ -1,5 +1,6 @@
 #include "QUAudioTagTaskFactory.h"
 #include "QUAudioTagTask.h"
+#include "QUAudioTagTaskDialog.h"
 
 #include <QCoreApplication>
 
@@ -7,6 +8,10 @@ QUAudioTagTaskFactory::QUAudioTagTaskFactory(QObject *parent): QUScriptableTaskF
 
 QString QUAudioTagTaskFactory::name() const {
 	return tr("Song/ID3 Tag Tasks");
+}
+
+QString QUAudioTagTaskFactory::productName() const {
+	return tr("Song/ID3 Tag Task");
 }
 
 QDir QUAudioTagTaskFactory::configurationDirectory() {
@@ -21,6 +26,10 @@ QUTask* QUAudioTagTaskFactory::createTask(QDomDocument *configuration) {
 	} else {
 		return 0;
 	}
+}
+
+int QUAudioTagTaskFactory::addConfiguration(QWidget *parent) {
+	return QUAudioTagTaskDialog(0, parent).exec();
 }
 
 Q_EXPORT_PLUGIN2(quaudiotagtaskfactory, QUAudioTagTaskFactory);
