@@ -13,7 +13,7 @@
    <string>Edit Rename Task</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="../resources/uman.qrc" >
+   <iconset resource="../../resources/uman.qrc" >
     <normaloff>:/control/tasks_add.png</normaloff>:/control/tasks_add.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2" >
@@ -108,7 +108,7 @@
          <string/>
         </property>
         <property name="pixmap" >
-         <pixmap resource="../resources/uman.qrc" >:/marks/information.png</pixmap>
+         <pixmap resource="../../resources/uman.qrc" >:/marks/information.png</pixmap>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -396,7 +396,7 @@
             <string>...</string>
            </property>
            <property name="icon" >
-            <iconset resource="../resources/uman.qrc" >
+            <iconset resource="../../resources/uman.qrc" >
              <normaloff>:/marks/add.png</normaloff>:/marks/add.png</iconset>
            </property>
            <property name="autoRaise" >
@@ -410,7 +410,7 @@
             <string>...</string>
            </property>
            <property name="icon" >
-            <iconset resource="../resources/uman.qrc" >
+            <iconset resource="../../resources/uman.qrc" >
              <normaloff>:/marks/delete.png</normaloff>:/marks/delete.png</iconset>
            </property>
            <property name="autoRaise" >
@@ -488,7 +488,7 @@
             <string>...</string>
            </property>
            <property name="icon" >
-            <iconset resource="../resources/uman.qrc" >
+            <iconset resource="../../resources/uman.qrc" >
              <normaloff>:/bullets/arrow_up_small.png</normaloff>:/bullets/arrow_up_small.png</iconset>
            </property>
            <property name="autoRaise" >
@@ -514,7 +514,7 @@
             <string>...</string>
            </property>
            <property name="icon" >
-            <iconset resource="../resources/uman.qrc" >
+            <iconset resource="../../resources/uman.qrc" >
              <normaloff>:/bullets/arrow_down_small.png</normaloff>:/bullets/arrow_down_small.png</iconset>
            </property>
            <property name="autoRaise" >
@@ -562,7 +562,7 @@
         <string>Save As...</string>
        </property>
        <property name="icon" >
-        <iconset resource="../resources/uman.qrc" >
+        <iconset resource="../../resources/uman.qrc" >
          <normaloff>:/control/save_as.png</normaloff>:/control/save_as.png</iconset>
        </property>
        <property name="autoDefault" >
@@ -589,7 +589,7 @@
         <string>Save</string>
        </property>
        <property name="icon" >
-        <iconset resource="../resources/uman.qrc" >
+        <iconset resource="../../resources/uman.qrc" >
          <normaloff>:/control/save.png</normaloff>:/control/save.png</iconset>
        </property>
       </widget>
@@ -600,7 +600,7 @@
         <string>Cancel</string>
        </property>
        <property name="icon" >
-        <iconset resource="../resources/uman.qrc" >
+        <iconset resource="../../resources/uman.qrc" >
          <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
        </property>
        <property name="autoDefault" >
@@ -620,7 +620,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../resources/uman.qrc" />
+  <include location="../../resources/uman.qrc" />
  </resources>
  <connections/>
 </ui>

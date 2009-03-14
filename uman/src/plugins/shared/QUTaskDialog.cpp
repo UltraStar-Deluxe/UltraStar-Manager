@@ -1,5 +1,4 @@
 #include "QUTaskDialog.h"
-#include "QULogService.h"
 
 #include <QCoreApplication>
 #include <QDir>
@@ -11,44 +10,16 @@
 #include <QIcon>
 
 QUTaskDialog::QUTaskDialog(QUScriptableTask *task, QWidget *parent): QDialog(parent) {
-	initDialog();
+	initForTask();
 
-	// use the basic implementation for untranslated text (should be english)
-	descriptionEdit->setText(task->QUAbstractTask::description());
-	toolTipEdit->setPlainText(task->QUAbstractTask::toolTip());
-
-	iconCombo->setCurrentIndex(iconCombo->findText(QFileInfo(task->iconSource()).fileName()));
-
-	exclusiveChk->setCheckState(task->group() < 0 ? Qt::Unchecked : Qt::Checked);
-	this->controlGroupSpin(exclusiveChk->checkState());
-	groupSpin->setValue(task->group());
-
-	schemaEdit->setText(task->schema());
-
-	if(dynamic_cast<QURenameTask*>(task))
-		dataTable->fillData(task->data(), QU::renameTask);
-	else if(dynamic_cast<QUAudioTagTask*>(task))
-		dataTable->fillData(task->data(), QU::audioTagTask);
-
-	removeDataBtn->setEnabled(task->data().size() > 0);
-
-	this->setWindowIcon(QIcon(":/control/tasks_edit.png"));
-	this->setWindowTitle(QString(tr("Edit Task: \"%1\"")).arg(task->configFileName()));
-	_fileName = task->configFileName();
-
-	// normal save button only available in edit mode
-	saveBtn->setEnabled(true);
-	connect(saveBtn, SIGNAL(clicked()), this, SLOT(saveTask()));
-}
-
-QUTaskDialog::QUTaskDialog(QWidget *parent): QDialog(parent) {
-	initDialog();
+	if(task)
+		initForTask(task);
 }
 
 /*!
  * General setup for a blank rename task.
  */
-void QUTaskDialog::initDialog() {
+void QUTaskDialog::initForTask() {
 	setupUi(this);
 
 	this->setWindowIcon(QIcon(":/control/tasks_add.png"));
@@ -80,6 +51,35 @@ void QUTaskDialog::initDialog() {
 
 	connect(dataTable, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(updateMoveButtons(int, int)));
 	this->updateMoveButtons(0, 0);
+}
+
+/*!
+ * Use given task to fill the dialog. Used for editing.
+ */
+void QUTaskDialog::initForTask(QUScriptableTask *task) {
+	// use the basic implementation for untranslated text (should be english)
+	descriptionEdit->setText(task->QUSimpleTask::description());
+	toolTipEdit->setPlainText(task->QUSimpleTask::toolTip());
+
+	iconCombo->setCurrentIndex(iconCombo->findText(QFileInfo(task->iconSource()).fileName()));
+
+	exclusiveChk->setCheckState(task->group() < 0 ? Qt::Unchecked : Qt::Checked);
+	this->controlGroupSpin(exclusiveChk->checkState());
+	groupSpin->setValue(task->group());
+
+	schemaEdit->setText(task->schema());
+
+	dataTable->fillData(task->data());
+
+	removeDataBtn->setEnabled(task->data().size() > 0);
+
+	this->setWindowIcon(QIcon(":/control/tasks_edit.png"));
+	this->setWindowTitle(QString(tr("Edit Task: \"%1\"")).arg(task->configFileName()));
+	_fileName = task->configFileName();
+
+	// normal save button only available in edit mode
+	saveBtn->setEnabled(true);
+	connect(saveBtn, SIGNAL(clicked()), this, SLOT(saveTask()));
 }
 
 /*!
@@ -166,10 +166,10 @@ bool QUTaskDialog::saveDocument(const QString &filePath) {
 		out << _doc.toString(4);
 		file.close();
 
-		logSrv->add(QString(tr("The task file \"%1\" was saved successfully.")).arg(filePath), QU::saving);
+//		logSrv->add(QString(tr("The task file \"%1\" was saved successfully.")).arg(filePath), QU::saving);
 		return true;
 	} else {
-		logSrv->add(QString(tr("The task file \"%1\" was NOT saved.")).arg(filePath), QU::warning);
+//		logSrv->add(QString(tr("The task file \"%1\" was NOT saved.")).arg(filePath), QU::warning);
 		return false;
 	}
 }

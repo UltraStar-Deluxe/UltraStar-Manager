@@ -35,7 +35,8 @@ public:
 
 	virtual void startOn(QUSongInterface *song);
 
-	virtual void configure() {}
+	virtual bool isConfigurable() const { return true; }
+	virtual int configure(QWidget *parent = 0);
 
 	static QStringList availableSources();
 	static QStringList availableSpecialSources();

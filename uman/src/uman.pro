@@ -126,7 +126,6 @@ FORMS += plugins/QUPluginDialog.ui \
     filter/QUFilterArea.ui \
     amazon/QUCoverGroup.ui \
     amazon/QUAmazonArea.ui \
-    tasks/taskDialog/QUTaskDialog.ui \
     playlist/QUPlaylistArea.ui \
     report/QUReportDialog.ui \
     support/QUPictureDialog.ui \

@@ -9,8 +9,7 @@ class QUAudioTagTaskDialog: public QUTaskDialog {
 	Q_OBJECT
 
 public:
-	QUAudioTagTaskDialog(QUAudioTagTask *task, QWidget *parent = 0);
-	QUAudioTagTaskDialog(QWidget *parent = 0);
+	QUAudioTagTaskDialog(QUAudioTagTask *task = 0, QWidget *parent = 0);
 
 protected:
 	virtual bool saveTask(const QString &filePath);

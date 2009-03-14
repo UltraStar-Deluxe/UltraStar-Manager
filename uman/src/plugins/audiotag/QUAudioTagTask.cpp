@@ -1,4 +1,5 @@
 #include "QUAudioTagTask.h"
+#include "QUAudioTagTaskDialog.h"
 
 #include <QVariant>
 
@@ -73,6 +74,14 @@ void QUAudioTagTask::startOn(QUSongInterface *song) {
 	} else {
 		song->log(QString(tr("The song tag \"%1\" is NOT VALID.")).arg(_target), QU::warning);
 	}
+}
+
+/*!
+ * Open a dialog to modify the configuration on which this task is based on. You do not have to update its runtime
+ * data because the factory will create a new task based on the changed configuration.
+ */
+int QUAudioTagTask::configure(QWidget *parent) {
+	return QUAudioTagTaskDialog(this, parent).exec();
 }
 
 QStringList QUAudioTagTask::availableSources() {

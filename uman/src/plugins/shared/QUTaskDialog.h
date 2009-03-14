@@ -15,8 +15,7 @@ class QUTaskDialog: public QDialog, protected Ui::QUTaskDialog {
 	Q_OBJECT
 
 public:
-	QUTaskDialog(QUScriptableTask *task, QWidget *parent = 0);
-	QUTaskDialog(QWidget *parent = 0);
+	QUTaskDialog(QUScriptableTask *task = 0, QWidget *parent = 0);
 
 protected slots:
 	void fillIconCombo(const QString &resourcePath);
@@ -34,7 +33,8 @@ protected:
 	QString _fileName;
 	QDomDocument _doc;
 
-	void initDialog();
+	void initForTask();
+	void initForTask(QUScriptableTask *task);
 
 	virtual bool saveTask(const QString &filePath) = 0;
 	bool saveDocument(const QString &filePath);

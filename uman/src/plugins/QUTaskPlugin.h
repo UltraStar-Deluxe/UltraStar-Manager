@@ -3,6 +3,7 @@
 
 #include <QtPlugin>
 
+class QWidget;
 class QString;
 class QIcon;
 
@@ -31,7 +32,7 @@ public:
     virtual QString toolTip() const = 0;
     virtual int group() const = 0;
 
-    virtual void configure() = 0;
+	virtual int configure(QWidget *parent = 0) = 0;
     virtual bool isConfigurable() const = 0;
 };
 

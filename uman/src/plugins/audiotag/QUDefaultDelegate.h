@@ -2,7 +2,6 @@
 #define QUDEFAULTDELEGATE_H_
 
 #include "QU.h"
-#include "QUAudioTagTask.h"
 
 #include <QItemDelegate>
 

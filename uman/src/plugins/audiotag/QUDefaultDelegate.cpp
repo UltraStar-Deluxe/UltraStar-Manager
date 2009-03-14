@@ -1,4 +1,5 @@
 #include "QUDefaultDelegate.h"
+#include "QUAudioTagTask.h"
 
 #include <QComboBox>
 #include <QString>

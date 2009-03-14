@@ -6,8 +6,6 @@
 //#include "QUAudioTagTask.h"
 //#include "QURenameTask.h"
 //#include "QUCleanTask.h"
-//#include "QUAudioTagTaskDialog.h"
-//#include "QURenameTaskDialog.h"
 
 #include <QCoreApplication>
 #include <QFont>
@@ -194,26 +192,15 @@ void QUTaskList::addRenameTask() {
  * selected.
  */
 void QUTaskList::editCurrentTask() {
-//	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(this->currentItem());
-//
-//	if(!taskItem)
-//		return;
-//
-//	QUTaskDialog *dlg;
-//
-//	if( dynamic_cast<QURenameTask*>(taskItem->task()) )
-//		dlg = new QURenameTaskDialog(dynamic_cast<QURenameTask*>(taskItem->task()), this);
-//	else if( dynamic_cast<QUAudioTagTask*>(taskItem->task()) )
-//		dlg = new QUAudioTagTaskDialog(dynamic_cast<QUAudioTagTask*>(taskItem->task()), this);
-//	else
-//		return;
-//
-//	if(dlg->exec()) {
-//		this->resetTaskList();
-//		logSrv->add(tr("Task list was refreshed successfully."), QU::information);
-//	}
-//
-//	delete dlg;
+	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(this->currentItem());
+
+	if(!taskItem or !taskItem->task()->isConfigurable())
+		return;
+
+	if(taskItem->task()->configure(this)) {
+		this->resetTaskList();
+		logSrv->add(tr("Task list was refreshed successfully."), QU::information);
+	}
 }
 
 void QUTaskList::reloadAllPlugins() {

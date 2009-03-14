@@ -9,8 +9,7 @@ class QURenameTaskDialog: public QUTaskDialog {
 	Q_OBJECT
 
 public:
-	QURenameTaskDialog(QURenameTask *task, QWidget *parent = 0);
-	QURenameTaskDialog(QWidget *parent = 0);
+	QURenameTaskDialog(QURenameTask *task = 0, QWidget *parent = 0);
 
 protected:
 	virtual bool saveTask(const QString &filePath);

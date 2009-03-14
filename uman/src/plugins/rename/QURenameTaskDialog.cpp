@@ -1,4 +1,7 @@
 #include "QURenameTaskDialog.h"
+#include "QUTaskConditionDelegate.h"
+#include "QURenameTaskSourceDelegate.h"
+#include "QUTaskTextDelegate.h"
 
 #include <QIcon>
 #include <QDomDocument>
@@ -7,21 +10,19 @@
 #include <QDomCDATASection>
 
 QURenameTaskDialog::QURenameTaskDialog(QURenameTask *task, QWidget *parent): QUTaskDialog(task, parent) {
-	init(task);
-}
+	dataTable->setDelegates(
+			new QUTaskConditionDelegate(dataTable),
+			new QURenameTaskSourceDelegate(dataTable),
+			new QUTaskTextDelegate(dataTable));
 
-QURenameTaskDialog::QURenameTaskDialog(QWidget *parent): QUTaskDialog(parent) {
-	init();
-	dataTable->fillData(QList<QUScriptData*>(), QU::renameTask); // for setting up custom delegates
-	this->setWindowTitle(tr("Add Rename Task"));
-}
-
-void QURenameTaskDialog::init(QUScriptableTask *task) {
 	targetCombo->addItems(QURenameTask::availableTargets());
-	if(task)
-		targetCombo->setCurrentIndex(targetCombo->findText(task->target(), Qt::MatchContains));
-
 	infoLbl->setText(tr("Select a proper <b>target</b> and create a custom <b>schema</b> for the renaming operation. You can use <b>custom tags</b> as sources."));
+
+	if(task) {
+		targetCombo->setCurrentIndex(targetCombo->findText(task->target(), Qt::MatchContains));
+	} else {
+		this->setWindowTitle(tr("Add Rename Task"));
+	}
 }
 
 /*!

@@ -2,8 +2,6 @@
 #define QUTASKSOURCEDELEGATE_H_
 
 #include "QU.h"
-#include "QURenameTask.h"
-#include "QUAudioTagTask.h"
 
 #include <QItemDelegate>
 #include <QComboBox>
@@ -12,7 +10,7 @@ class QUTaskSourceDelegate: public QItemDelegate {
 	Q_OBJECT
 
 public:
-	QUTaskSourceDelegate(QU::ScriptableTaskTypes type, QObject *parent = 0);
+	QUTaskSourceDelegate(QObject *parent = 0);
 
 	QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
@@ -22,9 +20,7 @@ public:
 	void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
 private:
-	QU::ScriptableTaskTypes _type;
-
-	void setItems(QComboBox *comboBox) const;
+	virtual void setItems(QComboBox *comboBox) const = 0;
 };
 
 #endif /*QUTASKSOURCEDELEGATE_H_*/

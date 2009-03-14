@@ -1,26 +1,27 @@
 #include "QUAudioTagTaskDialog.h"
+#include "QUTaskConditionDelegate.h"
+#include "QUAudioTagTaskSourceDelegate.h"
+#include "QUDefaultDelegate.h"
 
 QUAudioTagTaskDialog::QUAudioTagTaskDialog(QUAudioTagTask *task, QWidget *parent): QUTaskDialog(task, parent) {
-	init(task);
-}
+	dataTable->setDelegates(
+			new QUTaskConditionDelegate(dataTable),
+			new QUAudioTagTaskSourceDelegate(dataTable),
+			new QUDefaultDelegate(dataTable));
 
-QUAudioTagTaskDialog::QUAudioTagTaskDialog(QWidget *parent): QUTaskDialog(parent) {
-	init();
-	dataTable->fillData(QList<QUScriptData*>(), QU::audioTagTask); // for setting up custom delegates
-	this->setWindowTitle(tr("Add Song/ID3 Tag Task"));
-}
-
-void QUAudioTagTaskDialog::init(QUScriptableTask *task) {
 	targetCombo->addItems(QUAudioTagTask::availableInfoTargets());
 	int i = targetCombo->count();
 	targetCombo->addItems(QUScriptableTask::availableCustomSources());
 	for(; i < targetCombo->count(); i++)
 		targetCombo->setItemData(i, Qt::blue, Qt::ForegroundRole);
 
-	if(task)
-		targetCombo->setCurrentIndex(targetCombo->findText(task->target(), Qt::MatchContains));
-
 	infoLbl->setText(tr("Select a proper <b>target tag</b> and create a custom <b>schema</b> for the operation. You can use <b>custom tags</b> as targets."));
+
+	if(task) {
+		targetCombo->setCurrentIndex(targetCombo->findText(task->target(), Qt::MatchContains));
+	} else {
+		this->setWindowTitle(tr("Add Song/ID3 Tag Task"));
+	}
 }
 
 /*!

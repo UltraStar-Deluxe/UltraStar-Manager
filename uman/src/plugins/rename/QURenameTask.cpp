@@ -1,5 +1,6 @@
 #include "QURenameTask.h"
 #include "QUStringSupport.h"
+#include "QURenameTaskDialog.h"
 
 #include <QFileInfo>
 #include <QVariant>
@@ -98,6 +99,14 @@ void QURenameTask::startOn(QUSongInterface *song) {
 	else if (QString::compare(this->_target, "video", Qt::CaseInsensitive) == 0)      song->renameSongVideo(schema);
 	else
 		song->log(QString(tr("Invalid target: %1")).arg(this->_target), (int)QU::warning);
+}
+
+/*!
+ * Open a dialog to modify the configuration on which this task is based on. You do not have to update its runtime
+ * data because the factory will create a new task based on the changed configuration.
+ */
+int QURenameTask::configure(QWidget *parent) {
+	return QURenameTaskDialog(this, parent).exec();
 }
 
 /*!

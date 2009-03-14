@@ -24,6 +24,8 @@ NOT SORTED
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
+!! Pay attention to forum posts in us-forum and sf-forum.
+
 ABOUT
 * http://www.iconarchive.com/category/animals/tiny-animals-icons-by-iconshock.html
 
@@ -63,6 +65,10 @@ NEW STUFF
 * compare two song text files (which one is better?)
 * add support for Stepmania
   > BIIIIG TASK
+* Button to Start UltaStar itself?
+* compare your songs against a list of songs
+* Office2007-like menu instead of menu+toolbar
+* manage scores of songs
   
 TASKS
 ! better error handling for "path change tasks"
@@ -139,6 +145,11 @@ FILTER SUPPORT
   > SC-Songs
   > CC-Songs
   > ...
+
+DUPLICATE DETECTION
+* allow the user to specify false-positives explicitly
+  > manage this "white list" in a table that shows "sound string"
+  > avoid those false-positives next time
 
 FILE PREVIEW/LYRICS
 * make song text files editable

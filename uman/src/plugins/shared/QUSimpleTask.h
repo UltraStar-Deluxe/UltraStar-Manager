@@ -21,6 +21,7 @@ public:
 	virtual int group() const { return _group; }
 
 	virtual bool isConfigurable() const { return false; }
+	virtual int configure(QWidget *parent) { return 0; }
 
 private:
 	QIcon   _icon;
