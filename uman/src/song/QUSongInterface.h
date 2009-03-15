@@ -1,6 +1,8 @@
 #ifndef QUSONGINTERFACE_H_
 #define QUSONGINTERFACE_H_
 
+#define SONG_API_VERSION 1
+
 #include <QObject>
 
 class QString;

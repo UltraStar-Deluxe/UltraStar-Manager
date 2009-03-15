@@ -56,50 +56,13 @@ void QUTaskList::showContextMenu(const QPoint &point) {
  */
 void QUTaskList::resetTaskList() {
 	this->clear();
-//
-//	QList<QDomDocument*> tasks = this->loadTaskFiles(); // pre-configured tasks
-//
-//	this->appendSeparator(tr("Preparatory Tasks"));
-//	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::autoAssignFiles)));
-//	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::removeUnsupportedTags)));
-//	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::fixAudioLength)));
-//	this->addItem(new QUTaskItem(new QUPreparatoryTask(QU::roundGap)));
-//
-//	this->appendSeparator(tr("Lyric Tasks"));
-//	this->addItem(new QUTaskItem(new QULyricTask(QU::fixTimeStamps)));
-//	this->addItem(new QUTaskItem(new QULyricTask(QU::fixSpaces)));
-//	this->addItem(new QUTaskItem(new QULyricTask(QU::removeEmptySyllables)));
-//
-//	this->appendSeparator(tr("Song/ID3 Tag Tasks"));
-//	foreach(QDomDocument* task, tasks) {
-//		if( QString::compare("id3", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 ) {
-//			QUAudioTagTask *newTask = new QUAudioTagTask(task);
-//			this->addItem(new QUTaskItem(newTask));
-//		}
-//	}
-//
+
 	foreach(QUTaskFactoryProxy *fp, _factoryProxies) {
 		this->appendSeparator(fp->factory()->name());
 		foreach(QUTask *task, fp->factory()->createTasks()) {
 			this->addItem(new QUTaskItem(task));
 		}
 	}
-
-	//QList<QUTask*> renameTasks = _plugins.first()->instance()
-//	foreach(QDomDocument* task, tasks) {
-//		if( QString::compare("rename", task->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 ) {
-//			QURenameTask *newTask = new QURenameTask(task);
-//			this->addItem(new QUTaskItem(newTask));
-//		}
-//	}
-//
-//	this->appendSeparator(tr("Clean-Up Tasks"));
-//	this->addItem(new QUTaskItem(new QUCleanTask(QU::unusedFiles)));
-//	this->addItem(new QUTaskItem(new QUCleanTask(QU::invalidFileTags)));
-//	this->addItem(new QUTaskItem(new QUCleanTask(QU::removeEndTag)));
-//
-//	qDeleteAll(tasks);
-//	tasks.clear();
 }
 
 void QUTaskList::doTasksOn(QUSongFile *song) {
@@ -202,7 +165,10 @@ void QUTaskList::reloadAllPlugins() {
 	}
 
 	this->updateFactoryProxies();
+
+	emit pluginsReloaded(this->plugins());
 	logSrv->add(tr("Plugin loading finished."), QU::information);
+
 	this->resetTaskList();
 }
 

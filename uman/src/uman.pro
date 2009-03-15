@@ -65,7 +65,8 @@ HEADERS += plugins/QUPluginDialog.h \
     songdetails/QUDetailItem.h \
     songdetails/QUDropDownDelegate.h \
     tasks/QUTaskList.h \
-    tasks/QUTaskItem.h
+    tasks/QUTaskItem.h \
+    ribbon/QURibbonBar.h
 SOURCES += plugins/QUPluginDialog.cpp \
     plugins/QUTaskFactoryProxy.cpp \
     main.cpp \
@@ -119,7 +120,8 @@ SOURCES += plugins/QUPluginDialog.cpp \
     song/QUSongLine.cpp \
     song/QUSongFile.cpp \
     tasks/QUTaskList.cpp \
-    tasks/QUTaskItem.cpp
+    tasks/QUTaskItem.cpp \
+    ribbon/QURibbonBar.cpp
 FORMS += plugins/QUPluginDialog.ui \
     QUMainWindow.ui \
     QUAboutDialog.ui \
@@ -135,7 +137,8 @@ FORMS += plugins/QUPluginDialog.ui \
     support/QUProgressDialog.ui \
     support/QUTextDialog.ui \
     preferences/QUTagOrderDialog.ui \
-    preferences/QUCustomTagsDialog.ui
+    preferences/QUCustomTagsDialog.ui \
+    ribbon/QURibbonBar.ui
 RESOURCES += resources/uman.qrc
 TRANSLATIONS = resources/lang/uman_de.ts \
     resources/lang/uman_pl.ts
@@ -155,7 +158,8 @@ INCLUDEPATH += . \
     support \
     preferences \
     ui \
-    plugins
+    plugins \
+    ribbon
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib \

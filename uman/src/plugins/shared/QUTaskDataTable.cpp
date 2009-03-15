@@ -25,15 +25,6 @@ void QUTaskDataTable::setDelegates(QItemDelegate *conditionDelegate, QItemDelega
 }
 
 void QUTaskDataTable::fillData(const QList<QUScriptData*> &dataList) {
-//	// set up custom editors
-//	this->setItemDelegateForColumn(0, new QUTaskConditionDelegate(this));
-//	this->setItemDelegateForColumn(1, new QUTaskSourceDelegate(type, this));
-//
-//	if(type == QU::audioTagTask)
-//		this->setItemDelegateForColumn(2, new QUDefaultDelegate(this));
-//	else if (type == QU::renameTask)
-//		this->setItemDelegateForColumn(2, new QUTaskTextDelegate(this));
-
 	// fill the data
 	foreach(QUScriptData *data, dataList) {
 		this->appendRow();

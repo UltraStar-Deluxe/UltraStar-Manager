@@ -36,6 +36,9 @@ public slots:
 
 	void editCurrentTask();
 
+signals:
+	void pluginsReloaded(const QList<QPluginLoader*>&);
+
 private:
 	QList<QPluginLoader*> _plugins;
 	QList<QUTaskFactoryProxy*> _factoryProxies;

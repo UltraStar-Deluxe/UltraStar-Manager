@@ -55,6 +55,8 @@
 
 #include "QUTaskFactoryProxy.h"
 
+#include "QURibbonBar.h"
+
 QDir QUMainWindow::BaseDir = QDir();
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	setupUi(this);
@@ -299,6 +301,12 @@ void QUMainWindow::initMenu() {
 	connect(actionQt, SIGNAL(triggered()), this, SLOT(aboutQt()));
 	connect(actionUman, SIGNAL(triggered()), this, SLOT(aboutUman()));
 	connect(actionTagLib, SIGNAL(triggered()), this, SLOT(aboutTagLib()));
+
+	// Ribbons (deferred -> does not look that good)
+//	this->songsBar->hide();
+//	this->viewBar->hide();
+//	this->optionsBar->hide();
+//	this->setMenuWidget(new QURibbonBar(this));
 }
 
 /*!
@@ -1289,8 +1297,7 @@ void QUMainWindow::sendCurrentSongToMediaPlayer() {
  */
 void QUMainWindow::showPluginDialog() {
 	QUPluginDialog dlg(taskList->plugins(), this);
-
-	if(dlg.exec()) {
-		;
-	}
+	connect(&dlg, SIGNAL(pluginReloadRequested()), taskList, SLOT(reloadAllPlugins()));
+	connect(taskList, SIGNAL(pluginsReloaded(const QList<QPluginLoader*>&)), &dlg, SLOT(updatePluginTable(const QList<QPluginLoader*>&)));
+	dlg.exec();
 }

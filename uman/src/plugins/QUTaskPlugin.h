@@ -1,6 +1,8 @@
 #ifndef QUTASKPLUGIN_H_
 #define QUTASKPLUGIN_H_
 
+#define PLUGIN_API_VERSION 1
+
 #include <QtPlugin>
 
 class QWidget;
@@ -13,6 +15,10 @@ class QUTask;
 class QUTaskFactory {
 public:
     virtual ~QUTaskFactory() {}
+
+	// for compatibility reasons
+	virtual int pluginApiVersion() const = 0;
+	virtual int songApiVersion() const = 0;
 
     // create all tasks based on their configurations
     virtual QList<QUTask*> createTasks() = 0;

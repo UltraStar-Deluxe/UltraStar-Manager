@@ -5,6 +5,7 @@
 #include <QList>
 
 #include "QUTaskPlugin.h"
+#include "QUSongInterface.h"
 
 class QUSimpleTaskFactory: public QObject, public QUTaskFactory {
 	Q_OBJECT
@@ -12,6 +13,9 @@ class QUSimpleTaskFactory: public QObject, public QUTaskFactory {
 
 public:
 	QUSimpleTaskFactory(QObject *parent = 0);
+
+	virtual int pluginApiVersion() const { return PLUGIN_API_VERSION; }
+	virtual int songApiVersion() const { return SONG_API_VERSION; }
 
 	virtual QList<QUTask*> createTasks();
 

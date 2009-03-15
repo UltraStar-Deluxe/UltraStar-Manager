@@ -1,41 +1,46 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>QUPluginDialog</class>
- <widget class="QDialog" name="QUPluginDialog" >
-  <property name="geometry" >
+ <widget class="QDialog" name="QUPluginDialog">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>216</width>
-    <height>183</height>
+    <width>384</width>
+    <height>253</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>Dialog</string>
+  <property name="windowTitle">
+   <string>Plugins</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" >
-   <property name="spacing" >
+  <property name="windowIcon">
+   <iconset resource="../resources/uman.qrc">
+    <normaloff>:/control/plugin.png</normaloff>:/control/plugin.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="spacing">
     <number>0</number>
    </property>
-   <property name="margin" >
+   <property name="margin">
     <number>0</number>
    </property>
    <item>
-    <widget class="QFrame" name="frame" >
-     <property name="palette" >
+    <widget class="QFrame" name="frame">
+     <property name="palette">
       <palette>
        <active>
-        <colorrole role="Base" >
-         <brush brushstyle="SolidPattern" >
-          <color alpha="255" >
+        <colorrole role="Base">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
            <red>255</red>
            <green>255</green>
            <blue>255</blue>
           </color>
          </brush>
         </colorrole>
-        <colorrole role="Window" >
-         <brush brushstyle="SolidPattern" >
-          <color alpha="255" >
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
            <red>255</red>
            <green>255</green>
            <blue>255</blue>
@@ -44,18 +49,18 @@
         </colorrole>
        </active>
        <inactive>
-        <colorrole role="Base" >
-         <brush brushstyle="SolidPattern" >
-          <color alpha="255" >
+        <colorrole role="Base">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
            <red>255</red>
            <green>255</green>
            <blue>255</blue>
           </color>
          </brush>
         </colorrole>
-        <colorrole role="Window" >
-         <brush brushstyle="SolidPattern" >
-          <color alpha="255" >
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
            <red>255</red>
            <green>255</green>
            <blue>255</blue>
@@ -64,18 +69,18 @@
         </colorrole>
        </inactive>
        <disabled>
-        <colorrole role="Base" >
-         <brush brushstyle="SolidPattern" >
-          <color alpha="255" >
+        <colorrole role="Base">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
            <red>255</red>
            <green>255</green>
            <blue>255</blue>
           </color>
          </brush>
         </colorrole>
-        <colorrole role="Window" >
-         <brush brushstyle="SolidPattern" >
-          <color alpha="255" >
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
            <red>255</red>
            <green>255</green>
            <blue>255</blue>
@@ -85,41 +90,45 @@
        </disabled>
       </palette>
      </property>
-     <property name="autoFillBackground" >
+     <property name="autoFillBackground">
       <bool>true</bool>
      </property>
-     <property name="frameShadow" >
+     <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QHBoxLayout" >
+     <layout class="QHBoxLayout">
       <item>
-       <widget class="QLabel" name="infoIconLbl" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+       <widget class="QLabel" name="infoIconLbl">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="text" >
+        <property name="text">
          <string/>
         </property>
-        <property name="pixmap" >
-         <pixmap resource="../resources/uman.qrc" >:/marks/information.png</pixmap>
+        <property name="pixmap">
+         <pixmap resource="../resources/uman.qrc">:/marks/information.png</pixmap>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label" >
-        <property name="text" >
-         <string>All found plugins are listed below.</string>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;All found plugins are listed below. Hit the button beside the api version &lt;/span&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;to reload&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; plugins.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
         </property>
-        <property name="wordWrap" >
+        <property name="wordWrap">
          <bool>true</bool>
         </property>
        </widget>
@@ -128,36 +137,93 @@
     </widget>
    </item>
    <item>
-    <widget class="Line" name="line" >
-     <property name="orientation" >
+    <widget class="Line" name="line">
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QListWidget" name="pluginList" />
-   </item>
-   <item>
-    <widget class="Line" name="line_2" >
-     <property name="orientation" >
-      <enum>Qt::Horizontal</enum>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>0</number>
      </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout" >
-     <property name="spacing" >
-      <number>5</number>
-     </property>
-     <property name="margin" >
+     <property name="margin">
       <number>5</number>
      </property>
      <item>
-      <spacer name="horizontalSpacer" >
-       <property name="orientation" >
+      <widget class="QTableWidget" name="pluginTable">
+       <property name="alternatingRowColors">
+        <bool>true</bool>
+       </property>
+       <property name="verticalScrollMode">
+        <enum>QAbstractItemView::ScrollPerPixel</enum>
+       </property>
+       <property name="horizontalScrollMode">
+        <enum>QAbstractItemView::ScrollPerPixel</enum>
+       </property>
+       <property name="gridStyle">
+        <enum>Qt::DashLine</enum>
+       </property>
+       <attribute name="verticalHeaderDefaultSectionSize">
+        <number>22</number>
+       </attribute>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>5</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="apiLbl">
+         <property name="text">
+          <string>(api)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="reloadBtn">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Reload</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/refresh.png</normaloff>:/control/refresh.png</iconset>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="Line" name="line_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>5</number>
+     </property>
+     <property name="margin">
+      <number>5</number>
+     </property>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" stdset="0" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
          <height>20</height>
@@ -166,12 +232,12 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="okBtn" >
-       <property name="text" >
+      <widget class="QPushButton" name="okBtn">
+       <property name="text">
         <string>OK</string>
        </property>
-       <property name="icon" >
-        <iconset resource="../resources/uman.qrc" >
+       <property name="icon">
+        <iconset resource="../resources/uman.qrc">
          <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
        </property>
       </widget>
@@ -181,11 +247,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../resources/uman.qrc" />
-  <include location="../resources/uman.qrc" />
-  <include location="../resources/uman.qrc" />
-  <include location="../resources/uman.qrc" />
-  <include location="../resources/uman.qrc" />
+  <include location="../resources/uman.qrc"/>
  </resources>
  <connections/>
 </ui>
