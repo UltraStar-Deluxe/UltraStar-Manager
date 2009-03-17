@@ -20,6 +20,8 @@ class QU: QObject {
 public:
 	QU(QObject *parent = 0);
 
+	static QDir BaseDir; // UltraStar song folder
+
 	enum EventMessageType {
 		information,
 		warning,

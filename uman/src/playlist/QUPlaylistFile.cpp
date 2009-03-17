@@ -1,5 +1,4 @@
 #include "QUPlaylistFile.h"
-#include "QUMainWindow.h"
 #include "QULogService.h"
 
 #include <QFile>
@@ -74,7 +73,7 @@ QDir QUPlaylistFile::dir() {
 	QSettings settings;
 
 	if(!settings.contains("playlistFilePath")) {
-		QDir defaultDir = QUMainWindow::BaseDir;
+		QDir defaultDir = QU::BaseDir;
 		defaultDir.cdUp();
 		defaultDir.cd("playlists"); // default location of playlistFiles, relative to song dir
 

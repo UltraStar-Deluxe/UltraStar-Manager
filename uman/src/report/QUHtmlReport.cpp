@@ -1,7 +1,6 @@
 #include "QUHtmlReport.h"
 #include "QUMonty.h"
 #include "QUProgressDialog.h"
-#include "QUMainWindow.h"
 
 #include "QUBooleanSongData.h"
 
@@ -72,7 +71,7 @@ void QUHtmlReport::createBody() {
 
 void QUHtmlReport::appendBasePath(QDomNode &parent) {
 	QDomElement div = _report.createElement("div");
-	div.appendChild(_report.createTextNode(QString(tr("Songs Path: \"%1\"")).arg(QUMainWindow::BaseDir.path())));
+	div.appendChild(_report.createTextNode(QString(tr("Songs Path: \"%1\"")).arg(QU::BaseDir.path())));
 	div.setAttribute("class", "path");
 
 	if(options().testFlag(QU::reportPrependCurrentPath))

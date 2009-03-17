@@ -15,6 +15,13 @@
         <file>lang/uman_pl.qm</file>
         <file>lang/pl.png</file>
         <file>lang/us.png</file>
+        <file>player/next.png</file>
+        <file>player/pause.png</file>
+        <file>player/play.png</file>
+        <file>player/prev.png</file>
+        <file>player/stop.png</file>
+        <file>player/shuffle.png</file>
+        <file>player/loop.png</file>
     </qresource>
     <qresource prefix="/bubble" >
         <file>speech8.png</file>

@@ -1,6 +1,5 @@
 #include "QUPlainTextReport.h"
 #include "QUProgressDialog.h"
-#include "QUMainWindow.h"
 
 #include <QTextStream>
 
@@ -40,7 +39,7 @@ void QUPlainTextReport::computePaddings() {
 
 void QUPlainTextReport::printHeading(QTextStream &out) {
 	if(options().testFlag(QU::reportPrependCurrentPath))
-		out << QString(tr("Songs Path: \"%1\"")).arg(QUMainWindow::BaseDir.path()) << endl << endl;
+		out << QString(tr("Songs Path: \"%1\"")).arg(QU::BaseDir.path()) << endl << endl;
 
 	if(options().testFlag(QU::reportPrependUserData))
 		out << QString("\"%1\"").arg(userData().toString()) << endl << endl;

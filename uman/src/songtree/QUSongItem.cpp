@@ -1,5 +1,4 @@
 #include "QUSongItem.h"
-#include "QUMainWindow.h"
 
 #include "QUSongTree.h"
 
@@ -98,7 +97,7 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	clearContents();
 
 	if(showRelativePath)
-		this->setText(FOLDER_COLUMN, QUMainWindow::BaseDir.relativeFilePath(song()->songFileInfo().path()));
+		this->setText(FOLDER_COLUMN, QU::BaseDir.relativeFilePath(song()->songFileInfo().path()));
 	else
 		this->setText(FOLDER_COLUMN, song()->songFileInfo().dir().dirName());
 

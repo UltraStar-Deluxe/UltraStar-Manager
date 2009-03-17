@@ -57,7 +57,6 @@
 
 #include "QURibbonBar.h"
 
-QDir QUMainWindow::BaseDir = QDir();
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	setupUi(this);
 
@@ -153,7 +152,7 @@ void QUMainWindow::initConfig() {
 	} else {
 		path = settings.value("songPath").toString();
 	}
-	BaseDir.setPath(path);
+	QU::BaseDir.setPath(path);
 
 	// read other settings
 	          actionAllowMonty->setChecked(settings.value("allowMonty", true).toBool());
@@ -209,7 +208,10 @@ void QUMainWindow::initWindow() {
 	filterArea->filterNegateBtn->setChecked(false);
 
 	// init media player connections
-	connect(mediaplayer, SIGNAL(currentSongRequested()), this, SLOT(sendCurrentSongToMediaPlayer()));
+	connect(mediaplayer, SIGNAL(selectedSongsRequested()), this, SLOT(sendSelectedSongsToMediaPlayer()));
+	connect(mediaplayer, SIGNAL(allSongsRequested()), this, SLOT(sendAllSongsToMediaPlayer()));
+	connect(mediaplayer, SIGNAL(visibleSongsRequested()), this, SLOT(sendVisibleSongsToMediaPlayer()));
+	connect(mediaplayer, SIGNAL(currentPlaylistRequested()), this, SLOT(sendCurrentPlaylistToMediaPlayer()));
 }
 
 void QUMainWindow::initMenu() {
@@ -502,7 +504,7 @@ void QUMainWindow::refreshAllSongs(bool force) {
  */
 void QUMainWindow::createSongFiles() {
 	QList<QDir> dirList;
-	dirList.append(QDir(BaseDir));
+	dirList.append(QDir(QU::BaseDir));
 
 	// create a list of all sub-directories
 	this->readSongDir(dirList);
@@ -863,14 +865,14 @@ void QUMainWindow::changeSongDir() {
 
 	if(!path.isEmpty()) {
 		settings.setValue("songPath", QVariant(path));
-		BaseDir.setPath(path);
+		QU::BaseDir.setPath(path);
 		refreshAllSongs(true);
 
 		montyTalk();
 
-		logSrv->add(QString(tr("UltraStar song directory changed to: \"%1\".")).arg(BaseDir.path()), QU::information);
+		logSrv->add(QString(tr("UltraStar song directory changed to: \"%1\".")).arg(QU::BaseDir.path()), QU::information);
 
-		songTree->headerItem()->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(BaseDir.path()));
+		songTree->headerItem()->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(QU::BaseDir.path()));
 	}
 }
 
@@ -1281,15 +1283,24 @@ void QUMainWindow::copyAudioToPath() {
 /*!
  * This is used to necessary information to the media player so that a song can be played.
  */
-void QUMainWindow::sendCurrentSongToMediaPlayer() {
-	QUSongItem *item = dynamic_cast<QUSongItem*>(songTree->currentItem());
+void QUMainWindow::sendSelectedSongsToMediaPlayer() {
+	mediaplayer->setSongs(songTree->selectedSongs());
+	mediaplayer->play();
+}
 
-	if(!item) {
-		logSrv->add(tr("The song tree has no current item to play."), QU::warning);
-		return;
-	}
+void QUMainWindow::sendAllSongsToMediaPlayer() {
+	mediaplayer->setSongs(_songs);
+	mediaplayer->play();
+}
 
-	mediaplayer->setCurrentSong(*(item->song()));
+void QUMainWindow::sendVisibleSongsToMediaPlayer() {
+	mediaplayer->setSongs(songTree->visibleSongs());
+	mediaplayer->play();
+}
+
+void QUMainWindow::sendCurrentPlaylistToMediaPlayer() {
+	mediaplayer->setSongs(playlistArea->currentPlaylist()->connectedSongs());
+	mediaplayer->play();
 }
 
 /*!

@@ -5,23 +5,17 @@
 #include <QScrollBar>
 
 QUAutoCue::QUAutoCue(QWidget *parent): QTextBrowser(parent), _stopRequested(false), _cueListIndex(-1) {
-	setFontFamily("Lucida Console");
-	setFontPointSize(12);
+	setFontFamily("Tahoma");
+	setFontPointSize(10);
 }
 
 /*!
  * Prepare autocue for new song.
  */
-void QUAutoCue::reset(QUSongFile &song) {
+void QUAutoCue::reset(const QList<QUSongLine*> &lines, double bpm, double gap, double isRelative) {
 	clear();
 	_cueList.clear();
 	_cueListIndex = -1;
-
-	QList<QUSongLine*> lines = song.melody();
-
-	double bpm = QVariant(song.bpm().replace(",", ".")).toDouble() * 4;
-	double gap = QVariant(song.gap().replace(",", ".")).toDouble();
-	bool isRelative = song.relative() != N_A;
 
 	int time = 0; // absolute time after beginning (milliseconds)
 	int pos = 0; // absolute cursor position in text/lyrics

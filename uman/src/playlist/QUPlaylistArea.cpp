@@ -36,6 +36,13 @@ QUPlaylistArea::~QUPlaylistArea() {
 	_songsRef = 0;
 }
 
+QUPlaylistFile* QUPlaylistArea::currentPlaylist() const {
+	if(_playlists.isEmpty())
+		return 0;
+
+	return _playlists.at(this->currentPlaylistIndex());
+}
+
 void QUPlaylistArea::disconnectPlaylists() {
 	QUProgressDialog dlg(tr("Disconnect playlists from songs..."), _playlists.size(), this, false);
 	dlg.setPixmap(":/control/playlist.png");

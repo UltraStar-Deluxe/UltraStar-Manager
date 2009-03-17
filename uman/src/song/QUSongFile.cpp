@@ -1,8 +1,6 @@
 #include "QUSongFile.h"
 #include "QUMonty.h"
 #include "QULogService.h"
-#include "QUMainWindow.h"
-#include "QUMessageBox.h"
 
 #include <QByteArray>
 #include <QVariant>
@@ -127,7 +125,7 @@ bool QUSongFile::equal(QUSongFile *s1, QUSongFile *s2) {
  * \returns The relative file path of this song to the base dir.
  */
 QString QUSongFile::relativeFilePath() const {
-	return QUMainWindow::BaseDir.relativeFilePath(_fi.filePath());
+	return QU::BaseDir.relativeFilePath(_fi.filePath());
 }
 
 /*!
@@ -230,12 +228,9 @@ void QUSongFile::verifyTags(QStringList &tags) {
 	if(tags.size() != QUSongSupport::availableTags().size()) {
 		settings.setValue("tagOrder", QVariant(QUSongSupport::availableTags()));
 
-		QUMessageBox::information(QApplication::activeWindow(),
-				tr("Deprecated tag information detected"),
-				tr(
-						"The number of available tags in your configuration and that one this application offers are different.<br><br>"
-						"The tag order was reset to its <b>default order</b>. Check out the <b>options</b> to set up your custom order again."
-				));
+		logSrv->add(tr("Deprecated tag information detected."), QU::information);
+		logSrv->add(tr("The number of available tags in your configuration and that one this application offers are different."), QU::information);
+		logSrv->add(tr("The tag order was reset to its default order. Check out the options to set up your custom order again."), QU::information);
 
 		tags = QUSongSupport::availableTags();
 	}
@@ -899,7 +894,7 @@ void QUSongFile::clearInvalidFileTags() {
  * \param newRelativePath new relative path for the song; is relative to the UltraStar song folder
  */
 void QUSongFile::moveAllFiles(const QString &newRelativePath) {
-	QString source = QUMainWindow::BaseDir.relativeFilePath(_fi.path());
+	QString source = QU::BaseDir.relativeFilePath(_fi.path());
 	QString destination = newRelativePath;
 
 	if(QString::compare(source, destination, Qt::CaseInsensitive) == 0) {
@@ -907,7 +902,7 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 		return;
 	}
 
-	if(!QUMainWindow::BaseDir.mkpath(newRelativePath)) {
+	if(!QU::BaseDir.mkpath(newRelativePath)) {
 		logSrv->add(QString(tr("Could not create new song path: \"%1\"")).arg(newRelativePath), QU::warning);
 		return;
 	}
@@ -916,7 +911,7 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 	bool allFilesCopied = true;
 	foreach(QFileInfo fi, _fi.dir().entryInfoList(QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot)) {
 		QString from = fi.filePath();
-		QString to = QFileInfo(QUMainWindow::BaseDir, destination + "/" + fi.fileName()).filePath();
+		QString to = QFileInfo(QU::BaseDir, destination + "/" + fi.fileName()).filePath();
 
 		if(!QFile::rename(from, to)) {
 			logSrv->add(QString(tr("Failed to move \"%1\" to \"%2\".")).arg(from).arg(to), QU::warning);
@@ -932,7 +927,7 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 
 	// remove empty folders
 	QDir oldDir = _fi.dir();
-	while(!oldDir.isRoot() and oldDir.entryList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot).isEmpty() and oldDir != QUMainWindow::BaseDir) {
+	while(!oldDir.isRoot() and oldDir.entryList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot).isEmpty() and oldDir != QU::BaseDir) {
 		QString dirName = oldDir.dirName();
 		oldDir.cdUp();
 		if(!oldDir.rmdir(dirName))
@@ -940,7 +935,7 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 	}
 
 	// change internal song location
-	_fi = QFileInfo(QUMainWindow::BaseDir, destination + "/" + _fi.fileName()).filePath();
+	_fi = QFileInfo(QU::BaseDir, destination + "/" + _fi.fileName()).filePath();
 	logSrv->add(QString(tr("Location of song \"%1 - %2\" successfully changed to \"%3\" in your UltraStar song folder.")).arg(artist()).arg(title()).arg(newRelativePath), QU::information);
 }
 

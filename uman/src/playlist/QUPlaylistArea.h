@@ -19,6 +19,7 @@ public:
 	~QUPlaylistArea();
 
 	QList<QUPlaylistFile*> playlists() const { return _playlists; }
+	QUPlaylistFile* currentPlaylist() const;
 
 public slots:
 	void refreshAllPlaylists(QList<QUSongFile*> *songRef);

@@ -23,8 +23,6 @@ public:
 	QUMainWindow(QWidget *parent = 0);
 	~QUMainWindow();
 
-	static QDir BaseDir; // UltraStar song folder
-
 protected:
 	virtual void closeEvent(QCloseEvent *event);
 
@@ -101,7 +99,10 @@ private slots:
 	void copyAudioToPath();
 
 	// interaction with media player
-	void sendCurrentSongToMediaPlayer();
+	void sendSelectedSongsToMediaPlayer();
+	void sendAllSongsToMediaPlayer();
+	void sendVisibleSongsToMediaPlayer();
+	void sendCurrentPlaylistToMediaPlayer();
 
 	// plugins
 	void showPluginDialog();

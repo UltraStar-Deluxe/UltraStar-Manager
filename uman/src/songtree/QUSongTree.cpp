@@ -49,7 +49,7 @@ void QUSongTree::initHorizontalHeader() {
 	this->setColumnCount(FIXED_COLUMN_COUNT + QUSongSupport::availableCustomTags().count());
 
 	QTreeWidgetItem *header = new QTreeWidgetItem();
-	header->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(QUMainWindow::BaseDir.path()));
+	header->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(QU::BaseDir.path()));
 	header->setIcon(FOLDER_COLUMN, QIcon(":/types/folder.png"));
 
 	header->setIcon(ARTIST_COLUMN, QIcon(":/types/user.png"));
@@ -1076,15 +1076,15 @@ void QUSongTree::createSongFolder(QUSongFile *song) {
 
 	int i = 0;
 	QString tmp = newDirName;
-	QFileInfo fi(QUMainWindow::BaseDir, newDirName);
-	while(!QUMainWindow::BaseDir.mkdir(tmp)) {
+	QFileInfo fi(QU::BaseDir, newDirName);
+	while(!QU::BaseDir.mkdir(tmp)) {
 		if(!fi.exists()) {
 			logSrv->add(QString(tr("Could not create directory: \"%1\". Disk full?")).arg(fi.filePath()), QU::warning);
 			return;
 		} else {
 			tmp = QString("%1_%2").arg(newDirName).arg(i, 3, 10, QChar('0'));
 			i++;
-			fi.setFile(QUMainWindow::BaseDir, tmp);
+			fi.setFile(QU::BaseDir, tmp);
 		}
 	}
 
