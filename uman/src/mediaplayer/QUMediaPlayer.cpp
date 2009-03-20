@@ -37,21 +37,20 @@ QUSongInfo::QUSongInfo(QUSongFile *song) {
 QUMediaPlayer::QUMediaPlayer(QWidget *parent): QWidget(parent) {
 	setupUi(this);
 
-	connect(playBtn, SIGNAL(clicked()), this, SLOT(requestSongs()));
 	connect(stopBtn, SIGNAL(clicked()), this, SLOT(stop()));
 	connect(prevBtn, SIGNAL(clicked()), this, SLOT(prev()));
 	connect(nextBtn, SIGNAL(clicked()), this, SLOT(next()));
+
+	connect(this, SIGNAL(stateChanged(QUMediaPlayer::States)), this, SLOT(updatePlayerControls(QUMediaPlayer::States)));
+	connect(this, SIGNAL(stateChanged(QUMediaPlayer::States)), this, SLOT(updateInfoLabel(QUMediaPlayer::States)));
 
 	if(!BASS_Init(-1, 44100, 0, 0, NULL))
 		logSrv->add("BASS was NOT loaded.", QU::warning);
 
 	_mediaStream = 0;
-
-	stopBtn->setEnabled(false);
-//	prevBtn->setEnabled(false);
-//	nextBtn->setEnabled(false);
-
 	_currentSongIndex = -1;
+
+	setState(QUMediaPlayer::stopped);
 }
 
 QUMediaPlayer::~QUMediaPlayer() {
@@ -60,11 +59,6 @@ QUMediaPlayer::~QUMediaPlayer() {
 	if(!BASS_Free())
 		logSrv->add("BASS was NOT unloaded.", QU::warning);
 }
-
-//void QUMediaPlayer::setCurrentSong(QUSongFile &song) {
-//	autocue->reset(song);
-//	play();
-//}
 
 void QUMediaPlayer::setSongs(const QList<QUSongFile*> &songs) {
 	_songs.clear();
@@ -86,61 +80,20 @@ void QUMediaPlayer::play() {
 	_mediaStream = BASS_StreamCreateFile(FALSE, info.filePath.toLocal8Bit().data(), 0, 0, BASS_STREAM_PRESCAN);
 	autocue->reset(info.melody, info.bpm, info.gap, info.isRelative);
 
-	if(!_mediaStream) {
-		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::warning);
-		return;
-	}
-
-	if(!BASS_ChannelPlay(_mediaStream, TRUE)) {
-		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::warning);
-		return;
-	}
-
-	stopBtn->setEnabled(true);
-
+	BASS_Play();
 	autocue->play();
-	currentSongLbl->setText(QString("%1<br><b>%2</b>").arg(info.artist).arg(info.title));
-	infoIconLbl->setToolTip(QString("Bitrate: <b>%1</b> kbps<br>Channels: <b>%2</b><br>Sample Rate: <b>%3</b> kHz").arg(info.bitrate).arg(info.channels).arg(info.sampleRate));
-
-	updateTime();
-
-	playBtn->setIcon(QIcon(":/player/pause.png"));
-
-	disconnect(playBtn, 0, 0, 0);
-	connect(playBtn, SIGNAL(clicked()), this, SLOT(pause()));
+	setState(QUMediaPlayer::playing);
 }
 
 void QUMediaPlayer::stop() {
-	if(!_mediaStream)
-		return;
-
-	if(!BASS_ChannelStop(_mediaStream)) {
-		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::warning);
-		return;
-	}
-
-
-	if(!BASS_StreamFree(_mediaStream)) {
-		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::warning);
-		return;
-	}
-
+	BASS_StopAndFree();
 	_mediaStream = 0;
-
-	currentSongLbl->setText(N_A);
-	timeLbl->setText("-:--");
-	infoIconLbl->setToolTip("");
 	autocue->stop();
-
-	playBtn->setIcon(QIcon(":/player/play.png"));
-	disconnect(playBtn, 0, 0, 0);
-	connect(playBtn, SIGNAL(clicked()), this, SLOT(requestSongs()));
-
-	stopBtn->setEnabled(false);
+	setState(QUMediaPlayer::stopped);
 }
 
 void QUMediaPlayer::pause() {
-	playBtn->setIcon(QIcon(":/player/play.png"));
+	setState(QUMediaPlayer::paused);
 }
 
 void QUMediaPlayer::prev() {
@@ -188,5 +141,80 @@ void QUMediaPlayer::requestSongs() {
 		emit visibleSongsRequested();
 	} else if(sourceCombo->currentIndex() == 3) { // current playlist
 		emit currentPlaylistRequested();
+	}
+}
+
+void QUMediaPlayer::updatePlayerControls(QUMediaPlayer::States state) {
+	if(state.testFlag(QUMediaPlayer::paused) || state.testFlag(QUMediaPlayer::playing)) {
+		prevBtn->setEnabled(_songs.size() > 0 && _currentSongIndex > 0);
+		nextBtn->setEnabled(_songs.size() > 0 && _currentSongIndex < _songs.size() - 1);
+		stopBtn->setEnabled(true);
+	} else if(state.testFlag(QUMediaPlayer::stopped)) {
+		prevBtn->setEnabled(false);
+		nextBtn->setEnabled(false);
+		stopBtn->setEnabled(false);
+	}
+
+	if(state.testFlag(QUMediaPlayer::playing)) {
+		playBtn->setIcon(QIcon(":/player/pause.png"));
+		disconnect(playBtn, 0, 0, 0);
+		connect(playBtn, SIGNAL(clicked()), this, SLOT(pause()));
+	} else {
+		playBtn->setIcon(QIcon(":/player/play.png"));
+		disconnect(playBtn, 0, 0, 0);
+		connect(playBtn, SIGNAL(clicked()), this, SLOT(requestSongs()));
+	}
+}
+
+void QUMediaPlayer::updateInfoLabel(QUMediaPlayer::States state) {
+	if(state.testFlag(QUMediaPlayer::playing)) {
+		if(_currentSongIndex < 0 || _currentSongIndex >= _songs.size())
+			return; // invalid index
+
+		QUSongInfo info = _songs.at(_currentSongIndex);
+		currentSongLbl->setText(QString("%1<br><b>%2</b>").arg(info.artist).arg(info.title));
+		infoIconLbl->setToolTip(
+				QString("Bitrate: <b>%1</b> kbps<br>Channels: <b>%2</b><br>Sample Rate: <b>%3</b> kHz")
+				.arg(info.bitrate)
+				.arg(info.channels)
+				.arg(info.sampleRate));
+		updateTime();
+	} else if(state.testFlag(QUMediaPlayer::stopped)) {
+		currentSongLbl->setText(N_A);
+		timeLbl->setText("-:--");
+		infoIconLbl->setToolTip("");
+		autocue->setText(tr("<i>Hit the play-button to fetch all songs of the selected list below. Then the first song will start playing.</i>"));
+	}
+}
+
+void QUMediaPlayer::setState(States newState) {
+	_state = newState;
+	emit stateChanged(newState);
+}
+
+void QUMediaPlayer::BASS_StopAndFree() {
+	if(!_mediaStream)
+		return;
+
+	if(!BASS_ChannelStop(_mediaStream)) {
+		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::warning);
+		return;
+	}
+
+	if(!BASS_StreamFree(_mediaStream)) {
+		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::warning);
+		return;
+	}
+}
+
+void QUMediaPlayer::BASS_Play() {
+	if(!_mediaStream) {
+		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::warning);
+		return;
+	}
+
+	if(!BASS_ChannelPlay(_mediaStream, TRUE)) {
+		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::warning);
+		return;
 	}
 }

@@ -40,6 +40,13 @@ public:
 
 	void setSongs(const QList<QUSongFile*> &songs);
 
+	enum State {
+		stopped,
+		paused,
+		playing
+	};
+	Q_DECLARE_FLAGS(States, State)
+
 public slots:
 	void play();
 	void stop();
@@ -47,9 +54,12 @@ public slots:
 	void prev();
 	void next();
 
-	void updateTime();
-
 	void requestSongs();
+
+private slots:
+	void updateTime();
+	void updatePlayerControls(QUMediaPlayer::States state);
+	void updateInfoLabel(QUMediaPlayer::States state);
 
 signals:
 	void selectedSongsRequested();
@@ -57,10 +67,19 @@ signals:
 	void visibleSongsRequested();
 	void currentPlaylistRequested();
 
+	void stateChanged(QUMediaPlayer::States state);
+
 private:
 	HSTREAM _mediaStream;
 	QList<QUSongInfo> _songs;
 	int _currentSongIndex;
+
+	QUMediaPlayer::States _state;
+	void setState(QUMediaPlayer::States newState);
+	QUMediaPlayer::States state() const { return _state; }
+
+	void BASS_StopAndFree();
+	void BASS_Play();
 };
 
 #endif /* QUMEDIAPLAYER_H_ */

@@ -82,12 +82,12 @@ NEW STUFF
 TASKS
 ! better error handling for "path change tasks"
   > make it ACID! (at least atomic...)
-* correct the ratio for pictures
+! correct the ratio for pictures
   > by task
 	> 1:1 for covers
 	> n:m for backgrounds, according to resolution (ingame)
 	> detect selected resolution for UltraStar (read configs...)
-* crop covers to 1:1 (extra task?)
+! crop covers to 1:1 (extra task?)
   > resize and fill with color to ratio ??
 * some task to fix lyrics which are always "upper-case"
 * you cannot search after a dot in UltraStar Deluxe 1.0.1a
