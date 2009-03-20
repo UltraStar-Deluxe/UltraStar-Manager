@@ -8,13 +8,13 @@
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  NEW FEATURES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
-PLUGINS
-* tasks are now plugins
-
 MEDIA PLAYER
 * play a song an watch the lyrics
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+PLUGINS
+* tasks are now plugins
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
@@ -38,15 +38,18 @@ NOT SORTED
 NEW ONES
 * translation issues with plugins
 
-~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
+TRANSLATION
+* "Leerzeichen an Zeilenende verschieben" -> "Leerzeichen am Zeilenende korrigieren" or "Leerzeichen vor die Silben verschieben"
+* "Kopieren" -> "Verschieben" or "Bewegen"
 
-!! Pay attention to forum posts in us-forum and sf-forum.
+TASKS
+* undesired behaviour for renaming files/folders to names that contain slashes ('/')
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
 ABOUT
 * http://www.iconarchive.com/category/animals/tiny-animals-icons-by-iconshock.html
-
-SOME AWESOME LYRIC SUPPORT (hmmm.....)
-* 
+* http://min.frexy.com/article/the_milky_set_is_now_complete/
 
 NEW STUFF
 * make hard-coded values editable
@@ -89,7 +92,17 @@ NEW STUFF
 ? Office2007-like menu instead of menu+toolbar
   > doesn't look that goot (deferred)
 * manage scores of songs
-  
+* manage default values for #EDITION
+  > "custom editions" like "custom tags"?
+  > check songs if they are in that Edition? -> use for renaming tasks (conditions)
+
+MULTI-TXT SUPPORT
+* add support for karaoke versions
+* add support for duets
+
+SONG PROPERTIES
+* is Singstar-Song? (look into EDITION) -> [SS] Rename Tasks?
+
 TASKS
 ! better error handling for "path change tasks"
   > make it ACID! (at least atomic...)
@@ -108,9 +121,20 @@ TASKS
   > genre, year
 * introduce "slots" to save checkstate of items in tasklist
   > some predefined slots would be cool
+* remove empty lines (bad at end of a song?)
+* new lines should not start with a whitespace
+   - 15
+   : 16 2 6__Der
+   : 18 2 4__ver
+   : 20 2 6_damm
+* use correct apostrophes (´, ` -> ')
+* harmonizes empty syllables
+  > use '-' or '~' always
+  > convert/find such places
 
 SONG TREE
 ? virtual song folders for many song text files in one folder
+  > alternative: better support for karaoke-versions that share resources
 * enable the user to append any custom []-tag to a file/folder
   > manage these custom/unknown []-tags
   > available through context menu? (list []-tags, ...)
