@@ -2,6 +2,10 @@
 < Changelog (1.7.1 to 1.8.0) >
 <---------------------------->
 
+* ... neutral item
+! ... important item
+? ... less important or unknown item
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  NEW FEATURES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 PLUGINS
@@ -13,6 +17,9 @@ MEDIA PLAYER
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+TASKS
+* "fix spaces at end of line" crashed if song had empty lines
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
@@ -39,7 +46,7 @@ ABOUT
 * http://www.iconarchive.com/category/animals/tiny-animals-icons-by-iconshock.html
 
 SOME AWESOME LYRIC SUPPORT (hmmm.....)
-* http://lyricwiki.org/LyricWiki:REST
+* 
 
 NEW STUFF
 * make hard-coded values editable
@@ -55,7 +62,6 @@ NEW STUFF
   > multiple syllables in a line
   > has video, audio, cover, background
   > has additional information set (edition, creator, ...)
-* find & replace in song tags
 * manage covers for
   > edition
   > genre
@@ -65,18 +71,23 @@ NEW STUFF
 * checksums for SC-checked song files
   > QCryptographicHash (md4, md5, sha1)
 * get a web-source for background pictures and videos
-  > need an API like Amazon Associates Web Service
+  > need an API like Amazon Associates Web Service (REST?)
+* get lyrics
+  > http://lyricwiki.org/LyricWiki:REST
+* get more song information (e.g. #YEAR)
+  > hinparade.ch (?!)
 * CO/BG slideshow -> detect awful covers
 * look for illegal/invalid lyrics
   > e.g. ": 20 7ß 38 blubb" (false alpha-numeric..., USdx error)
-* top-ten
+* top-ten (by count)
   > artists
 * compare two song text files (which one is better?)
-* add support for Stepmania
+? add support for Stepmania
   > BIIIIG TASK
 * Button to Start UltaStar itself?
 * compare your songs against a list of songs
-* Office2007-like menu instead of menu+toolbar
+? Office2007-like menu instead of menu+toolbar
+  > doesn't look that goot (deferred)
 * manage scores of songs
   
 TASKS
@@ -99,17 +110,18 @@ TASKS
   > some predefined slots would be cool
 
 SONG TREE
+? virtual song folders for many song text files in one folder
 * enable the user to append any custom []-tag to a file/folder
   > manage these custom/unknown []-tags
   > available through context menu? (list []-tags, ...)
-* make column tests in 1 and 2 editable
+! make column tests in 1 and 2 editable
   > according to renaming style of the user
 * list ratio of cover/background in song tree (extra column)
+  > covers should be 1:1 I think
 * custom rename (context menu, 2nd click, ...)
 * warn, if BGs are bigger than game resolution
   > will be white otherwise
 	> minification not supported by USdx
-* virtual song folders for many song text files in one folder
 * drop zip files or whole folders in the song tree
 * offer an option to "not resize to contents" all the time
 * let the user choose rename task with target 'dir' which should be
@@ -117,6 +129,9 @@ SONG TREE
   > maybe also 'path' and 'dir' possible
   > better integration
 * add icon to toolbar for "hide" features (like context menu)
+! new columns
+  > bpm (for sorting issues)
+  > gap (for sorting issues)
 
 SONG TREE ALTERNATIVE
 * create a cover view?
@@ -141,10 +156,10 @@ PLAYLIST SUPPORT
 * handle duplicates in playlists
   > UltraStar playlists are more like a subset of all songs
   > not really playlists...
-* drag&drop from songs to the playlist
+? drag&drop from songs to the playlist
   > consider selection! (broken?)
-* add to playlist context menu "remove invalid entries" 
-* show effective length of playlist in playlist dock
+! add to playlist context menu "remove invalid entries" 
+! show effective length of playlist in playlist dock
 
 FILTER SUPPORT
 * re-design filter categories
@@ -155,18 +170,22 @@ FILTER SUPPORT
   > CC-Songs
   > ...
 
-DUPLICATE DETECTION
+DUPLICATE DETECTION (belongs to FILTER SUPPORT)
 * allow the user to specify false-positives explicitly
   > manage this "white list" in a table that shows "sound string"
   > avoid those false-positives next time
 
 FILE PREVIEW/LYRICS
 * make song text files editable
-* add current time instead of line number (?)
+* add current time instead of line number
   > beware of relative songs
+  > switch between line number and current time
 
 AMAZON COVER DOWNLOAD
 * auto rename downloaded covers ("Artist - Title [CO].jpg"?)
+
+FIND & REPLACE (new)
+* in song tags
 
 INTERNAL STUFF
 ! use internal XML data for melody/lyrics

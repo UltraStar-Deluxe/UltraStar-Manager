@@ -18,6 +18,7 @@ QUSongInfo::QUSongInfo(QUSongFile *song) {
 	artist = song->artist();
 	title = song->title();
 	length = song->lengthMp3();
+	lengthAudio = song->lengthAudioFile();
 
 	bitrate = 0;
 	channels = 0;
@@ -98,13 +99,47 @@ void QUMediaPlayer::pause() {
 
 void QUMediaPlayer::prev() {
 	this->stop();
-	this->_currentSongIndex = qMax(_currentSongIndex - 1, 0);
+
+	if(shuffleBtn->isChecked()) {
+		_lastIndices.pop_back();
+		this->_currentSongIndex = _lastIndices.last();
+	} else {
+		this->_currentSongIndex--;
+	}
+
+	if(_currentSongIndex < 0) {
+		if(loopBtn->isChecked()) {
+			_currentSongIndex = _songs.size() - 1;
+		} else {
+			this->_currentSongIndex = 0;
+			this->stop();
+			return;
+		}
+	}
+
 	this->play();
 }
 
 void QUMediaPlayer::next() {
 	this->stop();
-	this->_currentSongIndex = qMin(_currentSongIndex + 1, _songs.size() - 1);
+
+	if(shuffleBtn->isChecked()) {
+		_lastIndices << qrand() % _songs.size();
+		this->_currentSongIndex = _lastIndices.last();
+	} else {
+		this->_currentSongIndex++;
+	}
+
+	if(_currentSongIndex >= _songs.size()) {
+		if(loopBtn->isChecked()) {
+			_currentSongIndex = 0;
+		} else {
+			this->_currentSongIndex = qMin(_currentSongIndex + 1, _songs.size() - 1);
+			this->stop();
+			return;
+		}
+	}
+
 	this->play();
 }
 
@@ -119,14 +154,17 @@ void QUMediaPlayer::updateTime() {
 
 	QWORD len = BASS_ChannelGetLength(_mediaStream, BASS_POS_BYTE);
 	QWORD pos = BASS_ChannelGetPosition(_mediaStream, BASS_POS_BYTE);
-	int posSec = (info.length * pos) / len;
+	int posSec = (info.lengthAudio * pos) / len;
 	timeLbl->setText(QString("%1:%2 / %3:%4")
 			.arg(posSec / 60)
 			.arg(posSec % 60, 2, 10, QChar('0'))
 			.arg(info.length / 60)
 			.arg(info.length % 60, 2, 10, QChar('0')));
 
-	QTimer::singleShot(1000, this, SLOT(updateTime()));
+	if(posSec <= info.length)
+		QTimer::singleShot(1000, this, SLOT(updateTime()));
+	else
+		next();
 }
 
 void QUMediaPlayer::requestSongs() {
@@ -146,8 +184,8 @@ void QUMediaPlayer::requestSongs() {
 
 void QUMediaPlayer::updatePlayerControls(QUMediaPlayer::States state) {
 	if(state.testFlag(QUMediaPlayer::paused) || state.testFlag(QUMediaPlayer::playing)) {
-		prevBtn->setEnabled(_songs.size() > 0 && _currentSongIndex > 0);
-		nextBtn->setEnabled(_songs.size() > 0 && _currentSongIndex < _songs.size() - 1);
+		prevBtn->setEnabled(loopBtn->isChecked() || (_songs.size() > 0 && _currentSongIndex > 0));
+		nextBtn->setEnabled(loopBtn->isChecked() || (_songs.size() > 0 && _currentSongIndex < _songs.size() - 1));
 		stopBtn->setEnabled(true);
 	} else if(state.testFlag(QUMediaPlayer::stopped)) {
 		prevBtn->setEnabled(false);

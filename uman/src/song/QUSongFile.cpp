@@ -336,6 +336,18 @@ int QUSongFile::lengthEffective() const {
 }
 
 /*!
+ * \returns the length of the audio file, if one exists. #END tag will be ignored.
+ */
+int QUSongFile::lengthAudioFile() const {
+	TagLib::FileRef ref(this->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+
+	if(ref.isNull() or !ref.audioProperties())
+		return 0;
+
+	return ref.audioProperties()->length();
+}
+
+/*!
  * Like lengthEffective() but with formatted output.
  */
 QString QUSongFile::lengthEffectiveFormatted() const {
@@ -1006,11 +1018,6 @@ void QUSongFile::removeEndTag() {
  * Let the song start with timestamp 0.
  */
 void QUSongFile::fixTimeStamps() {
-//	if(this->relative() != N_A) {
-//		logSrv->add(QString(tr("The song \"%1 - %2\" has relative timestamps. It will be ignored.")).arg(artist()).arg(title()), QU::information);
-//		return;
-//	}
-
 	convertLyricsFromRaw();
 
 	if(_melody.isEmpty() or _melody.first()->notes().isEmpty()) {
@@ -1117,9 +1124,11 @@ void QUSongFile::fixSpaces() {
 			}
 		}
 
-		QUSongNote *last = line->notes().last();
-		if(last->lyric().endsWith(" "))
-			last->resetTrailingSpaces(-1, 0);
+		if(line->notes().size() > 0) {
+			QUSongNote *last = line->notes().last();
+			if(last->lyric().endsWith(" "))
+				last->resetTrailingSpaces(-1, 0);
+		}
 	}
 
 

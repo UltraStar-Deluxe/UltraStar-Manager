@@ -90,6 +90,7 @@ public slots:
 	int length();
 	int lengthMp3() const;
 	int lengthEffective() const;
+	int lengthAudioFile() const;
 	double syllablesPerSecond(bool firstCalc = false);
 
 	QString lengthEffectiveFormatted() const;

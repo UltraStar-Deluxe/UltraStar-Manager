@@ -23,6 +23,7 @@ public:
 	QString artist;
 	QString title;
 	int length; // from audio file, can be reset through #END tag
+	int lengthAudio; // #END tag ignored
 
 	// properties from id3tag
 	QString album;
@@ -73,6 +74,7 @@ private:
 	HSTREAM _mediaStream;
 	QList<QUSongInfo> _songs;
 	int _currentSongIndex;
+	QList<int> _lastIndices;
 
 	QUMediaPlayer::States _state;
 	void setState(QUMediaPlayer::States newState);
