@@ -1100,7 +1100,7 @@ void QUSongFile::fixTimeStamps() {
 }
 
 /*!
- * Avoid a space at the end of the line.
+ * Avoid a space at the end of a syllable.
  * ": 200 5 20 'cause " -> ": 200 5 20 'cause"
  * ": 205 2 10 I"       -> ": 205 2 10  I"
  */
@@ -1114,6 +1114,12 @@ void QUSongFile::fixSpaces() {
 
 	// modify all lyrics
 	foreach(QUSongLine *line, _melody) {
+		if(line->notes().size() > 0) {
+			QUSongNote *first = line->notes().first();
+			if(first->lyric().startsWith(" "))
+				first->resetTrailingSpaces(0, -1);
+		}
+
 		for(int i = 0; i < line->notes().size() - 1; i++) {
 			QUSongNote *current = line->notes()[i];
 			QUSongNote *next = line->notes()[i+1];

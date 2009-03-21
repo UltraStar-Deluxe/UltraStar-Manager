@@ -12,7 +12,7 @@ QULyricTask::QULyricTask(QU::LyricTaskModes mode, QObject *parent):
 	case QU::fixSpaces:
 		this->setIcon(QIcon(":/control/space.png"));
 		this->setDescription(tr("Fix spaces at end of line"));
-		this->setToolTip(tr("Moves spaces from the end of line to the beginning of the next syllable."));
+		this->setToolTip(tr("Moves spaces from the end of a syllable to the beginning of the next one."));
 		break;
 	case QU::removeEmptySyllables:
 		this->setIcon(QIcon(":/control/empty_syllable.png"));
