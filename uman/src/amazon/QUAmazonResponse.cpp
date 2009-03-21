@@ -31,18 +31,27 @@ void QUAmazonResponse::processResponse(const QDomElement &itemSearchResponse) {
 	// check the total number of results
 	QDomElement totalResults = items.firstChildElement("TotalResults");
 	_count = QVariant(totalResults.firstChild().nodeValue()).toInt();
-	if(_count == 0) return;
+	if(_count == 0)	return;
 
 	// get found image links
 	QDomElement item = items.firstChildElement("Item");
 	while(!item.isNull()) {
 		QString mediumImgUrl = item.firstChildElement("MediumImage").firstChildElement("URL").firstChild().nodeValue();
 		if(mediumImgUrl.isEmpty())
-			item.firstChildElement("ImageSets").firstChild().firstChildElement("MediumImage").firstChildElement("URL").firstChild().nodeValue();
+			mediumImgUrl = item
+				.firstChildElement("ImageSets").firstChild()
+				.firstChildElement("MediumImage")
+				.firstChildElement("URL").firstChild().nodeValue();
 
 		QString largeImgUrl = item.firstChildElement("LargeImage").firstChildElement("URL").firstChild().nodeValue();
 		if(largeImgUrl.isEmpty())
-			item.firstChildElement("ImageSets").firstChild().firstChildElement("LargeImage").firstChildElement("URL").firstChild().nodeValue();
+			largeImgUrl = item
+				.firstChildElement("ImageSets").firstChild()
+				.firstChildElement("LargeImage")
+				.firstChildElement("URL").firstChild().nodeValue();
+
+		qDebug(mediumImgUrl.toLocal8Bit().data());
+		qDebug(largeImgUrl.toLocal8Bit().data());
 
 		if(!mediumImgUrl.isEmpty() or !largeImgUrl.isEmpty())
 			_results.append(QPair<QUrl, QUrl>(QUrl(mediumImgUrl), QUrl(largeImgUrl)));

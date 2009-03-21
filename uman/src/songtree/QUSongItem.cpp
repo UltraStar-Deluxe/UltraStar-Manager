@@ -359,6 +359,10 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case LENGTH_EFF_COLUMN:
 	case SPEED_COLUMN:
 		return this->data(column, Qt::UserRole).toInt() < other.data(column, Qt::UserRole).toInt(); break;
+	case START_COLUMN:
+	case END_COLUMN:
+	case VIDEOGAP_COLUMN:
+		return this->data(column, Qt::UserRole).toDouble() < other.data(column, Qt::UserRole).toDouble(); break;
 	default:
 		return text(column) < other.text(column);
 	}
@@ -480,8 +484,11 @@ void QUSongItem::updateTimeCheckColumns() {
 
 	// show some time control tags
 	this->setText(START_COLUMN, song()->start());
+	this->setData(START_COLUMN, Qt::UserRole, song()->start().replace(",", "."));
 	this->setText(END_COLUMN, song()->end());
+	this->setData(END_COLUMN, Qt::UserRole, song()->end().replace(",", "."));
 	this->setText(VIDEOGAP_COLUMN, song()->videogap());
+	this->setData(VIDEOGAP_COLUMN, Qt::UserRole, song()->videogap().replace(",", "."));
 }
 
 void QUSongItem::updateTextColumns() {

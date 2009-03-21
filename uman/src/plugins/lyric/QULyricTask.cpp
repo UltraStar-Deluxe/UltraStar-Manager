@@ -11,8 +11,8 @@ QULyricTask::QULyricTask(QU::LyricTaskModes mode, QObject *parent):
 		break;
 	case QU::fixSpaces:
 		this->setIcon(QIcon(":/control/space.png"));
-		this->setDescription(tr("Fix spaces at end of line"));
-		this->setToolTip(tr("Moves spaces from the end of a syllable to the beginning of the next one."));
+		this->setDescription(tr("Fix spaces"));
+		this->setToolTip(tr("Moves spaces from the end of a syllable to the beginning of the next one. Trim the whole song line."));
 		break;
 	case QU::removeEmptySyllables:
 		this->setIcon(QIcon(":/control/empty_syllable.png"));

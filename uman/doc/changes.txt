@@ -9,17 +9,32 @@
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  NEW FEATURES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 MEDIA PLAYER
-* play a song an watch the lyrics
+* play a song and watch the lyrics
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
+QT
+* based on Qt 4.5.0 now
+* keep on licensing under GPL
+
 PLUGINS
 * tasks are now plugins
+* "Fix spaces at end of line" -> "Fix spaces"
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 TASKS
-* "fix spaces at end of line" crashed if song had empty lines
+* "Fix spaces at end of line" crashed if song had empty lines
+* "Fix spaces" now trims the whole song line correctly
+
+MAIN WINDOW
+* "Options -> Always On Top" now saved and restored during app restart
+
+SONG TREE
+* sorting works now for #START, #END, #VIDEOGAP
+
+AMAZON COVER DOWNLOAD
+* percentage encoding seemed to broke the request in Qt 4.5.0
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
@@ -29,9 +44,6 @@ NOT SORTED
   > "non-standard" tasks
 * short application hang under vista while getting covers from amazon
   the first time after application start
-* cannot save "Always On Top" state to config because it's not possible to
-  reset that state on application startup (-> Qt 4.3.5 bug?)
-* cannot sort after "videogap" column correctly
 * broken gif-support for amazon cover files
 ! update playlists if you delete a song -> crash on exit
 

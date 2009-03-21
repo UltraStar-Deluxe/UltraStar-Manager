@@ -163,6 +163,7 @@ void QUMainWindow::initConfig() {
 	this->restoreState(settings.value("windowState").toByteArray());
 
 	actionAutoSave->setChecked(settings.value("autoSave", true).toBool());
+	actionAlwaysOnTop->setChecked(settings.value("alwaysOnTop", false).toBool());
 }
 
 /*!
@@ -1018,11 +1019,9 @@ void QUMainWindow::toggleAltSongTreeChk(bool checked) {
  * Let the main window stay always in foreground.
  */
 void QUMainWindow::toggleAlwaysOnTop(bool checked) {
-//	QSettings settings;
-//	if(settings.value("alwaysOnTop", false) == checked)
-//		return; // no change
-//
-//	settings.setValue("alwaysOnTop", checked);
+	QSettings settings;
+	if(settings.value("alwaysOnTop", false) != checked)
+		settings.setValue("alwaysOnTop", checked);
 
 	if(checked)
 		this->setWindowFlags(this->windowFlags() | Qt::WindowStaysOnTopHint);
