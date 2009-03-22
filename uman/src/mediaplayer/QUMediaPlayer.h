@@ -54,6 +54,7 @@ public slots:
 	void pause();
 	void prev();
 	void next();
+	void resume();
 
 	void requestSongs();
 
@@ -82,6 +83,9 @@ private:
 
 	void BASS_StopAndFree();
 	void BASS_Play();
+	void BASS_Pause();
+	void BASS_Resume();
+	double BASS_Position();
 };
 
 #endif /* QUMEDIAPLAYER_H_ */

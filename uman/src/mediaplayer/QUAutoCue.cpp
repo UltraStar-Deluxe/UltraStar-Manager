@@ -4,7 +4,13 @@
 #include <QColor>
 #include <QScrollBar>
 
-QUAutoCue::QUAutoCue(QWidget *parent): QTextBrowser(parent), _stopRequested(false), _cueListIndex(-1) {
+QUAutoCue::QUAutoCue(QWidget *parent):
+		QTextBrowser(parent),
+		_waitedMilliseconds(0),
+		_stopRequested(false),
+		_pauseRequested(false),
+		_cueListIndex(-1)
+{
 	setFontFamily("Tahoma");
 	setFontPointSize(10);
 }
@@ -68,21 +74,53 @@ void QUAutoCue::reset(const QList<QUSongLineInterface*> &lines, double bpm, doub
 
 void QUAutoCue::play() {
 	_startTime = QTime::currentTime();
+	_startTime.start();
+	_waitedMilliseconds = 0;
 	_cueListIndex = 0;
 	_stopRequested = false;
+	_pauseRequested = false;
 	update();
 }
 
 void QUAutoCue::stop() {
 	_stopRequested = true;
+	_pauseRequested = false;
 	clear();
+}
+
+void QUAutoCue::pause() {
+	_pauseTime = QTime::currentTime();
+	_pauseRequested = true;
+	_stopRequested = false;
+}
+
+void QUAutoCue::resume(double position) {
+	qDebug(QVariant(position).toByteArray().data());
+
+	if(_cueList.isEmpty())
+		return;
+
+	_cueListIndex = 0;
+	int targetTime = (int)(position * 1000);
+
+	while(_cueListIndex < _cueList.size() && _cueList.at(_cueListIndex).time < targetTime)
+		_cueListIndex++;
+
+	if(_cueListIndex >= _cueList.size())
+		return;
+
+	_waitedMilliseconds += _pauseTime.elapsed();
+
+	_pauseRequested = false;
+	_stopRequested = false;
+	update();
 }
 
 /*!
  * Highlight the correct syllable. Handle scrolling and so on.
  */
 void QUAutoCue::update() {
-	int time = _startTime.msecsTo(QTime::currentTime());
+	int time = _startTime.elapsed() - _waitedMilliseconds;
 	int maxDelay = 50; // milliseconds
 
 	forever{
@@ -107,7 +145,7 @@ void QUAutoCue::update() {
 	mark(_cueList.at(_cueListIndex).pos, _cueList.at(_cueListIndex).width);
 	_cueListIndex++;
 
-	if(!_stopRequested)
+	if(!_stopRequested && !_pauseRequested)
 		QTimer::singleShot(10, this, SLOT(update()));
 }
 

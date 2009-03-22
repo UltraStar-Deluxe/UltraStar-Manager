@@ -28,15 +28,18 @@ public slots:
 	void play();
 	void stop();
 
-//	void pause();
-//	void resume();
+	void pause();
+	void resume(double position);
 
 private slots:
 	void update();
 
 private:
 	QTime _startTime;
+	QTime _pauseTime;
+	int _waitedMilliseconds;
 	bool  _stopRequested;
+	bool  _pauseRequested;
 
 	QList<QUCueInfo> _cueList;
 	int _cueListIndex;
