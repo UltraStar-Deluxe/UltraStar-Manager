@@ -9,7 +9,7 @@
 #include "tstring.h"
 
 QUSongInfo::QUSongInfo(QUSongFile *song) {
-	melody = song->melody();
+	melody = song->loadMelody();
 	bpm = QVariant(song->bpm().replace(",", ".")).toDouble() * 4;
 	gap = QVariant(song->gap().replace(",", ".")).toDouble();
 	isRelative = song->relative() != N_A;

@@ -14,6 +14,10 @@ public:
 
 private:
 	QU::LyricTaskModes _mode;
+
+	void fixTimeStamps(QUSongInterface *song);
+	void fixSpaces(QUSongInterface *song);
+	void removeEmptySyllables(QUSongInterface *song);
 };
 
 #endif /* QULYRICTASK_H_ */

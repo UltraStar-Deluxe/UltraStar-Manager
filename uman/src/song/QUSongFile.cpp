@@ -119,7 +119,7 @@ bool QUSongFile::equal(QUSongFile *s1, QUSongFile *s2) {
 	return ( QUMetaphoneString::equal(s1->artist(), s2->artist()) and QUMetaphoneString::equal(s1->title(), s2->title(), true) );
 }
 
-/* COMPARING FUNCTINOS END */
+/* COMPARING FUNCTIONS END */
 
 /*!
  * \returns The relative file path of this song to the base dir.
@@ -150,6 +150,7 @@ bool QUSongFile::updateCache() {
 	_foundUnsupportedTags.clear();
 	_songLength = -1;
 	_songSpeed = -1.0;
+	clearMelody();
 
 	/*
 	 * Read the header and write all tags into memory. The headers end is assumed
@@ -478,11 +479,6 @@ QStringList QUSongFile::lyrics() const {
 	}
 
 	return result;
-}
-
-QList<QUSongLine*> QUSongFile::melody() {
-	convertLyricsFromRaw();
-	return _melody;
 }
 
 /*!
@@ -1015,171 +1011,6 @@ void QUSongFile::removeEndTag() {
 }
 
 /*!
- * Let the song start with timestamp 0.
- */
-void QUSongFile::fixTimeStamps() {
-	convertLyricsFromRaw();
-
-	if(_melody.isEmpty() or _melody.first()->notes().isEmpty()) {
-		logSrv->add(QString(tr("Invalid lyrics: %1 - %2")).arg(artist()).arg(title()), QU::warning);
-		return;
-	}
-
-	// the diff value has to be subtracted from each timestamp
-	int begin = 0;
-	int diff = _melody.first()->notes().first()->timestamp - begin;
-
-	double gap = QVariant(this->gap().replace(",", ".")).toDouble();
-	double bpm = QVariant(this->bpm().replace(",", ".")).toDouble();
-
-	// calculate and set the new gap
-	double oldGap = gap;
-	gap = gap + (diff * 15000) / bpm;
-	this->setInfo(GAP_TAG, QVariant(qRound(gap)).toString());
-	logSrv->add(QString(tr("#GAP changed from %1 to %2 for \"%3 - %4\".")).arg(oldGap).arg(this->gap()).arg(artist()).arg(title()), QU::information);
-
-	// modify all timestamps
-	if(this->relative() == N_A) { // simple way: not relative
-		foreach(QUSongLine *line, _melody) {
-			foreach(QUSongNote *note, line->notes()) {
-				note->timestamp -= diff;
-			}
-
-			if(line->useOutTime()) {
-				line->setOutTime(line->outTime() - diff);
-
-				if(line->useInTime())
-					line->setInTime(line->inTime() - diff);
-			}
-		}
-	} else { // hard way: relative timestamps
-		// the first line is like the "simple way" :)
-		foreach(QUSongNote *note, _melody.first()->notes()) {
-			note->timestamp -= diff;
-		}
-
-		if(_melody.first()->useOutTime()) {
-			_melody.first()->setOutTime(_melody.first()->outTime() - diff);
-
-			if(_melody.first()->useInTime())
-				_melody.first()->setInTime(_melody.first()->inTime() - diff);
-		}
-
-		// process next lines
-		for(int i = 1; i < _melody.size(); i++) {
-			QUSongLine *currentLine = _melody[i];
-			QUSongLine *prevLine    = _melody[i - 1];
-
-			if(currentLine->notes().isEmpty())
-				continue;
-
-			int diff2 = currentLine->notes().first()->timestamp - begin;
-
-			prevLine->setInTime(prevLine->inTime() + diff2); // every line has to have "in" and "out" timestamps! -> relative
-
-			foreach(QUSongNote *note, currentLine->notes()) {
-				note->timestamp -= diff2;
-			}
-
-			if(currentLine->useOutTime()) {
-				currentLine->setOutTime(currentLine->outTime() - diff2);
-
-				if(currentLine->useInTime())
-					currentLine->setInTime(currentLine->inTime() - diff2);
-			}
-		}
-	}
-
-	convertLyricsToRaw();
-
-	// save memory
-	qDeleteAll(_melody);
-	_melody.clear();
-
-	logSrv->add(QString(tr("Timestamps were changed successfully for \"%1 - %2\".")).arg(artist()).arg(title()), QU::information);
-}
-
-/*!
- * Avoid a space at the end of a syllable.
- * ": 200 5 20 'cause " -> ": 200 5 20 'cause"
- * ": 205 2 10 I"       -> ": 205 2 10  I"
- */
-void QUSongFile::fixSpaces() {
-	convertLyricsFromRaw();
-
-	if(_melody.isEmpty() or _melody.first()->notes().isEmpty()) {
-		logSrv->add(QString(tr("Invalid lyrics: %1 - %2")).arg(artist()).arg(title()), QU::warning);
-		return;
-	}
-
-	// modify all lyrics
-	foreach(QUSongLine *line, _melody) {
-		if(line->notes().size() > 0) {
-			QUSongNote *first = line->notes().first();
-			if(first->lyric().startsWith(" "))
-				first->resetTrailingSpaces(0, -1);
-		}
-
-		for(int i = 0; i < line->notes().size() - 1; i++) {
-			QUSongNote *current = line->notes()[i];
-			QUSongNote *next = line->notes()[i+1];
-
-			if(current->lyric().endsWith(" ")) {
-				current->resetTrailingSpaces(-1, 0);
-				next->resetTrailingSpaces(1, -1);
-			}
-		}
-
-		if(line->notes().size() > 0) {
-			QUSongNote *last = line->notes().last();
-			if(last->lyric().endsWith(" "))
-				last->resetTrailingSpaces(-1, 0);
-		}
-	}
-
-
-	convertLyricsToRaw();
-
-	// save memory
-	qDeleteAll(_melody);
-	_melody.clear();
-
-	logSrv->add(QString(tr("Spaces were fixed successfully for \"%1 - %2\".")).arg(artist()).arg(title()), QU::information);
-}
-
-/*!
- * Removes empty syllables.
- */
-void QUSongFile::removeEmptySyllables() {
-	convertLyricsFromRaw();
-
-	if(_melody.isEmpty() or _melody.first()->notes().isEmpty()) {
-		logSrv->add(QString(tr("Invalid lyrics: %1 - %2")).arg(artist()).arg(title()), QU::warning);
-		return;
-	}
-
-	foreach(QUSongLine *line, _melody) {
-		QList<QUSongNote*> emptyNotes;
-		foreach(QUSongNote *note, line->notes()) {
-			if(note->lyric().trimmed().isEmpty())
-				emptyNotes.append(note);
-		}
-
-		foreach(QUSongNote *note, emptyNotes) {
-			line->notes().removeAll(note);
-		}
-	}
-
-	convertLyricsToRaw();
-
-	// save memory
-	qDeleteAll(_melody);
-	_melody.clear();
-
-	logSrv->add(QString(tr("Empty syllables were removed successfully for \"%1 - %2\".")).arg(artist()).arg(title()), QU::information);
-}
-
-/*!
  * React to external change of the loaded song file.
  */
 void QUSongFile::songFileChanged(const QString &filePath) {
@@ -1190,11 +1021,36 @@ void QUSongFile::songFileChanged(const QString &filePath) {
 }
 
 /*!
+ * Load the melody of a song to enable convenient modification
+ * of the song's lyrics.
+ *
+ * You need to save any changes with QUSongFile::saveMelody().
+ */
+QList<QUSongLineInterface*>& QUSongFile::loadMelody() {
+	if(_melody.isEmpty())
+		convertLyricsFromRaw();
+	return _melody;
+}
+
+void QUSongFile::clearMelody() {
+	qDeleteAll(_melody);
+	_melody.clear();
+}
+
+/*!
+ * Persist any changes in the melody to internal raw data format which
+ * will then be saved to the file.
+ */
+void QUSongFile::saveMelody() {
+	convertLyricsToRaw();
+}
+
+/*!
  * Coverts the raw lyrics to another format for further processing.
  */
 void QUSongFile::convertLyricsFromRaw() {
-	qDeleteAll(_melody);
-	_melody.clear();
+	if(!_melody.isEmpty())
+		return;
 
 	foreach(QString line, _lyrics) {
 		lyricsAddNote(line);
@@ -1207,18 +1063,18 @@ void QUSongFile::convertLyricsToRaw() {
 
 	_lyrics.clear();
 
-	foreach(QUSongLine *line, _melody) {
-		foreach(QUSongNote *note, line->notes()) {
+	foreach(QUSongLineInterface *line, _melody) {
+		foreach(QUSongNoteInterface *note, line->notes()) {
 			QStringList out;
-			     if(note->type == QUSongNote::freestyle) out.append("F");
-			else if(note->type == QUSongNote::golden)    out.append("*");
-			else                                         out.append(":");
+				 if(note->type() == QUSongNoteInterface::freestyle) out.append("F");
+			else if(note->type() == QUSongNoteInterface::golden)    out.append("*");
+			else                                                    out.append(":");
 
-			out.append(QVariant(note->timestamp).toString());
-			out.append(QVariant(note->duration).toString());
-			out.append(QVariant(note->pitch).toString());
+			out.append(QVariant(note->timestamp()).toString());
+			out.append(QVariant(note->duration()).toString());
+			out.append(QVariant(note->pitch()).toString());
 
-			out.append(note->lyric());
+			out.append(note->syllable());
 
 			_lyrics.append(QString("%1\n").arg(out.join(" ")));
 		}
@@ -1247,7 +1103,7 @@ void QUSongFile::lyricsAddNote(QString line) {
 		_melody.append(new QUSongLine(this));
 	}
 
-	QUSongLine *songLine = _melody.last();
+	QUSongLineInterface *songLine = _melody.last();
 
 	if(line.startsWith("-")) { // line break
 		line.remove(0, 1);
@@ -1266,7 +1122,7 @@ void QUSongFile::lyricsAddNote(QString line) {
 		if(lineSplit.size() < 4)
 			logSrv->add(QString(tr("Line too short: \"%1\"")).arg(line), QU::warning);
 		else {
-			QUSongNote::NoteType t = line.startsWith("F") ? QUSongNote::freestyle : (line.startsWith("*") ? QUSongNote::golden : QUSongNote::normal);
+			QUSongNoteInterface::Types t = line.startsWith("F") ? QUSongNoteInterface::freestyle : (line.startsWith("*") ? QUSongNoteInterface::golden : QUSongNoteInterface::normal);
 
 			// extract the lyric/syllable
 			line.remove(QRegExp("[:\\*F]\\s*\\-?\\d+\\s+\\d+\\s+\\-?\\d+\\s"));

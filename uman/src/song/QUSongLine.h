@@ -4,56 +4,63 @@
 #include <QObject>
 #include <QString>
 
-class QUSongNote: public QObject {
+#include "QUSongInterface.h"
+
+class QUSongNote: public QUSongNoteInterface {
 	Q_OBJECT
 
 public:
-	enum NoteType {
-		normal,
-		golden,
-		freestyle,
-	};
-	Q_DECLARE_FLAGS(NoteTypes, NoteType)
+	QUSongNote(Types ty, int t, int d, int p, const QString &s, QObject *parent = 0);
 
-	QUSongNote(NoteType ty, int t, int d, int p, const QString &lyric, QObject *parent = 0);
+	virtual int timestamp() const { return _timestamp; }
+	virtual void setTimestamp(int t) { _timestamp = t; }
 
-	int timestamp;
-	int duration;
-	int pitch;
+	virtual int duration() const { return _duration; }
+	virtual void setDuration(int d) { _duration = d; }
 
-	NoteType type;
+	virtual int pitch() const { return _pitch; }
+	virtual void setPitch(int p) { _pitch = p; }
 
-	void setLyric(const QString &text);
-	QString lyric() { return _lyric; }
-	void resetTrailingSpaces(int prefixCount, int suffixCount);
+	virtual Types type() const { return _type; }
+	virtual void setType(Types t) { _type = t; }
+
+	virtual QString syllable() const { return _syllable; }
+	virtual void setSyllable(const QString &s) { _syllable = s; }
+
+	virtual void resetTrailingSpaces(int prefixCount, int suffixCount);
 
 private:
-	QString _lyric;
+	// ": 200 5 10 foo" => "type timestamp duration pitch syllable"
+	Types   _type;
+	int     _timestamp;
+	int     _duration;
+	int     _pitch;
+	QString _syllable;
 };
 
 // --------------------------------------------------------------------------
 
-class QUSongLine: public QObject {
+class QUSongLine: public QUSongLineInterface {
 	Q_OBJECT
 
 public:
 	QUSongLine(QObject *parent = 0);
 	~QUSongLine();
 
-	void addNote(QUSongNote *newNote);
-	QList<QUSongNote*>& notes() { return _notes; }
+	virtual void addNote(QUSongNoteInterface *note);
+	virtual QList<QUSongNoteInterface*>& notes() { return _notes; }
 
-	int outTime() const { return _out; }
-	void setOutTime(int out) { _out = out; _useOutTime = true; }
-	int inTime() const { return _in; }
-	void setInTime(int in) { _in = in; _useInTime = true; }
+	virtual int outTime() const { return _out; }
+	virtual void setOutTime(int out) { _out = out; _useOutTime = true; }
+	virtual int inTime() const { return _in; }
+	virtual void setInTime(int in) { _in = in; _useInTime = true; }
 
-	bool useOutTime() const { return _useOutTime; }
-	bool useInTime() const { return _useInTime; }
-	void removeInTime() { _useInTime = false; }
+	virtual bool useOutTime() const { return _useOutTime; }
+	virtual bool useInTime() const { return _useInTime; }
+	virtual void removeInTime() { _useInTime = false; }
 
 private:
-	QList<QUSongNote*> _notes;
+	QList<QUSongNoteInterface*> _notes;
 
 	int _out; // timestamp this line disappears
 	int _in; // timestamp next line appears

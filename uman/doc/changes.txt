@@ -57,6 +57,9 @@ TRANSLATION
 TASKS
 * undesired behaviour for renaming files/folders to names that contain slashes ('/')
 
+AMAZON COVER DOWNLOAD
+* link of 'Buy' button is not correct
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
 ABOUT

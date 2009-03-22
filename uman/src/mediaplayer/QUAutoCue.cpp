@@ -12,7 +12,7 @@ QUAutoCue::QUAutoCue(QWidget *parent): QTextBrowser(parent), _stopRequested(fals
 /*!
  * Prepare autocue for new song.
  */
-void QUAutoCue::reset(const QList<QUSongLine*> &lines, double bpm, double gap, double isRelative) {
+void QUAutoCue::reset(const QList<QUSongLineInterface*> &lines, double bpm, double gap, double isRelative) {
 	clear();
 	_cueList.clear();
 	_cueListIndex = -1;
@@ -22,36 +22,36 @@ void QUAutoCue::reset(const QList<QUSongLine*> &lines, double bpm, double gap, d
 
 	int relTime = qRound(gap);
 
-	foreach(QUSongLine *line, lines) {
+	foreach(QUSongLineInterface *line, lines) {
 		int last = 0;
-		foreach(QUSongNote *note, line->notes()) {
+		foreach(QUSongNoteInterface *note, line->notes()) {
 			if(note != line->notes().first()) {
-				if(last == note->timestamp) // no space
+				if(last == note->timestamp()) // no space
 					_cueList.pop_back();
 			}
-			last = note->timestamp + note->duration;
+			last = note->timestamp() + note->duration();
 
 			if(isRelative)
-				time = relTime + qRound((note->timestamp / bpm) * 60000);
+				time = relTime + qRound((note->timestamp() / bpm) * 60000);
 			else
-				time = qRound(gap) + qRound((note->timestamp / bpm) * 60000);
+				time = qRound(gap) + qRound((note->timestamp() / bpm) * 60000);
 
-			if(note->type == QUSongNote::golden)
+			if(note->type() == QUSongNoteInterface::golden)
 				setFontWeight(QFont::Bold);
-			else if(note->type == QUSongNote::freestyle)
+			else if(note->type() == QUSongNoteInterface::freestyle)
 				setFontItalic(true);
 
 			setAlignment(Qt::AlignHCenter);
-			insertPlainText(note->lyric());
+			insertPlainText(note->syllable());
 
 			setFontWeight(QFont::Normal);
 			setFontItalic(false);
 
-			_cueList << QUCueInfo(time, pos, note->lyric().size());
+			_cueList << QUCueInfo(time, pos, note->syllable().size());
 
-			pos += note->lyric().size();
+			pos += note->syllable().size();
 
-			time += qRound((note->duration / bpm) * 60000);
+			time += qRound((note->duration() / bpm) * 60000);
 			_cueList << QUCueInfo(time, pos, 0);
 		}
 		insertPlainText("\n"); pos++;

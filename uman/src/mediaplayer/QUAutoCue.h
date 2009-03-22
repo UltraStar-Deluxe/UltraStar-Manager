@@ -22,7 +22,7 @@ class QUAutoCue: public QTextBrowser {
 public:
 	QUAutoCue(QWidget *parent = 0);
 
-	void reset(const QList<QUSongLine*> &lines, double bpm, double gap, double isRelative);
+	void reset(const QList<QUSongLineInterface*> &lines, double bpm, double gap, double isRelative);
 
 public slots:
 	void play();

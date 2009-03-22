@@ -13,7 +13,7 @@ class QUSongInfo {
 public:
 	QUSongInfo(QUSongFile *song);
 
-	QList<QUSongLine*> melody;
+	QList<QUSongLineInterface*> melody;
 	double bpm;
 	double gap;
 	bool isRelative;

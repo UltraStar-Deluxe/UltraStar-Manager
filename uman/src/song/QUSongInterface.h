@@ -27,6 +27,57 @@ class QFileInfo;
 #define BPM_TAG        "BPM"
 #define GAP_TAG        "GAP"
 
+class QUSongNoteInterface: public QObject {
+	Q_OBJECT
+
+public:
+	enum Type {
+		normal,
+		golden,
+		freestyle,
+	};
+	Q_DECLARE_FLAGS(Types, Type)
+
+	QUSongNoteInterface(QObject *parent = 0): QObject(parent) {}
+
+	virtual int timestamp() const = 0;
+	virtual void setTimestamp(int t) = 0;
+
+	virtual int duration() const = 0;
+	virtual void setDuration(int d) = 0;
+
+	virtual int pitch() const = 0;
+	virtual void setPitch(int p) = 0;
+
+	virtual Types type() const = 0;
+	virtual void setType(Types t) = 0;
+
+	virtual QString syllable() const = 0;
+	virtual void setSyllable(const QString &s) = 0;
+
+	virtual void resetTrailingSpaces(int prefixCount, int suffixCount) = 0;
+};
+
+class QUSongLineInterface: public QObject {
+	Q_OBJECT
+
+public:
+	QUSongLineInterface(QObject *parent = 0): QObject(parent) {}
+
+	virtual void addNote(QUSongNoteInterface *note) = 0;
+	virtual QList<QUSongNoteInterface*>& notes() = 0;
+
+	virtual int outTime() const = 0;
+	virtual void setOutTime(int t) = 0;
+
+	virtual int inTime() const = 0;
+	virtual void setInTime(int t) = 0;
+
+	virtual bool useOutTime() const = 0;
+	virtual bool useInTime() const = 0;
+	virtual void removeInTime() = 0;
+};
+
 class QUSongInterface: public QObject {
     Q_OBJECT
 
@@ -146,9 +197,9 @@ public:
 	virtual void roundGap() = 0;
 	virtual void removeEndTag() = 0;
 
-	virtual void fixTimeStamps() = 0;
-	virtual void fixSpaces() = 0;
-	virtual void removeEmptySyllables() = 0;
+	virtual QList<QUSongLineInterface*>& loadMelody() = 0;
+	virtual void clearMelody() = 0;
+	virtual void saveMelody() = 0;
 };
 
 #endif /* QUSONGINTERFACE_H_ */

@@ -97,7 +97,6 @@ public slots:
 	QString speedFormatted();
 
 	QStringList lyrics() const;
-	QList<QUSongLine*> melody();
 
 	QFileInfo songFileInfo() const {return _fi;} //!< \returns a file info for the current US song file
 
@@ -140,16 +139,16 @@ public slots:
 	void roundGap();
 	void removeEndTag();
 
-	void fixTimeStamps();
-	void fixSpaces();
-	void removeEmptySyllables();
-
 	// watch external song file changes
 	void songFileChanged(const QString &filePath);
 
+	// for lyric operations
+	virtual QList<QUSongLineInterface*>& loadMelody();
+	virtual void clearMelody();
+	virtual void saveMelody();
+
 signals:
 	void dataChanged();
-
 	void externalSongFileChangeDetected(QUSongFile *song);
 
 private:
@@ -168,7 +167,8 @@ private:
 	bool rename(QDir dir, const QString &oldName, const QString &newName);
 
 	// experimental: use another internal format for lyrics
-	QList<QUSongLine*> _melody;
+	QList<QUSongLineInterface*> _melody;
+
 	void convertLyricsFromRaw();
 	void convertLyricsToRaw();
 	void lyricsAddNote(QString line);
