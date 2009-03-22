@@ -193,6 +193,9 @@ void QUMediaPlayer::seek() {
 }
 
 void QUMediaPlayer::updateTime() {
+	if(state() == QUMediaPlayer::stopped)
+		return;
+
 	if(_currentSongIndex < 0 || _currentSongIndex >= _songs.size())
 		return; // invalid index
 
@@ -208,11 +211,10 @@ void QUMediaPlayer::updateTime() {
 	if(!timeSlider->isSliderDown())
 		timeSlider->setValue(posSec);
 
-	if(posSec < info.length && posSec != -1) {
+	if(posSec < info.length && posSec != -1)
 		QTimer::singleShot(1000, this, SLOT(updateTime()));
-	} else if(state() != QUMediaPlayer::stopped) {
+	else
 		next();
-	}
 }
 
 void QUMediaPlayer::requestSongs() {

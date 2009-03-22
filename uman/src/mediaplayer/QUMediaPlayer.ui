@@ -258,6 +258,9 @@
          </item>
          <item>
           <widget class="QToolButton" name="shuffleBtn">
+           <property name="toolTip">
+            <string>Shuffle List</string>
+           </property>
            <property name="text">
             <string>Shuffle</string>
            </property>
@@ -278,6 +281,9 @@
          </item>
          <item>
           <widget class="QToolButton" name="loopBtn">
+           <property name="toolTip">
+            <string>Loop List</string>
+           </property>
            <property name="text">
             <string>Loop</string>
            </property>
