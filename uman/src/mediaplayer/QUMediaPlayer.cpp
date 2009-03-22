@@ -172,8 +172,8 @@ void QUMediaPlayer::seek() {
 	pause();
 
 	BASS_SetPosition(pos);
-	autocue->seek(BASS_Position());
 	BASS_Resume();
+	autocue->seek(BASS_Position());
 	setState(QUMediaPlayer::playing);
 }
 
@@ -193,9 +193,9 @@ void QUMediaPlayer::updateTime() {
 	if(!timeSlider->isSliderDown())
 		timeSlider->setValue(posSec);
 
-	if(posSec <= info.length && posSec != -1)
+	if(posSec < info.length && posSec != -1) {
 		QTimer::singleShot(1000, this, SLOT(updateTime()));
-	else
+	} else
 		next();
 }
 
@@ -337,27 +337,14 @@ double QUMediaPlayer::BASS_Position() {
 	if(!_mediaStream)
 		return -1;
 
-	if(_currentSongIndex < 0 || _currentSongIndex >= _songs.size())
-		return -1; // invalid index
-
-	QUSongInfo info = _songs.at(_currentSongIndex);
-
-	QWORD len = BASS_ChannelGetLength(_mediaStream, BASS_POS_BYTE);
-	QWORD pos = BASS_ChannelGetPosition(_mediaStream, BASS_POS_BYTE);
-	return (info.lengthAudio * pos) / (double)len;
+	return BASS_ChannelBytes2Seconds(_mediaStream, BASS_ChannelGetPosition(_mediaStream, BASS_POS_BYTE));
 }
 
 void QUMediaPlayer::BASS_SetPosition(int seconds) {
 	if(!_mediaStream)
 		return;
 
-	if(_currentSongIndex < 0 || _currentSongIndex >= _songs.size())
-		return; // invalid index
-
-	QUSongInfo info = _songs.at(_currentSongIndex);
-
-	QWORD len = BASS_ChannelGetLength(_mediaStream, BASS_POS_BYTE);
-	QWORD pos = (seconds / (double)info.lengthAudio) * len;
+	QWORD pos = BASS_ChannelSeconds2Bytes(_mediaStream, (double)seconds);
 
 	if(!BASS_ChannelSetPosition(_mediaStream, pos, BASS_POS_BYTE)) {
 		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::warning);
