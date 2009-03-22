@@ -46,6 +46,9 @@ QUMediaPlayer::QUMediaPlayer(QWidget *parent): QWidget(parent) {
 	connect(this, SIGNAL(stateChanged(QUMediaPlayer::States)), this, SLOT(updateInfoLabel(QUMediaPlayer::States)));
 	connect(this, SIGNAL(stateChanged(QUMediaPlayer::States)), this, SLOT(updateTimeSlider(QUMediaPlayer::States)));
 
+	connect(shuffleBtn, SIGNAL(toggled(bool)), this, SLOT(loopShuffleToggled()));
+	connect(loopBtn, SIGNAL(toggled(bool)), this, SLOT(loopShuffleToggled()));
+
 	connect(timeSlider, SIGNAL(sliderReleased()), this, SLOT(seek()));
 
 	timeSlider->setMinimum(0);
@@ -72,17 +75,28 @@ void QUMediaPlayer::setSongs(const QList<QUSongFile*> &songs) {
 	foreach(QUSongFile *song, songs) {
 		_songs << QUSongInfo(song);
 	}
-	_currentSongIndex = 0;
+	_currentSongIndex = -1;
+	_lastIndices.clear();
+	_freeIndices.clear();
+	for(int i = 0; i < _songs.size(); i++) {
+		_freeIndices << i;
+	}
 }
 
 void QUMediaPlayer::play() {	
 	if(_mediaStream)
 		return;	// already playing
 
+	if(_currentSongIndex == -1) {
+		next();
+		return;
+	}
+
 	if(_currentSongIndex < 0 || _currentSongIndex >= _songs.size())
 		return; // invalid index
 
 	QUSongInfo info = _songs.at(_currentSongIndex);
+	_freeIndices.removeAll(_currentSongIndex);
 
 	_mediaStream = BASS_StreamCreateFile(FALSE, info.filePath.toLocal8Bit().data(), 0, 0, BASS_STREAM_PRESCAN);
 	autocue->reset(info.melody, info.bpm, info.gap, info.isRelative);
@@ -118,48 +132,49 @@ void QUMediaPlayer::resume() {
 }
 
 void QUMediaPlayer::prev() {
+	if(_songs.isEmpty())
+		return;
+
 	this->stop();
 
-	if(shuffleBtn->isChecked()) {
-		_lastIndices.pop_back();
-		this->_currentSongIndex = _lastIndices.last();
-	} else {
-		this->_currentSongIndex--;
-	}
+	// any song before?
+	if(_lastIndices.isEmpty())
+		return;
 
-	if(_currentSongIndex < 0) {
-		if(loopBtn->isChecked()) {
-			_currentSongIndex = _songs.size() - 1;
-		} else {
-			this->_currentSongIndex = 0;
-			this->stop();
-			return;
-		}
-	}
+	// which song now?
+	_freeIndices.prepend(_lastIndices.last());
+	_lastIndices.removeLast();
+	_freeIndices.prepend(_lastIndices.last());
+	qStableSort(_freeIndices);
+	this->_currentSongIndex = _lastIndices.last();
 
 	this->play();
 }
 
 void QUMediaPlayer::next() {
+	if(_songs.isEmpty())
+		return;
+
 	this->stop();
 
-	if(shuffleBtn->isChecked()) {
-		_lastIndices << qrand() % _songs.size();
-		this->_currentSongIndex = _lastIndices.last();
-	} else {
-		this->_currentSongIndex++;
-	}
-
-	if(_currentSongIndex >= _songs.size()) {
+	// any song left?
+	if(_freeIndices.isEmpty()) {
 		if(loopBtn->isChecked()) {
-			_currentSongIndex = 0;
+			for(int i = 0; i < _songs.size(); i++)
+				_freeIndices << i;
 		} else {
-			this->_currentSongIndex = qMin(_currentSongIndex + 1, _songs.size() - 1);
 			this->stop();
 			return;
 		}
 	}
 
+	// which song next?
+	if(shuffleBtn->isChecked()) {
+		_lastIndices << _freeIndices.at(qrand() % _freeIndices.size());
+	} else {
+		_lastIndices << _freeIndices.first();
+	}
+	this->_currentSongIndex = _lastIndices.last();
 	this->play();
 }
 
@@ -195,8 +210,9 @@ void QUMediaPlayer::updateTime() {
 
 	if(posSec < info.length && posSec != -1) {
 		QTimer::singleShot(1000, this, SLOT(updateTime()));
-	} else
+	} else if(state() != QUMediaPlayer::stopped) {
 		next();
+	}
 }
 
 void QUMediaPlayer::requestSongs() {
@@ -216,8 +232,8 @@ void QUMediaPlayer::requestSongs() {
 
 void QUMediaPlayer::updatePlayerControls(QUMediaPlayer::States state) {
 	if(state.testFlag(QUMediaPlayer::paused) || state.testFlag(QUMediaPlayer::playing)) {
-		prevBtn->setEnabled(loopBtn->isChecked() || (_songs.size() > 0 && _currentSongIndex > 0));
-		nextBtn->setEnabled(loopBtn->isChecked() || (_songs.size() > 0 && _currentSongIndex < _songs.size() - 1));
+		prevBtn->setEnabled(_lastIndices.size() > 1);
+		nextBtn->setEnabled(loopBtn->isChecked() || (!_freeIndices.isEmpty()));
 		stopBtn->setEnabled(true);
 	} else if(state.testFlag(QUMediaPlayer::stopped)) {
 		prevBtn->setEnabled(false);
@@ -272,6 +288,10 @@ void QUMediaPlayer::updateTimeSlider(QUMediaPlayer::States state) {
 	} else if(state.testFlag(QUMediaPlayer::stopped)) {
 		timeSlider->setEnabled(false);
 	}
+}
+
+void QUMediaPlayer::loopShuffleToggled() {
+	this->updatePlayerControls(state());
 }
 
 void QUMediaPlayer::setState(States newState) {

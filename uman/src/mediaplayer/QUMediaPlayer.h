@@ -65,6 +65,8 @@ private slots:
 	void updateInfoLabel(QUMediaPlayer::States state);
 	void updateTimeSlider(QUMediaPlayer::States state);
 
+	void loopShuffleToggled();
+
 signals:
 	void selectedSongsRequested();
 	void allSongsRequested();
@@ -78,6 +80,7 @@ private:
 	QList<QUSongInfo> _songs;
 	int _currentSongIndex;
 	QList<int> _lastIndices;
+	QList<int> _freeIndices;
 
 	QUMediaPlayer::States _state;
 	void setState(QUMediaPlayer::States newState);
