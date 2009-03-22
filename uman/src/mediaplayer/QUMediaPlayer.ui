@@ -197,6 +197,13 @@
       <number>5</number>
      </property>
      <item>
+      <widget class="QSlider" name="timeSlider">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QUAutoCue" name="autocue"/>
      </item>
      <item>

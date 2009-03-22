@@ -55,6 +55,7 @@ public slots:
 	void prev();
 	void next();
 	void resume();
+	void seek();
 
 	void requestSongs();
 
@@ -62,6 +63,7 @@ private slots:
 	void updateTime();
 	void updatePlayerControls(QUMediaPlayer::States state);
 	void updateInfoLabel(QUMediaPlayer::States state);
+	void updateTimeSlider(QUMediaPlayer::States state);
 
 signals:
 	void selectedSongsRequested();
@@ -86,6 +88,7 @@ private:
 	void BASS_Pause();
 	void BASS_Resume();
 	double BASS_Position();
+	void BASS_SetPosition(int seconds);
 };
 
 #endif /* QUMEDIAPLAYER_H_ */

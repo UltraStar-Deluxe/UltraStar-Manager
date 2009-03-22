@@ -30,6 +30,7 @@ public slots:
 
 	void pause();
 	void resume(double position);
+	void seek(double position);
 
 private slots:
 	void update();

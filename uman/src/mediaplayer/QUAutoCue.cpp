@@ -73,13 +73,7 @@ void QUAutoCue::reset(const QList<QUSongLineInterface*> &lines, double bpm, doub
 }
 
 void QUAutoCue::play() {
-	_startTime = QTime::currentTime();
-	_startTime.start();
-	_waitedMilliseconds = 0;
-	_cueListIndex = 0;
-	_stopRequested = false;
-	_pauseRequested = false;
-	update();
+	seek(0);
 }
 
 void QUAutoCue::stop() {
@@ -95,8 +89,6 @@ void QUAutoCue::pause() {
 }
 
 void QUAutoCue::resume(double position) {
-	qDebug(QVariant(position).toByteArray().data());
-
 	if(_cueList.isEmpty())
 		return;
 
@@ -113,6 +105,16 @@ void QUAutoCue::resume(double position) {
 
 	_pauseRequested = false;
 	_stopRequested = false;
+	update();
+}
+
+void QUAutoCue::seek(double position) {
+	_startTime = QTime::currentTime();
+	_startTime.start();
+	_waitedMilliseconds = (int)(-position * 1000);
+	_cueListIndex = 0;
+	_stopRequested = false;
+	_pauseRequested = false;
 	update();
 }
 

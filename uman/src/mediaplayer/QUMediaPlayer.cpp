@@ -44,6 +44,12 @@ QUMediaPlayer::QUMediaPlayer(QWidget *parent): QWidget(parent) {
 
 	connect(this, SIGNAL(stateChanged(QUMediaPlayer::States)), this, SLOT(updatePlayerControls(QUMediaPlayer::States)));
 	connect(this, SIGNAL(stateChanged(QUMediaPlayer::States)), this, SLOT(updateInfoLabel(QUMediaPlayer::States)));
+	connect(this, SIGNAL(stateChanged(QUMediaPlayer::States)), this, SLOT(updateTimeSlider(QUMediaPlayer::States)));
+
+	connect(timeSlider, SIGNAL(sliderReleased()), this, SLOT(seek()));
+
+	timeSlider->setMinimum(0);
+	timeSlider->setSingleStep(1);
 
 	if(!BASS_Init(-1, 44100, 0, 0, NULL))
 		logSrv->add("BASS was NOT loaded.", QU::warning);
@@ -94,12 +100,18 @@ void QUMediaPlayer::stop() {
 }
 
 void QUMediaPlayer::pause() {
+	if(state() == QUMediaPlayer::paused)
+		return;
+
 	BASS_Pause();
 	autocue->pause();
 	setState(QUMediaPlayer::paused);
 }
 
 void QUMediaPlayer::resume() {
+	if(state() != QUMediaPlayer::paused)
+		return;
+
 	autocue->resume(BASS_Position());
 	BASS_Resume();
 	setState(QUMediaPlayer::playing);
@@ -151,6 +163,20 @@ void QUMediaPlayer::next() {
 	this->play();
 }
 
+void QUMediaPlayer::seek() {
+	int pos = timeSlider->sliderPosition();
+
+	if(state() == QUMediaPlayer::stopped)
+		return;
+
+	pause();
+
+	BASS_SetPosition(pos);
+	autocue->seek(BASS_Position());
+	BASS_Resume();
+	setState(QUMediaPlayer::playing);
+}
+
 void QUMediaPlayer::updateTime() {
 	if(_currentSongIndex < 0 || _currentSongIndex >= _songs.size())
 		return; // invalid index
@@ -163,6 +189,9 @@ void QUMediaPlayer::updateTime() {
 			.arg(posSec % 60, 2, 10, QChar('0'))
 			.arg(info.length / 60)
 			.arg(info.length % 60, 2, 10, QChar('0')));
+
+	if(!timeSlider->isSliderDown())
+		timeSlider->setValue(posSec);
 
 	if(posSec <= info.length && posSec != -1)
 		QTimer::singleShot(1000, this, SLOT(updateTime()));
@@ -229,6 +258,19 @@ void QUMediaPlayer::updateInfoLabel(QUMediaPlayer::States state) {
 		timeLbl->setText("-:--");
 		infoIconLbl->setToolTip("");
 		autocue->setText(tr("<i>Hit the play-button to fetch all songs of the selected list below. Then the first song will start playing.</i>"));
+	}
+}
+
+void QUMediaPlayer::updateTimeSlider(QUMediaPlayer::States state) {
+	if(state.testFlag(QUMediaPlayer::playing) || state.testFlag(QUMediaPlayer::paused)) {
+		if(_currentSongIndex < 0 || _currentSongIndex >= _songs.size())
+			return; // invalid index
+		QUSongInfo info = _songs.at(_currentSongIndex);
+
+		timeSlider->setEnabled(true);
+		timeSlider->setMaximum(info.length);
+	} else if(state.testFlag(QUMediaPlayer::stopped)) {
+		timeSlider->setEnabled(false);
 	}
 }
 
@@ -303,4 +345,22 @@ double QUMediaPlayer::BASS_Position() {
 	QWORD len = BASS_ChannelGetLength(_mediaStream, BASS_POS_BYTE);
 	QWORD pos = BASS_ChannelGetPosition(_mediaStream, BASS_POS_BYTE);
 	return (info.lengthAudio * pos) / (double)len;
+}
+
+void QUMediaPlayer::BASS_SetPosition(int seconds) {
+	if(!_mediaStream)
+		return;
+
+	if(_currentSongIndex < 0 || _currentSongIndex >= _songs.size())
+		return; // invalid index
+
+	QUSongInfo info = _songs.at(_currentSongIndex);
+
+	QWORD len = BASS_ChannelGetLength(_mediaStream, BASS_POS_BYTE);
+	QWORD pos = (seconds / (double)info.lengthAudio) * len;
+
+	if(!BASS_ChannelSetPosition(_mediaStream, pos, BASS_POS_BYTE)) {
+		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::warning);
+		return;
+	}
 }
