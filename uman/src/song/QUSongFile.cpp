@@ -42,6 +42,9 @@ QUSongFile::QUSongFile(const QString &filePath, QObject *parent):
 }
 
 QUSongFile::~QUSongFile() {
+	qDeleteAll(_friends);
+	_friends.clear();
+
 	// do not watch for this file anymore
 	monty->watcher()->removePath(_fi.filePath());
 
@@ -1044,6 +1047,49 @@ void QUSongFile::clearMelody() {
 void QUSongFile::saveMelody() {
 	convertLyricsToRaw();
 }
+
+void QUSongFile::addFriend(QUSongFile *song) {
+	_friends << song;
+}
+
+bool QUSongFile::isFriend(const QFileInfo &fi) {
+	foreach(QUSongFile *song, _friends) {
+		if(song->songFileInfo() == fi)
+			return true;
+	}
+
+	return false;
+}
+
+/*!
+ * Assume that the friend is in the same directory. (should always be?)
+ */
+bool QUSongFile::isFriend(const QString &fileName) {
+	return isFriend(QFileInfo(songFileInfo().dir(), fileName));
+}
+
+bool QUSongFile::isFriend(QUSongFile *song) {
+	foreach(QUSongFile *fsong, _friends) {
+		if(fsong == song)
+			return true;
+	}
+
+	return false;
+}
+
+QUSongFile* QUSongFile::friendAt(const QFileInfo &fi) {
+	foreach(QUSongFile *song, _friends) {
+		if(song->songFileInfo() == fi)
+			return song;
+	}
+
+	return 0;
+}
+
+QUSongFile* QUSongFile::friendAt(const QString &fileName) {
+	return friendAt(QFileInfo(songFileInfo().dir(), fileName));
+}
+
 
 /*!
  * Coverts the raw lyrics to another format for further processing.

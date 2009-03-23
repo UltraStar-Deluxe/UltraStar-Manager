@@ -147,8 +147,16 @@ public slots:
 	virtual void clearMelody();
 	virtual void saveMelody();
 
+	// Friends: Support for karaoke and duet song files
+	void addFriend(QUSongFile *song);
+	bool isFriend(const QFileInfo &fi);
+	bool isFriend(const QString &fileName);
+	bool isFriend(QUSongFile *song);
+	QUSongFile* friendAt(const QFileInfo &fi);
+	QUSongFile* friendAt(const QString &fileName);
+
 signals:
-	void dataChanged();
+	void dataChanged(); // used to notify playlists for now
 	void externalSongFileChangeDetected(QUSongFile *song);
 
 private:
@@ -172,6 +180,8 @@ private:
 	void convertLyricsFromRaw();
 	void convertLyricsToRaw();
 	void lyricsAddNote(QString line);
+
+	QList<QUSongFile*> _friends; // karaoke or duet songs that share the same resources
 };
 
 #endif /*QUSONGFILE_H_*/

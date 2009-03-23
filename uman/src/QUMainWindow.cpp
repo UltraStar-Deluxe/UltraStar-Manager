@@ -431,6 +431,7 @@ void QUMainWindow::appendSong(QUSongFile *song) {
 	// react to changes
 	connect(song, SIGNAL(externalSongFileChangeDetected(QUSongFile*)), this, SLOT(processExternalSongFileChange(QUSongFile*)));
 
+	//TODO: What about friends?
 }
 
 /*!
@@ -517,21 +518,27 @@ void QUMainWindow::createSongFiles() {
 	dlg.show();
 
 	foreach(QDir dir, dirList) {
-		QFileInfoList songFiList = dir.entryInfoList(QUSongSupport::allowedSongFiles(), QDir::Files, QDir::Name);
-		qStableSort(songFiList.begin(), songFiList.end(), QU::fileTypeLessThan);
+		QFileInfoList songFiList = dir.entryInfoList(QUSongSupport::allowedSongFiles() << QUSongSupport::allowedKaraokeFiles(), QDir::Files, QDir::Name);
+		qStableSort(songFiList.begin(), songFiList.end(), QU::fileTypeLessThan); // ensure that song files will be preferred
 
 		dlg.update(dir.dirName());
 		if(dlg.cancelled()) break;
 
+		QUSongFile *newSong = 0;
+
 		foreach(QFileInfo fi, songFiList) {
-			if( !QUSongSupport::allowedLicenseFiles().contains(fi.fileName(), Qt::CaseInsensitive) ) {
-				QUSongFile *newSong = new QUSongFile(songFiList.first().filePath());
+			if( QUSongSupport::allowedLicenseFiles().contains(fi.fileName(), Qt::CaseInsensitive) )
+				continue; // skip license files (txt)
 
-				this->appendSong(newSong);
-				songTree->addTopLevelItem(new QUSongItem(newSong, true));
+			if(!newSong)
+				newSong = new QUSongFile(fi.filePath());
+			else // found a friend!
+				newSong->addFriend(new QUSongFile(fi.filePath()));
+		}
 
-				break;
-			}
+		if(newSong) { // some song found
+			this->appendSong(newSong);
+			songTree->addTopLevelItem(new QUSongItem(newSong, true));
 		}
 	}
 
@@ -1056,17 +1063,16 @@ void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
 		QUTextDialog *dlg = new QUTextDialog(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(FOLDER_COLUMN)).filePath(), this);
 		dlg->exec();
 		delete dlg;
-	} else if(QUSongSupport::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-		// use this song text file for the folder now
-		// --> useful for more than one valid song text file per folder
-		songItem->song()->setFile(QFileInfo(songItem->song()->songFileInfo().dir(), item->text(FOLDER_COLUMN)).filePath());
-
-		songTree->setCurrentItem(songItem->parent());
-		songItem->update();
+	} else if(songItem->song()->isFriend(item->text(FOLDER_COLUMN))) {
+		// show (raw) content of friend song
+		QUTextDialog dlg(songItem->song()->friendAt(item->text(FOLDER_COLUMN)), this);
+		dlg.exec();
 	} else if(QUSongSupport::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QUPictureDialog dlg(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(FOLDER_COLUMN)).filePath(), this);
 		dlg.exec();
-	} else if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive) or QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive) or QUSongSupport::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+	} else if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)
+		or QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)
+		or QUSongSupport::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QFileInfo fi(songItem->song()->path(), songItem->text(FOLDER_COLUMN));
 		if( !QDesktopServices::openUrl(QUrl(fi.filePath())) )
 			logSrv->add(QString(tr("Could NOT open file: \"%1\".")).arg(fi.filePath()), QU::warning);
@@ -1239,7 +1245,7 @@ void QUMainWindow::processExternalSongFileChange(QUSongFile *song) {
 	}
 
 	foreach(QUSongItem *songItem, songTree->allSongItems()) {
-		if(songItem->song() == song) {
+		if(songItem->song() == song or songItem->song()->isFriend(song)) {
 			song->updateCache();
 			songItem->update();
 			songTree->setCurrentItem(songItem);

@@ -127,15 +127,22 @@ void QUSongItem::updateAsTxt() {
 
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/text.png"));
 
-	if(QString::compare(this->text(FOLDER_COLUMN), song()->songFileInfo().fileName(), Qt::CaseInsensitive) != 0) {
-		// unnecessary song text file, not used
-		this->setTextColor(FOLDER_COLUMN, Qt::gray);
-
-		// Show that there are multiple songs in this folder available.
-		(dynamic_cast<QUSongItem*>(this->parent()))->showMultipleSongsIcon(this->text(FOLDER_COLUMN));
-	} else {
+	if(QString::compare(this->text(FOLDER_COLUMN), song()->songFileInfo().fileName(), Qt::CaseInsensitive) == 0) {
+		// song itself found
 		this->setTextColor(FOLDER_COLUMN, Qt::blue);
+		return;
 	}
+
+	if(song()->isFriend(this->text(FOLDER_COLUMN))) {
+		// friend found
+		this->setTextColor(FOLDER_COLUMN, Qt::red);
+	} else {
+		// unnecessary song text file, not used --- SHOULD NEVER HAPPEN!
+		this->setTextColor(FOLDER_COLUMN, Qt::gray);
+	}
+
+	// Show that there are multiple songs in this folder available.
+	(dynamic_cast<QUSongItem*>(this->parent()))->showMultipleSongsIcon(this->text(FOLDER_COLUMN));
 }
 
 void QUSongItem::updateAsMp3() {
@@ -206,12 +213,9 @@ void QUSongItem::updateAsMidi() {
 }
 
 void QUSongItem::updateAsKaraoke() {
-	clearContents();
+	updateAsTxt();
 
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/karaoke.png"));
-
-	// special files, special color ^_^
-	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
 }
 
 void QUSongItem::updateAsScore() {
@@ -263,7 +267,7 @@ void QUSongItem::showMultipleSongsIcon(QString fileName) {
 	this->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/text_stack.png"));
 
 	if(this->toolTip(MULTIPLE_SONGS_COLUMN).isEmpty())
-		this->setToolTip(MULTIPLE_SONGS_COLUMN, QString(QObject::tr("Multiple songs found:\n* %1 (active)")).arg(song()->songFileInfo().fileName())); // headline for the tooltip
+		this->setToolTip(MULTIPLE_SONGS_COLUMN, QString(QObject::tr("Multiple songs found:\n* %1 (primary)")).arg(song()->songFileInfo().fileName())); // headline for the tooltip
 
 	if(!fileName.isEmpty())
 		this->setToolTip(MULTIPLE_SONGS_COLUMN, QString("%1\n* %2").arg(this->toolTip(MULTIPLE_SONGS_COLUMN)).arg(fileName));
