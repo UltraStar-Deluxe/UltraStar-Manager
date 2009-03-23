@@ -155,13 +155,23 @@ void QUAutoCue::mark(int pos, int width) {
 	QScrollBar *bar = verticalScrollBar();
 	bar->setValue(bar->maximum());
 
-	QTextCursor tc = textCursor();
+	// remove any highlighting
+	QTextCursor tc = textCursor();	
+	tc.select(QTextCursor::Document);
+	setTextCursor(tc);
+	setTextColor(Qt::black);
+	setTextBackgroundColor(Qt::white);
+
+	// select current syllable
 	tc.setPosition(pos);
-	tc.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, width); // make selection
+	tc.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, width);
 	setTextCursor(tc);
 
-//	setTextColor(Qt::blue); // apply color to selection
+	// highlight selection
+	setTextColor(Qt::white);
+	setTextBackgroundColor(Qt::black);
 
-//	tc.setPosition(pos); // remove selection
-//	setTextCursor(tc);
+	// remove selection
+	tc.setPosition(pos);
+	setTextCursor(tc);
 }
