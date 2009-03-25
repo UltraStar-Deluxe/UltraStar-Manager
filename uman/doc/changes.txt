@@ -60,6 +60,13 @@ TASKS
 AMAZON COVER DOWNLOAD
 * link of 'Buy' button is not correct
 
+USABILITY
+* F2 should be Edit in Song Details not a new report
+  > double-click not intuitive for all users (explorer metaphor)
+  
+FILE TYPES
+* kar-files are just midi files with lyrics -> no karaoke versions of songs for USdx
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
 ABOUT
@@ -111,12 +118,16 @@ NEW STUFF
   > "custom editions" like "custom tags"?
   > check songs if they are in that Edition? -> use for renaming tasks (conditions)
 
+SUPPORTED FILE TYPES
+* xml files from Singstar (melody.xml or different)
+
 MULTI-TXT SUPPORT
 * add support for karaoke versions
 * add support for duets
 
-SONG PROPERTIES
-* is Singstar-Song? (look into EDITION) -> [SS] Rename Tasks?
+SONGS
+* new property: is Singstar-Song? (look into EDITION) -> [SS] Rename Tasks?
+* write empty tags
 
 TASKS
 ! better error handling for "path change tasks"

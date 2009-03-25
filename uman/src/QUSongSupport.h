@@ -14,10 +14,10 @@ public:
 	static QStringList availableCustomTags();
 	static QStringList availableNoteTypes();
 
-	static QStringList allowedSongFiles();
+	static QStringList allowedSongFiles(); // duet too
 	static QStringList allowedLicenseFiles();
 	static QStringList allowedMidiFiles();
-	static QStringList allowedKaraokeFiles();
+	static QStringList allowedKaraokeFiles(); // MIDI + Lyrics
 	static QStringList allowedScoreFiles();
 
 	static QStringList allowedAudioFiles();

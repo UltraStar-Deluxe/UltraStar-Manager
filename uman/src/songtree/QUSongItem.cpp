@@ -213,9 +213,12 @@ void QUSongItem::updateAsMidi() {
 }
 
 void QUSongItem::updateAsKaraoke() {
-	updateAsTxt();
+	clearContents();
 
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/karaoke.png"));
+
+	// special files, special color ^_^
+	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
 }
 
 void QUSongItem::updateAsScore() {

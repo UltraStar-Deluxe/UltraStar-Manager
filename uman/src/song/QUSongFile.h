@@ -27,7 +27,7 @@ public:
     virtual void log(const QString &message, int type);
 
 	bool hasUnsavedChanges() const { return _hasUnsavedChanges; }
-	void setFile(const QString &filePath);
+	void setFile(const QString &filePath, bool update = true);
 
 	bool updateCache();
 
@@ -85,7 +85,11 @@ public slots:
 	bool hasCover() const;
 	bool hasBackground() const;
 	bool hasVideo() const;
+
 	bool isSongChecked() const; // for [SC]
+	bool isSingStar() const;
+	bool isDuet() const;
+	bool isKaraoke() const;
 
 	int length();
 	int lengthMp3() const;
@@ -98,7 +102,7 @@ public slots:
 
 	QStringList lyrics() const;
 
-	QFileInfo songFileInfo() const {return _fi;} //!< \returns a file info for the current US song file
+	QFileInfo songFileInfo() const { QFileInfo result(_fi); result.refresh(); return result; } //!< \returns a file info for the current US song file
 
 	QFileInfo mp3FileInfo() const {return QFileInfo(_fi.dir(), mp3());} //!< \returns a file info for the mp3 file
 	QFileInfo coverFileInfo() const {return QFileInfo(_fi.dir(), cover());} //!< \returns a file info for the cover file
@@ -154,13 +158,17 @@ public slots:
 	bool isFriend(QUSongFile *song);
 	QUSongFile* friendAt(const QFileInfo &fi);
 	QUSongFile* friendAt(const QString &fileName);
+	QList<QUSongFile*> friends() const { return _friends; }
+	void changeData(const QString &tag, const QString &value);
 
 signals:
 	void dataChanged(); // used to notify playlists for now
+	void dataChanged(const QString &tag, const QString &value);
 	void externalSongFileChangeDetected(QUSongFile *song);
 
 private:
 	QFileInfo _fi;
+	QStringList _fiTags; // list of original []-tags, e.g. "Wizo - Hund [karaoke] [blubb].txt"
 
 	QMap<QString, QString> _info; // song header
 	QStringList _lyrics;          // lyrics

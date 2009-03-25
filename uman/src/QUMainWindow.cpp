@@ -189,7 +189,7 @@ void QUMainWindow::initWindow() {
 	addDockWidget(Qt::LeftDockWidgetArea, previewDock); previewDock->hide();
 	addDockWidget(Qt::RightDockWidgetArea, eventsDock); eventsDock->hide();
 	addDockWidget(Qt::RightDockWidgetArea, playlistDock); playlistDock->hide();
-	addDockWidget(Qt::BottomDockWidgetArea, mediaPlayerDock); //mediaPlayerDock->hide();
+	addDockWidget(Qt::RightDockWidgetArea, mediaPlayerDock); mediaPlayerDock->hide();
 
 	connect(logSrv, SIGNAL(messageAdded(const QString&, QU::EventMessageTypes)), this, SLOT(addLogMsg(const QString&, QU::EventMessageTypes)));
 
@@ -518,8 +518,8 @@ void QUMainWindow::createSongFiles() {
 	dlg.show();
 
 	foreach(QDir dir, dirList) {
-		QFileInfoList songFiList = dir.entryInfoList(QUSongSupport::allowedSongFiles() << QUSongSupport::allowedKaraokeFiles(), QDir::Files, QDir::Name);
-		qStableSort(songFiList.begin(), songFiList.end(), QU::fileTypeLessThan); // ensure that song files will be preferred
+		QFileInfoList songFiList = dir.entryInfoList(QUSongSupport::allowedSongFiles(), QDir::Files, QDir::Name);
+		qStableSort(songFiList.begin(), songFiList.end(), QU::fileTypeLessThan);
 
 		dlg.update(dir.dirName());
 		if(dlg.cancelled()) break;
@@ -1072,6 +1072,7 @@ void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
 		dlg.exec();
 	} else if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)
 		or QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)
+		or QUSongSupport::allowedKaraokeFiles().contains(fileScheme, Qt::CaseInsensitive)
 		or QUSongSupport::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QFileInfo fi(songItem->song()->path(), songItem->text(FOLDER_COLUMN));
 		if( !QDesktopServices::openUrl(QUrl(fi.filePath())) )

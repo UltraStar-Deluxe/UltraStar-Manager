@@ -53,7 +53,7 @@ QStringList QUSongSupport::availableNoteTypes() {
 }
 
 QStringList QUSongSupport::allowedSongFiles() {
-	return registryKey("allowedSongFiles", "*.txt");
+	return registryKey("allowedSongFiles", "*.txt *.txd");
 }
 
 QStringList QUSongSupport::allowedLicenseFiles() {

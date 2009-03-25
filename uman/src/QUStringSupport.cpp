@@ -83,3 +83,18 @@ QString QUStringSupport::withoutAnyUmlautEx(const QString &text) {
 
 	return result;
 }
+
+QStringList QUStringSupport::extractTags(const QString &text) {
+	// Step 1: "Wizo - Hund [karaoke] [blubb].txt" -> "karaoke] ", "blubb].txt"
+	QStringList tags(text.split("[").filter("]") << text.split("(").filter(")"));
+
+	// Step 2: "karaoke] ", "blubb].txt" -> "karaoke", "blubb"
+	foreach(QString tag, tags) {
+		tag.remove(QRegExp("\\].*"));
+		tag.remove(QRegExp("\\).*"));
+		tag = tag.trimmed();
+	}
+
+	tags.removeDuplicates();
+	return tags;
+}

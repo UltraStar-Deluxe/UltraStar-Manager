@@ -38,6 +38,8 @@ QUSongFile::QUSongFile(const QString &filePath, QObject *parent):
 {
 	connect(monty->watcher(), SIGNAL(fileChanged(const QString&)), this, SLOT(songFileChanged(const QString&)));
 
+	_fiTags = QUStringSupport::extractTags(QFileInfo(filePath).fileName()); // save []-tags of song file name to recognize karaoke and duet songs later
+
 	this->setFile(filePath);
 }
 
@@ -61,7 +63,7 @@ void QUSongFile::log(const QString &message, int type) {
 /*!
  * Here you can set up a new file that will be used for this song.
  */
-void QUSongFile::setFile(const QString &filePath) {
+void QUSongFile::setFile(const QString &filePath, bool update) {
 	// remove old file from watching
 	monty->watcher()->removePath(_fi.filePath());
 	// no double entries
@@ -69,7 +71,8 @@ void QUSongFile::setFile(const QString &filePath) {
 
 	// setup new file
 	_fi.setFile(filePath);
-	updateCache();
+	if(update)
+		updateCache();
 
 	// watch for external changes
 	monty->watcher()->addPath(filePath);
@@ -220,6 +223,7 @@ void QUSongFile::setInfo(const QString &tag, const QString &value) {
 	}
 
 	emit dataChanged();
+	emit dataChanged(tag, value);
 }
 
 /*!
@@ -278,6 +282,43 @@ bool QUSongFile::hasVideo() const {
 bool QUSongFile::isSongChecked() const {
 	return edition().contains("[SC]", Qt::CaseInsensitive);
 }
+
+bool QUSongFile::isSingStar() const {
+	return edition().contains("singstar", Qt::CaseInsensitive);
+}
+
+/*!
+ * Try to decide if this song is a duet. This feature will be new in USdx 1.1.
+ * Actually there are three possibilities:
+ *
+ * > song file extension is 'txd'
+ * > song has a friend with extension 'txt' and []-tag for the role
+ * > song is based on special XML format which tells its type (maybe later)
+ */
+bool QUSongFile::isDuet() const {
+	if( QString::compare(songFileInfo().suffix(), "txd", Qt::CaseInsensitive) == 0 )
+		return true;
+
+	QRegExp rxTag("kar(aoke)?", Qt::CaseInsensitive);
+	foreach(QString fiTag, _fiTags) { // look for a []-tag that could be the singer name
+		if(!rxTag.exactMatch(fiTag))
+			return true;
+	}
+
+	return false;
+}
+
+bool QUSongFile::isKaraoke() const {
+	QRegExp rxTag("kar(aoke)?", Qt::CaseInsensitive);
+
+	foreach(QString fiTag, _fiTags) { // look for a []-tag that could be the singer name
+		if(fiTag.contains(rxTag))
+			return true;
+	}
+
+	return title().contains(rxTag) || edition().contains(rxTag);
+}
+
 
 /*!
  * \returns the length of this song accoring to BPM and length of lyrics, in seconds
@@ -491,6 +532,9 @@ QStringList QUSongFile::lyrics() const {
  * \returns True on success, otherwise false.
  */
 bool QUSongFile::save(bool force) {
+	foreach(QUSongFile *song, _friends)
+		song->save(force);
+
 	if(!force && !monty->autoSaveEnabled()) {
 		_hasUnsavedChanges = true;
 		return true;
@@ -613,7 +657,7 @@ void QUSongFile::renameSongTxt(const QString &newName) {
 		return;
 	}
 
-	_fi.setFile(_fi.dir().path() + "/" + newName);
+	this->setFile(_fi.dir().path() + "/" + newName, false);
 
 	logSrv->add(QString(tr("Song file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::information);
 }
@@ -1050,6 +1094,7 @@ void QUSongFile::saveMelody() {
 
 void QUSongFile::addFriend(QUSongFile *song) {
 	_friends << song;
+	connect(this, SIGNAL(dataChanged(QString,QString)), _friends.last(), SLOT(changeData(QString,QString)));
 }
 
 bool QUSongFile::isFriend(const QFileInfo &fi) {
@@ -1090,6 +1135,13 @@ QUSongFile* QUSongFile::friendAt(const QString &fileName) {
 	return friendAt(QFileInfo(songFileInfo().dir(), fileName));
 }
 
+/*!
+ * React if your friend was changed.
+ */
+void QUSongFile::changeData(const QString &tag, const QString &value) {
+	// share all resources for now
+	this->setInfo(tag, value);
+}
 
 /*!
  * Coverts the raw lyrics to another format for further processing.
