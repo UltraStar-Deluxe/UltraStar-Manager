@@ -1160,8 +1160,11 @@ void QUSongFile::changeData(const QString &tag, const QString &value) {
 		setInfo(tag, QString("%1 %2")
 				.arg(QUStringSupport::withoutFolderTags(value)) // ignore other []-tags
 				.arg(_fiTags.join("] [").prepend("[").append("]"))); // just use your own []-tags
-	} else if(QString::compare(tag, GAP_TAG, Qt::CaseInsensitive) != 0) {
-		// share all values except: #GAP
+	} else if(isKaraoke() && QString::compare(tag, MP3_TAG, Qt::CaseInsensitive) == 0) {
+		; // karaoke songs use their own audio files - do nothing
+	} else if(QString::compare(tag, GAP_TAG, Qt::CaseInsensitive) != 0
+			  && QString::compare(tag, EDITION_TAG, Qt::CaseInsensitive) != 0) {
+		// share all values except: #GAP, #EDITION
 		setInfo(tag, value);
 	}
 }

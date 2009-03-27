@@ -11,6 +11,46 @@
 MEDIA PLAYER
 * play a song and watch the lyrics
 
+SONGS
+* cache any []-tags in the filename at song load
+  > e.g. "Wizo - Hund [kar] [foo].txt" caches "kar" and "foo"
+  > used for recognition of karaoke songs
+  > used for recognition of duet songs (at least one possibility)
+  > used for song friends
+
+SONG/ID3 TAG TASKS
+* new conditions: "isDuet", "isKaraoke"
+
+RENAME TASKS
+* new conditions: "isDuet", "isKaraoke"
+* new source: "titlecompact" -> #TITLE without []-tags
+
+SONG FRIENDS
+* if more than one song is in a folder, the first one will be the primary
+  song and the rest will be "songs friends"
+* share primary song's tags except #GAP, #EDITION
+  > karaoke songs do not share #MP3
+  > song friends append all cached []-tags to #TITLE
+* limited access to song friends possible
+
+KARAOKE SONGS
+* meet one of the following requirements
+  > #EDITION contains "karaoke" or "kar"
+  > #TITLE contains "karaoke" or "kar"
+  > cached []-tags from filename contain "kar" or "karaoke"
+
+DUET SONGS
+* meet one of the following requirements
+  > song filename suffix is "txd"
+  > cached []-tags from filename contain one that is not "kar" or "karaoke"
+
+SONG TREE
+* column for multiple songs displays now the type of each song text file
+  > types of song friends are also shown here
+
+SUPPORTED FILE TYPES
+* "*.txd" for duet songs added
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 QT
@@ -20,6 +60,9 @@ QT
 PLUGINS
 * tasks are now plugins
 * "Fix spaces at end of line" -> "Fix spaces"
+
+SUPPORTED FILE TYPES
+* icon for "*.kar" files changed -> these are only MIDI files with lyrics
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
