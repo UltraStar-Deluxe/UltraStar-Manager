@@ -94,6 +94,7 @@
         <file>uncheck_tasks.png</file>
         <file>merge.png</file>
         <file>plugin.png</file>
+        <file>mediaplayer.png</file>
     </qresource>
     <qresource prefix="/icons" >
         <file>splash.png</file>
@@ -182,6 +183,8 @@
         <file>text.png</file>
         <file>unused_files.png</file>
         <file>user.png</file>
+        <file>midi_kar.png</file>
+        <file>duet.png</file>
     </qresource>
     <qresource prefix="/big" >
         <file>save_big.png</file>

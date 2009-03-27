@@ -160,10 +160,12 @@ public slots:
 	QUSongFile* friendAt(const QString &fileName);
 	QList<QUSongFile*> friends() const { return _friends; }
 	void changeData(const QString &tag, const QString &value);
+	void renameSong(const QString &fileName);
 
 signals:
 	void dataChanged(); // used to notify playlists for now
 	void dataChanged(const QString &tag, const QString &value);
+	void songRenamed(const QString &fileName);
 	void externalSongFileChangeDetected(QUSongFile *song);
 
 private:

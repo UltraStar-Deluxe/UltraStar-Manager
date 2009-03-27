@@ -48,7 +48,8 @@ QUSongFile::~QUSongFile() {
 	_friends.clear();
 
 	// do not watch for this file anymore
-	monty->watcher()->removePath(_fi.filePath());
+	if(monty->watcher()->files().contains(_fi.filePath()))
+		monty->watcher()->removePath(_fi.filePath());
 
 	disconnect(this, 0, 0, 0);
 }
@@ -65,9 +66,11 @@ void QUSongFile::log(const QString &message, int type) {
  */
 void QUSongFile::setFile(const QString &filePath, bool update) {
 	// remove old file from watching
-	monty->watcher()->removePath(_fi.filePath());
+	if(monty->watcher()->files().contains(_fi.filePath()))
+		monty->watcher()->removePath(_fi.filePath());
 	// no double entries
-	monty->watcher()->removePath(filePath);
+	if(monty->watcher()->files().contains(filePath))
+		monty->watcher()->removePath(filePath);
 
 	// setup new file
 	_fi.setFile(filePath);
@@ -658,6 +661,7 @@ void QUSongFile::renameSongTxt(const QString &newName) {
 	}
 
 	this->setFile(_fi.dir().path() + "/" + newName, false);
+	emit songRenamed(newName);
 
 	logSrv->add(QString(tr("Song file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::information);
 }
@@ -1095,6 +1099,7 @@ void QUSongFile::saveMelody() {
 void QUSongFile::addFriend(QUSongFile *song) {
 	_friends << song;
 	connect(this, SIGNAL(dataChanged(QString,QString)), _friends.last(), SLOT(changeData(QString,QString)));
+	connect(this, SIGNAL(songRenamed(QString)), _friends.last(), SLOT(renameSong(QString)));
 }
 
 bool QUSongFile::isFriend(const QFileInfo &fi) {
@@ -1139,8 +1144,25 @@ QUSongFile* QUSongFile::friendAt(const QString &fileName) {
  * React if your friend was changed.
  */
 void QUSongFile::changeData(const QString &tag, const QString &value) {
-	// share all resources for now
-	this->setInfo(tag, value);
+	// restore all []-tags for the title
+	if(QString::compare(tag, TITLE_TAG, Qt::CaseInsensitive) == 0) {
+		setInfo(tag, QString("%1 %2")
+				.arg(QString(value).remove(QRegExp("\\[.*\\]")).trimmed()) // ignore other []-tags
+				.arg(_fiTags.join("] [").prepend("[").append("]"))); // just use your own []-tags
+	} else if(QString::compare(tag, GAP_TAG, Qt::CaseInsensitive) != 0) {
+		// share all values except: #GAP
+		setInfo(tag, value);
+	}
+}
+
+/*!
+ * Rename yourself if your friend was renamed.
+ */
+void QUSongFile::renameSong(const QString &fileName) {
+	renameSongTxt(QString("%1 %2.%3")
+		.arg(QFileInfo(songFileInfo().dir(), fileName).baseName().remove(QRegExp("\\[.*\\]")).trimmed())
+		.arg(_fiTags.join("] [").prepend("[").append("]"))
+		.arg(songFileInfo().suffix()));
 }
 
 /*!

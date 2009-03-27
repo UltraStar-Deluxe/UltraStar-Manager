@@ -252,13 +252,14 @@ void QUMainWindow::initMenu() {
 	previewDock->toggleViewAction()->setIcon(QIcon(":/control/file_info.png"));
 	playlistDock->toggleViewAction()->setIcon(QIcon(":/control/playlist.png"));
 	eventsDock->toggleViewAction()->setIcon(QIcon(":/control/log.png"));
+	mediaPlayerDock->toggleViewAction()->setIcon(QIcon(":/control/mediaplayer.png"));
 
 	this->viewBar->addAction(detailsDock->toggleViewAction());
 	this->viewBar->addAction(tasksDock->toggleViewAction());
 	this->viewBar->addAction(playlistDock->toggleViewAction());
 	this->viewBar->addAction(previewDock->toggleViewAction());
 	this->viewBar->addAction(eventsDock->toggleViewAction());
-//	this->viewBar->addAction(mediaPlayerDock->toggleViewAction()); /* add an icon - then uncomment */
+	this->viewBar->addAction(mediaPlayerDock->toggleViewAction());
 
 	this->menuView->addAction(detailsDock->toggleViewAction());
 	this->menuView->addAction(tasksDock->toggleViewAction());

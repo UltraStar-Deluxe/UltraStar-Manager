@@ -85,16 +85,14 @@ QString QUStringSupport::withoutAnyUmlautEx(const QString &text) {
 }
 
 QStringList QUStringSupport::extractTags(const QString &text) {
-	// Step 1: "Wizo - Hund [karaoke] [blubb].txt" -> "karaoke] ", "blubb].txt"
-	QStringList tags(text.split("[").filter("]") << text.split("(").filter(")"));
+	QRegExp rx = QRegExp("\\[([^\\]]*)\\]");
+	QStringList tags;
+	int pos = 0;
 
-	// Step 2: "karaoke] ", "blubb].txt" -> "karaoke", "blubb"
-	foreach(QString tag, tags) {
-		tag.remove(QRegExp("\\].*"));
-		tag.remove(QRegExp("\\).*"));
-		tag = tag.trimmed();
+	while ((pos = rx.indexIn(text, pos)) != -1) {
+		tags << rx.cap(1).trimmed();
+		 pos += rx.matchedLength();
 	}
 
-	tags.removeDuplicates();
 	return tags;
 }

@@ -308,7 +308,7 @@ QStringList QUDetailItem::defaultData(QUSongFile *song) {
 		}
 	}
 	else if(QString::compare(tag(), EDITION_TAG) == 0) {
-		dropDownData << "[SC]-Songs";
+		dropDownData << "[SC]-Songs" << "SingStar" << "Karaoke";
 	}
 
 	return dropDownData;

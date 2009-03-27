@@ -67,7 +67,7 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 	types->addChild(this->createInfoItem(QIcon(":/control/playlist.png"), tr("Playlist"), QUSongSupport::allowedPlaylistFiles().join(" ")));
 	types->addChild(this->createInfoItem(QIcon(":/types/license.png"), tr("License"), QUSongSupport::allowedLicenseFiles().join(" ")));
 	types->addChild(this->createInfoItem(QIcon(":/types/midi.png"), tr("MIDI"), QUSongSupport::allowedMidiFiles().join(" ")));
-	types->addChild(this->createInfoItem(QIcon(":/types/karaoke.png"), tr("Karaoke"),QUSongSupport::allowedKaraokeFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/midi_kar.png"), tr("Karaoke"),QUSongSupport::allowedKaraokeFiles().join(" ")));
 	types->addChild(this->createInfoItem(QIcon(":/types/score.png"), tr("Score"), QUSongSupport::allowedScoreFiles().join(" ")));
 
 	// set up "current" toplevel item

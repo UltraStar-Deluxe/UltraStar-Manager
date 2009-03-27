@@ -130,12 +130,30 @@ void QUSongItem::updateAsTxt() {
 	if(QString::compare(this->text(FOLDER_COLUMN), song()->songFileInfo().fileName(), Qt::CaseInsensitive) == 0) {
 		// song itself found
 		this->setTextColor(FOLDER_COLUMN, Qt::blue);
+
+		if(song()->isDuet()) {
+			this->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/duet.png"));
+			this->setToolTip(MULTIPLE_SONGS_COLUMN, QObject::tr("This song is for two or more singers."));
+		} else if(song()->isKaraoke()) {
+			this->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/karaoke.png"));
+			this->setToolTip(MULTIPLE_SONGS_COLUMN, QObject::tr("This is a karaoke song, which means that the audio file contains no singing voice."));
+		}
+
 		return;
 	}
 
 	if(song()->isFriend(this->text(FOLDER_COLUMN))) {
 		// friend found
 		this->setTextColor(FOLDER_COLUMN, Qt::red);
+		QUSongFile* f = song()->friendAt(this->text(FOLDER_COLUMN));
+		if(f->isDuet()) {
+			this->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/duet.png"));
+			this->setToolTip(MULTIPLE_SONGS_COLUMN, QObject::tr("This song is for two or more singers."));
+		} else if(f->isKaraoke()) {
+			this->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/karaoke.png"));
+			this->setToolTip(MULTIPLE_SONGS_COLUMN, QObject::tr("This is a karaoke song, which means that the audio file contains no singing voice."));
+		}
+
 	} else {
 		// unnecessary song text file, not used --- SHOULD NEVER HAPPEN!
 		this->setTextColor(FOLDER_COLUMN, Qt::gray);
