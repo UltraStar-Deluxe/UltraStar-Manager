@@ -31,11 +31,9 @@ QString QUStringSupport::withoutUnsupportedCharacters (const QString &text) {
  * Remove all "folder tags" like [SC], [VIDEO], a.s.o. from the given text.
  */
 QString QUStringSupport::withoutFolderTags(const QString &text) {
-	QString result = text;
-	QRegExp r("\\[.*\\]");
-	r.setMinimal(true);
-
-	return result.remove(r).trimmed();
+	QRegExp rx("\\[.*\\]");
+	rx.setMinimal(true);
+	return QString(text).remove(rx).trimmed();
 }
 
 /*!

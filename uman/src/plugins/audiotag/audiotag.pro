@@ -39,8 +39,9 @@ TEMPLATE = lib
 CONFIG += plugin
 CONFIG -= debug
 DESTDIR = ../../../bin/wip/plugins
-OBJECTS_DIR = tmp
-MOC_DIR = tmp
+OBJECTS_DIR = ../tmp/audiotag
+MOC_DIR = ../tmp/audiotag
+UI_DIR = ../ui
 QT += xml
 win32 { 
     INCLUDEPATH += ../../../include/taglib

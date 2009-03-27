@@ -322,6 +322,14 @@ bool QUSongFile::isKaraoke() const {
 	return title().contains(rxTag) || edition().contains(rxTag);
 }
 
+/*!
+ * \returns The #TITLE-tag without []-tags
+ */
+QString QUSongFile::titleCompact() const {
+	logSrv->add(title(), QU::information);
+	logSrv->add(QUStringSupport::withoutFolderTags(title()), QU::information);
+	return QUStringSupport::withoutFolderTags(title());
+}
 
 /*!
  * \returns the length of this song accoring to BPM and length of lyrics, in seconds
@@ -994,7 +1002,9 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 	}
 
 	// change internal song location
-	_fi = QFileInfo(QU::BaseDir, destination + "/" + _fi.fileName()).filePath();
+	setFile(QFileInfo(QU::BaseDir, destination + "/" + _fi.fileName()).filePath(), false);
+	emit songPathChanged(_fi.filePath());
+
 	logSrv->add(QString(tr("Location of song \"%1 - %2\" successfully changed to \"%3\" in your UltraStar song folder.")).arg(artist()).arg(title()).arg(newRelativePath), QU::information);
 }
 
@@ -1100,6 +1110,7 @@ void QUSongFile::addFriend(QUSongFile *song) {
 	_friends << song;
 	connect(this, SIGNAL(dataChanged(QString,QString)), _friends.last(), SLOT(changeData(QString,QString)));
 	connect(this, SIGNAL(songRenamed(QString)), _friends.last(), SLOT(renameSong(QString)));
+	connect(this, SIGNAL(songPathChanged(QString)), _friends.last(), SLOT(changeSongPath(QString)));
 }
 
 bool QUSongFile::isFriend(const QFileInfo &fi) {
@@ -1147,7 +1158,7 @@ void QUSongFile::changeData(const QString &tag, const QString &value) {
 	// restore all []-tags for the title
 	if(QString::compare(tag, TITLE_TAG, Qt::CaseInsensitive) == 0) {
 		setInfo(tag, QString("%1 %2")
-				.arg(QString(value).remove(QRegExp("\\[.*\\]")).trimmed()) // ignore other []-tags
+				.arg(QUStringSupport::withoutFolderTags(value)) // ignore other []-tags
 				.arg(_fiTags.join("] [").prepend("[").append("]"))); // just use your own []-tags
 	} else if(QString::compare(tag, GAP_TAG, Qt::CaseInsensitive) != 0) {
 		// share all values except: #GAP
@@ -1160,9 +1171,16 @@ void QUSongFile::changeData(const QString &tag, const QString &value) {
  */
 void QUSongFile::renameSong(const QString &fileName) {
 	renameSongTxt(QString("%1 %2.%3")
-		.arg(QFileInfo(songFileInfo().dir(), fileName).baseName().remove(QRegExp("\\[.*\\]")).trimmed())
+		.arg(QUStringSupport::withoutFolderTags(QFileInfo(songFileInfo().dir(), fileName).baseName()))
 		.arg(_fiTags.join("] [").prepend("[").append("]"))
 		.arg(songFileInfo().suffix()));
+}
+
+/*!
+ * Change your path if your friend did.
+ */
+void QUSongFile::changeSongPath(const QString &filePath) {
+	setFile(QFileInfo(QFileInfo(filePath).dir(), songFileInfo().fileName()).filePath(), false);
 }
 
 /*!

@@ -91,6 +91,7 @@ public slots:
 	bool isDuet() const;
 	bool isKaraoke() const;
 
+	QString titleCompact() const;
 	int length();
 	int lengthMp3() const;
 	int lengthEffective() const;
@@ -161,11 +162,13 @@ public slots:
 	QList<QUSongFile*> friends() const { return _friends; }
 	void changeData(const QString &tag, const QString &value);
 	void renameSong(const QString &fileName);
+	void changeSongPath(const QString &filePath);
 
 signals:
 	void dataChanged(); // used to notify playlists for now
 	void dataChanged(const QString &tag, const QString &value);
 	void songRenamed(const QString &fileName);
+	void songPathChanged(const QString &filePath);
 	void externalSongFileChangeDetected(QUSongFile *song);
 
 private:

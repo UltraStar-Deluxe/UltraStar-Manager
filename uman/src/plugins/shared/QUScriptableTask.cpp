@@ -38,5 +38,5 @@ QStringList QUScriptableTask::availableCustomSources() {
 }
 
 QStringList QUScriptableTask::availableConditions() {
-	return QString("true hasMp3 hasCover hasBackground hasVideo isSongChecked").split(" ");
+	return QString("true hasMp3 hasCover hasBackground hasVideo isSongChecked isDuet isKaraoke").split(" ");
 }

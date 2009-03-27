@@ -533,8 +533,13 @@ void QUMainWindow::createSongFiles() {
 
 			if(!newSong)
 				newSong = new QUSongFile(fi.filePath());
-			else // found a friend!
-				newSong->addFriend(new QUSongFile(fi.filePath()));
+			else { // found a friend!
+				QUSongFile *friendSong = new QUSongFile(fi.filePath());
+				newSong->addFriend(friendSong);
+				// see "this->appendSong(...)"
+				connect(friendSong, SIGNAL(dataChanged()), playlistArea, SLOT(update()));
+				connect(friendSong, SIGNAL(externalSongFileChangeDetected(QUSongFile*)), this, SLOT(processExternalSongFileChange(QUSongFile*)));
+			}
 		}
 
 		if(newSong) { // some song found

@@ -16,5 +16,5 @@ TEMPLATE = lib
 CONFIG += plugin
 CONFIG -= debug
 DESTDIR = ../../../bin/wip/plugins
-OBJECTS_DIR = tmp
-MOC_DIR = tmp
+OBJECTS_DIR = ../tmp/preparatory
+MOC_DIR = ../tmp/preparatory

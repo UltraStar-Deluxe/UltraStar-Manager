@@ -136,7 +136,7 @@ QStringList QURenameTask::availableSpecialSources() {
 }
 
 QStringList QURenameTask::availableCommonSources() {
-	return QString("artist title mp3 bpm gap video videogap cover background start language relative edition genre year end creator dir txt").split(" ");
+	return QString("artist title titlecompact mp3 bpm gap video videogap cover background start language relative edition genre year end creator dir txt").split(" ");
 }
 
 /*!
@@ -149,7 +149,7 @@ QStringList QURenameTask::filterUnknownTags(const QString &text) {
 	QStringList dirtyTags(text.split("[").filter("]"));
 	QStringList cleanTags;
 
-	QStringList knownTags(QString("sc video bg co").split(" "));
+	QStringList knownTags(QString("sc video bg co karaoke").split(" "));
 
 	foreach(QString tag, dirtyTags) {
 		bool keep = true;

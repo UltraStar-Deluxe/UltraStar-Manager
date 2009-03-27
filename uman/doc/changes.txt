@@ -26,6 +26,7 @@ PLUGINS
 TASKS
 * "Fix spaces at end of line" crashed if song had empty lines
 * "Fix spaces" now trims the whole song line correctly
+* I have no clue, why path changing did work before ... =)
 
 MAIN WINDOW
 * "Options -> Always On Top" now saved and restored during app restart
@@ -46,6 +47,8 @@ NOT SORTED
   the first time after application start
 * broken gif-support for amazon cover files
 ! update playlists if you delete a song -> crash on exit
+* external song file changes will be detected twice for primary song
+  > friend songs seem to work fine
 
 NEW ONES
 * translation issues with plugins
