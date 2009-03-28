@@ -50,6 +50,7 @@
 #include "QUAmazonDialog.h"
 #include "QUAboutDialog.h"
 #include "QUPluginDialog.h"
+#include "QUSlideShowDialog.h"
 
 #include "QUSongSupport.h"
 
@@ -298,7 +299,7 @@ void QUMainWindow::initMenu() {
 	connect(actionBackupAudioFiles, SIGNAL(triggered()), this, SLOT(copyAudioToPath()));
 	connect(actionPlugins, SIGNAL(triggered()), this, SLOT(showPluginDialog()));
 
-	actionNewReport->setShortcut(Qt::Key_F2);
+	actionNewReport->setShortcut(Qt::Key_F8);
 
 	// help menu
 	connect(actionShowMonty, SIGNAL(triggered()), montyArea, SLOT(show()));
@@ -335,6 +336,7 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(songToPlaylistRequested(QUSongFile*)), playlistArea, SLOT(addSongToCurrentPlaylist(QUSongFile*)));
 	connect(songTree, SIGNAL(showLyricsRequested(QUSongFile*)), this, SLOT(showLyrics(QUSongFile*)));
 	connect(songTree, SIGNAL(coversFromAmazonRequested(QList<QUSongItem*>)), this, SLOT(getCoversFromAmazon(QList<QUSongItem*>)));
+	connect(songTree, SIGNAL(coverFlowRequested(QList<QUSongItem*>)), this, SLOT(showCoverSlideShowDialog(QList<QUSongItem*>)));
 
 	connect(songTree, SIGNAL(deleteSongRequested(QUSongFile*)), this, SLOT(deleteSong(QUSongFile*)));
 
@@ -1323,4 +1325,13 @@ void QUMainWindow::showPluginDialog() {
 	connect(&dlg, SIGNAL(pluginReloadRequested()), taskList, SLOT(reloadAllPlugins()));
 	connect(taskList, SIGNAL(pluginsReloaded(const QList<QPluginLoader*>&)), &dlg, SLOT(updatePluginTable(const QList<QPluginLoader*>&)));
 	dlg.exec();
+}
+
+void QUMainWindow::showCoverSlideShowDialog(QList<QUSongItem*> items) {
+	QUSlideShowDialog dlg(items, this);
+
+	if(dlg.exec()) {
+		updateDetails();
+		montyTalk();
+	}
 }

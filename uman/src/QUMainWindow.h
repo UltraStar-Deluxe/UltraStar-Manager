@@ -107,6 +107,9 @@ private slots:
 	// plugins
 	void showPluginDialog();
 
+	// slideshow
+	void showCoverSlideShowDialog(QList<QUSongItem*> items);
+
 private:
 	QList<QUSongFile*>     _songs;
 

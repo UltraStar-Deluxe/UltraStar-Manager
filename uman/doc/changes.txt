@@ -69,6 +69,9 @@ PLUGINS
 SUPPORTED FILE TYPES
 * icon for "*.kar" files changed -> these are only MIDI files with lyrics
 
+REPORTS
+* Shortcut changed from F2 to F8
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 TASKS
@@ -122,12 +125,9 @@ SONG FRIENDS
 * cannot change #EDITION for song friend
 * cannot add song friends in reports
 * cannot play song friends in media player
+* some tasks may not affect song friends (e.g. "Remove unsupported tags")
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
-
-ABOUT
-* http://www.iconarchive.com/category/animals/tiny-animals-icons-by-iconshock.html
-* http://min.frexy.com/article/the_milky_set_is_now_complete/
 
 NEW STUFF
 * make hard-coded values editable
@@ -177,10 +177,6 @@ NEW STUFF
 SUPPORTED FILE TYPES
 * xml files from Singstar (melody.xml or different)
 
-MULTI-TXT SUPPORT
-* add support for karaoke versions
-* add support for duets
-
 SONGS
 * new property: is Singstar-Song? (look into EDITION) -> [SS] Rename Tasks?
 * write empty tags
@@ -204,11 +200,6 @@ TASKS
 * introduce "slots" to save checkstate of items in tasklist
   > some predefined slots would be cool
 * remove empty lines (bad at end of a song?)
-* new lines should not start with a whitespace
-   - 15
-   : 16 2 6__Der
-   : 18 2 4__ver
-   : 20 2 6_damm
 * use correct apostrophes (´, ` -> ')
 * harmonizes empty syllables
   > use '-' or '~' always
@@ -299,8 +290,6 @@ INTERNAL STUFF
     <note timestamp="123" duration="10" pitch="20" lyric="ah " freestyle="yes" golden="no"></note>
   </line>
 * do not use only the count for "QUSongFile::verifyTags(QStringList&)"
-* use next file in folder if txt is no valid song file
-  > no license files
 * detect not only song file changes but song folder changes
   > new files...
 * read config.ini from ultrastar (->options?)

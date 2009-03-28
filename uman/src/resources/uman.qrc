@@ -139,6 +139,7 @@
         <file>tick.png</file>
         <file>tick_blue.png</file>
         <file>wand.png</file>
+        <file>link_break.png</file>
     </qresource>
     <qresource prefix="/types" >
         <file>text_stack.png</file>

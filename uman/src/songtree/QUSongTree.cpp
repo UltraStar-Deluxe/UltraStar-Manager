@@ -524,6 +524,7 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 		menu.addSeparator();
 		menu.addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
 		menu.addAction(tr("Get Covers From Amazon..."), this, SLOT(requestCoversFromAmazon()));
+		menu.addAction(tr("Cover Flow..."), this, SLOT(requestCoverFlow()));
 
 		QMenu *filterMenu = menu.addMenu(tr("Hide"));
 		filterMenu->setIcon(QIcon(":/control/eye.png"));
@@ -1246,6 +1247,10 @@ void QUSongTree::requestLyrics() {
  */
 void QUSongTree::requestCoversFromAmazon() {
 	emit coversFromAmazonRequested(this->selectedSongItems());
+}
+
+void QUSongTree::requestCoverFlow() {
+	emit coverFlowRequested(this->selectedSongItems());
 }
 
 void QUSongTree::removeFilter() {
