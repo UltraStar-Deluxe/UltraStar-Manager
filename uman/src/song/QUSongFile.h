@@ -165,6 +165,7 @@ public slots:
 	void renameSong(const QString &fileName);
 	void changeSongPath(const QString &filePath);
 	QUSongFile* duetFriend() const;
+	bool friendHasTag(const QString &tag, const QString &value) const;
 
 signals:
 	void dataChanged(); // used to notify playlists for now

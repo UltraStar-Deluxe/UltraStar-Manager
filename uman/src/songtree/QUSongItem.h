@@ -5,7 +5,7 @@
 #include "QU.h"
 #include "QUSongFile.h"
 
-#define FIXED_COLUMN_COUNT    25
+#define FIXED_COLUMN_COUNT    27
 
 #define FOLDER_COLUMN          0
 
@@ -17,30 +17,32 @@
 #define BACKGROUND_COLUMN      5
 #define VIDEO_COLUMN           6
 
-#define UNUSED_FILES_COLUMN    7
-#define MULTIPLE_SONGS_COLUMN  8
+#define TYPE_KARAOKE_COLUMN    7
+#define TYPE_DUET_COLUMN       8
+#define UNUSED_FILES_COLUMN    9
+#define MULTIPLE_SONGS_COLUMN 10
 
-#define LENGTH_COLUMN          9
-#define LENGTH_DIFF_COLUMN    10
-#define LENGTH_MP3_COLUMN     11
-#define LENGTH_EFF_COLUMN     12
-#define SPEED_COLUMN          13
+#define LENGTH_COLUMN         11
+#define LENGTH_DIFF_COLUMN    12
+#define LENGTH_MP3_COLUMN     13
+#define LENGTH_EFF_COLUMN     14
+#define SPEED_COLUMN          15
 
-#define START_COLUMN          14
-#define END_COLUMN            15
-#define VIDEOGAP_COLUMN       16
+#define START_COLUMN          16
+#define END_COLUMN            17
+#define VIDEOGAP_COLUMN       18
 
-#define ARTIST_COLUMN_EX      17
-#define TITLE_COLUMN_EX       18
-#define LANGUAGE_COLUMN       19
-#define EDITION_COLUMN        20
-#define GENRE_COLUMN          21
-#define YEAR_COLUMN           22
-#define CREATOR_COLUMN        23
+#define ARTIST_COLUMN_EX      19
+#define TITLE_COLUMN_EX       20
+#define LANGUAGE_COLUMN       21
+#define EDITION_COLUMN        22
+#define GENRE_COLUMN          23
+#define YEAR_COLUMN           24
+#define CREATOR_COLUMN        25
 
-#define DUPLICATE_ID_COLUMN   24
+#define DUPLICATE_ID_COLUMN   26
 
-#define FIRST_CUSTOM_TAG_COLUMN 25
+#define FIRST_CUSTOM_TAG_COLUMN 27
 
 /*!
  * This class encapsulates a pointer to a QUSongFile object to be able
@@ -86,6 +88,7 @@ private:
 
 	void updateSpellCheckColumns();
 	void updateFileCheckColumns();
+	void updateTypeColumns();
 	void updateTimeCheckColumns();
 	void updateTextColumns();
 

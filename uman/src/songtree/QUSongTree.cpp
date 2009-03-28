@@ -66,6 +66,11 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(VIDEO_COLUMN, QIcon(":/types/film.png"));
 	header->setToolTip(VIDEO_COLUMN, tr("Shows whether the song text file points to a <b>video file</b> that can be found by UltraStar"));
 
+	header->setIcon(TYPE_KARAOKE_COLUMN, QIcon(":/types/karaoke.png"));
+	header->setToolTip(TYPE_KARAOKE_COLUMN, tr("Shows whether the song is a karaoke song."));
+	header->setIcon(TYPE_DUET_COLUMN, QIcon(":/types/duet.png"));
+	header->setToolTip(TYPE_DUET_COLUMN, tr("Shows whether the song is a duet."));
+
 	header->setIcon(UNUSED_FILES_COLUMN, QIcon(":/types/unused_files.png"));
 	header->setToolTip(UNUSED_FILES_COLUMN, tr("Shows whether your folder contains unused files."));
 	header->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/text_stack.png"));
@@ -557,9 +562,13 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 
 	QMenu customTagsMenu(tr("Custom Tags"), this); customTagsMenu.setIcon(QIcon(":/bullets/bullet_star.png"));
 	QMenu lengthsMenu(tr("Time && Speed"), this); lengthsMenu.setIcon(QIcon(":/types/time.png"));
+	QMenu typesMenu(tr("Types"), this);
 
 	for(int i = 0; i < headerItem()->columnCount(); i++) {
-		if(i != LENGTH_DIFF_COLUMN and (headerItem()->text(i).isEmpty() or i == FOLDER_COLUMN))
+		if(i != LENGTH_DIFF_COLUMN
+		   and i != TYPE_DUET_COLUMN
+		   and i != TYPE_KARAOKE_COLUMN
+		   and (headerItem()->text(i).isEmpty() or i == FOLDER_COLUMN))
 			continue;
 
 		QUColumnAction *a = new QUColumnAction(headerItem()->text(i), i); // save the logical index of this column
@@ -568,6 +577,8 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 		connect(a, SIGNAL(columnToggled(bool, int)), this, SLOT(toggleColumn(bool, int)));
 
 		switch(i) {
+		case TYPE_KARAOKE_COLUMN:
+		case TYPE_DUET_COLUMN: typesMenu.addAction(a); break;
 		case SPEED_COLUMN: lengthsMenu.addSeparator();
 		case START_COLUMN: lengthsMenu.addSeparator();
 		case LENGTH_COLUMN:
@@ -585,6 +596,7 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 	}
 
 	menu.addSeparator();
+	menu.addMenu(&typesMenu);
 	menu.addMenu(&lengthsMenu);
 	menu.addMenu(&customTagsMenu);
 

@@ -1216,6 +1216,16 @@ QUSongFile* QUSongFile::duetFriend() const {
 }
 
 /*!
+ * \returns True, if a friend has the same tag value as requested.
+ */
+bool QUSongFile::friendHasTag(const QString &tag, const QString &value) const {
+	foreach(QUSongFile *song, _friends)
+		if(QString::compare(song->customTag(tag), value, Qt::CaseSensitive) == 0)
+			return true;
+	return false;
+}
+
+/*!
  * Coverts the raw lyrics to another format for further processing.
  */
 void QUSongFile::convertLyricsFromRaw() {

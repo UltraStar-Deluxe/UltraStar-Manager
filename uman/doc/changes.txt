@@ -32,7 +32,7 @@ SONG FRIENDS
 * share primary song's tags except #GAP, #EDITION
   > karaoke songs do not share #MP3
   > song friends append all cached []-tags to #TITLE
-* limited access to song friends possible
+* limited access to song friends possible (see KNOWN BUGS)
 
 KARAOKE SONGS
 * meet one of the following requirements
@@ -50,6 +50,8 @@ DUET SONGS
 SONG TREE
 * column for multiple songs displays now the type of each song text file
   > types of song friends are also shown here
+* two columns for song type "karaoke" or "duet"
+  > also added to context menu of song tree header (-> "Types")
 
 SUPPORTED FILE TYPES
 * "*.txd" for duet songs added
@@ -95,8 +97,9 @@ NOT SORTED
 ! update playlists if you delete a song -> crash on exit
 * external song file changes will be detected twice for primary song
   > friend songs seem to work fine
+! QDesktopServices seem not to work well...
 
-NEW ONES
+PLUGINS
 * translation issues with plugins
 
 TRANSLATION
@@ -112,9 +115,13 @@ AMAZON COVER DOWNLOAD
 USABILITY
 * F2 should be Edit in Song Details not a new report
   > double-click not intuitive for all users (explorer metaphor)
-  
-FILE TYPES
-* kar-files are just midi files with lyrics -> no karaoke versions of songs for USdx
+
+SONG FRIENDS
+* cannot add song friends to playlist
+* cannot change #MP3 for karaoke song friend
+* cannot change #EDITION for song friend
+* cannot add song friends in reports
+* cannot play song friends in media player
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 

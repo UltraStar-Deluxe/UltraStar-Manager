@@ -8,6 +8,10 @@ QUColumnAction::QUColumnAction(const QString &text, const QVariant &userData, QO
 
 	if(userData.toInt() == LENGTH_DIFF_COLUMN)
 		this->setText(tr("Warnings"));
+	else if(userData.toInt() == TYPE_DUET_COLUMN)
+		this->setText(tr("Duet"));
+	else if(userData.toInt() == TYPE_KARAOKE_COLUMN)
+		this->setText(tr("Karaoke"));
 
 	connect(this, SIGNAL(toggled(bool)), SLOT(toggleColumn(bool)));
 }

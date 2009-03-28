@@ -35,6 +35,7 @@ void QUSongItem::clearContents() {
 		this->setIcon(i, QIcon());
 		this->setTextColor(i, Qt::black);
 		this->setToolTip(i, "");
+		this->setBackgroundColor(i, QColor(0, 0, 0, 0));
 	}
 }
 
@@ -117,6 +118,7 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 
 	updateSpellCheckColumns();
 	updateFileCheckColumns();
+	updateTypeColumns();
 	updateTimeCheckColumns();
 	updateTextColumns();
 	updateBackground();
@@ -129,11 +131,11 @@ void QUSongItem::updateAsTxt() {
 
 	if(QString::compare(this->text(FOLDER_COLUMN), song()->songFileInfo().fileName(), Qt::CaseInsensitive) == 0) {
 		// song itself found
-		this->setTextColor(FOLDER_COLUMN, Qt::blue);
+		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
 
 		if(song()->isDuet()) {
 			this->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/duet.png"));
-			this->setToolTip(MULTIPLE_SONGS_COLUMN, QObject::tr("This song is for two or more singers."));
+			this->setToolTip(MULTIPLE_SONGS_COLUMN, QObject::tr("This song is a duet and for two singers."));
 		} else if(song()->isKaraoke()) {
 			this->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/karaoke.png"));
 			this->setToolTip(MULTIPLE_SONGS_COLUMN, QObject::tr("This is a karaoke song, which means that the audio file contains no singing voice."));
@@ -144,7 +146,8 @@ void QUSongItem::updateAsTxt() {
 
 	if(song()->isFriend(this->text(FOLDER_COLUMN))) {
 		// friend found
-		this->setTextColor(FOLDER_COLUMN, Qt::red);
+		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
 		QUSongFile* f = song()->friendAt(this->text(FOLDER_COLUMN));
 		if(f->isDuet()) {
 			this->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/duet.png"));
@@ -168,9 +171,12 @@ void QUSongItem::updateAsMp3() {
 
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/music.png"));
 
-	if(QString::compare(song()->mp3(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0)
+	if(QString::compare(song()->mp3(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
 		this->setIcon(MP3_COLUMN, QIcon(":/marks/link.png"));
-	else {
+	} else if(song()->friendHasTag(MP3_TAG, this->text(FOLDER_COLUMN))) { // audio file used by friend
+		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
+	} else {
 		this->setTextColor(FOLDER_COLUMN, Qt::gray); // unused mp3
 		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
 	}
@@ -227,7 +233,7 @@ void QUSongItem::updateAsMidi() {
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/midi.png"));
 
 	// special files, special color ^_^
-	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
+//	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
 }
 
 void QUSongItem::updateAsKaraoke() {
@@ -236,7 +242,7 @@ void QUSongItem::updateAsKaraoke() {
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/midi_kar.png"));
 
 	// special files, special color ^_^
-	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
+//	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
 }
 
 void QUSongItem::updateAsScore() {
@@ -245,7 +251,7 @@ void QUSongItem::updateAsScore() {
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/score.png"));
 
 	// special files, special color ^_^
-	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
+//	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
 }
 
 void QUSongItem::updateAsUnknown() {
@@ -376,6 +382,8 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case COVER_COLUMN:
 	case BACKGROUND_COLUMN:
 	case VIDEO_COLUMN:
+	case TYPE_DUET_COLUMN:
+	case TYPE_KARAOKE_COLUMN:
 	case UNUSED_FILES_COLUMN:
 	case MULTIPLE_SONGS_COLUMN:
 	case LENGTH_COLUMN:
@@ -454,6 +462,19 @@ void QUSongItem::updateFileCheckColumns() {
 	     if(song()->hasVideo())     this->setTick(VIDEO_COLUMN);
 	else if(song()->video() != N_A) this->setCross(VIDEO_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->video()));
 	else                            this->setCross(VIDEO_COLUMN);
+}
+
+void QUSongItem::updateTypeColumns() {
+	if(song()->isDuet()) {
+		this->setIcon(TYPE_DUET_COLUMN, QIcon(":/types/duet.png"));
+		this->setData(TYPE_DUET_COLUMN, Qt::UserRole, -1);
+	}
+
+	if(song()->isKaraoke()) {
+		this->setIcon(TYPE_KARAOKE_COLUMN, QIcon(":/types/karaoke.png"));
+		this->setData(TYPE_KARAOKE_COLUMN, Qt::UserRole, -1);
+	}
+
 }
 
 void QUSongItem::updateTimeCheckColumns() {
