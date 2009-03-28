@@ -207,6 +207,9 @@
       <widget class="QUAutoCue" name="autocue"/>
      </item>
      <item>
+      <widget class="QUAutoCue" name="autocue2"/>
+     </item>     
+     <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="spacing">
         <number>5</number>

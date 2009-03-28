@@ -10,6 +10,7 @@
 
 MEDIA PLAYER
 * play a song and watch the lyrics
+* support for duet songs =)
 
 SONGS
 * cache any []-tags in the filename at song load

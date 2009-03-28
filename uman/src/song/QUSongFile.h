@@ -151,6 +151,7 @@ public slots:
 	virtual QList<QUSongLineInterface*>& loadMelody();
 	virtual void clearMelody();
 	virtual void saveMelody();
+	QList<QUSongLineInterface*> melodyForSinger(QUSongLineInterface::Singers s = QUSongLineInterface::undefined);
 
 	// Friends: Support for karaoke and duet song files
 	void addFriend(QUSongFile *song);

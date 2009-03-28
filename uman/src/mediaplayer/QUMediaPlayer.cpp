@@ -9,7 +9,12 @@
 #include "tstring.h"
 
 QUSongInfo::QUSongInfo(QUSongFile *song) {
-	melody = song->loadMelody();
+	melody1 = song->melodyForSinger(QUSongLineInterface::first);
+	if(melody1.isEmpty()) { // obviously on duet
+		melody1 = song->loadMelody();
+	} else {
+		melody2 = song->melodyForSinger(QUSongLineInterface::second);
+	}
 	bpm = QVariant(song->bpm().replace(",", ".")).toDouble() * 4;
 	gap = QVariant(song->gap().replace(",", ".")).toDouble();
 	isRelative = song->relative() != N_A;
@@ -99,17 +104,21 @@ void QUMediaPlayer::play() {
 	_freeIndices.removeAll(_currentSongIndex);
 
 	_mediaStream = BASS_StreamCreateFile(FALSE, info.filePath.toLocal8Bit().data(), 0, 0, BASS_STREAM_PRESCAN);
-	autocue->reset(info.melody, info.bpm, info.gap, info.isRelative);
+
+	autocue2->setVisible(!info.melody2.isEmpty());
+
+	autocue->reset(info.melody1, info.bpm, info.gap, info.isRelative);
+	autocue2->reset(info.melody2, info.bpm, info.gap, info.isRelative);
 
 	BASS_Play();
-	autocue->play();
+	autocue->play(); autocue2->play();
 	setState(QUMediaPlayer::playing);
 }
 
 void QUMediaPlayer::stop() {
 	BASS_StopAndFree();
 	_mediaStream = 0;
-	autocue->stop();
+	autocue->stop(); autocue2->stop();
 	setState(QUMediaPlayer::stopped);
 }
 
@@ -118,7 +127,7 @@ void QUMediaPlayer::pause() {
 		return;
 
 	BASS_Pause();
-	autocue->pause();
+	autocue->pause(); autocue2->pause();
 	setState(QUMediaPlayer::paused);
 }
 
@@ -127,6 +136,7 @@ void QUMediaPlayer::resume() {
 		return;
 
 	autocue->resume(BASS_Position());
+	autocue2->resume(BASS_Position());
 	BASS_Resume();
 	setState(QUMediaPlayer::playing);
 }
@@ -189,6 +199,7 @@ void QUMediaPlayer::seek() {
 	BASS_SetPosition(pos);
 	BASS_Resume();
 	autocue->seek(BASS_Position());
+	autocue2->seek(BASS_Position());
 	setState(QUMediaPlayer::playing);
 }
 
@@ -276,6 +287,7 @@ void QUMediaPlayer::updateInfoLabel(QUMediaPlayer::States state) {
 		timeLbl->setText("-:--");
 		infoIconLbl->setToolTip("");
 		autocue->setText(tr("<i>Hit the play-button to fetch all songs of the selected list below. Then the first song will start playing.</i>"));
+		autocue2->setText(tr("<i>Used for duet songs.</i>"));
 	}
 }
 

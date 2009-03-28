@@ -1110,6 +1110,17 @@ void QUSongFile::saveMelody() {
 	convertLyricsToRaw();
 }
 
+/*!
+ * \returns Lyrics/Melody for the given singer of this song.
+ */
+QList<QUSongLineInterface*> QUSongFile::melodyForSinger(QUSongLineInterface::Singers s) {
+	QList<QUSongLineInterface*> result;
+	foreach(QUSongLineInterface *line, loadMelody())
+		if(line->singer() == s || line->singer() == QUSongLineInterface::both)
+			result << line;
+	return result;
+}
+
 void QUSongFile::addFriend(QUSongFile *song) {
 	_friends << song;
 	connect(this, SIGNAL(dataChanged(QString,QString)), _friends.last(), SLOT(changeData(QString,QString)));
