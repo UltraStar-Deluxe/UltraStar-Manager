@@ -1202,6 +1202,20 @@ void QUSongFile::changeSongPath(const QString &filePath) {
 }
 
 /*!
+ * Find the friend that is your duet partner to support duets that a spread across two song files.
+ */
+QUSongFile* QUSongFile::duetFriend() const {
+	if(!isDuet())
+		return 0;
+
+	foreach(QUSongFile *song, _friends)
+		if(song->isDuet())
+			return song;
+
+	return 0;
+}
+
+/*!
  * Coverts the raw lyrics to another format for further processing.
  */
 void QUSongFile::convertLyricsFromRaw() {

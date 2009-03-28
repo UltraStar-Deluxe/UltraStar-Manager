@@ -16,7 +16,8 @@ public:
 	QList<QUSongLineInterface*> melody1;
 	QList<QUSongLineInterface*> melody2;
 	double bpm;
-	double gap;
+	double gap1;
+	double gap2;
 	bool isRelative;
 
 	// properties from usdx song

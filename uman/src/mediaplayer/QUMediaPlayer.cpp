@@ -9,14 +9,10 @@
 #include "tstring.h"
 
 QUSongInfo::QUSongInfo(QUSongFile *song) {
-	melody1 = song->melodyForSinger(QUSongLineInterface::first);
-	if(melody1.isEmpty()) { // obviously on duet
-		melody1 = song->loadMelody();
-	} else {
-		melody2 = song->melodyForSinger(QUSongLineInterface::second);
-	}
+	gap1 = QVariant(song->gap().replace(",", ".")).toDouble();
+	gap2 = gap1;
+
 	bpm = QVariant(song->bpm().replace(",", ".")).toDouble() * 4;
-	gap = QVariant(song->gap().replace(",", ".")).toDouble();
 	isRelative = song->relative() != N_A;
 
 	filePath = song->mp3FileInfo().filePath();
@@ -24,6 +20,24 @@ QUSongInfo::QUSongInfo(QUSongFile *song) {
 	title = song->title();
 	length = song->lengthMp3();
 	lengthAudio = song->lengthAudioFile();
+
+	if(song->isDuet()) {
+		melody1 = song->melodyForSinger(QUSongLineInterface::first);
+		if(melody1.isEmpty()) {
+			melody1 = song->loadMelody();
+			// try to find a friend as duet partner
+			QUSongFile *duetFriend = song->duetFriend();
+			if(duetFriend) {
+				melody2 = duetFriend->loadMelody();
+				gap2 = QVariant(duetFriend->gap().replace(",", ".")).toDouble();
+				title = song->titleCompact();
+			}
+		} else {
+			melody2 = song->melodyForSinger(QUSongLineInterface::second);
+		}
+	} else {
+		melody1 = song->loadMelody();
+	}
 
 	bitrate = 0;
 	channels = 0;
@@ -107,8 +121,8 @@ void QUMediaPlayer::play() {
 
 	autocue2->setVisible(!info.melody2.isEmpty());
 
-	autocue->reset(info.melody1, info.bpm, info.gap, info.isRelative);
-	autocue2->reset(info.melody2, info.bpm, info.gap, info.isRelative);
+	autocue->reset(info.melody1, info.bpm, info.gap1, info.isRelative);
+	autocue2->reset(info.melody2, info.bpm, info.gap2, info.isRelative);
 
 	BASS_Play();
 	autocue->play(); autocue2->play();
