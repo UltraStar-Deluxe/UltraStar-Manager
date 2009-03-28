@@ -62,7 +62,8 @@ QUSongLine::QUSongLine(QObject *parent):
 		_out(0),
 		_in(0),
 		_useOutTime(false),
-		_useInTime(false)
+		_useInTime(false),
+		_singer(QUSongLineInterface::undefined)
 {}
 
 QUSongLine::~QUSongLine() {

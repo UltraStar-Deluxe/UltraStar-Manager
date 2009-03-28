@@ -59,6 +59,9 @@ public:
 	virtual bool useInTime() const { return _useInTime; }
 	virtual void removeInTime() { _useInTime = false; }
 
+	virtual Singers singer() const { return _singer; }
+	virtual void setSinger(Singers s) { _singer = s; }
+
 private:
 	QList<QUSongNoteInterface*> _notes;
 
@@ -67,6 +70,8 @@ private:
 
 	bool _useOutTime;
 	bool _useInTime; // special line break
+
+	Singers _singer;
 };
 
 #endif /* QUSONGLINE_H_ */

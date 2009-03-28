@@ -62,6 +62,14 @@ class QUSongLineInterface: public QObject {
 	Q_OBJECT
 
 public:
+	enum Singer {
+		undefined = 0,
+		first     = 1,
+		second    = 2,
+		both      = 3,
+	};
+	Q_DECLARE_FLAGS(Singers, Singer)
+
 	QUSongLineInterface(QObject *parent = 0): QObject(parent) {}
 
 	virtual void addNote(QUSongNoteInterface *note) = 0;
@@ -76,6 +84,9 @@ public:
 	virtual bool useOutTime() const = 0;
 	virtual bool useInTime() const = 0;
 	virtual void removeInTime() = 0;
+
+	virtual Singers singer() const = 0;
+	virtual void setSinger(Singers s) = 0;
 };
 
 class QUSongInterface: public QObject {

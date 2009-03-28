@@ -36,13 +36,15 @@ SONG FRIENDS
 KARAOKE SONGS
 * meet one of the following requirements
   > #EDITION contains "karaoke" or "kar"
-  > #TITLE contains "karaoke" or "kar"
+  > #TITLE contains a []-tag with "karaoke" or "kar"
   > cached []-tags from filename contain "kar" or "karaoke"
 
 DUET SONGS
 * meet one of the following requirements
   > song filename suffix is "txd"
   > cached []-tags from filename contain one that is not "kar" or "karaoke"
+* duet format "*.txd" with "P 1", "P 2", "P 3" in front of each line will
+  be parsed correctly
 
 SONG TREE
 * column for multiple songs displays now the type of each song text file

@@ -167,7 +167,7 @@ bool QUSongFile::updateCache() {
 	 * about information to these lines.
 	 */
 	QString line;
-	while( !(QRegExp("[:\\*FE\\-].*").exactMatch(line) || _file.atEnd()) ) {
+	while( !(QRegExp("([:\\*FE\\-].*)|(P [123].*)").exactMatch(line) || _file.atEnd()) ) {
 		line = QUStringSupport::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
 
 		// read supported tags
@@ -193,7 +193,7 @@ bool QUSongFile::updateCache() {
 
 	// read lyrics + other stuff (distinct them)
 	while( !_file.atEnd() ) {
-		if(QRegExp("[:\\*F\\-].*").exactMatch(line))
+		if(QRegExp("([:\\*F\\-].*)|(P [123].*)").exactMatch(line))
 			_lyrics << line;
 		else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
 			_footer << line;
@@ -319,7 +319,7 @@ bool QUSongFile::isKaraoke() const {
 			return true;
 	}
 
-	return title().contains(rxTag) || edition().contains(rxTag);
+	return QUStringSupport::extractTags(title()).join(" ").contains(rxTag) || edition().contains(rxTag);
 }
 
 /*!
@@ -492,11 +492,15 @@ QStringList QUSongFile::lyrics() const {
 	QStringList result; result << QString();
 
 	QRegExp lineBreak("\\s*-.*");
+	QRegExp lineSinger("\\s*P [123].*");
 	QRegExp linePrefix("\\s*[:\\*F]\\s*-?\\d+\\s+\\d+\\s+-?\\d+\\s");
 
 	int lastBeat = -1;
 
 	foreach(QString line, _lyricsCopy) {
+		if(lineSinger.exactMatch(line))
+			continue;
+
 		if(lineBreak.exactMatch(line)) {
 			result << QString();
 
@@ -1205,6 +1209,9 @@ void QUSongFile::convertLyricsToRaw() {
 	_lyrics.clear();
 
 	foreach(QUSongLineInterface *line, _melody) {
+		if(line->singer() != QUSongLineInterface::undefined)
+			_lyrics.append(QString("P %1\n").arg((int)line->singer()));
+
 		foreach(QUSongNoteInterface *note, line->notes()) {
 			QStringList out;
 				 if(note->type() == QUSongNoteInterface::freestyle) out.append("F");
@@ -1235,8 +1242,11 @@ void QUSongFile::convertLyricsToRaw() {
  * Takes a raw lyrics line (e.g. ": 2345 10 90 blubb ") and converts that to an internal format.
  */
 void QUSongFile::lyricsAddNote(QString line) {
-	if(!QRegExp("[:\\*F\\-].*").exactMatch(line)) {
-		QMessageBox::critical(0, "Invalid Line!", line);
+	if(!QRegExp("([:\\*F\\-].*)|(P [123].*)").exactMatch(line)) {
+		logSrv->add(QString(tr("Error while preparing lyrics for %1 - %2. Could not parse the following line: %3"))
+					.arg(artist())
+					.arg(title())
+					.arg(line.trimmed()), QU::warning);
 		return; // no valid line
 	}
 
@@ -1254,6 +1264,10 @@ void QUSongFile::lyricsAddNote(QString line) {
 		if(lineSplit.size() > 1) songLine->setInTime(QVariant(lineSplit.at(1).trimmed()).toInt());
 
 		_melody.append(new QUSongLine(this));
+	} else if(line.startsWith("P", Qt::CaseInsensitive)) {
+		// singer information found
+		line.insert(1, " "); // to avoid: "P2"
+		songLine->setSinger((QUSongLineInterface::Singers)QVariant(line.split(" ", QString::SkipEmptyParts).at(1).trimmed()).toInt());
 	} else {
 		line.insert(1, " "); // to avoid: ":22 33 90 blubb"
 		line.remove("\n");

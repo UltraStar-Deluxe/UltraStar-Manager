@@ -92,5 +92,8 @@ QStringList QUStringSupport::extractTags(const QString &text) {
 		 pos += rx.matchedLength();
 	}
 
+	if(text.contains("(kar)", Qt::CaseInsensitive))
+		tags << "kar";
+
 	return tags;
 }
