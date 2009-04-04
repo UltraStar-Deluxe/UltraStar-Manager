@@ -29,10 +29,10 @@ private:
 
 	void reset();
 
-	void updateDefaultData();
-	void updateText(const QString &tag, QUSongFile *song);
+	void updateItemForSingleSong(bool fullUpdate = false);
+	void updateDefaultDataForSingleSong();
 
-	void updateItemForMultipleSongs();
+	void updateItemForMultipleSongs(bool fullUpdate = false);
 	void updateDefaultDataForMultipleSongs();
 
 	const QList<QUSongItem*>& songItems() const {return _songItems;}

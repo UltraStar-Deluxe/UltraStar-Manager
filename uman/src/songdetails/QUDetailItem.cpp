@@ -27,13 +27,14 @@ QUDetailItem::QUDetailItem(const QString &tag, const QList<QUSongItem*> &songIte
 }
 
 void QUDetailItem::setSongItems(const QList<QUSongItem*> &songItems) {
+	bool countChanged = _songItems.isEmpty() || (_songItems.size() == 1 && songItems.size() > 1) || (_songItems.size() > 1 && songItems.size() == 1); // speed hack
+
 	_songItems = songItems;
 
 	if(songItems.size() == 1) {
-		this->updateText(this->tag(), songItems.first()->song());
-		this->updateDefaultData();
+		this->updateItemForSingleSong(countChanged);
 	} else if(songItems.size() > 1) {
-		this->updateItemForMultipleSongs();
+		this->updateItemForMultipleSongs(countChanged);
 	} else {
 		this->setText("");
 	}
@@ -91,15 +92,19 @@ void QUDetailItem::reset() {
 	}
 }
 
-void QUDetailItem::updateText(const QString &tag, QUSongFile *song) {
-	setFlags(_flagsForSingleSong);
+void QUDetailItem::updateItemForSingleSong(bool fullUpdate) {
+	if(fullUpdate)
+		setFlags(_flagsForSingleSong);
 
-	QString text = song->customTag(tag);
+	QString text = songItems().first()->song()->customTag(_tag);
 	setText(text == N_A ? N_A : _textMask.arg(text));
+
+	updateDefaultDataForSingleSong();
 }
 
-void QUDetailItem::updateItemForMultipleSongs() {
-	setFlags(_flagsForMultipleSongs);
+void QUDetailItem::updateItemForMultipleSongs(bool fullUpdate) {
+	if(fullUpdate)
+		setFlags(_flagsForMultipleSongs);
 
 	if(!_flagsForMultipleSongs.testFlag(Qt::ItemIsEditable)) {
 		setText(QObject::tr("Multiple files selected."));
@@ -120,7 +125,7 @@ void QUDetailItem::updateItemForMultipleSongs() {
 	}
 }
 
-void QUDetailItem::updateDefaultData() {
+void QUDetailItem::updateDefaultDataForSingleSong() {
 	if(_hasDynamicDefaultData)
 		setData(Qt::UserRole, defaultData(songItems().first()->song()));
 }
