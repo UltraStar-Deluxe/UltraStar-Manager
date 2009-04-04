@@ -326,8 +326,6 @@ bool QUSongFile::isKaraoke() const {
  * \returns The #TITLE-tag without []-tags
  */
 QString QUSongFile::titleCompact() const {
-	logSrv->add(title(), QU::information);
-	logSrv->add(QUStringSupport::withoutFolderTags(title()), QU::information);
 	return QUStringSupport::withoutFolderTags(title());
 }
 

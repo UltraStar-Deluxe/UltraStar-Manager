@@ -109,6 +109,7 @@ private slots:
 
 	// slideshow
 	void showCoverSlideShowDialog(QList<QUSongItem*> items);
+	void showBackgroundSlideShowDialog(QList<QUSongItem*> items);
 
 private:
 	QList<QUSongFile*>     _songs;

@@ -337,6 +337,7 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(showLyricsRequested(QUSongFile*)), this, SLOT(showLyrics(QUSongFile*)));
 	connect(songTree, SIGNAL(coversFromAmazonRequested(QList<QUSongItem*>)), this, SLOT(getCoversFromAmazon(QList<QUSongItem*>)));
 	connect(songTree, SIGNAL(coverFlowRequested(QList<QUSongItem*>)), this, SLOT(showCoverSlideShowDialog(QList<QUSongItem*>)));
+	connect(songTree, SIGNAL(backgroundFlowRequested(QList<QUSongItem*>)), this, SLOT(showBackgroundSlideShowDialog(QList<QUSongItem*>)));
 
 	connect(songTree, SIGNAL(deleteSongRequested(QUSongFile*)), this, SLOT(deleteSong(QUSongFile*)));
 
@@ -578,13 +579,12 @@ void QUMainWindow::readSongDir(QList<QDir> &dirList) {
 	}
 }
 
+/*!
+ * Update the details of the selected songs. Disconnect to avoid dead-lock.
+ */
 void QUMainWindow::updateDetails() {
-//	addLogMsg("QUMainWindow::updateDetails()", QU::help);
-
 	disconnect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(editSongSetDetail(QTableWidgetItem*)));
-
 	detailsTable->updateValueColumn(songTree->selectedSongItems());
-
 	connect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(editSongSetDetail(QTableWidgetItem*)));
 }
 
@@ -1328,7 +1328,16 @@ void QUMainWindow::showPluginDialog() {
 }
 
 void QUMainWindow::showCoverSlideShowDialog(QList<QUSongItem*> items) {
-	QUSlideShowDialog dlg(items, this);
+	QUSlideShowDialog dlg(items, QUSlideShowDialog::coverflow, this);
+
+	if(dlg.exec()) {
+		updateDetails();
+		montyTalk();
+	}
+}
+
+void QUMainWindow::showBackgroundSlideShowDialog(QList<QUSongItem*> items) {
+	QUSlideShowDialog dlg(items, QUSlideShowDialog::backgroundflow, this);
 
 	if(dlg.exec()) {
 		updateDetails();

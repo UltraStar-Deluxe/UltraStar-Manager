@@ -18,11 +18,16 @@ public:
 	QString tag() const {return _tag;}
 
 	void setSongItems(const QList<QUSongItem*> &songItems);
-	const QList<QUSongItem*>& songItems() const {return _songItems;}
 
 private:
-	QString _tag;
+	QString            _tag;
 	QList<QUSongItem*> _songItems;
+	Qt::ItemFlags      _flagsForSingleSong;
+	Qt::ItemFlags      _flagsForMultipleSongs;
+	QString            _textMask;
+	bool               _hasDynamicDefaultData;
+
+	void reset();
 
 	void updateDefaultData();
 	void updateText(const QString &tag, QUSongFile *song);
@@ -30,6 +35,7 @@ private:
 	void updateItemForMultipleSongs();
 	void updateDefaultDataForMultipleSongs();
 
+	const QList<QUSongItem*>& songItems() const {return _songItems;}
 	QStringList defaultData(QUSongFile *song);
 };
 

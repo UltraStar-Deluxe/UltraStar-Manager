@@ -518,13 +518,16 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 //		menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),       Qt::Key_F5);
 		menu.addAction(QIcon(":/control/save.png"),    tr("Save"),    this, SLOT(saveSelectedSongs()),          Qt::CTRL  + Qt::Key_S);
 		menu.addAction(QIcon(":/control/bin.png"),     tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()), Qt::SHIFT + Qt::Key_Delete);
-		QAction *a = menu.addAction(                                tr("Merge"),   this, SLOT(mergeSelectedSongs()),         Qt::CTRL  + Qt::Key_M);
+		QAction *a = menu.addAction(                   tr("Merge"),   this, SLOT(mergeSelectedSongs()),         Qt::CTRL  + Qt::Key_M);
 		if(selectedItems().size() < 2) a->setEnabled(false);
 
 		menu.addSeparator();
 		menu.addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
 		menu.addAction(tr("Get Covers From Amazon..."), this, SLOT(requestCoversFromAmazon()));
-		menu.addAction(tr("Cover Flow..."), this, SLOT(requestCoverFlow()));
+
+		QMenu *pictureFlowMenu = menu.addMenu(tr("Picture Flow"));
+		pictureFlowMenu->addAction(QIcon(":/types/cover.png"),      tr("Covers..."),      this, SLOT(requestCoverFlow()));
+		pictureFlowMenu->addAction(QIcon(":/types/background.png"), tr("Backgrounds..."), this, SLOT(requestBackgroundFlow()));
 
 		QMenu *filterMenu = menu.addMenu(tr("Hide"));
 		filterMenu->setIcon(QIcon(":/control/eye.png"));
@@ -1251,6 +1254,10 @@ void QUSongTree::requestCoversFromAmazon() {
 
 void QUSongTree::requestCoverFlow() {
 	emit coverFlowRequested(this->selectedSongItems());
+}
+
+void QUSongTree::requestBackgroundFlow() {
+	emit backgroundFlowRequested(this->selectedSongItems());
 }
 
 void QUSongTree::removeFilter() {

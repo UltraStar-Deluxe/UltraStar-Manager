@@ -54,6 +54,7 @@ signals:
 	void coversFromAmazonRequested(QList<QUSongItem*> items);
 	void deleteSongRequested(QUSongFile *song);
 	void coverFlowRequested(QList<QUSongItem*> items);
+	void backgroundFlowRequested(QList<QUSongItem*> items);
 
 private slots:
 	void deleteCurrentItem();
@@ -61,6 +62,7 @@ private slots:
 	void requestLyrics();
 	void requestCoversFromAmazon();
 	void requestCoverFlow();
+	void requestBackgroundFlow();
 
 	void showItemMenu(const QPoint &point);
 	void showHeaderMenu(const QPoint &point);

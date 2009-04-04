@@ -56,6 +56,10 @@ SONG TREE
 SUPPORTED FILE TYPES
 * "*.txd" for duet songs added
 
+FIND BAD COVERS/BACKGROUND
+* picture flow preview for covers and background images to detect bad ones
+  and unlink them (-> remove tag)
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 QT
@@ -127,6 +131,9 @@ SONG FRIENDS
 * cannot play song friends in media player
 * some tasks may not affect song friends (e.g. "Remove unsupported tags")
 
+TASKS
+* "Remove unused files" is NOT work as expected! Too much will be deleted
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
 NEW STUFF
@@ -173,6 +180,7 @@ NEW STUFF
 * manage default values for #EDITION
   > "custom editions" like "custom tags"?
   > check songs if they are in that Edition? -> use for renaming tasks (conditions)
+! history of last song paths (F12)
 
 SUPPORTED FILE TYPES
 * xml files from Singstar (melody.xml or different)

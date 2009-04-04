@@ -13,7 +13,13 @@ class QUSlideShowDialog: public QDialog, private Ui::QUSlideShowDialog {
 	Q_OBJECT
 
 public:
-	QUSlideShowDialog(QList<QUSongItem*> items, QWidget *parent = 0);
+	enum Mode {
+		coverflow,
+		backgroundflow
+	};
+	Q_DECLARE_FLAGS(Modes, Mode)
+
+	QUSlideShowDialog(QList<QUSongItem*> items, Modes m = coverflow, QWidget *parent = 0);
 
 public slots:
 	void changeSelection(int index);
@@ -26,6 +32,9 @@ protected:
 
 private:
 	QList<QUSongItem*> _items;
+	Modes              _mode;
+
+	void preparePictures();
 };
 
 #endif // QUSLIDESHOWDIALOG_H

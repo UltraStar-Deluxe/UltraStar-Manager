@@ -14,13 +14,16 @@
 QUDetailItem::QUDetailItem(const QString &tag):
 	QTableWidgetItem(),
 	_tag(tag)
-{}
+{
+	reset();
+}
 
 QUDetailItem::QUDetailItem(const QString &tag, const QList<QUSongItem*> &songItems):
 	QTableWidgetItem(),
 	_tag(tag)
 {
-	this->setSongItems(songItems);
+	reset();
+	setSongItems(songItems);
 }
 
 void QUDetailItem::setSongItems(const QList<QUSongItem*> &songItems) {
@@ -36,199 +39,90 @@ void QUDetailItem::setSongItems(const QList<QUSongItem*> &songItems) {
 	}
 }
 
-void QUDetailItem::updateDefaultData() {
-	this->setData(Qt::UserRole, defaultData(songItems().first()->song()));
+/*!
+ * Setup visual appearance for this item according to its tag.
+ */
+void QUDetailItem::reset() {
+	// default values
+	_flagsForSingleSong = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+	_flagsForMultipleSongs = 0;
+	_textMask = QString(QObject::tr("%1"));
+	_hasDynamicDefaultData = true;
+
+//	if(QString::compare(tag, TITLE_TAG) == 0) {
+	if(QString::compare(_tag, ARTIST_TAG) == 0) {
+		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+	} else if(QString::compare(_tag, LANGUAGE_TAG) == 0) {
+		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+		setData(Qt::UserRole, monty->languages()); // fixed default data
+		_hasDynamicDefaultData = false;
+	} else if(QString::compare(_tag, EDITION_TAG) == 0) {
+		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+		setData(Qt::UserRole, QStringList() << "[SC]-Songs" << "SingStar" << "Karaoke"); // fixed default data
+		_hasDynamicDefaultData = false;
+	} else if(QString::compare(_tag, GENRE_TAG) == 0) {
+		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+		setData(Qt::UserRole, monty->genres()); // fixed default data
+		_hasDynamicDefaultData = false;
+	} else if(QString::compare(_tag, YEAR_TAG) == 0) {
+		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+	} else if(QString::compare(_tag, CREATOR_TAG) == 0) {
+		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+//	} else if(QString::compare(_tag, MP3_TAG) == 0) {
+//	} else if(QString::compare(_tag, COVER_TAG) == 0) {
+//	} else if(QString::compare(_tag, BACKGROUND_TAG) == 0) {
+//	} else if(QString::compare(_tag, VIDEO_TAG) == 0) {
+	} else if(QString::compare(_tag, VIDEOGAP_TAG) == 0) {
+		_textMask = QString(QObject::tr("%1 seconds"));
+	} else if(QString::compare(_tag, START_TAG) == 0) {
+		_textMask = QString(QObject::tr("%1 seconds"));
+	} else if(QString::compare(_tag, END_TAG) == 0) {
+		_textMask = QString(QObject::tr("%1 milliseconds"));
+	} else if(QString::compare(_tag, RELATIVE_TAG) == 0) {
+		_flagsForSingleSong = 0;
+	} else if(QString::compare(_tag, BPM_TAG) == 0) {
+		_flagsForSingleSong = 0;
+	} else if(QString::compare(_tag, GAP_TAG) == 0) {
+		_flagsForSingleSong = 0;
+		_textMask = QString(QObject::tr("%1 milliseconds"));
+	} else if( QUSongSupport::availableCustomTags().contains(_tag, Qt::CaseInsensitive) ) {
+		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+		_hasDynamicDefaultData = false;
+	}
 }
 
 void QUDetailItem::updateText(const QString &tag, QUSongFile *song) {
-	if(QString::compare(tag, TITLE_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText(song->title());
-	} else if(QString::compare(tag, ARTIST_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText(song->artist());
-	} else if(QString::compare(tag, LANGUAGE_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText(song->language());
-	} else if(QString::compare(tag, EDITION_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText(song->edition());
-	} else if(QString::compare(tag, GENRE_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText(song->genre());
-	} else if(QString::compare(tag, YEAR_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText(song->year());
-	} else if(QString::compare(tag, CREATOR_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText(song->creator());
+	setFlags(_flagsForSingleSong);
 
-	} else if(QString::compare(tag, MP3_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText(song->mp3());
-	} else if(QString::compare(tag, COVER_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText(song->cover());
-	} else if(QString::compare(tag, BACKGROUND_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText(song->background());
-	} else if(QString::compare(tag, VIDEO_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText(song->video());
-
-	} else if(QString::compare(tag, VIDEOGAP_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		if(song->videogap() != N_A)
-			this->setText(QString(QObject::tr("%1 seconds")).arg(song->videogap()));
-		else
-			this->setText(song->videogap());
-	} else if(QString::compare(tag, START_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		if(song->start() != N_A)
-			this->setText(QString(QObject::tr("%1 seconds")).arg(song->start()));
-		else
-			this->setText(song->start());
-	} else if(QString::compare(tag, END_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		if(song->end() != N_A)
-			this->setText(QString(QObject::tr("%1 milliseconds")).arg(song->end()));
-		else
-			this->setText(song->end());
-	} else if(QString::compare(tag, RELATIVE_TAG) == 0) {
-		this->setFlags(0);
-		this->setText(song->relative());
-	} else if(QString::compare(tag, BPM_TAG) == 0) {
-		this->setFlags(0);
-		this->setText(song->bpm());
-	} else if(QString::compare(tag, GAP_TAG) == 0) {
-		this->setFlags(0);
-		if(song->gap() != N_A)
-			this->setText(QString(QObject::tr("%1 milliseconds")).arg(song->gap()));
-		else
-			this->setText(song->gap());
-	} else if( QUSongSupport::availableCustomTags().contains(tag, Qt::CaseInsensitive) ) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-		this->setText(song->customTag(tag));
-	}
+	QString text = song->customTag(tag);
+	setText(text == N_A ? N_A : _textMask.arg(text));
 }
 
 void QUDetailItem::updateItemForMultipleSongs() {
-	if(QString::compare(tag(), TITLE_TAG) == 0) {
-		this->setFlags(0);
-		this->setText(QObject::tr("Multiple files selected."));
-	} else if(QString::compare(tag(), ARTIST_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
+	setFlags(_flagsForMultipleSongs);
 
-		this->setText(songItems().first()->song()->artist());
-		for(int i = 0; i < songItems().size(); i++) {
-			if(QString::compare(this->text(), songItems().at(i)->song()->artist(), Qt::CaseInsensitive) != 0) {
-				this->setText(QObject::tr("Click here to edit."));
+	if(!_flagsForMultipleSongs.testFlag(Qt::ItemIsEditable)) {
+		setText(QObject::tr("Multiple files selected."));
+	} else {
+		QString text = songItems().first()->song()->customTag(_tag);
+
+		foreach(QUSongItem *item, songItems()) {
+			if(QString::compare(text, item->song()->customTag(_tag), Qt::CaseInsensitive) != 0) {
+				text = QObject::tr("Click here to edit.");
 				break;
 			}
 		}
 
-		this->updateDefaultDataForMultipleSongs();
-	} else if(QString::compare(tag(), LANGUAGE_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
+		setText(text);
 
-		this->setText(songItems().first()->song()->language());
-		for(int i = 0; i < songItems().size(); i++) {
-			if(QString::compare(this->text(), songItems().at(i)->song()->language(), Qt::CaseInsensitive) != 0) {
-				this->setText(QObject::tr("Click here to edit."));
-				break;
-			}
-		}
-
-		this->updateDefaultData();
-	} else if(QString::compare(tag(), EDITION_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-
-		this->setText(songItems().first()->song()->edition());
-		for(int i = 0; i < songItems().size(); i++) {
-			if(QString::compare(this->text(), songItems().at(i)->song()->edition(), Qt::CaseInsensitive) != 0) {
-				this->setText(QObject::tr("Click here to edit."));
-				break;
-			}
-		}
-
-		this->updateDefaultData();
-	} else if(QString::compare(tag(), GENRE_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-
-		this->setText(songItems().first()->song()->genre());
-		for(int i = 0; i < songItems().size(); i++) {
-			if(QString::compare(this->text(), songItems().at(i)->song()->genre(), Qt::CaseInsensitive) != 0) {
-				this->setText(QObject::tr("Click here to edit."));
-				break;
-			}
-		}
-
-		this->updateDefaultData();
-	} else if(QString::compare(tag(), YEAR_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-
-		this->setText(songItems().first()->song()->year());
-		for(int i = 0; i < songItems().size(); i++) {
-			if(QString::compare(this->text(), songItems().at(i)->song()->year(), Qt::CaseInsensitive) != 0) {
-				this->setText(QObject::tr("Click here to edit."));
-				break;
-			}
-		}
-
-		this->updateDefaultDataForMultipleSongs();
-	} else if(QString::compare(tag(), CREATOR_TAG) == 0) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-
-		this->setText(songItems().first()->song()->creator());
-		for(int i = 0; i < songItems().size(); i++) {
-			if(QString::compare(this->text(), songItems().at(i)->song()->creator(), Qt::CaseInsensitive) != 0) {
-				this->setText(QObject::tr("Click here to edit."));
-				break;
-			}
-		}
-
-	} else if(QString::compare(tag(), MP3_TAG) == 0) {
-		this->setFlags(0);
-		this->setText(QObject::tr("Multiple files selected."));
-	} else if(QString::compare(tag(), COVER_TAG) == 0) {
-		this->setFlags(0);
-		this->setText(QObject::tr("Multiple files selected."));
-	} else if(QString::compare(tag(), BACKGROUND_TAG) == 0) {
-		this->setFlags(0);
-		this->setText(QObject::tr("Multiple files selected."));
-	} else if(QString::compare(tag(), VIDEO_TAG) == 0) {
-		this->setFlags(0);
-		this->setText(QObject::tr("Multiple files selected."));
-
-	} else if(QString::compare(tag(), VIDEOGAP_TAG) == 0) {
-		this->setFlags(0);
-		this->setText(QObject::tr("Multiple files selected."));
-	} else if(QString::compare(tag(), START_TAG) == 0) {
-		this->setFlags(0);
-		this->setText(QObject::tr("Multiple files selected."));
-	} else if(QString::compare(tag(), END_TAG) == 0) {
-		this->setFlags(0);
-		this->setText(QObject::tr("Multiple files selected."));
-	} else if(QString::compare(tag(), RELATIVE_TAG) == 0) {
-		this->setFlags(0);
-		this->setText(QObject::tr("Multiple files selected."));
-	} else if(QString::compare(tag(), BPM_TAG) == 0) {
-		this->setFlags(0);
-		this->setText(QObject::tr("Multiple files selected."));
-	} else if(QString::compare(tag(), GAP_TAG) == 0) {
-		this->setFlags(0);
-		this->setText(QObject::tr("Multiple files selected."));
-	} else if( QUSongSupport::availableCustomTags().contains(tag(), Qt::CaseInsensitive) ) {
-		this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
-
-		this->setText( songItems().first()->song()->customTag(tag()) );
-		for(int i = 0; i < songItems().size(); i++) {
-			if(QString::compare(this->text(), songItems().at(i)->song()->customTag(tag()), Qt::CaseInsensitive) != 0) {
-				this->setText(QObject::tr("Click here to edit."));
-				break;
-			}
-		}
+		if(_hasDynamicDefaultData)
+			updateDefaultDataForMultipleSongs();
 	}
+}
+
+void QUDetailItem::updateDefaultData() {
+	if(_hasDynamicDefaultData)
+		setData(Qt::UserRole, defaultData(songItems().first()->song()));
 }
 
 void QUDetailItem::updateDefaultDataForMultipleSongs() {
@@ -251,15 +145,6 @@ void QUDetailItem::updateDefaultDataForMultipleSongs() {
 }
 
 QStringList QUDetailItem::defaultData(QUSongFile *song) {
-	// for performance reasons
-	if(!data(Qt::UserRole).toStringList().isEmpty()) {
-		if(QString::compare(tag(), GENRE_TAG) == 0) return data(Qt::UserRole).toStringList(); // there is no dynamic content
-		if(QString::compare(tag(), LANGUAGE_TAG) == 0) return data(Qt::UserRole).toStringList(); // there is no dynamic content
-		if(QString::compare(tag(), EDITION_TAG) == 0) return data(Qt::UserRole).toStringList(); // there is no dynamic content
-	}
-
-	// -----------------------------
-
 	QStringList dropDownData;
 
 	if(!song)
@@ -276,12 +161,6 @@ QStringList QUDetailItem::defaultData(QUSongFile *song) {
 
 	else if(QString::compare(tag(), VIDEO_TAG) == 0)
 		dropDownData = song->songFileInfo().dir().entryList(QUSongSupport::allowedVideoFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
-
-	else if(QString::compare(tag(), GENRE_TAG) == 0)
-		dropDownData = monty->genres();
-
-	else if(QString::compare(tag(), LANGUAGE_TAG) == 0)
-		dropDownData = monty->languages();
 
 	else if(QString::compare(tag(), ARTIST_TAG) == 0) {
 		if(song->hasMp3()) {
@@ -306,9 +185,6 @@ QStringList QUDetailItem::defaultData(QUSongFile *song) {
 			if(year != "0")
 				dropDownData << year;
 		}
-	}
-	else if(QString::compare(tag(), EDITION_TAG) == 0) {
-		dropDownData << "[SC]-Songs" << "SingStar" << "Karaoke";
 	}
 
 	return dropDownData;
