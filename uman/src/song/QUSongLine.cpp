@@ -1,4 +1,5 @@
 #include "QUSongLine.h"
+#include "QULogService.h"
 
 QUSongNote::QUSongNote(Types ty, int t, int d, int p, const QString &s, QObject *parent):
 		QUSongNoteInterface(parent),
@@ -76,4 +77,30 @@ void QUSongLine::addNote(QUSongNoteInterface *note) {
 		return;
 
 	_notes.append(note);
+}
+
+QString QUSongLine::toString() const {
+	QString line;
+	foreach(QUSongNoteInterface *note, notes())
+		line.append(note->syllable());
+	return line;
+}
+
+QStringList QUSongLine::syllables() const {
+	QStringList s;
+	foreach(QUSongNoteInterface *note, this->notes())
+		s << note->syllable();
+	return s;
+}
+
+void QUSongLine::setSyllables(const QStringList &s) {
+	QList<QUSongNoteInterface*> notes = this->notes();
+
+	if(notes.size() != s.size()) {
+		logSrv->add(tr("Cannot set syllables. Count does not match."), QU::warning);
+		return;
+	}
+
+	for(int i = 0; i < s.size(); i++)
+		notes.at(i)->setSyllable(s.at(i));
 }

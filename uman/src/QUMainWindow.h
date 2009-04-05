@@ -48,6 +48,7 @@ private slots:
 	void editSongSetFileLink(QTreeWidgetItem *item, int column);
 	void editSongSetDetail(QTableWidgetItem *item);
 	void editSongApplyTasks();
+	void editSongLyrics(QUSongFile *song);
 
 	void aboutQt();
 	void aboutUman();

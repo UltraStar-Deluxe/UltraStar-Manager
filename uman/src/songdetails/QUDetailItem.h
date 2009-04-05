@@ -17,6 +17,7 @@ public:
 
 	QString tag() const {return _tag;}
 
+	const QList<QUSongItem*>& songItems() const {return _songItems;}
 	void setSongItems(const QList<QUSongItem*> &songItems);
 
 private:
@@ -35,7 +36,6 @@ private:
 	void updateItemForMultipleSongs(bool fullUpdate = false);
 	void updateDefaultDataForMultipleSongs();
 
-	const QList<QUSongItem*>& songItems() const {return _songItems;}
 	QStringList defaultData(QUSongFile *song);
 };
 

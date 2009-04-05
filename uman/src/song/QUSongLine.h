@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QString>
+#include <QStringList>
 
 #include "QUSongInterface.h"
 
@@ -48,7 +49,7 @@ public:
 	~QUSongLine();
 
 	virtual void addNote(QUSongNoteInterface *note);
-	virtual QList<QUSongNoteInterface*>& notes() { return _notes; }
+	virtual QList<QUSongNoteInterface*> notes() const { return _notes; }
 
 	virtual int outTime() const { return _out; }
 	virtual void setOutTime(int out) { _out = out; _useOutTime = true; }
@@ -61,6 +62,10 @@ public:
 
 	virtual Singers singer() const { return _singer; }
 	virtual void setSinger(Singers s) { _singer = s; }
+
+	virtual QString toString() const;
+	virtual QStringList syllables() const;
+	virtual void setSyllables(const QStringList &s);
 
 private:
 	QList<QUSongNoteInterface*> _notes;

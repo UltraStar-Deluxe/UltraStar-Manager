@@ -68,7 +68,11 @@ HEADERS += plugins/QUPluginDialog.h \
     tasks/QUTaskItem.h \
     ribbon/QURibbonBar.h \
     slideshow/pictureflow.h \
-    slideshow/QUSlideShowDialog.h
+    slideshow/QUSlideShowDialog.h \
+    lyricseditor/QULyricsEdit.h \
+    lyricseditor/QUSongLineDelegate.h \
+    lyricseditor/QULyricsEditorDialog.h \
+    lyricseditor/QUSyllableDelegate.h
 SOURCES += plugins/QUPluginDialog.cpp \
     plugins/QUTaskFactoryProxy.cpp \
     main.cpp \
@@ -125,7 +129,11 @@ SOURCES += plugins/QUPluginDialog.cpp \
     tasks/QUTaskItem.cpp \
     ribbon/QURibbonBar.cpp \
     slideshow/pictureflow.cpp \
-    slideshow/QUSlideShowDialog.cpp
+    slideshow/QUSlideShowDialog.cpp \
+    lyricseditor/QULyricsEdit.cpp \
+    lyricseditor/QUSongLineDelegate.cpp \
+    lyricseditor/QULyricsEditorDialog.cpp \
+    lyricseditor/QUSyllableDelegate.cpp
 FORMS += plugins/QUPluginDialog.ui \
     QUMainWindow.ui \
     QUAboutDialog.ui \
@@ -143,7 +151,8 @@ FORMS += plugins/QUPluginDialog.ui \
     preferences/QUTagOrderDialog.ui \
     preferences/QUCustomTagsDialog.ui \
     ribbon/QURibbonBar.ui \
-    slideshow/QUSlideShowDialog.ui
+    slideshow/QUSlideShowDialog.ui \
+    lyricseditor/QULyricsEditorDialog.ui
 RESOURCES += resources/uman.qrc
 TRANSLATIONS = resources/lang/uman_de.ts \
     resources/lang/uman_pl.ts
@@ -165,7 +174,8 @@ INCLUDEPATH += . \
     ui \
     plugins \
     ribbon \
-    slideshow
+    slideshow \
+    lyricseditor
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib \

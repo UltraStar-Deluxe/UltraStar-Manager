@@ -543,6 +543,7 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 		menu.addAction(tr("Open With Explorer..."), this, SLOT(openCurrentFolder()));
 		menu.addAction(QIcon(":/types/user.png"), tr("Find More From Artist"), this, SLOT(showMoreCurrentArtist()));
 		menu.addAction(QIcon(":/types/text.png"), tr("Show Lyrics..."), this, SLOT(requestLyrics()), Qt::CTRL + Qt::Key_L);
+		menu.addAction(tr("Edit Lyrics..."), this, SLOT(requestEditLyrics()));
 	}
 
 	menu.exec(QCursor::pos());
@@ -1242,6 +1243,16 @@ void QUSongTree::requestLyrics() {
 
 	if(selectedSongItems().size() > 1)
 		logSrv->add(tr("You can only display the lyrics of one song at a time."), QU::information);
+}
+
+void QUSongTree::requestEditLyrics() {
+	QUSongItem *cItem = dynamic_cast<QUSongItem*>(this->currentItem());
+
+	if(cItem)
+		emit editLyricsRequested(cItem->song());
+
+	if(selectedSongItems().size() > 1)
+		logSrv->add(tr("You can only edit the lyrics of one song at a time."), QU::information);
 }
 
 /*!

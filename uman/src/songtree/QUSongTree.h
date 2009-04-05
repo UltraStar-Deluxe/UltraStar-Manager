@@ -50,16 +50,19 @@ public slots:
 signals:
 	void songCreated(QUSongFile *song);
 	void songToPlaylistRequested(QUSongFile *song);
-	void showLyricsRequested(QUSongFile *song);
 	void coversFromAmazonRequested(QList<QUSongItem*> items);
 	void deleteSongRequested(QUSongFile *song);
 	void coverFlowRequested(QList<QUSongItem*> items);
 	void backgroundFlowRequested(QList<QUSongItem*> items);
 
+	void showLyricsRequested(QUSongFile *song);
+	void editLyricsRequested(QUSongFile *song);
+
 private slots:
 	void deleteCurrentItem();
 	void sendSelectedSongsToPlaylist();
 	void requestLyrics();
+	void requestEditLyrics();
 	void requestCoversFromAmazon();
 	void requestCoverFlow();
 	void requestBackgroundFlow();

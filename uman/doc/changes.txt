@@ -60,6 +60,11 @@ FIND BAD COVERS/BACKGROUND
 * picture flow preview for covers and background images to detect bad ones
   and unlink them (-> remove tag)
 
+EDIT LYRICS
+* modify each syllable of the song
+  > fix spelling errors manually
+  > fix wrong whitespaces manually
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 QT
@@ -134,6 +139,9 @@ SONG FRIENDS
 TASKS
 * "Remove unused files" is NOT work as expected! Too much will be deleted
 
+MEDIA PLAYER
+* label for title/artist does not grow right
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
 NEW STUFF
@@ -160,11 +168,10 @@ NEW STUFF
   > QCryptographicHash (md4, md5, sha1)
 * get a web-source for background pictures and videos
   > need an API like Amazon Associates Web Service (REST?)
-* get lyrics
+? get lyrics
   > http://lyricwiki.org/LyricWiki:REST
 * get more song information (e.g. #YEAR)
   > hinparade.ch (?!)
-* CO/BG slideshow -> detect awful covers
 * look for illegal/invalid lyrics
   > e.g. ": 20 7ß 38 blubb" (false alpha-numeric..., USdx error)
 * top-ten (by count)
@@ -181,6 +188,7 @@ NEW STUFF
   > "custom editions" like "custom tags"?
   > check songs if they are in that Edition? -> use for renaming tasks (conditions)
 ! history of last song paths (F12)
+* use "space", "return" or "ctrl+return" for "open with explorer..."
 
 SUPPORTED FILE TYPES
 * xml files from Singstar (melody.xml or different)

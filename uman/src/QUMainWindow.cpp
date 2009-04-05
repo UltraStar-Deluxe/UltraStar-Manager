@@ -51,6 +51,7 @@
 #include "QUAboutDialog.h"
 #include "QUPluginDialog.h"
 #include "QUSlideShowDialog.h"
+#include "QULyricsEditorDialog.h"
 
 #include "QUSongSupport.h"
 
@@ -334,12 +335,13 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(songCreated(QUSongFile*)), this, SLOT(appendSong(QUSongFile*)));
 
 	connect(songTree, SIGNAL(songToPlaylistRequested(QUSongFile*)), playlistArea, SLOT(addSongToCurrentPlaylist(QUSongFile*)));
-	connect(songTree, SIGNAL(showLyricsRequested(QUSongFile*)), this, SLOT(showLyrics(QUSongFile*)));
 	connect(songTree, SIGNAL(coversFromAmazonRequested(QList<QUSongItem*>)), this, SLOT(getCoversFromAmazon(QList<QUSongItem*>)));
 	connect(songTree, SIGNAL(coverFlowRequested(QList<QUSongItem*>)), this, SLOT(showCoverSlideShowDialog(QList<QUSongItem*>)));
 	connect(songTree, SIGNAL(backgroundFlowRequested(QList<QUSongItem*>)), this, SLOT(showBackgroundSlideShowDialog(QList<QUSongItem*>)));
-
 	connect(songTree, SIGNAL(deleteSongRequested(QUSongFile*)), this, SLOT(deleteSong(QUSongFile*)));
+
+	connect(songTree, SIGNAL(showLyricsRequested(QUSongFile*)), this, SLOT(showLyrics(QUSongFile*)));
+	connect(songTree, SIGNAL(editLyricsRequested(QUSongFile*)), this, SLOT(editSongLyrics(QUSongFile*)));
 
 	refreshAllSongs();
 }
@@ -762,6 +764,16 @@ void QUMainWindow::editSongApplyTasks() {
 
 	updateDetails();
 	montyTalk();
+}
+
+void QUMainWindow::editSongLyrics(QUSongFile *song) {
+	if(!song)
+		return;
+
+	QULyricsEditorDialog dlg(song, this);
+
+	if(dlg.exec())
+		song->save();
 }
 
 void QUMainWindow::addLogMsg(const QString &msg, QU::EventMessageTypes type) {

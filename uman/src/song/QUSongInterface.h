@@ -73,7 +73,7 @@ public:
 	QUSongLineInterface(QObject *parent = 0): QObject(parent) {}
 
 	virtual void addNote(QUSongNoteInterface *note) = 0;
-	virtual QList<QUSongNoteInterface*>& notes() = 0;
+	virtual QList<QUSongNoteInterface*> notes() const = 0;
 
 	virtual int outTime() const = 0;
 	virtual void setOutTime(int t) = 0;
@@ -87,6 +87,10 @@ public:
 
 	virtual Singers singer() const = 0;
 	virtual void setSinger(Singers s) = 0;
+
+	virtual QString toString() const = 0;
+	virtual QStringList syllables() const = 0;
+	virtual void setSyllables(const QStringList &syllables) = 0;
 };
 
 class QUSongInterface: public QObject {
