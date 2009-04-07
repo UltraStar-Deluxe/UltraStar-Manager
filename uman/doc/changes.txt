@@ -82,6 +82,10 @@ SUPPORTED FILE TYPES
 REPORTS
 * Shortcut changed from F2 to F8
 
+FILTER SONGS
+* renamed to "Find Songs"
+* ui refreshed (more common like in Thunderbird)
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 TASKS
@@ -145,6 +149,9 @@ MEDIA PLAYER
 
 SUPPORTED FILE TYPES
 * "*.kar" files are not karaoke song files but MIDI files with lyrics
+
+SEARCH/FILTER
+* filtering custom tags seem not to work
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 

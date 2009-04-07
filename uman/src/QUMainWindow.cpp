@@ -199,16 +199,8 @@ void QUMainWindow::initWindow() {
 	filterArea->hide();
 
 	connect(filterArea->filterEdit, SIGNAL(returnPressed()), this, SLOT(applyFilter()));
-	connect(filterArea->filterBtn, SIGNAL(clicked()), this, SLOT(applyFilter()));
-	connect(filterArea->filterCancelBtn, SIGNAL(clicked()), this, SLOT(hideFilterArea()));
 	connect(filterArea->filterClearBtn, SIGNAL(clicked()), this, SLOT(removeFilter()));
-	connect(filterArea->filterNegateBtn, SIGNAL(clicked()), this, SLOT(toggleFilterNegateBtn()));
 	connect(filterArea->filterDuplicatesBtn, SIGNAL(clicked()), songTree, SLOT(filterDuplicates()));
-
-	filterArea->filterTypeCombo->addItems(QStringList() << tr("All Tags") << tr("Information Tags") << tr("File Tags") << tr("Control Tags") << tr("Custom Tags"));
-	filterArea->filterTypeCombo->setCurrentIndex(0);
-
-	filterArea->filterNegateBtn->setChecked(false);
 
 	// init media player connections
 	connect(mediaplayer, SIGNAL(selectedSongsRequested()), this, SLOT(sendSelectedSongsToMediaPlayer()));
@@ -1120,37 +1112,28 @@ void QUMainWindow::toggleFilterFrame(bool checked) {
 	}
 }
 
-void QUMainWindow::toggleFilterNegateBtn() {
-	if(filterArea->filterNegateBtn->text() == "negate") {
-		filterArea->filterNegateBtn->setText("");
-		filterArea->filterNegateBtn->setIcon(QIcon(":/marks/plus.png"));
-	} else {
-		filterArea->filterNegateBtn->setText("negate");
-		filterArea->filterNegateBtn->setIcon(QIcon(":/marks/minus.png"));
-	}
-}
-
 void QUMainWindow::applyFilter() {
 	int modes = 0;
 
-	if(filterArea->filterNegateBtn->text() == "negate")
+	if(filterArea->doInvertedSearch())
 		modes |= QU::negateFilter;
 
-	if(filterArea->filterTypeCombo->currentIndex() == 0)
+	if(filterArea->tagGroupActions().at(0)->isChecked())
 		modes |= QU::informationTags | QU::fileTags | QU::controlTags | QU::customTags;
 
-	if(filterArea->filterTypeCombo->currentIndex() == 1)
+	if(filterArea->tagGroupActions().at(1)->isChecked())
 		modes |= QU::informationTags;
 
-	if(filterArea->filterTypeCombo->currentIndex() == 2)
+	if(filterArea->tagGroupActions().at(2)->isChecked())
 		modes |= QU::fileTags;
 
-	if(filterArea->filterTypeCombo->currentIndex() == 3)
+	if(filterArea->tagGroupActions().at(3)->isChecked())
 		modes |= QU::controlTags;
 
-	if(filterArea->filterTypeCombo->currentIndex() == 4)
+	if(filterArea->tagGroupActions().at(4)->isChecked())
 		modes |= QU::customTags;
 
+	filterArea->filterClearBtn->show();
 	songTree->filterItems(filterArea->filterEdit->text(), (QU::FilterModes) modes);
 }
 
@@ -1168,6 +1151,7 @@ void QUMainWindow::hideFilterArea() {
 void QUMainWindow::removeFilter() {
 	filterArea->filterEdit->setText("");
 	songTree->filterItems("");
+	filterArea->filterClearBtn->hide();
 }
 
 void QUMainWindow::reportCreate() {

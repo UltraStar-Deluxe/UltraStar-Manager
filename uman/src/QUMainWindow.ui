@@ -955,10 +955,10 @@ Tasks</string>
    </property>
    <property name="icon">
     <iconset resource="resources/uman.qrc">
-     <normaloff>:/control/filter.png</normaloff>:/control/filter.png</iconset>
+     <normaloff>:/control/magnifier.png</normaloff>:/control/magnifier.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Filter Songs</string>
+    <string>&amp;Find Songs</string>
    </property>
   </action>
   <action name="actionNewReport">

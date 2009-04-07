@@ -79,7 +79,6 @@ private slots:
 	void clearLog();
 
 	void toggleFilterFrame(bool checked);
-	void toggleFilterNegateBtn();
 	void applyFilter();
 	void hideFilterArea();
 	void removeFilter();
