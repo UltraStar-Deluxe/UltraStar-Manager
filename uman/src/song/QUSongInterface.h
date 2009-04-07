@@ -131,6 +131,7 @@ class QUSongInterface: public QObject {
 	Q_PROPERTY(bool isSongChecked READ isSongChecked)
 	Q_PROPERTY(bool isDuet READ isDuet)
 	Q_PROPERTY(bool isKaraoke READ isKaraoke)
+	Q_PROPERTY(bool isSingStar READ isSingStar)
 
 public:
     QUSongInterface(QObject *parent = 0): QObject(parent) {}
@@ -170,6 +171,7 @@ public:
 	virtual bool isSongChecked() const = 0;
 	virtual bool isDuet() const = 0;
 	virtual bool isKaraoke() const = 0;
+	virtual bool isSingStar() const = 0;
 
 	virtual QString titleCompact() const = 0;
 	virtual int length() = 0;

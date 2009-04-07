@@ -20,10 +20,10 @@ SONGS
   > used for song friends
 
 SONG/ID3 TAG TASKS
-* new conditions: "isDuet", "isKaraoke"
+* new conditions: "isDuet", "isKaraoke", "isSingStar"
 
 RENAME TASKS
-* new conditions: "isDuet", "isKaraoke"
+* new conditions: "isDuet", "isKaraoke", "isSingStar"
 * new source: "titlecompact" -> #TITLE without []-tags
 
 SONG FRIENDS
@@ -191,6 +191,7 @@ NEW STUFF
 ? add support for Stepmania
   > BIIIIG TASK
 * Button to Start UltaStar itself?
+  > and select a song folder to use (rename? config file?)
 * compare your songs against a list of songs
 ? Office2007-like menu instead of menu+toolbar
   > doesn't look that goot (deferred)
@@ -205,7 +206,6 @@ SUPPORTED FILE TYPES
 * xml files from Singstar (melody.xml or different)
 
 SONGS
-* new property: is Singstar-Song? (look into EDITION) -> [SS] Rename Tasks?
 * write empty tags
 
 TASKS
