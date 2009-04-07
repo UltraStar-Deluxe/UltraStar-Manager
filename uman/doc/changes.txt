@@ -143,6 +143,9 @@ TASKS
 MEDIA PLAYER
 * label for title/artist does not grow right
 
+SUPPORTED FILE TYPES
+* "*.kar" files are not karaoke song files but MIDI files with lyrics
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
 NEW STUFF
