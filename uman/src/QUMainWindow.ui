@@ -742,7 +742,6 @@ Tasks</string>
    <addaction name="separator"/>
    <addaction name="actionExpandAll"/>
    <addaction name="actionCollapseAll"/>
-   <addaction name="actionRefreshSelected"/>
   </widget>
   <widget class="QToolBar" name="optionsBar">
    <property name="windowTitle">

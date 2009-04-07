@@ -18,6 +18,7 @@ public slots:
 	virtual void reject();
 
 	void toggleWhitespace(int state);
+	void search(const QString &keyword);
 
 };
 

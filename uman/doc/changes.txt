@@ -64,6 +64,7 @@ EDIT LYRICS
 * modify each syllable of the song
   > fix spelling errors manually
   > fix wrong whitespaces manually
+* highlight lines that contain keywords
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 

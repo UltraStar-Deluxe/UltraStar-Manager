@@ -95,6 +95,7 @@
         <file>merge.png</file>
         <file>plugin.png</file>
         <file>mediaplayer.png</file>
+        <file>magnifier.png</file>
     </qresource>
     <qresource prefix="/icons" >
         <file>splash.png</file>
