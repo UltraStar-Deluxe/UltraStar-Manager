@@ -97,6 +97,8 @@
         <file>mediaplayer.png</file>
         <file>magnifier.png</file>
         <file>magnifier_arrow.png</file>
+        <file>convert-1.png</file>
+        <file>convert-2.png</file>
     </qresource>
     <qresource prefix="/icons" >
         <file>splash.png</file>

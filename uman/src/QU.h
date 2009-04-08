@@ -43,7 +43,9 @@ public:
 	enum LyricTaskMode {
 		fixTimeStamps,
 		fixSpaces,
-		removeEmptySyllables
+		removeEmptySyllables,
+		convertSyllablePlaceholder1,
+		convertSyllablePlaceholder2
 	};
 	Q_DECLARE_FLAGS(LyricTaskModes, LyricTaskMode)
 

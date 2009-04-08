@@ -8,6 +8,9 @@
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  NEW FEATURES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
+TASKS
+* convert syllable placeholders (~ > -, - > ~)
+
 MEDIA PLAYER
 * play a song and watch the lyrics
 * support for duet songs =)
@@ -17,7 +20,7 @@ SONGS
   > e.g. "Wizo - Hund [kar] [foo].txt" caches "kar" and "foo"
   > used for recognition of karaoke songs
   > used for recognition of duet songs (at least one possibility)
-  > used for song friends
+  > used for song friends (do avoid naming conflicts)
 
 SONG/ID3 TAG TASKS
 * new conditions: "isDuet", "isKaraoke", "isSingStar"
@@ -143,6 +146,7 @@ SONG FRIENDS
 
 TASKS
 * "Remove unused files" is NOT work as expected! Too much will be deleted
+* "remove empty syllables" breaks timestamps in relative songs
 
 MEDIA PLAYER
 * label for title/artist does not grow right
@@ -228,9 +232,6 @@ TASKS
   > some predefined slots would be cool
 * remove empty lines (bad at end of a song?)
 * use correct apostrophes (´, ` -> ')
-* harmonizes empty syllables
-  > use '-' or '~' always
-  > convert/find such places
 
 SONG TREE
 ? virtual song folders for many song text files in one folder

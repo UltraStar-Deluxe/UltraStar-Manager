@@ -17,6 +17,8 @@ QList<int> QULyricTaskFactory::types() const {
 	result << QU::fixTimeStamps;
 	result << QU::fixSpaces;
 	result << QU::removeEmptySyllables;
+	result << QU::convertSyllablePlaceholder1;
+	result << QU::convertSyllablePlaceholder2;
 	return result;
 }
 

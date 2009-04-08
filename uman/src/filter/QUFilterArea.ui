@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>376</width>
-    <height>29</height>
+    <height>27</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -85,7 +85,7 @@
       <item>
        <widget class="QLineEdit" name="filterEdit">
         <property name="toolTip">
-         <string>Enter a regular expression and press the filter button to the right.</string>
+         <string>Enter a regular expression and hit the return key.</string>
         </property>
         <property name="frame">
          <bool>false</bool>

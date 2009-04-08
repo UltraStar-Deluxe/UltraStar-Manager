@@ -19,6 +19,17 @@ QULyricTask::QULyricTask(QU::LyricTaskModes mode, QObject *parent):
 	case QU::removeEmptySyllables:
 		this->setIcon(QIcon(":/control/empty_syllable.png"));
 		this->setDescription(tr("Remove empty syllables"));
+		this->setToolTip(tr("Example:<br><br>: 230 6 9 be<br><b>: 236 5 10</b><br>: 241 7 3 not.<br><br>Remove the bold one."));
+		break;
+	case QU::convertSyllablePlaceholder1:
+		this->setDescription(tr("Convert syllable placeholders from \"-\" to \"~\""));
+		this->setIcon(QIcon(":/control/convert-2.png"));
+		this->setGroup(999); // hopefully this group is free ^^
+		break;
+	case QU::convertSyllablePlaceholder2:
+		this->setDescription(tr("Convert syllable placeholders from \"~\" to \"-\""));
+		this->setIcon(QIcon(":/control/convert-1.png"));
+		this->setGroup(999); // hopefully this group is free ^^
 		break;
 	}
 }
@@ -33,6 +44,12 @@ void QULyricTask::startOn(QUSongInterface *song) {
 		break;
 	case QU::removeEmptySyllables:
 		removeEmptySyllables(song);
+		break;
+	case QU::convertSyllablePlaceholder1:
+		convertSyllablePlaceholder(song, "-", "~");
+		break;
+	case QU::convertSyllablePlaceholder2:
+		convertSyllablePlaceholder(song, "~", "-");
 		break;
 	}
 }
@@ -175,7 +192,7 @@ void QULyricTask::removeEmptySyllables(QUSongInterface *song) {
 	foreach(QUSongLineInterface *line, song->loadMelody()) {
 		QList<QUSongNoteInterface*> emptyNotes;
 		foreach(QUSongNoteInterface *note, line->notes()) {
-			if(note->syllable().trimmed().isEmpty())
+			if(note->syllable().trimmed().isEmpty()) // what about relative songs?
 				emptyNotes.append(note);
 		}
 
@@ -188,4 +205,27 @@ void QULyricTask::removeEmptySyllables(QUSongInterface *song) {
 	song->clearMelody(); // save memory
 
 	song->log(QString(tr("Empty syllables were removed successfully for \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::information);
+}
+
+void QULyricTask::convertSyllablePlaceholder(QUSongInterface *song, const QString &before, const QString &after) {
+	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
+		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::warning);
+		return;
+	}
+
+	foreach(QUSongLineInterface *line, song->loadMelody()) {
+		foreach(QUSongNoteInterface *note, line->notes()) {
+			if(note->syllable().trimmed().startsWith(before) || note->syllable().trimmed().endsWith(before)) // to enable "~." and "~,"
+				note->setSyllable(note->syllable().replace(before, after));
+		}
+	}
+
+	song->saveMelody();
+	song->clearMelody(); // save memory
+
+	song->log(QString(tr("Syllable placeholders were converted successfully from '%3' to '%4' for \"%1 - %2\"."))
+			  .arg(song->artist())
+			  .arg(song->title())
+			  .arg(before)
+			  .arg(after), QU::information);
 }

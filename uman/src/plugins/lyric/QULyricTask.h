@@ -18,6 +18,7 @@ private:
 	void fixTimeStamps(QUSongInterface *song);
 	void fixSpaces(QUSongInterface *song);
 	void removeEmptySyllables(QUSongInterface *song);
+	void convertSyllablePlaceholder(QUSongInterface *song, const QString &before, const QString &after);
 };
 
 #endif /* QULYRICTASK_H_ */
