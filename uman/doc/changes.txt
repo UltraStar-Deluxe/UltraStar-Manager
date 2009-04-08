@@ -11,6 +11,10 @@
 TASKS
 * convert syllable placeholders (~ > -, - > ~)
 
+TASK LIST
+* you may save 4 different selections now (flags above the list)
+  > should be useful because there are so many tasks right now
+
 MEDIA PLAYER
 * play a song and watch the lyrics
 * support for duet songs =)

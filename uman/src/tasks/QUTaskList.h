@@ -36,12 +36,17 @@ public slots:
 
 	void editCurrentTask();
 
+	void backupCurrentSelection();
+	void restoreCurrentSelection();
+	void setCurrentSlot(int i);
+
 signals:
 	void pluginsReloaded(const QList<QPluginLoader*>&);
 
 private:
 	QList<QPluginLoader*> _plugins;
 	QList<QUTaskFactoryProxy*> _factoryProxies;
+	int _currentSlot; // for backup and restore item selection
 
 	void updateFactoryProxies();
 	void appendSeparator(const QString &text);

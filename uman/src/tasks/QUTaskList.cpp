@@ -14,6 +14,7 @@
 #include <QFileInfoList>
 #include <QMessageBox>
 #include <QLibrary>
+#include <QSettings>
 
 #include "QUTaskPlugin.h"
 #include "QUTaskFactoryProxy.h"
@@ -27,6 +28,18 @@ QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
 	// context menu
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
+
+	// backup and restore of selection
+	this->setCurrentSlot(0);
+	connect(this, SIGNAL(itemChanged(QListWidgetItem*)), this, SLOT(backupCurrentSelection()));
+}
+
+void QUTaskList::setCurrentSlot(int i) {
+	if(i < 0)
+		return;
+
+	_currentSlot = i;
+	this->restoreCurrentSelection();
 }
 
 /*!
@@ -199,4 +212,29 @@ void QUTaskList::appendSeparator(const QString &text) {
 	separator->setFont(f);
 
 	this->addItem(separator);
+}
+
+void QUTaskList::backupCurrentSelection() {
+	QString state;
+	for(int i = 0; i < this->count(); i++) {
+		if(this->item(i)->flags().testFlag(Qt::ItemIsUserCheckable))
+			state.append(this->item(i)->checkState() == Qt::Checked ? "1" : "0");
+		else
+			state.append("-");
+	}
+
+	QSettings s;
+	s.setValue(QString("taskListState%1").arg(_currentSlot), state);
+}
+
+void QUTaskList::restoreCurrentSelection() {
+	QSettings s;
+	QString state = s.value(QString("taskListState%1").arg(_currentSlot), "").toString();
+
+	this->uncheckAllTasks();
+
+	for(int i = 0; i < state.length() && i < this->count(); i++) {
+		if(this->item(i)->flags().testFlag(Qt::ItemIsUserCheckable))
+			this->item(i)->setCheckState(state.at(i) == QChar('1') ? Qt::Checked : Qt::Unchecked);
+	}
 }

@@ -364,6 +364,18 @@ void QUMainWindow::initTaskList() {
 	connect(taskBtn, SIGNAL(clicked()), this, SLOT(editSongApplyTasks()));
 	connect(allTasksBtn, SIGNAL(clicked()), taskList, SLOT(checkAllTasks()));
 	connect(noTasksBtn, SIGNAL(clicked()), taskList, SLOT(uncheckAllTasks()));
+
+	QButtonGroup *grp = new QButtonGroup(this);
+	grp->addButton(tasksSlot1Btn); grp->setId(tasksSlot1Btn, 0);
+	grp->addButton(tasksSlot2Btn); grp->setId(tasksSlot2Btn, 1);
+	grp->addButton(tasksSlot3Btn); grp->setId(tasksSlot3Btn, 2);
+	grp->addButton(tasksSlot4Btn); grp->setId(tasksSlot4Btn, 3);
+	grp->setExclusive(true);
+
+	connect(grp, SIGNAL(buttonClicked(int)), taskList, SLOT(setCurrentSlot(int)));
+
+	tasksSlot1Btn->click();
+
 }
 
 void QUMainWindow::initEventLog() {

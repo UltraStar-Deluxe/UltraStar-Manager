@@ -144,6 +144,10 @@
         <file>tick_blue.png</file>
         <file>wand.png</file>
         <file>link_break.png</file>
+        <file>flag_blue.png</file>
+        <file>flag_green.png</file>
+        <file>flag_red.png</file>
+        <file>flag_yellow.png</file>
     </qresource>
     <qresource prefix="/types" >
         <file>text_stack.png</file>

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Cover Flow</string>
+   <string>Review Pictures</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources/uman.qrc">
