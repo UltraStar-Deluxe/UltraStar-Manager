@@ -71,7 +71,7 @@ EDIT LYRICS
 * modify each syllable of the song
   > fix spelling errors manually
   > fix wrong whitespaces manually
-* highlight lines that contain keywords
+* highlight lines that contain keywords (search function)
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
@@ -92,6 +92,11 @@ REPORTS
 FILTER SONGS
 * renamed to "Find Songs"
 * ui refreshed (more common like in Thunderbird)
+
+SONG PATH SELECTION
+* new dialog enables the user to specify UltraStar folders and multiple
+  song folders (Options -> Paths...)
+* you may choose between those preconfigured paths now
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 

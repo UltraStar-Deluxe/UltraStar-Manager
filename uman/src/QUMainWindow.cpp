@@ -52,6 +52,7 @@
 #include "QUPluginDialog.h"
 #include "QUSlideShowDialog.h"
 #include "QULyricsEditorDialog.h"
+#include "QUPathsDialog.h"
 
 #include "QUSongSupport.h"
 
@@ -147,11 +148,19 @@ void QUMainWindow::initConfig() {
 	QSettings settings;
 	QString path;
 	if(!settings.contains("songPath")) {
-		path = QFileDialog::getExistingDirectory(this, tr("Choose your UltraStar song directory:"));
-
-		if(!path.isEmpty())
-			settings.setValue("songPath", QVariant(path));
-	} else {
+		QStringList paths = settings.value("songPaths", QStringList()).toStringList();
+		if(!paths.isEmpty()) { // choose the first in the list of song paths
+			path = paths.first();
+			settings.setValue("songPath", path);
+		} else { // request a list of song paths
+			QUPathsDialog(true, this).exec();
+			paths = settings.value("songPaths", QStringList()).toStringList();
+			if(!paths.isEmpty()) {
+				path = paths.first();
+				settings.setValue("songPath", path);
+			}
+		}
+	} else { // last song path was saved successfully
 		path = settings.value("songPath").toString();
 	}
 	QU::BaseDir.setPath(path);
@@ -280,6 +289,7 @@ void QUMainWindow::initMenu() {
 	connect(actionTagSaveOrder, SIGNAL(triggered()), this, SLOT(editTagOrder()));
 	connect(actionChangeSongDirectory, SIGNAL(triggered()), this, SLOT(changeSongDir()));
 	connect(actionCustomTags, SIGNAL(triggered()), this, SLOT(editCustomTags()));
+	connect(actionPaths, SIGNAL(triggered()), this, SLOT(showPathsDialog()));
 
 	connect(actionLangEnglish, SIGNAL(triggered()), this, SLOT(enableEnglish()));
 	connect(actionLangGerman, SIGNAL(triggered()), this, SLOT(enableGerman()));
@@ -833,21 +843,7 @@ void QUMainWindow::aboutQt() {
 }
 
 void QUMainWindow::aboutUman() {
-	QUAboutDialog dlg(this);
-	dlg.exec();
-//	QString aboutStr(tr("<b>UltraStar Manager</b><br>"
-//			"Version %1.%2.%3 #%4<br>"
-//			"<br>"
-//			"©2008 by Marcel Taeumel<br>"
-//			"<br>"
-//			"<i>Tested By</i><br>"
-//			"Michael Grünewald"));
-//
-//	QMessageBox::about(this, "About", aboutStr
-//			.arg(MAJOR_VERSION)
-//			.arg(MINOR_VERSION)
-//			.arg(PATCH_VERSION)
-//			.arg(QString(revision).remove(QRegExp("(.*:)|\\D"))));
+	QUAboutDialog(this).exec();
 }
 
 void QUMainWindow::aboutTagLib() {
@@ -1351,4 +1347,8 @@ void QUMainWindow::showBackgroundSlideShowDialog(QList<QUSongItem*> items) {
 		updateDetails();
 		montyTalk();
 	}
+}
+
+void QUMainWindow::showPathsDialog() {
+	QUPathsDialog(false, this).exec();
 }

@@ -148,6 +148,10 @@
         <file>flag_green.png</file>
         <file>flag_red.png</file>
         <file>flag_yellow.png</file>
+        <file>usdx.png</file>
+        <file>path_error.png</file>
+        <file>path_ok.png</file>
+        <file>path_unknown.png</file>
     </qresource>
     <qresource prefix="/types" >
         <file>text_stack.png</file>

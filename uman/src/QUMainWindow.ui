@@ -786,6 +786,7 @@ Tasks</string>
     <addaction name="actionTagSaveOrder"/>
     <addaction name="actionChangeSongDirectory"/>
     <addaction name="actionCustomTags"/>
+    <addaction name="actionPaths"/>
     <addaction name="separator"/>
     <addaction name="menu_Language"/>
    </widget>
@@ -1195,6 +1196,15 @@ Tasks</string>
    </property>
    <property name="text">
     <string>Plugins...</string>
+   </property>
+  </action>
+  <action name="actionPaths">
+   <property name="icon">
+    <iconset resource="resources/uman.qrc">
+     <normaloff>:/types/folder_go.png</normaloff>:/types/folder_go.png</iconset>
+   </property>
+   <property name="text">
+    <string>Paths...</string>
    </property>
   </action>
  </widget>

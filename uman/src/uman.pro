@@ -72,7 +72,8 @@ HEADERS += plugins/QUPluginDialog.h \
     lyricseditor/QULyricsEdit.h \
     lyricseditor/QUSongLineDelegate.h \
     lyricseditor/QULyricsEditorDialog.h \
-    lyricseditor/QUSyllableDelegate.h
+    lyricseditor/QUSyllableDelegate.h \
+    QUPathsDialog.h
 SOURCES += plugins/QUPluginDialog.cpp \
     plugins/QUTaskFactoryProxy.cpp \
     main.cpp \
@@ -133,7 +134,8 @@ SOURCES += plugins/QUPluginDialog.cpp \
     lyricseditor/QULyricsEdit.cpp \
     lyricseditor/QUSongLineDelegate.cpp \
     lyricseditor/QULyricsEditorDialog.cpp \
-    lyricseditor/QUSyllableDelegate.cpp
+    lyricseditor/QUSyllableDelegate.cpp \
+    QUPathsDialog.cpp
 FORMS += plugins/QUPluginDialog.ui \
     QUMainWindow.ui \
     QUAboutDialog.ui \
@@ -152,7 +154,8 @@ FORMS += plugins/QUPluginDialog.ui \
     preferences/QUCustomTagsDialog.ui \
     ribbon/QURibbonBar.ui \
     slideshow/QUSlideShowDialog.ui \
-    lyricseditor/QULyricsEditorDialog.ui
+    lyricseditor/QULyricsEditorDialog.ui \
+    QUPathsDialog.ui
 RESOURCES += resources/uman.qrc
 TRANSLATIONS = resources/lang/uman_de.ts \
     resources/lang/uman_pl.ts
