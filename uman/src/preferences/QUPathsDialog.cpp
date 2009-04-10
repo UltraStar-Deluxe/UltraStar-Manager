@@ -242,16 +242,19 @@ void QUPathsDialog::showProblems(QLabel *lbl, const QString &tooltip) {
 void QUPathsDialog::updateHelpText() {
 	removeSongPathBtn->setEnabled(songPathList->count() > 0);
 
+	if(_firstTimeSetup) {
+		rejectBtn->hide();
+		acceptBtn->setEnabled(songPathList->count() > 0);
+		infoIconLbl->setPixmap(QPixmap(":/marks/information.png"));
+		textLbl->setText(tr("<b>First time path setup:</b><br><br>Choose your UltraStar folder and click on the <b>magic wand</b>, which appears then, to auto-detect the other folders. You will need at least <b>one song folder</b>. If you set more than one folder for songs, the first one will be used for now."));
+		return;
+	}
+
 	if(songPathList->count() == 0) {
 		infoIconLbl->setPixmap(QPixmap(":/marks/error.png"));
 		textLbl->setText(tr("Please choose at least <b>one song path</b>. Otherwise the main functionality of this program will not be available."));
 	} else {
 		infoIconLbl->setPixmap(QPixmap(":/marks/information.png"));
-		textLbl->setText(tr("Set all paths so that a <b>green tick</b> appears before each one. This allows all program features to work properly."));
-	}
-
-	if(_firstTimeSetup) {
-		rejectBtn->hide();
-		textLbl->setText(tr("<b>First time path setup:</b><br><br>") + textLbl->text());
+		textLbl->setText(tr("Set all paths so that a <b>green tick</b> appears in front of each one. This allows all program features to work properly."));
 	}
 }

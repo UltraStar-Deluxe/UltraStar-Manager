@@ -166,6 +166,9 @@ SUPPORTED FILE TYPES
 SEARCH/FILTER
 * filtering custom tags seem not to work
 
+SONG WATCHER
+* many song files will not be added to QFileSytemWatcher
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
 NEW STUFF
