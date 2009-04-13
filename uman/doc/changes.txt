@@ -8,6 +8,11 @@
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  NEW FEATURES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
+MENU
+* Office2007-like ribbon bar added
+  > takes a little bit more vertical space
+  > reduced mouse click count
+
 TASKS
 * convert syllable placeholders (~ > -, - > ~)
 
@@ -209,8 +214,6 @@ NEW STUFF
 * Button to Start UltaStar itself?
   > and select a song folder to use (rename? config file?)
 * compare your songs against a list of songs
-? Office2007-like menu instead of menu+toolbar
-  > doesn't look that goot (deferred)
 * manage scores of songs
 * manage default values for #EDITION
   > "custom editions" like "custom tags"?

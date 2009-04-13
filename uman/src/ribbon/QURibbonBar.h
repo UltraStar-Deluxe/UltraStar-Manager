@@ -5,11 +5,14 @@
 
 #include "ui_QURibbonBar.h"
 
-class QURibbonBar : public QTabWidget, private Ui::QURibbonBar {
+class QURibbonBar : public QTabWidget, public Ui::QURibbonBar {
 	Q_OBJECT
 
 public:
 	QURibbonBar(QWidget *parent = 0);
+
+	QToolButton *helpBtn;
+	QToolButton *montyBtn;
 };
 
 #endif // QURIBBONBAR_H

@@ -12,6 +12,8 @@
 
 #include "QU.h"
 
+class QURibbonBar;
+
 /*!
  * This class represents the main user interface of uman. All important tasks
  * will be offered to the user here.
@@ -30,6 +32,7 @@ private slots:
 	void initConfig();
 	void initWindow();
 	void initMenu();
+	void initRibbonBar();
 	void initSongTree();
 	void initDetailsTable();
 	void initTaskList();
@@ -120,6 +123,8 @@ private:
 	QAction               *_noInfos;
 	QAction               *_noWarnings;
 	QAction               *_noSaveHints;
+
+	QURibbonBar           *_menu;
 
 	void readSongDir(QList<QDir> &dirList);
 };

@@ -64,7 +64,8 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	setupUi(this);
 
 	initWindow();
-	initMenu();
+//	initMenu();
+	initRibbonBar();
 	initEventLog();
 	initConfig();
 
@@ -123,14 +124,14 @@ void QUMainWindow::closeEvent(QCloseEvent *event) {
 	}
 
 	QSettings settings;
-	settings.setValue("allowMonty", QVariant(actionAllowMonty->isChecked()));
+	settings.setValue("allowMonty", QVariant(_menu->montyBtn->isChecked()));
 	settings.setValue("windowState", QVariant(this->saveState()));
 
 	settings.setValue("disableInfoMessages", QVariant(_noInfos->isChecked()));
 	settings.setValue("disableWarningMessages", QVariant(_noWarnings->isChecked()));
 	settings.setValue("disableSaveMessages", QVariant(_noSaveHints->isChecked()));
 
-	settings.setValue("autoSave", QVariant(actionAutoSave->isChecked()));
+	settings.setValue("autoSave", QVariant(_menu->autoSaveBtn->isChecked()));
 
 	this->saveLog();
 
@@ -166,15 +167,15 @@ void QUMainWindow::initConfig() {
 	QU::BaseDir.setPath(path);
 
 	// read other settings
-	          actionAllowMonty->setChecked(settings.value("allowMonty", true).toBool());
-	actionShowRelativeSongPath->setChecked(settings.value("showRelativeSongPath", true).toBool());
-	         actionAltSongTree->setChecked(settings.value("altSongTree", false).toBool());
+			_menu->montyBtn->setChecked(settings.value("allowMonty", true).toBool());
+	_menu->relativePathsChk->setChecked(settings.value("showRelativeSongPath", true).toBool());
+		_menu->otherSymbolsChk->setChecked(settings.value("altSongTree", false).toBool());
 	              completerChk->setChecked(settings.value("caseSensitiveAutoCompletion", false).toBool());
 
 	this->restoreState(settings.value("windowState").toByteArray());
 
-	actionAutoSave->setChecked(settings.value("autoSave", true).toBool());
-	actionAlwaysOnTop->setChecked(settings.value("alwaysOnTop", false).toBool());
+	_menu->autoSaveBtn->setChecked(settings.value("autoSave", true).toBool());
+	_menu->onTopChk->setChecked(settings.value("alwaysOnTop", false).toBool());
 }
 
 /*!
@@ -309,12 +310,102 @@ void QUMainWindow::initMenu() {
 	connect(actionQt, SIGNAL(triggered()), this, SLOT(aboutQt()));
 	connect(actionUman, SIGNAL(triggered()), this, SLOT(aboutUman()));
 	connect(actionTagLib, SIGNAL(triggered()), this, SLOT(aboutTagLib()));
+}
 
-	// Ribbons (deferred -> does not look that good)
-//	this->songsBar->hide();
-//	this->viewBar->hide();
-//	this->optionsBar->hide();
-//	this->setMenuWidget(new QURibbonBar(this));
+/*!
+ * Create an Office2007-like menu to reduce mouse clicks.
+ */
+void QUMainWindow::initRibbonBar() {
+	this->songsBar->hide();
+	this->viewBar->hide();
+	this->optionsBar->hide();
+
+	_menu = new QURibbonBar(this);
+	this->setMenuWidget(_menu);
+
+	// songs menu
+	connect(_menu->saveBtn, SIGNAL(clicked()), songTree, SLOT(saveSelectedSongs()));
+	connect(_menu->deleteBtn, SIGNAL(clicked()), songTree, SLOT(requestDeleteSelectedSongs()));
+	connect(_menu->mergeBtn, SIGNAL(clicked()), songTree, SLOT(mergeSelectedSongs()));
+
+	connect(_menu->getCoversBtn, SIGNAL(clicked()), songTree, SLOT(requestCoversFromAmazon()));
+
+	QMenu *pictureFlowMenu = new QMenu(tr("Review pictures"));
+	pictureFlowMenu->addAction(QIcon(":/types/cover.png"),      tr("Covers..."),      songTree, SLOT(requestCoverFlow()));
+	pictureFlowMenu->addAction(QIcon(":/types/background.png"), tr("Backgrounds..."), songTree, SLOT(requestBackgroundFlow()));
+	_menu->reviewPicturesBtn->setMenu(pictureFlowMenu);
+
+	connect(_menu->sendToPlaylistBtn, SIGNAL(clicked()), songTree, SLOT(sendSelectedSongsToPlaylist()));
+	connect(_menu->calcSongSpeed, SIGNAL(clicked()), songTree, SLOT(calculateSpeed()));
+
+	connect(_menu->showLyricsBtn, SIGNAL(clicked()), songTree, SLOT(requestLyrics()));
+	connect(_menu->editLyricsBtn, SIGNAL(clicked()), songTree, SLOT(requestEditLyrics()));
+
+	connect(_menu->openExpBtn, SIGNAL(clicked()), songTree, SLOT(openCurrentFolder()));
+	connect(_menu->moreArtistBtn, SIGNAL(clicked()), songTree, SLOT(showMoreCurrentArtist()));
+
+	_menu->saveBtn->setShortcut(Qt::CTRL  + Qt::Key_S);
+	_menu->sendToPlaylistBtn->setShortcut(Qt::CTRL  + Qt::Key_P);
+	_menu->showLyricsBtn->setShortcut(Qt::CTRL  + Qt::Key_L);
+	_menu->deleteBtn->setShortcut(Qt::SHIFT + Qt::Key_Delete);
+	_menu->mergeBtn->setShortcut(Qt::CTRL  + Qt::Key_M);
+
+	// view menu
+	connect(_menu->relativePathsChk, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
+	connect(_menu->otherSymbolsChk, SIGNAL(toggled(bool)), this, SLOT(toggleAltSongTreeChk(bool)));
+	connect(_menu->findSongsBtn, SIGNAL(toggled(bool)), this, SLOT(toggleFilterFrame(bool)));
+
+	connect(_menu->detailsBtn, SIGNAL(toggled(bool)), detailsDock, SLOT(setVisible(bool)));
+	connect(_menu->tasksBtn, SIGNAL(toggled(bool)), tasksDock, SLOT(setVisible(bool)));
+	connect(_menu->playlistsBtn, SIGNAL(toggled(bool)), playlistDock, SLOT(setVisible(bool)));
+	connect(_menu->playerBtn, SIGNAL(toggled(bool)), mediaPlayerDock, SLOT(setVisible(bool)));
+	connect(_menu->fileInfoBtn, SIGNAL(toggled(bool)), previewDock, SLOT(setVisible(bool)));
+	connect(_menu->eventLogBtn, SIGNAL(toggled(bool)), eventsDock, SLOT(setVisible(bool)));
+
+	// options menu
+	connect(_menu->autoSaveBtn, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
+	connect(_menu->onTopChk, SIGNAL(toggled(bool)), this, SLOT(toggleAlwaysOnTop(bool)));
+
+	connect(_menu->tagSaveOrder, SIGNAL(clicked()), this, SLOT(editTagOrder()));
+	connect(_menu->customTagsBtn, SIGNAL(clicked()), this, SLOT(editCustomTags()));
+	connect(_menu->pathsBtn, SIGNAL(clicked()), this, SLOT(showPathsDialog()));
+
+	connect(_menu->langUsBtn, SIGNAL(clicked()), this, SLOT(enableEnglish()));
+	connect(_menu->langDeBtn, SIGNAL(clicked()), this, SLOT(enableGerman()));
+	connect(_menu->langPlBtn, SIGNAL(clicked()), this, SLOT(enablePolish()));
+
+	// extras menu
+	connect(_menu->reportBtn, SIGNAL(clicked()), this, SLOT(reportCreate()));
+	connect(_menu->backupAudioBtn, SIGNAL(clicked()), this, SLOT(copyAudioToPath()));
+	connect(_menu->pluginsBtn, SIGNAL(clicked()), this, SLOT(showPluginDialog()));
+
+	_menu->reportBtn->setShortcut(Qt::Key_F8);
+
+	QMenu *hideSongsMenu = new QMenu(tr("Hide Songs"));
+	hideSongsMenu->addAction(tr("Selection"), songTree, SLOT(hideSelected()));
+	hideSongsMenu->addAction(tr("Selection Only"), songTree, SLOT(hideSelectedOnly()));
+	hideSongsMenu->addAction(tr("Inverted Selection"), songTree, SLOT(hideAllButSelected()));
+	hideSongsMenu->addSeparator();
+	hideSongsMenu->addAction(tr("All"), songTree, SLOT(hideAll()));
+	_menu->hideSongsBtn->setMenu(hideSongsMenu);
+
+	connect(_menu->saveAllBtn, SIGNAL(clicked()), songTree, SLOT(saveUnsavedChanges()));
+	connect(_menu->rescanSongsBtn, SIGNAL(clicked()), this, SLOT(refreshAllSongs()));
+	connect(_menu->expandAllBtn, SIGNAL(clicked()), songTree, SLOT(expandAll()));
+	connect(_menu->expandAllBtn, SIGNAL(clicked()), songTree, SLOT(resizeToContents()));
+	connect(_menu->collapseAllBtn, SIGNAL(clicked()), songTree, SLOT(collapseAll()));
+	connect(_menu->collapseAllBtn, SIGNAL(clicked()), songTree, SLOT(resizeToContents()));
+
+	_menu->saveAllBtn->setShortcut(Qt::CTRL  + Qt::SHIFT + Qt::Key_S);
+	_menu->rescanSongsBtn->setShortcut(Qt::SHIFT + Qt::Key_F5);
+
+	// about menu
+	connect(_menu->aboutQtBtn, SIGNAL(clicked()), this, SLOT(aboutQt()));
+	connect(_menu->aboutUmanBtn, SIGNAL(clicked()), this, SLOT(aboutUman()));
+	connect(_menu->aboutTagLibBtn, SIGNAL(clicked()), this, SLOT(aboutTagLib()));
+
+	// help menu
+	connect(_menu->helpBtn, SIGNAL(clicked()), montyArea, SLOT(show()));
 }
 
 /*!
@@ -420,7 +511,7 @@ void QUMainWindow::initMonty() {
 	connect(montyArea->hideMontyBtn, SIGNAL(clicked()), montyArea, SLOT(hide()));
 	connect(montyArea->talkMontyBtn, SIGNAL(clicked()), this, SLOT(montyTalkNow()));
 
-	if(!actionAllowMonty->isChecked())
+	if(!_menu->montyBtn->isChecked())
 		montyArea->hide();
 
 	montyArea->askFrame->hide();
@@ -940,7 +1031,7 @@ void QUMainWindow::editCustomTags() {
 }
 
 void QUMainWindow::montyTalk(bool force) {
-	if(!force and !actionAllowMonty->isChecked())
+	if(!force and !_menu->montyBtn->isChecked())
 		return;
 
 	montyArea->show();
@@ -1017,7 +1108,7 @@ void QUMainWindow::toggleAutoSaveChk(bool checked) {
 	QSettings settings;
 	settings.setValue("autoSave", QVariant(checked));
 
-	actionSaveAll->setEnabled(!checked);
+	_menu->saveAllBtn->setEnabled(!checked);
 }
 
 void QUMainWindow::toggleAltSongTreeChk(bool checked) {
@@ -1149,7 +1240,7 @@ void QUMainWindow::applyFilter() {
  * Show all songs, if filter area is hidden.
  */
 void QUMainWindow::hideFilterArea() {
-	actionFilter->setChecked(false);
+	_menu->findSongsBtn->setChecked(false);
 	removeFilter();
 }
 
@@ -1174,9 +1265,7 @@ void QUMainWindow::reportCreate() {
  * Changes the application language to english.
  */
 void QUMainWindow::enableEnglish() {
-	actionLangGerman->setChecked(false);
-	actionLangEnglish->setChecked(true);
-	actionLangPolish->setChecked(false);
+	_menu->langUsBtn->setChecked(true);
 
 	QSettings settings;
 	settings.setValue("language", QVariant("en_EN"));
@@ -1196,9 +1285,7 @@ void QUMainWindow::enableEnglish() {
  * Changes the application language to german.
  */
 void QUMainWindow::enableGerman() {
-	actionLangGerman->setChecked(true);
-	actionLangEnglish->setChecked(false);
-	actionLangPolish->setChecked(false);
+	_menu->langDeBtn->setChecked(true);
 
 	QSettings settings;
 	settings.setValue("language", QVariant("de_DE"));
@@ -1218,9 +1305,7 @@ void QUMainWindow::enableGerman() {
  * Changes the application language to polish.
  */
 void QUMainWindow::enablePolish() {
-	actionLangGerman->setChecked(false);
-	actionLangEnglish->setChecked(false);
-	actionLangPolish->setChecked(true);
+	_menu->langPlBtn->setChecked(true);
 
 	QSettings settings;
 	settings.setValue("language", QVariant("pl_PL"));
