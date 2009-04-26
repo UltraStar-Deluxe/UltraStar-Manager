@@ -610,7 +610,8 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 
 void QUSongTree::toggleColumn(bool show, int index) {
 	this->header()->setSectionHidden(index, !show);
-	this->resizeToContents();
+//	this->resizeToContents();
+	this->resizeColumnToContents(index);
 
 	QSettings settings;
 	settings.setValue("songTreeState", QVariant(header()->saveState()));

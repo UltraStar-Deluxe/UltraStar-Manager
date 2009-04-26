@@ -40,6 +40,8 @@
 #include "tag.h"
 #include "tstring.h"
 
+#include "bass.h"
+
 #include "QUTagOrderDialog.h"
 #include "QUTextDialog.h"
 #include "QUProgressDialog.h"
@@ -169,13 +171,28 @@ void QUMainWindow::initConfig() {
 	// read other settings
 			_menu->montyBtn->setChecked(settings.value("allowMonty", true).toBool());
 	_menu->relativePathsChk->setChecked(settings.value("showRelativeSongPath", true).toBool());
-		_menu->otherSymbolsChk->setChecked(settings.value("altSongTree", false).toBool());
-	              completerChk->setChecked(settings.value("caseSensitiveAutoCompletion", false).toBool());
+	 _menu->otherSymbolsChk->setChecked(settings.value("altSongTree", false).toBool());
+			   completerChk->setChecked(settings.value("caseSensitiveAutoCompletion", false).toBool());
 
 	this->restoreState(settings.value("windowState").toByteArray());
 
 	_menu->autoSaveBtn->setChecked(settings.value("autoSave", true).toBool());
 	_menu->onTopChk->setChecked(settings.value("alwaysOnTop", false).toBool());
+
+	_menu->detailsBtn->setChecked(detailsDock->isVisible());
+	_menu->tasksBtn->setChecked(tasksDock->isVisible());
+	_menu->playlistsBtn->setChecked(playlistDock->isVisible());
+	_menu->playerBtn->setChecked(mediaPlayerDock->isVisible());
+	_menu->fileInfoBtn->setChecked(previewDock->isVisible());
+	_menu->eventLogBtn->setChecked(eventsDock->isVisible());
+
+	if(QString::compare(settings.value("language").toString(), "en_EN") == 0) {
+		_menu->langUsBtn->setChecked(true);
+	} else if(QString::compare(settings.value("language").toString(), "de_DE") == 0) {
+		_menu->langDeBtn->setChecked(true);
+	} else if(QString::compare(settings.value("language").toString(), "pl_PL") == 0) {
+		_menu->langPlBtn->setChecked(true);
+	}
 }
 
 /*!
@@ -344,23 +361,25 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->openExpBtn, SIGNAL(clicked()), songTree, SLOT(openCurrentFolder()));
 	connect(_menu->moreArtistBtn, SIGNAL(clicked()), songTree, SLOT(showMoreCurrentArtist()));
 
-	_menu->saveBtn->setShortcut(Qt::CTRL  + Qt::Key_S);
-	_menu->sendToPlaylistBtn->setShortcut(Qt::CTRL  + Qt::Key_P);
-	_menu->showLyricsBtn->setShortcut(Qt::CTRL  + Qt::Key_L);
-	_menu->deleteBtn->setShortcut(Qt::SHIFT + Qt::Key_Delete);
-	_menu->mergeBtn->setShortcut(Qt::CTRL  + Qt::Key_M);
+	_menu->setShortcut(_menu->saveBtn, Qt::CTRL + Qt::Key_S);
+	_menu->setShortcut(_menu->sendToPlaylistBtn, Qt::CTRL  + Qt::Key_P);
+	_menu->setShortcut(_menu->showLyricsBtn, Qt::CTRL  + Qt::Key_L);
+	_menu->setShortcut(_menu->deleteBtn, Qt::SHIFT + Qt::Key_Delete);
+	_menu->setShortcut(_menu->mergeBtn, Qt::CTRL  + Qt::Key_M);
 
 	// view menu
 	connect(_menu->relativePathsChk, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
 	connect(_menu->otherSymbolsChk, SIGNAL(toggled(bool)), this, SLOT(toggleAltSongTreeChk(bool)));
 	connect(_menu->findSongsBtn, SIGNAL(toggled(bool)), this, SLOT(toggleFilterFrame(bool)));
 
-	connect(_menu->detailsBtn, SIGNAL(toggled(bool)), detailsDock, SLOT(setVisible(bool)));
-	connect(_menu->tasksBtn, SIGNAL(toggled(bool)), tasksDock, SLOT(setVisible(bool)));
-	connect(_menu->playlistsBtn, SIGNAL(toggled(bool)), playlistDock, SLOT(setVisible(bool)));
-	connect(_menu->playerBtn, SIGNAL(toggled(bool)), mediaPlayerDock, SLOT(setVisible(bool)));
-	connect(_menu->fileInfoBtn, SIGNAL(toggled(bool)), previewDock, SLOT(setVisible(bool)));
-	connect(_menu->eventLogBtn, SIGNAL(toggled(bool)), eventsDock, SLOT(setVisible(bool)));
+	connect(_menu->detailsBtn, SIGNAL(clicked(bool)), detailsDock, SLOT(setVisible(bool)));
+	connect(_menu->tasksBtn, SIGNAL(clicked(bool)), tasksDock, SLOT(setVisible(bool)));
+	connect(_menu->playlistsBtn, SIGNAL(clicked(bool)), playlistDock, SLOT(setVisible(bool)));
+	connect(_menu->playerBtn, SIGNAL(clicked(bool)), mediaPlayerDock, SLOT(setVisible(bool)));
+	connect(_menu->fileInfoBtn, SIGNAL(clicked(bool)), previewDock, SLOT(setVisible(bool)));
+	connect(_menu->eventLogBtn, SIGNAL(clicked(bool)), eventsDock, SLOT(setVisible(bool)));
+
+	_menu->setShortcut(_menu->findSongsBtn, Qt::CTRL + Qt::Key_F);
 
 	// options menu
 	connect(_menu->autoSaveBtn, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
@@ -379,7 +398,7 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->backupAudioBtn, SIGNAL(clicked()), this, SLOT(copyAudioToPath()));
 	connect(_menu->pluginsBtn, SIGNAL(clicked()), this, SLOT(showPluginDialog()));
 
-	_menu->reportBtn->setShortcut(Qt::Key_F8);
+	_menu->setShortcut(_menu->reportBtn, Qt::Key_F8);
 
 	QMenu *hideSongsMenu = new QMenu(tr("Hide Songs"));
 	hideSongsMenu->addAction(tr("Selection"), songTree, SLOT(hideSelected()));
@@ -396,16 +415,18 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->collapseAllBtn, SIGNAL(clicked()), songTree, SLOT(collapseAll()));
 	connect(_menu->collapseAllBtn, SIGNAL(clicked()), songTree, SLOT(resizeToContents()));
 
-	_menu->saveAllBtn->setShortcut(Qt::CTRL  + Qt::SHIFT + Qt::Key_S);
-	_menu->rescanSongsBtn->setShortcut(Qt::SHIFT + Qt::Key_F5);
+	_menu->setShortcut(_menu->saveAllBtn, Qt::CTRL  + Qt::SHIFT + Qt::Key_S);
+	_menu->setShortcut(_menu->rescanSongsBtn, Qt::SHIFT + Qt::Key_F5);
 
 	// about menu
 	connect(_menu->aboutQtBtn, SIGNAL(clicked()), this, SLOT(aboutQt()));
 	connect(_menu->aboutUmanBtn, SIGNAL(clicked()), this, SLOT(aboutUman()));
 	connect(_menu->aboutTagLibBtn, SIGNAL(clicked()), this, SLOT(aboutTagLib()));
+	connect(_menu->aboutBASSBtn, SIGNAL(clicked()), this, SLOT(aboutBASS()));
 
 	// help menu
 	connect(_menu->helpBtn, SIGNAL(clicked()), montyArea, SLOT(show()));
+	_menu->setShortcut(_menu->helpBtn, Qt::Key_F1);
 }
 
 /*!
@@ -418,6 +439,7 @@ void QUMainWindow::initSongTree() {
 
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateDetails()));
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updatePreviewTree()));
+	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateMergeBtn()));
 
 	connect(songTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(editSongSetFileLink(QTreeWidgetItem*, int)));
 	connect(songTree, SIGNAL(itemActivated(QTreeWidgetItem*, int)), this, SLOT(showFileContent(QTreeWidgetItem*, int)));
@@ -732,6 +754,10 @@ void QUMainWindow::updatePreviewTree() {
 		previewTree->showFileInformation(QFileInfo());
 }
 
+void QUMainWindow::updateMergeBtn() {
+	_menu->mergeBtn->setEnabled(songTree->selectedItems().size() > 1);
+}
+
 /*!
  * Save all changes of the details into the song file.
  * \sa updateDetails()
@@ -947,6 +973,18 @@ void QUMainWindow::aboutTagLib() {
 					.arg(TAGLIB_MAJOR_VERSION)
 					.arg(TAGLIB_MINOR_VERSION)
 					.arg(TAGLIB_PATCH_VERSION));
+}
+
+void QUMainWindow::aboutBASS() {
+	QUMessageBox::information(this,
+			tr("About BASS"),
+			QString(tr("<b>TagLib Audio Meta-Data Library</b><br><br>"
+					"BASS is an audio library for use in Windows and MacOSX software. Its purpose is to provide the most powerful and efficient (yet easy to use), sample, stream, MOD music, and recording functions. All in a tiny DLL, under 100KB in size.<br><br>"
+					"Version: <b>%1</b><br><br>"
+					"Copyright (c) 1999-2008<br><a href=\"http://www.un4seen.com/bass.html\">Un4seen Developments Ltd.</a> All rights reserved."))
+					.arg(BASSVERSIONTEXT),
+			QStringList() << ":/marks/accept.png" << "OK",
+			330);
 }
 
 void QUMainWindow::editTagOrder() {

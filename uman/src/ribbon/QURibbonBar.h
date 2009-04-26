@@ -2,6 +2,7 @@
 #define QURIBBONBAR_H
 
 #include <QTabWidget>
+#include <QKeySequence>
 
 #include "ui_QURibbonBar.h"
 
@@ -13,6 +14,8 @@ public:
 
 	QToolButton *helpBtn;
 	QToolButton *montyBtn;
+
+	void setShortcut(QToolButton *w, const QKeySequence &key);
 };
 
 #endif // QURIBBONBAR_H

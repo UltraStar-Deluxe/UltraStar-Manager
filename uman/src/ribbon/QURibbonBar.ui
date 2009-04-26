@@ -36,7 +36,7 @@
   </property>
   <widget class="QWidget" name="songsTab">
    <attribute name="title">
-    <string>Songs</string>
+    <string>&amp;Songs</string>
    </attribute>
    <layout class="QHBoxLayout" name="horizontalLayout_11">
     <property name="spacing">
@@ -70,6 +70,9 @@
            <width>60</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="toolTip">
+          <string>Save selected songs.</string>
          </property>
          <property name="text">
           <string>Save</string>
@@ -105,6 +108,9 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip">
+            <string>Delete selected songs from the database.</string>
+           </property>
            <property name="text">
             <string>Delete</string>
            </property>
@@ -127,6 +133,9 @@
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Merge all selected songs with the current song.</string>
            </property>
            <property name="text">
             <string>Merge</string>
@@ -175,6 +184,9 @@ border-left-color: #C2C7CB;</string>
            <height>0</height>
           </size>
          </property>
+         <property name="toolTip">
+          <string>Get covers for the selected songs from Amazon.</string>
+         </property>
          <property name="text">
           <string>Get
 Covers...</string>
@@ -210,6 +222,9 @@ Covers...</string>
            <width>60</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="toolTip">
+          <string>Show a slideshow of pictures like iTunes CoverFlow.</string>
          </property>
          <property name="text">
           <string>Review
@@ -256,6 +271,9 @@ border-left-color: #C2C7CB;</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip">
+            <string>Add the selected songs to the current playlist.</string>
+           </property>
            <property name="text">
             <string>Send To Playlist</string>
            </property>
@@ -278,6 +296,9 @@ border-left-color: #C2C7CB;</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Compute the number of syllables per second. Fill the column for the song speed in the tree with values.</string>
            </property>
            <property name="text">
             <string>Calculate Song Speed</string>
@@ -324,6 +345,9 @@ border-left-color: #C2C7CB;</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip">
+            <string>Show the lyrics of the current song in a human readable form.</string>
+           </property>
            <property name="text">
             <string>Show Lyrics...</string>
            </property>
@@ -346,6 +370,9 @@ border-left-color: #C2C7CB;</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Modify each syllable of the song. Perform manual corrections.</string>
            </property>
            <property name="text">
             <string>Edit Lyrics...</string>
@@ -390,6 +417,9 @@ border-left-color: #C2C7CB;</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip">
+            <string>Open the folder of the current song.</string>
+           </property>
            <property name="text">
             <string>Open With Explorer...</string>
            </property>
@@ -412,6 +442,9 @@ border-left-color: #C2C7CB;</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Filter all songs for the current artist.</string>
            </property>
            <property name="text">
             <string>Find More From Artist</string>
@@ -450,7 +483,7 @@ border-left-color: #C2C7CB;</string>
   </widget>
   <widget class="QWidget" name="viewTab">
    <attribute name="title">
-    <string>View</string>
+    <string>&amp;View</string>
    </attribute>
    <layout class="QHBoxLayout" name="horizontalLayout_9">
     <property name="spacing">
@@ -478,6 +511,9 @@ border-left-color: #C2C7CB;</string>
            <width>60</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="toolTip">
+          <string>Find songs by adding a filter to the song tree. Use regular expressions.</string>
          </property>
          <property name="text">
           <string>Find
@@ -518,6 +554,9 @@ border-left-color: #C2C7CB;</string>
          </property>
          <item>
           <widget class="QCheckBox" name="relativePathsChk">
+           <property name="toolTip">
+            <string>Show realtive paths in the song tree. These paths are relative to the database folder.</string>
+           </property>
            <property name="text">
             <string>Relative paths</string>
            </property>
@@ -525,6 +564,9 @@ border-left-color: #C2C7CB;</string>
          </item>
          <item>
           <widget class="QCheckBox" name="otherSymbolsChk">
+           <property name="toolTip">
+            <string>Display other symbols in the song tree that may less annoying for the user. =)</string>
+           </property>
            <property name="text">
             <string>Other tree symbols</string>
            </property>
@@ -561,6 +603,9 @@ border-left-color: #C2C7CB;</string>
            <height>0</height>
           </size>
          </property>
+         <property name="toolTip">
+          <string>Display and edit all song tags.</string>
+         </property>
          <property name="text">
           <string>Song
 Details</string>
@@ -570,6 +615,9 @@ Details</string>
            <normaloff>:/control/text_edit.png</normaloff>:/control/text_edit.png</iconset>
          </property>
          <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
           <bool>true</bool>
          </property>
          <property name="toolButtonStyle">
@@ -606,6 +654,9 @@ border-left-color: #C2C7CB;</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip">
+            <string>Tasks help you to reorganize and clean-up your songs.</string>
+           </property>
            <property name="text">
             <string>Tasks</string>
            </property>
@@ -614,6 +665,9 @@ border-left-color: #C2C7CB;</string>
              <normaloff>:/control/tasks.png</normaloff>:/control/tasks.png</iconset>
            </property>
            <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
             <bool>true</bool>
            </property>
            <property name="toolButtonStyle">
@@ -631,6 +685,9 @@ border-left-color: #C2C7CB;</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Playlists are subsets of your songs.</string>
            </property>
            <property name="text">
             <string>Playlists</string>
@@ -681,6 +738,9 @@ border-left-color: #C2C7CB;</string>
            <height>0</height>
           </size>
          </property>
+         <property name="toolTip">
+          <string>Preview each song without launching UltraStar. You may sing. =)</string>
+         </property>
          <property name="text">
           <string>Music
 Player</string>
@@ -726,6 +786,9 @@ border-left-color: #C2C7CB;</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip">
+            <string>Show general application information and file-specific details.</string>
+           </property>
            <property name="text">
             <string>File Information</string>
            </property>
@@ -751,6 +814,9 @@ border-left-color: #C2C7CB;</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Read what happens to your songs and notice errors.</string>
            </property>
            <property name="text">
             <string>Event Log</string>
@@ -792,7 +858,7 @@ border-left-color: #C2C7CB;</string>
   </widget>
   <widget class="QWidget" name="optionsTab">
    <attribute name="title">
-    <string>Options</string>
+    <string>&amp;Options</string>
    </attribute>
    <layout class="QHBoxLayout" name="horizontalLayout_6">
     <property name="spacing">
@@ -827,6 +893,9 @@ border-left-color: #C2C7CB;</string>
            <height>0</height>
           </size>
          </property>
+         <property name="toolTip">
+          <string>Setup all necessary paths to ensure full application funciontality.</string>
+         </property>
          <property name="text">
           <string>Paths...</string>
          </property>
@@ -857,6 +926,9 @@ border-left-color: #C2C7CB;</string>
        </item>
        <item>
         <widget class="QCheckBox" name="onTopChk">
+         <property name="toolTip">
+          <string>Let no other window overlap this application.</string>
+         </property>
          <property name="text">
           <string>Always on top</string>
          </property>
@@ -890,6 +962,9 @@ border-left-color: #C2C7CB;</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip">
+            <string>Specify the order in which tags will be saved into the song file.</string>
+           </property>
            <property name="text">
             <string>Tag save order...</string>
            </property>
@@ -912,6 +987,9 @@ border-left-color: #C2C7CB;</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Define your own tags here.</string>
            </property>
            <property name="text">
             <string>Custom tags...</string>
@@ -960,6 +1038,9 @@ border-left-color: #C2C7CB;</string>
            <height>0</height>
           </size>
          </property>
+         <property name="toolTip">
+          <string>Always save a song after each change.</string>
+         </property>
          <property name="text">
           <string>Auto-
 Save</string>
@@ -972,7 +1053,7 @@ Save</string>
           <bool>true</bool>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -1011,6 +1092,9 @@ Save</string>
            <height>0</height>
           </size>
          </property>
+         <property name="toolTip">
+          <string>Change application language to 'English'.</string>
+         </property>
          <property name="text">
           <string>English</string>
          </property>
@@ -1042,6 +1126,9 @@ Save</string>
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Change application language to 'German (Deutsch)'.</string>
          </property>
          <property name="text">
           <string>German
@@ -1078,6 +1165,9 @@ Save</string>
            <width>60</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="toolTip">
+          <string>Change application language to 'Polish (Polski)'.</string>
          </property>
          <property name="text">
           <string>Polish
@@ -1121,7 +1211,7 @@ Save</string>
   </widget>
   <widget class="QWidget" name="extrasTab">
    <attribute name="title">
-    <string>Extras</string>
+    <string>E&amp;xtras</string>
    </attribute>
    <layout class="QHBoxLayout" name="horizontalLayout_14">
     <property name="spacing">
@@ -1155,6 +1245,9 @@ Save</string>
            <width>60</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="toolTip">
+          <string>Export informative lists of your song database.</string>
          </property>
          <property name="text">
           <string>Create
@@ -1198,6 +1291,9 @@ border-left-color: #C2C7CB;</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip">
+            <string>Copy all audio files to a secure place.</string>
+           </property>
            <property name="text">
             <string>Backup Audio Files...</string>
            </property>
@@ -1220,6 +1316,9 @@ border-left-color: #C2C7CB;</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>See an reload all plugins.</string>
            </property>
            <property name="text">
             <string>Plugins...</string>
@@ -1266,6 +1365,9 @@ border-left-color: #C2C7CB;</string>
            <width>60</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="toolTip">
+          <string>Filter the song tree manually.</string>
          </property>
          <property name="text">
           <string>Hide
@@ -1315,6 +1417,9 @@ border-left-color: #C2C7CB;</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip">
+            <string>Save all modified but unsaved songs (the bold ones).</string>
+           </property>
            <property name="text">
             <string>Save All Changes</string>
            </property>
@@ -1337,6 +1442,9 @@ border-left-color: #C2C7CB;</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Reload all songs into memory. This may take a while.</string>
            </property>
            <property name="text">
             <string>Rescan Song Folder</string>
@@ -1381,6 +1489,9 @@ border-left-color: #C2C7CB;</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip">
+            <string>Expand all nodes in the song tree.</string>
+           </property>
            <property name="text">
             <string>Expand All</string>
            </property>
@@ -1403,6 +1514,9 @@ border-left-color: #C2C7CB;</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Collapse all nodes in the song tree.</string>
            </property>
            <property name="text">
             <string>Collapse All</string>
@@ -1441,7 +1555,7 @@ border-left-color: #C2C7CB;</string>
   </widget>
   <widget class="QWidget" name="aboutTab">
    <attribute name="title">
-    <string>About</string>
+    <string>&amp;About</string>
    </attribute>
    <layout class="QHBoxLayout" name="horizontalLayout_17">
     <property name="spacing">
@@ -1480,7 +1594,7 @@ border-left-color: #C2C7CB;</string>
            </property>
            <property name="icon">
             <iconset resource="../resources/uman.qrc">
-             <normaloff>:/marks/information.png</normaloff>:/marks/information.png</iconset>
+             <normaloff>:/qt.png</normaloff>:/qt.png</iconset>
            </property>
            <property name="toolButtonStyle">
             <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -1561,7 +1675,7 @@ border-left-color: #C2C7CB;</string>
          <item>
           <widget class="QToolButton" name="aboutBASSBtn">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">

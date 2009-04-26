@@ -247,6 +247,12 @@ TASKS
   > some predefined slots would be cool
 * remove empty lines (bad at end of a song?)
 * use correct apostrophes (´, ` -> ')
+* remove unsupported tags
+  > accumulate a list of found tags and let the user choose which one will be removed
+  > configuration dialog?
+! introduce a preview feature for tasks (what will the song look like)
+! modify song tags via folder or song file names
+  > "Juli - Die perfekte Welle.txt" + "#ARTIST - #TITLE.txt" = "Juli", "Die perfekte Welle"
 
 SONG TREE
 ? virtual song folders for many song text files in one folder

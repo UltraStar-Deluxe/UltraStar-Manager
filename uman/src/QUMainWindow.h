@@ -47,6 +47,7 @@ private slots:
 
 	void updateDetails();
 	void updatePreviewTree();
+	void updateMergeBtn();
 
 	void editSongSetFileLink(QTreeWidgetItem *item, int column);
 	void editSongSetDetail(QTableWidgetItem *item);
@@ -56,6 +57,7 @@ private slots:
 	void aboutQt();
 	void aboutUman();
 	void aboutTagLib();
+	void aboutBASS();
 
 	void toggleRelativeSongPath(bool checked);
 	void toggleCompleterChk(bool checked);

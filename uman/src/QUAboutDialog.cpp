@@ -6,12 +6,16 @@
 #include <QFile>
 #include <QDateTime>
 
-#define RESET_GAP   2000
+#define RESET_GAP   4000
 #define SCROLL_STEP 1
 #define SCROLL_GAP  100
 
 QUAboutDialog::QUAboutDialog(QWidget *parent): QDialog(parent) {
 	setupUi(this);
+
+	this->setWindowFlags(Qt::SplashScreen);
+
+	connect(acceptBtn, SIGNAL(clicked()), this, SLOT(accept()));
 
 	QFile f(":/txt/credits");
 
@@ -30,6 +34,7 @@ QUAboutDialog::QUAboutDialog(QWidget *parent): QDialog(parent) {
 			.arg(dateTime.toString("MMM dd yyyy, HH:mm")));
 
 	resetText();
+	credits->document()->setDefaultStyleSheet("a {color: white}");
 }
 
 void QUAboutDialog::scrollDown() {

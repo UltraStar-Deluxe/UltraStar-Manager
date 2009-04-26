@@ -1,184 +1,162 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>QUAboutDialog</class>
- <widget class="QDialog" name="QUAboutDialog" >
-  <property name="geometry" >
+ <widget class="QDialog" name="QUAboutDialog">
+  <property name="geometry">
    <rect>
     <x>0</x>
-    <y>0</y>
-    <width>307</width>
-    <height>211</height>
+    <y>4</y>
+    <width>500</width>
+    <height>300</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
    <string>About</string>
   </property>
-  <property name="windowIcon" >
-   <iconset resource="resources/uman.qrc" >
+  <property name="windowIcon">
+   <iconset resource="resources/uman.qrc">
     <normaloff>:/icons/cup.png</normaloff>:/icons/cup.png</iconset>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_3" >
-   <property name="spacing" >
+  <property name="styleSheet">
+   <string>background-image: url(:/about_bgr.png);</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="spacing">
     <number>0</number>
    </property>
-   <property name="margin" >
-    <number>0</number>
+   <property name="margin">
+    <number>5</number>
    </property>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3" >
-     <property name="spacing" >
-      <number>20</number>
-     </property>
-     <property name="margin" >
-      <number>5</number>
-     </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QLabel" name="label" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="leftMargin">
+        <number>5</number>
        </property>
-       <property name="text" >
-        <string/>
-       </property>
-       <property name="pixmap" >
-        <pixmap resource="resources/uman.qrc" >:/icons/uman72.png</pixmap>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout" >
-       <property name="spacing" >
-        <number>2</number>
+       <property name="topMargin">
+        <number>5</number>
        </property>
        <item>
-        <spacer name="verticalSpacer" >
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
+        <widget class="QLabel" name="versionLbl">
+         <property name="styleSheet">
+          <string>background-image: url();
+color: rgb(255, 255, 255);</string>
          </property>
-         <property name="sizeHint" stdset="0" >
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_2" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text" >
-          <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">&lt;span style=" font-size:16pt; font-weight:600;">UltraStar Manager&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
-         </property>
-         <property name="alignment" >
-          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="versionLbl" >
-         <property name="text" >
+         <property name="text">
           <string>Version:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
          </property>
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer_2" >
-         <property name="orientation" >
+        <spacer name="verticalSpacer">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>40</height>
+           <height>80</height>
           </size>
          </property>
         </spacer>
        </item>
       </layout>
      </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="Line" name="line" >
-     <property name="orientation" >
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QTextBrowser" name="credits" >
-     <property name="frameShape" >
-      <enum>QFrame::NoFrame</enum>
-     </property>
-     <property name="verticalScrollBarPolicy" >
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="horizontalScrollBarPolicy" >
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="openExternalLinks" >
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="Line" name="line_2" >
-     <property name="orientation" >
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout" >
-     <property name="margin" >
-      <number>5</number>
-     </property>
      <item>
-      <spacer name="horizontalSpacer" >
-       <property name="orientation" >
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" stdset="0" >
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
         <size>
-         <width>40</width>
+         <width>308</width>
          <height>20</height>
         </size>
        </property>
       </spacer>
      </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QPushButton" name="acceptBtn" >
-       <property name="text" >
-        <string>OK</string>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-       <property name="icon" >
-        <iconset resource="resources/uman.qrc" >
-         <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>15</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QTextBrowser" name="credits">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>240</width>
+         <height>150</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string>background-image: url();
+background-color: rgba(255, 255, 255, 20);
+color: rgb(255, 255, 255);
+border-radius: 8px;
+padding: 10px;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="openExternalLinks">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_2" >
-       <property name="orientation" >
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" stdset="0" >
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
         <size>
-         <width>40</width>
+         <width>138</width>
          <height>20</height>
         </size>
        </property>
@@ -186,37 +164,41 @@ p, li { white-space: pre-wrap; }
      </item>
     </layout>
    </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QToolButton" name="acceptBtn">
+       <property name="styleSheet">
+        <string>color: rgb(255, 255, 255);
+background-image: url();</string>
+       </property>
+       <property name="text">
+        <string>Close</string>
+       </property>
+       <property name="autoRaise">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
   </layout>
-  <zorder>credits</zorder>
-  <zorder>credits</zorder>
-  <zorder>line</zorder>
-  <zorder>line_2</zorder>
-  <zorder>acceptBtn</zorder>
-  <zorder>horizontalSpacer</zorder>
-  <zorder>label</zorder>
-  <zorder>label_2</zorder>
-  <zorder>versionLbl</zorder>
-  <zorder></zorder>
  </widget>
  <resources>
-  <include location="resources/uman.qrc" />
+  <include location="resources/uman.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>acceptBtn</sender>
-   <signal>clicked()</signal>
-   <receiver>QUAboutDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>277</x>
-     <y>193</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>347</x>
-     <y>210</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
