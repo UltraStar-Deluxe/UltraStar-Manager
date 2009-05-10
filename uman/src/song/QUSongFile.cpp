@@ -34,7 +34,8 @@
 QUSongFile::QUSongFile(const QString &filePath, QObject *parent):
 	QUSongInterface(parent),
 	_hasUnsavedChanges(false),
-	_songLength(-1)
+	_songLengthCacheValid(false),
+	_songSpeedCacheValid(false)
 {
 	connect(monty->watcher(), SIGNAL(fileChanged(const QString&)), this, SLOT(songFileChanged(const QString&)));
 
@@ -137,6 +138,11 @@ QString QUSongFile::relativeFilePath() const {
 	return QU::BaseDir.relativeFilePath(_fi.filePath());
 }
 
+void QUSongFile::invalidateCaches() const {
+	_songLengthCacheValid = false;
+	_songSpeedCacheValid = false;
+}
+
 /*!
  * Reads the US data file and loads all data into memory. This is needed to be done
  * before any changes can be made. You cannot send event messages here because a song
@@ -157,8 +163,7 @@ bool QUSongFile::updateCache() {
 	_lyrics.clear();
 	_info.clear();
 	_foundUnsupportedTags.clear();
-	_songLength = -1;
-	_songSpeed = -1.0;
+	invalidateCaches();
 	clearMelody();
 
 	/*
@@ -332,21 +337,20 @@ QString QUSongFile::titleCompact() const {
 /*!
  * \returns the length of this song accoring to BPM and length of lyrics, in seconds
  */
-int QUSongFile::length() {
-	if(_songLength > -1)
-		return _songLength; // use cache
-
-	if(_lyrics.isEmpty()) {
-		_songLength = 0;
-		return 0;
+int QUSongFile::length() const {
+	if(!_songLengthCacheValid) {
+		_songLengthCache = calculateSongLength();
+		_songLengthCacheValid = true;
 	}
 
+	return _songLengthCache;
+}
+
+int QUSongFile::calculateSongLength() const {
 	double bpm = QVariant(this->bpm().replace(",", ".")).toDouble();
 
-	if(bpm == 0.0) {
-		_songLength = 0;
+	if(_lyrics.isEmpty() || bpm == 0.0)
 		return 0;
-	}
 
 	int beats = 0;
 	if(QString::compare(this->relative(), "yes", Qt::CaseInsensitive) == 0) {
@@ -362,8 +366,7 @@ int QUSongFile::length() {
 
 	double gap = QVariant(this->gap()).toDouble() / 1000;
 
-	_songLength = qMax(0, (int)((beats / (bpm * 4)) * 60 + gap)); // result in seconds
-	return _songLength;
+	return qMax(0, (int)((beats / (bpm * 4)) * 60 + gap)); // result in seconds
 }
 
 /*!
@@ -412,8 +415,8 @@ QString QUSongFile::lengthEffectiveFormatted() const {
 /*!
  * Like syllablesPerSecond() but with formatted output.
  */
-QString QUSongFile::speedFormatted() {
-	double s = syllablesPerSecond(true);
+QString QUSongFile::speedFormatted() const {
+	double s = syllablesPerSecond(false);
 	return QString("%1").arg(s, 2, 'f', 1, QChar('0'));
 }
 
@@ -429,21 +432,23 @@ QString QUSongFile::speedFormatted() {
  *
  * \returns the number of singable syllables per second (no freestyle or pauses)
  */
-double QUSongFile::syllablesPerSecond(bool firstCalc) {
-	if(_songSpeed > -1.0 or !firstCalc)
-		return _songSpeed; // use cache
+double QUSongFile::syllablesPerSecond(bool bypassCache) const {
+	if(!_songSpeedCacheValid) {
+		if(bypassCache)
+			return -1.0;
 
-	if(_lyrics.isEmpty()) {
-		_songSpeed = 0.0;
-		return 0.0;
+		_songSpeedCache = calculateSongSpeed();
+		_songSpeedCacheValid = true;
 	}
 
+	return _songSpeedCache;
+}
+
+double QUSongFile::calculateSongSpeed() const {
 	double bpm = QVariant(this->bpm().replace(",", ".")).toDouble();
 
-	if(bpm == 0.0) {
-		_songSpeed = 0.0;
+	if(_lyrics.isEmpty() || bpm == 0.0)
 		return 0.0;
-	}
 
 	QList<int> durations;
 
@@ -459,10 +464,8 @@ double QUSongFile::syllablesPerSecond(bool firstCalc) {
 		}
 	}
 
-	if(durations.isEmpty()) {
-		_songSpeed = 0.0;
+	if(durations.isEmpty())
 		return 0.0;
-	}
 
 	int beatCount1 = 0;
 	int beatCount2 = 0;
@@ -477,9 +480,7 @@ double QUSongFile::syllablesPerSecond(bool firstCalc) {
 	double result2 = ((durations.size() / 2.) / (beatCount2 / (bpm * 4))) / 60;
 	double result3 = ((durations.size() / 2.) / (beatCount3 / (bpm * 4))) / 60;
 
-	_songSpeed = qMax(result1, qMax(result2, result3));
-
-	return _songSpeed;
+	return qMax(result1, qMax(result2, result3));
 }
 
 /*!

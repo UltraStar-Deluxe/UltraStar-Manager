@@ -973,7 +973,7 @@ void QUSongTree::calculateSpeed() {
 		dlg.update(QString("%1 - %2").arg(item->song()->artist()).arg(item->song()->title()));
 		if(dlg.cancelled()) break;
 
-		item->song()->syllablesPerSecond(true);
+		item->song()->syllablesPerSecond(false);
 		item->update();
 	}
 

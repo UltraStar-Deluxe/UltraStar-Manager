@@ -92,14 +92,14 @@ public slots:
 	bool isKaraoke() const;
 
 	QString titleCompact() const;
-	int length();
+	int length() const;
 	int lengthMp3() const;
 	int lengthEffective() const;
 	int lengthAudioFile() const;
-	double syllablesPerSecond(bool firstCalc = false);
+	double syllablesPerSecond(bool bypassCache = true) const;
 
 	QString lengthEffectiveFormatted() const;
-	QString speedFormatted();
+	QString speedFormatted() const;
 
 	QStringList lyrics() const;
 
@@ -185,8 +185,14 @@ private:
 	QStringList _foundUnsupportedTags;
 	bool _hasUnsavedChanges;
 
-	int     _songLength; // cached song length, calculated from lyrics + gap, -1 == not calculated
-	double  _songSpeed; // cached song speed
+	mutable int     _songLengthCache;
+	mutable bool    _songLengthCacheValid;
+	mutable double  _songSpeedCache;
+	mutable bool    _songSpeedCacheValid;
+
+	void invalidateCaches() const;
+	int calculateSongLength() const;
+	double calculateSongSpeed() const;
 
 	bool rename(QDir dir, const QString &oldName, const QString &newName);
 

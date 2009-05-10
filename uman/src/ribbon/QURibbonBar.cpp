@@ -23,13 +23,11 @@ QURibbonBar::QURibbonBar(QWidget *parent) {
 	helpBtn->setAutoRaise(true);
 	helpBtn->setIcon(QIcon(":/marks/help.png"));
 	helpBtn->setToolTip(tr("Show Monty now to help you."));
-	this->setShortcut(helpBtn, Qt::Key_F1);
 
 	montyBtn = new QToolButton(this);
 	montyBtn->setAutoRaise(true);
 	montyBtn->setCheckable(true);
 	montyBtn->setToolTip(tr("Allow Monty to help you on its own."));
-	this->setShortcut(montyBtn, Qt::CTRL + Qt::Key_F1);
 
 	montyBtn->setIcon(QIcon(":/monty/normal.png"));
 

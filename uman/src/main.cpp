@@ -15,6 +15,7 @@
 void initApplication();
 void initLanguage(QApplication&, QTranslator&, QSplashScreen&);
 void handlePreviousAppCrash();
+void handleWipWarning();
 
 int main(int argc, char *argv[]) {
 	initApplication();
@@ -27,6 +28,7 @@ int main(int argc, char *argv[]) {
 
 	initLanguage(app, tr, splash);
 
+	handleWipWarning();
 	handlePreviousAppCrash();
 
     QUMainWindow mainWindow;
@@ -92,6 +94,13 @@ void initLanguage(QApplication &app, QTranslator &t, QSplashScreen &s) {
 						"See <b>Options > Language</b> to change this."),
 				BTN << ":/marks/accept.png" << QObject::tr("Continue."),
 				270);
+}
+
+void handleWipWarning() {
+	QUMessageBox::warning(0,
+				QObject::tr("WIP version detected!"),
+				QObject::tr("This version is still under development <b>and may not be very stable</b>. You might loose all your songs if you use it.<br><br><b>Please backup</b> the songs you are working with and do not distribute this version."),
+				QStringList() << ":/marks/accept.png" << QObject::tr("I will be careful."));
 }
 
 void handlePreviousAppCrash() {

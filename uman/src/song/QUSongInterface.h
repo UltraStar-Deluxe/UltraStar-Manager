@@ -174,13 +174,13 @@ public:
 	virtual bool isSingStar() const = 0;
 
 	virtual QString titleCompact() const = 0;
-	virtual int length() = 0;
+	virtual int length() const = 0;
 	virtual int lengthMp3() const = 0;
 	virtual int lengthEffective() const = 0;
-	virtual double syllablesPerSecond(bool firstCalc = false) = 0;
+	virtual double syllablesPerSecond(bool bypassCache = true) const = 0;
 
 	virtual QString lengthEffectiveFormatted() const = 0;
-	virtual QString speedFormatted() = 0;
+	virtual QString speedFormatted() const = 0;
 
 	virtual QStringList lyrics() const = 0;
 

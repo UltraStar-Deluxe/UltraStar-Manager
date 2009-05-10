@@ -81,7 +81,7 @@ EDIT LYRICS
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 QT
-* based on Qt 4.5.0 now
+* based on Qt 4.5.1 now
 * keep on licensing under GPL
 
 PLUGINS
@@ -146,10 +146,6 @@ TASKS
 AMAZON COVER DOWNLOAD
 * link of 'Buy' button is not correct
 
-USABILITY
-* F2 should be Edit in Song Details not a new report
-  > double-click not intuitive for all users (explorer metaphor)
-
 SONG FRIENDS
 * cannot add song friends to playlist
 * cannot change #MP3 for karaoke song friend
@@ -173,6 +169,9 @@ SEARCH/FILTER
 
 SONG WATCHER
 * many song files will not be added to QFileSytemWatcher
+
+MENU (Ribbon Bar)
+* shortcuts do not work if tab is not selected
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 

@@ -11,6 +11,7 @@
 #include <QStringList>
 #include <QPixmap>
 #include <QIcon>
+#include <QImageReader>
 #include <QBrush>
 #include <QHeaderView>
 #include <QDateTime>
@@ -193,6 +194,17 @@ void QUMainWindow::initConfig() {
 	} else if(QString::compare(settings.value("language").toString(), "pl_PL") == 0) {
 		_menu->langPlBtn->setChecked(true);
 	}
+
+	QStringList imageFormatsNeeded;
+	QStringList imageFormatsQt;
+	QStringList imageFormatsUman = QUSongSupport::allowedPictureFiles().join(" ").remove("*.").split(" ");
+	foreach(QByteArray ba, QImageReader::supportedImageFormats())
+		imageFormatsQt << ba;
+	foreach(QString neededFormat, imageFormatsUman)
+		if(imageFormatsQt.indexOf(neededFormat) == -1)
+			imageFormatsNeeded << neededFormat;
+	if(imageFormatsNeeded.size() > 0)
+		logSrv->add(QString(tr("Cannot read image formats: %1")).arg(imageFormatsNeeded.join(", ")), QU::warning);
 }
 
 /*!
@@ -427,6 +439,7 @@ void QUMainWindow::initRibbonBar() {
 	// help menu
 	connect(_menu->helpBtn, SIGNAL(clicked()), montyArea, SLOT(show()));
 	_menu->setShortcut(_menu->helpBtn, Qt::Key_F1);
+	_menu->setShortcut(_menu->montyBtn, Qt::CTRL + Qt::Key_F1);
 }
 
 /*!
@@ -978,7 +991,7 @@ void QUMainWindow::aboutTagLib() {
 void QUMainWindow::aboutBASS() {
 	QUMessageBox::information(this,
 			tr("About BASS"),
-			QString(tr("<b>TagLib Audio Meta-Data Library</b><br><br>"
+			QString(tr("<b>BASS Audio Library</b><br><br>"
 					"BASS is an audio library for use in Windows and MacOSX software. Its purpose is to provide the most powerful and efficient (yet easy to use), sample, stream, MOD music, and recording functions. All in a tiny DLL, under 100KB in size.<br><br>"
 					"Version: <b>%1</b><br><br>"
 					"Copyright (c) 1999-2008<br><a href=\"http://www.un4seen.com/bass.html\">Un4seen Developments Ltd.</a> All rights reserved."))
