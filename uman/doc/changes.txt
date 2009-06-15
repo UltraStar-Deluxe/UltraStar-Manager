@@ -168,7 +168,7 @@ SEARCH/FILTER
 * filtering custom tags seem not to work
 
 SONG WATCHER
-* many song files will not be added to QFileSytemWatcher
+* many song files will not be added to QFileSystemWatcher
 
 MENU (Ribbon Bar)
 * shortcuts do not work if tab is not selected
@@ -229,6 +229,7 @@ SUPPORTED FILE TYPES
 
 SONGS
 * write empty tags
+* open multiple databases -> use MDI-Interface (multiple song-trees)
 
 TASKS
 ! better error handling for "path change tasks"
