@@ -175,6 +175,8 @@ MENU (Ribbon Bar)
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
+! AAWS - Product Advertising API (use with certificates)
+
 NEW STUFF
 * make hard-coded values editable
   > lower and upper time bound
@@ -219,6 +221,8 @@ NEW STUFF
   > check songs if they are in that Edition? -> use for renaming tasks (conditions)
 ! history of last song paths (F12)
 * use "space", "return" or "ctrl+return" for "open with explorer..."
+* add support for "Frets on Fire"
+* add PDF-Support (QPrinter or so)
 
 SUPPORTED FILE TYPES
 * xml files from Singstar (melody.xml or different)
