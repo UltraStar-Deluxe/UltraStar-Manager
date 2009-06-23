@@ -22,7 +22,7 @@ TASK LIST
 
 MEDIA PLAYER
 * play a song and watch the lyrics
-* support for duet songs =)
+* support for duet songs added =)
 
 SONGS
 * cache any []-tags in the filename at song load
@@ -85,8 +85,8 @@ QT
 * keep on licensing under GPL
 
 PLUGINS
-* tasks are now plugins
-* "Fix spaces at end of line" -> "Fix spaces"
+* tasks are now plugins (dynamically loaded libraries)
+* task description: "Fix spaces at end of line" -> "Fix spaces"
 
 SUPPORTED FILE TYPES
 * icon for "*.kar" files changed -> these are only MIDI files with lyrics
@@ -96,7 +96,7 @@ REPORTS
 
 FILTER SONGS
 * renamed to "Find Songs"
-* ui refreshed (more common like in Thunderbird)
+* ui refreshed (more common like search field in Thunderbird)
 
 SONG PATH SELECTION
 * new dialog enables the user to specify UltraStar folders and multiple
@@ -117,7 +117,7 @@ SONG TREE
 * sorting works now for #START, #END, #VIDEOGAP
 
 AMAZON COVER DOWNLOAD
-* percentage encoding seemed to broke the request in Qt 4.5.0
+* percentage encoding seemed to broke the request in Qt 4.5.0 - works again
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
@@ -142,6 +142,7 @@ TRANSLATION
 
 TASKS
 * undesired behaviour for renaming files/folders to names that contain slashes ('/')
+* convert syllable placeholders does not ignore "wanted" dashes ("A-B-C")
 
 AMAZON COVER DOWNLOAD
 * link of 'Buy' button is not correct
@@ -155,11 +156,12 @@ SONG FRIENDS
 * some tasks may not affect song friends (e.g. "Remove unsupported tags")
 
 TASKS
-* "Remove unused files" is NOT work as expected! Too much will be deleted
+* "Remove unused files" does NOT work as expected! Too much will be deleted!!! (not usable)
 * "remove empty syllables" breaks timestamps in relative songs
 
 MEDIA PLAYER
 * label for title/artist does not grow right
+* correct songs get ansychronous after a while (seek works right)
 
 SUPPORTED FILE TYPES
 * "*.kar" files are not karaoke song files but MIDI files with lyrics
