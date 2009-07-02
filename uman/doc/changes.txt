@@ -133,6 +133,9 @@ NOT SORTED
   > friend songs seem to work fine
 ! QDesktopServices seem not to work well...
 
+SPLASH SCREEN
+! main windows shows up to early
+
 PLUGINS
 * translation issues with plugins
 
@@ -154,6 +157,7 @@ SONG FRIENDS
 * cannot add song friends in reports
 * cannot play song friends in media player
 * some tasks may not affect song friends (e.g. "Remove unsupported tags")
+! cannot switch primary song with a double-click
 
 TASKS
 * "Remove unused files" does NOT work as expected! Too much will be deleted!!! (not usable)
@@ -174,6 +178,13 @@ SONG WATCHER
 
 MENU (Ribbon Bar)
 * shortcuts do not work if tab is not selected
+
+SONG DETAILS
+* read-only fields should be skipped when pressing tab key
+
+AUTO-SAVE
+* tasks that change a song's path perform kind of auto-save because
+  the path change cannot be deferred
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
@@ -225,6 +236,8 @@ NEW STUFF
 * use "space", "return" or "ctrl+return" for "open with explorer..."
 * add support for "Frets on Fire"
 * add PDF-Support (QPrinter or so)
+* Office2003-like context menus (more white -> friendly =)
+* finish extended paths support (cover, mdi for songs?, config file...)
 
 SUPPORTED FILE TYPES
 * xml files from Singstar (melody.xml or different)
@@ -350,6 +363,8 @@ INTERNAL STUFF
 * read config.ini from ultrastar (->options?)
 * write some tests for basic song manipulating operations
 
+PROGRESS DIALOG
+* show remaining time only
 
 /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
 /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
