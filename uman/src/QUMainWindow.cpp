@@ -427,7 +427,7 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->collapseAllBtn, SIGNAL(clicked()), songTree, SLOT(collapseAll()));
 	connect(_menu->collapseAllBtn, SIGNAL(clicked()), songTree, SLOT(resizeToContents()));
 
-	_menu->setShortcut(_menu->saveAllBtn, Qt::CTRL  + Qt::SHIFT + Qt::Key_S);
+	_menu->setShortcut(_menu->saveAllBtn, Qt::CTRL + Qt::SHIFT + Qt::Key_S);
 	_menu->setShortcut(_menu->rescanSongsBtn, Qt::SHIFT + Qt::Key_F5);
 
 	// about menu

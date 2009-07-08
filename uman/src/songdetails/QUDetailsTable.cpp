@@ -9,6 +9,7 @@
 #include <QHeaderView>
 #include <QFont>
 #include <QMessageBox>
+#include <QColor>
 
 #include "QUSongSupport.h"
 
@@ -27,6 +28,9 @@ QUDetailsTable::QUDetailsTable(QWidget *parent): QTableWidget(parent) {
 	// set value editor
 	QUDropDownDelegate *comboDelegate = new QUDropDownDelegate(this);
 	this->setItemDelegateForColumn(1, comboDelegate);
+
+	// fix tab-stops
+	connect(this, SIGNAL(currentCellChanged(int,int,int,int)), SLOT(skipReadOnlyCells(int, int, int, int)));
 
 	// setup tag & value column
 	this->reset();
@@ -100,13 +104,13 @@ void QUDetailsTable::initSeparator(const QString &text, int row) {
 	QTableWidgetItem *separator = new QTableWidgetItem(text);
 
 	separator->setFlags(Qt::ItemIsEnabled);
-	separator->setBackgroundColor(Qt::darkGray);
-	separator->setTextColor(Qt::white);
+	separator->setBackgroundColor(QColor(239, 239, 239));
+	separator->setTextColor(QColor(134, 134, 134));
 	separator->setTextAlignment(Qt::AlignCenter);
 
 	QFont font(separator->font());
 	font.setBold(true);
-
+	font.setPointSize(8);
 	separator->setFont(font);
 
 	this->setItem(row, 0, separator);
@@ -138,4 +142,21 @@ void QUDetailsTable::reset() {
 	// setup tag & value column
 	this->initTagColumn();
 	this->initValueColumn();
+}
+
+/*!
+ * Workaround for tab-stop. Skip those cells which are not editable.
+ */
+void QUDetailsTable::skipReadOnlyCells(int row, int col, int, int) {
+	if(currentItem() && currentItem()->flags().testFlag(Qt::ItemIsEditable)) {
+		qDebug(currentItem()->text().toLatin1().constData());
+		return;
+	}
+
+	int nextCol = (col + 1) % columnCount();
+	int nextRow = (row + (nextCol == 0 ? 1 : 0)) % rowCount();
+
+	setCurrentCell(nextRow, nextCol);
+	if(item(nextRow, nextCol) && !item(nextRow, nextCol)->flags().testFlag(Qt::ItemIsEnabled))
+		skipReadOnlyCells(nextRow, nextCol, row, col);
 }

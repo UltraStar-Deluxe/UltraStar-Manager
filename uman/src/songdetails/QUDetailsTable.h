@@ -17,6 +17,9 @@ public:
 
 	void reset();
 
+public slots:
+	void skipReadOnlyCells(int row, int col, int, int);
+
 private:
 	void initTagColumn();
 	void initValueColumn();

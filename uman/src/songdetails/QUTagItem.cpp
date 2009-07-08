@@ -1,5 +1,12 @@
 #include "QUTagItem.h"
 
+#include <QFont>
+
 QUTagItem::QUTagItem(const QIcon &icon, const QString &text): QTableWidgetItem(icon, text) {
-	this->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	setFlags(Qt::ItemIsEnabled);
+
+	QFont f(font());
+	f.setBold(true);
+	f.setPointSize(8);
+	setFont(f);
 }

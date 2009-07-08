@@ -103,6 +103,9 @@ SONG PATH SELECTION
   song folders (Options -> Paths...)
 * you may choose between those preconfigured paths now
 
+SONG DETAILS
+* read-only fields are skipped when pressing tab key
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 TASKS
@@ -179,9 +182,6 @@ SONG WATCHER
 MENU (Ribbon Bar)
 * shortcuts do not work if tab is not selected
 
-SONG DETAILS
-* read-only fields should be skipped when pressing tab key
-
 AUTO-SAVE
 * tasks that change a song's path perform kind of auto-save because
   the path change cannot be deferred
@@ -189,6 +189,7 @@ AUTO-SAVE
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
 ! AAWS - Product Advertising API (use with certificates)
+! prepare plugin SDK
 
 NEW STUFF
 * make hard-coded values editable
@@ -362,6 +363,7 @@ INTERNAL STUFF
   > new files...
 * read config.ini from ultrastar (->options?)
 * write some tests for basic song manipulating operations
+* write a model for songs (-> song database)
 
 PROGRESS DIALOG
 * show remaining time only
