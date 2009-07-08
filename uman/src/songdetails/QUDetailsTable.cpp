@@ -93,7 +93,6 @@ void QUDetailsTable::initValueColumn() {
 	this->setItem(19, 1, new QUDetailItem(GAP_TAG));
 
 	/* separator here - skip a row */
-//	this->setItem(21, 1, new QUDetailItem(COMMENT_TAG));
 	int i = 0;
 	foreach(QString customTag, QUSongSupport::availableCustomTags()) {
 		this->setItem(21 + (i++), 1, new QUDetailItem(customTag));
@@ -148,10 +147,8 @@ void QUDetailsTable::reset() {
  * Workaround for tab-stop. Skip those cells which are not editable.
  */
 void QUDetailsTable::skipReadOnlyCells(int row, int col, int, int) {
-	if(currentItem() && currentItem()->flags().testFlag(Qt::ItemIsEditable)) {
-		qDebug(currentItem()->text().toLatin1().constData());
+	if(currentItem() && currentItem()->flags().testFlag(Qt::ItemIsEditable))
 		return;
-	}
 
 	int nextCol = (col + 1) % columnCount();
 	int nextRow = (row + (nextCol == 0 ? 1 : 0)) % rowCount();

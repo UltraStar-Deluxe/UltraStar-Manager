@@ -26,7 +26,7 @@
    <enum>QTabWidget::Rounded</enum>
   </property>
   <property name="currentIndex">
-   <number>0</number>
+   <number>1</number>
   </property>
   <property name="documentMode">
    <bool>false</bool>
@@ -565,7 +565,7 @@ border-left-color: #C2C7CB;</string>
          <item>
           <widget class="QCheckBox" name="otherSymbolsChk">
            <property name="toolTip">
-            <string>Display other symbols in the song tree that may less annoying for the user. =)</string>
+            <string>Display other symbols in the song tree that may be less annoying for the user. =)</string>
            </property>
            <property name="text">
             <string>Other tree symbols</string>

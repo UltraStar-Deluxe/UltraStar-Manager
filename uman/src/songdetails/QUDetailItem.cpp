@@ -107,7 +107,7 @@ void QUDetailItem::updateItemForMultipleSongs(bool fullUpdate) {
 		setFlags(_flagsForMultipleSongs);
 
 	if(!_flagsForMultipleSongs.testFlag(Qt::ItemIsEditable)) {
-		setText(QObject::tr("Multiple files selected."));
+		setText(QObject::tr("Not editable."));
 	} else {
 		QString text = songItems().first()->song()->customTag(_tag);
 
