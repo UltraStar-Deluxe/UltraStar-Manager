@@ -1,11 +1,11 @@
 #ifndef QUTASKITEM_H_
 #define QUTASKITEM_H_
 
-#include <QListWidgetItem>
+#include <QTreeWidgetItem>
 
 #include "QUTaskPlugin.h"
 
-class QUTaskItem: public QListWidgetItem {
+class QUTaskItem: public QTreeWidgetItem {
 public:
 	QUTaskItem(QUTask *task);
 	~QUTaskItem();

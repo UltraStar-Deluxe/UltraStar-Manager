@@ -5,7 +5,7 @@
 #include "QUTaskItem.h"
 #include "QUSongFile.h"
 
-#include <QListWidget>
+#include <QTreeWidget>
 #include <QPoint>
 #include <QList>
 #include <QMenu>
@@ -14,7 +14,7 @@
 
 class QUTaskFactoryProxy;
 
-class QUTaskList: public QListWidget {
+class QUTaskList: public QTreeWidget {
 	Q_OBJECT
 
 public:
@@ -32,7 +32,7 @@ public slots:
 
 	void checkAllTasks();
 	void uncheckAllTasks();
-	void uncheckAllExclusiveTasks(QListWidgetItem *item);
+	void uncheckAllExclusiveTasks(QTreeWidgetItem *item);
 
 	void editCurrentTask();
 
@@ -49,7 +49,8 @@ private:
 	int _currentSlot; // for backup and restore item selection
 
 	void updateFactoryProxies();
-	void appendSeparator(const QString &text);
+	QTreeWidgetItem* appendSeparator(const QString &text);
+	QList<QUTaskItem*> allTaskItems() const;
 };
 
 #endif /*QUTASKLIST_H_*/

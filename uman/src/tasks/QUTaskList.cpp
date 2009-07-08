@@ -1,12 +1,6 @@
 #include "QUTaskList.h"
 #include "QULogService.h"
 
-//#include "QUPreparatoryTask.h"
-//#include "QULyricTask.h"
-//#include "QUAudioTagTask.h"
-//#include "QURenameTask.h"
-//#include "QUCleanTask.h"
-
 #include <QCoreApplication>
 #include <QFont>
 #include <QDir>
@@ -19,11 +13,11 @@
 #include "QUTaskPlugin.h"
 #include "QUTaskFactoryProxy.h"
 
-QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
+QUTaskList::QUTaskList(QWidget *parent): QTreeWidget(parent) {
 	// do not allow to check two exclusive tasks
-	connect(this, SIGNAL(itemChanged(QListWidgetItem*)), SLOT(uncheckAllExclusiveTasks(QListWidgetItem*)));
+	connect(this, SIGNAL(itemChanged(QTreeWidgetItem*, int)), SLOT(uncheckAllExclusiveTasks(QTreeWidgetItem*)));
 	// TODO: Enable task editing not through double-click?
-	connect(this, SIGNAL(itemDoubleClicked(QListWidgetItem*)), SLOT(editCurrentTask()));
+	connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), SLOT(editCurrentTask()));
 
 	// context menu
 	setContextMenuPolicy(Qt::CustomContextMenu);
@@ -31,7 +25,10 @@ QUTaskList::QUTaskList(QWidget *parent): QListWidget(parent) {
 
 	// backup and restore of selection
 	this->setCurrentSlot(0);
-	connect(this, SIGNAL(itemChanged(QListWidgetItem*)), this, SLOT(backupCurrentSelection()));
+	connect(this, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(backupCurrentSelection()));
+
+	setHeaderHidden(true);
+	setRootIsDecorated(false);
 }
 
 void QUTaskList::setCurrentSlot(int i) {
@@ -71,42 +68,36 @@ void QUTaskList::resetTaskList() {
 	this->clear();
 
 	foreach(QUTaskFactoryProxy *fp, _factoryProxies) {
-		this->appendSeparator(fp->factory()->name());
+		QTreeWidgetItem *sep = this->appendSeparator(fp->factory()->name());
 		foreach(QUTask *task, fp->factory()->createTasks()) {
-			this->addItem(new QUTaskItem(task));
+			sep->addChild(new QUTaskItem(task));
 		}
+		sep->setExpanded(true);
 	}
 }
 
 void QUTaskList::doTasksOn(QUSongFile *song) {
-	for(int i = 0; i < this->count(); i++) {
-		QUTaskItem *item = dynamic_cast<QUTaskItem*>(this->item(i));
-
-		if(item && item->checkState() == Qt::Checked)
-			item->task()->startOn(song);
-	}
+	foreach(QUTaskItem *taskItem, allTaskItems())
+		if(taskItem->checkState(0) == Qt::Checked)
+			taskItem->task()->startOn(song);
 }
 
 void QUTaskList::checkAllTasks() {
-	for(int i = 0; i < this->count(); i++) {
-		if(this->item(i)->flags() & Qt::ItemIsUserCheckable)
-			this->item(i)->setCheckState(Qt::Checked);
-	}
+	foreach(QUTaskItem *taskItem, allTaskItems())
+		taskItem->setCheckState(0, Qt::Checked);
 }
 
 void QUTaskList::uncheckAllTasks() {
-	for(int i = 0; i < this->count(); i++) {
-		if(this->item(i)->flags() & Qt::ItemIsUserCheckable)
-			this->item(i)->setCheckState(Qt::Unchecked);
-	}
+	foreach(QUTaskItem *taskItem, allTaskItems())
+		taskItem->setCheckState(0, Qt::Unchecked);
 }
 
 /*!
  * Unchecks all tasks that cannot be used with several other
  * tasks together. These are some renaming tasks up to now.
  */
-void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
-	if(item->checkState() == Qt::Unchecked)
+void QUTaskList::uncheckAllExclusiveTasks(QTreeWidgetItem *item) {
+	if(item->checkState(0) == Qt::Unchecked)
 		return;
 
 	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(item);
@@ -119,22 +110,17 @@ void QUTaskList::uncheckAllExclusiveTasks(QListWidgetItem *item) {
 	if(task->group() == -1)
 		return;
 
-	for(int i = 0; i < this->count(); i++) {
-		if(this->item(i) == item)
+	foreach(QUTaskItem *otherTaskItem, allTaskItems()) {
+		if(otherTaskItem == taskItem)
 			continue; // do not compare with current item
 
-		if(this->item(i)->checkState() == Qt::Unchecked)
+		if(otherTaskItem->checkState(0) == Qt::Unchecked)
 			continue;
 
-		QUTaskItem *exclusiveTaskItem = dynamic_cast<QUTaskItem*>(this->item(i));
-
-		if(!exclusiveTaskItem)
-			continue;
-
-		QUTask *exclusiveTask = exclusiveTaskItem->task();
+		QUTask *exclusiveTask = otherTaskItem->task();
 
 		if(task->group() == exclusiveTask->group())
-			exclusiveTaskItem->setCheckState(Qt::Unchecked);
+			otherTaskItem->setCheckState(0, Qt::Unchecked);
 	}
 }
 
@@ -199,28 +185,29 @@ void QUTaskList::updateFactoryProxies() {
 	}
 }
 
-void QUTaskList::appendSeparator(const QString &text) {
-	QListWidgetItem *separator = new QListWidgetItem(text);
+QTreeWidgetItem* QUTaskList::appendSeparator(const QString &text) {
+	QTreeWidgetItem *separator = new QTreeWidgetItem(QStringList(text));
 
-	separator->setTextAlignment(Qt::AlignLeft);
+	separator->setTextAlignment(0, Qt::AlignLeft);
 	separator->setFlags(Qt::ItemIsEnabled);
-	separator->setBackgroundColor(Qt::darkGray);
-	separator->setTextColor(Qt::white);
+	separator->setBackgroundColor(0, QColor(239, 239, 239));
+	separator->setTextColor(0, QColor(134, 134, 134));
 
-	QFont f(separator->font());
+	QFont f(separator->font(0));
 	f.setBold(true);
-	separator->setFont(f);
+	f.setPointSize(8);
+	separator->setFont(0, f);
 
-	this->addItem(separator);
+	this->addTopLevelItem(separator);
+	return separator;
 }
 
 void QUTaskList::backupCurrentSelection() {
 	QString state;
-	for(int i = 0; i < this->count(); i++) {
-		if(this->item(i)->flags().testFlag(Qt::ItemIsUserCheckable))
-			state.append(this->item(i)->checkState() == Qt::Checked ? "1" : "0");
-		else
-			state.append("-");
+	for(int i = 0; i < topLevelItemCount(); i++) {
+		for(int j = 0; j < topLevelItem(i)->childCount(); j++)
+			state.append(topLevelItem(i)->child(j)->checkState(0) == Qt::Checked ? "1" : "0");
+		state.append("-");
 	}
 
 	QSettings s;
@@ -229,12 +216,22 @@ void QUTaskList::backupCurrentSelection() {
 
 void QUTaskList::restoreCurrentSelection() {
 	QSettings s;
-	QString state = s.value(QString("taskListState%1").arg(_currentSlot), "").toString();
+	QStringList states = s.value(QString("taskListState%1").arg(_currentSlot), "").toString().split("-", QString::SkipEmptyParts);
 
 	this->uncheckAllTasks();
 
-	for(int i = 0; i < state.length() && i < this->count(); i++) {
-		if(this->item(i)->flags().testFlag(Qt::ItemIsUserCheckable))
-			this->item(i)->setCheckState(state.at(i) == QChar('1') ? Qt::Checked : Qt::Unchecked);
-	}
+	for(int i = 0; i < states.size() && i < topLevelItemCount(); i++)
+		for(int j = 0; j < states.at(i).length() && j < topLevelItem(i)->childCount(); j++)
+			topLevelItem(i)->child(j)->setCheckState(0, states.at(i).at(j) == QChar('1') ? Qt::Checked : Qt::Unchecked);
+}
+
+QList<QUTaskItem*> QUTaskList::allTaskItems() const {
+	QList<QUTaskItem*> result;
+	for(int i = 0; i < topLevelItemCount(); i++)
+		for(int j = 0; j < topLevelItem(i)->childCount(); j++) {
+			QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(topLevelItem(i)->child(j));
+			if(taskItem)
+				result.append(taskItem);
+		}
+	return result;
 }
