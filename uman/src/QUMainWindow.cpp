@@ -248,98 +248,98 @@ void QUMainWindow::initWindow() {
 	connect(mediaplayer, SIGNAL(currentPlaylistRequested()), this, SLOT(sendCurrentPlaylistToMediaPlayer()));
 }
 
-void QUMainWindow::initMenu() {
-	// songs menu
-	connect(        actionRefresh, SIGNAL(triggered()), this, SLOT(refreshAllSongs()));
-
-	connect(   actionSaveSelected, SIGNAL(triggered()), songTree, SLOT(saveSelectedSongs()));
-	connect(        actionSaveAll, SIGNAL(triggered()), songTree, SLOT(saveUnsavedChanges()));
-	connect( actionDeleteSelected, SIGNAL(triggered()), songTree, SLOT(requestDeleteSelectedSongs()));
-	connect(  actionMergeSelected, SIGNAL(triggered()), songTree, SLOT(mergeSelectedSongs()));
-	connect(      actionExpandAll, SIGNAL(triggered()), songTree, SLOT(expandAll()));
-	connect(      actionExpandAll, SIGNAL(triggered()), songTree, SLOT(resizeToContents()));
-	connect(    actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(collapseAll()));
-	connect(    actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(resizeToContents()));
-//	connect(actionRefreshSelected, SIGNAL(triggered()), songTree, SLOT(refreshSelectedItems()));
-
-	connect( actionSendToPlaylist, SIGNAL(triggered()), songTree, SLOT(sendSelectedSongsToPlaylist()));
-	connect(      actionGetCovers, SIGNAL(triggered()), songTree, SLOT(requestCoversFromAmazon()));
-	connect(     actionShowLyrics, SIGNAL(triggered()), songTree, SLOT(requestLyrics()));
-
-//	actionRefreshSelected->setShortcut(Qt::Key_F5);
-	        actionRefresh->setShortcut(Qt::SHIFT + Qt::Key_F5);
-	   actionSaveSelected->setShortcut(Qt::CTRL  + Qt::Key_S);
-	        actionSaveAll->setShortcut(Qt::CTRL  + Qt::SHIFT + Qt::Key_S);
-	 actionSendToPlaylist->setShortcut(Qt::CTRL  + Qt::Key_P);
-	     actionShowLyrics->setShortcut(Qt::CTRL  + Qt::Key_L);
-	 actionDeleteSelected->setShortcut(Qt::SHIFT + Qt::Key_Delete);
-	  actionMergeSelected->setShortcut(Qt::CTRL  + Qt::Key_M);
-
-	// view menu
-	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
-	connect(actionAltSongTree, SIGNAL(toggled(bool)), this, SLOT(toggleAltSongTreeChk(bool)));
-	connect(actionFilter, SIGNAL(toggled(bool)), this, SLOT(toggleFilterFrame(bool)));
-
-	detailsDock->toggleViewAction()->setIcon(QIcon(":/control/text_edit.png"));
-	tasksDock->toggleViewAction()->setIcon(QIcon(":/control/tasks.png"));
-	previewDock->toggleViewAction()->setIcon(QIcon(":/control/file_info.png"));
-	playlistDock->toggleViewAction()->setIcon(QIcon(":/control/playlist.png"));
-	eventsDock->toggleViewAction()->setIcon(QIcon(":/control/log.png"));
-	mediaPlayerDock->toggleViewAction()->setIcon(QIcon(":/control/mediaplayer.png"));
-
-	this->viewBar->addAction(detailsDock->toggleViewAction());
-	this->viewBar->addAction(tasksDock->toggleViewAction());
-	this->viewBar->addAction(playlistDock->toggleViewAction());
-	this->viewBar->addAction(previewDock->toggleViewAction());
-	this->viewBar->addAction(eventsDock->toggleViewAction());
-	this->viewBar->addAction(mediaPlayerDock->toggleViewAction());
-
-	this->menuView->addAction(detailsDock->toggleViewAction());
-	this->menuView->addAction(tasksDock->toggleViewAction());
-	this->menuView->addAction(playlistDock->toggleViewAction());
-	this->menuView->addAction(previewDock->toggleViewAction());
-	this->menuView->addAction(eventsDock->toggleViewAction());
-	this->menuView->addAction(mediaPlayerDock->toggleViewAction());
-
-	// insert toggle view actions for the toolbars
-	this->menuView->addSeparator();
-
-	QMenu *showToolbarMenu = this->menuView->addMenu(tr("Toolbars"));
-
-	showToolbarMenu->addAction(this->songsBar->toggleViewAction());
-	showToolbarMenu->addAction(this->viewBar->toggleViewAction());
-	showToolbarMenu->addAction(this->optionsBar->toggleViewAction());
-
-	actionFilter->setShortcut(Qt::CTRL + Qt::Key_F);
-
-	// options menu
-	connect(actionAutoSave, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
-	connect(actionAlwaysOnTop, SIGNAL(toggled(bool)), this, SLOT(toggleAlwaysOnTop(bool)));
-
-	connect(actionTagSaveOrder, SIGNAL(triggered()), this, SLOT(editTagOrder()));
-	connect(actionChangeSongDirectory, SIGNAL(triggered()), this, SLOT(changeSongDir()));
-	connect(actionCustomTags, SIGNAL(triggered()), this, SLOT(editCustomTags()));
-	connect(actionPaths, SIGNAL(triggered()), this, SLOT(showPathsDialog()));
-
-	connect(actionLangEnglish, SIGNAL(triggered()), this, SLOT(enableEnglish()));
-	connect(actionLangGerman, SIGNAL(triggered()), this, SLOT(enableGerman()));
-	connect(actionLangPolish, SIGNAL(triggered()), this, SLOT(enablePolish()));
-
-	actionChangeSongDirectory->setShortcut(Qt::Key_F12);
-
-	// extras menu
-	connect(actionNewReport, SIGNAL(triggered()), this, SLOT(reportCreate()));
-	connect(actionBackupAudioFiles, SIGNAL(triggered()), this, SLOT(copyAudioToPath()));
-	connect(actionPlugins, SIGNAL(triggered()), this, SLOT(showPluginDialog()));
-
-	actionNewReport->setShortcut(Qt::Key_F8);
-
-	// help menu
-	connect(actionShowMonty, SIGNAL(triggered()), montyArea, SLOT(show()));
-	connect(actionQt, SIGNAL(triggered()), this, SLOT(aboutQt()));
-	connect(actionUman, SIGNAL(triggered()), this, SLOT(aboutUman()));
-	connect(actionTagLib, SIGNAL(triggered()), this, SLOT(aboutTagLib()));
-}
+//void QUMainWindow::initMenu() {
+//	// songs menu
+//	connect(        actionRefresh, SIGNAL(triggered()), this, SLOT(refreshAllSongs()));
+//
+//	connect(   actionSaveSelected, SIGNAL(triggered()), songTree, SLOT(saveSelectedSongs()));
+//	connect(        actionSaveAll, SIGNAL(triggered()), songTree, SLOT(saveUnsavedChanges()));
+//	connect( actionDeleteSelected, SIGNAL(triggered()), songTree, SLOT(requestDeleteSelectedSongs()));
+//	connect(  actionMergeSelected, SIGNAL(triggered()), songTree, SLOT(mergeSelectedSongs()));
+//	connect(      actionExpandAll, SIGNAL(triggered()), songTree, SLOT(expandAll()));
+//	connect(      actionExpandAll, SIGNAL(triggered()), songTree, SLOT(resizeToContents()));
+//	connect(    actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(collapseAll()));
+//	connect(    actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(resizeToContents()));
+////	connect(actionRefreshSelected, SIGNAL(triggered()), songTree, SLOT(refreshSelectedItems()));
+//
+//	connect( actionSendToPlaylist, SIGNAL(triggered()), songTree, SLOT(sendSelectedSongsToPlaylist()));
+//	connect(      actionGetCovers, SIGNAL(triggered()), songTree, SLOT(requestCoversFromAmazon()));
+//	connect(     actionShowLyrics, SIGNAL(triggered()), songTree, SLOT(requestLyrics()));
+//
+////	actionRefreshSelected->setShortcut(Qt::Key_F5);
+//	        actionRefresh->setShortcut(Qt::SHIFT + Qt::Key_F5);
+//	   actionSaveSelected->setShortcut(Qt::CTRL  + Qt::Key_S);
+//	        actionSaveAll->setShortcut(Qt::CTRL  + Qt::SHIFT + Qt::Key_S);
+//	 actionSendToPlaylist->setShortcut(Qt::CTRL  + Qt::Key_P);
+//	     actionShowLyrics->setShortcut(Qt::CTRL  + Qt::Key_L);
+//	 actionDeleteSelected->setShortcut(Qt::SHIFT + Qt::Key_Delete);
+//	  actionMergeSelected->setShortcut(Qt::CTRL  + Qt::Key_M);
+//
+//	// view menu
+//	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
+//	connect(actionAltSongTree, SIGNAL(toggled(bool)), this, SLOT(toggleAltSongTreeChk(bool)));
+//	connect(actionFilter, SIGNAL(toggled(bool)), this, SLOT(toggleFilterFrame(bool)));
+//
+//	detailsDock->toggleViewAction()->setIcon(QIcon(":/control/text_edit.png"));
+//	tasksDock->toggleViewAction()->setIcon(QIcon(":/control/tasks.png"));
+//	previewDock->toggleViewAction()->setIcon(QIcon(":/control/file_info.png"));
+//	playlistDock->toggleViewAction()->setIcon(QIcon(":/control/playlist.png"));
+//	eventsDock->toggleViewAction()->setIcon(QIcon(":/control/log.png"));
+//	mediaPlayerDock->toggleViewAction()->setIcon(QIcon(":/control/mediaplayer.png"));
+//
+//	this->viewBar->addAction(detailsDock->toggleViewAction());
+//	this->viewBar->addAction(tasksDock->toggleViewAction());
+//	this->viewBar->addAction(playlistDock->toggleViewAction());
+//	this->viewBar->addAction(previewDock->toggleViewAction());
+//	this->viewBar->addAction(eventsDock->toggleViewAction());
+//	this->viewBar->addAction(mediaPlayerDock->toggleViewAction());
+//
+//	this->menuView->addAction(detailsDock->toggleViewAction());
+//	this->menuView->addAction(tasksDock->toggleViewAction());
+//	this->menuView->addAction(playlistDock->toggleViewAction());
+//	this->menuView->addAction(previewDock->toggleViewAction());
+//	this->menuView->addAction(eventsDock->toggleViewAction());
+//	this->menuView->addAction(mediaPlayerDock->toggleViewAction());
+//
+//	// insert toggle view actions for the toolbars
+//	this->menuView->addSeparator();
+//
+//	QMenu *showToolbarMenu = this->menuView->addMenu(tr("Toolbars"));
+//
+//	showToolbarMenu->addAction(this->songsBar->toggleViewAction());
+//	showToolbarMenu->addAction(this->viewBar->toggleViewAction());
+//	showToolbarMenu->addAction(this->optionsBar->toggleViewAction());
+//
+//	actionFilter->setShortcut(Qt::CTRL + Qt::Key_F);
+//
+//	// options menu
+//	connect(actionAutoSave, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
+//	connect(actionAlwaysOnTop, SIGNAL(toggled(bool)), this, SLOT(toggleAlwaysOnTop(bool)));
+//
+//	connect(actionTagSaveOrder, SIGNAL(triggered()), this, SLOT(editTagOrder()));
+//	connect(actionChangeSongDirectory, SIGNAL(triggered()), this, SLOT(changeSongDir()));
+//	connect(actionCustomTags, SIGNAL(triggered()), this, SLOT(editCustomTags()));
+//	connect(actionPaths, SIGNAL(triggered()), this, SLOT(showPathsDialog()));
+//
+//	connect(actionLangEnglish, SIGNAL(triggered()), this, SLOT(enableEnglish()));
+//	connect(actionLangGerman, SIGNAL(triggered()), this, SLOT(enableGerman()));
+//	connect(actionLangPolish, SIGNAL(triggered()), this, SLOT(enablePolish()));
+//
+//	actionChangeSongDirectory->setShortcut(Qt::Key_F12);
+//
+//	// extras menu
+//	connect(actionNewReport, SIGNAL(triggered()), this, SLOT(reportCreate()));
+//	connect(actionBackupAudioFiles, SIGNAL(triggered()), this, SLOT(copyAudioToPath()));
+//	connect(actionPlugins, SIGNAL(triggered()), this, SLOT(showPluginDialog()));
+//
+//	actionNewReport->setShortcut(Qt::Key_F8);
+//
+//	// help menu
+//	connect(actionShowMonty, SIGNAL(triggered()), montyArea, SLOT(show()));
+//	connect(actionQt, SIGNAL(triggered()), this, SLOT(aboutQt()));
+//	connect(actionUman, SIGNAL(triggered()), this, SLOT(aboutUman()));
+//	connect(actionTagLib, SIGNAL(triggered()), this, SLOT(aboutTagLib()));
+//}
 
 /*!
  * Create an Office2007-like menu to reduce mouse clicks.
@@ -509,9 +509,15 @@ void QUMainWindow::initTaskList() {
 	grp->setExclusive(true);
 
 	connect(grp, SIGNAL(buttonClicked(int)), taskList, SLOT(setCurrentSlot(int)));
+	connect(taskList, SIGNAL(toolTipChanged(int, const QString&)), this, SLOT(updateTasksSlotButtons(int, const QString&)));
+
+	// fetch all tooltips
+	taskList->setCurrentSlot(3);
+	taskList->setCurrentSlot(2);
+	taskList->setCurrentSlot(1);
+	taskList->setCurrentSlot(0);
 
 	tasksSlot1Btn->click();
-
 }
 
 void QUMainWindow::initEventLog() {
@@ -769,6 +775,18 @@ void QUMainWindow::updatePreviewTree() {
 
 void QUMainWindow::updateMergeBtn() {
 	_menu->mergeBtn->setEnabled(songTree->selectedItems().size() > 1);
+}
+
+/*!
+ * Change the tooltip of the tasks-slot-button with the given index.
+ */
+void QUMainWindow::updateTasksSlotButtons(int index, const QString& tooltip) {
+	switch(index) {
+		case 0: tasksSlot1Btn->setToolTip(tooltip); break;
+		case 1: tasksSlot2Btn->setToolTip(tooltip); break;
+		case 2: tasksSlot3Btn->setToolTip(tooltip); break;
+		case 3: tasksSlot4Btn->setToolTip(tooltip); break;
+	}
 }
 
 /*!

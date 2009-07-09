@@ -273,6 +273,9 @@ TASKS
 ! introduce a preview feature for tasks (what will the song look like)
 ! modify song tags via folder or song file names
   > "Juli - Die perfekte Welle.txt" + "#ARTIST - #TITLE.txt" = "Juli", "Die perfekte Welle"
+* recognize all "unknown tags" in the current song database
+  > show them in a tooltip
+  > use them in the "inline config" in the task list
 
 SONG TREE
 ? virtual song folders for many song text files in one folder
@@ -364,6 +367,8 @@ INTERNAL STUFF
 * read config.ini from ultrastar (->options?)
 * write some tests for basic song manipulating operations
 * write a model for songs (-> song database)
+! do not sublass QTreeWidget for task list
+  > compose a tree widget together with the slot buttons and remove code from main window
 
 PROGRESS DIALOG
 * show remaining time only

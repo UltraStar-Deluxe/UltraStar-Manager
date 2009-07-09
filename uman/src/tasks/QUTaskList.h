@@ -38,10 +38,12 @@ public slots:
 
 	void backupCurrentSelection();
 	void restoreCurrentSelection();
+	void updateToolTip();
 	void setCurrentSlot(int i);
 
 signals:
 	void pluginsReloaded(const QList<QPluginLoader*>&);
+	void toolTipChanged(int, const QString&);
 
 private:
 	QList<QPluginLoader*> _plugins;

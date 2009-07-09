@@ -24,7 +24,6 @@ QUTaskList::QUTaskList(QWidget *parent): QTreeWidget(parent) {
 	connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
 
 	// backup and restore of selection
-	this->setCurrentSlot(0);
 	connect(this, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(backupCurrentSelection()));
 
 	setHeaderHidden(true);
@@ -202,7 +201,12 @@ QTreeWidgetItem* QUTaskList::appendSeparator(const QString &text) {
 	return separator;
 }
 
+/*!
+ * Save the checkstate of each task item into the registry.
+ */
 void QUTaskList::backupCurrentSelection() {
+	updateToolTip();
+
 	QString state;
 	for(int i = 0; i < topLevelItemCount(); i++) {
 		for(int j = 0; j < topLevelItem(i)->childCount(); j++)
@@ -223,6 +227,37 @@ void QUTaskList::restoreCurrentSelection() {
 	for(int i = 0; i < states.size() && i < topLevelItemCount(); i++)
 		for(int j = 0; j < states.at(i).length() && j < topLevelItem(i)->childCount(); j++)
 			topLevelItem(i)->child(j)->setCheckState(0, states.at(i).at(j) == QChar('1') ? Qt::Checked : Qt::Unchecked);
+
+	updateToolTip();
+}
+
+/*!
+ * Update the tooltip of the current slot.
+ */
+void QUTaskList::updateToolTip() {
+	QString tooltip;
+	for(int i = 0; i < topLevelItemCount(); i++) {
+		bool isCheckedFirst = true;
+
+		for(int j = 0; j < topLevelItem(i)->childCount(); j++) {
+			if(topLevelItem(i)->child(j)->checkState(0) == Qt::Unchecked)
+				continue;
+
+			if(isCheckedFirst) {
+				tooltip.append(QString("<b>%1</b><br>").arg(topLevelItem(i)->text(0)));
+				isCheckedFirst = false;
+			}
+
+			QString text = topLevelItem(i)->child(j)->text(0);
+			if(text.length() > 30)
+				tooltip.append(QString("- %1...<br>").arg(text.left(30)));
+			else
+				tooltip.append(QString("- %1<br>").arg(text));
+		}
+	}
+	if(tooltip.endsWith("<br>"))
+		tooltip.truncate(tooltip.size() - 4);
+	emit toolTipChanged(_currentSlot, tooltip);
 }
 
 QList<QUTaskItem*> QUTaskList::allTaskItems() const {

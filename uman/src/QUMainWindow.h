@@ -31,7 +31,7 @@ protected:
 private slots:
 	void initConfig();
 	void initWindow();
-	void initMenu();
+//	void initMenu();
 	void initRibbonBar();
 	void initSongTree();
 	void initDetailsTable();
@@ -48,6 +48,7 @@ private slots:
 	void updateDetails();
 	void updatePreviewTree();
 	void updateMergeBtn();
+	void updateTasksSlotButtons(int, const QString&);
 
 	void editSongSetFileLink(QTreeWidgetItem *item, int column);
 	void editSongSetDetail(QTableWidgetItem *item);
