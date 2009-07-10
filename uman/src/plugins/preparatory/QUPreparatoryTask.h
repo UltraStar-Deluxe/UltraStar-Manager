@@ -24,6 +24,8 @@ private:
 
 	mutable QList<QUSmartSetting*> _smartSettings;
 	QStringList _unsupportedTags;
+
+	void autoSetFiles(QUSongInterface *song, const QString &coverPattern, const QString &backgroundPattern);
 };
 
 #endif /*QUPREPARATORYTASK_H_*/

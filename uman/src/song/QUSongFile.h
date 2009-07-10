@@ -132,8 +132,11 @@ public slots:
 	void removeUnsupportedTags(const QStringList &filter, bool useFilter = true);
 
 	void useExternalFile(const QString &filePath);
-	void autoSetFiles();
-	void autoSetFile(const QFileInfo &fi, bool force = false);
+	void autoSetFile(
+			const QFileInfo &fi,
+			bool force = false,
+			const QString &coverPattern = "\\[CO\\]|cove?r?",
+			const QString &backgroundPattern = "\\[BG\\]|back");
 
 	void deleteUnusedFiles();
 	void clearInvalidFileTags();

@@ -853,25 +853,11 @@ void QUSongFile::removeUnsupportedTags(const QStringList &filter, bool useFilter
 }
 
 /*!
- * Uses all files in the song directory to guess missing files according to some
- * common patterns: "cover", "[CO]" -> Cover; "back", "[BG]", -> Background, a.s.o.
- */
-void QUSongFile::autoSetFiles() {
-	QFileInfoList files = this->songFileInfo().dir().entryInfoList(
-			QUSongSupport::allowedAudioFiles() + QUSongSupport::allowedPictureFiles() +QUSongSupport::allowedVideoFiles(),
-			QDir::Files);
-
-	foreach(QFileInfo fi, files) {
-		autoSetFile(fi);
-	}
-}
-
-/*!
  * Uses the filename of the given QFileInfo object to assign it to a proper tag.
  * \param file That file will be used for auto-set.
  * \param force Use the file although the present tag is correct/valid.
  */
-void QUSongFile::autoSetFile(const QFileInfo &fi, bool force) {
+void QUSongFile::autoSetFile(const QFileInfo &fi, bool force, const QString &coverPattern, const QString &backgroundPattern) {
 	QString fileScheme("*." + fi.suffix());
 
 	if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
@@ -885,8 +871,8 @@ void QUSongFile::autoSetFile(const QFileInfo &fi, bool force) {
 			logSrv->add(QString(tr("Assigned \"%1\" as video file for \"%2 - %3\".")).arg(video()).arg(artist()).arg(title()), QU::information);
 		}
 	} else if(QUSongSupport::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-		QRegExp reCover("\\[CO\\]|cove?r?", Qt::CaseInsensitive);
-		QRegExp reBackground("\\[BG\\]|back", Qt::CaseInsensitive);
+		QRegExp reCover(coverPattern, Qt::CaseInsensitive);
+		QRegExp reBackground(backgroundPattern, Qt::CaseInsensitive);
 
 		if(fi.fileName().contains(reCover) && (!this->hasCover() || force) ) {
 			this->setInfo(COVER_TAG, fi.fileName());

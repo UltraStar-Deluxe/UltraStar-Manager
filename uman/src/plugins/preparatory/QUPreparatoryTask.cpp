@@ -1,10 +1,13 @@
 #include "QUPreparatoryTask.h"
 #include "QUSmartCheckBox.h"
 #include "QUSmartInputField.h"
+#include "QUSongSupport.h"
 
 #include <QRegExpValidator>
 #include <QRegExp>
 #include <QSettings>
+#include <QFileInfo>
+#include <QDir>
 
 QUPreparatoryTask::QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *parent):
 	QUSimpleTask(parent),
@@ -15,8 +18,8 @@ QUPreparatoryTask::QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *par
 		this->setIcon(QIcon(":/marks/wand.png"));
 		this->setDescription(tr("Assign missing files automatically"));
 		this->setToolTip(tr("<b>#MP3</b> ... first audio file found.<br>"
-				"<b>#COVER</b> ... first picture file, including pattern: <i>[CO]|cove?r?</i>.<br>"
-				"<b>#BACKGROUND</b> ... first picture file, including pattern: <i>[BG]|back</i>.<br>"
+				"<b>#COVER</b> ... first picture file, following a pattern.<br>"
+				"<b>#BACKGROUND</b> ... first picture file, following a pattern.<br>"
 				"<b>#VIDEO</b> ... first video file found."));
 		break;
 	case QU::removeUnsupportedTags:
@@ -45,7 +48,7 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 
 	switch(_mode) {
 	case QU::autoAssignFiles:
-		song->autoSetFiles();
+		autoSetFiles(song, smartSettings().at(0)->value().toString(), smartSettings().at(1)->value().toString());
 		break;
 	case QU::removeUnsupportedTags:
 		for(int i = 0; i < _unsupportedTags.size(); i++)
@@ -65,6 +68,10 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 QList<QUSmartSetting*> QUPreparatoryTask::smartSettings() const {
 	if(_smartSettings.isEmpty()) {
 		switch(_mode) {
+		case QU::autoAssignFiles:
+			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_coverPattern", "\\[CO\\]|cove?r?", new QRegExpValidator(QRegExp(".*"), 0), "Pattern:", "(cover)"));
+			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_backgroundPattern", "\\[BG\\]|back", new QRegExpValidator(QRegExp(".*"), 0), "Pattern:", "(background)"));
+			break;
 		case QU::removeUnsupportedTags:
 			foreach(QString unsupportedTag, _unsupportedTags)
 				_smartSettings.append(new QUSmartCheckBox("preparatory/removeUnsupportedTags_" + unsupportedTag, unsupportedTag, true));
@@ -85,4 +92,18 @@ void QUPreparatoryTask::provideData(const QVariant &data, QU::TaskDataTypes type
 		return;
 
 	_unsupportedTags = data.toStringList();
+}
+
+/*!
+ * Uses all files in the song directory to guess missing files according to some
+ * common patterns: "cover", "[CO]" -> Cover; "back", "[BG]", -> Background, a.s.o.
+ */
+void QUPreparatoryTask::autoSetFiles(QUSongInterface *song, const QString &coverPattern, const QString &backgroundPattern) {
+	QFileInfoList files = song->songFileInfo().dir().entryInfoList(
+			QUSongSupport::allowedAudioFiles() + QUSongSupport::allowedPictureFiles() + QUSongSupport::allowedVideoFiles(),
+			QDir::Files);
+
+	foreach(QFileInfo fi, files) {
+		song->autoSetFile(fi, false, coverPattern, backgroundPattern);
+	}
 }

@@ -208,8 +208,11 @@ public:
 	virtual void removeUnsupportedTags(const QStringList &filter, bool useFilter = true) = 0;
 
 	virtual void useExternalFile(const QString &filePath) = 0;
-	virtual void autoSetFiles() = 0;
-	virtual void autoSetFile(const QFileInfo &fi, bool force = false) = 0;
+	virtual void autoSetFile(
+			const QFileInfo &fi,
+			bool force = false,
+			const QString &coverPattern = "\\[CO\\]|cove?r?",
+			const QString &backgroundPattern = "\\[BG\\]|back") = 0;
 
 	virtual void deleteUnusedFiles() = 0;
 	virtual void clearInvalidFileTags() = 0;

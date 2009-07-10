@@ -4,14 +4,16 @@ SOURCES = QUPreparatoryTaskFactory.cpp \
 	../shared/QUSimpleTaskFactory.cpp \
 	../QUSmartSetting.cpp \
 	../shared/QUSmartCheckBox.cpp \
-	../shared/QUSmartInputField.cpp
+	../shared/QUSmartInputField.cpp \
+	../../QUSongSupport.cpp
 HEADERS = QUPreparatoryTaskFactory.h \
     QUPreparatoryTask.h \
     ../shared/QUSimpleTask.h \
 	../shared/QUSimpleTaskFactory.h \
 	../QUSmartSetting.h \
 	../shared/QUSmartCheckBox.h \
-	../shared/QUSmartInputField.h
+	../shared/QUSmartInputField.h \
+	../../QUSongSupport.h
 INCLUDEPATH += . \
     .. \
     ../.. \
