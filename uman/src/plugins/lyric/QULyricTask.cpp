@@ -1,6 +1,9 @@
 #include "QULyricTask.h"
+#include "QUSmartInputField.h"
+#include "QUSmartCheckBox.h"
 
 #include <QVariant>
+#include <QRegExpValidator>
 
 QULyricTask::QULyricTask(QU::LyricTaskModes mode, QObject *parent):
 	QUSimpleTask(parent),
@@ -37,7 +40,7 @@ QULyricTask::QULyricTask(QU::LyricTaskModes mode, QObject *parent):
 void QULyricTask::startOn(QUSongInterface *song) {
 	switch(_mode) {
 	case QU::fixTimeStamps:
-		fixTimeStamps(song);
+		fixTimeStamps(song, smartSettings().first()->value().toInt());
 		break;
 	case QU::fixSpaces:
 		fixSpaces(song);
@@ -54,17 +57,24 @@ void QULyricTask::startOn(QUSongInterface *song) {
 	}
 }
 
+QList<QUSmartSetting*> QULyricTask::smartSettings() const {
+	if(_smartSettings.isEmpty())
+		if(_mode == QU::fixTimeStamps)
+			_smartSettings.append(new QUSmartInputField("lyric/fixTimeStamps", "0", new QRegExpValidator(QRegExp("\\d*"), 0), "Start:", ""));
+	return _smartSettings;
+}
+
 /*!
  * Let the song start with timestamp 0.
  */
-void QULyricTask::fixTimeStamps(QUSongInterface *song) {
+void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
 		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::warning);
 		return;
 	}
 
 	// the diff value has to be subtracted from each timestamp
-	int begin = 0;
+	int begin = start;
 	int diff = song->loadMelody().first()->notes().first()->timestamp() - begin;
 
 	double gap = QVariant(song->gap().replace(",", ".")).toDouble();
