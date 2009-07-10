@@ -1017,7 +1017,7 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
  *
  * A little gap is appended.
  */
-void QUSongFile::fixAudioLength() {
+void QUSongFile::fixAudioLength(int buffer) {
 	if(!hasMp3()) {
 		logSrv->add(QString(tr("Could not fix audio length because no audio file is present: \"%1 - %2\"")).arg(artist()).arg(title()), QU::warning);
 		return;
@@ -1034,9 +1034,7 @@ void QUSongFile::fixAudioLength() {
 		return;
 	}
 
-	QSettings settings;
-	int timeDiffLower = settings.value("timeDiffLower", LOWER_TIME_BOUND_DEFAULT).toInt();
-	int end = length + timeDiffLower; // calculate the new #END value
+	int end = length + buffer; // calculate the new #END value
 
 	if(end > lengthMp3) {
 		logSrv->add(QString(tr("Could not fix audio length because new value for #END would be greater than length of audio file: \"%1 - %2\"")).arg(artist()).arg(title()), QU::warning);

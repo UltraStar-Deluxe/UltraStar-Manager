@@ -140,7 +140,7 @@ public slots:
 
 	void moveAllFiles(const QString &newRelativePath);
 
-	void fixAudioLength();
+	void fixAudioLength(int buffer);
 	void roundGap();
 	void removeEndTag();
 

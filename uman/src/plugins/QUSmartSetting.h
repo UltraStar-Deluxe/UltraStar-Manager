@@ -19,6 +19,8 @@ public:
 	virtual void resetToDefaults() = 0;
 	virtual bool hasChanges() const = 0;
 
+	QVariant value() const;
+
 public slots:
 	void reset();
 

@@ -19,6 +19,10 @@ QVariant QUSmartSetting::value(const QVariant &defaultValue) const {
 	return s.value(_registryKey, defaultValue);
 }
 
+QVariant QUSmartSetting::value() const {
+	return value(QVariant());
+}
+
 QToolButton* QUSmartSetting::createResetButton() {
 	QToolButton *btn = new QToolButton(0);
 	btn->setAutoRaise(true);

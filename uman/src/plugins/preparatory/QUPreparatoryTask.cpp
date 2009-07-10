@@ -4,6 +4,7 @@
 
 #include <QRegExpValidator>
 #include <QRegExp>
+#include <QSettings>
 
 QUPreparatoryTask::QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *parent):
 	QUSimpleTask(parent),
@@ -34,6 +35,11 @@ QUPreparatoryTask::QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *par
 	}
 }
 
+QUPreparatoryTask::~QUPreparatoryTask() {
+	qDeleteAll(_smartSettings);
+	_smartSettings.clear();
+}
+
 void QUPreparatoryTask::startOn(QUSongInterface *song) {
 	switch(_mode) {
 	case QU::autoAssignFiles:
@@ -43,7 +49,7 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 		song->removeUnsupportedTags();
 		break;
 	case QU::fixAudioLength:
-		song->fixAudioLength();
+		song->fixAudioLength(smartSettings().first()->value().toInt());
 		break;
 	case QU::roundGap:
 		song->roundGap();
@@ -52,9 +58,18 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 }
 
 QList<QUSmartSetting*> QUPreparatoryTask::smartSettings() const {
-	QList<QUSmartSetting*> result;
-	result.append(new QUSmartCheckBox("preparatory/dummy", tr("This is just a test."), true));
-	result.append(new QUSmartInputField("preparatory/dummy2", "300", new QRegExpValidator(QRegExp("\\d*"), 0), "Buffer:", "ms"));
+	if(_smartSettings.isEmpty()) {
+		switch(_mode) {
+		case QU::removeUnsupportedTags:
+			_smartSettings.append(new QUSmartCheckBox("preparatory/removeUnsupportedTags", "#RESOLUTION", true));
+			break;
+		case QU::fixAudioLength:
+			QSettings settings;
+			QString timeDiffLower = settings.value("timeDiffLower", LOWER_TIME_BOUND_DEFAULT).toString();
+			_smartSettings.append(new QUSmartInputField("preparatory/fixAudioLength", timeDiffLower, new QRegExpValidator(QRegExp("\\d*"), 0), "Buffer:", "seconds"));
+			break;
+		}
+	}
 
-	return result;
+	return _smartSettings;
 }

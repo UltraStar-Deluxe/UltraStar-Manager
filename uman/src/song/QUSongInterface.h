@@ -216,7 +216,7 @@ public:
 
 	virtual void moveAllFiles(const QString &newRelativePath) = 0;
 
-	virtual void fixAudioLength() = 0;
+	virtual void fixAudioLength(int buffer) = 0;
 	virtual void roundGap() = 0;
 	virtual void removeEndTag() = 0;
 
