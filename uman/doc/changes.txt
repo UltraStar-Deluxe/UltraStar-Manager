@@ -78,10 +78,15 @@ EDIT LYRICS
   > fix wrong whitespaces manually
 * highlight lines that contain keywords (search function)
 
+SMART SETTINGS
+* some tasks can be expanded and offer settings to modify
+  > e.g. a list of unsupported tags in "Remove unsupported tags"
+* easy integration into plugin development
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 QT
-* based on Qt 4.5.1 now
+* based on Qt 4.5.2 now
 * keep on licensing under GPL
 
 PLUGINS
@@ -137,7 +142,7 @@ NOT SORTED
 ! QDesktopServices seem not to work well...
 
 SPLASH SCREEN
-! main windows shows up to early
+! main windows shows up to early if "always on top" is selected
 
 PLUGINS
 * translation issues with plugins
