@@ -2,6 +2,9 @@
 #include "QUSmartCheckBox.h"
 #include "QUSmartInputField.h"
 
+#include <QRegExpValidator>
+#include <QRegExp>
+
 QUPreparatoryTask::QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *parent):
 	QUSimpleTask(parent),
 	_mode(mode)
@@ -51,7 +54,7 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 QList<QUSmartSetting*> QUPreparatoryTask::smartSettings() const {
 	QList<QUSmartSetting*> result;
 	result.append(new QUSmartCheckBox("preparatory/dummy", tr("This is just a test."), true));
-	result.append(new QUSmartInputField("preparatory/dummy2", "300", "Buffer:", "ms"));
+	result.append(new QUSmartInputField("preparatory/dummy2", "300", new QRegExpValidator(QRegExp("\\d*"), 0), "Buffer:", "ms"));
 
 	return result;
 }

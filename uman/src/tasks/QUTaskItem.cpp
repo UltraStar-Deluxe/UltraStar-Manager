@@ -2,8 +2,10 @@
 #include "QUSmartSetting.h"
 
 #include <QColor>
+#include <QFont>
 
 QUTaskItem::QUTaskItem(QUTask *task):
+	QObject(),
 	QTreeWidgetItem(),
 	_task(task)
 {
@@ -28,5 +30,19 @@ void QUTaskItem::installSmartSettings() {
 		sItem->setBackgroundColor(0, QColor(239, 239, 239));
 		addChild(sItem);
 		treeWidget()->setItemWidget(sItem, 0, smartSetting->editor());
+		connect(smartSetting, SIGNAL(changed()), this, SLOT(highlightChanges()));
 	}
+}
+
+void QUTaskItem::highlightChanges() {
+	QFont f(this->font(0));
+	f.setItalic(false);
+
+	foreach(QUSmartSetting *smartSetting, task()->smartSettings())
+		if(smartSetting->hasChanges()) {
+			f.setItalic(true);
+			break;
+		}
+
+	this->setFont(0, f);
 }
