@@ -1,5 +1,7 @@
 #include "QUTaskItem.h"
 #include "QUSmartSetting.h"
+#include "QU.h"
+#include "QUMonty.h"
 
 #include <QColor>
 #include <QFont>
@@ -25,13 +27,16 @@ QUTaskItem::~QUTaskItem() {
 }
 
 void QUTaskItem::installSmartSettings() {
+	task()->provideData(monty->unsupportedTags(), QU::unsupportedTags);
 	foreach(QUSmartSetting *smartSetting, task()->smartSettings()) {
 		QTreeWidgetItem *sItem = new QTreeWidgetItem();
 		sItem->setBackgroundColor(0, QColor(239, 239, 239));
 		addChild(sItem);
 		treeWidget()->setItemWidget(sItem, 0, smartSetting->editor());
+
 		connect(smartSetting, SIGNAL(changed()), this, SLOT(highlightChanges()));
 	}
+	highlightChanges();
 }
 
 void QUTaskItem::highlightChanges() {

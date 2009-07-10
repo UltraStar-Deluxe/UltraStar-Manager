@@ -129,7 +129,7 @@ public slots:
 
 	bool unsupportedTagsFound() const { return _foundUnsupportedTags.size() > 0; }
 	QString unsupportedTags() const { return _foundUnsupportedTags.join("\n#"); }
-	void removeUnsupportedTags();
+	void removeUnsupportedTags(const QStringList &filter, bool useFilter = true);
 
 	void useExternalFile(const QString &filePath);
 	void autoSetFiles();

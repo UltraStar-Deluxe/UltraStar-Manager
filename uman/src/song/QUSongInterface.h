@@ -205,7 +205,7 @@ public:
 	virtual void useID3TagForGenre() = 0;
 	virtual void useID3TagForYear() = 0;
 
-	virtual void removeUnsupportedTags() = 0;
+	virtual void removeUnsupportedTags(const QStringList &filter, bool useFilter = true) = 0;
 
 	virtual void useExternalFile(const QString &filePath) = 0;
 	virtual void autoSetFiles() = 0;

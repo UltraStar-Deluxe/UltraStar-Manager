@@ -192,6 +192,7 @@ bool QUSongFile::updateCache() {
 			if(!uTag.isEmpty() and !uValue.isEmpty()) {
 				setInfo(uTag, uValue);
 				_foundUnsupportedTags << uTag;
+				monty->addUnsupportedTag(uTag);
 			}
 		}
 	}
@@ -834,18 +835,21 @@ void QUSongFile::useID3TagForYear() {
 	logSrv->add(QString(tr("ID3 tag of \"%1\" used for year. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3()).arg(oldYear).arg(this->year()), QU::information);
 }
 
-void QUSongFile::removeUnsupportedTags() {
+void QUSongFile::removeUnsupportedTags(const QStringList &filter, bool useFilter) {
 	if(!this->unsupportedTagsFound()) {
 		logSrv->add(QString(tr("The song \"%1 - %2\" has no unsupported tags.")).arg(this->artist()).arg(this->title()), QU::information);
 		return;
 	}
 
 	foreach(QString uTag, _foundUnsupportedTags) {
-		_info.remove(uTag);
-		logSrv->add(QString(tr("Unsupported tag removed: #%1.")).arg(uTag), QU::information);
+		if(!useFilter || filter.contains(uTag)) {
+			_info.remove(uTag);
+			_foundUnsupportedTags.removeAll(uTag);
+			logSrv->add(QString(tr("Unsupported tag removed: #%1.")).arg(uTag), QU::information);
+		} else {
+			logSrv->add(QString(tr("Unsupported tag skipped: #%1.")).arg(uTag), QU::information);
+		}
 	}
-
-	_foundUnsupportedTags.clear();
 }
 
 /*!

@@ -33,6 +33,9 @@ public:
 	const QStringList& genres() const { return _genres; }
 	const QStringList& languages() const { return _languages; }
 
+	void addUnsupportedTag(const QString &tag) { _unsupportedTags.append(tag); }
+	const QStringList& unsupportedTags() { _unsupportedTags.removeDuplicates(); return _unsupportedTags; }
+
 	void setSongCount(int c) { songCount = c; }
 
 	bool autoSaveEnabled() const;
@@ -51,6 +54,7 @@ private:
 	QStringList messages;
 	QStringList _genres;
 	QStringList _languages;
+	QStringList _unsupportedTags; // keep track of all unsupported tags found to far
 
 	QFileSystemWatcher *_watcher;
 

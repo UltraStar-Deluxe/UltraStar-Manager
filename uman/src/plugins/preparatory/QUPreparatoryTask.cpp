@@ -41,12 +41,17 @@ QUPreparatoryTask::~QUPreparatoryTask() {
 }
 
 void QUPreparatoryTask::startOn(QUSongInterface *song) {
+	QStringList filter;
+
 	switch(_mode) {
 	case QU::autoAssignFiles:
 		song->autoSetFiles();
 		break;
 	case QU::removeUnsupportedTags:
-		song->removeUnsupportedTags();
+		for(int i = 0; i < _unsupportedTags.size(); i++)
+			if(smartSettings().at(i)->value().toBool())
+				filter << _unsupportedTags.at(i);
+		song->removeUnsupportedTags(filter, true);
 		break;
 	case QU::fixAudioLength:
 		song->fixAudioLength(smartSettings().first()->value().toInt());
@@ -61,7 +66,8 @@ QList<QUSmartSetting*> QUPreparatoryTask::smartSettings() const {
 	if(_smartSettings.isEmpty()) {
 		switch(_mode) {
 		case QU::removeUnsupportedTags:
-			_smartSettings.append(new QUSmartCheckBox("preparatory/removeUnsupportedTags", "#RESOLUTION", true));
+			foreach(QString unsupportedTag, _unsupportedTags)
+				_smartSettings.append(new QUSmartCheckBox("preparatory/removeUnsupportedTags_" + unsupportedTag, unsupportedTag, true));
 			break;
 		case QU::fixAudioLength:
 			QSettings settings;
@@ -72,4 +78,11 @@ QList<QUSmartSetting*> QUPreparatoryTask::smartSettings() const {
 	}
 
 	return _smartSettings;
+}
+
+void QUPreparatoryTask::provideData(const QVariant &data, QU::TaskDataTypes type) {
+	if(type != QU::unsupportedTags)
+		return;
+
+	_unsupportedTags = data.toStringList();
 }

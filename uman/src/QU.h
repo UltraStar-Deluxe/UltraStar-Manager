@@ -95,7 +95,7 @@ public:
 
 	enum TaskDataType {
 		undefined = -1,
-		unknownTags = 0
+		unsupportedTags = 0
 	};
 	Q_DECLARE_FLAGS(TaskDataTypes, TaskDataType)
 
