@@ -93,6 +93,12 @@ public:
 	};
 	Q_DECLARE_FLAGS(ReportOptions, ReportOption)
 
+	enum TaskDataType {
+		undefined = -1,
+		unknownTags = 0
+	};
+	Q_DECLARE_FLAGS(TaskDataTypes, TaskDataType)
+
 	static bool fileTypeLessThan(const QFileInfo &fi1, const QFileInfo &fi2);  
 };
 

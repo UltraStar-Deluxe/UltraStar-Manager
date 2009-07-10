@@ -11,7 +11,8 @@ public:
 	QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *parent = 0);
 	
 	virtual void startOn(QUSongInterface *song);
-	
+	virtual QList<QUSmartSetting*> smartSettings() const;
+
 private:
 	QU::PreparatoryTaskModes _mode;
 };

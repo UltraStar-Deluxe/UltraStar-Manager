@@ -257,6 +257,7 @@ TASKS
 	> detect selected resolution for UltraStar (read configs...)
 ! crop covers to 1:1 (extra task?)
   > resize and fill with color to ratio ??
+  > fill with transparent color
 * some task to fix lyrics which are always "upper-case"
 * you cannot search after a dot in UltraStar Deluxe 1.0.1a
   > workaround in uman?

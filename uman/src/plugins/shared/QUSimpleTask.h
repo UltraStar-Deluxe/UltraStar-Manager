@@ -5,8 +5,8 @@
 #include <QIcon>
 
 #include "QUSongInterface.h"
-
 #include "QUTaskPlugin.h"
+#include "QUSmartSetting.h"
 
 class QUSimpleTask: public QObject, public QUTask {
 	Q_OBJECT
@@ -20,8 +20,13 @@ public:
 	virtual QString toolTip() const { return _toolTip; }
 	virtual int group() const { return _group; }
 
+	// a simple task is not configurable
 	virtual bool isConfigurable() const { return false; }
 	virtual int configure(QWidget *parent) { return 0; }
+
+	// a simple task has no smart settings
+	virtual QList<QUSmartSetting*> smartSettings() const { return QList<QUSmartSetting*>(); }
+	virtual void provideData(const QVariant &data, QU::TaskDataTypes type = QU::undefined) {}
 
 private:
 	QIcon   _icon;

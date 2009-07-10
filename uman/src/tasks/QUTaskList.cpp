@@ -28,6 +28,7 @@ QUTaskList::QUTaskList(QWidget *parent): QTreeWidget(parent) {
 
 	setHeaderHidden(true);
 	setRootIsDecorated(false);
+	setIndentation(10);
 }
 
 void QUTaskList::setCurrentSlot(int i) {
@@ -68,9 +69,8 @@ void QUTaskList::resetTaskList() {
 
 	foreach(QUTaskFactoryProxy *fp, _factoryProxies) {
 		QTreeWidgetItem *sep = this->appendSeparator(fp->factory()->name());
-		foreach(QUTask *task, fp->factory()->createTasks()) {
+		foreach(QUTask *task, fp->factory()->createTasks())
 			sep->addChild(new QUTaskItem(task));
-		}
 		sep->setExpanded(true);
 	}
 }

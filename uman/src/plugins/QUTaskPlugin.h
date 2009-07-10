@@ -4,6 +4,9 @@
 #define PLUGIN_API_VERSION 1
 
 #include <QtPlugin>
+#include <QVariant>
+
+#include "QU.h"
 
 class QWidget;
 class QString;
@@ -11,6 +14,7 @@ class QIcon;
 
 class QUSongInterface;
 class QUTask;
+class QUSmartSetting;
 
 class QUTaskFactory {
 public:
@@ -21,7 +25,7 @@ public:
 	virtual int songApiVersion() const = 0;
 
     // create all tasks based on their configurations
-    virtual QList<QUTask*> createTasks() = 0;
+	virtual QList<QUTask*> createTasks() = 0;
 
 	// use a name to group all kinds of products of this factory
     virtual QString name() const = 0;
@@ -48,6 +52,10 @@ public:
 
 	virtual int configure(QWidget *parent = 0) = 0;
     virtual bool isConfigurable() const = 0;
+
+	// smart settings (small inline configuration possibilities in the task list)
+	virtual QList<QUSmartSetting*> smartSettings() const = 0;
+	virtual void provideData(const QVariant &data, QU::TaskDataTypes type = QU::undefined) = 0;
 };
 
 Q_DECLARE_INTERFACE(QUTaskFactory, "net.sf.uman.QUTaskFactory/1.0");

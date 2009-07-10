@@ -1,11 +1,13 @@
 SOURCES = QUCleanUpTaskFactory.cpp \
     QUCleanUpTask.cpp \
     ../shared/QUSimpleTask.cpp \
-    ../shared/QUSimpleTaskFactory.cpp
+	../shared/QUSimpleTaskFactory.cpp \
+	../shared/QUSmartSetting.cpp
 HEADERS = QUCleanUpTaskFactory.h \
     QUCleanUpTask.h \
     ../shared/QUSimpleTask.h \
-    ../shared/QUSimpleTaskFactory.h
+	../shared/QUSimpleTaskFactory.h \
+	../shared/QUSmartSetting.h
 INCLUDEPATH += . \
     .. \
     ../.. \

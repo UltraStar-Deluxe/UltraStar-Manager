@@ -11,7 +11,8 @@ SOURCES = QUAudioTagTaskFactory.cpp \
     ../shared/QUTaskDataTable.cpp \
     ../shared/QUTaskConditionDelegate.cpp \
     ../shared/QUTaskSourceDelegate.cpp \
-    QUDefaultDelegate.cpp
+	QUDefaultDelegate.cpp \
+	../shared/QUSmartSetting.cpp
 HEADERS = QUAudioTagTaskFactory.h \
     QUAudioTagTask.h \
     ../../QUStringSupport.h \
@@ -25,7 +26,8 @@ HEADERS = QUAudioTagTaskFactory.h \
     ../shared/QUTaskDataTable.h \
     ../shared/QUTaskConditionDelegate.h \
     ../shared/QUTaskSourceDelegate.h \
-    QUDefaultDelegate.h
+	QUDefaultDelegate.h \
+	../shared/QUSmartSetting.h
 FORMS += ../shared/QUTaskDialog.ui
 INCLUDEPATH += . \
     ui \

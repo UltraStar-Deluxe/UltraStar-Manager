@@ -1,4 +1,5 @@
 #include "QUPreparatoryTask.h"
+#include "QUSmartCheckBox.h"
 
 QUPreparatoryTask::QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *parent):
 	QUSimpleTask(parent),
@@ -44,4 +45,10 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 		song->roundGap();
 		break;
 	}
+}
+
+QList<QUSmartSetting*> QUPreparatoryTask::smartSettings() const {
+	QList<QUSmartSetting*> result;
+	result.append(new QUSmartCheckBox("preparatory/dummy", tr("This is just a test."), true));
+	return result;
 }
