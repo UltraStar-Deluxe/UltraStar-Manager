@@ -1,4 +1,7 @@
 #include "QUCleanUpTask.h"
+#include "QUSmartCheckBox.h"
+#include "QUSmartInputCheck.h"
+#include "QUSongSupport.h"
 
 QUCleanUpTask::QUCleanUpTask(QU::CleanTaskModes mode, QObject *parent):
 	QUSimpleTask(parent),
@@ -24,9 +27,16 @@ QUCleanUpTask::QUCleanUpTask(QU::CleanTaskModes mode, QObject *parent):
 }
 
 void QUCleanUpTask::startOn(QUSongInterface *song) {
+	QStringList filter;
 	switch(_mode) {
 	case QU::unusedFiles:
-		song->deleteUnusedFiles();
+		if(smartSettings().at(0)->value().toBool()) filter << QUSongSupport::allowedAudioFiles();
+		if(smartSettings().at(1)->value().toBool()) filter << QUSongSupport::allowedPictureFiles();
+		if(smartSettings().at(2)->value().toBool()) filter << QUSongSupport::allowedVideoFiles();
+		if(smartSettings().at(3)->value().isValid())
+			song->deleteUnusedFiles(filter, smartSettings().at(3)->value().toString(), true);
+		else
+			song->deleteUnusedFiles(filter, "", false);
 		break;
 	case QU::invalidFileTags:
 		song->clearInvalidFileTags();
@@ -35,4 +45,15 @@ void QUCleanUpTask::startOn(QUSongInterface *song) {
 		song->removeEndTag();
 		break;
 	}
+}
+
+QList<QUSmartSetting*> QUCleanUpTask::smartSettings() const {
+	if(_smartSettings.isEmpty())
+		if(_mode == QU::unusedFiles) {
+			_smartSettings.append(new QUSmartCheckBox("cleanup/unusedFiles_audio", "Audio files", true));
+			_smartSettings.append(new QUSmartCheckBox("cleanup/unusedFiles_picture", "Picture files", true));
+			_smartSettings.append(new QUSmartCheckBox("cleanup/unusedFiles_video", "Video files", true));
+			_smartSettings.append(new QUSmartInputCheck("cleanup/unusedFiles_pattern", "xml|sco", 0, "Pattern:"));
+		}
+	return _smartSettings;
 }

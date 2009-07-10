@@ -2,12 +2,18 @@ SOURCES = QUCleanUpTaskFactory.cpp \
     QUCleanUpTask.cpp \
     ../shared/QUSimpleTask.cpp \
 	../shared/QUSimpleTaskFactory.cpp \
-	../QUSmartSetting.cpp
+	../QUSmartSetting.cpp \
+	../shared/QUSmartCheckBox.cpp \
+	../shared/QUSmartInputCheck.cpp \
+	../../QUSongSupport.cpp
 HEADERS = QUCleanUpTaskFactory.h \
     QUCleanUpTask.h \
     ../shared/QUSimpleTask.h \
 	../shared/QUSimpleTaskFactory.h \
-	../QUSmartSetting.h
+	../QUSmartSetting.h \
+	../shared/QUSmartCheckBox.h \
+	../shared/QUSmartInputCheck.h \
+	../../QUSongSupport.h
 INCLUDEPATH += . \
     .. \
     ../.. \

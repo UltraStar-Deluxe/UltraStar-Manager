@@ -138,7 +138,7 @@ public slots:
 			const QString &coverPattern = "\\[CO\\]|cove?r?",
 			const QString &backgroundPattern = "\\[BG\\]|back");
 
-	void deleteUnusedFiles();
+	void deleteUnusedFiles(const QStringList &filter, const QString &pattern, bool usePattern = true);
 	void clearInvalidFileTags();
 
 	void moveAllFiles(const QString &newRelativePath);

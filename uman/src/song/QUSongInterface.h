@@ -214,7 +214,7 @@ public:
 			const QString &coverPattern = "\\[CO\\]|cove?r?",
 			const QString &backgroundPattern = "\\[BG\\]|back") = 0;
 
-	virtual void deleteUnusedFiles() = 0;
+	virtual void deleteUnusedFiles(const QStringList &filter, const QString &pattern, bool usePattern = true) = 0;
 	virtual void clearInvalidFileTags() = 0;
 
 	virtual void moveAllFiles(const QString &newRelativePath) = 0;

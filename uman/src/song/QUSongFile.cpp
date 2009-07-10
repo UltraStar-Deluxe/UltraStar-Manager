@@ -903,26 +903,37 @@ void QUSongFile::useExternalFile(const QString &filePath) {
 }
 
 /*!
- * Deletes any file in the song directory which is not used by the song itself.
+ * Deletes any file in the song directory which is not used by the song itself or its friends.
  */
-void QUSongFile::deleteUnusedFiles() {
+void QUSongFile::deleteUnusedFiles(const QStringList &filter, const QString &pattern, bool usePattern) {
 	QFileInfoList fiList = _fi.dir().entryInfoList(QDir::Files, QDir::Name);
 
-	foreach(QFileInfo fi, fiList) {
-		bool isUsed = false;
-		if(QString::compare(fi.fileName(), this->mp3(), Qt::CaseInsensitive) == 0)
-			isUsed = true;
-		if(QString::compare(fi.fileName(), this->cover(), Qt::CaseInsensitive) == 0)
-			isUsed = true;
-		if(QString::compare(fi.fileName(), this->background(), Qt::CaseInsensitive) == 0)
-			isUsed = true;
-		if(QString::compare(fi.fileName(), this->video(), Qt::CaseInsensitive) == 0)
-			isUsed = true;
-		if(QString::compare(fi.fileName(), this->songFileInfo().fileName(), Qt::CaseInsensitive) == 0)
-			isUsed = true;
+	QStringList usedFileNames;
+	usedFileNames << mp3();
+	usedFileNames << cover();
+	usedFileNames << background();
+	usedFileNames << video();
+	usedFileNames << songFileInfo().fileName();
 
-		if(!isUsed && QFile::remove(fi.filePath()))
-			logSrv->add(QString(tr("File removed successfully: \"%1\".")).arg(fi.filePath()), QU::information);
+	foreach(QUSongFile *song, friends()) {
+		usedFileNames << song->mp3();
+		usedFileNames << song->cover();
+		usedFileNames << song->background();
+		usedFileNames << song->video();
+		usedFileNames << song->songFileInfo().fileName();
+	}
+
+	foreach(QFileInfo fi, fiList) {
+		if(!filter.contains("*." + fi.suffix()))
+			if(!usePattern || !fi.fileName().contains(QRegExp(pattern)))
+				continue;
+
+		if(!usedFileNames.contains(fi.fileName(), Qt::CaseInsensitive))
+			if(QFile::remove(fi.filePath())) {
+				logSrv->add(QString(tr("File removed successfully: \"%1\".")).arg(fi.filePath()), QU::information);
+			} else {
+				logSrv->add(QString(tr("File COULD NOT be removed: \"%1\".")).arg(fi.filePath()), QU::warning);
+			}
 	}
 }
 

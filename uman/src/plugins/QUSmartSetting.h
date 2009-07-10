@@ -19,7 +19,7 @@ public:
 	virtual void resetToDefaults() = 0;
 	virtual bool hasChanges() const = 0;
 
-	QVariant value() const;
+	virtual QVariant value() const;
 
 public slots:
 	void reset();
@@ -31,6 +31,7 @@ protected:
 	void setValue(const QVariant &value);
 	QVariant value(const QVariant &defaultValue) const;
 	QToolButton* createResetButton();
+	QString registryKey() const { return _registryKey; }
 
 private:
 	QString _registryKey;
