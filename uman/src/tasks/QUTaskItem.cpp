@@ -1,4 +1,7 @@
 #include "QUTaskItem.h"
+#include "QUSmartSetting.h"
+
+#include <QColor>
 
 QUTaskItem::QUTaskItem(QUTask *task):
 	QTreeWidgetItem(),
@@ -17,4 +20,13 @@ QUTaskItem::QUTaskItem(QUTask *task):
 
 QUTaskItem::~QUTaskItem() {
 	delete _task;
+}
+
+void QUTaskItem::installSmartSettings() {
+	foreach(QUSmartSetting *smartSetting, task()->smartSettings()) {
+		QTreeWidgetItem *sItem = new QTreeWidgetItem();
+		sItem->setBackgroundColor(0, QColor(239, 239, 239));
+		addChild(sItem);
+		treeWidget()->setItemWidget(sItem, 0, smartSetting->editor());
+	}
 }

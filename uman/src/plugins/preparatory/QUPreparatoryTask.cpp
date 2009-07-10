@@ -1,5 +1,6 @@
 #include "QUPreparatoryTask.h"
 #include "QUSmartCheckBox.h"
+#include "QUSmartInputField.h"
 
 QUPreparatoryTask::QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *parent):
 	QUSimpleTask(parent),
@@ -50,5 +51,7 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 QList<QUSmartSetting*> QUPreparatoryTask::smartSettings() const {
 	QList<QUSmartSetting*> result;
 	result.append(new QUSmartCheckBox("preparatory/dummy", tr("This is just a test."), true));
+	result.append(new QUSmartInputField("preparatory/dummy2", "300", "Buffer:", "ms"));
+
 	return result;
 }

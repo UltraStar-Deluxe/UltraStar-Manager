@@ -11,6 +11,7 @@ public:
 	~QUTaskItem();
 
 	QUTask* task() const { return _task; }
+	void installSmartSettings();
 
 private:
 	QUTask *_task;

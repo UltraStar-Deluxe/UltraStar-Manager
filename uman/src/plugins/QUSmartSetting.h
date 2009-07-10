@@ -10,20 +10,17 @@ class QUSmartSetting: public QObject {
 
 public:
 	QUSmartSetting(const QString &registryKey);
-	virtual ~QUSmartSetting();
 
-	QWidget* editor() const { return _editor; }
+	virtual QWidget* editor() const = 0;
 
 //	virtual void resetToDefaults() = 0;
 //	virtual bool hasChanges() const = 0;
 
 protected:
-	void setEditor(QWidget *editor);
 	void setValue(const QVariant &value);
 	QVariant value(const QVariant &defaultValue) const;
 
 private:
-	QWidget *_editor;
 	QString _registryKey;
 };
 

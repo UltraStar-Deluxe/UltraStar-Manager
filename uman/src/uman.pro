@@ -13,6 +13,7 @@ CONFIG -= debug
 HEADERS += plugins/QUPluginDialog.h \
     plugins/QUTaskPlugin.h \
     plugins/QUTaskFactoryProxy.h \
+	plugins/QUSmartSetting.h \
     main.h \
     QU.h \
     QUMonty.h \
@@ -76,6 +77,7 @@ HEADERS += plugins/QUPluginDialog.h \
     preferences/QUPathsDialog.h
 SOURCES += plugins/QUPluginDialog.cpp \
     plugins/QUTaskFactoryProxy.cpp \
+	plugins/QUSmartSetting.cpp \
     main.cpp \
     QU.cpp \
     QUAboutDialog.cpp \

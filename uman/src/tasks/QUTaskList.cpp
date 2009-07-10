@@ -69,8 +69,11 @@ void QUTaskList::resetTaskList() {
 
 	foreach(QUTaskFactoryProxy *fp, _factoryProxies) {
 		QTreeWidgetItem *sep = this->appendSeparator(fp->factory()->name());
-		foreach(QUTask *task, fp->factory()->createTasks())
-			sep->addChild(new QUTaskItem(task));
+		foreach(QUTask *task, fp->factory()->createTasks()) {
+			QUTaskItem *taskItem = new QUTaskItem(task);
+			sep->addChild(taskItem);
+			taskItem->installSmartSettings();
+		}
 		sep->setExpanded(true);
 	}
 }

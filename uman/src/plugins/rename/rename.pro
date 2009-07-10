@@ -12,7 +12,7 @@ SOURCES = QURenameTaskFactory.cpp \
     ../shared/QUTaskConditionDelegate.cpp \
     ../shared/QUTaskSourceDelegate.cpp \
 	../shared/QUTaskTextDelegate.cpp \
-	../shared/QUSmartSetting.cpp
+	../QUSmartSetting.cpp
 HEADERS = QURenameTaskFactory.h \
     QURenameTask.h \
     ../../QUStringSupport.h \
@@ -27,7 +27,7 @@ HEADERS = QURenameTaskFactory.h \
     ../shared/QUTaskConditionDelegate.h \
     ../shared/QUTaskSourceDelegate.h \
 	../shared/QUTaskTextDelegate.h \
-	../shared/QUSmartSetting.h
+	../QUSmartSetting.h
 FORMS += ../shared/QUTaskDialog.ui
 INCLUDEPATH += . \
     ui \
