@@ -4,10 +4,6 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the button below and I will disappear for now.&lt;br&gt;&lt;br&gt;You have a nice collection of &lt;b&gt;%1 songs&lt;/b&gt; there. Are they managed well yet?</source>
-        <translation type="obsolete">Witaj! Nazywam się Mamut Monty. Od czasu do czasu będę służył Ci podpowiedziami. Jeśli chcesz się mnie pozbyć, naciśnij przycisk &lt;b&gt;Ukryj&lt;/b&gt; (poniżej), a natychmiast  zniknę z Twoich oczu.&lt;br&gt;&lt;br&gt;Ilość utworów w aktualnie wybranym katalogu  - &lt;b&gt;%1&lt;/b&gt;. Uważasz, że wszystko z nimi w porządku?</translation>
-    </message>
-    <message>
         <location filename="../../songdetails/QUDetailItem.cpp" line="50"/>
         <source>%1</source>
         <translation type="unfinished"></translation>
@@ -31,17 +27,9 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Multiple files selected.</source>
-        <translation type="obsolete">Wybrano wiele plików.</translation>
-    </message>
-    <message>
         <location filename="../../songdetails/QUDetailItem.cpp" line="116"/>
         <source>Click here to edit.</source>
         <translation>Kliknij tutaj by rozpocząć edycję.</translation>
-    </message>
-    <message>
-        <source>Version %1.%2.%3 is loading...</source>
-        <translation type="obsolete">Wczytuję wersję %1.%2.%3 ...</translation>
     </message>
     <message>
         <location filename="../../main.cpp" line="97"/>
@@ -93,150 +81,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Multiple songs found:
-* %1 (active)</source>
-        <translation type="obsolete">Wykryte utwory. Jeśli jest wiecej niż jeden plik txt w katalogu:
-* %1 (aktywny)</translation>
-    </message>
-    <message>
         <location filename="../../songtree/QUSongItem.cpp" line="451"/>
         <location filename="../../songtree/QUSongItem.cpp" line="455"/>
         <location filename="../../songtree/QUSongItem.cpp" line="459"/>
         <location filename="../../songtree/QUSongItem.cpp" line="463"/>
         <source>File not found: &quot;%1&quot;</source>
         <translation>Nie znaleziono pliku: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Change path to &quot;Artist - Title&quot; (default)</source>
-        <translation type="obsolete">Zmień ścieżkę na &quot;Wykonawca - Tytuł&quot; (domyślne)</translation>
-    </message>
-    <message>
-        <source>All songs will be in the UltraStar song folder with a custom subdirectory for each one.</source>
-        <translation type="obsolete">Wszystkie utwory zostaną umieszczone w katalogu songs UltraStar&apos;a z podkatalogiem dla każdego z nich.</translation>
-    </message>
-    <message>
-        <source>Change path to &quot;Genre/Artist - Title&quot;</source>
-        <translation type="obsolete">Zmień ścieżkę na &quot;Rodzaj muzyki/Wykonawca - Tytuł&quot;</translation>
-    </message>
-    <message>
-        <source>Songs will be organized in subdirectories by their genres.</source>
-        <translation type="obsolete">Utwory zostaną posegregowane w podkatalogach, według rodzaju muzyki.</translation>
-    </message>
-    <message>
-        <source>Change path to &quot;Edition/Artist - Title&quot;</source>
-        <translation type="obsolete">Zmień ścieżkę na &quot;Edycja/Wykonawca - Tytuł&quot;</translation>
-    </message>
-    <message>
-        <source>Songs will be organized in subdirectories by their edition.</source>
-        <translation type="obsolete">Utwory zostaną posegregowane w podkatalogach według swoich edycji.</translation>
-    </message>
-    <message>
-        <source>Change path to &quot;Artist/Artist - Title&quot;</source>
-        <translation type="obsolete">Zmień ścieżkę na &quot;Wykonawca/Wykonawca - Tytuł&quot;</translation>
-    </message>
-    <message>
-        <source>Songs will be organized in subdirectories by their artist.</source>
-        <translation type="obsolete">Utwory zostaną posegregowane w podkatalogach według swoich wykonawców.</translation>
-    </message>
-    <message>
-        <source>Change path to &quot;Language/Artist - Title&quot;</source>
-        <translation type="obsolete">Zmień ścieżkę na &quot;Język/Wykonawca - Nazwa&quot;</translation>
-    </message>
-    <message>
-        <source>Songs will be organized in subdirectories by their language.</source>
-        <translation type="obsolete">Utwory zostaną posegregowane w podkatalogach według języków w których są wykonywane.</translation>
-    </message>
-    <message>
-        <source>Change path to &quot;Artist/Album/Artist - Title&quot;</source>
-        <translation type="obsolete">Zmień ścieżkę na &quot;Wykonawca/Album/Wykonawca - Tytuł&quot;</translation>
-    </message>
-    <message>
-        <source>Songs will be organized in subdirectories by their artist and album.&lt;br&gt;&lt;b&gt;You need the custom tag #ALBUM for this task.&lt;/b&gt;</source>
-        <translation type="obsolete">Utwory zostaną posegregowane w podkatalogach według wykonawcy i albumu.&lt;br&gt;&lt;b&gt;Dla tego zadania wymagana jest własna etykieta #ALBUM&lt;b&gt; (z jakiego albumu pochodzi utwór).</translation>
-    </message>
-    <message>
-        <source>Rename directory to &quot;Artist - Title&quot;</source>
-        <translation type="obsolete">Zmiana nazwy katalogu na &quot;Wykonawca - Tytuł&quot;</translation>
-    </message>
-    <message>
-        <source>Rename directory to &quot;Artist - Title [VIDEO] [SC]&quot; if checked or video present. Keep other folder tags.</source>
-        <translation type="obsolete">Zmiana nazwy katalogu na &quot;Wykonawca - Tytuł [VIDEO][SC]&quot; jeśli zostanie zaznaczone lub jeśli istnieje teledysk. Reszta etykiet pozostanie bez zmian.</translation>
-    </message>
-    <message>
-        <source>Looks for &lt;b&gt;[SC]&lt;/b&gt; in the &lt;b&gt;#EDITION&lt;/b&gt; tag to find out whether it is checked or not.&lt;br&gt;&lt;br&gt;Other folder tags like &lt;b&gt;[KARAOKE]&lt;/b&gt; will be appended to the end if present.</source>
-        <translation type="obsolete">Wyszukuje &lt;b&gt;[SC]&lt;/b&gt; w etykiecie &lt;b&gt;#EDITION&lt;/b&gt; by dowiedzieć się o tym czy plik był sprawdzany.&lt;br&gt;&lt;br&gt;Inne etykiety takie jak &lt;b&gt;[KARAOKE]&lt;/b&gt; jeśli zostaną znalezione to będą dołączone na końcu.</translation>
-    </message>
-    <message>
-        <source>Rename songtext file to &quot;Artist - Title.txt&quot;</source>
-        <translation type="obsolete">Zmień nazwę pliku z tekstem piosenki na &quot;Wykonawca - Tytuł.txt&quot;</translation>
-    </message>
-    <message>
-        <source>Rename audio file to &quot;Artist - Title.*&quot;</source>
-        <translation type="obsolete">Zmień nazwę pliku z dźwiękiem na &quot;Wykonawca - Tytuł.*&quot;</translation>
-    </message>
-    <message>
-        <source>Rename cover to &quot;Artist - Title [CO].*&quot;</source>
-        <translation type="obsolete">Zmień nazwę pliku z okładką na &quot;Wykonawca - Tytuł [CO].*&quot;</translation>
-    </message>
-    <message>
-        <source>Rename the cover file to a proper schema.&lt;br&gt;File endings will be preserved.</source>
-        <translation type="obsolete">Zmień nazwę pliku okładki według poprawnego schematu.&lt;br&gt;Rozszerzenia pozostaną zachowane.</translation>
-    </message>
-    <message>
-        <source>Rename background to &quot;Artist - Title [BG].*&quot;</source>
-        <translation type="obsolete">Zmień nazwę pliku z tłem na &quot;Wykonawca - Tytuł [BG].*&quot;</translation>
-    </message>
-    <message>
-        <source>Rename video to &quot;Artist - Title.*&quot;</source>
-        <translation type="obsolete">Zmień nazwę pliku z teledyskiem na &quot;Wykonawca - Tytuł.*&quot;</translation>
-    </message>
-    <message>
-        <source>Rename video to &quot;Artist - Title [VD#*].*&quot; consider VIDEOGAP</source>
-        <translation type="obsolete">Zmień nazwę pliku z teledyskiem na &quot;Wykonawca - Tytuł [VD#*].*&quot; według etykiety VIDEOGAP</translation>
-    </message>
-    <message>
-        <source>Uses &lt;b&gt;#VIDEOGAP:0&lt;/b&gt; if tag not present.</source>
-        <translation type="obsolete">Użyj &lt;b&gt;#VIDEOGAP:0&lt;/b&gt; jeśli taka etykieta nie występuje.</translation>
-    </message>
-    <message>
-        <source>Change #ARTIST via ID3 tag from audio file.</source>
-        <translation type="obsolete">Zmień etykietę #ARTIST posługując się informacją z etykiety ID3 pliku z muzyką.</translation>
-    </message>
-    <message>
-        <source>Change #TITLE via ID3 tag from audio file.</source>
-        <translation type="obsolete">Zmień etykietę #TYTUŁ posługując się informacją z etykiety ID3 pliku z muzyką.</translation>
-    </message>
-    <message>
-        <source>Change #TITLE via ID3 tag from audio file. Append &quot;[VIDEO]&quot; if video present.</source>
-        <translation type="obsolete">Zmień etykietę #TYTUŁ posługując się informacją z etykiety ID3 pliku z muzyką. Jeśli występuje teledysk dołącz do tej etykiety dopisek &quot;[VIDEO]&quot;.</translation>
-    </message>
-    <message>
-        <source>Change #TITLE. Append &quot;[VIDEO]&quot; if video present.</source>
-        <translation type="obsolete">Zmień etykietę #TYTUŁ. Jeśli występuje teledysk dołącz do tej etykiety dopisek &quot;[VIDEO]&quot;.</translation>
-    </message>
-    <message>
-        <source>Do not use ID3 tag information.</source>
-        <translation type="obsolete">Nie używaj informacji z etykiety ID3.</translation>
-    </message>
-    <message>
-        <source>Change #TITLE. Remove [...]-Tags.</source>
-        <translation type="obsolete">Zmień etykietę #TITLE. Usuń etykiety [...].</translation>
-    </message>
-    <message>
-        <source>Change #GENRE via ID3 tag.</source>
-        <translation type="obsolete">Zmień etykietę #GENRE (rodzaj muzyki) w oparciu o informacje ID3 pliku z muzyką.</translation>
-    </message>
-    <message>
-        <source>Change #YEAR via ID3 tag.</source>
-        <translation type="obsolete">Zmień etykietę #YEAR (rok wydania utworu) w oparciu o informacje ID3 pliku z muzyką.</translation>
-    </message>
-    <message>
-        <source>Change #ALBUM via ID3 tag</source>
-        <translation type="obsolete">Zmień etykietę #ALBUM (z jakiego albumu pochodzi utwór) w oparciu o informacje ID3 pliku z muzyką</translation>
-    </message>
-    <message>
-        <source>You need the custom tag #ALBUM for this task.</source>
-        <translation type="obsolete">Do tego zadania wymagana jest własna etykieta #ALBUM (z jakiego albumu pochodzi utwór).</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="76"/>
@@ -343,25 +193,9 @@ background-image: url();</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;UltraStar Manager&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;UltraStar Manager&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../../QUAboutDialog.ui" line="53"/>
         <source>Version:</source>
         <translation>Wersja:</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
     </message>
 </context>
 <context>
@@ -489,28 +323,6 @@ Amazon...</translation>
     </message>
 </context>
 <context>
-    <name>QUAudioTagTask</name>
-    <message>
-        <source>The song tag &quot;%1&quot; of &quot;%4 - %5&quot; was changed from &quot;%2&quot; to &quot;%3&quot;.</source>
-        <translation type="obsolete">Etykieta utworu &quot;%1&quot; z &quot;%4 - %5&quot; została zmieniona z &quot;%2&quot; na &quot;%3&quot;.</translation>
-    </message>
-    <message>
-        <source>The song tag &quot;%1&quot; is NOT VALID.</source>
-        <translation type="obsolete">Etykieta utworu &quot;%1&quot; jest NIEPARWIDŁOWA.</translation>
-    </message>
-</context>
-<context>
-    <name>QUAudioTagTaskDialog</name>
-    <message>
-        <source>Add Song/ID3 Tag Task</source>
-        <translation type="obsolete">Dodaj Zadanie Utworu/Etykiety ID3</translation>
-    </message>
-    <message>
-        <source>Select a proper &lt;b&gt;target tag&lt;/b&gt; and create a custom &lt;b&gt;schema&lt;/b&gt; for the operation. You can use &lt;b&gt;custom tags&lt;/b&gt; as targets.</source>
-        <translation type="obsolete">Wybierz odpowiednią &lt;b&gt;etykietę docelową&lt;/b&gt; i utwórz własny &lt;b&gt;schemat&lt;/b&gt; dla zadań. Możesz użyć docelowo &lt;b&gt;własnych etykiet&lt;/b&gt;.</translation>
-    </message>
-</context>
-<context>
     <name>QUBooleanSongData</name>
     <message>
         <location filename="../../report/QUBooleanSongData.cpp" line="10"/>
@@ -541,29 +353,6 @@ Amazon...</translation>
         <location filename="../../report/QUBooleanSongData.cpp" line="38"/>
         <source>no</source>
         <translation>Nie</translation>
-    </message>
-</context>
-<context>
-    <name>QUCleanTask</name>
-    <message>
-        <source>Delete unused files</source>
-        <translation type="obsolete">Usuń nieużywane pliki</translation>
-    </message>
-    <message>
-        <source>Every file which is not used by UltraStar will be deleted.&lt;br&gt;&lt;br&gt;&lt;b&gt;This cannot be undone!&lt;/b&gt;</source>
-        <translation type="obsolete">Wszystkie pliki które nie są używany przez UltraStar&apos;a zostaną usunięte.&lt;br&gt;&lt;br&gt;&lt;b&gt;Tej operacji nie da się cofnąć!&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Clear invalid file-related tags</source>
-        <translation type="obsolete">Wyczyść błędnie wypełnione etykiety odwołujące się do plików</translation>
-    </message>
-    <message>
-        <source>Removes the value of invalid file-related tags so that they will not be saved into the song text file.&lt;br&gt;&lt;br&gt;This includes &lt;b&gt;#VIDEOGAP&lt;/b&gt; for invalid video files as well as &lt;b&gt;#START&lt;/b&gt; and &lt;b&gt;#END&lt;/b&gt; for invalid audio files.</source>
-        <translation type="obsolete">Usuwa zawartość etykiet które odwołują się do nieistniejących fizycznie plików.&lt;br&gt;&lt;br&gt; Dotyczy to także etykiet &lt;b&gt;#VIDEOGAP&lt;/b&gt; dla nieprawidłowych lub nieistniejących plików teledysków oraz &lt;b&gt;#START&lt;/b&gt; i &lt;b&gt;#END&lt;/b&gt; dla nieprawidłowych lub nieistniejących plików z muzyką.</translation>
-    </message>
-    <message>
-        <source>Remove #END tag.</source>
-        <translation type="obsolete">Usuwa etykietę #END.</translation>
     </message>
 </context>
 <context>
@@ -837,22 +626,6 @@ Amazon...</translation>
         <translation>Forma</translation>
     </message>
     <message>
-        <source>A minus means, that the filter will be negated.</source>
-        <translation type="obsolete">Minus oznacza, że wyniki filtrowania zostanią odwrócone.</translation>
-    </message>
-    <message>
-        <source>Enter a regular expression and press the filter button to the right.</source>
-        <translation type="obsolete">Wpisz wybraną frazę i wciśnij przycisk filtruj po prawej stronie.</translation>
-    </message>
-    <message>
-        <source>Apply filter to song tree</source>
-        <translation type="obsolete">Zastosuj filtrowanie na drzewku utworów</translation>
-    </message>
-    <message>
-        <source>Filter</source>
-        <translation type="obsolete">Filtruj</translation>
-    </message>
-    <message>
         <location filename="../../filter/QUFilterArea.ui" line="191"/>
         <source>Look for duplicate songs and show them in the song tree.</source>
         <translation>Poszukaj zduplikowanych utworów i pokaż je na drzewku utworów.</translation>
@@ -886,10 +659,6 @@ Amazon...</translation>
         <location filename="../../filter/QUFilterArea.ui" line="165"/>
         <source>...</source>
         <translation>...</translation>
-    </message>
-    <message>
-        <source>Hide filter area</source>
-        <translation type="obsolete">Ukryj pasek filtrowania</translation>
     </message>
     <message>
         <location filename="../../filter/QUFilterArea.cpp" line="8"/>
@@ -938,25 +707,6 @@ Amazon...</translation>
         <location filename="../../report/QUHtmlReport.cpp" line="209"/>
         <source>Appending lyrics...</source>
         <translation>Dołączanie tekstów piosenek...</translation>
-    </message>
-</context>
-<context>
-    <name>QULyricTask</name>
-    <message>
-        <source>Set first timestamp to zero</source>
-        <translation type="obsolete">Ustaw pierwszą nutkę na zero</translation>
-    </message>
-    <message>
-        <source>Fix spaces at end of line</source>
-        <translation type="obsolete">Popraw puste pola na końcach linijek</translation>
-    </message>
-    <message>
-        <source>Moves spaces from the end of line to the beginning of the next syllable.</source>
-        <translation type="obsolete">Przenieś puste pola z końca lini na początek następnej sylaby.</translation>
-    </message>
-    <message>
-        <source>Remove empty syllables</source>
-        <translation type="obsolete">Usuń puste sylaby</translation>
     </message>
 </context>
 <context>
@@ -1060,37 +810,9 @@ Amazon...</translation>
         <translation>UltraStar Manager</translation>
     </message>
     <message>
-        <source>All Tags</source>
-        <translation type="obsolete">Wszystkie Etykiety</translation>
-    </message>
-    <message>
-        <source>Information Tags</source>
-        <translation type="obsolete">Etykiety Informacyjne</translation>
-    </message>
-    <message>
-        <source>File Tags</source>
-        <translation type="obsolete">Etykiety Pliku</translation>
-    </message>
-    <message>
-        <source>Control Tags</source>
-        <translation type="obsolete">Etykiety Sterowania</translation>
-    </message>
-    <message>
         <location filename="../../QUMainWindow.cpp" line="1075"/>
         <source>Custom Tags</source>
         <translation>Własne Etykiety</translation>
-    </message>
-    <message>
-        <source>Toolbars</source>
-        <translation type="obsolete">Pasek</translation>
-    </message>
-    <message>
-        <source>Song/ID3 Tag Task...</source>
-        <translation type="obsolete">Zadania Utworu/Etykiet ID3...</translation>
-    </message>
-    <message>
-        <source>Rename Task...</source>
-        <translation type="obsolete">Zadania Zmiany Nazwy...</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="527"/>
@@ -1372,22 +1094,6 @@ Amazon...</translation>
         <location filename="../../QUMainWindow.ui" line="489"/>
         <source>1</source>
         <translation>1</translation>
-    </message>
-    <message>
-        <source>monty</source>
-        <translation type="obsolete">monty</translation>
-    </message>
-    <message>
-        <source>..information here...</source>
-        <translation type="obsolete">..tutaj informacje...</translation>
-    </message>
-    <message>
-        <source>Talk</source>
-        <translation type="obsolete">Mów</translation>
-    </message>
-    <message>
-        <source>Hide</source>
-        <translation type="obsolete">Ukryj</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.ui" line="100"/>
@@ -1673,10 +1379,6 @@ Zadania</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Filter Songs</source>
-        <translation type="obsolete">&amp;Filtruj Utwory</translation>
-    </message>
-    <message>
         <location filename="../../QUMainWindow.ui" line="1076"/>
         <source>&amp;New Report...</source>
         <translation>&amp;Nowy Raport...</translation>
@@ -1852,34 +1554,6 @@ Zadania</translation>
 </context>
 <context>
     <name>QUMessageBox</name>
-    <message>
-        <source>Dialog</source>
-        <translation type="obsolete">Dialog</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation type="obsolete">Wciśnij Przycisk</translation>
-    </message>
-    <message>
-        <source>1</source>
-        <translation type="obsolete">1</translation>
-    </message>
-    <message>
-        <source>2</source>
-        <translation type="obsolete">2</translation>
-    </message>
-    <message>
-        <source>three</source>
-        <translation type="obsolete">trzy</translation>
-    </message>
-    <message>
-        <source>3</source>
-        <translation type="obsolete">3</translation>
-    </message>
     <message>
         <location filename="../../support/QUMessageBox.ui" line="16"/>
         <source>MessageBox</source>
@@ -2511,33 +2185,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>QUPreparatoryTask</name>
-    <message>
-        <source>Assign missing files automatically</source>
-        <translation type="obsolete">Przypisz automatycznie brakujące pliki</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;#MP3&lt;/b&gt; ... first audio file found.&lt;br&gt;&lt;b&gt;#COVER&lt;/b&gt; ... first picture file, including pattern: &lt;i&gt;[CO]|cove?r?&lt;/i&gt;.&lt;br&gt;&lt;b&gt;#BACKGROUND&lt;/b&gt; ... first picture file, including pattern: &lt;i&gt;[BG]|back&lt;/i&gt;.&lt;br&gt;&lt;b&gt;#VIDEO&lt;/b&gt; ... first video file found.</source>
-        <translation type="obsolete">&lt;b&gt;#MP3&lt;/b&gt; ... pierwszy znaleziony plik z muzyką.&lt;br&gt;&lt;b&gt;#COVER&lt;/b&gt; ... pierwszy plik graficzny, który zawiera w nazwie: &lt;i&gt;[CO]&lt;/i&gt;.&lt;br&gt;&lt;b&gt;#BACKGROUND&lt;/b&gt; ... pierwszy plik graficzny, który zawiera w nazwie: &lt;i&gt;[BG]&lt;/i&gt;.&lt;br&gt;&lt;b&gt;#VIDEO&lt;/b&gt; ...pierwszy plik z teledyskiem.</translation>
-    </message>
-    <message>
-        <source>Remove unsupported tags</source>
-        <translation type="obsolete">Usuwanie nierozpoznanych etykiet</translation>
-    </message>
-    <message>
-        <source>Fix audio length via #END tag</source>
-        <translation type="obsolete">Popraw długość utworu w oparciu o etykietę #END</translation>
-    </message>
-    <message>
-        <source>Sets &lt;b&gt;#END&lt;/b&gt; to the length of the song if audio file present and longer than song. &lt;b&gt;Appends a little time buffer.&lt;/b&gt;</source>
-        <translation type="obsolete">Ustawia &lt;b&gt;#END&lt;/b&gt; z wpisem długości utworu, przydatne gdy plik z muzyką jest dłuższy od utworu. &lt;b&gt;Dodaje nieco czasu.&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Round #GAP to nearest integer.</source>
-        <translation type="obsolete">Przybliż #GAP do najbliższej liczby po przecinku.</translation>
-    </message>
-</context>
-<context>
     <name>QUPreviewTree</name>
     <message>
         <location filename="../../preview/QUPreviewTree.cpp" line="35"/>
@@ -2791,24 +2438,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../support/QUProgressDialog.ui" line="313"/>
         <source>Cancel</source>
         <translation>Anuluj</translation>
-    </message>
-</context>
-<context>
-    <name>QURenameTask</name>
-    <message>
-        <source>Invalid target: %1</source>
-        <translation type="obsolete">Błędny obiekt docelowy: %1</translation>
-    </message>
-</context>
-<context>
-    <name>QURenameTaskDialog</name>
-    <message>
-        <source>Add Rename Task</source>
-        <translation type="obsolete">Dodaj Zadanie Zmiany Nazwy</translation>
-    </message>
-    <message>
-        <source>Select a proper &lt;b&gt;target&lt;/b&gt; and create a custom &lt;b&gt;schema&lt;/b&gt; for the renaming operation. You can use &lt;b&gt;custom tags&lt;/b&gt; as sources.</source>
-        <translation type="obsolete">Wybierz właściwy &lt;b&gt;obiekt&lt;/b&gt; i stwórz własny &lt;b&gt;schemat&lt;/b&gt; dla modyfikowania nazw. Możesz użyć &lt;b&gt;własnych etykiet&lt;/b&gt; jako źródła.</translation>
     </message>
 </context>
 <context>
@@ -3452,13 +3081,6 @@ Songs</source>
     </message>
 </context>
 <context>
-    <name>QUScriptableTask</name>
-    <message>
-        <source>unnamed.xml</source>
-        <translation type="obsolete">bez_nazwy.xml</translation>
-    </message>
-</context>
-<context>
     <name>QUSlideShowDialog</name>
     <message>
         <location filename="../../slideshow/QUSlideShowDialog.cpp" line="22"/>
@@ -3541,18 +3163,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../song/QUSongFile.cpp" line="157"/>
         <source>Could NOT open song file: &quot;%1&quot;</source>
         <translation>Nie mogę odczytać pliku utworu: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Deprecated tag information detected</source>
-        <translation type="obsolete">Wykryto zdeaktualizowaną etykietę</translation>
-    </message>
-    <message>
-        <source>The number of available tags in your configuration and that one this application offers are different.&lt;br&gt;&lt;br&gt;The tag order was reset to its &lt;b&gt;default order&lt;/b&gt;. Check out the &lt;b&gt;options&lt;/b&gt; to set up your custom order again.</source>
-        <translation type="obsolete">Ilość dostępnych etykiet w Twojej konfiguracji różni się od tej która jest akceptowalna przez aplikację.&lt;br&gt;Kolejność etykiet została przywrócona&lt;b&gt; do domyślnego porządku&lt;/b&gt;. Sprawdź w &lt;b&gt;opcjach&lt;/b&gt; ustawienie własnej kolejności etykiet.</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation type="obsolete">Kontynuuj</translation>
     </message>
     <message>
         <location filename="../../song/QUSongFile.cpp" line="248"/>
@@ -3843,22 +3453,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../song/QUSongFile.cpp" line="1063"/>
         <source>#GAP changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation>#GAP w &quot;%3 - %4&quot; został zmieniony z %1 na %2.</translation>
-    </message>
-    <message>
-        <source>Invalid lyrics: %1 - %2</source>
-        <translation type="obsolete">Błędny Tekst Utworu: %1 - %2</translation>
-    </message>
-    <message>
-        <source>Timestamps were changed successfully for &quot;%1 - %2&quot;.</source>
-        <translation type="obsolete">Przesunięto początkowe ustawienie nut w utworze &quot;%1 - %2&quot;.</translation>
-    </message>
-    <message>
-        <source>Spaces were fixed successfully for &quot;%1 - %2&quot;.</source>
-        <translation type="obsolete">W  &quot;%1 - %2&quot; zostały poprawione puste pola.</translation>
-    </message>
-    <message>
-        <source>Empty syllables were removed successfully for &quot;%1 - %2&quot;.</source>
-        <translation type="obsolete">Z  &quot;%1 - %2&quot; zostały usunięte puste sylaby.</translation>
     </message>
     <message>
         <location filename="../../song/QUSongFile.cpp" line="1311"/>
@@ -4255,10 +3849,6 @@ p, li { white-space: pre-wrap; }
         <translation>Własne Etykiety</translation>
     </message>
     <message>
-        <source>Lengths</source>
-        <translation type="obsolete">Długość</translation>
-    </message>
-    <message>
         <location filename="../../songtree/QUSongTree.cpp" line="735"/>
         <source>Hiding all visible songs...</source>
         <translation>Ukrywanie wszystkich widocznych utworów...</translation>
@@ -4524,120 +4114,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>QUTaskDataTable</name>
-    <message>
-        <source>Condition</source>
-        <translation type="obsolete">Stan</translation>
-    </message>
-    <message>
-        <source>Source</source>
-        <translation type="obsolete">Źródło</translation>
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="obsolete">Domyślne</translation>
-    </message>
-    <message>
-        <source>Placeholder will be replaced with&lt;br&gt;source data if condition is fullfilled.</source>
-        <translation type="obsolete">Obiekt zostanie uwzględniony w zadaniu, jeśli spełnione będą poniższe warunki.</translation>
-    </message>
-    <message>
-        <source>Static or dynamic source data for a placeholder.</source>
-        <translation type="obsolete">Stałe lub zmienne dane źródłowe dla obiektów zadania.</translation>
-    </message>
-    <message>
-        <source>Simple text for static source data or a default value&lt;br&gt;if the dynamic source data is &lt;b&gt;not available&lt;/b&gt;.</source>
-        <translation type="obsolete">Tekst prosty dla Stałego źródła lub jego domyślna wartość&lt;br&gt;jeśli zmienne dane dla źródła są &lt;b&gt;niedostępne&lt;/b&gt;.</translation>
-    </message>
-</context>
-<context>
-    <name>QUTaskDialog</name>
-    <message>
-        <source>Edit Rename Task</source>
-        <translation type="obsolete">Zmień lub Przemianuj Zadania</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>&amp;Description</source>
-        <translation type="obsolete">&amp;Opis</translation>
-    </message>
-    <message>
-        <source>T&amp;oolTip</source>
-        <translation type="obsolete">P&amp;odpowiedź</translation>
-    </message>
-    <message>
-        <source>&amp;Icon</source>
-        <translation type="obsolete">&amp;Ikona</translation>
-    </message>
-    <message>
-        <source>Cup</source>
-        <translation type="obsolete">Puchar</translation>
-    </message>
-    <message>
-        <source>&amp;Group</source>
-        <translation type="obsolete">&amp;Grupa</translation>
-    </message>
-    <message>
-        <source>Exclusive task</source>
-        <translation type="obsolete">Zadanie Priorytetowe</translation>
-    </message>
-    <message>
-        <source>&amp;Target</source>
-        <translation type="obsolete">&amp;Cel</translation>
-    </message>
-    <message>
-        <source>The target specifies the object on which the renaming will be done.</source>
-        <translation type="obsolete">Cel wskazuje na obiekt którego nazwa zostanie zmieniona.</translation>
-    </message>
-    <message>
-        <source>mp3</source>
-        <translation type="obsolete">mp3</translation>
-    </message>
-    <message>
-        <source>&amp;Schema</source>
-        <translation type="obsolete">&amp;Schemat</translation>
-    </message>
-    <message>
-        <source>Save As...</source>
-        <translation type="obsolete">Zapisz Jako...</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="obsolete">Zapisz</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Anuluj</translation>
-    </message>
-    <message>
-        <source>Edit Task: &quot;%1&quot;</source>
-        <translation type="obsolete">Modyfikuj Zadanie: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Add Task</source>
-        <translation type="obsolete">Dodaj Zadanie</translation>
-    </message>
-    <message>
-        <source>Save task config</source>
-        <translation type="obsolete">Zapisz konfigurację zadania</translation>
-    </message>
-    <message>
-        <source>Task Configurations (*.xml)</source>
-        <translation type="obsolete">Konfiguracja Zadania (*.xml)</translation>
-    </message>
-    <message>
-        <source>The task file &quot;%1&quot; was saved successfully.</source>
-        <translation type="obsolete">Plik zadania &quot;%1&quot; został zachowany.</translation>
-    </message>
-    <message>
-        <source>The task file &quot;%1&quot; was NOT saved.</source>
-        <translation type="obsolete">Plik zadania &quot;%1&quot; NIE został zachowany.</translation>
-    </message>
-</context>
-<context>
     <name>QUTaskFactoryProxy</name>
     <message>
         <location filename="../../plugins/QUTaskFactoryProxy.cpp" line="17"/>
@@ -4656,14 +4132,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../tasks/QUTaskList.cpp" line="47"/>
         <source>Add</source>
         <translation>Dodaj</translation>
-    </message>
-    <message>
-        <source>Song/ID3 Tag Task...</source>
-        <translation type="obsolete">Zadania Utworu/Etykiety ID3...</translation>
-    </message>
-    <message>
-        <source>Rename Task...</source>
-        <translation type="obsolete">Zadania Zmiany Nazwy...</translation>
     </message>
     <message>
         <location filename="../../tasks/QUTaskList.cpp" line="56"/>
@@ -4686,29 +4154,9 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Preparatory Tasks</source>
-        <translation type="obsolete">Zadania Wstępne</translation>
-    </message>
-    <message>
-        <source>Song/ID3 Tag Tasks</source>
-        <translation type="obsolete">Zadania Utworu/Etykiet ID3</translation>
-    </message>
-    <message>
-        <source>Renaming Tasks</source>
-        <translation type="obsolete">Zadania Zmiany Nazwy</translation>
-    </message>
-    <message>
-        <source>Clean-Up Tasks</source>
-        <translation type="obsolete">Zadania Oczyszczania</translation>
-    </message>
-    <message>
         <location filename="../../tasks/QUTaskList.cpp" line="141"/>
         <source>Task list was refreshed successfully.</source>
         <translation>Lista zadań została odświeżona.</translation>
-    </message>
-    <message>
-        <source>Lyric Tasks</source>
-        <translation type="obsolete">Zadania Tekstów Piosenki</translation>
     </message>
 </context>
 <context>
