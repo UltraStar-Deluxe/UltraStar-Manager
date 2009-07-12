@@ -5,12 +5,15 @@
 
 #include <QtPlugin>
 #include <QVariant>
+#include <QMap>
+#include <QString>
 
 #include "QU.h"
 
 class QWidget;
 class QString;
 class QIcon;
+class QTranslator;
 
 class QUSongInterface;
 class QUTask;
@@ -23,6 +26,9 @@ public:
 	// for compatibility reasons
 	virtual int pluginApiVersion() const = 0;
 	virtual int songApiVersion() const = 0;
+
+	// multi-language support
+	virtual QMap<QString, QTranslator*> translations() const = 0;
 
     // create all tasks based on their configurations
 	virtual QList<QUTask*> createTasks() = 0;

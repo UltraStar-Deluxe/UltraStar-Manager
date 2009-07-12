@@ -17,6 +17,7 @@ public:
 
 	virtual int pluginApiVersion() const { return PLUGIN_API_VERSION; }
 	virtual int songApiVersion() const { return SONG_API_VERSION; }
+	virtual QMap<QString, QTranslator*> translations() const { return QMap<QString, QTranslator*>(); }
 
     virtual QList<QUTask*> createTasks();
 

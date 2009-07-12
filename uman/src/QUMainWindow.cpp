@@ -1337,7 +1337,7 @@ void QUMainWindow::enableEnglish() {
 	_menu->langUsBtn->setChecked(true);
 
 	QSettings settings;
-	settings.setValue("language", QVariant("en_EN"));
+	settings.setValue("language", QLocale(QLocale::English, QLocale::UnitedStates).name());
 
 	// ---------------
 
@@ -1357,7 +1357,7 @@ void QUMainWindow::enableGerman() {
 	_menu->langDeBtn->setChecked(true);
 
 	QSettings settings;
-	settings.setValue("language", QVariant("de_DE"));
+	settings.setValue("language", QLocale(QLocale::German, QLocale::Germany).name());
 
 	// ---------------
 
@@ -1377,7 +1377,7 @@ void QUMainWindow::enablePolish() {
 	_menu->langPlBtn->setChecked(true);
 
 	QSettings settings;
-	settings.setValue("language", QVariant("pl_PL"));
+	settings.setValue("language", QLocale(QLocale::Polish, QLocale::Poland).name());
 
 	// ---------------
 

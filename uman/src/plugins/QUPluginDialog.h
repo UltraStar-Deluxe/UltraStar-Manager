@@ -10,8 +10,9 @@
 #define PLUGIN_PRODUCT_COL    1
 #define PLUGIN_OPERATIONS_COL 2
 #define PLUGIN_QUANTITY_COL   3
-#define PLUGIN_API_COL        4
-#define PLUGIN_PATH_COL       5
+#define PLUGIN_LANG_COL       4
+#define PLUGIN_API_COL        5
+#define PLUGIN_PATH_COL       6
 
 class QPluginLoader;
 

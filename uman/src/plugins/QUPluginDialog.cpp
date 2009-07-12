@@ -3,6 +3,7 @@
 #include <QPluginLoader>
 #include <QFileInfo>
 #include <QHeaderView>
+#include <QMap>
 
 #include "QUTaskPlugin.h"
 #include "QUSongInterface.h"
@@ -15,13 +16,14 @@ QUPluginDialog::QUPluginDialog(const QList<QPluginLoader*> &plugins, QWidget *pa
 
 	apiLbl->setText(QString(tr("<b>API:</b> Song v%1, Plugin v%2")).arg(SONG_API_VERSION).arg(PLUGIN_API_VERSION));
 
-	pluginTable->setColumnCount(6);
+	pluginTable->setColumnCount(7);
 
-	pluginTable->setHorizontalHeaderLabels(QStringList() << tr("Factory") << tr("Product") << tr("Operations") << tr("Quantity") << tr("API") << tr("Path"));
+	pluginTable->setHorizontalHeaderLabels(QStringList() << tr("Factory") << tr("Product") << tr("Operations") << tr("Quantity") << tr("Languages") << tr("API") << tr("Path"));
 	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_FACTORY_COL, QHeaderView::ResizeToContents);
 	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_PRODUCT_COL, QHeaderView::ResizeToContents);
 	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_OPERATIONS_COL, QHeaderView::ResizeToContents);
 	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_QUANTITY_COL, QHeaderView::ResizeToContents);
+	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_LANG_COL, QHeaderView::ResizeToContents);
 	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_PATH_COL, QHeaderView::Stretch);
 
 	pluginTable->verticalHeader()->hide();
@@ -59,6 +61,15 @@ void QUPluginDialog::updatePluginTable(const QList<QPluginLoader*> &plugins) {
 
 			pluginTable->setItem(row, PLUGIN_OPERATIONS_COL, this->createItem(operations.join(", ")));
 			pluginTable->setItem(row, PLUGIN_QUANTITY_COL, this->createItem(QString(tr("%1 tasks")).arg(tasks.size())));
+
+			QMapIterator<QString, QTranslator*> i(factory->translations());
+			QStringList translations;
+			while(i.hasNext()) {
+				i.next();
+				translations << i.key();
+			}
+			pluginTable->setItem(row, PLUGIN_LANG_COL, this->createItem(translations.join(", ")));
+
 			pluginTable->setItem(row, PLUGIN_API_COL, this->createItem(QString(tr("Song v%1, Plugin v%2")).arg(factory->songApiVersion()).arg(factory->pluginApiVersion())));
 		} else {
 			pluginTable->setItem(row, PLUGIN_FACTORY_COL, this->createItem(tr("No factory found.")));

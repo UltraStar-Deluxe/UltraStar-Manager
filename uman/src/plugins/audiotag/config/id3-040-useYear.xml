@@ -1,0 +1,10 @@
+<task>
+    <general type="id3" >
+        <icon resource=":/types/date.png" />
+        <description><![CDATA[Change #YEAR via ID3 tag.]]></description>
+        <tooltip/>
+    </general>
+    <id3 target="year" schema="%1" >
+        <data ignoreEmpty="targetfull" source="year" />
+    </id3>
+</task>

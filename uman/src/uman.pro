@@ -203,8 +203,7 @@ revtarget.commands = @echo \
     char \
     *date_time \
     = \
-    \"$(shell date /T)$(shell time /T)\";" > $$revtarget.target \
-&&python getTaskText.py
+	\"$(shell date /T)$(shell time /T)\";" > $$revtarget.target
 revtarget.depends = $$SOURCES \
     $$HEADERS \
     $$FORMS

@@ -1,0 +1,18 @@
+<task>
+    <general type="rename" group="2">
+        <icon resource=":/types/film.png" />
+        <description>
+            <![CDATA[Rename video to "Artist - Title [VD#*].*" consider VIDEOGAP]]>
+        </description>
+        <tooltip>
+            <![CDATA[Uses <b>#VIDEOGAP:0</b> if tag not present.]]>
+        </tooltip>
+    </general>
+
+    <rename target="video" schema="%1 - %2 [VD#%4].%3">
+        <data source="artist" />
+        <data source="title" />
+        <data keepSuffix="true" />
+        <data source="videogap" default="0" />
+    </rename>
+</task>

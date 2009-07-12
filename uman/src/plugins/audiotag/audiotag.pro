@@ -55,3 +55,10 @@ unix {
     LIBS += -L"/usr/lib" \
         -ltag
 }
+QMAKE_EXTRA_TARGETS += langtarget
+PRE_TARGETDEPS += language.h
+langtarget.target = language.h
+langtarget.commands = @echo python getTaskText.py
+langtarget.depends = $$SOURCES \
+	$$HEADERS \
+	$$FORMS

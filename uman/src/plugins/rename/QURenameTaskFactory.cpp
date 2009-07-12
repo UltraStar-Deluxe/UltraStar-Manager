@@ -6,6 +6,13 @@
 
 QURenameTaskFactory::QURenameTaskFactory(QObject *parent): QUScriptableTaskFactory(parent) {}
 
+QMap<QString, QTranslator*> QURenameTaskFactory::translations() const {
+	QMap<QString, QTranslator*> result;
+	result.insert(QLocale(QLocale::English, QLocale::UnitedStates).name(), 0);
+	result.insert(QLocale(QLocale::German, QLocale::Germany).name(), 0);
+	return result;
+}
+
 QString QURenameTaskFactory::name() const {
 	return tr("Rename Tasks");
 }

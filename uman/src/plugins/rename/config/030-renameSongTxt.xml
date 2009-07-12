@@ -1,0 +1,12 @@
+<task>
+    <general type="rename" >
+        <icon resource=":/types/text.png" />
+        <description><![CDATA[Rename songtext file to "Artist - Title.txt"]]></description>
+        <tooltip/>
+    </general>
+    <rename target="txt" schema="%1 - %2.%3" >
+        <data source="artist" />
+        <data source="title" />
+        <data keepSuffix="true" />
+    </rename>
+</task>

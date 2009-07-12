@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QDomDocument>
+#include <QMap>
+#include <QTranslator>
 
 #include "QUScriptableTaskFactory.h"
 
@@ -11,6 +13,8 @@ class QURenameTaskFactory: public QUScriptableTaskFactory {
 
 public:
 	QURenameTaskFactory(QObject *parent = 0);
+
+	virtual QMap<QString, QTranslator*> translations() const;
 
 	virtual QString name() const;
 	virtual QString productName() const;

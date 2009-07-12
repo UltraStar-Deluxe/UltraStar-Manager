@@ -11,6 +11,7 @@
 #include <QPixmap>
 #include <QString>
 #include <QFile>
+#include <QLocale>
 
 void initApplication();
 void initLanguage(QApplication&, QTranslator&, QSplashScreen&);
@@ -57,25 +58,30 @@ void initApplication() {
  * Installs a proper translator according to the registry settings. That's why you
  * have to restart this application if you want to change its language. Uses the system
  * language if no registry setting is found.
+ *
+ * Note that there is no special translation file for english present. That's why all
+ * strings in the application source code is in english.
  */
 void initLanguage(QApplication &app, QTranslator &t, QSplashScreen &s) {
 	QSettings settings;
-	bool settingFound = true;
-	QString lang = settings.value("language").toString();
+	bool settingFound;
+	QLocale lang;
 
-	if(lang.isEmpty()) {
-		lang = QLocale::system().name();
+	if(!settings.contains("language")) {
 		settingFound = false;
-
-		settings.setValue("language", QVariant(lang)); // remember this language (system local)
+		lang = QLocale::system();
+		settings.setValue("language", lang.name()); // remember this language (system local)
+	} else {
+		settingFound = true;
+		lang = QLocale(settings.value("language").toString());
 	}
 
-	if(QString::compare(lang, "de_DE", Qt::CaseInsensitive) == 0) {
+	if(lang.language() == QLocale::German) {
 		if(t.load(":/lang/uman_de.qm")) {
 			app.installTranslator(&t);
 			monty->initMessages(":/txt/hints_de");
 		}
-	} else if (QString::compare(lang, "pl_PL", Qt::CaseInsensitive) == 0) {
+	} else if (lang.language() == QLocale::Polish) {
 		if(t.load(":/lang/uman_pl.qm")) {
 			app.installTranslator(&t);
 			monty->initMessages(":/txt/hints_pl");
