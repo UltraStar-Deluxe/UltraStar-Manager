@@ -77,12 +77,12 @@ void initLanguage(QApplication &app, QTranslator &t, QSplashScreen &s) {
 	}
 
 	if(lang.language() == QLocale::German) {
-		if(t.load(":/lang/uman_de.qm")) {
+		if(t.load(":/lang/uman.de.qm")) {
 			app.installTranslator(&t);
 			monty->initMessages(":/txt/hints_de");
 		}
 	} else if (lang.language() == QLocale::Polish) {
-		if(t.load(":/lang/uman_pl.qm")) {
+		if(t.load(":/lang/uman.pl.qm")) {
 			app.installTranslator(&t);
 			monty->initMessages(":/txt/hints_pl");
 		}

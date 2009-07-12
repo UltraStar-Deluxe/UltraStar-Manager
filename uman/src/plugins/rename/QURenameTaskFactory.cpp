@@ -6,13 +6,6 @@
 
 QURenameTaskFactory::QURenameTaskFactory(QObject *parent): QUScriptableTaskFactory(parent) {}
 
-QMap<QString, QTranslator*> QURenameTaskFactory::translations() const {
-	QMap<QString, QTranslator*> result;
-	result.insert(QLocale(QLocale::English, QLocale::UnitedStates).name(), 0);
-	result.insert(QLocale(QLocale::German, QLocale::Germany).name(), 0);
-	return result;
-}
-
 QString QURenameTaskFactory::name() const {
 	return tr("Rename Tasks");
 }
@@ -39,6 +32,18 @@ QUTask* QURenameTaskFactory::createTask(QDomDocument *configuration) {
 
 int QURenameTaskFactory::addConfiguration(QWidget *parent) {
 	return QURenameTaskDialog(0, parent).exec();
+}
+
+QMap<QString, QString> QURenameTaskFactory::translationLocations() const {
+	QDir dir = QCoreApplication::applicationDirPath();
+	QMap<QString, QString> locations;
+
+	if(dir.cd("plugins") && dir.cd("languages")) {
+		locations.insert(QLocale(QLocale::German, QLocale::Germany).name(), dir.filePath("rename.de.qm"));
+		locations.insert(QLocale(QLocale::Polish, QLocale::Poland).name(), dir.filePath("rename.pl.qm"));
+	}
+
+	return locations;
 }
 
 Q_EXPORT_PLUGIN2(qurenametaskfactory, QURenameTaskFactory);

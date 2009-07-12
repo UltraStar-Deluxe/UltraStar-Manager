@@ -34,4 +34,16 @@ int QUAudioTagTaskFactory::addConfiguration(QWidget *parent) {
 	return QUAudioTagTaskDialog(0, parent).exec();
 }
 
+QMap<QString, QString> QUAudioTagTaskFactory::translationLocations() const {
+	QDir dir = QCoreApplication::applicationDirPath();
+	QMap<QString, QString> locations;
+
+	if(dir.cd("plugins") && dir.cd("languages")) {
+		locations.insert(QLocale(QLocale::German, QLocale::Germany).name(), dir.filePath("audiotag.de.qm"));
+		locations.insert(QLocale(QLocale::Polish, QLocale::Poland).name(), dir.filePath("audiotag.pl.qm"));
+	}
+
+	return locations;
+}
+
 Q_EXPORT_PLUGIN2(quaudiotagtaskfactory, QUAudioTagTaskFactory);

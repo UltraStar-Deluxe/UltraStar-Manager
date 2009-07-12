@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QDomDocument>
 #include <QMap>
-#include <QTranslator>
 
 #include "QUScriptableTaskFactory.h"
 
@@ -13,8 +12,6 @@ class QURenameTaskFactory: public QUScriptableTaskFactory {
 
 public:
 	QURenameTaskFactory(QObject *parent = 0);
-
-	virtual QMap<QString, QTranslator*> translations() const;
 
 	virtual QString name() const;
 	virtual QString productName() const;
@@ -25,6 +22,7 @@ public slots:
 protected:
 	virtual QDir configurationDirectory();
 	virtual QUTask* createTask(QDomDocument *configuration);
+	virtual QMap<QString, QString> translationLocations() const;
 };
 
 #endif // QURENAMETASKFACTORY_H_

@@ -8,11 +8,15 @@
 
 class QUTaskList;
 
+/*!
+ * This class ensures that configuration dialogs in plugins have the correct parent widget.
+ */
 class QUTaskFactoryProxy: public QObject {
 	Q_OBJECT
 
 public:
 	QUTaskFactoryProxy(QUTaskFactory *factory, QWidget *factoryParent = 0, QUTaskList *parent = 0);
+	~QUTaskFactoryProxy();
 
 	QUTaskFactory* factory() const { return _factory; }
 

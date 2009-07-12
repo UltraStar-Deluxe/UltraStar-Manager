@@ -1,26 +1,18 @@
 #ifndef QUSCRIPTABLETASKFACTORY_H_H
 #define QUSCRIPTABLETASKFACTORY_H_H
 
-#include <QObject>
 #include <QDir>
 #include <QDomDocument>
 
-#include "QUTaskPlugin.h"
-#include "QUSongInterface.h"
+#include "QUMultilingualTaskFactory.h"
 
-class QUScriptableTaskFactory: public QObject, public QUTaskFactory {
+class QUScriptableTaskFactory: public QUMultilingualTaskFactory {
 	Q_OBJECT
-    Q_INTERFACES(QUTaskFactory)
 
 public:
 	QUScriptableTaskFactory(QObject *parent = 0);
 
-	virtual int pluginApiVersion() const { return PLUGIN_API_VERSION; }
-	virtual int songApiVersion() const { return SONG_API_VERSION; }
-	virtual QMap<QString, QTranslator*> translations() const { return QMap<QString, QTranslator*>(); }
-
     virtual QList<QUTask*> createTasks();
-
 	virtual bool canAddConfigurations() const { return true; }
 
 protected:

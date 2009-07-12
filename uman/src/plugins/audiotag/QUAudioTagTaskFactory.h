@@ -21,6 +21,7 @@ public slots:
 protected:
 	virtual QDir configurationDirectory();
 	virtual QUTask* createTask(QDomDocument *configuration);
+	virtual QMap<QString, QString> translationLocations() const;
 };
 
 #endif // AUDIOTAGTASKFACTORY_H_

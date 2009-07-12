@@ -12,6 +12,7 @@ public:
 protected:
 	virtual QUTask* createTask(int type);
 	virtual QList<int> types() const;
+	virtual QMap<QString, QString> translationLocations() const;
 };
 
 #endif // QULYRICTASKFACTORY_H

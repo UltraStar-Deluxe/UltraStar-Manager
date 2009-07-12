@@ -1,4 +1,5 @@
-SOURCES = QURenameTaskFactory.cpp \
+SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
+	QURenameTaskFactory.cpp \
     QURenameTask.cpp \
     ../../QUStringSupport.cpp \
     ../../QUSongSupport.cpp \
@@ -14,6 +15,7 @@ SOURCES = QURenameTaskFactory.cpp \
 	../shared/QUTaskTextDelegate.cpp \
 	../QUSmartSetting.cpp
 HEADERS = language.h \
+	../shared/QUMultilingualTaskFactory.h \
 	QURenameTaskFactory.h \
     QURenameTask.h \
     ../../QUStringSupport.h \

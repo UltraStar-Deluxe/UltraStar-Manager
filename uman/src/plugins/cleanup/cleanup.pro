@@ -1,4 +1,5 @@
-SOURCES = QUCleanUpTaskFactory.cpp \
+SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
+	QUCleanUpTaskFactory.cpp \
     QUCleanUpTask.cpp \
     ../shared/QUSimpleTask.cpp \
 	../shared/QUSimpleTaskFactory.cpp \
@@ -6,7 +7,8 @@ SOURCES = QUCleanUpTaskFactory.cpp \
 	../shared/QUSmartCheckBox.cpp \
 	../shared/QUSmartInputCheck.cpp \
 	../../QUSongSupport.cpp
-HEADERS = QUCleanUpTaskFactory.h \
+HEADERS = ../shared/QUMultilingualTaskFactory.h \
+	QUCleanUpTaskFactory.h \
     QUCleanUpTask.h \
     ../shared/QUSimpleTask.h \
 	../shared/QUSimpleTaskFactory.h \

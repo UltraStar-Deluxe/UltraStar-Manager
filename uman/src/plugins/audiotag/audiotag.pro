@@ -1,4 +1,5 @@
-SOURCES = QUAudioTagTaskFactory.cpp \
+SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
+	QUAudioTagTaskFactory.cpp \
     QUAudioTagTask.cpp \
     ../../QUStringSupport.cpp \
     ../../QUSongSupport.cpp \
@@ -14,6 +15,7 @@ SOURCES = QUAudioTagTaskFactory.cpp \
 	QUDefaultDelegate.cpp \
 	../QUSmartSetting.cpp
 HEADERS = language.h \
+	../shared/QUMultilingualTaskFactory.h \
 	QUAudioTagTaskFactory.h \
     QUAudioTagTask.h \
     ../../QUStringSupport.h \

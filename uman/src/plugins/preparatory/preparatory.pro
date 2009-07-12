@@ -1,4 +1,5 @@
-SOURCES = QUPreparatoryTaskFactory.cpp \
+SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
+	QUPreparatoryTaskFactory.cpp \
     QUPreparatoryTask.cpp \
     ../shared/QUSimpleTask.cpp \
 	../shared/QUSimpleTaskFactory.cpp \
@@ -6,7 +7,8 @@ SOURCES = QUPreparatoryTaskFactory.cpp \
 	../shared/QUSmartCheckBox.cpp \
 	../shared/QUSmartInputField.cpp \
 	../../QUSongSupport.cpp
-HEADERS = QUPreparatoryTaskFactory.h \
+HEADERS = ../shared/QUMultilingualTaskFactory.h \
+	QUPreparatoryTaskFactory.h \
     QUPreparatoryTask.h \
     ../shared/QUSimpleTask.h \
 	../shared/QUSimpleTaskFactory.h \

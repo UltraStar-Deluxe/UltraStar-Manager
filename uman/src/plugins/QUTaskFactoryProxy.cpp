@@ -8,6 +8,11 @@ QUTaskFactoryProxy::QUTaskFactoryProxy(QUTaskFactory *factory, QWidget *factoryP
 		_factoryParent(factoryParent)
 {}
 
+QUTaskFactoryProxy::~QUTaskFactoryProxy() {
+	if(_factory)
+		delete _factory;
+}
+
 void QUTaskFactoryProxy::addConfiguration() {
 	if(_factory->addConfiguration(_factoryParent)) {
 		QUTaskList *taskList = dynamic_cast<QUTaskList*>(this->parent());

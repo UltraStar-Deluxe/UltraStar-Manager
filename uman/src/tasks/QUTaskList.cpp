@@ -9,6 +9,8 @@
 #include <QMessageBox>
 #include <QLibrary>
 #include <QSettings>
+#include <QMap>
+#include <QTranslator>
 
 #include "QUTaskPlugin.h"
 #include "QUTaskFactoryProxy.h"
@@ -174,6 +176,17 @@ void QUTaskList::reloadAllPlugins() {
 }
 
 void QUTaskList::updateFactoryProxies() {
+	QSettings settings;
+	QString language = settings.value("language", QLocale::system().name()).toString();
+
+	// remove all translations
+	foreach(QUTaskFactoryProxy *factoryProxy, _factoryProxies) {
+		// only translator for current language should be installed
+		QMap<QString, QTranslator*> translations(factoryProxy->factory()->translations());
+		if(translations.contains(language))
+			qApp->removeTranslator(translations.value(language));
+	}
+
 	qDeleteAll(_factoryProxies);
 	_factoryProxies.clear();
 
@@ -184,6 +197,11 @@ void QUTaskList::updateFactoryProxies() {
 			continue;
 
 		_factoryProxies << new QUTaskFactoryProxy(factory, this, this);
+
+		// install translation
+		QMap<QString, QTranslator*> translations(factory->translations());
+		if(translations.contains(language))
+			qApp->installTranslator(translations.value(language));
 	}
 }
 

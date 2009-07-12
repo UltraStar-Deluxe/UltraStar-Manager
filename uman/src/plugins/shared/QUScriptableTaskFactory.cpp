@@ -4,7 +4,7 @@
 #include <QFile>
 #include <QFileInfo>
 
-QUScriptableTaskFactory::QUScriptableTaskFactory(QObject *parent): QObject(parent) {}
+QUScriptableTaskFactory::QUScriptableTaskFactory(QObject *parent): QUMultilingualTaskFactory(parent) {}
 
 QList<QUTask*> QUScriptableTaskFactory::createTasks() {
     QList<QUTask*> tasks;

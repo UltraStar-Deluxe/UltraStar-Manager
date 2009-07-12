@@ -1,6 +1,6 @@
 #include "QUSimpleTaskFactory.h"
 
-QUSimpleTaskFactory::QUSimpleTaskFactory(QObject *parent): QObject(parent) {}
+QUSimpleTaskFactory::QUSimpleTaskFactory(QObject *parent): QUMultilingualTaskFactory(parent) {}
 
 QList<QUTask*> QUSimpleTaskFactory::createTasks() {
 	QList<QUTask*> tasks;

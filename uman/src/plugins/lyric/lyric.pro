@@ -1,11 +1,13 @@
-SOURCES = QULyricTaskFactory.cpp \
+SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
+	QULyricTaskFactory.cpp \
     QULyricTask.cpp \
     ../shared/QUSimpleTask.cpp \
 	../shared/QUSimpleTaskFactory.cpp \
 	../QUSmartSetting.cpp \
 	../shared/QUSmartCheckBox.cpp \
 	../shared/QUSmartInputField.cpp
-HEADERS = QULyricTaskFactory.h \
+HEADERS = ../shared/QUMultilingualTaskFactory.h \
+	QULyricTaskFactory.h \
     QULyricTask.h \
     ../shared/QUSimpleTask.h \
 	../shared/QUSimpleTaskFactory.h \
