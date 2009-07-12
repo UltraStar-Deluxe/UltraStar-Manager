@@ -12,6 +12,8 @@ HEADERS = QULyricTaskFactory.h \
 	../QUSmartSetting.h \
 	../shared/QUSmartCheckBox.h \
 	../shared/QUSmartInputField.h
+TRANSLATIONS = lyric.de.ts \
+	lyric.pl.ts
 INCLUDEPATH += . \
     .. \
     ../.. \

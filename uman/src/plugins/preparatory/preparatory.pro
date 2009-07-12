@@ -14,6 +14,8 @@ HEADERS = QUPreparatoryTaskFactory.h \
 	../shared/QUSmartCheckBox.h \
 	../shared/QUSmartInputField.h \
 	../../QUSongSupport.h
+TRANSLATIONS = preparatory.de.ts \
+	preparatory.pl.ts
 INCLUDEPATH += . \
     .. \
     ../.. \

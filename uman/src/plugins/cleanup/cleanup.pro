@@ -14,6 +14,8 @@ HEADERS = QUCleanUpTaskFactory.h \
 	../shared/QUSmartCheckBox.h \
 	../shared/QUSmartInputCheck.h \
 	../../QUSongSupport.h
+TRANSLATIONS = cleanup.de.ts \
+	cleanup.pl.ts
 INCLUDEPATH += . \
     .. \
     ../.. \
