@@ -23,7 +23,9 @@ QString QURenameTaskFactory::productName() const {
 
 QDir QURenameTaskFactory::configurationDirectory() {
 	QDir dir = QCoreApplication::applicationDirPath();
-	dir.cd("task-def");
+	dir.cd("plugins");
+	dir.cd("config");
+	dir.cd("rename");
 	return dir;
 }
 

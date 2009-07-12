@@ -16,7 +16,9 @@ QString QUAudioTagTaskFactory::productName() const {
 
 QDir QUAudioTagTaskFactory::configurationDirectory() {
 	QDir dir = QCoreApplication::applicationDirPath();
-	dir.cd("task-def");
+	dir.cd("plugins");
+	dir.cd("config");
+	dir.cd("audiotag");
 	return dir;
 }
 

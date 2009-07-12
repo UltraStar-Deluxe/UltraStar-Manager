@@ -13,7 +13,8 @@ SOURCES = QUAudioTagTaskFactory.cpp \
     ../shared/QUTaskSourceDelegate.cpp \
 	QUDefaultDelegate.cpp \
 	../QUSmartSetting.cpp
-HEADERS = QUAudioTagTaskFactory.h \
+HEADERS = language.h \
+	QUAudioTagTaskFactory.h \
     QUAudioTagTask.h \
     ../../QUStringSupport.h \
     ../../QUSongSupport.h \
@@ -29,6 +30,8 @@ HEADERS = QUAudioTagTaskFactory.h \
 	QUDefaultDelegate.h \
 	../QUSmartSetting.h
 FORMS += ../shared/QUTaskDialog.ui
+TRANSLATIONS = audiotag.de.ts \
+	audiotag.pl.ts
 INCLUDEPATH += . \
     ui \
     .. \
@@ -58,7 +61,4 @@ unix {
 QMAKE_EXTRA_TARGETS += langtarget
 PRE_TARGETDEPS += language.h
 langtarget.target = language.h
-langtarget.commands = @echo python getTaskText.py
-langtarget.depends = $$SOURCES \
-	$$HEADERS \
-	$$FORMS
+langtarget.commands = python getTaskText.py

@@ -13,7 +13,8 @@ SOURCES = QURenameTaskFactory.cpp \
     ../shared/QUTaskSourceDelegate.cpp \
 	../shared/QUTaskTextDelegate.cpp \
 	../QUSmartSetting.cpp
-HEADERS = QURenameTaskFactory.h \
+HEADERS = language.h \
+	QURenameTaskFactory.h \
     QURenameTask.h \
     ../../QUStringSupport.h \
     ../../QUSongSupport.h \
@@ -29,6 +30,8 @@ HEADERS = QURenameTaskFactory.h \
 	../shared/QUTaskTextDelegate.h \
 	../QUSmartSetting.h
 FORMS += ../shared/QUTaskDialog.ui
+TRANSLATIONS = rename.de.ts \
+	rename.pl.ts
 INCLUDEPATH += . \
     ui \
     .. \
@@ -44,3 +47,7 @@ OBJECTS_DIR = ../tmp/rename
 MOC_DIR = ../tmp/rename
 UI_DIR = ../ui
 QT += xml
+QMAKE_EXTRA_TARGETS += langtarget
+PRE_TARGETDEPS += language.h
+langtarget.target = language.h
+langtarget.commands = python getTaskText.py
