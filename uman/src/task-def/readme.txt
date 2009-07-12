@@ -1,1 +1,0 @@
-This directory has to be in the application path.
