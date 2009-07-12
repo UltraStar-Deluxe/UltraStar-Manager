@@ -140,9 +140,6 @@ NOT SORTED
 SPLASH SCREEN
 ! main windows shows up to early if "always on top" is selected
 
-PLUGINS
-* translation issues with plugins
-
 TRANSLATION
 * "Leerzeichen an Zeilenende verschieben" -> "Leerzeichen am Zeilenende korrigieren" or "Leerzeichen vor die Silben verschieben"
 * "Kopieren" -> "Verschieben" or "Bewegen"
@@ -184,6 +181,7 @@ AUTO-SAVE
 
 ! AAWS - Product Advertising API (use with certificates)
 ! prepare plugin SDK
+! extract language information from app file into plugin translations
 
 NEW STUFF
 * make hard-coded values editable
