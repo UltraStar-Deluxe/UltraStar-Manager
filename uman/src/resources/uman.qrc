@@ -11,8 +11,8 @@
         <file>txt/credits</file>
         <file>txt/languages</file>
         <file>lang/de.png</file>
-        <file>lang/uman_de.qm</file>
-        <file>lang/uman_pl.qm</file>
+        <file>lang/uman.de.qm</file>
+        <file>lang/uman.pl.qm</file>
         <file>lang/pl.png</file>
         <file>lang/us.png</file>
         <file>player/next.png</file>

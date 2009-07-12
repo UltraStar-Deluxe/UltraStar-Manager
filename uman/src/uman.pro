@@ -159,8 +159,8 @@ FORMS += plugins/QUPluginDialog.ui \
     lyricseditor/QULyricsEditorDialog.ui \
     preferences/QUPathsDialog.ui
 RESOURCES += resources/uman.qrc
-TRANSLATIONS = resources/lang/uman_de.ts \
-    resources/lang/uman_pl.ts
+TRANSLATIONS = resources/lang/uman.de.ts \
+	resources/lang/uman.pl.ts
 INCLUDEPATH += . \
     song \
     songdetails \
