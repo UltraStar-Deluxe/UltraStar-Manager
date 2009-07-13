@@ -23,38 +23,14 @@ public:
 
 	static QDir BaseDir; // UltraStar song folder
 
-	enum EventMessageType {
-		information,
-		warning,
-		help,
-		saving,
-		error
+	enum MessageType {
+		Information,
+		Warning,
+		Help,
+		Saving,
+		Error
 	};
-	Q_DECLARE_FLAGS(EventMessageTypes, EventMessageType)
-
-	enum PreparatoryTaskMode {
-		autoAssignFiles,
-		removeUnsupportedTags,
-		fixAudioLength,
-		roundGap
-	};
-	Q_DECLARE_FLAGS(PreparatoryTaskModes, PreparatoryTaskMode)
-
-	enum LyricTaskMode {
-		fixTimeStamps,
-		fixSpaces,
-		removeEmptySyllables,
-		convertSyllablePlaceholder1,
-		convertSyllablePlaceholder2
-	};
-	Q_DECLARE_FLAGS(LyricTaskModes, LyricTaskMode)
-
-	enum CleanTaskMode {
-		unusedFiles,
-		invalidFileTags,
-		removeEndTag
-	};
-	Q_DECLARE_FLAGS(CleanTaskModes, CleanTaskMode)
+	Q_DECLARE_FLAGS(MessageTypes, MessageType)
 
 	enum FilterMode {
 		informationTags = 0x01,
@@ -64,12 +40,6 @@ public:
 		negateFilter = 0x10
 	};
 	Q_DECLARE_FLAGS(FilterModes, FilterMode)
-
-	enum ScriptableTaskType {
-		audioTagTask,
-		renameTask
-	};
-	Q_DECLARE_FLAGS(ScriptableTaskTypes, ScriptableTaskType)
 
 	enum ImageSize {
 		mediumImage,
@@ -92,12 +62,6 @@ public:
 		reportUseStyleSheet = 0x10
 	};
 	Q_DECLARE_FLAGS(ReportOptions, ReportOption)
-
-	enum TaskDataType {
-		undefined = -1,
-		unsupportedTags = 0
-	};
-	Q_DECLARE_FLAGS(TaskDataTypes, TaskDataType)
 
 	static bool fileTypeLessThan(const QFileInfo &fi1, const QFileInfo &fi2);  
 };

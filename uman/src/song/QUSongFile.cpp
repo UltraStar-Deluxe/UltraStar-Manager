@@ -59,7 +59,7 @@ QUSongFile::~QUSongFile() {
  * This is a wrapper to allow external plugins access to the log service.
  */
 void QUSongFile::log(const QString &message, int type) {
-    logSrv->add(message, (QU::EventMessageTypes) type);
+	logSrv->add(message, (QU::MessageTypes) type);
 }
 
 /*!
@@ -154,7 +154,7 @@ bool QUSongFile::updateCache() {
 	_file.setFileName(_fi.filePath());
 
 	if(!_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		logSrv->add(QString(tr("Could NOT open song file: \"%1\"")).arg(_fi.filePath()), QU::warning);
+		logSrv->add(QString(tr("Could NOT open song file: \"%1\"")).arg(_fi.filePath()), QU::Warning);
 		return false;
 	}
 
@@ -245,9 +245,9 @@ void QUSongFile::verifyTags(QStringList &tags) {
 	if(tags.size() != QUSongSupport::availableTags().size()) {
 		settings.setValue("tagOrder", QVariant(QUSongSupport::availableTags()));
 
-		logSrv->add(tr("Deprecated tag information detected."), QU::information);
-		logSrv->add(tr("The number of available tags in your configuration and that one this application offers are different."), QU::information);
-		logSrv->add(tr("The tag order was reset to its default order. Check out the options to set up your custom order again."), QU::information);
+		logSrv->add(tr("Deprecated tag information detected."), QU::Information);
+		logSrv->add(tr("The number of available tags in your configuration and that one this application offers are different."), QU::Information);
+		logSrv->add(tr("The tag order was reset to its default order. Check out the options to set up your custom order again."), QU::Information);
 
 		tags = QUSongSupport::availableTags();
 	}
@@ -562,7 +562,7 @@ bool QUSongFile::save(bool force) {
 	_file.setFileName(_fi.filePath());
 
 	if(!_file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)) {
-		logSrv->add(QString(tr("Save error! The song file \"%1\" was NOT saved.")).arg(this->songFileInfo().fileName()), QU::warning);
+		logSrv->add(QString(tr("Save error! The song file \"%1\" was NOT saved.")).arg(this->songFileInfo().fileName()), QU::Warning);
 		monty->watcher()->addPath(_fi.filePath());
 		return false;
 	}
@@ -608,7 +608,7 @@ bool QUSongFile::save(bool force) {
 
 	_file.close();
 
-	logSrv->add(QString(tr("The song file \"%1\" was saved successfully.")).arg(this->songFileInfo().fileName()), QU::saving);
+	logSrv->add(QString(tr("The song file \"%1\" was saved successfully.")).arg(this->songFileInfo().fileName()), QU::Saving);
 	_hasUnsavedChanges = false;
 
 	// re-enable watching for changes
@@ -625,7 +625,7 @@ bool QUSongFile::rename(QDir dir, const QString &oldName, const QString &newName
 	bool result = true;
 
 	if(QString::compare(oldName, newName.trimmed(), Qt::CaseSensitive) == 0) {
-		logSrv->add(QString(tr("Old name and new name match: \"%1\"")).arg(oldName), QU::warning);
+		logSrv->add(QString(tr("Old name and new name match: \"%1\"")).arg(oldName), QU::Warning);
 		return false;
 	}
 
@@ -650,14 +650,14 @@ void QUSongFile::renameSongDir(const QString &newName) {
 	QString oldName(_fi.dir().dirName());
 
 	if(!rename(dir, oldName, newName)) {
-		logSrv->add(QString(tr("Could NOT rename the song directory \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::warning);
+		logSrv->add(QString(tr("Could NOT rename the song directory \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::Warning);
 		return;
 	}
 
 	dir.cd(newName);
 	_fi.setFile(dir.path() + "/" + _fi.fileName());
 
-	logSrv->add(QString(tr("Song directory renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::information);
+	logSrv->add(QString(tr("Song directory renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
 }
 
 /*!
@@ -668,14 +668,14 @@ void QUSongFile::renameSongTxt(const QString &newName) {
 	QString oldName(_fi.fileName());
 
 	if(!rename(_fi.dir(), oldName, newName)) {
-		logSrv->add(QString(tr("Could NOT rename the song file \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::warning);
+		logSrv->add(QString(tr("Could NOT rename the song file \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::Warning);
 		return;
 	}
 
 	this->setFile(_fi.dir().path() + "/" + newName, false);
 	emit songRenamed(newName);
 
-	logSrv->add(QString(tr("Song file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::information);
+	logSrv->add(QString(tr("Song file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
 }
 
 /*!
@@ -687,13 +687,13 @@ void QUSongFile::renameSongMp3(const QString &newName) {
 	QString oldName(mp3());
 
 	if(!rename(_fi.dir(), oldName, newName)) {
-		logSrv->add(QString(tr("Could NOT rename the audio file \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::warning);
+		logSrv->add(QString(tr("Could NOT rename the audio file \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::Warning);
 		return;
 	}
 
 	setInfo(MP3_TAG, newName);
 
-	logSrv->add(QString(tr("Audio file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::information);
+	logSrv->add(QString(tr("Audio file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
 }
 
 /*!
@@ -705,13 +705,13 @@ void QUSongFile::renameSongCover(const QString &newName) {
 	QString oldName(cover());
 
 	if(!rename(_fi.dir(), oldName, newName)) {
-		logSrv->add(QString(tr("Could NOT rename the cover picture \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::warning);
+		logSrv->add(QString(tr("Could NOT rename the cover picture \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::Warning);
 		return;
 	}
 
 	setInfo(COVER_TAG, newName);
 
-	logSrv->add(QString(tr("Cover picture renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::information);
+	logSrv->add(QString(tr("Cover picture renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
 }
 
 /*!
@@ -723,13 +723,13 @@ void QUSongFile::renameSongBackground(const QString &newName) {
 	QString oldName(background());
 
 	if(!rename(_fi.dir(), oldName, newName)) {
-		logSrv->add(QString(tr("Could NOT rename the background picture \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::warning);
+		logSrv->add(QString(tr("Could NOT rename the background picture \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::Warning);
 		return;
 	}
 
 	setInfo(BACKGROUND_TAG, newName);
 
-	logSrv->add(QString(tr("Background picture renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::information);
+	logSrv->add(QString(tr("Background picture renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
 }
 
 /*!
@@ -741,13 +741,13 @@ void QUSongFile::renameSongVideo(const QString &newName) {
 	QString oldName(video());
 
 	if(!rename(_fi.dir(), oldName, newName)) {
-		logSrv->add(QString(tr("Could NOT rename the video file \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::warning);
+		logSrv->add(QString(tr("Could NOT rename the video file \"%1\" to \"%2\".")).arg(oldName).arg(newName), QU::Warning);
 		return;
 	}
 
 	setInfo(VIDEO_TAG, newName);
 
-	logSrv->add(QString(tr("Video file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::information);
+	logSrv->add(QString(tr("Video file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
 }
 
 /*!
@@ -756,7 +756,7 @@ void QUSongFile::renameSongVideo(const QString &newName) {
  */
 void QUSongFile::useID3TagForArtist() {
 	if(!hasMp3()) {
-		logSrv->add(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for artist.")).arg(this->artist()).arg(this->title()), QU::warning);
+		logSrv->add(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for artist.")).arg(this->artist()).arg(this->title()), QU::Warning);
 		return;
 	}
 
@@ -767,17 +767,17 @@ void QUSongFile::useID3TagForArtist() {
 	QString newArtist(TStringToQString(ref.tag()->artist()));
 
 	if(newArtist.isEmpty()) {
-		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about an artist.")).arg(this->mp3()), QU::warning);
+		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about an artist.")).arg(this->mp3()), QU::Warning);
 		return;
 	}
 
 	setInfo(ARTIST_TAG, newArtist);
-	logSrv->add(QString(tr("ID3 tag of \"%1\" used for artist. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3()).arg(oldArtist).arg(this->artist()), QU::information);
+	logSrv->add(QString(tr("ID3 tag of \"%1\" used for artist. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3()).arg(oldArtist).arg(this->artist()), QU::Information);
 }
 
 void QUSongFile::useID3TagForTitle() {
 	if(!hasMp3()) {
-		logSrv->add(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for title.")).arg(this->artist()).arg(this->title()), QU::warning);
+		logSrv->add(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for title.")).arg(this->artist()).arg(this->title()), QU::Warning);
 		return;
 	}
 
@@ -787,17 +787,17 @@ void QUSongFile::useID3TagForTitle() {
 	QString newTitle(TStringToQString(ref.tag()->title()));
 
 	if(newTitle.isEmpty()) {
-		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about a title.")).arg(this->mp3()), QU::warning);
+		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about a title.")).arg(this->mp3()), QU::Warning);
 		return;
 	}
 
 	setInfo(TITLE_TAG, newTitle);
-	logSrv->add(QString(tr("ID3 tag of \"%1\" used for title. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3()).arg(oldTitle).arg(this->title()), QU::information);
+	logSrv->add(QString(tr("ID3 tag of \"%1\" used for title. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3()).arg(oldTitle).arg(this->title()), QU::Information);
 }
 
 void QUSongFile::useID3TagForGenre() {
 	if(!hasMp3()) {
-		logSrv->add(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for genre.")).arg(this->artist()).arg(this->title()), QU::warning);
+		logSrv->add(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for genre.")).arg(this->artist()).arg(this->title()), QU::Warning);
 		return;
 	}
 
@@ -807,17 +807,17 @@ void QUSongFile::useID3TagForGenre() {
 	QString newGenre(TStringToQString(ref.tag()->genre()));
 
 	if(newGenre.isEmpty()) {
-		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about a genre.")).arg(this->mp3()), QU::warning);
+		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about a genre.")).arg(this->mp3()), QU::Warning);
 		return;
 	}
 
 	setInfo(GENRE_TAG, newGenre);
-	logSrv->add(QString(tr("ID3 tag of \"%1\" used for genre. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3()).arg(oldGenre).arg(this->genre()), QU::information);
+	logSrv->add(QString(tr("ID3 tag of \"%1\" used for genre. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3()).arg(oldGenre).arg(this->genre()), QU::Information);
 }
 
 void QUSongFile::useID3TagForYear() {
 	if(!hasMp3()) {
-		logSrv->add(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for year.")).arg(this->artist()).arg(this->title()), QU::warning);
+		logSrv->add(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for year.")).arg(this->artist()).arg(this->title()), QU::Warning);
 		return;
 	}
 
@@ -827,17 +827,17 @@ void QUSongFile::useID3TagForYear() {
 	QString newYear(QVariant(ref.tag()->year()).toString());
 
 	if(newYear == "0") {
-		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about a year.")).arg(this->mp3()), QU::warning);
+		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about a year.")).arg(this->mp3()), QU::Warning);
 		return;
 	}
 
 	setInfo(YEAR_TAG, newYear);
-	logSrv->add(QString(tr("ID3 tag of \"%1\" used for year. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3()).arg(oldYear).arg(this->year()), QU::information);
+	logSrv->add(QString(tr("ID3 tag of \"%1\" used for year. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3()).arg(oldYear).arg(this->year()), QU::Information);
 }
 
 void QUSongFile::removeUnsupportedTags(const QStringList &filter, bool useFilter) {
 	if(!this->unsupportedTagsFound()) {
-		logSrv->add(QString(tr("The song \"%1 - %2\" has no unsupported tags.")).arg(this->artist()).arg(this->title()), QU::information);
+		logSrv->add(QString(tr("The song \"%1 - %2\" has no unsupported tags.")).arg(this->artist()).arg(this->title()), QU::Information);
 		return;
 	}
 
@@ -845,9 +845,9 @@ void QUSongFile::removeUnsupportedTags(const QStringList &filter, bool useFilter
 		if(!useFilter || filter.contains(uTag)) {
 			_info.remove(uTag);
 			_foundUnsupportedTags.removeAll(uTag);
-			logSrv->add(QString(tr("Unsupported tag removed: #%1.")).arg(uTag), QU::information);
+			logSrv->add(QString(tr("Unsupported tag removed: #%1.")).arg(uTag), QU::Information);
 		} else {
-			logSrv->add(QString(tr("Unsupported tag skipped: #%1.")).arg(uTag), QU::information);
+			logSrv->add(QString(tr("Unsupported tag skipped: #%1.")).arg(uTag), QU::Information);
 		}
 	}
 }
@@ -863,12 +863,12 @@ void QUSongFile::autoSetFile(const QFileInfo &fi, bool force, const QString &cov
 	if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		if(!this->hasMp3() || force) {
 			this->setInfo(MP3_TAG, fi.fileName());
-			logSrv->add(QString("Assigned \"%1\" as audio file for \"%2 - %3\".").arg(mp3()).arg(artist()).arg(title()), QU::information);
+			logSrv->add(QString("Assigned \"%1\" as audio file for \"%2 - %3\".").arg(mp3()).arg(artist()).arg(title()), QU::Information);
 		}
 	} else if(QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		if(!this->hasVideo() || force) {
 			this->setInfo(VIDEO_TAG, fi.fileName());
-			logSrv->add(QString(tr("Assigned \"%1\" as video file for \"%2 - %3\".")).arg(video()).arg(artist()).arg(title()), QU::information);
+			logSrv->add(QString(tr("Assigned \"%1\" as video file for \"%2 - %3\".")).arg(video()).arg(artist()).arg(title()), QU::Information);
 		}
 	} else if(QUSongSupport::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QRegExp reCover(coverPattern, Qt::CaseInsensitive);
@@ -876,10 +876,10 @@ void QUSongFile::autoSetFile(const QFileInfo &fi, bool force, const QString &cov
 
 		if(fi.fileName().contains(reCover) && (!this->hasCover() || force) ) {
 			this->setInfo(COVER_TAG, fi.fileName());
-			logSrv->add(QString(tr("Assigned \"%1\" as cover picture for \"%2 - %3\".")).arg(cover()).arg(artist()).arg(title()), QU::information);
+			logSrv->add(QString(tr("Assigned \"%1\" as cover picture for \"%2 - %3\".")).arg(cover()).arg(artist()).arg(title()), QU::Information);
 		} else if(fi.fileName().contains(reBackground) && (!this->hasBackground() || force) ) {
 			this->setInfo(BACKGROUND_TAG, fi.fileName());
-			logSrv->add(QString(tr("Assigned \"%1\" as background picture for \"%2 - %3\".")).arg(background()).arg(artist()).arg(title()), QU::information);
+			logSrv->add(QString(tr("Assigned \"%1\" as background picture for \"%2 - %3\".")).arg(background()).arg(artist()).arg(title()), QU::Information);
 		}
 	}
 }
@@ -894,11 +894,11 @@ void QUSongFile::useExternalFile(const QString &filePath) {
 	QFileInfo destination(this->songFileInfo().dir(), source.fileName());
 
 	if(!QFile::copy(source.filePath(), destination.filePath())) {
-		logSrv->add(QString(tr("Could not copy the file \"%1\" to \"%2\".")).arg(source.fileName()).arg(destination.path()), QU::warning);
+		logSrv->add(QString(tr("Could not copy the file \"%1\" to \"%2\".")).arg(source.fileName()).arg(destination.path()), QU::Warning);
 		return;
 	}
 
-	logSrv->add(QString(tr("The file \"%1\" was successfully copied to \"%2\".")).arg(source.fileName()).arg(destination.path()), QU::saving);
+	logSrv->add(QString(tr("The file \"%1\" was successfully copied to \"%2\".")).arg(source.fileName()).arg(destination.path()), QU::Saving);
 	this->autoSetFile(destination, true);
 }
 
@@ -930,9 +930,9 @@ void QUSongFile::deleteUnusedFiles(const QStringList &filter, const QString &pat
 
 		if(!usedFileNames.contains(fi.fileName(), Qt::CaseInsensitive))
 			if(QFile::remove(fi.filePath())) {
-				logSrv->add(QString(tr("File removed successfully: \"%1\".")).arg(fi.filePath()), QU::information);
+				logSrv->add(QString(tr("File removed successfully: \"%1\".")).arg(fi.filePath()), QU::Information);
 			} else {
-				logSrv->add(QString(tr("File COULD NOT be removed: \"%1\".")).arg(fi.filePath()), QU::warning);
+				logSrv->add(QString(tr("File COULD NOT be removed: \"%1\".")).arg(fi.filePath()), QU::Warning);
 			}
 	}
 }
@@ -942,20 +942,20 @@ void QUSongFile::clearInvalidFileTags() {
 		this->setInfo(MP3_TAG, "");
 		this->setInfo(START_TAG, "");
 		this->setInfo(END_TAG, "");
-		logSrv->add(QString(tr("Audio file tag removed for \"%1 - %2\".")).arg(this->artist()).arg(this->title()), QU::information);
+		logSrv->add(QString(tr("Audio file tag removed for \"%1 - %2\".")).arg(this->artist()).arg(this->title()), QU::Information);
 	}
 	if(this->cover() != N_A && !this->hasCover()) {
 		this->setInfo(COVER_TAG, "");
-		logSrv->add(QString(tr("Cover tag removed for \"%1 - %2\".")).arg(this->artist()).arg(this->title()), QU::information);
+		logSrv->add(QString(tr("Cover tag removed for \"%1 - %2\".")).arg(this->artist()).arg(this->title()), QU::Information);
 	}
 	if(this->background() != N_A && !this->hasBackground()) {
 		this->setInfo(BACKGROUND_TAG, "");
-		logSrv->add(QString(tr("Background tag removed for \"%1 - %2\".")).arg(this->artist()).arg(this->title()), QU::information);
+		logSrv->add(QString(tr("Background tag removed for \"%1 - %2\".")).arg(this->artist()).arg(this->title()), QU::Information);
 	}
 	if( (this->video() != N_A || this->videogap() != N_A) && !this->hasVideo()) {
 		this->setInfo(VIDEO_TAG, "");
 		this->setInfo(VIDEOGAP_TAG, "");
-		logSrv->add(QString(tr("Video tag removed for \"%1 - %2\".")).arg(this->artist()).arg(this->title()), QU::information);
+		logSrv->add(QString(tr("Video tag removed for \"%1 - %2\".")).arg(this->artist()).arg(this->title()), QU::Information);
 	}
 }
 
@@ -969,12 +969,12 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 	QString destination = newRelativePath;
 
 	if(QString::compare(source, destination, Qt::CaseInsensitive) == 0) {
-		logSrv->add(QString(tr("Old path and new path match! Cannot change song path to: \"%1\"")).arg(destination), QU::warning);
+		logSrv->add(QString(tr("Old path and new path match! Cannot change song path to: \"%1\"")).arg(destination), QU::Warning);
 		return;
 	}
 
 	if(!QU::BaseDir.mkpath(newRelativePath)) {
-		logSrv->add(QString(tr("Could not create new song path: \"%1\"")).arg(newRelativePath), QU::warning);
+		logSrv->add(QString(tr("Could not create new song path: \"%1\"")).arg(newRelativePath), QU::Warning);
 		return;
 	}
 
@@ -985,14 +985,14 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 		QString to = QFileInfo(QU::BaseDir, destination + "/" + fi.fileName()).filePath();
 
 		if(!QFile::rename(from, to)) {
-			logSrv->add(QString(tr("Failed to move \"%1\" to \"%2\".")).arg(from).arg(to), QU::warning);
+			logSrv->add(QString(tr("Failed to move \"%1\" to \"%2\".")).arg(from).arg(to), QU::Warning);
 			allFilesCopied = false;
 		} else
-			logSrv->add(QString(tr("The file \"%1\" was successfully moved to \"%2\".")).arg(from).arg(to), QU::saving);
+			logSrv->add(QString(tr("The file \"%1\" was successfully moved to \"%2\".")).arg(from).arg(to), QU::Saving);
 	}
 
 	if(!allFilesCopied) {
-		logSrv->add(QString(tr("Could NOT move all files of the song \"%2\" to a new location. Check out \"%1\" for the files which were copied.")).arg(newRelativePath).arg(QString("%1 - %2").arg(artist()).arg(title())), QU::warning);
+		logSrv->add(QString(tr("Could NOT move all files of the song \"%2\" to a new location. Check out \"%1\" for the files which were copied.")).arg(newRelativePath).arg(QString("%1 - %2").arg(artist()).arg(title())), QU::Warning);
 		return;
 	}
 
@@ -1002,14 +1002,14 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 		QString dirName = oldDir.dirName();
 		oldDir.cdUp();
 		if(!oldDir.rmdir(dirName))
-			logSrv->add(QString(tr("Could not remove old, empty folder \"%1\". Please do it manually.")).arg(dirName), QU::warning);
+			logSrv->add(QString(tr("Could not remove old, empty folder \"%1\". Please do it manually.")).arg(dirName), QU::Warning);
 	}
 
 	// change internal song location
 	setFile(QFileInfo(QU::BaseDir, destination + "/" + _fi.fileName()).filePath(), false);
 	emit songPathChanged(_fi.filePath());
 
-	logSrv->add(QString(tr("Location of song \"%1 - %2\" successfully changed to \"%3\" in your UltraStar song folder.")).arg(artist()).arg(title()).arg(newRelativePath), QU::information);
+	logSrv->add(QString(tr("Location of song \"%1 - %2\" successfully changed to \"%3\" in your UltraStar song folder.")).arg(artist()).arg(title()).arg(newRelativePath), QU::Information);
 }
 
 /*!
@@ -1020,7 +1020,7 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
  */
 void QUSongFile::fixAudioLength(int buffer) {
 	if(!hasMp3()) {
-		logSrv->add(QString(tr("Could not fix audio length because no audio file is present: \"%1 - %2\"")).arg(artist()).arg(title()), QU::warning);
+		logSrv->add(QString(tr("Could not fix audio length because no audio file is present: \"%1 - %2\"")).arg(artist()).arg(title()), QU::Warning);
 		return;
 	}
 
@@ -1031,21 +1031,21 @@ void QUSongFile::fixAudioLength(int buffer) {
 	int lengthMp3 = this->lengthMp3(); // length of audio file because #END was set to 0
 
 	if(length > lengthMp3) {
-		logSrv->add(QString(tr("Could not fix audio length because audio file is shorter than song: \"%1 - %2\"")).arg(artist()).arg(title()), QU::warning);
+		logSrv->add(QString(tr("Could not fix audio length because audio file is shorter than song: \"%1 - %2\"")).arg(artist()).arg(title()), QU::Warning);
 		return;
 	}
 
 	int end = length + buffer; // calculate the new #END value
 
 	if(end > lengthMp3) {
-		logSrv->add(QString(tr("Could not fix audio length because new value for #END would be greater than length of audio file: \"%1 - %2\"")).arg(artist()).arg(title()), QU::warning);
+		logSrv->add(QString(tr("Could not fix audio length because new value for #END would be greater than length of audio file: \"%1 - %2\"")).arg(artist()).arg(title()), QU::Warning);
 		return;
 	}
 
 	// set new value for #END, in milliseconds
 	setInfo(END_TAG, QVariant(end * 1000).toString());
 
-	logSrv->add(QString(tr("Audio length was fixed for song \"%1 - %2\". #END changed to: %3")).arg(artist()).arg(title()).arg(end * 1000), QU::information);
+	logSrv->add(QString(tr("Audio length was fixed for song \"%1 - %2\". #END changed to: %3")).arg(artist()).arg(title()).arg(end * 1000), QU::Information);
 }
 
 /*!
@@ -1060,7 +1060,7 @@ void QUSongFile::roundGap() {
 
 	this->setInfo(GAP_TAG, QVariant(qRound(gap)).toString());
 
-	logSrv->add(QString(tr("#GAP changed from %1 to %2 for \"%3 - %4\".")).arg(oldGap).arg(this->gap()).arg(artist()).arg(title()), QU::information);
+	logSrv->add(QString(tr("#GAP changed from %1 to %2 for \"%3 - %4\".")).arg(oldGap).arg(this->gap()).arg(artist()).arg(title()), QU::Information);
 }
 
 /*!
@@ -1069,7 +1069,7 @@ void QUSongFile::roundGap() {
 void QUSongFile::removeEndTag() {
 	if(end() != N_A) {
 		setInfo(END_TAG, "");
-		logSrv->add(QString(tr("The tag #END was removed for: \"%1 - %2\"")).arg(artist()).arg(title()), QU::information);
+		logSrv->add(QString(tr("The tag #END was removed for: \"%1 - %2\"")).arg(artist()).arg(title()), QU::Information);
 	}
 }
 
@@ -1279,7 +1279,7 @@ void QUSongFile::lyricsAddNote(QString line) {
 		logSrv->add(QString(tr("Error while preparing lyrics for %1 - %2. Could not parse the following line: %3"))
 					.arg(artist())
 					.arg(title())
-					.arg(line.trimmed()), QU::warning);
+					.arg(line.trimmed()), QU::Warning);
 		return; // no valid line
 	}
 
@@ -1308,7 +1308,7 @@ void QUSongFile::lyricsAddNote(QString line) {
 		QStringList lineSplit = line.trimmed().split(" ", QString::SkipEmptyParts);
 
 		if(lineSplit.size() < 4)
-			logSrv->add(QString(tr("Line too short: \"%1\"")).arg(line), QU::warning);
+			logSrv->add(QString(tr("Line too short: \"%1\"")).arg(line), QU::Warning);
 		else {
 			QUSongNoteInterface::Types t = line.startsWith("F") ? QUSongNoteInterface::freestyle : (line.startsWith("*") ? QUSongNoteInterface::golden : QUSongNoteInterface::normal);
 

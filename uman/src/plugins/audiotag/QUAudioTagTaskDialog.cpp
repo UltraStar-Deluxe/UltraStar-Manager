@@ -3,6 +3,8 @@
 #include "QUAudioTagTaskSourceDelegate.h"
 #include "QUDefaultDelegate.h"
 
+#include <QCoreApplication>
+
 QUAudioTagTaskDialog::QUAudioTagTaskDialog(QUAudioTagTask *task, QWidget *parent): QUTaskDialog(task, parent) {
 	dataTable->setDelegates(
 			new QUTaskConditionDelegate(dataTable),
@@ -24,6 +26,14 @@ QUAudioTagTaskDialog::QUAudioTagTaskDialog(QUAudioTagTask *task, QWidget *parent
 	}
 }
 
+QDir QUAudioTagTaskDialog::configurationDirectory() const {
+	QDir dir = QCoreApplication::applicationDirPath();
+	dir.cd("plugins");
+	dir.cd("config");
+	dir.cd("audiotag");
+	return dir;
+}
+
 /*!
  * Collect the info which is present in this dialog, create a DOM document and save the
  * XML config file to disk.
@@ -33,7 +43,7 @@ bool QUAudioTagTaskDialog::saveTask(const QString &filePath) {
 	QDomElement task = _doc.createElement("task");
 	_doc.appendChild(task);
 
-	this->appendGeneral(task, QU::audioTagTask);
+	this->appendGeneral(task, QUScriptableTask::AudioTagTask);
 
 	QDomElement id3 = _doc.createElement("id3");
 	task.appendChild(id3);

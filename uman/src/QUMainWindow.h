@@ -80,7 +80,7 @@ private slots:
 	void showFileContent(QTreeWidgetItem *item, int column);
 	void showLyrics(QUSongFile *song);
 
-	void addLogMsg(const QString &msg, QU::EventMessageTypes type = QU::information);
+	void addLogMsg(const QString &msg, QU::MessageTypes type = QU::Information);
 	void saveLog();
 	void clearLog();
 

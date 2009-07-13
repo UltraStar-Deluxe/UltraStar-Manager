@@ -114,7 +114,7 @@ void QUPlaylistArea::addSongToCurrentPlaylist(QUSongFile *song) {
 		return;
 
 	if(currentPlaylistIndex() < 0) {
-		logSrv->add(QString("Could NOT add song \"%1 - %2\" to playlist. Try to create a new one.").arg(song->artist()).arg(song->title()), QU::warning);
+		logSrv->add(QString("Could NOT add song \"%1 - %2\" to playlist. Try to create a new one.").arg(song->artist()).arg(song->title()), QU::Warning);
 		return;
 	}
 
@@ -160,7 +160,7 @@ void QUPlaylistArea::saveUnsavedChanges() {
 				list->setFileInfo(QFileInfo(filePath));
 				list->save();
 			} else {
-				logSrv->add(QString(tr("The new playlist \"%1\" was not saved.")).arg(list->name()), QU::information);
+				logSrv->add(QString(tr("The new playlist \"%1\" was not saved.")).arg(list->name()), QU::Information);
 			}
 		}
 	}
@@ -394,7 +394,7 @@ void QUPlaylistArea::changePlaylistDir() {
 
 		refreshAllPlaylists(_songsRef);
 
-		logSrv->add(QString("Folder for playlists changed to: \"%1\"").arg(newPath), QU::information);
+		logSrv->add(QString("Folder for playlists changed to: \"%1\"").arg(newPath), QU::Information);
 	}
 }
 
@@ -415,9 +415,9 @@ void QUPlaylistArea::removeCurrentPlaylist() {
 	// --------------------------------------------
 
 	if( QFile::remove(_playlists.at(currentPlaylistIndex())->fileInfo().filePath()) )
-		logSrv->add(QString(tr("The playlist file \"%1\" was removed successfully.")).arg(_playlists.at(currentPlaylistIndex())->fileInfo().filePath()), QU::information);
+		logSrv->add(QString(tr("The playlist file \"%1\" was removed successfully.")).arg(_playlists.at(currentPlaylistIndex())->fileInfo().filePath()), QU::Information);
 	else
-		logSrv->add(QString(tr("The playlist file \"%1\" could NOT be removed. Does it exist?")).arg(_playlists.at(currentPlaylistIndex())->fileInfo().filePath()), QU::warning);
+		logSrv->add(QString(tr("The playlist file \"%1\" could NOT be removed. Does it exist?")).arg(_playlists.at(currentPlaylistIndex())->fileInfo().filePath()), QU::Warning);
 
 	int tmpIndex = currentPlaylistIndex();
 	QString tmpName = _playlists.at(currentPlaylistIndex())->name();
@@ -437,7 +437,7 @@ void QUPlaylistArea::removeCurrentPlaylist() {
 	if(playlistCombo->count() == 0)
 		this->setAreaEnabled(false);
 
-	logSrv->add(QString(tr("The playlist \"%1\" was removed successfully.")).arg(tmpName), QU::information);
+	logSrv->add(QString(tr("The playlist \"%1\" was removed successfully.")).arg(tmpName), QU::Information);
 }
 
 void QUPlaylistArea::removeCurrentPlaylistEntry(QUPlaylistEntry *entry) {

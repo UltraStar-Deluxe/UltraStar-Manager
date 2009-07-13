@@ -8,8 +8,6 @@
 #include <QMap>
 #include <QString>
 
-#include "QU.h"
-
 class QWidget;
 class QString;
 class QIcon;
@@ -47,6 +45,12 @@ public:
 
 class QUTask {
 public:
+	enum TaskDataType {
+		UndefinedData = -1,
+		UnsupportedTags = 0
+	};
+	Q_DECLARE_FLAGS(TaskDataTypes, TaskDataType)
+
     virtual ~QUTask() {}
 
     virtual void startOn(QUSongInterface *song) = 0;
@@ -61,7 +65,7 @@ public:
 
 	// smart settings (small inline configuration possibilities in the task list)
 	virtual QList<QUSmartSetting*> smartSettings() const = 0;
-	virtual void provideData(const QVariant &data, QU::TaskDataTypes type = QU::undefined) = 0;
+	virtual void provideData(const QVariant &data, TaskDataTypes type = UndefinedData) = 0;
 };
 
 Q_DECLARE_INTERFACE(QUTaskFactory, "net.sf.uman.QUTaskFactory/1.0");

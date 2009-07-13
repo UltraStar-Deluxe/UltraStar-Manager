@@ -297,7 +297,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 	this->removeFilter();
 
 	if(regexp.isEmpty()) {
-		logSrv->add(tr("Filter removed. All songs are visible now."), QU::information);
+		logSrv->add(tr("Filter removed. All songs are visible now."), QU::Information);
 		emit itemSelectionChanged(); // update details
 		return;
 	}
@@ -401,7 +401,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 	restoreSelection(selectedItems);
 
 	emit itemSelectionChanged(); // update details
-	logSrv->add(QString(tr("Filter applied: \"%1\"%2")).arg(regexp).arg(mode.testFlag(QU::negateFilter) ? tr(", negated") : ""), QU::information);
+	logSrv->add(QString(tr("Filter applied: \"%1\"%2")).arg(regexp).arg(mode.testFlag(QU::negateFilter) ? tr(", negated") : ""), QU::Information);
 }
 
 /*!
@@ -472,9 +472,9 @@ void QUSongTree::filterDuplicates() {
 	emit itemSelectionChanged();
 
 	if(nextID > 0)
-		logSrv->add(QString(tr("Filter applied. Duplicates for %1 songs found.")).arg(nextID), QU::information);
+		logSrv->add(QString(tr("Filter applied. Duplicates for %1 songs found.")).arg(nextID), QU::Information);
 	else
-		logSrv->add(QString(tr("No duplicate songs found.")), QU::information);
+		logSrv->add(QString(tr("No duplicate songs found.")), QU::Information);
 }
 
 bool QUSongTree::dropMimeData (QTreeWidgetItem *parent, int index, const QMimeData *data, Qt::DropAction action) {
@@ -755,7 +755,7 @@ void QUSongTree::hideSelected() {
 	QList<QUSongItem*> selectedItems = this->selectedSongItems();
 
 	if(selectedItems.isEmpty()) {
-		logSrv->add(tr("Could not hide any item."), QU::warning);
+		logSrv->add(tr("Could not hide any item."), QU::Warning);
 		return;
 	}
 
@@ -774,7 +774,7 @@ void QUSongTree::hideSelected() {
 	}
 
 	emit itemSelectionChanged(); // update details
-	logSrv->add(QString(tr("%1 songs added to invisible list.")).arg(selectedItems.count()), QU::information);
+	logSrv->add(QString(tr("%1 songs added to invisible list.")).arg(selectedItems.count()), QU::Information);
 }
 
 /*!
@@ -799,7 +799,7 @@ void QUSongTree::hideAllButSelected() {
 	}
 
 	emit itemSelectionChanged(); // update details
-	logSrv->add(QString(tr("%1 songs are visible now.")).arg(selectedItems.count()), QU::information);
+	logSrv->add(QString(tr("%1 songs are visible now.")).arg(selectedItems.count()), QU::Information);
 }
 
 /*!
@@ -879,7 +879,7 @@ void QUSongTree::mergeSelectedSongs() {
 	QList<QUSongItem*> selectedItems = selectedSongItems();
 
 	if(selectedItems.size() < 2) {
-		logSrv->add(tr("Too few songs selected. You have to merge at least 2 songs."), QU::warning);
+		logSrv->add(tr("Too few songs selected. You have to merge at least 2 songs."), QU::Warning);
 		return;
 	}
 
@@ -939,9 +939,9 @@ void QUSongTree::mergeSelectedSongs() {
 
 			if(!QFile::copy(fi.filePath(), target)) {
 				allFilesCopied = false;
-				logSrv->add(QString(tr("Could NOT copy file \"%1\" to \"%2\".")).arg(fi.filePath()).arg(target), QU::warning);
+				logSrv->add(QString(tr("Could NOT copy file \"%1\" to \"%2\".")).arg(fi.filePath()).arg(target), QU::Warning);
 			} else
-				logSrv->add(QString(tr("File was copied successfully from \"%1\" to \"%2\".")).arg(fi.filePath()).arg(target), QU::information);
+				logSrv->add(QString(tr("File was copied successfully from \"%1\" to \"%2\".")).arg(fi.filePath()).arg(target), QU::Information);
 		}
 
 		if(allFilesCopied) {
@@ -950,7 +950,7 @@ void QUSongTree::mergeSelectedSongs() {
 
 			emit deleteSongRequested(song);
 		} else {
-			logSrv->add(QString(tr("Not all files of \"%1 - %2\" were copied. Song will not be deleted. Merging failed.")).arg(songItem->song()->artist()).arg(songItem->song()->title()), QU::warning);
+			logSrv->add(QString(tr("Not all files of \"%1 - %2\" were copied. Song will not be deleted. Merging failed.")).arg(songItem->song()->artist()).arg(songItem->song()->title()), QU::Warning);
 		}
 	}
 
@@ -1039,12 +1039,12 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 		QString fileScheme("*." + fi.suffix());
 
 		if(!QUSongSupport::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-			logSrv->add(QString(tr("Invalid song file found: \"%1\". Cannot include those.")).arg(fi.filePath()), QU::warning);
+			logSrv->add(QString(tr("Invalid song file found: \"%1\". Cannot include those.")).arg(fi.filePath()), QU::Warning);
 			continue;
 		}
 
 		if(QUSongSupport::allowedLicenseFiles().contains(fi.fileName(), Qt::CaseInsensitive)) {
-			logSrv->add(QString(tr("Cannot include license files as songs: \"%1\"")).arg(fi.filePath()), QU::warning);
+			logSrv->add(QString(tr("Cannot include license files as songs: \"%1\"")).arg(fi.filePath()), QU::Warning);
 			continue;
 		}
 
@@ -1053,7 +1053,7 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 		createSongFolder(newSong);
 
 		if(!QFile::copy(fi.filePath(), newSong->songFileInfo().filePath())) {
-			logSrv->add(QString(tr("Could not copy song file \"%1\" to new song directory \"%2\"!")).arg(fi.fileName()).arg(newSong->songFileInfo().path()), QU::warning);
+			logSrv->add(QString(tr("Could not copy song file \"%1\" to new song directory \"%2\"!")).arg(fi.fileName()).arg(newSong->songFileInfo().path()), QU::Warning);
 			continue;
 		}
 
@@ -1061,7 +1061,7 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 		this->addTopLevelItem(newItem);
 		newItems.append(newItem);
 
-		logSrv->add(QString(tr("New song included to your song collection: \"%1 - %2\".")).arg(newSong->artist()).arg(newSong->title()), QU::information);
+		logSrv->add(QString(tr("New song included to your song collection: \"%1 - %2\".")).arg(newSong->artist()).arg(newSong->title()), QU::Information);
 		emit songCreated(newSong);
 	}
 
@@ -1097,7 +1097,7 @@ void QUSongTree::createSongFolder(QUSongFile *song) {
 	QFileInfo fi(QU::BaseDir, newDirName);
 	while(!QU::BaseDir.mkdir(tmp)) {
 		if(!fi.exists()) {
-			logSrv->add(QString(tr("Could not create directory: \"%1\". Disk full?")).arg(fi.filePath()), QU::warning);
+			logSrv->add(QString(tr("Could not create directory: \"%1\". Disk full?")).arg(fi.filePath()), QU::Warning);
 			return;
 		} else {
 			tmp = QString("%1_%2").arg(newDirName).arg(i, 3, 10, QChar('0'));
@@ -1204,9 +1204,9 @@ void QUSongTree::deleteCurrentItem() {
 		return;
 
 	if(QFile::remove(QFileInfo(item->song()->songFileInfo().dir(), item->text(FOLDER_COLUMN)).filePath()))
-		logSrv->add(QString(tr("The file \"%1\" was deleted successfully.")).arg(item->text(FOLDER_COLUMN)), QU::information);
+		logSrv->add(QString(tr("The file \"%1\" was deleted successfully.")).arg(item->text(FOLDER_COLUMN)), QU::Information);
 	else
-		logSrv->add(QString(tr("The file \"%1\" was NOT deleted.")).arg(item->text(FOLDER_COLUMN)), QU::warning);
+		logSrv->add(QString(tr("The file \"%1\" was NOT deleted.")).arg(item->text(FOLDER_COLUMN)), QU::Warning);
 
 	this->setCurrentItem(item->parent());
 	item->update();
@@ -1243,7 +1243,7 @@ void QUSongTree::requestLyrics() {
 		emit showLyricsRequested(cItem->song());
 
 	if(selectedSongItems().size() > 1)
-		logSrv->add(tr("You can only display the lyrics of one song at a time."), QU::information);
+		logSrv->add(tr("You can only display the lyrics of one song at a time."), QU::Information);
 }
 
 void QUSongTree::requestEditLyrics() {
@@ -1253,7 +1253,7 @@ void QUSongTree::requestEditLyrics() {
 		emit editLyricsRequested(cItem->song());
 
 	if(selectedSongItems().size() > 1)
-		logSrv->add(tr("You can only edit the lyrics of one song at a time."), QU::information);
+		logSrv->add(tr("You can only edit the lyrics of one song at a time."), QU::Information);
 }
 
 /*!

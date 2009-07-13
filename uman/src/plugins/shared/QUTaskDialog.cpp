@@ -111,8 +111,6 @@ void QUTaskDialog::addData() {
 
 	this->removeDataBtn->setEnabled(true);
 	this->updateMoveButtons(dataTable->currentRow(), dataTable->currentColumn());
-
-//	dataCountLbl->setText(QVariant(dataTable->rowCount()).toString());
 }
 
 /*!
@@ -124,19 +122,17 @@ void QUTaskDialog::removeData() {
 
 	this->removeDataBtn->setEnabled(dataTable->rowCount() > 0);
 	this->updateMoveButtons(dataTable->currentRow(), dataTable->currentColumn());
-
-//	dataCountLbl->setText(QVariant(dataTable->rowCount()).toString());
 }
 
 void QUTaskDialog::saveTask() {
-	if(this->saveTask(QCoreApplication::applicationDirPath() + "/task-def/" + this->_fileName))
+	if(this->saveTask(this->configurationDirectory().filePath(_fileName)))
 		this->accept();
 	else
 		this->reject();
 }
 
 void QUTaskDialog::saveTaskAs() {
-	QString filePath = QFileDialog::getSaveFileName(this, tr("Save task config"), QCoreApplication::applicationDirPath() + "/task-def", tr("Task Configurations (*.xml)"));
+	QString filePath = QFileDialog::getSaveFileName(this, tr("Save task config"), configurationDirectory().path(), tr("Task Configurations (*.xml)"));
 
 	if(!filePath.isEmpty()) {
 		if(this->saveTask(filePath))
@@ -166,10 +162,10 @@ bool QUTaskDialog::saveDocument(const QString &filePath) {
 		out << _doc.toString(4);
 		file.close();
 
-//		logSrv->add(QString(tr("The task file \"%1\" was saved successfully.")).arg(filePath), QU::saving);
+//		logSrv->add(QString(tr("The task file \"%1\" was saved successfully.")).arg(filePath), QU::Saving);
 		return true;
 	} else {
-//		logSrv->add(QString(tr("The task file \"%1\" was NOT saved.")).arg(filePath), QU::warning);
+//		logSrv->add(QString(tr("The task file \"%1\" was NOT saved.")).arg(filePath), QU::Warning);
 		return false;
 	}
 }
@@ -177,16 +173,16 @@ bool QUTaskDialog::saveDocument(const QString &filePath) {
 /*!
  * Append the general part of a task config file to a given parent element.
  */
-void QUTaskDialog::appendGeneral(QDomElement &parent, QU::ScriptableTaskTypes type) {
+void QUTaskDialog::appendGeneral(QDomElement &parent, QUScriptableTask::TaskTypes type) {
 	QDomElement general = _doc.createElement("general");
 
 	QDomElement icon = _doc.createElement("icon");               general.appendChild(icon);
 	QDomElement description = _doc.createElement("description"); general.appendChild(description);
 	QDomElement tooltip = _doc.createElement("tooltip");         general.appendChild(tooltip);
 
-	if(type == QU::renameTask)
+	if(type == QUScriptableTask::RenameTask)
 		general.setAttribute("type", "rename");
-	else if(type == QU::audioTagTask)
+	else if(type == QUScriptableTask::AudioTagTask)
 		general.setAttribute("type", "id3");
 
 	if(exclusiveChk->checkState() == Qt::Checked)

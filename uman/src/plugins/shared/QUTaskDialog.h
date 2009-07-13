@@ -8,6 +8,7 @@
 #include <QString>
 #include <QDomDocument>
 #include <QDomElement>
+#include <QDir>
 
 #include "ui_QUTaskDialog.h"
 
@@ -36,10 +37,11 @@ protected:
 	void initForTask();
 	void initForTask(QUScriptableTask *task);
 
+	virtual QDir configurationDirectory() const = 0;
 	virtual bool saveTask(const QString &filePath) = 0;
 	bool saveDocument(const QString &filePath);
 
-	void appendGeneral(QDomElement &parent, QU::ScriptableTaskTypes type);
+	void appendGeneral(QDomElement &parent, QUScriptableTask::TaskTypes type);
 };
 
 #endif /* QUTASKDIALOG_H_ */

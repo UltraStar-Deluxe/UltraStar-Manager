@@ -12,6 +12,7 @@ public:
 	QUAudioTagTaskDialog(QUAudioTagTask *task = 0, QWidget *parent = 0);
 
 protected:
+	virtual QDir configurationDirectory() const;
 	virtual bool saveTask(const QString &filePath);
 
 private:

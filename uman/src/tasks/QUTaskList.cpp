@@ -140,12 +140,12 @@ void QUTaskList::editCurrentTask() {
 
 	if(taskItem->task()->configure(this)) {
 		this->resetTaskList();
-		logSrv->add(tr("Task list was refreshed successfully."), QU::information);
+		logSrv->add(tr("Task list was refreshed successfully."), QU::Information);
 	}
 }
 
 void QUTaskList::reloadAllPlugins() {
-	logSrv->add(tr("Looking for task plugins..."), QU::information);
+	logSrv->add(tr("Looking for task plugins..."), QU::Information);
 
 	qDeleteAll(_plugins);
 	_plugins.clear();
@@ -161,7 +161,7 @@ void QUTaskList::reloadAllPlugins() {
 
 		QPluginLoader *ldr = new QPluginLoader(pluginFi.filePath(), this);
 		if(!ldr->load()) {
-			logSrv->add(ldr->errorString(), QU::warning);
+			logSrv->add(ldr->errorString(), QU::Warning);
 		} else {
 			_plugins << ldr;
 		}
@@ -170,7 +170,7 @@ void QUTaskList::reloadAllPlugins() {
 	this->updateFactoryProxies();
 
 	emit pluginsReloaded(this->plugins());
-	logSrv->add(tr("Plugin loading finished."), QU::information);
+	logSrv->add(tr("Plugin loading finished."), QU::Information);
 
 	this->resetTaskList();
 }

@@ -26,7 +26,7 @@ public:
 
 	// a simple task has no smart settings
 	virtual QList<QUSmartSetting*> smartSettings() const { return QList<QUSmartSetting*>(); }
-	virtual void provideData(const QVariant &data, QU::TaskDataTypes type = QU::undefined) {}
+	virtual void provideData(const QVariant &data, TaskDataTypes type = UndefinedData) {}
 
 private:
 	QIcon   _icon;

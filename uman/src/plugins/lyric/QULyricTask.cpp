@@ -5,31 +5,31 @@
 #include <QVariant>
 #include <QRegExpValidator>
 
-QULyricTask::QULyricTask(QU::LyricTaskModes mode, QObject *parent):
+QULyricTask::QULyricTask(TaskModes mode, QObject *parent):
 	QUSimpleTask(parent),
 	_mode(mode)
 {
 	switch(_mode) {
-	case QU::fixTimeStamps:
+	case FixTimeStamps:
 		this->setIcon(QIcon(":/control/zero.png"));
 		this->setDescription(tr("Set first timestamp to zero"));
 		break;
-	case QU::fixSpaces:
+	case FixSpaces:
 		this->setIcon(QIcon(":/control/space.png"));
 		this->setDescription(tr("Fix spaces"));
 		this->setToolTip(tr("Moves spaces from the end of a syllable to the beginning of the next one. Trim the whole song line."));
 		break;
-	case QU::removeEmptySyllables:
+	case RemoveEmptySyllables:
 		this->setIcon(QIcon(":/control/empty_syllable.png"));
 		this->setDescription(tr("Remove empty syllables"));
 		this->setToolTip(tr("Example:<br><br>: 230 6 9 be<br><b>: 236 5 10</b><br>: 241 7 3 not.<br><br>Remove the bold one."));
 		break;
-	case QU::convertSyllablePlaceholder1:
+	case ConvertSyllablePlaceholder1:
 		this->setDescription(tr("Convert syllable placeholders from \"-\" to \"~\""));
 		this->setIcon(QIcon(":/control/convert-2.png"));
 		this->setGroup(999); // hopefully this group is free ^^
 		break;
-	case QU::convertSyllablePlaceholder2:
+	case ConvertSyllablePlaceholder2:
 		this->setDescription(tr("Convert syllable placeholders from \"~\" to \"-\""));
 		this->setIcon(QIcon(":/control/convert-1.png"));
 		this->setGroup(999); // hopefully this group is free ^^
@@ -39,19 +39,19 @@ QULyricTask::QULyricTask(QU::LyricTaskModes mode, QObject *parent):
 
 void QULyricTask::startOn(QUSongInterface *song) {
 	switch(_mode) {
-	case QU::fixTimeStamps:
+	case FixTimeStamps:
 		fixTimeStamps(song, smartSettings().first()->value().toInt());
 		break;
-	case QU::fixSpaces:
+	case FixSpaces:
 		fixSpaces(song);
 		break;
-	case QU::removeEmptySyllables:
+	case RemoveEmptySyllables:
 		removeEmptySyllables(song);
 		break;
-	case QU::convertSyllablePlaceholder1:
+	case ConvertSyllablePlaceholder1:
 		convertSyllablePlaceholder(song, "-", "~");
 		break;
-	case QU::convertSyllablePlaceholder2:
+	case ConvertSyllablePlaceholder2:
 		convertSyllablePlaceholder(song, "~", "-");
 		break;
 	}
@@ -59,7 +59,7 @@ void QULyricTask::startOn(QUSongInterface *song) {
 
 QList<QUSmartSetting*> QULyricTask::smartSettings() const {
 	if(_smartSettings.isEmpty())
-		if(_mode == QU::fixTimeStamps)
+		if(_mode == FixTimeStamps)
 			_smartSettings.append(new QUSmartInputField("lyric/fixTimeStamps", "0", new QRegExpValidator(QRegExp("-?\\d*"), 0), "Start:", ""));
 	return _smartSettings;
 }
@@ -69,7 +69,7 @@ QList<QUSmartSetting*> QULyricTask::smartSettings() const {
  */
 void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
-		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::warning);
+		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::Warning);
 		return;
 	}
 
@@ -88,7 +88,7 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 			  .arg(oldGap)
 			  .arg(song->gap())
 			  .arg(song->artist())
-			  .arg(song->title()), QU::information);
+			  .arg(song->title()), QU::Information);
 
 	// modify all timestamps
 	if(song->relative() == N_A) { // simple way: not relative
@@ -145,7 +145,7 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 	song->saveMelody();
 	song->clearMelody(); // save memory
 
-	song->log(QString(tr("Timestamps were changed successfully for \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::information);
+	song->log(QString(tr("Timestamps were changed successfully for \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::Information);
 }
 
 /*!
@@ -155,7 +155,7 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
  */
 void QULyricTask::fixSpaces(QUSongInterface *song) {
 	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
-		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::warning);
+		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::Warning);
 		return;
 	}
 
@@ -187,7 +187,7 @@ void QULyricTask::fixSpaces(QUSongInterface *song) {
 	song->saveMelody();
 	song->clearMelody(); // save memory
 
-	song->log(QString(tr("Spaces were fixed successfully for \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::information);
+	song->log(QString(tr("Spaces were fixed successfully for \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::Information);
 }
 
 /*!
@@ -195,7 +195,7 @@ void QULyricTask::fixSpaces(QUSongInterface *song) {
  */
 void QULyricTask::removeEmptySyllables(QUSongInterface *song) {
 	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
-		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::warning);
+		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::Warning);
 		return;
 	}
 
@@ -214,12 +214,12 @@ void QULyricTask::removeEmptySyllables(QUSongInterface *song) {
 	song->saveMelody();
 	song->clearMelody(); // save memory
 
-	song->log(QString(tr("Empty syllables were removed successfully for \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::information);
+	song->log(QString(tr("Empty syllables were removed successfully for \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::Information);
 }
 
 void QULyricTask::convertSyllablePlaceholder(QUSongInterface *song, const QString &before, const QString &after) {
 	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
-		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::warning);
+		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::Warning);
 		return;
 	}
 
@@ -237,5 +237,5 @@ void QULyricTask::convertSyllablePlaceholder(QUSongInterface *song, const QStrin
 			  .arg(song->artist())
 			  .arg(song->title())
 			  .arg(before)
-			  .arg(after), QU::information);
+			  .arg(after), QU::Information);
 }

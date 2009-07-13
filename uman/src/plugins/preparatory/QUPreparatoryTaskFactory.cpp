@@ -12,15 +12,15 @@ QString QUPreparatoryTaskFactory::name() const {
 }
 
 QUTask* QUPreparatoryTaskFactory::createTask(int type) {
-	return new QUPreparatoryTask((QU::PreparatoryTaskModes)type);
+	return new QUPreparatoryTask((QUPreparatoryTask::TaskModes)type);
 }
 
 QList<int> QUPreparatoryTaskFactory::types() const {
 	QList<int> result;
-	result << QU::autoAssignFiles;
-	result << QU::removeUnsupportedTags;
-	result << QU::fixAudioLength;
-	result << QU::roundGap;
+	result << QUPreparatoryTask::AutoAssignFiles;
+	result << QUPreparatoryTask::RemoveUnsupportedTags;
+	result << QUPreparatoryTask::FixAudioLength;
+	result << QUPreparatoryTask::RoundGap;
 	return result;
 }
 

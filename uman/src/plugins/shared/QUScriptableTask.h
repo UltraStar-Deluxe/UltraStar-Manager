@@ -37,6 +37,12 @@ class QUScriptableTask: public QUSimpleTask {
 	Q_OBJECT
 
 public:
+	enum TaskType {
+		AudioTagTask,
+		RenameTask
+	};
+	Q_DECLARE_FLAGS(TaskTypes, TaskType)
+
 	QUScriptableTask(QDomDocument *taskConfig, QObject *parent = 0);
 	~QUScriptableTask() { qDeleteAll(_data); _data.clear(); }
 

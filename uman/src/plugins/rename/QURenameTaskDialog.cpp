@@ -8,6 +8,7 @@
 #include <QDomElement>
 #include <QDomAttr>
 #include <QDomCDATASection>
+#include <QCoreApplication>
 
 QURenameTaskDialog::QURenameTaskDialog(QURenameTask *task, QWidget *parent): QUTaskDialog(task, parent) {
 	dataTable->setDelegates(
@@ -25,6 +26,14 @@ QURenameTaskDialog::QURenameTaskDialog(QURenameTask *task, QWidget *parent): QUT
 	}
 }
 
+QDir QURenameTaskDialog::configurationDirectory() const {
+	QDir dir = QCoreApplication::applicationDirPath();
+	dir.cd("plugins");
+	dir.cd("config");
+	dir.cd("rename");
+	return dir;
+}
+
 /*!
  * Collect the info which is present in this dialog, create a DOM document and save the
  * XML config file to disk.
@@ -34,7 +43,7 @@ bool QURenameTaskDialog::saveTask(const QString &filePath) {
 	QDomElement task = _doc.createElement("task");
 	_doc.appendChild(task);
 
-	this->appendGeneral(task, QU::renameTask);
+	this->appendGeneral(task, QUScriptableTask::RenameTask);
 
 	QDomElement rename = _doc.createElement("rename");
 	task.appendChild(rename);

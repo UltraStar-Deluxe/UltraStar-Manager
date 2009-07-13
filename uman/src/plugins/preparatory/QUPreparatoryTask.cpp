@@ -9,12 +9,12 @@
 #include <QFileInfo>
 #include <QDir>
 
-QUPreparatoryTask::QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *parent):
+QUPreparatoryTask::QUPreparatoryTask(TaskModes mode, QObject *parent):
 	QUSimpleTask(parent),
 	_mode(mode)
 {
 	switch(_mode) {
-	case QU::autoAssignFiles:
+	case AutoAssignFiles:
 		this->setIcon(QIcon(":/marks/wand.png"));
 		this->setDescription(tr("Assign missing files automatically"));
 		this->setToolTip(tr("<b>#MP3</b> ... first audio file found.<br>"
@@ -22,16 +22,16 @@ QUPreparatoryTask::QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *par
 				"<b>#BACKGROUND</b> ... first picture file, following a pattern.<br>"
 				"<b>#VIDEO</b> ... first video file found."));
 		break;
-	case QU::removeUnsupportedTags:
+	case RemoveUnsupportedTags:
 		this->setIcon(QIcon(":/types/folder_blue.png"));
 		this->setDescription(tr("Remove unsupported tags"));
 		break;
-	case QU::fixAudioLength:
+	case FixAudioLength:
 		this->setIcon(QIcon(":/types/time_mp3.png"));
 		this->setDescription(tr("Fix audio length via #END tag"));
 		this->setToolTip(tr("Sets <b>#END</b> to the length of the song if audio file present and longer than song. <b>Appends a little time buffer.</b>"));
 		break;
-	case QU::roundGap:
+	case RoundGap:
 		this->setIcon(QIcon(":/bullets/bullet_black.png"));
 		this->setDescription(tr("Round #GAP to nearest integer."));
 		break;
@@ -47,19 +47,19 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 	QStringList filter;
 
 	switch(_mode) {
-	case QU::autoAssignFiles:
+	case AutoAssignFiles:
 		autoSetFiles(song, smartSettings().at(0)->value().toString(), smartSettings().at(1)->value().toString());
 		break;
-	case QU::removeUnsupportedTags:
+	case RemoveUnsupportedTags:
 		for(int i = 0; i < _unsupportedTags.size(); i++)
 			if(smartSettings().at(i)->value().toBool())
 				filter << _unsupportedTags.at(i);
 		song->removeUnsupportedTags(filter, true);
 		break;
-	case QU::fixAudioLength:
+	case FixAudioLength:
 		song->fixAudioLength(smartSettings().first()->value().toInt());
 		break;
-	case QU::roundGap:
+	case RoundGap:
 		song->roundGap();
 		break;
 	}
@@ -68,17 +68,17 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 QList<QUSmartSetting*> QUPreparatoryTask::smartSettings() const {
 	if(_smartSettings.isEmpty()) {
 		switch(_mode) {
-		case QU::autoAssignFiles:
+		case AutoAssignFiles:
 			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_coverPattern", "\\[CO\\]|cove?r?", new QRegExpValidator(QRegExp(".*"), 0), "Pattern:", "(cover)"));
 			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_backgroundPattern", "\\[BG\\]|back", new QRegExpValidator(QRegExp(".*"), 0), "Pattern:", "(background)"));
 			break;
-		case QU::removeUnsupportedTags:
+		case RemoveUnsupportedTags:
 			foreach(QString unsupportedTag, _unsupportedTags)
 				_smartSettings.append(new QUSmartCheckBox("preparatory/removeUnsupportedTags_" + unsupportedTag, unsupportedTag, true));
 			break;
-		case QU::fixAudioLength:
+		case FixAudioLength:
 			QSettings settings;
-			QString timeDiffLower = settings.value("timeDiffLower", LOWER_TIME_BOUND_DEFAULT).toString();
+			QString timeDiffLower = settings.value("timeDiffLower", 15).toString();
 			_smartSettings.append(new QUSmartInputField("preparatory/fixAudioLength", timeDiffLower, new QRegExpValidator(QRegExp("\\d*"), 0), "Buffer:", "seconds"));
 			break;
 		}
@@ -87,8 +87,8 @@ QList<QUSmartSetting*> QUPreparatoryTask::smartSettings() const {
 	return _smartSettings;
 }
 
-void QUPreparatoryTask::provideData(const QVariant &data, QU::TaskDataTypes type) {
-	if(type != QU::unsupportedTags)
+void QUPreparatoryTask::provideData(const QVariant &data, TaskDataTypes type) {
+	if(type != UnsupportedTags)
 		return;
 
 	_unsupportedTags = data.toStringList();

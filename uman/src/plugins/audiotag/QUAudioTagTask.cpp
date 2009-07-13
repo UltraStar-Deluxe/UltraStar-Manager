@@ -70,9 +70,9 @@ void QUAudioTagTask::startOn(QUSongInterface *song) {
 				.arg(old)
 				.arg(this->currentContentAll())
 				.arg(song->artist())
-				.arg(song->title()), QU::information);
+				.arg(song->title()), QU::Information);
 	} else {
-		song->log(QString(tr("The song tag \"%1\" is NOT VALID.")).arg(_target), QU::warning);
+		song->log(QString(tr("The song tag \"%1\" is NOT VALID.")).arg(_target), QU::Warning);
 	}
 }
 

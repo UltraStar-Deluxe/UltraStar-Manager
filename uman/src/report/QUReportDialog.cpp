@@ -124,11 +124,11 @@ void QUReportDialog::createHtmlReport() {
 				styleCombo->itemData(styleCombo->currentIndex()).toString()); // css file path is saved in user data of current combobox item
 		report.save();
 
-		logSrv->add(QString(tr("Report created successfully to: \"%1\".")).arg(fi.filePath()), QU::information);
+		logSrv->add(QString(tr("Report created successfully to: \"%1\".")).arg(fi.filePath()), QU::Information);
 
 		QDesktopServices::openUrl(QUrl::fromLocalFile(fi.filePath()));
 	} else {
-		logSrv->add(tr("Report could not be created."), QU::warning);
+		logSrv->add(tr("Report could not be created."), QU::Warning);
 	}
 }
 
@@ -153,11 +153,11 @@ void QUReportDialog::createPlainTextReport() {
 				this->currentPlaylistName());
 		report.save();
 
-		logSrv->add(QString(tr("Report created successfully to: \"%1\".")).arg(fi.filePath()), QU::information);
+		logSrv->add(QString(tr("Report created successfully to: \"%1\".")).arg(fi.filePath()), QU::Information);
 
 		QDesktopServices::openUrl(QUrl::fromLocalFile(fi.filePath()));
 	} else {
-		logSrv->add(tr("Report could not be created."), QU::warning);
+		logSrv->add(tr("Report could not be created."), QU::Warning);
 	}
 }
 

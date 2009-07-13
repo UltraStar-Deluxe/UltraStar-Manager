@@ -1,26 +1,34 @@
 #ifndef QUPREPARATORYTASK_H_
 #define QUPREPARATORYTASK_H_
 
-#include "QU.h"
 #include "QUSimpleTask.h"
 
 #include <QList>
 #include <QStringList>
+
 class QUSmartSetting;
 
 class QUPreparatoryTask : public QUSimpleTask {
 	Q_OBJECT
 	
 public:
-	QUPreparatoryTask(QU::PreparatoryTaskModes mode, QObject *parent = 0);
+	enum TaskMode {
+		AutoAssignFiles,
+		RemoveUnsupportedTags,
+		FixAudioLength,
+		RoundGap
+	};
+	Q_DECLARE_FLAGS(TaskModes, TaskMode)
+
+	QUPreparatoryTask(TaskModes mode, QObject *parent = 0);
 	~QUPreparatoryTask();
 	
 	virtual void startOn(QUSongInterface *song);
 	virtual QList<QUSmartSetting*> smartSettings() const;
-	virtual void provideData(const QVariant &data, QU::TaskDataTypes type = QU::unsupportedTags);
+	virtual void provideData(const QVariant &data, TaskDataTypes type = UnsupportedTags);
 
 private:
-	QU::PreparatoryTaskModes _mode;
+	TaskModes _mode;
 
 	mutable QList<QUSmartSetting*> _smartSettings;
 	QStringList _unsupportedTags;

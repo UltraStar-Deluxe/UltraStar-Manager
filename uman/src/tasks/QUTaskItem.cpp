@@ -27,7 +27,7 @@ QUTaskItem::~QUTaskItem() {
 }
 
 void QUTaskItem::installSmartSettings() {
-	task()->provideData(monty->unsupportedTags(), QU::unsupportedTags);
+	task()->provideData(monty->unsupportedTags(), QUTask::UnsupportedTags);
 	foreach(QUSmartSetting *smartSetting, task()->smartSettings()) {
 		QTreeWidgetItem *sItem = new QTreeWidgetItem();
 		sItem->setBackgroundColor(0, QColor(239, 239, 239));

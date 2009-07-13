@@ -12,13 +12,13 @@ class QULogService: public QObject {
 public:
 	static QULogService* instance();
 
-	void add(const QString &message, QU::EventMessageTypes type);
+	void add(const QString &message, QU::MessageTypes type);
 
 protected:
 	QULogService(QObject *parent = 0);
 
 signals:
-	void messageAdded(const QString &message, QU::EventMessageTypes type);
+	void messageAdded(const QString &message, QU::MessageTypes type);
 
 private:
 	static QULogService* _instance;

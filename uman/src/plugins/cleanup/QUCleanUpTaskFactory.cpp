@@ -12,14 +12,14 @@ QString QUCleanUpTaskFactory::name() const {
 }
 
 QUTask* QUCleanUpTaskFactory::createTask(int type) {
-	return new QUCleanUpTask((QU::CleanTaskModes)type);
+	return new QUCleanUpTask((QUCleanUpTask::TaskModes)type);
 }
 
 QList<int> QUCleanUpTaskFactory::types() const {
 	QList<int> result;
-	result << QU::unusedFiles;
-	result << QU::invalidFileTags;
-	result << QU::removeEndTag;
+	result << QUCleanUpTask::UnusedFiles;
+	result << QUCleanUpTask::InvalidFileTags;
+	result << QUCleanUpTask::RemoveEndTag;
 	return result;
 }
 

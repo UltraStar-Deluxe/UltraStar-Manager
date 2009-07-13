@@ -43,12 +43,12 @@ QUCoverGroup::QUCoverGroup(QUSongItem *songItem, QWidget *parent):
 
 void QUCoverGroup::getCovers(const QString &endpoint, const QString &artistProperty, const QString &titleProperty) {
 	if(!_item) {
-		logSrv->add(tr("Could not get covers. No song was set."), QU::warning);
+		logSrv->add(tr("Could not get covers. No song was set."), QU::Warning);
 		return;
 	}
 
 	if(_http->hasPendingRequests() or _waitForResult) {
-		logSrv->add(QString(tr("Could not get covers for \"%1 - %2\". Http connection is busy.")).arg(_item->song()->artist()).arg(_item->song()->title()), QU::warning);
+		logSrv->add(QString(tr("Could not get covers for \"%1 - %2\". Http connection is busy.")).arg(_item->song()->artist()).arg(_item->song()->title()), QU::Warning);
 		return;
 	}
 
@@ -213,9 +213,9 @@ void QUCoverGroup::deleteCurrentCover() {
 		return;
 
 	if(!QFile::remove(_item->song()->coverFileInfo().filePath()))
-		logSrv->add(QString(tr("Could not delete current cover: \"%1\"")).arg(_item->song()->coverFileInfo().filePath()), QU::warning);
+		logSrv->add(QString(tr("Could not delete current cover: \"%1\"")).arg(_item->song()->coverFileInfo().filePath()), QU::Warning);
 	else
-		logSrv->add(QString(tr("Current cover was deleted successfully: \"%1\"")).arg(_item->song()->coverFileInfo().filePath()), QU::information);
+		logSrv->add(QString(tr("Current cover was deleted successfully: \"%1\"")).arg(_item->song()->coverFileInfo().filePath()), QU::Information);
 }
 
 /*!
@@ -226,14 +226,14 @@ void QUCoverGroup::copyCoverToSongPath() {
 		return;
 
 	if(currentFilePath().isEmpty()) {
-		logSrv->add(QString(tr("No cover selected for: \"%1 - %2\"")).arg(_item->song()->artist()).arg(_item->song()->title()), QU::warning);
+		logSrv->add(QString(tr("No cover selected for: \"%1 - %2\"")).arg(_item->song()->artist()).arg(_item->song()->title()), QU::Warning);
 		return;
 	}
 
 	QFileInfo target(_item->song()->songFileInfo().dir(), "cover_" + QFileInfo(currentFilePath()).fileName());
 
 	if(!QFile::copy(currentFilePath(), target.filePath())) {
-		logSrv->add(QString(tr("Could not copy the new cover \"%1\" to \"%2\".")).arg(currentFilePath()).arg(target.filePath()), QU::warning);
+		logSrv->add(QString(tr("Could not copy the new cover \"%1\" to \"%2\".")).arg(currentFilePath()).arg(target.filePath()), QU::Warning);
 		return;
 	}
 

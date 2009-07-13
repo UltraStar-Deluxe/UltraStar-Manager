@@ -12,16 +12,16 @@ QString QULyricTaskFactory::name() const {
 }
 
 QUTask* QULyricTaskFactory::createTask(int type) {
-	return new QULyricTask((QU::LyricTaskModes)type);
+	return new QULyricTask((QULyricTask::TaskModes)type);
 }
 
 QList<int> QULyricTaskFactory::types() const {
 	QList<int> result;
-	result << QU::fixTimeStamps;
-	result << QU::fixSpaces;
-	result << QU::removeEmptySyllables;
-	result << QU::convertSyllablePlaceholder1;
-	result << QU::convertSyllablePlaceholder2;
+	result << QULyricTask::FixTimeStamps;
+	result << QULyricTask::FixSpaces;
+	result << QULyricTask::RemoveEmptySyllables;
+	result << QULyricTask::ConvertSyllablePlaceholder1;
+	result << QULyricTask::ConvertSyllablePlaceholder2;
 	return result;
 }
 

@@ -98,7 +98,7 @@ void QURenameTask::startOn(QUSongInterface *song) {
 	else if (QString::compare(this->_target, "background", Qt::CaseInsensitive) == 0) song->renameSongBackground(schema);
 	else if (QString::compare(this->_target, "video", Qt::CaseInsensitive) == 0)      song->renameSongVideo(schema);
 	else
-		song->log(QString(tr("Invalid target: %1")).arg(this->_target), (int)QU::warning);
+		song->log(QString(tr("Invalid target: %1")).arg(this->_target), QU::Warning);
 }
 
 /*!

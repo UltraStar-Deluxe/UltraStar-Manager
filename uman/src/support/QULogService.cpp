@@ -1,7 +1,5 @@
 #include "QULogService.h"
 
-#include <QMessageBox>
-
 QULogService::QULogService(QObject *parent): QObject(parent) {
 }
 
@@ -13,6 +11,6 @@ QULogService* QULogService::instance() {
 	return _instance;
 }
 
-void QULogService::add(const QString &message, QU::EventMessageTypes type) {
+void QULogService::add(const QString &message, QU::MessageTypes type) {
 	emit messageAdded(message, type);
 }

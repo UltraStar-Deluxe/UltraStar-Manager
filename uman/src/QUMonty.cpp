@@ -137,7 +137,7 @@ QString QUMonty::useImageFromResource(const QString &item, QDir dest) {
 	if(!dest.cd("images")) {
 		dest.mkdir("images");
 		if(!dest.cd("images")) {
-//			logSrv->add(tr("Subdirectory for images could not be created!"), QU::warning);
+//			logSrv->add(tr("Subdirectory for images could not be created!"), QU::Warning);
 			return QString();
 		}
 	}
@@ -151,11 +151,11 @@ QString QUMonty::useImageFromResource(const QString &item, QDir dest) {
 	}
 
 	if(!pixmap.save(fi.filePath())) {
-//		logSrv->add(QString(tr("The resource file \"%1\" could NOT be saved.")).arg(fi.filePath()), QU::warning);
+//		logSrv->add(QString(tr("The resource file \"%1\" could NOT be saved.")).arg(fi.filePath()), QU::Warning);
 		return QString();
 	}
 
-//	logSrv->add(QString(tr("The resource file \"%1\" was extracted successfully.")).arg(fi.filePath()), QU::information);
+//	logSrv->add(QString(tr("The resource file \"%1\" was extracted successfully.")).arg(fi.filePath()), QU::Information);
 
 	dest.cdUp();
 	return dest.relativeFilePath(fi.filePath());

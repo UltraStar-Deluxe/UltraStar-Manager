@@ -10,13 +10,22 @@ class QULyricTask: public QUSimpleTask {
 	Q_OBJECT
 
 public:
-	QULyricTask(QU::LyricTaskModes mode, QObject *parent = 0);
+	enum TaskMode {
+		FixTimeStamps,
+		FixSpaces,
+		RemoveEmptySyllables,
+		ConvertSyllablePlaceholder1,
+		ConvertSyllablePlaceholder2
+	};
+	Q_DECLARE_FLAGS(TaskModes, TaskMode)
+
+	QULyricTask(TaskModes mode, QObject *parent = 0);
 
 	virtual void startOn(QUSongInterface *song);
 	virtual QList<QUSmartSetting*> smartSettings() const;
 
 private:
-	QU::LyricTaskModes _mode;
+	TaskModes _mode;
 	mutable QList<QUSmartSetting*> _smartSettings;
 
 	void fixTimeStamps(QUSongInterface *song, int start = 0);

@@ -19,9 +19,9 @@ void QUTaskFactoryProxy::addConfiguration() {
 
 		if(taskList) {
 			taskList->resetTaskList();
-			logSrv->add(tr("Task list was refreshed successfully."), QU::information);
+			logSrv->add(tr("Task list was refreshed successfully."), QU::Information);
 		} else {
-			logSrv->add(tr("Factory proxy could not access the task list."), QU::warning);
+			logSrv->add(tr("Factory proxy could not access the task list."), QU::Warning);
 		}
 	}
 }
