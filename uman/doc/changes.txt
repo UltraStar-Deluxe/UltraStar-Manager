@@ -111,6 +111,13 @@ SONG PATH SELECTION
 SONG DETAILS
 * read-only fields are skipped when pressing tab key
 
+AMAZON COVER DOWNLOAD
+* new "Amazon Product Advertising API" needs signed requests
+  > signatures become mandatory at 15th August 2009
+* "Secret Access Key" of AWS Accounts needed to sign each request
+  > NOT shareable -> user needs his own account
+  > one-click-experience of cover download not that easy anymore :'(
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 TASKS
@@ -179,9 +186,7 @@ AUTO-SAVE
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
-! AAWS - Product Advertising API (use with certificates)
 ! prepare plugin SDK
-! extract language information from app file into plugin translations
 
 NEW STUFF
 * make hard-coded values editable

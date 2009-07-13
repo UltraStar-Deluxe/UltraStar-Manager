@@ -174,7 +174,7 @@ void QUAmazonDialog::showSecretHelp() {
 	QUMessageBox::question(this,
 			tr("Secret Access Key"),
 			tr("<b>What is a 'Secret Access Key'?</b><br><br>"
-					"This secret key is used to calculate a signature to include in requests to the Amazon Product Advertising API which requires this kind of authentication. It should be known only by you and AWS.<br><br>"
+					"This secret key is used to calculate a signature to include in requests to the Amazon Product Advertising API which requires this kind of authentication. It should be known only by you and AWS. That's why each user of a desktop application like this one needs his own key.<br><br>"
 					"You get your own key if you <a href=\"https://aws-portal.amazon.com/gp/aws/developer/registration/index.html\">create an AWS Account</a>."),
 			QStringList() << ":/marks/accept.png" << "OK",
 			330);
