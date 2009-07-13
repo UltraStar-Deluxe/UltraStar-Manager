@@ -28,6 +28,12 @@ private slots:
 	void setLimit(const QString &limit);
 	void setKeepDownloads(int state);
 
+	void setKey();
+	void setSecret();
+
+	void showKeyHelp();
+	void showSecretHelp();
+
 private:
 	QVBoxLayout         *_contentLayout;
 	QList<QUCoverGroup*> _groups;

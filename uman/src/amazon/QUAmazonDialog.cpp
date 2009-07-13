@@ -1,5 +1,7 @@
 #include "QUAmazonDialog.h"
 #include "QUProgressDialog.h"
+#include "QUMessageBox.h"
+#include "QUSongSupport.h"
 
 #include <QCoreApplication>
 #include <QDir>
@@ -19,8 +21,6 @@
 #include <QSettings>
 
 #include <QMessageBox>
-
-#include "QUSongSupport.h"
 
 QUAmazonDialog::QUAmazonDialog(const QList<QUSongItem*> &items, QWidget *parent): QDialog(parent) {
 	setupUi(this);
@@ -48,7 +48,7 @@ QUAmazonDialog::QUAmazonDialog(const QList<QUSongItem*> &items, QWidget *parent)
 	endpointCombo->addItem(tr("France (amazon.fr)"), "http://ecs.amazonaws.fr");
 	endpointCombo->addItem(tr("Japan (amazon.jp)"), "http://ecs.amazonaws.jp");
 
-	if(QLocale::system().name() == "de_DE")
+	if(QLocale::system().language() == QLocale::German)
 		endpointCombo->setCurrentIndex(2);
 
 	artistCombo->addItem(NONE);
@@ -58,14 +58,24 @@ QUAmazonDialog::QUAmazonDialog(const QList<QUSongItem*> &items, QWidget *parent)
 	titleCombo->addItems(QUSongSupport::availableTags()); titleCombo->setCurrentIndex(titleCombo->findText(TITLE_TAG));
 
 	limitCombo->addItems(QStringList() << "5" << "10");
-	QSettings settings; limitCombo->setCurrentIndex(limitCombo->findText(settings.value("amazonLimit", "5").toString()));
+	QSettings settings;
+
+	limitCombo->setCurrentIndex(limitCombo->findText(settings.value("amazonLimit", "5").toString()));
 	connect(limitCombo, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(setLimit(const QString&)));
 
 	keepDownloadsChk->setCheckState(settings.value("keepDownloads", false).toBool() ? Qt::Checked : Qt::Unchecked);
 	connect(keepDownloadsChk, SIGNAL(stateChanged(int)), this, SLOT(setKeepDownloads(int)));
 
+	keyEdit->setText(settings.value("apaapi/key").toString());
+	connect(keyEdit, SIGNAL(editingFinished()), this, SLOT(setKey()));
+	connect(keyBtn, SIGNAL(clicked()), this, SLOT(showKeyHelp()));
+
+	secretEdit->setText(settings.value("apaapi/secret").toString());
+	connect(secretEdit, SIGNAL(editingFinished()), this, SLOT(setSecret()));
+	connect(secretBtn, SIGNAL(clicked()), this, SLOT(showSecretHelp()));
 
 	this->createGroups(items);
+	getCoversBtn->setFocus();
 }
 
 void QUAmazonDialog::createGroups(const QList<QUSongItem*> &items) {
@@ -138,4 +148,34 @@ void QUAmazonDialog::setLimit(const QString &limit) {
 void QUAmazonDialog::setKeepDownloads(int state) {
 	QSettings settings;
 	settings.setValue("keepDownloads", QVariant(state == Qt::Checked ? true : false));
+}
+
+void QUAmazonDialog::setKey() {
+	QSettings settings;
+	settings.setValue("apaapi/key", keyEdit->text());
+}
+
+void QUAmazonDialog::setSecret() {
+	QSettings settings;
+	settings.setValue("apaapi/secret", secretEdit->text());
+}
+
+void QUAmazonDialog::showKeyHelp() {
+	QUMessageBox::question(this,
+			tr("Access Key ID"),
+			tr("<b>What is an 'Access Key ID'?</b><br><br>"
+					"This public key identifies you as the party responsible for the request. It belongs to an Amazon Web Services Account. All free services require you to send this key along with the request.<br><br>"
+					"You get your own key if you <a href=\"https://aws-portal.amazon.com/gp/aws/developer/registration/index.html\">create an AWS Account</a>."),
+			QStringList() << ":/marks/accept.png" << "OK",
+			330);
+}
+
+void QUAmazonDialog::showSecretHelp() {
+	QUMessageBox::question(this,
+			tr("Secret Access Key"),
+			tr("<b>What is a 'Secret Access Key'?</b><br><br>"
+					"This secret key is used to calculate a signature to include in requests to the Amazon Product Advertising API which requires this kind of authentication. It should be known only by you and AWS.<br><br>"
+					"You get your own key if you <a href=\"https://aws-portal.amazon.com/gp/aws/developer/registration/index.html\">create an AWS Account</a>."),
+			QStringList() << ":/marks/accept.png" << "OK",
+			330);
 }
