@@ -41,12 +41,12 @@ QUAmazonDialog::QUAmazonDialog(const QList<QUSongItem*> &items, QWidget *parent)
     connect(checkAllBtn, SIGNAL(clicked()), this, SLOT(checkAllGroups()));
     connect(uncheckAllBtn, SIGNAL(clicked()), this, SLOT(uncheckAllGroups()));
 
-    endpointCombo->addItem(tr("United States (amazon.com)"), "http://ecs.amazonaws.com/onca/xml");
-	endpointCombo->addItem(tr("United Kingdom (amazon.co.uk)"), "http://ecs.amazonaws.co.uk/onca/xml");
-    endpointCombo->addItem(tr("Germany (amazon.de)"), "http://ecs.amazonaws.de/onca/xml");
-	endpointCombo->addItem(tr("Canada (amazon.ca)"), "http://ecs.amazonaws.ca/onca/xml");
-    endpointCombo->addItem(tr("France (amazon.fr)"), "http://ecs.amazonaws.fr/onca/xml");
-	endpointCombo->addItem(tr("Japan (amazon.jp)"), "http://ecs.amazonaws.jp/onca/xml");
+	endpointCombo->addItem(tr("United States (amazon.com)"), "http://ecs.amazonaws.com");
+	endpointCombo->addItem(tr("United Kingdom (amazon.co.uk)"), "http://ecs.amazonaws.co.uk");
+	endpointCombo->addItem(tr("Germany (amazon.de)"), "http://ecs.amazonaws.de");
+	endpointCombo->addItem(tr("Canada (amazon.ca)"), "http://ecs.amazonaws.ca");
+	endpointCombo->addItem(tr("France (amazon.fr)"), "http://ecs.amazonaws.fr");
+	endpointCombo->addItem(tr("Japan (amazon.jp)"), "http://ecs.amazonaws.jp");
 
 	if(QLocale::system().name() == "de_DE")
 		endpointCombo->setCurrentIndex(2);

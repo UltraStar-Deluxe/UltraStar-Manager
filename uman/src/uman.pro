@@ -74,7 +74,9 @@ HEADERS += plugins/QUPluginDialog.h \
     lyricseditor/QUSongLineDelegate.h \
     lyricseditor/QULyricsEditorDialog.h \
     lyricseditor/QUSyllableDelegate.h \
-    preferences/QUPathsDialog.h
+	preferences/QUPathsDialog.h \
+	sha2/sha2.h \
+	sha2/hmac_sha2.h
 SOURCES += plugins/QUPluginDialog.cpp \
     plugins/QUTaskFactoryProxy.cpp \
 	plugins/QUSmartSetting.cpp \
@@ -137,7 +139,9 @@ SOURCES += plugins/QUPluginDialog.cpp \
     lyricseditor/QUSongLineDelegate.cpp \
     lyricseditor/QULyricsEditorDialog.cpp \
     lyricseditor/QUSyllableDelegate.cpp \
-    preferences/QUPathsDialog.cpp
+	preferences/QUPathsDialog.cpp \
+	sha2/sha2.c \
+	sha2/hmac_sha2.c
 FORMS += plugins/QUPluginDialog.ui \
     QUMainWindow.ui \
     QUAboutDialog.ui \
@@ -180,7 +184,8 @@ INCLUDEPATH += . \
     plugins \
     ribbon \
     slideshow \
-    lyricseditor
+	lyricseditor \
+	sha2
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib \

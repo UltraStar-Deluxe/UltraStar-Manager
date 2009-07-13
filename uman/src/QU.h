@@ -63,7 +63,7 @@ public:
 	};
 	Q_DECLARE_FLAGS(ReportOptions, ReportOption)
 
-	static bool fileTypeLessThan(const QFileInfo &fi1, const QFileInfo &fi2);  
+	static bool fileTypeLessThan(const QFileInfo &fi1, const QFileInfo &fi2);
 };
 
 #endif /*QU_H_*/

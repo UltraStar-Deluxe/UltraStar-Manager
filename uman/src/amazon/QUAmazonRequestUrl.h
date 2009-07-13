@@ -5,6 +5,7 @@
 #include "QUSongFile.h"
 
 #include <QUrl>
+#include <QByteArray>
 
 class QUAmazonRequestUrl: public QUrl {
 public:
@@ -13,6 +14,11 @@ public:
 	QString request() const;
 private:
 	void init(QUSongFile *song, const QString &artistProperty, const QString &titleProperty);
+
+	QByteArray fixedPercentageEncoding() const;
+	QByteArray fixedPercentageEncoding(QByteArray source) const;
+	QString stringToSign() const;
+	QByteArray signWithSHA256(const QString &text) const;
 };
 
 #endif /* QUAMAZONREQUESTURL_H_ */
