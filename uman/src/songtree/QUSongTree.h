@@ -13,6 +13,7 @@
 #include "QUSongItem.h"
 
 class QUMainWindow;
+class QMenu;
 
 class QUSongTree: public QTreeWidget {
 	Q_OBJECT
@@ -36,6 +37,8 @@ public:
 
 	void restoreSelection(const QList<QUSongItem*> &selectedItems);
 
+	QMenu* hideMenu() const;
+
 public slots:
 	void clear();
 	void addItem(QUSongFile *song);
@@ -49,6 +52,7 @@ public slots:
 
 	void filterItems(const QString &regexp, QU::FilterModes mode = QU::informationTags);
 	void filterDuplicates();
+	void removeFilter();
 
 signals:
 	void songToPlaylistRequested(QUSongFile *song);
@@ -106,8 +110,6 @@ private:
 	bool copyFilesToSong(const QList<QUrl> &files, QUSongItem *item);
 	void dropSongFiles(const QList<QUrl> &urls);
 	void createSongFolder(QUSongFile *song);
-
-	void removeFilter();
 };
 
 #endif /*QUSONGTREE_H_*/

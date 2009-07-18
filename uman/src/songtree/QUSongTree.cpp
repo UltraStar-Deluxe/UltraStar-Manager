@@ -546,13 +546,7 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 		pictureFlowMenu->addAction(QIcon(":/types/cover.png"),      tr("Covers..."),      this, SLOT(requestCoverFlow()));
 		pictureFlowMenu->addAction(QIcon(":/types/background.png"), tr("Backgrounds..."), this, SLOT(requestBackgroundFlow()));
 
-		QMenu *filterMenu = menu.addMenu(tr("Hide"));
-		filterMenu->setIcon(QIcon(":/control/eye.png"));
-		filterMenu->addAction(tr("Selected Songs"), this, SLOT(hideSelected()));
-		filterMenu->addAction(tr("Selected Songs Only"), this, SLOT(hideSelectedOnly()));
-		filterMenu->addAction(tr("Unselected Songs"), this, SLOT(hideAllButSelected()));
-		filterMenu->addSeparator();
-		filterMenu->addAction(tr("All"), this, SLOT(hideAll()));
+		menu.addMenu(hideMenu());
 
 		menu.addAction(tr("Calculate Song Speed"), this, SLOT(calculateSpeed()));
 
@@ -564,6 +558,18 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 	}
 
 	menu.exec(QCursor::pos());
+}
+
+QMenu* QUSongTree::hideMenu() const {
+	QMenu *filterMenu = new QMenu(tr("Hide"));
+	filterMenu->setIcon(QIcon(":/control/eye.png"));
+	filterMenu->addAction(tr("Selected Songs"), this, SLOT(hideSelected()));
+	filterMenu->addAction(tr("Selected Songs Only"), this, SLOT(hideSelectedOnly()));
+	filterMenu->addAction(tr("Unselected Songs"), this, SLOT(hideAllButSelected()));
+	filterMenu->addSeparator();
+	filterMenu->addAction(tr("All"), this, SLOT(hideAll()));
+	filterMenu->addAction(tr("None"), this, SLOT(removeFilter()));
+	return filterMenu;
 }
 
 /*!
@@ -791,7 +797,7 @@ void QUSongTree::hideSelected() {
 	}
 
 	emit itemSelectionChanged(); // update details
-	logSrv->add(QString(tr("%1 songs added to invisible list.")).arg(selectedItems.count()), QU::Information);
+	logSrv->add(QString(tr("%1 songs added to list of invisible songs.")).arg(selectedItems.count()), QU::Information);
 }
 
 /*!

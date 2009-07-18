@@ -132,14 +132,16 @@ MAIN WINDOW
 SONG TREE
 * sorting works now for #START, #END, #VIDEOGAP
 
+PLAYLISTS
+* playlists are now always sync with song database
+  > no app crash if a deleted song is referenced in a playlist
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 NOT SORTED
 * you cannot sort after a custom tag column in the report
 * Uninstaller does not delete
   > "non-standard" tasks
-! update playlists if you delete a song
-  > crash on save
 * external song file changes will be detected twice for primary song
   > friend songs seem to work fine
 ! QDesktopServices seem not to work well... (cannot open MP3 or Video)

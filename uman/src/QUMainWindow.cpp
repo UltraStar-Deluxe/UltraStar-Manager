@@ -415,13 +415,7 @@ void QUMainWindow::initRibbonBar() {
 
 	_menu->setShortcut(_menu->reportBtn, Qt::Key_F8);
 
-	QMenu *hideSongsMenu = new QMenu(tr("Hide Songs"));
-	hideSongsMenu->addAction(tr("Selection"), songTree, SLOT(hideSelected()));
-	hideSongsMenu->addAction(tr("Selection Only"), songTree, SLOT(hideSelectedOnly()));
-	hideSongsMenu->addAction(tr("Inverted Selection"), songTree, SLOT(hideAllButSelected()));
-	hideSongsMenu->addSeparator();
-	hideSongsMenu->addAction(tr("All"), songTree, SLOT(hideAll()));
-	_menu->hideSongsBtn->setMenu(hideSongsMenu);
+	_menu->hideSongsBtn->setMenu(songTree->hideMenu());
 
 	connect(_menu->saveAllBtn, SIGNAL(clicked()), songTree, SLOT(saveUnsavedChanges()));
 	connect(_menu->rescanSongsBtn, SIGNAL(clicked()), this, SLOT(refreshAllSongs()));
@@ -844,7 +838,7 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 		songItem->song()->setInfo(tag, text);
 		songItem->song()->save();
 
-//		songItem->update();
+		songItem->update();
 	}
 	songTree->restoreSelection(selectedItems);
 	songTree->scrollToItem(songTree->currentItem(), QAbstractItemView::EnsureVisible);
