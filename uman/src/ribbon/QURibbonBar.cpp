@@ -4,22 +4,12 @@
 #include <QToolButton>
 #include <QIcon>
 #include <QHBoxLayout>
-#include <QKeyEvent>
+#include <QMouseEvent>
 
-QURibbonBar::QURibbonBar(QWidget *parent) {
+QURibbonBar::QURibbonBar(QWidget *parent): QTabWidget(parent), _menuHidden(false) {
 	setupUi(this);
 
-	QStringList styles;
-
-	styles << "QTabWidget::pane {border-bottom: 1px solid #C2C7CB; border-top: 1px solid #C2C7CB; margin-bottom: 3px; background-color: white}";
-	styles << "QTabBar::tab {background: transparent; min-width: 4em; color: #333333}";
-	styles << "QTabWidget::tab-bar {left: 5px}";
-	styles << "QTabBar::tab:selected {color: black; background: white; border-top-left-radius: 4px; border-top-right-radius: 4px; border: 1px solid #C4C4C3; border-bottom-style: none}";
-	styles << "QGroupBox {padding: 2px 3px 6px 3px; margin: 0 2px 4px 2px; border: 0; font-size: 7pt; border-bottom: 1px solid #C2C7CB; border-left: 1px solid #C2C7CB; border-right: 1px solid #C2C7CB; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; color: #C2C7CB}";
-	styles << "QGroupBox::title {subcontrol-position: bottom center; subcontrol-origin: margin}";
-//	styles << "QToolButton {border: 2px solid red; padding: 0 10px 0 10px}";
-
-	setStyleSheet(styles.join(" "));
+	useVisibleStyle();
 
 	helpBtn = new QToolButton(this);
 	helpBtn->setAutoRaise(true);
@@ -41,6 +31,15 @@ QURibbonBar::QURibbonBar(QWidget *parent) {
 	corner->layout()->setSpacing(0);
 
 	setCornerWidget(corner, Qt::TopRightCorner);
+
+	hideBtn = new QToolButton(this);
+	hideBtn->setAutoRaise(true);
+	hideBtn->setIconSize(QSize(10, 12));
+	connect(hideBtn, SIGNAL(clicked()), this, SLOT(toggleMenuHidden()));
+	connect(this, SIGNAL(currentChanged(int)), this, SLOT(changeCurrentTab(int)));
+	setMenuHidden(true);
+
+	setCornerWidget(hideBtn, Qt::TopLeftCorner);
 }
 
 void QURibbonBar::setShortcut(QToolButton *w, const QKeySequence &key) {
@@ -48,7 +47,65 @@ void QURibbonBar::setShortcut(QToolButton *w, const QKeySequence &key) {
 	w->setToolTip(QString("%1 (%2)").arg(w->toolTip()).arg(key.toString()));
 }
 
-void QURibbonBar::keyPressEvent(QKeyEvent *event) {
-	logSrv->add("Key press!", QU::Information);
-	QTabWidget::keyPressEvent(event);
+QSize QURibbonBar::sizeHint() const {
+	if(menuHidden())
+		return tabBar()->sizeHint();// + QSize(0, 5);
+	else
+		return QTabWidget::sizeHint();
+}
+
+void QURibbonBar::setMenuHidden(bool hide) {
+	_menuHidden = hide;
+
+	if(menuHidden()) {
+		useHiddenStyle();
+		hideBtn->setIcon(QIcon(":/bullets/bullet_add.png"));
+		hideBtn->setToolTip(tr("Show full menu."));
+	} else {
+		useVisibleStyle();
+		hideBtn->setIcon(QIcon(":/bullets/bullet_remove.png"));
+		hideBtn->setToolTip(tr("Show small menu."));
+	}
+
+	setGeometry(x(), y(), width(), sizeHint().height());
+}
+
+void QURibbonBar::toggleMenuHidden() {
+	setMenuHidden(!menuHidden());
+}
+
+void QURibbonBar::useVisibleStyle() {
+	QStringList styles;
+
+	styles << "QTabWidget::pane {border-bottom: 1px solid #C2C7CB; border-top: 1px solid #C2C7CB; margin-bottom: 3px; background-color: white}";
+	styles << "QTabBar::tab {background: transparent; padding: 0.2em 0.9em; color: #333333; border: 1px solid transparent}";
+//	styles << "QTabWidget::tab-bar {left: 5px}";
+	styles << "QTabBar::tab:selected {color: black; background: white; border-top-left-radius: 4px; border-top-right-radius: 4px; border: 1px solid #C4C4C3; border-bottom-color: white}";
+	styles << "QGroupBox {padding: 2px 3px 6px 3px; margin: 0 2px 4px 2px; border: 0; font-size: 7pt; border-bottom: 1px solid #C2C7CB; border-left: 1px solid #C2C7CB; border-right: 1px solid #C2C7CB; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; color: #C2C7CB}";
+	styles << "QGroupBox::title {subcontrol-position: bottom center; subcontrol-origin: margin}";
+
+	setStyleSheet(styles.join(" "));
+}
+
+void QURibbonBar::useHiddenStyle() {
+	QStringList styles;
+
+	styles << "QTabWidget::pane {border-bottom: 1px solid transparent; border-top: 1px solid transparent; margin-bottom: 3px; background-color: transparent}";
+	styles << "QGroupBox {padding: 2px 3px 6px 3px; margin: 0 2px 4px 2px; border: 0; font-size: 7pt; border-bottom: 1px solid #C2C7CB; border-left: 1px solid #C2C7CB; border-right: 1px solid #C2C7CB; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; color: #C2C7CB}";
+	styles << "QGroupBox::title {subcontrol-position: bottom center; subcontrol-origin: margin}";
+
+	styles << "QTabBar::tab {background: transparent; padding: 0.2em 0.9em; color: #333333; border: 1px solid transparent}";
+//	styles << "QTabWidget::tab-bar {left: 5px}";
+	styles << "QTabBar::tab:selected {background: transparent; color: #333333; border: 1px solid transparent; border-bottom-style: none}";
+//	styles << "QTabBar::tab:selected {border-top-left-radius: 4px; border-top-right-radius: 4px; border: 1px solid #C4C4C3; }";
+	styles << "QTabBar::tab:hover {color: black; border-radius: 4px; background: white; border: 1px solid #C4C4C3};";
+
+	setStyleSheet(styles.join(" "));
+}
+
+void QURibbonBar::changeCurrentTab(int) {
+	setMenuHidden(false);
+}
+
+void QURibbonBar::mousePressEvent(QMouseEvent *event) {
 }

@@ -44,6 +44,8 @@
         <file>minus_small.png</file>
         <file>plus_small.png</file>
         <file>bullet_black.png</file>
+        <file>bullet_add.png</file>
+        <file>bullet_remove.png</file>
     </qresource>
     <qresource prefix="/control" >
         <file>playlist_to.png</file>
