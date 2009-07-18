@@ -6,7 +6,7 @@
 
 #include "ui_QURibbonBar.h"
 
-class QMouseEventS;
+class QEvent;
 
 class QURibbonBar : public QTabWidget, public Ui::QURibbonBar {
 	Q_OBJECT
@@ -29,7 +29,7 @@ public slots:
 	void changeCurrentTab(int);
 
 protected:
-	virtual void mousePressEvent(QMouseEvent *event);
+	virtual bool eventFilter(QObject *target, QEvent *event);
 
 	void useVisibleStyle();
 	void useHiddenStyle();

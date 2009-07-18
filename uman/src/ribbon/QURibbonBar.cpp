@@ -4,10 +4,12 @@
 #include <QToolButton>
 #include <QIcon>
 #include <QHBoxLayout>
-#include <QMouseEvent>
+#include <QShortcutEvent>
 
 QURibbonBar::QURibbonBar(QWidget *parent): QTabWidget(parent), _menuHidden(false) {
 	setupUi(this);
+
+	tabBar()->installEventFilter(this);
 
 	useVisibleStyle();
 
@@ -55,6 +57,9 @@ QSize QURibbonBar::sizeHint() const {
 }
 
 void QURibbonBar::setMenuHidden(bool hide) {
+	if(_menuHidden == hide)
+		return;
+
 	_menuHidden = hide;
 
 	if(menuHidden()) {
@@ -107,5 +112,11 @@ void QURibbonBar::changeCurrentTab(int) {
 	setMenuHidden(false);
 }
 
-void QURibbonBar::mousePressEvent(QMouseEvent *event) {
+bool QURibbonBar::eventFilter(QObject *target, QEvent *event) {
+	if(target == tabBar()) {
+		if(event->type() == QEvent::MouseButtonPress) {
+			setMenuHidden(false);
+		}
+	}
+	return QTabWidget::eventFilter(target, event);
 }
