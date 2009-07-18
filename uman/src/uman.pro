@@ -9,8 +9,8 @@ QT += core \
     gui \
     xml \
     network
-CONFIG -= debug_and_release
-CONFIG += debug
+#CONFIG -= debug_and_release
+#CONFIG += debug
 HEADERS += plugins/QUPluginDialog.h \
     plugins/QUTaskPlugin.h \
     plugins/QUTaskFactoryProxy.h \

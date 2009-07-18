@@ -113,11 +113,19 @@ void QUSongDatabase::reload() {
 	emit databaseReloaded();
 }
 
+/*!
+ * Do not pass song changes to the ouside. This could be useful if many changes
+ * are made to a song und unnessecary updates should be skipped.
+ */
 void QUSongDatabase::ignoreChangesForSong(QUSongFile *song) {
+	foreach(QUSongFile *friendSong, song->friends())
+		disconnect(friendSong, SIGNAL(dataChanged()), this, SLOT(signalSongChanged()));
 	disconnect(song, SIGNAL(dataChanged()), this, SLOT(signalSongChanged()));
 }
 
 void QUSongDatabase::processChangesForSong(QUSongFile *song) {
+	foreach(QUSongFile *friendSong, song->friends())
+		connect(friendSong, SIGNAL(dataChanged()), this, SLOT(signalSongChanged()));
 	connect(song, SIGNAL(dataChanged()), this, SLOT(signalSongChanged()));
 }
 

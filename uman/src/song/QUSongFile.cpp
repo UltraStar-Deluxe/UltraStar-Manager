@@ -659,7 +659,8 @@ void QUSongFile::renameSongDir(const QString &newName) {
 	}
 
 	dir.cd(newName);
-	_fi.setFile(dir.path() + "/" + _fi.fileName());
+	setFile(dir.absoluteFilePath(_fi.fileName()), false);
+	emit songPathChanged(_fi.filePath());
 
 	logSrv->add(QString(tr("Song directory renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
 }
@@ -676,7 +677,7 @@ void QUSongFile::renameSongTxt(const QString &newName) {
 		return;
 	}
 
-	this->setFile(_fi.dir().path() + "/" + newName, false);
+	setFile(_fi.dir().absoluteFilePath(newName), false);
 	emit songRenamed(newName);
 
 	logSrv->add(QString(tr("Song file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
@@ -981,6 +982,9 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 		logSrv->add(QString(tr("Could not create new song path: \"%1\"")).arg(newRelativePath), QU::Warning);
 		return;
 	}
+
+	// avoid changed messages
+	monty->watcher()->removePath(_fi.filePath());
 
 	// move files to new location
 	bool allFilesCopied = true;

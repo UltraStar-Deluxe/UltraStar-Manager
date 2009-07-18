@@ -701,7 +701,7 @@ void QUMainWindow::refreshAllSongs(bool force) {
  * Update the details of the selected songs. Disconnect to avoid dead-lock.
  */
 void QUMainWindow::updateDetails() {
-	logSrv->add("updateDetails", QU::Error);
+//	logSrv->add("updateDetails", QU::Error);
 
 	disconnect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(editSongSetDetail(QTableWidgetItem*)));
 	detailsTable->updateValueColumn(songTree->selectedSongItems());
@@ -832,6 +832,8 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 	QString tag = detailItem->tag();
 	QString text = detailItem->text();
 
+	disconnect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateDetails()));
+
 	songTree->clearSelection();
 
 	// save changes for each song
@@ -842,10 +844,13 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 		songItem->song()->setInfo(tag, text);
 		songItem->song()->save();
 
-		songItem->update();
+//		songItem->update();
 	}
 	songTree->restoreSelection(selectedItems);
 	songTree->scrollToItem(songTree->currentItem(), QAbstractItemView::EnsureVisible);
+
+	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateDetails()));
+	updateDetails();
 }
 
 /*!
@@ -872,7 +877,9 @@ void QUMainWindow::editSongApplyTasks() {
 		dlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
 		if(dlg.cancelled()) break;
 
+		songDB->ignoreChangesForSong(song);
 		taskList->doTasksOn(song);
+		songDB->processChangesForSong(song);
 
 		song->save();
 
