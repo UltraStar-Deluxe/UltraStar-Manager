@@ -4,7 +4,7 @@
 #include <QToolButton>
 #include <QIcon>
 #include <QHBoxLayout>
-#include <QShortcutEvent>
+#include <QAction>
 
 QURibbonBar::QURibbonBar(QWidget *parent): QTabWidget(parent), _menuHidden(false) {
 	setupUi(this);
@@ -44,8 +44,13 @@ QURibbonBar::QURibbonBar(QWidget *parent): QTabWidget(parent), _menuHidden(false
 	setCornerWidget(hideBtn, Qt::TopLeftCorner);
 }
 
-void QURibbonBar::setShortcut(QToolButton *w, const QKeySequence &key) {
+void QURibbonBar::setShortcut(QToolButton *w, const QKeySequence &key, QObject *parent) {
 	w->setShortcut(key);
+//	QAction *a = new QAction(parent);
+//	a->setShortcut(key);
+//	a->setShortcutContext(Qt::ApplicationShortcut);
+//	connect(a, SIGNAL(triggered(bool)), w, SLOT(click()));
+//	_actions.append(a);
 	w->setToolTip(QString("%1 (%2)").arg(w->toolTip()).arg(key.toString()));
 }
 
