@@ -5,6 +5,8 @@
 QUPlayListItem::QUPlayListItem(QUPlaylistEntry *entry, QListWidget *parent): QListWidgetItem(parent) {
 	_entry = entry;
 	updateData();
+
+	connect(entry, SIGNAL(disconnected()), this, SLOT(updateData()));
 }
 
 /*!

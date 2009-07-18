@@ -21,10 +21,16 @@ public:
 	void setLinks(const QString &artistLink, const QString &titleLink);
 
 	void connectSong(QUSongFile* song);
-	void connectSong(const QList<QUSongFile*> &songs);
+	void connectSong();
 	void disconnectSong() { _song = 0; }
 
 	bool hasUnsavedChanges() const;
+
+public slots:
+	void disconnectSong(QUSongFile *song);
+
+signals:
+	void disconnected();
 
 private:
 	QUSongFile *_song;

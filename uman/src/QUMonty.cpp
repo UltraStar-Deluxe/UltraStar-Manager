@@ -1,5 +1,6 @@
 #include "QUMonty.h"
 #include "QULogService.h"
+#include "QUSongDatabase.h"
 
 #include <QFile>
 #include <QSettings>
@@ -69,20 +70,17 @@ QPixmap QUMonty::pic(QUMonty::Status status) {
 	}
 }
 
-QString QUMonty::welcomeMsg(int numberOfSongs) {
-	if(numberOfSongs >= 0)
-		songCount = numberOfSongs;
-
+QString QUMonty::welcomeMsg() {
 	QString welcomeStr(QObject::tr("Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the <i>hide</i> button below and I will disappear for now.<br>"
 				"<br>"
 				"You have a nice collection of <b>%1 songs</b> there. Are they managed well yet?"));
 
-	return welcomeStr.arg(songCount);
+	return welcomeStr.arg(songDB->songCount());
 }
 
 void QUMonty::talk(QLabel *montyLbl, QLabel *msgLbl) {
 	montyLbl->setPixmap(pic((QUMonty::Status)(qrand() % 4)));
-	msgLbl->setText(messages[qrand() % messages.size()].arg(songCount));
+	msgLbl->setText(messages[qrand() % messages.size()].arg(songDB->songCount()));
 }
 
 /*!
@@ -118,7 +116,7 @@ void QUMonty::answer(QLabel *montyLbl, QLabel *msgLbl, const QString &question, 
 	}
 
 	montyLbl->setPixmap(pic((QUMonty::Status)(qrand() % 4)));
-	msgLbl->setText(answers.first().arg(songCount));
+	msgLbl->setText(answers.first().arg(songDB->songCount()));
 }
 
 bool QUMonty::autoSaveEnabled() const {

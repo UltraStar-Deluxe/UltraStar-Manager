@@ -21,7 +21,7 @@ public:
 	QUPlaylistFile(const QString &filePath, QObject *parent = 0);
 	~QUPlaylistFile();
 
-	void connectSongs(const QList<QUSongFile*> &songs);
+	void connectSongs();
 	void disconnectSongs();
 
 	static QDir dir();

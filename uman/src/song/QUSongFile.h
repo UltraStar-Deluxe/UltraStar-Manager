@@ -175,7 +175,6 @@ signals:
 	void dataChanged(const QString &tag, const QString &value);
 	void songRenamed(const QString &fileName);
 	void songPathChanged(const QString &filePath);
-	void externalSongFileChangeDetected(QUSongFile *song);
 
 private:
 	QFileInfo _fi;

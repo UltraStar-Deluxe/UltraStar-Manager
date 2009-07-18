@@ -9,7 +9,8 @@ QT += core \
     gui \
     xml \
     network
-CONFIG -= debug
+CONFIG -= debug_and_release
+CONFIG += debug
 HEADERS += plugins/QUPluginDialog.h \
     plugins/QUTaskPlugin.h \
     plugins/QUTaskFactoryProxy.h \
@@ -24,6 +25,7 @@ HEADERS += plugins/QUPluginDialog.h \
     song/QUSongInterface.h \
     song/QUSongFile.h \
     song/QUSongLine.h \
+	song/QUSongDatabase.h \
     mediaplayer/QUAutoCue.h \
     mediaplayer/QUMediaPlayer.h \
     support/QULogService.h \
@@ -110,7 +112,7 @@ SOURCES += plugins/QUPluginDialog.cpp \
     playlist/QUPlaylistFile.cpp \
     playlist/QUPlaylistEntry.cpp \
     playlist/QUPlayListItem.cpp \
-    playlist/QUPlayList.cpp \
+	playlist/QUPlayList.cpp \
     preview/QUPreviewTree.cpp \
     report/QUSongFileData.cpp \
     report/QUPlainTextReport.cpp \
@@ -130,6 +132,7 @@ SOURCES += plugins/QUPluginDialog.cpp \
     songdetails/QUDetailItem.cpp \
     song/QUSongLine.cpp \
     song/QUSongFile.cpp \
+	song/QUSongDatabase.cpp \
     tasks/QUTaskList.cpp \
     tasks/QUTaskItem.cpp \
     ribbon/QURibbonBar.cpp \

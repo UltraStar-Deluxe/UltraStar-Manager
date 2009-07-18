@@ -26,8 +26,6 @@ public:
 	bool hasUnsavedChanges() const;
 	bool hasHiddenItems() const { return !_hiddenItems.isEmpty(); }
 
-	void clear();
-
 	QList<QUSongFile*> selectedSongs();
 	QList<QUSongItem*> selectedSongItems();
 	QList<QUSongFile*> visibleSongs();
@@ -39,6 +37,11 @@ public:
 	void restoreSelection(const QList<QUSongItem*> &selectedItems);
 
 public slots:
+	void clear();
+	void addItem(QUSongFile *song);
+	void updateItem(QUSongFile *song);
+	void resizeAndSort();
+
 //	void refreshSelectedItems();
 	void resizeToContents();
 	void saveSelectedSongs();
@@ -48,10 +51,8 @@ public slots:
 	void filterDuplicates();
 
 signals:
-	void songCreated(QUSongFile *song);
 	void songToPlaylistRequested(QUSongFile *song);
 	void coversFromAmazonRequested(QList<QUSongItem*> items);
-	void deleteSongRequested(QUSongFile *song);
 	void coverFlowRequested(QList<QUSongItem*> items);
 	void backgroundFlowRequested(QList<QUSongItem*> items);
 

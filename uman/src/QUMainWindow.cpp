@@ -33,6 +33,7 @@
 
 #include "QUMonty.h"
 #include "QULogService.h"
+#include "QUSongDatabase.h"
 
 #include "QUDropDownDelegate.h"
 #include "QUDetailsTable.h"
@@ -66,6 +67,8 @@
 QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	setupUi(this);
 
+	songDB->setParentWidget(this);
+
 	initWindow();
 //	initMenu();
 	initRibbonBar();
@@ -78,7 +81,7 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 
 	initMonty();
 
-	playlistArea->refreshAllPlaylists(&(this->_songs));
+	playlistArea->refreshAllPlaylists();
 }
 
 /*!
@@ -460,13 +463,13 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(itemExpanded(QTreeWidgetItem*)), songTree, SLOT(resizeToContents()));
 	connect(songTree, SIGNAL(itemCollapsed(QTreeWidgetItem*)), songTree, SLOT(resizeToContents()));
 
-	connect(songTree, SIGNAL(songCreated(QUSongFile*)), this, SLOT(appendSong(QUSongFile*)));
+//	connect(songTree, SIGNAL(songCreated(QUSongFile*)), this, SLOT(appendSong(QUSongFile*)));
+//	connect(songTree, SIGNAL(deleteSongRequested(QUSongFile*)), this, SLOT(deleteSong(QUSongFile*)));
 
 	connect(songTree, SIGNAL(songToPlaylistRequested(QUSongFile*)), playlistArea, SLOT(addSongToCurrentPlaylist(QUSongFile*)));
 	connect(songTree, SIGNAL(coversFromAmazonRequested(QList<QUSongItem*>)), this, SLOT(getCoversFromAmazon(QList<QUSongItem*>)));
 	connect(songTree, SIGNAL(coverFlowRequested(QList<QUSongItem*>)), this, SLOT(showCoverSlideShowDialog(QList<QUSongItem*>)));
 	connect(songTree, SIGNAL(backgroundFlowRequested(QList<QUSongItem*>)), this, SLOT(showBackgroundSlideShowDialog(QList<QUSongItem*>)));
-	connect(songTree, SIGNAL(deleteSongRequested(QUSongFile*)), this, SLOT(deleteSong(QUSongFile*)));
 
 	connect(songTree, SIGNAL(showLyricsRequested(QUSongFile*)), this, SLOT(showLyrics(QUSongFile*)));
 	connect(songTree, SIGNAL(editLyricsRequested(QUSongFile*)), this, SLOT(editSongLyrics(QUSongFile*)));
@@ -547,7 +550,7 @@ void QUMainWindow::initEventLog() {
 
 void QUMainWindow::initMonty() {
 	montyArea->montyLbl->setPixmap(monty->pic(QUMonty::seated));
-	montyArea->helpLbl->setText(monty->welcomeMsg(_songs.size()));
+	montyArea->helpLbl->setText(monty->welcomeMsg());
 
 	connect(montyArea->hideMontyBtn, SIGNAL(clicked()), montyArea, SLOT(hide()));
 	connect(montyArea->talkMontyBtn, SIGNAL(clicked()), this, SLOT(montyTalkNow()));
@@ -575,48 +578,48 @@ void QUMainWindow::initMonty() {
 	connect(montyArea->lineEdit, SIGNAL(returnPressed()), this, SLOT(montyAnswer()));
 }
 
-void QUMainWindow::appendSong(QUSongFile *song) {
-	_songs.append(song);
-
-	// connect changes in song files with an update in the playlist area
-	connect(song, SIGNAL(dataChanged()), playlistArea, SLOT(update()));
-	// react to changes
-	connect(song, SIGNAL(externalSongFileChangeDetected(QUSongFile*)), this, SLOT(processExternalSongFileChange(QUSongFile*)));
-
-	//TODO: What about friends?
-}
-
-/*!
- * Deletes the given song (the whole directory). Song item has to be removed
- * from song tree before you call this function!
- */
-void QUMainWindow::deleteSong(QUSongFile *song) {
-	QDir dir(song->songFileInfo().dir());
-	QString artist = song->artist();
-	QString title = song->title();
-
-	QFileInfoList fiList = dir.entryInfoList(QStringList("*.*"), QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot, QDir::Name);
-
-	foreach(QFileInfo fi, fiList) {
-		if(!QFile::remove(fi.filePath()))
-			logSrv->add(QString(tr("Could NOT delete file: \"%1\"")).arg(fi.filePath()), QU::Warning);
-		else
-			logSrv->add(QString(tr("File was deleted successfully: \"%1\"")).arg(fi.filePath()), QU::Information);
-	}
-
-	QString dirName = dir.dirName();
-	dir.cdUp();
-
-	if(!dir.rmdir(dirName))
-		logSrv->add(QString(tr("Could NOT delete directory: \"%1\". Maybe it is not empty.")).arg(song->songFileInfo().path()), QU::Warning);
-	else
-		logSrv->add(QString(tr("Directory was deleted successfully: \"%1\"")).arg(song->songFileInfo().path()), QU::Information);
-
-	_songs.removeAll(song);
-	delete song;
-
-	logSrv->add(QString(tr("Song was deleted successfully: \"%1 - %2\"")).arg(artist).arg(title), QU::Information);
-}
+//void QUMainWindow::appendSong(QUSongFile *song) {
+//	_songs.append(song);
+//
+//	// connect changes in song files with an update in the playlist area
+//	connect(song, SIGNAL(dataChanged()), playlistArea, SLOT(update()));
+//	// react to changes
+//	connect(song, SIGNAL(externalSongFileChangeDetected(QUSongFile*)), this, SLOT(processExternalSongFileChange(QUSongFile*)));
+//
+//	//TODO: What about friends?
+//}
+//
+///*!
+// * Deletes the given song (the whole directory). Song item has to be removed
+// * from song tree before you call this function!
+// */
+//void QUMainWindow::deleteSong(QUSongFile *song) {
+//	QDir dir(song->songFileInfo().dir());
+//	QString artist = song->artist();
+//	QString title = song->title();
+//
+//	QFileInfoList fiList = dir.entryInfoList(QStringList("*.*"), QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot, QDir::Name);
+//
+//	foreach(QFileInfo fi, fiList) {
+//		if(!QFile::remove(fi.filePath()))
+//			logSrv->add(QString(tr("Could NOT delete file: \"%1\"")).arg(fi.filePath()), QU::Warning);
+//		else
+//			logSrv->add(QString(tr("File was deleted successfully: \"%1\"")).arg(fi.filePath()), QU::Information);
+//	}
+//
+//	QString dirName = dir.dirName();
+//	dir.cdUp();
+//
+//	if(!dir.rmdir(dirName))
+//		logSrv->add(QString(tr("Could NOT delete directory: \"%1\". Maybe it is not empty.")).arg(song->songFileInfo().path()), QU::Warning);
+//	else
+//		logSrv->add(QString(tr("Directory was deleted successfully: \"%1\"")).arg(song->songFileInfo().path()), QU::Information);
+//
+//	_songs.removeAll(song);
+//	delete song;
+//
+//	logSrv->add(QString(tr("Song was deleted successfully: \"%1 - %2\"")).arg(artist).arg(title), QU::Information);
+//}
 
 /*!
  * Re-reads all possible song files and builds a new song tree.
@@ -637,100 +640,69 @@ void QUMainWindow::refreshAllSongs(bool force) {
 
 	// -------------------------------------
 
-	playlistArea->disconnectPlaylists();
-
-	songTree->clear();
+	songDB->reload();
 	updateDetails();
-
-	qDeleteAll(_songs);
-	_songs.clear();
-
-	createSongFiles();
-	monty->setSongCount(_songs.size()); // sometimes, Monty talks about your song count...
-
 	updatePreviewTree();
-	playlistArea->updateAll();
 }
 
-/*!
- * Creates all instances of QUSongFile to fill the song tree. Fills the song tree.
- * \sa CreateSongTree();
- */
-void QUMainWindow::createSongFiles() {
-	QList<QDir> dirList;
-	dirList.append(QDir(QU::BaseDir));
-
-	// create a list of all sub-directories
-	this->readSongDir(dirList);
-	// initialize the header of the song tree
-	songTree->initHorizontalHeader();
-
-	QUProgressDialog dlg(tr("Reading song files..."), dirList.size(), this);
-	dlg.setPixmap(":/types/folder.png");
-	dlg.show();
-
-	foreach(QDir dir, dirList) {
-		QFileInfoList songFiList = dir.entryInfoList(QUSongSupport::allowedSongFiles(), QDir::Files, QDir::Name);
-		qStableSort(songFiList.begin(), songFiList.end(), QU::fileTypeLessThan);
-
-		dlg.update(dir.dirName());
-		if(dlg.cancelled()) break;
-
-		QUSongFile *newSong = 0;
-
-		foreach(QFileInfo fi, songFiList) {
-			if( QUSongSupport::allowedLicenseFiles().contains(fi.fileName(), Qt::CaseInsensitive) )
-				continue; // skip license files (txt)
-
-			if(!newSong)
-				newSong = new QUSongFile(fi.filePath());
-			else { // found a friend!
-				QUSongFile *friendSong = new QUSongFile(fi.filePath());
-				newSong->addFriend(friendSong);
-				// see "this->appendSong(...)"
-				connect(friendSong, SIGNAL(dataChanged()), playlistArea, SLOT(update()));
-				connect(friendSong, SIGNAL(externalSongFileChangeDetected(QUSongFile*)), this, SLOT(processExternalSongFileChange(QUSongFile*)));
-			}
-		}
-
-		if(newSong) { // some song found
-			this->appendSong(newSong);
-			songTree->addTopLevelItem(new QUSongItem(newSong, true));
-		}
-	}
-
-	// finish song tree initialization
-	songTree->resizeToContents();
-	songTree->sortItems(FOLDER_COLUMN, Qt::AscendingOrder);
-}
-
-/*!
- * Reads recursively all available directories and puts them in the dirList.
- */
-void QUMainWindow::readSongDir(QList<QDir> &dirList) {
-	if(dirList.isEmpty())
-		return;
-
-	if(dirList.last().entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::NoSymLinks, QDir::Name).isEmpty()) {
-		return;
-	} else {
-		QDir thisDir(dirList.last());
-		QStringList subDirs = dirList.last().entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::NoSymLinks, QDir::Name);
-
-		foreach(QString dir, subDirs) {
-			QDir newDir(thisDir);
-			newDir.cd(dir);
-
-			dirList.append(newDir);
-			this->readSongDir(dirList);
-		}
-	}
-}
+///*!
+// * Creates all instances of QUSongFile to fill the song tree. Fills the song tree.
+// * \sa CreateSongTree();
+// */
+//void QUMainWindow::createSongFiles() {
+//	QList<QDir> dirList;
+//	dirList.append(QDir(QU::BaseDir));
+//
+//	// create a list of all sub-directories
+//	this->readSongDir(dirList);
+//	// initialize the header of the song tree
+//	songTree->initHorizontalHeader();
+//
+//	QUProgressDialog dlg(tr("Reading song files..."), dirList.size(), this);
+//	dlg.setPixmap(":/types/folder.png");
+//	dlg.show();
+//
+//	foreach(QDir dir, dirList) {
+//		QFileInfoList songFiList = dir.entryInfoList(QUSongSupport::allowedSongFiles(), QDir::Files, QDir::Name);
+//		qStableSort(songFiList.begin(), songFiList.end(), QU::fileTypeLessThan);
+//
+//		dlg.update(dir.dirName());
+//		if(dlg.cancelled()) break;
+//
+//		QUSongFile *newSong = 0;
+//
+//		foreach(QFileInfo fi, songFiList) {
+//			if( QUSongSupport::allowedLicenseFiles().contains(fi.fileName(), Qt::CaseInsensitive) )
+//				continue; // skip license files (txt)
+//
+//			if(!newSong)
+//				newSong = new QUSongFile(fi.filePath());
+//			else { // found a friend!
+//				QUSongFile *friendSong = new QUSongFile(fi.filePath());
+//				newSong->addFriend(friendSong);
+//				// see "this->appendSong(...)"
+//				connect(friendSong, SIGNAL(dataChanged()), playlistArea, SLOT(update()));
+//				connect(friendSong, SIGNAL(externalSongFileChangeDetected(QUSongFile*)), this, SLOT(processExternalSongFileChange(QUSongFile*)));
+//			}
+//		}
+//
+//		if(newSong) { // some song found
+//			this->appendSong(newSong);
+//			songTree->addTopLevelItem(new QUSongItem(newSong, true));
+//		}
+//	}
+//
+//	// finish song tree initialization
+//	songTree->resizeToContents();
+//	songTree->sortItems(FOLDER_COLUMN, Qt::AscendingOrder);
+//}
 
 /*!
  * Update the details of the selected songs. Disconnect to avoid dead-lock.
  */
 void QUMainWindow::updateDetails() {
+	logSrv->add("updateDetails", QU::Error);
+
 	disconnect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(editSongSetDetail(QTableWidgetItem*)));
 	detailsTable->updateValueColumn(songTree->selectedSongItems());
 	connect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(editSongSetDetail(QTableWidgetItem*)));
@@ -741,7 +713,7 @@ void QUMainWindow::updateDetails() {
  * song tree.
  */
 void QUMainWindow::updatePreviewTree() {
-	previewTree->setSongCount(_songs.size());
+	previewTree->setSongCount(songDB->songCount());
 	previewTree->setSelectedSongCount(songTree->currentItem() ? qMax(songTree->selectedItems().size(), 1) : songTree->selectedItems().size());
 	previewTree->setVisibleSongCount(songTree->topLevelItemCount());
 	previewTree->setHiddenSongCount(songTree->hiddenItemsCount());
@@ -954,6 +926,7 @@ void QUMainWindow::addLogMsg(const QString &msg, QU::MessageTypes type) {
 	case 1: lastItem->setIcon(QIcon(":/marks/error.png")); lastItem->setData(Qt::UserRole, "!"); break;
 	case 2: lastItem->setIcon(QIcon(":/marks/help.png")); lastItem->setData(Qt::UserRole, "?"); break;
 	case 3: lastItem->setIcon(QIcon(":/marks/disk.png")); lastItem->setData(Qt::UserRole, "S"); break;
+	case 4: lastItem->setIcon(QIcon(":/marks/cancel.png")); lastItem->setData(Qt::UserRole, "E"); break;
 	}
 
 }
@@ -1323,7 +1296,7 @@ void QUMainWindow::removeFilter() {
 }
 
 void QUMainWindow::reportCreate() {
-	QUReportDialog *dlg = new QUReportDialog(_songs, songTree->visibleSongs(), playlistArea->playlists(), this);
+	QUReportDialog *dlg = new QUReportDialog(songDB->songs(), songTree->visibleSongs(), playlistArea->playlists(), this);
 
 	dlg->exec();
 
@@ -1402,28 +1375,28 @@ void QUMainWindow::getCoversFromAmazon(QList<QUSongItem*> items) {
 	delete dlg;
 }
 
-/*!
- * Do everything to get back to a consistent state with the file system.
- */
-void QUMainWindow::processExternalSongFileChange(QUSongFile *song) {
-	if(song->hasUnsavedChanges()) {
-		logSrv->add(QString("INCONSISTENT STATE! The song \"%1 - %2\" has unsaved changes and its persistent song file \"%3\" was modified externally. Save your changes or rebuild the tree manually.").arg(song->artist()).arg(song->title()).arg(song->songFileInfo().filePath()), QU::Warning);
-		return;
-	}
-
-	foreach(QUSongItem *songItem, songTree->allSongItems()) {
-		if(songItem->song() == song or songItem->song()->isFriend(song)) {
-			song->updateCache();
-			songItem->update();
-			songTree->setCurrentItem(songItem);
-
-			updateDetails();
-			break;
-		}
-	}
-
-	logSrv->add(QString("Song file changed: \"%1\"").arg(song->songFileInfo().filePath()), QU::Information);
-}
+///*!
+// * Do everything to get back to a consistent state with the file system.
+// */
+//void QUMainWindow::processExternalSongFileChange(QUSongFile *song) {
+//	if(song->hasUnsavedChanges()) {
+//		logSrv->add(QString("INCONSISTENT STATE! The song \"%1 - %2\" has unsaved changes and its persistent song file \"%3\" was modified externally. Save your changes or rebuild the tree manually.").arg(song->artist()).arg(song->title()).arg(song->songFileInfo().filePath()), QU::Warning);
+//		return;
+//	}
+//
+//	foreach(QUSongItem *songItem, songTree->allSongItems()) {
+//		if(songItem->song() == song or songItem->song()->isFriend(song)) {
+//			song->updateCache();
+//			songItem->update();
+//			songTree->setCurrentItem(songItem);
+//
+//			updateDetails();
+//			break;
+//		}
+//	}
+//
+//	logSrv->add(QString("Song file changed: \"%1\"").arg(song->songFileInfo().filePath()), QU::Information);
+//}
 
 /*!
  * Select a path and copy all audio files of all songs to that path. (no public feature)
@@ -1434,11 +1407,11 @@ void QUMainWindow::copyAudioToPath() {
 	if(target.isEmpty())
 		return;
 
-	QUProgressDialog dlg(tr("Backup audio files..."), _songs.size(), this);
+	QUProgressDialog dlg(tr("Backup audio files..."), songDB->songCount(), this);
 	dlg.setPixmap(":/types/music.png");
 	dlg.show();
 
-	foreach(QUSongFile *song, _songs) {
+	foreach(QUSongFile *song, songDB->songs()) {
 		if(!song->hasMp3())
 			continue;
 
@@ -1461,7 +1434,7 @@ void QUMainWindow::sendSelectedSongsToMediaPlayer() {
 }
 
 void QUMainWindow::sendAllSongsToMediaPlayer() {
-	mediaplayer->setSongs(_songs);
+	mediaplayer->setSongs(songDB->songs());
 	mediaplayer->play();
 }
 

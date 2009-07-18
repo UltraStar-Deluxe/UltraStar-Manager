@@ -16,13 +16,12 @@ class QUPlaylistArea: public QWidget, private Ui::QUPlaylistArea {
 
 public:
 	QUPlaylistArea(QWidget *parent = 0);
-	~QUPlaylistArea();
 
 	QList<QUPlaylistFile*> playlists() const { return _playlists; }
 	QUPlaylistFile* currentPlaylist() const;
 
 public slots:
-	void refreshAllPlaylists(QList<QUSongFile*> *songRef);
+	void refreshAllPlaylists();
 	void disconnectPlaylists();
 
 	void update();
@@ -56,7 +55,6 @@ private slots:
 
 private:
 	QList<QUPlaylistFile*>  _playlists;
-	QList<QUSongFile*>     *_songsRef;
 
 	int currentPlaylistIndex(int index = -1) const;
 	void setAreaEnabled(bool enabled = true);

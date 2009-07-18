@@ -1,8 +1,10 @@
 #include "QURibbonBar.h"
+#include "QULogService.h"
 
 #include <QToolButton>
 #include <QIcon>
 #include <QHBoxLayout>
+#include <QKeyEvent>
 
 QURibbonBar::QURibbonBar(QWidget *parent) {
 	setupUi(this);
@@ -44,4 +46,9 @@ QURibbonBar::QURibbonBar(QWidget *parent) {
 void QURibbonBar::setShortcut(QToolButton *w, const QKeySequence &key) {
 	w->setShortcut(key);
 	w->setToolTip(QString("%1 (%2)").arg(w->toolTip()).arg(key.toString()));
+}
+
+void QURibbonBar::keyPressEvent(QKeyEvent *event) {
+	logSrv->add("Key press!", QU::Information);
+	QTabWidget::keyPressEvent(event);
 }

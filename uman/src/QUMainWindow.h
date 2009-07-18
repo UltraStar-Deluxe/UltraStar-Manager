@@ -39,11 +39,11 @@ private slots:
 	void initEventLog();
 	void initMonty();
 
-	void appendSong(QUSongFile *song);
-	void deleteSong(QUSongFile *song);
+//	void appendSong(QUSongFile *song);
+//	void deleteSong(QUSongFile *song);
 
 	void refreshAllSongs(bool force = false);
-	void createSongFiles();
+//	void createSongFiles();
 
 	void updateDetails();
 	void updatePreviewTree();
@@ -99,7 +99,7 @@ private slots:
 	void getCoversFromAmazon(QList<QUSongItem*> items);
 
 	// handle external changes
-	void processExternalSongFileChange(QUSongFile *song);
+//	void processExternalSongFileChange(QUSongFile *song);
 
 	// internal easter eggs
 	void copyAudioToPath();
@@ -121,15 +121,10 @@ private slots:
 	void showPathsDialog();
 
 private:
-	QList<QUSongFile*>     _songs;
-
 	QAction               *_noInfos;
 	QAction               *_noWarnings;
 	QAction               *_noSaveHints;
-
 	QURibbonBar           *_menu;
-
-	void readSongDir(QList<QDir> &dirList);
 };
 
 #endif // QUMAINWINDOW_H

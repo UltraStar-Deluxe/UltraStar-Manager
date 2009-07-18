@@ -25,7 +25,7 @@ public:
 	void initMessages(const QString &source);
 
 	QPixmap pic(QUMonty::Status status = QUMonty::normal);
-	QString welcomeMsg(int songCount = -1);
+	QString welcomeMsg();
 
 	void talk(QLabel *montyLbl, QLabel *msgLbl);
 	void answer(QLabel *montyLbl, QLabel *msgLbl, const QString &question = QString(), bool prev = false);
@@ -35,8 +35,6 @@ public:
 
 	void addUnsupportedTag(const QString &tag) { _unsupportedTags.append(tag); }
 	const QStringList& unsupportedTags() { _unsupportedTags.removeDuplicates(); return _unsupportedTags; }
-
-	void setSongCount(int c) { songCount = c; }
 
 	bool autoSaveEnabled() const;
 
@@ -50,7 +48,6 @@ protected:
 private:
 	static QUMonty* _instance;
 
-	int songCount;
 	QStringList messages;
 	QStringList _genres;
 	QStringList _languages;

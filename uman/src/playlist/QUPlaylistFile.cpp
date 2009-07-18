@@ -51,9 +51,9 @@ QUPlaylistFile::~QUPlaylistFile() {
  * Find proper songs for this playlist. All songs has to be loaded for this operation
  * to succeed.
  */
-void QUPlaylistFile::connectSongs(const QList<QUSongFile*> &songs) {
+void QUPlaylistFile::connectSongs() {
 	foreach(QUPlaylistEntry *entry, _playlist) {
-		entry->connectSong(songs);
+		entry->connectSong();
 	}
 }
 
@@ -112,7 +112,7 @@ bool QUPlaylistFile::save() {
 	file.write(QString("#%1:\n").arg(SONGS_TAG).toLocal8Bit());
 	foreach(QUPlaylistEntry *entry, _playlist) {
 		if(!entry->song())
-			logSrv->add(QString(tr("Warning! The playlist entry \"%1 - %2\" may NOT be found by UltraStar!")).arg(entry->artistLink()).arg(entry->titleLink()), QU::Warning);
+			logSrv->add(QString(tr("Warning! The playlist entry \"%1 - %2\" will NOT be found by UltraStar!")).arg(entry->artistLink()).arg(entry->titleLink()), QU::Warning);
 		else
 			entry->setLinks(entry->song()->artist(), entry->song()->title());
 

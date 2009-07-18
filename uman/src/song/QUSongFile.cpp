@@ -1,6 +1,7 @@
 #include "QUSongFile.h"
 #include "QUMonty.h"
 #include "QULogService.h"
+#include "QUSongDatabase.h"
 
 #include <QByteArray>
 #include <QVariant>
@@ -158,6 +159,8 @@ bool QUSongFile::updateCache() {
 		return false;
 	}
 
+	songDB->ignoreChangesForSong(this);
+
 	// clear contents
 	_footer.clear();
 	_lyrics.clear();
@@ -216,6 +219,7 @@ bool QUSongFile::updateCache() {
 
 	_file.close();
 
+	songDB->processChangesForSong(this);
 	return true;
 }
 
@@ -1080,7 +1084,15 @@ void QUSongFile::songFileChanged(const QString &filePath) {
 	if(_fi.filePath() != filePath)
 		return;
 
-	emit externalSongFileChangeDetected(this);
+	if(hasUnsavedChanges()) {
+		logSrv->add(QString("INCONSISTENT STATE! The song \"%1 - %2\" has unsaved changes and its persistent song file \"%3\" was modified externally. Save your changes or rebuild the tree manually.").arg(artist()).arg(title()).arg(songFileInfo().filePath()), QU::Warning);
+		return;
+	}
+
+	updateCache();
+
+	logSrv->add(QString("Song file changed: \"%1\"").arg(songFileInfo().filePath()), QU::Information);
+	emit dataChanged();
 }
 
 /*!

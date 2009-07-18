@@ -138,8 +138,8 @@ NOT SORTED
 * you cannot sort after a custom tag column in the report
 * Uninstaller does not delete
   > "non-standard" tasks
-* broken gif-support for amazon cover files
-! update playlists if you delete a song -> crash on exit
+! update playlists if you delete a song
+  > crash on save
 * external song file changes will be detected twice for primary song
   > friend songs seem to work fine
 ! QDesktopServices seem not to work well... (cannot open MP3 or Video)
@@ -212,6 +212,8 @@ NEW STUFF
   > QCryptographicHash (md4, md5, sha1)
 * get a web-source for background pictures and videos
   > need an API like Amazon Associates Web Service (REST?)
+  > flickr
+  > last.fm
 ? get lyrics
   > http://lyricwiki.org/LyricWiki:REST
 * get more song information (e.g. #YEAR)
@@ -364,9 +366,10 @@ INTERNAL STUFF
   > new files...
 * read config.ini from ultrastar (->options?)
 * write some tests for basic song manipulating operations
-* write a model for songs (-> song database)
-! do not sublass QTreeWidget for task list
+! write a model for songs (-> song database)
+* do not sublass QTreeWidget for task list
   > compose a tree widget together with the slot buttons and remove code from main window
+! move code to monty area
 
 PROGRESS DIALOG
 * show remaining time only

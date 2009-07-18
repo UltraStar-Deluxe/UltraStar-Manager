@@ -3,6 +3,7 @@
 #include "QUProgressDialog.h"
 #include "QUMessageBox.h"
 #include "QULogService.h"
+#include "QUSongDatabase.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -13,6 +14,7 @@
 #include <QMessageBox>
 
 #include "QUSongSupport.h"
+#include "QUSongDatabase.h"
 
 QUPlaylistArea::QUPlaylistArea(QWidget *parent): QWidget(parent) {
 	setupUi(this);
@@ -28,12 +30,11 @@ QUPlaylistArea::QUPlaylistArea(QWidget *parent): QWidget(parent) {
 	connect(setPlaylistFolderBtn, SIGNAL(clicked()), this, SLOT(changePlaylistDir()));
 	connect(removePlaylistBtn, SIGNAL(clicked()), this, SLOT(removeCurrentPlaylist()));
 
+	connect(songDB, SIGNAL(databaseCleared()), this, SLOT(disconnectPlaylists()));
+	connect(songDB, SIGNAL(databaseReloaded()), this, SLOT(updateAll()));
+	connect(songDB, SIGNAL(songChanged(QUSongFile*)), this, SLOT(update()));
 
 	playlistCombo->view()->setTextElideMode(Qt::ElideRight);
-}
-
-QUPlaylistArea::~QUPlaylistArea() {
-	_songsRef = 0;
 }
 
 QUPlaylistFile* QUPlaylistArea::currentPlaylist() const {
@@ -50,18 +51,14 @@ void QUPlaylistArea::disconnectPlaylists() {
 
 	foreach(QUPlaylistFile *_playlist, _playlists) {
 		dlg.update(QString("%1 (%2)").arg(_playlist->name()).arg(_playlist->fileInfo().fileName()));
-
 		_playlist->disconnectSongs();
-		playlist->updateItems();
-		updatePlaylistCombo();
 	}
+
+	playlist->updateItems();
+	updatePlaylistCombo();
 }
 
-void QUPlaylistArea::refreshAllPlaylists(QList<QUSongFile*> *songsRef) {
-	// VERY IMPORTANT! Take a reference to the song list of the main window.
-	// Only a reading access is intended.
-	_songsRef = songsRef;
-
+void QUPlaylistArea::refreshAllPlaylists() {
 	// Clear all present playlist data.
 	playlistCombo->clear();
 	playlistEdit->clear();
@@ -100,7 +97,7 @@ void QUPlaylistArea::updateAll() {
 
 	foreach(QUPlaylistFile *_playlist, _playlists) {
 		dlg.update(QString("%1 (%2)").arg(_playlist->name()).arg(_playlist->fileInfo().fileName()));
-		_playlist->connectSongs(*_songsRef);
+		_playlist->connectSongs();
 	}
 
 	update();
@@ -193,7 +190,7 @@ void QUPlaylistArea::setCurrentPlaylist(int index) {
 	if(currentPlaylistIndex(index) < 0)
 		return;
 
-	_playlists.at(currentPlaylistIndex(index))->connectSongs(*_songsRef);
+	_playlists.at(currentPlaylistIndex(index))->connectSongs();
 
 	playlist->setItems(_playlists.at(currentPlaylistIndex(index)));
 	playlistEdit->setText(_playlists.at(currentPlaylistIndex(index))->name());
@@ -240,7 +237,7 @@ void QUPlaylistArea::updateCurrentPlaylistConnections() {
 		return;
 
 	// connect songs with playlist entries
-	_playlists.at(currentPlaylistIndex())->connectSongs(*_songsRef);
+	_playlists.at(currentPlaylistIndex())->connectSongs();
 
 	// update view
 	playlist->updateItems();
@@ -328,7 +325,7 @@ void QUPlaylistArea::addPlaylist(const QString &filePath) {
 	playlistCombo->model()->sort(0);
 
 	// set song connections for the first time of this playlist
-	newPlaylist->connectSongs(*_songsRef);
+	newPlaylist->connectSongs();
 }
 
 /*!
@@ -392,7 +389,7 @@ void QUPlaylistArea::changePlaylistDir() {
 	if(!newPath.isEmpty()) {
 		QUPlaylistFile::setDir(QDir(newPath));
 
-		refreshAllPlaylists(_songsRef);
+		refreshAllPlaylists();
 
 		logSrv->add(QString("Folder for playlists changed to: \"%1\"").arg(newPath), QU::Information);
 	}

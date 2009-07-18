@@ -1,9 +1,10 @@
 #include "QUPlaylistEntry.h"
+#include "QUSongDatabase.h"
 
 QUPlaylistEntry::QUPlaylistEntry(const QString &artist, const QString & title, QObject *parent):
 	QObject(parent), _song(0), _artistLink(artist), _titleLink(title)
 {
-
+	connect(songDB, SIGNAL(songDeleted(QUSongFile*)), this, SLOT(disconnectSong(QUSongFile*)));
 }
 
 void QUPlaylistEntry::setLinks(const QString &artistLink, const QString &titleLink) {
@@ -22,14 +23,13 @@ void QUPlaylistEntry::connectSong(QUSongFile* song) {
 }
 
 /*!
- * Looks for a proper song and connects it with this playlist entry. An old song
- * connection may be overwritten.
+ * Looks for a proper song and connects it with this playlist entry.
  */
-void QUPlaylistEntry::connectSong(const QList<QUSongFile*> &songs) {
+void QUPlaylistEntry::connectSong() {
 	if(_song)
 		return; // disconnect a song first!, for performance issues (consider a big song DB...)
 
-	foreach(QUSongFile *song, songs) {
+	foreach(QUSongFile *song, songDB->songs()) {
 		this->connectSong(song);
 	}
 }
@@ -41,4 +41,11 @@ bool QUPlaylistEntry::hasUnsavedChanges() const {
 	return( song() and (
 			QString::compare(artistLink(), song()->artist(), Qt::CaseInsensitive) != 0 or
 			QString::compare(titleLink(),  song()->title(),  Qt::CaseInsensitive) != 0 ));
+}
+
+void QUPlaylistEntry::disconnectSong(QUSongFile *song) {
+	if(this->song() == song)
+		disconnectSong();
+
+	emit disconnected();
 }

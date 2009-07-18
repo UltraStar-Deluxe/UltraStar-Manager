@@ -5,6 +5,7 @@
 #include "QUMainWindow.h"
 #include "QUMessageBox.h"
 #include "QULogService.h"
+#include "QUSongDatabase.h"
 
 #include "QUMetaphoneString.h"
 
@@ -39,6 +40,12 @@ QUSongTree::QUSongTree(QWidget *parent): QTreeWidget(parent) {
 	// enable context menu for header
 	this->header()->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(this->header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showHeaderMenu(const QPoint&)));
+
+	// be aware of database changes
+	connect(songDB, SIGNAL(databaseCleared()), this, SLOT(clear()));
+	connect(songDB, SIGNAL(songAdded(QUSongFile*)), this, SLOT(addItem(QUSongFile*)));
+	connect(songDB, SIGNAL(databaseReloaded()), this, SLOT(resizeAndSort()));
+	connect(songDB, SIGNAL(songChanged(QUSongFile*)), this, SLOT(updateItem(QUSongFile*)));
 }
 
 QUMainWindow* QUSongTree::parentWindow() const {
@@ -166,32 +173,13 @@ bool QUSongTree::hasUnsavedChanges() const {
 }
 
 /*!
- * Overloaded to clear hidden items.
- */
-void QUSongTree::clear() {
-	qDeleteAll(_hiddenItems);
-	_hiddenItems.clear();
-	QTreeWidget::clear();
-}
-
-/*!
  * \returns All selected songs in the song tree.
  */
 QList<QUSongFile*> QUSongTree::selectedSongs() {
 	QList<QUSongFile*> songs;
 
-	if(this->selectedItems().isEmpty()) { // nothing selected? Try to use the current item...
-		QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->currentItem());
-		if(songItem)
-			songs.append(songItem->song());
-	} else { // look for all songs in the selection
-		foreach(QTreeWidgetItem *item, this->selectedItems()) {
-			QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
-			if(songItem)
-				songs.append(songItem->song());
-		}
-	}
-	// TODO: Refactor - melt with selectedSongItems()
+	foreach(QUSongItem *songItem, selectedSongItems())
+		songs.append(songItem->song());
 
 	return songs;
 }
@@ -286,6 +274,35 @@ void QUSongTree::saveUnsavedChanges() {
 
 //	restoreSelection(songItems);
 	emit itemSelectionChanged();
+}
+
+/*!
+ * Overloaded to clear hidden items.
+ */
+void QUSongTree::clear() {
+	qDeleteAll(_hiddenItems);
+	_hiddenItems.clear();
+	QTreeWidget::clear();
+}
+
+void QUSongTree::addItem(QUSongFile *song) {
+	addTopLevelItem(new QUSongItem(song, true));
+}
+
+void QUSongTree::updateItem(QUSongFile *song) {
+	foreach(QUSongItem *songItem, allSongItems()) {
+		if(songItem->song() == song or songItem->song()->isFriend(song)) {
+			songItem->update();
+			setCurrentItem(songItem);
+			emit itemSelectionChanged();
+			break;
+		}
+	}
+}
+
+void QUSongTree::resizeAndSort() {
+	resizeToContents();
+	sortItems(FOLDER_COLUMN, Qt::AscendingOrder);
 }
 
 /*!
@@ -862,7 +879,7 @@ void QUSongTree::requestDeleteSelectedSongs() {
 		QUSongFile *song = songItem->song();
 		delete takeTopLevelItem(indexOfTopLevelItem(songItem));
 
-		emit deleteSongRequested(song);
+		songDB->deleteSong(song);
 	}
 
 	emit itemSelectionChanged();
@@ -948,7 +965,7 @@ void QUSongTree::mergeSelectedSongs() {
 			QUSongFile *song = songItem->song();
 			delete takeTopLevelItem(indexOfTopLevelItem(songItem));
 
-			emit deleteSongRequested(song);
+			songDB->deleteSong(song);
 		} else {
 			logSrv->add(QString(tr("Not all files of \"%1 - %2\" were copied. Song will not be deleted. Merging failed.")).arg(songItem->song()->artist()).arg(songItem->song()->title()), QU::Warning);
 		}
@@ -1014,7 +1031,6 @@ bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
 		this->clearSelection();
 		item->setSelected(true);
 		this->scrollToItem(item, QAbstractItemView::EnsureVisible);
-//		emit itemSelectionChanged(); // update details
 	}
 
 	return true;
@@ -1028,7 +1044,7 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 	QUProgressDialog dlg(tr("Including new songs to database..."), urls.size(), this);
 	dlg.show();
 
-	QList<QUSongItem*> newItems;
+	QList<QUSongFile*> newSongs;
 
 	foreach(QUrl url, urls) {
 		QFileInfo fi(url.toLocalFile());
@@ -1049,6 +1065,7 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 		}
 
 		QUSongFile *newSong = new QUSongFile(fi.filePath());
+		newSongs.append(newSong);
 
 		createSongFolder(newSong);
 
@@ -1057,12 +1074,8 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 			continue;
 		}
 
-		QUSongItem *newItem = new QUSongItem(newSong, true);
-		this->addTopLevelItem(newItem);
-		newItems.append(newItem);
-
 		logSrv->add(QString(tr("New song included to your song collection: \"%1 - %2\".")).arg(newSong->artist()).arg(newSong->title()), QU::Information);
-		emit songCreated(newSong);
+		songDB->addSong(newSong);
 	}
 
 	// select new song items
@@ -1072,8 +1085,9 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 		disconnect(this, SIGNAL(itemSelectionChanged()), parentWindow, SLOT(updatePreviewTree()));
 	}
 
-	foreach(QUSongItem *songItem, newItems)
-		songItem->setSelected(true);
+	foreach(QUSongItem *songItem, visibleSongItems())
+		if(newSongs.contains(songItem->song()))
+			songItem->setSelected(true);
 
 	if(parentWindow) {
 		connect(this, SIGNAL(itemSelectionChanged()), parentWindow, SLOT(updateDetails()));
