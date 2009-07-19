@@ -49,6 +49,7 @@ private slots:
 	void updatePreviewTree();
 	void updateMergeBtn();
 	void updateTasksSlotButtons(int, const QString&);
+	void updateViewButtons();
 
 	void editSongSetFileLink(QTreeWidgetItem *item, int column);
 	void editSongSetDetail(QTableWidgetItem *item);

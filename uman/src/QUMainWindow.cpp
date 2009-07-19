@@ -182,13 +182,14 @@ void QUMainWindow::initConfig() {
 	_menu->onTopChk->setChecked(settings.value("alwaysOnTop", false).toBool());
 
 	this->restoreState(settings.value("windowState").toByteArray());
+	updateViewButtons();
 
-	_menu->detailsBtn->setChecked(detailsDock->isVisible() || !tabifiedDockWidgets(detailsDock).isEmpty());
-	_menu->tasksBtn->setChecked(tasksDock->isVisible() || !tabifiedDockWidgets(tasksDock).isEmpty());
-	_menu->playlistsBtn->setChecked(playlistDock->isVisible() || !tabifiedDockWidgets(playlistDock).isEmpty());
-	_menu->playerBtn->setChecked(mediaPlayerDock->isVisible() || !tabifiedDockWidgets(mediaPlayerDock).isEmpty());
-	_menu->fileInfoBtn->setChecked(previewDock->isVisible() || !tabifiedDockWidgets(previewDock).isEmpty());
-	_menu->eventLogBtn->setChecked(eventsDock->isVisible() || !tabifiedDockWidgets(eventsDock).isEmpty());
+	connect(detailsDock, SIGNAL(visibilityChanged(bool)), this, SLOT(updateViewButtons()));
+	connect(tasksDock, SIGNAL(visibilityChanged(bool)), this, SLOT(updateViewButtons()));
+	connect(playlistDock, SIGNAL(visibilityChanged(bool)), this, SLOT(updateViewButtons()));
+	connect(mediaPlayerDock, SIGNAL(visibilityChanged(bool)), this, SLOT(updateViewButtons()));
+	connect(previewDock, SIGNAL(visibilityChanged(bool)), this, SLOT(updateViewButtons()));
+	connect(eventsDock, SIGNAL(visibilityChanged(bool)), this, SLOT(updateViewButtons()));
 
 	if(QLocale(settings.value("language").toString()).language() == QLocale::English) {
 		_menu->langUsBtn->setChecked(true);
@@ -759,6 +760,15 @@ void QUMainWindow::updateTasksSlotButtons(int index, const QString& tooltip) {
 		case 2: tasksSlot3Btn->setToolTip(tooltip); break;
 		case 3: tasksSlot4Btn->setToolTip(tooltip); break;
 	}
+}
+
+void QUMainWindow::updateViewButtons() {
+	_menu->detailsBtn->setChecked(detailsDock->isVisible() || !tabifiedDockWidgets(detailsDock).isEmpty());
+	_menu->tasksBtn->setChecked(tasksDock->isVisible() || !tabifiedDockWidgets(tasksDock).isEmpty());
+	_menu->playlistsBtn->setChecked(playlistDock->isVisible() || !tabifiedDockWidgets(playlistDock).isEmpty());
+	_menu->playerBtn->setChecked(mediaPlayerDock->isVisible() || !tabifiedDockWidgets(mediaPlayerDock).isEmpty());
+	_menu->fileInfoBtn->setChecked(previewDock->isVisible() || !tabifiedDockWidgets(previewDock).isEmpty());
+	_menu->eventLogBtn->setChecked(eventsDock->isVisible() || !tabifiedDockWidgets(eventsDock).isEmpty());
 }
 
 /*!
