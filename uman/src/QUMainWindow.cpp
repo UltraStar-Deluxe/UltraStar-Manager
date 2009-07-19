@@ -178,17 +178,17 @@ void QUMainWindow::initConfig() {
 	 _menu->otherSymbolsChk->setChecked(settings.value("altSongTree", false).toBool());
 			   completerChk->setChecked(settings.value("caseSensitiveAutoCompletion", false).toBool());
 
-	this->restoreState(settings.value("windowState").toByteArray());
-
 	_menu->autoSaveBtn->setChecked(settings.value("autoSave", true).toBool());
 	_menu->onTopChk->setChecked(settings.value("alwaysOnTop", false).toBool());
 
-	_menu->detailsBtn->setChecked(detailsDock->isVisible());
-	_menu->tasksBtn->setChecked(tasksDock->isVisible());
-	_menu->playlistsBtn->setChecked(playlistDock->isVisible());
-	_menu->playerBtn->setChecked(mediaPlayerDock->isVisible());
-	_menu->fileInfoBtn->setChecked(previewDock->isVisible());
-	_menu->eventLogBtn->setChecked(eventsDock->isVisible());
+	this->restoreState(settings.value("windowState").toByteArray());
+
+	_menu->detailsBtn->setChecked(detailsDock->isVisible() || !tabifiedDockWidgets(detailsDock).isEmpty());
+	_menu->tasksBtn->setChecked(tasksDock->isVisible() || !tabifiedDockWidgets(tasksDock).isEmpty());
+	_menu->playlistsBtn->setChecked(playlistDock->isVisible() || !tabifiedDockWidgets(playlistDock).isEmpty());
+	_menu->playerBtn->setChecked(mediaPlayerDock->isVisible() || !tabifiedDockWidgets(mediaPlayerDock).isEmpty());
+	_menu->fileInfoBtn->setChecked(previewDock->isVisible() || !tabifiedDockWidgets(previewDock).isEmpty());
+	_menu->eventLogBtn->setChecked(eventsDock->isVisible() || !tabifiedDockWidgets(eventsDock).isEmpty());
 
 	if(QLocale(settings.value("language").toString()).language() == QLocale::English) {
 		_menu->langUsBtn->setChecked(true);
