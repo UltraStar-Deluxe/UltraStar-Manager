@@ -383,11 +383,11 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->openExpBtn, SIGNAL(clicked()), songTree, SLOT(openCurrentFolder()));
 	connect(_menu->moreArtistBtn, SIGNAL(clicked()), songTree, SLOT(showMoreCurrentArtist()));
 
-	_menu->setShortcut(_menu->saveBtn, Qt::CTRL + Qt::Key_S, this);
-	_menu->setShortcut(_menu->sendToPlaylistBtn, Qt::CTRL  + Qt::Key_P, this);
-	_menu->setShortcut(_menu->showLyricsBtn, Qt::CTRL  + Qt::Key_L, this);
-	_menu->setShortcut(_menu->deleteBtn, Qt::SHIFT + Qt::Key_Delete, this);
-	_menu->setShortcut(_menu->mergeBtn, Qt::CTRL  + Qt::Key_M, this);
+	_menu->setShortcut(_menu->saveBtn, Qt::CTRL + Qt::Key_S);
+	_menu->setShortcut(_menu->sendToPlaylistBtn, Qt::CTRL  + Qt::Key_P);
+	_menu->setShortcut(_menu->showLyricsBtn, Qt::CTRL  + Qt::Key_L);
+	_menu->setShortcut(_menu->deleteBtn, Qt::SHIFT + Qt::Key_Delete);
+	_menu->setShortcut(_menu->mergeBtn, Qt::CTRL  + Qt::Key_M);
 
 	// view menu
 	connect(_menu->relativePathsChk, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
@@ -401,7 +401,14 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->fileInfoBtn, SIGNAL(clicked(bool)), previewDock, SLOT(setVisible(bool)));
 	connect(_menu->eventLogBtn, SIGNAL(clicked(bool)), eventsDock, SLOT(setVisible(bool)));
 
-	_menu->setShortcut(_menu->findSongsBtn, Qt::CTRL + Qt::Key_F, this);
+	_menu->setShortcut(_menu->findSongsBtn, Qt::CTRL + Qt::Key_F);
+
+	_menu->setShortcut(_menu->detailsBtn,   Qt::CTRL + Qt::Key_1);
+	_menu->setShortcut(_menu->tasksBtn,     Qt::CTRL + Qt::Key_2);
+	_menu->setShortcut(_menu->playlistsBtn, Qt::CTRL + Qt::Key_3);
+	_menu->setShortcut(_menu->playerBtn,    Qt::CTRL + Qt::Key_4);
+	_menu->setShortcut(_menu->fileInfoBtn,  Qt::CTRL + Qt::Key_5);
+	_menu->setShortcut(_menu->eventLogBtn,  Qt::CTRL + Qt::Key_6);
 
 	// options menu
 	connect(_menu->autoSaveBtn, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
@@ -420,7 +427,7 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->backupAudioBtn, SIGNAL(clicked()), this, SLOT(copyAudioToPath()));
 	connect(_menu->pluginsBtn, SIGNAL(clicked()), this, SLOT(showPluginDialog()));
 
-	_menu->setShortcut(_menu->reportBtn, Qt::Key_F8, this);
+	_menu->setShortcut(_menu->reportBtn, Qt::Key_F8);
 
 	_menu->hideSongsBtn->setMenu(songTree->hideMenu());
 
@@ -431,8 +438,8 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->collapseAllBtn, SIGNAL(clicked()), songTree, SLOT(collapseAll()));
 	connect(_menu->collapseAllBtn, SIGNAL(clicked()), songTree, SLOT(resizeToContents()));
 
-	_menu->setShortcut(_menu->saveAllBtn, Qt::CTRL + Qt::SHIFT + Qt::Key_S, this);
-	_menu->setShortcut(_menu->rescanSongsBtn, Qt::SHIFT + Qt::Key_F5, this);
+	_menu->setShortcut(_menu->saveAllBtn, Qt::CTRL + Qt::SHIFT + Qt::Key_S);
+	_menu->setShortcut(_menu->rescanSongsBtn, Qt::SHIFT + Qt::Key_F5);
 
 	// about menu
 	connect(_menu->aboutQtBtn, SIGNAL(clicked()), this, SLOT(aboutQt()));
@@ -442,8 +449,9 @@ void QUMainWindow::initRibbonBar() {
 
 	// help menu
 	connect(_menu->helpBtn, SIGNAL(clicked()), montyArea, SLOT(show()));
-	_menu->setShortcut(_menu->helpBtn, Qt::Key_F1, this);
-	_menu->setShortcut(_menu->montyBtn, Qt::CTRL + Qt::Key_F1, this);
+	_menu->setShortcut(_menu->helpBtn, Qt::Key_F1);
+	_menu->setShortcut(_menu->montyBtn, Qt::SHIFT + Qt::Key_F1);
+	_menu->setShortcut(_menu->hideBtn, Qt::CTRL + Qt::Key_F1);
 }
 
 /*!

@@ -4,12 +4,15 @@
 #include <QToolButton>
 #include <QIcon>
 #include <QHBoxLayout>
-#include <QAction>
 
 QURibbonBar::QURibbonBar(QWidget *parent): QTabWidget(parent), _menuHidden(false) {
 	setupUi(this);
 
 	tabBar()->installEventFilter(this);
+
+//	for(int i = 0; i < count(); i++)
+//		widget(i)->installEventFilter(this);
+//	findSongsBtn->installEventFilter(this);
 
 	useVisibleStyle();
 
@@ -44,13 +47,12 @@ QURibbonBar::QURibbonBar(QWidget *parent): QTabWidget(parent), _menuHidden(false
 	setCornerWidget(hideBtn, Qt::TopLeftCorner);
 }
 
-void QURibbonBar::setShortcut(QToolButton *w, const QKeySequence &key, QObject *parent) {
-	w->setShortcut(key);
-//	QAction *a = new QAction(parent);
-//	a->setShortcut(key);
-//	a->setShortcutContext(Qt::ApplicationShortcut);
-//	connect(a, SIGNAL(triggered(bool)), w, SLOT(click()));
-//	_actions.append(a);
+void QURibbonBar::setShortcut(QToolButton *w, const QKeySequence &key) {
+	QAction *a = new QAction(this);
+	a->setShortcut(key);
+	connect(a, SIGNAL(triggered()), w, SLOT(click()));
+	addAction(a);
+
 	w->setToolTip(QString("%1 (%2)").arg(w->toolTip()).arg(key.toString()));
 }
 

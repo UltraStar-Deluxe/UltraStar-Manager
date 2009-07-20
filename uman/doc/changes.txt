@@ -118,6 +118,9 @@ AMAZON COVER DOWNLOAD
   > NOT shareable -> user needs his own account
   > one-click-experience of cover download not that easy anymore :'(
 
+KEYBOARD SHORTCUTS
+* CTRL + [1..6] show/hide dock widgets (details, tasks, media player ...)
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 TASKS

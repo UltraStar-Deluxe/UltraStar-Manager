@@ -8,7 +8,6 @@
 #include "ui_QURibbonBar.h"
 
 class QEvent;
-class QAction;
 
 class QURibbonBar : public QTabWidget, public Ui::QURibbonBar {
 	Q_OBJECT
@@ -20,7 +19,7 @@ public:
 	QToolButton *montyBtn;
 	QToolButton *hideBtn;
 
-	void setShortcut(QToolButton *w, const QKeySequence &key, QObject *parent = 0);
+	void setShortcut(QToolButton *w, const QKeySequence &key);
 
 	virtual QSize sizeHint() const;
 	bool menuHidden() const { return _menuHidden; }
@@ -38,7 +37,6 @@ protected:
 
 private:
 	bool _menuHidden;
-	QList<QAction*> _actions;
 };
 
 #endif // QURIBBONBAR_H
