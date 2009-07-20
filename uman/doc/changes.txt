@@ -120,6 +120,7 @@ AMAZON COVER DOWNLOAD
 
 KEYBOARD SHORTCUTS
 * CTRL + [1..6] show/hide dock widgets (details, tasks, media player ...)
+* CTRL + F11 toggles full-screen mode
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 

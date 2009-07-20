@@ -256,6 +256,12 @@ void QUMainWindow::initWindow() {
 	connect(mediaplayer, SIGNAL(allSongsRequested()), this, SLOT(sendAllSongsToMediaPlayer()));
 	connect(mediaplayer, SIGNAL(visibleSongsRequested()), this, SLOT(sendVisibleSongsToMediaPlayer()));
 	connect(mediaplayer, SIGNAL(currentPlaylistRequested()), this, SLOT(sendCurrentPlaylistToMediaPlayer()));
+
+	// other things
+	QAction *a = new QAction(this);
+	a->setShortcut(Qt::CTRL + Qt::Key_F11);
+	connect(a, SIGNAL(triggered()), this, SLOT(toggleFullScreenMode()));
+	addAction(a);
 }
 
 //void QUMainWindow::initMenu() {
@@ -1214,6 +1220,13 @@ void QUMainWindow::toggleAlwaysOnTop(bool checked) {
 		this->setWindowFlags(this->windowFlags() & !Qt::WindowStaysOnTopHint);
 
 	this->show();
+}
+
+/*!
+ * Maximize window and hide decorations.
+ */
+void QUMainWindow::toggleFullScreenMode() {
+	setWindowState(windowState() ^ Qt::WindowFullScreen);
 }
 
 /*!

@@ -66,6 +66,7 @@ private slots:
 	void toggleAutoSaveChk(bool checked);
 	void toggleAltSongTreeChk(bool checked);
 	void toggleAlwaysOnTop(bool checked);
+	void toggleFullScreenMode();
 
 	void editTagOrder();
 	void changeSongDir();
