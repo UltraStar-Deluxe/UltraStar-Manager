@@ -1266,7 +1266,8 @@ void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
 		or QUSongSupport::allowedKaraokeFiles().contains(fileScheme, Qt::CaseInsensitive)
 		or QUSongSupport::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QFileInfo fi(songItem->song()->path(), songItem->text(FOLDER_COLUMN));
-		if( !QDesktopServices::openUrl(QUrl(fi.filePath())) )
+
+		if( !QDesktopServices::openUrl(QUrl::fromLocalFile(fi.filePath())) )
 			logSrv->add(QString(tr("Could NOT open file: \"%1\".")).arg(fi.filePath()), QU::Warning);
 		else
 			logSrv->add(QString(tr("File was opened successfully: \"%1\".")).arg(fi.filePath()), QU::Information);

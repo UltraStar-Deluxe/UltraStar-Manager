@@ -10,8 +10,8 @@
 
 MENU
 * Office2007-like ribbon bar added
-  > takes a little bit more vertical space
-  > reduced mouse click count
+  > reduces mouse click count
+  > hideable
 
 TASKS
 * convert syllable placeholders (~ > -, - > ~)
@@ -129,12 +129,17 @@ TASKS
 * "Fix spaces" now trims the whole song line correctly
 * I have no clue, why path changing did work before ... =)
 * "Remove unused files" works as expected now
+* fixed undesired behaviour for renaming files/folders to names
+  that contain slashes ('/', e.g. 'AC/DC')
+  > slash will be removed
 
 MAIN WINDOW
 * "Options -> Always On Top" now saved and restored during app restart
 
 SONG TREE
 * sorting works now for #START, #END, #VIDEOGAP
+* fixed problem were audio and video files did not open correctly with
+  the local audio and video player
 
 PLAYLISTS
 * playlists are now always sync with song database
@@ -148,7 +153,6 @@ NOT SORTED
   > "non-standard" tasks
 * external song file changes will be detected twice for primary song
   > friend songs seem to work fine
-! QDesktopServices seem not to work well... (cannot open MP3 or Video)
 
 SPLASH SCREEN
 ! main windows shows up to early if "always on top" is selected
@@ -158,7 +162,6 @@ TRANSLATION
 * "Kopieren" -> "Verschieben" or "Bewegen"
 
 TASKS
-* undesired behaviour for renaming files/folders to names that contain slashes ('/')
 * convert syllable placeholders does not ignore "wanted" dashes ("A-B-C")
 * "remove empty syllables" breaks timestamps in relative songs
 
@@ -182,9 +185,6 @@ SEARCH/FILTER
 
 SONG WATCHER
 * many song files will not be added to QFileSystemWatcher
-
-MENU (Ribbon Bar)
-* shortcuts do not work if tab is not selected
 
 AUTO-SAVE
 * tasks that change a song's path perform kind of auto-save because
