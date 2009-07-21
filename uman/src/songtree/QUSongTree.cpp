@@ -46,6 +46,7 @@ QUSongTree::QUSongTree(QWidget *parent): QTreeWidget(parent) {
 	connect(songDB, SIGNAL(songAdded(QUSongFile*)), this, SLOT(addItem(QUSongFile*)));
 	connect(songDB, SIGNAL(databaseReloaded()), this, SLOT(resizeAndSort()));
 	connect(songDB, SIGNAL(songChanged(QUSongFile*)), this, SLOT(updateItem(QUSongFile*)));
+	connect(songDB, SIGNAL(songWithFriendSwapped(QUSongFile*,QUSongFile*)), this, SLOT(updateItemWithNewSong(QUSongFile*,QUSongFile*)));
 }
 
 QUMainWindow* QUSongTree::parentWindow() const {
@@ -303,6 +304,18 @@ void QUSongTree::updateItem(QUSongFile *song) {
 void QUSongTree::resizeAndSort() {
 	resizeToContents();
 	sortItems(FOLDER_COLUMN, Qt::AscendingOrder);
+}
+
+void QUSongTree::updateItemWithNewSong(QUSongFile *oldSong, QUSongFile *newSong) {
+	foreach(QUSongItem *songItem, allSongItems()) {
+		if(songItem->song() == oldSong) {
+			songItem->setSong(newSong);
+			songItem->update();
+			setCurrentItem(songItem);
+			emit itemSelectionChanged();
+			break;
+		}
+	}
 }
 
 /*!

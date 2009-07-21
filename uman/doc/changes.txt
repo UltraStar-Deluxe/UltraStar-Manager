@@ -41,6 +41,7 @@ RENAME TASKS
 SONG FRIENDS
 * if more than one song is in a folder, the first one will be the primary
   song and the rest will be "songs friends"
+  > select primary song via double-click or "open" on the proper song text file
 * share primary song's tags except #GAP, #EDITION
   > karaoke songs do not share #MP3
   > song friends append all cached []-tags to #TITLE
@@ -175,7 +176,6 @@ SONG FRIENDS
 * cannot add song friends in reports
 * cannot play song friends in media player
 * some tasks may not affect song friends (e.g. "Remove unsupported tags")
-! cannot switch primary song with a double-click
 
 MEDIA PLAYER
 * correct songs get ansychronous after a while (seek works right)

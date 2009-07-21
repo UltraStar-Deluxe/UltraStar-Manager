@@ -21,6 +21,7 @@ public:
 	void deleteSong(QUSongFile *song);
 	void reload();
 	void clear();
+	void swapSongWithFriend(QUSongFile *song, const QString &filename);
 
 	const QList<QUSongFile*>& songs() const { return _songs; }
 	int songCount() const { return _songs.size(); }
@@ -37,6 +38,7 @@ signals:
 	void songChanged(QUSongFile*);
 	void databaseCleared();
 	void databaseReloaded();
+	void songWithFriendSwapped(QUSongFile *oldSong, QUSongFile *oldFriend);
 
 protected:
 	void readSongDir(QList<QDir> &dirList);

@@ -44,6 +44,7 @@ public slots:
 	void addItem(QUSongFile *song);
 	void updateItem(QUSongFile *song);
 	void resizeAndSort();
+	void updateItemWithNewSong(QUSongFile *oldSong, QUSongFile *newSong);
 
 //	void refreshSelectedItems();
 	void resizeToContents();
@@ -91,11 +92,8 @@ private slots:
 	void hideAllButSelected();
 
 	void showMoreCurrentArtist();
-
 	void requestDeleteSelectedSongs();
-
 	void mergeSelectedSongs();
-
 	void calculateSpeed();
 
 protected:

@@ -55,8 +55,12 @@ void QUSongDatabase::deleteSong(QUSongFile *song) {
 		logSrv->add(QString(tr("Directory was deleted successfully: \"%1\"")).arg(song->songFileInfo().path()), QU::Information);
 
 	_songs.removeAll(song);
-	delete song;
+
 	emit songDeleted(song);
+	foreach(QUSongFile *friendSong, song->friends())
+		emit songDeleted(friendSong);
+
+	delete song;
 
 	logSrv->add(QString(tr("Song was deleted successfully: \"%1 - %2\"")).arg(artist).arg(title), QU::Information);
 }
@@ -65,6 +69,17 @@ void QUSongDatabase::clear() {
 	emit databaseCleared();
 	qDeleteAll(_songs);
 	_songs.clear();
+}
+
+void QUSongDatabase::swapSongWithFriend(QUSongFile *song, const QString &filename) {
+	if(!_songs.contains(song))
+		return;
+
+	QUSongFile *friendSong = song->friendAt(filename);
+	if(friendSong && song->swapWithFriend(friendSong)) {
+		_songs.replace(_songs.indexOf(song), friendSong);
+		emit songWithFriendSwapped(song, friendSong);
+	}
 }
 
 /*!

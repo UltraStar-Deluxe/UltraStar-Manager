@@ -1135,6 +1135,9 @@ QList<QUSongLineInterface*> QUSongFile::melodyForSinger(QUSongLineInterface::Sin
 	return result;
 }
 
+/*!
+ * Set up all connections to inform the song friend in case of changed data.
+ */
 void QUSongFile::addFriend(QUSongFile *song) {
 	_friends << song;
 	connect(this, SIGNAL(dataChanged(QString,QString)), _friends.last(), SLOT(changeData(QString,QString)));
@@ -1186,9 +1189,9 @@ QUSongFile* QUSongFile::friendAt(const QString &fileName) {
 void QUSongFile::changeData(const QString &tag, const QString &value) {
 	// restore all []-tags for the title
 	if(QString::compare(tag, TITLE_TAG, Qt::CaseInsensitive) == 0) {
-		setInfo(tag, QString("%1 %2")
+		setInfo(tag, QString("%1%2")
 				.arg(QUStringSupport::withoutFolderTags(value)) // ignore other []-tags
-				.arg(_fiTags.join("] [").prepend("[").append("]"))); // just use your own []-tags
+				.arg(_fiTags.isEmpty() ? "" : _fiTags.join("] [").prepend(" [").append("]"))); // just use your own []-tags
 	} else if(isKaraoke() && QString::compare(tag, MP3_TAG, Qt::CaseInsensitive) == 0) {
 		; // karaoke songs use their own audio files - do nothing
 	} else if(QString::compare(tag, GAP_TAG, Qt::CaseInsensitive) != 0
@@ -1237,6 +1240,34 @@ bool QUSongFile::friendHasTag(const QString &tag, const QString &value) const {
 		if(QString::compare(song->customTag(tag), value, Qt::CaseSensitive) == 0)
 			return true;
 	return false;
+}
+
+/*!
+ * Prepare the given song friend to be used as a primary song.
+ *
+ * \returns True, if the change completed successfully.
+ */
+bool QUSongFile::swapWithFriend(QUSongFile *song) {
+	if(!isFriend(song))
+		return false; // only friends can be used here
+
+	foreach(QUSongFile *friendSong, _friends) {
+		disconnect(this, SIGNAL(dataChanged(QString,QString)), friendSong, SLOT(changeData(QString,QString)));
+		disconnect(this, SIGNAL(songRenamed(QString)), friendSong, SLOT(renameSong(QString)));
+		disconnect(this, SIGNAL(songPathChanged(QString)), friendSong, SLOT(changeSongPath(QString)));
+
+		if(friendSong != song)
+			song->addFriend(friendSong);
+	}
+
+	song->addFriend(this);
+	_friends.clear();
+
+	logSrv->add(tr("Primary song file changed from \"%1\" to \"%2\".")
+				.arg(songFileInfo().fileName())
+				.arg(song->songFileInfo().fileName()), QU::Information);
+
+	return true;
 }
 
 /*!

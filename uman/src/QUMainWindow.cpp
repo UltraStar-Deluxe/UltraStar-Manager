@@ -1256,8 +1256,10 @@ void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
 		delete dlg;
 	} else if(songItem->song()->isFriend(item->text(FOLDER_COLUMN))) {
 		// show (raw) content of friend song
-		QUTextDialog dlg(songItem->song()->friendAt(item->text(FOLDER_COLUMN)), this);
-		dlg.exec();
+//		QUTextDialog dlg(songItem->song()->friendAt(item->text(FOLDER_COLUMN)), this);
+//		dlg.exec();
+		songDB->swapSongWithFriend(songItem->song(), item->text(FOLDER_COLUMN));
+		updateDetails();
 	} else if(QUSongSupport::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QUPictureDialog dlg(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(FOLDER_COLUMN)).filePath(), this);
 		dlg.exec();

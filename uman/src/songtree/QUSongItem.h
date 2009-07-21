@@ -66,7 +66,9 @@ public:
 
 	void updateSpellFileCheckColumns();
 
+	void setSong(QUSongFile *song) { _song = song; }
 	QUSongFile* song() const { return _song; }
+
 	bool isToplevel() const { return _isToplevel; }
 
 	void showUnusedFilesIcon(QString fileName = "");
