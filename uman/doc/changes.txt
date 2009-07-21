@@ -171,6 +171,7 @@ AMAZON COVER DOWNLOAD
 
 SONG FRIENDS
 * cannot add song friends to playlist
+  > workaround: switch friend to primary song
 * cannot change #MP3 for karaoke song friend
 * cannot change #EDITION for song friend
 * cannot add song friends in reports

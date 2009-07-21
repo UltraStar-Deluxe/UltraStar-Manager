@@ -828,14 +828,6 @@ void QUMainWindow::editSongSetFileLink(QTreeWidgetItem *item, int column) {
 		song->save();
 	}
 
-	if(songItem->parent()) {
-		QUSongItem *parentItem = dynamic_cast<QUSongItem*>(songItem->parent());
-		if(parentItem) {
-			parentItem->update(); // songItem becomes invalid after this; see QUSongItem::update()
-			songTree->setCurrentItem(parentItem);
-		}
-	}
-
 	updateDetails();
 	montyTalk();
 }

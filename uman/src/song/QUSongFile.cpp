@@ -1187,12 +1187,15 @@ QUSongFile* QUSongFile::friendAt(const QString &fileName) {
  * React if your friend was changed.
  */
 void QUSongFile::changeData(const QString &tag, const QString &value) {
+	QUSongFile *senderSong = qobject_cast<QUSongFile*>(sender());
+
 	// restore all []-tags for the title
 	if(QString::compare(tag, TITLE_TAG, Qt::CaseInsensitive) == 0) {
 		setInfo(tag, QString("%1%2")
 				.arg(QUStringSupport::withoutFolderTags(value)) // ignore other []-tags
 				.arg(_fiTags.isEmpty() ? "" : _fiTags.join("] [").prepend(" [").append("]"))); // just use your own []-tags
-	} else if(isKaraoke() && QString::compare(tag, MP3_TAG, Qt::CaseInsensitive) == 0) {
+	} else if(QString::compare(tag, MP3_TAG, Qt::CaseInsensitive) == 0
+			  && (isKaraoke() || (senderSong && senderSong->isKaraoke()))) {
 		; // karaoke songs use their own audio files - do nothing
 	} else if(QString::compare(tag, GAP_TAG, Qt::CaseInsensitive) != 0
 			  && QString::compare(tag, EDITION_TAG, Qt::CaseInsensitive) != 0) {
