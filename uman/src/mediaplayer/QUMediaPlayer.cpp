@@ -9,6 +9,8 @@
 #include "tstring.h"
 
 QUSongInfo::QUSongInfo(QUSongFile *song) {
+	_isValid = song->hasMp3();
+
 	gap1 = QVariant(song->gap().replace(",", ".")).toDouble();
 	gap2 = gap1;
 
@@ -116,6 +118,14 @@ void QUMediaPlayer::play() {
 
 	QUSongInfo info = _songs.at(_currentSongIndex);
 	_freeIndices.removeAll(_currentSongIndex);
+
+	if(!info.isValid()) {
+		logSrv->add(tr("[Media Player] The song \"%1 - %2\" has no valid audio file.").arg(info.artist).arg(info.title), QU::Warning);
+		loopBtn->setChecked(false); // avoid endless-loops
+		next();
+		return;
+	}
+
 
 	_mediaStream = BASS_StreamCreateFile(FALSE, info.filePath.toLocal8Bit().data(), 0, 0, BASS_STREAM_PRESCAN);
 

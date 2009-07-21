@@ -12,6 +12,7 @@
 class QUSongInfo {
 public:
 	QUSongInfo(QUSongFile *song);
+	bool isValid() const { return _isValid; }
 
 	QList<QUSongLineInterface*> melody1;
 	QList<QUSongLineInterface*> melody2;
@@ -32,6 +33,9 @@ public:
 	int bitrate;
 	int channels;
 	int sampleRate;
+
+private:
+	bool _isValid;
 };
 
 class QUMediaPlayer: public QWidget, private Ui::QUMediaPlayer {

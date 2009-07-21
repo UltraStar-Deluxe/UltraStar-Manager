@@ -12,6 +12,8 @@ QUSmartInputField::QUSmartInputField(const QString &registryKey, const QString &
 	QUSmartSetting(registryKey)
 {
 	_defaultValue = defaultValue;
+	saveDefaultValue(_defaultValue);
+
 	initContainer(validator, prefix, suffix);
 }
 

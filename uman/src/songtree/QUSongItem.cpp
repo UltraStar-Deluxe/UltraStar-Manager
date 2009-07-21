@@ -422,7 +422,10 @@ void QUSongItem::updateSpellCheckColumns() {
 	/* artist column */
 	part1 = QUStringSupport::withoutUnsupportedCharacters(song()->artist());
 	part1 = QUStringSupport::withoutFolderTags(part1);
+	part1 = QUStringSupport::withoutPathDelimiters(part1);
+
 	part2 = QUStringSupport::withoutUnsupportedCharacters(pattern.section(" - ", 0, 0));
+	part2 = QUStringSupport::withoutPathDelimiters(part2);
 
 	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
 		this->setSmiley(ARTIST_COLUMN);
@@ -434,7 +437,10 @@ void QUSongItem::updateSpellCheckColumns() {
 	/* title column */
 	part1 = QUStringSupport::withoutUnsupportedCharacters(song()->title());
 	part1 = QUStringSupport::withoutFolderTags(part1);
+	part1 = QUStringSupport::withoutPathDelimiters(part1);
+
 	part2 = QUStringSupport::withoutUnsupportedCharacters(pattern.section(" - ", 1));
+	part2 = QUStringSupport::withoutPathDelimiters(part2);
 
 	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
 		this->setSmiley(TITLE_COLUMN);

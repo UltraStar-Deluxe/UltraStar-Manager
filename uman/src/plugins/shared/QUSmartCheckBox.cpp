@@ -7,6 +7,8 @@ QUSmartCheckBox::QUSmartCheckBox(const QString &registryKey, const QString &text
 	QUSmartSetting(registryKey)
 {
 	_defaultValue = isChecked;
+	saveDefaultValue(_defaultValue);
+
 	_checkBox = new QCheckBox(text);
 	_checkBox->setChecked(value(isChecked).toBool());
 	connect(_checkBox, SIGNAL(stateChanged(int)), this, SLOT(updateValue(int)));

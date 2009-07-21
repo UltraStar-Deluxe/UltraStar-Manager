@@ -262,7 +262,7 @@ void QUSongFile::verifyTags(QStringList &tags) {
  * \returns True if the mp3 specified by the song file really exists.
  */
 bool QUSongFile::hasMp3() const {
-	return mp3FileInfo().exists();
+	return !mp3().isEmpty() && mp3FileInfo().exists();
 }
 
 /*!
@@ -270,7 +270,7 @@ bool QUSongFile::hasMp3() const {
  * \returns True if the cover specified by the song file really exists.
  */
 bool QUSongFile::hasCover() const {
-	return coverFileInfo().exists();
+	return !cover().isEmpty() && coverFileInfo().exists();
 }
 
 /*!
@@ -278,7 +278,7 @@ bool QUSongFile::hasCover() const {
  * \returns True if the background specified by the song file really exists.
  */
 bool QUSongFile::hasBackground() const {
-	return backgroundFileInfo().exists();
+	return !background().isEmpty() && backgroundFileInfo().exists();
 }
 
 /*!
@@ -286,7 +286,7 @@ bool QUSongFile::hasBackground() const {
  * \returns True if the video specified by the song file really exists.
  */
 bool QUSongFile::hasVideo() const {
-	return videoFileInfo().exists();
+	return !video().isEmpty() && videoFileInfo().exists();
 }
 
 /*!

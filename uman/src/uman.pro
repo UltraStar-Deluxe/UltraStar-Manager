@@ -8,7 +8,7 @@ RCC_DIR = tmp
 QT += core \
     gui \
     xml \
-    network
+	network
 #CONFIG -= debug_and_release
 #CONFIG += debug
 HEADERS += plugins/QUPluginDialog.h \
@@ -16,7 +16,7 @@ HEADERS += plugins/QUPluginDialog.h \
     plugins/QUTaskFactoryProxy.h \
 	plugins/QUSmartSetting.h \
     main.h \
-    QU.h \
+	QU.h \
     QUMonty.h \
     QUAboutDialog.h \
     QUMainWindow.h \

@@ -32,6 +32,7 @@ protected:
 	QVariant value(const QVariant &defaultValue) const;
 	QToolButton* createResetButton();
 	QString registryKey() const { return _registryKey; }
+	void saveDefaultValue(const QVariant &defaultValue);
 
 private:
 	QString _registryKey;

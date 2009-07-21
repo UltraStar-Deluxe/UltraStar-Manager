@@ -11,6 +11,7 @@ QUSmartInputCheck::QUSmartInputCheck(const QString &registryKey, const QString &
 	QUSmartSetting(registryKey)
 {
 	_defaultValue = defaultValue;
+	saveDefaultValue(_defaultValue);
 
 	_container = new QWidget();
 	_group = new QWidget();

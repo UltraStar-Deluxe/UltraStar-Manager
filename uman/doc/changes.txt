@@ -22,7 +22,7 @@ TASK LIST
 
 MEDIA PLAYER
 * play a song and watch the lyrics
-* support for duet songs added =)
+* support for duet songs present =)
 
 SONGS
 * cache any []-tags in the filename at song load
@@ -193,6 +193,10 @@ AUTO-SAVE
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
 ! prepare plugin SDK
+* restore ribbon bar appearance on application restart (small/full)
+! manual file rename
+* explain space-shortcut in slideshow dialog somehow
+* drop a picture into song tree: ask for usage as cover or background (dialog)
 
 NEW STUFF
 * make hard-coded values editable
@@ -204,7 +208,7 @@ NEW STUFF
   > extract cover from MP3
 * get background picture
   > from imagesearch engines (flickr, google, yahoo...)
-* "UmanScore"
+! "UmanScore" - some !!user-definied!! indicator for "good" songs
   > multiple syllables in a line
   > has video, audio, cover, background
   > has additional information set (edition, creator, ...)

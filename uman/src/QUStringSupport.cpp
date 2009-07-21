@@ -27,6 +27,10 @@ QString QUStringSupport::withoutUnsupportedCharacters (const QString &text) {
 	return cleanText;
 }
 
+QString QUStringSupport::withoutPathDelimiters(const QString &text) {
+	return QString(text).remove("/");
+}
+
 /*!
  * Remove all "folder tags" like [SC], [VIDEO], a.s.o. from the given text.
  */

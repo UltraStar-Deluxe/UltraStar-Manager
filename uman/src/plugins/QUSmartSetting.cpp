@@ -35,3 +35,12 @@ QToolButton* QUSmartSetting::createResetButton() {
 void QUSmartSetting::reset() {
 	resetToDefaults();
 }
+
+/*!
+ * Write the default value into the registry if no key exists.
+ */
+void QUSmartSetting::saveDefaultValue(const QVariant &defaultValue) {
+	QSettings s;
+	if(!s.contains(registryKey()))
+		s.setValue(registryKey(), defaultValue);
+}

@@ -59,6 +59,9 @@ void QURenameTask::startOn(QUSongInterface *song) {
 				else
 					value = song->property(currentData->_source.toLower().toLocal8Bit().data()).toString();
 
+				// do not create additional folders by accident
+				value = QUStringSupport::withoutPathDelimiters(value);
+
 				if(value == N_A)
 					value = currentData->_default;
 				schema = schema.arg(value);
