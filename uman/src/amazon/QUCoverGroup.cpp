@@ -255,9 +255,9 @@ void QUCoverGroup::openAmazonSearchUrl() {
 	QString tmp = _endpoint;
 	QUrl url(tmp.replace("ecs", "www").remove("aws"));
 
-	url.setPath(QString("s/url=search-alias%3Daps&field-keywords=%1 %2").arg(_item->song()->artist()).arg(_item->song()->title()));
+	url.setPath(QString("s/url=search-alias=mp3-downloads&field-keywords=%1+%2").arg(_item->song()->artist()).arg(_item->song()->title()));
 	QDesktopServices::openUrl(url);
 
-	url.setPath(QString("s/url=search-alias%3Daps&field-keywords=%1").arg(_item->song()->artist()));
+	url.setPath(QString("s/url=search-alias=aps&field-keywords=%1").arg(_item->song()->artist()));
 	QDesktopServices::openUrl(url);
 }
