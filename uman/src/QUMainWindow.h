@@ -69,7 +69,7 @@ private slots:
 	void toggleFullScreenMode();
 
 	void editTagOrder();
-	void changeSongDir();
+	void changeSongDir(const QString &path);
 	void editCustomTags();
 
 	void montyTalk(bool force = false);

@@ -880,39 +880,75 @@ border-left-color: #C2C7CB;</string>
         <number>0</number>
        </property>
        <item>
-        <widget class="QToolButton" name="pathsBtn">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+        <layout class="QVBoxLayout" name="verticalLayout_14">
+         <property name="spacing">
+          <number>0</number>
          </property>
-         <property name="minimumSize">
-          <size>
-           <width>60</width>
-           <height>0</height>
-          </size>
+         <property name="leftMargin">
+          <number>0</number>
          </property>
-         <property name="toolTip">
-          <string>Setup all necessary paths to ensure full application funciontality.</string>
-         </property>
-         <property name="text">
-          <string>Paths...</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources/uman.qrc">
-           <normaloff>:/types/folder_go.png</normaloff>:/types/folder_go.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-         <property name="autoRaise">
-          <bool>true</bool>
-         </property>
-        </widget>
+         <item>
+          <widget class="QToolButton" name="pathsBtn">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>60</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string>Setup all necessary paths to ensure full application funciontality.</string>
+           </property>
+           <property name="text">
+            <string>Paths...</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../resources/uman.qrc">
+             <normaloff>:/types/folder_go.png</normaloff>:/types/folder_go.png</iconset>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextBesideIcon</enum>
+           </property>
+           <property name="autoRaise">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="baseDirBtn">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Song Directory</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../resources/uman.qrc">
+             <normaloff>:/control/folder_note.png</normaloff>:/control/folder_note.png</iconset>
+           </property>
+           <property name="popupMode">
+            <enum>QToolButton::InstantPopup</enum>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextBesideIcon</enum>
+           </property>
+           <property name="autoRaise">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
-        <widget class="Line" name="line_5">
+        <widget class="Line" name="line_12">
          <property name="styleSheet">
           <string>border: 0;
 border-left-width: 1px;
@@ -926,11 +962,30 @@ border-left-color: #C2C7CB;</string>
        </item>
        <item>
         <widget class="QCheckBox" name="onTopChk">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>Let no other window overlap this application.</string>
          </property>
          <property name="text">
           <string>Always on top</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line_5">
+         <property name="styleSheet">
+          <string>border: 0;
+border-left-width: 1px;
+border-left-style: dotted;
+border-left-color: #C2C7CB;</string>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
          </property>
         </widget>
        </item>

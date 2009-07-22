@@ -58,6 +58,9 @@ void QUPathsDialog::accept() {
 		songPaths.append(QU::BaseDir.path());
 	s.setValue("songPaths", songPaths);
 
+	if(!songPaths.isEmpty() && s.value("songPath").toString().isEmpty())
+		s.setValue("songPath", songPaths.first());
+
 	QDialog::accept();
 }
 

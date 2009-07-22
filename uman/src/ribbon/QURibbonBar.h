@@ -8,6 +8,7 @@
 #include "ui_QURibbonBar.h"
 
 class QEvent;
+class QAction;
 
 class QURibbonBar : public QTabWidget, public Ui::QURibbonBar {
 	Q_OBJECT
@@ -24,10 +25,18 @@ public:
 	virtual QSize sizeHint() const;
 	bool menuHidden() const { return _menuHidden; }
 
+	void updateBaseDirMenu();
+
 public slots:
 	void setMenuHidden(bool);
 	void toggleMenuHidden();
 	void changeCurrentTab(int);
+
+signals:
+	void changeSongPathRequested(QString);
+
+private slots:
+	void requestSongPathChange(QAction *action);
 
 protected:
 	virtual bool eventFilter(QObject *target, QEvent *event);
@@ -36,7 +45,9 @@ protected:
 	void useHiddenStyle();
 
 private:
-	bool _menuHidden;
+	bool            _menuHidden;
+	QList<QAction*> _pathActions;
+	QActionGroup    *_ag;
 };
 
 #endif // QURIBBONBAR_H

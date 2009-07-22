@@ -123,6 +123,10 @@ KEYBOARD SHORTCUTS
 * CTRL + [1..6] show/hide dock widgets (details, tasks, media player ...)
 * CTRL + F11 toggles full-screen mode
 
+PATHS
+* new dialog for managing paths
+* multiple song paths can be configured and selected via menu
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 TASKS
@@ -186,6 +190,7 @@ SEARCH/FILTER
 
 SONG WATCHER
 * many song files will not be added to QFileSystemWatcher
+  > too many files?
 
 AUTO-SAVE
 * tasks that change a song's path perform kind of auto-save because

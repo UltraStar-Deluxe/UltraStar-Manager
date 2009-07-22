@@ -4,6 +4,9 @@
 #include <QToolButton>
 #include <QIcon>
 #include <QHBoxLayout>
+#include <QMenu>
+#include <QSettings>
+#include <QDir>
 
 QURibbonBar::QURibbonBar(QWidget *parent): QTabWidget(parent), _menuHidden(false) {
 	setupUi(this);
@@ -63,6 +66,33 @@ QSize QURibbonBar::sizeHint() const {
 		return QTabWidget::sizeHint();
 }
 
+void QURibbonBar::updateBaseDirMenu() {
+	if(baseDirBtn->menu())
+		delete baseDirBtn->menu();
+
+	qDeleteAll(_pathActions);
+	_pathActions.clear();
+
+	QSettings s;
+	QMenu *m = new QMenu(this);
+	QActionGroup *ag = new QActionGroup(this);
+	ag->setExclusive(true);
+
+	foreach(QString path, s.value("songPaths").toStringList()) {
+		QAction *a = new QAction(path, ag);
+		a->setCheckable(true);
+		a->setData(path);
+
+		if(path == s.value("songPath").toString())
+			a->setChecked(true);
+		_pathActions.append(a);
+		m->addAction(a);
+	}
+
+	connect(m, SIGNAL(triggered(QAction*)), this, SLOT(requestSongPathChange(QAction*)));
+	baseDirBtn->setMenu(m);
+}
+
 void QURibbonBar::setMenuHidden(bool hide) {
 	if(_menuHidden == hide)
 		return;
@@ -117,6 +147,10 @@ void QURibbonBar::useHiddenStyle() {
 
 void QURibbonBar::changeCurrentTab(int) {
 	setMenuHidden(false);
+}
+
+void QURibbonBar::requestSongPathChange(QAction *action) {
+	emit changeSongPathRequested(action->data().toString());
 }
 
 bool QURibbonBar::eventFilter(QObject *target, QEvent *event) {

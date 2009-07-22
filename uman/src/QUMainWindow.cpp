@@ -155,21 +155,23 @@ void QUMainWindow::initConfig() {
 	QSettings settings;
 	QString path;
 	if(!settings.contains("songPath")) {
-		QStringList paths = settings.value("songPaths", QStringList()).toStringList();
-		if(!paths.isEmpty()) { // choose the first in the list of song paths
-			path = paths.first();
-			settings.setValue("songPath", path);
-		} else { // request a list of song paths
-			QUPathsDialog(true, this).exec();
-			paths = settings.value("songPaths", QStringList()).toStringList();
-			if(!paths.isEmpty()) {
-				path = paths.first();
-				settings.setValue("songPath", path);
-			}
-		}
-	} else { // last song path was saved successfully
-		path = settings.value("songPath").toString();
+//		QStringList paths = settings.value("songPaths", QStringList()).toStringList();
+//		if(!paths.isEmpty()) { // choose the first in the list of song paths
+//			path = paths.first();
+//			settings.setValue("songPath", path);
+//		} else { // request a list of song paths
+//			QUPathsDialog(true, this).exec();
+//			paths = settings.value("songPaths", QStringList()).toStringList();
+//			if(!paths.isEmpty()) {
+//				path = paths.first();
+//				settings.setValue("songPath", path);
+//			}
+//		}
+		if(!QUPathsDialog(true, this).exec())
+			logSrv->add(tr("No song directory was selected."), QU::Warning);
 	}
+
+	path = settings.value("songPath").toString();
 	QU::BaseDir.setPath(path);
 
 	// read other settings
@@ -417,6 +419,8 @@ void QUMainWindow::initRibbonBar() {
 	_menu->setShortcut(_menu->eventLogBtn,  Qt::CTRL + Qt::Key_6);
 
 	// options menu
+	_menu->updateBaseDirMenu();
+
 	connect(_menu->autoSaveBtn, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
 	connect(_menu->onTopChk, SIGNAL(toggled(bool)), this, SLOT(toggleAlwaysOnTop(bool)));
 
@@ -427,6 +431,8 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->langUsBtn, SIGNAL(clicked()), this, SLOT(enableEnglish()));
 	connect(_menu->langDeBtn, SIGNAL(clicked()), this, SLOT(enableGerman()));
 	connect(_menu->langPlBtn, SIGNAL(clicked()), this, SLOT(enablePolish()));
+
+	connect(_menu, SIGNAL(changeSongPathRequested(QString)), this, SLOT(changeSongDir(QString)));
 
 	// extras menu
 	connect(_menu->reportBtn, SIGNAL(clicked()), this, SLOT(reportCreate()));
@@ -1026,7 +1032,10 @@ void QUMainWindow::editTagOrder() {
  * Enables the user to set up a new location where all
  * UltraStar songs can be found.
  */
-void QUMainWindow::changeSongDir() {
+void QUMainWindow::changeSongDir(const QString &path) {
+	if(path.isEmpty())
+		return;
+
 	if(songTree->hasUnsavedChanges()) {
 		int result = QUMessageBox::information(this,
 				tr("Change Song Directory"),
@@ -1043,21 +1052,16 @@ void QUMainWindow::changeSongDir() {
 	// ---------------------------------------------------------
 
 	QSettings settings;
-	QString path = settings.value("songPath").toString();
 
-	path = QFileDialog::getExistingDirectory(this, tr("Choose your UltraStar song directory:"), path);
+	settings.setValue("songPath", path);
+	QU::BaseDir.setPath(path);
+	refreshAllSongs(true);
 
-	if(!path.isEmpty()) {
-		settings.setValue("songPath", QVariant(path));
-		QU::BaseDir.setPath(path);
-		refreshAllSongs(true);
+	montyTalk();
 
-		montyTalk();
+	logSrv->add(QString(tr("UltraStar song directory changed to: \"%1\".")).arg(QU::BaseDir.path()), QU::Information);
 
-		logSrv->add(QString(tr("UltraStar song directory changed to: \"%1\".")).arg(QU::BaseDir.path()), QU::Information);
-
-		songTree->headerItem()->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(QU::BaseDir.path()));
-	}
+	songTree->headerItem()->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(QU::BaseDir.path()));
 }
 
 /*!
@@ -1511,4 +1515,5 @@ void QUMainWindow::showBackgroundSlideShowDialog(QList<QUSongItem*> items) {
 
 void QUMainWindow::showPathsDialog() {
 	QUPathsDialog(false, this).exec();
+	_menu->updateBaseDirMenu();
 }
