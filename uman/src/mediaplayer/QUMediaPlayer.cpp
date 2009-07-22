@@ -2,6 +2,7 @@
 
 #include "QU.h"
 #include "QULogService.h"
+#include "QUSongDatabase.h"
 
 #include "audioproperties.h"
 #include "fileref.h"
@@ -71,6 +72,9 @@ QUMediaPlayer::QUMediaPlayer(QWidget *parent): QWidget(parent) {
 	connect(loopBtn, SIGNAL(toggled(bool)), this, SLOT(loopShuffleToggled()));
 
 	connect(timeSlider, SIGNAL(sliderReleased()), this, SLOT(seek()));
+
+	connect(autocue, SIGNAL(editSongRequested(int)), this, SLOT(requestSongEdit(int)));
+	connect(autocue2, SIGNAL(editSongRequested(int)), this, SLOT(requestSongEdit(int)));
 
 	timeSlider->setMinimum(0);
 	timeSlider->setSingleStep(1);
@@ -330,6 +334,21 @@ void QUMediaPlayer::updateTimeSlider(QUMediaPlayer::States state) {
 
 void QUMediaPlayer::loopShuffleToggled() {
 	this->updatePlayerControls(state());
+}
+
+void QUMediaPlayer::requestSongEdit(int line) {
+	if(state().testFlag(QUMediaPlayer::playing) || state().testFlag(QUMediaPlayer::paused)) {
+		if(_currentSongIndex < 0 || _currentSongIndex >= _songs.size())
+			return; // invalid index
+		QUSongInfo info = _songs.at(_currentSongIndex);
+
+		foreach(QUSongFile *song, songDB->songs()) {
+			if(song->artist() == info.artist && song->title() == info.title) {
+				emit editSongRequested(song, line);
+				return;
+			}
+		}
+	}
 }
 
 void QUMediaPlayer::setState(States newState) {

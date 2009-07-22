@@ -28,6 +28,7 @@ void QUAutoCue::reset(const QList<QUSongLineInterface*> &lines, double bpm, doub
 
 	int relTime = qRound(gap);
 
+	int lineNumber = 0;
 	foreach(QUSongLineInterface *line, lines) {
 		int last = 0;
 		foreach(QUSongNoteInterface *note, line->notes()) {
@@ -53,18 +54,19 @@ void QUAutoCue::reset(const QList<QUSongLineInterface*> &lines, double bpm, doub
 			setFontWeight(QFont::Normal);
 			setFontItalic(false);
 
-			_cueList << QUCueInfo(time, pos, note->syllable().size());
+			_cueList << QUCueInfo(time, pos, note->syllable().size(), lineNumber);
 
 			pos += note->syllable().size();
 
 			time += qRound((note->duration() / bpm) * 60000);
-			_cueList << QUCueInfo(time, pos, 0);
+			_cueList << QUCueInfo(time, pos, 0, lineNumber);
 		}
 		insertPlainText("\n"); pos++;
 
 		if(isRelative) {
 			relTime += qRound((line->inTime() / bpm) * 60000);
 		}
+		lineNumber += 1;
 	}
 
 	QTextCursor tc = textCursor();
@@ -123,23 +125,27 @@ void QUAutoCue::seek(double position) {
  */
 void QUAutoCue::update() {
 	int time = _startTime.elapsed() - _waitedMilliseconds;
-	int maxDelay = 50; // milliseconds
+	int maxDelay = 30; // milliseconds
+	int frequency = 10; // milliseconds
 
 	forever{
 		if(_cueListIndex >= _cueList.size())
 			return;
 
 		if(_cueList.at(_cueListIndex).time < time) { // you are too late
+//			logSrv->add("Too late!", QU::Information);
 			_cueListIndex++;
 			continue;
 		}
 
 		int delay = _cueList.at(_cueListIndex).time - time;
 		if(delay >= maxDelay) { // you are too early, come back later
+//			logSrv->add("Too early!", QU::Information);
 			if(!_stopRequested)
-				QTimer::singleShot(10, this, SLOT(update()));
+				QTimer::singleShot(frequency, this, SLOT(update()));
 			return;
 		} else {
+//			logSrv->add(QString::number(delay), QU::Information);
 			break;
 		}
 	}
@@ -148,7 +154,33 @@ void QUAutoCue::update() {
 	_cueListIndex++;
 
 	if(!_stopRequested && !_pauseRequested)
-		QTimer::singleShot(10, this, SLOT(update()));
+		QTimer::singleShot(frequency, this, SLOT(update()));
+}
+
+void QUAutoCue::requestSongEdit() {
+	QAction *a = qobject_cast<QAction*>(sender());
+	if(a)
+		emit editSongRequested(a->data().toInt());
+}
+
+void QUAutoCue::contextMenuEvent(QContextMenuEvent *event) {
+	if(_cueListIndex < 0 || _cueListIndex >= _cueList.size()) {
+		event->ignore();
+		return;
+	}
+	QMenu *m = new QMenu(this);
+
+	int lineIndex = _cueList.at(_cueListIndex).line;
+
+	QAction *a = new QAction(QIcon(":/control/text_edit.png"), tr("Edit lyrics at line %1...").arg(lineIndex + 1), this);
+	a->setData(lineIndex);
+	connect(a, SIGNAL(triggered()), this, SLOT(requestSongEdit()));
+
+	m->addAction(a);
+	m->exec(QCursor::pos());
+	delete m;
+
+	event->accept();
 }
 
 void QUAutoCue::mark(int pos, int width) {

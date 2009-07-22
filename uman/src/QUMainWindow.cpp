@@ -80,6 +80,7 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	initTaskList();
 
 	initMonty();
+	initMediaPlayer();
 
 	playlistArea->refreshAllPlaylists();
 }
@@ -601,6 +602,10 @@ void QUMainWindow::initMonty() {
 	connect(montyArea->lineEdit, SIGNAL(returnPressed()), this, SLOT(montyAnswer()));
 }
 
+void QUMainWindow::initMediaPlayer() {
+	connect(mediaplayer, SIGNAL(editSongRequested(QUSongFile*,int)), this, SLOT(editSongLyrics(QUSongFile*,int)));
+}
+
 //void QUMainWindow::appendSong(QUSongFile *song) {
 //	_songs.append(song);
 //
@@ -941,6 +946,16 @@ void QUMainWindow::editSongLyrics(QUSongFile *song) {
 	QULyricsEditorDialog dlg(song, this);
 
 	if(dlg.exec())
+		song->save();
+}
+
+void QUMainWindow::editSongLyrics(QUSongFile *song, int line) {
+	if(!song)
+		return;
+
+	QULyricsEditorDialog dlg(song, this);
+
+	if(dlg.execAt(line))
 		song->save();
 }
 

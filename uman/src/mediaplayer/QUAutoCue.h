@@ -7,13 +7,16 @@
 #include <QTextBrowser>
 #include <QTimer>
 #include <QTime>
+#include <QMenu>
+#include <QContextMenuEvent>
 
 class QUCueInfo {
 public:
-	QUCueInfo(int t, int p, int w): time(t), pos(p), width(w) {}
+	QUCueInfo(int t, int p, int w, int l): time(t), pos(p), width(w), line(l) {}
 	int time;
 	int pos;
 	int width;
+	int line;
 };
 
 class QUAutoCue: public QTextBrowser {
@@ -34,6 +37,13 @@ public slots:
 
 private slots:
 	void update();
+	void requestSongEdit();
+
+signals:
+	void editSongRequested(int line);
+
+protected:
+	virtual void contextMenuEvent(QContextMenuEvent *event);
 
 private:
 	QTime _startTime;

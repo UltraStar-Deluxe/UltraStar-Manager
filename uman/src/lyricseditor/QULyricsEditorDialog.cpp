@@ -17,6 +17,20 @@ QULyricsEditorDialog::QULyricsEditorDialog(QUSongFile *song, QWidget *parent): Q
 	songLbl->setText(song->songFileInfo().fileName());
 }
 
+/*!
+ * Start with editing one specific line.
+ */
+int QULyricsEditorDialog::execAt(int line) {
+	if(line >= 0 && line < lyrics->count()) {
+		QListWidgetItem *item = lyrics->item(line);
+		lyrics->scrollToItem(item, QAbstractItemView::PositionAtCenter);
+		lyrics->setCurrentItem(item);
+		lyrics->editItem(item);
+	}
+
+	return exec();
+}
+
 void QULyricsEditorDialog::accept() {
 	lyrics->song()->saveMelody();
 

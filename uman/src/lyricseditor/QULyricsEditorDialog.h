@@ -13,6 +13,8 @@ class QULyricsEditorDialog: public QDialog, private Ui::QULyricsEditorDialog {
 public:
 	QULyricsEditorDialog(QUSongFile *song, QWidget *parent = 0);
 
+	int execAt(int line);
+
 public slots:
 	virtual void accept();
 	virtual void reject();

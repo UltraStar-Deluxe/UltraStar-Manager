@@ -38,6 +38,7 @@ private slots:
 	void initTaskList();
 	void initEventLog();
 	void initMonty();
+	void initMediaPlayer();
 
 //	void appendSong(QUSongFile *song);
 //	void deleteSong(QUSongFile *song);
@@ -55,6 +56,7 @@ private slots:
 	void editSongSetDetail(QTableWidgetItem *item);
 	void editSongApplyTasks();
 	void editSongLyrics(QUSongFile *song);
+	void editSongLyrics(QUSongFile *song, int line);
 
 	void aboutQt();
 	void aboutUman();

@@ -72,12 +72,14 @@ private slots:
 	void updateTimeSlider(QUMediaPlayer::States state);
 
 	void loopShuffleToggled();
+	void requestSongEdit(int line);
 
 signals:
 	void selectedSongsRequested();
 	void allSongsRequested();
 	void visibleSongsRequested();
 	void currentPlaylistRequested();
+	void editSongRequested(QUSongFile*, int line);
 
 	void stateChanged(QUMediaPlayer::States state);
 

@@ -23,6 +23,7 @@ TASK LIST
 MEDIA PLAYER
 * play a song and watch the lyrics
 * support for duet songs present =)
+* jump directly to edit mode of the current line via context menu
 
 SONGS
 * cache any []-tags in the filename at song load
