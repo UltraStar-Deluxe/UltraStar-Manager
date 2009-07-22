@@ -185,12 +185,9 @@ SONG FRIENDS
 MEDIA PLAYER
 * correct songs get ansychronous after a while (seek works right)
 
-SEARCH/FILTER
-* filtering custom tags seem not to work
-
 SONG WATCHER
 * many song files will not be added to QFileSystemWatcher
-  > too many files?
+  > too many files? (yap - limit seems to be 63)
 
 AUTO-SAVE
 * tasks that change a song's path perform kind of auto-save because
@@ -292,6 +289,7 @@ TASKS
 * recognize all "unknown tags" in the current song database
   > show them in a tooltip
   > use them in the "inline config" in the task list
+* make all file extensions lowercase or uppercase
 
 SONG TREE
 ? virtual song folders for many song text files in one folder

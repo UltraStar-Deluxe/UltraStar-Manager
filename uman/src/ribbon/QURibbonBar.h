@@ -32,6 +32,8 @@ public slots:
 	void toggleMenuHidden();
 	void changeCurrentTab(int);
 
+	/*debug*/ void foobar(); /*debug*/
+
 signals:
 	void changeSongPathRequested(QString);
 

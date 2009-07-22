@@ -1,6 +1,8 @@
 #include "QURibbonBar.h"
 #include "QULogService.h"
 
+#include "QUMonty.h"
+
 #include <QToolButton>
 #include <QIcon>
 #include <QHBoxLayout>
@@ -48,6 +50,15 @@ QURibbonBar::QURibbonBar(QWidget *parent): QTabWidget(parent), _menuHidden(false
 	setMenuHidden(true);
 
 	setCornerWidget(hideBtn, Qt::TopLeftCorner);
+
+
+
+	QAction *a = new QAction(this);
+	a->setShortcut(Qt::CTRL + Qt::Key_W);
+	connect(a, SIGNAL(triggered()), this, SLOT(foobar()));
+	addAction(a);
+
+
 }
 
 void QURibbonBar::setShortcut(QToolButton *w, const QKeySequence &key) {
@@ -147,6 +158,11 @@ void QURibbonBar::useHiddenStyle() {
 
 void QURibbonBar::changeCurrentTab(int) {
 	setMenuHidden(false);
+}
+
+void QURibbonBar::foobar() {
+	logSrv->add(QString::number(monty->watcher()->files().size()), QU::Help);
+	logSrv->add(QString::number(monty->watcher()->directories().size()), QU::Help);
 }
 
 void QURibbonBar::requestSongPathChange(QAction *action) {

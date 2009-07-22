@@ -10,10 +10,11 @@ QUFilterArea::QUFilterArea(QWidget *parent): QWidget(parent) {
 	_filterMenu->addSeparator();
 
 	_tagGroup = new QActionGroup(this);
-	_tagGroup->addAction(_filterMenu->addAction(tr("All Tags")));
-	_tagGroup->addAction(_filterMenu->addAction(tr("Information Tags")));
-	_tagGroup->addAction(_filterMenu->addAction(tr("Control Tags")));
-	_tagGroup->addAction(_filterMenu->addAction(tr("Custom Tags")));
+	_tagGroup->addAction(_filterMenu->addAction(tr("All tags")));
+	_tagGroup->addAction(_filterMenu->addAction(tr("Information tags")));
+	_tagGroup->addAction(_filterMenu->addAction(tr("File tags")));
+	_tagGroup->addAction(_filterMenu->addAction(tr("Control tags")));
+	_tagGroup->addAction(_filterMenu->addAction(tr("Custom tags")));
 
 	foreach(QAction *a, tagGroupActions())
 		a->setCheckable(true);
