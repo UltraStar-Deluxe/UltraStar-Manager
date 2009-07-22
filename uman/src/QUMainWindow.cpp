@@ -264,6 +264,8 @@ void QUMainWindow::initWindow() {
 	a->setShortcut(Qt::CTRL + Qt::Key_F11);
 	connect(a, SIGNAL(triggered()), this, SLOT(toggleFullScreenMode()));
 	addAction(a);
+
+	showMinimized();
 }
 
 //void QUMainWindow::initMenu() {
@@ -664,6 +666,9 @@ void QUMainWindow::refreshAllSongs(bool force) {
 	songDB->reload();
 	updateDetails();
 	updatePreviewTree();
+
+	// workaround for always-on-top windows on startup
+	showNormal();
 }
 
 ///*!

@@ -163,9 +163,6 @@ NOT SORTED
 * external song file changes will be detected twice for primary song
   > friend songs seem to work fine
 
-SPLASH SCREEN
-! main windows shows up to early if "always on top" is selected
-
 TRANSLATION
 * "Leerzeichen an Zeilenende verschieben" -> "Leerzeichen am Zeilenende korrigieren" or "Leerzeichen vor die Silben verschieben"
 * "Kopieren" -> "Verschieben" or "Bewegen"
