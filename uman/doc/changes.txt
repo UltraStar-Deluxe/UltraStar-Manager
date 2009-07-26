@@ -128,6 +128,10 @@ PATHS
 * new dialog for managing paths
 * multiple song paths can be configured and selected via menu
 
+PROGRESS DIALOG
+* not so exact remaining time displayed now
+  > "about 5 seconds" or "1 minute, 20 seconds"
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 TASKS
@@ -204,7 +208,7 @@ NEW STUFF
 * make hard-coded values editable
   > lower and upper time bound
   > line break gap in lyrics
-* create an ISO file with MP3s from you collection
+* create an ISO file with MP3s from your collection
   > let your friends be well prepared for the ultrastar evening
 * get cover picture
   > extract cover from MP3

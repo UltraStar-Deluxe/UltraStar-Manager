@@ -89,26 +89,54 @@ void QUProgressDialog::cancel() {
 }
 
 void QUProgressDialog::updateTime() {
-	int time = _startTime.secsTo(QTime::currentTime());
-	double speed = time > 0 ? (double)_progress / (double)time : 0.0;
+	int secondsElapsed = _startTime.secsTo(QTime::currentTime());
+	double speed = secondsElapsed > 0 ? (double)_progress / (double)secondsElapsed : 0.0;
+	int secondsEstimated = speed > 0 ? qRound((double)progress->maximum() / speed) : 0;
+
+	int secondsRemaining = (secondsEstimated - secondsElapsed) % 60;
+	int minutesRemaining = (secondsEstimated - secondsElapsed) / 60;
+
+	if(minutesRemaining == 0) {
+		secondsRemaining = qRound(secondsRemaining / 5.0) * 5;
+		if(secondsRemaining == 0) {
+			secondsRemaining = 5;
+		}
+	} else if(minutesRemaining < 4){
+		secondsRemaining = qRound(secondsRemaining / 10.0) * 10;
+	} else {
+		secondsRemaining = qRound(secondsRemaining / 20.0) * 20;
+	}
+
+	QString timeLblText;
+
+	if(minutesRemaining > 0) {
+		if(minutesRemaining == 1) {
+			timeLblText.append(tr("<b>1</b> minute"));
+		} else {
+			timeLblText.append(tr("<b>%1</b> minutes").arg(minutesRemaining));
+		}
+		if(secondsRemaining > 0) {
+			timeLblText.append(", ");
+		}
+	}
+
+	if(secondsRemaining > 0) {
+		if(secondsRemaining == 1) {
+			timeLblText.append(tr("<b>1</b> second"));
+		} else {
+			timeLblText.append(tr("<b>%1</b> seconds").arg(secondsRemaining));
+		}
+	}
+
+	if(secondsElapsed > 1 && secondsEstimated > 0) {
+		timeLbl->setText(tr("about %1").arg(timeLblText));
+	} else {
+		timeLbl->setText("Calculating...");
+	}
+
+	// show performance of current operation
 	int iSpeed = qRound(speed);
-	int estTime	= speed > 0 ? (int)((double)progress->maximum() / speed) : 0;
-
-	QString elapsedTime = QString(tr("%1:%2"))
-		.arg((int)(time / 60), 2, 10, QChar('0'))
-		.arg((int)(time % 60), 2, 10, QChar('0'));
-
-	QString estimatedTime;
-	if(estTime > 0) {
-		estimatedTime = QString(tr("<b>%1:%2</b>"))
-			.arg((int)(estTime / 60), 2, 10, QChar('0'))
-			.arg((int)(estTime % 60), 2, 10, QChar('0'));
-
-		timeLbl->setText(QString(tr("%1 of %2")).arg(elapsedTime).arg(estimatedTime));
-	} else
-		timeLbl->setText(elapsedTime);
-
-	if(time > 0)
+	if(secondsElapsed > 0)
 		speedLbl->setText(QString(tr("<b>%1%2</b> items/sec")).arg(iSpeed == 0 ? "&lt;" : "").arg(qMax(1, iSpeed)));
 	else
 		speedLbl->setText("-");
