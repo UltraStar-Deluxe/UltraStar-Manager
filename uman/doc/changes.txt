@@ -88,6 +88,9 @@ SMART SETTINGS
 COMMAND LINE
 * first parameter enables you to specify a song folder to open
 
+SONG TREE
+* new columns for #RELATIVE, #GAP, #BPM
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 QT

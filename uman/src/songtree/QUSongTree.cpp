@@ -624,6 +624,7 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 		case LENGTH_EFF_COLUMN:
 		case END_COLUMN:
 		case VIDEOGAP_COLUMN: lengthsMenu.addAction(a); break;
+		case RELATIVE_COLUMN: menu.addSeparator();
 		default:
 			if(QUSongSupport::availableCustomTags().contains(a->text(), Qt::CaseInsensitive))
 				customTagsMenu.addAction(a);

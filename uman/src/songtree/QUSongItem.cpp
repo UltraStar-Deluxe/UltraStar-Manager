@@ -392,7 +392,6 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case LENGTH_MP3_COLUMN:
 	case LENGTH_EFF_COLUMN:
 	case SPEED_COLUMN:
-	case RELATIVE_COLUMN:
 		return this->data(column, Qt::UserRole).toInt() < other.data(column, Qt::UserRole).toInt(); break;
 	case START_COLUMN:
 	case END_COLUMN:
@@ -568,8 +567,8 @@ void QUSongItem::updateTextColumns() {
 }
 
 void QUSongItem::updateControlColumns() {
-	setText(RELATIVE_COLUMN, song()->isRelative() ? "x" : "");
-	setData(RELATIVE_COLUMN, Qt::UserRole, song()->isRelative() ? 0 : 1);
+	setText(RELATIVE_COLUMN, song()->relative());
+	setIcon(RELATIVE_COLUMN, QIcon(song()->isRelative() ? ":/marks/tick.png": ":/marks/cross.png"));
 
 	setText(BPM_COLUMN, song()->bpm());
 	setData(BPM_COLUMN, Qt::UserRole, song()->bpm().replace(",", "."));
