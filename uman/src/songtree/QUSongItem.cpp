@@ -121,6 +121,7 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	updateTypeColumns();
 	updateTimeCheckColumns();
 	updateTextColumns();
+	updateControlColumns();
 	updateBackground();
 }
 
@@ -391,10 +392,13 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case LENGTH_MP3_COLUMN:
 	case LENGTH_EFF_COLUMN:
 	case SPEED_COLUMN:
+	case RELATIVE_COLUMN:
 		return this->data(column, Qt::UserRole).toInt() < other.data(column, Qt::UserRole).toInt(); break;
 	case START_COLUMN:
 	case END_COLUMN:
 	case VIDEOGAP_COLUMN:
+	case BPM_COLUMN:
+	case GAP_COLUMN:
 		return this->data(column, Qt::UserRole).toDouble() < other.data(column, Qt::UserRole).toDouble(); break;
 	default:
 		return text(column) < other.text(column);
@@ -561,6 +565,17 @@ void QUSongItem::updateTextColumns() {
 		this->setText(FIRST_CUSTOM_TAG_COLUMN + (i),      song()->customTag(customTag));
 		this->setToolTip(FIRST_CUSTOM_TAG_COLUMN + (i++), song()->customTag(customTag));
 	}
+}
+
+void QUSongItem::updateControlColumns() {
+	setText(RELATIVE_COLUMN, song()->isRelative() ? "x" : "");
+	setData(RELATIVE_COLUMN, Qt::UserRole, song()->isRelative() ? 0 : 1);
+
+	setText(BPM_COLUMN, song()->bpm());
+	setData(BPM_COLUMN, Qt::UserRole, song()->bpm().replace(",", "."));
+
+	setText(GAP_COLUMN, song()->gap());
+	setData(GAP_COLUMN, Qt::UserRole, song()->gap().replace(",", "."));
 }
 
 void QUSongItem::updateBackground() {

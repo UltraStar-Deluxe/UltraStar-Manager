@@ -17,6 +17,8 @@ QUTask* QULyricTaskFactory::createTask(int type) {
 
 QList<int> QULyricTaskFactory::types() const {
 	QList<int> result;
+	result << QULyricTask::ConvertRelativeToAbsolute;
+	result << QULyricTask::ConvertAbsoluteToRelative;
 	result << QULyricTask::FixTimeStamps;
 	result << QULyricTask::FixSpaces;
 	result << QULyricTask::RemoveEmptySyllables;

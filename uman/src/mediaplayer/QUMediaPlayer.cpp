@@ -16,7 +16,7 @@ QUSongInfo::QUSongInfo(QUSongFile *song) {
 	gap2 = gap1;
 
 	bpm = QVariant(song->bpm().replace(",", ".")).toDouble() * 4;
-	isRelative = song->relative() != N_A;
+	isRelative = song->isRelative();
 
 	filePath = song->mp3FileInfo().filePath();
 	artist = song->artist();

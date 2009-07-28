@@ -5,7 +5,7 @@
 #include "QU.h"
 #include "QUSongFile.h"
 
-#define FIXED_COLUMN_COUNT    27
+#define FIXED_COLUMN_COUNT    30
 
 #define FOLDER_COLUMN          0
 
@@ -40,9 +40,13 @@
 #define YEAR_COLUMN           24
 #define CREATOR_COLUMN        25
 
-#define DUPLICATE_ID_COLUMN   26
+#define RELATIVE_COLUMN       26
+#define BPM_COLUMN            27
+#define GAP_COLUMN            28
 
-#define FIRST_CUSTOM_TAG_COLUMN 27
+#define DUPLICATE_ID_COLUMN   29
+
+#define FIRST_CUSTOM_TAG_COLUMN 30
 
 /*!
  * This class encapsulates a pointer to a QUSongFile object to be able
@@ -93,6 +97,7 @@ private:
 	void updateTypeColumns();
 	void updateTimeCheckColumns();
 	void updateTextColumns();
+	void updateControlColumns();
 
 	void updateBackground();
 };

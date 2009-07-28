@@ -15,7 +15,9 @@ public:
 		FixSpaces,
 		RemoveEmptySyllables,
 		ConvertSyllablePlaceholder1,
-		ConvertSyllablePlaceholder2
+		ConvertSyllablePlaceholder2,
+		ConvertRelativeToAbsolute,
+		ConvertAbsoluteToRelative
 	};
 	Q_DECLARE_FLAGS(TaskModes, TaskMode)
 
@@ -32,6 +34,8 @@ private:
 	void fixSpaces(QUSongInterface *song);
 	void removeEmptySyllables(QUSongInterface *song);
 	void convertSyllablePlaceholder(QUSongInterface *song, const QString &before, const QString &after);
+	void convertRelativeToAbsolute(QUSongInterface *song);
+	void convertAbsoluteToRelative(QUSongInterface *song);
 };
 
 #endif /* QULYRICTASK_H_ */

@@ -78,7 +78,7 @@ private slots:
 
 	void toggleColumn(bool show, int index);
 	void showAllColumns();
-	void showDefaultColumns();
+	void showDefaultColumns(bool save = true);
 	void showMinimalColumns();
 	void showTimeColumns();
 	void showCheckColumns();

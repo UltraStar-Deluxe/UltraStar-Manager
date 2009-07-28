@@ -90,6 +90,7 @@ public slots:
 	bool isSingStar() const;
 	bool isDuet() const;
 	bool isKaraoke() const;
+	bool isRelative() const;
 
 	QString titleCompact() const;
 	int length() const;

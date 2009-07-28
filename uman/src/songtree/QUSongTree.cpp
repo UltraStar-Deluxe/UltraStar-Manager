@@ -129,7 +129,14 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(VIDEOGAP_COLUMN, QIcon(":/types/videogap.png"));
 	header->setToolTip(VIDEOGAP_COLUMN, tr("Skips the first seconds of the video.<br><br><i>Use negative values here with positive ones in <b>#START</b> to fix a short video file.</i>"));
 
-//	header->setText(DUPLICATE_ID_COLUMN, "ID");
+	header->setText(RELATIVE_COLUMN, tr("Relative?"));
+	header->setToolTip(RELATIVE_COLUMN, tr("Has relative timestamps."));
+	header->setText(BPM_COLUMN, tr("BPM"));
+	header->setToolTip(BPM_COLUMN, tr("beats per minute"));
+	header->setText(GAP_COLUMN, tr("GAP"));
+	header->setToolTip(GAP_COLUMN, tr("Time to first syllable."));
+
+	//	header->setText(DUPLICATE_ID_COLUMN, "ID");
 	header->setToolTip(DUPLICATE_ID_COLUMN, tr("Indicate duplicate songs. <b>You should not see me.</b>"));
 
 	int i = 0;
@@ -141,18 +148,7 @@ void QUSongTree::initHorizontalHeader() {
 
 	// set up default header
 	this->setHeaderItem(header);
-	this->header()->setSectionHidden(ARTIST_COLUMN_EX, true);
-	this->header()->setSectionHidden(TITLE_COLUMN_EX, true);
-	this->header()->setSectionHidden(LENGTH_COLUMN, true);
-	this->header()->setSectionHidden(LENGTH_DIFF_COLUMN, true);
-	this->header()->setSectionHidden(LENGTH_MP3_COLUMN, true);
-	this->header()->setSectionHidden(LENGTH_EFF_COLUMN, true);
-	this->header()->setSectionHidden(SPEED_COLUMN, true);
-	this->header()->setSectionHidden(START_COLUMN, true);
-	this->header()->setSectionHidden(END_COLUMN, true);
-	this->header()->setSectionHidden(VIDEOGAP_COLUMN, true);
-
-	this->header()->setSectionHidden(DUPLICATE_ID_COLUMN, true);
+	this->showDefaultColumns(false);
 
 	// load custom setup
 	QSettings settings;
@@ -665,27 +661,37 @@ void QUSongTree::showAllColumns() {
 	settings.setValue("songTreeState", QVariant(header()->saveState()));
 }
 
-void QUSongTree::showDefaultColumns() {
+void QUSongTree::showDefaultColumns(bool save) {
 	for(int i = 0; i < headerItem()->columnCount(); i++)
-		header()->showSection(i);
+		header()->hideSection(i);
 
-	this->header()->setSectionHidden(ARTIST_COLUMN_EX, true);
-	this->header()->setSectionHidden(TITLE_COLUMN_EX, true);
-	this->header()->setSectionHidden(LENGTH_COLUMN, true);
-	this->header()->setSectionHidden(LENGTH_DIFF_COLUMN, true);
-	this->header()->setSectionHidden(LENGTH_MP3_COLUMN, true);
-	this->header()->setSectionHidden(LENGTH_EFF_COLUMN, true);
-	this->header()->setSectionHidden(SPEED_COLUMN, true);
-	this->header()->setSectionHidden(START_COLUMN, true);
-	this->header()->setSectionHidden(END_COLUMN, true);
-	this->header()->setSectionHidden(VIDEOGAP_COLUMN, true);
+	this->header()->showSection(FOLDER_COLUMN);
+	this->header()->showSection(ARTIST_COLUMN);
+	this->header()->showSection(TITLE_COLUMN);
+	this->header()->showSection(MP3_COLUMN);
+	this->header()->showSection(COVER_COLUMN);
+	this->header()->showSection(BACKGROUND_COLUMN);
+	this->header()->showSection(VIDEO_COLUMN);
+	this->header()->showSection(TYPE_KARAOKE_COLUMN);
+	this->header()->showSection(TYPE_DUET_COLUMN);
+	this->header()->showSection(UNUSED_FILES_COLUMN);
+	this->header()->showSection(MULTIPLE_SONGS_COLUMN);
+	this->header()->showSection(LANGUAGE_COLUMN);
+	this->header()->showSection(EDITION_COLUMN);
+	this->header()->showSection(GENRE_COLUMN);
+	this->header()->showSection(YEAR_COLUMN);
+	this->header()->showSection(CREATOR_COLUMN);
 
-	this->header()->setSectionHidden(DUPLICATE_ID_COLUMN, true);
+	int customTagsCount = QUSongSupport::availableCustomTags().size();
+	for(int i = 0; i < customTagsCount; i++)
+		header()->showSection(FIRST_CUSTOM_TAG_COLUMN + i);
 
 	this->resizeToContents();
 
-	QSettings settings;
-	settings.setValue("songTreeState", QVariant(header()->saveState()));
+	if(save) {
+		QSettings settings;
+		settings.setValue("songTreeState", QVariant(header()->saveState()));
+	}
 }
 
 /*!

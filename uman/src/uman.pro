@@ -79,6 +79,7 @@ HEADERS += plugins/QUPluginDialog.h \
 	preferences/QUPathsDialog.h \
 	sha2/sha2.h \
 	sha2/hmac_sha2.h
+	#support/qkFileWatcher.h
 SOURCES += plugins/QUPluginDialog.cpp \
     plugins/QUTaskFactoryProxy.cpp \
 	plugins/QUSmartSetting.cpp \
@@ -145,6 +146,7 @@ SOURCES += plugins/QUPluginDialog.cpp \
 	preferences/QUPathsDialog.cpp \
 	sha2/sha2.c \
 	sha2/hmac_sha2.c
+	#support/qkFileWatcher.cpp
 FORMS += plugins/QUPluginDialog.ui \
     QUMainWindow.ui \
     QUAboutDialog.ui \

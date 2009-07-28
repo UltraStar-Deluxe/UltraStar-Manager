@@ -12,11 +12,13 @@
 #include <QString>
 #include <QFile>
 #include <QLocale>
+#include <QFileInfo>
 
 void initApplication();
 void initLanguage(QApplication&, QTranslator&, QSplashScreen&);
 void handlePreviousAppCrash();
 void handleWipWarning();
+void handleArguments();
 
 int main(int argc, char *argv[]) {
 	initApplication();
@@ -31,6 +33,7 @@ int main(int argc, char *argv[]) {
 
 	handleWipWarning();
 	handlePreviousAppCrash();
+	handleArguments();
 
     QUMainWindow mainWindow;
     app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
@@ -129,5 +132,27 @@ void handlePreviousAppCrash() {
 		QSettings settings;
 		settings.remove("songPath");
 		settings.remove("playlistFilePath");
+	}
+}
+
+/*!
+ * Read arguments as a song path to be loaded.
+ */
+void handleArguments() {
+	QSettings s;
+	foreach(QString arg, qApp->arguments()) {
+		QFileInfo fi(arg);
+
+		if(fi.isFile())
+			continue; // application file
+
+		if(fi.isDir() && fi.exists()) {
+//			QStringList paths(s.value("songPaths").toStringList());
+//			paths.append(arg);
+//			paths.removeDuplicates();
+//			s.setValue("songPaths", paths);
+			s.setValue("songPath", arg);
+			break;
+		}
 	}
 }

@@ -332,6 +332,10 @@ bool QUSongFile::isKaraoke() const {
 	return QUStringSupport::extractTags(title()).join(" ").contains(rxTag) || edition().contains(rxTag);
 }
 
+bool QUSongFile::isRelative() const {
+	return QString::compare(relative(), "yes", Qt::CaseInsensitive) == 0;
+}
+
 /*!
  * \returns The #TITLE-tag without []-tags
  */
@@ -358,7 +362,7 @@ int QUSongFile::calculateSongLength() const {
 		return 0;
 
 	int beats = 0;
-	if(QString::compare(this->relative(), "yes", Qt::CaseInsensitive) == 0) {
+	if(isRelative()) {
 		foreach(QString line, _lyrics) {
 			QString l = line; l.insert(1, " "); // fix "-33 22"
 			if(l.startsWith("-"))
@@ -512,7 +516,7 @@ QStringList QUSongFile::lyrics() const {
 			lastBeat = QVariant(line.section(" ", 0, 0, QString::SectionSkipEmpty)).toInt();
 
 			// insert an empty line?
-			if(this->relative() != N_A) {
+			if(isRelative()) {
 				int nextBeat = QVariant(line.section(" ", 1, 1, QString::SectionSkipEmpty)).toInt();
 				if(nextBeat - lastBeat > 20)
 					result << QString();

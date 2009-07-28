@@ -34,6 +34,16 @@ QULyricTask::QULyricTask(TaskModes mode, QObject *parent):
 		this->setIcon(QIcon(":/control/convert-1.png"));
 		this->setGroup(999); // hopefully this group is free ^^
 		break;
+	case ConvertRelativeToAbsolute:
+		this->setDescription(tr("Convert relative to absolute timestamps"));
+//		this->setIcon(QIcon(":/control/.png"));
+		this->setGroup(998); // hopefully this group is free ^^
+		break;
+	case ConvertAbsoluteToRelative:
+		this->setDescription(tr("Convert absolute to relative timestamps"));
+//		this->setIcon(QIcon(":/control/.png"));
+		this->setGroup(998); // hopefully this group is free ^^
+		break;
 	}
 }
 
@@ -53,6 +63,12 @@ void QULyricTask::startOn(QUSongInterface *song) {
 		break;
 	case ConvertSyllablePlaceholder2:
 		convertSyllablePlaceholder(song, "~", "-");
+		break;
+	case ConvertRelativeToAbsolute:
+		convertRelativeToAbsolute(song);
+		break;
+	case ConvertAbsoluteToRelative:
+		convertAbsoluteToRelative(song);
 		break;
 	}
 }
@@ -91,7 +107,7 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 			  .arg(song->title()), QU::Information);
 
 	// modify all timestamps
-	if(song->relative() == N_A) { // simple way: not relative
+	if(!song->isRelative()) { // simple way: not relative
 		foreach(QUSongLineInterface *line, song->loadMelody()) {
 			foreach(QUSongNoteInterface *note, line->notes()) {
 				note->setTimestamp(note->timestamp() - diff);
@@ -238,4 +254,43 @@ void QULyricTask::convertSyllablePlaceholder(QUSongInterface *song, const QStrin
 			  .arg(song->title())
 			  .arg(before)
 			  .arg(after), QU::Information);
+}
+
+void QULyricTask::convertRelativeToAbsolute(QUSongInterface *song) {
+//	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
+//		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::Warning);
+//		return;
+//	}
+//
+//	int timestamp;
+//	foreach(QUSongLineInterface *line, song->loadMelody()) {
+//		if(!line->useInTime()) {
+//			song->clearMelody();
+//			song->log(tr("Timestamp for line appearance missing! Conversion failed for: \"%1 - %2\".")
+//					  .arg(song->artist())
+//					  .arg(song->title()), QU::Warning);
+//			return;
+//		}
+//
+//		if(line == song->loadMelody().first()) {
+//			timestamp = line->notes().first()->timestamp();
+//			timestamp
+//			continue;
+//		}
+//
+//		foreach(QUSongNoteInterface *note, line->notes()) {
+//
+//		}
+//	}
+//
+//	song->setInfo("RELATIVE", false);
+//	song->saveMelody();
+//	song->clearMelody(); // save memory
+//
+//	song->log(tr("Relative timestamps converted successfully to absolute timestamps for \"%1 - %2\".")
+//			  .arg(song->artist())
+//			  .arg(song->title()), QU::Information);
+}
+
+void QULyricTask::convertAbsoluteToRelative(QUSongInterface *song) {
 }
