@@ -132,30 +132,6 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 			if(song->loadMelody().first()->useInTime())
 				song->loadMelody().first()->setInTime(song->loadMelody().first()->inTime() - diff);
 		}
-
-		// process next lines - MUST NOT! Do not mix invisible time with pause time of a line!
-//		for(int i = 1; i < song->loadMelody().size(); i++) {
-//			QUSongLineInterface *currentLine = song->loadMelody()[i];
-//			QUSongLineInterface *prevLine    = song->loadMelody()[i - 1];
-//
-//			if(currentLine->notes().isEmpty())
-//				continue;
-//
-//			int diff2 = currentLine->notes().first()->timestamp() - begin;
-//
-//			prevLine->setInTime(prevLine->inTime() + diff2); // every line has to have "in" and "out" timestamps! -> relative
-//
-//			foreach(QUSongNoteInterface *note, currentLine->notes()) {
-//				note->setTimestamp(note->timestamp() - diff2);
-//			}
-//
-//			if(currentLine->useOutTime()) {
-//				currentLine->setOutTime(currentLine->outTime() - diff2);
-//
-//				if(currentLine->useInTime())
-//					currentLine->setInTime(currentLine->inTime() - diff2);
-//			}
-//		}
 	}
 
 	song->saveMelody();

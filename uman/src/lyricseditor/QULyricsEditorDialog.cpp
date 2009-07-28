@@ -21,8 +21,8 @@ QULyricsEditorDialog::QULyricsEditorDialog(QUSongFile *song, QWidget *parent): Q
  * Start with editing one specific line.
  */
 int QULyricsEditorDialog::execAt(int line) {
-	if(line >= 0 && line < lyrics->count()) {
-		QListWidgetItem *item = lyrics->item(line);
+	if(line >= 0 && line < lyrics->rowCount()) {
+		QTableWidgetItem *item = lyrics->item(line, 1);
 		lyrics->scrollToItem(item, QAbstractItemView::PositionAtCenter);
 		lyrics->setCurrentItem(item);
 		lyrics->editItem(item);
@@ -48,11 +48,11 @@ void QULyricsEditorDialog::toggleWhitespace(int state) {
 }
 
 void QULyricsEditorDialog::search(const QString &keyword) {
-	for(int row = 0; row < lyrics->count(); row++) {
-		if( !keyword.isEmpty() && lyrics->item(row)->text().contains(QRegExp(keyword, Qt::CaseInsensitive))) {
-			lyrics->item(row)->setBackgroundColor(Qt::yellow);
+	for(int row = 0; row < lyrics->rowCount(); row++) {
+		if( !keyword.isEmpty() && lyrics->item(row, 1)->text().contains(QRegExp(keyword, Qt::CaseInsensitive))) {
+			lyrics->item(row, 1)->setBackgroundColor(Qt::yellow);
 		} else {
-			lyrics->item(row)->setBackgroundColor(Qt::white);
+			lyrics->item(row, 1)->setBackgroundColor(Qt::white);
 		}
 	}
 }

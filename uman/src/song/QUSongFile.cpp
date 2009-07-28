@@ -373,7 +373,7 @@ int QUSongFile::calculateSongLength() const {
 		beats = QVariant(l.section(" ", 1, 1, QString::SectionSkipEmpty)).toInt(); // use the number in the last line, e.g. ": 2000 5 60 boo", "- 2000"
 	}
 
-	double gap = QVariant(this->gap()).toDouble() / 1000;
+	double gap = QVariant(this->gap().replace(",", ".")).toDouble() / 1000;
 
 	return qMax(0, (int)((beats / (bpm * 4)) * 60 + gap)); // result in seconds
 }

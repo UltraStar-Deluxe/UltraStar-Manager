@@ -1,14 +1,14 @@
 #ifndef QULYRICSEDIT_H
 #define QULYRICSEDIT_H
 
-#include <QListWidget>
-#include <QListWidgetItem>
+#include <QTableWidget>
+#include <QTableWidgetItem>
 #include <QKeyEvent>
 
 #include "QUSongFile.h"
 #include "QUSongLineDelegate.h"
 
-class QULyricsEdit: public QListWidget {
+class QULyricsEdit: public QTableWidget {
 	Q_OBJECT
 
 public:
@@ -17,8 +17,9 @@ public:
 	QUSongFile* song() const {return _song;}
 
 public slots:
-	void lineModified(QListWidgetItem *item);
+	void lineModified(QTableWidgetItem *item);
 	void setShowWhitespace(bool enabled);
+	void skipReadOnlyCells(int row, int col, int, int);
 
 protected:
 	virtual void keyPressEvent (QKeyEvent *event);
