@@ -99,7 +99,7 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 	// calculate and set the new gap
 	double oldGap = gap;
 	gap = gap + (diff * 15000) / bpm;
-	song->setInfo(GAP_TAG, QVariant(qRound(gap)).toString());
+	song->setInfo(GAP_TAG, QString::number(qRound(gap)));
 	song->log(QString(tr("#GAP changed from %1 to %2 for \"%3 - %4\"."))
 			  .arg(oldGap)
 			  .arg(song->gap())
@@ -133,29 +133,29 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 				song->loadMelody().first()->setInTime(song->loadMelody().first()->inTime() - diff);
 		}
 
-		// process next lines
-		for(int i = 1; i < song->loadMelody().size(); i++) {
-			QUSongLineInterface *currentLine = song->loadMelody()[i];
-			QUSongLineInterface *prevLine    = song->loadMelody()[i - 1];
-
-			if(currentLine->notes().isEmpty())
-				continue;
-
-			int diff2 = currentLine->notes().first()->timestamp() - begin;
-
-			prevLine->setInTime(prevLine->inTime() + diff2); // every line has to have "in" and "out" timestamps! -> relative
-
-			foreach(QUSongNoteInterface *note, currentLine->notes()) {
-				note->setTimestamp(note->timestamp() - diff2);
-			}
-
-			if(currentLine->useOutTime()) {
-				currentLine->setOutTime(currentLine->outTime() - diff2);
-
-				if(currentLine->useInTime())
-					currentLine->setInTime(currentLine->inTime() - diff2);
-			}
-		}
+		// process next lines - MUST NOT! Do not mix invisible time with pause time of a line!
+//		for(int i = 1; i < song->loadMelody().size(); i++) {
+//			QUSongLineInterface *currentLine = song->loadMelody()[i];
+//			QUSongLineInterface *prevLine    = song->loadMelody()[i - 1];
+//
+//			if(currentLine->notes().isEmpty())
+//				continue;
+//
+//			int diff2 = currentLine->notes().first()->timestamp() - begin;
+//
+//			prevLine->setInTime(prevLine->inTime() + diff2); // every line has to have "in" and "out" timestamps! -> relative
+//
+//			foreach(QUSongNoteInterface *note, currentLine->notes()) {
+//				note->setTimestamp(note->timestamp() - diff2);
+//			}
+//
+//			if(currentLine->useOutTime()) {
+//				currentLine->setOutTime(currentLine->outTime() - diff2);
+//
+//				if(currentLine->useInTime())
+//					currentLine->setInTime(currentLine->inTime() - diff2);
+//			}
+//		}
 	}
 
 	song->saveMelody();
@@ -257,40 +257,90 @@ void QULyricTask::convertSyllablePlaceholder(QUSongInterface *song, const QStrin
 }
 
 void QULyricTask::convertRelativeToAbsolute(QUSongInterface *song) {
-//	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
-//		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::Warning);
-//		return;
-//	}
-//
-//	int timestamp;
-//	foreach(QUSongLineInterface *line, song->loadMelody()) {
-//		if(!line->useInTime()) {
-//			song->clearMelody();
-//			song->log(tr("Timestamp for line appearance missing! Conversion failed for: \"%1 - %2\".")
-//					  .arg(song->artist())
-//					  .arg(song->title()), QU::Warning);
-//			return;
-//		}
-//
+	if(!song->isRelative())
+		return;
+
+	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
+		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::Warning);
+		return;
+	}
+
+	int diff = 0;
+	foreach(QUSongLineInterface *line, song->loadMelody()) {
+		if(!line->useInTime())
+			line->setInTime(line->outTime()); // fix missing in-time
+
 //		if(line == song->loadMelody().first()) {
-//			timestamp = line->notes().first()->timestamp();
-//			timestamp
+//			diff = line->inTime();
+////			line->removeInTime(); // analog to ultrastar conversion in editor
 //			continue;
 //		}
-//
-//		foreach(QUSongNoteInterface *note, line->notes()) {
-//
-//		}
-//	}
-//
-//	song->setInfo("RELATIVE", false);
-//	song->saveMelody();
-//	song->clearMelody(); // save memory
-//
-//	song->log(tr("Relative timestamps converted successfully to absolute timestamps for \"%1 - %2\".")
-//			  .arg(song->artist())
-//			  .arg(song->title()), QU::Information);
+
+		foreach(QUSongNoteInterface *note, line->notes()) {
+			note->setTimestamp(note->timestamp() + diff);
+		}
+
+		if(line->useOutTime()) {
+			line->setOutTime(line->outTime() + diff);
+			line->setInTime(line->inTime() + diff);
+
+			diff = line->inTime();
+
+			if(line->outTime() > line->inTime()) { // is possible for strange line start timestamps
+
+			}
+
+			if(line->outTime() == line->inTime())
+				line->removeInTime();
+		}
+	}
+
+	song->setInfo("RELATIVE", "");
+	song->saveMelody();
+	song->clearMelody(); // save memory
+
+	song->log(tr("Relative timestamps converted successfully to absolute timestamps for \"%1 - %2\".")
+			  .arg(song->artist())
+			  .arg(song->title()), QU::Information);
 }
 
 void QULyricTask::convertAbsoluteToRelative(QUSongInterface *song) {
+	if(song->isRelative())
+		return;
+
+	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
+		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::Warning);
+		return;
+	}
+
+	int diff = 0;
+	foreach(QUSongLineInterface *line, song->loadMelody()) {
+		if(!line->useInTime())
+			line->setInTime(line->outTime()); // fix missing in-time
+
+//		if(line == song->loadMelody().first()) {
+//			diff = line->inTime();
+////			line->removeInTime(); // analog to ultrastar conversion in editor
+//			continue;
+//		}
+
+		foreach(QUSongNoteInterface *note, line->notes()) {
+			note->setTimestamp(note->timestamp() - diff);
+		}
+
+		if(line->useOutTime()) {
+			line->setOutTime(line->outTime() - diff);
+			line->setInTime(line->inTime() - diff);
+
+			diff = diff + line->inTime();
+		}
+	}
+
+	song->setInfo("RELATIVE", "yes");
+	song->saveMelody();
+	song->clearMelody(); // save memory
+
+	song->log(tr("Absolute timestamps converted successfully to relative timestamps for \"%1 - %2\".")
+			  .arg(song->artist())
+			  .arg(song->title()), QU::Information);
 }

@@ -148,6 +148,8 @@ TASKS
 * fixed undesired behaviour for renaming files/folders to names
   that contain slashes ('/', e.g. 'AC/DC')
   > slash will be removed
+* "Set first timestamp to zero" does not mess with invisible times and
+   pause times in relative songs anymore
 
 MAIN WINDOW
 * "Options -> Always On Top" now saved and restored during app restart
@@ -206,12 +208,13 @@ AUTO-SAVE
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
+! create a feature list =)
 ! prepare plugin SDK
 * restore ribbon bar appearance on application restart (small/full)
 ! manual file rename
 * explain space-shortcut in slideshow dialog somehow
 * drop a picture into song tree: ask for usage as cover or background (dialog)
-! add support for custom tags
+! add support/help texts for custom tags
   > need of #
   > upper or lowercase?
 ! the need of return in the find/search field is not obvious
