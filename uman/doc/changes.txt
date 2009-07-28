@@ -181,6 +181,8 @@ TRANSLATION
 TASKS
 * convert syllable placeholders does not ignore "wanted" dashes ("A-B-C")
 * "remove empty syllables" breaks timestamps in relative songs
+? "set first timestamp to 0" could fail for relative songs
+  > depends on this problem: http://forum.ultra-star.de/viewtopic.php?f=10&t=7142
 
 SONG FRIENDS
 * cannot add song friends to playlist
