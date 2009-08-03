@@ -537,7 +537,10 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 
 	if(item && !item->isToplevel()) {
 		// file menu
-		menu.addAction(tr("Open"), this, SLOT(openCurrentFile()));
+		if(item->song()->isFriend(item->text(0)))
+			menu.addAction(tr("Set as primary song"), this, SLOT(openCurrentFile()));
+		else
+			menu.addAction(tr("Open"), this, SLOT(openCurrentFile()));
 		menu.addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), Qt::Key_Delete);
 	} else {
 		// song/folder menu

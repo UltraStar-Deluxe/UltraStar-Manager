@@ -184,7 +184,7 @@ TASKS
 * convert syllable placeholders does not ignore "wanted" dashes ("A-B-C")
 * "remove empty syllables" breaks timestamps in relative songs
 
-SONG FRIENDS (general workaround: switch friend to primary song)
+SONG FRIENDS (general workaround: switch friend to primary song with double-click on song text file)
 * cannot add song friends to playlist
 * cannot change #MP3 for karaoke song friend
 * cannot change #EDITION for song friend
