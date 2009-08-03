@@ -251,8 +251,21 @@ void QUSongItem::updateAsScore() {
 
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/score.png"));
 
-	// special files, special color ^_^
-//	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
+	if(song()->score() && QFileInfo(song()->score()->filePath()).fileName() == text(FOLDER_COLUMN))
+		return;
+
+	foreach(QUSongFile *friendSong, song()->friends()) {
+		if(friendSong->score() && QFileInfo(friendSong->score()->filePath()).fileName() == text(FOLDER_COLUMN)) {
+			// song friend uses this file!
+			this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+			this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
+			return;
+		}
+	}
+
+	// last option: no song uses this score file
+	this->setTextColor(FOLDER_COLUMN, Qt::gray);
+	(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
 }
 
 void QUSongItem::updateAsUnknown() {
@@ -471,6 +484,10 @@ void QUSongItem::updateFileCheckColumns() {
 	     if(song()->hasVideo())     this->setTick(VIDEO_COLUMN);
 	else if(song()->video() != N_A) this->setCross(VIDEO_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->video()));
 	else                            this->setCross(VIDEO_COLUMN);
+
+	// score files
+	if(song()->score())
+		this->setIcon(SCORE_COLUMN, QIcon(":/types/score.png"));
 }
 
 void QUSongItem::updateTypeColumns() {

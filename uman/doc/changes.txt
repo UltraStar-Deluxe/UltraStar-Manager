@@ -169,12 +169,9 @@ AMAZON COVER SEARCH
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
-NOT SORTED
-* you cannot sort after a custom tag column in the report
+INSTALLER
 * Uninstaller does not delete
   > "non-standard" tasks
-* external song file changes will be detected twice for primary song
-  > friend songs seem to work fine
 
 TRANSLATION
 * "Leerzeichen an Zeilenende verschieben" -> "Leerzeichen am Zeilenende korrigieren" or "Leerzeichen vor die Silben verschieben"
@@ -198,10 +195,15 @@ MEDIA PLAYER
 SONG WATCHER
 * many song files will not be added to QFileSystemWatcher
   > too many files? (yap - limit seems to be 63)
+* external song file changes will be detected twice for primary song
+  > friend songs seem to work fine
 
 AUTO-SAVE
 * tasks that change a song's path perform kind of auto-save because
   the path change cannot be deferred
+
+REPORTS
+* you cannot sort after a custom tag column in the report
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 

@@ -78,7 +78,8 @@ HEADERS += plugins/QUPluginDialog.h \
     lyricseditor/QUSyllableDelegate.h \
 	preferences/QUPathsDialog.h \
 	sha2/sha2.h \
-	sha2/hmac_sha2.h
+	sha2/hmac_sha2.h \
+	score/QUScoreFile.h
 	#support/qkFileWatcher.h
 SOURCES += plugins/QUPluginDialog.cpp \
     plugins/QUTaskFactoryProxy.cpp \
@@ -145,7 +146,8 @@ SOURCES += plugins/QUPluginDialog.cpp \
     lyricseditor/QUSyllableDelegate.cpp \
 	preferences/QUPathsDialog.cpp \
 	sha2/sha2.c \
-	sha2/hmac_sha2.c
+	sha2/hmac_sha2.c \
+	score/QUScoreFile.cpp
 	#support/qkFileWatcher.cpp
 FORMS += plugins/QUPluginDialog.ui \
     QUMainWindow.ui \
@@ -190,7 +192,8 @@ INCLUDEPATH += . \
     ribbon \
     slideshow \
 	lyricseditor \
-	sha2
+	sha2 \
+	score
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib \

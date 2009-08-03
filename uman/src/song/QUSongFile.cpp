@@ -36,7 +36,8 @@ QUSongFile::QUSongFile(const QString &filePath, QObject *parent):
 	QUSongInterface(parent),
 	_hasUnsavedChanges(false),
 	_songLengthCacheValid(false),
-	_songSpeedCacheValid(false)
+	_songSpeedCacheValid(false),
+	_score(0)
 {
 	connect(monty->watcher(), SIGNAL(fileChanged(const QString&)), this, SLOT(songFileChanged(const QString&)));
 
@@ -54,6 +55,9 @@ QUSongFile::~QUSongFile() {
 		monty->watcher()->removePath(_fi.filePath());
 
 	disconnect(this, 0, 0, 0);
+
+	if(_score)
+		delete _score;
 }
 
 /*!
@@ -218,6 +222,8 @@ bool QUSongFile::updateCache() {
 		_footer << line;
 
 	_file.close();
+
+	initScoreFile();
 
 	songDB->processChangesForSong(this);
 	return true;
@@ -1380,4 +1386,35 @@ void QUSongFile::lyricsAddNote(QString line) {
 			songLine->addNote(note);
 		}
 	}
+}
+
+/*!
+ * Try to find the score file.
+ */
+void QUSongFile::initScoreFile() {
+	if(_score) {
+		delete _score;
+		_score = 0;
+	}
+
+	QFileInfoList scoreFiles = songFileInfo().dir().entryInfoList(QUSongSupport::allowedScoreFiles(), QDir::Files, QDir::Name);
+	qStableSort(scoreFiles.begin(), scoreFiles.end(), QU::fileTypeLessThan);
+
+	if(scoreFiles.isEmpty())
+		return;
+
+	foreach(QFileInfo scoreFile, scoreFiles) {
+		if(scoreFile.baseName() == songFileInfo().baseName()) { // exact match!
+			_score = new QUScoreFile(scoreFile.filePath(), this);
+			return;
+		}
+	}
+
+	// no exact match, just use anyone
+	if(scoreFiles.size() > 1)
+		logSrv->add(tr("More than one score file found for \"%1 - %2\". Only one will be used.")
+					.arg(artist())
+					.arg(title()), QU::Warning);
+
+	_score = new QUScoreFile(scoreFiles.first().filePath(), this);
 }

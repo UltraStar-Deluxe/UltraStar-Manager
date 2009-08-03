@@ -8,10 +8,12 @@
 #include <QStringList>
 #include <QMap>
 #include <QDir>
+#include <QSettings>
 
 #include "QU.h"
 #include "QUSongLine.h"
 #include "QUSongInterface.h"
+#include "QUScoreFile.h"
 
 /*!
  * This class represents a data file which is used by UltraStar for every song.
@@ -172,6 +174,9 @@ public slots:
 	bool friendHasTag(const QString &tag, const QString &value) const;
 	bool swapWithFriend(QUSongFile *song);
 
+	// support for score files
+	QUScoreFile* score() const { return _score; }
+
 signals:
 	void dataChanged(); // used to notify playlists for now
 	void dataChanged(const QString &tag, const QString &value);
@@ -200,7 +205,7 @@ private:
 
 	bool rename(QDir dir, const QString &oldName, const QString &newName);
 
-	// experimental: use another internal format for lyrics
+	// use another internal format for lyrics
 	QList<QUSongLineInterface*> _melody;
 
 	void convertLyricsFromRaw();
@@ -208,6 +213,10 @@ private:
 	void lyricsAddNote(QString line);
 
 	QList<QUSongFile*> _friends; // karaoke or duet songs that share the same resources
+
+	// support for score files (*.sco)
+	QUScoreFile *_score;
+	void initScoreFile();
 };
 
 #endif /*QUSONGFILE_H_*/

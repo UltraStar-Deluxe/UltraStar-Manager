@@ -84,6 +84,9 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/text_stack.png"));
 	header->setToolTip(MULTIPLE_SONGS_COLUMN, tr("Shows whether your folder contains more than one song text file."));
 
+	header->setIcon(SCORE_COLUMN, QIcon(":/types/score.png"));
+	header->setToolTip(SCORE_COLUMN, tr("Shows whether a score file was found."));
+
 	header->setText(ARTIST_COLUMN_EX, tr("Artist"));
 	header->setIcon(ARTIST_COLUMN_EX, QIcon(":/types/user.png"));
 	header->setText(TITLE_COLUMN_EX, tr("Title"));
@@ -680,6 +683,7 @@ void QUSongTree::showDefaultColumns(bool save) {
 	this->header()->showSection(TYPE_DUET_COLUMN);
 	this->header()->showSection(UNUSED_FILES_COLUMN);
 	this->header()->showSection(MULTIPLE_SONGS_COLUMN);
+	this->header()->showSection(SCORE_COLUMN);
 	this->header()->showSection(LANGUAGE_COLUMN);
 	this->header()->showSection(EDITION_COLUMN);
 	this->header()->showSection(GENRE_COLUMN);
@@ -746,6 +750,7 @@ void QUSongTree::showCheckColumns() {
 	this->header()->showSection(VIDEO_COLUMN);
 	this->header()->showSection(UNUSED_FILES_COLUMN);
 	this->header()->showSection(MULTIPLE_SONGS_COLUMN);
+	this->header()->showSection(SCORE_COLUMN);
 
 	this->resizeToContents();
 
