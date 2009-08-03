@@ -20,7 +20,8 @@ QUPreparatoryTask::QUPreparatoryTask(TaskModes mode, QObject *parent):
 		this->setToolTip(tr("<b>#MP3</b> ... first audio file found.<br>"
 				"<b>#COVER</b> ... first picture file, following a pattern.<br>"
 				"<b>#BACKGROUND</b> ... first picture file, following a pattern.<br>"
-				"<b>#VIDEO</b> ... first video file found."));
+				"<b>#VIDEO</b> ... first video file found.<br><br>"
+				"Does not reset tags that have already been set."));
 		break;
 	case RemoveUnsupportedTags:
 		this->setIcon(QIcon(":/types/folder_blue.png"));

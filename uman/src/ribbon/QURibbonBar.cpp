@@ -15,12 +15,6 @@ QURibbonBar::QURibbonBar(QWidget *parent): QTabWidget(parent), _menuHidden(false
 
 	tabBar()->installEventFilter(this);
 
-//	for(int i = 0; i < count(); i++)
-//		widget(i)->installEventFilter(this);
-//	findSongsBtn->installEventFilter(this);
-
-	useVisibleStyle();
-
 	helpBtn = new QToolButton(this);
 	helpBtn->setAutoRaise(true);
 	helpBtn->setIcon(QIcon(":/marks/help.png"));
@@ -47,18 +41,12 @@ QURibbonBar::QURibbonBar(QWidget *parent): QTabWidget(parent), _menuHidden(false
 	hideBtn->setIconSize(QSize(10, 12));
 	connect(hideBtn, SIGNAL(clicked()), this, SLOT(toggleMenuHidden()));
 	connect(this, SIGNAL(currentChanged(int)), this, SLOT(changeCurrentTab(int)));
-	setMenuHidden(true);
 
 	setCornerWidget(hideBtn, Qt::TopLeftCorner);
 
-
-
-	QAction *a = new QAction(this);
-	a->setShortcut(Qt::CTRL + Qt::Key_W);
-	connect(a, SIGNAL(triggered()), this, SLOT(foobar()));
-	addAction(a);
-
-
+	// recover menu state
+	QSettings s;
+	setMenuHidden(s.value("hideRibbonBar", false).toBool());
 }
 
 void QURibbonBar::setShortcut(QToolButton *w, const QKeySequence &key) {
@@ -105,8 +93,8 @@ void QURibbonBar::updateBaseDirMenu() {
 }
 
 void QURibbonBar::setMenuHidden(bool hide) {
-	if(_menuHidden == hide)
-		return;
+	QSettings s;
+	s.setValue("hideRibbonBar", hide);
 
 	_menuHidden = hide;
 
@@ -158,11 +146,6 @@ void QURibbonBar::useHiddenStyle() {
 
 void QURibbonBar::changeCurrentTab(int) {
 	setMenuHidden(false);
-}
-
-void QURibbonBar::foobar() {
-	logSrv->add(QString::number(monty->watcher()->files().size()), QU::Help);
-	logSrv->add(QString::number(monty->watcher()->directories().size()), QU::Help);
 }
 
 void QURibbonBar::requestSongPathChange(QAction *action) {

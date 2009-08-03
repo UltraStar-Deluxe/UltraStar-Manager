@@ -183,12 +183,9 @@ TRANSLATION
 TASKS
 * convert syllable placeholders does not ignore "wanted" dashes ("A-B-C")
 * "remove empty syllables" breaks timestamps in relative songs
-? "set first timestamp to 0" could fail for relative songs
-  > depends on this problem: http://forum.ultra-star.de/viewtopic.php?f=10&t=7142
 
-SONG FRIENDS
+SONG FRIENDS (general workaround: switch friend to primary song)
 * cannot add song friends to playlist
-  > workaround: switch friend to primary song
 * cannot change #MP3 for karaoke song friend
 * cannot change #EDITION for song friend
 * cannot add song friends in reports
@@ -209,8 +206,8 @@ AUTO-SAVE
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
 ! create a feature list =) (promotional purposes only)
+! create a list with keyboard shortcuts
 ! prepare plugin SDK
-* restore ribbon bar appearance on application restart (small/full)
 * explain space-shortcut in slideshow dialog somehow
 * drop a picture into song tree: ask for usage as cover or background (dialog)
 ! add support/help texts for custom tags
