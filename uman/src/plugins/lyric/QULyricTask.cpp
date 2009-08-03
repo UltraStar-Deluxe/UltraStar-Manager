@@ -36,12 +36,12 @@ QULyricTask::QULyricTask(TaskModes mode, QObject *parent):
 		break;
 	case ConvertRelativeToAbsolute:
 		this->setDescription(tr("Convert relative to absolute timestamps"));
-//		this->setIcon(QIcon(":/control/.png"));
+		this->setIcon(QIcon(":/control/convert-r.png"));
 		this->setGroup(998); // hopefully this group is free ^^
 		break;
 	case ConvertAbsoluteToRelative:
 		this->setDescription(tr("Convert absolute to relative timestamps"));
-//		this->setIcon(QIcon(":/control/.png"));
+		this->setIcon(QIcon(":/control/convert-a.png"));
 		this->setGroup(998); // hopefully this group is free ^^
 		break;
 	}

@@ -106,6 +106,8 @@
         <file>images.png</file>
         <file>picture_go.png</file>
         <file>arrow_undo.png</file>
+        <file>convert-a.png</file>
+        <file>convert-r.png</file>
     </qresource>
     <qresource prefix="/icons" >
         <file>splash.png</file>

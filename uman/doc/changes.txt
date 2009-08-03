@@ -208,10 +208,9 @@ AUTO-SAVE
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
-! create a feature list =)
+! create a feature list =) (promotional purposes only)
 ! prepare plugin SDK
 * restore ribbon bar appearance on application restart (small/full)
-! manual file rename
 * explain space-shortcut in slideshow dialog somehow
 * drop a picture into song tree: ask for usage as cover or background (dialog)
 ! add support/help texts for custom tags
@@ -283,7 +282,12 @@ SUPPORTED FILE TYPES
 
 SONGS
 * write empty tags
+  > write only specific empty tags (e.g. #BACKGROUND)
 * open multiple databases -> use MDI-Interface (multiple song-trees)
+
+SONG DETAILS
+* re-calculate BPM
+  > edit facility in "song details"? (only for some specific songs used -> no need for task)
 
 TASKS
 ! better error handling for "path change tasks"
@@ -312,10 +316,10 @@ TASKS
 ! introduce a preview feature for tasks (what will the song look like)
 ! modify song tags via folder or song file names
   > "Juli - Die perfekte Welle.txt" + "#ARTIST - #TITLE.txt" = "Juli", "Die perfekte Welle"
-* recognize all "unknown tags" in the current song database
-  > show them in a tooltip
-  > use them in the "inline config" in the task list
 * make all file extensions lowercase or uppercase
+* correct case: "bloodhound gang" -> "Bloodhound Gang"
+! rename tasks for two songs that result in same name -> append "001" or so
+! add song length property to rename tasks
 
 SONG TREE
 ? virtual song folders for many song text files in one folder
@@ -328,6 +332,8 @@ SONG TREE
 * list ratio of cover/background in song tree (extra column)
   > covers should be 1:1 I think
 * custom rename (context menu, 2nd click, ...)
+  > manually via F2 (edit key)
+  > inline edit of SONG DETAILS?
 * warn, if BGs are bigger than game resolution
   > will be white otherwise
 	> minification not supported by USdx
@@ -417,9 +423,6 @@ INTERNAL STUFF
 * do not sublass QTreeWidget for task list
   > compose a tree widget together with the slot buttons and remove code from main window
 ! move code to monty area
-
-PROGRESS DIALOG
-* show remaining time only
 
 /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
 /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
