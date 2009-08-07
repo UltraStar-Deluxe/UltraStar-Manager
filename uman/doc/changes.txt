@@ -15,6 +15,8 @@ MENU
 
 TASKS
 * convert syllable placeholders (~ > -, - > ~)
+* convert absolute to relative timestamps and vice versa
+* fix capitalization for #TITLE tag
 
 TASK LIST
 * you may save 4 different selections now (flags above the list)
