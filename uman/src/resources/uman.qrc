@@ -108,6 +108,7 @@
         <file>arrow_undo.png</file>
         <file>convert-a.png</file>
         <file>convert-r.png</file>
+        <file>text_allcaps.png</file>
     </qresource>
     <qresource prefix="/icons" >
         <file>splash.png</file>

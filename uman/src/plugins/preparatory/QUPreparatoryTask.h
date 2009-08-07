@@ -16,7 +16,8 @@ public:
 		AutoAssignFiles,
 		RemoveUnsupportedTags,
 		FixAudioLength,
-		RoundGap
+		RoundGap,
+		FixCapitalization
 	};
 	Q_DECLARE_FLAGS(TaskModes, TaskMode)
 
@@ -34,6 +35,7 @@ private:
 	QStringList _unsupportedTags;
 
 	void autoSetFiles(QUSongInterface *song, const QString &coverPattern, const QString &backgroundPattern);
+	void fixCapitalization(QUSongInterface *song);
 };
 
 #endif /*QUPREPARATORYTASK_H_*/

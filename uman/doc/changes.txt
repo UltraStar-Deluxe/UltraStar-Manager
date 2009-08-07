@@ -323,6 +323,8 @@ TASKS
 ! correct case: "bloodhound gang" -> "Bloodhound Gang"
 ! rename tasks for two songs that result in same name -> append "001" or so
 ! add song length property to rename tasks
+? add general condition to be able to skip a whole task
+  > not for plugin interface, just an idea for the SDK
 
 SONG TREE
 ? virtual song folders for many song text files in one folder

@@ -21,6 +21,7 @@ QList<int> QUPreparatoryTaskFactory::types() const {
 	result << QUPreparatoryTask::RemoveUnsupportedTags;
 	result << QUPreparatoryTask::FixAudioLength;
 	result << QUPreparatoryTask::RoundGap;
+	result << QUPreparatoryTask::FixCapitalization;
 	return result;
 }
 

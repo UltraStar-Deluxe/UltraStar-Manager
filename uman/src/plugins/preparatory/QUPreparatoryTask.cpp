@@ -2,6 +2,7 @@
 #include "QUSmartCheckBox.h"
 #include "QUSmartInputField.h"
 #include "QUSongSupport.h"
+#include "QU.h"
 
 #include <QRegExpValidator>
 #include <QRegExp>
@@ -36,6 +37,10 @@ QUPreparatoryTask::QUPreparatoryTask(TaskModes mode, QObject *parent):
 		this->setIcon(QIcon(":/bullets/bullet_black.png"));
 		this->setDescription(tr("Round #GAP to nearest integer."));
 		break;
+	case FixCapitalization:
+		this->setIcon(QIcon(":/control/text_allcaps.png"));
+		this->setDescription(tr("Fix capitalization of #TITLE"));
+		this->setToolTip(tr("Applies some rules of capitalization to form a consistent appearance for all song titles."));
 	}
 }
 
@@ -62,6 +67,9 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 		break;
 	case RoundGap:
 		song->roundGap();
+		break;
+	case FixCapitalization:
+		fixCapitalization(song);
 		break;
 	}
 }
@@ -107,4 +115,8 @@ void QUPreparatoryTask::autoSetFiles(QUSongInterface *song, const QString &cover
 	foreach(QFileInfo fi, files) {
 		song->autoSetFile(fi, false, coverPattern, backgroundPattern);
 	}
+}
+
+void QUPreparatoryTask::fixCapitalization(QUSongInterface *song) {
+	song->log(tr("NOT IMPLEMENTED"), QU::Warning);
 }
