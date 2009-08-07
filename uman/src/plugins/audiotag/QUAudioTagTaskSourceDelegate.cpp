@@ -11,4 +11,6 @@ void QUAudioTagTaskSourceDelegate::setItems(QComboBox *comboBox) const {
 	foreach(QString commonSource, QUAudioTagTask::availableCommonSources()) {
 		comboBox->addItem(QIcon(":/control/id3.png"), commonSource);
 	}
+
+	comboBox->addItems(QUAudioTagTask::availableSongSources());
 }

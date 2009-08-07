@@ -12,7 +12,13 @@ QUAudioTagTaskDialog::QUAudioTagTaskDialog(QUAudioTagTask *task, QWidget *parent
 			new QUDefaultDelegate(dataTable));
 
 	targetCombo->addItems(QUAudioTagTask::availableInfoTargets());
+
 	int i = targetCombo->count();
+	targetCombo->addItems(QUAudioTagTask::availableFileTargets());
+	for(; i < targetCombo->count(); i++)
+		targetCombo->setItemData(i, Qt::red, Qt::ForegroundRole);
+
+	i = targetCombo->count();
 	targetCombo->addItems(QUScriptableTask::availableCustomSources());
 	for(; i < targetCombo->count(); i++)
 		targetCombo->setItemData(i, Qt::blue, Qt::ForegroundRole);

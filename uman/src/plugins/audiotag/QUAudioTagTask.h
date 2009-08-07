@@ -41,9 +41,11 @@ public:
 	static QStringList availableSources();
 	static QStringList availableSpecialSources();
 	static QStringList availableCommonSources();
+	static QStringList availableSongSources(); // use data from other song tags, not id3 tag
 
 	static QStringList availableTargets();
 	static QStringList availableInfoTargets();
+	static QStringList availableFileTargets();
 	static QStringList availableCustomTargets();
 
 private:

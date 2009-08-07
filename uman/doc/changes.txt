@@ -138,6 +138,10 @@ PROGRESS DIALOG
 * not so exact remaining time displayed now
   > "about 5 seconds" or "1 minute, 20 seconds"
 
+TASKS
+* added file tags as targets for "Song/ID3-tag tasks"
+* added some song tags as sources for "Song/ID3-tag tasks"
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 TASKS
@@ -316,7 +320,7 @@ TASKS
 ! modify song tags via folder or song file names
   > "Juli - Die perfekte Welle.txt" + "#ARTIST - #TITLE.txt" = "Juli", "Die perfekte Welle"
 * make all file extensions lowercase or uppercase
-* correct case: "bloodhound gang" -> "Bloodhound Gang"
+! correct case: "bloodhound gang" -> "Bloodhound Gang"
 ! rename tasks for two songs that result in same name -> append "001" or so
 ! add song length property to rename tasks
 

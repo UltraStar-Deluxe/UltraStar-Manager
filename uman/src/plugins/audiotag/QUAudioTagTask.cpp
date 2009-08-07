@@ -38,7 +38,14 @@ void QUAudioTagTask::startOn(QUSongInterface *song) {
 			if (!currentData->_text.isEmpty()) {
 				schema = schema.arg(currentData->_text);
 			} else if (!currentData->_source.isEmpty()) {
-				QString value = this->property(currentData->_source.toLower().toLocal8Bit().data()).toString();
+				QString value;
+
+				if(QUAudioTagTask::availableSongSources().contains(currentData->_source, Qt::CaseInsensitive)) {
+					// remove the trailing "_" - was needed to avoid conflicts with properties of this class
+					value = song->property(currentData->_source.left(currentData->_source.size() - 1).toLower().toLocal8Bit().data()).toString();
+				} else {
+					value = this->property(currentData->_source.toLower().toLocal8Bit().data()).toString();
+				}
 
 				if(value.isEmpty()) {
 					if(!currentData->_ignoreEmpty.isEmpty()) // get old data if new would be empty
@@ -96,8 +103,12 @@ QStringList QUAudioTagTask::availableCommonSources() {
 	return QString("artist title album genre year track length bitrate").split(" ");
 }
 
+QStringList QUAudioTagTask::availableSongSources() {
+	return QString("artist_ title_ titlecompact_ videogap_").split(" ");
+}
+
 QStringList QUAudioTagTask::availableTargets() {
-	return availableInfoTargets() + availableCustomTargets();
+	return availableInfoTargets() + availableFileTargets() + availableCustomTargets();
 }
 
 /*!
@@ -105,6 +116,10 @@ QStringList QUAudioTagTask::availableTargets() {
  */
 QStringList QUAudioTagTask::availableInfoTargets() {
 	return QString("artist title language edition genre year creator").split(" ");
+}
+
+QStringList QUAudioTagTask::availableFileTargets() {
+	return QString("mp3 cover background video").split(" ");
 }
 
 /*!
