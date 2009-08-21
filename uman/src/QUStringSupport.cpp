@@ -18,11 +18,21 @@ QString QUStringSupport::withoutUnsupportedCharacters (const QString &text) {
 	cleanText.remove(QRegExp("[\\\\:\\*\\?\"\\|<>]"));
 
 	// remove trailing dots
-	while(cleanText.endsWith("."))
-		cleanText.remove(cleanText.length() - 1, 1);
+    bool dotsRemoved = false;
 
-	while (cleanText.startsWith("."))
-		cleanText.remove(0, 1);
+    while(cleanText.endsWith(".")) {
+        dotsRemoved = true;
+		cleanText.remove(cleanText.length() - 1, 1);
+    }
+
+    while (cleanText.startsWith(".")) {
+        dotsRemoved = true;
+        cleanText.remove(0, 1);
+    }
+
+    if(dotsRemoved)
+        cleanText = cleanText.trimmed();
+
 #endif
 	return cleanText;
 }

@@ -186,6 +186,7 @@ TRANSLATION
 TASKS
 * convert syllable placeholders does not ignore "wanted" dashes ("A-B-C")
 * "remove empty syllables" breaks timestamps in relative songs
+* "fix capitalization for #TITLE" does not ignore "(" -> "(about" > "(About"
 
 SONG FRIENDS (general workaround: switch friend to primary song with double-click on song text file)
 * cannot add song friends to playlist
@@ -210,6 +211,10 @@ AUTO-SAVE
 
 REPORTS
 * you cannot sort after a custom tag column in the report
+
+DUET SONGS
+* detection is not perfect with []-tags
+  > "Blah - Blubb [LIVE]
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
@@ -327,6 +332,7 @@ TASKS
 ! add song length property to rename tasks
 ? add general condition to be able to skip a whole task
   > not for plugin interface, just an idea for the SDK
+! "fix capitalization for #ARTIST"
 
 SONG TREE
 ? virtual song folders for many song text files in one folder
