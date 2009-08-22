@@ -41,6 +41,12 @@ QUPreparatoryTask::QUPreparatoryTask(TaskModes mode, QObject *parent):
 		this->setIcon(QIcon(":/control/text_allcaps.png"));
 		this->setDescription(tr("Fix capitalization of #TITLE tag"));
 		this->setToolTip(tr("Applies some rules of capitalization to form a consistent appearance for all song titles.<br><br><b>Useful for english songs.</b>"));
+		break;
+	case CapitalizeArtist:
+		this->setIcon(QIcon(":/control/text_allcaps.png"));
+		this->setDescription(tr("Capitalize #ARTIST tag"));
+		this->setToolTip(tr("Capitalize each word of the artist, e.g. \"michael jackson\" -> \"Michael Jackson\"."));
+		break;
 	}
 }
 
@@ -71,6 +77,9 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 	case FixCapitalization:
 		fixCapitalization(song);
 		break;
+	case CapitalizeArtist:
+		capitalizeArtist(song);
+		break;
 	}
 }
 
@@ -95,6 +104,9 @@ QList<QUSmartSetting*> QUPreparatoryTask::smartSettings() const {
 			_smartSettings.append(new QUSmartCheckBox("preparatory/fixCapitalization_onlyEnglish", tr("Capitalize English songs only"), true));
 			_smartSettings.append(new QUSmartCheckBox("preparatory/fixCapitalization_allCaps", tr("Capitalize each word"), false));
 			_smartSettings.append(new QUSmartCheckBox("preparatory/fixCapitalization_onlyFirstWord", tr("Capitalize first word only"), false));
+			break;
+		case CapitalizeArtist:
+			_smartSettings.append(new QUSmartCheckBox("preparatory/capitalizeArtist_onlyFirstWord", tr("Capitalize first word only"), false));
 			break;
 		}
 	}
@@ -146,7 +158,7 @@ void QUPreparatoryTask::fixCapitalization(QUSongInterface *song) {
 	}
 
 	QStringList articles = QString("a an the").split(" ");
-	QStringList conjunctions = QString("and but or nor").split(" ");
+	QStringList conjunctions = QString("and but or nor feat.").split(" ");
 	QStringList prepositions = QString("as at by for from in into of off on onto out over to up with").split(" ");
 
 	if(!onlyFirstWord) {
@@ -207,4 +219,32 @@ void QUPreparatoryTask::fixCapitalization(QUSongInterface *song) {
 		song->setInfo(TITLE_TAG, QString("%1 %2").arg(words.join(" ")).arg(suffixes.join(" ")));
 
 	song->log(tr("Capitalization of #TITLE fixed for \"%1 - %2\"").arg(song->artist()).arg(song->title()), QU::Information);
+}
+
+/*!
+ * The main difference to the capitalization fix for #TITLE tags is
+ * that only the case of the first letter of each word is changed.
+ */
+void QUPreparatoryTask::capitalizeArtist(QUSongInterface *song) {
+	bool onlyFirstWord = smartSettings().at(0)->value().toBool();
+
+	QStringList words = song->artist().split(" ", QString::SkipEmptyParts);
+
+	if(words.isEmpty()) {
+		song->log(tr("Capitalization fix not applicable due to empty artist: \"%1\"").arg(song->title()), QU::Warning);
+		return;
+	}
+
+	if(!onlyFirstWord) {
+		for(int i = 0; i < words.size(); i++)
+			words[i][0] = words[i][0].toUpper();
+	} else {
+		for(int i = 0; i < words.size(); i++)
+			words[i][0] = words[i][0].toLower();
+	}
+
+	words.first()[0] = words.first()[0].toUpper();
+
+	song->setInfo(ARTIST_TAG, words.join(" "));
+	song->log(tr("Capitalization of #ARTIST fixed for \"%1 - %2\"").arg(song->artist()).arg(song->title()), QU::Information);
 }

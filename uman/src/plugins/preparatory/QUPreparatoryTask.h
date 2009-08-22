@@ -18,7 +18,8 @@ public:
 		RemoveUnsupportedTags,
 		FixAudioLength,
 		RoundGap,
-		FixCapitalization
+		FixCapitalization,
+		CapitalizeArtist
 	};
 	Q_DECLARE_FLAGS(TaskModes, TaskMode)
 
@@ -37,6 +38,7 @@ private:
 
 	void autoSetFiles(QUSongInterface *song, const QString &coverPattern, const QString &backgroundPattern);
 	void fixCapitalization(QUSongInterface *song);
+	void capitalizeArtist(QUSongInterface *song);
 };
 
 #endif /*QUPREPARATORYTASK_H_*/

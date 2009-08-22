@@ -22,6 +22,7 @@ QList<int> QUPreparatoryTaskFactory::types() const {
 	result << QUPreparatoryTask::FixAudioLength;
 	result << QUPreparatoryTask::RoundGap;
 	result << QUPreparatoryTask::FixCapitalization;
+	result << QUPreparatoryTask::CapitalizeArtist;
 	return result;
 }
 
