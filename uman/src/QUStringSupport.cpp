@@ -22,7 +22,7 @@ QString QUStringSupport::withoutUnsupportedCharacters (const QString &text) {
 
     while(cleanText.endsWith(".")) {
         dotsRemoved = true;
-		cleanText.remove(cleanText.length() - 1, 1);
+		cleanText.chop(1);
     }
 
     while (cleanText.startsWith(".")) {

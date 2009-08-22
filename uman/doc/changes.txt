@@ -228,6 +228,10 @@ DUET SONGS
   > upper or lowercase?
 ! the need of return in the find/search field is not obvious
   > rethink filter customization
+! make path-delimiter handling editable (QUStringSupport::without..."
+  > remove /
+  > replace / with -
+  > find all places!
 
 NEW STUFF
 * make hard-coded values editable

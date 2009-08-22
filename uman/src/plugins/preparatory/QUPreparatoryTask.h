@@ -4,6 +4,7 @@
 #include "QUSimpleTask.h"
 
 #include <QList>
+#include <QString>
 #include <QStringList>
 
 class QUSmartSetting;

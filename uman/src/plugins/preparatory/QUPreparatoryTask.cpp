@@ -133,7 +133,7 @@ void QUPreparatoryTask::fixCapitalization(QUSongInterface *song) {
 
 	QStringList l = QString("english englisch american us").split(" ");
 	if(onlyEnglish && !song->language().isEmpty() && !l.contains(song->language(), Qt::CaseInsensitive)) {
-		song->log(tr("Capitalization fix not applicable due to non-english song: \"%1 - %2\"").arg(song->artist()).arg(song->title()), QU::Warning);
+		song->log(tr("Capitalization fix not applicable due to non-english song: \"%1 - %2\". Try to configure the task.").arg(song->artist()).arg(song->title()), QU::Warning);
 		return;
 	}
 
@@ -151,6 +151,17 @@ void QUPreparatoryTask::fixCapitalization(QUSongInterface *song) {
 
 	if(!onlyFirstWord) {
 		for(int i = 0; i < words.size(); i++) {
+			// FIX surrounding parenthesis -> "(about", "to)"
+			bool prepP = false, appP = false;
+			if(words[i].startsWith("(") && words[i].length() > 1) {
+				words[i].remove(0, 1);
+				prepP = true;
+			}
+			if(words[i].endsWith(")") && words[i].length() > 1) {
+				words[i].chop(1);
+				appP = true;
+			}
+
 			// STEP 1 - Capitalize each word
 			words[i][0] = words[i][0].toUpper();
 
@@ -160,6 +171,10 @@ void QUPreparatoryTask::fixCapitalization(QUSongInterface *song) {
 			   conjunctions.contains(words[i], Qt::CaseInsensitive) ||
 			   prepositions.contains(words[i], Qt::CaseInsensitive)))
 				words[i][0] = words[i][0].toLower();
+
+			// RECOVER removed parenthesis
+			if(prepP) words[i].prepend("(");
+			if(appP) words[i].append(")");
 		}
 	}
 
@@ -167,7 +182,10 @@ void QUPreparatoryTask::fixCapitalization(QUSongInterface *song) {
 	QStringList phrasalVerbs = QString("Beat Up,Blow Out,Break Down,Break Into,Break Up,Bring Up,Call Off,Call On,Call Up,Carry On,Come Back,Come Down,Come On,Come Out,Come Over,Do Over,Fill In,Fill Out,Find Out,Get Along,Get Around,Get By,Get Over,Get Through,Get Up,Give Back,Give Up,Go Along,Go Away,Go On,Go Over,Hand In,Hang Up,Hold On,Keep On,Keep Up,Leave Out,Let Down,Look For,Look Into,Look Like,Look Out,Look Over,Look Up,Make Out,Make Up,Pack Up,Pass Out,Pick Out,Pick Up,Put Away,Put Off,Put On,Put Out,Put Up,Roll Over,Run Into,Run Out,Run Over,Show Up,Take After,Take Back,Take Off,Take On,Take Up,Talk Back,Talk Over,Throw Away,Try On,Turn Down,Turn In,Turn Off,Turn On,Use Up,Wait On").split(",");
 	if(!onlyFirstWord) {
 		for(int i = 0; i < words.size() - 1; i++) {
-			if(phrasalVerbs.contains(QString("%1 %2").arg(words[i]).arg(words[i+1]), Qt::CaseInsensitive)) {
+			if(phrasalVerbs.contains(QString("%1 %2").arg(words[i]).arg(words[i+1]), Qt::CaseInsensitive) ||
+			   phrasalVerbs.contains(QString("%1 %2") // fix surrounding parenthesis
+									 .arg(words[i].right(words[i].length() - 1))
+									 .arg(words[i+1].left(words[i+1].length() - 1)), Qt::CaseInsensitive)) {
 				words[i][0] = words[i][0].toUpper();
 				words[i+1][0] = words[i+1][0].toUpper();
 			}
@@ -175,9 +193,13 @@ void QUPreparatoryTask::fixCapitalization(QUSongInterface *song) {
 	}
 
 	// LAST STEP - Capitalize first and last word again
-	words.first()[0] = words.first()[0].toUpper();
+	if(words.first().startsWith("(") && words.first().length() > 1)
+		words.first()[1] = words.first()[1].toUpper();
+	else
+		words.first()[0] = words.first()[0].toUpper();
+
 	if(!onlyFirstWord)
-		words.last()[0] = words.last()[0].toUpper();
+		words.last()[0] = words.last()[0].toUpper();	
 
 	if(suffixes.isEmpty())
 		song->setInfo(TITLE_TAG, words.join(" "));
