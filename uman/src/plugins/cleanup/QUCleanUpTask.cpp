@@ -53,7 +53,7 @@ QList<QUSmartSetting*> QUCleanUpTask::smartSettings() const {
 			_smartSettings.append(new QUSmartCheckBox("cleanup/unusedFiles_audio", "Audio files", true));
 			_smartSettings.append(new QUSmartCheckBox("cleanup/unusedFiles_picture", "Picture files", true));
 			_smartSettings.append(new QUSmartCheckBox("cleanup/unusedFiles_video", "Video files", true));
-			_smartSettings.append(new QUSmartInputCheck("cleanup/unusedFiles_pattern", "xml|sco", 0, "Pattern:"));
+			_smartSettings.append(new QUSmartInputCheck("cleanup/unusedFiles_pattern", "\\.xml|\\.sco", 0, "Pattern:"));
 		}
 	return _smartSettings;
 }

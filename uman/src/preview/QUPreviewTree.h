@@ -23,10 +23,10 @@ public:
 	QUPreviewTree(QWidget *parent = 0);
 
 public slots:
-	void setSongCount(int count);
-	void setSelectedSongCount(int count);
-	void setHiddenSongCount(int count);
-	void setVisibleSongCount(int count);
+	void setSongCount(int songCount, int friendCount);
+	void setSelectedSongCount(int songCount, int friendCount);
+	void setHiddenSongCount(int songCount, int friendCount);
+	void setVisibleSongCount(int songCount, int friendCount);
 
 	void setSelectedSongLength(int seconds = -1);
 	void setSelectedAudioLength(int seconds = -1);

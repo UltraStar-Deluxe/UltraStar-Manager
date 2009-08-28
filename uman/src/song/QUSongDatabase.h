@@ -24,7 +24,9 @@ public:
 	void swapSongWithFriend(QUSongFile *song, const QString &filename);
 
 	const QList<QUSongFile*>& songs() const { return _songs; }
-	int songCount() const { return _songs.size(); }
+	int songCount() const;
+	int songCountWithoutFriends() const { return _songs.size(); }
+	int songFriendsCount() const;
 
 	void ignoreChangesForSong(QUSongFile *song);
 	void processChangesForSong(QUSongFile *song);

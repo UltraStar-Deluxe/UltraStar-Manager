@@ -128,6 +128,17 @@ void QUSongDatabase::reload() {
 	emit databaseReloaded();
 }
 
+int QUSongDatabase::songCount() const {
+	return songFriendsCount() + _songs.size();
+}
+
+int QUSongDatabase::songFriendsCount() const {
+	int result = 0;
+	foreach(QUSongFile *song, _songs)
+		result += song->friends().size();
+	return result;
+}
+
 /*!
  * Do not pass song changes to the ouside. This could be useful if many changes
  * are made to a song und unnessecary updates should be skipped.

@@ -27,13 +27,17 @@ public:
 	bool hasUnsavedChanges() const;
 	bool hasHiddenItems() const { return !_hiddenItems.isEmpty(); }
 
-	QList<QUSongFile*> selectedSongs();
-	QList<QUSongItem*> selectedSongItems();
-	QList<QUSongFile*> visibleSongs();
+	QList<QUSongFile*> selectedSongs() const;
+	QList<QUSongItem*> selectedSongItems() const;
+	QList<QUSongFile*> visibleSongs() const;
 	QList<QUSongItem*> visibleSongItems() const;
-	QList<QUSongItem*> allSongItems();
+	QList<QUSongItem*> allSongItems() const;
 
 	int hiddenItemsCount() const { return _hiddenItems.size(); }
+
+	int selectedSongFriendsCount() const;
+	int visibleSongFriendsCount() const;
+	int hiddenSongFriendsCount() const;
 
 	void restoreSelection(const QList<QUSongItem*> &selectedItems);
 

@@ -175,7 +175,7 @@ bool QUSongTree::hasUnsavedChanges() const {
 /*!
  * \returns All selected songs in the song tree.
  */
-QList<QUSongFile*> QUSongTree::selectedSongs() {
+QList<QUSongFile*> QUSongTree::selectedSongs() const {
 	QList<QUSongFile*> songs;
 
 	foreach(QUSongItem *songItem, selectedSongItems())
@@ -188,7 +188,7 @@ QList<QUSongFile*> QUSongTree::selectedSongs() {
  * \returns All selected song items or the current toplevel item if nothing was
  * selected.
  */
-QList<QUSongItem*> QUSongTree::selectedSongItems() {
+QList<QUSongItem*> QUSongTree::selectedSongItems() const {
 	QList<QUSongItem*> items;
 
 	if(this->selectedItems().isEmpty()) { // nothing selected? Try to use the current item...
@@ -212,7 +212,7 @@ QList<QUSongItem*> QUSongTree::selectedSongItems() {
 	return items;
 }
 
-QList<QUSongFile*> QUSongTree::visibleSongs() {
+QList<QUSongFile*> QUSongTree::visibleSongs() const {
 	QList<QUSongFile*> result;
 
 	foreach(QUSongItem *songItem, visibleSongItems())
@@ -245,8 +245,29 @@ QList<QUSongItem*> QUSongTree::visibleSongItems() const {
  * \returns a list of all available song items in the tree. That items
  * can be visible or hidden.
  */
-QList<QUSongItem*> QUSongTree::allSongItems() {
+QList<QUSongItem*> QUSongTree::allSongItems() const {
 	return (visibleSongItems() << _hiddenItems);
+}
+
+int QUSongTree::selectedSongFriendsCount() const {
+	int result = 0;
+	foreach(QUSongFile *song, selectedSongs())
+		result += song->friends().size();
+	return result;
+}
+
+int QUSongTree::visibleSongFriendsCount() const {
+	int result = 0;
+	foreach(QUSongFile *song, visibleSongs())
+		result += song->friends().size();
+	return result;
+}
+
+int QUSongTree::hiddenSongFriendsCount() const {
+	int result = 0;
+	foreach(QUSongItem *songItem, _hiddenItems)
+		result += songItem->song()->friends().size();
+	return result;
 }
 
 void QUSongTree::saveUnsavedChanges() {

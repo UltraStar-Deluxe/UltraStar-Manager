@@ -744,10 +744,10 @@ void QUMainWindow::updateDetails() {
  * song tree.
  */
 void QUMainWindow::updatePreviewTree() {
-	previewTree->setSongCount(songDB->songCount());
-	previewTree->setSelectedSongCount(songTree->currentItem() ? qMax(songTree->selectedItems().size(), 1) : songTree->selectedItems().size());
-	previewTree->setVisibleSongCount(songTree->topLevelItemCount());
-	previewTree->setHiddenSongCount(songTree->hiddenItemsCount());
+	previewTree->setSongCount(songDB->songCountWithoutFriends(), songDB->songFriendsCount());
+	previewTree->setSelectedSongCount(songTree->selectedSongItems().size(), songTree->selectedSongFriendsCount());
+	previewTree->setVisibleSongCount(songTree->topLevelItemCount(), songTree->visibleSongFriendsCount());
+	previewTree->setHiddenSongCount(songTree->hiddenItemsCount(), songTree->hiddenSongFriendsCount());
 
 	if(calculateTimeChk->checkState() == Qt::Checked) {
 		int totalSongTime = 0;
@@ -757,6 +757,12 @@ void QUMainWindow::updatePreviewTree() {
 			totalSongTime += song->length();
 			totalAudioTime += song->lengthMp3();
 			totalTotalTime += song->lengthEffective();
+
+			foreach(QUSongFile *song, song->friends()) {
+				totalSongTime += song->length();
+				totalAudioTime += song->lengthMp3();
+				totalTotalTime += song->lengthEffective();
+			}
 		}
 		previewTree->setSelectedSongLength(totalSongTime);
 		previewTree->setSelectedAudioLength(totalAudioTime);

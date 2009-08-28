@@ -158,7 +158,7 @@ void QUPreparatoryTask::fixCapitalization(QUSongInterface *song) {
 	}
 
 	QStringList articles = QString("a an the").split(" ");
-	QStringList conjunctions = QString("and but or nor feat.").split(" ");
+	QStringList conjunctions = QString("and but or nor feat. con").split(" ");
 	QStringList prepositions = QString("as at by for from in into of off on onto out over to up with").split(" ");
 
 	if(!onlyFirstWord) {

@@ -26,22 +26,23 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 	this->header()->setResizeMode(1, QHeaderView::Stretch);
 
 	this->setRootIsDecorated(false);
+	this->setIndentation(10);
 
 	// set up "general" toplevel item
 
 	general = new QTreeWidgetItem();
 	this->addTopLevelItem(general);
 
-	general->setText(0, tr("General Information"));
+	general->setText(0, tr("Figures"));
 	general->setFlags(Qt::ItemIsEnabled);
 	general->setTextColor(0, Qt::darkGray);
 	general->setFirstColumnSpanned(true);
 
-	general->insertChild(SONG_COUNT_CHILD_INDEX, this->createInfoItem(tr("Songs"), N_A));
-	general->insertChild(HIDDEN_SONG_COUNT_CHILD_INDEX, this->createInfoItem(tr("Hidden Songs"), N_A));
-	general->insertChild(VISIBLE_SONG_COUNT_CHILD_INDEX, this->createInfoItem(tr("Visible Songs"), N_A));
+	general->insertChild(SONG_COUNT_CHILD_INDEX, this->createInfoItem(tr("Database"), N_A));
+	general->insertChild(HIDDEN_SONG_COUNT_CHILD_INDEX, this->createInfoItem(tr("Hidden"), N_A));
+	general->insertChild(VISIBLE_SONG_COUNT_CHILD_INDEX, this->createInfoItem(tr("Visible"), N_A));
 
-	generalSelected = this->createInfoItem(tr("Selected Songs"), N_A);
+	generalSelected = this->createInfoItem(tr("Selection"), N_A);
 	general->insertChild(SELECTED_SONG_COUNT_CHILD_INDEX, generalSelected);
 
 	generalSelected->insertChild(SELECTED_SONG_LENGTH_INDEX, this->createInfoItem(tr("Song Length"), N_A));
@@ -121,32 +122,32 @@ QTreeWidgetItem* QUPreviewTree::createInfoItem(const QIcon &icon, const QString 
 	return result;
 }
 
-void QUPreviewTree::setSongCount(int count) {
+void QUPreviewTree::setSongCount(int songCount, int friendCount) {
 	QTreeWidgetItem *child = general->child(SONG_COUNT_CHILD_INDEX);
 
 	if(child)
-		child->setText(1, QVariant(count).toString());
+		child->setText(1, tr("%1 (%2 songs, %3 friends)").arg(songCount + friendCount).arg(songCount).arg(friendCount));
 }
 
-void QUPreviewTree::setSelectedSongCount(int count) {
+void QUPreviewTree::setSelectedSongCount(int songCount, int friendCount) {
 	QTreeWidgetItem *child = general->child(SELECTED_SONG_COUNT_CHILD_INDEX);
 
 	if(child)
-		child->setText(1, QVariant(count).toString());
+		child->setText(1, tr("%1 (%2 songs, %3 friends)").arg(songCount + friendCount).arg(songCount).arg(friendCount));
 }
 
-void QUPreviewTree::setHiddenSongCount(int count) {
+void QUPreviewTree::setHiddenSongCount(int songCount, int friendCount) {
 	QTreeWidgetItem *child = general->child(HIDDEN_SONG_COUNT_CHILD_INDEX);
 
 	if(child)
-		child->setText(1, QVariant(count).toString());
+		child->setText(1, tr("%1 (%2 songs, %3 friends)").arg(songCount + friendCount).arg(songCount).arg(friendCount));
 }
 
-void QUPreviewTree::setVisibleSongCount(int count) {
+void QUPreviewTree::setVisibleSongCount(int songCount, int friendCount) {
 	QTreeWidgetItem *child = general->child(VISIBLE_SONG_COUNT_CHILD_INDEX);
 
 	if(child)
-		child->setText(1, QVariant(count).toString());
+		child->setText(1, tr("%1 (%2 songs, %3 friends)").arg(songCount + friendCount).arg(songCount).arg(friendCount));
 }
 
 void QUPreviewTree::setSelectedSongLength(int seconds) {
