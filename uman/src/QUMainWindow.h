@@ -31,7 +31,6 @@ protected:
 private slots:
 	void initConfig();
 	void initWindow();
-//	void initMenu();
 	void initRibbonBar();
 	void initSongTree();
 	void initDetailsTable();
@@ -40,11 +39,7 @@ private slots:
 	void initMonty();
 	void initMediaPlayer();
 
-//	void appendSong(QUSongFile *song);
-//	void deleteSong(QUSongFile *song);
-
 	void refreshAllSongs(bool force = false);
-//	void createSongFiles();
 
 	void updateDetails();
 	void updatePreviewTree();
@@ -101,9 +96,6 @@ private slots:
 	void enablePolish();
 
 	void getCoversFromAmazon(QList<QUSongItem*> items);
-
-	// handle external changes
-//	void processExternalSongFileChange(QUSongFile *song);
 
 	// internal easter eggs
 	void copyAudioToPath();

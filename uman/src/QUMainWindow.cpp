@@ -70,7 +70,6 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	songDB->setParentWidget(this);
 
 	initWindow();
-//	initMenu();
 	initRibbonBar();
 	initEventLog();
 	initConfig();
@@ -156,18 +155,6 @@ void QUMainWindow::initConfig() {
 	QSettings settings;
 	QString path;
 	if(!settings.contains("songPath")) {
-//		QStringList paths = settings.value("songPaths", QStringList()).toStringList();
-//		if(!paths.isEmpty()) { // choose the first in the list of song paths
-//			path = paths.first();
-//			settings.setValue("songPath", path);
-//		} else { // request a list of song paths
-//			QUPathsDialog(true, this).exec();
-//			paths = settings.value("songPaths", QStringList()).toStringList();
-//			if(!paths.isEmpty()) {
-//				path = paths.first();
-//				settings.setValue("songPath", path);
-//			}
-//		}
 		if(!QUPathsDialog(true, this).exec())
 			logSrv->add(tr("No song directory was selected."), QU::Warning);
 	}
@@ -269,107 +256,10 @@ void QUMainWindow::initWindow() {
 	showMinimized();
 }
 
-//void QUMainWindow::initMenu() {
-//	// songs menu
-//	connect(        actionRefresh, SIGNAL(triggered()), this, SLOT(refreshAllSongs()));
-//
-//	connect(   actionSaveSelected, SIGNAL(triggered()), songTree, SLOT(saveSelectedSongs()));
-//	connect(        actionSaveAll, SIGNAL(triggered()), songTree, SLOT(saveUnsavedChanges()));
-//	connect( actionDeleteSelected, SIGNAL(triggered()), songTree, SLOT(requestDeleteSelectedSongs()));
-//	connect(  actionMergeSelected, SIGNAL(triggered()), songTree, SLOT(mergeSelectedSongs()));
-//	connect(      actionExpandAll, SIGNAL(triggered()), songTree, SLOT(expandAll()));
-//	connect(      actionExpandAll, SIGNAL(triggered()), songTree, SLOT(resizeToContents()));
-//	connect(    actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(collapseAll()));
-//	connect(    actionCollapseAll, SIGNAL(triggered()), songTree, SLOT(resizeToContents()));
-////	connect(actionRefreshSelected, SIGNAL(triggered()), songTree, SLOT(refreshSelectedItems()));
-//
-//	connect( actionSendToPlaylist, SIGNAL(triggered()), songTree, SLOT(sendSelectedSongsToPlaylist()));
-//	connect(      actionGetCovers, SIGNAL(triggered()), songTree, SLOT(requestCoversFromAmazon()));
-//	connect(     actionShowLyrics, SIGNAL(triggered()), songTree, SLOT(requestLyrics()));
-//
-////	actionRefreshSelected->setShortcut(Qt::Key_F5);
-//	        actionRefresh->setShortcut(Qt::SHIFT + Qt::Key_F5);
-//	   actionSaveSelected->setShortcut(Qt::CTRL  + Qt::Key_S);
-//	        actionSaveAll->setShortcut(Qt::CTRL  + Qt::SHIFT + Qt::Key_S);
-//	 actionSendToPlaylist->setShortcut(Qt::CTRL  + Qt::Key_P);
-//	     actionShowLyrics->setShortcut(Qt::CTRL  + Qt::Key_L);
-//	 actionDeleteSelected->setShortcut(Qt::SHIFT + Qt::Key_Delete);
-//	  actionMergeSelected->setShortcut(Qt::CTRL  + Qt::Key_M);
-//
-//	// view menu
-//	connect(actionShowRelativeSongPath, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
-//	connect(actionAltSongTree, SIGNAL(toggled(bool)), this, SLOT(toggleAltSongTreeChk(bool)));
-//	connect(actionFilter, SIGNAL(toggled(bool)), this, SLOT(toggleFilterFrame(bool)));
-//
-//	detailsDock->toggleViewAction()->setIcon(QIcon(":/control/text_edit.png"));
-//	tasksDock->toggleViewAction()->setIcon(QIcon(":/control/tasks.png"));
-//	previewDock->toggleViewAction()->setIcon(QIcon(":/control/file_info.png"));
-//	playlistDock->toggleViewAction()->setIcon(QIcon(":/control/playlist.png"));
-//	eventsDock->toggleViewAction()->setIcon(QIcon(":/control/log.png"));
-//	mediaPlayerDock->toggleViewAction()->setIcon(QIcon(":/control/mediaplayer.png"));
-//
-//	this->viewBar->addAction(detailsDock->toggleViewAction());
-//	this->viewBar->addAction(tasksDock->toggleViewAction());
-//	this->viewBar->addAction(playlistDock->toggleViewAction());
-//	this->viewBar->addAction(previewDock->toggleViewAction());
-//	this->viewBar->addAction(eventsDock->toggleViewAction());
-//	this->viewBar->addAction(mediaPlayerDock->toggleViewAction());
-//
-//	this->menuView->addAction(detailsDock->toggleViewAction());
-//	this->menuView->addAction(tasksDock->toggleViewAction());
-//	this->menuView->addAction(playlistDock->toggleViewAction());
-//	this->menuView->addAction(previewDock->toggleViewAction());
-//	this->menuView->addAction(eventsDock->toggleViewAction());
-//	this->menuView->addAction(mediaPlayerDock->toggleViewAction());
-//
-//	// insert toggle view actions for the toolbars
-//	this->menuView->addSeparator();
-//
-//	QMenu *showToolbarMenu = this->menuView->addMenu(tr("Toolbars"));
-//
-//	showToolbarMenu->addAction(this->songsBar->toggleViewAction());
-//	showToolbarMenu->addAction(this->viewBar->toggleViewAction());
-//	showToolbarMenu->addAction(this->optionsBar->toggleViewAction());
-//
-//	actionFilter->setShortcut(Qt::CTRL + Qt::Key_F);
-//
-//	// options menu
-//	connect(actionAutoSave, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
-//	connect(actionAlwaysOnTop, SIGNAL(toggled(bool)), this, SLOT(toggleAlwaysOnTop(bool)));
-//
-//	connect(actionTagSaveOrder, SIGNAL(triggered()), this, SLOT(editTagOrder()));
-//	connect(actionChangeSongDirectory, SIGNAL(triggered()), this, SLOT(changeSongDir()));
-//	connect(actionCustomTags, SIGNAL(triggered()), this, SLOT(editCustomTags()));
-//	connect(actionPaths, SIGNAL(triggered()), this, SLOT(showPathsDialog()));
-//
-//	connect(actionLangEnglish, SIGNAL(triggered()), this, SLOT(enableEnglish()));
-//	connect(actionLangGerman, SIGNAL(triggered()), this, SLOT(enableGerman()));
-//	connect(actionLangPolish, SIGNAL(triggered()), this, SLOT(enablePolish()));
-//
-//	actionChangeSongDirectory->setShortcut(Qt::Key_F12);
-//
-//	// extras menu
-//	connect(actionNewReport, SIGNAL(triggered()), this, SLOT(reportCreate()));
-//	connect(actionBackupAudioFiles, SIGNAL(triggered()), this, SLOT(copyAudioToPath()));
-//	connect(actionPlugins, SIGNAL(triggered()), this, SLOT(showPluginDialog()));
-//
-//	actionNewReport->setShortcut(Qt::Key_F8);
-//
-//	// help menu
-//	connect(actionShowMonty, SIGNAL(triggered()), montyArea, SLOT(show()));
-//	connect(actionQt, SIGNAL(triggered()), this, SLOT(aboutQt()));
-//	connect(actionUman, SIGNAL(triggered()), this, SLOT(aboutUman()));
-//	connect(actionTagLib, SIGNAL(triggered()), this, SLOT(aboutTagLib()));
-//}
-
 /*!
  * Create an Office2007-like menu to reduce mouse clicks.
  */
 void QUMainWindow::initRibbonBar() {
-	this->songsBar->hide();
-	this->viewBar->hide();
-	this->optionsBar->hide();
-
 	_menu = new QURibbonBar(this);
 	this->setMenuWidget(_menu);
 
@@ -487,9 +377,6 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(itemExpanded(QTreeWidgetItem*)), songTree, SLOT(resizeToContents()));
 	connect(songTree, SIGNAL(itemCollapsed(QTreeWidgetItem*)), songTree, SLOT(resizeToContents()));
 
-//	connect(songTree, SIGNAL(songCreated(QUSongFile*)), this, SLOT(appendSong(QUSongFile*)));
-//	connect(songTree, SIGNAL(deleteSongRequested(QUSongFile*)), this, SLOT(deleteSong(QUSongFile*)));
-
 	connect(songTree, SIGNAL(songToPlaylistRequested(QUSongFile*)), playlistArea, SLOT(addSongToCurrentPlaylist(QUSongFile*)));
 	connect(songTree, SIGNAL(coversFromAmazonRequested(QList<QUSongItem*>)), this, SLOT(getCoversFromAmazon(QList<QUSongItem*>)));
 	connect(songTree, SIGNAL(coverFlowRequested(QList<QUSongItem*>)), this, SLOT(showCoverSlideShowDialog(QList<QUSongItem*>)));
@@ -606,49 +493,6 @@ void QUMainWindow::initMediaPlayer() {
 	connect(mediaplayer, SIGNAL(editSongRequested(QUSongFile*,int)), this, SLOT(editSongLyrics(QUSongFile*,int)));
 }
 
-//void QUMainWindow::appendSong(QUSongFile *song) {
-//	_songs.append(song);
-//
-//	// connect changes in song files with an update in the playlist area
-//	connect(song, SIGNAL(dataChanged()), playlistArea, SLOT(update()));
-//	// react to changes
-//	connect(song, SIGNAL(externalSongFileChangeDetected(QUSongFile*)), this, SLOT(processExternalSongFileChange(QUSongFile*)));
-//
-//	//TODO: What about friends?
-//}
-//
-///*!
-// * Deletes the given song (the whole directory). Song item has to be removed
-// * from song tree before you call this function!
-// */
-//void QUMainWindow::deleteSong(QUSongFile *song) {
-//	QDir dir(song->songFileInfo().dir());
-//	QString artist = song->artist();
-//	QString title = song->title();
-//
-//	QFileInfoList fiList = dir.entryInfoList(QStringList("*.*"), QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot, QDir::Name);
-//
-//	foreach(QFileInfo fi, fiList) {
-//		if(!QFile::remove(fi.filePath()))
-//			logSrv->add(QString(tr("Could NOT delete file: \"%1\"")).arg(fi.filePath()), QU::Warning);
-//		else
-//			logSrv->add(QString(tr("File was deleted successfully: \"%1\"")).arg(fi.filePath()), QU::Information);
-//	}
-//
-//	QString dirName = dir.dirName();
-//	dir.cdUp();
-//
-//	if(!dir.rmdir(dirName))
-//		logSrv->add(QString(tr("Could NOT delete directory: \"%1\". Maybe it is not empty.")).arg(song->songFileInfo().path()), QU::Warning);
-//	else
-//		logSrv->add(QString(tr("Directory was deleted successfully: \"%1\"")).arg(song->songFileInfo().path()), QU::Information);
-//
-//	_songs.removeAll(song);
-//	delete song;
-//
-//	logSrv->add(QString(tr("Song was deleted successfully: \"%1 - %2\"")).arg(artist).arg(title), QU::Information);
-//}
-
 /*!
  * Re-reads all possible song files and builds a new song tree.
  */
@@ -675,58 +519,6 @@ void QUMainWindow::refreshAllSongs(bool force) {
 	// workaround for always-on-top windows on startup
 	showNormal();
 }
-
-///*!
-// * Creates all instances of QUSongFile to fill the song tree. Fills the song tree.
-// * \sa CreateSongTree();
-// */
-//void QUMainWindow::createSongFiles() {
-//	QList<QDir> dirList;
-//	dirList.append(QDir(QU::BaseDir));
-//
-//	// create a list of all sub-directories
-//	this->readSongDir(dirList);
-//	// initialize the header of the song tree
-//	songTree->initHorizontalHeader();
-//
-//	QUProgressDialog dlg(tr("Reading song files..."), dirList.size(), this);
-//	dlg.setPixmap(":/types/folder.png");
-//	dlg.show();
-//
-//	foreach(QDir dir, dirList) {
-//		QFileInfoList songFiList = dir.entryInfoList(QUSongSupport::allowedSongFiles(), QDir::Files, QDir::Name);
-//		qStableSort(songFiList.begin(), songFiList.end(), QU::fileTypeLessThan);
-//
-//		dlg.update(dir.dirName());
-//		if(dlg.cancelled()) break;
-//
-//		QUSongFile *newSong = 0;
-//
-//		foreach(QFileInfo fi, songFiList) {
-//			if( QUSongSupport::allowedLicenseFiles().contains(fi.fileName(), Qt::CaseInsensitive) )
-//				continue; // skip license files (txt)
-//
-//			if(!newSong)
-//				newSong = new QUSongFile(fi.filePath());
-//			else { // found a friend!
-//				QUSongFile *friendSong = new QUSongFile(fi.filePath());
-//				newSong->addFriend(friendSong);
-//				// see "this->appendSong(...)"
-//				connect(friendSong, SIGNAL(dataChanged()), playlistArea, SLOT(update()));
-//				connect(friendSong, SIGNAL(externalSongFileChangeDetected(QUSongFile*)), this, SLOT(processExternalSongFileChange(QUSongFile*)));
-//			}
-//		}
-//
-//		if(newSong) { // some song found
-//			this->appendSong(newSong);
-//			songTree->addTopLevelItem(new QUSongItem(newSong, true));
-//		}
-//	}
-//
-//	// finish song tree initialization
-//	songTree->resizeToContents();
-//	songTree->sortItems(FOLDER_COLUMN, Qt::AscendingOrder);
-//}
 
 /*!
  * Update the details of the selected songs. Disconnect to avoid dead-lock.
