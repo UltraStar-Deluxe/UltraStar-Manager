@@ -18,6 +18,7 @@ void initApplication();
 void initLanguage(QApplication&, QTranslator&, QSplashScreen&);
 void handlePreviousAppCrash();
 void handleWipWarning();
+void handleReleaseCandidateInformation();
 void handleArguments();
 
 int main(int argc, char *argv[]) {
@@ -31,7 +32,14 @@ int main(int argc, char *argv[]) {
 
 	initLanguage(app, tr, splash);
 
+#ifdef WIP_VERSION
 	handleWipWarning();
+#endif // WIP_VERSION
+
+#ifdef RC_VERSION
+	handleReleaseCandidateInformation();
+#endif // RC_VERSION
+
 	handlePreviousAppCrash();
 	handleArguments();
 
@@ -109,7 +117,15 @@ void handleWipWarning() {
 	QUMessageBox::warning(0,
 				QObject::tr("WIP version detected!"),
 				QObject::tr("This version is still under development <b>and may not be very stable</b>. You might loose all your songs if you use it.<br><br><b>Please backup</b> the songs you are working with and do not distribute this version."),
-				QStringList() << ":/marks/accept.png" << QObject::tr("I will be careful."));
+				BTN << ":/marks/accept.png" << QObject::tr("I will be careful."));
+}
+
+void handleReleaseCandidateInformation() {
+	QUMessageBox::information(0,
+				QObject::tr("Release Candidate Information"),
+				QObject::tr("<b>Dear testing person,</b><br><br>this version is meant to be <b>feature-complete and almost bug-free</b>. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first. <br> While testing all these cool new features of version 1.8.0, consider the following:<br><br>- song friends behaviour<br>- all new tasks<br>- report creation (F8)<br>- translation issues<br>- Amazon cover download<br>- picture review<br><br>Send feedback and bug reports to: <a href=\"mailto:saiya_mg@users.sourceforge.net\">saiya_mg@users.sourceforge.net</a>"),
+				BTN << ":/marks/accept.png" << QObject::tr("Okay!"),
+				400);
 }
 
 void handlePreviousAppCrash() {

@@ -1120,14 +1120,21 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 		}
 
 		QUSongFile *newSong = new QUSongFile(fi.filePath());
-		newSongs.append(newSong);
+		QFileInfo newFileInfo = createSongFolder(newSong);
 
-		createSongFolder(newSong);
+		if(!newFileInfo.dir().exists())
+			continue; // dir creation did not work
 
-		if(!QFile::copy(fi.filePath(), newSong->songFileInfo().filePath())) {
-			logSrv->add(QString(tr("Could not copy song file \"%1\" to new song directory \"%2\"!")).arg(fi.fileName()).arg(newSong->songFileInfo().path()), QU::Warning);
+		if(!QFile::copy(fi.filePath(), newFileInfo.filePath())) {
+			logSrv->add(QString(tr("Could not copy song file \"%1\" to new song directory \"%2\"!"))
+						.arg(fi.fileName())
+						.arg(newFileInfo.path()), QU::Warning);
 			continue;
 		}
+
+		delete newSong;
+		newSong = new QUSongFile(newFileInfo.filePath());
+		newSongs.append(newSong);
 
 		logSrv->add(QString(tr("New song included to your song collection: \"%1 - %2\".")).arg(newSong->artist()).arg(newSong->title()), QU::Information);
 		songDB->addSong(newSong);
@@ -1158,7 +1165,7 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
  *
  * Set the given song to that folder.
  */
-void QUSongTree::createSongFolder(QUSongFile *song) {
+QFileInfo QUSongTree::createSongFolder(QUSongFile *song) {
 	QString newDirName = QUStringSupport::withoutUnsupportedCharacters(QString("%1 - %2").arg(song->artist()).arg(song->title())).trimmed();
 
 	int i = 0;
@@ -1167,7 +1174,7 @@ void QUSongTree::createSongFolder(QUSongFile *song) {
 	while(!QU::BaseDir.mkdir(tmp)) {
 		if(!fi.exists()) {
 			logSrv->add(QString(tr("Could not create directory: \"%1\". Disk full?")).arg(fi.filePath()), QU::Warning);
-			return;
+			return QFileInfo();
 		} else {
 			tmp = QString("%1_%2").arg(newDirName).arg(i, 3, 10, QChar('0'));
 			i++;
@@ -1175,7 +1182,8 @@ void QUSongTree::createSongFolder(QUSongFile *song) {
 		}
 	}
 
-	song->setFile( QFileInfo(QDir(fi.filePath()), song->songFileInfo().fileName()).filePath() );
+	return QFileInfo(QDir(fi.filePath()), song->songFileInfo().fileName());
+//	song->setFile( QDir(fi.filePath()).filePath(song->songFileInfo().fileName()) );
 }
 
 //void QUSongTree::refreshSelectedItems() {

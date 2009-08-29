@@ -16,14 +16,15 @@ QUPluginDialog::QUPluginDialog(const QList<QPluginLoader*> &plugins, QWidget *pa
 
 	apiLbl->setText(QString(tr("<b>API:</b> Song v%1, Plugin v%2")).arg(SONG_API_VERSION).arg(PLUGIN_API_VERSION));
 
-	pluginTable->setColumnCount(7);
+	pluginTable->setColumnCount(8);
 
-	pluginTable->setHorizontalHeaderLabels(QStringList() << tr("Factory") << tr("Product") << tr("Operations") << tr("Quantity") << tr("Languages") << tr("API") << tr("Path"));
+	pluginTable->setHorizontalHeaderLabels(QStringList() << tr("Factory") << tr("Product") << tr("Operations") << tr("Quantity") << tr("Languages") << tr("Version") << tr("API") << tr("Path"));
 	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_FACTORY_COL, QHeaderView::ResizeToContents);
 	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_PRODUCT_COL, QHeaderView::ResizeToContents);
 	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_OPERATIONS_COL, QHeaderView::ResizeToContents);
 	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_QUANTITY_COL, QHeaderView::ResizeToContents);
 	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_LANG_COL, QHeaderView::ResizeToContents);
+	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_VERSION_COL, QHeaderView::ResizeToContents);
 	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_PATH_COL, QHeaderView::Stretch);
 
 	pluginTable->verticalHeader()->hide();
@@ -42,6 +43,7 @@ void QUPluginDialog::updatePluginTable(const QList<QPluginLoader*> &plugins) {
 		if(factory) {
 			pluginTable->setItem(row, PLUGIN_FACTORY_COL, this->createItem(factory->name()));
 			pluginTable->setItem(row, PLUGIN_PRODUCT_COL, this->createItem(factory->productName()));
+			pluginTable->setItem(row, PLUGIN_VERSION_COL, this->createItem(factory->versionString()));
 
 			QList<QUTask*> tasks = factory->createTasks();
 			QStringList operations;

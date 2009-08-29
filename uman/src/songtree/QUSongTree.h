@@ -8,6 +8,7 @@
 #include <QList>
 #include <QMenu>
 #include <QKeyEvent>
+#include <QFileInfo>
 
 #include "QU.h"
 #include "QUSongItem.h"
@@ -111,7 +112,7 @@ private:
 
 	bool copyFilesToSong(const QList<QUrl> &files, QUSongItem *item);
 	void dropSongFiles(const QList<QUrl> &urls);
-	void createSongFolder(QUSongFile *song);
+	QFileInfo createSongFolder(QUSongFile *song);
 };
 
 #endif /*QUSONGTREE_H_*/

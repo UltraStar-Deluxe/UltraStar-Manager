@@ -12,6 +12,7 @@ class QUAudioTagTaskFactory: public QUScriptableTaskFactory {
 public:
 	QUAudioTagTaskFactory(QObject *parent = 0);
 
+	virtual QString versionString() const { return "1.0.0"; }
 	virtual QString name() const;
 	virtual QString productName() const;
 

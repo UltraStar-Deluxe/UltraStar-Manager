@@ -146,6 +146,10 @@ TASKS
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
+LIBTAG.DLL
+* recompiled version 1.5.0 to suppress false-positives from some
+  anti-virus tools
+
 TASKS
 * "Fix spaces at end of line" crashed if song had empty lines
 * "Fix spaces" now trims the whole song line correctly

@@ -38,7 +38,8 @@ QString QUStringSupport::withoutUnsupportedCharacters (const QString &text) {
 }
 
 QString QUStringSupport::withoutPathDelimiters(const QString &text) {
-	return QString(text).remove("/");
+//	return QString(text).remove("/");
+	return QString(text).replace("/", "-");
 }
 
 /*!

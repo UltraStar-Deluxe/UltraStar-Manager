@@ -25,6 +25,9 @@ public:
 	virtual int pluginApiVersion() const = 0;
 	virtual int songApiVersion() const = 0;
 
+	// use a version string to give the user a hint if he got the newest version of your plugin
+	virtual QString versionString() const = 0;
+
 	// multi-language support
 	virtual QMap<QString, QTranslator*> translations() const = 0;
 
