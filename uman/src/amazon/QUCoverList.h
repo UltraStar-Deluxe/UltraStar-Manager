@@ -13,16 +13,12 @@ class QUCoverList: public QListView {
 
 public:
 	QUCoverList(QWidget *parent = 0);
-	QString currentFilePath();
 
+	QString currentFilePath();
 	QUCoverModel* model() const;
 
 private slots:
-	void passActivation(const QModelIndex &index);
-
-signals:
-	void coverActivated(const QString &filePath);
-
+	void previewCover(const QModelIndex &index);
 };
 
 #endif /* QUCOVERLIST_H_ */

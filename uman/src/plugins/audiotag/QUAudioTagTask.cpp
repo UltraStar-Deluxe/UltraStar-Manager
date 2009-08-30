@@ -43,6 +43,8 @@ void QUAudioTagTask::startOn(QUSongInterface *song) {
 				if(QUAudioTagTask::availableSongSources().contains(currentData->_source, Qt::CaseInsensitive)) {
 					// remove the trailing "_" - was needed to avoid conflicts with properties of this class
 					value = song->property(currentData->_source.left(currentData->_source.size() - 1).toLower().toLocal8Bit().data()).toString();
+					value = QUStringSupport::withoutUnsupportedCharacters(value);
+					value = QUStringSupport::withoutPathDelimiters(value);
 				} else {
 					value = this->property(currentData->_source.toLower().toLocal8Bit().data()).toString();
 				}

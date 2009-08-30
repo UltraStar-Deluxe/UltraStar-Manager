@@ -12,6 +12,9 @@
 #include <QStringList>
 #include <QList>
 
+/*!
+ * Stores the result of a cover request.
+ */
 class QUCoverModel: public QAbstractListModel {
 	Q_OBJECT
 

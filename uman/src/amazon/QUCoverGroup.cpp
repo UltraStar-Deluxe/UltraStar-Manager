@@ -33,10 +33,6 @@ QUCoverGroup::QUCoverGroup(QUSongItem *songItem, QWidget *parent):
 
 	_buffer = new QBuffer(this);
 
-//	list->setMinimumHeight(1);
-
-	connect(list, SIGNAL(coverActivated (const QString&)), this, SLOT(previewActivePicture(const QString&)));
-
 	connect(buyBtn, SIGNAL(clicked()), this, SLOT(openAmazonSearchUrl()));
 	buyBtn->setEnabled(false);
 }
@@ -60,12 +56,6 @@ void QUCoverGroup::getCovers(const QString &endpoint, const QString &artistPrope
 	_waitForResult = true;
 	_http->setHost(url.host());
 	_http->get(url.request(), _buffer);
-}
-
-void QUCoverGroup::previewActivePicture(const QString &filePath) {
-	QUPictureDialog *dlg = new QUPictureDialog(filePath, this);
-	dlg->exec();
-	delete dlg;
 }
 
 void QUCoverGroup::showStateChange(int state) {

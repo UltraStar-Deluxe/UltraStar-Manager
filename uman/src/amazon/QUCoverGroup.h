@@ -3,7 +3,6 @@
 
 #include "QU.h"
 #include "QUSongItem.h"
-#include "QUPictureDialog.h"
 #include "QUAmazonResponse.h"
 
 #include <QWidget>
@@ -27,8 +26,6 @@ public:
 	void copyCoverToSongPath();
 
 private slots:
-	void previewActivePicture(const QString &filePath);
-
 	void showStateChange(int state);
 	void finishRequest(bool error);
 
