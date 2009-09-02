@@ -67,6 +67,8 @@ void QUTaskList::showContextMenu(const QPoint &point) {
  * Clear the list and refill it. Should be used to reload custom (rename) tasks.
  */
 void QUTaskList::resetTaskList() {
+	disconnect(this, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(backupCurrentSelection()));
+
 	this->clear();
 
 	foreach(QUTaskFactoryProxy *fp, _factoryProxies) {
@@ -78,6 +80,9 @@ void QUTaskList::resetTaskList() {
 		}
 		sep->setExpanded(true);
 	}
+
+	restoreCurrentSelection();
+	connect(this, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(backupCurrentSelection()));
 }
 
 void QUTaskList::doTasksOn(QUSongFile *song) {
@@ -139,7 +144,7 @@ void QUTaskList::editCurrentTask() {
 		return;
 
 	if(taskItem->task()->configure(this)) {
-		this->resetTaskList();
+		this->resetTaskList();		
 		logSrv->add(tr("Task list was refreshed successfully."), QU::Information);
 	}
 }
