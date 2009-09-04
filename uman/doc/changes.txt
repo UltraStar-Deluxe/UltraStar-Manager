@@ -218,7 +218,7 @@ REPORTS
 
 DUET SONGS
 * detection is not perfect with []-tags
-  > "Blah - Blubb [LIVE]
+  > "Wheatus - A little respect [LIVE]"
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
@@ -324,23 +324,16 @@ TASKS
   > a task that removes all dots from artist/title?
 * modify ID3v2 tags via song tags
   > genre, year
-* introduce "slots" to save checkstate of items in tasklist
-  > some predefined slots would be cool
-* remove empty lines (bad at end of a song?)
+! remove empty lines (bad at end of a song?)
 * use correct apostrophes (´, ` -> ')
-* remove unsupported tags
-  > accumulate a list of found tags and let the user choose which one will be removed
-  > configuration dialog?
 ! introduce a preview feature for tasks (what will the song look like)
 ! modify song tags via folder or song file names
   > "Juli - Die perfekte Welle.txt" + "#ARTIST - #TITLE.txt" = "Juli", "Die perfekte Welle"
 * make all file extensions lowercase or uppercase
-! correct case: "bloodhound gang" -> "Bloodhound Gang"
 ! rename tasks for two songs that result in same name -> append "001" or so
 ! add song length property to rename tasks
 ? add general condition to be able to skip a whole task
   > not for plugin interface, just an idea for the SDK
-! "fix capitalization for #ARTIST"
 
 SONG TREE
 ? virtual song folders for many song text files in one folder

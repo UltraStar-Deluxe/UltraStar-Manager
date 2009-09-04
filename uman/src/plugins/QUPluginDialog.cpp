@@ -6,6 +6,7 @@
 #include <QMap>
 
 #include "QUTaskPlugin.h"
+#include "QURemoteImageSourcePlugin.h"
 #include "QUSongInterface.h"
 
 QUPluginDialog::QUPluginDialog(const QList<QPluginLoader*> &plugins, QWidget *parent): QDialog(parent) {
@@ -25,6 +26,7 @@ QUPluginDialog::QUPluginDialog(const QList<QPluginLoader*> &plugins, QWidget *pa
 	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_QUANTITY_COL, QHeaderView::ResizeToContents);
 	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_LANG_COL, QHeaderView::ResizeToContents);
 	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_VERSION_COL, QHeaderView::ResizeToContents);
+	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_API_COL, QHeaderView::ResizeToContents);
 	pluginTable->horizontalHeader()->setResizeMode(PLUGIN_PATH_COL, QHeaderView::Stretch);
 
 	pluginTable->verticalHeader()->hide();
@@ -74,7 +76,11 @@ void QUPluginDialog::updatePluginTable(const QList<QPluginLoader*> &plugins) {
 
 			pluginTable->setItem(row, PLUGIN_API_COL, this->createItem(QString(tr("Song v%1, Plugin v%2")).arg(factory->songApiVersion()).arg(factory->pluginApiVersion())));
 		} else {
-			pluginTable->setItem(row, PLUGIN_FACTORY_COL, this->createItem(tr("No factory found.")));
+			QURemoteImageSource *ris = qobject_cast<QURemoteImageSource*>(plugin->instance());
+			if(ris)
+				pluginTable->setItem(row, PLUGIN_FACTORY_COL, this->createItem(tr("Remote Image Source")));
+			else
+				pluginTable->setItem(row, PLUGIN_FACTORY_COL, this->createItem(tr("No factory found.")));
 		}
 		pluginTable->setItem(row, PLUGIN_PATH_COL, this->createItem(fi.filePath()));
 		row++;

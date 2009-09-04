@@ -9,6 +9,9 @@
 #include <QUrl>
 #include <QDomDocument>
 
+/*!
+ * Parse a given XML response.
+ */
 class QUAmazonResponse: public QObject {
 	Q_OBJECT
 

@@ -15,6 +15,9 @@ HEADERS += plugins/QUPluginDialog.h \
     plugins/QUTaskPlugin.h \
     plugins/QUTaskFactoryProxy.h \
 	plugins/QUSmartSetting.h \
+	plugins/QURemoteImageSourcePlugin.h \
+	plugins/QUCommunicatorInterface.h \
+	plugins/QUSimpleCommunicator.h \
     main.h \
 	QU.h \
     QUMonty.h \
@@ -84,8 +87,9 @@ HEADERS += plugins/QUPluginDialog.h \
 SOURCES += plugins/QUPluginDialog.cpp \
     plugins/QUTaskFactoryProxy.cpp \
 	plugins/QUSmartSetting.cpp \
+	plugins/QUSimpleCommunicator.cpp \
     main.cpp \
-    QU.cpp \
+	QU.cpp \
     QUAboutDialog.cpp \
     QUMainWindow.cpp \
     QUMonty.cpp \

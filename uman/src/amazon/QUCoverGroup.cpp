@@ -196,7 +196,7 @@ QString QUCoverGroup::currentFilePath() const {
 }
 
 /*!
- * Deletes the current cover.
+ * Deletes the current cover from this song.
  */
 void QUCoverGroup::deleteCurrentCover() {
 	if(!_item)
