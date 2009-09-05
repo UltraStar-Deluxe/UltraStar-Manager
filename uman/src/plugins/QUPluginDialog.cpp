@@ -8,12 +8,14 @@
 #include "QUTaskPlugin.h"
 #include "QURemoteImageSourcePlugin.h"
 #include "QUSongInterface.h"
+#include "QUPluginManager.h"
 
-QUPluginDialog::QUPluginDialog(const QList<QPluginLoader*> &plugins, QWidget *parent): QDialog(parent) {
+QUPluginDialog::QUPluginDialog(QWidget *parent): QDialog(parent) {
 	setupUi(this);
 
 	connect(okBtn, SIGNAL(clicked()), this, SLOT(accept()));
-	connect(reloadBtn, SIGNAL(clicked()), this, SIGNAL(pluginReloadRequested()));
+	connect(reloadBtn, SIGNAL(clicked()), pluginMGR, SLOT(reload()));
+	connect(pluginMGR, SIGNAL(reloaded()), this, SLOT(updatePluginTable()));
 
 	apiLbl->setText(QString(tr("<b>API:</b> Song v%1, Plugin v%2")).arg(SONG_API_VERSION).arg(PLUGIN_API_VERSION));
 
@@ -31,14 +33,14 @@ QUPluginDialog::QUPluginDialog(const QList<QPluginLoader*> &plugins, QWidget *pa
 
 	pluginTable->verticalHeader()->hide();
 
-	this->updatePluginTable(plugins);
+	updatePluginTable();
 }
 
-void QUPluginDialog::updatePluginTable(const QList<QPluginLoader*> &plugins) {
-	pluginTable->setRowCount(plugins.size());
+void QUPluginDialog::updatePluginTable() {
+	pluginTable->setRowCount(pluginMGR->plugins().size());
 	int row = 0;
 
-	foreach(QPluginLoader *plugin, plugins) {
+	foreach(QPluginLoader *plugin, pluginMGR->plugins()) {
 		QFileInfo fi(plugin->fileName());
 		QUTaskFactory *factory = qobject_cast<QUTaskFactory*>(plugin->instance());
 

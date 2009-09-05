@@ -29,12 +29,14 @@ protected:
 	virtual void closeEvent(QCloseEvent *event);
 
 private slots:
+	void initPluginManager();
 	void initConfig();
 	void initWindow();
 	void initRibbonBar();
 	void initSongTree();
 	void initDetailsTable();
 	void initTaskList();
+	void initTaskListMenu();
 	void initEventLog();
 	void initMonty();
 	void initMediaPlayer();

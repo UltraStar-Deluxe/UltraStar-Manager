@@ -11,7 +11,8 @@ QT += core \
 	network
 #CONFIG -= debug_and_release
 #CONFIG += debug
-HEADERS += plugins/QUPluginDialog.h \
+HEADERS += plugins/QUPluginManager.h \
+	plugins/QUPluginDialog.h \
     plugins/QUTaskPlugin.h \
     plugins/QUTaskFactoryProxy.h \
 	plugins/QUSmartSetting.h \
@@ -84,7 +85,8 @@ HEADERS += plugins/QUPluginDialog.h \
 	sha2/hmac_sha2.h \
 	score/QUScoreFile.h
 	#support/qkFileWatcher.h
-SOURCES += plugins/QUPluginDialog.cpp \
+SOURCES += plugins/QUPluginManager.cpp \
+	plugins/QUPluginDialog.cpp \
     plugins/QUTaskFactoryProxy.cpp \
 	plugins/QUSmartSetting.cpp \
 	plugins/QUSimpleCommunicator.cpp \

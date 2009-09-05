@@ -21,13 +21,10 @@ class QUPluginDialog: public QDialog, private Ui::QUPluginDialog {
 	Q_OBJECT
 
 public:
-	QUPluginDialog(const QList<QPluginLoader*> &plugins, QWidget *parent = 0);
+	QUPluginDialog(QWidget *parent = 0);
 
 public slots:
-	void updatePluginTable(const QList<QPluginLoader*> &plugins);
-
-signals:
-	void pluginReloadRequested();
+	void updatePluginTable();
 
 private:
 	QTableWidgetItem* createItem(const QString &text);

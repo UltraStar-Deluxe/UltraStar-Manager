@@ -34,6 +34,7 @@
 #include "QUMonty.h"
 #include "QULogService.h"
 #include "QUSongDatabase.h"
+#include "QUPluginManager.h"
 
 #include "QUDropDownDelegate.h"
 #include "QUDetailsTable.h"
@@ -73,6 +74,7 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	initRibbonBar();
 	initEventLog();
 	initConfig();
+	initPluginManager();
 
 	initSongTree();
 	initDetailsTable();
@@ -145,6 +147,15 @@ void QUMainWindow::closeEvent(QCloseEvent *event) {
 	QFile::remove("running.app");
 
 	event->accept();
+}
+
+void QUMainWindow::initPluginManager() {
+	pluginMGR->setUiParent(this);
+	pluginMGR->reload(); // initial loading of plugins
+
+	connect(pluginMGR, SIGNAL(reloaded()), this, SLOT(initTaskListMenu()));
+	connect(pluginMGR, SIGNAL(reloaded()), taskList, SLOT(resetTaskList()));
+	connect(pluginMGR, SIGNAL(configurationAdded()), taskList, SLOT(resetTaskList()));
 }
 
 /*!
@@ -395,20 +406,14 @@ void QUMainWindow::initDetailsTable() {
 }
 
 /*!
- * Initializes all available tasks.
+ * Initializes all available tasks. Plugin Manager should have loaded all plugins before
+ * calling this method.
+ *
  * \sa editSongApplyTasks()
  * \sa editSongSetDetail()
  */
 void QUMainWindow::initTaskList() {
-	taskList->reloadAllPlugins();
-
-	addTaskBtn->setMenu(new QMenu);
-	addTaskBtn->setPopupMode(QToolButton::InstantPopup);
-
-	foreach(QUTaskFactoryProxy *fp, taskList->factoryProxies()) {
-		if(fp->factory()->canAddConfigurations())
-			addTaskBtn->menu()->addAction(QString("%1...").arg(fp->factory()->productName()), fp, SLOT(addConfiguration()));
-	}
+	initTaskListMenu();
 
 	// connect task buttons
 	connect(taskBtn, SIGNAL(clicked()), this, SLOT(editSongApplyTasks()));
@@ -432,6 +437,20 @@ void QUMainWindow::initTaskList() {
 	taskList->setCurrentSlot(0);
 
 	tasksSlot1Btn->click();
+
+	taskList->resetTaskList();
+}
+
+void QUMainWindow::initTaskListMenu() {
+	if(addTaskBtn->menu())
+		delete addTaskBtn->menu();
+	addTaskBtn->setMenu(new QMenu);
+	addTaskBtn->setPopupMode(QToolButton::InstantPopup);
+
+	foreach(QUTaskFactoryProxy *fp, pluginMGR->taskFactoryProxies()) {
+		if(fp->factory()->canAddConfigurations())
+			addTaskBtn->menu()->addAction(QString("%1...").arg(fp->factory()->productName()), fp, SLOT(addConfiguration()));
+	}
 }
 
 void QUMainWindow::initEventLog() {
@@ -1307,10 +1326,7 @@ void QUMainWindow::sendCurrentPlaylistToMediaPlayer() {
  * Displays a dialog to manage plugins generally.
  */
 void QUMainWindow::showPluginDialog() {
-	QUPluginDialog dlg(taskList->plugins(), this);
-	connect(&dlg, SIGNAL(pluginReloadRequested()), taskList, SLOT(reloadAllPlugins()));
-	connect(taskList, SIGNAL(pluginsReloaded(const QList<QPluginLoader*>&)), &dlg, SLOT(updatePluginTable(const QList<QPluginLoader*>&)));
-	dlg.exec();
+	QUPluginDialog(this).exec();
 }
 
 void QUMainWindow::showCoverSlideShowDialog(QList<QUSongItem*> items) {

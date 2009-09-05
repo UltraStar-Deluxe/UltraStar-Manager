@@ -202,6 +202,7 @@ SONG FRIENDS (general workaround: switch friend to primary song with double-clic
 
 MEDIA PLAYER
 * correct songs get ansychronous after a while (seek works right)
+* uman crashes if you play a song, change the song directory and skip
 
 SONG WATCHER
 * many song files will not be added to QFileSystemWatcher
@@ -334,6 +335,7 @@ TASKS
 ! add song length property to rename tasks
 ? add general condition to be able to skip a whole task
   > not for plugin interface, just an idea for the SDK
+* find a solution to test for a specific #EDITION in rename tasks
 
 SONG TREE
 ? virtual song folders for many song text files in one folder

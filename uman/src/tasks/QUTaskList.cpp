@@ -1,5 +1,8 @@
 #include "QUTaskList.h"
 #include "QULogService.h"
+#include "QUTaskPlugin.h"
+#include "QUPluginManager.h"
+#include "QUTaskFactoryProxy.h"
 
 #include <QCoreApplication>
 #include <QFont>
@@ -10,10 +13,6 @@
 #include <QLibrary>
 #include <QSettings>
 #include <QMap>
-#include <QTranslator>
-
-#include "QUTaskPlugin.h"
-#include "QUTaskFactoryProxy.h"
 
 QUTaskList::QUTaskList(QWidget *parent): QTreeWidget(parent) {
 	// do not allow to check two exclusive tasks
@@ -48,7 +47,7 @@ void QUTaskList::showContextMenu(const QPoint &point) {
 	QMenu menu(this);
 	QMenu *addMenu = menu.addMenu(QIcon(":/marks/add.png"), tr("Add"));
 
-	foreach(QUTaskFactoryProxy *fp, _factoryProxies) {
+	foreach(QUTaskFactoryProxy *fp, pluginMGR->taskFactoryProxies()) {
 		if(fp->factory()->canAddConfigurations())
 			addMenu->addAction(QString("%1...").arg(fp->factory()->productName()), fp, SLOT(addConfiguration()));
 	}
@@ -71,7 +70,7 @@ void QUTaskList::resetTaskList() {
 
 	this->clear();
 
-	foreach(QUTaskFactoryProxy *fp, _factoryProxies) {
+	foreach(QUTaskFactoryProxy *fp, pluginMGR->taskFactoryProxies()) {
 		QTreeWidgetItem *sep = this->appendSeparator(fp->factory()->name());
 		foreach(QUTask *task, fp->factory()->createTasks()) {
 			QUTaskItem *taskItem = new QUTaskItem(task);
@@ -146,67 +145,6 @@ void QUTaskList::editCurrentTask() {
 	if(taskItem->task()->configure(this)) {
 		this->resetTaskList();		
 		logSrv->add(tr("Task list was refreshed successfully."), QU::Information);
-	}
-}
-
-void QUTaskList::reloadAllPlugins() {
-	logSrv->add(tr("Looking for task plugins..."), QU::Information);
-
-	qDeleteAll(_plugins);
-	_plugins.clear();
-
-	QDir pluginDir = QCoreApplication::applicationDirPath();
-	pluginDir.cd("plugins");
-
-	QFileInfoList pluginFiList = pluginDir.entryInfoList(QStringList("*.*"), QDir::Files, QDir::Name);
-
-	foreach(QFileInfo pluginFi, pluginFiList) {
-		if(!QLibrary::isLibrary(pluginFi.filePath()))
-			continue;
-
-		QPluginLoader *ldr = new QPluginLoader(pluginFi.filePath(), this);
-		if(!ldr->load()) {
-			logSrv->add(ldr->errorString(), QU::Warning);
-		} else {
-			_plugins << ldr;
-		}
-	}
-
-	this->updateFactoryProxies();
-
-	emit pluginsReloaded(this->plugins());
-	logSrv->add(tr("Plugin loading finished."), QU::Information);
-
-	this->resetTaskList();
-}
-
-void QUTaskList::updateFactoryProxies() {
-	QSettings settings;
-	QString language = settings.value("language", QLocale::system().name()).toString();
-
-	// remove all translations
-	foreach(QUTaskFactoryProxy *factoryProxy, _factoryProxies) {
-		// only translator for current language should be installed
-		QMap<QString, QTranslator*> translations(factoryProxy->factory()->translations());
-		if(translations.contains(language))
-			qApp->removeTranslator(translations.value(language));
-	}
-
-	qDeleteAll(_factoryProxies);
-	_factoryProxies.clear();
-
-	foreach(QPluginLoader *ldr, _plugins) {
-		QUTaskFactory *factory = qobject_cast<QUTaskFactory*>(ldr->instance());
-
-		if(!factory)
-			continue;
-
-		_factoryProxies << new QUTaskFactoryProxy(factory, this, this);
-
-		// install translation
-		QMap<QString, QTranslator*> translations(factory->translations());
-		if(translations.contains(language))
-			qApp->installTranslator(translations.value(language));
 	}
 }
 
