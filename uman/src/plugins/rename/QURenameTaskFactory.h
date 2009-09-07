@@ -13,7 +13,7 @@ class QURenameTaskFactory: public QUScriptableTaskFactory {
 public:
 	QURenameTaskFactory(QObject *parent = 0);
 
-	virtual QString versionString() const { return "1.0.0"; }
+	virtual QString version() const { return "1.0.0"; }
 	virtual QString name() const;
 	virtual QString productName() const;
 

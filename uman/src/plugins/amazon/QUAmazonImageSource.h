@@ -15,6 +15,13 @@ public:
 	~QUAmazonImageSource() {}
 
 	virtual int pluginApiVersion() const { return REMOTE_IMAGE_SOURCE_PLUGIN_API_VERSION; }
+	virtual int songApiVersion() const { return SONG_API_VERSION; }
+
+	virtual QString name() const { return "Amazon Product Advertising API"; }
+	virtual QString version() const { return "1.0.0"; }
+	virtual QString author() const { return tr("Unknown person"); }
+	virtual QString description() const { return tr("No description given."); }
+
 	virtual QMap<QString, QTranslator*> translations() const { return QMap<QString, QTranslator*>(); }
 
 	virtual QStringList songDataFields() const { return QStringList() << "Artist" << "Title"; }
@@ -23,8 +30,6 @@ public:
 	virtual QStringList customDataFields() const { return QStringList() << "Access Key ID" << "Secret Access Key"; }
 	virtual void setCustomDataField(const QString &field, const QString &value);
 	virtual void showHelpDialog(const QString &field, QWidget *parent) const;
-
-	virtual QString name() const { return "Amazon Product Advertising API"; }
 
 	virtual QStringList hosts() const;
 	virtual void setHost(const QString &);

@@ -21,6 +21,12 @@ public:
 
 	virtual int pluginApiVersion() const { return PLUGIN_API_VERSION; }
 	virtual int songApiVersion() const { return SONG_API_VERSION; }
+
+	virtual QString name() const { return tr("Unnamed plugin"); }
+	virtual QString version() const { return "1.0.0"; }
+	virtual QString author() const { return tr("Unknown person"); }
+	virtual QString description() const { return tr("No description given."); }
+
 	virtual QMap<QString, QTranslator*> translations() const;
 
 protected:

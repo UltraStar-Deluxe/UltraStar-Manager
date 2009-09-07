@@ -7,7 +7,7 @@ class QUCleanUpTaskFactory: public QUSimpleTaskFactory {
 public:
 	QUCleanUpTaskFactory(QObject *parent = 0);
 
-	virtual QString versionString() const { return "1.0.0"; }
+	virtual QString version() const { return "1.0.0"; }
 	virtual QString name() const;
 
 protected:

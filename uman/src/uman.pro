@@ -13,6 +13,8 @@ QT += core \
 #CONFIG += debug
 HEADERS += plugins/QUPluginManager.h \
 	plugins/QUPluginDialog.h \
+	plugins/QUPluginModel.h \
+	plugins/QUPluginDelegate.h \
     plugins/QUTaskPlugin.h \
     plugins/QUTaskFactoryProxy.h \
 	plugins/QUSmartSetting.h \
@@ -87,6 +89,8 @@ HEADERS += plugins/QUPluginManager.h \
 	#support/qkFileWatcher.h
 SOURCES += plugins/QUPluginManager.cpp \
 	plugins/QUPluginDialog.cpp \
+	plugins/QUPluginModel.cpp \
+	plugins/QUPluginDelegate.cpp \
     plugins/QUTaskFactoryProxy.cpp \
 	plugins/QUSmartSetting.cpp \
 	plugins/QUSimpleCommunicator.cpp \

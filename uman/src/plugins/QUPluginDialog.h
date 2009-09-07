@@ -24,10 +24,7 @@ public:
 	QUPluginDialog(QWidget *parent = 0);
 
 public slots:
-	void updatePluginTable();
-
-private:
-	QTableWidgetItem* createItem(const QString &text);
+	void updatePluginList();
 };
 
 #endif // QUPLUGINDIALOG_H_

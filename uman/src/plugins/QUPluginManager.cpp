@@ -2,6 +2,9 @@
 #include "QULogService.h"
 #include "QUTaskFactoryProxy.h"
 
+#include "QUTaskPlugin.h"
+#include "QURemoteImageSourcePlugin.h"
+
 #include <QCoreApplication>
 #include <QPluginLoader>
 #include <QSettings>
@@ -38,6 +41,34 @@ void QUPluginManager::setUiParent(QWidget *w) {
 		createTaskFactoryProxies();
 	}
 }
+
+QList<QUPlugin*> QUPluginManager::plugins() const {
+	QList<QUPlugin*> result;
+	foreach(QPluginLoader *plugin, _plugins) {
+		QUPlugin *p = dynamic_cast<QUPlugin*>(plugin->instance());
+		if(p) result << p;
+	}
+	return result;
+}
+
+QList<QUTaskFactory*> QUPluginManager::taskPlugins() const {
+	QList<QUTaskFactory*> result;
+	foreach(QPluginLoader *plugin, _plugins) {
+		QUTaskFactory *factory = qobject_cast<QUTaskFactory*>(plugin->instance());
+		if(factory) result << factory;
+	}
+	return result;
+}
+
+QList<QURemoteImageSource*> QUPluginManager::imageSourcePlugins() const {
+	QList<QURemoteImageSource*> result;
+	foreach(QPluginLoader *plugin, _plugins) {
+		QURemoteImageSource *imgSrc = qobject_cast<QURemoteImageSource*>(plugin->instance());
+		if(imgSrc) result << imgSrc;
+	}
+	return result;
+}
+
 
 void QUPluginManager::loadAllPlugins() {
 	if(!_plugins.isEmpty()) {

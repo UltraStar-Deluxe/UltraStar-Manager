@@ -7,12 +7,12 @@
 #include <QList>
 #include <QDir>
 
-#include "QUTaskPlugin.h"
-#include "QURemoteImageSourcePlugin.h"
-
+class QUPlugin;
+class QUTaskFactory;
+class QURemoteImageSource;
 class QUTaskFactoryProxy;
-class QPluginLoader;
 class QWidget;
+class QPluginLoader;
 
 class QUPluginManager: public QObject {
 	Q_OBJECT
@@ -22,7 +22,9 @@ public:
 	void setUiParent(QWidget *w);
 	QList<QUTaskFactoryProxy*> taskFactoryProxies() const { return _taskFactoryProxies; }
 
-	QList<QPluginLoader*> plugins() const { return _plugins; }
+	QList<QUPlugin*> plugins() const;
+	QList<QUTaskFactory*> taskPlugins() const;
+	QList<QURemoteImageSource*> imageSourcePlugins() const;
 
 public slots:
 	void reload();

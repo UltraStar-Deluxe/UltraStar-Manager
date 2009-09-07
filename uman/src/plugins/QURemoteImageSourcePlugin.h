@@ -3,6 +3,8 @@
 
 #define REMOTE_IMAGE_SOURCE_PLUGIN_API_VERSION 1
 
+#include "QUPlugin.h"
+
 #include <QtPlugin>
 #include <QMap>
 #include <QString>
@@ -20,15 +22,9 @@ class QUCommunicatorInterface;
  * Defines an interface for an arbitrary remote image source that
  * uses the HTTP protocol. Only the host is needed - no port.
  */
-class QURemoteImageSource {
+class QURemoteImageSource: public QUPlugin {
 public:
 	virtual ~QURemoteImageSource() {}
-
-	// for compatibility reasons
-	virtual int pluginApiVersion() const = 0;
-
-	// multi-language support
-	virtual QMap<QString, QTranslator*> translations() const = 0;
 
 	// A list of named data where a corresponding song tag must be set.
 	// E.g, 'Artist' -> #ARTIST, 'Title' -> #TITLE
@@ -40,9 +36,6 @@ public:
 	virtual QStringList customDataFields() const = 0;
 	virtual void setCustomDataField(const QString &field, const QString &value) = 0;
 	virtual void showHelpDialog(const QString &field, QWidget *parent) const = 0;
-
-	// a name for this image source, e.g., "Amazon Product Advertising API"
-	virtual QString name() const = 0;
 
 	// A host is needed to request the image from the internet.
 	virtual QStringList hosts() const = 0;
