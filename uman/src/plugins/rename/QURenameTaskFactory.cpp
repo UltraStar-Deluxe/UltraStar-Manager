@@ -14,6 +14,10 @@ QString QURenameTaskFactory::productName() const {
 	return tr("Rename Task");
 }
 
+QString QURenameTaskFactory::description() const {
+	return tr("Move or rename files and folders based on song data.");
+}
+
 QDir QURenameTaskFactory::configurationDirectory() {
 	QDir dir = QCoreApplication::applicationDirPath();
 	dir.cd("plugins");

@@ -19,6 +19,7 @@ private:
 	QFont _fontForVersion;
 	QFont _fontForDescription;
 	int _height;
+	int _margin;
 
 	void setupPainterForName(QPainter*) const;
 	void setupPainterForVersion(QPainter*) const;

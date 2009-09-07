@@ -14,6 +14,10 @@ QString QUAudioTagTaskFactory::productName() const {
 	return tr("Song/ID3 Tag Task");
 }
 
+QString QUAudioTagTaskFactory::description() const {
+	return tr("Use meta-data from audio files to edit a song.");
+}
+
 QDir QUAudioTagTaskFactory::configurationDirectory() {
 	QDir dir = QCoreApplication::applicationDirPath();
 	dir.cd("plugins");

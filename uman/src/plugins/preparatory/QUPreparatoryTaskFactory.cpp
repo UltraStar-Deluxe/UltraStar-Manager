@@ -11,6 +11,10 @@ QString QUPreparatoryTaskFactory::name() const {
 	return tr("Preparatory Tasks");
 }
 
+QString QUPreparatoryTaskFactory::description() const {
+	return tr("Fix general issues and prepare song for other tasks.");
+}
+
 QUTask* QUPreparatoryTaskFactory::createTask(int type) {
 	return new QUPreparatoryTask((QUPreparatoryTask::TaskModes)type);
 }

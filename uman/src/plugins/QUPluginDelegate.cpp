@@ -1,7 +1,11 @@
 #include "QUPluginDelegate.h"
+#include "QUPluginModel.h"
 
 #include <QPainter>
 #include <QFontMetrics>
+#include <QPixmap>
+#include <QIcon>
+#include <QPoint>
 
 QUPluginDelegate::QUPluginDelegate(QObject *parent): QItemDelegate(parent) {
 	_fontForName.setFamily("Verdana");
@@ -9,12 +13,13 @@ QUPluginDelegate::QUPluginDelegate(QObject *parent): QItemDelegate(parent) {
 	_fontForName.setBold(true);
 
 	_fontForVersion.setFamily("Verdana");
-	_fontForVersion.setPixelSize(12);
+	_fontForVersion.setPixelSize(10);
 
 	_fontForDescription.setFamily("Verdana");
-	_fontForDescription.setPixelSize(12);
+	_fontForDescription.setPixelSize(11);
 
-	_height = QFontMetrics(_fontForName).height() + QFontMetrics(_fontForDescription).height() + 5;
+	_margin = 5;
+	_height = QFontMetrics(_fontForName).height() + QFontMetrics(_fontForDescription).height() + _margin + _margin;
 }
 
 
@@ -26,16 +31,26 @@ void QUPluginDelegate::paint(
 	if(!index.isValid())
 		return;
 
+	QPixmap p(index.model()->data(index, QUPluginModel::IconRole).value<QIcon>().pixmap(16, 16));
+	painter->drawPixmap(option.rect.left() + _margin, option.rect.top() + _margin, p.width(), p.height(), p);
+
 	setupPainterForName(painter);
-	painter->drawText(option.rect, Qt::AlignTop, index.model()->data(index, Qt::DisplayRole).toString());
+	painter->drawText(
+			option.rect.adjusted(_margin + p.width() + 5, _margin, 0, 0),
+			Qt::AlignTop,
+			index.model()->data(index, QUPluginModel::NameRole).toString());
 
 	setupPainterForVersion(painter);
-	painter->drawText(option.rect, Qt::AlignRight, "1.0.0");
+	painter->drawText(
+			option.rect.adjusted(0, _margin, -_margin, 0),
+			Qt::AlignRight,
+			index.model()->data(index, QUPluginModel::VersionRole).toString());
 
 	setupPainterForDescription(painter);
-	painter->drawText(option.rect.adjusted(0, -5, 0, -5), Qt::AlignBottom, "Description");
-
-	drawFocus(painter, option, option.rect);
+	painter->drawText(
+			option.rect.adjusted(_margin + p.width() + 5, 0, 0, -_margin),
+			Qt::AlignBottom,
+			index.model()->data(index, QUPluginModel::DescriptionRole).toString());
 }
 
 QSize QUPluginDelegate::sizeHint(

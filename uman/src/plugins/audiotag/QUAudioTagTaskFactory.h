@@ -15,6 +15,8 @@ public:
 	virtual QString version() const { return "1.0.0"; }
 	virtual QString name() const;
 	virtual QString productName() const;
+	virtual QString description() const;
+	virtual QString author() const { return "Marcel Taeumel"; }
 
 public slots:
 	virtual int addConfiguration(QWidget *parent = 0);

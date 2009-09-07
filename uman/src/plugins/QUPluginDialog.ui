@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>384</width>
-    <height>253</height>
+    <height>350</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -123,12 +123,15 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;All found plugins are listed below. Hit the button beside the api version &lt;/span&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;to reload&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; plugins.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Plugins extend the application's functionality. All found plugins are listed below. Check out the &lt;/span&gt;&lt;a href=&quot;http://sf.net/projects/uman&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;project page&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; for new plugins.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
         </property>
         <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+        <property name="openExternalLinks">
          <bool>true</bool>
         </property>
        </widget>
@@ -187,6 +190,9 @@ p, li { white-space: pre-wrap; }
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
            <normaloff>:/control/refresh.png</normaloff>:/control/refresh.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextBesideIcon</enum>
          </property>
          <property name="autoRaise">
           <bool>true</bool>

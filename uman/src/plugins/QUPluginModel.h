@@ -7,8 +7,12 @@ class QUPluginModel: public QAbstractListModel {
 	Q_OBJECT
 
 public:
-	enum CustomRoles {
-		VersionRole = 7
+	enum CustomRole {
+		NameRole = Qt::DisplayRole,
+		VersionRole = Qt::UserRole,
+		AuthorRole = Qt::UserRole + 1,
+		DescriptionRole = Qt::UserRole + 2,
+		IconRole = Qt::DecorationRole
 	};
 
 	QUPluginModel(QObject *parent = 0);

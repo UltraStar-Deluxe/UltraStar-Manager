@@ -9,6 +9,8 @@ public:
 
 	virtual QString version() const { return "1.0.0"; }
 	virtual QString name() const;
+	virtual QString description() const;
+	virtual QString author() const { return "Marcel Taeumel"; }
 
 protected:
 	virtual QUTask* createTask(int type);

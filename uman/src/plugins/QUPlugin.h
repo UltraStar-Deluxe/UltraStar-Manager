@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QMap>
+#include <QIcon>
 
 class QTranslator;
 
@@ -17,6 +18,7 @@ public:
 	virtual QString version() const = 0;
 	virtual QString author() const = 0;
 	virtual QString description() const = 0;
+	virtual QIcon icon() const = 0;
 
 	// multi-language support: language -> translation (see QLocale)
 	virtual QMap<QString, QTranslator*> translations() const = 0;

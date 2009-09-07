@@ -11,6 +11,10 @@ QString QUCleanUpTaskFactory::name() const {
 	return tr("Clean-Up Tasks");
 }
 
+QString QUCleanUpTaskFactory::description() const {
+	return tr("Remove obsolete song data or delete unused files.");
+}
+
 QUTask* QUCleanUpTaskFactory::createTask(int type) {
 	return new QUCleanUpTask((QUCleanUpTask::TaskModes)type);
 }

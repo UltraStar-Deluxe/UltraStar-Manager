@@ -26,6 +26,7 @@ public:
 	virtual QString version() const { return "1.0.0"; }
 	virtual QString author() const { return tr("Unknown person"); }
 	virtual QString description() const { return tr("No description given."); }
+	virtual QIcon icon() const { return QIcon(":/control/tasks.png"); }
 
 	virtual QMap<QString, QTranslator*> translations() const;
 

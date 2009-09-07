@@ -11,6 +11,10 @@ QString QULyricTaskFactory::name() const {
 	return tr("Lyric Tasks");
 }
 
+QString QULyricTaskFactory::description() const {
+	return tr("Modify a song's lyrics.");
+}
+
 QUTask* QULyricTaskFactory::createTask(int type) {
 	return new QULyricTask((QULyricTask::TaskModes)type);
 }

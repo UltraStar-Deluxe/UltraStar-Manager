@@ -19,8 +19,9 @@ public:
 
 	virtual QString name() const { return "Amazon Product Advertising API"; }
 	virtual QString version() const { return "1.0.0"; }
-	virtual QString author() const { return tr("Unknown person"); }
-	virtual QString description() const { return tr("No description given."); }
+	virtual QString author() const { return "Marcel Taeumel"; }
+	virtual QString description() const { return tr("Get song covers from Amazon."); }
+	virtual QIcon icon() const { return QIcon(":/control/images.png"); }
 
 	virtual QMap<QString, QTranslator*> translations() const { return QMap<QString, QTranslator*>(); }
 
