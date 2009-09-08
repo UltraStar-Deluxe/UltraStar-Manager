@@ -644,6 +644,139 @@ Tasks</string>
              <number>0</number>
             </property>
             <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <property name="spacing">
+               <number>5</number>
+              </property>
+              <property name="leftMargin">
+               <number>5</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>Messages:</string>
+                </property>
+                <property name="margin">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QToolButton" name="showInfosBtn">
+                  <property name="toolTip">
+                   <string>Information</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources/uman.qrc">
+                    <normaloff>:/marks/information.png</normaloff>:/marks/information.png</iconset>
+                  </property>
+                  <property name="checkable">
+                   <bool>true</bool>
+                  </property>
+                  <property name="autoRaise">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="showHelpBtn">
+                  <property name="toolTip">
+                   <string>Hints and tips</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources/uman.qrc">
+                    <normaloff>:/marks/help.png</normaloff>:/marks/help.png</iconset>
+                  </property>
+                  <property name="checkable">
+                   <bool>true</bool>
+                  </property>
+                  <property name="autoRaise">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="showSaveHintsBtn">
+                  <property name="toolTip">
+                   <string>Save hints</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources/uman.qrc">
+                    <normaloff>:/marks/disk.png</normaloff>:/marks/disk.png</iconset>
+                  </property>
+                  <property name="checkable">
+                   <bool>true</bool>
+                  </property>
+                  <property name="autoRaise">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="showWarningsBtn">
+                  <property name="toolTip">
+                   <string>Warnings</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources/uman.qrc">
+                    <normaloff>:/marks/error.png</normaloff>:/marks/error.png</iconset>
+                  </property>
+                  <property name="checkable">
+                   <bool>true</bool>
+                  </property>
+                  <property name="autoRaise">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="showErrorsBtn">
+                  <property name="toolTip">
+                   <string>Errors</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources/uman.qrc">
+                    <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
+                  </property>
+                  <property name="checkable">
+                   <bool>true</bool>
+                  </property>
+                  <property name="autoRaise">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
              <spacer name="horizontalSpacer">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -655,23 +788,6 @@ Tasks</string>
                </size>
               </property>
              </spacer>
-            </item>
-            <item>
-             <widget class="QToolButton" name="logOptionsBtn">
-              <property name="text">
-               <string>Filter</string>
-              </property>
-              <property name="icon">
-               <iconset resource="resources/uman.qrc">
-                <normaloff>:/control/filter_log.png</normaloff>:/control/filter_log.png</iconset>
-              </property>
-              <property name="toolButtonStyle">
-               <enum>Qt::ToolButtonTextBesideIcon</enum>
-              </property>
-              <property name="autoRaise">
-               <bool>true</bool>
-              </property>
-             </widget>
             </item>
             <item>
              <widget class="QToolButton" name="logSaveBtn">

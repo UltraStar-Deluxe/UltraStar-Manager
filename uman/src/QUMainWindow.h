@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QCloseEvent>
 #include <QAction>
+#include <QTimer>
 
 #include "QUSongFile.h"
 #include "ui_QUMainWindow.h"
@@ -40,6 +41,7 @@ private slots:
 	void initEventLog();
 	void initMonty();
 	void initMediaPlayer();
+	void initStatusBar();
 
 	void refreshAllSongs(bool force = false);
 
@@ -118,11 +120,15 @@ private slots:
 	// paths
 	void showPathsDialog();
 
+	// status bar
+	void clearStatusMessage();
+
 private:
-	QAction               *_noInfos;
-	QAction               *_noWarnings;
-	QAction               *_noSaveHints;
-	QURibbonBar           *_menu;
+	QURibbonBar *_menu;
+	QTimer       _timer;
+	QLabel      *_statusIconLbl;
+	QLabel      *_statusMessageLbl;
+	QToolButton *_toggleEventLogBtn;
 };
 
 #endif // QUMAINWINDOW_H

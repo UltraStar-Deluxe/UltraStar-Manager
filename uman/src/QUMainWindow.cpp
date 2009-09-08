@@ -72,6 +72,7 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 
 	initWindow();
 	initRibbonBar();
+	initStatusBar();
 	initEventLog();
 	initConfig();
 	initPluginManager();
@@ -84,6 +85,8 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	initMediaPlayer();
 
 	playlistArea->refreshAllPlaylists();
+
+	addLogMsg("Ready.", QU::Information);
 }
 
 /*!
@@ -135,9 +138,11 @@ void QUMainWindow::closeEvent(QCloseEvent *event) {
 	settings.setValue("allowMonty", QVariant(_menu->montyBtn->isChecked()));
 	settings.setValue("windowState", QVariant(this->saveState()));
 
-	settings.setValue("disableInfoMessages", QVariant(_noInfos->isChecked()));
-	settings.setValue("disableWarningMessages", QVariant(_noWarnings->isChecked()));
-	settings.setValue("disableSaveMessages", QVariant(_noSaveHints->isChecked()));
+	settings.setValue("showInfoMessages", showInfosBtn->isChecked());
+	settings.setValue("showHelpMessages", showHelpBtn->isChecked());
+	settings.setValue("showSaveMessages", showSaveHintsBtn->isChecked());
+	settings.setValue("showWarningMessages", showWarningsBtn->isChecked());
+	settings.setValue("showErrorMessages", showErrorsBtn->isChecked());
 
 	settings.setValue("autoSave", QVariant(_menu->autoSaveBtn->isChecked()));
 
@@ -454,25 +459,12 @@ void QUMainWindow::initTaskListMenu() {
 }
 
 void QUMainWindow::initEventLog() {
-	logOptionsBtn->setMenu(new QMenu);
-	logOptionsBtn->setPopupMode(QToolButton::InstantPopup);
-
-	_noInfos = new QAction(QIcon(":/marks/no_info.png"), tr("Discard Information"), 0);
-	_noInfos->setCheckable(true);
-	logOptionsBtn->menu()->addAction(_noInfos);
-
-	_noWarnings = new QAction(QIcon(":/marks/no_warning.png"), tr("Discard Warnings"), 0);
-	_noWarnings->setCheckable(true);
-	logOptionsBtn->menu()->addAction(_noWarnings);
-
-	_noSaveHints = new QAction(QIcon(":/marks/no_save.png"), tr("Discard Save Hints"), 0);
-	_noSaveHints->setCheckable(true);
-	logOptionsBtn->menu()->addAction(_noSaveHints);
-
 	QSettings settings;
-	_noInfos->setChecked(settings.value("disableInfoMessages", QVariant(false)).toBool());
-	_noWarnings->setChecked(settings.value("disableWarningMessages", QVariant(false)).toBool());
-	_noSaveHints->setChecked(settings.value("disableSaveMessages", QVariant(false)).toBool());
+	showInfosBtn->setChecked(settings.value("showInfoMessages", true).toBool());
+	showHelpBtn->setChecked(settings.value("showHelpMessages", true).toBool());
+	showSaveHintsBtn->setChecked(settings.value("showSaveMessages", true).toBool());
+	showWarningsBtn->setChecked(settings.value("showWarningMessages", true).toBool());
+	showErrorsBtn->setChecked(settings.value("showErrorMessages", true).toBool());
 
 	connect(logClearBtn, SIGNAL(clicked()), this, SLOT(clearLog()));
 	connect(logSaveBtn, SIGNAL(clicked()), this, SLOT(saveLog()));
@@ -510,6 +502,30 @@ void QUMainWindow::initMonty() {
 
 void QUMainWindow::initMediaPlayer() {
 	connect(mediaplayer, SIGNAL(editSongRequested(QUSongFile*,int)), this, SLOT(editSongLyrics(QUSongFile*,int)));
+}
+
+void QUMainWindow::initStatusBar() {
+	_timer.setSingleShot(true);
+	_timer.setInterval(10000);
+	connect(&_timer, SIGNAL(timeout()), this, SLOT(clearStatusMessage()));
+
+	_statusIconLbl = new QLabel();
+	_statusMessageLbl = new QLabel();
+
+	statusBar()->addWidget(_statusIconLbl);
+	statusBar()->addWidget(_statusMessageLbl);
+
+	_statusIconLbl->hide();
+	_statusMessageLbl->hide();
+
+	_toggleEventLogBtn = new QToolButton();
+	_toggleEventLogBtn->setIcon(QIcon(":/control/log.png"));
+	_toggleEventLogBtn->setAutoRaise(true);
+	_toggleEventLogBtn->setCheckable(true);
+	connect(_toggleEventLogBtn, SIGNAL(clicked(bool)), eventsDock, SLOT(setVisible(bool)));
+	connect(_menu->eventLogBtn, SIGNAL(toggled(bool)), _toggleEventLogBtn, SLOT(setChecked(bool)));
+
+	statusBar()->addPermanentWidget(_toggleEventLogBtn);
 }
 
 /*!
@@ -777,11 +793,15 @@ void QUMainWindow::editSongLyrics(QUSongFile *song, int line) {
 }
 
 void QUMainWindow::addLogMsg(const QString &msg, QU::MessageTypes type) {
-	if(type == QU::Information and _noInfos->isChecked())
+	if(type == QU::Information and !showInfosBtn->isChecked())
 		return;
-	if(type == QU::Warning and _noWarnings->isChecked())
+	if(type == QU::Warning and !showWarningsBtn->isChecked())
 		return;
-	if(type == QU::Saving and _noSaveHints->isChecked())
+	if(type == QU::Saving and !showSaveHintsBtn->isChecked())
+		return;
+	if(type == QU::Help and !showHelpBtn->isChecked())
+		return;
+	if(type == QU::Error and !showErrorsBtn->isChecked())
 		return;
 
 	log->insertItem(0, QDateTime::currentDateTime().toString("[hh:mm:ss] ") + msg);
@@ -795,6 +815,16 @@ void QUMainWindow::addLogMsg(const QString &msg, QU::MessageTypes type) {
 	case 4: lastItem->setIcon(QIcon(":/marks/cancel.png")); lastItem->setData(Qt::UserRole, "E"); break;
 	}
 
+	// show it in the status bar
+	_timer.stop();
+
+	_statusIconLbl->setPixmap(lastItem->icon().pixmap(16, 16));
+	_statusMessageLbl->setText(msg);
+
+	_statusIconLbl->show();
+	_statusMessageLbl->show();
+
+	_timer.start();
 }
 
 /*!
@@ -1350,4 +1380,9 @@ void QUMainWindow::showBackgroundSlideShowDialog(QList<QUSongItem*> items) {
 void QUMainWindow::showPathsDialog() {
 	QUPathsDialog(false, this).exec();
 	_menu->updateBaseDirMenu();
+}
+
+void QUMainWindow::clearStatusMessage() {
+	_statusIconLbl->hide();
+	_statusMessageLbl->hide();
 }
