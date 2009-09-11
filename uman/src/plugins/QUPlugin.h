@@ -1,6 +1,8 @@
 #ifndef QUPLUGIN_H
 #define QUPLUGIN_H
 
+#include <QtPlugin>
+
 #include <QString>
 #include <QMap>
 #include <QIcon>
@@ -23,5 +25,7 @@ public:
 	// multi-language support: language -> translation (see QLocale)
 	virtual QMap<QString, QTranslator*> translations() const = 0;
 };
+
+Q_DECLARE_INTERFACE(QUPlugin, "net.sf.uman.QUPlugin/1.0");
 
 #endif // QUPLUGIN_H

@@ -1,11 +1,20 @@
 #include "QUAmazonImageSource.h"
+#include "QUAmazonImageCollector.h"
 #include "QUStringSupport.h"
 
 #include <QCoreApplication>
 
 QUAmazonImageSource::QUAmazonImageSource(QObject *parent): QObject(parent) {}
 
+QString QUAmazonImageSource::songDataField(const QString &field) const {
+	return "foobar";
+}
+
 void QUAmazonImageSource::setSongDataField(const QString &field, const QString &songProperty) {
+}
+
+QString QUAmazonImageSource::customDataField(const QString &field) const {
+	return "foobar";
 }
 
 void QUAmazonImageSource::setCustomDataField(const QString &field, const QString &value) {
@@ -22,6 +31,10 @@ QStringList QUAmazonImageSource::hosts() const {
 			<< "amazon.jp"
 			<< "amazon.fr"
 			<< "amazon.ca";
+}
+
+QString QUAmazonImageSource::host() const {
+	return "foobar";
 }
 
 void QUAmazonImageSource::setHost(const QString &) {
@@ -52,7 +65,14 @@ QDir QUAmazonImageSource::imageFolder(QUSongInterface *song) const {
 	if(folderName.isEmpty())
 		folderName = "_unknown";
 
-	return QDir(QCoreApplication::applicationDirPath() + "/covers/" + folderName);
+	QDir result(QCoreApplication::applicationDirPath());
+	result.mkdir("covers");
+	if(result.cd("covers")) {
+		result.mkdir(folderName);
+		result.cd(folderName);
+	}
+
+	return result;
 }
 
 Q_EXPORT_PLUGIN2(quamazonimagesource, QUAmazonImageSource);

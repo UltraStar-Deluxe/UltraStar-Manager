@@ -109,6 +109,7 @@
         <file>convert-a.png</file>
         <file>convert-r.png</file>
         <file>text_allcaps.png</file>
+        <file>cog.png</file>
     </qresource>
     <qresource prefix="/icons" >
         <file>splash.png</file>

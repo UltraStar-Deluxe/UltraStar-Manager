@@ -5,10 +5,7 @@
 
 #include "QUPlugin.h"
 
-#include <QtPlugin>
 #include <QVariant>
-#include <QMap>
-#include <QString>
 
 class QWidget;
 class QString;
@@ -20,6 +17,8 @@ class QUTask;
 class QUSmartSetting;
 
 class QUTaskFactory: public QUPlugin {
+	Q_INTERFACES(QUPlugin)
+
 public:
     virtual ~QUTaskFactory() {}
 

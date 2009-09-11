@@ -2,9 +2,7 @@
 < Changelog (1.7.1 to 1.8.0) >
 <---------------------------->
 
-* ... neutral item
-! ... important item
-? ... less important or unknown item
+*** WORK IN PROGRESS ***
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  NEW FEATURES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
@@ -190,7 +188,10 @@ TRANSLATION
 TASKS
 * convert syllable placeholders does not ignore "wanted" dashes ("A-B-C")
 * "remove empty syllables" breaks timestamps in relative songs
-* "fix capitalization for #TITLE" does not ignore "(" -> "(about" > "(About"
+* capitalization task makes "TV" to "Tv" - should ignore words that are totally upper-case
+
+TASK LIST
+* tooltip of slot buttons is empty before the first selection of the slot
 
 SONG FRIENDS (general workaround: switch friend to primary song with double-click on song text file)
 * cannot add song friends to playlist
@@ -221,7 +222,17 @@ DUET SONGS
 * detection is not perfect with []-tags
   > "Wheatus - A little respect [LIVE]"
 
-~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO (1.8.0)  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
+
+(incomplete)
+
+- remove QtNetwork dependency from main application (only plugins need this)
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO (all)  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
+
+* ... neutral item
+! ... important item
+? ... less important or unknown item
 
 ! create a feature list =) (promotional purposes only)
 ! create a list with keyboard shortcuts
@@ -336,6 +347,9 @@ TASKS
 ? add general condition to be able to skip a whole task
   > not for plugin interface, just an idea for the SDK
 * find a solution to test for a specific #EDITION in rename tasks
+* fix file endings/suffix
+  > jpeg -> jpg
+  > mpeg -> mpg
 
 SONG TREE
 ? virtual song folders for many song text files in one folder

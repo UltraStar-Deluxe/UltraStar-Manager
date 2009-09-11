@@ -1,37 +1,25 @@
 #include "QUCoverGroup.h"
-#include "QUAmazonRequestUrl.h"
 #include "QULogService.h"
 
 #include <QCoreApplication>
 #include <QDesktopServices>
 #include <QSettings>
-
+#include <QUrl>
 #include <QVariant>
-#include <QHttpRequestHeader>
-
 #include <QMessageBox>
-#include <QDomDocument>
 
 #include "QUSongSupport.h"
 #include "QUStringSupport.h"
 
 QUCoverGroup::QUCoverGroup(QUSongItem *songItem, QWidget *parent):
 	QWidget(parent),
-	_item(songItem),
-	_response(0),
-	_waitForResult(false)
+	_item(songItem)
 {
 	setupUi(this);
 
 	list->setIconSize(QSize(COVER_ICON_WIDTH, COVER_ICON_HEIGHT));
 
 	showStatus("");
-
-	_http = new QHttp(this);
-	connect(_http, SIGNAL(stateChanged(int)), this, SLOT(showStateChange(int)));
-	connect(_http, SIGNAL(done(bool)), this, SLOT(finishRequest(bool)));
-
-	_buffer = new QBuffer(this);
 
 	connect(buyBtn, SIGNAL(clicked()), this, SLOT(openAmazonSearchUrl()));
 	buyBtn->setEnabled(false);
@@ -43,101 +31,8 @@ void QUCoverGroup::getCovers(const QString &endpoint, const QString &artistPrope
 		return;
 	}
 
-	if(_http->hasPendingRequests() or _waitForResult) {
-		logSrv->add(QString(tr("Could not get covers for \"%1 - %2\". Http connection is busy.")).arg(_item->song()->artist()).arg(_item->song()->title()), QU::Warning);
-		return;
-	}
-
 	_endpoint = endpoint; // cache the current endpoint, see showStatus();
 	buyBtn->setEnabled(true);
-
-	QUAmazonRequestUrl url(endpoint, artistProperty, titleProperty, _item->song());
-
-	_waitForResult = true;
-	_http->setHost(url.host());
-	_http->get(url.request(), _buffer);
-}
-
-void QUCoverGroup::showStateChange(int state) {
-//	     if(state == QHttp::Unconnected) showStatus(tr(" (Not connected.)"));
-//	else if(state == QHttp::HostLookup)  showStatus(tr(" (Lookup host...)"));
-//	else if(state == QHttp::Connecting)  showStatus(tr(" (Connecting...)"));
-	     if(state == QHttp::Sending)     showStatus(tr(" (Sending...)"));
-	else if(state == QHttp::Reading)     showStatus(tr(" (Reading...)"));
-//	else if(state == QHttp::Connected)   showStatus(tr(" (Connected.)"));
-//	else if(state == QHttp::Closing)     showStatus(tr(" (Closing...)"));
-}
-
-void QUCoverGroup::finishRequest(bool error) {
-	// close all open files
-	foreach(QFile* download, _downloads) { download->close(); }
-	qDeleteAll(_downloads);
-	_downloads.clear();
-
-	if(_waitForResult) {
-		_waitForResult = false;
-		QDomDocument doc; doc.setContent(_buffer->data());
-
-		if(_response)
-			delete _response;
-
-		_response = new QUAmazonResponse(doc);
-		delete _buffer;	_buffer = new QBuffer(this);
-
-		if(!_response->isValid()) {
-			showStatus(tr(" (Invalid request.)"));
-			return;
-		}
-
-		// TODO: Exception handling - disk full and so on..
-		QDir outDir(QCoreApplication::applicationDirPath());
-		outDir.mkdir("covers"); outDir.cd("covers");
-
-		outDir.mkdir(customDir()); outDir.cd(customDir());
-
-		// remove old downloads, if set
-		QSettings settings;
-		if(!settings.value("keepDownloads", false).toBool()) {
-			QFileInfoList picFiList = outDir.entryInfoList(QUSongSupport::allowedPictureFiles(), QDir::Files, QDir::Name);
-			foreach(QFileInfo fi, picFiList) {
-				QFile::remove(fi.filePath());
-			}
-		}
-
-		if(_response->count() == 0) {
-			showStatus(tr(" (No results.)"));
-			showCovers();
-		}
-
-		// start new downloads
-		int amazonLimit = settings.value("amazonLimit", "5").toInt();
-		for(int i = 0; i < _response->count() and i < amazonLimit; i++) {
-			QFile *file;
-			// medium size
-//			file = new QFile(QFileInfo(outDir, QFileInfo(_response->url(i, QU::mediumImage).path()).fileName()).filePath(), this);
-//			if(file->open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-//				_http->setHost(_response->url(i, QU::mediumImage).host());
-//				_http->get(_response->url(i, QU::mediumImage).path(), file);
-//
-//				_downloads.append(file);
-//			} else
-//				delete file;
-
-			// large size
-			file = new QFile(QFileInfo(outDir, QFileInfo(_response->url(i, QU::largeImage).path()).fileName()).filePath(), this);
-			if(file->open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-				_http->setHost(_response->url(i, QU::largeImage).host());
-				_http->get(_response->url(i, QU::largeImage).path(), file);
-
-				_downloads.append(file);
-			} else
-				delete file;
-		}
-
-	} else { // cover download finished
-		showStatus(QString(tr(" (%1 results)")).arg(_response->count()));
-		showCovers();
-	}
 }
 
 QString QUCoverGroup::customDir() const {

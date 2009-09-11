@@ -42,13 +42,11 @@ HEADERS += plugins/QUPluginManager.h \
     monty/QUMontyArea.h \
     filter/QUFilterArea.h \
     filter/QUMetaphoneString.h \
-    amazon/QUCoverItemDelegate.h \
-    amazon/QUCoverModel.h \
-    amazon/QUAmazonResponse.h \
-    amazon/QUAmazonRequestUrl.h \
-    amazon/QUAmazonDialog.h \
-    amazon/QUCoverList.h \
-    amazon/QUCoverGroup.h \
+	remoteimages/QUCoverItemDelegate.h \
+	remoteimages/QUCoverModel.h \
+	remoteimages/QUCoverList.h \
+	remoteimages/QUCoverGroup.h \
+	remoteimages/QURemoteImageDialog.h \
     preferences/QUCustomTagsDialog.h \
     preferences/QUTagOrderDialog.h \
     playlist/QUPlaylistArea.h \
@@ -83,8 +81,6 @@ HEADERS += plugins/QUPluginManager.h \
     lyricseditor/QULyricsEditorDialog.h \
     lyricseditor/QUSyllableDelegate.h \
 	preferences/QUPathsDialog.h \
-	sha2/sha2.h \
-	sha2/hmac_sha2.h \
 	score/QUScoreFile.h
 	#support/qkFileWatcher.h
 SOURCES += plugins/QUPluginManager.cpp \
@@ -111,13 +107,11 @@ SOURCES += plugins/QUPluginManager.cpp \
     monty/QUMontyArea.cpp \
     filter/QUFilterArea.cpp \
     filter/QUMetaphoneString.cpp \
-    amazon/QUCoverItemDelegate.cpp \
-    amazon/QUCoverModel.cpp \
-    amazon/QUAmazonResponse.cpp \
-    amazon/QUAmazonRequestUrl.cpp \
-    amazon/QUAmazonDialog.cpp \
-    amazon/QUCoverList.cpp \
-    amazon/QUCoverGroup.cpp \
+	remoteimages/QUCoverItemDelegate.cpp \
+	remoteimages/QUCoverModel.cpp \
+	remoteimages/QUCoverList.cpp \
+	remoteimages/QUCoverGroup.cpp \
+	remoteimages/QURemoteImageDialog.cpp \
     preferences/QUCustomTagsDialog.cpp \
     preferences/QUTagOrderDialog.cpp \
     playlist/QUPlaylistArea.cpp \
@@ -155,8 +149,6 @@ SOURCES += plugins/QUPluginManager.cpp \
     lyricseditor/QULyricsEditorDialog.cpp \
     lyricseditor/QUSyllableDelegate.cpp \
 	preferences/QUPathsDialog.cpp \
-	sha2/sha2.c \
-	sha2/hmac_sha2.c \
 	score/QUScoreFile.cpp
 	#support/qkFileWatcher.cpp
 FORMS += plugins/QUPluginDialog.ui \
@@ -165,8 +157,6 @@ FORMS += plugins/QUPluginDialog.ui \
     mediaplayer/QUMediaPlayer.ui \
     monty/QUMontyArea.ui \
     filter/QUFilterArea.ui \
-    amazon/QUCoverGroup.ui \
-    amazon/QUAmazonArea.ui \
     playlist/QUPlaylistArea.ui \
     report/QUReportDialog.ui \
     support/QUPictureDialog.ui \
@@ -178,7 +168,9 @@ FORMS += plugins/QUPluginDialog.ui \
     ribbon/QURibbonBar.ui \
     slideshow/QUSlideShowDialog.ui \
     lyricseditor/QULyricsEditorDialog.ui \
-    preferences/QUPathsDialog.ui
+	preferences/QUPathsDialog.ui \
+	remoteimages/QURemoteImageDialog.ui \
+	remoteimages/QUCoverGroup.ui
 RESOURCES += resources/uman.qrc
 TRANSLATIONS = resources/lang/uman.de.ts \
 	resources/lang/uman.pl.ts
@@ -191,7 +183,6 @@ INCLUDEPATH += . \
     tasks/taskDialog \
     preview \
     playlist \
-    amazon \
     filter \
     monty \
     mediaplayer \
@@ -202,8 +193,8 @@ INCLUDEPATH += . \
     ribbon \
     slideshow \
 	lyricseditor \
-	sha2 \
-	score
+	score \
+	remoteimages
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib \

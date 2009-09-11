@@ -1,7 +1,7 @@
 #include "QUAmazonRequestUrl.h"
 #include "QUSongSupport.h"
 #include "QUStringSupport.h"
-#include "QULogService.h"
+
 #include "hmac_sha2.h"
 
 #include <QString>
@@ -13,7 +13,7 @@
 #include <QDateTime>
 #include <QSettings>
 
-QUAmazonRequestUrl::QUAmazonRequestUrl(const QString &endpoint, const QString &artistProperty, const QString &titleProperty, QUSongFile *song): QUrl() {
+QUAmazonRequestUrl::QUAmazonRequestUrl(const QString &endpoint, const QString &artistProperty, const QString &titleProperty, QUSongInterface *song): QUrl() {
 	setUrl(endpoint);
 
 	if(song)
@@ -28,7 +28,7 @@ QString QUAmazonRequestUrl::request() const {
 	return result;
 }
 
-void QUAmazonRequestUrl::init(QUSongFile *song, const QString &artistProperty, const QString &titleProperty) {
+void QUAmazonRequestUrl::init(QUSongInterface *song, const QString &artistProperty, const QString &titleProperty) {
 	setQueryDelimiters('=', '&');
 
 	QList<QPair<QString, QString> > query;

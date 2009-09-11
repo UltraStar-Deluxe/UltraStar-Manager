@@ -77,7 +77,7 @@ QStringList QUSongSupport::allowedAudioFiles() {
 }
 
 QStringList QUSongSupport::allowedPictureFiles() {
-	return registryKey("allowedPictureFiles", "*.jpg *.png *.bmp *.gif");
+	return registryKey("allowedPictureFiles", "*.jpg *.jpeg *.png *.bmp *.gif");
 }
 
 QStringList QUSongSupport::allowedVideoFiles() {

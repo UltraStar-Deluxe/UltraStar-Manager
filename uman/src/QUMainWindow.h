@@ -100,6 +100,7 @@ private slots:
 	void enablePolish();
 
 	void getCoversFromAmazon(QList<QUSongItem*> items);
+	void getCovers();
 
 	// internal easter eggs
 	void copyAudioToPath();

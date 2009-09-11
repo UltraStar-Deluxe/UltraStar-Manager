@@ -26,13 +26,16 @@ public:
 	virtual QMap<QString, QTranslator*> translations() const { return QMap<QString, QTranslator*>(); }
 
 	virtual QStringList songDataFields() const { return QStringList() << "Artist" << "Title"; }
+	virtual QString songDataField(const QString &field) const;
 	virtual void setSongDataField(const QString &field, const QString &songProperty);
 
 	virtual QStringList customDataFields() const { return QStringList() << "Access Key ID" << "Secret Access Key"; }
+	virtual QString customDataField(const QString &field) const;
 	virtual void setCustomDataField(const QString &field, const QString &value);
 	virtual void showHelpDialog(const QString &field, QWidget *parent) const;
 
 	virtual QStringList hosts() const;
+	virtual QString host() const;
 	virtual void setHost(const QString &);
 
 	virtual int limit() const;

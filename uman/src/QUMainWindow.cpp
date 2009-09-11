@@ -36,13 +36,7 @@
 #include "QUSongDatabase.h"
 #include "QUPluginManager.h"
 
-#include "QUDropDownDelegate.h"
-#include "QUDetailsTable.h"
-
-#include "fileref.h"
-#include "tag.h"
-#include "tstring.h"
-
+#include "taglib.h"
 #include "bass.h"
 
 #include "QUTagOrderDialog.h"
@@ -52,12 +46,12 @@
 #include "QUMessageBox.h"
 #include "QUPictureDialog.h"
 #include "QUCustomTagsDialog.h"
-#include "QUAmazonDialog.h"
 #include "QUAboutDialog.h"
 #include "QUPluginDialog.h"
 #include "QUSlideShowDialog.h"
 #include "QULyricsEditorDialog.h"
 #include "QUPathsDialog.h"
+#include "QURemoteImageDialog.h"
 
 #include "QUSongSupport.h"
 
@@ -284,7 +278,7 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->deleteBtn, SIGNAL(clicked()), songTree, SLOT(requestDeleteSelectedSongs()));
 	connect(_menu->mergeBtn, SIGNAL(clicked()), songTree, SLOT(mergeSelectedSongs()));
 
-	connect(_menu->getCoversBtn, SIGNAL(clicked()), songTree, SLOT(requestCoversFromAmazon()));
+	connect(_menu->getCoversBtn, SIGNAL(clicked()), this, SLOT(getCovers()));
 
 	QMenu *pictureFlowMenu = new QMenu(tr("Review pictures"));
 	pictureFlowMenu->addAction(QIcon(":/types/cover.png"),      tr("Covers..."),      songTree, SLOT(requestCoverFlow()));
@@ -402,6 +396,7 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(editLyricsRequested(QUSongFile*)), this, SLOT(editSongLyrics(QUSongFile*)));
 
 	refreshAllSongs();
+	updateMergeBtn();
 }
 
 void QUMainWindow::initDetailsTable() {
@@ -1268,7 +1263,7 @@ void QUMainWindow::enablePolish() {
 }
 
 void QUMainWindow::getCoversFromAmazon(QList<QUSongItem*> items) {
-	QUAmazonDialog *dlg = new QUAmazonDialog(items, this);
+	QURemoteImageDialog *dlg = new QURemoteImageDialog(items, this);
 
 	if(dlg->exec()) {
 		updateDetails();
@@ -1277,6 +1272,12 @@ void QUMainWindow::getCoversFromAmazon(QList<QUSongItem*> items) {
 
 	disconnect(dlg, 0, 0, 0);
 	delete dlg;
+}
+
+void QUMainWindow::getCovers() {
+	QURemoteImageDialog(songTree->selectedSongItems(), this).exec();
+	updateDetails();
+	montyTalk();
 }
 
 ///*!

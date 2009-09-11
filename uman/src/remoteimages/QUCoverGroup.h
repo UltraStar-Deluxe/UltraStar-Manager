@@ -3,13 +3,9 @@
 
 #include "QU.h"
 #include "QUSongItem.h"
-#include "QUAmazonResponse.h"
 
 #include <QWidget>
 #include <QSize>
-#include <QHttp>
-#include <QBuffer>
-#include <QFile>
 
 #include "ui_QUCoverGroup.h"
 
@@ -26,18 +22,10 @@ public:
 	void copyCoverToSongPath();
 
 private slots:
-	void showStateChange(int state);
-	void finishRequest(bool error);
-
 	void openAmazonSearchUrl();
 
 private:
-	QHttp            *_http;
 	QUSongItem       *_item;
-	QBuffer          *_buffer;
-	QUAmazonResponse *_response;
-	bool              _waitForResult;
-	QList<QFile*>     _downloads;
 	QString           _endpoint;
 
 	QString customDir() const;

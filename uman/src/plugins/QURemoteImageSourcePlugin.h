@@ -5,9 +5,6 @@
 
 #include "QUPlugin.h"
 
-#include <QtPlugin>
-#include <QMap>
-#include <QString>
 #include <QStringList>
 #include <QFileInfoList>
 #include <QDir>
@@ -23,22 +20,27 @@ class QUCommunicatorInterface;
  * uses the HTTP protocol. Only the host is needed - no port.
  */
 class QURemoteImageSource: public QUPlugin {
+	Q_INTERFACES(QUPlugin)
+
 public:
 	virtual ~QURemoteImageSource() {}
 
 	// A list of named data where a corresponding song tag must be set.
 	// E.g, 'Artist' -> #ARTIST, 'Title' -> #TITLE
 	virtual QStringList songDataFields() const = 0;
+	virtual QString songDataField(const QString &field) const = 0;
 	virtual void setSongDataField(const QString &field, const QString &songProperty) = 0; // field -> tag/property
 
 	// A list of custom data fields needed to download the files
 	// E.g., secret key or access key id from Amazon Product Advertising API
 	virtual QStringList customDataFields() const = 0;
+	virtual QString customDataField(const QString &field) const = 0;
 	virtual void setCustomDataField(const QString &field, const QString &value) = 0;
 	virtual void showHelpDialog(const QString &field, QWidget *parent) const = 0;
 
 	// A host is needed to request the image from the internet.
 	virtual QStringList hosts() const = 0;
+	virtual QString host() const = 0;
 	virtual void setHost(const QString &) = 0;
 
 	// limit the number of downloads
