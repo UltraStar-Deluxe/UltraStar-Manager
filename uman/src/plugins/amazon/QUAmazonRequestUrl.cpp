@@ -14,7 +14,8 @@
 #include <QSettings>
 
 QUAmazonRequestUrl::QUAmazonRequestUrl(const QString &endpoint, const QString &artistProperty, const QString &titleProperty, QUSongInterface *song): QUrl() {
-	setUrl(endpoint);
+	setScheme("http");
+	setHost(endpoint);
 
 	if(song)
 		this->init(song, artistProperty, titleProperty);

@@ -227,6 +227,7 @@ DUET SONGS
 (incomplete)
 
 - remove QtNetwork dependency from main application (only plugins need this)
+- reconsider the user of QU::Error and QU::Warning
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO (all)  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 

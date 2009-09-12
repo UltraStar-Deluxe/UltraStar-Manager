@@ -8,6 +8,7 @@
 
 class QUSongItem;
 class QUCoverGroup;
+class QURemoteImageSource;
 
 class QURemoteImageDialog: public QDialog, private Ui::QURemoteImageDialog {
 	Q_OBJECT
@@ -20,11 +21,15 @@ private slots:
 	void checkAllGroups();
 	void uncheckAllGroups();
 	void getCovers();
+	void updateResultsPage();
 
 private:
 	QList<QUCoverGroup*> _groups;
 
+	void initImageSources();
 	void initResultsPage(const QList<QUSongItem*> &items);
+
+	QURemoteImageSource* currentImageSource() const;
 };
 
 #endif // QUREMOTEIMAGEDIALOG_H

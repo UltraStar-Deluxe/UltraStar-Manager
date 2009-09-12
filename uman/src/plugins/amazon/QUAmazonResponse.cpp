@@ -50,8 +50,8 @@ void QUAmazonResponse::processResponse(const QDomElement &itemSearchResponse) {
 				.firstChildElement("LargeImage")
 				.firstChildElement("URL").firstChild().nodeValue();
 
-		qDebug(mediumImgUrl.toLocal8Bit().data());
-		qDebug(largeImgUrl.toLocal8Bit().data());
+//		qDebug(mediumImgUrl.toLocal8Bit().data());
+//		qDebug(largeImgUrl.toLocal8Bit().data());
 
 		if(!mediumImgUrl.isEmpty() or !largeImgUrl.isEmpty())
 			_results.append(QPair<QUrl, QUrl>(QUrl(mediumImgUrl), QUrl(largeImgUrl)));

@@ -3,6 +3,7 @@
 
 #include "QU.h"
 #include "QUSongItem.h"
+#include "QURemoteImageSourcePlugin.h"
 
 #include <QWidget>
 #include <QSize>
@@ -13,25 +14,31 @@ class QUCoverGroup: public QWidget, public Ui::QUCoverGroup {
 	Q_OBJECT
 
 public:
-	QUCoverGroup(QUSongItem *songItem = 0, QWidget *parent = 0);
+	QUCoverGroup(QUSongItem *item, QURemoteImageCollector *collector, QWidget *parent = 0);
 
-	void getCovers(const QString &endpoint, const QString &artistProperty, const QString &titleProperty);
-	void showCovers();
-
+	void getCovers();
 	void deleteCurrentCover();
 	void copyCoverToSongPath();
 
-private slots:
+	void setCollector(QURemoteImageCollector *c) { _collector = c; }
+
+	QUSongItem* songItem() const { return _item; }
+
+public slots:
 	void openAmazonSearchUrl();
+	void showStatus(const QString &status);
+	void showCovers();
+	void showFailure();
+
+protected:
+	QUSongFile* song() const { return _item->song(); }
+	QURemoteImageCollector* collector() const { return _collector; }
 
 private:
-	QUSongItem       *_item;
-	QString           _endpoint;
+	QUSongItem             *_item;
+	QURemoteImageCollector *_collector;
 
-	QString customDir() const;
 	QString currentFilePath() const;
-
-	void showStatus(const QString &status);
 };
 
 #endif /* QUCOVERGROUP_H_ */

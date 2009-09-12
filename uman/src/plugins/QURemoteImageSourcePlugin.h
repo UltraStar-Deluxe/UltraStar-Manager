@@ -36,7 +36,7 @@ public:
 	virtual QStringList customDataFields() const = 0;
 	virtual QString customDataField(const QString &field) const = 0;
 	virtual void setCustomDataField(const QString &field, const QString &value) = 0;
-	virtual void showHelpDialog(const QString &field, QWidget *parent) const = 0;
+	virtual QString help(const QString &field) const = 0;
 
 	// A host is needed to request the image from the internet.
 	virtual QStringList hosts() const = 0;

@@ -42,7 +42,7 @@ void QUAmazonImageCollector::collect() {
 	}
 
 	QUAmazonRequestUrl url(
-			source()->customDataField("endpoint"),
+			source()->host(),
 			source()->songDataField("artist"),
 			source()->songDataField("title"),
 			song());
@@ -71,6 +71,7 @@ void QUAmazonImageCollector::processNetworkOperationDone(bool error) {
 
 	if(error) {
 		setState(Idle);
+		communicator()->send(http()->errorString());
 		communicator()->send(QUCommunicatorInterface::Failed);
 		return;
 	}
@@ -85,7 +86,7 @@ QFile* QUAmazonImageCollector::openLocalFile(const QString &filePath) {
 	QFile *file = new QFile(filePath, this);
 
 	if(!file->open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-		communicator()->send(tr("Could not open local file."));
+		communicator()->send(tr("Could not open local file: \"%1\"").arg(filePath));
 		return 0;
 	}
 
@@ -129,7 +130,7 @@ void QUAmazonImageCollector::processSearchResults() {
 	setState(ImageRequest);
 
 	for(int i = 0; i < response.count() and i < source()->limit(); i++) {
-		QFile *file = openLocalFile(source()->imageFolder(song()).filePath(response.url(i, QU::largeImage).path()));
+		QFile *file = openLocalFile(source()->imageFolder(song()).filePath(QFileInfo(response.url(i, QU::largeImage).path()).fileName()));
 
 		if(file) {
 			http()->setHost(response.url(i, QU::largeImage).host());

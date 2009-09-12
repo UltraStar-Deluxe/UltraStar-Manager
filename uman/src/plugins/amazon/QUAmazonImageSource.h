@@ -3,6 +3,7 @@
 
 #include <QObject>
 
+#include "QU.h"
 #include "QURemoteImageSourcePlugin.h"
 #include "QUSongInterface.h"
 
@@ -32,7 +33,7 @@ public:
 	virtual QStringList customDataFields() const { return QStringList() << "Access Key ID" << "Secret Access Key"; }
 	virtual QString customDataField(const QString &field) const;
 	virtual void setCustomDataField(const QString &field, const QString &value);
-	virtual void showHelpDialog(const QString &field, QWidget *parent) const;
+	virtual QString help(const QString &field) const;
 
 	virtual QStringList hosts() const;
 	virtual QString host() const;
@@ -46,6 +47,13 @@ public:
 
 	virtual QList<QURemoteImageCollector*> imageCollectors(QList<QUSongInterface*>);
 	virtual QDir imageFolder(QUSongInterface*) const;
+
+protected:
+	virtual QString registryKey() const { return "amazon"; }
+	QString defaultValue(const QString &key) const;
+
+private:
+	QList<QURemoteImageCollector*> _collectors;
 };
 
 #endif // QUAMAZONIMAGESOURCE_H

@@ -139,6 +139,9 @@
         <property name="wordWrap">
          <bool>true</bool>
         </property>
+        <property name="openExternalLinks">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
      </layout>
@@ -182,10 +185,10 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox"/>
+      <widget class="QComboBox" name="sourcesCombo"/>
      </item>
      <item>
-      <widget class="QToolButton" name="toolButton">
+      <widget class="QToolButton" name="configurePluginBtn">
        <property name="toolTip">
         <string>Configure source</string>
        </property>

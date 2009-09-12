@@ -1,5 +1,6 @@
 #include "QUCoverGroup.h"
 #include "QULogService.h"
+#include "QUSimpleCommunicator.h"
 
 #include <QCoreApplication>
 #include <QDesktopServices>
@@ -11,58 +12,33 @@
 #include "QUSongSupport.h"
 #include "QUStringSupport.h"
 
-QUCoverGroup::QUCoverGroup(QUSongItem *songItem, QWidget *parent):
+QUCoverGroup::QUCoverGroup(QUSongItem *item, QURemoteImageCollector *collector, QWidget *parent):
 	QWidget(parent),
-	_item(songItem)
+	_item(item),
+	_collector(collector)
 {
 	setupUi(this);
-
 	list->setIconSize(QSize(COVER_ICON_WIDTH, COVER_ICON_HEIGHT));
-
+	buyBtn->setEnabled(false);
 	showStatus("");
 
-	connect(buyBtn, SIGNAL(clicked()), this, SLOT(openAmazonSearchUrl()));
-	buyBtn->setEnabled(false);
+	QUSimpleCommunicator *c = new QUSimpleCommunicator(this);
+	connect(c, SIGNAL(messageSent(QString)), this, SLOT(showStatus(QString)));
+	connect(c, SIGNAL(done()), this, SLOT(showCovers()));
+	connect(c, SIGNAL(failed()), this, SLOT(showFailure()));
+	this->collector()->setCommunicator(c);
 }
 
-void QUCoverGroup::getCovers(const QString &endpoint, const QString &artistProperty, const QString &titleProperty) {
-	if(!_item) {
-		logSrv->add(tr("Could not get covers. No song was set."), QU::Warning);
-		return;
-	}
-
-	_endpoint = endpoint; // cache the current endpoint, see showStatus();
-	buyBtn->setEnabled(true);
-}
-
-QString QUCoverGroup::customDir() const {
-	 QString result = QUStringSupport::withoutUnsupportedCharacters(
-			 QString("%1 - %2")
-				 .arg(_item->song()->artist())
-				 .arg(_item->song()->title())).trimmed();
-
-	 if(result.isEmpty())
-		 result = "_unknown";
-
-	 return result;
+void QUCoverGroup::getCovers() {
+	collector()->collect();
 }
 
 void QUCoverGroup::showCovers() {
 	list->model()->clear();
 	list->hide();
 
-	QDir covers(QCoreApplication::applicationDirPath());
-
-	if(!covers.cd("covers"))
-		return;
-
-	if(!covers.cd(customDir()))
-		return;
-
-	QFileInfoList picFiList = covers.entryInfoList(QUSongSupport::allowedPictureFiles(), QDir::Files, QDir::Name);
-
-	foreach(QFileInfo pic, picFiList)
-		list->model()->addCover(pic.filePath());
+	foreach(QFileInfo fi, collector()->results())
+		list->model()->addCover(fi.filePath());
 
 	if(list->model()->rowCount() > 0) {
 		// TODO: fix this mess! - I just want to see all content all the time ... T_T
@@ -83,6 +59,10 @@ void QUCoverGroup::showCovers() {
 	}
 }
 
+void QUCoverGroup::showFailure() {
+	logSrv->add(tr("Cover download failed for \"%1 - %2\"").arg(song()->artist()).arg(song()->title()), QU::Error);
+}
+
 /*!
  * \returns file path of the current/selected image
  */
@@ -94,28 +74,22 @@ QString QUCoverGroup::currentFilePath() const {
  * Deletes the current cover from this song.
  */
 void QUCoverGroup::deleteCurrentCover() {
-	if(!_item)
-		return;
-
-	if(!QFile::remove(_item->song()->coverFileInfo().filePath()))
-		logSrv->add(QString(tr("Could not delete current cover: \"%1\"")).arg(_item->song()->coverFileInfo().filePath()), QU::Warning);
+	if(!QFile::remove(song()->coverFileInfo().filePath()))
+		logSrv->add(QString(tr("Could not delete current cover: \"%1\"")).arg(song()->coverFileInfo().filePath()), QU::Warning);
 	else
-		logSrv->add(QString(tr("Current cover was deleted successfully: \"%1\"")).arg(_item->song()->coverFileInfo().filePath()), QU::Information);
+		logSrv->add(QString(tr("Current cover was deleted successfully: \"%1\"")).arg(song()->coverFileInfo().filePath()), QU::Information);
 }
 
 /*!
  * Uses the selected cover for the song.
  */
 void QUCoverGroup::copyCoverToSongPath() {
-	if(!_item)
-		return;
-
 	if(currentFilePath().isEmpty()) {
-		logSrv->add(QString(tr("No cover selected for: \"%1 - %2\"")).arg(_item->song()->artist()).arg(_item->song()->title()), QU::Warning);
+		logSrv->add(QString(tr("Could not copy cover to song path. No cover selected for: \"%1 - %2\"")).arg(song()->artist()).arg(song()->title()), QU::Warning);
 		return;
 	}
 
-	QFileInfo target(_item->song()->songFileInfo().dir(), "cover_" + QFileInfo(currentFilePath()).fileName());
+	QFileInfo target(song()->songFileInfo().dir(), "cover_" + QFileInfo(currentFilePath()).fileName());
 
 	if(!QFile::copy(currentFilePath(), target.filePath())) {
 		logSrv->add(QString(tr("Could not copy the new cover \"%1\" to \"%2\".")).arg(currentFilePath()).arg(target.filePath()), QU::Warning);
@@ -123,26 +97,26 @@ void QUCoverGroup::copyCoverToSongPath() {
 	}
 
 	// copy operation well done - now set the new cover
-	_item->song()->autoSetFile(target, true);
+	song()->autoSetFile(target, true);
+	song()->save();
 
-	_item->song()->save();
 	_item->update();
 }
 
 void QUCoverGroup::showStatus(const QString &status) {
-	if(!_item)
-		return;
-
-	group->setTitle(QString("%1 - %2%3").arg(_item->song()->artist()).arg(_item->song()->title()).arg(status));
+	if(!status.isEmpty())
+		group->setTitle(QString("%1 - %2 (%3)").arg(song()->artist()).arg(song()->title()).arg(status));
+	else
+		group->setTitle(QString("%1 - %2").arg(song()->artist()).arg(song()->title()));
 }
 
 void QUCoverGroup::openAmazonSearchUrl() {
-	QString tmp = _endpoint;
-	QUrl url(tmp.replace("ecs", "www").remove("aws"));
-
-	url.setPath(QString("s/url=search-alias=mp3-downloads&field-keywords=%1+%2").arg(_item->song()->artist()).arg(_item->song()->title()));
-	QDesktopServices::openUrl(url);
-
-	url.setPath(QString("s/url=search-alias=aps&field-keywords=%1").arg(_item->song()->artist()));
-	QDesktopServices::openUrl(url);
+//	QString tmp = _endpoint;
+//	QUrl url(tmp.replace("ecs", "www").remove("aws"));
+//
+//	url.setPath(QString("s/url=search-alias=mp3-downloads&field-keywords=%1+%2").arg(_item->song()->artist()).arg(_item->song()->title()));
+//	QDesktopServices::openUrl(url);
+//
+//	url.setPath(QString("s/url=search-alias=aps&field-keywords=%1").arg(_item->song()->artist()));
+//	QDesktopServices::openUrl(url);
 }
