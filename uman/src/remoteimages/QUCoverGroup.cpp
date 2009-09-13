@@ -18,7 +18,6 @@ QUCoverGroup::QUCoverGroup(QUSongItem *item, QURemoteImageCollector *collector, 
 {
 	setupUi(this);
 	list->setIconSize(QSize(COVER_ICON_WIDTH, COVER_ICON_HEIGHT));
-	buyBtn->setEnabled(false);
 	showStatus("");
 	setCollector(collector);
 }

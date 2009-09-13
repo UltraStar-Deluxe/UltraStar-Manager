@@ -91,6 +91,10 @@ COMMAND LINE
 SONG TREE
 * new columns for #RELATIVE, #GAP, #BPM
 
+COVER DOWNLOADS
+* available as plugins now
+* "www.albumartexchange.com" now accessible
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 QT

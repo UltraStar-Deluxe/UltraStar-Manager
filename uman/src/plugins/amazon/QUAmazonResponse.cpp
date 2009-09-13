@@ -53,8 +53,8 @@ void QUAmazonResponse::processResponse(const QDomElement &itemSearchResponse) {
 //		qDebug(mediumImgUrl.toLocal8Bit().data());
 //		qDebug(largeImgUrl.toLocal8Bit().data());
 
-		if(!mediumImgUrl.isEmpty() or !largeImgUrl.isEmpty())
-			_results.append(QPair<QUrl, QUrl>(QUrl(mediumImgUrl), QUrl(largeImgUrl)));
+		if(!largeImgUrl.isEmpty())
+			_results << QUrl(largeImgUrl);
 
 		item = item.nextSiblingElement("Item");
 	}
@@ -64,10 +64,5 @@ QUrl QUAmazonResponse::url(int index, QU::ImageSizes size) const {
 	if(index < 0 or index >= _results.size())
 		return QUrl();
 
-	if(size == QU::mediumImage)
-		return _results.at(index).first;
-	else if(size == QU::largeImage)
-		return _results.at(index).second;
-	else
-		return QUrl();
+	return _results.at(index);
 }

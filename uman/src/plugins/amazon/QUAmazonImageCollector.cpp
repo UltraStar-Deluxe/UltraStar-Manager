@@ -36,9 +36,14 @@ void QUAmazonImageCollector::processSearchResults() {
 
 	handleOldDownloads();
 
+	ignoredUrls = qMax(0, response.count() - source()->limit());
+
 	if(response.count() == 0) {
 		setState(Idle);
-		communicator()->send(tr("No results."));
+		if(ignoredUrls > 0)
+			communicator()->send(tr("No results, %1 ignored.").arg(ignoredUrls));
+		else
+			communicator()->send(tr("No results."));
 		communicator()->send(QUCommunicatorInterface::Done);
 		return;
 	}

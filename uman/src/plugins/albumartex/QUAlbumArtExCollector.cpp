@@ -23,7 +23,6 @@ QURequestUrl* QUAlbumArtExCollector::url() const {
 }
 
 void QUAlbumArtExCollector::processSearchResults() {
-
 	QRegExp rx = QRegExp(";src=(.*)\" width=.*(\\d+)&times;(\\d+)\"");
 
 	rx.setMinimal(true);
@@ -40,6 +39,12 @@ void QUAlbumArtExCollector::processSearchResults() {
 		pos += rx.matchedLength();
 	}
 
+	rx.setPattern("Images (\\d+)\\-(\\d+) of (\\d+)\\.");
+	rx.indexIn(text);
+	int from = QVariant(rx.cap(1)).toInt();
+	int to = QVariant(rx.cap(2)).toInt();
+	int last = QVariant(rx.cap(3)).toInt();
+
 	handleOldDownloads();
 
 	QStringList urls;
@@ -51,9 +56,14 @@ void QUAlbumArtExCollector::processSearchResults() {
 		   resolutions.at(i).second <= maxResolution.second)
 			urls << allUrls.at(i);
 
+	ignoredUrls = allUrls.size() - qMin(urls.size(), source()->limit()) + last - to;
+
 	if(urls.isEmpty()) {
 		setState(Idle);
-		communicator()->send(tr("No results."));
+		if(ignoredUrls > 0)
+			communicator()->send(tr("No results, %1 ignored.").arg(ignoredUrls));
+		else
+			communicator()->send(tr("No results."));
 		communicator()->send(QUCommunicatorInterface::Done);
 		return;
 	}

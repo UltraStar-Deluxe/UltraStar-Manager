@@ -7,6 +7,8 @@
 #include "QULogService.h"
 #include "QUPropertyTable.h"
 
+#include <QSettings>
+
 QURemoteImageDialog::QURemoteImageDialog(const QList<QUSongItem*> &items, QWidget *parent): QDialog(parent) {
 	setupUi(this);
 
@@ -18,6 +20,9 @@ QURemoteImageDialog::QURemoteImageDialog(const QList<QUSongItem*> &items, QWidge
 
 	initImageSources();
 	initResultsPage(items);
+
+	// show last used page
+	sourcesCombo->setCurrentIndex(qMax(0, qMin(QSettings().value("currentImageSource", 0).toInt(), sourcesCombo->count() - 1)));
 }
 
 void QURemoteImageDialog::initImageSources() {
@@ -93,6 +98,7 @@ void QURemoteImageDialog::initResultsPage(const QList<QUSongItem*> &items) {
 		} else {
 			_groups.at(i)->setCollector(collectors.at(i));
 			_groups.at(i)->showCovers();
+			_groups.at(i)->showStatus("");
 		}
 	}
 
@@ -131,10 +137,14 @@ void QURemoteImageDialog::updateResultsPage() {
 
 		_groups.at(i)->setCollector(collectors.at(i));
 		_groups.at(i)->showCovers();
+		_groups.at(i)->showStatus("");
 	}
 
 	// switch to proper configuration page if needed
 	toggleConfigurationPage(configurePluginBtn->isChecked());
+
+	// remember this choice for next use
+	QSettings().setValue("currentImageSource", sourcesCombo->currentIndex());
 }
 
 void QURemoteImageDialog::copyAndSetCovers() {

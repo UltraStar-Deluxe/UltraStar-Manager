@@ -53,6 +53,8 @@ protected:
 
 	void handleOldDownloads();
 
+	int ignoredUrls;
+
 	virtual QURequestUrl* url() const = 0;
 
 	virtual void processSearchResults() = 0;

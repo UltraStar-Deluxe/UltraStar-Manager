@@ -51,7 +51,7 @@ void QUPropertyTable::initKeyColumn() {
 
 void QUPropertyTable::initValueColumn() {
 	setValueItem(1, "host", source()->host(), QUFieldDelegate::Choice, source()->hosts());
-	setValueItem(2, "limit", source()->limit(), QUFieldDelegate::Choice, QStringList() << "5" << "10");
+	setValueItem(2, "limit", source()->limit(), QUFieldDelegate::Choice, QStringList() << "5" << "10" << "15");
 	setValueItem(3, "downloads", source()->keepDownloads(), QUFieldDelegate::Switch, QStringList() << tr("Keep downloaded pictures.") << tr("Remove old downloads."));
 
 	int i = 5;

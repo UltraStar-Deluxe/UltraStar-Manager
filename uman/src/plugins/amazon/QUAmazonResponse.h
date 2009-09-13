@@ -25,7 +25,7 @@ public:
 private:
 	bool _isValid;
 	int  _count;
-	QList<QPair<QUrl, QUrl> > _results; // store the urls to medium and large images
+	QList<QUrl> _results; // store the urls to medium and large images
 
 	void processResponse(const QDomElement &itemSearchResponse);
 };
