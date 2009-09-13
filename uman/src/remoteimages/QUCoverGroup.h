@@ -20,7 +20,7 @@ public:
 	void deleteCurrentCover();
 	void copyCoverToSongPath();
 
-	void setCollector(QURemoteImageCollector *c) { _collector = c; }
+	void setCollector(QURemoteImageCollector *collector);
 
 	QUSongItem* songItem() const { return _item; }
 

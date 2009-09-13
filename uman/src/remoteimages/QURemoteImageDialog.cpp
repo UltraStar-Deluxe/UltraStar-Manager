@@ -113,9 +113,9 @@ void QURemoteImageDialog::updateResultsPage() {
 		songs << group->songItem()->song();
 
 	QList<QURemoteImageCollector*> collectors;
-	if(currentImageSource())
+	if(currentImageSource()) {
 		collectors = currentImageSource()->imageCollectors(songs);
-	else {
+	} else {
 		logSrv->add(tr("No remote image sources selected."), QU::Warning);
 		return;
 	}

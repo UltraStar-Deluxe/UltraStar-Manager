@@ -64,6 +64,7 @@ public:
 	virtual ~QURemoteImageCollector() {}
 
 	// feedback, logging, error handling -> communicator due to lack of signals here
+	virtual QUCommunicatorInterface* communicator() const = 0;
 	virtual void setCommunicator(QUCommunicatorInterface*) = 0;
 
 	// start collecting/downloading remote images

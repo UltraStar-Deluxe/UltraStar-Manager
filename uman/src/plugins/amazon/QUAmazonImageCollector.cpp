@@ -14,92 +14,13 @@
 #include <QFile>
 #include <QDomDocument>
 
-QUAmazonImageCollector::QUAmazonImageCollector(QUSongInterface *song,QUAmazonImageSource *source): QObject(source) {
-	_song = song;
-	_source = source;
-	initNetwork();
-	setState(Idle);
-}
+QUAmazonImageCollector::QUAmazonImageCollector(QUSongInterface *song, QUAmazonImageSource *source): QUHttpCollector(song, source) {}
 
-void QUAmazonImageCollector::clearBuffer() {
-	if(_buffer)
-		delete _buffer;
-	_buffer = new QBuffer(this);
-}
-
-void QUAmazonImageCollector::initNetwork() {
-	_http = new QHttp(this);
-	connect(_http, SIGNAL(stateChanged(int)), this, SLOT(processNetworkStateChange(int)));
-	connect(_http, SIGNAL(done(bool)), this, SLOT(processNetworkOperationDone(bool)));
-
-	_buffer = 0;
-}
-
-void QUAmazonImageCollector::collect() {
-	if(http()->hasPendingRequests() or state() != Idle) {
-		song()->log(tr("Could not get covers for \"%1 - %2\". Http connection is busy.").arg(song()->artist()).arg(song()->title()), QU::Warning);
-		return;
-	}
-
-	QUAmazonRequestUrl url(
+QURequestUrl* QUAmazonImageCollector::url() const {
+	return new QUAmazonRequestUrl(
 			source()->host(),
-			source()->songDataField("artist"),
-			source()->songDataField("title"),
+			QStringList() << source()->songDataField("artist") << source()->songDataField("title"),
 			song());
-
-	setState(SearchRequest);
-
-	clearBuffer();
-	http()->setHost(url.host());
-	http()->get(url.request(), buffer());
-}
-
-QFileInfoList QUAmazonImageCollector::results() const {
-	return source()->imageFolder(song()).entryInfoList(QUSongSupport::allowedPictureFiles(), QDir::Files, QDir::Name);
-}
-
-void QUAmazonImageCollector::processNetworkStateChange(int state) {
-	if(state == QHttp::Sending)
-		communicator()->send(tr("Sending..."));
-	else if(state == QHttp::Reading)
-		communicator()->send(tr("Reading..."));
-}
-
-void QUAmazonImageCollector::processNetworkOperationDone(bool error) {
-	int count = localFiles().size();
-	closeLocalFiles();
-
-	if(error) {
-		setState(Idle);
-		communicator()->send(http()->errorString());
-		communicator()->send(QUCommunicatorInterface::Failed);
-		return;
-	}
-
-	if(state() == SearchRequest)
-		processSearchResults();
-	else if(state() == ImageRequest)
-		processImageResults(count);
-}
-
-QFile* QUAmazonImageCollector::openLocalFile(const QString &filePath) {
-	QFile *file = new QFile(filePath, this);
-
-	if(!file->open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-		communicator()->send(tr("Could not open local file: \"%1\"").arg(filePath));
-		return 0;
-	}
-
-	_localFiles.append(file);
-	return file;
-}
-
-void QUAmazonImageCollector::closeLocalFiles() {
-	foreach(QFile* file, localFiles())
-		file->close();
-
-	qDeleteAll(_localFiles);
-	_localFiles.clear();
 }
 
 void QUAmazonImageCollector::processSearchResults() {
@@ -137,10 +58,4 @@ void QUAmazonImageCollector::processSearchResults() {
 			http()->get(response.url(i, QU::largeImage).path(), file);
 		}
 	}
-}
-
-void QUAmazonImageCollector::processImageResults(int count) {
-	setState(Idle);
-	communicator()->send(tr("%1 results").arg(count));
-	communicator()->send(QUCommunicatorInterface::Done);
 }

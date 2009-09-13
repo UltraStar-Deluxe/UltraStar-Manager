@@ -14,19 +14,25 @@
 
 QUCoverGroup::QUCoverGroup(QUSongItem *item, QURemoteImageCollector *collector, QWidget *parent):
 	QWidget(parent),
-	_item(item),
-	_collector(collector)
+	_item(item)
 {
 	setupUi(this);
 	list->setIconSize(QSize(COVER_ICON_WIDTH, COVER_ICON_HEIGHT));
 	buyBtn->setEnabled(false);
 	showStatus("");
+	setCollector(collector);
+}
 
-	QUSimpleCommunicator *c = new QUSimpleCommunicator(this);
-	connect(c, SIGNAL(messageSent(QString)), this, SLOT(showStatus(QString)));
-	connect(c, SIGNAL(done()), this, SLOT(showCovers()));
-	connect(c, SIGNAL(failed()), this, SLOT(showFailure()));
-	this->collector()->setCommunicator(c);
+void QUCoverGroup::setCollector(QURemoteImageCollector *collector) {
+	_collector = collector;
+
+	if(!collector->communicator()) {
+		QUSimpleCommunicator *c = new QUSimpleCommunicator(this);
+		connect(c, SIGNAL(messageSent(QString)), this, SLOT(showStatus(QString)));
+		connect(c, SIGNAL(done()), this, SLOT(showCovers()));
+		connect(c, SIGNAL(failed()), this, SLOT(showFailure()));
+		this->collector()->setCommunicator(c);
+	}
 }
 
 void QUCoverGroup::getCovers() {

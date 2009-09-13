@@ -1,4 +1,7 @@
 #include "QUAmazonRequestUrl.h"
+
+#include "QU.h"
+#include "QUSongInterface.h"
 #include "QUSongSupport.h"
 #include "QUStringSupport.h"
 
@@ -9,16 +12,11 @@
 #include <QPair>
 #include <QList>
 #include <QVariant>
-#include <QMessageBox>
 #include <QDateTime>
 #include <QSettings>
 
-QUAmazonRequestUrl::QUAmazonRequestUrl(const QString &endpoint, const QString &artistProperty, const QString &titleProperty, QUSongInterface *song): QUrl() {
-	setScheme("http");
-	setHost(endpoint);
-
-	if(song)
-		this->init(song, artistProperty, titleProperty);
+QUAmazonRequestUrl::QUAmazonRequestUrl(const QString &host, const QStringList &properties, QUSongInterface *song): QURequestUrl(host, properties, song) {
+	initQuery();
 }
 
 QString QUAmazonRequestUrl::request() const {
@@ -29,20 +27,23 @@ QString QUAmazonRequestUrl::request() const {
 	return result;
 }
 
-void QUAmazonRequestUrl::init(QUSongInterface *song, const QString &artistProperty, const QString &titleProperty) {
-	setQueryDelimiters('=', '&');
+void QUAmazonRequestUrl::initQuery() {
+	if(properties().size() < 2)
+		return;
 
 	QList<QPair<QString, QString> > query;
 
 	QSettings settings;
 	query << QPair<QString, QString>("AWSAccessKeyId", settings.value("amazon/access key id").toString());
 
-	if(QString::compare(artistProperty, NONE, Qt::CaseInsensitive) == 0)
+	if(QString::compare(properties().at(0), NONE, Qt::CaseInsensitive) == 0)
 		query << QPair<QString, QString>("Artist", "");
-	else if(QUSongSupport::availableCustomTags().contains(artistProperty, Qt::CaseInsensitive))
-		query << QPair<QString, QString>("Artist", (QUStringSupport::withoutAnyUmlaut(song->customTag(artistProperty))));
+	else if(QUSongSupport::availableCustomTags().contains(properties().at(0), Qt::CaseInsensitive))
+		query << QPair<QString, QString>("Artist",
+			(QUStringSupport::withoutAnyUmlaut(song()->customTag(properties().at(0)))));
 	else
-		query << QPair<QString, QString>("Artist", (QUStringSupport::withoutAnyUmlaut(song->property(artistProperty.toLower().toLocal8Bit().data()).toString())));
+		query << QPair<QString, QString>("Artist",
+			(QUStringSupport::withoutAnyUmlaut(song()->property(properties().at(0).toLower().toLocal8Bit().data()).toString())));
 
 	query << QPair<QString, QString>("Operation",      "ItemSearch");
 	query << QPair<QString, QString>("ResponseGroup",  "Images");
@@ -50,32 +51,18 @@ void QUAmazonRequestUrl::init(QUSongInterface *song, const QString &artistProper
 	query << QPair<QString, QString>("Service",        "AWSECommerceService");
 	query << QPair<QString, QString>("Timestamp",      QDateTime::currentDateTime().toUTC().toString(Qt::ISODate) + ".000Z");
 
-	if(QString::compare(titleProperty, NONE, Qt::CaseInsensitive) == 0)
+	if(QString::compare(properties().at(1), NONE, Qt::CaseInsensitive) == 0)
 		query << QPair<QString, QString>("Title", "");
-	else if(QUSongSupport::availableCustomTags().contains(titleProperty, Qt::CaseInsensitive))
-		query << QPair<QString, QString>("Title", (QUStringSupport::withoutAnyUmlaut(song->customTag(titleProperty))));
+	else if(QUSongSupport::availableCustomTags().contains(properties().at(1), Qt::CaseInsensitive))
+		query << QPair<QString, QString>("Title",
+			(QUStringSupport::withoutAnyUmlaut(song()->customTag(properties().at(1)))));
 	else
-		query << QPair<QString, QString>("Title", (QUStringSupport::withoutAnyUmlaut(song->property(titleProperty.toLower().toLocal8Bit().data()).toString())));
+		query << QPair<QString, QString>("Title",
+			(QUStringSupport::withoutAnyUmlaut(song()->property(properties().at(1).toLower().toLocal8Bit().data()).toString())));
 
 	query << QPair<QString, QString>("Version",        "2009-03-31");
 
 	setQueryItems(query);
-}
-
-QByteArray QUAmazonRequestUrl::fixedPercentageEncoding() const {
-	return fixedPercentageEncoding(encodedQuery());
-}
-
-QByteArray QUAmazonRequestUrl::fixedPercentageEncoding(QByteArray source) const {
-	return source
-		.replace(":", "%3A")
-		.replace("/", "%2F")
-		.replace("?", "%3F")
-		.replace("#", "%23")
-		.replace("[", "%5B")
-		.replace("]", "%5D")
-		.replace("@", "%40")
-		.replace("+", "%20");
 }
 
 QString QUAmazonRequestUrl::stringToSign() const {
