@@ -47,6 +47,9 @@ HEADERS += plugins/QUPluginManager.h \
 	remoteimages/QUCoverList.h \
 	remoteimages/QUCoverGroup.h \
 	remoteimages/QURemoteImageDialog.h \
+	remoteimages/QUPropertyTable.h \
+	remoteimages/QUFieldDelegate.h \
+	remoteimages/QUHelpButton.h \
     preferences/QUCustomTagsDialog.h \
     preferences/QUTagOrderDialog.h \
     playlist/QUPlaylistArea.h \
@@ -112,6 +115,9 @@ SOURCES += plugins/QUPluginManager.cpp \
 	remoteimages/QUCoverList.cpp \
 	remoteimages/QUCoverGroup.cpp \
 	remoteimages/QURemoteImageDialog.cpp \
+	remoteimages/QUPropertyTable.cpp \
+	remoteimages/QUFieldDelegate.cpp \
+	remoteimages/QUHelpButton.cpp \
     preferences/QUCustomTagsDialog.cpp \
     preferences/QUTagOrderDialog.cpp \
     playlist/QUPlaylistArea.cpp \

@@ -35,7 +35,7 @@ void QUAmazonRequestUrl::init(QUSongInterface *song, const QString &artistProper
 	QList<QPair<QString, QString> > query;
 
 	QSettings settings;
-	query << QPair<QString, QString>("AWSAccessKeyId", settings.value("apaapi/key").toString());
+	query << QPair<QString, QString>("AWSAccessKeyId", settings.value("amazon/access key id").toString());
 
 	if(QString::compare(artistProperty, NONE, Qt::CaseInsensitive) == 0)
 		query << QPair<QString, QString>("Artist", "");
@@ -89,7 +89,7 @@ QString QUAmazonRequestUrl::stringToSign() const {
 
 QByteArray QUAmazonRequestUrl::signWithSHA256(const QString &text) const {
 	QSettings settings;
-	QString secret = settings.value("apaapi/secret").toString();
+	QString secret = settings.value("amazon/secret access key").toString();
 
 	unsigned char buf[SHA256_BLOCK_SIZE];
 	hmac_sha256(

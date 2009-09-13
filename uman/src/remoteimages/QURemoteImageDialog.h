@@ -22,6 +22,7 @@ private slots:
 	void uncheckAllGroups();
 	void getCovers();
 	void updateResultsPage();
+	void toggleConfigurationPage(bool);
 
 private:
 	QList<QUCoverGroup*> _groups;
@@ -30,6 +31,8 @@ private:
 	void initResultsPage(const QList<QUSongItem*> &items);
 
 	QURemoteImageSource* currentImageSource() const;
+
+	QWidget* configurationPage(QURemoteImageSource *src);
 };
 
 #endif // QUREMOTEIMAGEDIALOG_H

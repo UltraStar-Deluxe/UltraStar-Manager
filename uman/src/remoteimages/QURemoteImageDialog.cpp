@@ -5,6 +5,7 @@
 #include "QUProgressDialog.h"
 #include "QUPluginManager.h"
 #include "QULogService.h"
+#include "QUPropertyTable.h"
 
 QURemoteImageDialog::QURemoteImageDialog(const QList<QUSongItem*> &items, QWidget *parent): QDialog(parent) {
 	setupUi(this);
@@ -13,6 +14,7 @@ QURemoteImageDialog::QURemoteImageDialog(const QList<QUSongItem*> &items, QWidge
 
 	connect(acceptBtn, SIGNAL(clicked()), this, SLOT(accept()));
 	connect(searchImagesBtn, SIGNAL(clicked()), this, SLOT(getCovers()));
+	connect(configurePluginBtn, SIGNAL(toggled(bool)), this, SLOT(toggleConfigurationPage(bool)));
 
 	initImageSources();
 	initResultsPage(items);
@@ -20,8 +22,11 @@ QURemoteImageDialog::QURemoteImageDialog(const QList<QUSongItem*> &items, QWidge
 
 void QURemoteImageDialog::initImageSources() {
 	sourcesCombo->clear();
-	foreach(QURemoteImageSource *src, pluginMGR->imageSourcePlugins())
+	foreach(QURemoteImageSource *src, pluginMGR->imageSourcePlugins()) {
 		sourcesCombo->addItem(src->name());
+		pageStack->addWidget(configurationPage(src));
+	}
+
 	if(sourcesCombo->count() > 0)
 		sourcesCombo->setCurrentIndex(0);
 	else {
@@ -127,6 +132,9 @@ void QURemoteImageDialog::updateResultsPage() {
 		_groups.at(i)->setCollector(collectors.at(i));
 		_groups.at(i)->showCovers();
 	}
+
+	// switch to proper configuration page if needed
+	toggleConfigurationPage(configurePluginBtn->isChecked());
 }
 
 void QURemoteImageDialog::copyAndSetCovers() {
@@ -158,6 +166,7 @@ void QURemoteImageDialog::uncheckAllGroups() {
 }
 
 void QURemoteImageDialog::getCovers() {
+	configurePluginBtn->setChecked(false); // show the results page
 	foreach(QUCoverGroup *group, _groups)
 		group->getCovers();
 }
@@ -167,4 +176,15 @@ QURemoteImageSource* QURemoteImageDialog::currentImageSource() const {
 		return 0;
 
 	return pluginMGR->imageSourcePlugins().at(sourcesCombo->currentIndex());
+}
+
+void QURemoteImageDialog::toggleConfigurationPage(bool enabled) {
+	if(enabled)
+		pageStack->setCurrentIndex(sourcesCombo->currentIndex() + 1);
+	else
+		pageStack->setCurrentIndex(0);
+}
+
+QWidget* QURemoteImageDialog::configurationPage(QURemoteImageSource *src) {
+	return new QUPropertyTable(src);
 }
