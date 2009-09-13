@@ -91,9 +91,11 @@ void QUPluginManager::loadAllPlugins() {
 	}
 
 	createTaskFactoryProxies();
+	loadTranslations();
 }
 
 void QUPluginManager::unloadAllPlugins() {
+	unloadTranslations();
 	removeTaskFactoryProxies();
 
 	foreach(QPluginLoader *plugin, _plugins)
@@ -103,23 +105,23 @@ void QUPluginManager::unloadAllPlugins() {
 	_plugins.clear();
 }
 
-void QUPluginManager::loadTranslationsForTasks() {
+void QUPluginManager::loadTranslations() {
 	QString language = QSettings().value("language", QLocale::system().name()).toString();
 
-	foreach(QUTaskFactoryProxy *factoryProxy, _taskFactoryProxies) {
+	foreach(QUPlugin *plugin, plugins()) {
 		// only translator for current language should be installed
-		QMap<QString, QTranslator*> translations(factoryProxy->factory()->translations());
+		QMap<QString, QTranslator*> translations(plugin->translations());
 		if(translations.contains(language))
 			qApp->installTranslator(translations.value(language));
 	}
 }
 
-void QUPluginManager::unloadTranslationsForTasks() {
+void QUPluginManager::unloadTranslations() {
 	QString language = QSettings().value("language", QLocale::system().name()).toString();
 
-	foreach(QUTaskFactoryProxy *factoryProxy, _taskFactoryProxies) {
+	foreach(QUPlugin *plugin, plugins()) {
 		// only translator for current language should be installed
-		QMap<QString, QTranslator*> translations(factoryProxy->factory()->translations());
+		QMap<QString, QTranslator*> translations(plugin->translations());
 		if(translations.contains(language))
 			qApp->removeTranslator(translations.value(language));
 	}
@@ -138,12 +140,9 @@ void QUPluginManager::createTaskFactoryProxies() {
 			connect(_taskFactoryProxies.last(), SIGNAL(configurationAdded()), this, SIGNAL(configurationAdded()));
 		}
 	}
-	loadTranslationsForTasks();
 }
 
 void QUPluginManager::removeTaskFactoryProxies() {
-	unloadTranslationsForTasks();
-
 	qDeleteAll(_taskFactoryProxies);
 	_taskFactoryProxies.clear();
 }

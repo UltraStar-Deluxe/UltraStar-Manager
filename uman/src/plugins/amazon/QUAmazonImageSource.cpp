@@ -1,29 +1,11 @@
 #include "QUAmazonImageSource.h"
 #include "QUAmazonImageCollector.h"
-#include "QUStringSupport.h"
 
 #include <QCoreApplication>
-#include <QSettings>
 #include <QString>
-#include <QVariant>
+#include <QLocale>
 
-QUAmazonImageSource::QUAmazonImageSource(QObject *parent): QObject(parent) {}
-
-QString QUAmazonImageSource::songDataField(const QString &field) const {
-	return QSettings().value(registryKey() + "/" + field.toLower(), defaultValue(field)).toString();
-}
-
-void QUAmazonImageSource::setSongDataField(const QString &field, const QString &songProperty) {
-	QSettings().setValue(registryKey() + "/" + field.toLower(), songProperty);
-}
-
-QString QUAmazonImageSource::customDataField(const QString &field) const {
-	return QSettings().value(registryKey() + "/" + field.toLower(), NONE).toString();
-}
-
-void QUAmazonImageSource::setCustomDataField(const QString &field, const QString &value) {
-	QSettings().setValue(registryKey() + "/" + field.toLower(), value);
-}
+QUAmazonImageSource::QUAmazonImageSource(QObject *parent): QUMultilingualImageSource(parent) {}
 
 QString QUAmazonImageSource::help(const QString &field) const {
 	if(QString::compare(field, customDataFields().first(), Qt::CaseInsensitive) == 0)
@@ -48,65 +30,29 @@ QStringList QUAmazonImageSource::hosts() const {
 			<< "ecs.amazonaws.ca";
 }
 
-QString QUAmazonImageSource::host() const {
-	return QSettings().value(registryKey() + "/host", hosts().first()).toString();
-}
-
-void QUAmazonImageSource::setHost(const QString &host) {
-	QSettings().setValue(registryKey() + "/host", host);
-}
-
-int QUAmazonImageSource::limit() const {
-	return QSettings().value(registryKey() + "/limit", 10).toInt();
-}
-
-void QUAmazonImageSource::setLimit(int limit) {
-	QSettings().setValue(registryKey() + "/limit", limit);
-}
-
-bool QUAmazonImageSource::keepDownloads() const {
-	return QSettings().value(registryKey() + "/keepDownloads", false).toBool();
-}
-
-void QUAmazonImageSource::setKeepDownloads(bool keep) {
-	QSettings().setValue(registryKey() + "/keepDownloads", keep);
-}
-
-QList<QURemoteImageCollector*> QUAmazonImageSource::imageCollectors(QList<QUSongInterface*> songs) {
-	if(!_collectors.isEmpty()) {
-		qDeleteAll(_collectors);
-		_collectors.clear();
-	}
-
-	foreach(QUSongInterface *song, songs)
-		_collectors << new QUAmazonImageCollector(song, this);
-	return _collectors;
-}
-
-QDir QUAmazonImageSource::imageFolder(QUSongInterface *song) const {
-	QString folderName = QUStringSupport::withoutUnsupportedCharacters(
-			QString("%1 - %2").arg(song->artist()).arg(song->title())).trimmed();
-
-	if(folderName.isEmpty())
-		folderName = "_unknown";
-
-	QDir result(QCoreApplication::applicationDirPath());
-	result.mkdir("covers");
-	if(result.cd("covers")) {
-		result.mkdir(folderName);
-		result.cd(folderName);
-	}
-
-	return result;
+QURemoteImageCollector* QUAmazonImageSource::imageCollector(QUSongInterface *song) {
+	return new QUAmazonImageCollector(song, this);
 }
 
 QString QUAmazonImageSource::defaultValue(const QString &key) const {
 	if(QString::compare(key, songDataFields().first(), Qt::CaseInsensitive) == 0)
-		return "artist";
+		return "ARTIST";
 	else if(QString::compare(key, songDataFields().at(1), Qt::CaseInsensitive) == 0)
-		return "title";
+		return "TITLE";
 	else
-		return NONE;
+		return QUMultilingualImageSource::defaultValue(key);
+}
+
+QMap<QString, QString> QUAmazonImageSource::translationLocations() const {
+	QDir dir = QCoreApplication::applicationDirPath();
+	QMap<QString, QString> locations;
+
+	if(dir.cd("plugins") && dir.cd("languages")) {
+		locations.insert(QLocale(QLocale::German, QLocale::Germany).name(), dir.filePath("amazon.de.qm"));
+		locations.insert(QLocale(QLocale::Polish, QLocale::Poland).name(), dir.filePath("amazon.pl.qm"));
+	}
+
+	return locations;
 }
 
 Q_EXPORT_PLUGIN2(quamazonimagesource, QUAmazonImageSource);

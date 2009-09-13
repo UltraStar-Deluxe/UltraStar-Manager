@@ -41,8 +41,8 @@ private:
 	void loadAllPlugins();
 	void unloadAllPlugins();
 
-	void loadTranslationsForTasks();
-	void unloadTranslationsForTasks();
+	void loadTranslations();
+	void unloadTranslations();
 
 	void createTaskFactoryProxies();
 	void removeTaskFactoryProxies();
