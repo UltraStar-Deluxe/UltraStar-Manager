@@ -51,6 +51,8 @@ protected:
 	void closeLocalFiles();
 	QList<QFile*> localFiles() const { return _localFiles; }
 
+	void handleOldDownloads();
+
 	virtual QURequestUrl* url() const = 0;
 
 	virtual void processSearchResults() = 0;

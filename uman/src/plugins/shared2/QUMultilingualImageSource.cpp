@@ -24,7 +24,7 @@ void QUMultilingualImageSource::setSongDataField(const QString &field, const QSt
 }
 
 QString QUMultilingualImageSource::customDataField(const QString &field) const {
-	return QSettings().value(registryKey() + "/" + field.toLower(), NONE).toString();
+	return QSettings().value(registryKey() + "/" + field.toLower(), defaultValue(field)).toString();
 }
 
 void QUMultilingualImageSource::setCustomDataField(const QString &field, const QString &value) {

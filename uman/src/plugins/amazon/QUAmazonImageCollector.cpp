@@ -34,12 +34,7 @@ void QUAmazonImageCollector::processSearchResults() {
 		return;
 	}
 
-	// remove old downloads, if necessary
-	if(!source()->keepDownloads()) {
-		QFileInfoList fiList = source()->imageFolder(song()).entryInfoList(QUSongSupport::allowedPictureFiles(), QDir::Files, QDir::Name);
-		foreach(QFileInfo fi, fiList)
-			QFile::remove(fi.filePath());
-	}
+	handleOldDownloads();
 
 	if(response.count() == 0) {
 		setState(Idle);

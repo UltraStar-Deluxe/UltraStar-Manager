@@ -20,6 +20,10 @@ QString QUAlbumArtExImageSource::defaultValue(const QString &key) const {
 		return "ARTIST";
 	else if(QString::compare(key, songDataFields().at(1), Qt::CaseInsensitive) == 0)
 		return "TITLE";
+	else if(QString::compare(key, customDataFields().at(0), Qt::CaseInsensitive) == 0)
+		return "600";
+	else if(QString::compare(key, customDataFields().at(1), Qt::CaseInsensitive) == 0)
+		return "600";
 	else
 		return QUMultilingualImageSource::defaultValue(key);
 }

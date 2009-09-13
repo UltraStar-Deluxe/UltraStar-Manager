@@ -6,6 +6,13 @@
 #include "QUSongInterface.h"
 #include "QUSongSupport.h"
 
+#include <QFile>
+#include <QBuffer>
+#include <QRegExp>
+#include <QTextStream>
+#include <QHttp>
+#include <QVariant>
+
 QUAlbumArtExCollector::QUAlbumArtExCollector(QUSongInterface *song, QUAlbumArtExImageSource *source): QUHttpCollector(song, source) {}
 
 QURequestUrl* QUAlbumArtExCollector::url() const {
@@ -16,5 +23,49 @@ QURequestUrl* QUAlbumArtExCollector::url() const {
 }
 
 void QUAlbumArtExCollector::processSearchResults() {
-	setState(Idle);
+
+	QRegExp rx = QRegExp(";src=(.*)\" width=.*(\\d+)&times;(\\d+)\"");
+
+	rx.setMinimal(true);
+	rx.setCaseSensitivity(Qt::CaseInsensitive);
+
+	QString text(buffer()->data());
+	QStringList allUrls;
+	QList<QPair<int, int> > resolutions;
+	int pos = 0;
+
+	while ((pos = rx.indexIn(text, pos)) != -1) {
+		allUrls << rx.cap(1).trimmed().replace("%2F", "/");
+		resolutions << QPair<int, int>(QVariant(rx.cap(2)).toInt(), QVariant(rx.cap(3)).toInt());
+		pos += rx.matchedLength();
+	}
+
+	handleOldDownloads();
+
+	QStringList urls;
+	QPair<int, int> maxResolution(
+			QVariant(source()->customDataField(source()->customDataFields().at(0))).toInt(),
+			QVariant(source()->customDataField(source()->customDataFields().at(1))).toInt());
+	for(int i = 0; i < allUrls.size(); i++)
+		if(resolutions.at(i).first <= maxResolution.first and
+		   resolutions.at(i).second <= maxResolution.second)
+			urls << allUrls.at(i);
+
+	if(urls.isEmpty()) {
+		setState(Idle);
+		communicator()->send(tr("No results."));
+		communicator()->send(QUCommunicatorInterface::Done);
+		return;
+	}
+
+	setState(ImageRequest);
+
+	for(int i = 0; i < urls.size() and i < source()->limit(); i++) {
+		QFile *file = openLocalFile(source()->imageFolder(song()).filePath(QFileInfo(urls.at(i)).fileName()));
+
+		if(file) {
+			http()->setHost(source()->host());
+			http()->get("http://" + source()->host() + urls.at(i), file);
+		}
+	}
 }

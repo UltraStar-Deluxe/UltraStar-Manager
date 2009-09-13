@@ -99,6 +99,15 @@ void QUHttpCollector::closeLocalFiles() {
 	_localFiles.clear();
 }
 
+void QUHttpCollector::handleOldDownloads() {
+	// remove old downloads, if necessary
+	if(!source()->keepDownloads()) {
+		QFileInfoList fiList = source()->imageFolder(song()).entryInfoList(QUSongSupport::allowedPictureFiles(), QDir::Files, QDir::Name);
+		foreach(QFileInfo fi, fiList)
+			QFile::remove(fi.filePath());
+	}
+}
+
 void QUHttpCollector::processImageResults(int count) {
 	setState(Idle);
 	communicator()->send(tr("%1 results").arg(count));
