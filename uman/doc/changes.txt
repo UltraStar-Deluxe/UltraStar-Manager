@@ -94,6 +94,7 @@ SONG TREE
 COVER DOWNLOADS
 * available as plugins now
 * "www.albumartexchange.com" now accessible
+* BUY-Button removed
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
@@ -174,10 +175,6 @@ SONG TREE
 PLAYLISTS
 * playlists are now always sync with song database
   > no app crash if a deleted song is referenced in a playlist
-
-AMAZON COVER SEARCH
-* fixed 'Buy'-Button URL
-  > searches for MP3 and products of the artist
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 

@@ -67,6 +67,7 @@ HEADERS += plugins/QUPluginManager.h \
     report/QUSongTagData.h \
     report/QUAbstractReportData.h \
     report/QUReportDialog.h \
+	report/QUPdfReport.h \
     songtree/QUColumnAction.h \
     songtree/QUSongTree.h \
     songtree/QUSongItem.h \
@@ -135,6 +136,7 @@ SOURCES += plugins/QUPluginManager.cpp \
     report/QUSongTagData.cpp \
     report/QUAbstractReportData.cpp \
     report/QUReportDialog.cpp \
+	report/QUPdfReport.cpp \
     songtree/QUColumnAction.cpp \
     songtree/QUSongTree.cpp \
     songtree/QUSongItem.cpp \

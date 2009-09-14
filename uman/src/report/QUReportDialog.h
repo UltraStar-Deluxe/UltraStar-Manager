@@ -26,6 +26,7 @@ public:
 	~QUReportDialog();
 
 private slots:
+	void createPdfReport();
 	void createHtmlReport();
 	void createPlainTextReport();
 

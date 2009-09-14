@@ -1,7 +1,12 @@
 #include "QUReportDialog.h"
+
 #include "QUHtmlReport.h"
 #include "QUPlainTextReport.h"
+#include "QUPdfReport.h"
+
 #include "QULogService.h"
+
+#include "QUSongSupport.h"
 
 #include <QFileDialog>
 #include <QSettings>
@@ -14,8 +19,6 @@
 
 #include <QUrl>
 #include <QDesktopServices>
-
-#include "QUSongSupport.h"
 
 QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<QUSongFile*> &visibleSongs, const QList<QUPlaylistFile*> &allPlaylists, QWidget *parent):
 		QDialog(parent),
@@ -34,6 +37,7 @@ QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<Q
 	initPlaylistCombo();
 
 	connect(doneBtn, SIGNAL(clicked()), this, SLOT(accept()));
+	connect(createPdfBtn, SIGNAL(clicked()), this, SLOT(createPdfReport()));
 	connect(createHtmlBtn, SIGNAL(clicked()), this, SLOT(createHtmlReport()));
 	connect(createPlainTextBtn, SIGNAL(clicked()), this, SLOT(createPlainTextReport()));
 
@@ -102,11 +106,40 @@ void QUReportDialog::initPlaylistCombo() {
 	playlistCombo->setEnabled(!_allPlaylists.isEmpty());
 }
 
+void QUReportDialog::createPdfReport() {
+	QSettings settings;
+	QFileInfo fi(QDir(settings.value("reportPath").toString()), "report.pdf");
+
+	fi.setFile(QFileDialog::getSaveFileName(this, tr("Save PDF Report"),
+		fi.filePath(),
+		tr("PDF-Files (*.pdf)")));
+
+	if(!fi.fileName().isEmpty()) {
+		settings.setValue("reportPath", QVariant(fi.path())); // remember folder
+
+		fetchData();
+
+		QUPdfReport report(
+				sortedSongs(),
+				_data,
+				fi,
+				this->selectedOptions(),
+				this->currentPlaylistName());
+
+		if(report.save()) {
+			logSrv->add(QString(tr("PDF report created successfully to: \"%1\".")).arg(fi.filePath()), QU::Information);
+			QDesktopServices::openUrl(QUrl::fromLocalFile(fi.filePath()));
+		} else {
+			logSrv->add(tr("PDF report could not be created."), QU::Error);
+		}
+	}
+}
+
 void QUReportDialog::createHtmlReport() {
 	QSettings settings;
 	QFileInfo fi(QDir(settings.value("reportPath").toString()), "report.html");
 
-	fi.setFile(QFileDialog::getSaveFileName(this, tr("Save Report"),
+	fi.setFile(QFileDialog::getSaveFileName(this, tr("Save HTML Report"),
 		fi.filePath(),
 		tr("Website (*.htm *.html)")));
 
@@ -122,13 +155,13 @@ void QUReportDialog::createHtmlReport() {
 				this->selectedOptions(),
 				this->currentPlaylistName(),
 				styleCombo->itemData(styleCombo->currentIndex()).toString()); // css file path is saved in user data of current combobox item
-		report.save();
 
-		logSrv->add(QString(tr("Report created successfully to: \"%1\".")).arg(fi.filePath()), QU::Information);
-
-		QDesktopServices::openUrl(QUrl::fromLocalFile(fi.filePath()));
-	} else {
-		logSrv->add(tr("Report could not be created."), QU::Warning);
+		if(report.save()) {
+			logSrv->add(QString(tr("HTML report created successfully to: \"%1\".")).arg(fi.filePath()), QU::Information);
+			QDesktopServices::openUrl(QUrl::fromLocalFile(fi.filePath()));
+		} else {
+			logSrv->add(tr("HTML report could not be created."), QU::Error);
+		}
 	}
 }
 
@@ -136,7 +169,7 @@ void QUReportDialog::createPlainTextReport() {
 	QSettings settings;
 	QFileInfo fi(QDir(settings.value("reportPath").toString()), "report.txt");
 
-	fi.setFile(QFileDialog::getSaveFileName(this, tr("Save Report"),
+	fi.setFile(QFileDialog::getSaveFileName(this, tr("Save Text Report"),
 		fi.filePath(),
 		tr("Report (*.txt)")));
 
@@ -151,13 +184,13 @@ void QUReportDialog::createPlainTextReport() {
 				fi,
 				this->selectedOptions(),
 				this->currentPlaylistName());
-		report.save();
 
-		logSrv->add(QString(tr("Report created successfully to: \"%1\".")).arg(fi.filePath()), QU::Information);
-
-		QDesktopServices::openUrl(QUrl::fromLocalFile(fi.filePath()));
-	} else {
-		logSrv->add(tr("Report could not be created."), QU::Warning);
+		if(report.save()) {
+			logSrv->add(QString(tr("Text report created successfully to: \"%1\".")).arg(fi.filePath()), QU::Information);
+			QDesktopServices::openUrl(QUrl::fromLocalFile(fi.filePath()));
+		} else {
+			logSrv->add(tr("Text report could not be created."), QU::Error);
+		}
 	}
 }
 

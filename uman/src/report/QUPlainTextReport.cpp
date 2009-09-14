@@ -45,11 +45,12 @@ void QUPlainTextReport::printHeading(QTextStream &out) {
 		out << QString("\"%1\"").arg(userData().toString()) << endl << endl;
 
 	/* running number */
+	int rnWidth = QVariant(songs().size()).toString().length();
 	out.setFieldWidth(0);
-	out << " " << QString(QVariant(songs().size()).toString().length(), QChar(' '));
+	out << " " << QString(rnWidth, QChar(' '));
 
 	/* selected columns */
-	int lineSize = 0;
+	int lineSize = rnWidth;
 	for(int i = 0; i < reportDataList().size(); i++) {
 		out.setFieldWidth(0);
 		out << " | ";                                     lineSize += 3;

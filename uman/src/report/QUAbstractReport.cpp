@@ -19,12 +19,14 @@ QUAbstractReport::QUAbstractReport(
 {
 }
 
-void QUAbstractReport::save() {
+bool QUAbstractReport::save() {
 	QFile file(_fi.filePath());
 
 	if(file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
 		QTextStream out(&file);
 		out << this->content();
 		file.close();
+		return true;
 	}
+	return false;
 }

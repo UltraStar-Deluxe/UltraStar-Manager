@@ -209,6 +209,7 @@
         <file>user.png</file>
         <file>midi_kar.png</file>
         <file>duet.png</file>
+        <file>page_white_acrobat.png</file>
     </qresource>
     <qresource prefix="/big" >
         <file>save_big.png</file>

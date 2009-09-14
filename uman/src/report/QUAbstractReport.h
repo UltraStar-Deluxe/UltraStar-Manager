@@ -24,7 +24,7 @@ public:
 			QObject *parent = 0);
 
 	virtual QString content() const = 0;
-	void save();
+	virtual bool save();
 
 protected:
 	QList<QUAbstractReportData*> reportDataList() const { return _reportDataList; }
