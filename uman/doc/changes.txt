@@ -94,6 +94,8 @@ SONG TREE
 COVER DOWNLOADS
 * available as plugins now
 * "www.albumartexchange.com" now accessible
+* "freecovers.net" now accessible
+  > but only compressed covers due to gold membership needed
 * BUY-Button removed
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
