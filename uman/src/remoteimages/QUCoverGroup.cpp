@@ -91,17 +91,21 @@ void QUCoverGroup::copyCoverToSongPath(bool deleteCurrentCover) {
 		return;
 	}
 
+	QString oldName = song()->coverFileInfo().filePath();
 	if(deleteCurrentCover) {
-		if(!QFile::remove(song()->coverFileInfo().filePath()))
+		if(!QFile::remove(oldName)) {
 			logSrv->add(QString(tr("Could not delete current cover: \"%1\"")).arg(song()->coverFileInfo().filePath()), QU::Warning);
-		else
-			logSrv->add(QString(tr("Current cover was deleted successfully: \"%1\"")).arg(song()->coverFileInfo().filePath()), QU::Information);
+			song()->autoSetFile(target, true);
+		} else {
+			logSrv->add(QString(tr("Current cover was replaced successfully for: \"%1 - %2\"")).arg(song()->artist()).arg(song()->title()), QU::Information);
+			QFile::rename(target.filePath(), oldName);
+		}
+	} else {
+		// copy operation well done - now set the new cover
+		song()->autoSetFile(target, true);
 	}
 
-	// copy operation well done - now set the new cover
-	song()->autoSetFile(target, true);
 	song()->save();
-
 	_item->update();
 }
 
