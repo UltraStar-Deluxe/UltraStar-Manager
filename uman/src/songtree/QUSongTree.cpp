@@ -587,10 +587,10 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 		menu.addAction(tr("Calculate Song Speed"), this, SLOT(calculateSpeed()));
 
 		menu.addSeparator();
-		menu.addAction(tr("Open With Explorer..."), this, SLOT(openCurrentFolder()));
+		menu.addAction(tr("Open With Explorer..."), this, SLOT(openCurrentFolder()), Qt::CTRL + Qt::Key_Return);
 		menu.addAction(QIcon(":/types/user.png"), tr("Find More From Artist"), this, SLOT(showMoreCurrentArtist()));
 		menu.addAction(QIcon(":/types/text.png"), tr("Show Lyrics..."), this, SLOT(requestLyrics()), Qt::CTRL + Qt::Key_L);
-		menu.addAction(tr("Edit Lyrics..."), this, SLOT(requestEditLyrics()));
+		menu.addAction(tr("Edit Lyrics..."), this, SLOT(requestEditLyrics()), Qt::CTRL + Qt::Key_E);
 	}
 
 	menu.exec(QCursor::pos());

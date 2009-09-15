@@ -299,6 +299,8 @@ void QUMainWindow::initRibbonBar() {
 	_menu->setShortcut(_menu->showLyricsBtn, Qt::CTRL  + Qt::Key_L);
 	_menu->setShortcut(_menu->deleteBtn, Qt::SHIFT + Qt::Key_Delete);
 	_menu->setShortcut(_menu->mergeBtn, Qt::CTRL  + Qt::Key_M);
+	_menu->setShortcut(_menu->openExpBtn, Qt::CTRL + Qt::Key_Return);
+	_menu->setShortcut(_menu->editLyricsBtn, Qt::CTRL + Qt::Key_E);
 
 	// view menu
 	connect(_menu->relativePathsChk, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
@@ -773,7 +775,7 @@ void QUMainWindow::editSongLyrics(QUSongFile *song) {
 
 	QULyricsEditorDialog dlg(song, this);
 
-	if(dlg.exec())
+	if(dlg.execAt(0))
 		song->save();
 }
 

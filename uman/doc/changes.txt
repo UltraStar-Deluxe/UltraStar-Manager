@@ -136,6 +136,8 @@ AMAZON COVER DOWNLOAD
 KEYBOARD SHORTCUTS
 * CTRL + [1..6] show/hide dock widgets (details, tasks, media player ...)
 * CTRL + F11 toggles full-screen mode
+* CTRL + Return opens Explorer
+* CTRL + E edit the lyrics of the current song
 
 PATHS
 * new dialog for managing paths
@@ -244,7 +246,6 @@ DUET SONGS
 ! create a feature list =) (promotional purposes only)
 ! create a list with keyboard shortcuts
 ! prepare plugin SDK
-* explain space-shortcut in slideshow dialog somehow
 * drop a picture into song tree: ask for usage as cover or background (dialog)
 ! add support/help texts for custom tags
   > need of #
@@ -254,7 +255,6 @@ DUET SONGS
 ! make path-delimiter handling editable (QUStringSupport::without..."
   > remove /
   > replace / with -
-  > find all places!
 
 NEW STUFF
 * make hard-coded values editable
@@ -278,21 +278,15 @@ NEW STUFF
 * some extended help system in the application (lowest priority, Monty works well :))
 * checksums for SC-checked song files
   > QCryptographicHash (md4, md5, sha1)
-* get a web-source for background pictures and videos
-  > need an API like Amazon Associates Web Service (REST?)
-  > flickr
-  > last.fm
 ? get lyrics
   > http://lyricwiki.org/LyricWiki:REST
 * get more song information (e.g. #YEAR)
-  > hinparade.ch (?!)
+  > hitparade.ch (?!)
 * look for illegal/invalid lyrics
   > e.g. ": 20 7ß 38 blubb" (false alpha-numeric..., USdx error)
 * top-ten (by count)
   > artists
 * compare two song text files (which one is better?)
-? add support for Stepmania
-  > BIIIIG TASK
 * Button to Start UltaStar itself?
   > and select a song folder to use (rename? config file?)
 * compare your songs against a list of songs
@@ -300,7 +294,6 @@ NEW STUFF
 * manage default values for #EDITION
   > "custom editions" like "custom tags"?
   > check songs if they are in that Edition? -> use for renaming tasks (conditions)
-! history of last song paths (F12)
 * use "space", "return" or "ctrl+return" for "open with explorer..."
 * add support for "Frets on Fire"
 * add PDF-Support (QPrinter or so)
