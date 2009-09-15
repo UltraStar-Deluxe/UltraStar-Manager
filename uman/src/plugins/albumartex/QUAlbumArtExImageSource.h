@@ -17,8 +17,8 @@ public:
 	virtual QString description() const { return tr("Get splendid covers with high resolution for your songs."); }
 
 	virtual QStringList songDataFields() const { return QStringList() << "First" << "Second" << "Third"; }
-	virtual QStringList customDataFields() const { return QStringList() << "Max. width" << "Max. height"; }
-	virtual QString help(const QString &field) const { return QString(); }
+	virtual QStringList customDataFields() const { return QStringList() << "Max. width" << "Max. height" << "Sort by" << "Filter"; }
+	virtual QString help(const QString &field) const;
 	virtual QStringList hosts() const;
 
 protected:

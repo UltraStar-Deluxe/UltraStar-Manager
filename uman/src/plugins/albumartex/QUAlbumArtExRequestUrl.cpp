@@ -6,6 +6,7 @@
 #include "QUSongInterface.h"
 
 #include <QVariant>
+#include <QSettings>
 
 QUAlbumArtExRequestUrl::QUAlbumArtExRequestUrl(const QString &host, const QStringList &properties, QUSongInterface *song): QURequestUrl(host, properties, song) {
 	initQuery();
@@ -16,7 +17,7 @@ QString QUAlbumArtExRequestUrl::request() const {
 			.arg(host())
 			.arg(QString(fixedPercentageEncoding()));
 
-//	song()->log(tr("[albumartex - search] ") + result, QU::Help);
+	song()->log(tr("[albumartex - search] ") + result, QU::Help);
 
 	return result;
 }
@@ -32,6 +33,9 @@ void QUAlbumArtExRequestUrl::initQuery() {
 			data << (QUStringSupport::withoutAnyUmlaut(song()->property(property.toLower().toLocal8Bit().data()).toString()));
 	}
 
+	QSettings settings;
+	query << QPair<QString, QString>("sort", settings.value("albumartex/sort by").toString());
 	query << QPair<QString, QString>("q", data.join(" ").trimmed());
+	query << QPair<QString, QString>("fltr", settings.value("albumartex/filter").toString());
 	setQueryItems(query);
 }
