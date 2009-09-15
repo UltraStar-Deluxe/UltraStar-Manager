@@ -21,6 +21,7 @@ QUPlaylistArea::QUPlaylistArea(QWidget *parent): QWidget(parent) {
 
 	connect(playlist, SIGNAL(removePlaylistEntryRequested(QUPlaylistEntry*)), this, SLOT(removeCurrentPlaylistEntry(QUPlaylistEntry*)));
 	connect(playlist, SIGNAL(orderChanged(QList<QUPlaylistEntry*>)), this, SLOT(changeCurrentPlaylistOrder(QList<QUPlaylistEntry*>)));
+	connect(playlist, SIGNAL(removeUnknownEntriesRequested()), this, SLOT(removeUnknownEntries()));
 
 	connect(playlistCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setCurrentPlaylist(int)));
 	connect(playlistEdit, SIGNAL(textEdited(const QString&)), this, SLOT(updateCurrentPlaylistName(const QString&)));
@@ -442,6 +443,15 @@ void QUPlaylistArea::removeCurrentPlaylistEntry(QUPlaylistEntry *entry) {
 		return;
 
 	_playlists.at(currentPlaylistIndex())->removeEntry(entry);
+
+	updatePlaylistCombo();
+}
+
+void QUPlaylistArea::removeUnknownEntries() {
+	if(currentPlaylistIndex() < 0)
+		return;
+
+	_playlists.at(currentPlaylistIndex())->removeDisconnectedEntries();
 
 	updatePlaylistCombo();
 }

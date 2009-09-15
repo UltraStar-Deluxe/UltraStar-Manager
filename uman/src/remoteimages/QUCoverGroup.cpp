@@ -45,6 +45,8 @@ void QUCoverGroup::showCovers() {
 	foreach(QFileInfo fi, collector()->results())
 		list->model()->addCover(fi.filePath());
 
+	list->selectionModel()->setCurrentIndex(list->model()->index(0), QItemSelectionModel::Select);
+
 	if(list->model()->rowCount() > 0) {
 		// TODO: fix this mess! - I just want to see all content all the time ... T_T
 		list->show();

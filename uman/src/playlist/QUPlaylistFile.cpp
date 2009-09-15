@@ -174,6 +174,12 @@ bool QUPlaylistFile::removeEntry(QUPlaylistEntry *entry) {
 	return true;
 }
 
+void QUPlaylistFile::removeDisconnectedEntries() {
+	foreach(QUPlaylistEntry *entry, _playlist)
+		if(!entry->song())
+			removeEntry(entry);
+}
+
 void QUPlaylistFile::changeOrder(const QList<QUPlaylistEntry*> &newOrder) {
 	if(newOrder.size() != this->count())
 		return;

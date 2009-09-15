@@ -30,12 +30,13 @@ protected:
 	virtual void dropEvent(QDropEvent *event);
 
 signals:
+	void removeUnknownEntriesRequested();
 	void removePlaylistEntryRequested(QUPlaylistEntry *entry);
 	void orderChanged(QList<QUPlaylistEntry*> newOrder);
 
 private slots:
 	void removeSelectedItems();
-
+	void removeUnknownEntries();
 };
 
 #endif /* QUPLAYLIST_H_ */

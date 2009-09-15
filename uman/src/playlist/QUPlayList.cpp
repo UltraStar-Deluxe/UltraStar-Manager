@@ -71,6 +71,7 @@ void QUPlayList::showContextMenu(const QPoint &point) {
 	QMenu menu(this);
 
 	menu.addAction(QIcon(":/marks/delete.png"), tr("Remove from list"), this, SLOT(removeSelectedItems()), QKeySequence::fromString("Del"));
+//	menu.addAction(tr("Remove unknown entries"), this, SLOT(removeUnknownEntries()));
 
 	menu.exec(this->mapToGlobal(point));
 }
@@ -98,4 +99,26 @@ void QUPlayList::removeSelectedItems() {
 	this->setCurrentItem(this->item( qMin(firstIndex, this->count() - 1) ));
 	if(this->currentItem())
 		this->currentItem()->setSelected(true);
+}
+
+void QUPlayList::removeUnknownEntries() {
+//	int firstIndex = 0;
+//
+//	for(int i = 0; i < count(); i++) {
+//		QUPlayListItem *pItem = dynamic_cast<QUPlayListItem*>(row(i));
+//
+//		if(!pItem)
+//			continue;
+//
+//		firstIndex = i;
+//
+//		delete item;
+//	}
+//
+//	emit removeUnknownEntriesRequested();
+//	updateItems(); // update the running number
+//
+//	this->setCurrentItem(this->item( qMin(firstIndex, this->count() - 1) ));
+//	if(this->currentItem())
+//		this->currentItem()->setSelected(true);
 }

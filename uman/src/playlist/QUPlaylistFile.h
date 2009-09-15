@@ -42,6 +42,7 @@ public:
 
 	bool addEntry(QUSongFile *song);
 	bool removeEntry(QUPlaylistEntry *entry);
+	void removeDisconnectedEntries();
 
 	void changeOrder(const QList<QUPlaylistEntry*> &newOrder);
 

@@ -50,6 +50,7 @@ private slots:
 
 	void removeCurrentPlaylist();
 	void removeCurrentPlaylistEntry(QUPlaylistEntry *entry);
+	void removeUnknownEntries();
 
 	void changeCurrentPlaylistOrder(QList<QUPlaylistEntry*> newOrder);
 
