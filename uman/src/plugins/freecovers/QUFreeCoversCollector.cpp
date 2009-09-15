@@ -47,9 +47,11 @@ void QUFreeCoversCollector::processSearchResults() {
 		QString fileName = response.results().at(i).path().remove("/").remove("preview0");
 		QFile *file = openLocalFile(source()->imageFolder(song()).filePath(fileName));
 
+//		song()->log(tr("[freecovers - result] ") + response.results().at(i).toString(), QU::Help);
+
 		if(file) {
 			http()->setHost(response.results().at(i).host());
-			http()->get(response.results().at(i).path(), file);
+			http()->get(response.results().at(i).toString(), file);
 		}
 	}
 }

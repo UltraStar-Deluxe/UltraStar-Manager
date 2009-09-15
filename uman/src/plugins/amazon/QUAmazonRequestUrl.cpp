@@ -24,6 +24,8 @@ QString QUAmazonRequestUrl::request() const {
 			.arg(host())
 			.arg(QString(fixedPercentageEncoding())) + QString(fixedPercentageEncoding(signWithSHA256(stringToSign()).toBase64().toPercentEncoding()));
 
+//	song()->log(tr("[amazon - search] ") + result, QU::Help);
+
 	return result;
 }
 

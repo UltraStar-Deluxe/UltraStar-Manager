@@ -25,5 +25,7 @@ QByteArray QURequestUrl::fixedPercentageEncoding(QByteArray source) const {
 		.replace("@", "%40")
 		.replace("+", "%20")
 		.replace("!", "")
-		.replace("'", "");
+		.replace("'", "")
+		.replace("(", "")
+		.replace(")", "");
 }

@@ -16,7 +16,7 @@ QString QUFreeCoversRequestUrl::request() const {
 			.arg(host())
 			.arg(QString(fixedPercentageEncoding(encodedPath())));
 
-	song()->log(result, QU::Information);
+//	song()->log(tr("[freecovers - search] ") + result, QU::Help);
 
 	return result;
 }

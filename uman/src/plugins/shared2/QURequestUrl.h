@@ -1,6 +1,7 @@
 #ifndef QUREQUESTURL_H
 #define QUREQUESTURL_H
 
+#include <QCoreApplication>
 #include <QUrl>
 #include <QByteArray>
 #include <QStringList>
@@ -8,6 +9,8 @@
 class QUSongInterface;
 
 class QURequestUrl: public QUrl {
+	Q_DECLARE_TR_FUNCTIONS(QURequestUrl)
+
 public:
 	QURequestUrl(const QString &host, const QStringList &properties, QUSongInterface *song);
 	virtual ~QURequestUrl() {}

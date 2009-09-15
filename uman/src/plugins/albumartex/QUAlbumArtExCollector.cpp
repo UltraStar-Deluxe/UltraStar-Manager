@@ -73,6 +73,8 @@ void QUAlbumArtExCollector::processSearchResults() {
 	for(int i = 0; i < urls.size() and i < source()->limit(); i++) {
 		QFile *file = openLocalFile(source()->imageFolder(song()).filePath(QFileInfo(urls.at(i)).fileName()));
 
+//		song()->log(tr("[albumartex - result] ") + "http://" + source()->host() + urls.at(i), QU::Help);
+
 		if(file) {
 			http()->setHost(source()->host());
 			http()->get("http://" + source()->host() + urls.at(i), file);

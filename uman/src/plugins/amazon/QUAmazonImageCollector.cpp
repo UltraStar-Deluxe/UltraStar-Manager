@@ -51,11 +51,12 @@ void QUAmazonImageCollector::processSearchResults() {
 	setState(ImageRequest);
 
 	for(int i = 0; i < response.count() and i < source()->limit(); i++) {
+//		song()->log(tr("[amazon - result] ") + response.url(i, QU::largeImage).toString(), QU::Help);
 		QFile *file = openLocalFile(source()->imageFolder(song()).filePath(QFileInfo(response.url(i, QU::largeImage).path()).fileName()));
 
 		if(file) {
 			http()->setHost(response.url(i, QU::largeImage).host());
-			http()->get(response.url(i, QU::largeImage).path(), file);
+			http()->get(response.url(i, QU::largeImage).toString(), file);
 		}
 	}
 }
