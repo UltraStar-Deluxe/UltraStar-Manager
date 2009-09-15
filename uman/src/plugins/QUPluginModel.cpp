@@ -20,6 +20,9 @@ QVariant QUPluginModel::data(const QModelIndex &index, int role) const {
 	if(!index.isValid())
 		return QVariant();
 
+	QUTaskFactory *factory = dynamic_cast<QUTaskFactory*>(pluginMGR->plugins().at(index.row()));
+	QURemoteImageSource *imgSrc = dynamic_cast<QURemoteImageSource*>(pluginMGR->plugins().at(index.row()));
+
 	switch(role) {
 	case NameRole:
 		return pluginMGR->plugins().at(index.row())->name();
@@ -32,14 +35,17 @@ QVariant QUPluginModel::data(const QModelIndex &index, int role) const {
 	case IconRole:
 		return pluginMGR->plugins().at(index.row())->icon();
 	case Qt::ToolTipRole:
-		QUTaskFactory *factory = dynamic_cast<QUTaskFactory*>(pluginMGR->plugins().at(index.row()));
-		QURemoteImageSource *imgSrc = dynamic_cast<QURemoteImageSource*>(pluginMGR->plugins().at(index.row()));
 		QString stuff;
 
-		if(factory)
+		if(factory) {
 			stuff = tr("Type: Task Factory Plugin");
-		else if(imgSrc)
+		} else if(imgSrc) {
 			stuff = tr("Type: Remote Image Source Plugin");
+			if(imgSrc->type() == QURemoteImageSource::CoverImage)
+				stuff += tr("<br>Subtype: Cover Images");
+			else if(imgSrc->type() == QURemoteImageSource::BackgroundImage)
+				stuff += tr("<br>Subtype: Background Images");
+		}
 
 		return tr("<b>%1</b><br>%2<br><br>Author: %3<br>Version: %4<br>%5")
 				.arg(pluginMGR->plugins().at(index.row())->name())

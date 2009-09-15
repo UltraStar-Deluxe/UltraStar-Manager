@@ -24,11 +24,11 @@ public:
 	QULyricTask(TaskModes mode, QObject *parent = 0);
 
 	virtual void startOn(QUSongInterface *song);
-	virtual QList<QUSmartSetting*> smartSettings() const;
+	virtual QList<QUSmartSettingInterface*> smartSettings() const;
 
 private:
 	TaskModes _mode;
-	mutable QList<QUSmartSetting*> _smartSettings;
+	mutable QList<QUSmartSettingInterface*> _smartSettings;
 
 	void fixTimeStamps(QUSongInterface *song, int start = 0);
 	void fixSpaces(QUSongInterface *song);

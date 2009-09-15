@@ -23,7 +23,13 @@ class QURemoteImageSource: public QUPlugin {
 	Q_INTERFACES(QUPlugin)
 
 public:
+	enum ImageType {
+		CoverImage,
+		BackgroundImage
+	};
 	virtual ~QURemoteImageSource() {}
+
+	virtual ImageType type() const = 0;
 
 	// A list of named data where a corresponding song tag must be set.
 	// E.g, 'Artist' -> #ARTIST, 'Title' -> #TITLE

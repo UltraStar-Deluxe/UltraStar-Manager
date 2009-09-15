@@ -1,5 +1,5 @@
 #include "QUTaskItem.h"
-#include "QUSmartSetting.h"
+#include "QUSmartSettingInterface.h"
 #include "QU.h"
 #include "QUMonty.h"
 
@@ -28,7 +28,7 @@ QUTaskItem::~QUTaskItem() {
 
 void QUTaskItem::installSmartSettings() {
 	task()->provideData(monty->unsupportedTags(), QUTask::UnsupportedTags);
-	foreach(QUSmartSetting *smartSetting, task()->smartSettings()) {
+	foreach(QUSmartSettingInterface *smartSetting, task()->smartSettings()) {
 		QTreeWidgetItem *sItem = new QTreeWidgetItem();
 		sItem->setBackgroundColor(0, QColor(239, 239, 239));
 		addChild(sItem);
@@ -43,7 +43,7 @@ void QUTaskItem::highlightChanges() {
 	QFont f(this->font(0));
 	f.setItalic(false);
 
-	foreach(QUSmartSetting *smartSetting, task()->smartSettings())
+	foreach(QUSmartSettingInterface *smartSetting, task()->smartSettings())
 		if(smartSetting->hasChanges()) {
 			f.setItalic(true);
 			break;

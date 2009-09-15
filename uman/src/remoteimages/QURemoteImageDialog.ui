@@ -361,7 +361,7 @@
          <item>
           <widget class="QCheckBox" name="deleteCurrentCoverChk">
            <property name="toolTip">
-            <string>Deletes the current cover before copy &amp; set the new one.</string>
+            <string>Deletes the current picture before copy &amp; set the new one. If no new picture is selected, nothing will be done.</string>
            </property>
            <property name="text">
             <string>Delete current song covers</string>

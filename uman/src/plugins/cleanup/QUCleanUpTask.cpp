@@ -47,7 +47,7 @@ void QUCleanUpTask::startOn(QUSongInterface *song) {
 	}
 }
 
-QList<QUSmartSetting*> QUCleanUpTask::smartSettings() const {
+QList<QUSmartSettingInterface*> QUCleanUpTask::smartSettings() const {
 	if(_smartSettings.isEmpty())
 		if(_mode == UnusedFiles) {
 			_smartSettings.append(new QUSmartCheckBox("cleanup/unusedFiles_audio", "Audio files", true));

@@ -25,7 +25,7 @@ public:
 	virtual int configure(QWidget *parent) { return 0; }
 
 	// a simple task has no smart settings
-	virtual QList<QUSmartSetting*> smartSettings() const { return QList<QUSmartSetting*>(); }
+	virtual QList<QUSmartSettingInterface*> smartSettings() const { return QList<QUSmartSettingInterface*>(); }
 	virtual void provideData(const QVariant &data, TaskDataTypes type = UndefinedData) {}
 
 private:

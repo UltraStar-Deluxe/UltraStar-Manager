@@ -83,7 +83,7 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 	}
 }
 
-QList<QUSmartSetting*> QUPreparatoryTask::smartSettings() const {
+QList<QUSmartSettingInterface*> QUPreparatoryTask::smartSettings() const {
 	QSettings settings;
 	QString timeDiffLower = settings.value("timeDiffLower", 15).toString();
 

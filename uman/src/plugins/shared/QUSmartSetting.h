@@ -1,6 +1,8 @@
 #ifndef QUSMARTSETTING_H
 #define QUSMARTSETTING_H
 
+#include "QUSmartSettingInterface.h"
+
 #include <QObject>
 #include <QWidget>
 #include <QVariant>
@@ -8,24 +10,17 @@
 
 class QToolButton;
 
-class QUSmartSetting: public QObject {
+class QUSmartSetting: public QUSmartSettingInterface {
 	Q_OBJECT
 
 public:
 	QUSmartSetting(const QString &registryKey);
 
-	virtual QWidget* editor() const = 0;
-
 	virtual void resetToDefaults() = 0;
-	virtual bool hasChanges() const = 0;
-
 	virtual QVariant value() const;
 
 public slots:
 	void reset();
-
-signals:
-	void changed();
 
 protected:
 	void setValue(const QVariant &value);

@@ -3,7 +3,7 @@ SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
     QUPreparatoryTask.cpp \
     ../shared/QUSimpleTask.cpp \
 	../shared/QUSimpleTaskFactory.cpp \
-	../QUSmartSetting.cpp \
+	../shared/QUSmartSetting.cpp \
 	../shared/QUSmartCheckBox.cpp \
 	../shared/QUSmartInputField.cpp \
 	../../QUSongSupport.cpp
@@ -12,10 +12,11 @@ HEADERS = ../shared/QUMultilingualTaskFactory.h \
     QUPreparatoryTask.h \
     ../shared/QUSimpleTask.h \
 	../shared/QUSimpleTaskFactory.h \
-	../QUSmartSetting.h \
+	../shared/QUSmartSetting.h \
 	../shared/QUSmartCheckBox.h \
 	../shared/QUSmartInputField.h \
-	../../QUSongSupport.h
+	../../QUSongSupport.h \
+	../QUSmartSettingInterface.h
 TRANSLATIONS = preparatory.de.ts \
 	preparatory.pl.ts
 INCLUDEPATH += . \

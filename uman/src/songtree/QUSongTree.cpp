@@ -576,7 +576,7 @@ void QUSongTree::showItemMenu(const QPoint &point) {
 
 		menu.addSeparator();
 		menu.addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
-		menu.addAction(tr("Get Covers From Amazon..."), this, SLOT(requestCoversFromAmazon()));
+		menu.addAction(tr("Get Covers..."), this, SLOT(requestCoversFromAmazon()));
 
 		QMenu *pictureFlowMenu = menu.addMenu(QIcon(":/control/images.png"), tr("Review pictures"));
 		pictureFlowMenu->addAction(QIcon(":/types/cover.png"),      tr("Covers..."),      this, SLOT(requestCoverFlow()));

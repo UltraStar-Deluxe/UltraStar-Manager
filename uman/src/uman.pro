@@ -17,7 +17,7 @@ HEADERS += plugins/QUPluginManager.h \
 	plugins/QUPluginDelegate.h \
     plugins/QUTaskPlugin.h \
     plugins/QUTaskFactoryProxy.h \
-	plugins/QUSmartSetting.h \
+	plugins/QUSmartSettingInterface.h \
 	plugins/QURemoteImageSourcePlugin.h \
 	plugins/QUCommunicatorInterface.h \
 	plugins/QUSimpleCommunicator.h \
@@ -92,7 +92,6 @@ SOURCES += plugins/QUPluginManager.cpp \
 	plugins/QUPluginModel.cpp \
 	plugins/QUPluginDelegate.cpp \
     plugins/QUTaskFactoryProxy.cpp \
-	plugins/QUSmartSetting.cpp \
 	plugins/QUSimpleCommunicator.cpp \
     main.cpp \
 	QU.cpp \

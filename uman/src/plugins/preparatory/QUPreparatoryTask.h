@@ -27,13 +27,13 @@ public:
 	~QUPreparatoryTask();
 	
 	virtual void startOn(QUSongInterface *song);
-	virtual QList<QUSmartSetting*> smartSettings() const;
+	virtual QList<QUSmartSettingInterface*> smartSettings() const;
 	virtual void provideData(const QVariant &data, TaskDataTypes type = UnsupportedTags);
 
 private:
 	TaskModes _mode;
 
-	mutable QList<QUSmartSetting*> _smartSettings;
+	mutable QList<QUSmartSettingInterface*> _smartSettings;
 	QStringList _unsupportedTags;
 
 	void autoSetFiles(QUSongInterface *song, const QString &coverPattern, const QString &backgroundPattern);

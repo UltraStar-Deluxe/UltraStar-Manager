@@ -17,8 +17,7 @@ public:
 	QUCoverGroup(QUSongItem *item, QURemoteImageCollector *collector, QWidget *parent = 0);
 
 	void getCovers();
-	void deleteCurrentCover();
-	void copyCoverToSongPath();
+	void copyCoverToSongPath(bool deleteCurrentCover = false);
 
 	void setCollector(QURemoteImageCollector *collector);
 

@@ -76,19 +76,9 @@ QString QUCoverGroup::currentFilePath() const {
 }
 
 /*!
- * Deletes the current cover from this song.
- */
-void QUCoverGroup::deleteCurrentCover() {
-	if(!QFile::remove(song()->coverFileInfo().filePath()))
-		logSrv->add(QString(tr("Could not delete current cover: \"%1\"")).arg(song()->coverFileInfo().filePath()), QU::Warning);
-	else
-		logSrv->add(QString(tr("Current cover was deleted successfully: \"%1\"")).arg(song()->coverFileInfo().filePath()), QU::Information);
-}
-
-/*!
  * Uses the selected cover for the song.
  */
-void QUCoverGroup::copyCoverToSongPath() {
+void QUCoverGroup::copyCoverToSongPath(bool deleteCurrentCover) {
 	if(currentFilePath().isEmpty()) {
 		logSrv->add(QString(tr("Could not copy cover to song path. No cover selected for: \"%1 - %2\"")).arg(song()->artist()).arg(song()->title()), QU::Warning);
 		return;
@@ -99,6 +89,13 @@ void QUCoverGroup::copyCoverToSongPath() {
 	if(!QFile::copy(currentFilePath(), target.filePath())) {
 		logSrv->add(QString(tr("Could not copy the new cover \"%1\" to \"%2\".")).arg(currentFilePath()).arg(target.filePath()), QU::Warning);
 		return;
+	}
+
+	if(deleteCurrentCover) {
+		if(!QFile::remove(song()->coverFileInfo().filePath()))
+			logSrv->add(QString(tr("Could not delete current cover: \"%1\"")).arg(song()->coverFileInfo().filePath()), QU::Warning);
+		else
+			logSrv->add(QString(tr("Current cover was deleted successfully: \"%1\"")).arg(song()->coverFileInfo().filePath()), QU::Information);
 	}
 
 	// copy operation well done - now set the new cover

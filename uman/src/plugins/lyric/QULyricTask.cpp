@@ -73,7 +73,7 @@ void QULyricTask::startOn(QUSongInterface *song) {
 	}
 }
 
-QList<QUSmartSetting*> QULyricTask::smartSettings() const {
+QList<QUSmartSettingInterface*> QULyricTask::smartSettings() const {
 	if(_smartSettings.isEmpty())
 		if(_mode == FixTimeStamps)
 			_smartSettings.append(new QUSmartInputField("lyric/fixTimeStamps", "0", new QRegExpValidator(QRegExp("-?\\d*"), 0), "Start:", ""));

@@ -14,7 +14,7 @@ class QTranslator;
 
 class QUSongInterface;
 class QUTask;
-class QUSmartSetting;
+class QUSmartSettingInterface;
 
 class QUTaskFactory: public QUPlugin {
 	Q_INTERFACES(QUPlugin)
@@ -55,7 +55,7 @@ public:
     virtual bool isConfigurable() const = 0;
 
 	// smart settings (small inline configuration possibilities in the task list)
-	virtual QList<QUSmartSetting*> smartSettings() const = 0;
+	virtual QList<QUSmartSettingInterface*> smartSettings() const = 0;
 	virtual void provideData(const QVariant &data, TaskDataTypes type = UndefinedData) = 0;
 };
 

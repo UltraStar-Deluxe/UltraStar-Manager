@@ -157,10 +157,7 @@ void QURemoteImageDialog::copyAndSetCovers() {
 		if(dlg.cancelled()) break;
 
 		if(group->group->isChecked()) {
-			if(deleteCurrentCoverChk->isChecked())
-				group->deleteCurrentCover();
-
-			group->copyCoverToSongPath();
+			group->copyCoverToSongPath(deleteCurrentCoverChk->isChecked());
 		}
 	}
 }

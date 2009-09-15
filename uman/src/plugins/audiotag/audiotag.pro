@@ -13,7 +13,7 @@ SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
     ../shared/QUTaskConditionDelegate.cpp \
     ../shared/QUTaskSourceDelegate.cpp \
 	QUDefaultDelegate.cpp \
-	../QUSmartSetting.cpp
+	../shared/QUSmartSetting.cpp
 HEADERS = language.h \
 	../shared/QUMultilingualTaskFactory.h \
 	QUAudioTagTaskFactory.h \
@@ -30,7 +30,8 @@ HEADERS = language.h \
     ../shared/QUTaskConditionDelegate.h \
     ../shared/QUTaskSourceDelegate.h \
 	QUDefaultDelegate.h \
-	../QUSmartSetting.h
+	../shared/QUSmartSetting.h \
+	../QUSmartSettingInterface.h
 FORMS += ../shared/QUTaskDialog.ui
 TRANSLATIONS = audiotag.de.ts \
 	audiotag.pl.ts

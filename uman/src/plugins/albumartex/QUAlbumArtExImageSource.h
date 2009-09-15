@@ -9,6 +9,8 @@ class QUAlbumArtExImageSource: public QUMultilingualImageSource {
 public:
 	QUAlbumArtExImageSource(QObject *parent = 0);
 
+	virtual ImageType type() const { return CoverImage; }
+
 	virtual QString name() const { return "Album Art Exchange"; }
 	virtual QString version() const { return "1.0.0"; }
 	virtual QString author() const { return "Marcel Taeumel"; }

@@ -9,6 +9,8 @@ class QUFreeCoversSource: public QUMultilingualImageSource {
 public:
 	QUFreeCoversSource(QObject *parent = 0);
 
+	virtual ImageType type() const { return CoverImage; }
+
 	virtual QString name() const { return "FreeCovers"; }
 	virtual QString version() const { return "1.0.0"; }
 	virtual QString author() const { return "Marcel Taeumel"; }

@@ -3,7 +3,7 @@ SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
     QUCleanUpTask.cpp \
     ../shared/QUSimpleTask.cpp \
 	../shared/QUSimpleTaskFactory.cpp \
-	../QUSmartSetting.cpp \
+	../shared/QUSmartSetting.cpp \
 	../shared/QUSmartCheckBox.cpp \
 	../shared/QUSmartInputCheck.cpp \
 	../../QUSongSupport.cpp
@@ -12,10 +12,11 @@ HEADERS = ../shared/QUMultilingualTaskFactory.h \
     QUCleanUpTask.h \
     ../shared/QUSimpleTask.h \
 	../shared/QUSimpleTaskFactory.h \
-	../QUSmartSetting.h \
+	../shared/QUSmartSetting.h \
 	../shared/QUSmartCheckBox.h \
 	../shared/QUSmartInputCheck.h \
-	../../QUSongSupport.h
+	../../QUSongSupport.h \
+	../QUSmartSettingInterface.h
 TRANSLATIONS = cleanup.de.ts \
 	cleanup.pl.ts
 INCLUDEPATH += . \

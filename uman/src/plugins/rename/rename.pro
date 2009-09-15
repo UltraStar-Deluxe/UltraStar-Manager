@@ -13,7 +13,7 @@ SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
     ../shared/QUTaskConditionDelegate.cpp \
     ../shared/QUTaskSourceDelegate.cpp \
 	../shared/QUTaskTextDelegate.cpp \
-	../QUSmartSetting.cpp
+	../shared/QUSmartSetting.cpp
 HEADERS = language.h \
 	../shared/QUMultilingualTaskFactory.h \
 	QURenameTaskFactory.h \
@@ -30,7 +30,8 @@ HEADERS = language.h \
     ../shared/QUTaskConditionDelegate.h \
     ../shared/QUTaskSourceDelegate.h \
 	../shared/QUTaskTextDelegate.h \
-	../QUSmartSetting.h
+	../shared/QUSmartSetting.h \
+	../QUSmartSettingInterface.h
 FORMS += ../shared/QUTaskDialog.ui
 TRANSLATIONS = rename.de.ts \
 	rename.pl.ts

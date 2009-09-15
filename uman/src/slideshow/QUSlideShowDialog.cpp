@@ -19,13 +19,13 @@ QUSlideShowDialog::QUSlideShowDialog(QList<QUSongItem*> items, Modes m, QWidget 
 	connect(unlinkChk, SIGNAL(toggled(bool)), this, SLOT(changeUnlinkFlag(bool)));
 
 	if(_mode == QUSlideShowDialog::coverflow) {
-		textLbl->setText(tr("View the cover of each song and descide whether or not to <b>unlink</b> that cover from the song. This may help you to <b>identify bad covers</b> with ease."));
-		unlinkChk->setText(tr("Clear #COVER tag"));
+		textLbl->setText(tr("View the cover of each song and descide whether or not to <b>unlink</b> that cover from the song. Hit space. This helps you to <b>identify bad covers</b> with ease."));
+		unlinkChk->setText(tr("Clear #COVER tag on OK"));
 
 		pictureFlow->setSlideSize(QSize(270, 270));
 	} else if(_mode == QUSlideShowDialog::backgroundflow) {
-		textLbl->setText(tr("View the background picture of each song and descide whether or not to <b>unlink</b> that picture from the song. This may help you to <b>identify bad ones</b> with ease."));
-		unlinkChk->setText(tr("Clear #BACKGROUND tag"));
+		textLbl->setText(tr("View the background picture of each song and descide whether or not to <b>unlink</b> that picture from the song. Hit space. This helps you to <b>identify bad ones</b> with ease."));
+		unlinkChk->setText(tr("Clear #BACKGROUND tag on OK"));
 
 		pictureFlow->setSlideSize(QSize(qRound(270 * (4/3.)), 270));
 	}

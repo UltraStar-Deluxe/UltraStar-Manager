@@ -4,7 +4,7 @@
 #include <QToolButton>
 #include <QIcon>
 
-QUSmartSetting::QUSmartSetting(const QString &registryKey): QObject() {
+QUSmartSetting::QUSmartSetting(const QString &registryKey): QUSmartSettingInterface(0) {
 	_registryKey = registryKey;
 }
 
