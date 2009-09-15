@@ -1249,13 +1249,13 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 //		menu->addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),       Qt::Key_F5);
 		menu->addAction(QIcon(":/control/save.png"),    tr("Save"),    this, SLOT(saveSelectedSongs()),          Qt::CTRL  + Qt::Key_S);
 		menu->addAction(QIcon(":/control/bin.png"),     tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()), Qt::SHIFT + Qt::Key_Delete);
-		QAction *a = menu->addAction(                   tr("Merge"),   this, SLOT(mergeSelectedSongs()),         Qt::CTRL  + Qt::Key_M);
+		QAction *a = menu->addAction(QIcon(":/control/merge.png"), tr("Merge"),   this, SLOT(mergeSelectedSongs()),         Qt::CTRL  + Qt::Key_M);
 		if(selectedItems().size() < 2) a->setEnabled(false);
 		menu->addAction(QIcon(":/player/play.png"), tr("Play"), this, SIGNAL(playSelectedSongsRequested()));
 
 		menu->addSeparator();
 		menu->addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
-		menu->addAction(tr("Get Covers..."), this, SLOT(requestCoversFromAmazon()));
+		menu->addAction(QIcon(":/control/picture_go.png"), tr("Get Covers..."), this, SLOT(requestCoversFromAmazon()));
 
 		QMenu *pictureFlowMenu = menu->addMenu(QIcon(":/control/images.png"), tr("Review pictures"));
 		pictureFlowMenu->addAction(QIcon(":/types/cover.png"),      tr("Covers..."),      this, SLOT(requestCoverFlow()));
@@ -1263,13 +1263,13 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 
 		menu->addMenu(hideMenu());
 
-		menu->addAction(tr("Calculate Song Speed"), this, SLOT(calculateSpeed()));
+		menu->addAction(QIcon(":/marks/speed_slow_turtle.png"), tr("Calculate Song Speed"), this, SLOT(calculateSpeed()));
 
 		menu->addSeparator();
-		menu->addAction(tr("Open With Explorer..."), this, SLOT(openCurrentFolder()), Qt::CTRL + Qt::Key_Return);
+		menu->addAction(QIcon(":/types/folder.png"),tr("Open With Explorer..."), this, SLOT(openCurrentFolder()), Qt::CTRL + Qt::Key_Return);
 		menu->addAction(QIcon(":/types/user.png"), tr("Find More From Artist"), this, SLOT(showMoreCurrentArtist()));
 		menu->addAction(QIcon(":/types/text.png"), tr("Show Lyrics..."), this, SLOT(requestLyrics()), Qt::CTRL + Qt::Key_L);
-		menu->addAction(tr("Edit Lyrics..."), this, SLOT(requestEditLyrics()), Qt::CTRL + Qt::Key_E);
+		menu->addAction(QIcon(":/control/text_edit.png"), tr("Edit Lyrics..."), this, SLOT(requestEditLyrics()), Qt::CTRL + Qt::Key_E);
 	}
 
 	return menu;
