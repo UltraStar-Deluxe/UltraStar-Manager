@@ -62,6 +62,7 @@ public slots:
 
 signals:
 	void songToPlaylistRequested(QUSongFile *song);
+	void playSelectedSongsRequested();
 	void coversFromAmazonRequested(QList<QUSongItem*> items);
 	void coverFlowRequested(QList<QUSongItem*> items);
 	void backgroundFlowRequested(QList<QUSongItem*> items);
@@ -103,6 +104,9 @@ private slots:
 
 protected:
 	virtual void keyPressEvent(QKeyEvent *event);
+
+	QMenu* itemMenu(QUSongItem *item);
+	QMenu* generalMenu();
 
 private:
 	QList<QUSongItem*> _hiddenItems;

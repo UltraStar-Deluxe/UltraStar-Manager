@@ -95,7 +95,11 @@ QUMediaPlayer::~QUMediaPlayer() {
 		logSrv->add("BASS was NOT unloaded.", QU::Warning);
 }
 
-void QUMediaPlayer::setSongs(const QList<QUSongFile*> &songs) {
+void QUMediaPlayer::setSongs(const QList<QUSongFile*> &songs, Source src) {
+	if(src != NoChange) {
+		sourceCombo->setCurrentIndex(src);
+	}
+
 	_songs.clear();
 	foreach(QUSongFile *song, songs) {
 		_songs << QUSongInfo(song);
@@ -260,13 +264,13 @@ void QUMediaPlayer::requestSongs() {
 	if(_mediaStream)
 		stop();
 
-	if(sourceCombo->currentIndex() == 0) { // selected songs
+	if(sourceCombo->currentIndex() == SelectedSongs) {
 		emit selectedSongsRequested();
-	} else if(sourceCombo->currentIndex() == 1) { // all songs
+	} else if(sourceCombo->currentIndex() == AllSongs) {
 		emit allSongsRequested();
-	} else if(sourceCombo->currentIndex() == 2) { // visible songs
+	} else if(sourceCombo->currentIndex() == VisibleSongs) {
 		emit visibleSongsRequested();
-	} else if(sourceCombo->currentIndex() == 3) { // current playlist
+	} else if(sourceCombo->currentIndex() == CurrentPlaylist) {
 		emit currentPlaylistRequested();
 	}
 }
@@ -276,10 +280,12 @@ void QUMediaPlayer::updatePlayerControls(QUMediaPlayer::States state) {
 		prevBtn->setEnabled(_lastIndices.size() > 1);
 		nextBtn->setEnabled(loopBtn->isChecked() || (!_freeIndices.isEmpty()));
 		stopBtn->setEnabled(true);
+		sourceCombo->setEnabled(false);
 	} else if(state.testFlag(QUMediaPlayer::stopped)) {
 		prevBtn->setEnabled(false);
 		nextBtn->setEnabled(false);
 		stopBtn->setEnabled(false);
+		sourceCombo->setEnabled(true);
 	}
 
 	if(state.testFlag(QUMediaPlayer::playing)) {

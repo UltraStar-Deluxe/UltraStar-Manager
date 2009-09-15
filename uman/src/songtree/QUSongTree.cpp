@@ -552,48 +552,20 @@ QStringList QUSongTree::mimeTypes() const {
  * Appends actions to the menu according to the selected item/file.
  */
 void QUSongTree::showItemMenu(const QPoint &point) {
-	if(!this->itemAt(point))
-		return; // no item clicked
+	QMenu *menu;
 
-	QMenu menu(this);
-
-	QUSongItem *item = dynamic_cast<QUSongItem*>(this->currentItem());
-
-	if(item && !item->isToplevel()) {
-		// file menu
-		if(item->song()->isFriend(item->text(0)))
-			menu.addAction(tr("Set as primary song"), this, SLOT(openCurrentFile()));
+	if(!itemAt(point))
+		menu = generalMenu();
+	else {
+		QUSongItem *item = dynamic_cast<QUSongItem*>(this->currentItem());
+		if(item)
+			menu = itemMenu(item);
 		else
-			menu.addAction(tr("Open"), this, SLOT(openCurrentFile()));
-		menu.addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), Qt::Key_Delete);
-	} else {
-		// song/folder menu
-//		menu.addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),       Qt::Key_F5);
-		menu.addAction(QIcon(":/control/save.png"),    tr("Save"),    this, SLOT(saveSelectedSongs()),          Qt::CTRL  + Qt::Key_S);
-		menu.addAction(QIcon(":/control/bin.png"),     tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()), Qt::SHIFT + Qt::Key_Delete);
-		QAction *a = menu.addAction(                   tr("Merge"),   this, SLOT(mergeSelectedSongs()),         Qt::CTRL  + Qt::Key_M);
-		if(selectedItems().size() < 2) a->setEnabled(false);
-
-		menu.addSeparator();
-		menu.addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
-		menu.addAction(tr("Get Covers..."), this, SLOT(requestCoversFromAmazon()));
-
-		QMenu *pictureFlowMenu = menu.addMenu(QIcon(":/control/images.png"), tr("Review pictures"));
-		pictureFlowMenu->addAction(QIcon(":/types/cover.png"),      tr("Covers..."),      this, SLOT(requestCoverFlow()));
-		pictureFlowMenu->addAction(QIcon(":/types/background.png"), tr("Backgrounds..."), this, SLOT(requestBackgroundFlow()));
-
-		menu.addMenu(hideMenu());
-
-		menu.addAction(tr("Calculate Song Speed"), this, SLOT(calculateSpeed()));
-
-		menu.addSeparator();
-		menu.addAction(tr("Open With Explorer..."), this, SLOT(openCurrentFolder()), Qt::CTRL + Qt::Key_Return);
-		menu.addAction(QIcon(":/types/user.png"), tr("Find More From Artist"), this, SLOT(showMoreCurrentArtist()));
-		menu.addAction(QIcon(":/types/text.png"), tr("Show Lyrics..."), this, SLOT(requestLyrics()), Qt::CTRL + Qt::Key_L);
-		menu.addAction(tr("Edit Lyrics..."), this, SLOT(requestEditLyrics()), Qt::CTRL + Qt::Key_E);
+			return;
 	}
 
-	menu.exec(QCursor::pos());
+	menu->exec(QCursor::pos());
+	delete menu;
 }
 
 QMenu* QUSongTree::hideMenu() const {
@@ -1260,6 +1232,55 @@ void QUSongTree::keyPressEvent(QKeyEvent *event) {
 	} else {
 		QTreeWidget::keyPressEvent(event);
 	}
+}
+
+QMenu* QUSongTree::itemMenu(QUSongItem *item) {
+	QMenu *menu = new QMenu(this);
+
+	if(item && !item->isToplevel()) {
+		// file menu
+		if(item->song()->isFriend(item->text(0)))
+			menu->addAction(tr("Set as primary song"), this, SLOT(openCurrentFile()));
+		else
+			menu->addAction(tr("Open"), this, SLOT(openCurrentFile()));
+		menu->addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), Qt::Key_Delete);
+	} else {
+		// song/folder menu
+//		menu->addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),       Qt::Key_F5);
+		menu->addAction(QIcon(":/control/save.png"),    tr("Save"),    this, SLOT(saveSelectedSongs()),          Qt::CTRL  + Qt::Key_S);
+		menu->addAction(QIcon(":/control/bin.png"),     tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()), Qt::SHIFT + Qt::Key_Delete);
+		QAction *a = menu->addAction(                   tr("Merge"),   this, SLOT(mergeSelectedSongs()),         Qt::CTRL  + Qt::Key_M);
+		if(selectedItems().size() < 2) a->setEnabled(false);
+		menu->addAction(QIcon(":/player/play.png"), tr("Play"), this, SIGNAL(playSelectedSongsRequested()));
+
+		menu->addSeparator();
+		menu->addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
+		menu->addAction(tr("Get Covers..."), this, SLOT(requestCoversFromAmazon()));
+
+		QMenu *pictureFlowMenu = menu->addMenu(QIcon(":/control/images.png"), tr("Review pictures"));
+		pictureFlowMenu->addAction(QIcon(":/types/cover.png"),      tr("Covers..."),      this, SLOT(requestCoverFlow()));
+		pictureFlowMenu->addAction(QIcon(":/types/background.png"), tr("Backgrounds..."), this, SLOT(requestBackgroundFlow()));
+
+		menu->addMenu(hideMenu());
+
+		menu->addAction(tr("Calculate Song Speed"), this, SLOT(calculateSpeed()));
+
+		menu->addSeparator();
+		menu->addAction(tr("Open With Explorer..."), this, SLOT(openCurrentFolder()), Qt::CTRL + Qt::Key_Return);
+		menu->addAction(QIcon(":/types/user.png"), tr("Find More From Artist"), this, SLOT(showMoreCurrentArtist()));
+		menu->addAction(QIcon(":/types/text.png"), tr("Show Lyrics..."), this, SLOT(requestLyrics()), Qt::CTRL + Qt::Key_L);
+		menu->addAction(tr("Edit Lyrics..."), this, SLOT(requestEditLyrics()), Qt::CTRL + Qt::Key_E);
+	}
+
+	return menu;
+}
+
+QMenu* QUSongTree::generalMenu() {
+	QMenu *menu = new QMenu(this);
+
+	menu->addMenu(hideMenu());
+
+	return menu;
 }
 
 /*!

@@ -397,6 +397,8 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(showLyricsRequested(QUSongFile*)), this, SLOT(showLyrics(QUSongFile*)));
 	connect(songTree, SIGNAL(editLyricsRequested(QUSongFile*)), this, SLOT(editSongLyrics(QUSongFile*)));
 
+	connect(songTree, SIGNAL(playSelectedSongsRequested()), this, SLOT(sendSelectedSongsToMediaPlayer()));
+
 	refreshAllSongs();
 	updateMergeBtn();
 }
@@ -1336,7 +1338,8 @@ void QUMainWindow::copyAudioToPath() {
  * This is used to necessary information to the media player so that a song can be played.
  */
 void QUMainWindow::sendSelectedSongsToMediaPlayer() {
-	mediaplayer->setSongs(songTree->selectedSongs());
+	mediaplayer->stop();
+	mediaplayer->setSongs(songTree->selectedSongs(), QUMediaPlayer::SelectedSongs);
 	mediaplayer->play();
 }
 
@@ -1351,8 +1354,10 @@ void QUMainWindow::sendVisibleSongsToMediaPlayer() {
 }
 
 void QUMainWindow::sendCurrentPlaylistToMediaPlayer() {
-	mediaplayer->setSongs(playlistArea->currentPlaylist()->connectedSongs());
-	mediaplayer->play();
+	if(playlistArea->currentPlaylist()) {
+		mediaplayer->setSongs(playlistArea->currentPlaylist()->connectedSongs());
+		mediaplayer->play();
+	}
 }
 
 /*!

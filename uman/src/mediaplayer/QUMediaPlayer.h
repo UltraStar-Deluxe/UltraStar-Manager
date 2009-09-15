@@ -42,10 +42,17 @@ class QUMediaPlayer: public QWidget, private Ui::QUMediaPlayer {
 	Q_OBJECT
 
 public:
+	enum Source {
+		NoChange = -1,
+		SelectedSongs = 0,
+		AllSongs = 1,
+		VisibleSongs = 2,
+		CurrentPlaylist = 3
+	};
 	QUMediaPlayer(QWidget *parent = 0);
 	~QUMediaPlayer();
 
-	void setSongs(const QList<QUSongFile*> &songs);
+	void setSongs(const QList<QUSongFile*> &songs, Source src = NoChange);
 
 	enum State {
 		stopped,

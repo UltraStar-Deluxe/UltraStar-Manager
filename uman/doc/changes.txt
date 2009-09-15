@@ -90,6 +90,8 @@ COMMAND LINE
 
 SONG TREE
 * new columns for #RELATIVE, #GAP, #BPM
+* context menu added when not clicking a specific item
+  > useful to show all songs in the tree again
 
 COVER DOWNLOADS
 * available as plugins now
@@ -131,7 +133,6 @@ AMAZON COVER DOWNLOAD
   > signatures become mandatory at 15th August 2009
 * "Secret Access Key" of AWS Accounts needed to sign each request
   > NOT shareable -> user needs his own account
-  > one-click-experience of cover download not that easy anymore :'(
 
 KEYBOARD SHORTCUTS
 * CTRL + [1..6] show/hide dock widgets (details, tasks, media player ...)
