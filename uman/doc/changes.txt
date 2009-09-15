@@ -149,6 +149,9 @@ TASKS
 * added file tags as targets for "Song/ID3-tag tasks"
 * added some song tags as sources for "Song/ID3-tag tasks"
 
+PICTURE PREVIEW
+* dialog width will be saved and restored for the next picture
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 LIBTAG.DLL

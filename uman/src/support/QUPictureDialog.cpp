@@ -4,10 +4,8 @@
 #include <QPixmap>
 #include <QVBoxLayout>
 #include <QFileInfo>
-
-//#include <QIcon>
-//#include <QGraphicsScene>
-//#include <QGraphicsPixmapItem>
+#include <QSettings>
+#include <QVariant>
 
 QUPictureDialog::QUPictureDialog(const QString &filePath, QWidget *parent): QDialog(parent), _filePath(filePath) {
 	setupUi(this);
@@ -31,7 +29,7 @@ QUPictureDialog::QUPictureDialog(const QString &filePath, QWidget *parent): QDia
 	if(gfx->pixmap()) {
 		double ratio = (double)gfx->pixmap()->height() / (double)gfx->pixmap()->width();
 		if((ratio <= 2.0) and (ratio >= 0.5))
-			this->resize(INITIAL_WIDTH, (int)(ratio * INITIAL_WIDTH) + EXTRA_HEIGHT);
+			this->resize(initialWidth(), (int)(ratio * initialWidth()) + EXTRA_HEIGHT);
 	}
 
 	// show file information
@@ -73,4 +71,21 @@ void QUPictureDialog::fullPicture() {
 		return;
 
 	gfx->setPixmap(QPixmap(_filePath));
+}
+
+int QUPictureDialog::initialWidth() const {
+	return QSettings().value("pictureDialogWidth", "400").toInt();
+}
+
+void QUPictureDialog::saveInitialWidth() {
+	QSettings().setValue("pictureDialogWidth", width());
+}
+
+void QUPictureDialog::accept() {
+	saveInitialWidth();
+	QDialog::accept();
+}
+void QUPictureDialog::reject() {
+	saveInitialWidth();
+	QDialog::reject();
 }
