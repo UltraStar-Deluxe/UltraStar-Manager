@@ -52,11 +52,11 @@ HEADERS += plugins/QUPluginManager.h \
 	remoteimages/QUHelpButton.h \
     preferences/QUCustomTagsDialog.h \
     preferences/QUTagOrderDialog.h \
-    playlist/QUPlaylistArea.h \
-    playlist/QUPlaylistFile.h \
-    playlist/QUPlaylistEntry.h \
-    playlist/QUPlayListItem.h \
-    playlist/QUPlayList.h \
+	playlist/QUPlaylistFile.h \
+	playlist/QUPlaylistEntry.h \
+	playlistdetails/QUPlaylistArea.h \
+	playlistdetails/QUPlayListItem.h \
+	playlistdetails/QUPlayList.h \
     preview/QUPreviewTree.h \
     report/QUSongFileData.h \
     report/QUPlainTextReport.h \
@@ -120,11 +120,11 @@ SOURCES += plugins/QUPluginManager.cpp \
 	remoteimages/QUHelpButton.cpp \
     preferences/QUCustomTagsDialog.cpp \
     preferences/QUTagOrderDialog.cpp \
-    playlist/QUPlaylistArea.cpp \
-    playlist/QUPlaylistFile.cpp \
-    playlist/QUPlaylistEntry.cpp \
-    playlist/QUPlayListItem.cpp \
-	playlist/QUPlayList.cpp \
+	playlist/QUPlaylistFile.cpp \
+	playlist/QUPlaylistEntry.cpp \
+	playlistdetails/QUPlaylistArea.cpp \
+	playlistdetails/QUPlayListItem.cpp \
+	playlistdetails/QUPlayList.cpp \
     preview/QUPreviewTree.cpp \
     report/QUSongFileData.cpp \
     report/QUPlainTextReport.cpp \
@@ -190,6 +190,7 @@ INCLUDEPATH += . \
     tasks/taskDialog \
     preview \
     playlist \
+	playlistdetails \
     filter \
     monty \
     mediaplayer \
