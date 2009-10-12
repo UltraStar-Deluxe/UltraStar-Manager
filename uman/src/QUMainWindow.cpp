@@ -34,6 +34,7 @@
 #include "QUMonty.h"
 #include "QULogService.h"
 #include "QUSongDatabase.h"
+#include "QUPlaylistDatabase.h"
 #include "QUPluginManager.h"
 
 #include "taglib.h"
@@ -63,6 +64,7 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	setupUi(this);
 
 	songDB->setParentWidget(this);
+	playlistDB->setParentWidget(this);
 
 	initWindow();
 	initRibbonBar();
@@ -78,7 +80,8 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	initMonty();
 	initMediaPlayer();
 
-	playlistArea->refreshAllPlaylists();
+	playlistDB->reload();
+	//playlistArea->refreshAllPlaylists();
 
 	addLogMsg("Ready.", QU::Information);
 }
@@ -113,7 +116,7 @@ void QUMainWindow::closeEvent(QCloseEvent *event) {
 		}
 	}
 
-	if(playlistArea->hasUnsavedChanges()) {
+	if(playlistDB->hasUnsavedChanges()) {
 		result = QUMessageBox::information(this,
 				tr("Quit"),
 				tr("<b>Playlists</b> have been modified."),
@@ -121,7 +124,7 @@ void QUMainWindow::closeEvent(QCloseEvent *event) {
 				    << ":/control/bin.png"      << tr("Discard all changes.")
 				    << ":/marks/cancel.png"     << tr("Cancel this action."));
 		if(result == 0)
-			playlistArea->saveUnsavedChanges();
+			playlistDB->saveUnsavedChanges();
 		else if(result == 2) {
 			event->ignore();
 			return;
@@ -1199,7 +1202,7 @@ void QUMainWindow::removeFilter() {
 }
 
 void QUMainWindow::reportCreate() {
-	QUReportDialog *dlg = new QUReportDialog(songDB->songs(), songTree->visibleSongs(), playlistArea->playlists(), this);
+	QUReportDialog *dlg = new QUReportDialog(songDB->songs(), songTree->visibleSongs(), playlistDB->playlists(), this);
 
 	dlg->exec();
 

@@ -18,14 +18,12 @@ class QUPlaylistFile: public QObject {
 	Q_OBJECT
 
 public:
+	QUPlaylistFile(QObject *parent = 0);
 	QUPlaylistFile(const QString &filePath, QObject *parent = 0);
 	~QUPlaylistFile();
 
 	void connectSongs();
 	void disconnectSongs();
-
-	static QDir dir();
-	static void setDir(const QDir &dir);
 
 	bool save();
 
@@ -37,6 +35,7 @@ public:
 
 	int count() const { return _playlist.count(); }
 	QUPlaylistEntry* entry(int index);
+	QUPlaylistEntry* last();
 
 	bool hasUnsavedChanges() const;
 
@@ -47,6 +46,12 @@ public:
 	void changeOrder(const QList<QUPlaylistEntry*> &newOrder);
 
 	QList<QUSongFile*> connectedSongs() const;
+
+signals:
+	void dataChanged();
+
+protected:
+	void load();
 
 private:
 	QFileInfo               _fi;

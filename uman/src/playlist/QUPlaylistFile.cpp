@@ -1,43 +1,22 @@
 #include "QUPlaylistFile.h"
 #include "QULogService.h"
+#include "QUPlaylistDatabase.h"
 
 #include <QFile>
 #include <QRegExp>
 
+QUPlaylistFile::QUPlaylistFile(QObject *parent):
+		QObject(parent),
+		_nameChanged(false),
+		_playlistChanged(false)
+{
+	_fi.setFile(playlistDB->dir(), "unnamed.upl");
+	setName(tr("New Playlist"));
+}
+
 QUPlaylistFile::QUPlaylistFile(const QString &filePath, QObject *parent): QObject(parent), _nameChanged(false), _playlistChanged(false) {
 	_fi.setFile(filePath);
-
-	QFile file(filePath);
-
-	if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		QString line = QString::fromLocal8Bit(file.readLine()).trimmed();
-
-		while(!line.startsWith(QString("#%1:").arg(SONGS_TAG), Qt::CaseInsensitive)) {
-			if(line.startsWith(QString("#%1:").arg(NAME_TAG), Qt::CaseInsensitive))
-				_name = line.mid(QString("#%1:").arg(NAME_TAG).length()).trimmed();
-			else if(line.startsWith("#"))
-				_comments << line;
-
-			if(file.atEnd())
-				break;
-
-			line = QString::fromLocal8Bit(file.readLine()).trimmed();
-		}
-
-		while(!file.atEnd()) {
-			if(!line.startsWith(QString("#%1:").arg(SONGS_TAG), Qt::CaseInsensitive))
-				_playlist.append(new QUPlaylistEntry(line.section(":", 0, 0).trimmed(), line.section(":", 1, 1).trimmed(), this));
-
-			line = QString::fromLocal8Bit(file.readLine()).trimmed();
-		}
-
-		// use last line buffer
-		// TODO: a little bit dirty here (duplicate code)
-		if(!line.startsWith(QString("#%1:").arg(SONGS_TAG), Qt::CaseInsensitive))
-			_playlist.append(new QUPlaylistEntry(line.section(":", 0, 0).trimmed(), line.section(":", 1, 1).trimmed(), this));
-
-		file.close();
-	}
+	load();
 }
 
 QUPlaylistFile::~QUPlaylistFile() {
@@ -52,42 +31,18 @@ QUPlaylistFile::~QUPlaylistFile() {
  * to succeed.
  */
 void QUPlaylistFile::connectSongs() {
-	foreach(QUPlaylistEntry *entry, _playlist) {
+	foreach(QUPlaylistEntry *entry, _playlist)
 		entry->connectSong();
-	}
 }
 
 /*!
  * Removes the connections to songs in all playlist entries.
  */
 void QUPlaylistFile::disconnectSongs() {
-	foreach(QUPlaylistEntry *entry, _playlist) {
+	foreach(QUPlaylistEntry *entry, _playlist)
 		entry->disconnectSong();
-	}
 }
 
-/*!
- * \returns directory of the current playlistFile location
- */
-QDir QUPlaylistFile::dir() {
-	QSettings settings;
-
-	if(!settings.contains("playlistFilePath")) {
-		QDir defaultDir = QU::BaseDir;
-		defaultDir.cdUp();
-		defaultDir.cd("playlists"); // default location of playlistFiles, relative to song dir
-
-		settings.setValue("playlistFilePath", defaultDir.path());
-	}
-
-	return QDir(settings.value("playlistFilePath").toString());
-}
-
-void QUPlaylistFile::setDir(const QDir &dir) {
-	QSettings settings;
-
-	settings.setValue("playlistFilePath", dir.path());
-}
 
 bool QUPlaylistFile::save() {
 	QFile file(_fi.filePath());
@@ -129,6 +84,10 @@ QUPlaylistEntry* QUPlaylistFile::entry(int index) {
 		return 0;
 
 	return _playlist.at(index);
+}
+
+QUPlaylistEntry* QUPlaylistFile::last() {
+	return entry(count() - 1);
 }
 
 bool QUPlaylistFile::hasUnsavedChanges() const {
@@ -207,4 +166,40 @@ QList<QUSongFile*> QUPlaylistFile::connectedSongs() const {
 	}
 
 	return result;
+}
+
+void QUPlaylistFile::load() {
+	QFile file(_fi.filePath());
+
+	if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		QString line = QString::fromLocal8Bit(file.readLine()).trimmed();
+
+		while(!line.startsWith(QString("#%1:").arg(SONGS_TAG), Qt::CaseInsensitive)) {
+			if(line.startsWith(QString("#%1:").arg(NAME_TAG), Qt::CaseInsensitive))
+				_name = line.mid(QString("#%1:").arg(NAME_TAG).length()).trimmed();
+			else if(line.startsWith("#"))
+				_comments << line;
+
+			if(file.atEnd())
+				break;
+
+			line = QString::fromLocal8Bit(file.readLine()).trimmed();
+		}
+
+		while(!file.atEnd()) {
+			if(!line.startsWith(QString("#%1:").arg(SONGS_TAG), Qt::CaseInsensitive))
+				_playlist.append(new QUPlaylistEntry(line.section(":", 0, 0).trimmed(), line.section(":", 1, 1).trimmed(), this));
+
+			line = QString::fromLocal8Bit(file.readLine()).trimmed();
+		}
+
+		// use last line buffer
+		// TODO: a little bit dirty here (duplicate code)
+		if(!line.startsWith(QString("#%1:").arg(SONGS_TAG), Qt::CaseInsensitive))
+			_playlist.append(new QUPlaylistEntry(line.section(":", 0, 0).trimmed(), line.section(":", 1, 1).trimmed(), this));
+
+		file.close();
+	}
+
+	connectSongs();
 }

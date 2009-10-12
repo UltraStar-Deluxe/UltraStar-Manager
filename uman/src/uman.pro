@@ -8,21 +8,22 @@ RCC_DIR = tmp
 QT += core \
     gui \
     xml \
-	network
-#CONFIG -= debug_and_release
-#CONFIG += debug
+    network
+
+# CONFIG -= debug_and_release
+# CONFIG += debug
 HEADERS += plugins/QUPluginManager.h \
-	plugins/QUPluginDialog.h \
-	plugins/QUPluginModel.h \
-	plugins/QUPluginDelegate.h \
+    plugins/QUPluginDialog.h \
+    plugins/QUPluginModel.h \
+    plugins/QUPluginDelegate.h \
     plugins/QUTaskPlugin.h \
     plugins/QUTaskFactoryProxy.h \
-	plugins/QUSmartSettingInterface.h \
-	plugins/QURemoteImageSourcePlugin.h \
-	plugins/QUCommunicatorInterface.h \
-	plugins/QUSimpleCommunicator.h \
+    plugins/QUSmartSettingInterface.h \
+    plugins/QURemoteImageSourcePlugin.h \
+    plugins/QUCommunicatorInterface.h \
+    plugins/QUSimpleCommunicator.h \
     main.h \
-	QU.h \
+    QU.h \
     QUMonty.h \
     QUAboutDialog.h \
     QUMainWindow.h \
@@ -31,7 +32,7 @@ HEADERS += plugins/QUPluginManager.h \
     song/QUSongInterface.h \
     song/QUSongFile.h \
     song/QUSongLine.h \
-	song/QUSongDatabase.h \
+    song/QUSongDatabase.h \
     mediaplayer/QUAutoCue.h \
     mediaplayer/QUMediaPlayer.h \
     support/QULogService.h \
@@ -42,21 +43,24 @@ HEADERS += plugins/QUPluginManager.h \
     monty/QUMontyArea.h \
     filter/QUFilterArea.h \
     filter/QUMetaphoneString.h \
-	remoteimages/QUCoverItemDelegate.h \
-	remoteimages/QUCoverModel.h \
-	remoteimages/QUCoverList.h \
-	remoteimages/QUCoverGroup.h \
-	remoteimages/QURemoteImageDialog.h \
-	remoteimages/QUPropertyTable.h \
-	remoteimages/QUFieldDelegate.h \
-	remoteimages/QUHelpButton.h \
+    remoteimages/QUCoverItemDelegate.h \
+    remoteimages/QUCoverModel.h \
+    remoteimages/QUCoverList.h \
+    remoteimages/QUCoverGroup.h \
+    remoteimages/QURemoteImageDialog.h \
+    remoteimages/QUPropertyTable.h \
+    remoteimages/QUFieldDelegate.h \
+    remoteimages/QUHelpButton.h \
     preferences/QUCustomTagsDialog.h \
     preferences/QUTagOrderDialog.h \
-	playlist/QUPlaylistFile.h \
-	playlist/QUPlaylistEntry.h \
-	playlistdetails/QUPlaylistArea.h \
-	playlistdetails/QUPlayListItem.h \
-	playlistdetails/QUPlayList.h \
+    playlist/QUPlaylistFile.h \
+    playlist/QUPlaylistEntry.h \
+	playlist/QUPlaylistDatabase.h \
+    playlistdetails/QUPlaylistArea.h \
+    playlistdetails/QUPlayListItem.h \
+    playlistdetails/QUPlayList.h \
+	playlistdetails/QUPlaylistModel.h \
+	playlistdetails/QUPlaylistDBModel.h \
     preview/QUPreviewTree.h \
     report/QUSongFileData.h \
     report/QUPlainTextReport.h \
@@ -67,7 +71,7 @@ HEADERS += plugins/QUPluginManager.h \
     report/QUSongTagData.h \
     report/QUAbstractReportData.h \
     report/QUReportDialog.h \
-	report/QUPdfReport.h \
+    report/QUPdfReport.h \
     songtree/QUColumnAction.h \
     songtree/QUSongTree.h \
     songtree/QUSongItem.h \
@@ -84,17 +88,18 @@ HEADERS += plugins/QUPluginManager.h \
     lyricseditor/QUSongLineDelegate.h \
     lyricseditor/QULyricsEditorDialog.h \
     lyricseditor/QUSyllableDelegate.h \
-	preferences/QUPathsDialog.h \
+    preferences/QUPathsDialog.h \
 	score/QUScoreFile.h
-	#support/qkFileWatcher.h
+
+# support/qkFileWatcher.h
 SOURCES += plugins/QUPluginManager.cpp \
-	plugins/QUPluginDialog.cpp \
-	plugins/QUPluginModel.cpp \
-	plugins/QUPluginDelegate.cpp \
+    plugins/QUPluginDialog.cpp \
+    plugins/QUPluginModel.cpp \
+    plugins/QUPluginDelegate.cpp \
     plugins/QUTaskFactoryProxy.cpp \
-	plugins/QUSimpleCommunicator.cpp \
+    plugins/QUSimpleCommunicator.cpp \
     main.cpp \
-	QU.cpp \
+    QU.cpp \
     QUAboutDialog.cpp \
     QUMainWindow.cpp \
     QUMonty.cpp \
@@ -110,21 +115,24 @@ SOURCES += plugins/QUPluginManager.cpp \
     monty/QUMontyArea.cpp \
     filter/QUFilterArea.cpp \
     filter/QUMetaphoneString.cpp \
-	remoteimages/QUCoverItemDelegate.cpp \
-	remoteimages/QUCoverModel.cpp \
-	remoteimages/QUCoverList.cpp \
-	remoteimages/QUCoverGroup.cpp \
-	remoteimages/QURemoteImageDialog.cpp \
-	remoteimages/QUPropertyTable.cpp \
-	remoteimages/QUFieldDelegate.cpp \
-	remoteimages/QUHelpButton.cpp \
+    remoteimages/QUCoverItemDelegate.cpp \
+    remoteimages/QUCoverModel.cpp \
+    remoteimages/QUCoverList.cpp \
+    remoteimages/QUCoverGroup.cpp \
+    remoteimages/QURemoteImageDialog.cpp \
+    remoteimages/QUPropertyTable.cpp \
+    remoteimages/QUFieldDelegate.cpp \
+    remoteimages/QUHelpButton.cpp \
     preferences/QUCustomTagsDialog.cpp \
     preferences/QUTagOrderDialog.cpp \
-	playlist/QUPlaylistFile.cpp \
-	playlist/QUPlaylistEntry.cpp \
-	playlistdetails/QUPlaylistArea.cpp \
-	playlistdetails/QUPlayListItem.cpp \
-	playlistdetails/QUPlayList.cpp \
+    playlist/QUPlaylistFile.cpp \
+    playlist/QUPlaylistEntry.cpp \
+	playlist/QUPlaylistDatabase.cpp \
+    playlistdetails/QUPlaylistArea.cpp \
+    playlistdetails/QUPlayListItem.cpp \
+    playlistdetails/QUPlayList.cpp \
+	playlistdetails/QUPlaylistModel.cpp \
+	playlistdetails/QUPlaylistDBModel.cpp \
     preview/QUPreviewTree.cpp \
     report/QUSongFileData.cpp \
     report/QUPlainTextReport.cpp \
@@ -135,7 +143,7 @@ SOURCES += plugins/QUPluginManager.cpp \
     report/QUSongTagData.cpp \
     report/QUAbstractReportData.cpp \
     report/QUReportDialog.cpp \
-	report/QUPdfReport.cpp \
+    report/QUPdfReport.cpp \
     songtree/QUColumnAction.cpp \
     songtree/QUSongTree.cpp \
     songtree/QUSongItem.cpp \
@@ -145,7 +153,7 @@ SOURCES += plugins/QUPluginManager.cpp \
     songdetails/QUDetailItem.cpp \
     song/QUSongLine.cpp \
     song/QUSongFile.cpp \
-	song/QUSongDatabase.cpp \
+    song/QUSongDatabase.cpp \
     tasks/QUTaskList.cpp \
     tasks/QUTaskItem.cpp \
     ribbon/QURibbonBar.cpp \
@@ -155,16 +163,17 @@ SOURCES += plugins/QUPluginManager.cpp \
     lyricseditor/QUSongLineDelegate.cpp \
     lyricseditor/QULyricsEditorDialog.cpp \
     lyricseditor/QUSyllableDelegate.cpp \
-	preferences/QUPathsDialog.cpp \
+    preferences/QUPathsDialog.cpp \
 	score/QUScoreFile.cpp
-	#support/qkFileWatcher.cpp
+
+# support/qkFileWatcher.cpp
 FORMS += plugins/QUPluginDialog.ui \
     QUMainWindow.ui \
     QUAboutDialog.ui \
     mediaplayer/QUMediaPlayer.ui \
     monty/QUMontyArea.ui \
     filter/QUFilterArea.ui \
-    playlist/QUPlaylistArea.ui \
+	playlistdetails/QUPlaylistArea.ui \
     report/QUReportDialog.ui \
     support/QUPictureDialog.ui \
     support/QUMessageBox.ui \
@@ -175,12 +184,12 @@ FORMS += plugins/QUPluginDialog.ui \
     ribbon/QURibbonBar.ui \
     slideshow/QUSlideShowDialog.ui \
     lyricseditor/QULyricsEditorDialog.ui \
-	preferences/QUPathsDialog.ui \
-	remoteimages/QURemoteImageDialog.ui \
-	remoteimages/QUCoverGroup.ui
+    preferences/QUPathsDialog.ui \
+    remoteimages/QURemoteImageDialog.ui \
+    remoteimages/QUCoverGroup.ui
 RESOURCES += resources/uman.qrc
 TRANSLATIONS = resources/lang/uman.de.ts \
-	resources/lang/uman.pl.ts
+    resources/lang/uman.pl.ts
 INCLUDEPATH += . \
     song \
     songdetails \
@@ -190,7 +199,7 @@ INCLUDEPATH += . \
     tasks/taskDialog \
     preview \
     playlist \
-	playlistdetails \
+    playlistdetails \
     filter \
     monty \
     mediaplayer \
@@ -200,9 +209,9 @@ INCLUDEPATH += . \
     plugins \
     ribbon \
     slideshow \
-	lyricseditor \
-	score \
-	remoteimages
+    lyricseditor \
+    score \
+    remoteimages
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib \
@@ -225,7 +234,9 @@ revtarget.commands = @echo \
     char \
     *date_time \
     = \
-	\"$(shell date /T)$(shell time /T)\";" > $$revtarget.target
+    \"$(shell date /T)$(shell time /T)\";" \
+    > \
+    $$revtarget.target
 revtarget.depends = $$SOURCES \
     $$HEADERS \
     $$FORMS

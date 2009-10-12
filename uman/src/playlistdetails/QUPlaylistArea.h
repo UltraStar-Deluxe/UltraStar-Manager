@@ -17,23 +17,17 @@ class QUPlaylistArea: public QWidget, private Ui::QUPlaylistArea {
 public:
 	QUPlaylistArea(QWidget *parent = 0);
 
-	QList<QUPlaylistFile*> playlists() const { return _playlists; }
 	QUPlaylistFile* currentPlaylist() const;
 
 public slots:
-	void refreshAllPlaylists();
-	void disconnectPlaylists();
-
+	void reset();
 	void update();
-	void updateAll();
 
 	void addSongToCurrentPlaylist(QUSongFile *song);
 
-	bool hasUnsavedChanges();
-	void saveUnsavedChanges();
-
 private slots:
-	void createPlaylistFiles();
+	void integratePlaylist(QUPlaylistFile *playlist);
+//	void createPlaylistFiles();
 	void setCurrentPlaylist(int index);
 
 	void updatePlaylistCombo();
@@ -42,9 +36,6 @@ private slots:
 
 	void saveCurrentPlaylist();
 	void saveCurrentPlaylistAs();
-
-	void addPlaylist();
-	void addPlaylist(const QString &filePath);
 
 	void changePlaylistDir();
 
@@ -55,8 +46,6 @@ private slots:
 	void changeCurrentPlaylistOrder(QList<QUPlaylistEntry*> newOrder);
 
 private:
-	QList<QUPlaylistFile*>  _playlists;
-
 	int currentPlaylistIndex(int index = -1) const;
 	void setAreaEnabled(bool enabled = true);
 };

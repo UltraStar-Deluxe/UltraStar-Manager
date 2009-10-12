@@ -7,23 +7,18 @@
 #include "QUPlayListItem.h"
 
 #include <QDir>
-#include <QListWidget>
-#include <QListWidgetItem>
+#include <QListView>
 #include <QKeyEvent>
 #include <QDropEvent>
 
-class QUPlayList: public QListWidget {
+class QUPlayList: public QListView {
 	Q_OBJECT
 
 public:
 	QUPlayList(QWidget *parent = 0);
 
-	void setItems(QUPlaylistFile *playlist);
-	void appendItem(QUPlaylistEntry *entry);
-
 public slots:
 	void showContextMenu(const QPoint &point);
-	void updateItems();
 
 protected:
 	virtual void keyPressEvent(QKeyEvent *event);
