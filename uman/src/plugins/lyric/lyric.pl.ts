@@ -34,36 +34,58 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="72"/>
-        <location filename="QULyricTask.cpp" line="158"/>
-        <location filename="QULyricTask.cpp" line="198"/>
-        <location filename="QULyricTask.cpp" line="222"/>
+        <location filename="QULyricTask.cpp" line="38"/>
+        <source>Convert relative to absolute timestamps</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QULyricTask.cpp" line="43"/>
+        <source>Convert absolute to relative timestamps</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QULyricTask.cpp" line="88"/>
+        <location filename="QULyricTask.cpp" line="150"/>
+        <location filename="QULyricTask.cpp" line="190"/>
+        <location filename="QULyricTask.cpp" line="214"/>
+        <location filename="QULyricTask.cpp" line="240"/>
+        <location filename="QULyricTask.cpp" line="288"/>
         <source>Invalid lyrics: %1 - %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="87"/>
+        <location filename="QULyricTask.cpp" line="103"/>
         <source>#GAP changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="148"/>
+        <location filename="QULyricTask.cpp" line="140"/>
         <source>Timestamps were changed successfully for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="190"/>
+        <location filename="QULyricTask.cpp" line="182"/>
         <source>Spaces were fixed successfully for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="217"/>
+        <location filename="QULyricTask.cpp" line="209"/>
         <source>Empty syllables were removed successfully for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="236"/>
+        <location filename="QULyricTask.cpp" line="228"/>
         <source>Syllable placeholders were converted successfully from &apos;%3&apos; to &apos;%4&apos; for &quot;%1 - %2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QULyricTask.cpp" line="278"/>
+        <source>Relative timestamps converted successfully to absolute timestamps for &quot;%1 - %2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QULyricTask.cpp" line="319"/>
+        <source>Absolute timestamps converted successfully to relative timestamps for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -83,15 +105,38 @@
 <context>
     <name>QULyricTaskFactory</name>
     <message>
-        <location filename="QULyricTaskFactory.cpp" line="8"/>
+        <location filename="QULyricTaskFactory.cpp" line="11"/>
         <source>Lyric Tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QULyricTaskFactory.cpp" line="15"/>
+        <source>Modify a song&apos;s lyrics.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QUMultilingualTaskFactory</name>
+    <message>
+        <location filename="../shared/QUMultilingualTaskFactory.h" line="25"/>
+        <source>Unnamed plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shared/QUMultilingualTaskFactory.h" line="27"/>
+        <source>Unknown person</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shared/QUMultilingualTaskFactory.h" line="28"/>
+        <source>No description given.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QUSimpleTaskFactory</name>
     <message>
-        <location filename="../shared/QUSimpleTaskFactory.h" line="23"/>
+        <location filename="../shared/QUSimpleTaskFactory.h" line="16"/>
         <source>Simple Task</source>
         <translation type="unfinished"></translation>
     </message>
@@ -99,7 +144,7 @@
 <context>
     <name>QUSmartSetting</name>
     <message>
-        <location filename="../QUSmartSetting.cpp" line="30"/>
+        <location filename="../shared/QUSmartSetting.cpp" line="30"/>
         <source>Reset to default value.</source>
         <translation type="unfinished"></translation>
     </message>

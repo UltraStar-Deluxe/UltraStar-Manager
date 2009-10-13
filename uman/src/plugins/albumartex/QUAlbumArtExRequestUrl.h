@@ -4,6 +4,8 @@
 #include "QURequestUrl.h"
 
 class QUAlbumArtExRequestUrl: public QURequestUrl {
+	Q_OBJECT
+
 public:
 	enum SortBy {
 		Artist = 1,

@@ -4,6 +4,8 @@
 #include "QUSimpleTaskFactory.h"
 
 class QULyricTaskFactory: public QUSimpleTaskFactory {
+	Q_OBJECT
+
 public:
 	QULyricTaskFactory(QObject *parent = 0);
 

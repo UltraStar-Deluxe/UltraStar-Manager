@@ -58,12 +58,12 @@
 <context>
     <name>QUAudioTagTask</name>
     <message>
-        <location filename="QUAudioTagTask.cpp" line="68"/>
+        <location filename="QUAudioTagTask.cpp" line="77"/>
         <source>The song tag &quot;%1&quot; of &quot;%4 - %5&quot; was changed from &quot;%2&quot; to &quot;%3&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUAudioTagTask.cpp" line="75"/>
+        <location filename="QUAudioTagTask.cpp" line="84"/>
         <source>The song tag &quot;%1&quot; is NOT VALID.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -71,12 +71,12 @@
 <context>
     <name>QUAudioTagTaskDialog</name>
     <message>
-        <location filename="QUAudioTagTaskDialog.cpp" line="23"/>
+        <location filename="QUAudioTagTaskDialog.cpp" line="31"/>
         <source>Add Song/ID3 Tag Task</source>
         <translation type="unfinished">Song/ID3-Tag-Aufgabe hinzuf??</translation>
     </message>
     <message>
-        <location filename="QUAudioTagTaskDialog.cpp" line="18"/>
+        <location filename="QUAudioTagTaskDialog.cpp" line="26"/>
         <source>Select a proper &lt;b&gt;target tag&lt;/b&gt; and create a custom &lt;b&gt;schema&lt;/b&gt; for the operation. You can use &lt;b&gt;custom tags&lt;/b&gt; as targets.</source>
         <translation type="unfinished">W?e einen passenden &lt;b&gt;Ziel-Tag&lt;/b&gt; und erzeuge ein benutzerdefiniertes &lt;b&gt;Schema&lt;/b&gt; f??ie Operation. Du kannst &lt;b&gt;benutzerdefinierte Tags&lt;/b&gt; als Ziel nutzen.</translation>
     </message>
@@ -93,6 +93,29 @@
         <source>Song/ID3 Tag Task</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="QUAudioTagTaskFactory.cpp" line="18"/>
+        <source>Use meta-data from audio files to edit a song.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QUMultilingualTaskFactory</name>
+    <message>
+        <location filename="../shared/QUMultilingualTaskFactory.h" line="25"/>
+        <source>Unnamed plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shared/QUMultilingualTaskFactory.h" line="27"/>
+        <source>Unknown person</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shared/QUMultilingualTaskFactory.h" line="28"/>
+        <source>No description given.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QUScriptableTask</name>
@@ -105,7 +128,7 @@
 <context>
     <name>QUSmartSetting</name>
     <message>
-        <location filename="../QUSmartSetting.cpp" line="30"/>
+        <location filename="../shared/QUSmartSetting.cpp" line="30"/>
         <source>Reset to default value.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -235,12 +258,12 @@
         <translation>Neue Aufgabe</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.cpp" line="139"/>
+        <location filename="../shared/QUTaskDialog.cpp" line="135"/>
         <source>Save task config</source>
         <translation>Speichere Aufgaben-Konfiguration</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.cpp" line="139"/>
+        <location filename="../shared/QUTaskDialog.cpp" line="135"/>
         <source>Task Configurations (*.xml)</source>
         <translation>Aufgaben (*.xml)</translation>
     </message>

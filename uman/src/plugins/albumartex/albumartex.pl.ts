@@ -2,43 +2,41 @@
 <!DOCTYPE TS>
 <TS version="2.0">
 <context>
-    <name>QUAmazonImageCollector</name>
+    <name>QUAlbumArtExCollector</name>
     <message>
-        <location filename="QUAmazonImageCollector.cpp" line="32"/>
-        <source>Invalid request.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="QUAmazonImageCollector.cpp" line="44"/>
+        <location filename="QUAlbumArtExCollector.cpp" line="64"/>
         <source>No results, %1 ignored.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUAmazonImageCollector.cpp" line="46"/>
+        <location filename="QUAlbumArtExCollector.cpp" line="66"/>
         <source>No results.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>QUAmazonImageSource</name>
+    <name>QUAlbumArtExImageSource</name>
     <message>
-        <location filename="QUAmazonImageSource.cpp" line="12"/>
-        <source>&lt;b&gt;What is an &apos;Access Key ID&apos;?&lt;/b&gt;&lt;br&gt;&lt;br&gt;This public key identifies you as the party responsible for the request. It belongs to an Amazon Web Services Account. All free services require you to send this key along with the request.&lt;br&gt;&lt;br&gt;You get your own key if you &lt;a href=&quot;https://aws-portal.amazon.com/gp/aws/developer/registration/index.html&quot;&gt;create an AWS Account&lt;/a&gt;.</source>
+        <location filename="QUAlbumArtExImageSource.cpp" line="20"/>
+        <source>Let&apos;s you specify the result order. This helps you to better handle the download limit.&lt;br&gt;&lt;br&gt;1 ... by artist&lt;br&gt;2 ... by composer&lt;br&gt;3 ... by title&lt;br&gt;4 ... by date&lt;br&gt;5 ... by poster&lt;br&gt;6 ... by  most viewed&lt;br&gt;7 ... by rating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUAmazonImageSource.cpp" line="16"/>
-        <source>&lt;b&gt;What is a &apos;Secret Access Key&apos;?&lt;/b&gt;&lt;br&gt;&lt;br&gt;This secret key is used to calculate a signature to include in requests to the Amazon Product Advertising API which requires this kind of authentication. It should be known only by you and AWS. That&apos;s why each user of a desktop application like this one needs his own key.&lt;br&gt;&lt;br&gt;You get your own key if you &lt;a href=&quot;https://aws-portal.amazon.com/gp/aws/developer/registration/index.html&quot;&gt;create an AWS Account&lt;/a&gt;.</source>
+        <location filename="QUAlbumArtExImageSource.cpp" line="22"/>
+        <source>Show only special kinds of images:&lt;br&gt;&lt;br&gt;1 ... all images&lt;br&gt;2 ... ready-to-go images&lt;br&gt;3 ... &quot;needs work&quot; images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUAmazonImageSource.cpp" line="20"/>
-        <source>There is no help for this field. Try to figure it out by yourself.</source>
+        <location filename="QUAlbumArtExImageSource.h" line="17"/>
+        <source>Get splendid covers with high resolution for your songs.</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>QUAlbumArtExRequestUrl</name>
     <message>
-        <location filename="QUAmazonImageSource.h" line="17"/>
-        <source>Get song covers from Amazon.</source>
+        <location filename="QUAlbumArtExRequestUrl.cpp" line="20"/>
+        <source>[albumartex - search] </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

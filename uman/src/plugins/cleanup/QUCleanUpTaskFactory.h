@@ -4,6 +4,8 @@
 #include "QUSimpleTaskFactory.h"
 
 class QUCleanUpTaskFactory: public QUSimpleTaskFactory {
+	Q_OBJECT
+
 public:
 	QUCleanUpTaskFactory(QObject *parent = 0);
 

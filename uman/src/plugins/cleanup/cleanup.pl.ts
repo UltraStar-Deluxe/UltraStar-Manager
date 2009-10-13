@@ -32,15 +32,38 @@
 <context>
     <name>QUCleanUpTaskFactory</name>
     <message>
-        <location filename="QUCleanUpTaskFactory.cpp" line="8"/>
+        <location filename="QUCleanUpTaskFactory.cpp" line="11"/>
         <source>Clean-Up Tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUCleanUpTaskFactory.cpp" line="15"/>
+        <source>Remove obsolete song data or delete unused files.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QUMultilingualTaskFactory</name>
+    <message>
+        <location filename="../shared/QUMultilingualTaskFactory.h" line="25"/>
+        <source>Unnamed plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shared/QUMultilingualTaskFactory.h" line="27"/>
+        <source>Unknown person</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shared/QUMultilingualTaskFactory.h" line="28"/>
+        <source>No description given.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QUSimpleTaskFactory</name>
     <message>
-        <location filename="../shared/QUSimpleTaskFactory.h" line="23"/>
+        <location filename="../shared/QUSimpleTaskFactory.h" line="16"/>
         <source>Simple Task</source>
         <translation type="unfinished"></translation>
     </message>
@@ -48,7 +71,7 @@
 <context>
     <name>QUSmartSetting</name>
     <message>
-        <location filename="../QUSmartSetting.cpp" line="30"/>
+        <location filename="../shared/QUSmartSetting.cpp" line="30"/>
         <source>Reset to default value.</source>
         <translation type="unfinished"></translation>
     </message>

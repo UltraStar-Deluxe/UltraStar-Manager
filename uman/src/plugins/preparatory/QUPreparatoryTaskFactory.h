@@ -4,6 +4,8 @@
 #include "QUSimpleTaskFactory.h"
 
 class QUPreparatoryTaskFactory: public QUSimpleTaskFactory {
+	Q_OBJECT
+
 public:
 	QUPreparatoryTaskFactory(QObject *parent = 0);
 

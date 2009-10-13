@@ -120,9 +120,27 @@
     </message>
 </context>
 <context>
+    <name>QUMultilingualTaskFactory</name>
+    <message>
+        <location filename="../shared/QUMultilingualTaskFactory.h" line="25"/>
+        <source>Unnamed plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shared/QUMultilingualTaskFactory.h" line="27"/>
+        <source>Unknown person</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shared/QUMultilingualTaskFactory.h" line="28"/>
+        <source>No description given.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QURenameTask</name>
     <message>
-        <location filename="QURenameTask.cpp" line="101"/>
+        <location filename="QURenameTask.cpp" line="104"/>
         <source>Invalid target: %1</source>
         <translation>Błędny obiekt docelowy: %1</translation>
     </message>
@@ -130,12 +148,12 @@
 <context>
     <name>QURenameTaskDialog</name>
     <message>
-        <location filename="QURenameTaskDialog.cpp" line="24"/>
+        <location filename="QURenameTaskDialog.cpp" line="25"/>
         <source>Add Rename Task</source>
         <translation>Dodaj Zadanie Zmiany Nazwy</translation>
     </message>
     <message>
-        <location filename="QURenameTaskDialog.cpp" line="19"/>
+        <location filename="QURenameTaskDialog.cpp" line="20"/>
         <source>Select a proper &lt;b&gt;target&lt;/b&gt; and create a custom &lt;b&gt;schema&lt;/b&gt; for the renaming operation. You can use &lt;b&gt;custom tags&lt;/b&gt; as sources.</source>
         <translation>Wybierz właściwy &lt;b&gt;obiekt&lt;/b&gt; i stwórz własny &lt;b&gt;schemat&lt;/b&gt; dla modyfikowania nazw. Możesz użyć &lt;b&gt;własnych etykiet&lt;/b&gt; jako źródła.</translation>
     </message>
@@ -143,13 +161,18 @@
 <context>
     <name>QURenameTaskFactory</name>
     <message>
-        <location filename="QURenameTaskFactory.cpp" line="17"/>
+        <location filename="QURenameTaskFactory.cpp" line="10"/>
         <source>Rename Tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QURenameTaskFactory.cpp" line="21"/>
+        <location filename="QURenameTaskFactory.cpp" line="14"/>
         <source>Rename Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QURenameTaskFactory.cpp" line="18"/>
+        <source>Move or rename files and folders based on song data.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -164,7 +187,7 @@
 <context>
     <name>QUSmartSetting</name>
     <message>
-        <location filename="../QUSmartSetting.cpp" line="30"/>
+        <location filename="../shared/QUSmartSetting.cpp" line="30"/>
         <source>Reset to default value.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -294,12 +317,12 @@
         <translation>Dodaj Zadanie</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.cpp" line="139"/>
+        <location filename="../shared/QUTaskDialog.cpp" line="135"/>
         <source>Save task config</source>
         <translation>Zapisz konfigurację zadania</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.cpp" line="139"/>
+        <location filename="../shared/QUTaskDialog.cpp" line="135"/>
         <source>Task Configurations (*.xml)</source>
         <translation>Konfiguracja Zadania (*.xml)</translation>
     </message>
