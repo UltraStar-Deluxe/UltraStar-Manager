@@ -793,33 +793,24 @@ runterladen...</translation>
 <context>
     <name>QUMainWindow</name>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="106"/>
-        <location filename="../../QUMainWindow.cpp" line="121"/>
+        <location filename="../../QUMainWindow.cpp" line="107"/>
+        <location filename="../../QUMainWindow.cpp" line="122"/>
         <source>Quit</source>
         <translation>Beenden</translation>
-    </message>
-    <message>
-        <location filename="../../QUMainWindow.cpp" line="540"/>
-        <location filename="../../QUMainWindow.cpp" line="911"/>
-        <location filename="../../QUMainWindow.cpp" line="945"/>
-        <source>Songs have been modified.</source>
-        <translation>Es wurden Songs modifiziert.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="541"/>
         <location filename="../../QUMainWindow.cpp" line="912"/>
         <location filename="../../QUMainWindow.cpp" line="946"/>
-        <source>Save all changes.</source>
-        <translation>Speichere alle Änderungen.</translation>
+        <source>Songs have been modified.</source>
+        <translation>Es wurden Songs modifiziert.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="109"/>
-        <location filename="../../QUMainWindow.cpp" line="124"/>
         <location filename="../../QUMainWindow.cpp" line="542"/>
         <location filename="../../QUMainWindow.cpp" line="913"/>
         <location filename="../../QUMainWindow.cpp" line="947"/>
-        <source>Discard all changes.</source>
-        <translation>Verwerfe alle Änderungen.</translation>
+        <source>Save all changes.</source>
+        <translation>Speichere alle Änderungen.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="110"/>
@@ -827,16 +818,25 @@ runterladen...</translation>
         <location filename="../../QUMainWindow.cpp" line="543"/>
         <location filename="../../QUMainWindow.cpp" line="914"/>
         <location filename="../../QUMainWindow.cpp" line="948"/>
+        <source>Discard all changes.</source>
+        <translation>Verwerfe alle Änderungen.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMainWindow.cpp" line="111"/>
+        <location filename="../../QUMainWindow.cpp" line="126"/>
+        <location filename="../../QUMainWindow.cpp" line="544"/>
+        <location filename="../../QUMainWindow.cpp" line="915"/>
+        <location filename="../../QUMainWindow.cpp" line="949"/>
         <source>Cancel this action.</source>
         <translation>Aktion abbrechen.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="539"/>
+        <location filename="../../QUMainWindow.cpp" line="540"/>
         <source>Rebuild Song Tree</source>
         <translation>Song-Baum neu erzeugen</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="910"/>
+        <location filename="../../QUMainWindow.cpp" line="911"/>
         <source>Change Song Directory</source>
         <translation>Song-Ordner ändern</translation>
     </message>
@@ -1013,78 +1013,78 @@ runterladen...</translation>
         <translation type="obsolete">Lese Songs...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="659"/>
+        <location filename="../../QUMainWindow.cpp" line="660"/>
         <source>Audio file changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Audio-Datei geändert von: &quot;%1&quot; nach: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="665"/>
+        <location filename="../../QUMainWindow.cpp" line="666"/>
         <source>Cover changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Cover geändert von: &quot;%1&quot; nach: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="671"/>
+        <location filename="../../QUMainWindow.cpp" line="672"/>
         <source>Background changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Hintergrund geändert von: &quot;%1&quot; nach: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="677"/>
+        <location filename="../../QUMainWindow.cpp" line="678"/>
         <source>Video file changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Video geändert von: &quot;%1&quot; nach: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="693"/>
+        <location filename="../../QUMainWindow.cpp" line="694"/>
         <source>Applying new value for %1 to all selected songs...</source>
         <translation>Setze neuen Wert für %1 für alle ausgewählten Songs...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="735"/>
+        <location filename="../../QUMainWindow.cpp" line="736"/>
         <source>Applying all checked tasks to all selected songs...</source>
         <translation>Führe alle ausgewählten Aufgaben mit allen selektierten Songs aus...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="931"/>
+        <location filename="../../QUMainWindow.cpp" line="932"/>
         <source>UltraStar song directory changed to: &quot;%1&quot;.</source>
         <translation>UltraStar-Song-Verzeichnis geändert nach: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1032"/>
+        <location filename="../../QUMainWindow.cpp" line="1033"/>
         <source>Relative song paths are displayed in the song tree now.</source>
         <translation>Relative Pfade werden im Song-Baum angezeigt.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1034"/>
+        <location filename="../../QUMainWindow.cpp" line="1035"/>
         <source>Only song directories are displayed in the song tree now.</source>
         <translation>Nur die Song-Ordner werden im Song-Baum angezeigt.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1224"/>
-        <location filename="../../QUMainWindow.cpp" line="1244"/>
-        <location filename="../../QUMainWindow.cpp" line="1264"/>
+        <location filename="../../QUMainWindow.cpp" line="1225"/>
+        <location filename="../../QUMainWindow.cpp" line="1245"/>
+        <location filename="../../QUMainWindow.cpp" line="1265"/>
         <source>Change Language</source>
         <translation>Sprache ändern</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1225"/>
+        <location filename="../../QUMainWindow.cpp" line="1226"/>
         <source>Application language changed to &lt;b&gt;English&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Die Sprache der Anwendung wurde auf &lt;b&gt;Englisch&lt;/b&gt; geändert. Du musst UltraStar Manager neustarten, damit diese Änderungen wirksam werden.</translation>
-    </message>
-    <message>
-        <location filename="../../QUMainWindow.cpp" line="1226"/>
-        <location filename="../../QUMainWindow.cpp" line="1246"/>
-        <location filename="../../QUMainWindow.cpp" line="1266"/>
-        <source>Quit UltraStar Manager.</source>
-        <translation>Beende UltraStar Manager.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1227"/>
         <location filename="../../QUMainWindow.cpp" line="1247"/>
         <location filename="../../QUMainWindow.cpp" line="1267"/>
+        <source>Quit UltraStar Manager.</source>
+        <translation>Beende UltraStar Manager.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMainWindow.cpp" line="1228"/>
+        <location filename="../../QUMainWindow.cpp" line="1248"/>
+        <location filename="../../QUMainWindow.cpp" line="1268"/>
         <source>Continue.</source>
         <translation>Fortsetzen.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1245"/>
+        <location filename="../../QUMainWindow.cpp" line="1246"/>
         <source>Application language changed to &lt;b&gt;German&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Die Sprache der Anwendung wurde auf &lt;b&gt;Deutsch&lt;/b&gt; geändert. Du musst UltraStar Manager neustarten, damit diese Änderungen wirksam werden.</translation>
     </message>
@@ -1101,57 +1101,57 @@ runterladen...</translation>
         <translation type="obsolete">&amp;Deutsch</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="933"/>
+        <location filename="../../QUMainWindow.cpp" line="934"/>
         <source>Folder (%1)</source>
         <translation>Ordner (%1)</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="107"/>
+        <location filename="../../QUMainWindow.cpp" line="108"/>
         <source>&lt;b&gt;Songs&lt;/b&gt; have been modified.</source>
         <translation>&lt;b&gt;Songs&lt;/b&gt; wurden modifiziert.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="108"/>
+        <location filename="../../QUMainWindow.cpp" line="109"/>
         <source>Save all changed songs.</source>
         <translation>Speichere alle geänderten Songs.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="122"/>
+        <location filename="../../QUMainWindow.cpp" line="123"/>
         <source>&lt;b&gt;Playlists&lt;/b&gt; have been modified.</source>
         <translation>&lt;b&gt;Playlisten&lt;/b&gt; wurden modifiziert.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="123"/>
+        <location filename="../../QUMainWindow.cpp" line="124"/>
         <source>Save all changed playlists.</source>
         <translation>Speichere alle geänderten Playlisten.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="172"/>
+        <location filename="../../QUMainWindow.cpp" line="173"/>
         <source>No song directory was selected.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="214"/>
+        <location filename="../../QUMainWindow.cpp" line="215"/>
         <source>Cannot read image formats: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="232"/>
+        <location filename="../../QUMainWindow.cpp" line="233"/>
         <source>UltraStar Manager</source>
         <translation>UltraStar Manager</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="286"/>
+        <location filename="../../QUMainWindow.cpp" line="287"/>
         <source>Review pictures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="287"/>
+        <location filename="../../QUMainWindow.cpp" line="288"/>
         <source>Covers...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="288"/>
+        <location filename="../../QUMainWindow.cpp" line="289"/>
         <source>Backgrounds...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1160,7 +1160,7 @@ runterladen...</translation>
         <translation type="obsolete">Alles</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="944"/>
+        <location filename="../../QUMainWindow.cpp" line="945"/>
         <source>Custom Tags</source>
         <translation>Benutzerdefinierte Song-Tags</translation>
     </message>
@@ -1197,62 +1197,62 @@ runterladen...</translation>
         <translation type="obsolete">Song erfolgreich gelöscht: &quot;%1 - %2&quot;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="851"/>
+        <location filename="../../QUMainWindow.cpp" line="852"/>
         <source>The log file was saved to: &quot;%1&quot;</source>
         <translation>Protokoll gesichert: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="853"/>
+        <location filename="../../QUMainWindow.cpp" line="854"/>
         <source>The log file COULD NOT be saved.</source>
         <translation>Das Ereignisprotokoll konnte nicht gespeichert werden.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="870"/>
+        <location filename="../../QUMainWindow.cpp" line="871"/>
         <source>About TagLib</source>
         <translation>Über TagLib</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="871"/>
+        <location filename="../../QUMainWindow.cpp" line="872"/>
         <source>&lt;b&gt;TagLib Audio Meta-Data Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;TagLib is a library for reading and editing the meta-data of several popular audio formats.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;&lt;br&gt;Visit: &lt;a href=&quot;http://developer.kde.org/~wheeler/taglib.html&quot;&gt;TagLib Homepage&lt;/a&gt;</source>
         <translation>&lt;b&gt;TagLib Audio Meta-Data Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;TagLib ist eine Bibliothek zum Lesen und Schreiben von Metadaten vieler bekannter Audioformate.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;&lt;br&gt;Besuche: &lt;a href=&quot;http://developer.kde.org/~wheeler/taglib.html&quot;&gt;TagLib Homepage&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="882"/>
+        <location filename="../../QUMainWindow.cpp" line="883"/>
         <source>About BASS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="883"/>
+        <location filename="../../QUMainWindow.cpp" line="884"/>
         <source>&lt;b&gt;BASS Audio Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;BASS is an audio library for use in Windows and MacOSX software. Its purpose is to provide the most powerful and efficient (yet easy to use), sample, stream, MOD music, and recording functions. All in a tiny DLL, under 100KB in size.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Copyright (c) 1999-2008&lt;br&gt;&lt;a href=&quot;http://www.un4seen.com/bass.html&quot;&gt;Un4seen Developments Ltd.&lt;/a&gt; All rights reserved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="963"/>
+        <location filename="../../QUMainWindow.cpp" line="964"/>
         <source>Custom tags changed to: &quot;%1&quot;</source>
         <translation>Benutzerdefinierte Song-Tags geändert auf: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1018"/>
+        <location filename="../../QUMainWindow.cpp" line="1019"/>
         <source>Show relative song path for each song...</source>
         <translation>Zeige relativen Pfad für jeden Song...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1018"/>
+        <location filename="../../QUMainWindow.cpp" line="1019"/>
         <source>Show song folder for each song...</source>
         <translation>Zeige nur Ordner für jeden Song...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1059"/>
+        <location filename="../../QUMainWindow.cpp" line="1060"/>
         <source>Repainting song tree icons...</source>
         <translation>Zeichne Icons vom Song-Baum neu...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1138"/>
+        <location filename="../../QUMainWindow.cpp" line="1139"/>
         <source>Could NOT open file: &quot;%1&quot;.</source>
         <translation>Datei konnte NICHT geöffnet werden: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1140"/>
+        <location filename="../../QUMainWindow.cpp" line="1141"/>
         <source>File was opened successfully: &quot;%1&quot;.</source>
         <translation>Datei wurde erfolgreich geöffnet: &quot;%1&quot;.</translation>
     </message>
@@ -1399,17 +1399,17 @@ ausführen</translation>
         <translation type="obsolete">Immer im Vordergrund</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1317"/>
+        <location filename="../../QUMainWindow.cpp" line="1318"/>
         <source>Choose backup destination...</source>
         <translation>Wähle Backupziel...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1322"/>
+        <location filename="../../QUMainWindow.cpp" line="1323"/>
         <source>Backup audio files...</source>
         <translation>Audio-Backup...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1337"/>
+        <location filename="../../QUMainWindow.cpp" line="1338"/>
         <source>Backup for audio files finished.</source>
         <translation>Sicherung der Audiodateien wurde abgeschlossen.</translation>
     </message>
@@ -1426,12 +1426,12 @@ ausführen</translation>
         <translation type="obsolete">Cover von Amazon runterladen...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="990"/>
+        <location filename="../../QUMainWindow.cpp" line="991"/>
         <source>You can ask me something if you put some keywords in the &lt;i&gt;line edit&lt;/i&gt; below and &lt;i&gt;accept&lt;/i&gt;.&lt;br&gt;&lt;br&gt;I&apos;ll try to understand and answer you. Multiple answers may be possible.</source>
         <translation>Du kannst mich etwas fragen, indem du Schlüsselwörter in das &lt;i&gt;Eingabefeld&lt;/i&gt; unten eintippst und &lt;i&gt;akzeptierst&lt;/i&gt;.&lt;br&gt;&lt;br&gt;Ich werde versuchen, dies zu verstehen und dir antworten. Mehrere Antworten sind möglich.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1265"/>
+        <location filename="../../QUMainWindow.cpp" line="1266"/>
         <source>Application language changed to &lt;b&gt;Polish&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Die Sprache der Anwendung wurde auf &lt;b&gt;Polnisch&lt;/b&gt; geändert. Du musst UltraStar Manager neustarten, damit diese Änderungen wirksam werden.</translation>
     </message>
@@ -1886,69 +1886,69 @@ margin: 0;</source>
 <context>
     <name>QUPlaylistArea</name>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="13"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="14"/>
         <source>Form</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="110"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="111"/>
         <source>(currentPath)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="252"/>
-        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="122"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="250"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="123"/>
         <source>Active List:</source>
         <translation>Auswahl:</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="221"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="222"/>
         <source>Choose playlist folder...</source>
         <translation>Wähle Ordner für Playlisten...</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="224"/>
-        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="378"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="225"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="379"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="258"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="259"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="265"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="266"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="298"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="299"/>
         <source>Create</source>
         <translation>Neu</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="315"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="316"/>
         <source>Save changes to current playlist</source>
         <translation>Änderungen für aktuelle Playliste speichern</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="318"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="319"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="335"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="336"/>
         <source>Save current playlist with a new filename...</source>
         <translation>Aktuelle Playliste unter neuem Dateinamen speichern...</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="338"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="339"/>
         <source>Save As...</source>
         <translation>Speichern unter...</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="375"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="376"/>
         <source>Remove current playlist</source>
         <translation>Aktuelle Playliste löschen</translation>
     </message>
@@ -1957,7 +1957,7 @@ margin: 0;</source>
         <translation type="obsolete">Playlisten von Songs entkoppeln...</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="70"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="68"/>
         <source>&lt;font color=#808080&gt;%1&lt;/font&gt;</source>
         <translation>&lt;font color=#808080&gt;%1&lt;/font&gt;</translation>
     </message>
@@ -1986,7 +1986,7 @@ margin: 0;</source>
         <translation type="obsolete">Aktualisiere Playlisten...</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="183"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="181"/>
         <source>Save playlist as...</source>
         <translation>Speichere Playliste unter...</translation>
     </message>
@@ -1995,57 +1995,57 @@ margin: 0;</source>
         <translation type="obsolete">Neue Playliste</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="252"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="250"/>
         <source>No playlists found. Try another folder:</source>
         <translation>Keine Playlisten gefunden. Suchen:</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="266"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="264"/>
         <source>Change Playlist Directory</source>
         <translation>Ändere Ordner für Playlisten</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="267"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="265"/>
         <source>Playlists have been modified.</source>
         <translation>Playlisten wurden modifiziert.</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="268"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="266"/>
         <source>Save all changed playlists.</source>
         <translation>Speichere alle geänderten Playlisten.</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="269"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="267"/>
         <source>Discard all changes.</source>
         <translation>Verwerfe alle Änderungen.</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="270"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="268"/>
         <source>Cancel this action.</source>
         <translation>Aktion abbrechen.</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="279"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="277"/>
         <source>Select a location for playlists</source>
         <translation>Wähle einen Ordner für Playlisten</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="292"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="288"/>
         <source>Delete Playlist</source>
         <translation>Playliste löschen</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="293"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="289"/>
         <source>&lt;b&gt;&quot;%1 (%2)&quot;&lt;/b&gt; will be deleted permanently. You cannot undo a delete operation.</source>
         <translation>&lt;b&gt;&quot;%1 (%2)&quot;&lt;/b&gt; wird dauerhaft gelöscht. Dies kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="296"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="292"/>
         <source>Delete this playlist.</source>
         <translation>Diese Playliste löschen.</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="297"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="293"/>
         <source>Cancel delete operation.</source>
         <translation>Aktion abbrechen.</translation>
     </message>
@@ -2058,7 +2058,7 @@ margin: 0;</source>
         <translation type="obsolete">Die Playliste &quot;%1&quot; konnte NICHT gelöscht werden. Existiert sie?</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="321"/>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="317"/>
         <source>The playlist &quot;%1&quot; was removed successfully.</source>
         <translation>Die Playliste &quot;%1&quot; wurde erfolgreich gelöscht.</translation>
     </message>

@@ -16,6 +16,9 @@ public:
 
 	void setIndex(int);
 
+protected slots:
+	void reload();
+
 private:
 	int _playlistIndex;
 

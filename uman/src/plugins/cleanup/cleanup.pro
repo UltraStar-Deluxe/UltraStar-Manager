@@ -18,7 +18,8 @@ HEADERS = ../shared/QUMultilingualTaskFactory.h \
 	../../QUSongSupport.h \
 	../QUSmartSettingInterface.h
 TRANSLATIONS = cleanup.de.ts \
-	cleanup.pl.ts
+	cleanup.pl.ts \
+	cleanup.es.ts
 INCLUDEPATH += . \
     .. \
     ../.. \

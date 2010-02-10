@@ -81,9 +81,10 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	initMediaPlayer();
 
 	playlistDB->reload();
-	//playlistArea->refreshAllPlaylists();
 
 	addLogMsg("Ready.", QU::Information);
+
+	addLogMsg(QLocale(QLocale::Spanish, QLocale::Spain).name(), QU::Information);
 }
 
 /*!

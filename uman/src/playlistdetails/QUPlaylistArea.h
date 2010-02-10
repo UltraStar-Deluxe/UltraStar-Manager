@@ -27,7 +27,6 @@ public slots:
 
 private slots:
 	void integratePlaylist(QUPlaylistFile *playlist);
-//	void createPlaylistFiles();
 	void setCurrentPlaylist(int index);
 
 	void updatePlaylistCombo();
@@ -37,7 +36,7 @@ private slots:
 	void saveCurrentPlaylist();
 	void saveCurrentPlaylistAs();
 
-	void changePlaylistDir();
+	void browse();
 
 	void removeCurrentPlaylist();
 	void removeCurrentPlaylistEntry(QUPlaylistEntry *entry);

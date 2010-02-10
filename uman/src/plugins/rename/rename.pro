@@ -34,7 +34,8 @@ HEADERS = language.h \
 	../QUSmartSettingInterface.h
 FORMS += ../shared/QUTaskDialog.ui
 TRANSLATIONS = rename.de.ts \
-	rename.pl.ts
+	rename.pl.ts \
+	rename.es.ts
 INCLUDEPATH += . \
     ui \
     .. \

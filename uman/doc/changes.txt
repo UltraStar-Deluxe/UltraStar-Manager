@@ -237,6 +237,12 @@ DUET SONGS
 
 - remove QtNetwork dependency from main application (only plugins need this)
 - reconsider the user of QU::Error and QU::Warning
+- fix playlist support
+- auto-update mechanism
+- extend Doxygen usage
+  > custom documentation
+  > convert this changes.txt to doxygen output (pdf?)
+  > maybe embed HTML doxygen output into uman (dialog)
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO (all)  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
@@ -304,6 +310,11 @@ NEW STUFF
   > open uman with this song folder
 * open ultrastar with this folder
   > http://ultrastardeluxe.xtremeweb-hosting.net/wiki/doku.php?id=de:config:commandline
+* "blur behind"
+  > http://labs.trolltech.com/blogs/2009/09/15/using-blur-behind-on-windows/
+
+INSTALLER
+* support MSI (wix.sourceforge.net)
 
 MERGE SONGS
 * merge tags
@@ -403,6 +414,9 @@ REPORTS
 * add covers and background pictures to reports
 * new column
   > is SC-checked?
+
+EDIT LYRICS
+* add a edit window with syntax highlighting and code completion
   
 PLAYLIST SUPPORT
 * auto-create playlists by edition

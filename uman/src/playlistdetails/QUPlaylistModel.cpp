@@ -54,6 +54,7 @@ void QUPlaylistModel::setIndex(int playlistIndex) {
 	if(playlistIndex < 0 or playlistIndex >= playlistDB->size())
 		return;
 	_playlistIndex = playlistIndex;
+	reload();
 }
 
 QUPlaylistFile* QUPlaylistModel::playlist() const {
@@ -61,4 +62,8 @@ QUPlaylistFile* QUPlaylistModel::playlist() const {
 		return 0;
 
 	return playlistDB->at(_playlistIndex);
+}
+
+void QUPlaylistModel::reload() {
+	reset();
 }

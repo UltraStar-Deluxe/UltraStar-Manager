@@ -16,7 +16,8 @@ HEADERS = ../shared/QUMultilingualTaskFactory.h \
 	../shared/QUSmartInputField.h \
 	../QUSmartSettingInterface.h
 TRANSLATIONS = lyric.de.ts \
-	lyric.pl.ts
+	lyric.pl.ts \
+	lyric.es.ts
 INCLUDEPATH += . \
     .. \
     ../.. \

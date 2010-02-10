@@ -189,7 +189,8 @@ FORMS += plugins/QUPluginDialog.ui \
     remoteimages/QUCoverGroup.ui
 RESOURCES += resources/uman.qrc
 TRANSLATIONS = resources/lang/uman.de.ts \
-    resources/lang/uman.pl.ts
+	resources/lang/uman.pl.ts \
+	resources/lang/uman.es.ts
 INCLUDEPATH += . \
     song \
     songdetails \

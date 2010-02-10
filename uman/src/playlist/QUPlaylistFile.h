@@ -27,7 +27,7 @@ public:
 
 	bool save();
 
-	void setName(const QString &name) { _name = name; _nameChanged = true; }
+	void setName(const QString &name) { _name = name; _nameChanged = true; emit dataChanged(); }
 	QString name() const { return _name; }
 
 	void setFileInfo(const QFileInfo &newFi) { _fi = newFi; }

@@ -15,7 +15,8 @@ HEADERS = ../shared2/QUMultilingualImageSource.h \
     QUAlbumArtExCollector.h \
     QUAlbumArtExRequestUrl.h
 TRANSLATIONS = albumartex.de.ts \
-    albumartex.pl.ts
+	albumartex.pl.ts \
+	albumartex.es.ts
 INCLUDEPATH += . \
     .. \
     ../.. \

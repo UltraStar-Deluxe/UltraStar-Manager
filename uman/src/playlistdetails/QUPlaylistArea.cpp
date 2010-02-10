@@ -27,24 +27,23 @@ QUPlaylistArea::QUPlaylistArea(QWidget *parent): QWidget(parent) {
 //	connect(playlist, SIGNAL(orderChanged(QList<QUPlaylistEntry*>)), this, SLOT(changeCurrentPlaylistOrder(QList<QUPlaylistEntry*>)));
 //	connect(playlist, SIGNAL(removeUnknownEntriesRequested()), this, SLOT(removeUnknownEntries()));
 
-//	connect(playlistCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setCurrentPlaylist(int)));
-//	connect(playlistEdit, SIGNAL(textEdited(const QString&)), this, SLOT(updateCurrentPlaylistName(const QString&)));
+	connect(playlistCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setCurrentPlaylist(int)));
+	connect(playlistEdit, SIGNAL(textEdited(const QString&)), this, SLOT(updateCurrentPlaylistName(const QString&)));
 //	connect(savePlaylistBtn, SIGNAL(clicked()), this, SLOT(saveCurrentPlaylist()));
 //	connect(savePlaylistAsBtn, SIGNAL(clicked()), this, SLOT(saveCurrentPlaylistAs()));
 //	connect(createPlaylistBtn, SIGNAL(clicked()), this, SLOT(addPlaylist()));
-//	connect(setPlaylistFolderBtn, SIGNAL(clicked()), this, SLOT(changePlaylistDir()));
+	connect(browseBtn, SIGNAL(clicked()), this, SLOT(browse()));
 //	connect(removePlaylistBtn, SIGNAL(clicked()), this, SLOT(removeCurrentPlaylist()));
 
 //	connect(playlistDB, SIGNAL(databaseDisconnected()), this, SLOT(update())); // really needed ?! may be slow...
-	connect(playlistDB, SIGNAL(databaseConnected()), this, SLOT(update()));
-
-	connect(playlistDB, SIGNAL(databaseCleared()), this, SLOT(reset()));
+//	connect(playlistDB, SIGNAL(databaseConnected()), this, SLOT(update()));
+//	connect(playlistDB, SIGNAL(databaseCleared()), this, SLOT(reset()));
+	connect(playlistDB, SIGNAL(databaseReloaded()), this, SLOT(reset()));
 	connect(playlistDB, SIGNAL(playlistAdded(QUPlaylistFile*)), this, SLOT(integratePlaylist(QUPlaylistFile*)));
 
-	connect(songDB, SIGNAL(songChanged(QUSongFile*)), this, SLOT(update()));
+//	connect(songDB, SIGNAL(songChanged(QUSongFile*)), this, SLOT(update()));
 
 	playlistCombo->view()->setTextElideMode(Qt::ElideRight);
-
 	playlistCombo->setModel(new QUPlaylistDBModel(playlistCombo));
 }
 
@@ -59,8 +58,7 @@ QUPlaylistFile* QUPlaylistArea::currentPlaylist() const {
  * Reset all UI elements according to the playlist database.
  */
 void QUPlaylistArea::reset() {
-	// Clear all present playlist data.
-	playlistCombo->clear();
+	playlistCombo->setCurrentIndex(0);
 	playlistEdit->clear();
 
 	// Disable not needed controls.
@@ -90,10 +88,9 @@ void QUPlaylistArea::addSongToCurrentPlaylist(QUSongFile *song) {
 		return;
 	}
 
-	if(!currentPlaylist()->addEntry(song))
-		return;
+	currentPlaylist()->addEntry(song);
 
-	updatePlaylistCombo(); // indicate changes
+//	updatePlaylistCombo(); // indicate changes
 //	playlist->appendItem(currentPlaylist()->last());
 }
 
@@ -118,6 +115,8 @@ void QUPlaylistArea::setCurrentPlaylist(int index) {
  * Looks for changes in the playlists and updates the combo box.
  */
 void QUPlaylistArea::updatePlaylistCombo() {
+	if(playlistDB->size() > 0 && playlistCombo->currentIndex() < 0)
+		playlistCombo->setCurrentIndex(0);
 //	QUProgressDialog dlg(tr("Update playlists..."), playlistDB->size(), this, false);
 //	dlg.setPixmap(":/control/playlist.png");
 //	dlg.show();
@@ -163,7 +162,6 @@ void QUPlaylistArea::updateCurrentPlaylistName(const QString &newName) {
 		return;
 
 	playlistDB->at(currentPlaylistIndex())->setName(newName);
-	updatePlaylistCombo();
 }
 
 void QUPlaylistArea::saveCurrentPlaylist() {
@@ -260,7 +258,7 @@ void QUPlaylistArea::setAreaEnabled(bool enabled) {
 /*!
  * Select a new folder and look there for new playlists. Old ones are discarded.
  */
-void QUPlaylistArea::changePlaylistDir() {
+void QUPlaylistArea::browse() {
 	if(playlistDB->hasUnsavedChanges()) {
 		int result = QUMessageBox::information(this,
 				tr("Change Playlist Directory"),
@@ -278,10 +276,8 @@ void QUPlaylistArea::changePlaylistDir() {
 
 	QString newPath = QFileDialog::getExistingDirectory(this, tr("Select a location for playlists"), playlistDB->dir().path());
 
-	if(!newPath.isEmpty()) {
-		playlistDB->setDir(QDir(newPath));
-
-	}
+	if(!newPath.isEmpty())
+		playlistDB->setDir(newPath);
 }
 
 void QUPlaylistArea::removeCurrentPlaylist() {

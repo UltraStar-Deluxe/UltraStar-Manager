@@ -17,7 +17,8 @@ HEADERS = ../shared2/QUMultilingualImageSource.h \
     QUFreeCoversRequestUrl.h \
     QUFreeCoversResponse.h
 TRANSLATIONS = freecovers.de.ts \
-    freecovers.pl.ts
+	freecovers.pl.ts \
+	freecovers.es.ts
 INCLUDEPATH += . \
     .. \
     ../.. \

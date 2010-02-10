@@ -1,12 +1,17 @@
 #include "QUPlaylistDBModel.h"
 
 #include "QUPlaylistDatabase.h"
+#include "QULogService.h"
 #include <QVariant>
 #include <QDir>
 #include <QString>
 
 QUPlaylistDBModel::QUPlaylistDBModel(QObject *parent): QAbstractListModel(parent) {
-//	connect(playlistDB, SIGNAL(playlistChanged(QUPlaylistFile*)), this, SLOT(
+	connect(playlistDB, SIGNAL(playlistAdded(QUPlaylistFile*)), this, SLOT(reload()));
+	connect(playlistDB, SIGNAL(playlistChanged(QUPlaylistFile*)), this, SLOT(reload()));
+	connect(playlistDB, SIGNAL(playlistDeleted(QUPlaylistFile*)), this, SLOT(reload()));
+	connect(playlistDB, SIGNAL(databaseCleared()), this, SLOT(reload()));
+	connect(playlistDB, SIGNAL(databaseReloaded()), this, SLOT(reload()));
 }
 
 int QUPlaylistDBModel::rowCount(const QModelIndex &parent) const {
@@ -25,4 +30,8 @@ QVariant QUPlaylistDBModel::data(const QModelIndex &index, int role) const {
 	}
 
 	return QVariant();
+}
+
+void QUPlaylistDBModel::reload() {
+	reset();
 }
