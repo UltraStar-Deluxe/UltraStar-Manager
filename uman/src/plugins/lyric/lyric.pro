@@ -23,10 +23,20 @@ INCLUDEPATH += . \
     ../.. \
     ../../song \
     ../shared
-TARGET = 2-lyric
+
 TEMPLATE = lib
 CONFIG += plugin
-CONFIG -= debug
-DESTDIR = ../../../bin/wip/plugins
-OBJECTS_DIR = ../tmp/lyric
-MOC_DIR = ../tmp/lyric
+
+CONFIG(release, debug|release) {
+	TARGET = 2-lyric
+	DESTDIR = ../../../bin/wip/plugins
+	OBJECTS_DIR = ../tmp/lyric/release
+	MOC_DIR = ../tmp/lyric/release
+}
+
+CONFIG(debug, debug|release) {
+	TARGET = 2-lyric_debug
+	DESTDIR = ../../../bin/wip_debug/plugins
+	OBJECTS_DIR = ../tmp/lyric/debug
+	MOC_DIR = ../tmp/lyric/debug
+}

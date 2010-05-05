@@ -24,13 +24,23 @@ INCLUDEPATH += . \
     ../.. \
     ../../song \
     ../shared2
-TARGET = freecovers
+
 TEMPLATE = lib
 CONFIG += plugin
-CONFIG -= debug
-DESTDIR = ../../../bin/wip/plugins
-OBJECTS_DIR = ../tmp/freecovers
-MOC_DIR = ../tmp/freecovers
 UI_DIR = ../ui
 QT += xml \
     network
+
+CONFIG(release, debug|release) {
+	TARGET = freecovers
+	DESTDIR = ../../../bin/wip/plugins
+	OBJECTS_DIR = ../tmp/freecovers/release
+	MOC_DIR = ../tmp/freecovers/release
+}
+
+CONFIG(debug, debug|release) {
+	TARGET = freecovers_debug
+	DESTDIR = ../../../bin/wip_debug/plugins
+	OBJECTS_DIR = ../tmp/freecovers/debug
+	MOC_DIR = ../tmp/freecovers/debug
+}

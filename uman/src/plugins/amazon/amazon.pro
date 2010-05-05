@@ -29,12 +29,21 @@ INCLUDEPATH += . \
 	../../song \
 	../shared2 \
 	sha2
-TARGET = amazon
 TEMPLATE = lib
 CONFIG += plugin
-CONFIG -= debug
-DESTDIR = ../../../bin/wip/plugins
-OBJECTS_DIR = ../tmp/amazon
-MOC_DIR = ../tmp/amazon
 UI_DIR = ../ui
 QT += xml network
+
+CONFIG(release, debug|release) {
+	TARGET = amazon
+	DESTDIR = ../../../bin/wip/plugins
+	OBJECTS_DIR = ../tmp/amazon/release
+	MOC_DIR = ../tmp/amazon/release
+}
+
+CONFIG(debug, debug|release) {
+	TARGET = amazon_debug
+	DESTDIR = ../../../bin/wip_debug/plugins
+	OBJECTS_DIR = ../tmp/amazon/debug
+	MOC_DIR = ../tmp/amazon/debug
+}

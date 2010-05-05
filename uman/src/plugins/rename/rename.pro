@@ -42,16 +42,25 @@ INCLUDEPATH += . \
     ../.. \
     ../../song \
     ../shared
-TARGET = 4-rename
 TEMPLATE = lib
 CONFIG += plugin
-CONFIG -= debug
-DESTDIR = ../../../bin/wip/plugins
-OBJECTS_DIR = ../tmp/rename
-MOC_DIR = ../tmp/rename
 UI_DIR = ../ui
 QT += xml
 QMAKE_EXTRA_TARGETS += langtarget
 PRE_TARGETDEPS += language.h
 langtarget.target = language.h
 langtarget.commands = python getTaskText.py
+
+CONFIG(release, debug|release) {
+	TARGET = 4-rename
+	DESTDIR = ../../../bin/wip/plugins
+	OBJECTS_DIR = ../tmp/rename/release
+	MOC_DIR = ../tmp/rename/release
+}
+
+CONFIG(debug, debug|release) {
+	TARGET = 4-rename_debug
+	DESTDIR = ../../../bin/wip_debug/plugins
+	OBJECTS_DIR = ../tmp/rename/debug
+	MOC_DIR = ../tmp/rename/debug
+}

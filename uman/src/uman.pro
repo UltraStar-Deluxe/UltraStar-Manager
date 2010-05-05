@@ -1,17 +1,26 @@
 TEMPLATE = app
-TARGET = uman
-DESTDIR = ../bin/wip
-MOC_DIR = tmp
 UI_DIR = ui
-OBJECTS_DIR = tmp
-RCC_DIR = tmp
 QT += core \
     gui \
     xml \
     network
 
-# CONFIG -= debug_and_release
-# CONFIG += debug
+CONFIG(release, debug|release) {
+	TARGET = uman
+	DESTDIR = ../bin/wip
+	MOC_DIR = tmp/release
+	OBJECTS_DIR = tmp/release
+	RCC_DIR = tmp/release
+}
+
+CONFIG(debug, debug|release) {
+	TARGET = uman_debug
+	DESTDIR = ../bin/wip_debug
+	MOC_DIR = tmp/debug
+	OBJECTS_DIR = tmp/debug
+	RCC_DIR = tmp/debug
+}
+
 HEADERS += plugins/QUPluginManager.h \
     plugins/QUPluginDialog.h \
     plugins/QUPluginModel.h \

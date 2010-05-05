@@ -43,13 +43,8 @@ INCLUDEPATH += . \
     ../../song \
     ../shared \
     ../../../include/taglib
-TARGET = 3-audiotag
 TEMPLATE = lib
 CONFIG += plugin
-CONFIG -= debug
-DESTDIR = ../../../bin/wip/plugins
-OBJECTS_DIR = ../tmp/audiotag
-MOC_DIR = ../tmp/audiotag
 UI_DIR = ../ui
 QT += xml
 win32 { 
@@ -66,3 +61,17 @@ QMAKE_EXTRA_TARGETS += langtarget
 PRE_TARGETDEPS += language.h
 langtarget.target = language.h
 langtarget.commands = python getTaskText.py
+
+CONFIG(release, debug|release) {
+	TARGET = 3-audiotag
+	DESTDIR = ../../../bin/wip/plugins
+	OBJECTS_DIR = ../tmp/audiotag/release
+	MOC_DIR = ../tmp/audiotag/release
+}
+
+CONFIG(debug, debug|release) {
+	TARGET = 3-audiotag_debug
+	DESTDIR = ../../../bin/wip_debug/plugins
+	OBJECTS_DIR = ../tmp/audiotag/debug
+	MOC_DIR = ../tmp/audiotag/debug
+}

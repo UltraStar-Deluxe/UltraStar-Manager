@@ -28,7 +28,17 @@ INCLUDEPATH += . \
 TARGET = 1-preparatory
 TEMPLATE = lib
 CONFIG += plugin
-CONFIG -= debug
-DESTDIR = ../../../bin/wip/plugins
-OBJECTS_DIR = ../tmp/preparatory
-MOC_DIR = ../tmp/preparatory
+
+CONFIG(release, debug|release) {
+	TARGET = 1-preparatory
+	DESTDIR = ../../../bin/wip/plugins
+	OBJECTS_DIR = ../tmp/preparatory/release
+	MOC_DIR = ../tmp/preparatory/release
+}
+
+CONFIG(debug, debug|release) {
+	TARGET = 1-preparatory_debug
+	DESTDIR = ../../../bin/wip_debug/plugins
+	OBJECTS_DIR = ../tmp/preparatory/debug
+	MOC_DIR = ../tmp/preparatory/debug
+}

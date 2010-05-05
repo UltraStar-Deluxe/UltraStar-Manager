@@ -25,10 +25,20 @@ INCLUDEPATH += . \
 TARGET = albumartex
 TEMPLATE = lib
 CONFIG += plugin
-CONFIG -= debug
-DESTDIR = ../../../bin/wip/plugins
-OBJECTS_DIR = ../tmp/albumartex
-MOC_DIR = ../tmp/albumartex
 UI_DIR = ../ui
 QT += xml \
     network
+
+CONFIG(release, debug|release) {
+	TARGET = albumartex
+	DESTDIR = ../../../bin/wip/plugins
+	OBJECTS_DIR = ../tmp/albumartex/release
+	MOC_DIR = ../tmp/albumartex/release
+}
+
+CONFIG(debug, debug|release) {
+	TARGET = albumartex_debug
+	DESTDIR = ../../../bin/wip_debug/plugins
+	OBJECTS_DIR = ../tmp/albumartex/debug
+	MOC_DIR = ../tmp/albumartex/debug
+}

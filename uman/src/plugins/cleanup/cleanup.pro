@@ -25,10 +25,19 @@ INCLUDEPATH += . \
     ../.. \
     ../../song \
     ../shared
-TARGET = 5-cleanup
 TEMPLATE = lib
 CONFIG += plugin
-CONFIG -= debug
-DESTDIR = ../../../bin/wip/plugins
-OBJECTS_DIR = ../tmp/cleanup
-MOC_DIR = ../tmp/cleanup
+
+CONFIG(release, debug|release) {
+	TARGET = 5-cleanup
+	DESTDIR = ../../../bin/wip/plugins
+	OBJECTS_DIR = ../tmp/cleanup/release
+	MOC_DIR = ../tmp/cleanup/release
+}
+
+CONFIG(debug, debug|release) {
+	TARGET = 5-cleanup_debug
+	DESTDIR = ../../../bin/wip_debug/plugins
+	OBJECTS_DIR = ../tmp/cleanup/debug
+	MOC_DIR = ../tmp/cleanup/debug
+}
