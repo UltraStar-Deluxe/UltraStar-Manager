@@ -23,7 +23,8 @@ QUTaskItem::QUTaskItem(QUTask *task):
 }
 
 QUTaskItem::~QUTaskItem() {
-	delete _task;
+	// Hmmm.... should be deleted but does not work here. Deleted elsewhere?
+//	delete _task;
 }
 
 void QUTaskItem::installSmartSettings() {

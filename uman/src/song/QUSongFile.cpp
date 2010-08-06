@@ -1219,9 +1219,9 @@ void QUSongFile::changeData(const QString &tag, const QString &value) {
  * Rename yourself if your friend was renamed.
  */
 void QUSongFile::renameSong(const QString &fileName) {
-	renameSongTxt(QString("%1 %2.%3")
+	renameSongTxt(QString("%1%2.%3")
 		.arg(QUStringSupport::withoutFolderTags(QFileInfo(songFileInfo().dir(), fileName).baseName()))
-		.arg(_fiTags.join("] [").prepend("[").append("]"))
+		.arg(_fiTags.isEmpty() ? "" : _fiTags.join("] [").prepend(" [").append("]")) // just use your own []-tags
 		.arg(songFileInfo().suffix()));
 }
 

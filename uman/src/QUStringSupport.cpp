@@ -98,13 +98,13 @@ QString QUStringSupport::withoutAnyUmlautEx(const QString &text) {
 }
 
 QStringList QUStringSupport::extractTags(const QString &text) {
-	QRegExp rx = QRegExp("\\[([^\\]]*)\\]");
+	QRegExp rx = QRegExp("\\[([^\\]]+)\\]");
 	QStringList tags;
 	int pos = 0;
 
 	while ((pos = rx.indexIn(text, pos)) != -1) {
 		tags << rx.cap(1).trimmed();
-		 pos += rx.matchedLength();
+		pos += rx.matchedLength();
 	}
 
 	if(text.contains("(kar)", Qt::CaseInsensitive))

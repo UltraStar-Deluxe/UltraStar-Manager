@@ -244,6 +244,9 @@ DUET SONGS
   > convert this changes.txt to doxygen output (pdf?)
   > maybe embed HTML doxygen output into uman (dialog)
 
+DUETS
+- parse/save TXDs correctly
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO (all)  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
 * ... neutral item

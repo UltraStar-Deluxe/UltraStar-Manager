@@ -17,7 +17,7 @@ QString QUAlbumArtExRequestUrl::request() const {
 			.arg(host())
 			.arg(QString(fixedPercentageEncoding()));
 
-	song()->log(tr("[albumartex - search] ") + result, QU::Help);
+//	song()->log(tr("[albumartex - search] ") + result, QU::Help);
 
 	return result;
 }

@@ -83,8 +83,6 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	playlistDB->reload();
 
 	addLogMsg("Ready.", QU::Information);
-
-	addLogMsg(QLocale(QLocale::Spanish, QLocale::Spain).name(), QU::Information);
 }
 
 /*!
@@ -553,6 +551,7 @@ void QUMainWindow::refreshAllSongs(bool force) {
 	songDB->reload();
 	updateDetails();
 	updatePreviewTree();
+	pluginMGR->reload();
 
 	// workaround for always-on-top windows on startup
 	showNormal();
