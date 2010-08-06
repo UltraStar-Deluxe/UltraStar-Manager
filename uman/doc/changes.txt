@@ -184,6 +184,12 @@ PLAYLISTS
 * playlists are now always sync with song database
   > no app crash if a deleted song is referenced in a playlist
 
+SONG WATCHER
+* recognition of external song file changes removed
+
+DUPLICATE DETECTION
+* bufix from escaped added (http://github.com/escaped/uman)
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 INSTALLER
@@ -213,12 +219,6 @@ SONG FRIENDS (general workaround: switch friend to primary song with double-clic
 MEDIA PLAYER
 * correct songs get ansychronous after a while (seek works right)
 * uman crashes if you play a song, change the song directory and skip
-
-SONG WATCHER
-* many song files will not be added to QFileSystemWatcher
-  > too many files? (yap - limit seems to be 63)
-* external song file changes will be detected twice for primary song
-  > friend songs seem to work fine
 
 AUTO-SAVE
 * tasks that change a song's path perform kind of auto-save because

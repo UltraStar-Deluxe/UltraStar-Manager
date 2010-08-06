@@ -72,11 +72,11 @@ void QUSongFile::log(const QString &message, int type) {
  */
 void QUSongFile::setFile(const QString &filePath, bool update) {
 	// remove old file from watching
-	if(monty->watcher()->files().contains(_fi.filePath()))
-		monty->watcher()->removePath(_fi.filePath());
+//	if(monty->watcher()->files().contains(_fi.filePath()))
+//		monty->watcher()->removePath(_fi.filePath());
 	// no double entries
-	if(monty->watcher()->files().contains(filePath))
-		monty->watcher()->removePath(filePath);
+//	if(monty->watcher()->files().contains(filePath))
+//		monty->watcher()->removePath(filePath);
 
 	// setup new file
 	_fi.setFile(filePath);
@@ -84,7 +84,7 @@ void QUSongFile::setFile(const QString &filePath, bool update) {
 		updateCache();
 
 	// watch for external changes
-	monty->watcher()->addPath(filePath);
+//	monty->watcher()->addPath(filePath);
 }
 
 /*!

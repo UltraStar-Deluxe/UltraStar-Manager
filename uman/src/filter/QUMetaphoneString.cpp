@@ -178,7 +178,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 				//germanic, greek, or otherwise 'ch' for 'kh' sound
 				if((anyStringAt(0, 4, "VAN ", "VON ", "") or anyStringAt(0, 3, "SCH", ""))
 						// 'architect but not 'arch', 'orchestra', 'orchid'
-						or anyStringAt((current - 2), 6, "ORCHES", "ARCHIT", "ORCHID")
+                                                or anyStringAt((current - 2), 6, "ORCHES", "ARCHIT", "ORCHID", "")
 				or anyStringAt((current + 2), 1, "T", "S", "")
 				or ((anyStringAt((current - 1), 1, "A", "O", "U", "E", "") or (current == 0))
 						//e.g., 'wachtler', 'wechsler', but not 'tichner'
@@ -218,7 +218,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			//double 'C', but not if e.g. 'McClellan'
 			if(anyStringAt(current, 2, "CC", "") and !((current == 1) and (at(0) == 'M')))
 				//'bellocchio' but not 'bacchus'
-				if(anyStringAt((current + 2), 1, "I", "E", "H") and !anyStringAt((current + 2), 2, "HU", ""))
+                                if(anyStringAt((current + 2), 1, "I", "E", "H", "") and !anyStringAt((current + 2), 2, "HU", ""))
 				{
 					//'accident', 'accede' 'succeed'
 					if(((current == 1) and (at(current - 1) == 'A'))
@@ -433,7 +433,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 
 		case 'J':
 			//obvious spanish, 'jose', 'san jacinto'
-			if(anyStringAt(current, 4, "JOSE") or anyStringAt(0, 4, "SAN ", "") )
+                        if(anyStringAt(current, 4, "JOSE", "") or anyStringAt(0, 4, "SAN ", "") )
 			{
 				if(((current == 0) and (at(current + 4) == ' ')) or anyStringAt(0, 4, "SAN ", "") )
 					add("H");
@@ -445,7 +445,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 				break;
 			}
 
-			if((current == 0) and !anyStringAt(current, 4, "JOSE"))
+                        if((current == 0) and !anyStringAt(current, 4, "JOSE", ""))
 				add("J", "A");//Yankelovich/Jankelowicz
 			else
 				//spanish pron. of e.g. 'bajador'
@@ -735,7 +735,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			}
 
 			//polish e.g. 'filipowicz'
-			if(anyStringAt(current, 4, "WICZ", "WITZ"))
+                        if(anyStringAt(current, 4, "WICZ", "WITZ", ""))
 			{
 				add("TS", "FX");
 				current +=4;
