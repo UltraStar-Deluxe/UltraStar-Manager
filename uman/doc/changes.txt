@@ -233,19 +233,15 @@ DUET SONGS
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO (1.8.0)  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
-(incomplete)
-
-- remove QtNetwork dependency from main application (only plugins need this)
-- reconsider the user of QU::Error and QU::Warning
-- fix playlist support
-- auto-update mechanism
-- extend Doxygen usage
-  > custom documentation
-  > convert this changes.txt to doxygen output (pdf?)
-  > maybe embed HTML doxygen output into uman (dialog)
+PLAYLISTS
+- add playlist support again
 
 DUETS
 - parse/save TXDs correctly
+
+LANGUAGES
+- make available translations modular
+- allow later adding of new translations via Qt Linguist
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO (all)  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
@@ -265,6 +261,13 @@ DUETS
 ! make path-delimiter handling editable (QUStringSupport::without..."
   > remove /
   > replace / with -
+- remove QtNetwork dependency from main application (only plugins need this)
+- reconsider the user of QU::Error and QU::Warning
+- auto-update mechanism
+- extend Doxygen usage
+  > custom documentation
+  > convert this changes.txt to doxygen output (pdf?)
+  > maybe embed HTML doxygen output into uman (dialog)
 
 NEW STUFF
 * make hard-coded values editable
