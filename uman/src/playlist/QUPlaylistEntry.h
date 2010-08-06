@@ -35,7 +35,7 @@ signals:
 private:
 	QUSongFile *_song;
 
-	// links that should be used to find the real songs
+	// textual links that should be used to find the real songs
 	QString     _artistLink;
 	QString     _titleLink;
 };

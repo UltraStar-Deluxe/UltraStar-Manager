@@ -44,8 +44,8 @@ bool QUPlaylistEntry::hasUnsavedChanges() const {
 }
 
 void QUPlaylistEntry::disconnectSong(QUSongFile *song) {
-	if(this->song() == song)
+	if(this->song() == song) {
 		disconnectSong();
-
-	emit disconnected();
+		emit disconnected();
+	}
 }

@@ -43,6 +43,7 @@ public:
 	bool removeEntry(QUPlaylistEntry *entry);
 	void removeDisconnectedEntries();
 
+	// to be used after a drag&drop operation that performed an "internal move"
 	void changeOrder(const QList<QUPlaylistEntry*> &newOrder);
 
 	QList<QUSongFile*> connectedSongs() const;
