@@ -121,6 +121,9 @@ bool QUPlaylistFile::addEntry(QUSongFile *song) {
 
 	_playlist.append(newEntry);
 	_playlistChanged = true;
+
+	emit dataChanged();
+
 	return true;
 }
 
@@ -130,6 +133,9 @@ bool QUPlaylistFile::removeEntry(QUPlaylistEntry *entry) {
 
 	_playlist.removeAll(entry); // return value should be 1 (or 0)
 	_playlistChanged = true;
+
+	emit dataChanged();
+
 	return true;
 }
 

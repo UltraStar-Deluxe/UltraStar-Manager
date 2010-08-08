@@ -1,5 +1,7 @@
 #include "QUPathsDialog.h"
 
+#include "playlist/QUPlaylistDatabase.h"
+
 #include <QFileInfo>
 #include <QPixmap>
 #include <QSettings>
@@ -47,9 +49,11 @@ QUPathsDialog::QUPathsDialog(bool firstTimeSetup, QWidget *parent): QDialog(pare
 void QUPathsDialog::accept() {
 	QSettings s;
 	s.setValue("usPath", pathEditUs->text());
-	s.setValue("playlistFilePath", pathEditPlaylist->text());
 	s.setValue("usCoverPath", pathEditCover->text());
 	s.setValue("usLangPath", pathEditLang->text());
+
+	s.setValue("playlistFilePath", pathEditPlaylist->text());
+	playlistDB->setDir(pathEditPlaylist->text());
 
 	QStringList songPaths;
 	for(int row = 0; row < songPathList->count(); row++)

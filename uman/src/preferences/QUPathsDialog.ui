@@ -14,7 +14,7 @@
    <string>Paths</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../ressources/uman.qrc">
+   <iconset resource="../resources/uman.qrc">
     <normaloff>:/types/folder_go.png</normaloff>:/types/folder_go.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -109,7 +109,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../ressources/uman.qrc">:/marks/information.png</pixmap>
+         <pixmap resource="../resources/uman.qrc">:/marks/information.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -153,7 +153,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../ressources/uman.qrc">:/marks/usdx.png</pixmap>
+        <pixmap resource="../resources/uman.qrc">:/marks/usdx.png</pixmap>
        </property>
       </widget>
      </item>
@@ -264,7 +264,7 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../ressources/uman.qrc">:/marks/path_ok.png</pixmap>
+           <pixmap resource="../resources/uman.qrc">:/marks/path_ok.png</pixmap>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -295,7 +295,7 @@ margin: 0;</string>
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../ressources/uman.qrc">
+           <iconset resource="../resources/uman.qrc">
             <normaloff>:/marks/wand.png</normaloff>:/marks/wand.png</iconset>
           </property>
           <property name="autoRaise">
@@ -312,7 +312,7 @@ margin: 0;</string>
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="../ressources/uman.qrc">
+        <iconset resource="../resources/uman.qrc">
          <normaloff>:/control/folder_explore.png</normaloff>:/control/folder_explore.png</iconset>
        </property>
        <property name="autoRaise">
@@ -326,7 +326,7 @@ margin: 0;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../ressources/uman.qrc">:/control/playlist.png</pixmap>
+        <pixmap resource="../resources/uman.qrc">:/control/playlist.png</pixmap>
        </property>
       </widget>
      </item>
@@ -437,7 +437,7 @@ margin: 0;</string>
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../ressources/uman.qrc">:/marks/path_ok.png</pixmap>
+           <pixmap resource="../resources/uman.qrc">:/marks/path_ok.png</pixmap>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -463,7 +463,7 @@ margin: 0;</string>
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="../ressources/uman.qrc">
+        <iconset resource="../resources/uman.qrc">
          <normaloff>:/control/folder_explore.png</normaloff>:/control/folder_explore.png</iconset>
        </property>
        <property name="autoRaise">
@@ -473,16 +473,22 @@ margin: 0;</string>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label_11">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../ressources/uman.qrc">:/types/cover.png</pixmap>
+        <pixmap resource="../resources/uman.qrc">:/types/cover.png</pixmap>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
       <widget class="QLabel" name="label_9">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Covers</string>
        </property>
@@ -490,6 +496,9 @@ margin: 0;</string>
      </item>
      <item row="2" column="2">
       <widget class="QFrame" name="frame_4">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="palette">
         <palette>
          <active>
@@ -588,7 +597,7 @@ margin: 0;</string>
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../ressources/uman.qrc">:/marks/path_ok.png</pixmap>
+           <pixmap resource="../resources/uman.qrc">:/marks/path_ok.png</pixmap>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -610,11 +619,14 @@ margin: 0;</string>
      </item>
      <item row="2" column="3">
       <widget class="QToolButton" name="browseCoverBtn">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="../ressources/uman.qrc">
+        <iconset resource="../resources/uman.qrc">
          <normaloff>:/control/folder_explore.png</normaloff>:/control/folder_explore.png</iconset>
        </property>
        <property name="autoRaise">
@@ -624,16 +636,22 @@ margin: 0;</string>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="label_14">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../ressources/uman.qrc">:/types/language.png</pixmap>
+        <pixmap resource="../resources/uman.qrc">:/types/language.png</pixmap>
        </property>
       </widget>
      </item>
      <item row="3" column="1">
       <widget class="QLabel" name="label_12">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Languages</string>
        </property>
@@ -641,6 +659,9 @@ margin: 0;</string>
      </item>
      <item row="3" column="2">
       <widget class="QFrame" name="frame_5">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="palette">
         <palette>
          <active>
@@ -739,7 +760,7 @@ margin: 0;</string>
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../ressources/uman.qrc">:/marks/path_ok.png</pixmap>
+           <pixmap resource="../resources/uman.qrc">:/marks/path_ok.png</pixmap>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -761,11 +782,14 @@ margin: 0;</string>
      </item>
      <item row="3" column="3">
       <widget class="QToolButton" name="browseLangBtn">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="../ressources/uman.qrc">
+        <iconset resource="../resources/uman.qrc">
          <normaloff>:/control/folder_explore.png</normaloff>:/control/folder_explore.png</iconset>
        </property>
        <property name="autoRaise">
@@ -779,7 +803,7 @@ margin: 0;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../ressources/uman.qrc">:/control/folder_note.png</pixmap>
+        <pixmap resource="../resources/uman.qrc">:/control/folder_note.png</pixmap>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -821,7 +845,7 @@ margin: 0;</string>
          <string>C:/Songs</string>
         </property>
         <property name="icon">
-         <iconset resource="../ressources/uman.qrc">
+         <iconset resource="../resources/uman.qrc">
           <normaloff>:/marks/path_ok.png</normaloff>:/marks/path_ok.png</iconset>
         </property>
        </item>
@@ -830,7 +854,7 @@ margin: 0;</string>
          <string>D:/Blubb/Songs</string>
         </property>
         <property name="icon">
-         <iconset resource="../ressources/uman.qrc">
+         <iconset resource="../resources/uman.qrc">
           <normaloff>:/marks/path_error.png</normaloff>:/marks/path_error.png</iconset>
         </property>
        </item>
@@ -847,7 +871,7 @@ margin: 0;</string>
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../ressources/uman.qrc">
+          <iconset resource="../resources/uman.qrc">
            <normaloff>:/control/folder_explore.png</normaloff>:/control/folder_explore.png</iconset>
          </property>
          <property name="autoRaise">
@@ -874,7 +898,7 @@ margin: 0;</string>
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../ressources/uman.qrc">
+          <iconset resource="../resources/uman.qrc">
            <normaloff>:/control/bin.png</normaloff>:/control/bin.png</iconset>
          </property>
          <property name="autoRaise">
@@ -920,7 +944,7 @@ margin: 0;</string>
         <string>OK</string>
        </property>
        <property name="icon">
-        <iconset resource="../ressources/uman.qrc">
+        <iconset resource="../resources/uman.qrc">
          <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
        </property>
       </widget>
@@ -931,7 +955,7 @@ margin: 0;</string>
         <string>Cancel</string>
        </property>
        <property name="icon">
-        <iconset resource="../ressources/uman.qrc">
+        <iconset resource="../resources/uman.qrc">
          <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
        </property>
       </widget>

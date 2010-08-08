@@ -1357,8 +1357,8 @@ void QUMainWindow::sendVisibleSongsToMediaPlayer() {
 }
 
 void QUMainWindow::sendCurrentPlaylistToMediaPlayer() {
-	if(playlistArea->currentPlaylist()) {
-		mediaplayer->setSongs(playlistArea->currentPlaylist()->connectedSongs());
+	if(playlistDB->currentPlaylist()) {
+		mediaplayer->setSongs(playlistDB->currentPlaylist()->connectedSongs());
 		mediaplayer->play();
 	}
 }

@@ -14,15 +14,8 @@ public:
 	virtual int rowCount(const QModelIndex &parent) const;
 	virtual QVariant data(const QModelIndex &index, int role) const;
 
-	void setIndex(int);
-
 protected slots:
 	void reload();
-
-private:
-	int _playlistIndex;
-
-	QUPlaylistFile* playlist() const;
 };
 
 #endif // QUPLAYLISTMODEL_H

@@ -35,10 +35,17 @@ public:
 
 	int size() const { return _playlists.size(); }
 
+	int currentIndex() const { return _currentIndex; }
+	QUPlaylistFile* currentPlaylist() const;
+
+	void loadPlaylist(const QString &filePath);
+
 public slots:
 	void createPlaylist();
 	void connectAllPlaylists();
 	void disconnectAllPlaylists();
+
+	void setCurrentIndex(int i) { _currentIndex = i; emit currentPlaylistChanged(currentPlaylist()); }
 
 protected slots:
 	void signalPlaylistChanged();
@@ -49,14 +56,15 @@ signals:
 	void playlistChanged(QUPlaylistFile*);
 	void databaseCleared();
 	void databaseReloaded();
-	void databaseDisconected();
+	void databaseDisconnected();
 	void databaseConnected();
 
-protected:
-	void loadPlaylist(const QString &filePath);
+	// a new current playlist was selected - may pass a null pointer
+	void currentPlaylistChanged(QUPlaylistFile*);
 
 private:
 	QList<QUPlaylistFile*>  _playlists;
+	int                     _currentIndex;
 	QWidget                *_parent; // used for dialogs like progress bars
 
 /*!

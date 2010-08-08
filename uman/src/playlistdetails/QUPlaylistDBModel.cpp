@@ -27,6 +27,12 @@ QVariant QUPlaylistDBModel::data(const QModelIndex &index, int role) const {
 			.arg( playlistDB->at(index.row())->name() )
 			.arg( playlistDB->at(index.row())->hasUnsavedChanges() ? "*" : "" )
 			.arg( playlistDB->dir().relativeFilePath( playlistDB->at(index.row())->fileInfo().filePath()) );
+	} else  if(role == Qt::FontRole) {
+		QFont f(
+			"MS Shell Dlg", 8,
+			playlistDB->at(index.row())->hasUnsavedChanges() ? QFont::Bold : QFont::Normal,
+			false);
+		return f;
 	}
 
 	return QVariant();

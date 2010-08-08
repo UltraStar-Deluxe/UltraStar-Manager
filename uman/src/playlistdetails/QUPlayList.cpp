@@ -5,11 +5,13 @@
 #include <QList>
 
 #include "QUPlaylistModel.h"
+#include "playlist/QUPlaylistDatabase.h"
 
 QUPlayList::QUPlayList(QWidget *parent): QListView(parent) {
-	this->setAlternatingRowColors(true);
-
+	setAlternatingRowColors(true);
 	setModel(new QUPlaylistModel(this));
+
+//	setDragDropMode(QAbstractItemView::InternalMove);
 
 	// context menu
 	setContextMenuPolicy(Qt::CustomContextMenu);
@@ -54,7 +56,7 @@ void QUPlayList::showContextMenu(const QPoint &point) {
 	QMenu menu(this);
 
 	menu.addAction(QIcon(":/marks/delete.png"), tr("Remove from list"), this, SLOT(removeSelectedItems()), QKeySequence::fromString("Del"));
-//	menu.addAction(tr("Remove unknown entries"), this, SLOT(removeUnknownEntries()));
+	menu.addAction(tr("Remove unknown entries"), this, SLOT(removeUnknownEntries()));
 
 	menu.exec(this->mapToGlobal(point));
 }
@@ -63,45 +65,13 @@ void QUPlayList::showContextMenu(const QPoint &point) {
  * Remove selected items and trigger a removal for the underlying playlist file.
  */
 void QUPlayList::removeSelectedItems() {
-//	int firstIndex = 0;
-//
-//	foreach(QListWidgetItem *item, this->selectedItems()) {
-//		QUPlayListItem *pItem = dynamic_cast<QUPlayListItem*>(item);
-//
-//		if(!pItem)
-//			continue;
-//
-//		firstIndex = row(item);
-//
-//		emit removePlaylistEntryRequested(pItem->entry());
-//		delete item;
-//	}
-//
-//	updateItems(); // update the running number
-//
-//	this->setCurrentItem(this->item( qMin(firstIndex, this->count() - 1) ));
-//	if(this->currentItem())
-//		this->currentItem()->setSelected(true);
+	foreach(QModelIndex index, selectionModel()->selectedRows()) {
+		playlistDB->currentPlaylist()->removeEntry(playlistDB->currentPlaylist()->entry(index.row()));
+	}
+	update();
 }
 
 void QUPlayList::removeUnknownEntries() {
-//	int firstIndex = 0;
-//
-//	for(int i = 0; i < count(); i++) {
-//		QUPlayListItem *pItem = dynamic_cast<QUPlayListItem*>(row(i));
-//
-//		if(!pItem)
-//			continue;
-//
-//		firstIndex = i;
-//
-//		delete item;
-//	}
-//
-//	emit removeUnknownEntriesRequested();
-//	updateItems(); // update the running number
-//
-//	this->setCurrentItem(this->item( qMin(firstIndex, this->count() - 1) ));
-//	if(this->currentItem())
-//		this->currentItem()->setSelected(true);
+	playlistDB->currentPlaylist()->removeDisconnectedEntries();
+	update();
 }

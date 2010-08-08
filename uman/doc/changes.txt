@@ -243,6 +243,9 @@ LANGUAGES
 - make available translations modular
 - allow later adding of new translations via Qt Linguist
 
+COVER DOWNLOAD
+- verify all 3 plugins
+
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO (all)  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
 * ... neutral item

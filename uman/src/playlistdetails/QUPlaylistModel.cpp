@@ -6,22 +6,29 @@
 #include <QString>
 
 QUPlaylistModel::QUPlaylistModel(QObject *parent): QAbstractListModel(parent) {
-//	connect(playlistDB, SIGNAL(playlistChanged(QUPlaylistFile*)), this, SLOT(
-	_playlistIndex = 0;
+	// some playlist changed ... maybe it was the 'current' playlist =D ... could be optimized
+	connect(playlistDB, SIGNAL(playlistChanged(QUPlaylistFile*)), this, SLOT(reload()));
+
+	// new playlist as 'current' selected -> show contents!
+	connect(playlistDB, SIGNAL(currentPlaylistChanged(QUPlaylistFile*)), this, SLOT(reload()));
 }
 
 int QUPlaylistModel::rowCount(const QModelIndex &parent) const {
-	if(!playlist())
+	if(!playlistDB->currentPlaylist())
 		return 0;
 
-	return playlist()->count();
+	return playlistDB->currentPlaylist()->count();
 }
 
 QVariant QUPlaylistModel::data(const QModelIndex &index, int role) const {
-	if(!index.isValid() || !playlist())
+	if(!index.isValid() || !playlistDB->currentPlaylist())
 		return QVariant();
 
-	QUPlaylistEntry *entry = playlist()->entry(index.row());
+	QUPlaylistEntry *entry = playlistDB->currentPlaylist()->entry(index.row());
+
+	if(!entry)
+		return QVariant();
+
 	QUSongFile *song = entry->song();
 
 	if(role == Qt::DisplayRole) {
@@ -36,7 +43,7 @@ QVariant QUPlaylistModel::data(const QModelIndex &index, int role) const {
 				.arg( entry->artistLink() )
 				.arg( entry->titleLink() );
 	} else if(role == Qt::FontRole) {
-		QFont f("Verdana", 10, QFont::Normal, false);
+		QFont f("MS Shell Dlg", 8, QFont::Normal, false);
 		if(entry->hasUnsavedChanges())
 			f.setBold(true);
 		return f;
@@ -48,20 +55,6 @@ QVariant QUPlaylistModel::data(const QModelIndex &index, int role) const {
 	}
 
 	return QVariant();
-}
-
-void QUPlaylistModel::setIndex(int playlistIndex) {
-	if(playlistIndex < 0 or playlistIndex >= playlistDB->size())
-		return;
-	_playlistIndex = playlistIndex;
-	reload();
-}
-
-QUPlaylistFile* QUPlaylistModel::playlist() const {
-	if(_playlistIndex < 0 or _playlistIndex >= playlistDB->size())
-		return 0;
-
-	return playlistDB->at(_playlistIndex);
 }
 
 void QUPlaylistModel::reload() {

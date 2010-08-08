@@ -10,6 +10,7 @@
 QUPlaylistDatabase::QUPlaylistDatabase(QObject *parent): QObject(parent) {
 	connect(songDB, SIGNAL(databaseCleared()), this, SLOT(disconnectAllPlaylists()));
 	connect(songDB, SIGNAL(databaseReloaded()), this, SLOT(connectAllPlaylists()));
+	_currentIndex = -1;
 }
 
 QUPlaylistDatabase* QUPlaylistDatabase::_instance = 0;
@@ -43,18 +44,20 @@ QDir QUPlaylistDatabase::dir() {
 
 void QUPlaylistDatabase::setDir(const QDir &dir) {
 	QSettings().setValue("playlistFilePath", dir.path());
-	logSrv->add(QString("Folder for playlists changed to: \"%1\"").arg(dir.path()), QU::Information);
+	logSrv->add(QString("Playlist path changed to: \"%1\"").arg(dir.path()), QU::Information);
 	reload();
 }
 
 void QUPlaylistDatabase::createPlaylist() {
 	_playlists << new QUPlaylistFile(this);
-	connect(_playlists.last(), SIGNAL(dataChanged()), this, SLOT(signalSongChanged()));
+	connect(_playlists.last(), SIGNAL(dataChanged()), this, SLOT(signalPlaylistChanged()));
 	emit playlistAdded(_playlists.last());
+
+	setCurrentIndex(size() - 1);
 }
 
 void QUPlaylistDatabase::connectAllPlaylists() {
-	QUProgressDialog dlg(tr("Check playlists for new songs..."), _playlists.size(), parentWidget(), false);
+	QUProgressDialog dlg(tr("Connecting playlists to songs..."), _playlists.size(), parentWidget(), false);
 	dlg.setPixmap(":/control/playlist.png");
 	dlg.show();
 
@@ -67,7 +70,7 @@ void QUPlaylistDatabase::connectAllPlaylists() {
 }
 
 void QUPlaylistDatabase::disconnectAllPlaylists() {
-	QUProgressDialog dlg(tr("Disconnect playlists from songs..."), _playlists.size(), parentWidget(), false);
+	QUProgressDialog dlg(tr("Disconnecting playlists from songs..."), _playlists.size(), parentWidget(), false);
 	dlg.setPixmap(":/control/playlist.png");
 	dlg.show();
 
@@ -76,7 +79,7 @@ void QUPlaylistDatabase::disconnectAllPlaylists() {
 		playlist->disconnectSongs();
 	}
 
-	emit databaseDisconected();
+	emit databaseDisconnected();
 }
 
 
@@ -99,11 +102,18 @@ void QUPlaylistDatabase::reload() {
 		loadPlaylist(fi.filePath());
 	}
 
+	logSrv->add(tr("Playlists reloaded. %1 playlist(s) found.").arg(size()), QU::Information);
 	emit databaseReloaded();
+
+	// Select the first playlist if anyone is present.
+	setCurrentIndex(size() > 0 ? 0 : -1);
 }
 
 void QUPlaylistDatabase::clear() {
+	// Give other references the chance to free dependencies to playlists first.
 	emit databaseCleared();
+
+	// Assume no pending references outside and clear the database.
 	qDeleteAll(_playlists);
 	_playlists.clear();
 }
@@ -120,7 +130,10 @@ void QUPlaylistDatabase::save() {
 			playlist->save();
 		else {
 			QString filePath = QFileDialog::getSaveFileName(parentWidget(),
-					QString(tr("Save playlist \"%1\" as...")).arg(playlist->name()), dir().path(), QString("UltraStar Playlists (%1)").arg(QUSongSupport::allowedPlaylistFiles().join(" ")));
+					QString(
+						tr("Save playlist \"%1\" as...")).arg(playlist->name()),
+						dir().path(),
+						QString("UltraStar Playlists (%1)").arg(QUSongSupport::allowedPlaylistFiles().join(" ")));
 
 			if(!filePath.isEmpty()) {
 				playlist->setFileInfo(QFileInfo(filePath));
@@ -145,6 +158,8 @@ void QUPlaylistDatabase::deletePlaylist(QUPlaylistFile *playlist) {
 	delete playlist;
 
 	logSrv->add(QString(tr("Playlist was deleted successfully: \"%1\"")).arg(name), QU::Information);
+
+	setCurrentIndex(qMin(currentIndex(), size() - 1));
 }
 
 QUPlaylistFile* QUPlaylistDatabase::at(int index) const {
@@ -182,6 +197,13 @@ void QUPlaylistDatabase::saveUnsavedChanges() {
 		if(playlist->hasUnsavedChanges())
 			playlist->save();
 	}
+}
+
+QUPlaylistFile* QUPlaylistDatabase::currentPlaylist() const {
+	if(currentIndex() < 0 || currentIndex() >= size())
+		return 0;
+
+	return at(currentIndex());
 }
 
 void QUPlaylistDatabase::loadPlaylist(const QString &filePath) {
