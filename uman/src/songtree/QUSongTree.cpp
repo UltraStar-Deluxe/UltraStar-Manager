@@ -30,7 +30,9 @@
 #define FILE_DROP_LIMIT 5
 
 QUSongTree::QUSongTree(QWidget *parent): QTreeWidget(parent) {
-	this->setAcceptDrops(true);
+	setAcceptDrops(true);
+	setDropIndicatorShown(true);
+
 	this->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
 	// enable context menu for items
@@ -544,8 +546,12 @@ bool QUSongTree::dropMimeData (QTreeWidgetItem *parent, int index, const QMimeDa
 	return this->copyFilesToSong(data->urls(), item);
 }
 
+Qt::DropActions QUSongTree::supportedDropActions() const {
+	return Qt::CopyAction | Qt::MoveAction;
+}
+
 QStringList QUSongTree::mimeTypes() const {
-	return QStringList("text/uri-list");
+	return QStringList() << "text/uri-list";
 }
 
 /*!

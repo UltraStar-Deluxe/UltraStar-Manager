@@ -96,14 +96,16 @@ SONG TREE
 COVER DOWNLOADS
 * available as plugins now
 * "www.albumartexchange.com" now accessible
+  > needs to enter a captcha sometimes (use your internet browser)
 * "freecovers.net" now accessible
   > but only compressed covers due to gold membership needed
+  > may be down at the moment (8th August 2010)
 * BUY-Button removed
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 QT
-* based on Qt 4.5.2 now
+* based on Qt 4.5.3 now
 * keep on licensing under GPL
 
 PLUGINS
@@ -114,7 +116,7 @@ SUPPORTED FILE TYPES
 * icon for "*.kar" files changed -> these are only MIDI files with lyrics
 
 REPORTS
-* Shortcut changed from F2 to F8
+* Shortcut changed from F2 to F8 (F2 is default edit key)
 
 FILTER SONGS
 * renamed to "Find Songs"
@@ -230,6 +232,9 @@ REPORTS
 DUET SONGS
 * detection is not perfect with []-tags
   > "Wheatus - A little respect [LIVE]"
+
+SONG TREE
+* cannot drop external files into song tree anymore :-/
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO (1.8.0)  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 

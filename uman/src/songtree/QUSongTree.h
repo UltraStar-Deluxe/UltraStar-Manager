@@ -112,6 +112,7 @@ private:
 	QList<QUSongItem*> _hiddenItems;
 
 	virtual bool dropMimeData(QTreeWidgetItem *parent, int index, const QMimeData *data, Qt::DropAction action);
+	virtual Qt::DropActions supportedDropActions() const;
 	virtual QStringList mimeTypes() const;
 
 	bool copyFilesToSong(const QList<QUrl> &files, QUSongItem *item);
