@@ -1,18 +1,17 @@
 XPStyle on
-SetCompress off
 
 !define PRODUCTNAME "UltraStar Manager"
-!define PRODUCTVERSION "1.7.1"
+!define PRODUCTVERSION "1.8.0"
 Name "${PRODUCTNAME} ${PRODUCTVERSION}"
 
 !include "MUI.nsh"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
-!define MUI_HEADERIMAGE_BITMAP "img\uman_installer_top.bmp"
-!define MUI_HEADERIMAGE_UNBITMAP "img\uman_installer_top.bmp"
+!define MUI_HEADERIMAGE_BITMAP "img\uman_installer_top_2.bmp"
+!define MUI_HEADERIMAGE_UNBITMAP "img\uman_installer_top_2.bmp"
 
-!define MUI_WELCOMEFINISHPAGE_BITMAP "img\uman_installer_side.bmp"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "img\uman_installer_side.bmp"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "img\uman_installer_side_2.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "img\uman_installer_side_2.bmp"
 
 !define BASE_REGKEY "Software\HPI\${PRODUCTNAME}"
 !define UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCTNAME}"

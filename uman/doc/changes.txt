@@ -233,12 +233,6 @@ DUET SONGS
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO (1.8.0)  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
-PLAYLISTS
-- add playlist support again
-
-DUETS
-- parse/save TXDs correctly
-
 LANGUAGES
 - make available translations modular
 - allow later adding of new translations via Qt Linguist
