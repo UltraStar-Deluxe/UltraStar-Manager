@@ -13,7 +13,7 @@ QUAlbumArtExRequestUrl::QUAlbumArtExRequestUrl(const QString &host, const QStrin
 }
 
 QString QUAlbumArtExRequestUrl::request() const {
-	QString result = QString("http://%1/covers.php?grid=4x5&%2")
+	QString result = QString("http://%1/covers.php?grid=4x7&%2")
 			.arg(host())
 			.arg(QString(fixedPercentageEncoding()));
 

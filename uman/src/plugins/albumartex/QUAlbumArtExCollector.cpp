@@ -23,7 +23,7 @@ QURequestUrl* QUAlbumArtExCollector::url() const {
 }
 
 void QUAlbumArtExCollector::processSearchResults() {
-	QRegExp rx = QRegExp(";src=(.*)\" width=.*(\\d+)&times;(\\d+)\"");
+	QRegExp rx = QRegExp("img src=\"(.*)\" width=.*(\\d+)&times;(\\d+)\"");
 
 	rx.setMinimal(true);
 	rx.setCaseSensitivity(Qt::CaseInsensitive);
@@ -34,7 +34,7 @@ void QUAlbumArtExCollector::processSearchResults() {
 	int pos = 0;
 
 	while ((pos = rx.indexIn(text, pos)) != -1) {
-		allUrls << rx.cap(1).trimmed().replace("%2F", "/");
+		allUrls << rx.cap(1).trimmed().replace("%2F", "/").replace("/_", "/").replace(".tn.", ".");
 		resolutions << QPair<int, int>(QVariant(rx.cap(2)).toInt(), QVariant(rx.cap(3)).toInt());
 		pos += rx.matchedLength();
 	}
