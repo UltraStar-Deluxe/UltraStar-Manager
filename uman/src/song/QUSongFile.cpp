@@ -179,7 +179,7 @@ bool QUSongFile::updateCache() {
 	 * about information to these lines.
 	 */
 	QString line;
-	while( !(QRegExp("([:\\*FE\\-].*)|(P [123].*)").exactMatch(line) || _file.atEnd()) ) {
+	while( !(QRegExp("([:\\*FE\\-].*)|(P\\s*[123].*)").exactMatch(line) || _file.atEnd()) ) {
 		line = QUStringSupport::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
 
 		// read supported tags
@@ -206,7 +206,7 @@ bool QUSongFile::updateCache() {
 
 	// read lyrics + other stuff (distinct them)
 	while( !_file.atEnd() ) {
-		if(QRegExp("([:\\*F\\-].*)|(P [123].*)").exactMatch(line))
+		if(QRegExp("([:\\*F\\-].*)|(P\\s*[123].*)").exactMatch(line))
 			_lyrics << line;
 		else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
 			_footer << line;
@@ -506,7 +506,7 @@ QStringList QUSongFile::lyrics() const {
 	QStringList result; result << QString();
 
 	QRegExp lineBreak("\\s*-.*");
-	QRegExp lineSinger("\\s*P [123].*");
+	QRegExp lineSinger("\\s*P\\s*[123].*");
 	QRegExp linePrefix("\\s*[:\\*F]\\s*-?\\d+\\s+\\d+\\s+-?\\d+\\s");
 
 	int lastBeat = -1;
@@ -1336,7 +1336,7 @@ void QUSongFile::convertLyricsToRaw() {
  * Takes a raw lyrics line (e.g. ": 2345 10 90 blubb ") and converts that to an internal format.
  */
 void QUSongFile::lyricsAddNote(QString line) {
-	if(!QRegExp("([:\\*F\\-].*)|(P [123].*)").exactMatch(line)) {
+	if(!QRegExp("([:\\*F\\-].*)|(P\\s*[123].*)").exactMatch(line)) {
 		logSrv->add(QString(tr("Error while preparing lyrics for %1 - %2. Could not parse the following line: %3"))
 					.arg(artist())
 					.arg(title())
