@@ -34,12 +34,12 @@
     <message>
         <location filename="QUCleanUpTaskFactory.cpp" line="11"/>
         <source>Clean-Up Tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufräumen</translation>
     </message>
     <message>
         <location filename="QUCleanUpTaskFactory.cpp" line="15"/>
         <source>Remove obsolete song data or delete unused files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferne überflüssige Songdaten oder lösche unbenutzte Dateien.</translation>
     </message>
 </context>
 <context>
@@ -47,17 +47,17 @@
     <message>
         <location filename="../shared/QUMultilingualTaskFactory.h" line="25"/>
         <source>Unnamed plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbenanntes Plugin</translation>
     </message>
     <message>
         <location filename="../shared/QUMultilingualTaskFactory.h" line="27"/>
         <source>Unknown person</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekannte Person</translation>
     </message>
     <message>
         <location filename="../shared/QUMultilingualTaskFactory.h" line="28"/>
         <source>No description given.</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Beschreibung vorhanden.</translation>
     </message>
 </context>
 <context>
@@ -65,7 +65,7 @@
     <message>
         <location filename="../shared/QUSimpleTaskFactory.h" line="16"/>
         <source>Simple Task</source>
-        <translation type="unfinished"></translation>
+        <translation>Einfacher Task</translation>
     </message>
 </context>
 <context>
@@ -73,7 +73,7 @@
     <message>
         <location filename="../shared/QUSmartSetting.cpp" line="30"/>
         <source>Reset to default value.</source>
-        <translation type="unfinished"></translation>
+        <translation>Auf Standardwert zurücksetzen.</translation>
     </message>
 </context>
 </TS>
