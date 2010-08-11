@@ -1,7 +1,6 @@
 !include "dialogs\defines.nsh"
 
 XPStyle on
-SetCompress off
 
 !define PRODUCTNAME "UltraStar Manager"
 !define PRODUCTNAME_SUFFIX "Plugin SDK"
@@ -72,6 +71,7 @@ Section "Application" SecCopyUI
 	;; general plugin interface - most important
 	SetOutPath "$INSTDIR"
 	File "..\setup_sdk\umanenv.bat"
+	File "..\setup_sdk\readme.txt"
 	File "plugins\QUPlugin.h"
 	File "song\QUSongInterface.h"
 	;; task plugins
@@ -207,6 +207,7 @@ Section "Uninstall"
 	RMDir "$INSTDIR\ris"
 	Delete "$INSTDIR\Uninstall.exe"
 	Delete "$INSTDIR\umanenv.bat"
+	Delete "$INSTDIR\readme.txt"
 	RMDir "$INSTDIR"
 
     ;; Start Menu

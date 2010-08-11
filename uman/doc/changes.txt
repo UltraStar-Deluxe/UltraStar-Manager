@@ -200,7 +200,6 @@ INSTALLER
 
 TRANSLATION
 * "Leerzeichen an Zeilenende verschieben" -> "Leerzeichen am Zeilenende korrigieren" or "Leerzeichen vor die Silben verschieben"
-* "Kopieren" -> "Verschieben" or "Bewegen"
 
 TASKS
 * convert syllable placeholders does not ignore "wanted" dashes ("A-B-C")
@@ -235,15 +234,6 @@ DUET SONGS
 
 SONG TREE
 * cannot drop external files into song tree anymore :-/
-
-~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO (1.8.0)  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
-
-LANGUAGES
-- make available translations modular
-- allow later adding of new translations via Qt Linguist
-
-COVER DOWNLOAD
-- verify all 3 plugins
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO (all)  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
@@ -347,6 +337,7 @@ TASKS
 	> 1:1 for covers
 	> n:m for backgrounds, according to resolution (ingame)
 	> detect selected resolution for UltraStar (read configs...)
+! resize images (background, cover) to a specific size or size limit
 ! crop covers to 1:1 (extra task?)
   > resize and fill with color to ratio ??
   > fill with transparent color
