@@ -231,9 +231,11 @@ win32 {
         -lbass
 }
 unix { 
-    INCLUDEPATH += /usr/include/taglib
+    INCLUDEPATH += /usr/include/taglib \
+		/usr/include/bass
     LIBS += -L"/usr/lib" \
-        -ltag
+        -ltag \
+		-lbass
 }
 QMAKE_EXTRA_TARGETS += revtarget
 PRE_TARGETDEPS += version.h
