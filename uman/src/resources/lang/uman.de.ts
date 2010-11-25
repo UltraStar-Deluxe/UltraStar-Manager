@@ -69,7 +69,7 @@
     <message>
         <location filename="../../QUMonty.cpp" line="74"/>
         <source>Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the &lt;i&gt;hide&lt;/i&gt; button below and I will disappear for now.&lt;br&gt;&lt;br&gt;You have a nice collection of &lt;b&gt;%1 songs&lt;/b&gt; there. Are they managed well yet?</source>
-        <translation>Heyho! Ich bin Monty das Mammut. Kenn ich dich nicht von irgendwoher? Ich werde dir von Zeit zu Zeit ein paar Tipps geben. Drück einfach den &lt;i&gt;Verstecken&lt;/i&gt;-Knopf unten und ich werde vorerst verschwinden.&lt;br&gt;&lt;br&gt;Du hast da eine nette Sammlung von&lt;b&gt;%1 Songs&lt;/b&gt;. Hast du sie auch alle gut unter Kontrolle?</translation>
+        <translation>Heyho! Ich bin Monty das Mammut. Kenn ich dich nicht von irgendwoher? Ich werde dir von Zeit zu Zeit ein paar Tipps geben. Drück einfach den &lt;i&gt;Verstecken&lt;/i&gt;-Knopf unten und ich werde vorerst verschwinden.&lt;br&gt;&lt;br&gt;Du hast da eine nette Sammlung von &lt;b&gt;%1 Songs&lt;/b&gt;. Hast du sie auch alle gut unter Kontrolle?</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="104"/>
