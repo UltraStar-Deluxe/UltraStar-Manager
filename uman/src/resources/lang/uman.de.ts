@@ -3569,7 +3569,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../song/QUSongFile.cpp" line="625"/>
         <source>The song file &quot;%1&quot; was saved successfully.</source>
-        <translation>Die Songdatei &quot;%1&quot; wurde erfoglreich gespeichert.</translation>
+        <translation type="unfinished">Die Songdatei &quot;%1&quot; wurde erfolgreich gespeichert.</translation>
     </message>
     <message>
         <location filename="../../song/QUSongFile.cpp" line="667"/>
