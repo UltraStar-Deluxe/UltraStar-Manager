@@ -11,7 +11,7 @@ QUSongNote::QUSongNote(Types ty, int t, int d, int p, const QString &s, QObject 
 {}
 
 /*!
- * Reset the number of leading and following spacse.
+ * Reset the number of leading and following spaces.
  */
 void QUSongNote::resetTrailingSpaces(int prefixCount, int suffixCount) {
 	// the simple way

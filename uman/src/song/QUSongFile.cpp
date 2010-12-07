@@ -1304,7 +1304,7 @@ void QUSongFile::convertLyricsToRaw() {
 
 	foreach(QUSongLineInterface *line, _melody) {
 		if(line->singer() != QUSongLineInterface::undefined)
-			_lyrics.append(QString("P %1\n").arg((int)line->singer()));
+                        _lyrics.append(QString("P%1\n").arg((int)line->singer()));
 
 		foreach(QUSongNoteInterface *note, line->notes()) {
 			QStringList out;
