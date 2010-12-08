@@ -1,0 +1,10 @@
+<task>
+    <general group="10" type="id3" >
+        <icon resource=":/types/font.png" />
+        <description><![CDATA[Change #TITLE via ID3 tag from audio file.]]></description>
+        <tooltip/>
+    </general>
+    <id3 target="title" schema="%1" >
+        <data ignoreEmpty="targetfull" source="title" />
+    </id3>
+</task>

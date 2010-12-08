@@ -1,0 +1,1 @@
+shared files for remote image source plugins
