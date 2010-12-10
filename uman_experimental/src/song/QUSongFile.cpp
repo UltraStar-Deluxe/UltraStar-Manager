@@ -13,7 +13,10 @@
 #include <QFile>
 #include <QChar>
 #include <QMap>
-
+// MB_start
+#include <QTextCodec>
+#include <QTextStream>
+// MB_end
 #include "audioproperties.h"
 #include "fileref.h"
 #include "tag.h"
@@ -163,6 +166,13 @@ bool QUSongFile::updateCache() {
 		return false;
 	}
 
+        // MB_start
+        QTextStream in(&_file);
+        in.setAutoDetectUnicode(true);
+        QTextCodec *codec = QTextCodec::codecForName("Windows-1252");
+        in.setCodec(codec);
+        // MB_end
+
 	songDB->ignoreChangesForSong(this);
 
 	// clear contents
@@ -179,8 +189,12 @@ bool QUSongFile::updateCache() {
 	 * about information to these lines.
 	 */
 	QString line;
-	while( !(QRegExp("([:\\*FE\\-].*)|(P\\s*[123].*)").exactMatch(line) || _file.atEnd()) ) {
-		line = QUStringSupport::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
+        // MB_start
+        //while( !(QRegExp("([:\\*FE\\-].*)|(P\\s*[123].*)").exactMatch(line) || _file.atEnd()) ) {
+        while( !(QRegExp("([:\\*FE\\-].*)|(P\\s*[123].*)").exactMatch(line) || in.atEnd()) ) {
+                //line = QUStringSupport::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
+                line = QUStringSupport::withoutLeadingBlanks(in.readLine());
+                // MB_end
 
 		// read supported tags
 		bool isSupported = false;
@@ -205,13 +219,19 @@ bool QUSongFile::updateCache() {
 	}
 
 	// read lyrics + other stuff (distinct them)
-	while( !_file.atEnd() ) {
+        // MB_start
+        //while( !_file.atEnd() ) {
+        while( !in.atEnd() ) {
+        // MB_end
 		if(QRegExp("([:\\*F\\-].*)|(P\\s*[123].*)").exactMatch(line))
 			_lyrics << line;
 		else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
 			_footer << line;
 
-		line = QUStringSupport::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
+                // MB_start
+                //line = QUStringSupport::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
+                line = QUStringSupport::withoutLeadingBlanks(in.readLine()));
+                // MB_end
 	}
 
 	// use last line buffer
@@ -587,37 +607,63 @@ bool QUSongFile::save(bool force) {
 
 	QUSongFile::verifyTags(tags);
 
+        // MB_start
+        QTextStream out(&_file);
+        out.setCodec(QTextCodec::codecForName("UTF-8"));
+        out.setGenerateByteOrderMark(true);
+        // MB_end
+
 	// write supported tags
 	foreach(QString tag, tags) {
 		if(_info.value(tag.toUpper()) != "") { // do not write empty tags
-			_file.write("#");
-			_file.write(tag.toUpper().toLocal8Bit());
-			_file.write(":");
-			_file.write(_info.value(tag.toUpper()).toLocal8Bit());
-			_file.write("\n");
+                        // MB_start
+                        //_file.write("#");
+                        //_file.write(tag.toUpper().toLocal8Bit());
+                        //_file.write(":");
+                        //_file.write(_info.value(tag.toUpper()).toLocal8Bit());
+                        //_file.write("\n");
+                        out << "#";
+                        out << tag.toUpper().toUtf8();
+                        out << ":";
+                        out << _info.value(tag.toUpper()).toUtf8();
+                        out << "\n";
+                        // MB_end
 		}
 	}
 
 	// write unsupported tags
 	foreach(QString uTag, _foundUnsupportedTags) {
-		_file.write("#");
-		_file.write(uTag.toLocal8Bit());
-		_file.write(":");
-		_file.write(_info.value(uTag).toLocal8Bit());
-		_file.write("\n");
+                // MB_start
+                //_file.write("#");
+                //_file.write(uTag.toLocal8Bit());
+                //_file.write(":");
+                //_file.write(_info.value(uTag).toLocal8Bit());
+                //_file.write("\n");
+                out << "#";
+                out << uTag.toUtf8();
+                out << ":";
+                out << _info.value(uTag).toUtf8();
+                out << "\n";
+                // MB_end
 	}
 
 	// write lyrics
 	foreach(QString line, _lyrics) {
-		_file.write(line.toLocal8Bit());
+                out << line.toUtf8();
 	}
 
 	// write song ending
-	_file.write("E\n");
+        // MB_start
+        //_file.write("E\n");
+        out << "E\n";
+        // MB_end
 
 	// write footer
 	foreach(QString line, _footer) {
-		_file.write(line.toLocal8Bit());
+                // MB_start
+                //_file.write(line.toLocal8Bit());
+                out << line.toUtf8();
+                // MB_end
 	}
 
 	_file.close();
