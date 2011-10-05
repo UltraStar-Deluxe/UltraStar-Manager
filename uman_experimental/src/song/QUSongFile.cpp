@@ -230,7 +230,7 @@ bool QUSongFile::updateCache() {
 
                 // MB_start
                 //line = QUStringSupport::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
-                line = QUStringSupport::withoutLeadingBlanks(in.readLine()));
+                line = QUStringSupport::withoutLeadingBlanks(in.readLine());
                 // MB_end
 	}
 
