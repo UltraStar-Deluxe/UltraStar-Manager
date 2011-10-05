@@ -1,0 +1,72 @@
+﻿Si vous double-cliquez sur la cellule où la ligne d'un fichier audio et la colonne <i> audio </i> croix, vous pouvez immédiatement mettre votre chanson d'utiliser ce fichier audio dans UltraStar. <br> Cela fonctionne aussi photos et vidéos für.
+Vous pouvez modifier la valeur de chaque balise dans la zone de détails. Il suffit de double-cliquer sur la cellule de droite là pour entrer dans le mode édition d'une valeur spécifique.
+Vous pouvez modifier l'ordre dans lequel les étiquettes sont enregistrées dans un fichier de morceau par glisser-déposer ces balises sous Options <i>> Tag Enregistrer Ordre ...</i>.
+Avez-vous remarqué que "zone de tâches"? Il suffit de cocher les choses que vous voulez faire, sélectionnez quelques chansons et puis cliquez sur le bouton Exécuter les tâches avec <i> </i>. <br> Vous pouvez également frappé <i> Ctrl + R </i> .
+Vous pouvez masquer le journal des événements en décochant <i>Afficher > Event Log </i>. <br> Ceci fonctionne également pour plus de détails la chanson et la zone des tâches.
+Ne vous me voulez dire quelque chose d'autre? Dites à tout le monde à vos demandes à notre forum de projet <a href="http://forum.ultra-star.de/viewforum.php?f=62"> </a>.
+La balise BPM n'est pas modifiable? Ouais, c'est ça. Ce n'est pas un outil de création de chansons comme le Créateur <a href="http://sourceforge.net/projects/usc"> UltraStar </a>. Néanmoins, vous pouvez modifier toutes les paroles et les fautes d'orthographe correcte.
+Ai-je bien entendu? Une fonctionnalité manquante?! Il suffit de cliquer <a href="http://forum.ultra-star.de/viewforum.php?f=62"> ici </a> et dire que tout le monde - surtout les développeurs.
+Les "Songs" du menu vous permet d'agrandir ou réduire l'arborescence chanson entière. Cela signifie que vous verrez soit seulement les répertoires de vos chansons ou tous les fichiers que vous pouvez utiliser.
+Il vous manque une vidéo pour votre chanson préférée? Consultez la <a href="http://www.youtube.com"> Youtube </a>!
+Chaque fois qu'une tâche ne pouvait être fait, vous pouvez le voir dans le journal des événements. Surtout un fichier n'a pas pu être trouvé ou caractères non valides (par exemple '?') Sont utilisés pour renommer quelque chose. <br> Soyez conscient que <i> UltraStar </i> peut afficher plus de caractères que vous pouvez utiliser sous <i > Windows </i> pour un fichier.
+Avez-vous remarqué qu'il ya des verts, jaunes, rouges et des smileys dans l'arbre de chanson? Les jaunes vous dire que votre répertoire chanson est nommé correctement après Artiste <i> - Titre </i> n'est pas sensible à la casse alors que les verts sont sensibles à la casse. Les smileys rouges indiquent une combinaison totalement faux.
+La chaîne <i> </i> à côté d'un fichier image, audio ou vidéo que vous signale qu'il peut être trouvée en UltraStar correctement. <br> Vous pouvez réinitialiser les chaînes en double-cliquer sur la bonne colonne.
+Les fichiers sont inutilisés par UltraStar chaque fois qu'ils apparaissent en gris.
+Vous voulez savoir combien de chansons que vous avez? Eh bien ... il ya des chansons <b>% 1 </b>. Pas mal du tout. <br> Avez-vous obtenu une couverture, un fond ou une vidéo pour chacun d'eux? Non? Alors vous avez une nouvelle tâche.
+Hmmm ... juste au cas où vous ne l'avez pas reconnu: Les derniers événements sont situés sur le dessus du journal des événements.
+Avez-vous remarqué ces info-bulles belle à la tête de chaque colonne dans l'arbre de chanson? Il ya plus de bulles d'aide à près de chaque bouton ici.
+Vous demandez-vous pourquoi certaines tâches à renommer votre fichier en quelque chose <i> .* </i>? <br> Eh bien, votre suffixe de fichier est préservée quelle qu'elle soit. Donc, ne pas déranger.
+Le premier *. txt ou *. fichiers dans n'importe quel répertoire txd de votre dossier chanson sera reconnu comme une chanson et énumérés dans l'arbre de la chanson. Autres fichiers de chansons seront dits <i> amis </i> pour cette chanson primaire. Vous pouvez passer la chanson principale avec double-cliquant sur le fichier.
+Il ya une chanson qui manque est trouvé par UltraStar lieu? Cela ne peut pas être! <br> Eh bien ... s'il vous plaît le signaler sur le forum du projet <a href="http://forum.ultra-star.de/viewforum.php?f=62"> </ a > et inclure des détails, où cette chanson se trouve.
+Vous pouvez activer ces chemins relatifs dans la colonne de dossier par décocher <i> Afficher Chemin> Chanson relative </i>.
+Quels sont <b> dossiers bleu </b>? Si une balise est trouvée dans un fichier texte de la chanson qui ne sera pas reconnu par UltraStar alors cette chanson est marquée par un bleu dossier. <br> C'est pas mal du tout. Ces balises restera intacte par défaut. Il s'agit d'une tâche qui supprime les balises si vous voulez.
+L'infobulle d'un dossier bleu vous affiche toutes les balises non prises en charge qui ont été trouvés.
+Essayez de cliquer sur un fichier audio et voir ce qui apparaît dans la fenêtre de prévisualisation ...
+Avez-vous remarqué que l'énorme quantité de valeurs par défaut pour un genre dans les détails chanson? Ces genres proviennent de la spécification ID3v1 bon vieux ainsi que certaines extensions personnalisées Winamp.
+Je vais être tranquille? Puis décochez m'a <i> dans le coin supérieur droit du menu principal </i>.
+Les valeurs par défaut pour un artiste, un titre et l'année dans les détails chansons viennent du tag ID3.
+Il s'agit d'une tâche qui vous permet de mettre en place les fichiers manquants pour une chanson automatiquement. Cette tâche cherche les premiers fichiers appropriés (audio, photo, vidéo) et utilise ce fichier si l'entrée actuelle est invalide ou manquant.
+Vous pouvez modifier certains détails de nombreuses chansons à la fois si vous sélectionnez certains et utiliser le tableau de détails <i> </i>.
+Si vous faites glisser-déposer un widget dockable (détails chanson, tâches, journal des événements) sur un autre widget dockable ces deux widgets <i> va fondre ensemble </i> à un nouveau widget avec des onglets en bas.
+Vous pouvez faire un widget dockable (détails chanson, tâches, journal des événements) flottables si vous double-cliquez sur sa barre de titre.
+Avez-vous remarqué que l'état de la fenêtre d'application ainsi que tous les widgets dockable est enregistré à la sortie?
+Balises non prises en charge seront sauvés après toutes les autres balises dans le fichier de la chanson. Vous pouvez créer ces balises comme <i> balises personnalisées </i> via <i> Options> balises personnalisées ...</i> et puis spécifier leur ordre enregistrer dans les options <i>> ...</ Tag pour économiser i>.
+Vous avez un problème avec le changement de la balise artiste parce que l'auto complétion veut utiliser la valeur tag ID3? (Ex: "Abba" -> "Abba") <br> Essayez de cocher Utiliser <i> casse auto complétion </i>, sous la table plus de détails.
+Si vous double-cliquez sur un fichier texte, vous verrez son contenu.
+Saviez-vous que vous pouvez faire glisser un ou plusieurs fichiers à partir du fichier <i> Explorer </i> sur une chanson dans l'arbre de copier <i> </i> et de l'utilisation / assigner ce ou ces fichiers automatiquement pour cette chanson?
+Les fichiers qui apparaissent <i> barré-out </i> et <i> gris </i> ne peut pas être utilisé partout et sont inutiles pour UltraStar.
+Saviez-vous qu'il ya un menu contextuel dans l'arbre de chanson? Essayez de cliquer sur le bouton droit de la souris sur un fichier ou un répertoire chanson et voir ce qui arrive ...
+Vous pouvez supprimer un seul fichier en appuyant sur la touche Suppr de votre clavier ou en choisissant <i> Supprimer </i> dans le menu contextuel de ce fichier. Attention, <br> <B>! Vous pouvez supprimer les fichiers texte de la chanson! </b>
+Si vous faites glisser-déposer un fichier texte de la chanson à partir de votre explorateur dans l'arbre chanson (pas à un élément), un nouveau dossier sera créé et votre dossier sera copié dans ce nouvel emplacement. <br> Ainsi, vous pouvez facilement ajouter de nouvelles des chansons à votre collection.
+Chaque fois qu'un dossier apparaît en gras il ya des modifications non sauvegardées. Ne pas oublier de les sauver!
+Vous pouvez filtrer l'arborescence chanson. Il suffit de frapper <i> Ctrl + F </i> et tapez une expression régulière. Ensuite, appuyez sur le bouton de filtre.
+Avez-vous déjà créer un rapport <i> </i> de vos chansons? Non? <br> Essayez <i> Extras> Créer un rapport ...</i> ou appuyez sur F8 <i> </i>.
+Si vous double-cliquez sur un fichier image, vous aurez un aperçu de celui-ci.
+Vous pouvez supprimer une tâche renommer en supprimant son fichier de configuration dans le répertoire de l'application.
+Si vous faites un double-clic sur une tâche renommer dans la liste des tâches que vous pouvez modifier cette tâche.
+Il ya un menu contextuel dans la liste des tâches qui vous permet d'ajouter et de modifier les tâches renommer.
+Certaines opérations ne peuvent être annulées parce que ce serait conduire à un état incohérent, par exemple appliquant un filtre.
+Vous pouvez développer et réduire les catégories dans la fenêtre d'informations de bases de données en double-cliquant sur leur nom.
+Une croix avec un point d'exclamation dans l'arbre des chansons indique que la valeur d'une étiquette relatives aux fichiers (par exemple # couverture) a été fixé, mais le fichier n'existe pas.
+Une chanson est <b> invalide </b> si elle n'a pas artiste ou le titre ou une longueur de zéro. Cette chanson aura une lumière rouge ou <b> fond rose </b> dans l'arbre de la chanson.
+Si vous souhaitez intégrer de nouvelles chansons par glisser-déposer dans l'arbre de la chanson, il peut être utile pour masquer toutes les autres chansons d'abord. <br> <i> Masquer> Tous </i> (menu contextuel)
+Il ya deux types de menus contextuels dans l'arbre de la chanson. Un des fichiers et un pour dossiers (chansons ensemble).
+Vous pouvez inverser l'expression régulière pour un filtre si vous cliquez sur le bouton loupe en face de la ligne d'entrée.
+Si vous filtrez "abba | Akon | dido", vous obtiendrez tous les articles qui contiennent "abba", "Akon" ou "Dido".
+Presque toutes les icônes dans l'arborescence des chansons ont une info-bulle. Juste laisser le curseur de la souris seulement et attendez 1-2 secondes. Un indice apparaît.
+Vous pouvez voir les chansons à double si vous appuyez doublons <i> </i> dans la zone de filtre / recherche. Double chansons seront cotées ensemble.
+Playlists sera connecté à la base de données chanson en cours. Chaque fois qu'une chanson sera changé, les playlists seront mises à jour automatiquement. <br> Listes <br> Changé besoin d'être sauvés.
+<i> Amazon Assiciates service Web: </i> <br> Couvre <br> ne sera téléchargé des chansons qui sont cochées. Cela s'applique également aux «Copy & Set".
+Vous pouvez étendre la liste de tous les types de fichiers pris en charge si vous double-cliquez sur le titre correspondant dans File Information <i> </i>.
+Modifiable tâches peuvent être modifiés via un double clic. De plus, un menu contextuel est présent - cliquez sur le bouton droit de la souris.
+Le journal des événements seront enregistrés sur la sortie dans le chemin de l'application.
+Le chef de l'arbre chanson a un menu contextuel. Ici vous pouvez afficher et masquer des colonnes. Préréglages offrent un moyen plus pratique de faire cela.
+Vous pouvez afficher les paroles de la chanson actuelle via <i> Ctrl + L </i>.
+Le nouveau menu de style peuvent être réduits avec <i> Ctrl + F1 </i>.
+Vous pouvez prévisualiser des chansons ensemble avec le nouveau lecteur média <i> </i>! C'est tellement cool. Chansons sélectionnées, la base de données chanson entière ou la liste de lecture courante peuvent être lus. Vous pouvez chanter et vérifier la qualité, même sans avoir à démarrer UltraStar.
+Si vous faites un clic droit dans les paroles du lecteur multimédia tout en lecture d'une chanson, vous pouvez passer à l'éditeur de textes et corriger une erreur d'orthographe ou de typo.
+Vous pouvez sauter à n'importe quelle position dans une chanson dans le lecteur multimédia.
+Vous avez des problèmes à trouver un couvre mauvaise chanson? Il ya une fonction appelée <i> examen Pictures </i>. Vous obtenez un aperçu cool pour toutes les couvertures et peut les dissocier d'une chanson avec votre barre d'espace.
+Vous pouvez calculer la vitesse d'une chanson qui est un indicateur pour le nombre moyen de syllabes par seconde.
+Toutes les tâches et les téléchargements de couverture sont mis en œuvre sous forme de plugins <i> </i>. Vous pouvez écrire vos propres plugins avec la <b> UltarStar Plugin Manager SDK </b>.
+Vous pouvez éditer les paroles avec <i> Ctrl + E </i>.

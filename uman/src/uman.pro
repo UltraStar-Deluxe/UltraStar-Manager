@@ -66,12 +66,12 @@ HEADERS += plugins/QUPluginManager.h \
     preferences/QUTagOrderDialog.h \
     playlist/QUPlaylistFile.h \
     playlist/QUPlaylistEntry.h \
-	playlist/QUPlaylistDatabase.h \
+    playlist/QUPlaylistDatabase.h \
     playlistdetails/QUPlaylistArea.h \
     playlistdetails/QUPlayListItem.h \
     playlistdetails/QUPlayList.h \
-	playlistdetails/QUPlaylistModel.h \
-	playlistdetails/QUPlaylistDBModel.h \
+    playlistdetails/QUPlaylistModel.h \
+    playlistdetails/QUPlaylistDBModel.h \
     preview/QUPreviewTree.h \
     report/QUSongFileData.h \
     report/QUPlainTextReport.h \
@@ -100,7 +100,7 @@ HEADERS += plugins/QUPluginManager.h \
     lyricseditor/QULyricsEditorDialog.h \
     lyricseditor/QUSyllableDelegate.h \
     preferences/QUPathsDialog.h \
-	score/QUScoreFile.h
+    score/QUScoreFile.h
 
 # support/qkFileWatcher.h
 SOURCES += plugins/QUPluginManager.cpp \
@@ -138,12 +138,12 @@ SOURCES += plugins/QUPluginManager.cpp \
     preferences/QUTagOrderDialog.cpp \
     playlist/QUPlaylistFile.cpp \
     playlist/QUPlaylistEntry.cpp \
-	playlist/QUPlaylistDatabase.cpp \
+    playlist/QUPlaylistDatabase.cpp \
     playlistdetails/QUPlaylistArea.cpp \
     playlistdetails/QUPlayListItem.cpp \
     playlistdetails/QUPlayList.cpp \
-	playlistdetails/QUPlaylistModel.cpp \
-	playlistdetails/QUPlaylistDBModel.cpp \
+    playlistdetails/QUPlaylistModel.cpp \
+    playlistdetails/QUPlaylistDBModel.cpp \
     preview/QUPreviewTree.cpp \
     report/QUSongFileData.cpp \
     report/QUPlainTextReport.cpp \
@@ -175,16 +175,15 @@ SOURCES += plugins/QUPluginManager.cpp \
     lyricseditor/QULyricsEditorDialog.cpp \
     lyricseditor/QUSyllableDelegate.cpp \
     preferences/QUPathsDialog.cpp \
-	score/QUScoreFile.cpp
-
-# support/qkFileWatcher.cpp
+    score/QUScoreFile.cpp
+    #support/qkFileWatcher.cpp
 FORMS += plugins/QUPluginDialog.ui \
     QUMainWindow.ui \
     QUAboutDialog.ui \
     mediaplayer/QUMediaPlayer.ui \
     monty/QUMontyArea.ui \
     filter/QUFilterArea.ui \
-	playlistdetails/QUPlaylistArea.ui \
+    playlistdetails/QUPlaylistArea.ui \
     report/QUReportDialog.ui \
     support/QUPictureDialog.ui \
     support/QUMessageBox.ui \
@@ -200,8 +199,9 @@ FORMS += plugins/QUPluginDialog.ui \
     remoteimages/QUCoverGroup.ui
 RESOURCES += resources/uman.qrc
 TRANSLATIONS = resources/lang/uman.de.ts \
-	resources/lang/uman.pl.ts \
-	resources/lang/uman.es.ts
+    resources/lang/uman.pl.ts \
+    resources/lang/uman.es.ts \
+    resources/lang/uman.fr.ts
 INCLUDEPATH += . \
     song \
     songdetails \
@@ -234,10 +234,10 @@ win32 {
 }
 unix { 
     INCLUDEPATH += /usr/include/taglib \
-		/usr/include/bass
+        /usr/include/bass
     LIBS += -L"/usr/lib" \
         -ltag \
-		-lbass
+        -lbass
 }
 QMAKE_EXTRA_TARGETS += revtarget
 PRE_TARGETDEPS += version.h

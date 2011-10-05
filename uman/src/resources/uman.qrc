@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/" >
+    <qresource prefix="/">
         <file>monty/back.png</file>
         <file>monty/happy.png</file>
         <file>monty/normal.png</file>
@@ -24,8 +24,14 @@
         <file>player/loop.png</file>
         <file>qt.png</file>
         <file>about_bgr.png</file>
+        <file>lang/fr.png</file>
+        <file>txt/hints_fr</file>
+        <file>lang/uman.fr.qm</file>
+        <file>txt/hints_es</file>
+        <file>lang/es.png</file>
+        <file>lang/uman.es.qm</file>
     </qresource>
-    <qresource prefix="/bubble" >
+    <qresource prefix="/bubble">
         <file>speech8.png</file>
         <file>speech1.png</file>
         <file>speech2.png</file>
@@ -35,7 +41,7 @@
         <file>speech6.png</file>
         <file>speech7.png</file>
     </qresource>
-    <qresource prefix="/bullets" >
+    <qresource prefix="/bullets">
         <file>arrow_down_small.png</file>
         <file>bullet_star.png</file>
         <file>arrow_up_small.png</file>
@@ -47,7 +53,7 @@
         <file>bullet_add.png</file>
         <file>bullet_remove.png</file>
     </qresource>
-    <qresource prefix="/control" >
+    <qresource prefix="/control">
         <file>playlist_to.png</file>
         <file>text_edit.png</file>
         <file>duplicates.png</file>
@@ -111,7 +117,7 @@
         <file>text_allcaps.png</file>
         <file>cog.png</file>
     </qresource>
-    <qresource prefix="/icons" >
+    <qresource prefix="/icons">
         <file>splash.png</file>
         <file>splash2.png</file>
         <file>cup.png</file>
@@ -124,7 +130,7 @@
         <file>uman16.png</file>
         <file>uman24.png</file>
     </qresource>
-    <qresource prefix="/marks" >
+    <qresource prefix="/marks">
         <file>accept.png</file>
         <file>cross_error.png</file>
         <file>add.png</file>
@@ -164,7 +170,7 @@
         <file>path_ok.png</file>
         <file>path_unknown.png</file>
     </qresource>
-    <qresource prefix="/types" >
+    <qresource prefix="/types">
         <file>text_stack.png</file>
         <file>folder_go.png</file>
         <file>time_song.png</file>
@@ -211,7 +217,7 @@
         <file>duet.png</file>
         <file>page_white_acrobat.png</file>
     </qresource>
-    <qresource prefix="/big" >
+    <qresource prefix="/big">
         <file>save_big.png</file>
         <file>user_big.png</file>
         <file>cover_big.png</file>

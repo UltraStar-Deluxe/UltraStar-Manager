@@ -216,7 +216,8 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			}
 
 			//double 'C', but not if e.g. 'McClellan'
-			if(anyStringAt(current, 2, "CC", "") and !((current == 1) and (at(0) == 'M')))
+                        if(anyStringAt(current, 2, "CC", "") and !((current == 1) and (at(0) == 'M')))
+                        {
 				//'bellocchio' but not 'bacchus'
                                 if(anyStringAt((current + 2), 1, "I", "E", "H", "") and !anyStringAt((current + 2), 2, "HU", ""))
 				{
@@ -234,7 +235,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 					current += 2;
 					break;
 				}
-
+                        }
 			if(anyStringAt(current, 2, "CK", "CG", "CQ", ""))
 			{
 				add("K");
@@ -269,6 +270,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 
 		case 'D':
 			if(anyStringAt(current, 2, "DG", ""))
+                        {
 				if(anyStringAt((current + 2), 1, "I", "E", "Y", ""))
 				{
 					//e.g. 'edge'
@@ -281,7 +283,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 					current += 2;
 					break;
 				}
-
+                        }
 			if(anyStringAt(current, 2, "DT", "DD", ""))
 			{
 				add("T");
@@ -614,6 +616,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			{
 				//Schlesinger's rule
 				if(at(current + 2) == 'H')
+                                {
 					//dutch origin, e.g. 'school', 'schooner'
 					if(anyStringAt((current + 3), 2, "OO", "ER", "EN", "UY", "ED", "EM", ""))
 					{
@@ -633,7 +636,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 						current += 3;
 						break;
 					}
-
+                                }
 				if(anyStringAt((current + 2), 1, "I", "E", "Y", ""))
 				{
 					add("S");

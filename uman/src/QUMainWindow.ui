@@ -77,6 +77,12 @@
         <property name="allColumnsShowFocus">
          <bool>false</bool>
         </property>
+        <attribute name="headerDefaultSectionSize">
+         <number>27</number>
+        </attribute>
+        <attribute name="headerMinimumSectionSize">
+         <number>27</number>
+        </attribute>
         <column>
          <property name="text">
           <string>1</string>
@@ -846,7 +852,7 @@ Tasks</string>
      <x>0</x>
      <y>0</y>
      <width>912</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

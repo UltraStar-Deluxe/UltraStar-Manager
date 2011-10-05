@@ -98,6 +98,8 @@ private slots:
 	void enableEnglish();
 	void enableGerman();
 	void enablePolish();
+        void enableFrench();
+        void enableSpanish();
 
 	void getCoversFromAmazon(QList<QUSongItem*> items);
 	void getCovers();

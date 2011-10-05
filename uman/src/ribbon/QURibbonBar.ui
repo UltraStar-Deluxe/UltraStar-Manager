@@ -26,7 +26,7 @@
    <enum>QTabWidget::Rounded</enum>
   </property>
   <property name="currentIndex">
-   <number>0</number>
+   <number>2</number>
   </property>
   <property name="documentMode">
    <bool>false</bool>
@@ -1231,6 +1231,84 @@ Save</string>
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
            <normaloff>:/lang/pl.png</normaloff>:/lang/pl.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="langFrBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>60</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>Change application language to 'French (Français)'.</string>
+         </property>
+         <property name="text">
+          <string>French
+(Français)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/lang/fr.png</normaloff>:/lang/fr.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="langEsBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>60</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>Change application language to 'Spanish (Español)'.</string>
+         </property>
+         <property name="text">
+          <string>Spanish
+(Español)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/lang/es.png</normaloff>:/lang/es.png</iconset>
          </property>
          <property name="checkable">
           <bool>true</bool>

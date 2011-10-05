@@ -199,7 +199,11 @@ void QUMainWindow::initConfig() {
 		_menu->langDeBtn->setChecked(true);
 	} else if(QLocale(settings.value("language").toString()).language() == QLocale::Polish) {
 		_menu->langPlBtn->setChecked(true);
-	}
+        } else if(QLocale(settings.value("language").toString()).language() == QLocale::French) {
+                _menu->langFrBtn->setChecked(true);
+        } else if(QLocale(settings.value("language").toString()).language() == QLocale::Spanish) {
+                _menu->langEsBtn->setChecked(true);
+        }
 
 	QStringList imageFormatsNeeded;
 	QStringList imageFormatsQt;
@@ -337,7 +341,9 @@ void QUMainWindow::initRibbonBar() {
 
 	connect(_menu->langUsBtn, SIGNAL(clicked()), this, SLOT(enableEnglish()));
 	connect(_menu->langDeBtn, SIGNAL(clicked()), this, SLOT(enableGerman()));
-	connect(_menu->langPlBtn, SIGNAL(clicked()), this, SLOT(enablePolish()));
+        connect(_menu->langPlBtn, SIGNAL(clicked()), this, SLOT(enablePolish()));
+        connect(_menu->langFrBtn, SIGNAL(clicked()), this, SLOT(enableFrench()));
+        connect(_menu->langEsBtn, SIGNAL(clicked()), this, SLOT(enableSpanish()));
 
 	connect(_menu, SIGNAL(changeSongPathRequested(QString)), this, SLOT(changeSongDir(QString)));
 
@@ -1210,7 +1216,7 @@ void QUMainWindow::reportCreate() {
 }
 
 /*!
- * Changes the application language to english.
+ * Changes the application language to English.
  */
 void QUMainWindow::enableEnglish() {
 	_menu->langUsBtn->setChecked(true);
@@ -1230,7 +1236,7 @@ void QUMainWindow::enableEnglish() {
 }
 
 /*!
- * Changes the application language to german.
+ * Changes the application language to German.
  */
 void QUMainWindow::enableGerman() {
 	_menu->langDeBtn->setChecked(true);
@@ -1250,7 +1256,7 @@ void QUMainWindow::enableGerman() {
 }
 
 /*!
- * Changes the application language to polish.
+ * Changes the application language to Polish.
  */
 void QUMainWindow::enablePolish() {
 	_menu->langPlBtn->setChecked(true);
@@ -1267,6 +1273,46 @@ void QUMainWindow::enablePolish() {
 			    << ":/marks/accept.png" << tr("Continue."));
 	if(result == 0)
 		this->close();
+}
+
+/*!
+ * Changes the application language to French.
+ */
+void QUMainWindow::enableFrench() {
+        _menu->langFrBtn->setChecked(true);
+
+        QSettings settings;
+        settings.setValue("language", QLocale(QLocale::French, QLocale::France).name());
+
+        // ---------------
+
+        int result = QUMessageBox::information(this,
+                        tr("Change Language"),
+                        tr("Application language changed to <b>French</b>. You need to restart UltraStar Manager to take effect."),
+                        BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
+                            << ":/marks/accept.png" << tr("Continue."));
+        if(result == 0)
+                this->close();
+}
+
+/*!
+ * Changes the application language to Spanish.
+ */
+void QUMainWindow::enableSpanish() {
+        _menu->langEsBtn->setChecked(true);
+
+        QSettings settings;
+        settings.setValue("language", QLocale(QLocale::Spanish, QLocale::Spain).name());
+
+        // ---------------
+
+        int result = QUMessageBox::information(this,
+                        tr("Change Language"),
+                        tr("Application language changed to <b>Spanish</b>. You need to restart UltraStar Manager to take effect."),
+                        BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
+                            << ":/marks/accept.png" << tr("Continue."));
+        if(result == 0)
+                this->close();
 }
 
 void QUMainWindow::getCoversFromAmazon(QList<QUSongItem*> items) {

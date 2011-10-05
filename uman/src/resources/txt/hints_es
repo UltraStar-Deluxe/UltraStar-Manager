@@ -1,0 +1,72 @@
+﻿Si hace doble clic en la celda en la fila de un archivo de audio y la columna de audio <i> </i> cruz, inmediatamente se puede establecer su canción para utilizar este archivo de audio en UltraStar. <br> Esto funciona también für fotos y videos.
+Usted puede editar el valor de cada etiqueta en el área de detalles. Basta con hacer doble clic en la celda allí para entrar en el modo de edición de un valor específico.
+Puede modificar el orden en que las etiquetas se guardan en un archivo de la canción mediante arrastrar y colocar estas etiquetas en Opciones <i>> Etiqueta Guardar orden ...</i>.
+¿Sabía usted que la observación "área de tareas"? Sólo tienes que comprobar las cosas que quieres hacer, seleccionar algunas canciones y luego haga clic en el botón Ejecutar tareas con <i> </i>. <br> También puede golpear <i> Ctrl + R </i> .
+Puede ocultar el registro de eventos, desmarcando <i> Ver> Registro de eventos </i>. <br> Esto funciona también para los detalles de la canción y el área de tareas.
+¿Quieres que te diga algo más? Dile a todo el mundo acerca de sus peticiones en nuestro foro de <a proyecto href="http://forum.ultra-star.de/viewforum.php?f=62"> </a>.
+La etiqueta de BPM no es editable? Sí, es cierto. Esto no es una herramienta de creación de la canción como el Creador <a href="http://sourceforge.net/projects/usc"> UltraStar </a>. No obstante, puede modificar todas las letras y corregir errores de ortografía.
+¿He oído bien? Una característica que falta? Basta con hacer clic <a href="http://forum.ultra-star.de/viewforum.php?f=62"> aquí </a> y decirles a todos - especialmente a los desarrolladores.
+Las "Canciones" del menú le permite expandir o contraer el árbol de toda la canción. Eso significa que o bien se verá sólo los directorios de sus canciones o todos los archivos que puede utilizar.
+Se echa en falta un video para su canción favorita? Echa un vistazo a <a href="http://www.youtube.com"> Youtube </a>!
+Cada vez que una tarea no se podía hacer se puede ver en el registro de eventos. En su mayoría de un archivo no se pudo encontrar o caracteres no válidos (por ejemplo, '?') Se utilizan para cambiar el nombre de algo. <br> Tenga en cuenta que <i> UltraStar </i> puede mostrar más caracteres que se pueden utilizar en <i > Windows </i> de un archivo.
+¿Te diste cuenta que no son de color verde, amarillo, rojo y emoticonos en el árbol de la canción? Las amarillas que dicen que el directorio de la canción se llama correctamente después de <i> artista - título </i> no entre mayúsculas y minúsculas, mientras que los verdes son mayúsculas y minúsculas. Los emoticonos rojo indican una combinación totalmente equivocado.
+La cadena <i> </i> al lado de un archivo de imagen, audio o vídeo que las señales que se pueden encontrar por UltraStar correctamente. <br> Puede restablecer las cadenas con un doble clic en la columna correcta.
+Los archivos no han sido utilizados por UltraStar cada vez que aparecen en gris.
+¿Quieres saber cuántas canciones tienes? Bueno ... hay <b>% 1 canciones </b>. No está nada mal. <br> ¿Conseguiste una tapa, un fondo o un vídeo para cada uno? ¿No? Entonces usted tiene una nueva tarea.
+Hmmm ... en caso de que no se reconoce: Los últimos eventos se encuentran en la parte superior del registro de eventos.
+¿Sabía usted observación a estas sugerencias agradable en el encabezamiento de cada columna en el árbol de la canción? Hay más información sobre herramientas en casi todos los botones aquí.
+¿Se pregunta por qué algunas tareas desea cambiar el nombre de su archivo en algo <i> .* </i>? <br> Bueno, el sufijo de archivo se conserva lo que sea. Así que no se moleste.
+El primero *. txt o *. txd en cualquier subdirectorio de la carpeta de la canción será reconocida como una canción y que figuran en el árbol de la canción. Otros archivos de la canción será llamado <i> amigos </i> de la canción principal. Puede cambiar la canción principal con doble clic en el archivo.
+Hay una canción que falta que se encuentra por UltraStar en su lugar? Eso no puede ser! <br> Bueno ... por favor se informe sobre el foro <a proyecto href="http://forum.ultra-star.de/viewforum.php?f=62"> </a> e incluya los detalles donde se encuentra esa canción.
+Usted puede dar vuelta de estas rutas relativas en la columna de carpetas desmarque <i> Ver Ruta> canción relativa </i>.
+¿Cuáles son <b> carpetas azules </b>? Si una etiqueta se encuentra en un archivo de texto de la canción que no será reconocido por UltraStar entonces esta canción está marcado con un color azul carpeta. <br> Eso no es malo en absoluto. Estas etiquetas se mantendrá intacto por defecto. No es una tarea que elimina las etiquetas, si quieres.
+La descripción de una carpeta azul que muestra todas las etiquetas que se encontraron sin apoyo.
+Trate de hacer clic en un archivo de audio y ver lo que aparece en la ventana de vista previa ...
+¿Te diste cuenta de que gran cantidad de valores por defecto para un género en el detalles de la canción? Estos géneros se originan a partir de la especificación ID3v1 buenos viejos tiempos, así como algunas extensiones de Winamp personalizado.
+Voy a estar en silencio? A continuación, desactive me <i> en la esquina superior derecha del menú principal </i>.
+Los valores por defecto para un artista, un título y el año en el detalles de las canciones provienen de la etiqueta ID3.
+No es una tarea que le permite configurar los archivos que faltan para una canción de forma automática. Esta tarea busca los archivos adecuados primera (audio, foto y video) y utiliza ese archivo, si la entrada actual no es válida o no.
+Puede editar algunos detalles de las canciones a la vez si selecciona algunas y utilizar la tabla <i> detalles </i>.
+Si arrastra y suelta un flash acoplable (detalles de las canciones, las tareas, registro de eventos) en otro control acoplable estos <i> dos widgets se funden </i> a un nuevo widget con pestañas en la parte inferior.
+Usted puede hacer un flash acoplable (detalles de las canciones, las tareas, registro de eventos) flotantes, si hace doble clic en la barra de título.
+Te señalar que el estado de la ventana de la aplicación, así como todos los widgets acoplables se guarda en la salida?
+Etiquetas no compatibles se guardará después de todo, otras etiquetas en el archivo de la canción. Puede crear estas etiquetas como <i> etiquetas personalizadas </i> a través de <i> Opciones> etiquetas personalizadas ...</i> y especifique su orden, salvo en Opciones <i>> Etiqueta ...</ fin de ahorrar i>.
+Usted tiene un problema con el cambio de la etiqueta de artista, porque el auto completado quiere usar el valor de la etiqueta ID3? (Por ejemplo, "abba" -> "Abba") <br> Trate de verificación Usar <i> entre mayúsculas y minúsculas autocompletado </i> en la tabla de detalles.
+Si hace doble clic en un archivo de texto que puedes ver su contenido.
+¿Sabía usted que puede arrastrar uno o más archivos desde el explorador de archivos <i> </i> en una canción en el árbol de copiar <i> </i> y el uso / asignar archivos de esta o estas de forma automática para esa canción?
+Los archivos que aparecen <i> tachado-out </i> y <i> gris </i> no se puede usar en cualquier lugar y son inútiles para UltraStar.
+¿Sabía usted que hay un menú contextual en el árbol de la canción? Intente hacer clic en el botón derecho del ratón sobre un archivo o un directorio de las canciones y ver qué pasa ...
+Se puede borrar un solo archivo pulsando la tecla de borrar en el teclado o la elección de <i> Eliminar </i> en el menú contextual de ese archivo. <br> Atención <b> Amistad! Puede borrar archivos de las canciones de texto </b>
+Si arrastrar y soltar un archivo de texto de la canción de su explorador en el árbol de la canción (no en un punto), una nueva carpeta será creada y el archivo se copiará en la nueva ubicación. <br> Así que usted puede agregar fácilmente nuevas canciones de tu colección.
+Cada vez que una carpeta aparece en negrita hay cambios sin guardar. No te olvides de salvar!
+Puede filtrar el árbol de la canción. Sólo tiene que darle <i> Ctrl + F </i> y el tipo de una expresión regular. A continuación, pulse el botón de filtro.
+¿Alguna vez se crea un informe <i> </i> de tus canciones? ¿No? <br> Trate <i> Extras> Crear informe ...</i> o presione F8 <i> </i>.
+Si hace doble clic en un archivo de imagen que va a obtener una vista previa del mismo.
+Puede eliminar una tarea de cambiar el nombre al eliminar el archivo de configuración en el directorio de la aplicación.
+Si usted hace doble clic en una tarea de cambiar el nombre en la lista de tareas puede modificar esa tarea.
+Hay un menú contextual en la lista de tareas que le permite agregar y editar las tareas de cambio de nombre.
+Algunas operaciones no pueden ser cancelados debido a que daría lugar a un estado incoherente, por ejemplo, aplicar un filtro.
+Puede expandir y contraer las categorías en la ventana de información de base de datos haciendo doble clic en sus nombres.
+Una cruz con un signo de exclamación en el árbol de la canción indica que el valor de una etiqueta relacionada a los archivos (por ejemplo, # cubierta) fue fijado pero el archivo no existe.
+Una canción es <b> válido </b> si no tiene artista o el título o una longitud de cero. Esa canción tendrá una luz roja o <b> fondo de color rosa </b> en el árbol de la canción.
+Si desea integrar nuevas canciones a través de arrastrar y soltar en el árbol de la canción, puede ser útil para ocultar todas las otras canciones en primer lugar. <br> <i> Ocultar> Todos </i> (menú contextual)
+Hay dos tipos de menús contextuales en el árbol de la canción. Uno de los archivos y carpetas de un (canciones completas).
+Se puede negar la expresión regular de un filtro si hace clic en el botón lupa delante de la línea de entrada.
+Si filtra "abba | Akon | dido", obtendrá todos los artículos que contienen "abba", "Akon" o "Dido".
+Casi todos los iconos en el árbol de la canción tiene una descripción. Acaba de dejar el cursor del ratón solo y esperar 1-2 segundos. Un indicio aparecerá.
+Usted puede ver dos canciones si pulsa duplicados <i> </i> en el área de filtro / búsqueda. Doble canciones se muestran juntos.
+Las listas se pueden conectar a la base de datos de la canción actual. Cada vez que una canción se puede cambiar, listas de reproducción se actualizará automáticamente. <br> Listas <br> cambiado necesidad de ser salvos.
+<i> Assiciates Amazon Web Service: </i> <br> Covers <br> sólo se pueden descargar las canciones que están marcadas. Eso se aplica también a "copiar y Set".
+Puede ampliar una lista de todos los tipos de archivos compatibles, si hace doble clic en el título correspondiente en Información del archivo <i> </i>.
+Editable tareas pueden ser modificados a través de doble clic. Además, un menú contextual está presente - pulse el botón derecho del ratón.
+El registro de eventos se guardan en la salida de la ruta de la aplicación.
+El jefe de la canción tiene un árbol de menú de contexto. Aquí se puede mostrar y ocultar columnas. Presets ofrecen una forma más conveniente de hacerlo.
+Puede mostrar las letras de la canción actual a través de <i> Ctrl + L </i>.
+El nuevo menú de estilo se pueden contraer con <i> Ctrl + F1 </i>.
+Usted puede ver canciones completas con el nuevo reproductor de medios de comunicación <i> </i>! Es muy cool. Canciones seleccionadas, la base de datos toda la canción o la lista de reproducción se pueden reproducir. Usted puede cantar y comprobar la calidad, incluso sin tener que empezar UltraStar.
+Si hace clic en las letras del reproductor de medios, mientras se reproduce una canción, puede saltar al editor de letras y corregir un error de ortografía o error tipográfico.
+Usted puede saltar a cualquier posición en una canción en el reproductor de medios.
+¿Tiene problemas con la búsqueda cubre mala canción? Hay una característica llamada <i> revisión Pictures </i>. Se obtiene una vista previa de todas las cubiertas de frescos y puede desvincular de una canción con la barra espaciadora.
+Se puede calcular la velocidad de una canción que es un indicador para el número promedio de sílabas por segundo.
+Todas las tareas y las descargas de la cubierta se implementan como plugins <i> </i>. Usted puede escribir sus propios plugins con la <b> UltarStar Plugin Manager SDK </b>.
+Puede editar letras con <i> Ctrl + E </i>.

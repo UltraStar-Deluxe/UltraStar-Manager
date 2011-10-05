@@ -97,16 +97,25 @@ void initLanguage(QApplication &app, QTranslator &t, QSplashScreen &s) {
 			app.installTranslator(&t);
 			monty->initMessages(":/txt/hints_pl");
 		}
-	}
+        } else if (lang.language() == QLocale::French) {
+                if(t.load(":/lang/uman.fr.qm")) {
+                        app.installTranslator(&t);
+                        monty->initMessages(":/txt/hints_fr");
+                }
+        } else if (lang.language() == QLocale::Spanish) {
+                if(t.load(":/lang/uman.es.qm")) {
+                        app.installTranslator(&t);
+                        monty->initMessages(":/txt/hints_es");
+                }
+        }
 
 	s.showMessage(QString(QObject::tr("%1.%2.%3 is loading...")).arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION), Qt::AlignBottom | Qt::AlignRight, Qt::white);
 
-	// message needs to be here because it can be translated only after installing
-	// the translator
+        // message needs to be here because it can be translated only after installing the translator
 	if(!settingFound)
 		QUMessageBox::information(0,
 				QObject::tr("Init Language"),
-				QObject::tr("There was no configuration setting about your language.Your <b>system language</b> will be used if possible.<br>"
+                                QObject::tr("There was no configuration setting about your language. Your <b>system language</b> will be used if possible.<br>"
 						"<br>"
 						"See <b>Options > Language</b> to change this."),
 				BTN << ":/marks/accept.png" << QObject::tr("Continue."),
