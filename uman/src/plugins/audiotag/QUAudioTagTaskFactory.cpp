@@ -45,6 +45,8 @@ QMap<QString, QString> QUAudioTagTaskFactory::translationLocations() const {
 	if(dir.cd("plugins") && dir.cd("languages")) {
 		locations.insert(QLocale(QLocale::German, QLocale::Germany).name(), dir.filePath("audiotag.de.qm"));
 		locations.insert(QLocale(QLocale::Polish, QLocale::Poland).name(), dir.filePath("audiotag.pl.qm"));
+                locations.insert(QLocale(QLocale::French, QLocale::France).name(), dir.filePath("audiotag.fr.qm"));
+                locations.insert(QLocale(QLocale::Spanish, QLocale::Spain).name(), dir.filePath("audiotag.es.qm"));
 	}
 
 	return locations;

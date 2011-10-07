@@ -45,6 +45,8 @@ QMap<QString, QString> QURenameTaskFactory::translationLocations() const {
 	if(dir.cd("plugins") && dir.cd("languages")) {
 		locations.insert(QLocale(QLocale::German, QLocale::Germany).name(), dir.filePath("rename.de.qm"));
 		locations.insert(QLocale(QLocale::Polish, QLocale::Poland).name(), dir.filePath("rename.pl.qm"));
+                locations.insert(QLocale(QLocale::French, QLocale::France).name(), dir.filePath("rename.fr.qm"));
+                locations.insert(QLocale(QLocale::Spanish, QLocale::Spain).name(), dir.filePath("rename.es.qm"));
 	}
 
 	return locations;

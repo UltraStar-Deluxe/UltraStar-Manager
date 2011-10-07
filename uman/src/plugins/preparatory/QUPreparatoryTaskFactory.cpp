@@ -37,6 +37,8 @@ QMap<QString, QString> QUPreparatoryTaskFactory::translationLocations() const {
 	if(dir.cd("plugins") && dir.cd("languages")) {
 		locations.insert(QLocale(QLocale::German, QLocale::Germany).name(), dir.filePath("preparatory.de.qm"));
 		locations.insert(QLocale(QLocale::Polish, QLocale::Poland).name(), dir.filePath("preparatory.pl.qm"));
+                locations.insert(QLocale(QLocale::French, QLocale::France).name(), dir.filePath("preparatory.fr.qm"));
+                locations.insert(QLocale(QLocale::Spanish, QLocale::Spain).name(), dir.filePath("preparatory.es.qm"));
 	}
 
 	return locations;

@@ -31,6 +31,8 @@ QMap<QString, QString> QUFreeCoversSource::translationLocations() const {
 	if(dir.cd("plugins") && dir.cd("languages")) {
 		locations.insert(QLocale(QLocale::German, QLocale::Germany).name(), dir.filePath("freecovers.de.qm"));
 		locations.insert(QLocale(QLocale::Polish, QLocale::Poland).name(), dir.filePath("freecovers.pl.qm"));
+                locations.insert(QLocale(QLocale::French, QLocale::France).name(), dir.filePath("freecovers.fr.qm"));
+                locations.insert(QLocale(QLocale::Spanish, QLocale::Spain).name(), dir.filePath("freecovers.es.qm"));
 	}
 
 	return locations;

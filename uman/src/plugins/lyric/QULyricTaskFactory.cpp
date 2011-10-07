@@ -38,6 +38,8 @@ QMap<QString, QString> QULyricTaskFactory::translationLocations() const {
 	if(dir.cd("plugins") && dir.cd("languages")) {
 		locations.insert(QLocale(QLocale::German, QLocale::Germany).name(), dir.filePath("lyric.de.qm"));
 		locations.insert(QLocale(QLocale::Polish, QLocale::Poland).name(), dir.filePath("lyric.pl.qm"));
+                locations.insert(QLocale(QLocale::French, QLocale::France).name(), dir.filePath("lyric.fr.qm"));
+                locations.insert(QLocale(QLocale::Spanish, QLocale::Spain).name(), dir.filePath("lyric.es.qm"));
 	}
 
 	return locations;
