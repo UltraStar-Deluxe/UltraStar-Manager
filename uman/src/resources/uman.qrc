@@ -116,6 +116,8 @@
         <file>convert-r.png</file>
         <file>text_allcaps.png</file>
         <file>cog.png</file>
+        <file>text_plain.png</file>
+        <file>encodeUTF8.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>splash.png</file>

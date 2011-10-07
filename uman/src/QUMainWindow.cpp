@@ -141,6 +141,7 @@ void QUMainWindow::closeEvent(QCloseEvent *event) {
 	settings.setValue("showErrorMessages", showErrorsBtn->isChecked());
 
 	settings.setValue("autoSave", QVariant(_menu->autoSaveBtn->isChecked()));
+        settings.setValue("encodeUTF8", QVariant(_menu->encodeUTF8Btn->isChecked()));
 
 	this->saveLog();
 
@@ -182,6 +183,7 @@ void QUMainWindow::initConfig() {
 
 	_menu->autoSaveBtn->setChecked(settings.value("autoSave", true).toBool());
 	_menu->onTopChk->setChecked(settings.value("alwaysOnTop", false).toBool());
+        _menu->encodeUTF8Btn->setChecked(settings.value("encodeUTF8", true).toBool());
 
 	this->restoreState(settings.value("windowState").toByteArray());
 	updateViewButtons();
@@ -333,7 +335,8 @@ void QUMainWindow::initRibbonBar() {
 	_menu->updateBaseDirMenu();
 
 	connect(_menu->autoSaveBtn, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
-	connect(_menu->onTopChk, SIGNAL(toggled(bool)), this, SLOT(toggleAlwaysOnTop(bool)));
+        connect(_menu->onTopChk, SIGNAL(toggled(bool)), this, SLOT(toggleAlwaysOnTop(bool)));
+        connect(_menu->encodeUTF8Btn, SIGNAL(toggled(bool)), this, SLOT(toggleEncodeUTF8(bool)));
 
 	connect(_menu->tagSaveOrder, SIGNAL(clicked()), this, SLOT(editTagOrder()));
 	connect(_menu->customTagsBtn, SIGNAL(clicked()), this, SLOT(editCustomTags()));
@@ -558,9 +561,6 @@ void QUMainWindow::refreshAllSongs(bool force) {
 	updateDetails();
 	updatePreviewTree();
 	pluginMGR->reload();
-
-	// workaround for always-on-top windows on startup
-	showNormal();
 }
 
 /*!
@@ -1081,16 +1081,24 @@ void QUMainWindow::toggleAltSongTreeChk(bool checked) {
  * Let the main window stay always in foreground.
  */
 void QUMainWindow::toggleAlwaysOnTop(bool checked) {
-	QSettings settings;
-	if(settings.value("alwaysOnTop", false) != checked)
-		settings.setValue("alwaysOnTop", checked);
+        QSettings settings;
+        if(settings.value("alwaysOnTop", false) != checked)
+                settings.setValue("alwaysOnTop", checked);
 
-	if(checked)
-		this->setWindowFlags(this->windowFlags() | Qt::WindowStaysOnTopHint);
-	else
-		this->setWindowFlags(this->windowFlags() & !Qt::WindowStaysOnTopHint);
+        if(checked)
+                this->setWindowFlags(this->windowFlags() | Qt::WindowStaysOnTopHint);
+        else
+                this->setWindowFlags(this->windowFlags() & !Qt::WindowStaysOnTopHint);
 
-	this->show();
+        this->show();
+}
+
+/*!
+ * Force UTF-8 output encoding
+ */
+void QUMainWindow::toggleEncodeUTF8(bool checked) {
+        QSettings settings;
+        settings.setValue("encodeUTF8", checked);
 }
 
 /*!

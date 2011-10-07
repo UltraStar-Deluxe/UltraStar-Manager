@@ -13,6 +13,8 @@
 #include <QFile>
 #include <QChar>
 #include <QMap>
+#include <QTextCodec>
+#include <QTextStream>
 
 #include "audioproperties.h"
 #include "fileref.h"
@@ -159,9 +161,17 @@ bool QUSongFile::updateCache() {
 	_file.setFileName(_fi.filePath());
 
 	if(!_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		logSrv->add(QString(tr("Could NOT open song file: \"%1\"")).arg(_fi.filePath()), QU::Warning);
+                logSrv->add(QString(tr("Could NOT open song file: \"%1\"")).arg(_fi.filePath()), QU::Warning);
 		return false;
 	}
+
+        QTextStream _in;
+        _in.setAutoDetectUnicode(true);
+        _in.setDevice(&_file);
+
+        //logSrv->add(QString(tr("Encoding \"%1\" found in song file: \"%2\"")).arg(QString(_in.codec()->name())).arg(_fi.filePath()), QU::Information);
+        //QTextCodec *codec = QTextCodec::codecForName("Windows-1252");
+        //_in.setCodec(codec);
 
 	songDB->ignoreChangesForSong(this);
 
@@ -174,13 +184,14 @@ bool QUSongFile::updateCache() {
 	clearMelody();
 
 	/*
-	 * Read the header and write all tags into memory. The headers end is assumed
+         * Read the header and write all tags into memory. The header's end is assumed
 	 * when a line starts with ':', '*', 'F', 'E' or '-'. See the UltraStar documentation
-	 * about information to these lines.
+         * about information on these lines.
 	 */
 	QString line;
-	while( !(QRegExp("([:\\*FE\\-].*)|(P\\s*[123].*)").exactMatch(line) || _file.atEnd()) ) {
-		line = QUStringSupport::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
+
+        while( !(QRegExp("([:\\*FE\\-].*)|(P\\s*[123].*)").exactMatch(line) || _in.atEnd()) ) {
+                line = QUStringSupport::withoutLeadingBlanks(_in.readLine());
 
 		// read supported tags
 		bool isSupported = false;
@@ -205,13 +216,13 @@ bool QUSongFile::updateCache() {
 	}
 
 	// read lyrics + other stuff (distinct them)
-	while( !_file.atEnd() ) {
+        while( !_in.atEnd() ) {
 		if(QRegExp("([:\\*F\\-].*)|(P\\s*[123].*)").exactMatch(line))
 			_lyrics << line;
 		else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
 			_footer << line;
 
-		line = QUStringSupport::withoutLeadingBlanks(QString::fromLocal8Bit(_file.readLine()));
+                line = QUStringSupport::withoutLeadingBlanks(_in.readLine());
 	}
 
 	// use last line buffer
@@ -587,37 +598,46 @@ bool QUSongFile::save(bool force) {
 
 	QUSongFile::verifyTags(tags);
 
+        QTextStream _out(&_file);
+        QTextCodec *codec = QTextCodec::codecForName("Windows-1252");
+
+        bool canEncode = codec->canEncode((QStringList(_info.values()) + _foundUnsupportedTags + _lyrics).join(""));
+
+        // use UTF8 output encoding if explicitly requested or if
+        if (settings.value("encodeUTF8", false).toBool() || !(canEncode)) {
+                _out.setCodec(QTextCodec::codecForName("UTF-8"));
+                _out.setGenerateByteOrderMark(true); // BOM needed by UltraStar 1.1
+                //_out << "#ENCODING:UTF8\n";
+        }
+        else {
+                _out.setCodec(codec);
+                //_out << "#ENCODING:CP1252\n";
+
+        }
+
 	// write supported tags
 	foreach(QString tag, tags) {
 		if(_info.value(tag.toUpper()) != "") { // do not write empty tags
-			_file.write("#");
-			_file.write(tag.toUpper().toLocal8Bit());
-			_file.write(":");
-			_file.write(_info.value(tag.toUpper()).toLocal8Bit());
-			_file.write("\n");
+                        _out << "#" << tag.toUpper() << ":" << _info.value(tag.toUpper()) << endl;
 		}
 	}
 
 	// write unsupported tags
 	foreach(QString uTag, _foundUnsupportedTags) {
-		_file.write("#");
-		_file.write(uTag.toLocal8Bit());
-		_file.write(":");
-		_file.write(_info.value(uTag).toLocal8Bit());
-		_file.write("\n");
+                _out << "#" << uTag << ":" << _info.value(uTag) << endl;
 	}
 
 	// write lyrics
-	foreach(QString line, _lyrics) {
-		_file.write(line.toLocal8Bit());
-	}
+        foreach(QString line, _lyrics) {
+                _out << line << endl;
+        }
 
 	// write song ending
-	_file.write("E\n");
+        _out << "E" << endl;
 
 	// write footer
 	foreach(QString line, _footer) {
-		_file.write(line.toLocal8Bit());
+                _out << line;
 	}
 
 	_file.close();
@@ -1308,7 +1328,7 @@ void QUSongFile::convertLyricsToRaw() {
 
 		foreach(QUSongNoteInterface *note, line->notes()) {
 			QStringList out;
-				 if(note->type() == QUSongNoteInterface::freestyle) out.append("F");
+                        if(note->type() == QUSongNoteInterface::freestyle) out.append("F");
 			else if(note->type() == QUSongNoteInterface::golden)    out.append("*");
 			else                                                    out.append(":");
 
@@ -1318,7 +1338,10 @@ void QUSongFile::convertLyricsToRaw() {
 
 			out.append(note->syllable());
 
-			_lyrics.append(QString("%1\n").arg(out.join(" ")));
+                        // MB_start
+                        //_lyrics.append(QString("%1\n").arg(out.join(" ")));
+                        _lyrics.append(QString("%1").arg(out.join(" ")));
+                        // MB_end
 		}
 
 		if(line->useOutTime()) {
@@ -1327,7 +1350,10 @@ void QUSongFile::convertLyricsToRaw() {
 			if(line->useInTime())
 				out << QVariant(line->inTime()).toString();
 
-			_lyrics.append(QString("%1\n").arg(out.join(" ")));
+                        // MB_start
+                        //_lyrics.append(QString("%1\n").arg(out.join(" ")));
+                        _lyrics.append(QString("%1").arg(out.join(" ")));
+                        // MB_end
 		}
 	}
 }
@@ -1364,7 +1390,7 @@ void QUSongFile::lyricsAddNote(QString line) {
 		songLine->setSinger((QUSongLineInterface::Singers)QVariant(line.split(" ", QString::SkipEmptyParts).at(1).trimmed()).toInt());
 	} else {
 		line.insert(1, " "); // to avoid: ":22 33 90 blubb"
-		line.remove("\n");
+                line.remove("\n");
 
 		QStringList lineSplit = line.trimmed().split(" ", QString::SkipEmptyParts);
 
