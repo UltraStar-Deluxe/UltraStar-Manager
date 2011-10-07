@@ -22,7 +22,8 @@ HEADERS = ../../QUStringSupport.h \
 	../shared2/QUHttpCollector.h
 TRANSLATIONS = amazon.de.ts \
 	amazon.pl.ts \
-	amazon.es.ts
+        amazon.es.ts \
+        amazon.fr.ts
 INCLUDEPATH += . \
 	.. \
 	../.. \

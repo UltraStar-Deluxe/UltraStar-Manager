@@ -19,7 +19,8 @@ HEADERS = ../shared/QUMultilingualTaskFactory.h \
 	../QUSmartSettingInterface.h
 TRANSLATIONS = preparatory.de.ts \
 	preparatory.pl.ts \
-	preparatory.es.ts
+        preparatory.es.ts \
+        preparatory.fr.ts
 INCLUDEPATH += . \
     .. \
     ../.. \

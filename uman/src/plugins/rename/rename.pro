@@ -35,7 +35,8 @@ HEADERS = language.h \
 FORMS += ../shared/QUTaskDialog.ui
 TRANSLATIONS = rename.de.ts \
 	rename.pl.ts \
-	rename.es.ts
+        rename.es.ts \
+        rename.fr.ts
 INCLUDEPATH += . \
     ui \
     .. \

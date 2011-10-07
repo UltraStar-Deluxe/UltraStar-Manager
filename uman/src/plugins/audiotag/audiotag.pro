@@ -35,7 +35,8 @@ HEADERS = language.h \
 FORMS += ../shared/QUTaskDialog.ui
 TRANSLATIONS = audiotag.de.ts \
 	audiotag.pl.ts \
-	audiotag.es.ts
+        audiotag.es.ts \
+        audiotag.fr.ts
 INCLUDEPATH += . \
     ui \
     .. \
