@@ -12,7 +12,8 @@ QUSongSupport::QUSongSupport(QObject *parent): QObject(parent) {}
 QStringList QUSongSupport::availableTags() {
 	QStringList result;
 
-	result << TITLE_TAG;
+        result << ENCODING_TAG;
+        result << TITLE_TAG;
 	result << ARTIST_TAG;
 	result << LANGUAGE_TAG;
 	result << EDITION_TAG;
@@ -27,6 +28,9 @@ QStringList QUSongSupport::availableTags() {
 	result << START_TAG;
 	result << END_TAG;
 	result << RELATIVE_TAG;
+        result << PREVIEWSTART_TAG;
+        result << MEDLEYSTARTBEAT_TAG;
+        result << MEDLEYENDBEAT_TAG;
 	result << BPM_TAG;
 	result << GAP_TAG;
 

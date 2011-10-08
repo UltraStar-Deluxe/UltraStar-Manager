@@ -1141,7 +1141,7 @@ UTF-8</string>
          </property>
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
-           <normaloff>:/control/encodeUTF8.png</normaloff>:/control/encodeUTF8.png</iconset>
+           <normaloff>:/control/encoding.png</normaloff>:/control/encoding.png</iconset>
          </property>
          <property name="checkable">
           <bool>true</bool>

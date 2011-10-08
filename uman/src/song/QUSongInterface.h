@@ -9,23 +9,27 @@ class QString;
 class QStringList;
 class QFileInfo;
 
-#define TITLE_TAG      "TITLE"
-#define ARTIST_TAG     "ARTIST"
-#define LANGUAGE_TAG   "LANGUAGE"
-#define EDITION_TAG    "EDITION"
-#define GENRE_TAG      "GENRE"
-#define YEAR_TAG       "YEAR"
-#define CREATOR_TAG    "CREATOR"
-#define MP3_TAG        "MP3"
-#define COVER_TAG      "COVER"
-#define BACKGROUND_TAG "BACKGROUND"
-#define VIDEO_TAG      "VIDEO"
-#define VIDEOGAP_TAG   "VIDEOGAP"
-#define START_TAG      "START"
-#define END_TAG        "END"
-#define RELATIVE_TAG   "RELATIVE"
-#define BPM_TAG        "BPM"
-#define GAP_TAG        "GAP"
+#define ENCODING_TAG        "ENCODING"
+#define TITLE_TAG           "TITLE"
+#define ARTIST_TAG          "ARTIST"
+#define LANGUAGE_TAG        "LANGUAGE"
+#define EDITION_TAG         "EDITION"
+#define GENRE_TAG           "GENRE"
+#define YEAR_TAG            "YEAR"
+#define CREATOR_TAG         "CREATOR"
+#define MP3_TAG             "MP3"
+#define COVER_TAG           "COVER"
+#define BACKGROUND_TAG      "BACKGROUND"
+#define VIDEO_TAG           "VIDEO"
+#define VIDEOGAP_TAG        "VIDEOGAP"
+#define START_TAG           "START"
+#define END_TAG             "END"
+#define RELATIVE_TAG        "RELATIVE"
+#define PREVIEWSTART_TAG    "PREVIEWSTART"
+#define MEDLEYSTARTBEAT_TAG "MEDLEYSTARTBEAT"
+#define MEDLEYENDBEAT_TAG   "MEDLEYENDBEAT"
+#define BPM_TAG             "BPM"
+#define GAP_TAG             "GAP"
 
 class QUSongNoteInterface: public QObject {
 	Q_OBJECT
@@ -114,6 +118,10 @@ class QUSongInterface: public QObject {
 	Q_PROPERTY(QString year READ year)
 	Q_PROPERTY(QString end READ end)
 	Q_PROPERTY(QString creator READ creator)
+        Q_PROPERTY(QString encoding READ encoding)
+        Q_PROPERTY(QString previewstart READ previewstart)
+        Q_PROPERTY(QString medleystartbeat READ medleystartbeat)
+        Q_PROPERTY(QString medleyendbeat READ medleyendbeat)
 	// additional properties
 	Q_PROPERTY(QString dir READ dir)
 	Q_PROPERTY(QString path READ path)
@@ -156,6 +164,10 @@ public:
 	virtual QString year() const = 0;
 	virtual QString end() const = 0;
 	virtual QString creator() const = 0;
+        virtual QString encoding() const = 0;
+        virtual QString previewstart() const = 0;
+        virtual QString medleystartbeat() const = 0;
+        virtual QString medleyendbeat() const = 0;
 
 	virtual QString customTag(const QString &tag) const = 0;
 
