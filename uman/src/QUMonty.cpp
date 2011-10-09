@@ -71,16 +71,22 @@ QPixmap QUMonty::pic(QUMonty::Status status) {
 }
 
 QString QUMonty::welcomeMsg() {
-	QString welcomeStr(QObject::tr("Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the <i>hide</i> button below and I will disappear for now.<br>"
-				"<br>"
-				"You have a nice collection of <b>%1 songs</b> there. Are they managed well yet?"));
+	QString welcomeStr(QObject::tr("Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the <i>Hide</i> button below and I will disappear for now."));
 
-	return welcomeStr.arg(songDB->songCount());
+	if (songDB->songCount() == 0) {
+		welcomeStr += QObject::tr("<br><br>You have <b>no songs</b> in your collection. Try choosing a different song directory using <i>Options > Song Directory</i> or add a new song path via <i>Options > Paths...</i>");
+	} else if (songDB->songCount() == 1) {
+		welcomeStr += QObject::tr("<br><br>You have <b>1 song</b> in your collection. Is it managed well yet?");
+	} else {
+		welcomeStr += QObject::tr("<br><br>You have <b>%1 songs</b> in your collection. Are they managed well yet?").arg(songDB->songCount());;
+	}
+
+	return welcomeStr;
 }
 
 void QUMonty::talk(QLabel *montyLbl, QLabel *msgLbl) {
 	montyLbl->setPixmap(pic((QUMonty::Status)(qrand() % 4)));
-	msgLbl->setText(messages[qrand() % messages.size()].arg(songDB->songCount()));
+	msgLbl->setText(messages[qrand() % messages.size()]);
 }
 
 /*!
