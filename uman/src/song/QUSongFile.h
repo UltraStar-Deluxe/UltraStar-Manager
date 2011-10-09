@@ -91,6 +91,7 @@ public slots:
 	bool hasCover() const;
 	bool hasBackground() const;
 	bool hasVideo() const;
+        bool hasMedley() const;
 
 	bool isSongChecked() const; // for [SC]
 	bool isSingStar() const;
