@@ -306,6 +306,10 @@ bool QUSongFile::hasVideo() const {
 	return !video().isEmpty() && videoFileInfo().exists();
 }
 
+bool QUSongFile::hasMedley() const {
+        return (medleystartbeat().isEmpty() && medleyendbeat().isEmpty());
+}
+
 /*!
  * Checks whether the song file is "checked" (SC).
  */
@@ -1305,7 +1309,7 @@ bool QUSongFile::swapWithFriend(QUSongFile *song) {
 }
 
 /*!
- * Coverts the raw lyrics to another format for further processing.
+ * Converts the raw lyrics to another format for further processing.
  */
 void QUSongFile::convertLyricsFromRaw() {
 	if(!_melody.isEmpty())
@@ -1316,6 +1320,9 @@ void QUSongFile::convertLyricsFromRaw() {
 	}
 }
 
+/*!
+ * Converts the lyrics to raw format.
+ */
 void QUSongFile::convertLyricsToRaw() {
 	if(_melody.isEmpty())
 		return;
@@ -1324,11 +1331,11 @@ void QUSongFile::convertLyricsToRaw() {
 
 	foreach(QUSongLineInterface *line, _melody) {
 		if(line->singer() != QUSongLineInterface::undefined)
-                        _lyrics.append(QString("P%1\n").arg((int)line->singer()));
+                        _lyrics.append(QString("P%1").arg((int)line->singer()));
 
 		foreach(QUSongNoteInterface *note, line->notes()) {
 			QStringList out;
-                        if(note->type() == QUSongNoteInterface::freestyle) out.append("F");
+                        if(note->type() == QUSongNoteInterface::freestyle)      out.append("F");
 			else if(note->type() == QUSongNoteInterface::golden)    out.append("*");
 			else                                                    out.append(":");
 
@@ -1338,10 +1345,7 @@ void QUSongFile::convertLyricsToRaw() {
 
 			out.append(note->syllable());
 
-                        // MB_start
-                        //_lyrics.append(QString("%1\n").arg(out.join(" ")));
                         _lyrics.append(QString("%1").arg(out.join(" ")));
-                        // MB_end
 		}
 
 		if(line->useOutTime()) {
@@ -1350,10 +1354,7 @@ void QUSongFile::convertLyricsToRaw() {
 			if(line->useInTime())
 				out << QVariant(line->inTime()).toString();
 
-                        // MB_start
-                        //_lyrics.append(QString("%1\n").arg(out.join(" ")));
                         _lyrics.append(QString("%1").arg(out.join(" ")));
-                        // MB_end
 		}
 	}
 }
