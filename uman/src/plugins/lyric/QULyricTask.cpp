@@ -134,6 +134,14 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 		}
 	}
 
+        //adjust medley tags if (both) present
+        if(song->hasMedley()) {
+            int medleystartbeat = QVariant(song->medleystartbeat()).toInt();
+            song->setInfo(MEDLEYSTARTBEAT_TAG, QString::number(medleystartbeat - diff));
+            int medleyendbeat = QVariant(song->medleyendbeat()).toInt();
+            song->setInfo(MEDLEYENDBEAT_TAG, QString::number(medleyendbeat - diff));
+        }
+
 	song->saveMelody();
 	song->clearMelody(); // save memory
 
