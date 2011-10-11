@@ -43,7 +43,6 @@ void QUAudioTagTask::startOn(QUSongInterface *song) {
 				if(QUAudioTagTask::availableSongSources().contains(currentData->_source, Qt::CaseInsensitive)) {
 					// remove the trailing "_" - was needed to avoid conflicts with properties of this class
 					value = song->property(currentData->_source.left(currentData->_source.size() - 1).toLower().toLocal8Bit().data()).toString();
-					value = QUStringSupport::withoutUnsupportedCharacters(value);
 					value = QUStringSupport::withoutPathDelimiters(value);
 				} else {
 					value = this->property(currentData->_source.toLower().toLocal8Bit().data()).toString();
@@ -69,6 +68,10 @@ void QUAudioTagTask::startOn(QUSongInterface *song) {
 	while(schema.contains("%"))
 		schema = schema.arg("");
 
+	// remove unsupported characters (windows only)
+	schema = QUStringSupport::withoutUnsupportedCharacters(schema);
+
+	// you must not use trailing spaces - could corrupt the file system
 	schema = schema.trimmed();
 
 	if(availableTargets().contains(_target, Qt::CaseInsensitive)) {
