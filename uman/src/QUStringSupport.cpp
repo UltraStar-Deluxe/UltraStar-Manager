@@ -17,28 +17,28 @@ QString QUStringSupport::withoutUnsupportedCharacters (const QString &text) {
 #ifdef Q_OS_WIN32
 	cleanText.remove(QRegExp("[\\\\:\\*\\?\"\\|<>]"));
 
-	// remove trailing dots
-    bool dotsRemoved = false;
+	/* MB: commented out as trailing and leading dots do not seem to pose problems in Windows
+	// remove trailing and leading dots
+	bool dotsRemoved = false;
 
-    while(cleanText.endsWith(".")) {
-        dotsRemoved = true;
+	while(cleanText.endsWith(".")) {
+		dotsRemoved = true;
 		cleanText.chop(1);
-    }
+	}
 
-    while (cleanText.startsWith(".")) {
-        dotsRemoved = true;
-        cleanText.remove(0, 1);
-    }
+	while (cleanText.startsWith(".")) {
+		dotsRemoved = true;
+		cleanText.remove(0, 1);
+	}
 
-    if(dotsRemoved)
-        cleanText = cleanText.trimmed();
-
+	if(dotsRemoved)
+		cleanText = cleanText.trimmed();
+	*/
 #endif
 	return cleanText;
 }
 
 QString QUStringSupport::withoutPathDelimiters(const QString &text) {
-//	return QString(text).remove("/");
 	return QString(text).replace("/", "-");
 }
 
