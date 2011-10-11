@@ -133,6 +133,7 @@ void QUMainWindow::closeEvent(QCloseEvent *event) {
 	QSettings settings;
 	settings.setValue("allowMonty", QVariant(_menu->montyBtn->isChecked()));
 	settings.setValue("windowState", QVariant(this->saveState()));
+	settings.setValue("maximized", isMaximized());
 
 	settings.setValue("showInfoMessages", showInfosBtn->isChecked());
 	settings.setValue("showHelpMessages", showHelpBtn->isChecked());
@@ -176,16 +177,19 @@ void QUMainWindow::initConfig() {
 	QU::BaseDir.setPath(path);
 
 	// read other settings
-			_menu->montyBtn->setChecked(settings.value("allowMonty", true).toBool());
+	_menu->montyBtn->setChecked(settings.value("allowMonty", true).toBool());
 	_menu->relativePathsChk->setChecked(settings.value("showRelativeSongPath", true).toBool());
-	 _menu->otherSymbolsChk->setChecked(settings.value("altSongTree", false).toBool());
-			   completerChk->setChecked(settings.value("caseSensitiveAutoCompletion", false).toBool());
+	_menu->otherSymbolsChk->setChecked(settings.value("altSongTree", false).toBool());
+	completerChk->setChecked(settings.value("caseSensitiveAutoCompletion", false).toBool());
 
 	_menu->autoSaveBtn->setChecked(settings.value("autoSave", true).toBool());
 	_menu->onTopChk->setChecked(settings.value("alwaysOnTop", false).toBool());
         _menu->encodeUTF8Btn->setChecked(settings.value("encodeUTF8", true).toBool());
 
-	this->restoreState(settings.value("windowState").toByteArray());
+	restoreState(settings.value("windowState").toByteArray());
+	if (settings.value("maximized", false).toBool()) {
+	      showMaximized();
+	}
 	updateViewButtons();
 
 	connect(detailsDock, SIGNAL(visibilityChanged(bool)), this, SLOT(updateViewButtons()));
