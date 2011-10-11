@@ -85,7 +85,7 @@ QStringList QUSongSupport::allowedPictureFiles() {
 }
 
 QStringList QUSongSupport::allowedVideoFiles() {
-	return registryKey("allowedVideoFiles", "*.mpg *.mpeg *.avi *.flv *.ogm *.mp4 *.divx *.wmv *.mov *.mkv *.vob *.m2v");
+	return registryKey("allowedVideoFiles", "*.mpg *.mpeg *.avi *.flv *.ogm *.mp4 *.divx *.wmv *.mov *.mkv *.vob *.m2v *.ts");
 }
 
 QStringList QUSongSupport::allowedPlaylistFiles() {
