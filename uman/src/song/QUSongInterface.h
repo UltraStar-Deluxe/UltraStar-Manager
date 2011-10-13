@@ -242,6 +242,7 @@ public:
 	virtual QList<QUSongLineInterface*>& loadMelody() = 0;
 	virtual void clearMelody() = 0;
 	virtual void saveMelody() = 0;
+	virtual QList<QUSongLineInterface*> melodyForSinger(QUSongLineInterface::Singers s = QUSongLineInterface::undefined) = 0;
 };
 
 #endif /* QUSONGINTERFACE_H_ */
