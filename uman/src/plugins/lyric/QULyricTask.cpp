@@ -91,7 +91,13 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 
 	// the diff value has to be subtracted from each timestamp
 	int begin = start;
-	int diff = song->loadMelody().first()->notes().first()->timestamp() - begin;
+	int diff = 0;
+	if(!song->isDuet()) {
+		diff = song->loadMelody().first()->notes().first()->timestamp() - begin;
+	} else {
+		// MB todo: replace by minimum of first timestamps of P1 and P2
+		diff = song->loadMelody().first()->notes().first()->timestamp() - begin;
+	}
 
 	double gap = QVariant(song->gap().replace(",", ".")).toDouble();
 	double bpm = QVariant(song->bpm().replace(",", ".")).toDouble();
