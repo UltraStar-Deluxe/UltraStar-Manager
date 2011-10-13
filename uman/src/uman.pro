@@ -5,7 +5,7 @@ QT += core \
     xml \
     network
 
-CONFIG += release
+#CONFIG += release
 
 CONFIG(release, debug|release) {
 	TARGET = uman

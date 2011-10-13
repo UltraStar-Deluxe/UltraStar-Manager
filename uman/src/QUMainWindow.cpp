@@ -132,8 +132,8 @@ void QUMainWindow::closeEvent(QCloseEvent *event) {
 
 	QSettings settings;
 	settings.setValue("allowMonty", QVariant(_menu->montyBtn->isChecked()));
-	settings.setValue("windowState", QVariant(this->saveState()));
-	settings.setValue("maximized", isMaximized());
+	settings.setValue("geometry", QVariant(saveGeometry()));
+	settings.setValue("windowState", QVariant(saveState()));
 
 	settings.setValue("showInfoMessages", showInfosBtn->isChecked());
 	settings.setValue("showHelpMessages", showHelpBtn->isChecked());
@@ -186,10 +186,9 @@ void QUMainWindow::initConfig() {
 	_menu->onTopChk->setChecked(settings.value("alwaysOnTop", false).toBool());
         _menu->encodeUTF8Btn->setChecked(settings.value("encodeUTF8", true).toBool());
 
+	restoreGeometry(settings.value("geometry").toByteArray());
 	restoreState(settings.value("windowState").toByteArray());
-	if (settings.value("maximized", false).toBool()) {
-	      showMaximized();
-	}
+
 	updateViewButtons();
 
 	connect(detailsDock, SIGNAL(visibilityChanged(bool)), this, SLOT(updateViewButtons()));
@@ -274,8 +273,6 @@ void QUMainWindow::initWindow() {
 	a->setShortcut(Qt::CTRL + Qt::Key_F11);
 	connect(a, SIGNAL(triggered()), this, SLOT(toggleFullScreenMode()));
 	addAction(a);
-
-	showMinimized();
 }
 
 /*!
