@@ -187,7 +187,7 @@ bool QUPlaylistDatabase::hasUnsavedChanges() const {
 }
 
 void QUPlaylistDatabase::saveUnsavedChanges() {
-	QUProgressDialog dlg(tr("Saving changed laylists..."), playlists().size(), parentWidget(), false);
+	QUProgressDialog dlg(tr("Saving changed playlists..."), playlists().size(), parentWidget(), false);
 	dlg.setPixmap(":/marks/disk.png");
 	dlg.show();
 

@@ -26,7 +26,7 @@
    <enum>QTabWidget::Rounded</enum>
   </property>
   <property name="currentIndex">
-   <number>2</number>
+   <number>3</number>
   </property>
   <property name="documentMode">
    <bool>false</bool>
@@ -555,7 +555,7 @@ border-left-color: #C2C7CB;</string>
          <item>
           <widget class="QCheckBox" name="relativePathsChk">
            <property name="toolTip">
-            <string>Show realtive paths in the song tree. These paths are relative to the database folder.</string>
+            <string>Show relative paths in the song tree. These paths are relative to the database folder.</string>
            </property>
            <property name="text">
             <string>Relative paths</string>
@@ -1490,7 +1490,7 @@ border-left-color: #C2C7CB;</string>
             </sizepolicy>
            </property>
            <property name="toolTip">
-            <string>See an reload all plugins.</string>
+            <string>See and reload all plugins.</string>
            </property>
            <property name="text">
             <string>Plugins...</string>

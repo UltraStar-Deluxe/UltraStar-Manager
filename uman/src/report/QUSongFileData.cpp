@@ -12,7 +12,7 @@ QUSongFileData::QUSongFileData(const QString &property, QObject *parent): QUAbst
 		this->setIcon(QIcon(":/control/folder_page.png"));
 		this->setDescription(tr("Song File Path"));
 	} else if(QString::compare(_property, "relativeFilePath", Qt::CaseInsensitive) == 0) {
-		this->setIcon(QIcon(":/control/folder_realtive.png"));
+		this->setIcon(QIcon(":/control/folder_relative.png"));
 		this->setDescription(tr("Relative Song File Path"));
 	} else if(QString::compare(_property, "lengthTotal", Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/time_eff.png"));
