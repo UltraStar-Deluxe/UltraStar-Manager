@@ -50,46 +50,46 @@
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="88"/>
-        <location filename="QULyricTask.cpp" line="150"/>
-        <location filename="QULyricTask.cpp" line="190"/>
-        <location filename="QULyricTask.cpp" line="214"/>
-        <location filename="QULyricTask.cpp" line="240"/>
-        <location filename="QULyricTask.cpp" line="288"/>
+        <location filename="QULyricTask.cpp" line="166"/>
+        <location filename="QULyricTask.cpp" line="206"/>
+        <location filename="QULyricTask.cpp" line="230"/>
+        <location filename="QULyricTask.cpp" line="256"/>
+        <location filename="QULyricTask.cpp" line="304"/>
         <source>Invalid lyrics: %1 - %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="103"/>
+        <location filename="QULyricTask.cpp" line="111"/>
         <source>#GAP changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="140"/>
+        <location filename="QULyricTask.cpp" line="156"/>
         <source>Timestamps were changed successfully for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="182"/>
+        <location filename="QULyricTask.cpp" line="198"/>
         <source>Spaces were fixed successfully for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="209"/>
+        <location filename="QULyricTask.cpp" line="225"/>
         <source>Empty syllables were removed successfully for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="228"/>
+        <location filename="QULyricTask.cpp" line="244"/>
         <source>Syllable placeholders were converted successfully from &apos;%3&apos; to &apos;%4&apos; for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="278"/>
+        <location filename="QULyricTask.cpp" line="294"/>
         <source>Relative timestamps converted successfully to absolute timestamps for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="319"/>
+        <location filename="QULyricTask.cpp" line="335"/>
         <source>Absolute timestamps converted successfully to relative timestamps for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
