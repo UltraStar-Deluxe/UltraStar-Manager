@@ -38,7 +38,7 @@ public:
 	enum Type {
 		normal,
 		golden,
-		freestyle,
+		freestyle
 	};
 	Q_DECLARE_FLAGS(Types, Type)
 
@@ -70,7 +70,7 @@ public:
 		undefined = 0,
 		first     = 1,
 		second    = 2,
-		both      = 3,
+		both      = 3
 	};
 	Q_DECLARE_FLAGS(Singers, Singer)
 
