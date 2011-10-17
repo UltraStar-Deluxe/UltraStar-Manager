@@ -90,7 +90,6 @@
         <file>file_info.png</file>
         <file>filter.png</file>
         <file>folder_note.png</file>
-        <file>folder_realtive.png</file>
         <file>zero.png</file>
         <file>pencil.png</file>
         <file>house.png</file>
@@ -118,6 +117,7 @@
         <file>cog.png</file>
         <file>text_plain.png</file>
         <file>encoding.png</file>
+        <file>folder_relative.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>splash.png</file>
