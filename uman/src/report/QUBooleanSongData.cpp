@@ -42,26 +42,27 @@ QString QUBooleanSongData::iconData(QUSongFile *song) {
 	QSettings settings;
 	bool useAltIcons = settings.value("altSongTree", false).toBool();
 
-	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0)
+	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0) {
 		if (song->hasMp3())
 			return useAltIcons ? ":/types/music.png" : ":/marks/tick.png";
 		else
 			return useAltIcons ? "" : ":/marks/cross.png";
-	else if(QString::compare(_tag, COVER_TAG, Qt::CaseInsensitive) == 0)
+	} else if(QString::compare(_tag, COVER_TAG, Qt::CaseInsensitive) == 0) {
 		if (song->hasCover())
 			return useAltIcons ? ":/types/cover.png" : ":/marks/tick.png";
 		else
 			return useAltIcons ? "" : ":/marks/cross.png";
-	else if(QString::compare(_tag, BACKGROUND_TAG, Qt::CaseInsensitive) == 0)
+	} else if(QString::compare(_tag, BACKGROUND_TAG, Qt::CaseInsensitive) == 0) {
 		if (song->hasBackground())
 			return useAltIcons ? ":/types/background.png" : ":/marks/tick.png";
 		else
 			return useAltIcons ? "" : ":/marks/cross.png";
-	else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0)
+	} else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0) {
 		if (song->hasVideo())
 			return useAltIcons ? ":/types/film.png" : ":/marks/tick.png";
 		else
 			return useAltIcons ? "" : ":/marks/cross.png";
+	}
 
 	return "";
 }
