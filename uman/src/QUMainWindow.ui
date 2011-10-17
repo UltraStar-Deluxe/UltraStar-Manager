@@ -168,7 +168,7 @@
              <string>If checked, the auto-completion considers the case of the input.</string>
             </property>
             <property name="text">
-             <string>Case-sensitive </string>
+             <string>Use case-sensitive autocomplete</string>
             </property>
            </widget>
           </item>
