@@ -12,7 +12,7 @@
         <location filename="../../songdetails/QUDetailItem.cpp" line="79"/>
         <location filename="../../songdetails/QUDetailItem.cpp" line="81"/>
         <location filename="../../songdetails/QUDetailItem.cpp" line="88"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="532"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="531"/>
         <source>%1 seconds</source>
         <translation>%1 sekund</translation>
     </message>
@@ -55,32 +55,36 @@
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="139"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="156"/>
-        <source>This song is a duet for two singers.</source>
+        <source>This song is a duet and for two singers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="143"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="159"/>
-        <source>This is a karaoke song, which means that the audio file contains no vocals.</source>
+        <location filename="../../songtree/QUSongItem.cpp" line="142"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="158"/>
+        <source>This is a karaoke song, which means that the audio file contains no singing voice.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="299"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="155"/>
+        <source>This song is for two or more singers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongItem.cpp" line="298"/>
         <source>Unused files found:</source>
         <translation>Nieużywane pliki:</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="312"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="311"/>
         <source>Multiple songs found:
 * %1 (primary)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="474"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="478"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="482"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="486"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="473"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="477"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="481"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="485"/>
         <source>File not found: &quot;%1&quot;</source>
         <translation>Nie znaleziono pliku: &quot;%1&quot;</translation>
     </message>
@@ -170,12 +174,12 @@
         <translation>Wybierz inny katalog z utworami.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="540"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="539"/>
         <source>Not calculated.</source>
         <translation>Nie przeliczono.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="541"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="540"/>
         <source>Calculate the speed first.</source>
         <translation>Najpierw przelicz prędkość.</translation>
     </message>
@@ -3336,7 +3340,7 @@ Save</source>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1139"/>
         <source>Save as
-UTF-8</source>
+UTF8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3635,322 +3639,322 @@ p, li { white-space: pre-wrap; }
         <translation>Nie mogę odczytać pliku utworu: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="345"/>
+        <location filename="../../song/QUSongFile.cpp" line="343"/>
         <source>Deprecated tag information detected.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="346"/>
+        <location filename="../../song/QUSongFile.cpp" line="344"/>
         <source>The number of available tags in your configuration and that one this application offers are different.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="347"/>
+        <location filename="../../song/QUSongFile.cpp" line="345"/>
         <source>The tag order was reset to its default order. Check out the options to set up your custom order again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="664"/>
+        <location filename="../../song/QUSongFile.cpp" line="662"/>
         <source>Save error! The song file &quot;%1&quot; was NOT saved.</source>
         <translation>Błąd zapisu! Plik utworu &quot;%1&quot; nie został zachowany.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="683"/>
+        <location filename="../../song/QUSongFile.cpp" line="681"/>
         <source>Using UTF8 output encoding for song file: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="696"/>
+        <location filename="../../song/QUSongFile.cpp" line="694"/>
         <source>Using %1 output encoding for song file: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="702"/>
+        <location filename="../../song/QUSongFile.cpp" line="700"/>
         <source>%1 output encoding not sufficient for song file: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="703"/>
+        <location filename="../../song/QUSongFile.cpp" line="701"/>
         <source>Using UTF8 output encoding for song file: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="734"/>
+        <location filename="../../song/QUSongFile.cpp" line="732"/>
         <source>The song file &quot;%1&quot; was saved successfully.</source>
         <translation>Plik utworu &quot;%1&quot; został zachowany.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="751"/>
+        <location filename="../../song/QUSongFile.cpp" line="749"/>
         <source>Old name and new name match: &quot;%1&quot;</source>
         <translation>Stara i nowa nazwa są zgodne z: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="776"/>
+        <location filename="../../song/QUSongFile.cpp" line="774"/>
         <source>Could NOT rename the song directory &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Nie mogę zmienić nazwy katalogu z &quot;%1&quot; na &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="784"/>
+        <location filename="../../song/QUSongFile.cpp" line="782"/>
         <source>Song directory renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Nazwa katalogu zmieniona z &quot;%1&quot; na: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="795"/>
+        <location filename="../../song/QUSongFile.cpp" line="793"/>
         <source>Could NOT rename the song file &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Nie mogę zmienić nazwy pliku utworu z &quot;%1&quot; na &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="802"/>
+        <location filename="../../song/QUSongFile.cpp" line="800"/>
         <source>Song file renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Nazwa pliku utworu zmieniona z &quot;%1&quot; na: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="814"/>
+        <location filename="../../song/QUSongFile.cpp" line="812"/>
         <source>Could NOT rename the audio file &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Nie mogę zmienić nazwy pliku z muzyką z &quot;%1&quot; na &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="820"/>
+        <location filename="../../song/QUSongFile.cpp" line="818"/>
         <source>Audio file renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Nazwa pliku z muzyką zmieniona  z &quot;%1&quot; na &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="832"/>
+        <location filename="../../song/QUSongFile.cpp" line="830"/>
         <source>Could NOT rename the cover picture &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Nie mogę zmienić nazwy pliku okładki z &quot;%1&quot; na &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="838"/>
+        <location filename="../../song/QUSongFile.cpp" line="836"/>
         <source>Cover picture renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Nazwa pliku okładki zmieniona z &quot;%1&quot; na: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="850"/>
+        <location filename="../../song/QUSongFile.cpp" line="848"/>
         <source>Could NOT rename the background picture &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Nie mogę zmenić nazwy pliku tła z &quot;%1&quot; na &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="856"/>
+        <location filename="../../song/QUSongFile.cpp" line="854"/>
         <source>Background picture renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Nazwa pliku tła zmieniona z &quot;%1&quot; na: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="868"/>
+        <location filename="../../song/QUSongFile.cpp" line="866"/>
         <source>Could NOT rename the video file &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Nie mogę zmienić nazwy pliku teledysku z &quot;%1&quot; na &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="874"/>
+        <location filename="../../song/QUSongFile.cpp" line="872"/>
         <source>Video file renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Nazwa pliku teledysku zmieniona z &quot;%1&quot; na: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="883"/>
+        <location filename="../../song/QUSongFile.cpp" line="881"/>
         <source>The song &quot;%1 - %2&quot; has no audio file assigned. Cannot use ID3 tag for artist.</source>
         <translation>Utwór &quot;%1 - %2&quot; nie ma przypisanego pliku z muzyką. Nie mogę użyć informacji o wykonawcy z etykiety ID3.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="894"/>
+        <location filename="../../song/QUSongFile.cpp" line="892"/>
         <source>The audio file %1 does not contain ID3 tag information about an artist.</source>
         <translation>Plik z muzyką %1 nie zawiera informacji na temat wykonawcy w etykiecie ID3.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="899"/>
+        <location filename="../../song/QUSongFile.cpp" line="897"/>
         <source>ID3 tag of &quot;%1&quot; used for artist. Changed from: &quot;%2&quot; to: &quot;%3&quot;.</source>
         <translation>Informacja z etykiety ID3 &quot;%1&quot; została użyta do zmiany wykonawcy z: &quot;%2&quot; na &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="904"/>
+        <location filename="../../song/QUSongFile.cpp" line="902"/>
         <source>The song &quot;%1 - %2&quot; has no audio file assigned. Cannot use ID3 tag for title.</source>
         <translation>Utwór &quot;%1 - %2&quot; nie ma przypisanego pliku z muzyką. Nie mogę użyć informacji o tytule z etykiety ID3.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="914"/>
+        <location filename="../../song/QUSongFile.cpp" line="912"/>
         <source>The audio file %1 does not contain ID3 tag information about a title.</source>
         <translation>Plik z muzyką %1 nie zawiera informacji na temat tytułu w etykiecie ID3.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="919"/>
+        <location filename="../../song/QUSongFile.cpp" line="917"/>
         <source>ID3 tag of &quot;%1&quot; used for title. Changed from: &quot;%2&quot; to: &quot;%3&quot;.</source>
         <translation>Informacja z etykiety ID3 &quot;%1&quot; została użyta do zmiany tytułu z: &quot;%2&quot; na &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="924"/>
+        <location filename="../../song/QUSongFile.cpp" line="922"/>
         <source>The song &quot;%1 - %2&quot; has no audio file assigned. Cannot use ID3 tag for genre.</source>
         <translation>Utwór &quot;%1 - %2&quot; nie ma przypisanego pliku z muzyką. Nie mogę użyć informacji o rodzaju muzyki z etykiety ID3.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="934"/>
+        <location filename="../../song/QUSongFile.cpp" line="932"/>
         <source>The audio file %1 does not contain ID3 tag information about a genre.</source>
         <translation>Plik z muzyką %1 nie zawiera informacji na temat rodzaju muzyki w etykiecie ID3.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="939"/>
+        <location filename="../../song/QUSongFile.cpp" line="937"/>
         <source>ID3 tag of &quot;%1&quot; used for genre. Changed from: &quot;%2&quot; to: &quot;%3&quot;.</source>
         <translation>Informacja z etykiety ID3 &quot;%1&quot; została użyta do zmiany rodzaj muzyki z: &quot;%2&quot; na &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="944"/>
+        <location filename="../../song/QUSongFile.cpp" line="942"/>
         <source>The song &quot;%1 - %2&quot; has no audio file assigned. Cannot use ID3 tag for year.</source>
         <translation>Utwór &quot;%1 - %2&quot; nie ma przypisanego pliku z muzyką. Nie mogę użyć informacji o roku powstania utworu z etykiety ID3.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="954"/>
+        <location filename="../../song/QUSongFile.cpp" line="952"/>
         <source>The audio file %1 does not contain ID3 tag information about a year.</source>
         <translation>Plik z muzyką %1 nie zawiera informacji na temat roku powstania utworu w etykiecie ID3.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="959"/>
+        <location filename="../../song/QUSongFile.cpp" line="957"/>
         <source>ID3 tag of &quot;%1&quot; used for year. Changed from: &quot;%2&quot; to: &quot;%3&quot;.</source>
         <translation>Informacja z etykiety ID3 &quot;%1&quot; została użyta do zmiany roku powstania utworu z: &quot;%2&quot; na &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="964"/>
+        <location filename="../../song/QUSongFile.cpp" line="962"/>
         <source>The song &quot;%1 - %2&quot; has no unsupported tags.</source>
         <translation>Utwór &quot;%1 - %2&quot; ma etykiety, których nie rozpoznaje ten program.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="972"/>
+        <location filename="../../song/QUSongFile.cpp" line="970"/>
         <source>Unsupported tag removed: #%1.</source>
         <translation>Nierozpoznane etykiety zostały usunięte: #%1.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="974"/>
+        <location filename="../../song/QUSongFile.cpp" line="972"/>
         <source>Unsupported tag skipped: #%1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="995"/>
+        <location filename="../../song/QUSongFile.cpp" line="993"/>
         <source>Assigned &quot;%1&quot; as video file for &quot;%2 - %3&quot;.</source>
         <translation>Przypisano &quot;%1&quot; jako teledysk dla &quot;%2 - %3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1003"/>
+        <location filename="../../song/QUSongFile.cpp" line="1001"/>
         <source>Assigned &quot;%1&quot; as cover picture for &quot;%2 - %3&quot;.</source>
         <translation>Przypisano &quot;%1&quot; jako okładkę dla &quot;%2 - %3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1006"/>
+        <location filename="../../song/QUSongFile.cpp" line="1004"/>
         <source>Assigned &quot;%1&quot; as background picture for &quot;%2 - %3&quot;.</source>
         <translation>Przypisano &quot;%1&quot; jako tło dla &quot;%2 - %3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1021"/>
+        <location filename="../../song/QUSongFile.cpp" line="1019"/>
         <source>Could not copy the file &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Nie mogę skopiować pliku &quot;%1&quot; do &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1025"/>
+        <location filename="../../song/QUSongFile.cpp" line="1023"/>
         <source>The file &quot;%1&quot; was successfully copied to &quot;%2&quot;.</source>
         <translation>Plik &quot;%1&quot; został skopiowany do &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1057"/>
+        <location filename="../../song/QUSongFile.cpp" line="1055"/>
         <source>File removed successfully: &quot;%1&quot;.</source>
         <translation>Plik &quot;%1&quot; został usunięty.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1059"/>
+        <location filename="../../song/QUSongFile.cpp" line="1057"/>
         <source>File COULD NOT be removed: &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1070"/>
+        <location filename="../../song/QUSongFile.cpp" line="1068"/>
         <source>Audio file tag removed for &quot;%1 - %2&quot;.</source>
         <translation>Etykieta pliku Audio została usunięta. Dotyczy &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1074"/>
+        <location filename="../../song/QUSongFile.cpp" line="1072"/>
         <source>Cover tag removed for &quot;%1 - %2&quot;.</source>
         <translation>Etykieta Okładki została usunięta. Dotyczy &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1078"/>
+        <location filename="../../song/QUSongFile.cpp" line="1076"/>
         <source>Background tag removed for &quot;%1 - %2&quot;.</source>
         <translation>Etykieta Tła została usunięta. Dotyczy &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1083"/>
+        <location filename="../../song/QUSongFile.cpp" line="1081"/>
         <source>Video tag removed for &quot;%1 - %2&quot;.</source>
         <translation>Etykieta Teledysku została usunięta. Dotyczy &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1097"/>
+        <location filename="../../song/QUSongFile.cpp" line="1095"/>
         <source>Old path and new path match! Cannot change song path to: &quot;%1&quot;</source>
         <translation>Stara i nowa ścieżka są identyczne! Nie mogę zmienić ścieżki utworu na: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1102"/>
+        <location filename="../../song/QUSongFile.cpp" line="1100"/>
         <source>Could not create new song path: &quot;%1&quot;</source>
         <translation>Nie mogę utworzyć nowej ścieżki utworu: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1116"/>
+        <location filename="../../song/QUSongFile.cpp" line="1114"/>
         <source>Failed to move &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Nie udało się przenieść &quot;%1&quot; do &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1119"/>
+        <location filename="../../song/QUSongFile.cpp" line="1117"/>
         <source>The file &quot;%1&quot; was successfully moved to &quot;%2&quot;.</source>
         <translation>Plik &quot;%1&quot; został przeniesiony do &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1123"/>
+        <location filename="../../song/QUSongFile.cpp" line="1121"/>
         <source>Could NOT move all files of the song &quot;%2&quot; to a new location. Check out &quot;%1&quot; for the files which were copied.</source>
         <translation>NIE mogę przenieść wszystkich plików utworu &quot;%2&quot; w nowe miejse. Sprawdź &quot;%1&quot; które z plików zostały skopiowane.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1133"/>
+        <location filename="../../song/QUSongFile.cpp" line="1131"/>
         <source>Could not remove old, empty folder &quot;%1&quot;. Please do it manually.</source>
         <translation>Nie mogę usunąć starego, pustego katalogu &quot;%1&quot;. Spróbuj zrobić to ręcznie, lub po ponownym uruchomieniu systemu.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1140"/>
+        <location filename="../../song/QUSongFile.cpp" line="1138"/>
         <source>Location of song &quot;%1 - %2&quot; successfully changed to &quot;%3&quot; in your UltraStar song folder.</source>
         <translation>Położenie utworu &quot;%1 - %2&quot; zostało zmienione na &quot;%3&quot; w Twoim katalogu utworów UltraStar&apos;a.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1151"/>
+        <location filename="../../song/QUSongFile.cpp" line="1149"/>
         <source>Could not fix audio length because no audio file is present: &quot;%1 - %2&quot;</source>
         <translation>Nie mogę poprawić długości muzyki, ponieważ plik z muzyką nie został znaleziony: &quot;%1 -%2&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1162"/>
+        <location filename="../../song/QUSongFile.cpp" line="1160"/>
         <source>Could not fix audio length because audio file is shorter than song: &quot;%1 - %2&quot;</source>
         <translation>Nie mogę poprawić długości muzyki, ponieważ plik z muzyką jest krótszy od długości utworu w TXT: &quot;%1 -%2&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1169"/>
+        <location filename="../../song/QUSongFile.cpp" line="1167"/>
         <source>Could not fix audio length because new value for #END would be greater than length of audio file: &quot;%1 - %2&quot;</source>
         <translation>Nie mogę poprawić długości muzyki, ponieważ wartość etykiety #END jest wyższa i wykracza poza długość pliku z muzyką: &quot;%1 -%2&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1176"/>
+        <location filename="../../song/QUSongFile.cpp" line="1174"/>
         <source>Audio length was fixed for song &quot;%1 - %2&quot;. #END changed to: %3</source>
         <translation>Długość Muzyki została poprawiona. Utwór &quot;%1 - %2&quot; ma etykietę #END ustawioiną na: %3</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1200"/>
+        <location filename="../../song/QUSongFile.cpp" line="1198"/>
         <source>The tag #END was removed for: &quot;%1 - %2&quot;</source>
         <translation>Etykieta #END została usunięta z: &quot;%1 - %2&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1389"/>
+        <location filename="../../song/QUSongFile.cpp" line="1387"/>
         <source>Primary song file changed from &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1452"/>
+        <location filename="../../song/QUSongFile.cpp" line="1450"/>
         <source>Error while preparing lyrics for %1 - %2. Could not parse the following line: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1529"/>
+        <location filename="../../song/QUSongFile.cpp" line="1536"/>
         <source>More than one score file found for &quot;%1 - %2&quot;. Only one will be used.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1191"/>
+        <location filename="../../song/QUSongFile.cpp" line="1189"/>
         <source>#GAP changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation>#GAP w &quot;%3 - %4&quot; został zmieniony z %1 na %2.</translation>
     </message>
@@ -4002,22 +4006,17 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="236"/>
-        <source>Neither UTF8 BOM nor #ENCODING tag present in song file: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../song/QUSongFile.cpp" line="243"/>
+        <location filename="../../song/QUSongFile.cpp" line="241"/>
         <source>Valid UTF8 code found in song file: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="248"/>
+        <location filename="../../song/QUSongFile.cpp" line="246"/>
         <source>Defaulting to CP1252 encoding for song file: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1485"/>
+        <location filename="../../song/QUSongFile.cpp" line="1492"/>
         <source>Line too short: &quot;%1&quot;</source>
         <translation>Za krótka linia: &quot;%1&quot;</translation>
     </message>
@@ -4766,17 +4765,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QUTextDialog</name>
     <message>
-        <location filename="../../support/QUTextDialog.cpp" line="21"/>
+        <location filename="../../support/QUTextDialog.cpp" line="23"/>
         <source>Raw File Content</source>
         <translation>Zawartość pliku</translation>
     </message>
     <message>
-        <location filename="../../support/QUTextDialog.cpp" line="43"/>
+        <location filename="../../support/QUTextDialog.cpp" line="45"/>
         <source>Lyrics</source>
         <translation>Tekst Piosenki</translation>
     </message>
     <message>
-        <location filename="../../support/QUTextDialog.cpp" line="51"/>
+        <location filename="../../support/QUTextDialog.cpp" line="53"/>
         <source>The content of the song text file is &lt;b&gt;read-only&lt;/b&gt;. Line numbers auto-generated.</source>
         <translation>Zawartość pliku utworu TXT jest &lt;b&gt;tylko do odczytu&lt;/b&gt;. Numeracja linii jest automatyczna.</translation>
     </message>
