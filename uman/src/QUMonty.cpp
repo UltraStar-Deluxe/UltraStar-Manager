@@ -78,7 +78,7 @@ QString QUMonty::welcomeMsg() {
 	} else if (songDB->songCount() == 1) {
 		welcomeStr += QObject::tr("<br><br>You have <b>1 song</b> in your collection. Is it managed well yet?");
 	} else {
-		welcomeStr += QObject::tr("<br><br>You have <b>%1 songs</b> in your collection. Are they managed well yet?").arg(songDB->songCount());;
+		welcomeStr += QObject::tr("<br><br>You have <b>%1 songs</b> in your collection. Are they managed well yet?").arg(songDB->songCount());
 	}
 
 	return welcomeStr;
@@ -86,7 +86,12 @@ QString QUMonty::welcomeMsg() {
 
 void QUMonty::talk(QLabel *montyLbl, QLabel *msgLbl) {
 	montyLbl->setPixmap(pic((QUMonty::Status)(qrand() % 4)));
-	msgLbl->setText(messages[qrand() % messages.size()]);
+	QString message = messages[qrand() % messages.size()];
+	if (!message.contains("%1")) {
+		msgLbl->setText(messages[qrand() % messages.size()]);
+	} else {
+		msgLbl->setText(messages[qrand() % messages.size()].arg(songDB->songCount()));
+	}
 }
 
 /*!
