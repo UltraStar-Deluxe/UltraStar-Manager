@@ -141,18 +141,18 @@
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="139"/>
         <source>This song is a duet and for two singers.</source>
-        <translation type="unfinished">Cette chanson est pour un duo et pour deux chanteurs.</translation>
+        <translation>Cette chanson est pour un duo et pour deux chanteurs.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="142"/>
         <location filename="../../songtree/QUSongItem.cpp" line="158"/>
         <source>This is a karaoke song, which means that the audio file contains no singing voice.</source>
-        <translation type="unfinished">Ceci est une chanson de karaoké, ce qui signifie que le fichier audio ne contient pas la voix du chanteur.</translation>
+        <translation>Ceci est une chanson de karaoké, ce qui signifie que le fichier audio ne contient pas la voix du chanteur.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="155"/>
         <source>This song is for two or more singers.</source>
-        <translation type="unfinished">Cette chanson est pour deux chanteurs ou plus.</translation>
+        <translation>Cette chanson est pour deux chanteurs ou plus.</translation>
     </message>
     <message>
         <source>This song is a duet for two singers.</source>
@@ -2851,7 +2851,8 @@ Automatique</translation>
         <location filename="../../ribbon/QURibbonBar.ui" line="1139"/>
         <source>Save as
 UTF8</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder
+en UTF8</translation>
     </message>
     <message>
         <source>Enforce
