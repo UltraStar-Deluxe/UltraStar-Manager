@@ -126,7 +126,8 @@ void handleWipWarning() {
 	QUMessageBox::warning(0,
 				QObject::tr("WIP version detected!"),
 				QObject::tr("This version is still under development <b>and may not be very stable</b>. You might loose all your songs if you use it.<br><br><b>Please backup</b> the songs you are working with and do not distribute this version."),
-				BTN << ":/marks/accept.png" << QObject::tr("I will be careful."));
+				BTN << ":/marks/accept.png" << QObject::tr("I will be careful."),
+				385);
 }
 
 void handleReleaseCandidateInformation() {
