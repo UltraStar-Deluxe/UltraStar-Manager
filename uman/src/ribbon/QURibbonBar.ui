@@ -1137,7 +1137,7 @@ Save</string>
          </property>
          <property name="text">
           <string>Save as
-UTF-8</string>
+UTF8</string>
          </property>
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
