@@ -671,7 +671,7 @@ bool QUSongFile::save(bool force) {
 	QUSongFile::verifyTags(tags);
 
         QTextStream _out(&_file);
-	QTextCodec *codec;
+	QTextCodec *codec = QTextCodec::codecForName("windows-1252");
 
 	// use UTF8 encoding if explicitly requested by the user or if input was already UTF8
 	if (settings.value("encodeUTF8", false).toBool() || encoding() == "UTF8") {
@@ -1443,7 +1443,7 @@ void QUSongFile::convertLyricsToRaw() {
 }
 
 /*!
- * Takes a raw lyrics line (e.g. ": 2345 10 90 blubb ") and converts that to an internal format.
+ * Takes a raw lyrics line (e.g. ": 2345 10 90 foo ") and converts that to an internal format.
  */
 void QUSongFile::lyricsAddNote(QString line) {
 	if(!QRegExp("([:\\*F\\-].*)|(P\\s*[123].*)").exactMatch(line)) {
@@ -1474,7 +1474,7 @@ void QUSongFile::lyricsAddNote(QString line) {
 		songLine->setSinger((QUSongLineInterface::Singers)QVariant(line.split(" ", QString::SkipEmptyParts).at(1).trimmed()).toInt());
 	} else {
 
-		line.insert(1, " "); // to avoid: ":22 33 90 blubb"
+		line.insert(1, " "); // to avoid: ":2345 10 90 foo "
                 line.remove("\n");
 
 		QStringList lineSplit = line.trimmed().split(" ", QString::SkipEmptyParts);
