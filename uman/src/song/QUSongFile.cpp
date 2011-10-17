@@ -151,7 +151,7 @@ void QUSongFile::invalidateCaches() const {
 }
 
 /*!
- * Reads the US data file and loads all data into memory. This is needed to be done
+ * Reads the US data file and loads all data into memory. This needs to be done
  * before any changes can be made. You cannot send event messages here because a song
  * is connected _after_ the first update of the internal cache.
  * \returns True on success, otherwise false.
@@ -397,14 +397,13 @@ bool QUSongFile::isSingStar() const {
 
 /*!
  * Try to decide if this song is a duet. This feature will be new in USdx 1.1.
- * Actually there are three possibilities:
+ * Actually there are two possibilities:
  *
  * > song file extension is 'txd'
- * > song has a friend with extension 'txt' and []-tag for the role
  * > song is based on special XML format which tells its type (maybe later)
  */
 bool QUSongFile::isDuet() const {
-	if( (QString::compare(songFileInfo().suffix(), "txd", Qt::CaseInsensitive) == 0) || (lyrics().first().startsWith("P")) )
+	if( (QString::compare(songFileInfo().suffix(), "txd", Qt::CaseInsensitive) == 0) || (_lyrics.first().startsWith("P")) )
 		return true;
 
 	return false;
