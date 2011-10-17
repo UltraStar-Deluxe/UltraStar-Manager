@@ -26,7 +26,7 @@ public:
 	QUSongFile(const QString &filePath, QObject *parent = 0);
 	~QUSongFile();
 
-    virtual void log(const QString &message, int type);
+	virtual void log(const QString &message, int type);
 
 	bool hasUnsavedChanges() const { return _hasUnsavedChanges; }
 	void setFile(const QString &filePath, bool update = true);
@@ -222,6 +222,8 @@ private:
 	// support for score files (*.sco)
 	QUScoreFile *_score;
 	void initScoreFile();
+
+	bool isValidUTF8(QFile &file) const;
 };
 
 #endif /*QUSONGFILE_H_*/

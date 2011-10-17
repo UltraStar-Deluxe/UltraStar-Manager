@@ -13,8 +13,8 @@
 #include <QFile>
 #include <QChar>
 #include <QMap>
-#include <QTextCodec>
 #include <QTextStream>
+#include <QTextCodec>
 
 #include "audioproperties.h"
 #include "fileref.h"
@@ -165,14 +165,6 @@ bool QUSongFile::updateCache() {
 		return false;
 	}
 
-        QTextStream _in;
-        _in.setAutoDetectUnicode(true);
-        _in.setDevice(&_file);
-
-        //logSrv->add(QString(tr("Encoding \"%1\" found in song file: \"%2\"")).arg(QString(_in.codec()->name())).arg(_fi.filePath()), QU::Information);
-        //QTextCodec *codec = QTextCodec::codecForName("Windows-1252");
-        //_in.setCodec(codec);
-
 	songDB->ignoreChangesForSong(this);
 
 	// clear contents
@@ -184,7 +176,80 @@ bool QUSongFile::updateCache() {
 	clearMelody();
 
 	/*
-         * Read the header and write all tags into memory. The header's end is assumed
+	 * Try to determine the text file encoding based on Byte Order Mark (BOM) or on #ENCODING tag.
+	 * Supported encodings are: UTF8, CP1252, CP1250
+	 */
+	QTextStream _in;
+	_in.setDevice(&_file);
+
+	// Check if UTF8 Byte Order Mark (BOM) is present -> set UTF8 encoding
+	if (_file.peek(3).toHex().toUpper() == "EFBBBF") {
+		_in.setCodec(QTextCodec::codecForName("UTF-8"));
+		setInfo(ENCODING_TAG, QString("UTF8"));
+		logSrv->add(QString(tr("UTF8 BOM detected in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+	}
+
+	// Check if #ENCODING tag is present
+	QString firstLine = QUStringSupport::withoutLeadingBlanks(_in.readLine());
+
+	if(firstLine.startsWith("#ENCODING:", Qt::CaseInsensitive)) {
+		if (firstLine.endsWith("UTF8")) {
+			if(encoding() == N_A) {
+				_in.setCodec(QTextCodec::codecForName("UTF-8"));
+				setInfo(ENCODING_TAG, QString("UTF8"));
+				logSrv->add(QString(tr("UTF8 (no BOM) encoding assumed according to #ENCODING tag in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+			} else {
+				// UTF8 already detected by BOM
+			}
+		} else if (firstLine.endsWith("CP1252")) {
+			if(encoding() == N_A) {
+				_in.setCodec(QTextCodec::codecForName("Windows-1252"));
+				setInfo(ENCODING_TAG, QString("CP1252"));
+				logSrv->add(QString(tr("CP1252 encoding assumed according to #ENCODING tag in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+			} else {
+				logSrv->add(QString(tr("Encoding mismatch! UTF8 BOM detected, but \"#ENCODING:CP1252\" in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+				logSrv->add(QString(tr("UTF8 encoding assumed for song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+			}
+		} else if (firstLine.endsWith("CP1250")) {
+			if(encoding() == N_A) {
+				_in.setCodec(QTextCodec::codecForName("Windows-1250"));
+				setInfo(ENCODING_TAG, QString("CP1250"));
+				logSrv->add(QString(tr("CP1250 encoding assumed according to #ENCODING tag in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+			} else {
+				logSrv->add(QString(tr("Encoding mismatch! UTF8 BOM detected, but \"#ENCODING:CP1250\" encoding in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+				logSrv->add(QString(tr("UTF8 encoding assumed for song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+			}
+		} else {
+			logSrv->add(QString(tr("\"%1\" unsupported in song file: \"%2\"")).arg(firstLine).arg(_fi.filePath()), QU::Information);
+			if(encoding() == N_A) {
+				_in.setCodec(QTextCodec::codecForName("Windows-1252"));
+				setInfo(ENCODING_TAG, QString("CP1252"));
+				logSrv->add(QString(tr("Trying CP1252 encoding for song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+			} else {
+				logSrv->add(QString(tr("UTF8 encoding assumed for song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+			}
+		}
+	} else { // no #ENCODING tag present, default to CP1252
+		// undo reading first line
+		_in.seek(0);
+
+		if(encoding() == QString(N_A)) {
+			// MB TODO: handle UTF8 without BOM, even though song files should always have a BOM
+			if (isValidUTF8(_file)) {
+				_in.setCodec(QTextCodec::codecForName("UTF-8"));
+				setInfo(ENCODING_TAG, QString("UTF8"));
+				logSrv->add(QString(tr("Valid UTF8 code found in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+			} else {
+				// default to CP1252
+				_in.setCodec(QTextCodec::codecForName("Windows-1252"));
+				setInfo(ENCODING_TAG, QString("CP1252"));
+				logSrv->add(QString(tr("Defaulting to CP1252 encoding for song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+			}
+		}
+	}
+
+	/*
+	 * Read the header and write all tags into memory. The header's end is assumed
 	 * when a line starts with ':', '*', 'F', 'E' or '-'. See the UltraStar documentation
          * about information on these lines.
 	 */
@@ -238,6 +303,15 @@ bool QUSongFile::updateCache() {
 
 	songDB->processChangesForSong(this);
 	return true;
+}
+
+/*!
+ * Checks whether the text file is UTF8 encoded
+ * \returns True if the text file contains UTF8 encoded text.
+ */
+bool QUSongFile::isValidUTF8(QFile &file) const {
+	// MB TODO: fill with code...
+	return false;
 }
 
 /*!
@@ -330,14 +404,8 @@ bool QUSongFile::isSingStar() const {
  * > song is based on special XML format which tells its type (maybe later)
  */
 bool QUSongFile::isDuet() const {
-	if( QString::compare(songFileInfo().suffix(), "txd", Qt::CaseInsensitive) == 0 )
+	if( (QString::compare(songFileInfo().suffix(), "txd", Qt::CaseInsensitive) == 0) || (lyrics().first().startsWith("P")) )
 		return true;
-
-	QRegExp rxTag("kar(aoke)?", Qt::CaseInsensitive);
-	foreach(QString fiTag, _fiTags) { // look for a []-tag that could be the singer name
-		if(!rxTag.exactMatch(fiTag))
-			return true;
-	}
 
 	return false;
 }
@@ -603,21 +671,36 @@ bool QUSongFile::save(bool force) {
 	QUSongFile::verifyTags(tags);
 
         QTextStream _out(&_file);
-        QTextCodec *codec = QTextCodec::codecForName("Windows-1252");
+	QTextCodec *codec;
 
-        bool canEncode = codec->canEncode((QStringList(_info.values()) + _foundUnsupportedTags + _lyrics).join(""));
+	// use UTF8 encoding if explicitly requested by the user or if input was already UTF8
+	if (settings.value("encodeUTF8", false).toBool() || encoding() == "UTF8") {
+		_out.setCodec(QTextCodec::codecForName("UTF-8"));
+		_out.setGenerateByteOrderMark(true); // BOM needed by UltraStar 1.1
+		setInfo(ENCODING_TAG, QString("UTF8"));
+		logSrv->add(QString(tr("Using UTF8 output encoding for song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+	} else {
+		// use input encoding, if possible
+		if (encoding().contains("1252")) {
+			codec = QTextCodec::codecForName("windows-1252");
+		} else if (encoding().contains("1250")) {
+			codec = QTextCodec::codecForName("windows-1250");
+		} else {
+			// should not be possible
+		}
 
-        // use UTF8 output encoding if explicitly requested or if
-        if (settings.value("encodeUTF8", false).toBool() || !(canEncode)) {
-                _out.setCodec(QTextCodec::codecForName("UTF-8"));
-                _out.setGenerateByteOrderMark(true); // BOM needed by UltraStar 1.1
-                //_out << "#ENCODING:UTF8\n";
-        }
-        else {
-                _out.setCodec(codec);
-                //_out << "#ENCODING:CP1252\n";
-
-        }
+		if (codec->canEncode((QStringList(_info.values()) + _foundUnsupportedTags + _lyrics + _footer).join(""))) {
+			_out.setCodec(codec);
+			logSrv->add(QString(tr("Using %1 output encoding for song file: \"%2\"")).arg(encoding()).arg(_fi.filePath()), QU::Information);
+		} else {
+			// use UTF8
+			_out.setCodec(QTextCodec::codecForName("UTF-8"));
+			_out.setGenerateByteOrderMark(true); // BOM needed by UltraStar 1.1
+			setInfo(ENCODING_TAG, QString("UTF8"));
+			logSrv->add(QString(tr("%1 output encoding not sufficient for song file: \"%2\"")).arg(encoding()).arg(_fi.filePath()), QU::Information);
+			logSrv->add(QString(tr("Using UTF8 output encoding for song file: \"%2\"")).arg(encoding()).arg(_fi.filePath()), QU::Information);
+		}
+	}
 
 	// write supported tags
 	foreach(QString tag, tags) {
@@ -1257,7 +1340,7 @@ void QUSongFile::changeSongPath(const QString &filePath) {
 }
 
 /*!
- * Find the friend that is your duet partner to support duets that a spread across two song files.
+ * Find the friend that is your duet partner to support duets that are spread across two song files.
  */
 QUSongFile* QUSongFile::duetFriend() const {
 	if(!isDuet())
@@ -1271,7 +1354,7 @@ QUSongFile* QUSongFile::duetFriend() const {
 }
 
 /*!
- * \returns True, if a friend has the same tag value as requested.
+ * \returns true, if a friend has the same tag value as requested.
  */
 bool QUSongFile::friendHasTag(const QString &tag, const QString &value) const {
 	foreach(QUSongFile *song, _friends)
@@ -1390,6 +1473,7 @@ void QUSongFile::lyricsAddNote(QString line) {
 		line.insert(1, " "); // to avoid: "P2"
 		songLine->setSinger((QUSongLineInterface::Singers)QVariant(line.split(" ", QString::SkipEmptyParts).at(1).trimmed()).toInt());
 	} else {
+
 		line.insert(1, " "); // to avoid: ":22 33 90 blubb"
                 line.remove("\n");
 
