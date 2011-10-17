@@ -11,7 +11,7 @@ You are missing a video for your favourite song? Check out <a href="http://www.y
 Whenever a task could not be applied, you can find a corresponding entry in the event log. Mostly a file could not be found or invalid characters (e.g. '?') are used to rename something.<br><br>Be aware that <i>UltraStar</i> can display more characters than you can use on <i>Windows</i> for a file.
 Did you notice that there are green, yellow, and red smileys in the song tree? Green ones tell you that your song directory is named correctly after <i>Artist - Title</i> case-sensitive while yellow ones only match case-insensitive. The red smileys indicate an entirely wrong combination.
 The <i>chain</i> beside a picture, audio or video file indicates that it can be found by UltraStar correctly.<br><br>You can reset chains by double-clicking the correct column.
-Files are unused by UltraStar whenever they are displayed in gray.
+Files are unused by UltraStar whenever they are displayed in <font color="gray">gray</font>.
 You want to know how many songs you have in your collection? Well, there are <b>%1 songs</b>. Not bad at all.<br><br>Did you get a cover, a background or a video for each one? No? Then you've got a new task.
 Hmmm... just in case you did not notice: The last events are located at the top of the event log.
 Did you remark these nice tooltips at the header of each column in the song tree? There are more tooltips at nearly every button here.
