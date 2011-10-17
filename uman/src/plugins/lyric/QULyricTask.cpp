@@ -85,7 +85,7 @@ QList<QUSmartSettingInterface*> QULyricTask::smartSettings() const {
  */
 void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
-		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::Warning);
+		song->log(QString(tr("Invalid lyrics in file \"%1\"")).arg(song->txt()), QU::Warning);
 		return;
 	}
 
