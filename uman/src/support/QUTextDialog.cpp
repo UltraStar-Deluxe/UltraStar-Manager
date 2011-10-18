@@ -50,7 +50,7 @@ void QUTextDialog::showLyrics(QUSongFile *song) {
 
 void QUTextDialog::showFile(QUSongFile *song) {
 	this->setWindowTitle(song->songFileInfo().filePath());
-	textLbl->setText(tr("The content of the song text file is <b>read-only</b>. Line numbers auto-generated."));
+	textLbl->setText(tr("The content of the song text file is <b>read-only</b>. Line numbers are auto-generated."));
 
 	this->initFile(song);
 }
@@ -83,6 +83,7 @@ void QUTextDialog::initFile(QUSongFile *song) {
 
 		QString content(lines.join("\n"));
 
+		content.replace(" \n", "&nbsp;<br>");
 		content.replace("\n", "<br>");
 		content.replace(QRegExp("(#[^<]*:)"), "<b>\\1</b>");
 
