@@ -551,7 +551,7 @@ void QUSongItem::updateTimeCheckColumns() {
 		else
 			this->setIcon(SPEED_COLUMN, QIcon(":/marks/speed_fast_hamster.png"));
 
-		this->setToolTip(SPEED_COLUMN, QString("%1").arg(speed, 0, 'f'));
+		this->setToolTip(SPEED_COLUMN, QString("%1 syllables per second").arg(speed, 2, 'f', 1, QChar('0')));
 	}
 
 	// show some time control tags
