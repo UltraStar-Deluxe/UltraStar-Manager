@@ -64,30 +64,41 @@ void QUSongTree::initHorizontalHeader() {
 
 	header->setIcon(ARTIST_COLUMN, QIcon(":/types/user.png"));
 	header->setToolTip(ARTIST_COLUMN, tr("Shows whether your folder includes the artist correctly:<br><i>Artist - Title ...</i>"));
+	header->setSizeHint(ARTIST_COLUMN, QSize(25,0));
 	header->setIcon(TITLE_COLUMN, QIcon(":/types/font.png"));
 	header->setToolTip(TITLE_COLUMN, tr("Shows whether your folder includes the title correctly:<br><i>Artist - Title ...</i>"));
+	header->setSizeHint(TITLE_COLUMN, QSize(25,0));
 
 	header->setIcon(MP3_COLUMN, QIcon(":/types/music.png"));
 	header->setToolTip(MP3_COLUMN, tr("Shows whether the song text file points to an <b>audio file</b> that can be found by UltraStar"));
+	header->setSizeHint(MP3_COLUMN, QSize(25,0));
 	header->setIcon(COVER_COLUMN, QIcon(":/types/cover.png"));
 	header->setToolTip(COVER_COLUMN, tr("Shows whether the song text file points to a <b>cover picture</b> that can be found by UltraStar"));
+	header->setSizeHint(COVER_COLUMN, QSize(25,0));
 	header->setIcon(BACKGROUND_COLUMN, QIcon(":/types/background.png"));
 	header->setToolTip(BACKGROUND_COLUMN, tr("Shows whether the song text file points to a <b>background picture</b> that can be found by UltraStar"));
+	header->setSizeHint(BACKGROUND_COLUMN, QSize(25,0));
 	header->setIcon(VIDEO_COLUMN, QIcon(":/types/film.png"));
 	header->setToolTip(VIDEO_COLUMN, tr("Shows whether the song text file points to a <b>video file</b> that can be found by UltraStar"));
+	header->setSizeHint(VIDEO_COLUMN, QSize(25,0));
 
 	header->setIcon(TYPE_KARAOKE_COLUMN, QIcon(":/types/karaoke.png"));
 	header->setToolTip(TYPE_KARAOKE_COLUMN, tr("Shows whether the song is a karaoke song."));
+	header->setSizeHint(TYPE_KARAOKE_COLUMN, QSize(25,0));
 	header->setIcon(TYPE_DUET_COLUMN, QIcon(":/types/duet.png"));
 	header->setToolTip(TYPE_DUET_COLUMN, tr("Shows whether the song is a duet."));
+	header->setSizeHint(TYPE_DUET_COLUMN, QSize(25,0));
 
 	header->setIcon(UNUSED_FILES_COLUMN, QIcon(":/types/unused_files.png"));
 	header->setToolTip(UNUSED_FILES_COLUMN, tr("Shows whether your folder contains unused files."));
+	header->setSizeHint(UNUSED_FILES_COLUMN, QSize(25,0));
 	header->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/text_stack.png"));
 	header->setToolTip(MULTIPLE_SONGS_COLUMN, tr("Shows whether your folder contains more than one song text file."));
+	header->setSizeHint(MULTIPLE_SONGS_COLUMN, QSize(25,0));
 
 	header->setIcon(SCORE_COLUMN, QIcon(":/types/score.png"));
 	header->setToolTip(SCORE_COLUMN, tr("Shows whether a score file was found."));
+	header->setSizeHint(SCORE_COLUMN, QSize(25,0));
 
 	header->setText(ARTIST_COLUMN_EX, tr("Artist"));
 	header->setIcon(ARTIST_COLUMN_EX, QIcon(":/types/user.png"));
@@ -111,6 +122,7 @@ void QUSongTree::initHorizontalHeader() {
 
 	header->setIcon(LENGTH_DIFF_COLUMN, QIcon(":/types/time_warning.png"));
 	header->setToolTip(LENGTH_DIFF_COLUMN, tr("Indicates a problem with the difference of <i>song length</i> and <i>audio length</i>.<br><br>The tooltip shows the difference."));
+	header->setSizeHint(LENGTH_DIFF_COLUMN, QSize(25,0));
 
 	header->setText(LENGTH_MP3_COLUMN, tr("Audio"));
 	header->setIcon(LENGTH_MP3_COLUMN, QIcon(":/types/time_mp3.png"));
