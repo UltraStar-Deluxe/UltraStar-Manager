@@ -29,6 +29,7 @@ QStringList QUSongSupport::availableTags() {
 	result << END_TAG;
 	result << RELATIVE_TAG;
         result << PREVIEWSTART_TAG;
+	result << CALCMEDLEY_TAG;
         result << MEDLEYSTARTBEAT_TAG;
         result << MEDLEYENDBEAT_TAG;
 	result << BPM_TAG;

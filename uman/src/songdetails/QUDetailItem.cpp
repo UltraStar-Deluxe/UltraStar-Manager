@@ -50,10 +50,10 @@ void QUDetailItem::reset() {
 	_textMask = QString(QObject::tr("%1"));
 	_hasDynamicDefaultData = true;
 
-        if(QString::compare(_tag, ENCODING_TAG) == 0) {
-                _flagsForSingleSong = 0;
-//      } else if(QString::compare(_tag, TITLE_TAG) == 0) {
-        } else if(QString::compare(_tag, ARTIST_TAG) == 0) {
+	if(QString::compare(_tag, ENCODING_TAG) == 0) {
+		_flagsForSingleSong = 0;
+//	} else if(QString::compare(_tag, TITLE_TAG) == 0) {
+	} else if(QString::compare(_tag, ARTIST_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
 	} else if(QString::compare(_tag, LANGUAGE_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
@@ -83,10 +83,14 @@ void QUDetailItem::reset() {
 		_textMask = QString(QObject::tr("%1 milliseconds"));
 	} else if(QString::compare(_tag, RELATIVE_TAG) == 0) {
 		_flagsForSingleSong = 0;
-        } else if(QString::compare(_tag, PREVIEWSTART_TAG) == 0) {
-//              _flagsForSingleSong = 0;
-                _textMask = QString(QObject::tr("%1 seconds"));
-        } else if(QString::compare(_tag, BPM_TAG) == 0) {
+	} else if(QString::compare(_tag, PREVIEWSTART_TAG) == 0) {
+//		_flagsForSingleSong = 0;
+		_textMask = QString(QObject::tr("%1 seconds"));
+	} else if (QString::compare(_tag, CALCMEDLEY_TAG) == 0) {
+		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+		setData(Qt::UserRole, QString("OFF"));
+		_hasDynamicDefaultData = false;
+	} else if(QString::compare(_tag, BPM_TAG) == 0) {
 		_flagsForSingleSong = 0;
 	} else if(QString::compare(_tag, GAP_TAG) == 0) {
 //		_flagsForSingleSong = 0;

@@ -9,27 +9,28 @@ class QString;
 class QStringList;
 class QFileInfo;
 
-#define ENCODING_TAG        "ENCODING"
-#define TITLE_TAG           "TITLE"
-#define ARTIST_TAG          "ARTIST"
-#define LANGUAGE_TAG        "LANGUAGE"
-#define EDITION_TAG         "EDITION"
-#define GENRE_TAG           "GENRE"
-#define YEAR_TAG            "YEAR"
-#define CREATOR_TAG         "CREATOR"
-#define MP3_TAG             "MP3"
-#define COVER_TAG           "COVER"
-#define BACKGROUND_TAG      "BACKGROUND"
-#define VIDEO_TAG           "VIDEO"
-#define VIDEOGAP_TAG        "VIDEOGAP"
-#define START_TAG           "START"
-#define END_TAG             "END"
-#define RELATIVE_TAG        "RELATIVE"
-#define PREVIEWSTART_TAG    "PREVIEWSTART"
-#define MEDLEYSTARTBEAT_TAG "MEDLEYSTARTBEAT"
-#define MEDLEYENDBEAT_TAG   "MEDLEYENDBEAT"
-#define BPM_TAG             "BPM"
-#define GAP_TAG             "GAP"
+#define ENCODING_TAG		"ENCODING"
+#define TITLE_TAG		"TITLE"
+#define ARTIST_TAG		"ARTIST"
+#define LANGUAGE_TAG		"LANGUAGE"
+#define EDITION_TAG		"EDITION"
+#define GENRE_TAG		"GENRE"
+#define YEAR_TAG		"YEAR"
+#define CREATOR_TAG		"CREATOR"
+#define MP3_TAG			"MP3"
+#define COVER_TAG		"COVER"
+#define BACKGROUND_TAG		"BACKGROUND"
+#define VIDEO_TAG		"VIDEO"
+#define VIDEOGAP_TAG		"VIDEOGAP"
+#define START_TAG		"START"
+#define END_TAG			"END"
+#define RELATIVE_TAG		"RELATIVE"
+#define PREVIEWSTART_TAG	"PREVIEWSTART"
+#define CALCMEDLEY_TAG		"CALCMEDLEY"
+#define MEDLEYSTARTBEAT_TAG	"MEDLEYSTARTBEAT"
+#define MEDLEYENDBEAT_TAG	"MEDLEYENDBEAT"
+#define BPM_TAG			"BPM"
+#define GAP_TAG			"GAP"
 
 class QUSongNoteInterface: public QObject {
 	Q_OBJECT
@@ -67,10 +68,10 @@ class QUSongLineInterface: public QObject {
 
 public:
 	enum Singer {
-		undefined = 0,
-		first     = 1,
-		second    = 2,
-		both      = 3
+		undefined	= 0,
+		first		= 1,
+		second		= 2,
+		both		= 3
 	};
 	Q_DECLARE_FLAGS(Singers, Singer)
 
@@ -98,9 +99,9 @@ public:
 };
 
 class QUSongInterface: public QObject {
-    Q_OBJECT
+	Q_OBJECT
 
-    // normal tag properties
+	// normal tag properties
 	Q_PROPERTY(QString artist READ artist)
 	Q_PROPERTY(QString title READ title)
 	Q_PROPERTY(QString mp3 READ mp3)
@@ -118,10 +119,11 @@ class QUSongInterface: public QObject {
 	Q_PROPERTY(QString year READ year)
 	Q_PROPERTY(QString end READ end)
 	Q_PROPERTY(QString creator READ creator)
-        Q_PROPERTY(QString encoding READ encoding)
-        Q_PROPERTY(QString previewstart READ previewstart)
-        Q_PROPERTY(QString medleystartbeat READ medleystartbeat)
-        Q_PROPERTY(QString medleyendbeat READ medleyendbeat)
+	Q_PROPERTY(QString encoding READ encoding)
+	Q_PROPERTY(QString previewstart READ previewstart)
+	Q_PROPERTY(QString calcmedley READ calcmedley)
+	Q_PROPERTY(QString medleystartbeat READ medleystartbeat)
+	Q_PROPERTY(QString medleyendbeat READ medleyendbeat)
 	// additional properties
 	Q_PROPERTY(QString dir READ dir)
 	Q_PROPERTY(QString path READ path)
@@ -136,7 +138,7 @@ class QUSongInterface: public QObject {
 	Q_PROPERTY(bool hasCover READ hasCover)
 	Q_PROPERTY(bool hasBackground READ hasBackground)
 	Q_PROPERTY(bool hasVideo READ hasVideo)
-        Q_PROPERTY(bool hasMedley READ hasMedley)
+	Q_PROPERTY(bool hasMedley READ hasMedley)
 	Q_PROPERTY(bool isSongChecked READ isSongChecked)
 	Q_PROPERTY(bool isDuet READ isDuet)
 	Q_PROPERTY(bool isKaraoke READ isKaraoke)
@@ -144,9 +146,9 @@ class QUSongInterface: public QObject {
 	Q_PROPERTY(bool isRelative READ isRelative)
 
 public:
-    QUSongInterface(QObject *parent = 0): QObject(parent) {}
+	QUSongInterface(QObject *parent = 0): QObject(parent) {}
 
-    virtual void log(const QString &message, int type) = 0;
+	virtual void log(const QString &message, int type) = 0;
 
 	virtual QString artist() const = 0;
 	virtual QString title() const = 0;
@@ -165,10 +167,11 @@ public:
 	virtual QString year() const = 0;
 	virtual QString end() const = 0;
 	virtual QString creator() const = 0;
-        virtual QString encoding() const = 0;
-        virtual QString previewstart() const = 0;
-        virtual QString medleystartbeat() const = 0;
-        virtual QString medleyendbeat() const = 0;
+	virtual QString encoding() const = 0;
+	virtual QString previewstart() const = 0;
+	virtual QString calcmedley() const = 0;
+	virtual QString medleystartbeat() const = 0;
+	virtual QString medleyendbeat() const = 0;
 
 	virtual QString customTag(const QString &tag) const = 0;
 

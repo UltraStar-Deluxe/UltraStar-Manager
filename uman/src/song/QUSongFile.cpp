@@ -522,7 +522,7 @@ QString QUSongFile::speedFormatted() const {
  * are analysed and the fastest one will be returned.
  *
  * This is a little bit better than an average value of the whole song because some
- * tricky ones (e.g. Nightwish) got a long slow end but a very fast start or middle
+ * tricky ones (e.g. Nightwish) have a long slow end but a very fast start or middle
  * part.
  *
  * I hope it will be useful. (saiya_mg)

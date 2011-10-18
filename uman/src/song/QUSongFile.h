@@ -76,6 +76,7 @@ public slots:
         QString creator() const         {return _info.value(CREATOR_TAG,            QString(N_A));}
         QString encoding() const        {return _info.value(ENCODING_TAG,           QString(N_A));}
         QString previewstart() const    {return _info.value(PREVIEWSTART_TAG,       QString(N_A));}
+	QString calcmedley() const	{return _info.value(CALCMEDLEY_TAG,	    QString(N_A));}
         QString medleystartbeat() const {return _info.value(MEDLEYSTARTBEAT_TAG,    QString(N_A));}
         QString medleyendbeat() const   {return _info.value(MEDLEYENDBEAT_TAG,      QString(N_A));}
 

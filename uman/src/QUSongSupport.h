@@ -5,12 +5,12 @@
 #include <QStringList>
 
 class QUSongSupport: QObject {
-    Q_OBJECT
-    
-public:
-    QUSongSupport(QObject *parent = 0);
+	Q_OBJECT
 
-    static QStringList availableTags();
+public:
+	QUSongSupport(QObject *parent = 0);
+
+	static QStringList availableTags();
 	static QStringList availableCustomTags();
 	static QStringList availableNoteTypes();
 
