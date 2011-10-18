@@ -95,7 +95,7 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 	if(!song->isDuet()) {
 		diff = song->loadMelody().first()->notes().first()->timestamp() - begin;
 	} else {
-		// MB todo: replace by minimum of first timestamps of P1 and P2
+		// MB todo: this should work whenever convertLyricsFromRaw() is fixed for duets
 		int firstTimestampP1 = song->melodyForSinger(QUSongLineInterface::first).first()->notes().first()->timestamp();
 		int firstTimestampP2 = song->melodyForSinger(QUSongLineInterface::second).first()->notes().first()->timestamp();
 		diff = std::min(firstTimestampP1, firstTimestampP2) - begin;
