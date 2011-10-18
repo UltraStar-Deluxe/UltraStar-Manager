@@ -17,11 +17,11 @@
 #define BACKGROUND_COLUMN      5
 #define VIDEO_COLUMN           6
 
-#define SCORE_COLUMN           7
-#define TYPE_KARAOKE_COLUMN    8
-#define TYPE_DUET_COLUMN       9
-#define UNUSED_FILES_COLUMN   10
-#define MULTIPLE_SONGS_COLUMN 11
+#define TYPE_KARAOKE_COLUMN    7
+#define TYPE_DUET_COLUMN       8
+#define UNUSED_FILES_COLUMN    9
+#define MULTIPLE_SONGS_COLUMN 10
+#define SCORE_COLUMN          11
 
 #define LENGTH_COLUMN         12
 #define LENGTH_DIFF_COLUMN    13
