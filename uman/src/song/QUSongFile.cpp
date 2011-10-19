@@ -117,7 +117,7 @@ bool QUSongFile::hasVideoLessThan (QUSongFile *s1, QUSongFile *s2)       { retur
 
 /* SORTING FUNCTIONS END */
 
-/* COMPARING FUNCTINOS BEGIN */
+/* COMPARING FUNCTIONS BEGIN */
 
 /*!
  * Used to check whether two songs are nearly equal -> duplicate detection!
@@ -1413,11 +1413,11 @@ void QUSongFile::convertLyricsToRaw() {
 
 	foreach(QUSongLineInterface *line, _melody) {
 		if(line->singer() != QUSongLineInterface::undefined)
-                        _lyrics.append(QString("P%1").arg((int)line->singer()));
+			_lyrics.append(QString("P%1").arg((int)line->singer()));
 
 		foreach(QUSongNoteInterface *note, line->notes()) {
 			QStringList out;
-                        if(note->type() == QUSongNoteInterface::freestyle)      out.append("F");
+			if(note->type() == QUSongNoteInterface::freestyle)      out.append("F");
 			else if(note->type() == QUSongNoteInterface::golden)    out.append("*");
 			else                                                    out.append(":");
 
@@ -1427,7 +1427,7 @@ void QUSongFile::convertLyricsToRaw() {
 
 			out.append(note->syllable());
 
-                        _lyrics.append(QString("%1").arg(out.join(" ")));
+			_lyrics.append(QString("%1").arg(out.join(" ")));
 		}
 
 		if(line->useOutTime()) {
