@@ -84,7 +84,6 @@ void QUDetailItem::reset() {
 	} else if(QString::compare(_tag, RELATIVE_TAG) == 0) {
 		_flagsForSingleSong = 0;
 	} else if(QString::compare(_tag, PREVIEWSTART_TAG) == 0) {
-//		_flagsForSingleSong = 0;
 		_textMask = QString(QObject::tr("%1 seconds"));
 	} else if (QString::compare(_tag, CALCMEDLEY_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
@@ -93,7 +92,6 @@ void QUDetailItem::reset() {
 	} else if(QString::compare(_tag, BPM_TAG) == 0) {
 		_flagsForSingleSong = 0;
 	} else if(QString::compare(_tag, GAP_TAG) == 0) {
-//		_flagsForSingleSong = 0;
 		_textMask = QString(QObject::tr("%1 milliseconds"));
 	} else if( QUSongSupport::availableCustomTags().contains(_tag, Qt::CaseInsensitive) ) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
