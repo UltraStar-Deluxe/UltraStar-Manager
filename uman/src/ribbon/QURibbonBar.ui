@@ -558,7 +558,7 @@ border-left-color: #C2C7CB;</string>
             <string>Show relative paths in the song tree. These paths are relative to the database folder.</string>
            </property>
            <property name="text">
-            <string>Relative paths</string>
+            <string>Show Relative Song Path</string>
            </property>
           </widget>
          </item>
@@ -972,7 +972,7 @@ border-left-color: #C2C7CB;</string>
           <string>Let no other window overlap this application.</string>
          </property>
          <property name="text">
-          <string>Always on top</string>
+          <string>Always On Top</string>
          </property>
         </widget>
        </item>
@@ -1021,7 +1021,7 @@ border-left-color: #C2C7CB;</string>
             <string>Specify the order in which tags will be saved into the song file.</string>
            </property>
            <property name="text">
-            <string>Tag save order...</string>
+            <string>Tag Save Order...</string>
            </property>
            <property name="icon">
             <iconset resource="../resources/uman.qrc">
@@ -1047,7 +1047,7 @@ border-left-color: #C2C7CB;</string>
             <string>Define your own tags here.</string>
            </property>
            <property name="text">
-            <string>Custom tags...</string>
+            <string>Custom Tags...</string>
            </property>
            <property name="icon">
             <iconset resource="../resources/uman.qrc">
