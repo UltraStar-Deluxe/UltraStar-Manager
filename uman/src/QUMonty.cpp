@@ -87,7 +87,7 @@ QString QUMonty::welcomeMsg() {
 void QUMonty::talk(QLabel *montyLbl, QLabel *msgLbl) {
 	montyLbl->setPixmap(pic((QUMonty::Status)(qrand() % 4)));
 	QString message = messages[qrand() % messages.size()];
-	if (!message.contains("%1")) {
+	if (!message.contains("\%1")) {
 		msgLbl->setText(messages[qrand() % messages.size()]);
 	} else {
 		msgLbl->setText(messages[qrand() % messages.size()].arg(songDB->songCount()));
