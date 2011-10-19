@@ -25,6 +25,15 @@ public:
 	static QStringList allowedVideoFiles();
 	static QStringList allowedPlaylistFiles();
 
+	static int mediumMp3Quality();
+	static int highMp3Quality();
+	static int mediumCoverQuality();
+	static int highCoverQuality();
+	static int mediumBackgroundQuality();
+	static int highBackgroundQuality();
+	static int mediumVideoQuality();
+	static int highVideoQuality();
+
 private:
 	static QStringList registryKey(const QString &key, const QString &defaultValue);
 
