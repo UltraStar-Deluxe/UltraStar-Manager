@@ -159,8 +159,6 @@
         <file>minus.png</file>
         <file>plus.png</file>
         <file>tag.png</file>
-        <file>tick.png</file>
-        <file>tick_blue.png</file>
         <file>wand.png</file>
         <file>link_break.png</file>
         <file>flag_blue.png</file>
@@ -171,6 +169,13 @@
         <file>path_error.png</file>
         <file>path_ok.png</file>
         <file>path_unknown.png</file>
+        <file>tick.png</file>
+        <file>tick_high.png</file>
+        <file>tick_high_exclamation.png</file>
+        <file>tick_low.png</file>
+        <file>tick_low_exclamation.png</file>
+        <file>tick_medium.png</file>
+        <file>tick_medium_exclamation.png</file>
     </qresource>
     <qresource prefix="/types">
         <file>text_stack.png</file>
