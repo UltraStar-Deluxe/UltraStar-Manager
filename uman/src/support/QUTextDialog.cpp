@@ -83,6 +83,7 @@ void QUTextDialog::initFile(QUSongFile *song) {
 
 		QString content(lines.join("\n"));
 
+		content.replace("  ", "&nbsp;&nbsp;");
 		content.replace(" \n", "&nbsp;<br>");
 		content.replace("\n", "<br>");
 		content.replace(QRegExp("(#[^<]*:)"), "<b>\\1</b>");
