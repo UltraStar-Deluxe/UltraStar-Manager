@@ -66,7 +66,6 @@ void QUDetailsTable::initTagColumn() {
 	this->setItem(24, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Gap")));
 
 	this->initSeparator(tr("Custom"), 25);
-	//this->setItem(26, 0, new QUTagItem(QIcon(":/types/comment.png"), tr("Comment")));
 	int i = 0;
 	foreach(QString customTag, QUSongSupport::availableCustomTags()) {
 		this->setItem(26 + (i++), 0, new QUTagItem(QIcon(":/bullets/bullet_star.png"), customTag));
