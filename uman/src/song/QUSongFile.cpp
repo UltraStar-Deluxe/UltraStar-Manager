@@ -93,7 +93,7 @@ void QUSongFile::setFile(const QString &filePath, bool update) {
  * Checks whether this is a valid UltraStar song file.
  */
 bool QUSongFile::isValid() {
-	return (length() > 0) and (artist() != N_A) and (title() != N_A);
+	return (length() > 0) and (artist() != N_A) and (title() != N_A) and (bpm() != N_A);
 }
 
 /* SORTING FUNCTIONS BEGIN */
