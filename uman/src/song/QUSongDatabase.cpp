@@ -100,7 +100,8 @@ void QUSongDatabase::reload() {
 
 	foreach(QDir dir, dirList) {
 		QFileInfoList songFiList = dir.entryInfoList(QUSongSupport::allowedSongFiles(), QDir::Files, QDir::Name);
-		qStableSort(songFiList.begin(), songFiList.end(), QU::fileTypeLessThan);
+		//MB: commented out as it prefers to take *2.txt rather than *.txt which is the original text file
+		//qStableSort(songFiList.begin(), songFiList.end(), QU::fileTypeLessThan);
 
 		dlg.update(dir.dirName());
 		if(dlg.cancelled()) break;
