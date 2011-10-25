@@ -568,7 +568,7 @@ border-left-color: #C2C7CB;</string>
             <string>Display other symbols in the song tree that may be less annoying for the user. =)</string>
            </property>
            <property name="text">
-            <string>Other tree symbols</string>
+            <string>Alternative Tree Symbols</string>
            </property>
           </widget>
          </item>
