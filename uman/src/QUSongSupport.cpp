@@ -82,11 +82,11 @@ QStringList QUSongSupport::allowedAudioFiles() {
 }
 
 QStringList QUSongSupport::allowedPictureFiles() {
-	return registryKey("allowedPictureFiles", "*.jpg *.jpeg *.png *.bmp *.gif");
+	return registryKey("allowedPictureFiles", "*.jpg *.jpeg *.png");
 }
 
 QStringList QUSongSupport::allowedVideoFiles() {
-	return registryKey("allowedVideoFiles", "*.mpg *.mpeg *.avi *.flv *.ogm *.mp4 *.divx *.wmv *.mov *.mkv *.vob *.m2v *.ts");
+	return registryKey("allowedVideoFiles", "*.mpg *.mpeg *.avi *.flv *.ogm *.mp4 *.divx *.wmv *.mov *.mkv *.vob *.m2v *.m4v *.ts");
 }
 
 QStringList QUSongSupport::allowedPlaylistFiles() {
