@@ -78,7 +78,7 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(BACKGROUND_COLUMN, QIcon(":/types/background.png"));
 	header->setToolTip(BACKGROUND_COLUMN, tr("Shows whether the song text file points to a <b>background picture</b> that can be found by UltraStar"));
 	header->setSizeHint(BACKGROUND_COLUMN, QSize(25,0));
-	header->setIcon(VIDEO_COLUMN, QIcon(":/types/film.png"));
+	header->setIcon(VIDEO_COLUMN, QIcon(":/types/video.png"));
 	header->setToolTip(VIDEO_COLUMN, tr("Shows whether the song text file points to a <b>video file</b> that can be found by UltraStar"));
 	header->setSizeHint(VIDEO_COLUMN, QSize(25,0));
 
@@ -770,10 +770,24 @@ void QUSongTree::showCheckColumns() {
 }
 
 /*!
- * Emits the proper signal to open the current file. (See QUMainWindow)
+ * Emits the proper signal to open the current file externally. (See QUMainWindow)
  */
-void QUSongTree::openCurrentFile() {
-	emit itemActivated(this->currentItem(), FOLDER_COLUMN);
+void QUSongTree::openCurrentFileExternal() {
+	emit openCurrentFileExternalRequested(this->currentItem());
+}
+
+/*!
+ * Emits the proper signal to open the current file internally (image and text files only). (See QUMainWindow)
+ */
+void QUSongTree::openCurrentFileInternal() {
+	emit openCurrentFileInternalRequested(this->currentItem());
+}
+
+/*!
+ * Emits the proper signal to set the current file as primary song file. (See QUMainWindow)
+ */
+void QUSongTree::setCurrentFilePrimary() {
+	emit setCurrentFilePrimaryRequested(this->currentItem());
 }
 
 /*!
@@ -1257,10 +1271,23 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 
 	if(item && !item->isToplevel()) {
 		// file menu
-		if(item->song()->isFriend(item->text(0)))
-			menu->addAction(tr("Set as primary song"), this, SLOT(openCurrentFile()));
-		else
-			menu->addAction(tr("Open"), this, SLOT(openCurrentFile()));
+		if(item->text(0) == item->song()->cover() or item->text(0) == item->song()->background()) {
+			menu->addAction(QIcon(":/types/image_show.png"), tr("Show preview"), this, SLOT(openCurrentFileInternal()), Qt::Key_Enter);
+			menu->addAction(QIcon(":/types/image_openexternal.png"), tr("Open image file externally"), this, SLOT(openCurrentFileExternal()));
+		} else if(item->text(0) == item->song()->video()) {
+			menu->addAction(QIcon(":/types/video_openexternal.png"), tr("Open video file externally"), this, SLOT(openCurrentFileExternal()), Qt::Key_Enter);
+		} else if(item->text(0) == item->song()->mp3()) {
+			menu->addAction(QIcon(":/types/music_openexternal.png"), tr("Open audio file externally"), this, SLOT(openCurrentFileExternal()), Qt::Key_Enter);
+		} else if(item->text(0) == item->song()->txt()) {
+			menu->addAction(QIcon(":/types/text.png"), tr("Show file contents"), this, SLOT(openCurrentFileInternal()), Qt::Key_Enter);
+			menu->addAction(QIcon(":/types/text_openexternal.png"), tr("Open text file externally"), this, SLOT(openCurrentFileExternal()));
+		} else if(item->song()->isFriend(item->text(0))) {
+			menu->addAction(QIcon(":/types/text.png"), tr("Show file contents"), this, SLOT(openCurrentFileInternal()), Qt::Key_Enter);
+			menu->addAction(QIcon(":/types/text_openexternal.png"), tr("Open text file externally"), this, SLOT(openCurrentFileExternal()));
+			menu->addAction(QIcon(":/types/text_setprimary.png"), tr("Set as primary song"), this, SLOT(setCurrentFilePrimary()));
+		} else {
+			menu->addAction(QIcon(":/types/file.png"), tr("Open externally"), this, SLOT(openCurrentFileExternal()), Qt::Key_Enter);
+		}
 		menu->addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), Qt::Key_Delete);
 	} else {
 		// song/folder menu
@@ -1273,7 +1300,7 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 
 		menu->addSeparator();
 		menu->addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
-		menu->addAction(QIcon(":/control/picture_go.png"), tr("Get Covers..."), this, SLOT(requestCoversFromAmazon()));
+		menu->addAction(QIcon(":/control/image_go.png"), tr("Get Covers..."), this, SLOT(requestCoversFromAmazon()));
 
 		QMenu *pictureFlowMenu = menu->addMenu(QIcon(":/control/images.png"), tr("Review pictures"));
 		pictureFlowMenu->addAction(QIcon(":/types/cover.png"),      tr("Covers..."),      this, SLOT(requestCoverFlow()));

@@ -67,7 +67,7 @@ private slots:
 	void toggleAutoSaveChk(bool checked);
 	void toggleAltSongTreeChk(bool checked);
 	void toggleAlwaysOnTop(bool checked);
-        void toggleEncodeUTF8(bool checked);
+	void toggleEncodeUTF8(bool checked);
 	void toggleFullScreenMode();
 
 	void editTagOrder();
@@ -81,7 +81,10 @@ private slots:
 	void montyPrev();
 	void montyNext();
 
-	void showFileContent(QTreeWidgetItem *item, int column);
+	void applyDefaultAction(QTreeWidgetItem *item, int column);
+	void openExternally(QTreeWidgetItem *item);
+	void openInternally(QTreeWidgetItem *item);
+	void setPrimary(QTreeWidgetItem *item);
 	void showLyrics(QUSongFile *song);
 
 	void addLogMsg(const QString &msg, QU::MessageTypes type = QU::Information);

@@ -396,7 +396,7 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateMergeBtn()));
 
 	connect(songTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(editSongSetFileLink(QTreeWidgetItem*, int)));
-	connect(songTree, SIGNAL(itemActivated(QTreeWidgetItem*, int)), this, SLOT(showFileContent(QTreeWidgetItem*, int)));
+	connect(songTree, SIGNAL(itemActivated(QTreeWidgetItem*, int)), this, SLOT(applyDefaultAction(QTreeWidgetItem*, int)));
 
 	connect(songTree, SIGNAL(itemExpanded(QTreeWidgetItem*)), songTree, SLOT(resizeToContents()));
 	connect(songTree, SIGNAL(itemCollapsed(QTreeWidgetItem*)), songTree, SLOT(resizeToContents()));
@@ -410,6 +410,10 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(editLyricsRequested(QUSongFile*)), this, SLOT(editSongLyrics(QUSongFile*)));
 
 	connect(songTree, SIGNAL(playSelectedSongsRequested()), this, SLOT(sendSelectedSongsToMediaPlayer()));
+
+	connect(songTree, SIGNAL(openCurrentFileExternalRequested(QTreeWidgetItem*)), this, SLOT(openExternally(QTreeWidgetItem*)));
+	connect(songTree, SIGNAL(openCurrentFileInternalRequested(QTreeWidgetItem*)), this, SLOT(openInternally(QTreeWidgetItem*)));
+	connect(songTree, SIGNAL(setCurrentFilePrimaryRequested(QTreeWidgetItem*)), this, SLOT(setPrimary(QTreeWidgetItem*)));
 
 	refreshAllSongs();
 	updateMergeBtn();
@@ -1110,10 +1114,12 @@ void QUMainWindow::toggleFullScreenMode() {
 }
 
 /*!
- * Shows the content of the current file. Another text-file will be set as new song text
- * file.
+ * Applies the default action for the current file.
+ * Text files (main song file as well as friends) will be displayed in a new window.
+ * Image files will be shown in a preview window.
+ * Audio and video files will be opened externally.
  */
-void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
+void QUMainWindow::applyDefaultAction(QTreeWidgetItem *item, int column) {
 	if(column != FOLDER_COLUMN)
 		return;
 
@@ -1136,23 +1142,90 @@ void QUMainWindow::showFileContent(QTreeWidgetItem *item, int column) {
 		delete dlg;
 	} else if(songItem->song()->isFriend(item->text(FOLDER_COLUMN))) {
 		// show (raw) content of friend song
-//		QUTextDialog dlg(songItem->song()->friendAt(item->text(FOLDER_COLUMN)), this);
-//		dlg.exec();
-		songDB->swapSongWithFriend(songItem->song(), item->text(FOLDER_COLUMN));
-		updateDetails();
+		QUTextDialog dlg(songItem->song()->friendAt(item->text(FOLDER_COLUMN)), this);
+		dlg.exec();
+		// swap song with friend
+//		songDB->swapSongWithFriend(songItem->song(), item->text(FOLDER_COLUMN));
+//		updateDetails();
 	} else if(QUSongSupport::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QUPictureDialog dlg(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(FOLDER_COLUMN)).filePath(), this);
 		dlg.exec();
 	} else if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)
 		or QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)
 		or QUSongSupport::allowedKaraokeFiles().contains(fileScheme, Qt::CaseInsensitive)
-		or QUSongSupport::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		or QUSongSupport::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)
+		or QUSongSupport::allowedScoreFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QFileInfo fi(songItem->song()->path(), songItem->text(FOLDER_COLUMN));
 
 		if( !QDesktopServices::openUrl(QUrl::fromLocalFile(fi.filePath())) )
 			logSrv->add(QString(tr("Could NOT open file: \"%1\".")).arg(fi.filePath()), QU::Warning);
 		else
 			logSrv->add(QString(tr("File was opened successfully: \"%1\".")).arg(fi.filePath()), QU::Information);
+	}
+}
+
+/*!
+ * Opens the current file externally
+ */
+void QUMainWindow::openExternally(QTreeWidgetItem *item) {
+	QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+
+	if(!songItem || songItem->isToplevel())
+		return;
+
+	QFileInfo fi(songItem->song()->path(), songItem->text(FOLDER_COLUMN));
+
+	if( !QDesktopServices::openUrl(QUrl::fromLocalFile(fi.filePath())) )
+		logSrv->add(QString(tr("Could NOT open file: \"%1\".")).arg(fi.filePath()), QU::Warning);
+	else
+		logSrv->add(QString(tr("File was opened successfully: \"%1\".")).arg(fi.filePath()), QU::Information);
+}
+
+/*!
+ * Opens the current file internally
+ */
+void QUMainWindow::openInternally(QTreeWidgetItem *item) {
+	QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+
+	if(!songItem || songItem->isToplevel())
+		return;
+
+	QString fileScheme("*." + QFileInfo(songItem->text(FOLDER_COLUMN)).suffix());
+
+	if(QString::compare(item->text(FOLDER_COLUMN), songItem->song()->songFileInfo().fileName(), Qt::CaseInsensitive) == 0) {
+		// show the (raw) content of the current song text file
+		QUTextDialog *dlg = new QUTextDialog(songItem->song(), this);
+		dlg->exec();
+		delete dlg;
+	} else if(QUSongSupport::allowedLicenseFiles().contains(songItem->text(FOLDER_COLUMN), Qt::CaseInsensitive)) {
+		// show the contents of the license
+		QUTextDialog *dlg = new QUTextDialog(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(FOLDER_COLUMN)).filePath(), this);
+		dlg->exec();
+		delete dlg;
+	} else if(songItem->song()->isFriend(item->text(FOLDER_COLUMN))) {
+		// show (raw) content of friend song
+		QUTextDialog dlg(songItem->song()->friendAt(item->text(FOLDER_COLUMN)), this);
+		dlg.exec();
+	} else if(QUSongSupport::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		QUPictureDialog dlg(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(FOLDER_COLUMN)).filePath(), this);
+		dlg.exec();
+	}
+}
+
+/*!
+ * Sets the current text file as the primary song file (if it is a friend)
+ */
+void QUMainWindow::setPrimary(QTreeWidgetItem *item) {
+	QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
+
+	if(!songItem || songItem->isToplevel())
+		return;
+
+	QString fileScheme("*." + QFileInfo(songItem->text(FOLDER_COLUMN)).suffix());
+
+	if(songItem->song()->isFriend(item->text(FOLDER_COLUMN))) {
+		songDB->swapSongWithFriend(songItem->song(), item->text(FOLDER_COLUMN));
+		updateDetails();
 	}
 }
 

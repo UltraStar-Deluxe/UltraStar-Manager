@@ -70,6 +70,10 @@ signals:
 	void showLyricsRequested(QUSongFile *song);
 	void editLyricsRequested(QUSongFile *song);
 
+	void openCurrentFileExternalRequested(QTreeWidgetItem* currentItem);
+	void openCurrentFileInternalRequested(QTreeWidgetItem* currentItem);
+	void setCurrentFilePrimaryRequested(QTreeWidgetItem* currentItem);
+
 private slots:
 	void deleteCurrentItem();
 	void sendSelectedSongsToPlaylist();
@@ -89,7 +93,9 @@ private slots:
 	void showTimeColumns();
 	void showCheckColumns();
 
-	void openCurrentFile();
+	void openCurrentFileExternal();
+	void openCurrentFileInternal();
+	void setCurrentFilePrimary();
 	void openCurrentFolder();
 
 	void hideAll();
