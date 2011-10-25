@@ -218,7 +218,7 @@ private:
 	void convertLyricsToRaw();
 	void lyricsAddNote(QString line);
 
-	QList<QUSongFile*> _friends; // karaoke or duet songs that share the same resources
+	QList<QUSongFile*> _friends; // songs that share some resources
 
 	// support for score files (*.sco)
 	QUScoreFile *_score;
