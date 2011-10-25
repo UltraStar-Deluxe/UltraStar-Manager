@@ -59,7 +59,6 @@
         <file>duplicates.png</file>
         <file>quit.png</file>
         <file>space.png</file>
-        <file>picture_minus.png</file>
         <file>tasks_add.png</file>
         <file>filter_log.png</file>
         <file>empty_syllable.png</file>
@@ -109,7 +108,6 @@
         <file>convert-1.png</file>
         <file>convert-2.png</file>
         <file>images.png</file>
-        <file>picture_go.png</file>
         <file>arrow_undo.png</file>
         <file>convert-a.png</file>
         <file>convert-r.png</file>
@@ -118,6 +116,8 @@
         <file>text_plain.png</file>
         <file>encoding.png</file>
         <file>folder_relative.png</file>
+        <file>image_go.png</file>
+        <file>image_minus.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>splash.png</file>
@@ -181,12 +181,10 @@
         <file>text_stack.png</file>
         <file>folder_go.png</file>
         <file>time_song.png</file>
-        <file>film_warn.png</file>
         <file>music_error.png</file>
         <file>music_warn.png</file>
         <file>score.png</file>
         <file>midi2.png</file>
-        <file>picture_warn.png</file>
         <file>karaoke.png</file>
         <file>license.png</file>
         <file>midi.png</file>
@@ -201,7 +199,6 @@
         <file>edition.png</file>
         <file>file_delete.png</file>
         <file>no_end.png</file>
-        <file>film.png</file>
         <file>folder.png</file>
         <file>folder_blue.png</file>
         <file>font.png</file>
@@ -215,7 +212,6 @@
         <file>end.png</file>
         <file>start.png</file>
         <file>photo.png</file>
-        <file>picture.png</file>
         <file>tag_delete.png</file>
         <file>text.png</file>
         <file>unused_files.png</file>
@@ -223,6 +219,17 @@
         <file>midi_kar.png</file>
         <file>duet.png</file>
         <file>page_white_acrobat.png</file>
+        <file>video.png</file>
+        <file>video_openexternal.png</file>
+        <file>video_warn.png</file>
+        <file>text_openexternal.png</file>
+        <file>image.png</file>
+        <file>image_openexternal.png</file>
+        <file>image_show.png</file>
+        <file>image_warn.png</file>
+        <file>music_openexternal.png</file>
+        <file>text_setprimary.png</file>
+        <file>file.png</file>
     </qresource>
     <qresource prefix="/big">
         <file>save_big.png</file>
