@@ -193,7 +193,7 @@ Covers...</string>
          </property>
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
-           <normaloff>:/control/picture_go.png</normaloff>:/control/picture_go.png</iconset>
+           <normaloff>:/control/image_go.png</normaloff>:/control/image_go.png</iconset>
          </property>
          <property name="iconSize">
           <size>

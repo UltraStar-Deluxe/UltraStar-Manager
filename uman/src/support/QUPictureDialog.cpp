@@ -16,7 +16,7 @@ QUPictureDialog::QUPictureDialog(const QString &filePath, QWidget *parent): QDia
 
 	this->setWindowFlags(this->windowFlags() | Qt::WindowMaximizeButtonHint);
 
-	this->setWindowIcon(QIcon(":/types/picture.png"));
+	this->setWindowIcon(QIcon(":/types/image.png"));
 
 	connect(fitSizeBtn, SIGNAL(clicked()), this, SLOT(fitPicture()));
 	connect(fullSizeBtn, SIGNAL(clicked()), this, SLOT(fullPicture()));

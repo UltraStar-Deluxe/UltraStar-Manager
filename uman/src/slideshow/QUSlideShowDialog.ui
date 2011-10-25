@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../resources/uman.qrc">
-    <normaloff>:/types/picture.png</normaloff>:/types/picture.png</iconset>
+    <normaloff>:/types/image.png</normaloff>:/types/image.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">

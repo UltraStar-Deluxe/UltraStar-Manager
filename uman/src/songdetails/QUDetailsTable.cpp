@@ -51,7 +51,7 @@ void QUDetailsTable::initTagColumn() {
 	this->setItem(10, 0, new QUTagItem(QIcon(":/types/music.png"), tr("MP3")));
 	this->setItem(11, 0, new QUTagItem(QIcon(":/types/cover.png"), tr("Cover")));
 	this->setItem(12, 0, new QUTagItem(QIcon(":/types/background.png"), tr("Background")));
-	this->setItem(13, 0, new QUTagItem(QIcon(":/types/film.png"), tr("Video")));
+	this->setItem(13, 0, new QUTagItem(QIcon(":/types/video.png"), tr("Video")));
 
 	this->initSeparator(tr("Control"), 14);
 	this->setItem(15, 0, new QUTagItem(QIcon(":/types/videogap.png"), tr("Videogap")));

@@ -15,7 +15,7 @@ QUBooleanSongData::QUBooleanSongData(const QString &tag, QObject *parent): QUAbs
 		this->setIcon(QIcon(":/types/background.png"));
 		this->setDescription(tr("Background file exists?"));
 	} else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0) {
-		this->setIcon(QIcon(":/types/film.png"));
+		this->setIcon(QIcon(":/types/video.png"));
 		this->setDescription(tr("Video file exists?"));
 	}
 }
@@ -59,7 +59,7 @@ QString QUBooleanSongData::iconData(QUSongFile *song) {
 			return useAltIcons ? "" : ":/marks/cross.png";
 	} else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0) {
 		if (song->hasVideo())
-			return useAltIcons ? ":/types/film.png" : ":/marks/tick.png";
+			return useAltIcons ? ":/types/video.png" : ":/marks/tick.png";
 		else
 			return useAltIcons ? "" : ":/marks/cross.png";
 	}
@@ -79,7 +79,7 @@ QString QUBooleanSongData::headerIconData() {
 	else if(QString::compare(_tag, BACKGROUND_TAG, Qt::CaseInsensitive) == 0)
 		return ":/types/background.png";
 	else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0)
-		return ":/types/film.png";
+		return ":/types/video.png";
 
 	return QString();
 }

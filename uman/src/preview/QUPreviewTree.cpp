@@ -63,8 +63,8 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 
 	types->addChild(this->createInfoItem(QIcon(":/types/text.png"), tr("Song"), QUSongSupport::allowedSongFiles().join(" ")));
 	types->addChild(this->createInfoItem(QIcon(":/types/music.png"), tr("Audio"), QUSongSupport::allowedAudioFiles().join(" ")));
-	types->addChild(this->createInfoItem(QIcon(":/types/picture.png"), tr("Picture"), QUSongSupport::allowedPictureFiles().join(" ")));
-	types->addChild(this->createInfoItem(QIcon(":/types/film.png"), tr("Video"), QUSongSupport::allowedVideoFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/image.png"), tr("Picture"), QUSongSupport::allowedPictureFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/video.png"), tr("Video"), QUSongSupport::allowedVideoFiles().join(" ")));
 	types->addChild(this->createInfoItem(QIcon(":/control/playlist.png"), tr("Playlist"), QUSongSupport::allowedPlaylistFiles().join(" ")));
 	types->addChild(this->createInfoItem(QIcon(":/types/license.png"), tr("License"), QUSongSupport::allowedLicenseFiles().join(" ")));
 	types->addChild(this->createInfoItem(QIcon(":/types/midi.png"), tr("MIDI"), QUSongSupport::allowedMidiFiles().join(" ")));
