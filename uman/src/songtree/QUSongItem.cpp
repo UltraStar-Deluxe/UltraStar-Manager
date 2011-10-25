@@ -321,8 +321,8 @@ void QUSongItem::showMultipleSongsIcon(QString fileName) {
 void QUSongItem::setTick(int column) {
 	if(!altViewEnabled()) {
 		if(column == MP3_COLUMN) {
-			int mp3_quality = 192;
-			//
+			int mp3_quality = QUSongSupport::mediumMp3Quality() - 1;
+
 			TagLib::FileRef ref(this->song()->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
 
 			if(!ref.isNull()) {
@@ -331,11 +331,11 @@ void QUSongItem::setTick(int column) {
 					mp3_quality = prop->bitrate();
 				}
 			}
-			//
-			if (mp3_quality < 128) {
+
+			if (mp3_quality < QUSongSupport::mediumMp3Quality()) {
 				this->setIcon(column, QIcon(":/marks/tick_low.png"));
 				this->setToolTip(column, QString(QObject::tr("low bitrate (%1 kbit/s)")).arg(mp3_quality));
-			} else if (mp3_quality < 192) {
+			} else if (mp3_quality < QUSongSupport::highMp3Quality()) {
 				this->setIcon(column, QIcon(":/marks/tick_medium.png"));
 				this->setToolTip(column, QString(QObject::tr("medium bitrate (%1 kbit/s)")).arg(mp3_quality));
 			} else {
