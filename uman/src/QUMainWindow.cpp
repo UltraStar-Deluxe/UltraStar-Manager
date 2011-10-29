@@ -971,15 +971,15 @@ void QUMainWindow::checkForUpdate(bool automatic) {
 					tr("Update check"),
 					QString(tr("UltraStar Manager %1.%2.%3 is <b>up to date!</b>"))
 							.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION),
-					BTN << ":/marks/accept.png" << tr("OK. Please check again automatically on startup.")
-					    << ":/marks/accept.png" << tr("OK. I will check again later."),
+					BTN << ":/marks/accept.png" << tr("OK. I will check again later.")
+					    << ":/marks/accept.png" << tr("OK. Please check again automatically on startup."),
 					330);
 			if(result == 0) {
-				settings.setValue("allowUpdateCheck", QVariant(true));
-				logSrv->add(QString(tr("Automatic check for updates enabled.")), QU::Information);
-			} else {
 				settings.setValue("allowUpdateCheck", QVariant(false));
 				logSrv->add(QString(tr("Automatic check for updates disabled.")), QU::Information);
+			} else {
+				settings.setValue("allowUpdateCheck", QVariant(true));
+				logSrv->add(QString(tr("Automatic check for updates enabled.")), QU::Information);
 			}
 		}
 	}
