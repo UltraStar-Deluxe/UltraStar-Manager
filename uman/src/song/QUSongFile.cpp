@@ -186,7 +186,7 @@ bool QUSongFile::updateCache() {
 	if (_file.peek(3).toHex().toUpper() == "EFBBBF") {
 		_in.setCodec(QTextCodec::codecForName("UTF-8"));
 		setInfo(ENCODING_TAG, QString("UTF8"));
-		logSrv->add(QString(tr("UTF8 BOM detected in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+		//logSrv->add(QString(tr("UTF8 BOM detected in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
 	}
 
 	// Check if #ENCODING tag is present
@@ -197,7 +197,7 @@ bool QUSongFile::updateCache() {
 			if(encoding() == N_A) {
 				_in.setCodec(QTextCodec::codecForName("UTF-8"));
 				setInfo(ENCODING_TAG, QString("UTF8"));
-				logSrv->add(QString(tr("UTF8 (no BOM) encoding assumed according to #ENCODING tag in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+				//logSrv->add(QString(tr("UTF8 (no BOM) encoding assumed according to #ENCODING tag in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
 			} else {
 				// UTF8 already detected by BOM
 			}
@@ -205,7 +205,7 @@ bool QUSongFile::updateCache() {
 			if(encoding() == N_A) {
 				_in.setCodec(QTextCodec::codecForName("Windows-1252"));
 				setInfo(ENCODING_TAG, QString("CP1252"));
-				logSrv->add(QString(tr("CP1252 encoding assumed according to #ENCODING tag in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+				//logSrv->add(QString(tr("CP1252 encoding assumed according to #ENCODING tag in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
 			} else {
 				logSrv->add(QString(tr("Encoding mismatch! UTF8 BOM detected, but \"#ENCODING:CP1252\" in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
 				logSrv->add(QString(tr("UTF8 encoding assumed for song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
@@ -243,7 +243,7 @@ bool QUSongFile::updateCache() {
 				// default to CP1252
 				_in.setCodec(QTextCodec::codecForName("Windows-1252"));
 				setInfo(ENCODING_TAG, QString("CP1252"));
-				logSrv->add(QString(tr("Defaulting to CP1252 encoding for song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+				//logSrv->add(QString(tr("Defaulting to CP1252 encoding for song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
 			}
 		}
 	}
