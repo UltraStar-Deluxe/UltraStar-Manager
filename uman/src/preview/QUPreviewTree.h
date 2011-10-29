@@ -47,6 +47,7 @@ private:
 	void showAudioFileInformation(const QFileInfo &fi);
 	void showPictureFileInformation(const QFileInfo &fi);
 	void showVideoFileInformation(const QFileInfo &fi);
+	void showSimpleFileInformation(const QFileInfo &fi, const QString type);
 
 	void showSelectedLength(QTreeWidgetItem *child, int seconds);
 };

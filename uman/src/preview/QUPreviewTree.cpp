@@ -63,7 +63,7 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 
 	types->addChild(this->createInfoItem(QIcon(":/types/text.png"), tr("Song"), QUSongSupport::allowedSongFiles().join(" ")));
 	types->addChild(this->createInfoItem(QIcon(":/types/music.png"), tr("Audio"), QUSongSupport::allowedAudioFiles().join(" ")));
-	types->addChild(this->createInfoItem(QIcon(":/types/image.png"), tr("Picture"), QUSongSupport::allowedPictureFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/image.png"), tr("Image"), QUSongSupport::allowedPictureFiles().join(" ")));
 	types->addChild(this->createInfoItem(QIcon(":/types/video.png"), tr("Video"), QUSongSupport::allowedVideoFiles().join(" ")));
 	types->addChild(this->createInfoItem(QIcon(":/control/playlist.png"), tr("Playlist"), QUSongSupport::allowedPlaylistFiles().join(" ")));
 	types->addChild(this->createInfoItem(QIcon(":/types/license.png"), tr("License"), QUSongSupport::allowedLicenseFiles().join(" ")));
@@ -180,6 +180,18 @@ void QUPreviewTree::showFileInformation(const QFileInfo &fi) {
 		showPictureFileInformation(fi);
 	else if(QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive))
 		showVideoFileInformation(fi);
+	else if(QUSongSupport::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive))
+		showSimpleFileInformation(fi, tr("text file"));
+	else if(QUSongSupport::allowedKaraokeFiles().contains(fileScheme, Qt::CaseInsensitive))
+		showSimpleFileInformation(fi, tr("karaoke file"));
+	else if(QUSongSupport::allowedLicenseFiles().contains(fileScheme, Qt::CaseInsensitive))
+		showSimpleFileInformation(fi, tr("license file"));
+	else if(QUSongSupport::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive))
+		showSimpleFileInformation(fi, tr("midi file"));
+	else if(QUSongSupport::allowedPlaylistFiles().contains(fileScheme, Qt::CaseInsensitive))
+		showSimpleFileInformation(fi, tr("playlist file"));
+	else if(QUSongSupport::allowedScoreFiles().contains(fileScheme, Qt::CaseInsensitive))
+		showSimpleFileInformation(fi, tr("score file"));
 }
 
 void QUPreviewTree::showAudioFileInformation(const QFileInfo &fi) {
@@ -223,14 +235,14 @@ void QUPreviewTree::showAudioFileInformation(const QFileInfo &fi) {
 void QUPreviewTree::showPictureFileInformation(const QFileInfo &fi) {
 	current->addChild(this->createInfoItem(tr("Filename"), fi.fileName()));
 	current->addChild(this->createInfoItem(tr("Path"), fi.absolutePath()));
-	current->addChild(this->createInfoItem(tr("Type"), tr("picture file")));
+	current->addChild(this->createInfoItem(tr("Type"), tr("Image file")));
 	current->addChild(this->createInfoItem(tr("Size"), QString("%1 KiB").arg(fi.size() / 1024., 0, 'f', 2)));
 
 	QImage img(fi.filePath());
 	extra->addChild(this->createInfoItem(tr("Dimensions"), QString("%1 x %2").arg(img.width()).arg(img.height())));
 	extra->addChild(this->createInfoItem(tr("Depth"), QVariant(img.depth()).toString()));
 
-	extra->setText(0, tr("Picture Properties"));
+	extra->setText(0, tr("Image Properties"));
 	extra->setHidden(false);
 
 	current->setHidden(false);
@@ -312,6 +324,15 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 	//	extra->setText(0, tr("Video Properties"));
 	//	extra->setHidden(false);
 
+}
+
+void QUPreviewTree::showSimpleFileInformation(const QFileInfo &fi, const QString type) {
+	current->addChild(this->createInfoItem(tr("Filename"), fi.fileName()));
+	current->addChild(this->createInfoItem(tr("Path"), fi.absolutePath()));
+	current->addChild(this->createInfoItem(tr("Type"), type));
+	current->addChild(this->createInfoItem(tr("Size"), QString("%1 KiB").arg(fi.size() / 1024., 0, 'f', 2)));
+
+	current->setHidden(false);
 }
 
 void QUPreviewTree::showSelectedLength(QTreeWidgetItem *child, int seconds) {
