@@ -1402,7 +1402,7 @@ void QUSongTree::requestEditLyrics() {
 }
 
 /*!
- * Request covers for all selected songs (song items). Send the items so that they can be updates,
+ * Request covers for all selected songs (song items). Send the items so that they can be updated,
  * if songs got new covers.
  */
 void QUSongTree::requestCoversFromAmazon() {
