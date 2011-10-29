@@ -27,6 +27,10 @@
 
 #include <QDesktopServices>
 #include <QUrl>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QTemporaryFile>
 
 #include "QUSongItem.h"
 #include "QUDetailItem.h"
@@ -72,6 +76,11 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	initEventLog();
 	initConfig();
 	initPluginManager();
+
+	QSettings settings;
+	if (settings.value("allowUpdateCheck", QVariant(false)).toBool()) {
+		this->checkForUpdate(true);
+	}
 
 	initSongTree();
 	initDetailsTable();
@@ -142,7 +151,7 @@ void QUMainWindow::closeEvent(QCloseEvent *event) {
 	settings.setValue("showErrorMessages", showErrorsBtn->isChecked());
 
 	settings.setValue("autoSave", QVariant(_menu->autoSaveBtn->isChecked()));
-        settings.setValue("encodeUTF8", QVariant(_menu->encodeUTF8Btn->isChecked()));
+	settings.setValue("encodeUTF8", QVariant(_menu->encodeUTF8Btn->isChecked()));
 
 	this->saveLog();
 
@@ -184,7 +193,7 @@ void QUMainWindow::initConfig() {
 
 	_menu->autoSaveBtn->setChecked(settings.value("autoSave", true).toBool());
 	_menu->onTopChk->setChecked(settings.value("alwaysOnTop", false).toBool());
-        _menu->encodeUTF8Btn->setChecked(settings.value("encodeUTF8", true).toBool());
+	_menu->encodeUTF8Btn->setChecked(settings.value("encodeUTF8", true).toBool());
 
 	restoreGeometry(settings.value("geometry").toByteArray());
 	restoreState(settings.value("windowState").toByteArray());
@@ -204,11 +213,11 @@ void QUMainWindow::initConfig() {
 		_menu->langDeBtn->setChecked(true);
 	} else if(QLocale(settings.value("language").toString()).language() == QLocale::Polish) {
 		_menu->langPlBtn->setChecked(true);
-        } else if(QLocale(settings.value("language").toString()).language() == QLocale::French) {
-                _menu->langFrBtn->setChecked(true);
-        } else if(QLocale(settings.value("language").toString()).language() == QLocale::Spanish) {
-                _menu->langEsBtn->setChecked(true);
-        }
+	} else if(QLocale(settings.value("language").toString()).language() == QLocale::French) {
+		_menu->langFrBtn->setChecked(true);
+	} else if(QLocale(settings.value("language").toString()).language() == QLocale::Spanish) {
+		_menu->langEsBtn->setChecked(true);
+	}
 
 	QStringList imageFormatsNeeded;
 	QStringList imageFormatsQt;
@@ -336,8 +345,8 @@ void QUMainWindow::initRibbonBar() {
 	_menu->updateBaseDirMenu();
 
 	connect(_menu->autoSaveBtn, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
-        connect(_menu->onTopChk, SIGNAL(toggled(bool)), this, SLOT(toggleAlwaysOnTop(bool)));
-        connect(_menu->encodeUTF8Btn, SIGNAL(toggled(bool)), this, SLOT(toggleEncodeUTF8(bool)));
+	connect(_menu->onTopChk, SIGNAL(toggled(bool)), this, SLOT(toggleAlwaysOnTop(bool)));
+	connect(_menu->encodeUTF8Btn, SIGNAL(toggled(bool)), this, SLOT(toggleEncodeUTF8(bool)));
 
 	connect(_menu->tagSaveOrder, SIGNAL(clicked()), this, SLOT(editTagOrder()));
 	connect(_menu->customTagsBtn, SIGNAL(clicked()), this, SLOT(editCustomTags()));
@@ -345,9 +354,9 @@ void QUMainWindow::initRibbonBar() {
 
 	connect(_menu->langUsBtn, SIGNAL(clicked()), this, SLOT(enableEnglish()));
 	connect(_menu->langDeBtn, SIGNAL(clicked()), this, SLOT(enableGerman()));
-        connect(_menu->langPlBtn, SIGNAL(clicked()), this, SLOT(enablePolish()));
-        connect(_menu->langFrBtn, SIGNAL(clicked()), this, SLOT(enableFrench()));
-        connect(_menu->langEsBtn, SIGNAL(clicked()), this, SLOT(enableSpanish()));
+	connect(_menu->langPlBtn, SIGNAL(clicked()), this, SLOT(enablePolish()));
+	connect(_menu->langFrBtn, SIGNAL(clicked()), this, SLOT(enableFrench()));
+	connect(_menu->langEsBtn, SIGNAL(clicked()), this, SLOT(enableSpanish()));
 
 	connect(_menu, SIGNAL(changeSongPathRequested(QString)), this, SLOT(changeSongDir(QString)));
 
@@ -375,6 +384,7 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->aboutUmanBtn, SIGNAL(clicked()), this, SLOT(aboutUman()));
 	connect(_menu->aboutTagLibBtn, SIGNAL(clicked()), this, SLOT(aboutTagLib()));
 	connect(_menu->aboutBASSBtn, SIGNAL(clicked()), this, SLOT(aboutBASS()));
+	connect(_menu->checkForUpdateBtn, SIGNAL(clicked(bool)), this, SLOT(checkForUpdate(bool)));
 
 	// help menu
 	connect(_menu->helpBtn, SIGNAL(clicked()), montyArea, SLOT(show()));
@@ -896,8 +906,83 @@ void QUMainWindow::aboutBASS() {
 					"Version: <b>%1</b><br><br>"
 					"Copyright (c) 1999-2008<br><a href=\"http://www.un4seen.com/bass.html\">Un4seen Developments Ltd.</a> All rights reserved."))
 					.arg(BASSVERSIONTEXT),
-			QStringList() << ":/marks/accept.png" << "OK",
+			BTN << ":/marks/accept.png" << "OK",
 			330);
+}
+
+void QUMainWindow::checkForUpdate(bool automatic) {
+	int currentVersion = MAJOR_VERSION*100 + MINOR_VERSION*10 + PATCH_VERSION;
+
+	QUrl url("http://uman.svn.sourceforge.net/viewvc/uman/uman/src/latest_version.xml");
+	QNetworkAccessManager *m_NetworkMngr = new QNetworkAccessManager(this);
+	QNetworkReply *reply= m_NetworkMngr->get(QNetworkRequest(url));
+
+	QEventLoop loop;
+	connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+	loop.exec();
+	if(reply->error() != QNetworkReply::NoError) {
+		if (!automatic) {
+			QUMessageBox::information(this,
+					tr("Update check"),
+					QString(tr("Update check <b>failed</b>.<br><br>Is your internet connection working?")),
+					BTN << ":/marks/accept.png" << "OK",
+					330);
+		}
+		logSrv->add(QString(tr("Update check failed. Host unreachable.")), QU::Error);
+		return;
+	}
+
+	QTemporaryFile tmp;
+	if (!tmp.open()) {
+		if (!automatic) {
+			QUMessageBox::information(this,
+					tr("Update check"),
+					QString(tr("Update check <b>failed</b>.<br><br>No permission to write file %1.")).arg(tmp.fileName()),
+					BTN << ":/marks/accept.png" << "OK",
+					330);
+		}
+		logSrv->add(QString(tr("Update check failed. No permission to write file %1.")).arg(tmp.fileName()), QU::Error);
+		return;
+	}
+
+	tmp.write(reply->readAll());
+	tmp.seek(0);
+	QString line =  QString(tmp.readLine());
+	QString latestVersionString = line;
+	int latestVersion = line.remove('.').toInt();
+	delete reply;
+	tmp.remove();
+
+	if (currentVersion < latestVersion) {
+		QUMessageBox::information(this,
+				tr("Update check"),
+				QString(tr("UltraStar Manager %1.%2.%3 is <b>outdated</b>.<br><br>"
+						"Download the most recent UltraStar Manager %4 <a href='http://sourceforge.net/projects/uman/'>here</a>."))
+						.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION)
+						.arg(latestVersionString),
+				BTN << ":/marks/accept.png" << "OK",
+				330);
+		logSrv->add(QString(tr("Update check successful. A new version of UltraStar Manager is available.")), QU::Information);
+	} else {
+		logSrv->add(QString(tr("Update check successful. UltraStar Manager is up to date.")), QU::Information);
+		if (!automatic) {
+			QSettings settings;
+			int result = QUMessageBox::information(this,
+					tr("Update check"),
+					QString(tr("UltraStar Manager %1.%2.%3 is <b>up to date!</b>"))
+							.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION),
+					BTN << ":/marks/accept.png" << tr("OK. Please check again automatically on startup.")
+					    << ":/marks/accept.png" << tr("OK. I will check again later."),
+					330);
+			if(result == 0) {
+				settings.setValue("allowUpdateCheck", QVariant(true));
+				logSrv->add(QString(tr("Automatic check for updates enabled.")), QU::Information);
+			} else {
+				settings.setValue("allowUpdateCheck", QVariant(false));
+				logSrv->add(QString(tr("Automatic check for updates disabled.")), QU::Information);
+			}
+		}
+	}
 }
 
 void QUMainWindow::editTagOrder() {
@@ -1086,16 +1171,16 @@ void QUMainWindow::toggleAltSongTreeChk(bool checked) {
  * Let the main window stay always in foreground.
  */
 void QUMainWindow::toggleAlwaysOnTop(bool checked) {
-        QSettings settings;
-        if(settings.value("alwaysOnTop", false) != checked)
-                settings.setValue("alwaysOnTop", checked);
+	QSettings settings;
+	if(settings.value("alwaysOnTop", false) != checked)
+		settings.setValue("alwaysOnTop", checked);
 
-        if(checked)
-                this->setWindowFlags(this->windowFlags() | Qt::WindowStaysOnTopHint);
-        else
-                this->setWindowFlags(this->windowFlags() & !Qt::WindowStaysOnTopHint);
+	if(checked)
+		this->setWindowFlags(this->windowFlags() | Qt::WindowStaysOnTopHint);
+	else
+		this->setWindowFlags(this->windowFlags() & !Qt::WindowStaysOnTopHint);
 
-        this->show();
+	this->show();
 }
 
 /*!
@@ -1361,40 +1446,40 @@ void QUMainWindow::enablePolish() {
  * Changes the application language to French.
  */
 void QUMainWindow::enableFrench() {
-        _menu->langFrBtn->setChecked(true);
+	_menu->langFrBtn->setChecked(true);
 
-        QSettings settings;
-        settings.setValue("language", QLocale(QLocale::French, QLocale::France).name());
+	QSettings settings;
+	settings.setValue("language", QLocale(QLocale::French, QLocale::France).name());
 
-        // ---------------
+	// ---------------
 
-        int result = QUMessageBox::information(this,
-                        tr("Change Language"),
-                        tr("Application language changed to <b>French</b>. You need to restart UltraStar Manager to take effect."),
-                        BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
-                            << ":/marks/accept.png" << tr("Continue."));
-        if(result == 0)
-                this->close();
+	int result = QUMessageBox::information(this,
+			tr("Change Language"),
+			tr("Application language changed to <b>French</b>. You need to restart UltraStar Manager to take effect."),
+			BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
+			    << ":/marks/accept.png" << tr("Continue."));
+	if(result == 0)
+		this->close();
 }
 
 /*!
  * Changes the application language to Spanish.
  */
 void QUMainWindow::enableSpanish() {
-        _menu->langEsBtn->setChecked(true);
+	_menu->langEsBtn->setChecked(true);
 
-        QSettings settings;
-        settings.setValue("language", QLocale(QLocale::Spanish, QLocale::Spain).name());
+	QSettings settings;
+	settings.setValue("language", QLocale(QLocale::Spanish, QLocale::Spain).name());
 
-        // ---------------
+	// ---------------
 
-        int result = QUMessageBox::information(this,
-                        tr("Change Language"),
-                        tr("Application language changed to <b>Spanish</b>. You need to restart UltraStar Manager to take effect."),
-                        BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
-                            << ":/marks/accept.png" << tr("Continue."));
-        if(result == 0)
-                this->close();
+	int result = QUMessageBox::information(this,
+			tr("Change Language"),
+			tr("Application language changed to <b>Spanish</b>. You need to restart UltraStar Manager to take effect."),
+			BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
+			    << ":/marks/accept.png" << tr("Continue."));
+	if(result == 0)
+		this->close();
 }
 
 void QUMainWindow::getCoversFromAmazon(QList<QUSongItem*> items) {

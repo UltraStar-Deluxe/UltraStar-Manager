@@ -118,6 +118,7 @@
         <file>folder_relative.png</file>
         <file>image_go.png</file>
         <file>image_minus.png</file>
+        <file>check_for_update.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>splash.png</file>
