@@ -30,7 +30,7 @@ Some details can be edited simultaneously for a selection of songs. Simply selec
 If you drag & drop a dockable widget (song details, tasks, event log) over another dockable widget, these two widgets will <i>merge</i> into a single widget with tabs at the bottom.
 You can make a dockable widget (song details, tasks, event log) floatable if you double-click on its title bar.
 Did you remark that the state of the application window as well as all dockable widgets is saved on exit?
-Unsupported tags will be saved after all other tags in the song file. You can create these tags as custom tags via <i>Options &rarr; Custom Tags...</i> and then specify their save order in <i>Options &rarr; Tag Save Order...</i>.
+Unsupported tags will be saved after all other tags in the song file. You can add these tags as custom tags via <i>Options &rarr; Custom Tags...</i> and then specify their save order in <i>Options &rarr; Tag Save Order...</i>.
 You have a problem with changing the artist tag because autocomplete wants to use the ID3 tag value? (e.g. "abba" &rarr; "Abba")<br><br>Try to check <i>Use Case-sensitive Autocomplete</i> in the details table.
 If you double-click a text file, you'll see its contents.
 Did you know that you can drag one or more files from the <i>file explorer</i> onto a song in the tree to <i>copy</i> and use/assign this or these files automatically for that song?
