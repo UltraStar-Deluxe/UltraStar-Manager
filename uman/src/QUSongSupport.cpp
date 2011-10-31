@@ -94,11 +94,11 @@ QStringList QUSongSupport::allowedPlaylistFiles() {
 }
 
 int QUSongSupport::mediumMp3Quality() {
-	return registryKey("mediumMp3Quality", "128").first().toInt();
+	return registryKey("mediumMp3Quality", "96").first().toInt();
 }
 
 int QUSongSupport::highMp3Quality() {
-	return registryKey("highMp3Quality", "192").first().toInt();
+	return registryKey("highMp3Quality", "128").first().toInt();
 }
 
 int QUSongSupport::mediumCoverQuality() {
