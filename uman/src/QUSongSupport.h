@@ -33,6 +33,8 @@ public:
 	static int highBackgroundQuality();
 	static int mediumVideoQuality();
 	static int highVideoQuality();
+	static QString defaultInputEncoding();
+	static QString defaultOutputEncoding();
 
 private:
 	static QStringList registryKey(const QString &key, const QString &defaultValue);

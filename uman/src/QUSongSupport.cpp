@@ -125,6 +125,14 @@ int QUSongSupport::highVideoQuality() {
 	return registryKey("highVideoQuality", "1280").first().toInt();
 }
 
+QString QUSongSupport::defaultInputEncoding() {
+	return registryKey("defaultInputEncoding", "windows-1252").first();
+}
+
+QString QUSongSupport::defaultOutputEncoding() {
+	return registryKey("defaultOutputEncoding", "windows-1252").first();
+}
+
 /*!
  * Looks for a value in the registry and sets the default, if key not present.
  */
