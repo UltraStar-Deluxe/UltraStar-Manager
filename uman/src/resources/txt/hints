@@ -10,7 +10,7 @@ The <i>Songs</i> menu enables you to expand or collapse the whole song tree. Tha
 You are missing a video for your favourite song? Check out <a href="http://www.youtube.com">Youtube</a>, <a href="http://www.dailymotion.com">Dailymotion</a>, or <a href="http://vimeo.com">Vimeo</a>!
 Whenever a task could not be applied, you can find a corresponding entry in the event log. Mostly a file could not be found or invalid characters (e.g. '?') are used to rename something.<br><br>Be aware that UltraStar can display more characters than you can use on Windows for a file.
 Did you notice that there are green, yellow, and red smileys in the song tree? Green ones tell you that your song directory is named correctly after <i>Artist - Title</i> case-sensitive while yellow ones only match case-insensitive. The red smileys indicate an entirely wrong combination.
-The <i>chain</i> beside a picture, audio or video file indicates that it can be found by UltraStar correctly.<br><br>You can reset chains by double-clicking the correct column.
+The <i>chain</i> next to an image, audio or video file indicates that it can be found by UltraStar correctly.<br><br>You can reset chains by double-clicking the correct column.
 Files are unused by UltraStar whenever they are displayed in <font color="gray">gray</font>.
 You want to know how many songs you have in your collection? Well, there are <b>%1 songs</b>. Not bad at all.<br><br>Did you get a cover, a background or a video for each one? No? Then you've got a new task.
 Hmmm... just in case you did not notice: The last events are located at the top of the event log.
@@ -25,7 +25,7 @@ Try to click on an audio file and see what appears in the preview window...
 Did you notice the large number of default values for a genre in the song details? These genres originate from the good old ID3v1 specification as well as some custom Winamp extensions.
 I shall be quiet? Then uncheck me <i>in the top right corner of the main menu</i>.
 The default values for an artist, a title and the year in the song details are taken from the ID3 tag.
-There is a task that enables you to set up missing files for a song automatically. That task looks for the first proper files (audio, picture, video) and uses that file if the present entry is invalid or missing.
+There is a task that enables you to set up missing files for a song automatically. That task looks for the first proper files (audio, image, video) and uses that file if the present entry is invalid or missing.
 Some details can be edited simultaneously for a selection of songs. Simply select some songs and use the <i>Song Details</i> table.
 If you drag & drop a dockable widget (song details, tasks, event log) over another dockable widget, these two widgets will <i>merge</i> into a single widget with tabs at the bottom.
 You can make a dockable widget (song details, tasks, event log) floatable if you double-click on its title bar.
@@ -41,7 +41,7 @@ If you drag & drop a song text file from your explorer into the song tree (not a
 Whenever a folder appears <b>bold</b>, there are unsaved changes. Don't forget to save them or turn on <i>Options &rarr; Auto-Save</i>!
 You can filter the song tree. Just hit <i>Ctrl+F</i> and type some regular expression. Then press the filter button.
 Have you ever created a <i>report</i> of your songs? No?<br><br>Try <i>Extras &rarr; Create Report...</i> or simply press <i>F8</i>.
-If you double-click a picture file you'll get a preview of it.
+If you double-click an image file you'll get a preview of it.
 You can delete a rename task by deleting its configuration file in the <tt>plugins/config/rename</tt> subdirectory.
 If you make a double-click on a rename task in the task list you can modify that task.
 There is a context menu in the task list which enables you to add and edit rename tasks.
@@ -66,7 +66,7 @@ The new-style menu can be collapsed with <i>Ctrl+F1</i>.
 You can preview whole songs with the new <i>Media Player</i>! It's so cool. Selected songs, the whole song database or the current playlist can be played. You can sing and check the quality even without having to start UltraStar.
 If you right-click in the lyrics of the Media Player while a song is playing, you can jump to the lyrics editor and correct spelling errors and typos.
 You can jump to any position in a song in the Media Player.
-Having trouble with finding bad song covers? Try the picture review via <i>Songs &rarr; Review Pictures</i>. You get a cool preview for all covers and can unlink them from a song with your spacebar.
+Having trouble with finding bad song covers? Try the image review via <i>Songs &rarr; Review Images</i>. You get a cool preview for all covers and can unlink them from a song with your spacebar.
 You can calculate the speed of a song via <i>Songs &rarr; Calculate Song Speed</i>. It is an indicator for the average number of syllables per second.
 All tasks and cover downloads are implemented as <i>plugins</i>. You can write your own plugins with the <b>UltarStar Manager Plugin SDK</b>.
 You can edit lyrics with <i>Ctrl+E</i>.
