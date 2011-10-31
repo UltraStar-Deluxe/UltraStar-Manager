@@ -15,6 +15,9 @@ QUStringSupport::QUStringSupport(QObject *parent): QObject(parent) {}
 QString QUStringSupport::withoutUnsupportedCharacters (const QString &text) {
 	QString cleanText = text;
 #ifdef Q_OS_WIN32
+	// replace colons by dashes
+	cleanText.replace(':', '-');
+	// remove everything else
 	cleanText.remove(QRegExp("[\\\\:\\*\\?\"\\|<>]"));
 
 	/* MB: commented out as trailing and leading dots do not seem to pose problems in Windows
