@@ -1273,20 +1273,20 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 
 	if(item && !item->isToplevel()) {
 		// file menu
-		if(item->text(0) == item->song()->cover() or item->text(0) == item->song()->background()) {
+		QString extension = "*" + item->text(0).remove(0,item->text(0).indexOf('.')).toLower();
+		if(QUSongSupport::allowedPictureFiles().contains(extension)) {
 			menu->addAction(QIcon(":/types/image_show.png"), tr("Show preview"), this, SLOT(openCurrentFileInternal()), Qt::Key_Enter)->setFont(*font);
 			menu->addAction(QIcon(":/types/image_openexternal.png"), tr("Open image file externally"), this, SLOT(openCurrentFileExternal()));
-		} else if(item->text(0) == item->song()->video()) {
+		} else if(QUSongSupport::allowedVideoFiles().contains(extension)) {
 			menu->addAction(QIcon(":/types/video_openexternal.png"), tr("Open video file externally"), this, SLOT(openCurrentFileExternal()), Qt::Key_Enter)->setFont(*font);;
-		} else if(item->text(0) == item->song()->mp3()) {
+		} else if(QUSongSupport::allowedAudioFiles().contains(extension)) {
 			menu->addAction(QIcon(":/types/music_openexternal.png"), tr("Open audio file externally"), this, SLOT(openCurrentFileExternal()), Qt::Key_Enter)->setFont(*font);;
-		} else if(item->text(0) == item->song()->txt()) {
+		} else if(QUSongSupport::allowedSongFiles().contains(extension)) {
 			menu->addAction(QIcon(":/types/text.png"), tr("Show file contents"), this, SLOT(openCurrentFileInternal()), Qt::Key_Enter)->setFont(*font);;
 			menu->addAction(QIcon(":/types/text_openexternal.png"), tr("Open text file externally"), this, SLOT(openCurrentFileExternal()));
-		} else if(item->song()->isFriend(item->text(0))) {
-			menu->addAction(QIcon(":/types/text.png"), tr("Show file contents"), this, SLOT(openCurrentFileInternal()), Qt::Key_Enter)->setFont(*font);;
-			menu->addAction(QIcon(":/types/text_openexternal.png"), tr("Open text file externally"), this, SLOT(openCurrentFileExternal()));
-			menu->addAction(QIcon(":/types/text_setprimary.png"), tr("Set as primary song"), this, SLOT(setCurrentFilePrimary()));
+			if(item->song()->isFriend(item->text(0))) {
+				menu->addAction(QIcon(":/types/text_setprimary.png"), tr("Set as primary song"), this, SLOT(setCurrentFilePrimary()));
+			}
 		} else {
 			menu->addAction(QIcon(":/types/file.png"), tr("Open externally"), this, SLOT(openCurrentFileExternal()), Qt::Key_Enter)->setFont(*font);;
 		}
