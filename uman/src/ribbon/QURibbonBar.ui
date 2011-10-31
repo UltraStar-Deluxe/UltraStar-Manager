@@ -228,7 +228,7 @@ Covers...</string>
          </property>
          <property name="text">
           <string>Review
-Pictures</string>
+Images</string>
          </property>
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
@@ -1103,45 +1103,6 @@ Save</string>
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
            <normaloff>:/control/auto_save.png</normaloff>:/control/auto_save.png</iconset>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <property name="checked">
-          <bool>false</bool>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-         <property name="autoRaise">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="encodeUTF8Btn">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>60</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="toolTip">
-          <string>Enforce UTF-8 output encoding. Note that this might break compatibility with older versions of UltraStar.</string>
-         </property>
-         <property name="text">
-          <string>Save as
-UTF8</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources/uman.qrc">
-           <normaloff>:/control/encoding.png</normaloff>:/control/encoding.png</iconset>
          </property>
          <property name="checkable">
           <bool>true</bool>
