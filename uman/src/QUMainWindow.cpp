@@ -72,6 +72,8 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 
 	initWindow();
 	initRibbonBar();
+	// MB TODO: find spanish translator, then remove line
+	//_menu->langEsBtn->setVisible(false);
 	initStatusBar();
 	initEventLog();
 	initConfig();
@@ -151,7 +153,6 @@ void QUMainWindow::closeEvent(QCloseEvent *event) {
 	settings.setValue("showErrorMessages", showErrorsBtn->isChecked());
 
 	settings.setValue("autoSave", QVariant(_menu->autoSaveBtn->isChecked()));
-	settings.setValue("encodeUTF8", QVariant(_menu->encodeUTF8Btn->isChecked()));
 
 	this->saveLog();
 
@@ -193,7 +194,6 @@ void QUMainWindow::initConfig() {
 
 	_menu->autoSaveBtn->setChecked(settings.value("autoSave", true).toBool());
 	_menu->onTopChk->setChecked(settings.value("alwaysOnTop", false).toBool());
-	_menu->encodeUTF8Btn->setChecked(settings.value("encodeUTF8", true).toBool());
 
 	restoreGeometry(settings.value("geometry").toByteArray());
 	restoreState(settings.value("windowState").toByteArray());
@@ -346,7 +346,6 @@ void QUMainWindow::initRibbonBar() {
 
 	connect(_menu->autoSaveBtn, SIGNAL(toggled(bool)), this, SLOT(toggleAutoSaveChk(bool)));
 	connect(_menu->onTopChk, SIGNAL(toggled(bool)), this, SLOT(toggleAlwaysOnTop(bool)));
-	connect(_menu->encodeUTF8Btn, SIGNAL(toggled(bool)), this, SLOT(toggleEncodeUTF8(bool)));
 
 	connect(_menu->tagSaveOrder, SIGNAL(clicked()), this, SLOT(editTagOrder()));
 	connect(_menu->customTagsBtn, SIGNAL(clicked()), this, SLOT(editCustomTags()));
@@ -1181,14 +1180,6 @@ void QUMainWindow::toggleAlwaysOnTop(bool checked) {
 		this->setWindowFlags(this->windowFlags() & !Qt::WindowStaysOnTopHint);
 
 	this->show();
-}
-
-/*!
- * Force UTF-8 output encoding
- */
-void QUMainWindow::toggleEncodeUTF8(bool checked) {
-        QSettings settings;
-        settings.setValue("encodeUTF8", checked);
 }
 
 /*!
