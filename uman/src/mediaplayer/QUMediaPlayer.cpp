@@ -311,7 +311,7 @@ void QUMediaPlayer::updateInfoLabel(QUMediaPlayer::States state) {
 		QUSongInfo info = _songs.at(_currentSongIndex);
 		currentSongLbl->setText(QString("%1<br><b>%2</b>").arg(info.artist).arg(info.title));
 		infoIconLbl->setToolTip(
-				QString("Bitrate: <b>%1</b> kbps<br>Channels: <b>%2</b><br>Sample Rate: <b>%3</b> kHz")
+				QString("Bitrate: <b>%1</b> kbit/s<br>Channels: <b>%2</b><br>Sample Rate: <b>%3</b> kHz")
 				.arg(info.bitrate)
 				.arg(info.channels)
 				.arg(info.sampleRate));
