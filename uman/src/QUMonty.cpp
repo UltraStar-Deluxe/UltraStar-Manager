@@ -74,7 +74,7 @@ QString QUMonty::welcomeMsg() {
 	QString welcomeStr(QObject::tr("Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the <i>Hide</i> button below and I will disappear for now."));
 
 	if (songDB->songCount() == 0) {
-		welcomeStr += QObject::tr("<br><br>You have <b>no songs</b> in your collection. Try choosing a different song directory using <i>Options > Song Directory</i> or add a new song path via <i>Options > Paths...</i>");
+		welcomeStr += QObject::tr("<br><br>You have <b>no songs</b> in your collection. Try choosing a different song directory using <i>Options &rarr; Song Directory</i> or add a new song path via <i>Options &rarr; Paths...</i>.");
 	} else if (songDB->songCount() == 1) {
 		welcomeStr += QObject::tr("<br><br>You have <b>1 song</b> in your collection. Is it managed well yet?");
 	} else {
