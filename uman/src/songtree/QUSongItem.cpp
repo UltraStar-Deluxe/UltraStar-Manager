@@ -142,7 +142,7 @@ void QUSongItem::updateAsTxt() {
 
 		if(song()->isKaraoke()) {
 			this->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/karaoke.png"));
-			this->setToolTip(MULTIPLE_SONGS_COLUMN, QObject::tr("This is a karaoke song, which means that the audio file contains no singing voice."));
+			this->setToolTip(MULTIPLE_SONGS_COLUMN, QObject::tr("This is a karaoke song, which means that the audio file contains no vocals."));
 		}
 
 		return;
@@ -155,7 +155,7 @@ void QUSongItem::updateAsTxt() {
 		QUSongFile* f = song()->friendAt(this->text(FOLDER_COLUMN));
 		if(f->isKaraoke()) {
 			this->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/karaoke.png"));
-			this->setToolTip(MULTIPLE_SONGS_COLUMN, QObject::tr("This is a karaoke song, which means that the audio file contains no singing voice."));
+			this->setToolTip(MULTIPLE_SONGS_COLUMN, QObject::tr("This is a karaoke song, which means that the audio file contains no vocals."));
 		}
 
 	} else {
@@ -342,6 +342,7 @@ void QUSongItem::setTick(int column) {
 				this->setIcon(column, QIcon(":/marks/tick_high.png"));
 				this->setToolTip(column, QString(QObject::tr("High quality audio file (%1 kbit/s)")).arg(mp3_quality));
 			}
+
 			// used for sorting
 			this->setData(column, Qt::UserRole, QVariant(mp3_quality));
 		} else if(column == COVER_COLUMN) {
@@ -364,13 +365,13 @@ void QUSongItem::setTick(int column) {
 				int min_dimension = std::min(img.width(), img.height());
 				if (min_dimension < QUSongSupport::mediumCoverQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_low_exclamation.png"));
-					this->setToolTip(column, QString(QObject::tr("Low quality non-square cover (%1 x %2).\nTry cropping to %3 x %3.")).arg(img.width()).arg(img.height()).arg(min_dimension));
+					this->setToolTip(column, QString(QObject::tr("Non-square low quality cover (%1 x %2).\nTry cropping to %3 x %3.")).arg(img.width()).arg(img.height()).arg(min_dimension));
 				} else if (std::min(img.width(), img.height()) < QUSongSupport::highCoverQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_medium_exclamation.png"));
-					this->setToolTip(column, QString(QObject::tr("Medium quality non-square cover (%1 x %2).\nTry cropping to %3 x %3.")).arg(img.width()).arg(img.height()).arg(min_dimension));
+					this->setToolTip(column, QString(QObject::tr("Non-square medium quality cover (%1 x %2).\nTry cropping to %3 x %3.")).arg(img.width()).arg(img.height()).arg(min_dimension));
 				} else {
 					this->setIcon(column, QIcon(":/marks/tick_high_exclamation.png"));
-					this->setToolTip(column, QString(QObject::tr("High quality non-square cover (%1 x %2).\nTry cropping to %3 x %3.")).arg(img.width()).arg(img.height()).arg(min_dimension));
+					this->setToolTip(column, QString(QObject::tr("Non-square high quality cover (%1 x %2).\nTry cropping to %3 x %3.")).arg(img.width()).arg(img.height()).arg(min_dimension));
 				}
 
 				// used for sorting
