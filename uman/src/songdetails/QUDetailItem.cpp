@@ -86,8 +86,9 @@ void QUDetailItem::reset() {
 	} else if(QString::compare(_tag, PREVIEWSTART_TAG) == 0) {
 		_textMask = QString(QObject::tr("%1 seconds"));
 	} else if (QString::compare(_tag, CALCMEDLEY_TAG) == 0) {
+		_flagsForSingleSong = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
-		setData(Qt::UserRole, QString("OFF"));
+		setData(Qt::UserRole, QStringList() << "" << "OFF");
 		_hasDynamicDefaultData = false;
 	} else if(QString::compare(_tag, BPM_TAG) == 0) {
 		_flagsForSingleSong = 0;
