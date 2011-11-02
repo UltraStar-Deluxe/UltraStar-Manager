@@ -30,6 +30,8 @@
         <file>txt/hints_es</file>
         <file>lang/es.png</file>
         <file>lang/uman.es.qm</file>
+        <file>lang/pt.png</file>
+        <file>lang/uman.pt.qm</file>
     </qresource>
     <qresource prefix="/bubble">
         <file>speech8.png</file>
@@ -119,6 +121,15 @@
         <file>image_go.png</file>
         <file>image_minus.png</file>
         <file>check_for_update.png</file>
+        <file>applications-blue.png</file>
+        <file>encoding_input.png</file>
+        <file>encoding_output.png</file>
+        <file>highBackgroundQuality.png</file>
+        <file>highCoverQuality.png</file>
+        <file>highMp3Quality.png</file>
+        <file>mediumBackgroundQuality.png</file>
+        <file>mediumCoverQuality.png</file>
+        <file>mediumMp3Quality.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>splash.png</file>

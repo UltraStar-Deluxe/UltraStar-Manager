@@ -100,9 +100,9 @@ HEADERS += plugins/QUPluginManager.h \
     lyricseditor/QULyricsEditorDialog.h \
     lyricseditor/QUSyllableDelegate.h \
     preferences/QUPathsDialog.h \
-    score/QUScoreFile.h
-
-# support/qkFileWatcher.h
+    score/QUScoreFile.h \
+    preferences/QUEncodingsDialog.h
+#   support/qkFileWatcher.h
 SOURCES += plugins/QUPluginManager.cpp \
     plugins/QUPluginDialog.cpp \
     plugins/QUPluginModel.cpp \
@@ -175,7 +175,8 @@ SOURCES += plugins/QUPluginManager.cpp \
     lyricseditor/QULyricsEditorDialog.cpp \
     lyricseditor/QUSyllableDelegate.cpp \
     preferences/QUPathsDialog.cpp \
-    score/QUScoreFile.cpp
+    score/QUScoreFile.cpp \
+    preferences/QUEncodingsDialog.cpp
     #support/qkFileWatcher.cpp
 FORMS += plugins/QUPluginDialog.ui \
     QUMainWindow.ui \
@@ -196,12 +197,14 @@ FORMS += plugins/QUPluginDialog.ui \
     lyricseditor/QULyricsEditorDialog.ui \
     preferences/QUPathsDialog.ui \
     remoteimages/QURemoteImageDialog.ui \
-    remoteimages/QUCoverGroup.ui
+    remoteimages/QUCoverGroup.ui \
+    preferences/QUEncodingsDialog.ui
 RESOURCES += resources/uman.qrc
 TRANSLATIONS = resources/lang/uman.de.ts \
     resources/lang/uman.pl.ts \
     resources/lang/uman.es.ts \
-    resources/lang/uman.fr.ts
+    resources/lang/uman.fr.ts \
+	resources/lang/uman.pt.ts
 INCLUDEPATH += . \
     song \
     songdetails \
@@ -254,3 +257,6 @@ revtarget.commands = @echo \
 revtarget.depends = $$SOURCES \
     $$HEADERS \
     $$FORMS
+
+
+
