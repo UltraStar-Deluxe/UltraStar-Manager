@@ -138,7 +138,7 @@ void handleWipWarning() {
 void handleReleaseCandidateInformation() {
 	QUMessageBox::information(0,
 				QObject::tr("Release Candidate Information"),
-				QObject::tr("<b>Dear testing person,</b><br><br>this version is meant to be <b>feature-complete and almost bug-free</b>. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first. <br> While testing all these cool new features of version 1.8.0, consider the following:<br><br>- song friends behaviour<br>- all new tasks<br>- report creation (F8)<br>- translation issues<br>- Amazon cover download<br>- picture review<br><br>Send feedback and bug reports to: <a href=\"mailto:saiya_mg@users.sourceforge.net\">saiya_mg@users.sourceforge.net</a>"),
+				QObject::tr("<b>Dear testing person,</b><br><br>this version is meant to be <b>feature-complete and almost bug-free</b>. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.<br>While testing the release candidate, especially consider the following:<br><br>- support for CP1252, CP1250 and UTF8 encodings<br>- support for medley and preview tags<br>- mp3/cover/background quality assessment in songtree<br>- shiny new French translation<br>- duet bugs fixed<br>- check for update feature<br><br>Send feedback and bug reports to: <a href=\"mailto:bohning@users.sourceforge.net\">bohning@users.sourceforge.net</a>"),
 				BTN << ":/marks/accept.png" << QObject::tr("Okay!"),
 				400);
 }
