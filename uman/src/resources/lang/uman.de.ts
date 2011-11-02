@@ -80,6 +80,27 @@ Try cropping to %3 x %3.</source>
 Versuche es auf %3 x %3 zu beschneiden.</translation>
     </message>
     <message>
+        <location filename="../../songtree/QUSongItem.cpp" line="396"/>
+        <source>Low quality background with non-widescreen aspect ratio (%1 x %2).
+Try cropping to %1 x %3 for a widescreen aspect ratio.</source>
+        <translation>Schlechte Hintergrundqualität ohne Widescreen Format (%1 x %2).
+Versuche es auf %1 x %3 zu beschneiden, um ein Widescreen Format zu erhalten.</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongItem.cpp" line="399"/>
+        <source>Medium quality background with non-widescreen aspect ratio (%1 x %2).
+Try cropping to %1 x %3 for a widescreen aspect ratio.</source>
+        <translation>Mittlere Hintergrundqualität ohne Widescreen Format (%1 x %2).
+Versuche es auf %1 x %3 zu beschneiden, um ein Widescreen Format zu erhalten.</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongItem.cpp" line="402"/>
+        <source>High quality background with non-widescreen aspect ratio (%1 x %2).
+Try cropping to %1 x %3 for a widescreen aspect ratio.</source>
+        <translation>Gute Hintergrundqualität ohne Widescreen Format (%1 x %2).
+Versuche es auf %1 x %3 zu beschneiden, um ein Widescreen Format zu erhalten.</translation>
+    </message>
+    <message>
         <location filename="../../songtree/QUSongItem.cpp" line="587"/>
         <location filename="../../songtree/QUSongItem.cpp" line="591"/>
         <location filename="../../songtree/QUSongItem.cpp" line="595"/>
@@ -152,8 +173,8 @@ Versuche es auf %3 x %3 zu beschneiden.</translation>
     </message>
     <message>
         <location filename="../../main.cpp" line="141"/>
-        <source>&lt;b&gt;Dear testing person,&lt;/b&gt;&lt;br&gt;&lt;br&gt;this version is meant to be &lt;b&gt;feature-complete and almost bug-free&lt;/b&gt;. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first. &lt;br&gt; While testing all these cool new features of version 1.8.0, consider the following:&lt;br&gt;&lt;br&gt;- song friends behaviour&lt;br&gt;- all new tasks&lt;br&gt;- report creation (F8)&lt;br&gt;- translation issues&lt;br&gt;- Amazon cover download&lt;br&gt;- picture review&lt;br&gt;&lt;br&gt;Send feedback and bug reports to: &lt;a href=&quot;mailto:saiya_mg@users.sourceforge.net&quot;&gt;saiya_mg@users.sourceforge.net&lt;/a&gt;</source>
-        <translation></translation>
+        <source>&lt;b&gt;Dear testing person,&lt;/b&gt;&lt;br&gt;&lt;br&gt;this version is meant to be &lt;b&gt;feature-complete and almost bug-free&lt;/b&gt;. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.&lt;br&gt;While testing the release candidate, especially consider the following:&lt;br&gt;&lt;br&gt;- support for CP1252, CP1250 and UTF8 encodings&lt;br&gt;- support for medley and preview tags&lt;br&gt;- mp3/cover/background quality assessment in songtree&lt;br&gt;- shiny new French translation&lt;br&gt;- duet bugs fixed&lt;br&gt;- check for update feature&lt;br&gt;&lt;br&gt;Send feedback and bug reports to: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</source>
+        <translation>&lt;b&gt;Lieber Tester,&lt;/b&gt;&lt;br&gt;&lt;br&gt;diese Version sollte &lt;b&gt;funktionsvollständig und fast fehlerfrei&lt;/b&gt; sein. Es ist jedoch immer noch möglich, dass einige Fehler deine Musiksammlung zerstören könnten. Bitte mache eine Sicherheitskopie deiner Musiksammlung.&lt;br&gt;Beim Testen dieses Release Candidates bitte besonderes Augenmerk auf folgende Dinge richten:&lt;br&gt;&lt;br&gt;- Unterstützung für CP1252, CP1250 und UTF8 Codierungen&lt;br&gt;- Unterstützung der Medley und Preview Tags&lt;br&gt;- MP3/Cover/Background Qualitätsmanagement im Songbau&lt;br&gt;- brandneue Übersetzung ins Französische&lt;br&gt;- Fehler bei der Duettverarbeitung beseitigt&lt;br&gt;- Überprüfung auf Updates&lt;br&gt;&lt;br&gt;Bitte sende Rückmeldungen und Fehlerberichte an: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../main.cpp" line="142"/>
@@ -256,19 +277,16 @@ Try cropping to %3 x %3.</source>
         <translation>Gute Hintergrundqualität (%1 x %2)</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="396"/>
         <source>Low quality background with non-widescreen aspect ratio (%1 x %2)</source>
-        <translation>Schlechte Hintergrundqualität ohne Widescreen Format (%1 x %2)</translation>
+        <translation type="obsolete">Schlechte Hintergrundqualität ohne Widescreen Format (%1 x %2)</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="399"/>
         <source>Medium quality background with non-widescreen aspect ratio (%1 x %2)</source>
-        <translation>Mittlere Hintergrundqualität ohne Widescreen Format (%1 x %2)</translation>
+        <translation type="obsolete">Mittlere Hintergrundqualität ohne Widescreen Format (%1 x %2)</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="402"/>
         <source>High quality background with non-widescreen aspect ratio (%1 x %2)</source>
-        <translation>Gute Hintergrundqualität ohne Widescreen Format (%1 x %2)</translation>
+        <translation type="obsolete">Gute Hintergrundqualität ohne Widescreen Format (%1 x %2)</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="653"/>

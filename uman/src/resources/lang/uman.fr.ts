@@ -78,8 +78,12 @@
     </message>
     <message>
         <location filename="../../main.cpp" line="141"/>
+        <source>&lt;b&gt;Dear testing person,&lt;/b&gt;&lt;br&gt;&lt;br&gt;this version is meant to be &lt;b&gt;feature-complete and almost bug-free&lt;/b&gt;. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.&lt;br&gt;While testing the release candidate, especially consider the following:&lt;br&gt;&lt;br&gt;- support for CP1252, CP1250 and UTF8 encodings&lt;br&gt;- support for medley and preview tags&lt;br&gt;- mp3/cover/background quality assessment in songtree&lt;br&gt;- shiny new French translation&lt;br&gt;- duet bugs fixed&lt;br&gt;- check for update feature&lt;br&gt;&lt;br&gt;Send feedback and bug reports to: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>&lt;b&gt;Dear testing person,&lt;/b&gt;&lt;br&gt;&lt;br&gt;this version is meant to be &lt;b&gt;feature-complete and almost bug-free&lt;/b&gt;. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first. &lt;br&gt; While testing all these cool new features of version 1.8.0, consider the following:&lt;br&gt;&lt;br&gt;- song friends behaviour&lt;br&gt;- all new tasks&lt;br&gt;- report creation (F8)&lt;br&gt;- translation issues&lt;br&gt;- Amazon cover download&lt;br&gt;- picture review&lt;br&gt;&lt;br&gt;Send feedback and bug reports to: &lt;a href=&quot;mailto:saiya_mg@users.sourceforge.net&quot;&gt;saiya_mg@users.sourceforge.net&lt;/a&gt;</source>
-        <translation>&lt;b&gt;Cher testeur,&lt;/b&gt;&lt;br&gt;&lt;br&gt;cette version est censée comprendre &lt;b&gt;toutes les fonctionnalitées et presque sans bugs&lt;/b&gt;. Cependant, il est possible que quelques erreurs puissent corromprent votre base de donnée de chanson. Merci de faire une sauvegarde de votre base de donnée de chanson avant de commencer. &lt;br&gt; Pendant que vous testerez toutes les super nouvelles fonctionnalitées de cette version 1.8.0, regardez celle-ci:&lt;br&gt;&lt;br&gt;- Chansons de mes amis&lt;br&gt;- Nouvelles taches&lt;br&gt;- Rapport de création (F8)&lt;br&gt;- Possibilitées de traduction&lt;br&gt;- Téléchargement des couvertures sur Amazon&lt;br&gt;- Prévisualisation des images&lt;br&gt;&lt;br&gt;Merci d&apos;envoyer vos commentaires et rapports à: &lt;a href=&quot;mailto:saiya_mg@users.sourceforge.net&quot;&gt;saiya_mg@users.sourceforge.net&lt;/a&gt;</translation>
+        <translation type="obsolete">&lt;b&gt;Cher testeur,&lt;/b&gt;&lt;br&gt;&lt;br&gt;cette version est censée comprendre &lt;b&gt;toutes les fonctionnalitées et presque sans bugs&lt;/b&gt;. Cependant, il est possible que quelques erreurs puissent corromprent votre base de donnée de chanson. Merci de faire une sauvegarde de votre base de donnée de chanson avant de commencer. &lt;br&gt; Pendant que vous testerez toutes les super nouvelles fonctionnalitées de cette version 1.8.0, regardez celle-ci:&lt;br&gt;&lt;br&gt;- Chansons de mes amis&lt;br&gt;- Nouvelles taches&lt;br&gt;- Rapport de création (F8)&lt;br&gt;- Possibilitées de traduction&lt;br&gt;- Téléchargement des couvertures sur Amazon&lt;br&gt;- Prévisualisation des images&lt;br&gt;&lt;br&gt;Merci d&apos;envoyer vos commentaires et rapports à: &lt;a href=&quot;mailto:saiya_mg@users.sourceforge.net&quot;&gt;saiya_mg@users.sourceforge.net&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../main.cpp" line="142"/>
@@ -241,17 +245,20 @@ Try cropping to %3 x %3.</source>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="396"/>
-        <source>Low quality background with non-widescreen aspect ratio (%1 x %2)</source>
+        <source>Low quality background with non-widescreen aspect ratio (%1 x %2).
+Try cropping to %1 x %3 for a widescreen aspect ratio.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="399"/>
-        <source>Medium quality background with non-widescreen aspect ratio (%1 x %2)</source>
+        <source>Medium quality background with non-widescreen aspect ratio (%1 x %2).
+Try cropping to %1 x %3 for a widescreen aspect ratio.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="402"/>
-        <source>High quality background with non-widescreen aspect ratio (%1 x %2)</source>
+        <source>High quality background with non-widescreen aspect ratio (%1 x %2).
+Try cropping to %1 x %3 for a widescreen aspect ratio.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
