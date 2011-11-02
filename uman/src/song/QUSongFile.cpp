@@ -193,45 +193,36 @@ bool QUSongFile::updateCache() {
 	QString firstLine = QUStringSupport::withoutLeadingBlanks(_in.readLine());
 
 	if(firstLine.startsWith("#ENCODING:", Qt::CaseInsensitive)) {
-		if (firstLine.endsWith("UTF8")) {
+		if (firstLine.endsWith("UTF")) {
 			if(encoding() == N_A) {
 				_in.setCodec(QTextCodec::codecForName("UTF-8"));
 				setInfo(ENCODING_TAG, QString("UTF8"));
-				//logSrv->add(QString(tr("UTF8 (no BOM) encoding assumed according to #ENCODING tag in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
-			} else {
-				// UTF8 already detected by BOM
 			}
 		} else if (firstLine.endsWith("CP1252")) {
 			if(encoding() == N_A) {
-				_in.setCodec(QTextCodec::codecForName("Windows-1252"));
+				_in.setCodec(QTextCodec::codecForName("windows-1252"));
 				setInfo(ENCODING_TAG, QString("CP1252"));
-				//logSrv->add(QString(tr("CP1252 encoding assumed according to #ENCODING tag in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
 			} else {
-				logSrv->add(QString(tr("Encoding mismatch! UTF8 BOM detected, but \"#ENCODING:CP1252\" in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
-				logSrv->add(QString(tr("UTF8 encoding assumed for song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+				logSrv->add(QString(tr("Encoding mismatch! Using UTF8 encoding for song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
 			}
 		} else if (firstLine.endsWith("CP1250")) {
 			if(encoding() == N_A) {
 				_in.setCodec(QTextCodec::codecForName("Windows-1250"));
 				setInfo(ENCODING_TAG, QString("CP1250"));
-				logSrv->add(QString(tr("CP1250 encoding assumed according to #ENCODING tag in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
 			} else {
-				logSrv->add(QString(tr("Encoding mismatch! UTF8 BOM detected, but \"#ENCODING:CP1250\" encoding in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
-				logSrv->add(QString(tr("UTF8 encoding assumed for song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+				logSrv->add(QString(tr("Encoding mismatch! Using UTF8 encoding for song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
 			}
 		} else {
-			logSrv->add(QString(tr("\"%1\" unsupported in song file: \"%2\"")).arg(firstLine).arg(_fi.filePath()), QU::Information);
 			if(encoding() == N_A) {
-				_in.setCodec(QTextCodec::codecForName(QUSongSupport::defaultInputEncoding().toLocal8Bit()));
-				if(QUSongSupport::defaultOutputEncoding() == "windows-1252")
-					setInfo(ENCODING_TAG, QString("CP1252"));
-				else if(QUSongSupport::defaultOutputEncoding() == "UTF-8")
-					setInfo(ENCODING_TAG, QString("UTF8"));
-				else if(QUSongSupport::defaultOutputEncoding() == "windows-1250")
-					setInfo(ENCODING_TAG, QString("CP1250"));
-				logSrv->add(QString(tr("Defaulting to %1 encoding for song file: \"%2\"")).arg(encoding()).arg(_fi.filePath()), QU::Information);
-			} else {
-				logSrv->add(QString(tr("UTF8 encoding assumed for song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+				setInfo(ENCODING_TAG, QUSongSupport::defaultInputEncoding());
+				if(QUSongSupport::defaultOutputEncoding() == "CP1252") {
+					_in.setCodec(QTextCodec::codecForName("windows-1252"));
+				} else if(QUSongSupport::defaultOutputEncoding() == "UTF8") {
+					_in.setCodec(QTextCodec::codecForName("UTF-8"));
+				} else if(QUSongSupport::defaultOutputEncoding() == "CP1250") {
+					_in.setCodec(QTextCodec::codecForName("windows-1250"));
+				}
+				logSrv->add(QString(tr("\"%1\" unsupported. Defaulting to %2 in song file: \"%3\"")).arg(firstLine).arg(encoding()).arg(_fi.filePath()), QU::Warning);
 			}
 		}
 	} else { // no #ENCODING tag present
@@ -243,16 +234,16 @@ bool QUSongFile::updateCache() {
 			if (isValidUTF8(_file)) {
 				_in.setCodec(QTextCodec::codecForName("UTF-8"));
 				setInfo(ENCODING_TAG, QString("UTF8"));
-				logSrv->add(QString(tr("Valid UTF8 code found in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
+				//logSrv->add(QString(tr("Valid UTF8 code found in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
 			} else {
 				// default to defaultInputEncoding
-				_in.setCodec(QTextCodec::codecForName((QUSongSupport::defaultOutputEncoding().toLocal8Bit())));
-				if(QUSongSupport::defaultOutputEncoding() == "windows-1252")
-					setInfo(ENCODING_TAG, QString("CP1252"));
-				else if(QUSongSupport::defaultOutputEncoding() == "UTF-8")
-					setInfo(ENCODING_TAG, QString("UTF8"));
-				else if(QUSongSupport::defaultOutputEncoding() == "windows-1250")
-					setInfo(ENCODING_TAG, QString("CP1250"));
+				setInfo(ENCODING_TAG, QUSongSupport::defaultInputEncoding());
+				if(QUSongSupport::defaultInputEncoding() == "CP1252")
+					_in.setCodec(QTextCodec::codecForName("windows-1252"));
+				else if(QUSongSupport::defaultInputEncoding() == "UTF8")
+					_in.setCodec(QTextCodec::codecForName("UTF-8"));
+				else if(QUSongSupport::defaultInputEncoding() == "CP1250")
+					_in.setCodec(QTextCodec::codecForName("windows-1250"));
 			}
 		}
 	}
@@ -319,7 +310,7 @@ bool QUSongFile::updateCache() {
  * \returns True if the text file contains UTF8 encoded text.
  */
 bool QUSongFile::isValidUTF8(QFile &file) const {
-	// MB TODO: fill with code...
+	// MB TODO: fill with code... probably with QRegExp
 	return false;
 }
 
@@ -679,40 +670,36 @@ bool QUSongFile::save(bool force) {
 	QUSongFile::verifyTags(tags);
 
 	QTextStream _out(&_file);
-	QTextCodec *codec = QTextCodec::codecForName(QUSongSupport::defaultOutputEncoding().toLocal8Bit());
+	QTextCodec *codec = QTextCodec::codecForName("windows-1252");
+	if (QUSongSupport::defaultOutputEncoding() == "CP1252")
+		codec = QTextCodec::codecForName("windows-1252");
+	else if (QUSongSupport::defaultOutputEncoding() == "UTF8")
+		codec = QTextCodec::codecForName("UTF-8");
+	else if (QUSongSupport::defaultOutputEncoding() == "CP1250")
+		codec = QTextCodec::codecForName("windows-1250");
 
-	// use UTF8 encoding if explicitly requested by the user or if input was already UTF8
-	if (QUSongSupport::defaultOutputEncoding() == "UTF-8" || encoding().contains("UTF")) {
+	// try defaultOutputEncoding
+	if (codec->canEncode((QStringList(_info.values()) + _foundUnsupportedTags + _lyrics + _footer).join(""))) {
+		_out.setCodec(codec);
+		setInfo(ENCODING_TAG, QUSongSupport::defaultOutputEncoding());
+		if (QUSongSupport::defaultOutputEncoding() == "UTF8") {
+			_out.setGenerateByteOrderMark(true); // BOM needed by UltraStar 1.1
+		}
+	} else {
+		// defaultOutputEncoding not sufficient, UTF-8 necessary
+		logSrv->add(QString(tr("%1 output encoding NOT sufficient. Using UTF8 for song file: \"%2\".")).arg(encoding()).arg(_fi.filePath()), QU::Warning);
 		_out.setCodec(QTextCodec::codecForName("UTF-8"));
 		_out.setGenerateByteOrderMark(true); // BOM needed by UltraStar 1.1
 		setInfo(ENCODING_TAG, QString("UTF8"));
-		logSrv->add(QString(tr("Using UTF8 output encoding for song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
-	} else {
-		// use input encoding, if possible
-		if (encoding().contains("1252")) {
-			codec = QTextCodec::codecForName("windows-1252");
-		} else if (encoding().contains("1250")) {
-			codec = QTextCodec::codecForName("windows-1250");
-		} else {
-			// should not be possible
-		}
-
-		if (codec->canEncode((QStringList(_info.values()) + _foundUnsupportedTags + _lyrics + _footer).join(""))) {
-			_out.setCodec(codec);
-			logSrv->add(QString(tr("Using %1 output encoding for song file: \"%2\"")).arg(encoding()).arg(_fi.filePath()), QU::Information);
-		} else {
-			// use UTF8
-			_out.setCodec(QTextCodec::codecForName("UTF-8"));
-			_out.setGenerateByteOrderMark(true); // BOM needed by UltraStar 1.1
-			setInfo(ENCODING_TAG, QString("UTF8"));
-			logSrv->add(QString(tr("%1 output encoding not sufficient for song file: \"%2\"")).arg(encoding()).arg(_fi.filePath()), QU::Information);
-			logSrv->add(QString(tr("Using UTF8 output encoding for song file: \"%2\"")).arg(encoding()).arg(_fi.filePath()), QU::Information);
-		}
 	}
 
 	// write supported tags
 	foreach(QString tag, tags) {
-		if(_info.value(tag.toUpper()) != "") { // do not write empty tags
+		if(tag == ENCODING_TAG) { // only write ENCODING tag if necessary (CP1250)
+			if (_info.value(tag.toUpper()) == "CP1250") {
+				_out << "#" << tag.toUpper() << ":" << _info.value(tag.toUpper()) << endl;
+			}
+		} else if (_info.value(tag.toUpper()) != "") { // do not write empty tags
 			_out << "#" << tag.toUpper() << ":" << _info.value(tag.toUpper()) << endl;
 		}
 	}
@@ -1469,13 +1456,20 @@ void QUSongFile::lyricsAddNote(QString line) {
 	QUSongLineInterface *songLine = _melody.last();
 
 	if(line.startsWith("-")) { // line break
-		line.remove(0, 1);
-		QStringList lineSplit = line.trimmed().split(" ", QString::SkipEmptyParts);
+		// if song starts with line break, ignore it
+		if(_melody.first()->notes().isEmpty()) {
+			logSrv->add(QString(tr("Error while preparing lyrics for %1 - %2. Songs may not start with a line break."))
+						.arg(artist())
+						.arg(title()), QU::Warning);
+		} else {
+			line.remove(0, 1);
+			QStringList lineSplit = line.trimmed().split(" ", QString::SkipEmptyParts);
 
-		if(lineSplit.size() > 0) songLine->setOutTime(QVariant(lineSplit.at(0).trimmed()).toInt());
-		if(lineSplit.size() > 1) songLine->setInTime(QVariant(lineSplit.at(1).trimmed()).toInt());
+			if(lineSplit.size() > 0) songLine->setOutTime(QVariant(lineSplit.at(0).trimmed()).toInt());
+			if(lineSplit.size() > 1) songLine->setInTime(QVariant(lineSplit.at(1).trimmed()).toInt());
 
-		_melody.append(new QUSongLine(this));
+			_melody.append(new QUSongLine(this));
+		}
 	} else if(line.startsWith("P", Qt::CaseInsensitive)) {
 		if(!songLine->notes().isEmpty()) {
 			_melody.append(new QUSongLine(this));
@@ -1484,7 +1478,6 @@ void QUSongFile::lyricsAddNote(QString line) {
 		// singer information found
 		songLine->setSinger((QUSongLineInterface::Singers)QVariant(line.remove("P", Qt::CaseInsensitive).trimmed()).toInt());
 	} else {
-
 		line.insert(1, " "); // to avoid: ":2345 10 90 foo "
 		line.remove("\n");
 
