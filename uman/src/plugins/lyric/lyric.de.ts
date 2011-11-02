@@ -36,15 +36,14 @@
     <message>
         <location filename="QULyricTask.cpp" line="38"/>
         <source>Convert relative to absolute timestamps</source>
-        <translation>Konvertiere relative Zeitstempel zu absoluten.</translation>
+        <translation>Konvertiere relative zu absolution Zeitstempeln</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="43"/>
         <source>Convert absolute to relative timestamps</source>
-        <translation>Konvertiere absolute Zeitstempel zu relativen.</translation>
+        <translation>Konvertiere absolute zu relativen Zeitstempeln</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="88"/>
         <location filename="QULyricTask.cpp" line="166"/>
         <location filename="QULyricTask.cpp" line="206"/>
         <location filename="QULyricTask.cpp" line="230"/>
