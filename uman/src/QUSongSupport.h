@@ -19,11 +19,14 @@ public:
 	static QStringList allowedMidiFiles();
 	static QStringList allowedKaraokeFiles(); // MIDI + Lyrics
 	static QStringList allowedScoreFiles();
-
 	static QStringList allowedAudioFiles();
 	static QStringList allowedPictureFiles();
 	static QStringList allowedVideoFiles();
 	static QStringList allowedPlaylistFiles();
+
+	static QStringList allowedEncodingTypes();
+	static QString defaultInputEncoding();
+	static QString defaultOutputEncoding();
 
 	static int mediumMp3Quality();
 	static int highMp3Quality();
@@ -33,8 +36,6 @@ public:
 	static int highBackgroundQuality();
 	static int mediumVideoQuality();
 	static int highVideoQuality();
-	static QString defaultInputEncoding();
-	static QString defaultOutputEncoding();
 
 private:
 	static QStringList registryKey(const QString &key, const QString &defaultValue);

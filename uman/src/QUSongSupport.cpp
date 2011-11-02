@@ -5,15 +5,15 @@
 #include <QSettings>
 
 QUSongSupport::QUSongSupport(QObject *parent): QObject(parent) {}
-    
+
 /*!
  * \returns A list of strings with all available tags. Custom tags are included.
  */
 QStringList QUSongSupport::availableTags() {
 	QStringList result;
 
-        result << ENCODING_TAG;
-        result << TITLE_TAG;
+	result << ENCODING_TAG;
+	result << TITLE_TAG;
 	result << ARTIST_TAG;
 	result << LANGUAGE_TAG;
 	result << EDITION_TAG;
@@ -28,10 +28,10 @@ QStringList QUSongSupport::availableTags() {
 	result << START_TAG;
 	result << END_TAG;
 	result << RELATIVE_TAG;
-        result << PREVIEWSTART_TAG;
+	result << PREVIEWSTART_TAG;
 	result << CALCMEDLEY_TAG;
-        result << MEDLEYSTARTBEAT_TAG;
-        result << MEDLEYENDBEAT_TAG;
+	result << MEDLEYSTARTBEAT_TAG;
+	result << MEDLEYENDBEAT_TAG;
 	result << BPM_TAG;
 	result << GAP_TAG;
 
@@ -93,6 +93,24 @@ QStringList QUSongSupport::allowedPlaylistFiles() {
 	return registryKey("allowedPlaylistFiles", "*.upl");
 }
 
+QStringList QUSongSupport::allowedEncodingTypes() {
+	QStringList result;
+
+	result << "CP1252"; // windows-1252 (Western European)
+	result << "CP1250"; // windows-1250 (Central/Eastern European)
+	result << "UTF8";   // UTF-8
+
+	return result;
+}
+
+QString QUSongSupport::defaultInputEncoding() {
+	return registryKey("defaultInputEncoding", "CP1252").first();
+}
+
+QString QUSongSupport::defaultOutputEncoding() {
+	return registryKey("defaultOutputEncoding", "CP1252").first();
+}
+
 int QUSongSupport::mediumMp3Quality() {
 	return registryKey("mediumMp3Quality", "96").first().toInt();
 }
@@ -102,51 +120,45 @@ int QUSongSupport::highMp3Quality() {
 }
 
 int QUSongSupport::mediumCoverQuality() {
-	return registryKey("mediumCoverQuality", "200").first().toInt();
+	return registryKey("mediumCoverQuality", "200 x 200").first().toInt();
 }
 
 int QUSongSupport::highCoverQuality() {
-	return registryKey("highCoverQuality", "300").first().toInt();
+	return registryKey("highCoverQuality", "300 x 300").first().toInt();
 }
 
 int QUSongSupport::mediumBackgroundQuality() {
-	return registryKey("mediumBackgroundQuality", "800").first().toInt();
+	return registryKey("mediumBackgroundQuality", "800 x 450").first().toInt();
 }
 
 int QUSongSupport::highBackgroundQuality() {
-	return registryKey("highBackgroundQuality", "1280").first().toInt();
+	return registryKey("highBackgroundQuality", "1280 x 720").first().toInt();
 }
 
 int QUSongSupport::mediumVideoQuality() {
-	return registryKey("mediumVideoQuality", "800").first().toInt();
+	return registryKey("mediumVideoQuality", "800 x 450").first().toInt();
 }
 
 int QUSongSupport::highVideoQuality() {
-	return registryKey("highVideoQuality", "1280").first().toInt();
-}
-
-QString QUSongSupport::defaultInputEncoding() {
-	return registryKey("defaultInputEncoding", "windows-1252").first();
-}
-
-QString QUSongSupport::defaultOutputEncoding() {
-	return registryKey("defaultOutputEncoding", "windows-1252").first();
+	return registryKey("highVideoQuality", "1280 x 720").first().toInt();
 }
 
 /*!
  * Looks for a value in the registry and sets the default, if key not present.
  */
 QStringList QUSongSupport::registryKey(const QString &key, const QString &defaultValue) {
-	static QMap<QString, QStringList> map;
+// MB: map-related stuff commented out because of update problems with defaultInput/OutputEncoding
+//	static QMap<QString, QStringList> map;
 
-	if(map.contains(key))
-		return map.value(key);
+//	if(map.contains(key))
+//		return map.value(key);
 
 	QSettings settings;
 	if(!settings.contains(key))
 		settings.setValue(key, defaultValue);
 
-	map.insert(key, settings.value(key, defaultValue).toString().split(" ", QString::SkipEmptyParts));
+//	map.insert(key, settings.value(key, defaultValue).toString().split(" ", QString::SkipEmptyParts));
 
-	return map.value(key);
+//	return map.value(key);
+	return settings.value(key, defaultValue).toString().split(" ", QString::SkipEmptyParts);
 }
