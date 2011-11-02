@@ -97,17 +97,22 @@ void initLanguage(QApplication &app, QTranslator &t, QSplashScreen &s) {
 			app.installTranslator(&t);
 			monty->initMessages(":/txt/hints_pl");
 		}
-        } else if (lang.language() == QLocale::French) {
-                if(t.load(":/lang/uman.fr.qm")) {
-                        app.installTranslator(&t);
-                        monty->initMessages(":/txt/hints_fr");
-                }
-        } else if (lang.language() == QLocale::Spanish) {
-                if(t.load(":/lang/uman.es.qm")) {
-                        app.installTranslator(&t);
-                        monty->initMessages(":/txt/hints_es");
-                }
-        }
+	} else if (lang.language() == QLocale::French) {
+		if(t.load(":/lang/uman.fr.qm")) {
+			app.installTranslator(&t);
+		monty->initMessages(":/txt/hints_fr");
+		}
+	} else if (lang.language() == QLocale::Spanish) {
+		if(t.load(":/lang/uman.es.qm")) {
+			app.installTranslator(&t);
+			monty->initMessages(":/txt/hints_es");
+		}
+	} else if (lang.language() == QLocale::Portuguese) {
+		if(t.load(":/lang/uman.pt.qm")) {
+			app.installTranslator(&t);
+			monty->initMessages(":/txt/hints_pt");
+		}
+	}
 
 	s.showMessage(QString(QObject::tr("%1.%2.%3 is loading...")).arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION), Qt::AlignBottom | Qt::AlignRight, Qt::white);
 
