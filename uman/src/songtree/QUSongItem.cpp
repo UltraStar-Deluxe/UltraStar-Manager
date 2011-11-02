@@ -393,13 +393,13 @@ void QUSongItem::setTick(int column) {
 			} else {
 				if (img.width() < QUSongSupport::mediumBackgroundQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_low_exclamation.png"));
-					this->setToolTip(column, QString(QObject::tr("Low quality background with non-widescreen aspect ratio (%1 x %2)")).arg(img.width()).arg(img.height()));
+					this->setToolTip(column, QString(QObject::tr("Low quality background with non-widescreen aspect ratio (%1 x %2).\nTry cropping to %1 x %3 for a widescreen aspect ratio.")).arg(img.width()).arg(img.height()).arg(qRound(img.width()*9/16)));
 				} else if (img.width() < QUSongSupport::highBackgroundQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_medium_exclamation.png"));
-					this->setToolTip(column, QString(QObject::tr("Medium quality background with non-widescreen aspect ratio (%1 x %2)")).arg(img.width()).arg(img.height()));
+					this->setToolTip(column, QString(QObject::tr("Medium quality background with non-widescreen aspect ratio (%1 x %2).\nTry cropping to %1 x %3 for a widescreen aspect ratio.")).arg(img.width()).arg(img.height()).arg(qRound(img.width()*9/16)));
 				} else {
 					this->setIcon(column, QIcon(":/marks/tick_high_exclamation.png"));
-					this->setToolTip(column, QString(QObject::tr("High quality background with non-widescreen aspect ratio (%1 x %2)")).arg(img.width()).arg(img.height()));
+					this->setToolTip(column, QString(QObject::tr("High quality background with non-widescreen aspect ratio (%1 x %2).\nTry cropping to %1 x %3 for a widescreen aspect ratio.")).arg(img.width()).arg(img.height()).arg(qRound(img.width()*9/16)));
 				}
 			}
 			// used for sorting
