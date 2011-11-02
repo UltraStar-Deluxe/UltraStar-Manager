@@ -102,8 +102,9 @@ private slots:
 	void enableEnglish();
 	void enableGerman();
 	void enablePolish();
-        void enableFrench();
-        void enableSpanish();
+	void enableFrench();
+	void enableSpanish();
+	void enablePortuguese();
 
 	void getCoversFromAmazon(QList<QUSongItem*> items);
 	void getCovers();
@@ -126,6 +127,17 @@ private slots:
 
 	// paths
 	void showPathsDialog();
+
+	// encodings
+	void setDefaultEncodings();
+
+	// quality thresholds
+	void setMediumMp3Quality(QString quality);
+	void setHighMp3Quality(QString quality);
+	void setMediumCoverQuality(QString quality);
+	void setHighCoverQuality(QString quality);
+	void setMediumBackgroundQuality(QString quality);
+	void setHighBackgroundQuality(QString quality);
 
 	// status bar
 	void clearStatusMessage();

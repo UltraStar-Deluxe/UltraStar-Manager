@@ -51,6 +51,7 @@
 #include "QUMessageBox.h"
 #include "QUPictureDialog.h"
 #include "QUCustomTagsDialog.h"
+#include "QUEncodingsDialog.h"
 #include "QUAboutDialog.h"
 #include "QUPluginDialog.h"
 #include "QUSlideShowDialog.h"
@@ -72,8 +73,9 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 
 	initWindow();
 	initRibbonBar();
-	// MB TODO: find spanish translator, then remove line
+	// MB TODO: find spanish and portuguese translator, then remove line
 	//_menu->langEsBtn->setVisible(false);
+	//_menu->langPtBtn->setVisible(false);
 	initStatusBar();
 	initEventLog();
 	initConfig();
@@ -217,6 +219,8 @@ void QUMainWindow::initConfig() {
 		_menu->langFrBtn->setChecked(true);
 	} else if(QLocale(settings.value("language").toString()).language() == QLocale::Spanish) {
 		_menu->langEsBtn->setChecked(true);
+	} else if(QLocale(settings.value("language").toString()).language() == QLocale::Portuguese) {
+		_menu->langPtBtn->setChecked(true);
 	}
 
 	QStringList imageFormatsNeeded;
@@ -350,12 +354,28 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->tagSaveOrder, SIGNAL(clicked()), this, SLOT(editTagOrder()));
 	connect(_menu->customTagsBtn, SIGNAL(clicked()), this, SLOT(editCustomTags()));
 	connect(_menu->pathsBtn, SIGNAL(clicked()), this, SLOT(showPathsDialog()));
+	connect(_menu->defaultEncodingsBtn, SIGNAL(clicked()), this, SLOT(setDefaultEncodings()));
+
+	_menu->mediumMp3QualityComboBox->setCurrentIndex(_menu->mediumMp3QualityComboBox->findText(QString::number(QUSongSupport::mediumMp3Quality()), Qt::MatchStartsWith));
+	_menu->highMp3QualityComboBox->setCurrentIndex(_menu->highMp3QualityComboBox->findText(QString::number(QUSongSupport::highMp3Quality()), Qt::MatchStartsWith));
+	_menu->mediumCoverQualityComboBox->setCurrentIndex(_menu->mediumCoverQualityComboBox->findText(QString::number(QUSongSupport::mediumCoverQuality()), Qt::MatchStartsWith));
+	_menu->highCoverQualityComboBox->setCurrentIndex(_menu->highCoverQualityComboBox->findText(QString::number(QUSongSupport::highCoverQuality()), Qt::MatchStartsWith));
+	_menu->mediumBackgroundQualityComboBox->setCurrentIndex(_menu->mediumBackgroundQualityComboBox->findText(QString::number(QUSongSupport::mediumBackgroundQuality()), Qt::MatchStartsWith));
+	_menu->highBackgroundQualityComboBox->setCurrentIndex(_menu->highBackgroundQualityComboBox->findText(QString::number(QUSongSupport::highBackgroundQuality()), Qt::MatchStartsWith));
+
+	connect(_menu->mediumMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumMp3Quality(QString)));
+	connect(_menu->highMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighMp3Quality(QString)));
+	connect(_menu->mediumCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumCoverQuality(QString)));
+	connect(_menu->highCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighCoverQuality(QString)));
+	connect(_menu->mediumBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumBackgroundQuality(QString)));
+	connect(_menu->highBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighBackgroundQuality(QString)));
 
 	connect(_menu->langUsBtn, SIGNAL(clicked()), this, SLOT(enableEnglish()));
 	connect(_menu->langDeBtn, SIGNAL(clicked()), this, SLOT(enableGerman()));
 	connect(_menu->langPlBtn, SIGNAL(clicked()), this, SLOT(enablePolish()));
 	connect(_menu->langFrBtn, SIGNAL(clicked()), this, SLOT(enableFrench()));
 	connect(_menu->langEsBtn, SIGNAL(clicked()), this, SLOT(enableSpanish()));
+	connect(_menu->langPtBtn, SIGNAL(clicked()), this, SLOT(enablePortuguese()));
 
 	connect(_menu, SIGNAL(changeSongPathRequested(QString)), this, SLOT(changeSongDir(QString)));
 
@@ -728,7 +748,13 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 		dlg.update(QString("%1 - %2").arg(songItem->song()->artist()).arg(songItem->song()->title()));
 		if(dlg.cancelled()) break;
 
+		// MB: delete medley tags if CALCMEDLEY_TAG is set to OFF
 		songItem->song()->setInfo(tag, text);
+		if(tag == CALCMEDLEY_TAG && text == "OFF") {
+			songItem->song()->setInfo(MEDLEYSTARTBEAT_TAG, "");
+			songItem->song()->setInfo(MEDLEYENDBEAT_TAG, "");
+		}
+
 		songItem->song()->save();
 
 		songItem->update();
@@ -968,7 +994,7 @@ void QUMainWindow::checkForUpdate(bool silent) {
 			QSettings settings;
 			int result = QUMessageBox::information(this,
 					tr("Update check"),
-					QString(tr("Update check <b>successful</b>. UltraStar Manager %1.%2.%3 is <b>up to date!</b>"))
+					QString(tr("Update check <b>successful</b>. UltraStar Manager %1.%2.%3 is <b>up to date</b>!"))
 							.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION),
 					BTN << ":/marks/accept.png" << tr("OK. I will check again later.")
 					    << ":/marks/accept.png" << tr("OK. Please check again automatically on startup."),
@@ -1473,6 +1499,26 @@ void QUMainWindow::enableSpanish() {
 		this->close();
 }
 
+/*!
+ * Changes the application language to Portuguese.
+ */
+void QUMainWindow::enablePortuguese() {
+	_menu->langPtBtn->setChecked(true);
+
+	QSettings settings;
+	settings.setValue("language", QLocale(QLocale::Portuguese, QLocale::Portugal).name());
+
+	// ---------------
+
+	int result = QUMessageBox::information(this,
+			tr("Change Language"),
+			tr("Application language changed to <b>Portuguese</b>. You need to restart UltraStar Manager to take effect."),
+			BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
+			    << ":/marks/accept.png" << tr("Continue."));
+	if(result == 0)
+		this->close();
+}
+
 void QUMainWindow::getCoversFromAmazon(QList<QUSongItem*> items) {
 	QURemoteImageDialog *dlg = new QURemoteImageDialog(items, this);
 
@@ -1595,6 +1641,76 @@ void QUMainWindow::showBackgroundSlideShowDialog(QList<QUSongItem*> items) {
 void QUMainWindow::showPathsDialog() {
 	QUPathsDialog(false, this).exec();
 	_menu->updateBaseDirMenu();
+}
+
+void QUMainWindow::setDefaultEncodings() {
+	QString defaultInputEncoding = QUSongSupport::defaultInputEncoding();
+	QString defaultOutputEncoding = QUSongSupport::defaultOutputEncoding();
+	QUEncodingsDialog *dlg = new QUEncodingsDialog(this);
+
+	if(dlg->exec()) {
+		if (defaultInputEncoding != QUSongSupport::defaultInputEncoding()) {
+			this->refreshAllSongs(true);
+			detailsTable->reset();
+
+			logSrv->add(QString(tr("Default input encoding changed to \"%1\".")).arg(QUSongSupport::defaultInputEncoding()), QU::Information);
+		}
+		if (defaultOutputEncoding != QUSongSupport::defaultOutputEncoding()) {
+			logSrv->add(QString(tr("Default output encoding changed to \"%1\".")).arg(QUSongSupport::defaultOutputEncoding()), QU::Information);
+		}
+
+		delete dlg;
+	}
+
+	montyTalk();
+}
+
+void QUMainWindow::setMediumMp3Quality(QString quality) {
+	QSettings settings;
+	settings.setValue("mediumMp3Quality", quality.split(" ").first().toInt());
+
+	songDB->reload();
+	detailsTable->reset();
+}
+
+void QUMainWindow::setHighMp3Quality(QString quality) {
+	QSettings settings;
+	settings.setValue("highMp3Quality", quality.split(" ").first().toInt());
+
+	songDB->reload();
+	detailsTable->reset();
+}
+
+void QUMainWindow::setMediumCoverQuality(QString quality) {
+	QSettings settings;
+	settings.setValue("mediumCoverQuality", quality);
+
+	songDB->reload();
+	detailsTable->reset();
+}
+
+void QUMainWindow::setHighCoverQuality(QString quality) {
+	QSettings settings;
+	settings.setValue("highCoverQuality", quality);
+
+	songDB->reload();
+	detailsTable->reset();
+}
+
+void QUMainWindow::setMediumBackgroundQuality(QString quality) {
+	QSettings settings;
+	settings.setValue("mediumBackgroundQuality", quality);
+
+	songDB->reload();
+	detailsTable->reset();
+}
+
+void QUMainWindow::setHighBackgroundQuality(QString quality) {
+	QSettings settings;
+	settings.setValue("highBackgroundQuality", quality);
+
+	songDB->reload();
+	detailsTable->reset();
 }
 
 void QUMainWindow::clearStatusMessage() {
