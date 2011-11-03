@@ -4583,6 +4583,11 @@ p, li { white-space: pre-wrap; }
         <translation>Extern öffnen</translation>
     </message>
     <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="1296"/>
+        <source>Refresh</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1297"/>
         <source>Save</source>
         <translation>Speichern</translation>
@@ -4833,6 +4838,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../../songtree/QUSongTree.cpp" line="853"/>
         <source>%1 songs added to list of invisible songs.</source>
         <translation>%1 Songs wurden zur Liste der unsichtbaren Songs hinzugefügt.</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="1200"/>
+        <source>Refreshing selected songs...</source>
+        <translation>Aktualisiere ausgewählte Songs...</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1278"/>

@@ -4302,6 +4302,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="1200"/>
+        <source>Refreshing selected songs...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1245"/>
         <source>Saving selected songs...</source>
         <translation type="unfinished"></translation>
@@ -4350,6 +4355,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../../songtree/QUSongTree.cpp" line="1293"/>
         <location filename="../../songtree/QUSongTree.cpp" line="1298"/>
         <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="1296"/>
+        <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -4489,6 +4489,11 @@ p, li { white-space: pre-wrap; }
         <translation>Impossible de crééer le dossier: &quot;%1&quot;. Disque plein?</translation>
     </message>
     <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="1200"/>
+        <source>Refreshing selected songs...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1245"/>
         <source>Saving selected songs...</source>
         <translation>Sauvegarde des chansons sélectionnées...</translation>
@@ -4542,6 +4547,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../../songtree/QUSongTree.cpp" line="1298"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="1296"/>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1297"/>
