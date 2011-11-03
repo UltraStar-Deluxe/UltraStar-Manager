@@ -70,3 +70,10 @@ Having trouble with finding bad song covers? Try the image review via <i>Songs &
 You can calculate the speed of a song via <i>Songs &rarr; Calculate Song Speed</i>. It is an indicator for the average number of syllables per second.
 All tasks and cover downloads are implemented as <i>plugins</i>. You can write your own plugins with the <b>UltarStar Manager Plugin SDK</b>.
 You can edit lyrics with <i>Ctrl+E</i>.
+Three different encodings are supported for song files: CP1252 (Western European), CP1250 (Central/Eastern European), and UTF8 with Byte Order Mark (BOM).<br><br>You can set the default input encoding for song files whose encodings cannot be determined automatically in <i>Options &rarr; Default Encodings...</i>.
+By default, song files are saved with CP1252 encoding to keep compatibility with older versions of UltraStar. If this encoding is insufficient for encoding your song file due to some special characters, it will automatically be saved using the UTF8 encoding.<br><br>You can change the default output encoding for song files in <i>Options &rarr; Default Encodings...</i>.
+UltraStar Manager is not available in your language? Well, if you are interested in translating, just get in touch with one of the developers at the <a href="http://sourceforge.net/projects/uman">project site</a>.
+You enjoy high quality audio files, covers and backgrounds? Just set your personal quality preferences in <i>Options</i> under <i>Quality Thresholds</i> and sort your song collection by the corresponding column.<br><br>In addition to the colored ticks, non-square (1:1) covers and non-widescreen (16:9) backgrounds will be indicated by a small exclamation mark next to quality tick.
+You can open image files externally for cropping and/or resizing using the file context menu.
+Are you using the latest version of UltraStar Manager? Well, why don't you check by clicking <i>About &rarr; Check for Update</i>? You can enable an automatic update check at startup in the resulting dialog.
+You can refresh a single song or a selection of songs in the context menu with <i>Reload (F5)</i>.
