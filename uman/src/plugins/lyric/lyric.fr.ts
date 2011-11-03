@@ -51,7 +51,7 @@
     <message>
         <location filename="QULyricTask.cpp" line="88"/>
         <source>Invalid lyrics in file &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Paroles invalides dans le fichier &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="166"/>
