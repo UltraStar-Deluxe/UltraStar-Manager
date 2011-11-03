@@ -51,7 +51,7 @@ public slots:
 	void resizeAndSort();
 	void updateItemWithNewSong(QUSongFile *oldSong, QUSongFile *newSong);
 
-//	void refreshSelectedItems();
+	void refreshSelectedItems();
 	void resizeToContents();
 	void saveSelectedSongs();
 	void saveUnsavedChanges();
