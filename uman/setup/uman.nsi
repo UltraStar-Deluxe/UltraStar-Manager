@@ -128,7 +128,7 @@ Section "Application" SecCopyUI
 	SetOutPath "$INSTDIR\plugins\config\audiotag"
 	File "plugins\config\audiotag\id3-010-useArtist.xml"
 	File "plugins\config\audiotag\id3-020-useTitle.xml"
-	File "plugins\config\audiotag\id3-021-useTitleVideo.xml
+	File "plugins\config\audiotag\id3-021-useTitleVideo.xml"
 	File "plugins\config\audiotag\id3-022-appendVideo.xml"
 	File "plugins\config\audiotag\id3-023-removeVideoTitle.xml"
 	File "plugins\config\audiotag\id3-024-appendKaraoke.xml"
@@ -171,7 +171,7 @@ Section "Application" SecCopyUI
 	;; Start Menu
 	!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 	CreateDirectory "$SMPROGRAMS\$STARTMENU_FOLDER"
-	CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\${PRODUCTNAME}.lnk" "$INSTDIR\uman.exe
+	CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\${PRODUCTNAME}.lnk" "$INSTDIR\uman.exe"
 	CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall ${PRODUCTNAME}.lnk" "$INSTDIR\Uninstall.exe"
 	!insertmacro MUI_STARTMENU_WRITE_END
 
