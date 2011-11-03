@@ -185,7 +185,7 @@ border-left-color: #C2C7CB;</string>
           </size>
          </property>
          <property name="toolTip">
-          <string>Get covers for the selected songs from Amazon.</string>
+          <string>Get covers for the selected songs from remote image sources.</string>
          </property>
          <property name="text">
           <string>Get

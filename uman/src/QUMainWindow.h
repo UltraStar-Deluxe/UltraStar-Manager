@@ -106,7 +106,7 @@ private slots:
 	void enableSpanish();
 	void enablePortuguese();
 
-	void getCoversFromAmazon(QList<QUSongItem*> items);
+	void getCovers(QList<QUSongItem*> items);
 	void getCovers();
 
 	// internal easter eggs

@@ -431,7 +431,7 @@ void QUMainWindow::initSongTree() {
 	connect(songTree, SIGNAL(itemCollapsed(QTreeWidgetItem*)), songTree, SLOT(resizeToContents()));
 
 	connect(songTree, SIGNAL(songToPlaylistRequested(QUSongFile*)), playlistArea, SLOT(addSongToCurrentPlaylist(QUSongFile*)));
-	connect(songTree, SIGNAL(coversFromAmazonRequested(QList<QUSongItem*>)), this, SLOT(getCoversFromAmazon(QList<QUSongItem*>)));
+	connect(songTree, SIGNAL(coversRequested(QList<QUSongItem*>)), this, SLOT(getCovers(QList<QUSongItem*>)));
 	connect(songTree, SIGNAL(coverFlowRequested(QList<QUSongItem*>)), this, SLOT(showCoverSlideShowDialog(QList<QUSongItem*>)));
 	connect(songTree, SIGNAL(backgroundFlowRequested(QList<QUSongItem*>)), this, SLOT(showBackgroundSlideShowDialog(QList<QUSongItem*>)));
 
@@ -1519,7 +1519,7 @@ void QUMainWindow::enablePortuguese() {
 		this->close();
 }
 
-void QUMainWindow::getCoversFromAmazon(QList<QUSongItem*> items) {
+void QUMainWindow::getCovers(QList<QUSongItem*> items) {
 	QURemoteImageDialog *dlg = new QURemoteImageDialog(items, this);
 
 	if(dlg->exec()) {

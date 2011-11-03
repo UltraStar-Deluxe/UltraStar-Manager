@@ -1305,7 +1305,7 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 
 		menu->addSeparator();
 		menu->addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
-		menu->addAction(QIcon(":/control/image_go.png"), tr("Get Covers..."), this, SLOT(requestCoversFromAmazon()));
+		menu->addAction(QIcon(":/control/image_go.png"), tr("Get Covers..."), this, SLOT(requestCovers()));
 
 		QMenu *pictureFlowMenu = menu->addMenu(QIcon(":/control/images.png"), tr("Review pictures"));
 		pictureFlowMenu->addAction(QIcon(":/types/cover.png"),      tr("Covers..."),      this, SLOT(requestCoverFlow()));
@@ -1408,8 +1408,8 @@ void QUSongTree::requestEditLyrics() {
  * Request covers for all selected songs (song items). Send the items so that they can be updated,
  * if songs got new covers.
  */
-void QUSongTree::requestCoversFromAmazon() {
-	emit coversFromAmazonRequested(this->selectedSongItems());
+void QUSongTree::requestCovers() {
+	emit coversRequested(this->selectedSongItems());
 }
 
 void QUSongTree::requestCoverFlow() {
