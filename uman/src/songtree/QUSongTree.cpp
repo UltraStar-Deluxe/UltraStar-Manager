@@ -21,6 +21,7 @@
 #include <QCursor>
 #include <QTime>
 #include <QDesktopServices>
+#include <QShortcut>
 
 #include "QUProgressDialog.h"
 
@@ -49,6 +50,8 @@ QUSongTree::QUSongTree(QWidget *parent): QTreeWidget(parent) {
 	connect(songDB, SIGNAL(databaseReloaded()), this, SLOT(resizeAndSort()));
 	connect(songDB, SIGNAL(songChanged(QUSongFile*)), this, SLOT(updateItem(QUSongFile*)));
 	connect(songDB, SIGNAL(songWithFriendSwapped(QUSongFile*,QUSongFile*)), this, SLOT(updateItemWithNewSong(QUSongFile*,QUSongFile*)));
+
+	new QShortcut(QKeySequence("F5"), this, SLOT(refreshSelectedItems()));
 }
 
 QUMainWindow* QUSongTree::parentWindow() const {
@@ -1293,10 +1296,10 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 		menu->addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), Qt::Key_Delete);
 	} else {
 		// song/folder menu
-		menu->addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),       Qt::Key_F5);
-		menu->addAction(QIcon(":/control/save.png"),    tr("Save"),    this, SLOT(saveSelectedSongs()),          Qt::CTRL  + Qt::Key_S);
-		menu->addAction(QIcon(":/control/bin.png"),     tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()), Qt::SHIFT + Qt::Key_Delete);
-		QAction *a = menu->addAction(QIcon(":/control/merge.png"), tr("Merge"),   this, SLOT(mergeSelectedSongs()),         Qt::CTRL  + Qt::Key_M);
+		menu->addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),              Qt::Key_F5);
+		menu->addAction(QIcon(":/control/save.png"),    tr("Save"),    this, SLOT(saveSelectedSongs()),                 Qt::CTRL  + Qt::Key_S);
+		menu->addAction(QIcon(":/control/bin.png"),     tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()),        Qt::SHIFT + Qt::Key_Delete);
+		QAction *a = menu->addAction(QIcon(":/control/merge.png"), tr("Merge"),   this, SLOT(mergeSelectedSongs()),     Qt::CTRL  + Qt::Key_M);
 		if(selectedItems().size() < 2) a->setEnabled(false);
 		menu->addAction(QIcon(":/player/play.png"), tr("Play"), this, SIGNAL(playSelectedSongsRequested()));
 
