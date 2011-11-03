@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pl_PL">
+<TS version="2.0" language="pt_PT">
 <context>
     <name>QULyricTask</name>
     <message>
         <location filename="QULyricTask.cpp" line="15"/>
         <source>Set first timestamp to zero</source>
-        <translation>Ustaw pierwszą nutkę na zero</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="19"/>
@@ -16,6 +16,11 @@
     <message>
         <location filename="QULyricTask.cpp" line="20"/>
         <source>Moves spaces from the end of a syllable to the beginning of the next one. Trim the whole song line.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QULyricTask.cpp" line="24"/>
+        <source>Remove empty syllables</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -49,15 +54,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="166"/>
-        <location filename="QULyricTask.cpp" line="206"/>
-        <location filename="QULyricTask.cpp" line="230"/>
-        <location filename="QULyricTask.cpp" line="256"/>
-        <location filename="QULyricTask.cpp" line="304"/>
-        <source>Invalid lyrics: %1 - %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="QULyricTask.cpp" line="111"/>
         <source>#GAP changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation type="unfinished"></translation>
@@ -65,6 +61,15 @@
     <message>
         <location filename="QULyricTask.cpp" line="156"/>
         <source>Timestamps were changed successfully for &quot;%1 - %2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QULyricTask.cpp" line="166"/>
+        <location filename="QULyricTask.cpp" line="206"/>
+        <location filename="QULyricTask.cpp" line="230"/>
+        <location filename="QULyricTask.cpp" line="256"/>
+        <location filename="QULyricTask.cpp" line="304"/>
+        <source>Invalid lyrics: %1 - %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -91,19 +96,6 @@
         <location filename="QULyricTask.cpp" line="335"/>
         <source>Absolute timestamps converted successfully to relative timestamps for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fix spaces at end of line</source>
-        <translation type="obsolete">Popraw puste pola na końcach linijek</translation>
-    </message>
-    <message>
-        <source>Moves spaces from the end of line to the beginning of the next syllable.</source>
-        <translation type="obsolete">Przenieś puste pola z końca lini na początek następnej sylaby.</translation>
-    </message>
-    <message>
-        <location filename="QULyricTask.cpp" line="24"/>
-        <source>Remove empty syllables</source>
-        <translation>Usuń puste sylaby</translation>
     </message>
 </context>
 <context>

@@ -49,6 +49,11 @@
         <translation>Convertir les marqueurs de temps absolus en relatifs</translation>
     </message>
     <message>
+        <location filename="QULyricTask.cpp" line="88"/>
+        <source>Invalid lyrics in file &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="QULyricTask.cpp" line="166"/>
         <location filename="QULyricTask.cpp" line="206"/>
         <location filename="QULyricTask.cpp" line="230"/>

@@ -44,6 +44,11 @@
         <translation>Konvertiere absolute zu relativen Zeitstempeln</translation>
     </message>
     <message>
+        <location filename="QULyricTask.cpp" line="88"/>
+        <source>Invalid lyrics in file &quot;%1&quot;</source>
+        <translation>Ungültige Lyrics in Datei: &quot;%1&quot;</translation>
+    </message>
+    <message>
         <location filename="QULyricTask.cpp" line="166"/>
         <location filename="QULyricTask.cpp" line="206"/>
         <location filename="QULyricTask.cpp" line="230"/>
