@@ -1463,6 +1463,11 @@ border-left-color: #C2C7CB;</string>
            </item>
            <item>
             <property name="text">
+             <string notr="true">1024 x 576</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string notr="true">1120 x 630</string>
             </property>
            </item>
@@ -1512,11 +1517,16 @@ border-left-color: #C2C7CB;</string>
             <string>Specify the minimum resolution for high background quality.</string>
            </property>
            <property name="currentIndex">
-            <number>2</number>
+            <number>1</number>
            </property>
            <item>
             <property name="text">
              <string notr="true">960 x 540</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>1024 x 576</string>
             </property>
            </item>
            <item>
