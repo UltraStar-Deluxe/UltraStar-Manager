@@ -56,7 +56,8 @@ Wenn du nach "abba|akon|wizo" filterst, suchst du alles, was "abba", "akon" oder
 Es gibt Tooltips zu fast allen Symbolen im Song-Baum. Lass den Cursor einfach 1-2 Sekunden stehen und der Hinweis erscheint.
 Du kannst dir doppelte Songs anzeigen lassen, wenn du im Filter-/Suchbereich auf <i>Duplikate</i> klickst. Diese stehen dann immer zusammen im Song-Baum.
 Playlisten werden mit der aktuellen Songdatenbank verbunden. Sobald ein Song geändert wird, welcher in einer Playliste ist, wird auch diese aktualisiert.<br><br>Änderungen in Playlisten müssen jedoch manuell gespeichert werden.
-<i>Amazon Assiciates Web Service:</i><br><br>Es werden nur Covers zu den Songs runtergeladen, welche angewählt sind. Ebenso verhält es sich mit dem Kopieren und Setzen der Cover.
+<i>Amazon Assiciates Web Service:</i><br><br>
+Die Funktion <i>Songs &rarr; Covers holen...</i> bietet die Möglichkeit, Cover von verschiedenen Internetseiten runterzuladen. Es werden nur Covers zu den Songs runtergeladen, welche ausgewählt sind. Ebenso verhält es sich mit dem <i>Kopieren &amp; Setzen</i> der Cover.
 Eine Liste der unterstützten Dateitypen kannst du ausklappen, indem du bei den <i>Datei-Infos</i> einen Doppelklick auf die zugehörige Überschrift machst.
 Die editierbaren Aufgaben kannst du mit einem Doppelklick bearbeiten. Alternativ ist auch ein Kontextmenü (Rechtsklick) vorhanden.
 Das Ereignisprotokoll wird beim Beenden im Programmpfad abgespeichert.
@@ -70,7 +71,7 @@ Du hast Schwierigkeiten, schlechte Song-Cover zu finden? Es gibt da eine Funktio
 Du kannst das Tempo eines Songs berechnen lassen. Das ist ein Indikator für die Anzahl der Silben pro Sekunde.
 Alle Aufgaben und Cover-Downloads sind als <i>Plugins</i> implementiert. Du kannst deine eigenen Plugins mit dem <b>UltarStar Manager Plugin SDK</b> schreiben.
 Du kannst Lyrics mit <i>Strg + E</i> bearbeiten.
-Es werden drei Codierungen für Lieddateien unterstützt: CP1252 (Westeuropäisch), CP1250 (Mitteleuropäisch) sowie UTF8 mit Byte Order Mark (BOM).<br><br>Die Standardcodierung für Lieder, deren Codierung nicht automatisch ermittelt werden kann, lässt sich in <i>Optionen &rarr; Standardcodierungen...</i> einstellen.
+Es werden drei Codierungen für Lieddateien unterstützt: CP1252 (Westeuropäisch), CP1250 (Mitteleuropäisch) sowie UTF8.<br><br>Die Standardcodierung für Lieder, deren Codierung nicht automatisch ermittelt werden kann, lässt sich in <i>Optionen &rarr; Standardcodierungen...</i> einstellen.
 Standardmäßig werden Lieddateien mit der CP1252-Codierung gespeichert, um die Kompatiblität mit früheren Versionen von UltraStar zu erhalten. Falls diese Codierung aufgrund von Sonderzeichen in der Lieddatei nicht ausreichend ist, so wird es automatisch mit UTF8-Codierung gespeichert.<br><br>Du kannst die Standardcodierung zum Speichern von Lieddateien in <i>Optionen &rarr; Standardcodierungen...</i> einstellen.
 Den UltraStar Manager gibt es noch nicht in Deiner Sprache? Nun, wenn Du es gerne übersetzen möchtest, sprich doch einen der Entwickler über die <a href="http://sourceforge.net/projects/uman">Projektseite</a> an.
 Du liebst gute Qualität bei Audio-, Cover- und Hintergrund-Dateien? Stelle deine persönlichen Qualitätsstandards unter <i>Optionen</i> im Feld <i>Qualitätsschwellwerte</i> ein und sortiere Deine Liedersammlung nach der entsprechenden Spalte.<br><br>Zusätzlich zur farblichen Qualitätskennzeichnung werden nicht-quadratische Cover und nicht im Breitbildformat vorliegende Hintergrund-Dateien durch ein Ausrufezeichen am Häkchen dargestellt.
