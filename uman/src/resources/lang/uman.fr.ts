@@ -3166,7 +3166,7 @@ Multimédia</translation>
         <location filename="../../ribbon/QURibbonBar.ui" line="981"/>
         <source>Always
 On Top</source>
-        <translation type="unfinished">Toujours au
+        <translation>Toujours au
 premier plan</translation>
     </message>
     <message>
@@ -3477,7 +3477,7 @@ Chansons</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="2139"/>
         <source>Collapse All</source>
-        <translation>Tout refermer</translation>
+        <translation>Tout réduire</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="2175"/>
