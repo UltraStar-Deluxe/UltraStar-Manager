@@ -133,7 +133,7 @@ class QUSongInterface: public QObject {
 	Q_PROPERTY(QString lengthTotal READ lengthEffectiveFormatted)
 	Q_PROPERTY(QString speed READ speedFormatted)
 	Q_PROPERTY(QString titlecompact READ titleCompact)
-
+	// boolean properties
 	Q_PROPERTY(bool hasMp3 READ hasMp3)
 	Q_PROPERTY(bool hasCover READ hasCover)
 	Q_PROPERTY(bool hasBackground READ hasBackground)
@@ -185,7 +185,7 @@ public:
 	virtual bool hasCover() const = 0;
 	virtual bool hasBackground() const = 0;
 	virtual bool hasVideo() const = 0;
-        virtual bool hasMedley() const = 0;
+	virtual bool hasMedley() const = 0;
 	virtual bool isSongChecked() const = 0;
 	virtual bool isDuet() const = 0;
 	virtual bool isKaraoke() const = 0;

@@ -57,7 +57,7 @@ void QUDetailItem::reset() {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
 	} else if(QString::compare(_tag, LANGUAGE_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
-		setData(Qt::UserRole, monty->languages()); // fixed default data
+		setData(Qt::UserRole, QUSongSupport::availableSongLanguages()); // static default data
 		_hasDynamicDefaultData = false;
 	} else if(QString::compare(_tag, EDITION_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
@@ -65,7 +65,7 @@ void QUDetailItem::reset() {
 		_hasDynamicDefaultData = false;
 	} else if(QString::compare(_tag, GENRE_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
-		setData(Qt::UserRole, monty->genres()); // fixed default data
+		setData(Qt::UserRole, monty->genres()); // static default data
 		_hasDynamicDefaultData = false;
 	} else if(QString::compare(_tag, YEAR_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
@@ -167,10 +167,10 @@ QStringList QUDetailItem::defaultData(QUSongFile *song) {
 		dropDownData = song->songFileInfo().dir().entryList(QUSongSupport::allowedAudioFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
 
 	else if(QString::compare(tag(), COVER_TAG) == 0)
-		dropDownData = song->songFileInfo().dir().entryList(QUSongSupport::allowedPictureFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
+		dropDownData = song->songFileInfo().dir().entryList(QUSongSupport::allowedImageFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
 
 	else if(QString::compare(tag(), BACKGROUND_TAG) == 0)
-		dropDownData = song->songFileInfo().dir().entryList(QUSongSupport::allowedPictureFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
+		dropDownData = song->songFileInfo().dir().entryList(QUSongSupport::allowedImageFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
 
 	else if(QString::compare(tag(), VIDEO_TAG) == 0)
 		dropDownData = song->songFileInfo().dir().entryList(QUSongSupport::allowedVideoFiles(), QDir::NoDotAndDotDot | QDir::Files, QDir::Name);

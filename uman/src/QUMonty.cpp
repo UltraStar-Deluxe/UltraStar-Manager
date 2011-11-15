@@ -11,7 +11,7 @@
 QUMonty::QUMonty() {
 	initMessages(":/txt/hints");
 	initGenres();
-	initLanguages();
+//	initLanguages();
 
 	_watcher = new QFileSystemWatcher();
 }
@@ -38,14 +38,14 @@ void QUMonty::initGenres() {
 	}
 }
 
-void QUMonty::initLanguages() {
-	QFile f(":/txt/languages");
-
-	if(f.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		_languages = QString(f.readAll()).split("\n");
-		f.close();
-	}
-}
+//void QUMonty::initLanguages() {
+//	QFile f(":/txt/languages");
+//
+//	if(f.open(QIODevice::ReadOnly | QIODevice::Text)) {
+//		_languages = QString(f.readAll()).split("\n");
+//		f.close();
+//	}
+//}
 
 QUMonty* QUMonty::_instance = 0;
 QUMonty* QUMonty::instance() {
@@ -87,7 +87,7 @@ QString QUMonty::welcomeMsg() {
 void QUMonty::talk(QLabel *montyLbl, QLabel *msgLbl) {
 	montyLbl->setPixmap(pic((QUMonty::Status)(qrand() % 4)));
 	QString message = messages[qrand() % messages.size()];
-	if (!message.contains("\%1")) {
+	if (!message.contains('1')) {
 		msgLbl->setText(messages[qrand() % messages.size()]);
 	} else {
 		msgLbl->setText(messages[qrand() % messages.size()].arg(songDB->songCount()));
@@ -127,7 +127,11 @@ void QUMonty::answer(QLabel *montyLbl, QLabel *msgLbl, const QString &question, 
 	}
 
 	montyLbl->setPixmap(pic((QUMonty::Status)(qrand() % 4)));
-	msgLbl->setText(answers.first().arg(songDB->songCount()));
+	if (!answers.first().contains('1')) {
+		msgLbl->setText(answers.first());
+	} else {
+		msgLbl->setText(answers.first().arg(songDB->songCount()));
+	}
 }
 
 bool QUMonty::autoSaveEnabled() const {

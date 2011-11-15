@@ -218,13 +218,13 @@ private:
 	void convertLyricsToRaw();
 	void lyricsAddNote(QString line);
 
-	QList<QUSongFile*> _friends; // songs that share some resources
+	QList<QUSongFile*> _friends; // songs that may share some resources
 
 	// support for score files (*.sco)
 	QUScoreFile *_score;
 	void initScoreFile();
 
-	bool isValidUTF8(QFile &file) const;
+	bool isValidUTF8(QFile &in) const;
 };
 
 #endif /*QUSONGFILE_H_*/

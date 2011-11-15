@@ -12,7 +12,7 @@ Whenever a task could not be applied, you can find a corresponding entry in the 
 Did you notice that there are green, yellow, and red smileys in the song tree? Green ones tell you that your song directory is named correctly after <i>Artist - Title</i> case-sensitive while yellow ones only match case-insensitive. The red smileys indicate an entirely wrong combination.
 The <i>chain</i> next to an image, audio or video file indicates that it can be found by UltraStar correctly.<br><br>You can reset chains by double-clicking the correct column.
 Files are unused by UltraStar whenever they are displayed in <font color="gray">gray</font>.
-You want to know how many songs you have in your collection? Well, there are <b>%1 songs</b>. Not bad at all.<br><br>Did you get a cover, a background or a video for each one? No? Then you've got a new task.
+You want to know how many songs you have in your collection? Well, there are <b>%1 songs</b>. Not bad at all.<br><br>Do you have a cover, a background or a video for each one? No? Then you've got a new task.
 Hmmm... just in case you did not notice: The last events are located at the top of the event log.
 Did you remark these nice tooltips at the header of each column in the song tree? There are more tooltips at nearly every button here.
 Do you wonder why some tasks want to rename your file into <i>something.*</i>?<br><br>Well, your file suffix is preserved whatever it may be. So don't bother.

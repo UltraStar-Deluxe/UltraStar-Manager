@@ -61,7 +61,7 @@ public:
 	void updateAsDirectory(bool showRelativePath = false);
 	void updateAsTxt();
 	void updateAsMp3();
-	void updateAsPicture();
+	void updateAsImage();
 	void updateAsVideo();
 	void updateAsLicense();
 	void updateAsMidi();

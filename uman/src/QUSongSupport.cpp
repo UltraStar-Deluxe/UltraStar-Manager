@@ -81,8 +81,8 @@ QStringList QUSongSupport::allowedAudioFiles() {
 	return registryKey("allowedAudioFiles", "*.mp3 *.ogg");
 }
 
-QStringList QUSongSupport::allowedPictureFiles() {
-	return registryKey("allowedPictureFiles", "*.jpg *.jpeg *.png");
+QStringList QUSongSupport::allowedImageFiles() {
+	return registryKey("allowedImageFiles", "*.jpg *.jpeg *.png");
 }
 
 QStringList QUSongSupport::allowedVideoFiles() {
@@ -101,6 +101,10 @@ QStringList QUSongSupport::allowedEncodingTypes() {
 	result << "UTF8";   // UTF-8
 
 	return result;
+}
+
+QStringList QUSongSupport::availableSongLanguages() {
+	return registryKey("allowedSongLanguages", "Arabic Chinese Croatian Czech Danish Dutch English Finnish French German Hindi Italian Japanese Korean Latin Norwegian Polish Portuguese Romanian Russian Slovak Slowenian Spanish Swedish Turkish");
 }
 
 QString QUSongSupport::defaultInputEncoding() {

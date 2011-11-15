@@ -27,8 +27,8 @@ bool QU::fileTypeLessThan(const QFileInfo &fi1, const QFileInfo &fi2) {
 			if(QString::compare(type, suffix2, Qt::CaseInsensitive) == 0)
 				return false;
 		}
-	} else if(QUSongSupport::allowedPictureFiles().contains(suffix1) and QUSongSupport::allowedPictureFiles().contains(suffix2)) {
-		foreach(QString type, QUSongSupport::allowedPictureFiles()) {
+	} else if(QUSongSupport::allowedImageFiles().contains(suffix1) and QUSongSupport::allowedImageFiles().contains(suffix2)) {
+		foreach(QString type, QUSongSupport::allowedImageFiles()) {
 			if(QString::compare(type, suffix1, Qt::CaseInsensitive) == 0)
 				return true;
 			if(QString::compare(type, suffix2, Qt::CaseInsensitive) == 0)

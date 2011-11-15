@@ -20,11 +20,13 @@ public:
 	static QStringList allowedKaraokeFiles(); // MIDI + Lyrics
 	static QStringList allowedScoreFiles();
 	static QStringList allowedAudioFiles();
-	static QStringList allowedPictureFiles();
+	static QStringList allowedImageFiles();
 	static QStringList allowedVideoFiles();
 	static QStringList allowedPlaylistFiles();
 
 	static QStringList allowedEncodingTypes();
+	static QStringList availableSongLanguages();
+
 	static QString defaultInputEncoding();
 	static QString defaultOutputEncoding();
 

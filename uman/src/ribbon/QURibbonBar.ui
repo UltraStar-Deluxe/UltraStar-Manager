@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1110</width>
+    <width>1157</width>
     <height>98</height>
    </rect>
   </property>
@@ -902,7 +902,7 @@ border-left-color: #C2C7CB;</string>
             </size>
            </property>
            <property name="toolTip">
-            <string>Setup all necessary paths to ensure full application funciontality.</string>
+            <string>Setup all necessary paths to ensure full application functionality.</string>
            </property>
            <property name="text">
             <string>Paths...</string>
@@ -970,7 +970,7 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>60</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -1526,7 +1526,7 @@ border-left-color: #C2C7CB;</string>
            </item>
            <item>
             <property name="text">
-             <string>1024 x 576</string>
+             <string notr="true">1024 x 576</string>
             </property>
            </item>
            <item>
@@ -1588,7 +1588,7 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>60</width>
+           <width>68</width>
            <height>0</height>
           </size>
          </property>
@@ -1627,6 +1627,12 @@ border-left-color: #C2C7CB;</string>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="minimumSize">
+          <size>
+           <width>68</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="toolTip">
           <string>Change application language to 'German (Deutsch)'.</string>
          </property>
@@ -1662,7 +1668,7 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>60</width>
+           <width>68</width>
            <height>0</height>
           </size>
          </property>
@@ -1701,7 +1707,7 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>60</width>
+           <width>68</width>
            <height>0</height>
           </size>
          </property>
@@ -1740,7 +1746,7 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>60</width>
+           <width>68</width>
            <height>0</height>
           </size>
          </property>
@@ -1779,7 +1785,7 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>60</width>
+           <width>68</width>
            <height>0</height>
           </size>
          </property>
@@ -2353,6 +2359,9 @@ border-left-color: #C2C7CB;</string>
              <width>60</width>
              <height>0</height>
             </size>
+           </property>
+           <property name="toolTip">
+            <string>Check for Update. Internet connection required.</string>
            </property>
            <property name="text">
             <string>Check for

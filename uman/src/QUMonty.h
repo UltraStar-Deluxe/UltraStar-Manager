@@ -31,7 +31,7 @@ public:
 	void answer(QLabel *montyLbl, QLabel *msgLbl, const QString &question = QString(), bool prev = false);
 
 	const QStringList& genres() const { return _genres; }
-	const QStringList& languages() const { return _languages; }
+//	const QStringList& languages() const { return _languages; }
 
 	void addUnsupportedTag(const QString &tag) { _unsupportedTags.append(tag); }
 	const QStringList& unsupportedTags() { _unsupportedTags.removeDuplicates(); return _unsupportedTags; }
@@ -50,13 +50,13 @@ private:
 
 	QStringList messages;
 	QStringList _genres;
-	QStringList _languages;
+//	QStringList _languages;
 	QStringList _unsupportedTags; // keep track of all unsupported tags found to far
 
 	QFileSystemWatcher *_watcher;
 
 	void initGenres();
-	void initLanguages();
+//	void initLanguages();
 };
 
 #endif /*QUMONTY_H_*/

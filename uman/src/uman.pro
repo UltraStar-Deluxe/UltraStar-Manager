@@ -1,9 +1,9 @@
 TEMPLATE = app
 UI_DIR = ui
 QT += core \
-    gui \
-    xml \
-    network
+	gui \
+	xml \
+	network
 
 #CONFIG += release
 
