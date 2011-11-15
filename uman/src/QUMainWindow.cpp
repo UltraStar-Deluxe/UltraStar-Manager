@@ -225,7 +225,7 @@ void QUMainWindow::initConfig() {
 
 	QStringList imageFormatsNeeded;
 	QStringList imageFormatsQt;
-	QStringList imageFormatsUman = QUSongSupport::allowedPictureFiles().join(" ").remove("*.").split(" ");
+	QStringList imageFormatsUman = QUSongSupport::allowedImageFiles().join(" ").remove("*.").split(" ");
 	foreach(QByteArray ba, QImageReader::supportedImageFormats())
 		imageFormatsQt << ba;
 	foreach(QString neededFormat, imageFormatsUman)
@@ -700,13 +700,13 @@ void QUMainWindow::editSongSetFileLink(QTreeWidgetItem *item, int column) {
 		song->setInfo(MP3_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	} else if( songItem->icon(COVER_COLUMN).isNull()
-			and QUSongSupport::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)
+			and QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)
 			and column == COVER_COLUMN ) {
 		logSrv->add(QString(tr("Cover changed from \"%1\" to: \"%2\".")).arg(song->cover()).arg(songItem->text(FOLDER_COLUMN)), QU::Information);
 		song->setInfo(COVER_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	} else if( songItem->icon(BACKGROUND_COLUMN).isNull()
-			and QUSongSupport::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)
+			and QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)
 			and column == BACKGROUND_COLUMN ) {
 		logSrv->add(QString(tr("Background changed from \"%1\" to: \"%2\".")).arg(song->background()).arg(songItem->text(FOLDER_COLUMN)), QU::Information);
 		song->setInfo(BACKGROUND_TAG, songItem->text(FOLDER_COLUMN));
@@ -948,10 +948,10 @@ void QUMainWindow::checkForUpdate(bool silent) {
 	if(reply->error() != QNetworkReply::NoError) {
 		if (!silent) {
 			QUMessageBox::warning(this,
-					tr("Update check"),
-					QString(tr("Update check <b>failed</b>.<br><br>Is your internet connection working?")),
+					tr("Update check failed."),
+					QString(tr("Is your internet connection working?")),
 					BTN << ":/marks/accept.png" << "OK",
-					330);
+					240);
 		}
 		logSrv->add(QString(tr("Update check failed. Host unreachable.")), QU::Error);
 		return;
@@ -961,10 +961,10 @@ void QUMainWindow::checkForUpdate(bool silent) {
 	if (!tmp.open()) {
 		if (!silent) {
 			QUMessageBox::warning(this,
-					tr("Update check"),
-					QString(tr("Update check <b>failed</b>.<br><br>No permission to write file %1.")).arg(tmp.fileName()),
+					tr("Update check failed."),
+					QString(tr("No permission to write file %1.")).arg(tmp.fileName()),
 					BTN << ":/marks/accept.png" << "OK",
-					330);
+					240);
 		}
 		logSrv->add(QString(tr("Update check failed. No permission to write file %1.")).arg(tmp.fileName()), QU::Error);
 		return;
@@ -980,25 +980,25 @@ void QUMainWindow::checkForUpdate(bool silent) {
 
 	if (currentVersion < latestVersion) {
 		QUMessageBox::information(this,
-				tr("Update check"),
-				QString(tr("Update check <b>successful</b>. UltraStar Manager %1.%2.%3 is <b>outdated</b>.<br><br>"
+				tr("Update check successful."),
+				QString(tr("UltraStar Manager %1.%2.%3 is <b>outdated</b>.<br><br>"
 						"Download the most recent UltraStar Manager %4 <a href='http://sourceforge.net/projects/uman/'>here</a>."))
 						.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION)
 						.arg(latestVersionString),
 				BTN << ":/marks/accept.png" << "OK",
-				330);
+				240);
 		logSrv->add(QString(tr("Update check successful. A new version of UltraStar Manager is available.")), QU::Information);
 	} else {
 		logSrv->add(QString(tr("Update check successful. UltraStar Manager is up to date.")), QU::Information);
 		if (!silent) {
 			QSettings settings;
 			int result = QUMessageBox::information(this,
-					tr("Update check"),
-					QString(tr("Update check <b>successful</b>. UltraStar Manager %1.%2.%3 is <b>up to date</b>!"))
+					tr("Update check successful."),
+					QString(tr("UltraStar Manager %1.%2.%3 is <b>up to date</b>!"))
 							.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION),
 					BTN << ":/marks/accept.png" << tr("OK. I will check again later.")
-					    << ":/marks/accept.png" << tr("OK. Please check again automatically on startup."),
-					330);
+					    << ":/marks/accept.png" << tr("OK. Check automatically on startup."),
+					240);
 			if(result == 0) {
 				settings.setValue("allowUpdateCheck", QVariant(false));
 				logSrv->add(QString(tr("Automatic check for updates disabled.")), QU::Information);
@@ -1186,7 +1186,6 @@ void QUMainWindow::toggleAltSongTreeChk(bool checked) {
 
 		if(songItem) {
 			dlg.update(songItem->song()->songFileInfo().dir().dirName());
-
 			songItem->updateSpellFileCheckColumns();
 		}
 	}
@@ -1249,7 +1248,7 @@ void QUMainWindow::applyDefaultAction(QTreeWidgetItem *item, int column) {
 		// swap song with friend
 //		songDB->swapSongWithFriend(songItem->song(), item->text(FOLDER_COLUMN));
 //		updateDetails();
-	} else if(QUSongSupport::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+	} else if(QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QUPictureDialog dlg(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(FOLDER_COLUMN)).filePath(), this);
 		dlg.exec();
 	} else if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)
@@ -1308,7 +1307,7 @@ void QUMainWindow::openInternally(QTreeWidgetItem *item) {
 		// show (raw) content of friend song
 		QUTextDialog dlg(songItem->song()->friendAt(item->text(FOLDER_COLUMN)), this);
 		dlg.exec();
-	} else if(QUSongSupport::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+	} else if(QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QUPictureDialog dlg(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(FOLDER_COLUMN)).filePath(), this);
 		dlg.exec();
 	}
@@ -1669,48 +1668,156 @@ void QUMainWindow::setMediumMp3Quality(QString quality) {
 	QSettings settings;
 	settings.setValue("mediumMp3Quality", quality.split(" ").first().toInt());
 
-	songDB->reload();
-	detailsTable->reset();
+	// ensure that highMp3Quality is at least one level higher
+	if(_menu->highMp3QualityComboBox->currentIndex() <= _menu->highMp3QualityComboBox->findText(quality)) {
+		disconnect(_menu->highMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighMp3Quality(QString)));
+		_menu->highMp3QualityComboBox->setCurrentIndex(_menu->highMp3QualityComboBox->findText(quality) + 1);
+		connect(_menu->highMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighMp3Quality(QString)));
+		settings.setValue("highMp3Quality", _menu->highMp3QualityComboBox->currentText().split(" ").first().toInt());
+	}
+
+	QUProgressDialog dlg(tr("Updating audio quality icons..."), songTree->topLevelItemCount(), this, false);
+	dlg.setPixmap(":/types/folder.png");
+	dlg.show();
+
+	for(int i = 0; i < songTree->topLevelItemCount(); i++) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
+
+		if(songItem) {
+			dlg.update(songItem->song()->songFileInfo().dir().dirName());
+			songItem->updateSpellFileCheckColumns();
+		}
+	}
 }
 
 void QUMainWindow::setHighMp3Quality(QString quality) {
 	QSettings settings;
 	settings.setValue("highMp3Quality", quality.split(" ").first().toInt());
 
-	songDB->reload();
-	detailsTable->reset();
+	// ensure that mediumMp3Quality is at least one level lower
+	if(_menu->mediumMp3QualityComboBox->currentIndex() >= _menu->mediumMp3QualityComboBox->findText(quality)) {
+		disconnect(_menu->mediumMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumMp3Quality(QString)));
+		_menu->mediumMp3QualityComboBox->setCurrentIndex(_menu->mediumMp3QualityComboBox->findText(quality) - 1);
+		connect(_menu->mediumMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumMp3Quality(QString)));
+		settings.setValue("mediumMp3Quality", _menu->mediumMp3QualityComboBox->currentText().split(" ").first().toInt());
+	}
+
+	QUProgressDialog dlg(tr("Updating audio quality icons..."), songTree->topLevelItemCount(), this, false);
+	dlg.setPixmap(":/types/folder.png");
+	dlg.show();
+
+	for(int i = 0; i < songTree->topLevelItemCount(); i++) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
+
+		if(songItem) {
+			dlg.update(songItem->song()->songFileInfo().dir().dirName());
+			songItem->updateSpellFileCheckColumns();
+		}
+	}
 }
 
 void QUMainWindow::setMediumCoverQuality(QString quality) {
 	QSettings settings;
 	settings.setValue("mediumCoverQuality", quality);
 
-	songDB->reload();
-	detailsTable->reset();
+	// ensure that highCoverQuality is at least one level higher
+	if(_menu->highCoverQualityComboBox->currentIndex() <= _menu->highCoverQualityComboBox->findText(quality)) {
+		disconnect(_menu->highCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighCoverQuality(QString)));
+		_menu->highCoverQualityComboBox->setCurrentIndex(_menu->highCoverQualityComboBox->findText(quality) + 1);
+		connect(_menu->highCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighCoverQuality(QString)));
+		settings.setValue("highCoverQuality", _menu->highCoverQualityComboBox->currentText().split(" ").first().toInt());
+	}
+
+	QUProgressDialog dlg(tr("Updating cover quality icons..."), songTree->topLevelItemCount(), this, false);
+	dlg.setPixmap(":/types/folder.png");
+	dlg.show();
+
+	for(int i = 0; i < songTree->topLevelItemCount(); i++) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
+
+		if(songItem) {
+			dlg.update(songItem->song()->songFileInfo().dir().dirName());
+			songItem->updateSpellFileCheckColumns();
+		}
+	}
 }
 
 void QUMainWindow::setHighCoverQuality(QString quality) {
 	QSettings settings;
 	settings.setValue("highCoverQuality", quality);
 
-	songDB->reload();
-	detailsTable->reset();
+	// ensure that mediumCoverQuality is at least one level lower
+	if(_menu->mediumCoverQualityComboBox->currentIndex() >= _menu->mediumCoverQualityComboBox->findText(quality)) {
+		disconnect(_menu->mediumCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumCoverQuality(QString)));
+		_menu->mediumCoverQualityComboBox->setCurrentIndex(_menu->mediumCoverQualityComboBox->findText(quality) - 1);
+		connect(_menu->mediumCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumCoverQuality(QString)));
+		settings.setValue("mediumCoverQuality", _menu->mediumCoverQualityComboBox->currentText().split(" ").first().toInt());
+	}
+
+	QUProgressDialog dlg(tr("Updating cover quality icons..."), songTree->topLevelItemCount(), this, false);
+	dlg.setPixmap(":/types/folder.png");
+	dlg.show();
+
+	for(int i = 0; i < songTree->topLevelItemCount(); i++) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
+
+		if(songItem) {
+			dlg.update(songItem->song()->songFileInfo().dir().dirName());
+			songItem->updateSpellFileCheckColumns();
+		}
+	}
 }
 
 void QUMainWindow::setMediumBackgroundQuality(QString quality) {
 	QSettings settings;
 	settings.setValue("mediumBackgroundQuality", quality);
 
-	songDB->reload();
-	detailsTable->reset();
+	// ensure that highBackgroundQuality is at least one level higher
+	if(_menu->highBackgroundQualityComboBox->currentIndex() <= _menu->highBackgroundQualityComboBox->findText(quality)) {
+		disconnect(_menu->highBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighBackgroundQuality(QString)));
+		_menu->highBackgroundQualityComboBox->setCurrentIndex(_menu->highBackgroundQualityComboBox->findText(quality) + 1);
+		connect(_menu->highBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighBackgroundQuality(QString)));
+		settings.setValue("highBackgroundQuality", _menu->highBackgroundQualityComboBox->currentText().split(" ").first().toInt());
+	}
+
+	QUProgressDialog dlg(tr("Updating background quality icons..."), songTree->topLevelItemCount(), this, false);
+	dlg.setPixmap(":/types/folder.png");
+	dlg.show();
+
+	for(int i = 0; i < songTree->topLevelItemCount(); i++) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
+
+		if(songItem) {
+			dlg.update(songItem->song()->songFileInfo().dir().dirName());
+			songItem->updateSpellFileCheckColumns();
+		}
+	}
 }
 
 void QUMainWindow::setHighBackgroundQuality(QString quality) {
 	QSettings settings;
 	settings.setValue("highBackgroundQuality", quality);
 
-	songDB->reload();
-	detailsTable->reset();
+	// ensure that mediumBackgroundQuality is at least one level lower
+	if(_menu->mediumBackgroundQualityComboBox->currentIndex() >= _menu->mediumBackgroundQualityComboBox->findText(quality)) {
+		disconnect(_menu->mediumBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumBackgroundQuality(QString)));
+		_menu->mediumBackgroundQualityComboBox->setCurrentIndex(_menu->mediumBackgroundQualityComboBox->findText(quality) - 1);
+		connect(_menu->mediumBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumBackgroundQuality(QString)));
+		settings.setValue("mediumBackgroundQuality", _menu->mediumBackgroundQualityComboBox->currentText().split(" ").first().toInt());
+	}
+
+	QUProgressDialog dlg(tr("Updating background quality icons..."), songTree->topLevelItemCount(), this, false);
+	dlg.setPixmap(":/types/folder.png");
+	dlg.show();
+
+	for(int i = 0; i < songTree->topLevelItemCount(); i++) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
+
+		if(songItem) {
+			dlg.update(songItem->song()->songFileInfo().dir().dirName());
+			songItem->updateSpellFileCheckColumns();
+		}
+	}
 }
 
 void QUMainWindow::clearStatusMessage() {
