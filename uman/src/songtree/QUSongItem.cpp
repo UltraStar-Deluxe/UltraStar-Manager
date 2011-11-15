@@ -79,8 +79,8 @@ void QUSongItem::update() {
 			child->updateAsTxt();
 		} else if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsMp3();
-		} else if(QUSongSupport::allowedPictureFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-			child->updateAsPicture();
+		} else if(QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+			child->updateAsImage();
 		} else if(QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsVideo();
 		} else if(QUSongSupport::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)) {
@@ -183,7 +183,7 @@ void QUSongItem::updateAsMp3() {
 	}
 }
 
-void QUSongItem::updateAsPicture() {
+void QUSongItem::updateAsImage() {
 	clearContents();
 
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/image.png"));
@@ -193,10 +193,18 @@ void QUSongItem::updateAsPicture() {
 	if(QString::compare(song()->cover(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
 		this->setIcon(COVER_COLUMN, QIcon(":/marks/link.png"));
 		used = true;
+	} else if(song()->friendHasTag(COVER_TAG, this->text(FOLDER_COLUMN))) { // file used by friend as cover
+		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
+		used = true;
 	}
 
 	if(QString::compare(song()->background(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
 		this->setIcon(BACKGROUND_COLUMN, QIcon(":/marks/link.png"));
+		used = true;
+	} else if(song()->friendHasTag(BACKGROUND_TAG, this->text(FOLDER_COLUMN))) { // file used by friend as background
+		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
 		used = true;
 	}
 
@@ -211,9 +219,12 @@ void QUSongItem::updateAsVideo() {
 
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/video.png"));
 
-	if(QString::compare(song()->video(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0)
+	if(QString::compare(song()->video(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
 		this->setIcon(VIDEO_COLUMN, QIcon(":/marks/link.png"));
-	else {
+	} else if(song()->friendHasTag(VIDEO_TAG, this->text(FOLDER_COLUMN))) { // video file used by friend
+		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
+	} else {
 		this->setTextColor(FOLDER_COLUMN, Qt::gray);
 		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
 	}
