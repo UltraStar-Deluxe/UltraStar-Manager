@@ -34,7 +34,7 @@
     <message>
         <location filename="QUCleanUpTaskFactory.cpp" line="11"/>
         <source>Clean-Up Tasks</source>
-        <translation>Taches de nettoyage</translation>
+        <translation>Tâches de nettoyage</translation>
     </message>
     <message>
         <location filename="QUCleanUpTaskFactory.cpp" line="15"/>
@@ -65,7 +65,7 @@
     <message>
         <location filename="../shared/QUSimpleTaskFactory.h" line="16"/>
         <source>Simple Task</source>
-        <translation>Tache simple</translation>
+        <translation>Tâche simple</translation>
     </message>
 </context>
 <context>

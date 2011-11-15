@@ -1,8 +1,8 @@
 <task>
     <general type="id3">
         <icon resource=":/types/background.png"/>
-        <description><![CDATA[Write #BACKGROUND even without existing image file.]]></description>
-        <tooltip><![CDATA[Write #BACKGROUND even without existing image file.]]></tooltip>
+        <description><![CDATA[Write #BACKGROUND even without existing image file]]></description>
+        <tooltip/>
     </general>
     <id3 target="background" schema="%1 - %2 [BG].jpg">
         <data source="artist_"/>

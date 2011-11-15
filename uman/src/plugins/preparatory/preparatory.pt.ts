@@ -48,7 +48,8 @@
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="38"/>
-        <source>Round #GAP to nearest integer.</source>
+        <source>Round #GAP to nearest integer</source>
+        <oldsource>Round #GAP to nearest integer.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -69,6 +70,32 @@
     <message>
         <location filename="QUPreparatoryTask.cpp" line="48"/>
         <source>Capitalize each word of the artist, e.g. &quot;michael jackson&quot; -&gt; &quot;Michael Jackson&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="93"/>
+        <location filename="QUPreparatoryTask.cpp" line="94"/>
+        <source>Pattern:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="93"/>
+        <source>(cover)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="94"/>
+        <source>(background)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="101"/>
+        <source>Buffer:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="101"/>
+        <source>seconds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

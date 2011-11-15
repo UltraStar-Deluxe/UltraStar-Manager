@@ -4,12 +4,12 @@
 <context>
     <name>QUAlbumArtExCollector</name>
     <message>
-        <location filename="QUAlbumArtExCollector.cpp" line="64"/>
+        <location filename="QUAlbumArtExCollector.cpp" line="65"/>
         <source>No results, %1 ignored.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUAlbumArtExCollector.cpp" line="66"/>
+        <location filename="QUAlbumArtExCollector.cpp" line="67"/>
         <source>No results.</source>
         <translation type="unfinished"></translation>
     </message>

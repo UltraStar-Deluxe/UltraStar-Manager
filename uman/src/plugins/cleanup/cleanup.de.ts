@@ -6,7 +6,7 @@
     <message>
         <location filename="QUCleanUpTask.cpp" line="13"/>
         <source>Delete unused files</source>
-        <translation>Lösche nicht benutzte Dateien</translation>
+        <translation>Lösche nicht verwendete Dateien</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="14"/>
@@ -16,17 +16,17 @@
     <message>
         <location filename="QUCleanUpTask.cpp" line="18"/>
         <source>Clear invalid file-related tags</source>
-        <translation>Entferne ungültige, datei-bezogene Tags</translation>
+        <translation>Entferne ungültige, Datei-bezogene Tags</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="19"/>
         <source>Removes the value of invalid file-related tags so that they will not be saved into the song text file.&lt;br&gt;&lt;br&gt;This includes &lt;b&gt;#VIDEOGAP&lt;/b&gt; for invalid video files as well as &lt;b&gt;#START&lt;/b&gt; and &lt;b&gt;#END&lt;/b&gt; for invalid audio files.</source>
-        <translation>Entfernt den Werte jedes ungültigen, datei-bezogenen Tags, sodass dieser nicht mehr in die Songdatei gespeichert wird.&lt;br&gt;&lt;br&gt;Dies betrifft auch &lt;b&gt;#VIDEOGAP&lt;/b&gt; für ungültige Videos, sowie &lt;b&gt;#START&lt;/b&gt; und &lt;b&gt;#END&lt;/b&gt; für ungültige Audiodateien.</translation>
+        <translation>Entfernt den Wert jedes ungültigen, datei-bezogenen Tags, sodass dieser nicht mehr in die Songdatei gespeichert wird.&lt;br&gt;&lt;br&gt;Dies betrifft auch &lt;b&gt;#VIDEOGAP&lt;/b&gt; für ungültige Videos, sowie &lt;b&gt;#START&lt;/b&gt; und &lt;b&gt;#END&lt;/b&gt; für ungültige Audiodateien.</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="25"/>
         <source>Remove #END tag.</source>
-        <translation>#END-Tag entfernen.</translation>
+        <translation>Entferne den #END-Tag.</translation>
     </message>
 </context>
 <context>

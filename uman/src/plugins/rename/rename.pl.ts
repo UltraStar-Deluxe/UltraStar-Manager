@@ -70,51 +70,62 @@
     </message>
     <message>
         <location filename="language.h" line="14"/>
-        <source>Rename directory to &quot;Artist - Title [VIDEO] [SC]&quot; if checked or video present. Keep other folder tags.</source>
-        <translation>Zmiana nazwy katalogu na &quot;Wykonawca - Tytuł [VIDEO][SC]&quot; jeśli zostanie zaznaczone lub jeśli istnieje teledysk. Reszta etykiet pozostanie bez zmian.</translation>
+        <source>Rename directory to &quot;Artist - Title [VIDEO] [SC]&quot; if checked or video present, keep other folder tags</source>
+        <oldsource>Rename directory to &quot;Artist - Title [VIDEO] [SC]&quot; if checked or video present. Keep other folder tags.</oldsource>
+        <translation type="unfinished">Zmiana nazwy katalogu na &quot;Wykonawca - Tytuł [VIDEO][SC]&quot; jeśli zostanie zaznaczone lub jeśli istnieje teledysk. Reszta etykiet pozostanie bez zmian.</translation>
     </message>
     <message>
         <location filename="language.h" line="15"/>
         <source>Looks for &lt;b&gt;[SC]&lt;/b&gt; in the &lt;b&gt;#EDITION&lt;/b&gt; tag to find out whether it is checked or not.&lt;br&gt;&lt;br&gt;Other folder tags like &lt;b&gt;[KARAOKE]&lt;/b&gt; will be appended to the end if present.</source>
-        <translation>Wyszukuje &lt;b&gt;[SC]&lt;/b&gt; w etykiecie &lt;b&gt;#EDITION&lt;/b&gt; by dowiedzieć się o tym czy plik był sprawdzany.&lt;br&gt;&lt;br&gt;Inne etykiety takie jak &lt;b&gt;[KARAOKE]&lt;/b&gt; jeśli zostaną znalezione to będą dołączone na końcu.</translation>
+        <oldsource>Looks for &lt;b&gt;[SC]&lt;/b&gt; in the &lt;b&gt;#EDITION&lt;/b&gt; tag to find out whether it is checked or not.&lt;br&gt;&lt;br&gt;Other folder tags like &lt;b&gt;[FOOBAR]&lt;/b&gt; will be appended to the end if present.</oldsource>
+        <translation type="unfinished">Wyszukuje &lt;b&gt;[SC]&lt;/b&gt; w etykiecie &lt;b&gt;#EDITION&lt;/b&gt; by dowiedzieć się o tym czy plik był sprawdzany.&lt;br&gt;&lt;br&gt;Inne etykiety takie jak &lt;b&gt;[KARAOKE]&lt;/b&gt; jeśli zostaną znalezione to będą dołączone na końcu.</translation>
     </message>
     <message>
         <location filename="language.h" line="16"/>
-        <source>Rename songtext file to &quot;Artist - Title.txt&quot;</source>
-        <translation>Zmień nazwę pliku z tekstem piosenki na &quot;Wykonawca - Tytuł.txt&quot;</translation>
+        <source>Rename songtext file to &quot;Artist - Title.*&quot;</source>
+        <oldsource>Rename songtext file to &quot;Artist - Title.txt&quot;</oldsource>
+        <translation type="unfinished">Zmień nazwę pliku z tekstem piosenki na &quot;Wykonawca - Tytuł.txt&quot;</translation>
     </message>
     <message>
         <location filename="language.h" line="17"/>
-        <source>Rename audio file to &quot;Artist - Title.*&quot;</source>
-        <translation>Zmień nazwę pliku z dźwiękiem na &quot;Wykonawca - Tytuł.*&quot;</translation>
+        <source>Rename songtext file to &quot;Artist - Title.*&quot; and use &quot;txd&quot; extension for duets</source>
+        <oldsource>Rename songtext file to &quot;Artist - Title.*&quot; and use &quot;txd&quot; extension for duets.</oldsource>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="language.h" line="18"/>
+        <source>Rename audio file to &quot;Artist - Title.*&quot;</source>
+        <oldsource>Change duet songtext file to &quot;Artist - Title.txd&quot;</oldsource>
+        <translation type="unfinished">Zmień nazwę pliku z dźwiękiem na &quot;Wykonawca - Tytuł.*&quot;</translation>
+    </message>
+    <message>
+        <location filename="language.h" line="19"/>
         <source>Rename cover to &quot;Artist - Title [CO].*&quot;</source>
         <translation>Zmień nazwę pliku z okładką na &quot;Wykonawca - Tytuł [CO].*&quot;</translation>
     </message>
     <message>
-        <location filename="language.h" line="19"/>
+        <location filename="language.h" line="20"/>
         <source>Rename the cover file to a proper schema.&lt;br&gt;File endings will be preserved.</source>
         <translation>Zmień nazwę pliku okładki według poprawnego schematu.&lt;br&gt;Rozszerzenia pozostaną zachowane.</translation>
     </message>
     <message>
-        <location filename="language.h" line="20"/>
+        <location filename="language.h" line="21"/>
         <source>Rename background to &quot;Artist - Title [BG].*&quot;</source>
         <translation>Zmień nazwę pliku z tłem na &quot;Wykonawca - Tytuł [BG].*&quot;</translation>
     </message>
     <message>
-        <location filename="language.h" line="21"/>
+        <location filename="language.h" line="22"/>
         <source>Rename video to &quot;Artist - Title.*&quot;</source>
         <translation>Zmień nazwę pliku z teledyskiem na &quot;Wykonawca - Tytuł.*&quot;</translation>
     </message>
     <message>
-        <location filename="language.h" line="22"/>
-        <source>Rename video to &quot;Artist - Title [VD#*].*&quot; consider VIDEOGAP</source>
-        <translation>Zmień nazwę pliku z teledyskiem na &quot;Wykonawca - Tytuł [VD#*].*&quot; według etykiety VIDEOGAP</translation>
+        <location filename="language.h" line="23"/>
+        <source>Rename video to &quot;Artist - Title [VD#*].*&quot; considering #VIDEOGAP value</source>
+        <oldsource>Rename video to &quot;Artist - Title [VD#*].*&quot; consider VIDEOGAP</oldsource>
+        <translation type="unfinished">Zmień nazwę pliku z teledyskiem na &quot;Wykonawca - Tytuł [VD#*].*&quot; według etykiety VIDEOGAP</translation>
     </message>
     <message>
-        <location filename="language.h" line="23"/>
+        <location filename="language.h" line="24"/>
         <source>Uses &lt;b&gt;#VIDEOGAP:0&lt;/b&gt; if tag not present.</source>
         <translation>Użyj &lt;b&gt;#VIDEOGAP:0&lt;/b&gt; jeśli taka etykieta nie występuje.</translation>
     </message>
@@ -140,7 +151,7 @@
 <context>
     <name>QURenameTask</name>
     <message>
-        <location filename="QURenameTask.cpp" line="104"/>
+        <location filename="QURenameTask.cpp" line="110"/>
         <source>Invalid target: %1</source>
         <translation>Błędny obiekt docelowy: %1</translation>
     </message>
@@ -148,12 +159,12 @@
 <context>
     <name>QURenameTaskDialog</name>
     <message>
-        <location filename="QURenameTaskDialog.cpp" line="25"/>
+        <location filename="QURenameTaskDialog.cpp" line="27"/>
         <source>Add Rename Task</source>
         <translation>Dodaj Zadanie Zmiany Nazwy</translation>
     </message>
     <message>
-        <location filename="QURenameTaskDialog.cpp" line="20"/>
+        <location filename="QURenameTaskDialog.cpp" line="22"/>
         <source>Select a proper &lt;b&gt;target&lt;/b&gt; and create a custom &lt;b&gt;schema&lt;/b&gt; for the renaming operation. You can use &lt;b&gt;custom tags&lt;/b&gt; as sources.</source>
         <translation>Wybierz właściwy &lt;b&gt;obiekt&lt;/b&gt; i stwórz własny &lt;b&gt;schemat&lt;/b&gt; dla modyfikowania nazw. Możesz użyć &lt;b&gt;własnych etykiet&lt;/b&gt; jako źródła.</translation>
     </message>
@@ -210,17 +221,27 @@
         <translation>Domyślne</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDataTable.cpp" line="13"/>
+        <location filename="../shared/QUTaskDataTable.cpp" line="8"/>
+        <source>Modifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shared/QUTaskDataTable.cpp" line="14"/>
+        <source>Lets you negate the selected condition.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shared/QUTaskDataTable.cpp" line="15"/>
         <source>Placeholder will be replaced with&lt;br&gt;source data if condition is fullfilled.</source>
         <translation>Obiekt zostanie uwzględniony w zadaniu, jeśli spełnione będą poniższe warunki.</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDataTable.cpp" line="14"/>
+        <location filename="../shared/QUTaskDataTable.cpp" line="16"/>
         <source>Static or dynamic source data for a placeholder.</source>
         <translation>Stałe lub zmienne dane źródłowe dla obiektów zadania.</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDataTable.cpp" line="15"/>
+        <location filename="../shared/QUTaskDataTable.cpp" line="17"/>
         <source>Simple text for static source data or a default value&lt;br&gt;if the dynamic source data is &lt;b&gt;not available&lt;/b&gt;.</source>
         <translation>Tekst prosty dla Stałego źródła lub jego domyślna wartość&lt;br&gt;jeśli zmienne dane dla źródła są &lt;b&gt;niedostępne&lt;/b&gt;.</translation>
     </message>
@@ -228,81 +249,81 @@
 <context>
     <name>QUTaskDialog</name>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="13"/>
+        <location filename="../shared/QUTaskDialog.ui" line="14"/>
         <source>Edit Rename Task</source>
         <translation>Zmień lub Przemianuj Zadania</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="121"/>
-        <location filename="../shared/QUTaskDialog.ui" line="396"/>
-        <location filename="../shared/QUTaskDialog.ui" line="410"/>
-        <location filename="../shared/QUTaskDialog.ui" line="488"/>
-        <location filename="../shared/QUTaskDialog.ui" line="514"/>
+        <location filename="../shared/QUTaskDialog.ui" line="122"/>
+        <location filename="../shared/QUTaskDialog.ui" line="397"/>
+        <location filename="../shared/QUTaskDialog.ui" line="411"/>
+        <location filename="../shared/QUTaskDialog.ui" line="489"/>
+        <location filename="../shared/QUTaskDialog.ui" line="515"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="157"/>
+        <location filename="../shared/QUTaskDialog.ui" line="158"/>
         <source>&amp;Description</source>
         <translation>&amp;Opis</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="170"/>
+        <location filename="../shared/QUTaskDialog.ui" line="171"/>
         <source>T&amp;oolTip</source>
         <translation>P&amp;odpowiedź</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="208"/>
+        <location filename="../shared/QUTaskDialog.ui" line="209"/>
         <source>&amp;Icon</source>
         <translation>&amp;Ikona</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="227"/>
+        <location filename="../shared/QUTaskDialog.ui" line="228"/>
         <source>Cup</source>
         <translation>Puchar</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="255"/>
+        <location filename="../shared/QUTaskDialog.ui" line="256"/>
         <source>&amp;Group</source>
         <translation>&amp;Grupa</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="280"/>
+        <location filename="../shared/QUTaskDialog.ui" line="281"/>
         <source>Exclusive task</source>
         <translation>Zadanie Priorytetowe</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="310"/>
+        <location filename="../shared/QUTaskDialog.ui" line="311"/>
         <source>&amp;Target</source>
         <translation>&amp;Cel</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="328"/>
+        <location filename="../shared/QUTaskDialog.ui" line="329"/>
         <source>The target specifies the object on which the renaming will be done.</source>
         <translation>Cel wskazuje na obiekt którego nazwa zostanie zmieniona.</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="332"/>
+        <location filename="../shared/QUTaskDialog.ui" line="333"/>
         <source>mp3</source>
         <translation>mp3</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="362"/>
+        <location filename="../shared/QUTaskDialog.ui" line="363"/>
         <source>&amp;Schema</source>
         <translation>&amp;Schemat</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="562"/>
+        <location filename="../shared/QUTaskDialog.ui" line="563"/>
         <source>Save As...</source>
         <translation>Zapisz Jako...</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="589"/>
+        <location filename="../shared/QUTaskDialog.ui" line="590"/>
         <source>Save</source>
         <translation>Zapisz</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="600"/>
+        <location filename="../shared/QUTaskDialog.ui" line="601"/>
         <source>Cancel</source>
         <translation>Anuluj</translation>
     </message>

@@ -13,7 +13,8 @@ SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
     ../shared/QUTaskConditionDelegate.cpp \
     ../shared/QUTaskSourceDelegate.cpp \
 	../shared/QUTaskTextDelegate.cpp \
-	../shared/QUSmartSetting.cpp
+	../shared/QUSmartSetting.cpp \
+    ../shared/QUTaskModifierDelegate.cpp
 HEADERS = language.h \
 	../shared/QUMultilingualTaskFactory.h \
 	QURenameTaskFactory.h \
@@ -31,7 +32,8 @@ HEADERS = language.h \
     ../shared/QUTaskSourceDelegate.h \
 	../shared/QUTaskTextDelegate.h \
 	../shared/QUSmartSetting.h \
-	../QUSmartSettingInterface.h
+	../QUSmartSettingInterface.h \
+    ../shared/QUTaskModifierDelegate.h
 FORMS += ../shared/QUTaskDialog.ui
 TRANSLATIONS = rename.de.ts \
 	rename.pl.ts \
@@ -66,3 +68,5 @@ CONFIG(debug, debug|release) {
 	OBJECTS_DIR = ../tmp/rename/debug
 	MOC_DIR = ../tmp/rename/debug
 }
+
+

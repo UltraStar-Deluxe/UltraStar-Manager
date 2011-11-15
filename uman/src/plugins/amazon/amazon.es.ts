@@ -6,17 +6,17 @@
     <message>
         <location filename="QUAmazonImageCollector.cpp" line="32"/>
         <source>Invalid request.</source>
-        <translation type="unfinished"></translation>
+        <translation>Petición inválida.</translation>
     </message>
     <message>
         <location filename="QUAmazonImageCollector.cpp" line="44"/>
         <source>No results, %1 ignored.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin resultados, %1 ignorado.</translation>
     </message>
     <message>
         <location filename="QUAmazonImageCollector.cpp" line="46"/>
         <source>No results.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin resultados.</translation>
     </message>
 </context>
 <context>
@@ -24,22 +24,23 @@
     <message>
         <location filename="QUAmazonImageSource.cpp" line="12"/>
         <source>&lt;b&gt;What is an &apos;Access Key ID&apos;?&lt;/b&gt;&lt;br&gt;&lt;br&gt;This public key identifies you as the party responsible for the request. It belongs to an Amazon Web Services Account. All free services require you to send this key along with the request.&lt;br&gt;&lt;br&gt;You get your own key if you &lt;a href=&quot;https://aws-portal.amazon.com/gp/aws/developer/registration/index.html&quot;&gt;create an AWS Account&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Chequear que &quot;Acces Key ID&quot; no es un concepto establecido y se puede traducir. Ídem para &quot;Amazon Web Services Account&quot;.</translatorcomment>
+        <translation>&lt;b&gt;¿Qué es un &apos;ID de Acceso&apos;?&lt;/b&gt;&lt;br&gt;&lt;br&gt;Esta clave pública te identifica como el responsable de la petición. Pertenece a una Cuenta Amazon Web Services (AWS). Todos los servicios gratuitos requieren la clave de acceso junto a la petición.&lt;br&gt;&lt;br&gt;Recibes tu propia clave si &lt;a href=&quot;https://aws-portal.amazon.com/gp/aws/developer/registration/index.html&quot;&gt;creas una Cuenta AWS&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="QUAmazonImageSource.cpp" line="16"/>
         <source>&lt;b&gt;What is a &apos;Secret Access Key&apos;?&lt;/b&gt;&lt;br&gt;&lt;br&gt;This secret key is used to calculate a signature to include in requests to the Amazon Product Advertising API which requires this kind of authentication. It should be known only by you and AWS. That&apos;s why each user of a desktop application like this one needs his own key.&lt;br&gt;&lt;br&gt;You get your own key if you &lt;a href=&quot;https://aws-portal.amazon.com/gp/aws/developer/registration/index.html&quot;&gt;create an AWS Account&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;¿Qué es una &apos;Clave Secreta de Acceso&apos;?&lt;/b&gt;&lt;br&gt;&lt;br&gt;Esta clave secreta se usa para calcular una firma que se incluye en las peticiones a Amazon Product Advertising API que requieren este tipo de verificación. Debiera ser conocida solo por ti y AWS. Por eso cada usuario de una aplicacion de escritorio como ésta debe tener su propia clave.&lt;br&gt;&lt;br&gt;Recibes tu propia clave si &lt;a href=&quot;https://aws-portal.amazon.com/gp/aws/developer/registration/index.html&quot;&gt;creas una Cuenta AWS&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="QUAmazonImageSource.cpp" line="20"/>
         <source>There is no help for this field. Try to figure it out by yourself.</source>
-        <translation type="unfinished"></translation>
+        <translation>No existe ayuda para este campo. Intenta entenderlo por ti mismo.</translation>
     </message>
     <message>
         <location filename="QUAmazonImageSource.h" line="17"/>
         <source>Get song covers from Amazon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Consigue carátulas desde Amazon.</translation>
     </message>
 </context>
 <context>
@@ -47,32 +48,32 @@
     <message>
         <location filename="../shared2/QUHttpCollector.cpp" line="40"/>
         <source>Could not get covers for &quot;%1 - %2&quot;. HTTP connection is busy.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../shared2/QUHttpCollector.cpp" line="61"/>
         <source>Sending...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../shared2/QUHttpCollector.cpp" line="63"/>
         <source>Reading...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../shared2/QUHttpCollector.cpp" line="88"/>
         <source>Could not open local file: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../shared2/QUHttpCollector.cpp" line="116"/>
         <source>%1 results, %2 ignored</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../shared2/QUHttpCollector.cpp" line="118"/>
         <source>%1 results</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -80,17 +81,17 @@
     <message>
         <location filename="../shared2/QUMultilingualImageSource.h" line="26"/>
         <source>Unnamed plugin</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../shared2/QUMultilingualImageSource.h" line="28"/>
         <source>Unknown person</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../shared2/QUMultilingualImageSource.h" line="29"/>
         <source>No description given.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 </TS>

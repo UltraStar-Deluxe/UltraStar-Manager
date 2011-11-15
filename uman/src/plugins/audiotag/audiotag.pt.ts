@@ -5,22 +5,26 @@
     <name>QObject</name>
     <message>
         <location filename="language.h" line="1"/>
-        <source>Change #ARTIST via ID3 tag from audio file.</source>
+        <source>Change #ARTIST via ID3 tag from audio file</source>
+        <oldsource>Change #ARTIST via ID3 tag from audio file.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="language.h" line="2"/>
-        <source>Change #TITLE via ID3 tag from audio file.</source>
+        <source>Change #TITLE via ID3 tag from audio file</source>
+        <oldsource>Change #TITLE via ID3 tag from audio file.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="language.h" line="3"/>
-        <source>Change #TITLE via ID3 tag from audio file. Append &quot;[VIDEO]&quot; if video present.</source>
+        <source>Change #TITLE via ID3 tag from audio file, append &quot;[VIDEO]&quot; if video present</source>
+        <oldsource>Change #TITLE via ID3 tag from audio file. Append &quot;[VIDEO]&quot; if video present.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="language.h" line="4"/>
-        <source>Change #TITLE. Append &quot;[VIDEO]&quot; if video present.</source>
+        <source>Change #TITLE, append &quot;[VIDEO]&quot; if video present</source>
+        <oldsource>Change #TITLE. Append &quot;[VIDEO]&quot; if video present</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -31,27 +35,42 @@
     </message>
     <message>
         <location filename="language.h" line="6"/>
-        <source>Change #TITLE. Remove [...]-Tags.</source>
+        <source>Change #TITLE, remove [...] tags</source>
+        <oldsource>Change #TITLE. Remove [...] tags</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="language.h" line="8"/>
-        <source>Change #GENRE via ID3 tag.</source>
+        <source>Change #TITLE, append &quot;[KARAOKE]&quot; if song is karaoke</source>
+        <oldsource>Change #TITLE. Append &quot;[KARAOKE]&quot; if song is karaoke.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="language.h" line="9"/>
-        <source>Change #YEAR via ID3 tag.</source>
+        <source>Change #GENRE via ID3 tag</source>
+        <oldsource>Change #GENRE via ID3 tag.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="language.h" line="10"/>
-        <source>Change #ALBUM via ID3 tag</source>
+        <source>Change #YEAR via ID3 tag</source>
+        <oldsource>Change #YEAR via ID3 tag.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="language.h" line="11"/>
+        <source>Change #ALBUM via ID3 tag</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="language.h" line="12"/>
         <source>You need the custom tag #ALBUM for this task.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="language.h" line="13"/>
+        <source>Write #BACKGROUND even without existing image file</source>
+        <oldsource>Write #BACKGROUND even without existing image file.</oldsource>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -71,12 +90,12 @@
 <context>
     <name>QUAudioTagTaskDialog</name>
     <message>
-        <location filename="QUAudioTagTaskDialog.cpp" line="26"/>
+        <location filename="QUAudioTagTaskDialog.cpp" line="28"/>
         <source>Select a proper &lt;b&gt;target tag&lt;/b&gt; and create a custom &lt;b&gt;schema&lt;/b&gt; for the operation. You can use &lt;b&gt;custom tags&lt;/b&gt; as targets.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUAudioTagTaskDialog.cpp" line="31"/>
+        <location filename="QUAudioTagTaskDialog.cpp" line="33"/>
         <source>Add Song/ID3 Tag Task</source>
         <translation type="unfinished"></translation>
     </message>
@@ -151,17 +170,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDataTable.cpp" line="13"/>
-        <source>Placeholder will be replaced with&lt;br&gt;source data if condition is fullfilled.</source>
+        <location filename="../shared/QUTaskDataTable.cpp" line="8"/>
+        <source>Modifier</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="14"/>
-        <source>Static or dynamic source data for a placeholder.</source>
+        <source>Lets you negate the selected condition.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="15"/>
+        <source>Placeholder will be replaced with&lt;br&gt;source data if condition is fullfilled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shared/QUTaskDataTable.cpp" line="16"/>
+        <source>Static or dynamic source data for a placeholder.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shared/QUTaskDataTable.cpp" line="17"/>
         <source>Simple text for static source data or a default value&lt;br&gt;if the dynamic source data is &lt;b&gt;not available&lt;/b&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -169,81 +198,81 @@
 <context>
     <name>QUTaskDialog</name>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="13"/>
+        <location filename="../shared/QUTaskDialog.ui" line="14"/>
         <source>Edit Rename Task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="121"/>
-        <location filename="../shared/QUTaskDialog.ui" line="396"/>
-        <location filename="../shared/QUTaskDialog.ui" line="410"/>
-        <location filename="../shared/QUTaskDialog.ui" line="488"/>
-        <location filename="../shared/QUTaskDialog.ui" line="514"/>
+        <location filename="../shared/QUTaskDialog.ui" line="122"/>
+        <location filename="../shared/QUTaskDialog.ui" line="397"/>
+        <location filename="../shared/QUTaskDialog.ui" line="411"/>
+        <location filename="../shared/QUTaskDialog.ui" line="489"/>
+        <location filename="../shared/QUTaskDialog.ui" line="515"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="157"/>
+        <location filename="../shared/QUTaskDialog.ui" line="158"/>
         <source>&amp;Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="170"/>
+        <location filename="../shared/QUTaskDialog.ui" line="171"/>
         <source>T&amp;oolTip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="208"/>
+        <location filename="../shared/QUTaskDialog.ui" line="209"/>
         <source>&amp;Icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="227"/>
+        <location filename="../shared/QUTaskDialog.ui" line="228"/>
         <source>Cup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="255"/>
+        <location filename="../shared/QUTaskDialog.ui" line="256"/>
         <source>&amp;Group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="280"/>
+        <location filename="../shared/QUTaskDialog.ui" line="281"/>
         <source>Exclusive task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="310"/>
+        <location filename="../shared/QUTaskDialog.ui" line="311"/>
         <source>&amp;Target</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="328"/>
+        <location filename="../shared/QUTaskDialog.ui" line="329"/>
         <source>The target specifies the object on which the renaming will be done.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="332"/>
+        <location filename="../shared/QUTaskDialog.ui" line="333"/>
         <source>mp3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="362"/>
+        <location filename="../shared/QUTaskDialog.ui" line="363"/>
         <source>&amp;Schema</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="562"/>
+        <location filename="../shared/QUTaskDialog.ui" line="563"/>
         <source>Save As...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="589"/>
+        <location filename="../shared/QUTaskDialog.ui" line="590"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="600"/>
+        <location filename="../shared/QUTaskDialog.ui" line="601"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>

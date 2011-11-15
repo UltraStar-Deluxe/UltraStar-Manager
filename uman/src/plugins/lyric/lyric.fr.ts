@@ -103,7 +103,7 @@
     <message>
         <location filename="QULyricTaskFactory.cpp" line="11"/>
         <source>Lyric Tasks</source>
-        <translation>Taches des paroles</translation>
+        <translation>Tâches des paroles</translation>
     </message>
     <message>
         <location filename="QULyricTaskFactory.cpp" line="15"/>
@@ -134,7 +134,7 @@
     <message>
         <location filename="../shared/QUSimpleTaskFactory.h" line="16"/>
         <source>Simple Task</source>
-        <translation>Tache simple</translation>
+        <translation>Tâche simple</translation>
     </message>
 </context>
 <context>

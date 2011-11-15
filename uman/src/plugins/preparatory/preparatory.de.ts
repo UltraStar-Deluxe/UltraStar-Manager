@@ -24,12 +24,12 @@
     <message>
         <location filename="QUPreparatoryTask.cpp" line="20"/>
         <source>Assign missing files automatically</source>
-        <translation>Fehlende Dateien automatisch zuweisen</translation>
+        <translation>Weise fehlende Dateien automatisch zu</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="29"/>
         <source>Remove unsupported tags</source>
-        <translation>Nicht unterstützte Tags entfernen</translation>
+        <translation>Entferne nicht unterstützte Tags</translation>
     </message>
     <message>
         <source>&lt;b&gt;#MP3&lt;/b&gt; ... first audio file found.&lt;br&gt;&lt;b&gt;#COVER&lt;/b&gt; ... first picture file, including pattern: &lt;i&gt;[CO]|cove?r?&lt;/i&gt;.&lt;br&gt;&lt;b&gt;#BACKGROUND&lt;/b&gt; ... first picture file, including pattern: &lt;i&gt;[BG]|back&lt;/i&gt;.&lt;br&gt;&lt;b&gt;#VIDEO&lt;/b&gt; ... first video file found.</source>
@@ -43,7 +43,7 @@
     <message>
         <location filename="QUPreparatoryTask.cpp" line="33"/>
         <source>Fix audio length via #END tag</source>
-        <translation>Audio-Länge mittels #END-Tag reparieren</translation>
+        <translation>Passe Audio-Länge mittels #END-Tag an</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="34"/>
@@ -52,13 +52,14 @@
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="38"/>
-        <source>Round #GAP to nearest integer.</source>
-        <translation>Runde #GAP auf die nächste Ganzzahl.</translation>
+        <source>Round #GAP to nearest integer</source>
+        <oldsource>Round #GAP to nearest integer.</oldsource>
+        <translation>Runde #GAP auf die nächste Ganzzahl</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="42"/>
         <source>Fix capitalization of #TITLE tag</source>
-        <translation>Großschreibung des #TITLE-Tags korrigieren</translation>
+        <translation>Korrigiere Großschreibung des #TITLE-Tags</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="43"/>
@@ -68,7 +69,7 @@
     <message>
         <location filename="QUPreparatoryTask.cpp" line="47"/>
         <source>Capitalize #ARTIST tag</source>
-        <translation>Großschreibung für #ARTIST-Tag korrigieren</translation>
+        <translation>Korrigiere Großschreibung für #ARTIST-Tag</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="48"/>
@@ -76,20 +77,46 @@
         <translation>Korrigiert die Großschreibung eines jeden Wortes des Interpreten, z.B. &quot;michael jackson&quot; -&gt; &quot;Michael Jackson&quot;.</translation>
     </message>
     <message>
+        <location filename="QUPreparatoryTask.cpp" line="93"/>
+        <location filename="QUPreparatoryTask.cpp" line="94"/>
+        <source>Pattern:</source>
+        <translation>Muster:</translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="93"/>
+        <source>(cover)</source>
+        <translation>(Cover)</translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="94"/>
+        <source>(background)</source>
+        <translation>(Hintergrund)</translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="101"/>
+        <source>Buffer:</source>
+        <translation>Puffer:</translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="101"/>
+        <source>seconds</source>
+        <translation>Sekunden</translation>
+    </message>
+    <message>
         <location filename="QUPreparatoryTask.cpp" line="104"/>
         <source>Capitalize English songs only</source>
-        <translation>Nur die Großschreibung von englischen Songs korrigieren</translation>
+        <translation>Korrigiere die Großschreibung nur von englischen Songs</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="105"/>
         <source>Capitalize each word</source>
-        <translation>Jedes Wort großschreiben</translation>
+        <translation>Schreibe jeden Wortanfang groß</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="106"/>
         <location filename="QUPreparatoryTask.cpp" line="109"/>
         <source>Capitalize first word only</source>
-        <translation>Nur das erste Wort großschreiben</translation>
+        <translation>Schreibe nur den ersten Wortanfang groß</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="148"/>

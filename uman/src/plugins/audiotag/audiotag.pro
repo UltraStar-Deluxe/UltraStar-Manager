@@ -13,7 +13,8 @@ SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
     ../shared/QUTaskConditionDelegate.cpp \
     ../shared/QUTaskSourceDelegate.cpp \
 	QUDefaultDelegate.cpp \
-	../shared/QUSmartSetting.cpp
+	../shared/QUSmartSetting.cpp \
+    ../shared/QUTaskModifierDelegate.cpp
 HEADERS = language.h \
 	../shared/QUMultilingualTaskFactory.h \
 	QUAudioTagTaskFactory.h \
@@ -31,7 +32,8 @@ HEADERS = language.h \
     ../shared/QUTaskSourceDelegate.h \
 	QUDefaultDelegate.h \
 	../shared/QUSmartSetting.h \
-	../QUSmartSettingInterface.h
+	../QUSmartSettingInterface.h \
+    ../shared/QUTaskModifierDelegate.h
 FORMS += ../shared/QUTaskDialog.ui
 TRANSLATIONS = audiotag.de.ts \
 	audiotag.pl.ts \
@@ -77,3 +79,5 @@ CONFIG(debug, debug|release) {
 	OBJECTS_DIR = ../tmp/audiotag/debug
 	MOC_DIR = ../tmp/audiotag/debug
 }
+
+

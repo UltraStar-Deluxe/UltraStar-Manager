@@ -85,7 +85,7 @@
     <message>
         <location filename="../shared2/QUMultilingualImageSource.h" line="28"/>
         <source>Unknown person</source>
-        <translation>personne inconnue</translation>
+        <translation>Personne inconnue</translation>
     </message>
     <message>
         <location filename="../shared2/QUMultilingualImageSource.h" line="29"/>

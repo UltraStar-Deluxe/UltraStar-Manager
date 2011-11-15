@@ -11,7 +11,7 @@
     <message>
         <location filename="QULyricTask.cpp" line="19"/>
         <source>Fix spaces</source>
-        <translation>Leerzeichen korrigieren</translation>
+        <translation>Korrigiere Leerzeichen am Zeilenende</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="20"/>
@@ -36,7 +36,7 @@
     <message>
         <location filename="QULyricTask.cpp" line="38"/>
         <source>Convert relative to absolute timestamps</source>
-        <translation>Konvertiere relative zu absolution Zeitstempeln</translation>
+        <translation>Konvertiere relative zu absoluten Zeitstempeln</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="43"/>

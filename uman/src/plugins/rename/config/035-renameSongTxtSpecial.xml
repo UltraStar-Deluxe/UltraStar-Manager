@@ -1,7 +1,7 @@
 <task>
     <general group="3" type="rename">
         <icon resource=":/types/text.png"/>
-        <description><![CDATA[Rename songtext file to "Artist - Title.*" and use "txd" extension for duets.]]></description>
+        <description><![CDATA[Rename songtext file to "Artist - Title.*" and use "txd" extension for duets]]></description>
         <tooltip/>
     </general>
     <rename target="txt" schema="%1 - %2.%3%4">
