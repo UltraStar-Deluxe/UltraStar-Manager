@@ -16,8 +16,6 @@ QUEncodingsDialog::QUEncodingsDialog(QWidget *parent): QDialog(parent) {
 		inputEncodingsComboBox->addItem(item);
 		outputEncodingsComboBox->addItem(item);
 	}
-	// UTF8 not needed as default input encoding, so remove it
-	inputEncodingsComboBox->removeItem(inputEncodingsComboBox->findText("UTF8"));
 
 	inputEncodingsComboBox->setCurrentIndex(inputEncodingsComboBox->findText(QUSongSupport::defaultInputEncoding()));
 	outputEncodingsComboBox->setCurrentIndex(outputEncodingsComboBox->findText(QUSongSupport::defaultOutputEncoding()));
