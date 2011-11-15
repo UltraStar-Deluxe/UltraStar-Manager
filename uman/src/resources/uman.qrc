@@ -242,6 +242,8 @@
         <file>music_openexternal.png</file>
         <file>text_setprimary.png</file>
         <file>file.png</file>
+        <file>gap.png</file>
+        <file>bpm.png</file>
     </qresource>
     <qresource prefix="/big">
         <file>save_big.png</file>
