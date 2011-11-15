@@ -3,13 +3,15 @@
 #include <QHeaderView>
 
 QUTaskDataTable::QUTaskDataTable(QWidget *parent): QTableWidget(parent) {
-	this->setColumnCount(3);
+	this->setColumnCount(4);
 
-	this->setHorizontalHeaderLabels(QStringList() << tr("Condition") << tr("Source") << tr("Default"));
+	this->setHorizontalHeaderLabels(QStringList() << tr("Modifier") << tr("Condition") << tr("Source") << tr("Default"));
+	this->horizontalHeader()->setResizeMode(MODIFIER_COL, QHeaderView::Interactive);
 	this->horizontalHeader()->setResizeMode(CONDITION_COL, QHeaderView::Interactive);
 	this->horizontalHeader()->setResizeMode(SOURCE_COL, QHeaderView::Interactive);
 	this->horizontalHeader()->setResizeMode(DEFAULT_COL, QHeaderView::Stretch);
 
+	this->horizontalHeaderItem(MODIFIER_COL)->setToolTip(tr("Lets you negate the selected condition."));
 	this->horizontalHeaderItem(CONDITION_COL)->setToolTip(tr("Placeholder will be replaced with<br>source data if condition is fullfilled."));
 	this->horizontalHeaderItem(SOURCE_COL)->setToolTip(tr("Static or dynamic source data for a placeholder."));
 	this->horizontalHeaderItem(DEFAULT_COL)->setToolTip(tr("Simple text for static source data or a default value<br>if the dynamic source data is <b>not available</b>."));
@@ -18,7 +20,8 @@ QUTaskDataTable::QUTaskDataTable(QWidget *parent): QTableWidget(parent) {
 /*!
  * Set delegates that allow a more convenient editing mode for the user.
  */
-void QUTaskDataTable::setDelegates(QItemDelegate *conditionDelegate, QItemDelegate *sourceDelegate, QItemDelegate *defaultDelegate) {
+void QUTaskDataTable::setDelegates(QItemDelegate *modifierDelegate, QItemDelegate *conditionDelegate, QItemDelegate *sourceDelegate, QItemDelegate *defaultDelegate) {
+	this->setItemDelegateForColumn(MODIFIER_COL, modifierDelegate);
 	this->setItemDelegateForColumn(CONDITION_COL, conditionDelegate);
 	this->setItemDelegateForColumn(SOURCE_COL, sourceDelegate);
 	this->setItemDelegateForColumn(DEFAULT_COL, defaultDelegate);
@@ -28,6 +31,9 @@ void QUTaskDataTable::fillData(const QList<QUScriptData*> &dataList) {
 	// fill the data
 	foreach(QUScriptData *data, dataList) {
 		this->appendRow();
+
+		this->item(this->rowCount() - 1, MODIFIER_COL)->setText(data->_modifier.isEmpty() ? "" : data->_modifier);
+
 		this->item(this->rowCount() - 1, CONDITION_COL)->setText(data->_if.isEmpty() ? "true" : data->_if);
 
 		if(data->_keepSuffix) {
@@ -53,8 +59,9 @@ void QUTaskDataTable::appendRow() {
 	for(int column = 0; column < this->columnCount(); column++) {
 		QTableWidgetItem *newItem = new QTableWidgetItem;
 
-		     if(column == 0) newItem->setText(QUScriptableTask::availableConditions().first());
-		else if(column == 1) newItem->setText(QUScriptableTask::availableSources().first());
+		     if(column == MODIFIER_COL) newItem->setText(QUScriptableTask::availableModifiers().first());
+		else if(column == CONDITION_COL) newItem->setText(QUScriptableTask::availableConditions().first());
+		else if(column == SOURCE_COL) newItem->setText(QUScriptableTask::availableSources().first());
 		else
 			newItem->setText(N_A);
 

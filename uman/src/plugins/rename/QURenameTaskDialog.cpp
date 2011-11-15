@@ -1,4 +1,5 @@
 #include "QURenameTaskDialog.h"
+#include "QUTaskModifierDelegate.h"
 #include "QUTaskConditionDelegate.h"
 #include "QURenameTaskSourceDelegate.h"
 #include "QUTaskTextDelegate.h"
@@ -12,6 +13,7 @@
 
 QURenameTaskDialog::QURenameTaskDialog(QURenameTask *task, QWidget *parent): QUTaskDialog(task, parent) {
 	dataTable->setDelegates(
+			new QUTaskModifierDelegate(dataTable),
 			new QUTaskConditionDelegate(dataTable),
 			new QURenameTaskSourceDelegate(dataTable),
 			new QUTaskTextDelegate(dataTable));
@@ -54,19 +56,22 @@ bool QURenameTaskDialog::saveTask(const QString &filePath) {
 	for(int row = 0; row < dataTable->rowCount(); row++) {
 		QDomElement data = _doc.createElement("data");
 
-		if(dataTable->item(row, 0)->text() != "true")
-			data.setAttribute("if", dataTable->item(row, 0)->text());
+		if(dataTable->item(row, MODIFIER_COL)->text() == NEGATE_CONDITION)
+			data.setAttribute("modifier", dataTable->item(row, MODIFIER_COL)->text());
 
-		if(dataTable->item(row, 1)->text() == KEEP_SUFFIX_SOURCE)
+		if(dataTable->item(row, CONDITION_COL)->text() != "true")
+			data.setAttribute("if", dataTable->item(row, CONDITION_COL)->text());
+
+		if(dataTable->item(row, SOURCE_COL)->text() == KEEP_SUFFIX_SOURCE)
 			data.setAttribute("keepSuffix", "true");
-		else if(dataTable->item(row, 1)->text() == TEXT_SOURCE)
-			data.setAttribute("text", dataTable->item(row, 2)->text());
-		else if(dataTable->item(row, 1)->text() == UNKNOWN_TAGS_SOURCE)
+		else if(dataTable->item(row, SOURCE_COL)->text() == TEXT_SOURCE)
+			data.setAttribute("text", dataTable->item(row, DEFAULT_COL)->text());
+		else if(dataTable->item(row, SOURCE_COL)->text() == UNKNOWN_TAGS_SOURCE)
 			data.setAttribute("keepUnknownTags", "true");
-		else if(!dataTable->item(row, 1)->text().isEmpty()) {
-			data.setAttribute("source", dataTable->item(row, 1)->text());
-			if(dataTable->item(row, 2)->text() != N_A)
-				data.setAttribute("default", dataTable->item(row, 2)->text());
+		else if(!dataTable->item(row, SOURCE_COL)->text().isEmpty()) {
+			data.setAttribute("source", dataTable->item(row, SOURCE_COL)->text());
+			if(dataTable->item(row, DEFAULT_COL)->text() != N_A)
+				data.setAttribute("default", dataTable->item(row, DEFAULT_COL)->text());
 		}
 
 		rename.appendChild(data);

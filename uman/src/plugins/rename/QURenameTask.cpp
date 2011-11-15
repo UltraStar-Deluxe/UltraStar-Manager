@@ -20,6 +20,7 @@ QURenameTask::QURenameTask(QDomDocument *taskConfig, QObject *parent):
 			QDomElement data = rename.childNodes().at(i).toElement();
 			if(!data.isNull() and data.tagName() == "data") {
 				QUScriptData *newData = new QUScriptData();
+				newData->_modifier = data.attribute("modifier");
 				newData->_source = data.attribute("source");
 				newData->_text = data.attribute("text");
 				newData->_if = data.attribute("if");
@@ -46,9 +47,14 @@ void QURenameTask::startOn(QUSongInterface *song) {
 	QString schema = this->_schema.trimmed(); // DO NOT overwrite the template!
 
 	foreach(QUScriptData* currentData, _data) {
-		if(currentData->_if.isEmpty() or song->property(currentData->_if.toLocal8Bit().data()).toBool()) {
+		if((currentData->_modifier.isEmpty() && currentData->_if.isEmpty()) or // not negated unconditional true
+		   (currentData->_modifier.isEmpty() && song->property(currentData->_if.toLocal8Bit().data()).toBool()) or // not negated conditional
+		   (!currentData->_modifier.isEmpty() && !song->property(currentData->_if.toLocal8Bit().data()).toBool())) { // negated conditional
 			if(currentData->_keepSuffix) {
-				schema = schema.arg(QFileInfo(song->property(this->_target.toLower().toLocal8Bit().data()).toString()).suffix().toLower());
+				QString suffix = QFileInfo(song->property(this->_target.toLower().toLocal8Bit().data()).toString()).suffix().toLower();
+				if(suffix.endsWith("peg")) // replace jpeg by jpg and mpeg by mpg
+					suffix.remove('e');
+				schema = schema.arg(suffix);
 			} else if (!currentData->_text.isEmpty()) {
 				schema = schema.arg(currentData->_text);
 			} else if (!currentData->_source.isEmpty()) {
@@ -95,7 +101,7 @@ void QURenameTask::startOn(QUSongInterface *song) {
 
 	     if (QString::compare(this->_target, "dir", Qt::CaseInsensitive) == 0)        song->renameSongDir(schema);
 	else if (QString::compare(this->_target, "path", Qt::CaseInsensitive) == 0)       song->moveAllFiles(schema);
-        else if (QString::compare(this->_target, "txt", Qt::CaseInsensitive) == 0)        song->renameSongTxt(schema);
+	else if (QString::compare(this->_target, "txt", Qt::CaseInsensitive) == 0)        song->renameSongTxt(schema);
 	else if (QString::compare(this->_target, "mp3", Qt::CaseInsensitive) == 0)        song->renameSongMp3(schema);
 	else if (QString::compare(this->_target, "cover", Qt::CaseInsensitive) == 0)      song->renameSongCover(schema);
 	else if (QString::compare(this->_target, "background", Qt::CaseInsensitive) == 0) song->renameSongBackground(schema);

@@ -24,6 +24,14 @@ QUScriptableTask::QUScriptableTask(QDomDocument *taskConfig, QObject *parent): Q
 /*!
  * Just for convenience.
  */
+QStringList QUScriptableTask::availableModifiers() {
+	QStringList result;
+
+	result << "" << "NOT";
+
+	return result;
+}
+
 QStringList QUScriptableTask::availableSources() {
 	QStringList result;
 

@@ -1,9 +1,10 @@
 #ifndef QUSCRIPTABLETASK_H_
 #define QUSCRIPTABLETASK_H_
 
-#define TEXT_SOURCE         "*TEXT*"
-#define KEEP_SUFFIX_SOURCE  "*SUFFIX*"
-#define UNKNOWN_TAGS_SOURCE "*UNKNOWN_TAGS*"
+#define NEGATE_CONDITION       "NOT"
+#define TEXT_SOURCE            "*TEXT*"
+#define KEEP_SUFFIX_SOURCE     "*SUFFIX*"
+#define UNKNOWN_TAGS_SOURCE    "*UNKNOWN_TAGS*"
 
 #include "QUSimpleTask.h"
 
@@ -20,6 +21,7 @@ public:
 		_keepSuffix(false),
 		_keepUnknownTags(false) {}
 
+	QString _modifier;
 	QString _source;
 	QString _text;
 	QString _if;
@@ -55,6 +57,7 @@ public:
 	QString schema() const { return _schema; }
 	QList<QUScriptData*> data() const { return _data; }
 
+	static QStringList availableModifiers();
 	static QStringList availableSources();
 	static QStringList availableCustomSources();
 	static QStringList availableConditions();

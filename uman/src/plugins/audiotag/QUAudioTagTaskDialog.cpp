@@ -1,4 +1,5 @@
 #include "QUAudioTagTaskDialog.h"
+#include "QUTaskModifierDelegate.h"
 #include "QUTaskConditionDelegate.h"
 #include "QUAudioTagTaskSourceDelegate.h"
 #include "QUDefaultDelegate.h"
@@ -7,6 +8,7 @@
 
 QUAudioTagTaskDialog::QUAudioTagTaskDialog(QUAudioTagTask *task, QWidget *parent): QUTaskDialog(task, parent) {
 	dataTable->setDelegates(
+			new QUTaskModifierDelegate(dataTable),
 			new QUTaskConditionDelegate(dataTable),
 			new QUAudioTagTaskSourceDelegate(dataTable),
 			new QUDefaultDelegate(dataTable));
