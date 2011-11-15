@@ -1,14 +1,12 @@
 <task>
-    <general type="rename" group="2">
-        <icon resource=":/types/film.png" />
-        <description>
-            <![CDATA[Rename video to "Artist - Title.*"]]>
-        </description>
+    <general group="4" type="rename">
+        <icon resource=":/types/video.png"/>
+        <description><![CDATA[Rename video to "Artist - Title.*"]]></description>
+        <tooltip/>
     </general>
-
     <rename target="video" schema="%1 - %2.%3">
-        <data source="artist" />
-        <data source="title" />
-        <data keepSuffix="true" />
+        <data source="artist"/>
+        <data source="titlecompact"/>
+        <data keepSuffix="true"/>
     </rename>
 </task>

@@ -1,13 +1,11 @@
 <task>
-    <general type="rename" group="1">
-        <icon resource=":/types/folder.png" />
-        <description>
-            <![CDATA[Rename directory to "Artist - Title"]]>
-        </description>
+    <general group="2" type="rename">
+        <icon resource=":/types/folder.png"/>
+        <description><![CDATA[Rename directory to "Artist - Title"]]></description>
+        <tooltip/>
     </general>
-
     <rename target="dir" schema="%1 - %2">
-        <data source="artist" />
-        <data source="title" />
+        <data source="artist"/>
+        <data source="titlecompact"/>
     </rename>
 </task>
