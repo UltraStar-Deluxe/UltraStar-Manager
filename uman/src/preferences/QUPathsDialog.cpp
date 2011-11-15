@@ -58,8 +58,8 @@ void QUPathsDialog::accept() {
 	QStringList songPaths;
 	for(int row = 0; row < songPathList->count(); row++)
 		songPaths << songPathList->item(row)->text();
-	if(!s.value("songPath", QString()).toString().isEmpty() && !songPaths.contains(QU::BaseDir.path()))
-		songPaths.append(QU::BaseDir.path());
+	if(!s.value("songPath", QString()).toString().isEmpty() && !songPaths.contains(QDir::toNativeSeparators(QU::BaseDir.path())))
+		songPaths.append(QDir::toNativeSeparators(QU::BaseDir.path()));
 	s.setValue("songPaths", songPaths);
 
 	if(!songPaths.isEmpty() && s.value("songPath").toString().isEmpty())

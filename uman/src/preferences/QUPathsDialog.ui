@@ -274,7 +274,7 @@
         <item>
          <widget class="QLineEdit" name="pathEditUs">
           <property name="text">
-           <string>C:/UltraStar</string>
+           <string>C:\UltraStar</string>
           </property>
           <property name="frame">
            <bool>false</bool>
@@ -447,7 +447,7 @@ margin: 0;</string>
         <item>
          <widget class="QLineEdit" name="pathEditPlaylist">
           <property name="text">
-           <string>C:/UltraStar/Playlists</string>
+           <string>C:\UltraStar\Playlists</string>
           </property>
           <property name="frame">
            <bool>false</bool>
@@ -607,7 +607,7 @@ margin: 0;</string>
         <item>
          <widget class="QLineEdit" name="pathEditCover">
           <property name="text">
-           <string>C:/UltraStar/Covers</string>
+           <string>C:\UltraStar\Covers</string>
           </property>
           <property name="frame">
            <bool>false</bool>
@@ -770,7 +770,7 @@ margin: 0;</string>
         <item>
          <widget class="QLineEdit" name="pathEditLang">
           <property name="text">
-           <string>C:/UltraStar/Languages</string>
+           <string>C:\UltraStar\Languages</string>
           </property>
           <property name="frame">
            <bool>false</bool>
@@ -842,7 +842,7 @@ margin: 0;</string>
        </property>
        <item>
         <property name="text">
-         <string>C:/Songs</string>
+         <string>C:\Songs</string>
         </property>
         <property name="icon">
          <iconset resource="../resources/uman.qrc">
@@ -851,7 +851,7 @@ margin: 0;</string>
        </item>
        <item>
         <property name="text">
-         <string>D:/Blubb/Songs</string>
+         <string>D:\External\Songs</string>
         </property>
         <property name="icon">
          <iconset resource="../resources/uman.qrc">
