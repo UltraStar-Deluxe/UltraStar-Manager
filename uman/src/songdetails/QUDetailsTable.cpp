@@ -38,32 +38,32 @@ QUDetailsTable::QUDetailsTable(QWidget *parent): QTableWidget(parent) {
 
 void QUDetailsTable::initTagColumn() {
 	this->initSeparator(tr("Information"), 0);
-	this->setItem(1, 0, new QUTagItem(QIcon(":/control/encoding.png"), tr("Encoding")));
-	this->setItem(2, 0, new QUTagItem(QIcon(":/types/font.png"), tr("Title")));
-	this->setItem(3, 0, new QUTagItem(QIcon(":/types/user.png"), tr("Artist")));
-	this->setItem(4, 0, new QUTagItem(QIcon(":/types/language.png"), tr("Language")));
-	this->setItem(5, 0, new QUTagItem(QIcon(":/types/edition.png"), tr("Edition")));
-	this->setItem(6, 0, new QUTagItem(QIcon(":/types/genre.png"), tr("Genre")));
-	this->setItem(7, 0, new QUTagItem(QIcon(":/types/date.png"), tr("Year")));
-	this->setItem(8, 0, new QUTagItem(QIcon(":/types/creator.png"), tr("Creator")));
+	this->setItem(1, 0, new QUTagItem(QIcon(":/control/encoding.png"),	tr("Encoding")));
+	this->setItem(2, 0, new QUTagItem(QIcon(":/types/font.png"),		tr("Title")));
+	this->setItem(3, 0, new QUTagItem(QIcon(":/types/user.png"),		tr("Artist")));
+	this->setItem(4, 0, new QUTagItem(QIcon(":/types/language.png"),	tr("Language")));
+	this->setItem(5, 0, new QUTagItem(QIcon(":/types/edition.png"),		tr("Edition")));
+	this->setItem(6, 0, new QUTagItem(QIcon(":/types/genre.png"),		tr("Genre")));
+	this->setItem(7, 0, new QUTagItem(QIcon(":/types/date.png"),		tr("Year")));
+	this->setItem(8, 0, new QUTagItem(QIcon(":/types/creator.png"),		tr("Creator")));
 
 	this->initSeparator(tr("Files"), 9);
-	this->setItem(10, 0, new QUTagItem(QIcon(":/types/music.png"), tr("MP3")));
-	this->setItem(11, 0, new QUTagItem(QIcon(":/types/cover.png"), tr("Cover")));
-	this->setItem(12, 0, new QUTagItem(QIcon(":/types/background.png"), tr("Background")));
-	this->setItem(13, 0, new QUTagItem(QIcon(":/types/video.png"), tr("Video")));
+	this->setItem(10, 0, new QUTagItem(QIcon(":/types/music.png"),		tr("MP3")));
+	this->setItem(11, 0, new QUTagItem(QIcon(":/types/cover.png"),		tr("Cover")));
+	this->setItem(12, 0, new QUTagItem(QIcon(":/types/background.png"),	tr("Background")));
+	this->setItem(13, 0, new QUTagItem(QIcon(":/types/video.png"),		tr("Video")));
 
 	this->initSeparator(tr("Control"), 14);
-	this->setItem(15, 0, new QUTagItem(QIcon(":/types/videogap.png"), tr("Videogap")));
-	this->setItem(16, 0, new QUTagItem(QIcon(":/types/start.png"), tr("Start")));
-	this->setItem(17, 0, new QUTagItem(QIcon(":/types/end.png"), tr("End")));
+	this->setItem(15, 0, new QUTagItem(QIcon(":/types/videogap.png"),	tr("Videogap")));
+	this->setItem(16, 0, new QUTagItem(QIcon(":/types/start.png"),		tr("Start")));
+	this->setItem(17, 0, new QUTagItem(QIcon(":/types/end.png"),		tr("End")));
 	this->setItem(18, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Relative")));
 	this->setItem(19, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("PreviewStart")));
 	this->setItem(20, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("CalcMedley")));
 	this->setItem(21, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("MedleyStartBeat")));
 	this->setItem(22, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("MedleyEndBeat")));
-	this->setItem(23, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("BPM")));
-	this->setItem(24, 0, new QUTagItem(QIcon(":/bullets/bullet_black.png"), tr("Gap")));
+	this->setItem(23, 0, new QUTagItem(QIcon(":/types/bpm.png"),		tr("BPM")));
+	this->setItem(24, 0, new QUTagItem(QIcon(":/types/gap.png"),		tr("Gap")));
 
 	this->initSeparator(tr("Custom"), 25);
 	int i = 0;

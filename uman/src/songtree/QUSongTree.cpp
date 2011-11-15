@@ -62,7 +62,7 @@ void QUSongTree::initHorizontalHeader() {
 	this->setColumnCount(FIXED_COLUMN_COUNT + QUSongSupport::availableCustomTags().count());
 
 	QTreeWidgetItem *header = new QTreeWidgetItem();
-	header->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(QU::BaseDir.path()));
+	header->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(QDir::toNativeSeparators(QU::BaseDir.path())));
 	header->setIcon(FOLDER_COLUMN, QIcon(":/types/folder.png"));
 
 	header->setIcon(ARTIST_COLUMN, QIcon(":/types/user.png"));
@@ -152,11 +152,13 @@ void QUSongTree::initHorizontalHeader() {
 	header->setText(RELATIVE_COLUMN, tr("Relative?"));
 	header->setToolTip(RELATIVE_COLUMN, tr("Has relative timestamps."));
 	header->setText(BPM_COLUMN, tr("BPM"));
+	header->setIcon(BPM_COLUMN, QIcon(":/types/bpm.png"));
 	header->setToolTip(BPM_COLUMN, tr("beats per minute"));
 	header->setText(GAP_COLUMN, tr("GAP"));
+	header->setIcon(GAP_COLUMN, QIcon(":/types/gap.png"));
 	header->setToolTip(GAP_COLUMN, tr("Time to first syllable."));
 
-	//	header->setText(DUPLICATE_ID_COLUMN, "ID");
+	//header->setText(DUPLICATE_ID_COLUMN, "ID");
 	header->setToolTip(DUPLICATE_ID_COLUMN, tr("Indicate duplicate songs. <b>You should not see me.</b>"));
 
 	int i = 0;
@@ -1276,8 +1278,8 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 
 	if(item && !item->isToplevel()) {
 		// file menu
-		QString extension = "*" + item->text(0).remove(0,item->text(0).indexOf('.')).toLower();
-		if(QUSongSupport::allowedPictureFiles().contains(extension)) {
+		QString extension = "*" + item->text(0).remove(0,item->text(0).lastIndexOf('.')).toLower();
+		if(QUSongSupport::allowedImageFiles().contains(extension)) {
 			menu->addAction(QIcon(":/types/image_show.png"), tr("Show preview"), this, SLOT(openCurrentFileInternal()), Qt::Key_Enter)->setFont(*font);
 			menu->addAction(QIcon(":/types/image_openexternal.png"), tr("Open image file externally"), this, SLOT(openCurrentFileExternal()));
 		} else if(QUSongSupport::allowedVideoFiles().contains(extension)) {
