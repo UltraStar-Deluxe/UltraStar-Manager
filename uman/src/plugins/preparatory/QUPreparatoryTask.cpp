@@ -35,7 +35,7 @@ QUPreparatoryTask::QUPreparatoryTask(TaskModes mode, QObject *parent):
 		break;
 	case RoundGap:
 		this->setIcon(QIcon(":/bullets/bullet_black.png"));
-		this->setDescription(tr("Round #GAP to nearest integer."));
+		this->setDescription(tr("Round #GAP to nearest integer"));
 		break;
 	case FixCapitalization:
 		this->setIcon(QIcon(":/control/text_allcaps.png"));
@@ -90,15 +90,15 @@ QList<QUSmartSettingInterface*> QUPreparatoryTask::smartSettings() const {
 	if(_smartSettings.isEmpty()) {
 		switch(_mode) {
 		case AutoAssignFiles:
-			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_coverPattern", "\\[CO\\]|cove?r?", new QRegExpValidator(QRegExp(".*"), 0), "Pattern:", "(cover)"));
-			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_backgroundPattern", "\\[BG\\]|back", new QRegExpValidator(QRegExp(".*"), 0), "Pattern:", "(background)"));
+			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_coverPattern", "\\[CO\\]|cove?r?", new QRegExpValidator(QRegExp(".*"), 0), tr("Pattern:"), tr("(cover)")));
+			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_backgroundPattern", "\\[BG\\]|back", new QRegExpValidator(QRegExp(".*"), 0), tr("Pattern:"), tr("(background)")));
 			break;
 		case RemoveUnsupportedTags:
 			foreach(QString unsupportedTag, _unsupportedTags)
 				_smartSettings.append(new QUSmartCheckBox("preparatory/removeUnsupportedTags_" + unsupportedTag, unsupportedTag, true));
 			break;
 		case FixAudioLength:
-			_smartSettings.append(new QUSmartInputField("preparatory/fixAudioLength", timeDiffLower, new QRegExpValidator(QRegExp("\\d*"), 0), "Buffer:", "seconds"));
+			_smartSettings.append(new QUSmartInputField("preparatory/fixAudioLength", timeDiffLower, new QRegExpValidator(QRegExp("\\d*"), 0), tr("Buffer:"), tr("seconds")));
 			break;
 		case FixCapitalization:
 			_smartSettings.append(new QUSmartCheckBox("preparatory/fixCapitalization_onlyEnglish", tr("Capitalize English songs only"), true));
@@ -127,7 +127,7 @@ void QUPreparatoryTask::provideData(const QVariant &data, TaskDataTypes type) {
  */
 void QUPreparatoryTask::autoSetFiles(QUSongInterface *song, const QString &coverPattern, const QString &backgroundPattern) {
 	QFileInfoList files = song->songFileInfo().dir().entryInfoList(
-			QUSongSupport::allowedAudioFiles() + QUSongSupport::allowedPictureFiles() + QUSongSupport::allowedVideoFiles(),
+			QUSongSupport::allowedAudioFiles() + QUSongSupport::allowedImageFiles() + QUSongSupport::allowedVideoFiles(),
 			QDir::Files);
 
 	foreach(QFileInfo fi, files) {

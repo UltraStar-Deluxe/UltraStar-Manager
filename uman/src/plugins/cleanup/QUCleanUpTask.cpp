@@ -31,7 +31,7 @@ void QUCleanUpTask::startOn(QUSongInterface *song) {
 	switch(_mode) {
 	case UnusedFiles:
 		if(smartSettings().at(0)->value().toBool()) filter << QUSongSupport::allowedAudioFiles();
-		if(smartSettings().at(1)->value().toBool()) filter << QUSongSupport::allowedPictureFiles();
+		if(smartSettings().at(1)->value().toBool()) filter << QUSongSupport::allowedImageFiles();
 		if(smartSettings().at(2)->value().toBool()) filter << QUSongSupport::allowedVideoFiles();
 		if(smartSettings().at(3)->value().isValid())
 			song->deleteUnusedFiles(filter, smartSettings().at(3)->value().toString(), true);

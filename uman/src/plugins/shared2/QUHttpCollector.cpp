@@ -53,7 +53,7 @@ void QUHttpCollector::collect() {
 }
 
 QFileInfoList QUHttpCollector::results() const {
-	return source()->imageFolder(song()).entryInfoList(QUSongSupport::allowedPictureFiles(), QDir::Files, QDir::Name);
+	return source()->imageFolder(song()).entryInfoList(QUSongSupport::allowedImageFiles(), QDir::Files, QDir::Name);
 }
 
 void QUHttpCollector::processNetworkStateChange(int state) {
@@ -104,7 +104,7 @@ void QUHttpCollector::closeLocalFiles() {
 void QUHttpCollector::handleOldDownloads() {
 	// remove old downloads, if necessary
 	if(!source()->keepDownloads()) {
-		QFileInfoList fiList = source()->imageFolder(song()).entryInfoList(QUSongSupport::allowedPictureFiles(), QDir::Files, QDir::Name);
+		QFileInfoList fiList = source()->imageFolder(song()).entryInfoList(QUSongSupport::allowedImageFiles(), QDir::Files, QDir::Name);
 		foreach(QFileInfo fi, fiList)
 			QFile::remove(fi.filePath());
 	}

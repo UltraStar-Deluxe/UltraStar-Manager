@@ -7,8 +7,8 @@
 QUScriptableTaskFactory::QUScriptableTaskFactory(QObject *parent): QUMultilingualTaskFactory(parent) {}
 
 QList<QUTask*> QUScriptableTaskFactory::createTasks() {
-    QList<QUTask*> tasks;
-    QList<QDomDocument*> configurations = this->loadTaskConfigurations();
+	QList<QUTask*> tasks;
+	QList<QDomDocument*> configurations = this->loadTaskConfigurations();
 
 	foreach(QDomDocument *configuration, configurations) {
 		QUTask *task = this->createTask(configuration);
@@ -16,7 +16,7 @@ QList<QUTask*> QUScriptableTaskFactory::createTasks() {
 			tasks << task;
 	}
 
-    return tasks;
+	return tasks;
 }
 
 /*!
