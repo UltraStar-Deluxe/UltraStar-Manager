@@ -34,8 +34,9 @@ QMap<QString, QString> QUCleanUpTaskFactory::translationLocations() const {
 	if(dir.cd("plugins") && dir.cd("languages")) {
 		locations.insert(QLocale(QLocale::German, QLocale::Germany).name(), dir.filePath("cleanup.de.qm"));
 		locations.insert(QLocale(QLocale::Polish, QLocale::Poland).name(), dir.filePath("cleanup.pl.qm"));
-                locations.insert(QLocale(QLocale::French, QLocale::France).name(), dir.filePath("cleanup.fr.qm"));
-                locations.insert(QLocale(QLocale::Spanish, QLocale::Spain).name(), dir.filePath("cleanup.es.qm"));
+		locations.insert(QLocale(QLocale::French, QLocale::France).name(), dir.filePath("cleanup.fr.qm"));
+		locations.insert(QLocale(QLocale::Spanish, QLocale::Spain).name(), dir.filePath("cleanup.es.qm"));
+		locations.insert(QLocale(QLocale::Portuguese, QLocale::Portugal).name(), dir.filePath("cleanup.pt.qm"));
 	}
 
 	return locations;

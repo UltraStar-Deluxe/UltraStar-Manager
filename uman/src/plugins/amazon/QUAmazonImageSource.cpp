@@ -50,8 +50,9 @@ QMap<QString, QString> QUAmazonImageSource::translationLocations() const {
 	if(dir.cd("plugins") && dir.cd("languages")) {
 		locations.insert(QLocale(QLocale::German, QLocale::Germany).name(), dir.filePath("amazon.de.qm"));
 		locations.insert(QLocale(QLocale::Polish, QLocale::Poland).name(), dir.filePath("amazon.pl.qm"));
-                locations.insert(QLocale(QLocale::French, QLocale::France).name(), dir.filePath("amazon.fr.qm"));
-                locations.insert(QLocale(QLocale::Spanish, QLocale::Spain).name(), dir.filePath("amazon.es.qm"));
+		locations.insert(QLocale(QLocale::French, QLocale::France).name(), dir.filePath("amazon.fr.qm"));
+		locations.insert(QLocale(QLocale::Spanish, QLocale::Spain).name(), dir.filePath("amazon.es.qm"));
+		locations.insert(QLocale(QLocale::Portuguese, QLocale::Portugal).name(), dir.filePath("amazon.pt.qm"));
 	}
 
 	return locations;

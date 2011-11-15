@@ -48,8 +48,9 @@ QMap<QString, QString> QUAlbumArtExImageSource::translationLocations() const {
 	if(dir.cd("plugins") && dir.cd("languages")) {
 		locations.insert(QLocale(QLocale::German, QLocale::Germany).name(), dir.filePath("albumartex.de.qm"));
 		locations.insert(QLocale(QLocale::Polish, QLocale::Poland).name(), dir.filePath("albumartex.pl.qm"));
-                locations.insert(QLocale(QLocale::French, QLocale::France).name(), dir.filePath("albumartex.fr.qm"));
-                locations.insert(QLocale(QLocale::Spanish, QLocale::Spain).name(), dir.filePath("albumartex.es.qm"));
+		locations.insert(QLocale(QLocale::French, QLocale::France).name(), dir.filePath("albumartex.fr.qm"));
+		locations.insert(QLocale(QLocale::Spanish, QLocale::Spain).name(), dir.filePath("albumartex.es.qm"));
+		locations.insert(QLocale(QLocale::Portuguese, QLocale::Portugal).name(), dir.filePath("albumartex.pt.qm"));
 	}
 
 	return locations;
