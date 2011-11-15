@@ -2,6 +2,7 @@
 #include "QULogService.h"
 #include "QUProgressDialog.h"
 #include "QUSongSupport.h"
+#include "QUStringSupport.h"
 #include "QUMonty.h"
 
 #include <QDir>
@@ -100,13 +101,19 @@ void QUSongDatabase::reload() {
 
 	foreach(QDir dir, dirList) {
 		QFileInfoList songFiList = dir.entryInfoList(QUSongSupport::allowedSongFiles(), QDir::Files, QDir::Name);
-		//MB: commented out as it prefers to take *2.txt rather than *.txt which is the original text file
+		//MB: commented out as it prefers duets to normal song files
 		//qStableSort(songFiList.begin(), songFiList.end(), QU::fileTypeLessThan);
 
 		dlg.update(dir.dirName());
 		if(dlg.cancelled()) break;
 
 		QUSongFile *newSong = 0;
+
+		// preference for text that already equals the folder name without folder tags
+		foreach(QFileInfo fi, songFiList) {
+			if(fi.completeBaseName() ==  QUStringSupport::withoutFolderTags(dir.dirName()))
+				songFiList.move(songFiList.indexOf(fi), 0);
+		}
 
 		foreach(QFileInfo fi, songFiList) {
 			if( QUSongSupport::allowedLicenseFiles().contains(fi.fileName(), Qt::CaseInsensitive) )
