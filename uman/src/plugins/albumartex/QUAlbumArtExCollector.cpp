@@ -23,18 +23,19 @@ QURequestUrl* QUAlbumArtExCollector::url() const {
 }
 
 void QUAlbumArtExCollector::processSearchResults() {
-	QRegExp rx = QRegExp("img src=\"(.*)\" width=.*(\\d+)&times;(\\d+)\"");
+	QRegExp rx = QRegExp("img src=\"/gallery/images/public/(.*)\" width=.*(\\d+)&times;(\\d+)\"");
 
 	rx.setMinimal(true);
 	rx.setCaseSensitivity(Qt::CaseInsensitive);
 
 	QString text(buffer()->data());
+//	song()->log(tr("[albumartex - result] ") + text, QU::Help);
 	QStringList allUrls;
 	QList<QPair<int, int> > resolutions;
 	int pos = 0;
 
 	while ((pos = rx.indexIn(text, pos)) != -1) {
-		allUrls << rx.cap(1).trimmed().replace("%2F", "/").replace("/_", "/").replace(".tn.", ".");
+		allUrls << "/gallery/images/public/" + rx.cap(1).trimmed().replace("%2F", "/").replace("/_", "/").replace(".tn.", ".");
 		resolutions << QPair<int, int>(QVariant(rx.cap(2)).toInt(), QVariant(rx.cap(3)).toInt());
 		pos += rx.matchedLength();
 	}
