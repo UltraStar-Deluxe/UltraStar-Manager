@@ -1,8 +1,8 @@
 <task>
     <general group="2" type="rename">
         <icon resource=":/types/folder.png"/>
-        <description><![CDATA[Rename directory to "Artist - Title [VIDEO] [SC] [KARAOKE]" if checked or video present. Keep other folder tags.]]></description>
-        <tooltip><![CDATA[Looks for <b>[SC]</b> in the <b>#EDITION</b> tag to find out whether it is checked or not.<br><br>Other folder tags like <b>[FOOBAR]</b> will be appended to the end if present.]]></tooltip>
+        <description><![CDATA[Rename directory to "Artist - Title [VIDEO] [SC]" if checked or video present. Keep other folder tags.]]></description>
+        <tooltip><![CDATA[Looks for <b>[SC]</b> in the <b>#EDITION</b> tag to find out whether it is checked or not.<br><br>Other folder tags like <b>[KARAOKE]</b> will be appended to the end if present.]]></tooltip>
     </general>
     <rename target="dir" schema="%1 - %2%3%4%5%6%7">
         <data source="artist"/>
