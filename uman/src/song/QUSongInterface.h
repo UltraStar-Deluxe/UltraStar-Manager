@@ -143,6 +143,7 @@ class QUSongInterface: public QObject {
 	Q_PROPERTY(bool isDuet READ isDuet)
 	Q_PROPERTY(bool isKaraoke READ isKaraoke)
 	Q_PROPERTY(bool isSingStar READ isSingStar)
+	Q_PROPERTY(bool isRockBand READ isRockBand)
 	Q_PROPERTY(bool isRelative READ isRelative)
 
 public:
@@ -190,6 +191,7 @@ public:
 	virtual bool isDuet() const = 0;
 	virtual bool isKaraoke() const = 0;
 	virtual bool isSingStar() const = 0;
+	virtual bool isRockBand() const = 0;
 	virtual bool isRelative() const = 0;
 
 	virtual QString titleCompact() const = 0;

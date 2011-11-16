@@ -373,8 +373,18 @@ bool QUSongFile::isSongChecked() const {
 	return edition().contains("[SC]", Qt::CaseInsensitive);
 }
 
+/*!
+ * Checks whether the song file is originally from SingStar.
+ */
 bool QUSongFile::isSingStar() const {
 	return edition().contains("singstar", Qt::CaseInsensitive);
+}
+
+/*!
+ * Checks whether the song file is originally from Rock Band.
+ */
+bool QUSongFile::isRockBand() const {
+	return edition().contains("rock band", Qt::CaseInsensitive);
 }
 
 /*!

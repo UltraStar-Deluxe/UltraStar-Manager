@@ -96,6 +96,7 @@ public slots:
 
 	bool isSongChecked() const; // for [SC]
 	bool isSingStar() const;
+	bool isRockBand() const;
 	bool isDuet() const;
 	bool isKaraoke() const;
 	bool isRelative() const;
