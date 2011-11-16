@@ -19,6 +19,11 @@ QULyricTask::QULyricTask(TaskModes mode, QObject *parent):
 		this->setDescription(tr("Fix spaces"));
 		this->setToolTip(tr("Moves spaces from the end of a syllable to the beginning of the next one. Trim the whole song line."));
 		break;
+	case FixLowBPM:
+		this->setIcon(QIcon(":/control/bpm_increase.png"));
+		this->setDescription(tr("Increase low BPM values"));
+		this->setToolTip(tr("Doubles BPM value and all note timings while it is below a certain threshold."));
+		break;
 	case RemoveEmptySyllables:
 		this->setIcon(QIcon(":/control/empty_syllable.png"));
 		this->setDescription(tr("Remove empty syllables"));
@@ -55,6 +60,9 @@ void QULyricTask::startOn(QUSongInterface *song) {
 	case FixSpaces:
 		fixSpaces(song);
 		break;
+	case FixLowBPM:
+		fixLowBPM(song, smartSettings().first()->value().toInt());
+		break;
 	case RemoveEmptySyllables:
 		removeEmptySyllables(song);
 		break;
@@ -74,9 +82,12 @@ void QULyricTask::startOn(QUSongInterface *song) {
 }
 
 QList<QUSmartSettingInterface*> QULyricTask::smartSettings() const {
-	if(_smartSettings.isEmpty())
+	if(_smartSettings.isEmpty()) {
 		if(_mode == FixTimeStamps)
-			_smartSettings.append(new QUSmartInputField("lyric/fixTimeStamps", "0", new QRegExpValidator(QRegExp("-?\\d*"), 0), "Start:", ""));
+			_smartSettings.append(new QUSmartInputField("lyric/fixTimeStamps", "0", new QRegExpValidator(QRegExp("-?\\d*"), 0), tr("Start:"), ""));
+		if(_mode == FixLowBPM)
+			_smartSettings.append(new QUSmartInputField("lyric/fixLowBPM", "200", new QRegExpValidator(QRegExp("\\d*"), 0), tr("if below:"), ""));
+	}
 	return _smartSettings;
 }
 
@@ -89,13 +100,15 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 		return;
 	}
 
+	if(song->loadMelody().first()->notes().first()->timestamp() == start)
+		return;
+
 	// the diff value has to be subtracted from each timestamp
 	int begin = start;
 	int diff = 0;
 	if(!song->isDuet()) {
 		diff = song->loadMelody().first()->notes().first()->timestamp() - begin;
 	} else {
-		// MB todo: this should work whenever convertLyricsFromRaw() is fixed for duets
 		int firstTimestampP1 = song->melodyForSinger(QUSongLineInterface::first).first()->notes().first()->timestamp();
 		int firstTimestampP2 = song->melodyForSinger(QUSongLineInterface::second).first()->notes().first()->timestamp();
 		diff = std::min(firstTimestampP1, firstTimestampP2) - begin;
@@ -107,6 +120,7 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 	// calculate and set the new gap
 	double oldGap = gap;
 	gap = gap + (diff * 15000) / bpm;
+
 	song->setInfo(GAP_TAG, QString::number(qRound(gap)));
 	song->log(QString(tr("#GAP changed from %1 to %2 for \"%3 - %4\"."))
 			  .arg(oldGap)
@@ -142,13 +156,13 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 		}
 	}
 
-        //adjust medley tags if (both) present
-        if(song->hasMedley()) {
-            int medleystartbeat = QVariant(song->medleystartbeat()).toInt();
-            song->setInfo(MEDLEYSTARTBEAT_TAG, QString::number(medleystartbeat - diff));
-            int medleyendbeat = QVariant(song->medleyendbeat()).toInt();
-            song->setInfo(MEDLEYENDBEAT_TAG, QString::number(medleyendbeat - diff));
-        }
+	//adjust medley tags if (both) present
+	if(song->hasMedley()) {
+		int medleystartbeat = QVariant(song->medleystartbeat()).toInt();
+		song->setInfo(MEDLEYSTARTBEAT_TAG, QString::number(medleystartbeat - diff));
+		int medleyendbeat = QVariant(song->medleyendbeat()).toInt();
+		song->setInfo(MEDLEYENDBEAT_TAG, QString::number(medleyendbeat - diff));
+	}
 
 	song->saveMelody();
 	song->clearMelody(); // save memory
@@ -196,6 +210,55 @@ void QULyricTask::fixSpaces(QUSongInterface *song) {
 	song->clearMelody(); // save memory
 
 	song->log(QString(tr("Spaces were fixed successfully for \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::Information);
+}
+
+/*!
+ * Doubles BPM value while below given threshold and adjust all note timings accordingly
+ */
+void QULyricTask::fixLowBPM(QUSongInterface *song, int threshold) {
+	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
+		song->log(QString(tr("Invalid lyrics in file \"%1\"")).arg(song->txt()), QU::Warning);
+		return;
+	}
+
+	//MB TODO
+	double BPM = QVariant(song->bpm().replace(",", ".")).toDouble();
+
+	if(BPM >= threshold)
+		return;
+	else {
+		// calculate and set new BPM
+		double newBPM = BPM;
+		while(newBPM < threshold) {
+			newBPM *=2;
+		}
+		song->setInfo(BPM_TAG, QString::number(newBPM));
+
+		// modify all timestamps
+		int multiplicator = newBPM / BPM;
+		foreach(QUSongLineInterface *line, song->loadMelody()) {
+			foreach(QUSongNoteInterface *note, line->notes()) {
+				note->setTimestamp(note->timestamp() * multiplicator);
+				note->setDuration(note->duration() * multiplicator);
+			}
+
+			if(line->useOutTime()) {
+				line->setOutTime(line->outTime() * multiplicator);
+
+				if(line->useInTime())
+					line->setInTime(line->inTime() * multiplicator);
+			}
+		}
+	}
+
+	song->saveMelody();
+	song->clearMelody(); // save memory
+
+	song->log(QString(tr("#BPM changed from %1 to %2 for \"%3 - %4\"."))
+			  .arg(BPM)
+			  .arg(song->bpm())
+			  .arg(song->artist())
+			  .arg(song->title()), QU::Information);
 }
 
 /*!

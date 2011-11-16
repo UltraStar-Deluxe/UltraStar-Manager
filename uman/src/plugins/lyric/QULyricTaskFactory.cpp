@@ -25,6 +25,7 @@ QList<int> QULyricTaskFactory::types() const {
 	result << QULyricTask::ConvertAbsoluteToRelative;
 	result << QULyricTask::FixTimeStamps;
 	result << QULyricTask::FixSpaces;
+	result << QULyricTask::FixLowBPM;
 	result << QULyricTask::RemoveEmptySyllables;
 	result << QULyricTask::ConvertSyllablePlaceholder1;
 	result << QULyricTask::ConvertSyllablePlaceholder2;

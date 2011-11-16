@@ -13,6 +13,7 @@ public:
 	enum TaskMode {
 		FixTimeStamps,
 		FixSpaces,
+		FixLowBPM,
 		RemoveEmptySyllables,
 		ConvertSyllablePlaceholder1,
 		ConvertSyllablePlaceholder2,
@@ -32,6 +33,7 @@ private:
 
 	void fixTimeStamps(QUSongInterface *song, int start = 0);
 	void fixSpaces(QUSongInterface *song);
+	void fixLowBPM(QUSongInterface *song, int threshold = 200);
 	void removeEmptySyllables(QUSongInterface *song);
 	void convertSyllablePlaceholder(QUSongInterface *song, const QString &before, const QString &after);
 	void convertRelativeToAbsolute(QUSongInterface *song);
