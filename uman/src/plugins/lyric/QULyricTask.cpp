@@ -25,7 +25,7 @@ QULyricTask::QULyricTask(TaskModes mode, QObject *parent):
 		this->setToolTip(tr("Doubles BPM value and all note timings while it is below a certain threshold."));
 		break;
 	case NormalizePitches:
-		this->setIcon(QIcon(":/control/bpm_increase.png"));
+		this->setIcon(QIcon(":/control/normalize_pitches.png"));
 		this->setDescription(tr("Normalize pitch values"));
 		this->setToolTip(tr("Shifts all note pitches octavewise towards a zero mean."));
 		break;

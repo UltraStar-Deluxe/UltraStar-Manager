@@ -131,6 +131,7 @@
         <file>mediumCoverQuality.png</file>
         <file>mediumMp3Quality.png</file>
         <file>bpm_increase.png</file>
+        <file>normalize_pitches.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>splash.png</file>
