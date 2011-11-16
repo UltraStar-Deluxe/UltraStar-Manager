@@ -130,6 +130,7 @@
         <file>mediumBackgroundQuality.png</file>
         <file>mediumCoverQuality.png</file>
         <file>mediumMp3Quality.png</file>
+        <file>bpm_increase.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>splash.png</file>
@@ -244,6 +245,10 @@
         <file>file.png</file>
         <file>gap.png</file>
         <file>bpm.png</file>
+        <file>medley.png</file>
+        <file>medley_calc.png</file>
+        <file>medley_end_beat.png</file>
+        <file>medley_start_beat.png</file>
     </qresource>
     <qresource prefix="/big">
         <file>save_big.png</file>
