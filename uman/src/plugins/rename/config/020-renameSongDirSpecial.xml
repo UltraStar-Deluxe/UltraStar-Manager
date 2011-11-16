@@ -4,13 +4,14 @@
         <description><![CDATA[Rename directory to "Artist - Title [VIDEO] [SC]" if checked or video present, keep other folder tags]]></description>
         <tooltip><![CDATA[Looks for <b>[SC]</b> in the <b>#EDITION</b> tag to find out whether it is checked or not.<br><br>Other folder tags like <b>[KARAOKE]</b> will be appended to the end if present.]]></tooltip>
     </general>
-    <rename target="dir" schema="%1 - %2%3%4%5%6%7">
+    <rename target="dir" schema="%1 - %2%3%4%5%6%7%8">
         <data source="artist"/>
         <data source="titlecompact"/>
         <data if="hasVideo" text=" [VIDEO]"/>
         <data if="isSongChecked" text=" [SC]"/>
         <data if="isKaraoke" text=" [KARAOKE]"/>
         <data if="isSingStar" text=" [SS]"/>
+        <data if="isRockBand" text=" [RB]"/>
         <data keepUnknownTags="true"/>
     </rename>
 </task>
