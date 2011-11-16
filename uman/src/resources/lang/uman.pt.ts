@@ -2776,10 +2776,10 @@ p, li { white-space: pre-wrap; }
         <location filename="../../ribbon/QURibbonBar.ui" line="766"/>
         <location filename="../../ribbon/QURibbonBar.ui" line="953"/>
         <location filename="../../ribbon/QURibbonBar.ui" line="1002"/>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1163"/>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1888"/>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2014"/>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2086"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1181"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1661"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1787"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1859"/>
         <source>border: 0;
 border-left-width: 1px;
 border-left-style: dotted;
@@ -2901,7 +2901,7 @@ Songs</source>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="561"/>
-        <source>Show Relative Song Path</source>
+        <source>Show Relative Song Paths</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2961,12 +2961,6 @@ Details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="745"/>
-        <source>Music
-Player</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="790"/>
         <source>Show general application information and file-specific details.</source>
         <translation type="unfinished"></translation>
@@ -2993,8 +2987,8 @@ Player</source>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="873"/>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1843"/>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2187"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1616"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2237"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3030,295 +3024,306 @@ On Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1041"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1047"/>
         <source>Specify the order in which tags will be saved into the song file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1044"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1050"/>
         <source>Tag Save Order...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1067"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1079"/>
         <source>Define your own tags here.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1070"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1082"/>
         <source>Custom Tags...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1100"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1118"/>
         <source>Specify the default input and output encodings of song files.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1103"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1121"/>
         <source>Default Encodings...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1135"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1153"/>
         <source>Always save a song after each change.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1138"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1156"/>
         <source>Auto-Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1188"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1206"/>
         <source>Quality Thresholds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1205"/>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1281"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1223"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1299"/>
         <source>Specify the minimum bitrate for medium MP3 quality.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1218"/>
         <location filename="../../ribbon/QURibbonBar.ui" line="1236"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1254"/>
         <source>Specify the minimum bitrate for high MP3 quality.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1328"/>
         <location filename="../../ribbon/QURibbonBar.ui" line="1346"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1364"/>
         <source>Specify the minimum resolution for medium cover quality.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1376"/>
         <location filename="../../ribbon/QURibbonBar.ui" line="1394"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1412"/>
         <source>Specify the minimum resolution for high cover quality.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1431"/>
         <location filename="../../ribbon/QURibbonBar.ui" line="1449"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1467"/>
         <source>Specify the minimum resolution for medium background quality.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1499"/>
         <location filename="../../ribbon/QURibbonBar.ui" line="1517"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1535"/>
         <source>Specify the minimum resolution for high background quality.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1572"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1948"/>
+        <source>&amp;Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1960"/>
         <source>Languages</source>
         <translation>Línguas</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1596"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1984"/>
         <source>Change application language to &apos;English&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1599"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1987"/>
         <source>English</source>
         <translation>Inglês
 (English)</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1631"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2025"/>
         <source>Change application language to &apos;German (Deutsch)&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1634"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2028"/>
         <source>German
 (Deutsch)</source>
         <translation>Alemão
 (Deutsch)</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1670"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2064"/>
         <source>Change application language to &apos;Polish (Polski)&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1673"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2067"/>
         <source>Polish
 (Polski)</source>
         <translation>Polonês
 (Polski)</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="1709"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2103"/>
         <source>Change application language to &apos;French (Français)&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="1712"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2106"/>
         <source>French
 (Français)</source>
         <translation>Francês
 (Français)</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="1748"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2142"/>
         <source>Change application language to &apos;Spanish (Español)&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="1751"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2145"/>
         <source>Spanish
 (Español)</source>
         <translation>Espanhol
 (Español)</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="1787"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2181"/>
         <source>Change application language to &apos;Portuguese (Português)&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="1790"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2184"/>
         <source>Portuguese
 (Português)</source>
         <translation>Português</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1831"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1604"/>
         <source>E&amp;xtras</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1867"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="745"/>
+        <source>Media
+Player</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1640"/>
         <source>Export informative lists of your song database.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1870"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1643"/>
         <source>Create
 Report...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1912"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1685"/>
         <source>Copy all audio files to a secure place.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1915"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1688"/>
         <source>Backup Audio Files...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1938"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1711"/>
         <source>See and reload all plugins.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1941"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1714"/>
         <source>Plugins...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1963"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1736"/>
         <source>Database &amp;&amp; Song Tree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1987"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1760"/>
         <source>Filter the song tree manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="1990"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1763"/>
         <source>Hide
 Songs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2038"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1811"/>
         <source>Save all modified but unsaved songs (the bold ones).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2041"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1814"/>
         <source>Save All Changes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2064"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1837"/>
         <source>Reload all songs into memory. This may take a while.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2067"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1840"/>
         <source>Rescan Song Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2110"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1883"/>
         <source>Expand all nodes in the song tree.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2113"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1886"/>
         <source>Expand All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2136"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1909"/>
         <source>Collapse all nodes in the song tree.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2139"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="1912"/>
         <source>Collapse All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2175"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2225"/>
         <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2210"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2260"/>
         <source>Qt Open Source Edition...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2233"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2283"/>
         <source>UltraStar Manager...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2255"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2305"/>
         <source>Third-Party Libs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2278"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2328"/>
         <source>TagLib...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2304"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2354"/>
         <source>BASS...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2326"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2376"/>
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2358"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2408"/>
         <source>Check for Update. Internet connection required.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2361"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2411"/>
         <source>Check for
 Update</source>
         <translation type="unfinished"></translation>
@@ -3754,27 +3759,27 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1364"/>
+        <location filename="../../song/QUSongFile.cpp" line="1378"/>
         <source>Primary song file changed from &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1427"/>
+        <location filename="../../song/QUSongFile.cpp" line="1441"/>
         <source>Error while preparing lyrics for %1 - %2. Could not parse the following line: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1443"/>
+        <location filename="../../song/QUSongFile.cpp" line="1457"/>
         <source>Error while preparing lyrics for %1 - %2. Songs may not start with a line break.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1469"/>
+        <location filename="../../song/QUSongFile.cpp" line="1483"/>
         <source>Line too short: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1513"/>
+        <location filename="../../song/QUSongFile.cpp" line="1527"/>
         <source>More than one score file found for &quot;%1 - %2&quot;. Only one will be used.</source>
         <translation type="unfinished"></translation>
     </message>
