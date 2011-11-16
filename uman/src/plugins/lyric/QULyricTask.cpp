@@ -24,6 +24,11 @@ QULyricTask::QULyricTask(TaskModes mode, QObject *parent):
 		this->setDescription(tr("Increase low BPM values"));
 		this->setToolTip(tr("Doubles BPM value and all note timings while it is below a certain threshold."));
 		break;
+	case NormalizePitches:
+		this->setIcon(QIcon(":/control/bpm_increase.png"));
+		this->setDescription(tr("Normalize pitch values"));
+		this->setToolTip(tr("Decreases all note pitches by as many octaves as necessary."));
+		break;
 	case RemoveEmptySyllables:
 		this->setIcon(QIcon(":/control/empty_syllable.png"));
 		this->setDescription(tr("Remove empty syllables"));
@@ -62,6 +67,9 @@ void QULyricTask::startOn(QUSongInterface *song) {
 		break;
 	case FixLowBPM:
 		fixLowBPM(song, smartSettings().first()->value().toInt());
+		break;
+	case NormalizePitches:
+		normalizePitches(song);
 		break;
 	case RemoveEmptySyllables:
 		removeEmptySyllables(song);
@@ -221,7 +229,6 @@ void QULyricTask::fixLowBPM(QUSongInterface *song, int threshold) {
 		return;
 	}
 
-	//MB TODO
 	double BPM = QVariant(song->bpm().replace(",", ".")).toDouble();
 
 	if(BPM >= threshold)
@@ -257,6 +264,45 @@ void QULyricTask::fixLowBPM(QUSongInterface *song, int threshold) {
 	song->log(QString(tr("#BPM changed from %1 to %2 for \"%3 - %4\"."))
 			  .arg(BPM)
 			  .arg(song->bpm())
+			  .arg(song->artist())
+			  .arg(song->title()), QU::Information);
+}
+
+/*!
+ * Shifts all note pitch values to a sensible range around zero.
+ */
+void QULyricTask::normalizePitches(QUSongInterface *song) {
+	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
+		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::Warning);
+		return;
+	}
+
+	// MB TODO: calculate a sensible amount of octaves to shift by (median probably better than mean)
+	int meanPitch = 0;
+	int numNotes = 0;
+	int octaves = 0;
+	foreach(QUSongLineInterface *line, song->loadMelody()) {
+		foreach(QUSongNoteInterface *note, line->notes()) {
+			numNotes++;
+			meanPitch += note->pitch();
+		}
+	}
+	meanPitch = qRound(meanPitch/numNotes);
+	octaves = meanPitch/12;
+
+	// modify all note pitches
+	foreach(QUSongLineInterface *line, song->loadMelody()) {
+		foreach(QUSongNoteInterface *note, line->notes()) {
+			note->setPitch(note->pitch() - (octaves*12));
+		}
+	}
+
+	song->saveMelody();
+	song->clearMelody(); // save memory
+
+	song->log(QString(tr("Mean note pitch changed from %1 to %2 for \"%3 - %4\"."))
+			  .arg(QString::number(meanPitch))
+			  .arg(QString::number(meanPitch - (octaves*12)))
 			  .arg(song->artist())
 			  .arg(song->title()), QU::Information);
 }
