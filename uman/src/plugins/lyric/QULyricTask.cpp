@@ -27,7 +27,7 @@ QULyricTask::QULyricTask(TaskModes mode, QObject *parent):
 	case NormalizePitches:
 		this->setIcon(QIcon(":/control/bpm_increase.png"));
 		this->setDescription(tr("Normalize pitch values"));
-		this->setToolTip(tr("Decreases all note pitches by as many octaves as necessary."));
+		this->setToolTip(tr("Shifts all note pitches octavewise towards a zero mean."));
 		break;
 	case RemoveEmptySyllables:
 		this->setIcon(QIcon(":/control/empty_syllable.png"));
