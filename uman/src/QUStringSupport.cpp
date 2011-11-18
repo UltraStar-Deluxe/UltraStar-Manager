@@ -3,7 +3,7 @@
 #include <QRegExp>
 
 QUStringSupport::QUStringSupport(QObject *parent): QObject(parent) {}
-    
+
 /*!
  * Removes all characters of the given text that cannot be used in a file or
  * directory name.

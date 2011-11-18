@@ -204,7 +204,7 @@ TRANSLATIONS = resources/lang/uman.de.ts \
     resources/lang/uman.pl.ts \
     resources/lang/uman.es.ts \
     resources/lang/uman.fr.ts \
-	resources/lang/uman.pt.ts
+    resources/lang/uman.pt.ts
 INCLUDEPATH += . \
     song \
     songdetails \
@@ -257,6 +257,3 @@ revtarget.commands = @echo \
 revtarget.depends = $$SOURCES \
     $$HEADERS \
     $$FORMS
-
-
-

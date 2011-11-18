@@ -163,7 +163,6 @@ void QUSongDatabase::processChangesForSong(QUSongFile *song) {
 	connect(song, SIGNAL(dataChanged()), this, SLOT(signalSongChanged()));
 }
 
-
 /*!
  * Reads recursively all available directories and puts them in the dirList.
  */

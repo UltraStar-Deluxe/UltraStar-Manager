@@ -748,7 +748,7 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 		dlg.update(QString("%1 - %2").arg(songItem->song()->artist()).arg(songItem->song()->title()));
 		if(dlg.cancelled()) break;
 
-		// MB: delete medley tags if CALCMEDLEY_TAG is set to OFF
+		// delete medley tags if CALCMEDLEY_TAG is set to OFF
 		songItem->song()->setInfo(tag, text);
 		if(tag == CALCMEDLEY_TAG && text == "OFF") {
 			songItem->song()->setInfo(MEDLEYSTARTBEAT_TAG, "");
