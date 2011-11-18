@@ -132,6 +132,7 @@
         <file>mediumMp3Quality.png</file>
         <file>bpm_increase.png</file>
         <file>normalize_pitches.png</file>
+        <file>edit_uppercase.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>splash.png</file>
