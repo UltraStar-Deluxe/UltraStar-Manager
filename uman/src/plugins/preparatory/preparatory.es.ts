@@ -54,7 +54,8 @@
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="42"/>
-        <source>Fix capitalization of #TITLE tag</source>
+        <source>Capitalize #TITLE tag</source>
+        <oldsource>Fix capitalization of #TITLE tag</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>

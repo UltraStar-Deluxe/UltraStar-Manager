@@ -58,7 +58,8 @@
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="42"/>
-        <source>Fix capitalization of #TITLE tag</source>
+        <source>Capitalize #TITLE tag</source>
+        <oldsource>Fix capitalization of #TITLE tag</oldsource>
         <translation>Korrigiere Großschreibung des #TITLE-Tags</translation>
     </message>
     <message>
@@ -69,7 +70,7 @@
     <message>
         <location filename="QUPreparatoryTask.cpp" line="47"/>
         <source>Capitalize #ARTIST tag</source>
-        <translation>Korrigiere Großschreibung für #ARTIST-Tag</translation>
+        <translation>Korrigiere Großschreibung des #ARTIST-Tags</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="48"/>
