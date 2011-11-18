@@ -14,6 +14,7 @@ public:
 		FixTimeStamps,
 		FixSpaces,
 		FixLowBPM,
+		FixLineCapitalization,
 		NormalizePitches,
 		RemoveEmptySyllables,
 		ConvertSyllablePlaceholder1,
@@ -35,6 +36,7 @@ private:
 	void fixTimeStamps(QUSongInterface *song, int start = 0);
 	void fixSpaces(QUSongInterface *song);
 	void fixLowBPM(QUSongInterface *song, int threshold = 200);
+	void fixLineCapitalization(QUSongInterface *song);
 	void normalizePitches(QUSongInterface *song);
 	void removeEmptySyllables(QUSongInterface *song);
 	void convertSyllablePlaceholder(QUSongInterface *song, const QString &before, const QString &after);

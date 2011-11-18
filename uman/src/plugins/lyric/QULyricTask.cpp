@@ -24,6 +24,10 @@ QULyricTask::QULyricTask(TaskModes mode, QObject *parent):
 		this->setDescription(tr("Increase low BPM values"));
 		this->setToolTip(tr("Doubles BPM value and all note timings while it is below a certain threshold."));
 		break;
+	case FixLineCapitalization:
+		this->setIcon(QIcon(":/control/edit_uppercase.png"));
+		this->setDescription(tr("Capitalize first word of each song line"));
+		break;
 	case NormalizePitches:
 		this->setIcon(QIcon(":/control/normalize_pitches.png"));
 		this->setDescription(tr("Normalize pitch values"));
@@ -67,6 +71,9 @@ void QULyricTask::startOn(QUSongInterface *song) {
 		break;
 	case FixLowBPM:
 		fixLowBPM(song, smartSettings().first()->value().toInt());
+		break;
+	case FixLineCapitalization:
+		fixLineCapitalization(song);
 		break;
 	case NormalizePitches:
 		normalizePitches(song);
@@ -269,6 +276,27 @@ void QULyricTask::fixLowBPM(QUSongInterface *song, int threshold) {
 }
 
 /*!
+ * Capitalizes each first word of a song line
+ */
+void QULyricTask::fixLineCapitalization(QUSongInterface *song) {
+	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
+		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::Warning);
+		return;
+	}
+
+	foreach(QUSongLineInterface *line, song->loadMelody()) {
+		line->notes().first()->setSyllable(line->notes().first()->syllable().at(0).toUpper() + line->notes().first()->syllable().mid(1));
+	}
+
+	song->saveMelody();
+	song->clearMelody(); // save memory
+
+	song->log(QString(tr("Line capitalization fixed for \"%1 - %2\"."))
+			  .arg(song->artist())
+			  .arg(song->title()), QU::Information);
+}
+
+/*!
  * Shifts all note pitch values to a sensible range around zero.
  */
 void QULyricTask::normalizePitches(QUSongInterface *song) {
@@ -290,21 +318,23 @@ void QULyricTask::normalizePitches(QUSongInterface *song) {
 	meanPitch = qRound(meanPitch/numNotes);
 	octaves = meanPitch/12;
 
-	// modify all note pitches
-	foreach(QUSongLineInterface *line, song->loadMelody()) {
-		foreach(QUSongNoteInterface *note, line->notes()) {
-			note->setPitch(note->pitch() - (octaves*12));
+	if(octaves != 0) {
+		// modify all note pitches
+		foreach(QUSongLineInterface *line, song->loadMelody()) {
+			foreach(QUSongNoteInterface *note, line->notes()) {
+				note->setPitch(note->pitch() - (octaves*12));
+			}
 		}
+
+		song->saveMelody();
+		song->clearMelody(); // save memory
+
+		song->log(QString(tr("Mean note pitch changed from %1 to %2 for \"%3 - %4\"."))
+				  .arg(QString::number(meanPitch))
+				  .arg(QString::number(meanPitch - (octaves*12)))
+				  .arg(song->artist())
+				  .arg(song->title()), QU::Information);
 	}
-
-	song->saveMelody();
-	song->clearMelody(); // save memory
-
-	song->log(QString(tr("Mean note pitch changed from %1 to %2 for \"%3 - %4\"."))
-			  .arg(QString::number(meanPitch))
-			  .arg(QString::number(meanPitch - (octaves*12)))
-			  .arg(song->artist())
-			  .arg(song->title()), QU::Information);
 }
 
 /*!
