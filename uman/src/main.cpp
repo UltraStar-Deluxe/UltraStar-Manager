@@ -43,13 +43,13 @@ int main(int argc, char *argv[]) {
 	handlePreviousAppCrash();
 	handleArguments();
 
-    QUMainWindow mainWindow;
-    app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
+	QUMainWindow mainWindow;
+	app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
 
-    mainWindow.show();
-    splash.finish(&mainWindow);
+	mainWindow.show();
+	splash.finish(&mainWindow);
 
-    return app.exec();
+	return app.exec();
 }
 
 /*!
@@ -70,8 +70,8 @@ void initApplication() {
  * have to restart this application if you want to change its language. Uses the system
  * language if no registry setting is found.
  *
- * Note that there is no special translation file for english present. That's why all
- * strings in the application source code is in english.
+ * Note that there is no special translation file for English present. That's why all
+ * strings in the application source code is in English.
  */
 void initLanguage(QApplication &app, QTranslator &t, QSplashScreen &s) {
 	QSettings settings;
@@ -116,11 +116,11 @@ void initLanguage(QApplication &app, QTranslator &t, QSplashScreen &s) {
 
 	s.showMessage(QString(QObject::tr("%1.%2.%3 is loading...")).arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION), Qt::AlignBottom | Qt::AlignRight, Qt::white);
 
-        // message needs to be here because it can be translated only after installing the translator
+	// message needs to be here because it can be translated only after installing the translator
 	if(!settingFound)
 		QUMessageBox::information(0,
 				QObject::tr("Init Language"),
-                                QObject::tr("There was no configuration setting about your language. Your <b>system language</b> will be used if possible.<br>"
+				QObject::tr("There was no configuration setting about your language. Your <b>system language</b> will be used if possible.<br>"
 						"<br>"
 						"See <b>Options > Language</b> to change this."),
 				BTN << ":/marks/accept.png" << QObject::tr("Continue."),
@@ -138,7 +138,7 @@ void handleWipWarning() {
 void handleReleaseCandidateInformation() {
 	QUMessageBox::information(0,
 				QObject::tr("Release Candidate Information"),
-				QObject::tr("<b>Dear testing person,</b><br><br>this version is meant to be <b>feature-complete and almost bug-free</b>. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.<br>While testing the release candidate, especially consider the following:<br><br>- support for CP1252, CP1250 and UTF8 encodings<br>- support for medley and preview tags<br>- mp3/cover/background quality assessment in songtree<br>- shiny new French translation<br>- duet bugs fixed<br>- check for update feature<br><br>Send feedback and bug reports to: <a href=\"mailto:bohning@users.sourceforge.net\">bohning@users.sourceforge.net</a>"),
+				QObject::tr("<b>Dear testing person,</b><br><br>this version is meant to be <b>feature-complete and almost bug-free</b>. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.<br>While testing the release candidate, especially consider the following:<br><br>- support for CP1252, CP1250 and UTF8 encodings<br>- support for medley and preview tags<br>- mp3/cover/background quality assessment in songtree<br>- shiny new French translation<br>- duet bugs fixed<br>- check for update feature<br>- new task to increase low BPMs<br>- new task to normalize note pitches<br>- new task to capitalize the first word of each line<br><br>Send feedback and bug reports to: <a href=\"mailto:bohning@users.sourceforge.net\">bohning@users.sourceforge.net</a>"),
 				BTN << ":/marks/accept.png" << QObject::tr("Okay!"),
 				400);
 }
