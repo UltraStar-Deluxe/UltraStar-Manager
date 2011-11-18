@@ -335,7 +335,7 @@ void QUSongFile::verifyTags(QStringList &tags) {
  * \returns True if the mp3 specified by the song file really exists.
  */
 bool QUSongFile::hasMp3() const {
-	return !mp3().isEmpty() && mp3FileInfo().exists();
+	return !mp3().isEmpty() && mp3FileInfo().exists() && QUSongSupport::allowedAudioFiles().contains("*." + mp3FileInfo().suffix(), Qt::CaseInsensitive);
 }
 
 /*!
@@ -343,7 +343,7 @@ bool QUSongFile::hasMp3() const {
  * \returns True if the cover specified by the song file really exists.
  */
 bool QUSongFile::hasCover() const {
-	return !cover().isEmpty() && coverFileInfo().exists();
+	return !cover().isEmpty() && coverFileInfo().exists() && QUSongSupport::allowedImageFiles().contains("*." + coverFileInfo().suffix(), Qt::CaseInsensitive);
 }
 
 /*!
@@ -351,7 +351,7 @@ bool QUSongFile::hasCover() const {
  * \returns True if the background specified by the song file really exists.
  */
 bool QUSongFile::hasBackground() const {
-	return !background().isEmpty() && backgroundFileInfo().exists();
+	return !background().isEmpty() && backgroundFileInfo().exists() && QUSongSupport::allowedImageFiles().contains("*." + backgroundFileInfo().suffix(), Qt::CaseInsensitive);
 }
 
 /*!
@@ -359,7 +359,7 @@ bool QUSongFile::hasBackground() const {
  * \returns True if the video specified by the song file really exists.
  */
 bool QUSongFile::hasVideo() const {
-	return !video().isEmpty() && videoFileInfo().exists();
+	return !video().isEmpty() && videoFileInfo().exists() && QUSongSupport::allowedVideoFiles().contains("*." + videoFileInfo().suffix(), Qt::CaseInsensitive);
 }
 
 bool QUSongFile::hasMedley() const {

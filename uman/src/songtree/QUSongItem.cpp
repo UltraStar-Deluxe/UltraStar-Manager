@@ -594,21 +594,25 @@ void QUSongItem::updateSpellCheckColumns() {
 void QUSongItem::updateFileCheckColumns() {
 	/* file-related columns */
 
-	     if(song()->hasMp3())		this->setTick(MP3_COLUMN);
-	else if(song()->mp3() != N_A)		this->setCross(MP3_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->mp3()));
-	else					this->setCross(MP3_COLUMN);
+	     if(song()->hasMp3())							this->setTick(MP3_COLUMN);
+	else if(song()->mp3() != N_A && !song()->mp3FileInfo().exists())		this->setCross(MP3_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->mp3()));
+	else if(song()->mp3() != N_A && song()->mp3FileInfo().exists())			this->setCross(MP3_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->mp3()));
+	else										this->setCross(MP3_COLUMN);
 
-	     if(song()->hasCover())		this->setTick(COVER_COLUMN);
-	else if(song()->cover() != N_A)		this->setCross(COVER_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->cover()));
-	else					this->setCross(COVER_COLUMN);
+	     if(song()->hasCover())							this->setTick(COVER_COLUMN);
+	else if(song()->cover() != N_A && !song()->coverFileInfo().exists())		this->setCross(COVER_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->cover()));
+	else if(song()->cover() != N_A && song()->coverFileInfo().exists())		this->setCross(COVER_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->cover()));
+	else										this->setCross(COVER_COLUMN);
 
-	     if(song()->hasBackground())	this->setTick(BACKGROUND_COLUMN);
-	else if(song()->background() != N_A)	this->setCross(BACKGROUND_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->background()));
-	else					this->setCross(BACKGROUND_COLUMN);
+	     if(song()->hasBackground())						this->setTick(BACKGROUND_COLUMN);
+	else if(song()->background() != N_A && !song()->backgroundFileInfo().exists())	this->setCross(BACKGROUND_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->background()));
+	else if(song()->background() != N_A && song()->backgroundFileInfo().exists())	this->setCross(BACKGROUND_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->background()));
+	else										this->setCross(BACKGROUND_COLUMN);
 
-	     if(song()->hasVideo())		this->setTick(VIDEO_COLUMN);
-	else if(song()->video() != N_A)		this->setCross(VIDEO_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->video()));
-	else					this->setCross(VIDEO_COLUMN);
+	     if(song()->hasVideo())							this->setTick(VIDEO_COLUMN);
+	else if(song()->video() != N_A && !song()->videoFileInfo().exists())		this->setCross(VIDEO_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->video()));
+	else if(song()->video() != N_A && song()->videoFileInfo().exists())		this->setCross(VIDEO_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->video()));
+	else										this->setCross(VIDEO_COLUMN);
 
 	// score files
 	if(song()->score())
@@ -625,7 +629,6 @@ void QUSongItem::updateTypeColumns() {
 		this->setIcon(TYPE_KARAOKE_COLUMN, QIcon(":/types/karaoke.png"));
 		this->setData(TYPE_KARAOKE_COLUMN, Qt::UserRole, -1);
 	}
-
 }
 
 void QUSongItem::updateTimeCheckColumns() {
