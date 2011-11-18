@@ -37,9 +37,9 @@ QUPreparatoryTask::QUPreparatoryTask(TaskModes mode, QObject *parent):
 		this->setIcon(QIcon(":/bullets/bullet_black.png"));
 		this->setDescription(tr("Round #GAP to nearest integer"));
 		break;
-	case FixCapitalization:
+	case CapitalizeTitle:
 		this->setIcon(QIcon(":/control/text_allcaps.png"));
-		this->setDescription(tr("Fix capitalization of #TITLE tag"));
+		this->setDescription(tr("Capitalize #TITLE tag"));
 		this->setToolTip(tr("Applies some rules of capitalization to form a consistent appearance for all song titles.<br><br><b>Useful for english songs.</b>"));
 		break;
 	case CapitalizeArtist:
@@ -74,8 +74,8 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 	case RoundGap:
 		song->roundGap();
 		break;
-	case FixCapitalization:
-		fixCapitalization(song);
+	case CapitalizeTitle:
+		capitalizeTitle(song);
 		break;
 	case CapitalizeArtist:
 		capitalizeArtist(song);
@@ -100,10 +100,10 @@ QList<QUSmartSettingInterface*> QUPreparatoryTask::smartSettings() const {
 		case FixAudioLength:
 			_smartSettings.append(new QUSmartInputField("preparatory/fixAudioLength", timeDiffLower, new QRegExpValidator(QRegExp("\\d*"), 0), tr("Buffer:"), tr("seconds")));
 			break;
-		case FixCapitalization:
-			_smartSettings.append(new QUSmartCheckBox("preparatory/fixCapitalization_onlyEnglish", tr("Capitalize English songs only"), true));
-			_smartSettings.append(new QUSmartCheckBox("preparatory/fixCapitalization_allCaps", tr("Capitalize each word"), false));
-			_smartSettings.append(new QUSmartCheckBox("preparatory/fixCapitalization_onlyFirstWord", tr("Capitalize first word only"), false));
+		case CapitalizeTitle:
+			_smartSettings.append(new QUSmartCheckBox("preparatory/capitalizeTitle_onlyEnglish", tr("Capitalize English songs only"), true));
+			_smartSettings.append(new QUSmartCheckBox("preparatory/capitalizeTitle_allCaps", tr("Capitalize each word"), false));
+			_smartSettings.append(new QUSmartCheckBox("preparatory/capitalizeTitle_onlyFirstWord", tr("Capitalize first word only"), false));
 			break;
 		case CapitalizeArtist:
 			_smartSettings.append(new QUSmartCheckBox("preparatory/capitalizeArtist_onlyFirstWord", tr("Capitalize first word only"), false));
@@ -138,7 +138,7 @@ void QUPreparatoryTask::autoSetFiles(QUSongInterface *song, const QString &cover
 /*!
  * See http://aitech.ac.jp/~ckelly/midi/help/caps.html for the rules.
  */
-void QUPreparatoryTask::fixCapitalization(QUSongInterface *song) {
+void QUPreparatoryTask::capitalizeTitle(QUSongInterface *song) {
 	bool onlyEnglish = smartSettings().at(0)->value().toBool();
 	bool allCaps = smartSettings().at(1)->value().toBool();
 	bool onlyFirstWord = smartSettings().at(2)->value().toBool();
