@@ -39,6 +39,8 @@ QURibbonBar::QURibbonBar(QWidget *parent): QTabWidget(parent), _menuHidden(false
 	hideBtn = new QToolButton(this);
 	hideBtn->setAutoRaise(true);
 	hideBtn->setIconSize(QSize(10, 12));
+	//MB: hide hideBtn as long as hiding the ribbon menu isn't working
+	hideBtn->setVisible(false);
 	connect(hideBtn, SIGNAL(clicked()), this, SLOT(toggleMenuHidden()));
 	connect(this, SIGNAL(currentChanged(int)), this, SLOT(changeCurrentTab(int)));
 
