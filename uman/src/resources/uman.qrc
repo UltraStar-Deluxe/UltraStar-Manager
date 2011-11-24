@@ -4,12 +4,6 @@
         <file>monty/happy.png</file>
         <file>monty/normal.png</file>
         <file>monty/seated.png</file>
-        <file>txt/genres</file>
-        <file>txt/hints</file>
-        <file>txt/hints_pl</file>
-        <file>txt/hints_de</file>
-        <file>txt/credits</file>
-        <file>txt/languages</file>
         <file>lang/de.png</file>
         <file>lang/uman.de.qm</file>
         <file>lang/uman.pl.qm</file>
@@ -25,9 +19,7 @@
         <file>qt.png</file>
         <file>about_bgr.png</file>
         <file>lang/fr.png</file>
-        <file>txt/hints_fr</file>
         <file>lang/uman.fr.qm</file>
-        <file>txt/hints_es</file>
         <file>lang/es.png</file>
         <file>lang/uman.es.qm</file>
         <file>lang/pt.png</file>

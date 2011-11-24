@@ -33,7 +33,7 @@
         <translation>Kliknij tutaj by rozpocząć edycję.</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="122"/>
+        <location filename="../../main.cpp" line="123"/>
         <source>Init Language</source>
         <translation>Początkowy Język</translation>
     </message>
@@ -42,7 +42,7 @@
         <translation type="obsolete">Aktualnie użyty język programu wybrany został na podstawie wersji językowej &lt;b&gt;systemu operacyjnego&lt;/b&gt; na którym został uruchomiony.&lt;br&gt;&lt;br&gt;Jeśli z jakichś względów ten język Ci nie odpowiada zobacz &lt;b&gt;Opcje &gt; Język&lt;/b&gt; i wybierz inne tłumaczenie.</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="126"/>
+        <location filename="../../main.cpp" line="127"/>
         <source>Continue.</source>
         <translation>Kontynuuj.</translation>
     </message>
@@ -168,87 +168,482 @@ Try cropping to %1 x %3 for a widescreen aspect ratio.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../QUMonty.cpp" line="22"/>
+        <source>If you double-click the cell where the row of an &lt;i&gt;audio file&lt;/i&gt; and the &lt;i&gt;audio column&lt;/i&gt; cross, you can immediately set your song to use this audio file in UltraStar.&lt;br&gt;&lt;br&gt;This also works for cover and background images as well as video files.</source>
+        <translation>Jeśli masz więcej utworów audio w katalogu i klikniesz dwukrotnie na the miejsce łączenia (rząd z plikiem audio i kolumnę z nutką) przypiszesz ten plik audio do tego utworu.&lt;br&gt;&lt;br&gt;To działa także dla grafiki i teledysków.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="23"/>
+        <source>You can edit the value of most tags in the &lt;i&gt;Song Details&lt;/i&gt; area. Just double-click the right cell there to enter the edit mode of a specific value.</source>
+        <translation>Możesz zmienić wartość większości etykiet na szczegółach utworu. Kliknij dwukrotnie na wybranej komórce i wprowadź wybraną wartość.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="25"/>
+        <source>Did you remark the &lt;i&gt;Tasks&lt;/i&gt; area? Just check the tasks you want to be carried out, select some songs and then click on the button labeled &lt;i&gt;Run Tasks&lt;/i&gt;.&lt;br&gt;&lt;br&gt;You can also hit &lt;i&gt;Ctrl+R&lt;/i&gt;.</source>
+        <translation>Zauważyłeś &quot;okienko z zadanimi&quot;? Zaznacz co chciałbyś zrobić, wybierz utwory a potem kliknij na przycisk &quot;Uruchom&quot;.&lt;br&gt;&lt;br&gt;Możesz także nacisnąć  &lt;i&gt;Ctrl+R&lt;/i&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="26"/>
+        <source>You can hide the event log by unchecking &lt;i&gt;View &amp;rarr; Event Log&lt;/i&gt;.&lt;br&gt;&lt;br&gt;This also works for &lt;i&gt;Song Details&lt;/i&gt; and the &lt;i&gt;Tasks&lt;/i&gt; area.</source>
+        <translation>Możesz ukryć dziennik wydarzeń po prostu odhaczając &lt;i&gt;Widok &amp;rarr;Dziennik Wydarzeń&lt;/i&gt;.&lt;br&gt;&lt;br&gt;To działa także na właściwości utworów i zadania.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="27"/>
+        <source>Do you want me to say something else? Tell everybody about your requests in our &lt;a href=&quot;http://forum.ultra-star.de/viewforum.php?f=62&quot;&gt;project forum&lt;/a&gt;.</source>
+        <translation>Chcesz mi jeszcze o czymś powiedzieć? Powiedz co Cię gnębi na &lt;a href=&quot;http://uman.sf.net&quot;&gt;Stronie projektu&lt;/a&gt;, a być może zdołamy Ci pomóc.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="28"/>
+        <source>The BPM tag is not editable? Yeah, that&apos;s right. This is not a song creation tool like the &lt;a href=&quot;http://sourceforge.net/projects/usc&quot;&gt;UltraStar Creator&lt;/a&gt;. Nevertheless, you can modify all lyrics and correct spelling errors.</source>
+        <translation>Niektóre etykiety ni chcą dać się zmienić? Tak masz rację, Wiele z danych pozostanie niezmieniona, bo to narzędzie nie powinno służyć do zmiany takich rzeczy jak prędkość BPM czy GAP. Do tego celu służy edytor w UltraStarze.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="29"/>
+        <source>Did I hear you correctly? A missing feature?! Just click &lt;a href=&quot;http://forum.ultra-star.de/viewforum.php?f=62&quot;&gt;here&lt;/a&gt; and let everybody know &amp;ndash; especially the developers.</source>
+        <translation>Dobrze słyszę? Brakująca funkcja?! Kliknij &lt;a href=&quot;http://uman.sf.net&quot;&gt;tutaj&lt;/a&gt; i powiedz o niej wszystkim - zwłaszcza twórcom.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="31"/>
+        <source>You are missing a video for your favourite song? Check out &lt;a href=&quot;http://www.youtube.com&quot;&gt;Youtube&lt;/a&gt;, &lt;a href=&quot;http://www.dailymotion.com&quot;&gt;Dailymotion&lt;/a&gt;, or &lt;a href=&quot;http://vimeo.com&quot;&gt;Vimeo&lt;/a&gt;!</source>
+        <translation>Brakuje Ci teledysku do ulubionej piosenki? poszukaj go na &lt;a href=&quot;http://www.youtube.com&quot;&gt;Youtube&lt;/a&gt;, &lt;a href=&quot;http://www.dailymotion.com&quot;&gt;Dailymotion&lt;/a&gt; lub &lt;a href=&quot;http://vimeo.com&quot;&gt;Vimeo&lt;/a&gt;!</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="32"/>
+        <source>Whenever a task could not be applied, you can find a corresponding entry in the event log. Mostly a file could not be found or invalid characters (e.g. &apos;?&apos;) are used to rename something.&lt;br&gt;&lt;br&gt;Be aware that UltraStar can display more characters than you can use in Windows for a file.</source>
+        <translation>Jeśli zadanie nie może być wykonane - dowiesz się o tym z dziennika wydarzeń. Większość tego typu problemów wynika ze złych znaków np użycie &apos;?&apos; do zmiany nazwy pliku.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="33"/>
+        <source>Did you notice that there are green, yellow, and red smileys in the song tree? Green ones tell you that your song directory is named correctly after &lt;i&gt;Artist - Title&lt;/i&gt; case-sensitive while yellow ones only match case-insensitive. The red smileys indicate an entirely wrong combination.</source>
+        <translation>Zauważyłeś buźki na drzewku utworów? Zielone oznaczają, że wszystko jest w porządku. Żółte sugerują różnicę w wielkości znaków. Czerwone oznaczają, że nazwa katalogu różni się od tej zadeklarowanej na etykietach utworu.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="34"/>
+        <source>The &lt;i&gt;chain&lt;/i&gt; next to an image, audio or video file indicates that it can be found by UltraStar correctly.&lt;br&gt;&lt;br&gt;You can reset chains by double-clicking the correct column.</source>
+        <translation>&lt;i&gt;Łańcuchy&lt;/i&gt; pomiędzy grafiką, plikami audio i teledyskami informują o tym, że pliki te będą widziane i użyte w UltraStarze&lt;br&gt;&lt;br&gt;Możesz odświeżyć te połączenia klikając na nich dwukrotnie.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="35"/>
+        <source>Files are unused by UltraStar whenever they are displayed in &lt;font color=&quot;gray&quot;&gt;gray&lt;/font&gt;.</source>
+        <translation>Pliki nieużywane przez UltraStar&apos;a mają szary kolor.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="36"/>
+        <source>You want to know how many songs you have in your collection? Well, there are &lt;b&gt;%1 songs&lt;/b&gt;. Not bad at all.&lt;br&gt;&lt;br&gt;Do you have a cover, a background or a video for each one? No? Then you&apos;ve got a new task.</source>
+        <translation>Tak tylko informacyjnie napomykam, że masz &lt;b&gt;%1 utworów&lt;/b&gt;. Całkiem nieźle.&lt;br&gt;&lt;br&gt;A masz do każdego z nich okładkę, teledysk lub tło? Nie??? Nooo to już wiesz za co będziesz robił w długie zimowe wieczory.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="37"/>
+        <source>Hmmm... just in case you haven&apos;t noticed: The last events are located at the top of the event log.</source>
+        <translation>Hmmm...w razie gdybyś nie wiedział: Ostatnie wydarzenie zawsze jest ulokowane na górze dziennika zdarzeń.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="38"/>
+        <source>Did you remark these nice tooltips at the header of each column in the song tree? There are more tooltips for nearly every button here.</source>
+        <translation>Sprawdzałeś podpisy przy nagłówkach kolumn drzewka utworów? Przytryzmaj nad nimi kursor myszki a dowiesz się jakie znaczenie ma każda z tych kolumn.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="39"/>
+        <source>Do you wonder why some tasks want to rename your file into &lt;i&gt;something.*&lt;/i&gt;?&lt;br&gt;&lt;br&gt;Well, your file suffix is preserved whatever it may be. So don&apos;t bother.</source>
+        <translation>Jeśli zastanawiasz się dlaczego niektóre zadania chcą zmienić nazwę pliku na &lt;i&gt;cośtam.*&lt;/i&gt;?&lt;br&gt;&lt;br&gt;Otóż rozszerzenie pliku jest tutaj najistotniejsze, i będzie on widziany przez utwór jakkolwiek by nie został nazwany (oczywiście jeśli jest on także w takiej formie umieszczony w etykiecie).</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="40"/>
+        <source>The first *.txt or *.txd file in any subdirectory of your song folder will be recognized as a song and listed in the song tree. Other song files will be so-called &lt;i&gt;friends&lt;/i&gt; to this primary song. You can switch the primary song in the context-menu of a song file.</source>
+        <translation>Pierwszy znaleziony plik *.txt w każdym podfolderze wybranego jako katalog utworów miejsca będzie uznany za utwór, i umieszczony na drzewku utworów.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="41"/>
+        <source>There is a song missing which is found by UltraStar instead? That&apos;s impossible!&lt;br&gt;&lt;br&gt;Well... please report it on the &lt;a href=&quot;http://forum.ultra-star.de/viewforum.php?f=62&quot;&gt;project forum&lt;/a&gt; and include details where that song is located.</source>
+        <translation>Masz utwór który widzi UltraStar a nie jest on widoczny w UltraStar Managerze? Niemożliwe!&lt;br&gt;&lt;br&gt;No dobrze... sprawdzimy to, jeśli podasz więcej szczegółów  na &lt;a href=&quot;http://sourceforge.net/projects/uman&quot;&gt;stronie projektu&lt;/a&gt; nie zapomnij podać ścieżki gdzie znajduje się ten utwór.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="42"/>
+        <source>You can turn off the relative paths in the folder column by unchecking &lt;i&gt;View &amp;rarr; Show Relative Song Paths&lt;/i&gt;.</source>
+        <translation>Możesz podejrzeć pełną ścieżkę do katalogu z utworem. Wystarczy zaznaczyć &lt;i&gt;Widok &amp;rarr; Dokładna Ścieżka Utworu&lt;/i&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="43"/>
+        <source>What are &lt;b&gt;&lt;font color=&quot;royalblue&quot;&gt;blue folders&lt;/font&gt;&lt;/b&gt;? If a tag is found in a song text file that will not be recognized by UltraStar then this song is marked with a blue folder.&lt;br&gt;&lt;br&gt;That&apos;s not bad at all. These tags will stay untouched by default. However, you can either add them using &lt;i&gt;Options &amp;rarr; Custom Tags...&lt;/i&gt; or use a dedicated task to remove all unknown tags, if you want.</source>
+        <translation>Co oznaczają &lt;b&gt;&lt;font color=&quot;royalblue&quot;&gt;niebieskie&lt;/font&gt;&lt;b&gt; katalogi? Nie mniej nie więcej tylko to, że w pliku TXT utworu znajdują się nierozpoznane etykiety.&lt;br&gt;&lt;br&gt;Nie są one szkodliwe, Te etykiety pozostaną przez program nietknięte. Chyba, że zażyczysz sobie by je usunąć.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="44"/>
+        <source>The tooltip of a blue folder shows all unsupported tags found in the corresponding song file.</source>
+        <translation>Jeśli najedziesz kursorem na niebieski katalog (o ile taki masz w swoich zbiorach) po chwili pojawi się informacja o tym jakie etykiety uznane zostały za nierozpoznane. Czasami może to być po prostu błąd/literówka twórcy utworu.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="45"/>
+        <source>Try to click on an audio file and see what appears in the preview window...</source>
+        <translation>Spróbuj kliknąć dwukrotnie na pliku audio i patrz co się stanie...</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="46"/>
+        <source>Did you notice the large number of default values for a genre in the &lt;i&gt;Song Details&lt;/i&gt;? These genres originate from the good old ID3v1 specification as well as some custom Winamp extensions.</source>
+        <translation>Zauważyłeś dużą różnorodność rodzajów muzyki w szczegółach utworów? Pochodzą one z etykiety ID3. Można a nawet powinno się je nieco uogólnić dla dobra późniejszego ich filtrowania w UltraStarze.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="47"/>
+        <source>I shall be quiet? Then uncheck me &lt;i&gt;in the top right corner of the main menu&lt;/i&gt;.</source>
+        <translation>Mam być cicho? Odhacz &lt;i&gt;Pomoc &amp;rarr; Dopuść Montiego do głosu&lt;/i&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="48"/>
+        <source>The default values for an artist, a title and the year in the &lt;i&gt;Song Details&lt;/i&gt; are taken from the ID3 tag, if available.</source>
+        <translation>Domyślne wartości dla wykonawcy, tytułu i roku w szczegółach utworu pobierane są z etykiety ID3.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="49"/>
+        <source>There is a task that enables you to set up missing files for a song automatically. That task looks for the first proper files (audio, image, video) and uses that file if the present entry is invalid or missing.</source>
+        <translation>Jedno z zadań pozwala na dołączenie brakujących w utworze plików. To zadanie szuka plików z brakującą zawartością (muzyka, grafika, teledysk) które znajdują się w katalogu utworu.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="50"/>
+        <source>Some details can be edited simultaneously for a selection of songs. Simply select some songs and use the &lt;i&gt;Song Details&lt;/i&gt; table.</source>
+        <translation>Możesz zmieniać szczegółu kilku utworów jednocześnie. W tym celu zaznacz je i wykorzystaj &lt;i&gt;tabelę szczegóły&lt;/i&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="61"/>
+        <source>If you drag &amp;amp; drop a song text file from your explorer into the song tree (not at an item), a new folder will be created and your file will be copied to that new location.&lt;br&gt;&lt;br&gt;This way you can easily add new songs to your collection.</source>
+        <translation>Jeśli przeciągniesz i opuścisz plik TXT z explorera na drzewko utworów (lecz nie na jakiś istniejący katalog), zostanie utworzony nowy folder a ten plik zostanie w nim umieszczony.&lt;br&gt;&lt;br&gt;W ten sposób możesz łatwo dodawaća nowe utwory do swojej kolekcji.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="73"/>
+        <source>If you want to integrate new songs via drag &amp;amp; drop in the song tree, it may be helpful to hide all other songs first. Simply select &lt;i&gt;Hide &amp;rarr; All&lt;/i&gt; from the song tree context menu.</source>
+        <translation type="unfinished">Jeśli zamierzasz dołączyć nowy utwór do drzewka utworów przez przeciąganie i opuszczanie plików, pomocne może być wcześniejsze ukrycie innych utworów.&lt;br&gt;&lt;br&gt;&lt;i&gt;Ukryj &amp;rarr;Wszystko&lt;/i&gt; (menu kontekstowe)</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="78"/>
+        <source>You can see duplicate songs if you press &lt;i&gt;Find Duplicates&lt;/i&gt; in the filter/search area (&lt;i&gt;Ctrl+F&lt;/i&gt;). Duplicate songs will be listed together.</source>
+        <translation>Możesz sprawdzić czy masz zduplikowane utwory klikając na &lt;i&gt;Duplikaty&lt;/i&gt; na pasku filtrowania. Zduplikowane utwory zostaną natycmiast wyświetlone.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="80"/>
+        <source>The &lt;i&gt;Songs &amp;rarr; Get Covers...&lt;/i&gt; feature allows you to download covers from remote image source. They will only be downloaded for songs that are checked. That also applies to &lt;i&gt;Copy &amp;amp; Set&lt;/i&gt;.</source>
+        <translation>&lt;i&gt;Usługa Pobierania Danych z Amazon:&lt;/i&gt;&lt;br&gt;&lt;br&gt;Okładki będą pobrane jedynie dla zaznaczonych utworów. Dołączenie okładek następuje poprzez kliknięcie na &quot;Kopiuj i Ustaw&quot;.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="30"/>
+        <source>You can expand or collapse the song tree in the &lt;i&gt;Extras&lt;/i&gt; menu. That means you will either see only directories of your songs or all files you can use.</source>
+        <translation>Menu &quot;Utwory&quot; umożliwia rozwinięcie i zwinięcie całego drzewka utworów. Oznacza to, że możesz mieć wgląd we wszystkie pliki które występują we wszystkich utworach, lub widzieć tylko ich nazwy katalogów.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="24"/>
+        <source>You can modify the order in which tags are saved to a song file by dragging &amp;amp; dropping these tags under &lt;i&gt;Options &amp;rarr; Tag Save Order...&lt;/i&gt;.</source>
+        <translation>Możesz zamieniać kolejność etykiet w jakiej będą one zapisane do pliku TXT utworu. Wystarczy przeciągnąć i opuścić te etykiety w okienku &lt;i&gt;Opcje &amp;rarr;Kolejność Zapisu Etykiet...&lt;/i&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="51"/>
+        <source>If you drag &amp;amp; drop a dockable widget (song details, tasks, event log) over another dockable widget, these two widgets will merge into a single widget with tabs at the bottom.</source>
+        <translation>Jeśli przeciągniesz i opuścisz okienko z możliwością dokowania (szczegóły utworu, zadania, dziennik wydarzeń) nad inne okienko, oba okna zostaną połączone. Pod tymi oknami pojawi się pasek zakładek z nazwami tych okien.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="52"/>
+        <source>You can make a dockable widget (song details, tasks, event log) floatable if you double-click on its title bar.</source>
+        <translation>Możesz odłączyć od aplikacji ruchome okna takie jak szczegóły utworu, zadania czy dziennik wydarzeń. Wystarczy kliknąć dwukrotnie w ich tytułowy pasek.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="53"/>
+        <source>Did you remark that the state of the application window as well as all dockable widgets is saved on exit?</source>
+        <translation>Czy zauważyłeś, że pozycja wszystkich okien USM jest zapisywana przy wyjściu? Możesz je dowolnie przesuwać i ustawiać według potrzeb.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="54"/>
+        <source>Unsupported tags will be saved after all other tags in the song file. You can add these tags as custom tags via &lt;i&gt;Options &amp;rarr; Custom Tags...&lt;/i&gt; and then specify their save order in &lt;i&gt;Options &amp;rarr; Tag Save Order...&lt;/i&gt;.</source>
+        <translation>Nierozpoznane etykiety będą ulokowane jako ostatnie w pliku TXT utworu.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="55"/>
+        <source>You have a problem with changing the artist tag because autocomplete wants to use the ID3 tag value? (e.g. &quot;abba&quot; &amp;rarr; &quot;Abba&quot;)&lt;br&gt;&lt;br&gt;Try to check &lt;i&gt;Use Case-sensitive Autocomplete&lt;/i&gt; in the &lt;i&gt;Song Details&lt;/i&gt; table.</source>
+        <translation>Masz problem ze zmianą nazwy wykonawcy, bo automatyczna zmiana za bardzo sugeruje się etykietami ID3 (np. &quot;abba&quot; &amp;rarr; &quot;Abba&quot;) a Ty koniecznie chcesz mieć ABBA? &lt;br&gt;&lt;br&gt;Spróbuj kliknąć na &lt;i&gt;Uwzględnianie wielkości liter&lt;/i&gt; które znajduje się pod tebelą szczegółowych informacji.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="56"/>
+        <source>If you double-click a text file, you&apos;ll see its contents.</source>
+        <translation>Jeśli klikniesz dwukrotnie na pliku z tekstem zobaczysz ukaże Ci się jego zawartość.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="57"/>
+        <source>Did you know that you can drag one or more files from your explorer onto a song in the tree to &lt;i&gt;copy&lt;/i&gt; and use/assign this or these files automatically for that song?</source>
+        <translation>Czy wiesz, że przeciągając i opuszczając jeden lub więcej plików z &lt;i&gt;eksploratora plików&lt;/i&gt; do utworu na drzewku &lt;i&gt;kopiujesz&lt;/i&gt; i automatycznie przypisujesz te pliki do utworu nad którym je opuścisz?</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="58"/>
+        <source>Files that appear &lt;font color=&quot;gray&quot;&gt;&lt;s&gt;striked-out and gray&lt;/s&gt;&lt;/font&gt; cannot be used anywhere and are useless to UltraStar.</source>
+        <translation>Pliki które pojawiają się jako &lt;font color=&quot;gray&quot;&gt;&lt;s&gt;przekreślone i szare&lt;/s&gt;&lt;/font&gt; zazwyczaj są plikami nieużywanymi i nieprzydatnymi w programie UltraStar. Mogą być usunięte. Zważ jednak, że niektórzy twórcy celowo zmieniają rozszerzenie plików np z muzyką. Tak więc jeśli nie widzisz pliku *.mp3 natomiast jest jakiś inny &quot;podejrzany&quot; plik - sprawdź najpierw czy nie odpowiada on za muzykę. (etykieta #mp3 w tabelce Szczegóły utworu &amp;rarr; Pliki)</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="59"/>
+        <source>Did you know that there is a context-menu in the song tree? Try a right-click on a file or a song directory and see what happens...</source>
+        <translation>Czy wiesz, że jest menu kontekstowe na drzewku utworów? Spróbuj kliknąć na katalogu, pliku, lub na szczycie drzewka i zobacz co się stanie...</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="60"/>
+        <source>You can delete a single file by pushing the delete key on your keyboard or by choosing &lt;i&gt;Delete&lt;/i&gt; in the context menu of that file.&lt;br&gt;&lt;br&gt;&lt;b&gt;Attention! You can delete song text files!&lt;/b&gt;</source>
+        <translation>Pojedyńcze pliki możesz usuwać naciskając przycisk delete z klawiatury, lub wybierając &lt;i&gt;Usuń&lt;/i&gt; z menu kontekstowego tego pliku.ile.&lt;br&gt;&lt;br&gt;&lt;b&gt;UWAŻAJ by nie usunąć pochopnie ważnych dla siebie plików!&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="62"/>
+        <source>Whenever a folder appears &lt;b&gt;bold&lt;/b&gt;, there are unsaved changes. Don&apos;t forget to save them or turn on &lt;i&gt;Options &amp;rarr; Auto-Save&lt;/i&gt;!</source>
+        <translation>Jeśli nazwa katalogu jest &lt;b&gt;pogrubiona&lt;/b&gt; oznacza to, że są w nim jakieś niezapisane zmiany. Nie zapomnij ich zachować!</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="63"/>
+        <source>You can filter the song tree. Just hit &lt;i&gt;Ctrl+F&lt;/i&gt; and type some regular expression. Then press the filter button.</source>
+        <translation>Możesz odfiltrowywać zawartość drzewka utworów. Po prostu naciśnij &lt;i&gt;CTRL+F&lt;/i&gt; i wpisz jakieś wyrażenie. Potem kliknij na przycisk filtruj.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="64"/>
+        <source>Have you ever created a &lt;i&gt;report&lt;/i&gt; of your songs? No?&lt;br&gt;&lt;br&gt;Try &lt;i&gt;Extras &amp;rarr; Create Report...&lt;/i&gt; or simply press &lt;i&gt;F8&lt;/i&gt;.</source>
+        <translation type="unfinished">Tworzyłeś już &lt;i&gt;raport&lt;/i&gt; swoich utworów? Nie?&lt;br&gt;&lt;br&gt;Nie ma na co czekać &lt;i&gt;Utwory &amp;rarr;Nowy Raport ...&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="65"/>
+        <source>If you double-click an image file you&apos;ll get a preview of it.</source>
+        <translation>Dwukrotne kliknięcie na plik obrazka pozwoli na jego podgląd.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="66"/>
+        <source>You can delete a rename task by deleting its XML configuration file in the &lt;tt&gt;plugins/config/rename&lt;/tt&gt; subdirectory.</source>
+        <translation>Możesz usunąć zadanie zmiany nazwy poprzez usunięcie jego pliku konfiguracji w katalogu aplikacji UltraStar Manager.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="67"/>
+        <source>If you make a double-click on a rename task in the task list you can modify it.</source>
+        <translation>Dwókrotne kliknięcie na zadaniu zmiany nazwy spowoduje, że będziesz mógł je zmodyfikować.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="68"/>
+        <source>There is a context menu in the task list which enables you to add and edit rename tasks.</source>
+        <translation>Zadania maja menu  kontekstowe, które pozwala dodawać i modyfikować zadania zmian nazw.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="69"/>
+        <source>Some operations cannot be cancelled because that would lead to an inconsistent state, e.g. applying a filter.</source>
+        <translation>Niektóre czynności nie mogą być anulowane, by nie doprowadzić do sprzeczności na przykład w zastosowanych filtrach.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="70"/>
+        <source>You can expand and collapse the categories in the &lt;i&gt;File Information&lt;/i&gt; window by double-clicking their names.</source>
+        <translation>Możesz rozwijać i zwijać kategorie informacji na oknie bazy danych poprzez dwukrotne kliknięcie na ich nazwach.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="71"/>
+        <source>A cross with an exclamation mark in the song tree indicates that the value for a file-related tag (e.g. #COVER) was set but the file does not exist.</source>
+        <translation>Krzyżyk z wykrzyknikiem na drzewku utworów zwraca uwagę na brak któregoś z plików powiązanych z utworem. Na przykład istnieje etykieta &lt;b&gt;#COVER:nazwapliku [CO].jpg&lt;/b&gt; ale takiego pliku nie ma w  katalogu utworu.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="72"/>
+        <source>A song file is &lt;b&gt;invalid&lt;/b&gt; if one of the artist, title, or BPM tag is missing, or if is has a length of zero. That song will have a &lt;font style=&quot;BACKGROUND-COLOR: #FFD6D6&quot;&gt;&amp;nbsp;light red or pink background&amp;nbsp;&lt;/font&gt; in the song tree.</source>
+        <translation>Utwór jest uznany za &lt;b&gt;błędny&lt;/b&gt; jeśli nie ma wykonawcy, tytułu lub jego długość wynosi zero. Taki utwór ma &lt;font style=&quot;BACKGROUND-COLOR: #FFD6D6&quot;&gt;&amp;nbsp;lekko czerwone tło&amp;nbsp;&lt;/font&gt; na drzewku utworów.</translation>
+    </message>
+    <message>
         <location filename="../../QUMonty.cpp" line="74"/>
+        <source>There are two types of context menus in the song tree. One for files and one for folders (entire songs).</source>
+        <translation>Są dwa rodzaje menu kontekstowego na drzewku utworów. Jedno dla poszczególnych plików i drugie dla katalogów (całych utworów).</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="75"/>
+        <source>You can negate the regular expression for a filter if you click the magnifier button in front of the input line.</source>
+        <translation>Możesz odwrócić efekt filtrowania. Wystarczy, że na pasku filtrowania klikniesz na ikonkę plus (+).</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="76"/>
+        <source>If you filter &quot;abba|akon|dido&quot;, you will get all items that contain &quot;abba&quot;, &quot;akon&quot; or &quot;dido&quot;.</source>
+        <translation>Jeśli w pasku filtrowania wpiszesz &quot;abba|akon|stachursky&quot;, i naciśniesz filtruj - wyświetlone zostaną tylko te elementy które zawierają w nazwie &quot;abba&quot;, &quot;akon&quot; lub &quot;stachursky&quot;.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="77"/>
+        <source>Nearly all icons in the song tree have a tooltip. Just let the mouse cursor hover and wait a couple of seconds. A hint will appear.</source>
+        <translation>Niemal wszystkie ikony drzewka utworów posiadają własne podpowiedzi. Po prostu przytrzymaj 1-2 sekundy kursor nad wybrana ikonką, a powinna pojawić się informacja.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="79"/>
+        <source>Playlists will be connected to the current song database. Whenever a song is changed, playlists will be updated automatically.&lt;br&gt;&lt;br&gt;Changed playlists need to be saved.</source>
+        <translation>Listy Odtwarzania połączone są z bazą danych utworów. Za każdym razem, gdy utwór zostanie zmieniony, listy odtwarzania będą automatycznie zaktualizowane.&lt;br&gt;&lt;br&gt;Zmienione listy odtwarzanie wymagają zapisania.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="81"/>
+        <source>You can expand a list of all supported file types if you double-click the corresponding headline in &lt;i&gt;File Information&lt;/i&gt;.</source>
+        <translation>Możesz rozwinąć listę wszystkich rozpoznawanych typów plików poprzez dwukrotne kliknięcie na katalogu utworu.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="82"/>
+        <source>Editable tasks can be modified via double-click. Additionally, a context menu is available via right-click.</source>
+        <translation>Zadanie które można modyfikować podatne są na podwójny kilk myszki :) Dodatkowo pod prawym przyciskiem myszki znajduje się tam menu kontekstowe.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="83"/>
+        <source>The event log will be saved on exit in the application path.</source>
+        <translation>Dziennik zdarzeń jest zapisywany przy wyjściu z programu w katalogu UltraStar Manager&apos;a.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="84"/>
+        <source>The header of the song tree has a context menu. Here you can show and hide columns. Presets offer a more convenient way to do this.</source>
+        <translation>Czubek drzewka utworów ma menu kontekstowe. Znajdziesz tam ustawienia zapewniające dogodny widok dla aktualnie wykonywanej czynności.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="85"/>
+        <source>You can display the lyrics of the currently selected song via &lt;i&gt;Ctrl+L&lt;/i&gt;.</source>
+        <translation>Możesz obejrzeć tekst piosenki po prostu naciskając &lt;i&gt;Ctrl+L&lt;/i&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="86"/>
+        <source>The new-style menu can be collapsed with &lt;i&gt;Ctrl+F1&lt;/i&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="87"/>
+        <source>You can preview whole songs with the new &lt;i&gt;Media Player&lt;/i&gt;! It&apos;s so cool. Selected songs, the whole song database or the current playlist can be played. You can sing and check the quality even without having to start UltraStar.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="88"/>
+        <source>If you right-click in the lyrics of the Media Player while a song is playing, you can jump to the lyrics editor and correct spelling errors and typos.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="89"/>
+        <source>You can jump to any position in a song in the Media Player.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="90"/>
+        <source>Having trouble spotting bad song covers? Try the image review via &lt;i&gt;Songs &amp;rarr; Review Images&lt;/i&gt;. You get a cool preview for all covers or backgrounds and can unlink them from a song with your spacebar.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="91"/>
+        <source>You can calculate the speed of a song via &lt;i&gt;Songs &amp;rarr; Calculate Song Speed&lt;/i&gt;. It is an indicator for the average number of syllables per second.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="92"/>
+        <source>All tasks and cover downloads are implemented as &lt;i&gt;plugins&lt;/i&gt;. You can write your own plugins with the &lt;b&gt;UltarStar Manager Plugin SDK&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="93"/>
+        <source>You can edit lyrics with &lt;i&gt;Ctrl+E&lt;/i&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="94"/>
+        <source>Three different encodings are supported for song files: CP1252 (Western European), CP1250 (Central/Eastern European), and UTF8.&lt;br&gt;&lt;br&gt;You can set the default input encoding for song files whose encodings cannot be determined automatically in &lt;i&gt;Options &amp;rarr; Default Encodings...&lt;/i&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="95"/>
+        <source>By default, song files are saved with CP1252 encoding to keep compatibility with older versions of UltraStar. If this encoding is insufficient for encoding your song file due to some special characters, it will automatically be saved using the UTF8 encoding.&lt;br&gt;&lt;br&gt;You can change the default output encoding for song files in &lt;i&gt;Options &amp;rarr; Default Encodings...&lt;/i&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="96"/>
+        <source>UltraStar Manager is not available in your language? Well, if you are interested in translating, just get in touch with one of the developers at the &lt;a href=&quot;http://sourceforge.net/projects/uman&quot;&gt;project site&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="97"/>
+        <source>You enjoy high quality audio files, covers and backgrounds? Just set your personal quality preferences in &lt;i&gt;Options&lt;/i&gt; under &lt;i&gt;Quality Thresholds&lt;/i&gt; and sort your song collection by the corresponding column.&lt;br&gt;&lt;br&gt;In addition to the colored ticks, non-square (1:1) covers and non-widescreen (16:9) backgrounds will be indicated by a small exclamation mark next to quality tick.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="98"/>
+        <source>You can open image files externally for cropping and/or resizing using the file context menu.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="99"/>
+        <source>Are you using the latest version of UltraStar Manager? Well, why don&apos;t you check by clicking &lt;i&gt;About &amp;rarr; Check for Update&lt;/i&gt;? You can enable an automatic update check at startup in the resulting dialog.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="100"/>
+        <source>You can refresh a single song or a selection of songs by choosing &lt;i&gt;Reload&lt;/i&gt; from the context menu or by simply pressing &lt;i&gt;F5&lt;/i&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMonty.cpp" line="127"/>
         <source>Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the &lt;i&gt;Hide&lt;/i&gt; button below and I will disappear for now.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMonty.cpp" line="77"/>
+        <location filename="../../QUMonty.cpp" line="130"/>
         <source>&lt;br&gt;&lt;br&gt;You have &lt;b&gt;no songs&lt;/b&gt; in your collection. Try choosing a different song directory using &lt;i&gt;Options &amp;rarr; Song Directory&lt;/i&gt; or add a new song path via &lt;i&gt;Options &amp;rarr; Paths...&lt;/i&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMonty.cpp" line="79"/>
+        <location filename="../../QUMonty.cpp" line="132"/>
         <source>&lt;br&gt;&lt;br&gt;You have &lt;b&gt;1 song&lt;/b&gt; in your collection. Is it managed well yet?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMonty.cpp" line="81"/>
+        <location filename="../../QUMonty.cpp" line="134"/>
         <source>&lt;br&gt;&lt;br&gt;You have &lt;b&gt;%1 songs&lt;/b&gt; in your collection. Are they managed well yet?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMonty.cpp" line="115"/>
+        <location filename="../../QUMonty.cpp" line="168"/>
         <source>Sorry. I don&apos;t understand you.</source>
         <translation>Wybacz. Nie wiem co chcesz zrobić.</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="117"/>
+        <location filename="../../main.cpp" line="118"/>
         <source>%1.%2.%3 is loading...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="123"/>
+        <location filename="../../main.cpp" line="124"/>
         <source>There was no configuration setting about your language. Your &lt;b&gt;system language&lt;/b&gt; will be used if possible.&lt;br&gt;&lt;br&gt;See &lt;b&gt;Options &gt; Language&lt;/b&gt; to change this.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="132"/>
+        <location filename="../../main.cpp" line="133"/>
         <source>WIP version detected!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="133"/>
+        <location filename="../../main.cpp" line="134"/>
         <source>This version is still under development &lt;b&gt;and may not be very stable&lt;/b&gt;. You might loose all your songs if you use it.&lt;br&gt;&lt;br&gt;&lt;b&gt;Please backup&lt;/b&gt; the songs you are working with and do not distribute this version.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="134"/>
+        <location filename="../../main.cpp" line="135"/>
         <source>I will be careful.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="140"/>
+        <location filename="../../main.cpp" line="141"/>
         <source>Release Candidate Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="141"/>
+        <location filename="../../main.cpp" line="142"/>
         <source>&lt;b&gt;Dear testing person,&lt;/b&gt;&lt;br&gt;&lt;br&gt;this version is meant to be &lt;b&gt;feature-complete and almost bug-free&lt;/b&gt;. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.&lt;br&gt;While testing the release candidate, especially consider the following:&lt;br&gt;&lt;br&gt;- support for CP1252, CP1250 and UTF8 encodings&lt;br&gt;- support for medley and preview tags&lt;br&gt;- mp3/cover/background quality assessment in songtree&lt;br&gt;- shiny new French translation&lt;br&gt;- duet bugs fixed&lt;br&gt;- check for update feature&lt;br&gt;- new task to increase low BPMs&lt;br&gt;- new task to normalize note pitches&lt;br&gt;- new task to capitalize the first word of each line&lt;br&gt;&lt;br&gt;Send feedback and bug reports to: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="142"/>
+        <location filename="../../main.cpp" line="143"/>
         <source>Okay!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="156"/>
+        <location filename="../../main.cpp" line="157"/>
         <source>Application Crash Detected</source>
         <translation>Wykryto Nieoczekiwane Zakończenie Pracy Aplikacji</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="157"/>
+        <location filename="../../main.cpp" line="158"/>
         <source>The UltraStar Manager did not exit successfully last time. Maybe you&apos;ve chosen a &lt;b&gt;bad song folder&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Please report this problem &lt;a href=&quot;http://uman.sf.net&quot;&gt;here&lt;/a&gt;.</source>
         <translation>Podczas ostatniej sesji UltraStar Manager nie został poprawnie zamknięty. Możliwe, że wybrany został niewłaściwy &lt;b&gt;katalog z utworami&lt;/b&gt;&lt;br&gt;Możesz zgłosić ten problem na &lt;a href=&quot;http://uman.sf.net&quot;&gt;stronie twórcy&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="160"/>
+        <location filename="../../main.cpp" line="161"/>
         <source>Try again.</source>
         <translation>Spróbuj ponownie.</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="161"/>
+        <location filename="../../main.cpp" line="162"/>
         <source>Select another song folder.</source>
         <translation>Wybierz inny katalog z utworami.</translation>
     </message>
@@ -262,11 +657,133 @@ Try cropping to %1 x %3 for a widescreen aspect ratio.</source>
         <source>Calculate the speed first.</source>
         <translation>Najpierw przelicz prędkość.</translation>
     </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="24"/>
+        <source>&lt;b&gt;Thank you&lt;/b&gt; for using UltraStar Manager!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="26"/>
+        <source>&lt;b&gt;Chief Programmer&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="28"/>
+        <source>&lt;b&gt;Assistant Programmer&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="30"/>
+        <source>&lt;b&gt;NSIS Setup Script&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="32"/>
+        <source>&lt;b&gt;German Translation&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="34"/>
+        <source>&lt;b&gt;French Translation&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="51"/>
+        <location filename="../../QUAboutDialog.cpp" line="57"/>
+        <location filename="../../QUAboutDialog.cpp" line="63"/>
+        <location filename="../../QUAboutDialog.cpp" line="69"/>
+        <location filename="../../QUAboutDialog.cpp" line="73"/>
+        <location filename="../../QUAboutDialog.cpp" line="77"/>
+        <location filename="../../QUAboutDialog.cpp" line="83"/>
+        <location filename="../../QUAboutDialog.cpp" line="90"/>
+        <location filename="../../QUAboutDialog.cpp" line="98"/>
+        <source>Website:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="46"/>
+        <source>&lt;b&gt;CSS Styles (HTML Report)&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="49"/>
+        <source>&lt;b&gt;Silk Icons&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="53"/>
+        <location filename="../../QUAboutDialog.cpp" line="59"/>
+        <location filename="../../QUAboutDialog.cpp" line="65"/>
+        <location filename="../../QUAboutDialog.cpp" line="79"/>
+        <location filename="../../QUAboutDialog.cpp" line="92"/>
+        <source>License:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="55"/>
+        <source>&lt;b&gt;Diagona Icons&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="61"/>
+        <source>&lt;b&gt;Fugue Icons&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="67"/>
+        <source>&lt;b&gt;Monty Icons&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="71"/>
+        <source>&lt;b&gt;Boomy Icons&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="75"/>
+        <source>&lt;b&gt;Tiny Animals Icons&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="81"/>
+        <source>&lt;b&gt;Milky Icons&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="85"/>
+        <source>&lt;b&gt;Graphical Compositions&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="88"/>
+        <source>&lt;b&gt;Picture Flow&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="94"/>
+        <source>&lt;b&gt;HMAC-SHA2 Implementation&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="96"/>
+        <source>e-mail:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="101"/>
+        <source>&lt;b&gt;Tester&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="103"/>
+        <source>&lt;b&gt;Special Thanks&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QUAboutDialog</name>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="29"/>
+        <location filename="../../QUAboutDialog.cpp" line="116"/>
         <source>Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;SVN: #%4, %5</source>
         <translation>Wersja: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;SVN: #%4, %5</translation>
     </message>
@@ -809,9 +1326,8 @@ Amazon...</translation>
         <translation>Poszukaj zduplikowanych utworów i pokaż je na drzewku utworów.</translation>
     </message>
     <message>
-        <location filename="../../filter/QUFilterArea.ui" line="194"/>
         <source>Duplicates</source>
-        <translation>Duplikaty</translation>
+        <translation type="obsolete">Duplikaty</translation>
     </message>
     <message>
         <location filename="../../filter/QUFilterArea.ui" line="162"/>
@@ -837,6 +1353,11 @@ Amazon...</translation>
         <location filename="../../filter/QUFilterArea.ui" line="165"/>
         <source>...</source>
         <translation>...</translation>
+    </message>
+    <message>
+        <location filename="../../filter/QUFilterArea.ui" line="194"/>
+        <source>Find Duplicates</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../filter/QUFilterArea.cpp" line="8"/>
@@ -955,46 +1476,46 @@ Amazon...</translation>
 <context>
     <name>QUMainWindow</name>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="118"/>
-        <location filename="../../QUMainWindow.cpp" line="133"/>
+        <location filename="../../QUMainWindow.cpp" line="123"/>
+        <location filename="../../QUMainWindow.cpp" line="138"/>
         <source>Quit</source>
         <translation>Wyjście</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="119"/>
+        <location filename="../../QUMainWindow.cpp" line="124"/>
         <source>&lt;b&gt;Songs&lt;/b&gt; have been modified.</source>
         <translation>&lt;b&gt;Utwór&lt;/b&gt; został zmodyfikowany.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="120"/>
+        <location filename="../../QUMainWindow.cpp" line="125"/>
         <source>Save all changed songs.</source>
         <translation>Zapisz zmienione utwory.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="121"/>
-        <location filename="../../QUMainWindow.cpp" line="136"/>
-        <location filename="../../QUMainWindow.cpp" line="584"/>
-        <location filename="../../QUMainWindow.cpp" line="1034"/>
-        <location filename="../../QUMainWindow.cpp" line="1068"/>
+        <location filename="../../QUMainWindow.cpp" line="126"/>
+        <location filename="../../QUMainWindow.cpp" line="141"/>
+        <location filename="../../QUMainWindow.cpp" line="589"/>
+        <location filename="../../QUMainWindow.cpp" line="1039"/>
+        <location filename="../../QUMainWindow.cpp" line="1073"/>
         <source>Discard all changes.</source>
         <translation>Odrzuć wszystkie zmiany.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="122"/>
-        <location filename="../../QUMainWindow.cpp" line="137"/>
-        <location filename="../../QUMainWindow.cpp" line="585"/>
-        <location filename="../../QUMainWindow.cpp" line="1035"/>
-        <location filename="../../QUMainWindow.cpp" line="1069"/>
+        <location filename="../../QUMainWindow.cpp" line="127"/>
+        <location filename="../../QUMainWindow.cpp" line="142"/>
+        <location filename="../../QUMainWindow.cpp" line="590"/>
+        <location filename="../../QUMainWindow.cpp" line="1040"/>
+        <location filename="../../QUMainWindow.cpp" line="1074"/>
         <source>Cancel this action.</source>
         <translation>Anluj tą czynność.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="134"/>
+        <location filename="../../QUMainWindow.cpp" line="139"/>
         <source>&lt;b&gt;Playlists&lt;/b&gt; have been modified.</source>
         <translation>&lt;b&gt;Playlists&lt;/b&gt; została zmodyfikowana.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="135"/>
+        <location filename="../../QUMainWindow.cpp" line="140"/>
         <source>Save all changed playlists.</source>
         <translation>Zapisz wszystkie zmienione listy odtwarzania.</translation>
     </message>
@@ -1003,37 +1524,37 @@ Amazon...</translation>
         <translation type="obsolete">Wybierz katalog z utworami UltraStar&apos;a:</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="253"/>
+        <location filename="../../QUMainWindow.cpp" line="258"/>
         <source>UltraStar Manager</source>
         <translation>UltraStar Manager</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="952"/>
+        <location filename="../../QUMainWindow.cpp" line="957"/>
         <source>Is your internet connection working?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="965"/>
+        <location filename="../../QUMainWindow.cpp" line="970"/>
         <source>No permission to write file %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="984"/>
+        <location filename="../../QUMainWindow.cpp" line="989"/>
         <source>UltraStar Manager %1.%2.%3 is &lt;b&gt;outdated&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Download the most recent UltraStar Manager %4 &lt;a href=&apos;http://sourceforge.net/projects/uman/&apos;&gt;here&lt;/a&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="997"/>
+        <location filename="../../QUMainWindow.cpp" line="1002"/>
         <source>UltraStar Manager %1.%2.%3 is &lt;b&gt;up to date&lt;/b&gt;!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1000"/>
+        <location filename="../../QUMainWindow.cpp" line="1005"/>
         <source>OK. Check automatically on startup.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1065"/>
+        <location filename="../../QUMainWindow.cpp" line="1070"/>
         <source>Custom Tags</source>
         <translation>Własne Etykiety</translation>
     </message>
@@ -1070,21 +1591,21 @@ Amazon...</translation>
         <translation type="obsolete">Utwór został usunięty: &quot;%1 - %2&quot;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="581"/>
+        <location filename="../../QUMainWindow.cpp" line="586"/>
         <source>Rebuild Song Tree</source>
         <translation>Odśwież Drzewko Utworów</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="582"/>
-        <location filename="../../QUMainWindow.cpp" line="1032"/>
-        <location filename="../../QUMainWindow.cpp" line="1066"/>
+        <location filename="../../QUMainWindow.cpp" line="587"/>
+        <location filename="../../QUMainWindow.cpp" line="1037"/>
+        <location filename="../../QUMainWindow.cpp" line="1071"/>
         <source>Songs have been modified.</source>
         <translation>Utwory zostały zmodyfikowane.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="583"/>
-        <location filename="../../QUMainWindow.cpp" line="1033"/>
-        <location filename="../../QUMainWindow.cpp" line="1067"/>
+        <location filename="../../QUMainWindow.cpp" line="588"/>
+        <location filename="../../QUMainWindow.cpp" line="1038"/>
+        <location filename="../../QUMainWindow.cpp" line="1072"/>
         <source>Save all changes.</source>
         <translation>Zapisz wszystkie zmiany.</translation>
     </message>
@@ -1093,92 +1614,97 @@ Amazon...</translation>
         <translation type="obsolete">Odczyt plików utworu...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="699"/>
+        <location filename="../../QUMainWindow.cpp" line="704"/>
         <source>Audio file changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Plik z muzyką został zmieniony z &quot;%1&quot; na: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="705"/>
+        <location filename="../../QUMainWindow.cpp" line="710"/>
         <source>Cover changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Okładka została zmieniona z &quot;%1&quot; na: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="711"/>
+        <location filename="../../QUMainWindow.cpp" line="716"/>
         <source>Background changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Tło zostało zmienione z &quot;%1&quot; na: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="717"/>
+        <location filename="../../QUMainWindow.cpp" line="722"/>
         <source>Video file changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Teledysk został zmieniony z &quot;%1&quot; na: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="733"/>
+        <location filename="../../QUMainWindow.cpp" line="738"/>
         <source>Applying new value for %1 to all selected songs...</source>
         <translation>Zastosowanie nowych wartości dla %1 we wszystkich wybranych utworach...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="781"/>
+        <location filename="../../QUMainWindow.cpp" line="786"/>
         <source>Applying all checked tasks to all selected songs...</source>
         <translation>Zastosowanie wszystkich zaznaczonych zadań we wszystkich wybranych utworach...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="897"/>
+        <location filename="../../QUMainWindow.cpp" line="902"/>
         <source>The log file was saved to: &quot;%1&quot;</source>
         <translation>Plik sprawozdania został zachowany w: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="899"/>
+        <location filename="../../QUMainWindow.cpp" line="904"/>
         <source>The log file COULD NOT be saved.</source>
         <translation>Plik sprawozdanie NIE MOŻE być zachowany.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="916"/>
+        <location filename="../../QUMainWindow.cpp" line="921"/>
         <source>About TagLib</source>
         <translation>O TagLib</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="917"/>
+        <location filename="../../QUMainWindow.cpp" line="922"/>
         <source>&lt;b&gt;TagLib Audio Meta-Data Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;TagLib is a library for reading and editing the meta-data of several popular audio formats.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;&lt;br&gt;Visit: &lt;a href=&quot;http://developer.kde.org/~wheeler/taglib.html&quot;&gt;TagLib Homepage&lt;/a&gt;</source>
         <translation>&lt;b&gt;TagLib Biblioteka Danych Audio&lt;/b&gt;&lt;br&gt;&lt;br&gt;TagLib jest biblioteką przeznaczoną do odczytu i edycji informacji zawartych w najpopularniejszych plikach muzycznych.&lt;br&gt;&lt;br&gt;Wersja: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;&lt;br&gt;Odwiedź stronę domową TagLib: &lt;a href=&quot;http://developer.kde.org/~wheeler/taglib.html&quot;&gt;&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1416"/>
-        <location filename="../../QUMainWindow.cpp" line="1436"/>
-        <location filename="../../QUMainWindow.cpp" line="1456"/>
-        <location filename="../../QUMainWindow.cpp" line="1476"/>
-        <location filename="../../QUMainWindow.cpp" line="1496"/>
-        <location filename="../../QUMainWindow.cpp" line="1516"/>
+        <location filename="../../QUMainWindow.cpp" line="1421"/>
+        <location filename="../../QUMainWindow.cpp" line="1441"/>
+        <location filename="../../QUMainWindow.cpp" line="1461"/>
+        <location filename="../../QUMainWindow.cpp" line="1481"/>
+        <location filename="../../QUMainWindow.cpp" line="1501"/>
+        <location filename="../../QUMainWindow.cpp" line="1521"/>
         <source>Continue.</source>
         <translation>Kontynuuj.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1031"/>
+        <location filename="../../QUMainWindow.cpp" line="1036"/>
         <source>Change Song Directory</source>
         <translation>Zmień Katalog Utworów</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="185"/>
+        <location filename="../../QUMainWindow.cpp" line="103"/>
+        <source>Ready.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QUMainWindow.cpp" line="190"/>
         <source>No song directory was selected.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="235"/>
+        <location filename="../../QUMainWindow.cpp" line="240"/>
         <source>Cannot read image formats: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="305"/>
+        <location filename="../../QUMainWindow.cpp" line="310"/>
         <source>Review pictures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="306"/>
+        <location filename="../../QUMainWindow.cpp" line="311"/>
         <source>Covers...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="307"/>
+        <location filename="../../QUMainWindow.cpp" line="312"/>
         <source>Backgrounds...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1187,199 +1713,199 @@ Amazon...</translation>
         <translation type="obsolete">Wszystko</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="928"/>
+        <location filename="../../QUMainWindow.cpp" line="933"/>
         <source>About BASS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="929"/>
+        <location filename="../../QUMainWindow.cpp" line="934"/>
         <source>&lt;b&gt;BASS Audio Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;BASS is an audio library for use in Windows and MacOSX software. Its purpose is to provide the most powerful and efficient (yet easy to use), sample, stream, MOD music, and recording functions. All in a tiny DLL, under 100KB in size.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Copyright (c) 1999-2008&lt;br&gt;&lt;a href=&quot;http://www.un4seen.com/bass.html&quot;&gt;Un4seen Developments Ltd.&lt;/a&gt; All rights reserved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="951"/>
-        <location filename="../../QUMainWindow.cpp" line="964"/>
+        <location filename="../../QUMainWindow.cpp" line="956"/>
+        <location filename="../../QUMainWindow.cpp" line="969"/>
         <source>Update check failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="956"/>
+        <location filename="../../QUMainWindow.cpp" line="961"/>
         <source>Update check failed. Host unreachable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="969"/>
+        <location filename="../../QUMainWindow.cpp" line="974"/>
         <source>Update check failed. No permission to write file %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="983"/>
-        <location filename="../../QUMainWindow.cpp" line="996"/>
+        <location filename="../../QUMainWindow.cpp" line="988"/>
+        <location filename="../../QUMainWindow.cpp" line="1001"/>
         <source>Update check successful.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="990"/>
+        <location filename="../../QUMainWindow.cpp" line="995"/>
         <source>Update check successful. A new version of UltraStar Manager is available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="992"/>
+        <location filename="../../QUMainWindow.cpp" line="997"/>
         <source>Update check successful. UltraStar Manager is up to date.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="999"/>
+        <location filename="../../QUMainWindow.cpp" line="1004"/>
         <source>OK. I will check again later.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1004"/>
+        <location filename="../../QUMainWindow.cpp" line="1009"/>
         <source>Automatic check for updates disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1007"/>
+        <location filename="../../QUMainWindow.cpp" line="1012"/>
         <source>Automatic check for updates enabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1052"/>
+        <location filename="../../QUMainWindow.cpp" line="1057"/>
         <source>UltraStar song directory changed to: &quot;%1&quot;.</source>
         <translation>Katalog z utworami UltraStar&apos;a zmieniony na: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1054"/>
+        <location filename="../../QUMainWindow.cpp" line="1059"/>
         <source>Folder (%1)</source>
         <translation>Katalog (%1)</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1084"/>
+        <location filename="../../QUMainWindow.cpp" line="1089"/>
         <source>Custom tags changed to: &quot;%1&quot;</source>
         <translation>Własna etykieta zmieniona na: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1139"/>
+        <location filename="../../QUMainWindow.cpp" line="1144"/>
         <source>Show relative song path for each song...</source>
         <translation>Pokaż względną ścieżkę dla każdego utworu...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1139"/>
+        <location filename="../../QUMainWindow.cpp" line="1144"/>
         <source>Show song folder for each song...</source>
         <translation>Pokaż katlog utworu dla każdego utworu...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1153"/>
+        <location filename="../../QUMainWindow.cpp" line="1158"/>
         <source>Relative song paths are displayed in the song tree now.</source>
         <translation>Aktualnie na drzewku utworów są wyświetlone pełne ścieżki do utworów.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1155"/>
+        <location filename="../../QUMainWindow.cpp" line="1160"/>
         <source>Only song directories are displayed in the song tree now.</source>
         <translation>Aktualnie na drzewku utworów wyświetlane są tylko katalogi utworów.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1180"/>
+        <location filename="../../QUMainWindow.cpp" line="1185"/>
         <source>Repainting song tree icons...</source>
         <translation>Przerysowuję ikony drzewka utworów...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1262"/>
-        <location filename="../../QUMainWindow.cpp" line="1280"/>
+        <location filename="../../QUMainWindow.cpp" line="1267"/>
+        <location filename="../../QUMainWindow.cpp" line="1285"/>
         <source>Could NOT open file: &quot;%1&quot;.</source>
         <translation>NIE mogę otworzyć pliku: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1264"/>
-        <location filename="../../QUMainWindow.cpp" line="1282"/>
+        <location filename="../../QUMainWindow.cpp" line="1269"/>
+        <location filename="../../QUMainWindow.cpp" line="1287"/>
         <source>File was opened successfully: &quot;%1&quot;.</source>
         <translation>Plik został otwarty poprawnie: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1413"/>
-        <location filename="../../QUMainWindow.cpp" line="1433"/>
-        <location filename="../../QUMainWindow.cpp" line="1453"/>
-        <location filename="../../QUMainWindow.cpp" line="1473"/>
-        <location filename="../../QUMainWindow.cpp" line="1493"/>
-        <location filename="../../QUMainWindow.cpp" line="1513"/>
+        <location filename="../../QUMainWindow.cpp" line="1418"/>
+        <location filename="../../QUMainWindow.cpp" line="1438"/>
+        <location filename="../../QUMainWindow.cpp" line="1458"/>
+        <location filename="../../QUMainWindow.cpp" line="1478"/>
+        <location filename="../../QUMainWindow.cpp" line="1498"/>
+        <location filename="../../QUMainWindow.cpp" line="1518"/>
         <source>Change Language</source>
         <translation>Zmień Język</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1414"/>
+        <location filename="../../QUMainWindow.cpp" line="1419"/>
         <source>Application language changed to &lt;b&gt;English&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Język aplikacji został zmieniony na &lt;b&gt;Angielski&lt;/b&gt;. Aby zmiany zostały uwzględnione niezbędne jest zamknięcie i ponowne uruchomienie UltraStar Manager&apos;a.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1415"/>
-        <location filename="../../QUMainWindow.cpp" line="1435"/>
-        <location filename="../../QUMainWindow.cpp" line="1455"/>
-        <location filename="../../QUMainWindow.cpp" line="1475"/>
-        <location filename="../../QUMainWindow.cpp" line="1495"/>
-        <location filename="../../QUMainWindow.cpp" line="1515"/>
+        <location filename="../../QUMainWindow.cpp" line="1420"/>
+        <location filename="../../QUMainWindow.cpp" line="1440"/>
+        <location filename="../../QUMainWindow.cpp" line="1460"/>
+        <location filename="../../QUMainWindow.cpp" line="1480"/>
+        <location filename="../../QUMainWindow.cpp" line="1500"/>
+        <location filename="../../QUMainWindow.cpp" line="1520"/>
         <source>Quit UltraStar Manager.</source>
         <translation>Zamknij program UltraStar Manager.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1434"/>
+        <location filename="../../QUMainWindow.cpp" line="1439"/>
         <source>Application language changed to &lt;b&gt;German&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Język aplikacji został zmieniony na &lt;b&gt;Niemiecki&lt;/b&gt;. Aby zmiany zostały uwzględnione niezbędne jest zamknięcie i ponowne uruchomienie UltraStar Manager&apos;a.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1474"/>
+        <location filename="../../QUMainWindow.cpp" line="1479"/>
         <source>Application language changed to &lt;b&gt;French&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation type="unfinished">Język aplikacji został zmieniony na &lt;b&gt;Niemiecki&lt;/b&gt;. Aby zmiany zostały uwzględnione niezbędne jest zamknięcie i ponowne uruchomienie UltraStar Manager&apos;a.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1494"/>
+        <location filename="../../QUMainWindow.cpp" line="1499"/>
         <source>Application language changed to &lt;b&gt;Spanish&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1514"/>
+        <location filename="../../QUMainWindow.cpp" line="1519"/>
         <source>Application language changed to &lt;b&gt;Portuguese&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1566"/>
+        <location filename="../../QUMainWindow.cpp" line="1571"/>
         <source>Choose backup destination...</source>
         <translation>Wybierz miejsce kopiowania...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1571"/>
+        <location filename="../../QUMainWindow.cpp" line="1576"/>
         <source>Backup audio files...</source>
         <translation>Skopiuj pliki z muzyką...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1586"/>
+        <location filename="../../QUMainWindow.cpp" line="1591"/>
         <source>Backup for audio files finished.</source>
         <translation>Zakończono kopiowanie plików z muzyką.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1655"/>
+        <location filename="../../QUMainWindow.cpp" line="1660"/>
         <source>Default input encoding changed to &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1658"/>
+        <location filename="../../QUMainWindow.cpp" line="1663"/>
         <source>Default output encoding changed to &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1679"/>
-        <location filename="../../QUMainWindow.cpp" line="1705"/>
+        <location filename="../../QUMainWindow.cpp" line="1684"/>
+        <location filename="../../QUMainWindow.cpp" line="1710"/>
         <source>Updating audio quality icons...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1731"/>
-        <location filename="../../QUMainWindow.cpp" line="1757"/>
+        <location filename="../../QUMainWindow.cpp" line="1736"/>
+        <location filename="../../QUMainWindow.cpp" line="1762"/>
         <source>Updating cover quality icons...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1783"/>
-        <location filename="../../QUMainWindow.cpp" line="1809"/>
+        <location filename="../../QUMainWindow.cpp" line="1788"/>
+        <location filename="../../QUMainWindow.cpp" line="1814"/>
         <source>Updating background quality icons...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1718,12 +2244,12 @@ Zadania</translation>
         <translation type="obsolete">Pobierz Okładki z Amazon...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1111"/>
+        <location filename="../../QUMainWindow.cpp" line="1116"/>
         <source>You can ask me something if you put some keywords in the &lt;i&gt;line edit&lt;/i&gt; below and &lt;i&gt;accept&lt;/i&gt;.&lt;br&gt;&lt;br&gt;I&apos;ll try to understand and answer you. Multiple answers may be possible.</source>
         <translation>Jeśli tylko chcesz - możesz mnie o coś zapytać. Po prostu wpisz w &lt;i&gt;poniższą linijkę&lt;/i&gt; słowa dotyczące interesującego Cię tematu. Spróbuję Cię zrozumieć i w miarę możłiwości odpowiedzieć. Możliwe że będę miał więcej niż jedną odpowiedź na nurtujące Cię zagadnienia.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1454"/>
+        <location filename="../../QUMainWindow.cpp" line="1459"/>
         <source>Application language changed to &lt;b&gt;Polish&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Język aplikacji został zmieniony na &lt;b&gt;Polski&lt;/b&gt;. Aby zmiany zostały uwzględnione niezbędne jest zamknięcie i ponowne uruchomienie UltraStar Manager&apos;a.</translation>
     </message>
@@ -3268,12 +3794,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.cpp" line="104"/>
+        <location filename="../../ribbon/QURibbonBar.cpp" line="106"/>
         <source>Show full menu.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.cpp" line="108"/>
+        <location filename="../../ribbon/QURibbonBar.cpp" line="110"/>
         <source>Show small menu.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3687,24 +4213,24 @@ On Top</source>
 (English)</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2025"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2064"/>
         <source>Change application language to &apos;German (Deutsch)&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2028"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2067"/>
         <source>German
 (Deutsch)</source>
         <translation>Niemiecki
 (Deutsch)</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2064"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2142"/>
         <source>Change application language to &apos;Polish (Polski)&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2067"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2145"/>
         <source>Polish
 (Polski)</source>
         <translation>Polski</translation>
@@ -3722,12 +4248,12 @@ On Top</source>
 (Français)</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="2142"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2025"/>
         <source>Change application language to &apos;Spanish (Español)&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="2145"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2028"/>
         <source>Spanish
 (Español)</source>
         <translation type="unfinished">Hiszpański
