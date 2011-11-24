@@ -6,12 +6,12 @@
 #include <QStringList>
 
 class QUStringSupport: QObject {
-    Q_OBJECT
-    
-public:
-    QUStringSupport(QObject *parent = 0);
+	Q_OBJECT
 
-    static QString withoutUnsupportedCharacters (const QString &text);
+public:
+	QUStringSupport(QObject *parent = 0);
+
+	static QString withoutUnsupportedCharacters (const QString &text);
 	static QString withoutFolderTags(const QString &text);
 	static QString withoutLeadingBlanks(const QString &text);
 	static QString withoutAnyUmlaut(const QString &text);
