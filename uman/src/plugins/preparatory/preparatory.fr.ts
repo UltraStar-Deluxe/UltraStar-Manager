@@ -50,13 +50,13 @@
         <location filename="QUPreparatoryTask.cpp" line="38"/>
         <source>Round #GAP to nearest integer</source>
         <oldsource>Round #GAP to nearest integer.</oldsource>
-        <translation type="unfinished">Arrondir #GAP à la valeur entière la plus proche.</translation>
+        <translation>Arrondir #GAP à la valeur entière la plus proche</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="42"/>
         <source>Capitalize #TITLE tag</source>
         <oldsource>Fix capitalization of #TITLE tag</oldsource>
-        <translation type="unfinished">Corriger les lettres en majuscules dans le champ #TITLE</translation>
+        <translation>Mettre en capitale le champ #TITLE</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="43"/>
@@ -77,27 +77,27 @@
         <location filename="QUPreparatoryTask.cpp" line="93"/>
         <location filename="QUPreparatoryTask.cpp" line="94"/>
         <source>Pattern:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modèle:</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="93"/>
         <source>(cover)</source>
-        <translation type="unfinished"></translation>
+        <translation>(couverture)</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="94"/>
         <source>(background)</source>
-        <translation type="unfinished"></translation>
+        <translation>(fond d&apos;écran)</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="101"/>
         <source>Buffer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mémoire tampon:</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="101"/>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>secondes</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="104"/>

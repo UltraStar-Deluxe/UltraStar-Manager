@@ -25,8 +25,9 @@
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="25"/>
-        <source>Remove #END tag.</source>
-        <translation>Usuwa etykietę #END.</translation>
+        <source>Remove #END tag</source>
+        <oldsource>Remove #END tag.</oldsource>
+        <translation type="unfinished">Usuwa etykietę #END.</translation>
     </message>
 </context>
 <context>

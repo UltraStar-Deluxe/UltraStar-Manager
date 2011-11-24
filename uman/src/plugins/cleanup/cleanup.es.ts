@@ -6,27 +6,28 @@
     <message>
         <location filename="QUCleanUpTask.cpp" line="13"/>
         <source>Delete unused files</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar archivos sin usar</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="14"/>
         <source>Every file which is not used by UltraStar will be deleted.&lt;br&gt;&lt;br&gt;&lt;b&gt;This cannot be undone!&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Cada archivo que no sea usado por UltraStar será eliminado.&lt;br&gt;&lt;br&gt;&lt;b&gt;¡Esto no puede deshacerse!&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="18"/>
         <source>Clear invalid file-related tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar etiquetas inválidas de las relacionadas a archivos</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="19"/>
         <source>Removes the value of invalid file-related tags so that they will not be saved into the song text file.&lt;br&gt;&lt;br&gt;This includes &lt;b&gt;#VIDEOGAP&lt;/b&gt; for invalid video files as well as &lt;b&gt;#START&lt;/b&gt; and &lt;b&gt;#END&lt;/b&gt; for invalid audio files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Remueve el valor de etiquetas inválidas de las relacionadas a archivos, de modo que no sean guardadas en el archivo de texto de la cancion.&lt;br&gt;&lt;br&gt;Esto incluye &lt;b&gt;#VIDEOGAP&lt;/b&gt; para archivos de video invalidos, así como también &lt;b&gt;#START&lt;/b&gt; y &lt;b&gt;#END&lt;/b&gt; para archivos de audio inválidos.</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="25"/>
-        <source>Remove #END tag.</source>
-        <translation type="unfinished"></translation>
+        <source>Remove #END tag</source>
+        <oldsource>Remove #END tag.</oldsource>
+        <translation type="unfinished">Eliminar la etiqueta #END.</translation>
     </message>
 </context>
 <context>
@@ -34,12 +35,12 @@
     <message>
         <location filename="QUCleanUpTaskFactory.cpp" line="11"/>
         <source>Clean-Up Tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>Tareas de eliminación</translation>
     </message>
     <message>
         <location filename="QUCleanUpTaskFactory.cpp" line="15"/>
         <source>Remove obsolete song data or delete unused files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar datos obsoletos de canciones o archivos sin usar.</translation>
     </message>
 </context>
 <context>
@@ -47,17 +48,17 @@
     <message>
         <location filename="../shared/QUMultilingualTaskFactory.h" line="25"/>
         <source>Unnamed plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin sin nombre</translation>
     </message>
     <message>
         <location filename="../shared/QUMultilingualTaskFactory.h" line="27"/>
         <source>Unknown person</source>
-        <translation type="unfinished"></translation>
+        <translation>Persona desconocida</translation>
     </message>
     <message>
         <location filename="../shared/QUMultilingualTaskFactory.h" line="28"/>
         <source>No description given.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin descripción.</translation>
     </message>
 </context>
 <context>
@@ -65,7 +66,7 @@
     <message>
         <location filename="../shared/QUSimpleTaskFactory.h" line="16"/>
         <source>Simple Task</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarea sencilla</translation>
     </message>
 </context>
 <context>
@@ -73,7 +74,7 @@
     <message>
         <location filename="../shared/QUSmartSetting.cpp" line="30"/>
         <source>Reset to default value.</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar a valor por defecto.</translation>
     </message>
 </context>
 </TS>

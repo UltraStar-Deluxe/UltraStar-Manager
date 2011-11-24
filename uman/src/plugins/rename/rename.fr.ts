@@ -72,31 +72,31 @@
         <location filename="language.h" line="14"/>
         <source>Rename directory to &quot;Artist - Title [VIDEO] [SC]&quot; if checked or video present, keep other folder tags</source>
         <oldsource>Rename directory to &quot;Artist - Title [VIDEO] [SC]&quot; if checked or video present. Keep other folder tags.</oldsource>
-        <translation type="unfinished">Renommer le dossier en &quot;Artiste - Titre [VIDEO] [SC]&quot; si la video est présente. Garder les autres champ du dossier.</translation>
+        <translation>Renommer le dossier en &quot;Artiste - Titre [VIDEO] [SC]&quot; si la video est présente. Garder les autres champ du dossier</translation>
     </message>
     <message>
         <location filename="language.h" line="15"/>
         <source>Looks for &lt;b&gt;[SC]&lt;/b&gt; in the &lt;b&gt;#EDITION&lt;/b&gt; tag to find out whether it is checked or not.&lt;br&gt;&lt;br&gt;Other folder tags like &lt;b&gt;[KARAOKE]&lt;/b&gt; will be appended to the end if present.</source>
         <oldsource>Looks for &lt;b&gt;[SC]&lt;/b&gt; in the &lt;b&gt;#EDITION&lt;/b&gt; tag to find out whether it is checked or not.&lt;br&gt;&lt;br&gt;Other folder tags like &lt;b&gt;[FOOBAR]&lt;/b&gt; will be appended to the end if present.</oldsource>
-        <translation type="unfinished">Rechercher &lt;b&gt;[SC]&lt;/b&gt; dans le champ &lt;b&gt;#EDITION&lt;/b&gt; pour voir si elle a été vérifié ou non.&lt;br&gt;&lt;br&gt;Les autres champ de dossier tel que &lt;b&gt;[KARAOKE]&lt;/b&gt; seront ajoutés à la fin si ils sont présents.</translation>
+        <translation>Rechercher &lt;b&gt;[SC]&lt;/b&gt; dans le champ &lt;b&gt;#EDITION&lt;/b&gt; pour voir si elle a été vérifié ou non.&lt;br&gt;&lt;br&gt;Les autres champ de dossier tel que &lt;b&gt;[KARAOKE]&lt;/b&gt; seront ajoutés à la fin si ils sont présents.</translation>
     </message>
     <message>
         <location filename="language.h" line="16"/>
         <source>Rename songtext file to &quot;Artist - Title.*&quot;</source>
         <oldsource>Rename songtext file to &quot;Artist - Title.txt&quot;</oldsource>
-        <translation type="unfinished">Renommer le fichier texte de la chanson en &quot;Artiste - Titre.txt&quot;</translation>
+        <translation>Renommer le fichier texte de la chanson en &quot;Artiste - Titre.*&quot;</translation>
     </message>
     <message>
         <location filename="language.h" line="17"/>
         <source>Rename songtext file to &quot;Artist - Title.*&quot; and use &quot;txd&quot; extension for duets</source>
         <oldsource>Rename songtext file to &quot;Artist - Title.*&quot; and use &quot;txd&quot; extension for duets.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Renommer le fichier texte de la chanson en &quot;Artiste - Titre.*&quot; et utiliser l&apos;extension &quot;txd&quot; pour les duos</translation>
     </message>
     <message>
         <location filename="language.h" line="18"/>
         <source>Rename audio file to &quot;Artist - Title.*&quot;</source>
         <oldsource>Change duet songtext file to &quot;Artist - Title.txd&quot;</oldsource>
-        <translation type="unfinished">Renommer le fichier audio en &quot;Artiste - Titre&quot;</translation>
+        <translation>Renommer le fichier audio en &quot;Artiste - Titre.*&quot;</translation>
     </message>
     <message>
         <location filename="language.h" line="19"/>
@@ -122,7 +122,7 @@
         <location filename="language.h" line="23"/>
         <source>Rename video to &quot;Artist - Title [VD#*].*&quot; considering #VIDEOGAP value</source>
         <oldsource>Rename video to &quot;Artist - Title [VD#*].*&quot; consider VIDEOGAP</oldsource>
-        <translation type="unfinished">Renommer la video en &quot;Artiste - Titre [VD#*].*&quot; en prenant en compte le champ #VIDEOGAP</translation>
+        <translation>Renommer la video en &quot;Artiste - Titre [VD#*].*&quot; en prenant en compte le champ #VIDEOGAP</translation>
     </message>
     <message>
         <location filename="language.h" line="24"/>

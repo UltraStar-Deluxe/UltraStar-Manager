@@ -7,25 +7,25 @@
         <location filename="language.h" line="1"/>
         <source>Change #ARTIST via ID3 tag from audio file</source>
         <oldsource>Change #ARTIST via ID3 tag from audio file.</oldsource>
-        <translation type="unfinished">Changer #ARTIST à partir de ce champ dans l&apos;ID3 du fichier audio.</translation>
+        <translation>Changer #ARTIST à partir de ce champ dans l&apos;ID3 du fichier audio</translation>
     </message>
     <message>
         <location filename="language.h" line="2"/>
         <source>Change #TITLE via ID3 tag from audio file</source>
         <oldsource>Change #TITLE via ID3 tag from audio file.</oldsource>
-        <translation type="unfinished">Changer #TITLE à partir de ce champ dans l&apos;ID3 du fichier audio.</translation>
+        <translation>Changer #TITLE à partir de ce champ dans l&apos;ID3 du fichier audio</translation>
     </message>
     <message>
         <location filename="language.h" line="3"/>
         <source>Change #TITLE via ID3 tag from audio file, append &quot;[VIDEO]&quot; if video present</source>
         <oldsource>Change #TITLE via ID3 tag from audio file. Append &quot;[VIDEO]&quot; if video present.</oldsource>
-        <translation type="unfinished">Changer #TITLE à partir de ce champ dans l&apos;ID3 du fichier audio. Ajoute  &quot;[VIDEO]&quot; si celle ci est présente.</translation>
+        <translation>Changer #TITLE à partir de ce champ dans l&apos;ID3 du fichier audio. Ajoute &quot;[VIDEO]&quot; si celle ci est présente</translation>
     </message>
     <message>
         <location filename="language.h" line="4"/>
         <source>Change #TITLE, append &quot;[VIDEO]&quot; if video present</source>
         <oldsource>Change #TITLE. Append &quot;[VIDEO]&quot; if video present</oldsource>
-        <translation type="unfinished">Changer #TITLE. Ajoute  &quot;[VIDEO]&quot; si celle ci est présente.</translation>
+        <translation>Changer #TITLE. Ajoute  &quot;[VIDEO]&quot; si celle ci est présente</translation>
     </message>
     <message>
         <location filename="language.h" line="5"/>
@@ -37,30 +37,30 @@
         <location filename="language.h" line="6"/>
         <source>Change #TITLE, remove [...] tags</source>
         <oldsource>Change #TITLE. Remove [...] tags</oldsource>
-        <translation type="unfinished">Changer #TITLE. Retirer [...]-Tags.</translation>
+        <translation>Changer #TITLE, retire [...] dans les champs</translation>
     </message>
     <message>
         <location filename="language.h" line="8"/>
         <source>Change #TITLE, append &quot;[KARAOKE]&quot; if song is karaoke</source>
         <oldsource>Change #TITLE. Append &quot;[KARAOKE]&quot; if song is karaoke.</oldsource>
-        <translation type="unfinished">Changer #TITLE. Ajoute &quot;[KARAOKE] si la chanson est karaoké.</translation>
+        <translation>Changer #TITLE. Ajoute &quot;[KARAOKE] si la chanson est en karaoké</translation>
     </message>
     <message>
         <location filename="language.h" line="9"/>
         <source>Change #GENRE via ID3 tag</source>
         <oldsource>Change #GENRE via ID3 tag.</oldsource>
-        <translation type="unfinished">Changer #GENRE à partir de ce champ dans l&apos;ID3 du fichier audio.</translation>
+        <translation>Changer #GENRE à partir de ce champ dans l&apos;ID3 du fichier audio</translation>
     </message>
     <message>
         <location filename="language.h" line="10"/>
         <source>Change #YEAR via ID3 tag</source>
         <oldsource>Change #YEAR via ID3 tag.</oldsource>
-        <translation type="unfinished">Changer #YEAR à partir de ce champ dans l&apos;ID3 du fichier audio.</translation>
+        <translation>Changer #YEAR à partir de ce champ dans l&apos;ID3 du fichier audio</translation>
     </message>
     <message>
         <location filename="language.h" line="11"/>
         <source>Change #ALBUM via ID3 tag</source>
-        <translation>Changer #ALBUM à partir de ce champ dans l&apos;ID3 du fichier audio.</translation>
+        <translation>Changer #ALBUM à partir de ce champ dans l&apos;ID3 du fichier audio</translation>
     </message>
     <message>
         <location filename="language.h" line="12"/>
@@ -71,7 +71,7 @@
         <location filename="language.h" line="13"/>
         <source>Write #BACKGROUND even without existing image file</source>
         <oldsource>Write #BACKGROUND even without existing image file.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Ecrire #BACKGROUND même si le fichier image n&apos;existe pas</translation>
     </message>
 </context>
 <context>

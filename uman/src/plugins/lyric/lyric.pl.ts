@@ -76,7 +76,8 @@
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="104"/>
-        <source>if below:</source>
+        <source>if BPM &lt;</source>
+        <oldsource>if below:</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -89,10 +90,10 @@
         <location filename="QULyricTask.cpp" line="195"/>
         <location filename="QULyricTask.cpp" line="283"/>
         <location filename="QULyricTask.cpp" line="304"/>
-        <location filename="QULyricTask.cpp" line="345"/>
-        <location filename="QULyricTask.cpp" line="369"/>
-        <location filename="QULyricTask.cpp" line="395"/>
-        <location filename="QULyricTask.cpp" line="443"/>
+        <location filename="QULyricTask.cpp" line="351"/>
+        <location filename="QULyricTask.cpp" line="375"/>
+        <location filename="QULyricTask.cpp" line="401"/>
+        <location filename="QULyricTask.cpp" line="449"/>
         <source>Invalid lyrics: %1 - %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -122,27 +123,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="332"/>
+        <location filename="QULyricTask.cpp" line="338"/>
         <source>Mean note pitch changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="364"/>
+        <location filename="QULyricTask.cpp" line="370"/>
         <source>Empty syllables were removed successfully for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="383"/>
+        <location filename="QULyricTask.cpp" line="389"/>
         <source>Syllable placeholders were converted successfully from &apos;%3&apos; to &apos;%4&apos; for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="433"/>
+        <location filename="QULyricTask.cpp" line="439"/>
         <source>Relative timestamps converted successfully to absolute timestamps for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="474"/>
+        <location filename="QULyricTask.cpp" line="480"/>
         <source>Absolute timestamps converted successfully to relative timestamps for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>

@@ -76,8 +76,9 @@
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="104"/>
-        <source>if below:</source>
-        <translation>falls niedriger als:</translation>
+        <source>if BPM &lt;</source>
+        <oldsource>if below:</oldsource>
+        <translation>falls BPM &lt;</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="114"/>
@@ -89,10 +90,10 @@
         <location filename="QULyricTask.cpp" line="195"/>
         <location filename="QULyricTask.cpp" line="283"/>
         <location filename="QULyricTask.cpp" line="304"/>
-        <location filename="QULyricTask.cpp" line="345"/>
-        <location filename="QULyricTask.cpp" line="369"/>
-        <location filename="QULyricTask.cpp" line="395"/>
-        <location filename="QULyricTask.cpp" line="443"/>
+        <location filename="QULyricTask.cpp" line="351"/>
+        <location filename="QULyricTask.cpp" line="375"/>
+        <location filename="QULyricTask.cpp" line="401"/>
+        <location filename="QULyricTask.cpp" line="449"/>
         <source>Invalid lyrics: %1 - %2</source>
         <translation>Ungültige Lyrics: %1 - %2</translation>
     </message>
@@ -122,27 +123,27 @@
         <translation>Großschreibung am Zeilenanfang korrigiert für &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="332"/>
+        <location filename="QULyricTask.cpp" line="338"/>
         <source>Mean note pitch changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation>Tonhöhenmittelwert geändert von %1 auf %2 für &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="364"/>
+        <location filename="QULyricTask.cpp" line="370"/>
         <source>Empty syllables were removed successfully for &quot;%1 - %2&quot;.</source>
         <translation>Leere Silben wurden erfolgreich entfernt: &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="383"/>
+        <location filename="QULyricTask.cpp" line="389"/>
         <source>Syllable placeholders were converted successfully from &apos;%3&apos; to &apos;%4&apos; for &quot;%1 - %2&quot;.</source>
         <translation>Platzhalter für Silben wurden erfolgreich konvertiert von &apos;%3&apos; nach &apos;%4&apos; für &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="433"/>
+        <location filename="QULyricTask.cpp" line="439"/>
         <source>Relative timestamps converted successfully to absolute timestamps for &quot;%1 - %2&quot;.</source>
         <translation>Relative Zeitstempel wurden erfolgreich in absolute Werte konvertiert: &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="474"/>
+        <location filename="QULyricTask.cpp" line="480"/>
         <source>Absolute timestamps converted successfully to relative timestamps for &quot;%1 - %2&quot;.</source>
         <translation>Absolute Zeitstempel wurden erfolgreich in relative Werte konvertiert: &quot;%1 - %2&quot;.</translation>
     </message>
