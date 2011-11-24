@@ -2008,6 +2008,45 @@ border-left-color: #C2C7CB;</string>
         </widget>
        </item>
        <item>
+        <widget class="QToolButton" name="langEsBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>68</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>Change application language to 'Spanish (Español)'.</string>
+         </property>
+         <property name="text">
+          <string>Spanish
+(Español)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/lang/es.png</normaloff>:/lang/es.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QToolButton" name="langDeBtn">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -2031,45 +2070,6 @@ border-left-color: #C2C7CB;</string>
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
            <normaloff>:/lang/de.png</normaloff>:/lang/de.png</iconset>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <property name="autoExclusive">
-          <bool>true</bool>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-         <property name="autoRaise">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="langPlBtn">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>68</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="toolTip">
-          <string>Change application language to 'Polish (Polski)'.</string>
-         </property>
-         <property name="text">
-          <string>Polish
-(Polski)</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources/uman.qrc">
-           <normaloff>:/lang/pl.png</normaloff>:/lang/pl.png</iconset>
          </property>
          <property name="checkable">
           <bool>true</bool>
@@ -2125,7 +2125,7 @@ border-left-color: #C2C7CB;</string>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="langEsBtn">
+        <widget class="QToolButton" name="langPlBtn">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -2139,15 +2139,15 @@ border-left-color: #C2C7CB;</string>
           </size>
          </property>
          <property name="toolTip">
-          <string>Change application language to 'Spanish (Español)'.</string>
+          <string>Change application language to 'Polish (Polski)'.</string>
          </property>
          <property name="text">
-          <string>Spanish
-(Español)</string>
+          <string>Polish
+(Polski)</string>
          </property>
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
-           <normaloff>:/lang/es.png</normaloff>:/lang/es.png</iconset>
+           <normaloff>:/lang/pl.png</normaloff>:/lang/pl.png</iconset>
          </property>
          <property name="checkable">
           <bool>true</bool>

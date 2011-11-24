@@ -73,9 +73,14 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 
 	initWindow();
 	initRibbonBar();
-	// MB TODO: find spanish and portuguese translator, then remove line
+	// MB TODO:
+	// wait for Spanish translation (), then remove line
 	//_menu->langEsBtn->setVisible(false);
-	//_menu->langPtBtn->setVisible(false);
+	// wait for Portuguese translation (Andre), then remove line
+	_menu->langPtBtn->setVisible(false);
+	// wait for Polish translation (gpm?), then remove line
+	_menu->langPlBtn->setVisible(false);
+
 	initStatusBar();
 	initEventLog();
 	initConfig();
@@ -95,7 +100,7 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 
 	playlistDB->reload();
 
-	addLogMsg("Ready.", QU::Information);
+	addLogMsg(tr("Ready."), QU::Information);
 }
 
 /*!
