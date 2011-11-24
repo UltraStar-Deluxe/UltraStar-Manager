@@ -101,7 +101,7 @@ QList<QUSmartSettingInterface*> QULyricTask::smartSettings() const {
 		if(_mode == FixTimeStamps)
 			_smartSettings.append(new QUSmartInputField("lyric/fixTimeStamps", "0", new QRegExpValidator(QRegExp("-?\\d*"), 0), tr("Start:"), ""));
 		if(_mode == FixLowBPM)
-			_smartSettings.append(new QUSmartInputField("lyric/fixLowBPM", "200", new QRegExpValidator(QRegExp("\\d*"), 0), tr("if below:"), ""));
+			_smartSettings.append(new QUSmartInputField("lyric/fixLowBPM", "200", new QRegExpValidator(QRegExp("\\d*"), 0), tr("if BPM <"), ""));
 	}
 	return _smartSettings;
 }
@@ -306,7 +306,7 @@ void QULyricTask::normalizePitches(QUSongInterface *song) {
 	}
 
 	// MB TODO: calculate a sensible amount of octaves to shift by (median probably better than mean)
-	int meanPitch = 0;
+	double meanPitch = 0;
 	int numNotes = 0;
 	int octaves = 0;
 	foreach(QUSongLineInterface *line, song->loadMelody()) {
@@ -315,8 +315,14 @@ void QULyricTask::normalizePitches(QUSongInterface *song) {
 			meanPitch += note->pitch();
 		}
 	}
-	meanPitch = qRound(meanPitch/numNotes);
-	octaves = meanPitch/12;
+
+	song->clearMelody(); // save memory
+
+	meanPitch = meanPitch/numNotes;
+	if (meanPitch < 0)
+		octaves = meanPitch/12 - 1;
+	else
+		octaves = meanPitch/12;
 
 	if(octaves != 0) {
 		// modify all note pitches
