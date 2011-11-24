@@ -22,7 +22,7 @@ QUCleanUpTask::QUCleanUpTask(TaskModes mode, QObject *parent):
 		break;
 	case RemoveEndTag:
 		this->setIcon(QIcon(":/types/no_end.png"));
-		this->setDescription(tr("Remove #END tag."));
+		this->setDescription(tr("Remove #END tag"));
 	}
 }
 
