@@ -61,11 +61,11 @@ void QUDetailItem::reset() {
 		_hasDynamicDefaultData = false;
 	} else if(QString::compare(_tag, EDITION_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
-		setData(Qt::UserRole, QStringList() << "[SC]-Songs" << "SingStar" << "Karaoke"); // fixed default data
+		setData(Qt::UserRole, QUSongSupport::availableSongEditions()); // static default data
 		_hasDynamicDefaultData = false;
 	} else if(QString::compare(_tag, GENRE_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
-		setData(Qt::UserRole, monty->genres()); // static default data
+		setData(Qt::UserRole, QUSongSupport::availableSongGenres()); // static default data
 		_hasDynamicDefaultData = false;
 	} else if(QString::compare(_tag, YEAR_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;

@@ -90,30 +90,26 @@ void initLanguage(QApplication &app, QTranslator &t, QSplashScreen &s) {
 	if(lang.language() == QLocale::German) {
 		if(t.load(":/lang/uman.de.qm")) {
 			app.installTranslator(&t);
-			monty->initMessages(":/txt/hints_de");
 		}
 	} else if (lang.language() == QLocale::Polish) {
 		if(t.load(":/lang/uman.pl.qm")) {
 			app.installTranslator(&t);
-			monty->initMessages(":/txt/hints_pl");
 		}
 	} else if (lang.language() == QLocale::French) {
 		if(t.load(":/lang/uman.fr.qm")) {
 			app.installTranslator(&t);
-		monty->initMessages(":/txt/hints_fr");
 		}
 	} else if (lang.language() == QLocale::Spanish) {
 		if(t.load(":/lang/uman.es.qm")) {
 			app.installTranslator(&t);
-			monty->initMessages(":/txt/hints_es");
 		}
 	} else if (lang.language() == QLocale::Portuguese) {
 		if(t.load(":/lang/uman.pt.qm")) {
 			app.installTranslator(&t);
-			monty->initMessages(":/txt/hints_pt");
 		}
 	}
 
+	monty->initMessages();
 	s.showMessage(QString(QObject::tr("%1.%2.%3 is loading...")).arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION), Qt::AlignBottom | Qt::AlignRight, Qt::white);
 
 	// message needs to be here because it can be translated only after installing the translator
@@ -158,7 +154,7 @@ void handlePreviousAppCrash() {
 					"<br>"
 					"Please report this problem <a href=\"http://uman.sf.net\">here</a>."),
 			BTN	<< ":/marks/accept.png"        << QObject::tr("Try again.")
-			    << ":/control/folder_note.png" << QObject::tr("Select another song folder."));
+				<< ":/control/folder_note.png" << QObject::tr("Select another song folder."));
 	if(result == 1) {
 		QSettings settings;
 		settings.remove("songPath");

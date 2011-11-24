@@ -22,16 +22,13 @@ public:
 	};
 
 	static QUMonty* instance();
-	void initMessages(const QString &source);
+	void initMessages();
 
 	QPixmap pic(QUMonty::Status status = QUMonty::normal);
 	QString welcomeMsg();
 
 	void talk(QLabel *montyLbl, QLabel *msgLbl);
 	void answer(QLabel *montyLbl, QLabel *msgLbl, const QString &question = QString(), bool prev = false);
-
-	const QStringList& genres() const { return _genres; }
-//	const QStringList& languages() const { return _languages; }
 
 	void addUnsupportedTag(const QString &tag) { _unsupportedTags.append(tag); }
 	const QStringList& unsupportedTags() { _unsupportedTags.removeDuplicates(); return _unsupportedTags; }
@@ -49,14 +46,9 @@ private:
 	static QUMonty* _instance;
 
 	QStringList messages;
-	QStringList _genres;
-//	QStringList _languages;
 	QStringList _unsupportedTags; // keep track of all unsupported tags found to far
 
 	QFileSystemWatcher *_watcher;
-
-	void initGenres();
-//	void initLanguages();
 };
 
 #endif /*QUMONTY_H_*/

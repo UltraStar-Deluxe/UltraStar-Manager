@@ -104,7 +104,178 @@ QStringList QUSongSupport::allowedEncodingTypes() {
 }
 
 QStringList QUSongSupport::availableSongLanguages() {
-	return registryKey("allowedSongLanguages", "Arabic Chinese Croatian Czech Danish Dutch English Finnish French German Hindi Italian Japanese Korean Latin Norwegian Polish Portuguese Romanian Russian Slovak Slowenian Spanish Swedish Turkish");
+	QStringList result;
+
+	result << "Arabic";
+	result << "Chinese";
+	result << "Croatian";
+	result << "Czech";
+	result << "Danish";
+	result << "Dutch";
+	result << "English";
+	result << "Finnish";
+	result << "French";
+	result << "German";
+	result << "Hindi";
+	result << "Italian";
+	result << "Japanese";
+	result << "Korean";
+	result << "Latin";
+	result << "Norwegian";
+	result << "Polish";
+	result << "Portuguese";
+	result << "Romanian";
+	result << "Russian";
+	result << "Slovak";
+	result << "Slowenian";
+	result << "Spanish";
+	result << "Swedish";
+	result << "Turkish";
+
+	return result;
+}
+
+QStringList QUSongSupport::availableSongEditions() {
+	QStringList result;
+
+	result << "[SC]-Songs";
+	result << "SingStar";
+	result << "Rock Band";
+	result << "Karaoke";
+
+	return result;
+}
+
+QStringList QUSongSupport::availableSongGenres() {
+	QStringList result;
+
+	result << "A capella";
+	result << "Acid";
+	result << "Acid Jazz";
+	result << "Acid Punk";
+	result << "Acoustic";
+	result << "AlternRock";
+	result << "Alternative";
+	result << "Ambient";
+	result << "Avantgarde";
+	result << "Ballad";
+	result << "Bass";
+	result << "Bebob";
+	result << "Big Band";
+	result << "Bluegrass";
+	result << "Blues";
+	result << "Booty Bass";
+	result << "Cabaret";
+	result << "Celtic";
+	result << "Chamber Music";
+	result << "Chanson";
+	result << "Chorus";
+	result << "Christian Rap";
+	result << "Classic Rock";
+	result << "Classical";
+	result << "Club";
+	result << "Comedy";
+	result << "Country";
+	result << "Cult";
+	result << "Dance";
+	result << "Dance Hall";
+	result << "Darkwave";
+	result << "Death Metal";
+	result << "Disco";
+	result << "Dream";
+	result << "Duet";
+	result << "Easy Listening";
+	result << "Electronic";
+	result << "Ethnic";
+	result << "Euro-House";
+	result << "Euro-Techno";
+	result << "Eurodance";
+	result << "Fast Fusion";
+	result << "Folk";
+	result << "Folk-Rock";
+	result << "Folklore";
+	result << "Freestyle";
+	result << "Funk";
+	result << "Fusion";
+	result << "Game";
+	result << "Gangsta";
+	result << "Gospel";
+	result << "Gothic";
+	result << "Gothic Rock";
+	result << "Grunge";
+	result << "Hard Rock";
+	result << "Hip-Hop";
+	result << "House";
+	result << "Humour";
+	result << "Industrial";
+	result << "Instrumental";
+	result << "Instrumental Pop";
+	result << "Instrumental Rock";
+	result << "Jazz";
+	result << "Jazz+Funk";
+	result << "Jungle";
+	result << "Latin";
+	result << "Lo-Fi";
+	result << "Meditative";
+	result << "Metal";
+	result << "Musical";
+	result << "National Folk";
+	result << "Native American";
+	result << "New Age";
+	result << "New Wave";
+	result << "Noise";
+	result << "Oldies";
+	result << "Opera";
+	result << "Other";
+	result << "Polka";
+	result << "Pop";
+	result << "Pop-Folk";
+	result << "Pop/Funk";
+	result << "Porn Groove";
+	result << "Power Ballad";
+	result << "Pranks";
+	result << "Primus";
+	result << "Progressive Rock";
+	result << "Psychadelic";
+	result << "Psychedelic Rock";
+	result << "Punk";
+	result << "Punk Rock";
+	result << "R&B";
+	result << "Rap";
+	result << "Rave";
+	result << "Reggae";
+	result << "Retro";
+	result << "Revival";
+	result << "Rhythmic Soul";
+	result << "Rock";
+	result << "Rock & Roll";
+	result << "Samba";
+	result << "Satire";
+	result << "Showtunes";
+	result << "Ska";
+	result << "Slow Jam";
+	result << "Slow Rock";
+	result << "Sonata";
+	result << "Soul";
+	result << "Sound Clip";
+	result << "Soundtrack";
+	result << "Southern Rock";
+	result << "Space";
+	result << "Speech";
+	result << "Swing";
+	result << "Symphonic Rock";
+	result << "Symphony";
+	result << "Tango";
+	result << "Techno";
+	result << "Techno-Industrial";
+	result << "Top";
+	result << "Trailer";
+	result << "Trance";
+	result << "Tribal";
+	result << "Trip-Hop";
+	result << "Vocal";
+
+	return result;
 }
 
 QString QUSongSupport::defaultInputEncoding() {

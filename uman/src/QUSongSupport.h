@@ -14,7 +14,7 @@ public:
 	static QStringList availableCustomTags();
 	static QStringList availableNoteTypes();
 
-	static QStringList allowedSongFiles(); // duet too
+	static QStringList allowedSongFiles();
 	static QStringList allowedLicenseFiles();
 	static QStringList allowedMidiFiles();
 	static QStringList allowedKaraokeFiles(); // MIDI + Lyrics
@@ -26,6 +26,8 @@ public:
 
 	static QStringList allowedEncodingTypes();
 	static QStringList availableSongLanguages();
+	static QStringList availableSongEditions();
+	static QStringList availableSongGenres();
 
 	static QString defaultInputEncoding();
 	static QString defaultOutputEncoding();
