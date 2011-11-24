@@ -191,7 +191,7 @@
       <string>Look for duplicate songs and show them in the song tree.</string>
      </property>
      <property name="text">
-      <string>Duplicates</string>
+      <string>Find Duplicates</string>
      </property>
      <property name="icon">
       <iconset resource="../resources/uman.qrc">
