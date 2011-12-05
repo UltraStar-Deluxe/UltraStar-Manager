@@ -34,14 +34,15 @@ QUAboutDialog::QUAboutDialog(QWidget *parent): QDialog(parent) {
 	creditsText += QObject::tr("<b>French Translation</b>");
 	creditsText += "<br>Fred (Pinky)<br><br>";
 
-	//creditsText += QObject::tr("<b>Spanish Translation</b>");
-	//creditsText += "<br>Pantero<br><br>";
+	creditsText += QObject::tr("<b>Spanish Translation</b>");
+	creditsText += "<br>Pantero<br><br>";
 	//creditsText += QObject::tr("<b>Portuguese Translation</b>");
 	//creditsText += "<br>zup3r_vock<br><br>";
-	//creditsText += QObject::tr("<b>Polish Translation</b>");
-	//creditsText += "<br>Robert de Clair<br>";
-	//creditsText += QObject::tr("Website:");
-	//creditsText += " <a href=\"http://www.krokmania.com\">www.krokmania.com</a><br><br>";
+	creditsText += QObject::tr("<b>Polish Translation</b>");
+	creditsText += "<br>Robert de Clair<br>";
+	creditsText += QObject::tr("Website:");
+	creditsText += " <a href=\"http://www.krokmania.com\">www.krokmania.com</a>";
+	creditsText += "<br>Michal \"michalek^\" Janowski<br><br>";
 
 	creditsText += QObject::tr("<b>CSS Styles (HTML Report)</b>");
 	creditsText += "<br>Fabian Lindenberg<br>Marcel Taeumel";
