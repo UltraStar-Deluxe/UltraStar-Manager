@@ -73,13 +73,10 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 
 	initWindow();
 	initRibbonBar();
+
 	// MB TODO:
-	// wait for Spanish translation (), then remove line
-	//_menu->langEsBtn->setVisible(false);
 	// wait for Portuguese translation (Andre), then remove line
 	_menu->langPtBtn->setVisible(false);
-	// wait for Polish translation (gpm?), then remove line
-	_menu->langPlBtn->setVisible(false);
 
 	initStatusBar();
 	initEventLog();
@@ -881,7 +878,7 @@ void QUMainWindow::addLogMsg(const QString &msg, QU::MessageTypes type) {
 }
 
 /*!
- * Save the log a default location.
+ * Save the log to a default location.
  */
 void QUMainWindow::saveLog() {
 	if(log->count() == 0)
@@ -891,7 +888,7 @@ void QUMainWindow::saveLog() {
 	QString filePath = QFileInfo(logDir, QString("%1.txt").arg(QDateTime::currentDateTime().toString("yyMMdd_hhmmss"))).filePath();
 	QFile file(filePath);
 
-	if(file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+	if(file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
 		QTextStream out(&file);
 
 		for(int row = 0; row < log->count(); row++) {
@@ -1546,7 +1543,7 @@ void QUMainWindow::getCovers() {
 // */
 //void QUMainWindow::processExternalSongFileChange(QUSongFile *song) {
 //	if(song->hasUnsavedChanges()) {
-//		logSrv->add(QString("INCONSISTENT STATE! The song \"%1 - %2\" has unsaved changes and its persistent song file \"%3\" was modified externally. Save your changes or rebuild the tree manually.").arg(song->artist()).arg(song->title()).arg(song->songFileInfo().filePath()), QU::Warning);
+//		logSrv->add(QString(tr("INCONSISTENT STATE! The song \"%1 - %2\" has unsaved changes and its persistent song file \"%3\" was modified externally. Save your changes or rebuild the tree manually.")).arg(song->artist()).arg(song->title()).arg(song->songFileInfo().filePath()), QU::Warning);
 //		return;
 //	}
 //
@@ -1561,7 +1558,7 @@ void QUMainWindow::getCovers() {
 //		}
 //	}
 //
-//	logSrv->add(QString("Song file changed: \"%1\"").arg(song->songFileInfo().filePath()), QU::Information);
+//	logSrv->add(QString(tr("Song file changed: \"%1\"")).arg(song->songFileInfo().filePath()), QU::Information);
 //}
 
 /*!
