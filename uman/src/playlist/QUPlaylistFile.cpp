@@ -151,7 +151,7 @@ void QUPlaylistFile::changeOrder(const QList<QUPlaylistEntry*> &newOrder) {
 
 	foreach(QUPlaylistEntry *entry, newOrder) {
 		if(!_playlist.contains(entry)) {
-			logSrv->add(QString("The order of the playlist \"%1\" could NOT be changed. The new order misses an entry.").arg(name()), QU::Warning);
+			logSrv->add(QString(tr("The order of the playlist \"%1\" could NOT be changed. The new order misses an entry.")).arg(name()), QU::Warning);
 			return;
 		}
 	}

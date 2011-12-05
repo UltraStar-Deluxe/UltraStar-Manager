@@ -57,7 +57,7 @@ void QUPlaylistArea::reset() {
 	setAreaEnabled(playlistDB->size() > 0);
 
 	// update window title of parent dock widget with current playlist path
-	playlistPathLbl->setText(QString(tr("<font color=#808080>%1</font>")).arg(playlistDB->dir().path()));
+	playlistPathLbl->setText(QString(tr("<font color=#808080>%1</font>")).arg(QDir::toNativeSeparators(playlistDB->dir().path())));
 }
 
 /*!
@@ -68,7 +68,7 @@ void QUPlaylistArea::addSongToCurrentPlaylist(QUSongFile *song) {
 		return;
 
 	if(!playlistDB->currentPlaylist()) {
-		logSrv->add(QString("Could NOT add song \"%1 - %2\" to playlist. Try to create a new playlist.").arg(song->artist()).arg(song->title()), QU::Warning);
+		logSrv->add(QString(tr("Could NOT add song \"%1 - %2\" to playlist. Try to create a new playlist.")).arg(song->artist()).arg(song->title()), QU::Warning);
 		return;
 	}
 
@@ -112,7 +112,7 @@ void QUPlaylistArea::saveCurrentPlaylistAs() {
 	if(!playlistDB->currentPlaylist())
 		return;
 
-	QString filePath = QFileDialog::getSaveFileName(this, tr("Save playlist as..."), playlistDB->dir().path(), QString("UltraStar Playlists (%1)").arg(QUSongSupport::allowedPlaylistFiles().join(" ")));
+	QString filePath = QFileDialog::getSaveFileName(this, tr("Save playlist as..."), playlistDB->dir().path(), QString(tr("UltraStar Playlists (%1)")).arg(QUSongSupport::allowedPlaylistFiles().join(" ")));
 
 	if(!filePath.isEmpty()) {
 		QFileInfo oldFi = playlistDB->currentPlaylist()->fileInfo();

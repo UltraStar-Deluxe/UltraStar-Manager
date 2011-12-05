@@ -44,7 +44,7 @@ QDir QUPlaylistDatabase::dir() {
 
 void QUPlaylistDatabase::setDir(const QDir &dir) {
 	QSettings().setValue("playlistFilePath", dir.path());
-	logSrv->add(QString("Playlist path changed to: \"%1\"").arg(dir.path()), QU::Information);
+	logSrv->add(QString(tr("Playlist path changed to: \"%1\"")).arg(dir.path()), QU::Information);
 	reload();
 }
 
@@ -133,7 +133,7 @@ void QUPlaylistDatabase::save() {
 					QString(
 						tr("Save playlist \"%1\" as...")).arg(playlist->name()),
 						dir().path(),
-						QString("UltraStar Playlists (%1)").arg(QUSongSupport::allowedPlaylistFiles().join(" ")));
+						QString(tr("UltraStar Playlists (%1)")).arg(QUSongSupport::allowedPlaylistFiles().join(" ")));
 
 			if(!filePath.isEmpty()) {
 				playlist->setFileInfo(QFileInfo(filePath));

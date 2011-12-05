@@ -311,7 +311,7 @@ void QUMediaPlayer::updateInfoLabel(QUMediaPlayer::States state) {
 		QUSongInfo info = _songs.at(_currentSongIndex);
 		currentSongLbl->setText(QString("%1<br><b>%2</b>").arg(info.artist).arg(info.title));
 		infoIconLbl->setToolTip(
-				QString("Bitrate: <b>%1</b> kbit/s<br>Channels: <b>%2</b><br>Sample Rate: <b>%3</b> kHz")
+				QString(tr("Bitrate: <b>%1</b> kbit/s<br>Channels: <b>%2</b><br>Sample Rate: <b>%3</b> kHz"))
 				.arg(info.bitrate)
 				.arg(info.channels)
 				.arg(info.sampleRate));
@@ -367,48 +367,48 @@ void QUMediaPlayer::BASS_StopAndFree() {
 		return;
 
 	if(!BASS_ChannelStop(_mediaStream)) {
-		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::Warning);
+		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
 		return;
 	}
 
 	if(!BASS_StreamFree(_mediaStream)) {
-		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::Warning);
+		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
 		return;
 	}
 }
 
 void QUMediaPlayer::BASS_Play() {
 	if(!_mediaStream) {
-		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::Warning);
+		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
 		return;
 	}
 
 	if(!BASS_ChannelPlay(_mediaStream, TRUE)) {
-		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::Warning);
+		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
 		return;
 	}
 }
 
 void QUMediaPlayer::BASS_Pause() {
 	if(!_mediaStream) {
-		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::Warning);
+		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
 		return;
 	}
 
 	if(!BASS_ChannelPause(_mediaStream)) {
-		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::Warning);
+		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
 		return;
 	}
 }
 
 void QUMediaPlayer::BASS_Resume() {
 	if(!_mediaStream) {
-		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::Warning);
+		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
 		return;
 	}
 
 	if(!BASS_ChannelPlay(_mediaStream, FALSE)) {
-		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::Warning);
+		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
 		return;
 	}
 }
@@ -430,7 +430,7 @@ void QUMediaPlayer::BASS_SetPosition(int seconds) {
 	QWORD pos = BASS_ChannelSeconds2Bytes(_mediaStream, (double)seconds);
 
 	if(!BASS_ChannelSetPosition(_mediaStream, pos, BASS_POS_BYTE)) {
-		logSrv->add(QString("BASS ERROR: %1").arg(BASS_ErrorGetCode()), QU::Warning);
+		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
 		return;
 	}
 }

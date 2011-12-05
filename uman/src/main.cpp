@@ -15,7 +15,7 @@
 #include <QFileInfo>
 
 void initApplication();
-void initLanguage(QApplication&, QTranslator&, QSplashScreen&);
+void initLanguage(QApplication&, QTranslator&, QTranslator&, QSplashScreen&);
 void handlePreviousAppCrash();
 void handleWipWarning();
 void handleReleaseCandidateInformation();
@@ -25,12 +25,13 @@ int main(int argc, char *argv[]) {
 	initApplication();
 
 	QApplication app(argc, argv);
-	QTranslator  tr;
+	QTranslator  trContent;
+	QTranslator  trQt;
 
 	QSplashScreen splash(QPixmap(":/icons/splash2.png"));
 	splash.show();
 
-	initLanguage(app, tr, splash);
+	initLanguage(app, trContent, trQt, splash);
 
 #ifdef WIP_VERSION
 	handleWipWarning();
@@ -71,9 +72,9 @@ void initApplication() {
  * language if no registry setting is found.
  *
  * Note that there is no special translation file for English present. That's why all
- * strings in the application source code is in English.
+ * strings in the application source code are in English.
  */
-void initLanguage(QApplication &app, QTranslator &t, QSplashScreen &s) {
+void initLanguage(QApplication &app, QTranslator &trContent, QTranslator &trQt, QSplashScreen &s) {
 	QSettings settings;
 	bool settingFound;
 	QLocale lang;
@@ -87,29 +88,45 @@ void initLanguage(QApplication &app, QTranslator &t, QSplashScreen &s) {
 		lang = QLocale(settings.value("language").toString());
 	}
 
-	if(lang.language() == QLocale::German) {
-		if(t.load(":/lang/uman.de.qm")) {
-			app.installTranslator(&t);
+	if(lang.language() == QLocale::Spanish) {
+		if(trContent.load(":/lang/uman.es.qm")) {
+			app.installTranslator(&trContent);
 		}
-	} else if (lang.language() == QLocale::Polish) {
-		if(t.load(":/lang/uman.pl.qm")) {
-			app.installTranslator(&t);
+		if(trQt.load(":/lang/qt_es.qm")) {
+			app.installTranslator(&trQt);
 		}
-	} else if (lang.language() == QLocale::French) {
-		if(t.load(":/lang/uman.fr.qm")) {
-			app.installTranslator(&t);
+	} else if(lang.language() == QLocale::German) {
+		if(trContent.load(":/lang/uman.de.qm")) {
+			app.installTranslator(&trContent);
 		}
-	} else if (lang.language() == QLocale::Spanish) {
-		if(t.load(":/lang/uman.es.qm")) {
-			app.installTranslator(&t);
+		if(trQt.load(":/lang/qt_de.qm")) {
+			app.installTranslator(&trQt);
 		}
-	} else if (lang.language() == QLocale::Portuguese) {
-		if(t.load(":/lang/uman.pt.qm")) {
-			app.installTranslator(&t);
+	} else if(lang.language() == QLocale::French) {
+		if(trContent.load(":/lang/uman.fr.qm")) {
+			app.installTranslator(&trContent);
+		}
+		if(trQt.load(":/lang/qt_fr.qm")) {
+			app.installTranslator(&trQt);
+		}
+	} else if(lang.language() == QLocale::Polish) {
+		if(trContent.load(":/lang/uman.pl.qm")) {
+			app.installTranslator(&trContent);
+		}
+		if(trQt.load(":/lang/qt_pl.qm")) {
+			app.installTranslator(&trQt);
+		}
+	} else if(lang.language() == QLocale::Portuguese) {
+		if(trContent.load(":/lang/uman.pt.qm")) {
+			app.installTranslator(&trContent);
+		}
+		if(trQt.load(":/lang/qt_pt.qm")) {
+			app.installTranslator(&trQt);
 		}
 	}
 
 	monty->initMessages();
+
 	s.showMessage(QString(QObject::tr("%1.%2.%3 is loading...")).arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION), Qt::AlignBottom | Qt::AlignRight, Qt::white);
 
 	// message needs to be here because it can be translated only after installing the translator
@@ -134,7 +151,7 @@ void handleWipWarning() {
 void handleReleaseCandidateInformation() {
 	QUMessageBox::information(0,
 				QObject::tr("Release Candidate Information"),
-				QObject::tr("<b>Dear testing person,</b><br><br>this version is meant to be <b>feature-complete and almost bug-free</b>. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.<br>While testing the release candidate, especially consider the following:<br><br>- support for CP1252, CP1250 and UTF8 encodings<br>- support for medley and preview tags<br>- mp3/cover/background quality assessment in songtree<br>- shiny new French translation<br>- duet bugs fixed<br>- check for update feature<br>- new task to increase low BPMs<br>- new task to normalize note pitches<br>- new task to capitalize the first word of each line<br><br>Send feedback and bug reports to: <a href=\"mailto:bohning@users.sourceforge.net\">bohning@users.sourceforge.net</a>"),
+				QObject::tr("<b>Dear testing person,</b><br><br>this version is meant to be <b>feature-complete and almost bug-free</b>. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.<br>While testing the release candidate, especially consider the following:<br><br>- support for CP1252, CP1250 and UTF8 encodings<br>- support for medley and preview tags<br>- mp3/cover/background quality assessment in songtree<br>- shiny new French and Spanish translation<br>- updated and completed Polish translation<br>- duet bugs fixed<br>- check for update feature<br>- new task to increase low BPMs<br>- new task to normalize note pitches<br>- new task to capitalize the first word of each line<br><br>Send feedback and bug reports to: <a href=\"mailto:bohning@users.sourceforge.net\">bohning@users.sourceforge.net</a>"),
 				BTN << ":/marks/accept.png" << QObject::tr("Okay!"),
 				400);
 }

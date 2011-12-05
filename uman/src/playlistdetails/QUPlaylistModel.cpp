@@ -38,7 +38,7 @@ QVariant QUPlaylistModel::data(const QModelIndex &index, int role) const {
 				.arg( song->artist() )
 				.arg( song->title() );
 		else
-			return QString("%1. %2 - %3 (not found)")
+			return QString(tr("%1. %2 - %3 (not found)"))
 				.arg( index.row() + 1)
 				.arg( entry->artistLink() )
 				.arg( entry->titleLink() );
