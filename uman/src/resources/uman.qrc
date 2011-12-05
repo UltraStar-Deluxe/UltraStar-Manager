@@ -24,6 +24,11 @@
         <file>lang/uman.es.qm</file>
         <file>lang/pt.png</file>
         <file>lang/uman.pt.qm</file>
+        <file>lang/qt_de.qm</file>
+        <file>lang/qt_es.qm</file>
+        <file>lang/qt_fr.qm</file>
+        <file>lang/qt_pl.qm</file>
+        <file>lang/qt_pt.qm</file>
     </qresource>
     <qresource prefix="/bubble">
         <file>speech8.png</file>
