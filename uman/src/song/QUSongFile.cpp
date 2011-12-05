@@ -389,13 +389,10 @@ bool QUSongFile::isRockBand() const {
 
 /*!
  * Try to decide if this song is a duet. This feature will be new in USdx 1.1.
- * Actually there are two possibilities:
- *
- * > song file extension is 'txd'
  * > lyrics start with 'P' (player indication)
  */
 bool QUSongFile::isDuet() const {
-	if( (QString::compare(songFileInfo().suffix(), "txd", Qt::CaseInsensitive) == 0) || (_lyrics.first().startsWith("P")) )
+	if( (!_lyrics.isEmpty()) && (_lyrics.first().startsWith("P")) )
 		return true;
 
 	return false;
@@ -972,7 +969,7 @@ void QUSongFile::autoSetFile(const QFileInfo &fi, bool force, const QString &cov
 	if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		if(!this->hasMp3() || force) {
 			this->setInfo(MP3_TAG, fi.fileName());
-			logSrv->add(QString("Assigned \"%1\" as audio file for \"%2 - %3\".").arg(mp3()).arg(artist()).arg(title()), QU::Information);
+			logSrv->add(QString(tr("Assigned \"%1\" as audio file for \"%2 - %3\".")).arg(mp3()).arg(artist()).arg(title()), QU::Information);
 		}
 	} else if(QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		if(!this->hasVideo() || force) {
@@ -1194,13 +1191,13 @@ void QUSongFile::songFileChanged(const QString &filePath) {
 		return;
 
 	if(hasUnsavedChanges()) {
-		logSrv->add(QString("INCONSISTENT STATE! The song \"%1 - %2\" has unsaved changes and its persistent song file \"%3\" was modified externally. Save your changes or rebuild the tree manually.").arg(artist()).arg(title()).arg(songFileInfo().filePath()), QU::Warning);
+		logSrv->add(QString(tr("INCONSISTENT STATE! The song \"%1 - %2\" has unsaved changes and its persistent song file \"%3\" was modified externally. Save your changes or rebuild the tree manually.")).arg(artist()).arg(title()).arg(songFileInfo().filePath()), QU::Warning);
 		return;
 	}
 
 	updateCache();
 
-	logSrv->add(QString("Song file changed: \"%1\"").arg(songFileInfo().filePath()), QU::Information);
+	logSrv->add(QString(tr("Song file changed: \"%1\"")).arg(songFileInfo().filePath()), QU::Information);
 	emit dataChanged();
 }
 
