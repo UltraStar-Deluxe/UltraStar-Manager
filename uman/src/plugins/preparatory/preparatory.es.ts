@@ -50,13 +50,13 @@
         <location filename="QUPreparatoryTask.cpp" line="38"/>
         <source>Round #GAP to nearest integer</source>
         <oldsource>Round #GAP to nearest integer.</oldsource>
-        <translation type="unfinished">Redondear #GAP al entero más cercano.</translation>
+        <translation>Redondear #GAP al entero más cercano</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="42"/>
         <source>Capitalize #TITLE tag</source>
         <oldsource>Fix capitalization of #TITLE tag</oldsource>
-        <translation type="unfinished">Arreglar las mayúsculas de la etiqueta #TITLE</translation>
+        <translation>Arreglar las mayúsculas de la etiqueta #TITLE</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="43"/>

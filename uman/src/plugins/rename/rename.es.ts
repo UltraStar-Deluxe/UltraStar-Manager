@@ -72,7 +72,7 @@
         <location filename="language.h" line="14"/>
         <source>Rename directory to &quot;Artist - Title [VIDEO] [SC]&quot; if checked or video present, keep other folder tags</source>
         <oldsource>Rename directory to &quot;Artist - Title [VIDEO] [SC]&quot; if checked or video present. Keep other folder tags.</oldsource>
-        <translation type="unfinished">Renombrar directorio como &quot;Artista - Título [VIDEO] [SC]&quot; si está revisada o existe un video. Mantener las demás etiquetas de carpeta.</translation>
+        <translation>Renombrar directorio como &quot;Artista - Título [VIDEO] [SC]&quot; si está revisada o existe un video, mantener las demás etiquetas de carpeta</translation>
     </message>
     <message>
         <location filename="language.h" line="15"/>
@@ -83,7 +83,7 @@
         <location filename="language.h" line="16"/>
         <source>Rename songtext file to &quot;Artist - Title.*&quot;</source>
         <oldsource>Rename songtext file to &quot;Artist - Title.txt&quot;</oldsource>
-        <translation type="unfinished">Renombrar archivo te texto de la canción como &quot;Artista - Título.txt&quot;</translation>
+        <translation>Renombrar archivo te texto de la canción como &quot;Artista - Título.txt&quot;</translation>
     </message>
     <message>
         <location filename="language.h" line="17"/>

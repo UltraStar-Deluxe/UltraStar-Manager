@@ -27,7 +27,7 @@
         <location filename="QUCleanUpTask.cpp" line="25"/>
         <source>Remove #END tag</source>
         <oldsource>Remove #END tag.</oldsource>
-        <translation type="unfinished">Usuwa etykietę #END.</translation>
+        <translation>Usuwa etykietę #END</translation>
     </message>
 </context>
 <context>
@@ -35,12 +35,12 @@
     <message>
         <location filename="QUCleanUpTaskFactory.cpp" line="11"/>
         <source>Clean-Up Tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuwanie niepotrzebnych plików oraz etykiet</translation>
     </message>
     <message>
         <location filename="QUCleanUpTaskFactory.cpp" line="15"/>
         <source>Remove obsolete song data or delete unused files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń nieaktualne dane piosenki , niepotrzebne etykiety lub nieużywane pliki.</translation>
     </message>
 </context>
 <context>
@@ -48,17 +48,17 @@
     <message>
         <location filename="../shared/QUMultilingualTaskFactory.h" line="25"/>
         <source>Unnamed plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Nienazwana wtyczka</translation>
     </message>
     <message>
         <location filename="../shared/QUMultilingualTaskFactory.h" line="27"/>
         <source>Unknown person</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieznana osoba</translation>
     </message>
     <message>
         <location filename="../shared/QUMultilingualTaskFactory.h" line="28"/>
         <source>No description given.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie podano opisu.</translation>
     </message>
 </context>
 <context>
@@ -66,7 +66,7 @@
     <message>
         <location filename="../shared/QUSimpleTaskFactory.h" line="16"/>
         <source>Simple Task</source>
-        <translation type="unfinished"></translation>
+        <translation>Proste zadania</translation>
     </message>
 </context>
 <context>
@@ -74,7 +74,7 @@
     <message>
         <location filename="../shared/QUSmartSetting.cpp" line="30"/>
         <source>Reset to default value.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zresetuj do domyślnych ustawień.</translation>
     </message>
 </context>
 </TS>

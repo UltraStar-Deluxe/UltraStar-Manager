@@ -7,25 +7,25 @@
         <location filename="language.h" line="1"/>
         <source>Change #ARTIST via ID3 tag from audio file</source>
         <oldsource>Change #ARTIST via ID3 tag from audio file.</oldsource>
-        <translation type="unfinished">Zmień etykietę #ARTIST posługując się informacją z etykiety ID3 pliku z muzyką.</translation>
+        <translation>Zmień etykietę #ARTIST (artysta) posługując się informacją z etykiety ID3 pliku z muzyką</translation>
     </message>
     <message>
         <location filename="language.h" line="2"/>
         <source>Change #TITLE via ID3 tag from audio file</source>
         <oldsource>Change #TITLE via ID3 tag from audio file.</oldsource>
-        <translation type="unfinished">Zmień etykietę #TYTUŁ posługując się informacją z etykiety ID3 pliku z muzyką.</translation>
+        <translation>Zmień etykietę #TITLE (tytuł) posługując się informacją z etykiety ID3 pliku z muzyką</translation>
     </message>
     <message>
         <location filename="language.h" line="3"/>
         <source>Change #TITLE via ID3 tag from audio file, append &quot;[VIDEO]&quot; if video present</source>
         <oldsource>Change #TITLE via ID3 tag from audio file. Append &quot;[VIDEO]&quot; if video present.</oldsource>
-        <translation type="unfinished">Zmień etykietę #TYTUŁ posługując się informacją z etykiety ID3 pliku z muzyką. Jeśli występuje teledysk dołącz do tej etykiety dopisek &quot;[VIDEO]&quot;.</translation>
+        <translation>Zmień etykietę #TITLE (tytuł) posługując się informacją z etykiety ID3 pliku z muzyką. Jeśli występuje teledysk dołącz do tej etykiety dopisek &quot;[VIDEO]&quot;</translation>
     </message>
     <message>
         <location filename="language.h" line="4"/>
         <source>Change #TITLE, append &quot;[VIDEO]&quot; if video present</source>
         <oldsource>Change #TITLE. Append &quot;[VIDEO]&quot; if video present</oldsource>
-        <translation type="unfinished">Zmień etykietę #TYTUŁ. Jeśli występuje teledysk dołącz do tej etykiety dopisek &quot;[VIDEO]&quot;.</translation>
+        <translation>Zmień etykietę #TITLE (tytuł). Jeśli występuje teledysk dołącz do tej etykiety dopisek &quot;[VIDEO]&quot;</translation>
     </message>
     <message>
         <location filename="language.h" line="5"/>
@@ -37,25 +37,25 @@
         <location filename="language.h" line="6"/>
         <source>Change #TITLE, remove [...] tags</source>
         <oldsource>Change #TITLE. Remove [...] tags</oldsource>
-        <translation type="unfinished">Zmień etykietę #TITLE. Usuń etykiety [...].</translation>
+        <translation>Zmień etykietę #TITLE (tytuł). Usuń etykiety &quot;[...]&quot;</translation>
     </message>
     <message>
         <location filename="language.h" line="8"/>
         <source>Change #TITLE, append &quot;[KARAOKE]&quot; if song is karaoke</source>
         <oldsource>Change #TITLE. Append &quot;[KARAOKE]&quot; if song is karaoke.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Zmień etykietę #TITLE (tytuł). Jeśli piosenka jest w wersji karaoke (bez wokalu) dołącz do tej etykiety dopisek &quot;[KARAOKE]&quot;</translation>
     </message>
     <message>
         <location filename="language.h" line="9"/>
         <source>Change #GENRE via ID3 tag</source>
         <oldsource>Change #GENRE via ID3 tag.</oldsource>
-        <translation type="unfinished">Zmień etykietę #GENRE (rodzaj muzyki) w oparciu o informacje ID3 pliku z muzyką.</translation>
+        <translation>Zmień etykietę #GENRE (rodzaj muzyki) w oparciu o informacje ID3 pliku z muzyką</translation>
     </message>
     <message>
         <location filename="language.h" line="10"/>
         <source>Change #YEAR via ID3 tag</source>
         <oldsource>Change #YEAR via ID3 tag.</oldsource>
-        <translation type="unfinished">Zmień etykietę #YEAR (rok wydania utworu) w oparciu o informacje ID3 pliku z muzyką.</translation>
+        <translation>Zmień etykietę #YEAR (rok wydania utworu) w oparciu o informacje ID3 pliku z muzyką</translation>
     </message>
     <message>
         <location filename="language.h" line="11"/>
@@ -71,7 +71,7 @@
         <location filename="language.h" line="13"/>
         <source>Write #BACKGROUND even without existing image file</source>
         <oldsource>Write #BACKGROUND even without existing image file.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Wpisz etykietę #BACKGROUND (tło) nawet jeśli nie ma pliku tła</translation>
     </message>
 </context>
 <context>
@@ -105,17 +105,17 @@
     <message>
         <location filename="QUAudioTagTaskFactory.cpp" line="10"/>
         <source>Song/ID3 Tag Tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>Etykiety z pliku z muzyką</translation>
     </message>
     <message>
         <location filename="QUAudioTagTaskFactory.cpp" line="14"/>
         <source>Song/ID3 Tag Task</source>
-        <translation type="unfinished"></translation>
+        <translation>Etykieta z pliku z muzyką</translation>
     </message>
     <message>
         <location filename="QUAudioTagTaskFactory.cpp" line="18"/>
         <source>Use meta-data from audio files to edit a song.</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj informacji z pliku z muzyką do edycji utworów.</translation>
     </message>
 </context>
 <context>
@@ -123,17 +123,17 @@
     <message>
         <location filename="../shared/QUMultilingualTaskFactory.h" line="25"/>
         <source>Unnamed plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Nienazwana wtyczka</translation>
     </message>
     <message>
         <location filename="../shared/QUMultilingualTaskFactory.h" line="27"/>
         <source>Unknown person</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieznana osoba</translation>
     </message>
     <message>
         <location filename="../shared/QUMultilingualTaskFactory.h" line="28"/>
         <source>No description given.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie podano opisu.</translation>
     </message>
 </context>
 <context>
@@ -149,7 +149,7 @@
     <message>
         <location filename="../shared/QUSmartSetting.cpp" line="30"/>
         <source>Reset to default value.</source>
-        <translation type="unfinished"></translation>
+        <translation>Przywróc ustawienia domyślne.</translation>
     </message>
 </context>
 <context>
@@ -172,12 +172,12 @@
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="8"/>
         <source>Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Modyfikowane</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="14"/>
         <source>Lets you negate the selected condition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozwala Ci zanegować warunkowi.</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="15"/>

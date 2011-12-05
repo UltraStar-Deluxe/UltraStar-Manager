@@ -40,7 +40,7 @@
 #</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="123"/>
+        <location filename="../../main.cpp" line="135"/>
         <source>Init Language</source>
         <translation>Sprache initialisieren</translation>
     </message>
@@ -49,7 +49,7 @@
         <translation type="obsolete">Es wurde keine Einstellung bezüglich deiner Sprache gefunden. Daher wird versucht, deine &lt;b&gt;Systemsprache&lt;/b&gt; zu benutzen.&lt;br&gt;&lt;br&gt;Dies kann unter &lt;b&gt;Einstellungen &gt; Sprache&lt;/b&gt; geändert werden.</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="127"/>
+        <location filename="../../main.cpp" line="139"/>
         <source>Continue.</source>
         <translation>Fortsetzen.</translation>
     </message>
@@ -115,6 +115,11 @@ Versuche es auf %1 x %3 zu beschneiden, um ein Widescreen Format zu erhalten.</t
         <location filename="../../songtree/QUSongItem.cpp" line="614"/>
         <source>File type unsupported: &quot;%1&quot;</source>
         <translation>Dateityp nicht unterstützt: &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongItem.cpp" line="682"/>
+        <source>%1 syllables per second</source>
+        <translation>%1 Silben pro Sekunde</translation>
     </message>
     <message>
         <source>Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the &lt;i&gt;hide&lt;/i&gt; button below and I will disappear for now.&lt;br&gt;&lt;br&gt;You have a nice collection of &lt;b&gt;%1 songs&lt;/b&gt; there. Are they managed well yet?</source>
@@ -585,66 +590,74 @@ Versuche es auf %1 x %3 zu beschneiden, um ein Widescreen Format zu erhalten.</t
         <translation>Sorry. Ich verstehe dich nicht.</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="118"/>
+        <location filename="../../main.cpp" line="130"/>
         <source>%1.%2.%3 is loading...</source>
         <translation>%1.%2.%3 wird geladen...</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="124"/>
+        <location filename="../../main.cpp" line="136"/>
         <source>There was no configuration setting about your language. Your &lt;b&gt;system language&lt;/b&gt; will be used if possible.&lt;br&gt;&lt;br&gt;See &lt;b&gt;Options &gt; Language&lt;/b&gt; to change this.</source>
         <translation>Es wurde keine Einstellung bezüglich deiner Sprache gefunden. Daher wird versucht, deine &lt;b&gt;Systemsprache&lt;/b&gt; zu benutzen.&lt;br&gt;&lt;br&gt;Dies kann unter &lt;b&gt;Einstellungen &gt; Sprache&lt;/b&gt; geändert werden.</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="133"/>
+        <location filename="../../main.cpp" line="145"/>
         <source>WIP version detected!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="134"/>
+        <location filename="../../main.cpp" line="146"/>
         <source>This version is still under development &lt;b&gt;and may not be very stable&lt;/b&gt;. You might loose all your songs if you use it.&lt;br&gt;&lt;br&gt;&lt;b&gt;Please backup&lt;/b&gt; the songs you are working with and do not distribute this version.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="135"/>
+        <location filename="../../main.cpp" line="147"/>
         <source>I will be careful.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="141"/>
+        <location filename="../../main.cpp" line="153"/>
         <source>Release Candidate Information</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="142"/>
+        <location filename="../../main.cpp" line="154"/>
+        <source>&lt;b&gt;Dear testing person,&lt;/b&gt;&lt;br&gt;&lt;br&gt;this version is meant to be &lt;b&gt;feature-complete and almost bug-free&lt;/b&gt;. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.&lt;br&gt;While testing the release candidate, especially consider the following:&lt;br&gt;&lt;br&gt;- support for CP1252, CP1250 and UTF8 encodings&lt;br&gt;- support for medley and preview tags&lt;br&gt;- mp3/cover/background quality assessment in songtree&lt;br&gt;- shiny new French and Spanish translation&lt;br&gt;- updated and completed Polish translation&lt;br&gt;- duet bugs fixed&lt;br&gt;- check for update feature&lt;br&gt;- new task to increase low BPMs&lt;br&gt;- new task to normalize note pitches&lt;br&gt;- new task to capitalize the first word of each line&lt;br&gt;&lt;br&gt;Send feedback and bug reports to: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</source>
+        <translation>&lt;b&gt;Lieber Tester,&lt;/b&gt;&lt;br&gt;&lt;br&gt;diese Version sollte &lt;b&gt;funktionsvollständig und fast fehlerfrei&lt;/b&gt; sein. Es ist jedoch immer noch möglich, dass einige Fehler deine Musiksammlung zerstören könnten. Bitte mache eine Sicherheitskopie deiner Musiksammlung.&lt;br&gt;Beim Testen dieses Release Candidates bitte besonderes Augenmerk auf folgende Dinge richten:&lt;br&gt;&lt;br&gt;- Unterstützung für CP1252, CP1250 und UTF8 Codierungen&lt;br&gt;- Unterstützung der Medley und Preview Tags&lt;br&gt;- MP3/Cover/Background Qualitätsmanagement im Songbau&lt;br&gt;- brandneue Übersetzung ins Französische und Spanische&lt;br&gt;- Vervollständigung der Übersetzung ins Polnische&lt;br&gt;- Fehler bei der Duettverarbeitung beseitigt&lt;br&gt;- Überprüfung auf Updates&lt;br&gt;- neuer Task zur Erhöhung niedriger BPM-Werte&lt;br&gt;- neuer Task zum Normalisieren der Tonhöhen&lt;br&gt;- neuer Task zur Großschreibung aller Zeilenanfänge&lt;br&gt;&lt;br&gt;Bitte sende Rückmeldungen und Fehlerberichte an: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Dear testing person,&lt;/b&gt;&lt;br&gt;&lt;br&gt;this version is meant to be &lt;b&gt;feature-complete and almost bug-free&lt;/b&gt;. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.&lt;br&gt;While testing the release candidate, especially consider the following:&lt;br&gt;&lt;br&gt;- support for CP1252, CP1250 and UTF8 encodings&lt;br&gt;- support for medley and preview tags&lt;br&gt;- mp3/cover/background quality assessment in songtree&lt;br&gt;- shiny new French translation&lt;br&gt;- updated and completed Polish translation&lt;br&gt;- duet bugs fixed&lt;br&gt;- check for update feature&lt;br&gt;- new task to increase low BPMs&lt;br&gt;- new task to normalize note pitches&lt;br&gt;- new task to capitalize the first word of each line&lt;br&gt;&lt;br&gt;Send feedback and bug reports to: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</source>
+        <translation type="obsolete">&lt;b&gt;Lieber Tester,&lt;/b&gt;&lt;br&gt;&lt;br&gt;diese Version sollte &lt;b&gt;funktionsvollständig und fast fehlerfrei&lt;/b&gt; sein. Es ist jedoch immer noch möglich, dass einige Fehler deine Musiksammlung zerstören könnten. Bitte mache eine Sicherheitskopie deiner Musiksammlung.&lt;br&gt;Beim Testen dieses Release Candidates bitte besonderes Augenmerk auf folgende Dinge richten:&lt;br&gt;&lt;br&gt;- Unterstützung für CP1252, CP1250 und UTF8 Codierungen&lt;br&gt;- Unterstützung der Medley und Preview Tags&lt;br&gt;- MP3/Cover/Background Qualitätsmanagement im Songbau&lt;br&gt;- brandneue Übersetzung ins Französische&lt;br&gt;- Vervollständigung der Übersetzung ins Polnische&lt;br&gt;- Fehler bei der Duettverarbeitung beseitigt&lt;br&gt;- Überprüfung auf Updates&lt;br&gt;- neuer Task zur Erhöhung niedriger BPM-Werte&lt;br&gt;- neuer Task zum Normalisieren der Tonhöhen&lt;br&gt;- neuer Task zur Großschreibung aller Zeilenanfänge&lt;br&gt;&lt;br&gt;Bitte sende Rückmeldungen und Fehlerberichte an: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</translation>
+    </message>
+    <message>
         <source>&lt;b&gt;Dear testing person,&lt;/b&gt;&lt;br&gt;&lt;br&gt;this version is meant to be &lt;b&gt;feature-complete and almost bug-free&lt;/b&gt;. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.&lt;br&gt;While testing the release candidate, especially consider the following:&lt;br&gt;&lt;br&gt;- support for CP1252, CP1250 and UTF8 encodings&lt;br&gt;- support for medley and preview tags&lt;br&gt;- mp3/cover/background quality assessment in songtree&lt;br&gt;- shiny new French translation&lt;br&gt;- duet bugs fixed&lt;br&gt;- check for update feature&lt;br&gt;- new task to increase low BPMs&lt;br&gt;- new task to normalize note pitches&lt;br&gt;- new task to capitalize the first word of each line&lt;br&gt;&lt;br&gt;Send feedback and bug reports to: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</source>
-        <translation>&lt;b&gt;Lieber Tester,&lt;/b&gt;&lt;br&gt;&lt;br&gt;diese Version sollte &lt;b&gt;funktionsvollständig und fast fehlerfrei&lt;/b&gt; sein. Es ist jedoch immer noch möglich, dass einige Fehler deine Musiksammlung zerstören könnten. Bitte mache eine Sicherheitskopie deiner Musiksammlung.&lt;br&gt;Beim Testen dieses Release Candidates bitte besonderes Augenmerk auf folgende Dinge richten:&lt;br&gt;&lt;br&gt;- Unterstützung für CP1252, CP1250 und UTF8 Codierungen&lt;br&gt;- Unterstützung der Medley und Preview Tags&lt;br&gt;- MP3/Cover/Background Qualitätsmanagement im Songbau&lt;br&gt;- brandneue Übersetzung ins Französische&lt;br&gt;- Fehler bei der Duettverarbeitung beseitigt&lt;br&gt;- Überprüfung auf Updates&lt;br&gt;- neuer Task zur Erhöhung niedriger BPM-Werte&lt;br&gt;- neuer Task zum Normalisieren der Tonhöhen&lt;br&gt;- neuer Task zur Großschreibung aller Zeilenanfänge&lt;br&gt;&lt;br&gt;Bitte sende Rückmeldungen und Fehlerberichte an: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</translation>
+        <translation type="obsolete">&lt;b&gt;Lieber Tester,&lt;/b&gt;&lt;br&gt;&lt;br&gt;diese Version sollte &lt;b&gt;funktionsvollständig und fast fehlerfrei&lt;/b&gt; sein. Es ist jedoch immer noch möglich, dass einige Fehler deine Musiksammlung zerstören könnten. Bitte mache eine Sicherheitskopie deiner Musiksammlung.&lt;br&gt;Beim Testen dieses Release Candidates bitte besonderes Augenmerk auf folgende Dinge richten:&lt;br&gt;&lt;br&gt;- Unterstützung für CP1252, CP1250 und UTF8 Codierungen&lt;br&gt;- Unterstützung der Medley und Preview Tags&lt;br&gt;- MP3/Cover/Background Qualitätsmanagement im Songbau&lt;br&gt;- brandneue Übersetzung ins Französische&lt;br&gt;- Fehler bei der Duettverarbeitung beseitigt&lt;br&gt;- Überprüfung auf Updates&lt;br&gt;- neuer Task zur Erhöhung niedriger BPM-Werte&lt;br&gt;- neuer Task zum Normalisieren der Tonhöhen&lt;br&gt;- neuer Task zur Großschreibung aller Zeilenanfänge&lt;br&gt;&lt;br&gt;Bitte sende Rückmeldungen und Fehlerberichte an: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Dear testing person,&lt;/b&gt;&lt;br&gt;&lt;br&gt;this version is meant to be &lt;b&gt;feature-complete and almost bug-free&lt;/b&gt;. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.&lt;br&gt;While testing the release candidate, especially consider the following:&lt;br&gt;&lt;br&gt;- support for CP1252, CP1250 and UTF8 encodings&lt;br&gt;- support for medley and preview tags&lt;br&gt;- mp3/cover/background quality assessment in songtree&lt;br&gt;- shiny new French translation&lt;br&gt;- duet bugs fixed&lt;br&gt;- check for update feature&lt;br&gt;&lt;br&gt;Send feedback and bug reports to: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</source>
         <translation type="obsolete">&lt;b&gt;Lieber Tester,&lt;/b&gt;&lt;br&gt;&lt;br&gt;diese Version sollte &lt;b&gt;funktionsvollständig und fast fehlerfrei&lt;/b&gt; sein. Es ist jedoch immer noch möglich, dass einige Fehler deine Musiksammlung zerstören könnten. Bitte mache eine Sicherheitskopie deiner Musiksammlung.&lt;br&gt;Beim Testen dieses Release Candidates bitte besonderes Augenmerk auf folgende Dinge richten:&lt;br&gt;&lt;br&gt;- Unterstützung für CP1252, CP1250 und UTF8 Codierungen&lt;br&gt;- Unterstützung der Medley und Preview Tags&lt;br&gt;- MP3/Cover/Background Qualitätsmanagement im Songbau&lt;br&gt;- brandneue Übersetzung ins Französische&lt;br&gt;- Fehler bei der Duettverarbeitung beseitigt&lt;br&gt;- Überprüfung auf Updates&lt;br&gt;&lt;br&gt;Bitte sende Rückmeldungen und Fehlerberichte an: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="143"/>
+        <location filename="../../main.cpp" line="155"/>
         <source>Okay!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="157"/>
+        <location filename="../../main.cpp" line="169"/>
         <source>Application Crash Detected</source>
         <translation>Programmabsturz</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="158"/>
+        <location filename="../../main.cpp" line="170"/>
         <source>The UltraStar Manager did not exit successfully last time. Maybe you&apos;ve chosen a &lt;b&gt;bad song folder&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Please report this problem &lt;a href=&quot;http://uman.sf.net&quot;&gt;here&lt;/a&gt;.</source>
         <translation>Der UltraStar Manager wurde nicht korrekt beendet. Vielleicht ist der &lt;b&gt;Song-Ordner&lt;/b&gt; die Ursache.&lt;br&gt;&lt;br&gt;Bitte berichte über dieses Problem &lt;a href=&quot;http://uman.sf.net&quot;&gt;hier&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="161"/>
+        <location filename="../../main.cpp" line="173"/>
         <source>Try again.</source>
         <translation>Nochmal versuchen.</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="162"/>
+        <location filename="../../main.cpp" line="174"/>
         <source>Select another song folder.</source>
         <translation>Song-Ordner ändern.</translation>
     </message>
@@ -776,106 +789,109 @@ Try cropping to %3 x %3.</source>
         <translation>&lt;b&gt;Französische Übersetzung&lt;/b&gt;</translation>
     </message>
     <message>
+        <location filename="../../QUAboutDialog.cpp" line="37"/>
         <source>&lt;b&gt;Spanish Translation&lt;/b&gt;</source>
-        <translation type="obsolete">&lt;b&gt;Spanische Übersetzung&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Spanische Übersetzung&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Portuguese Translation&lt;/b&gt;</source>
         <translation type="obsolete">&lt;b&gt;Portugiesische Übersetzung&lt;/b&gt;</translation>
     </message>
     <message>
+        <location filename="../../QUAboutDialog.cpp" line="41"/>
         <source>&lt;b&gt;Polish Translation&lt;/b&gt;</source>
-        <translation type="obsolete">&lt;b&gt;Polnische Übersetzung&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Polnische Übersetzung&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="51"/>
-        <location filename="../../QUAboutDialog.cpp" line="57"/>
-        <location filename="../../QUAboutDialog.cpp" line="63"/>
-        <location filename="../../QUAboutDialog.cpp" line="69"/>
-        <location filename="../../QUAboutDialog.cpp" line="73"/>
-        <location filename="../../QUAboutDialog.cpp" line="77"/>
-        <location filename="../../QUAboutDialog.cpp" line="83"/>
-        <location filename="../../QUAboutDialog.cpp" line="90"/>
-        <location filename="../../QUAboutDialog.cpp" line="98"/>
+        <location filename="../../QUAboutDialog.cpp" line="43"/>
+        <location filename="../../QUAboutDialog.cpp" line="52"/>
+        <location filename="../../QUAboutDialog.cpp" line="58"/>
+        <location filename="../../QUAboutDialog.cpp" line="64"/>
+        <location filename="../../QUAboutDialog.cpp" line="70"/>
+        <location filename="../../QUAboutDialog.cpp" line="74"/>
+        <location filename="../../QUAboutDialog.cpp" line="78"/>
+        <location filename="../../QUAboutDialog.cpp" line="84"/>
+        <location filename="../../QUAboutDialog.cpp" line="91"/>
+        <location filename="../../QUAboutDialog.cpp" line="99"/>
         <source>Website:</source>
         <translation>Webseite:</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="46"/>
+        <location filename="../../QUAboutDialog.cpp" line="47"/>
         <source>&lt;b&gt;CSS Styles (HTML Report)&lt;/b&gt;</source>
         <translation>&lt;b&gt;CSS Styles (HTML-Bericht)&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="49"/>
+        <location filename="../../QUAboutDialog.cpp" line="50"/>
         <source>&lt;b&gt;Silk Icons&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="53"/>
-        <location filename="../../QUAboutDialog.cpp" line="59"/>
-        <location filename="../../QUAboutDialog.cpp" line="65"/>
-        <location filename="../../QUAboutDialog.cpp" line="79"/>
-        <location filename="../../QUAboutDialog.cpp" line="92"/>
+        <location filename="../../QUAboutDialog.cpp" line="54"/>
+        <location filename="../../QUAboutDialog.cpp" line="60"/>
+        <location filename="../../QUAboutDialog.cpp" line="66"/>
+        <location filename="../../QUAboutDialog.cpp" line="80"/>
+        <location filename="../../QUAboutDialog.cpp" line="93"/>
         <source>License:</source>
         <translation>Lizenz:</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="55"/>
+        <location filename="../../QUAboutDialog.cpp" line="56"/>
         <source>&lt;b&gt;Diagona Icons&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="61"/>
+        <location filename="../../QUAboutDialog.cpp" line="62"/>
         <source>&lt;b&gt;Fugue Icons&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="67"/>
+        <location filename="../../QUAboutDialog.cpp" line="68"/>
         <source>&lt;b&gt;Monty Icons&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="71"/>
+        <location filename="../../QUAboutDialog.cpp" line="72"/>
         <source>&lt;b&gt;Boomy Icons&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="75"/>
+        <location filename="../../QUAboutDialog.cpp" line="76"/>
         <source>&lt;b&gt;Tiny Animals Icons&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="81"/>
+        <location filename="../../QUAboutDialog.cpp" line="82"/>
         <source>&lt;b&gt;Milky Icons&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="85"/>
+        <location filename="../../QUAboutDialog.cpp" line="86"/>
         <source>&lt;b&gt;Graphical Compositions&lt;/b&gt;</source>
         <translation>Grafische Kompositionen</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="88"/>
+        <location filename="../../QUAboutDialog.cpp" line="89"/>
         <source>&lt;b&gt;Picture Flow&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="94"/>
+        <location filename="../../QUAboutDialog.cpp" line="95"/>
         <source>&lt;b&gt;HMAC-SHA2 Implementation&lt;/b&gt;</source>
         <translation>&lt;b&gt;HMAC-SHA2 Implementierung&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="96"/>
+        <location filename="../../QUAboutDialog.cpp" line="97"/>
         <source>e-mail:</source>
         <translation>E-Mail:</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="101"/>
+        <location filename="../../QUAboutDialog.cpp" line="102"/>
         <source>&lt;b&gt;Tester&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="103"/>
+        <location filename="../../QUAboutDialog.cpp" line="104"/>
         <source>&lt;b&gt;Special Thanks&lt;/b&gt;</source>
         <translation>&lt;b&gt;Besonderer Dank&lt;/b&gt;</translation>
     </message>
@@ -883,7 +899,7 @@ Try cropping to %3 x %3.</source>
 <context>
     <name>QUAboutDialog</name>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="116"/>
+        <location filename="../../QUAboutDialog.cpp" line="117"/>
         <source>Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;SVN: #%4, %5</source>
         <translation>Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;SVN: #%4, %5</translation>
     </message>
@@ -1541,6 +1557,11 @@ runterladen...</translation>
         <translation>Bearbeite jede Silbe einer jeden Zeile und &lt;b&gt;korrigiere Schreibfehler&lt;/b&gt; oder &lt;b&gt;falsche Leerzeichen&lt;/b&gt; manuell.</translation>
     </message>
     <message>
+        <location filename="../../lyricseditor/QULyricsEditorDialog.cpp" line="16"/>
+        <source>Edit Lyrics: &quot;%1 - %2&quot;</source>
+        <translation>Lyricsbearbeitung: &quot;%1 - %2&quot;</translation>
+    </message>
+    <message>
         <location filename="../../lyricseditor/QULyricsEditorDialog.ui" line="14"/>
         <source>Edit Lyrics</source>
         <translation>Lyrics bearbeiten</translation>
@@ -1580,24 +1601,33 @@ runterladen...</translation>
 <context>
     <name>QUMainWindow</name>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="123"/>
-        <location filename="../../QUMainWindow.cpp" line="138"/>
+        <location filename="../../QUMainWindow.cpp" line="122"/>
+        <location filename="../../QUMainWindow.cpp" line="137"/>
         <source>Quit</source>
         <translation>Beenden</translation>
+    </message>
+    <message>
+        <location filename="../../QUMainWindow.cpp" line="586"/>
+        <location filename="../../QUMainWindow.cpp" line="1036"/>
+        <location filename="../../QUMainWindow.cpp" line="1070"/>
+        <source>Songs have been modified.</source>
+        <translation>Es wurden Songs modifiziert.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="587"/>
         <location filename="../../QUMainWindow.cpp" line="1037"/>
         <location filename="../../QUMainWindow.cpp" line="1071"/>
-        <source>Songs have been modified.</source>
-        <translation>Es wurden Songs modifiziert.</translation>
+        <source>Save all changes.</source>
+        <translation>Speichere alle Änderungen.</translation>
     </message>
     <message>
+        <location filename="../../QUMainWindow.cpp" line="125"/>
+        <location filename="../../QUMainWindow.cpp" line="140"/>
         <location filename="../../QUMainWindow.cpp" line="588"/>
         <location filename="../../QUMainWindow.cpp" line="1038"/>
         <location filename="../../QUMainWindow.cpp" line="1072"/>
-        <source>Save all changes.</source>
-        <translation>Speichere alle Änderungen.</translation>
+        <source>Discard all changes.</source>
+        <translation>Verwerfe alle Änderungen.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="126"/>
@@ -1605,20 +1635,11 @@ runterladen...</translation>
         <location filename="../../QUMainWindow.cpp" line="589"/>
         <location filename="../../QUMainWindow.cpp" line="1039"/>
         <location filename="../../QUMainWindow.cpp" line="1073"/>
-        <source>Discard all changes.</source>
-        <translation>Verwerfe alle Änderungen.</translation>
-    </message>
-    <message>
-        <location filename="../../QUMainWindow.cpp" line="127"/>
-        <location filename="../../QUMainWindow.cpp" line="142"/>
-        <location filename="../../QUMainWindow.cpp" line="590"/>
-        <location filename="../../QUMainWindow.cpp" line="1040"/>
-        <location filename="../../QUMainWindow.cpp" line="1074"/>
         <source>Cancel this action.</source>
         <translation>Aktion abbrechen.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="586"/>
+        <location filename="../../QUMainWindow.cpp" line="585"/>
         <source>Rebuild Song Tree</source>
         <translation>Songbaum neu erzeugen</translation>
     </message>
@@ -1627,12 +1648,12 @@ runterladen...</translation>
         <translation type="obsolete">Updateüberprüfung fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="957"/>
+        <location filename="../../QUMainWindow.cpp" line="956"/>
         <source>Is your internet connection working?</source>
         <translation>Bist Du mit dem Internet verbunden?</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="970"/>
+        <location filename="../../QUMainWindow.cpp" line="969"/>
         <source>No permission to write file %1.</source>
         <translation>Keine Schreibrechte für Datei %1.</translation>
     </message>
@@ -1641,7 +1662,7 @@ runterladen...</translation>
         <translation type="obsolete">Updateüberprüfung erfolgreich</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="989"/>
+        <location filename="../../QUMainWindow.cpp" line="988"/>
         <source>UltraStar Manager %1.%2.%3 is &lt;b&gt;outdated&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Download the most recent UltraStar Manager %4 &lt;a href=&apos;http://sourceforge.net/projects/uman/&apos;&gt;here&lt;/a&gt;.</source>
         <translation>Der UltraStar Manager %1.%2.%3 ist &lt;b&gt;veraltet&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Lade die neuesten UltraStar Manager %4 &lt;a href=&apos;http://sourceforge.net/projects/uman/&apos;&gt;hier&lt;/a&gt; herunter.</translation>
     </message>
@@ -1650,17 +1671,17 @@ runterladen...</translation>
         <translation type="obsolete">Updateüberprüfung erfolgreich</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1002"/>
+        <location filename="../../QUMainWindow.cpp" line="1001"/>
         <source>UltraStar Manager %1.%2.%3 is &lt;b&gt;up to date&lt;/b&gt;!</source>
         <translation>Der UltraStar Manager %1.%2.%3 ist &lt;b&gt;aktuell&lt;/b&gt;!</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1005"/>
+        <location filename="../../QUMainWindow.cpp" line="1004"/>
         <source>OK. Check automatically on startup.</source>
         <translation>OK. Bitte beim Programmstart automatisch überprüfen.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1036"/>
+        <location filename="../../QUMainWindow.cpp" line="1035"/>
         <source>Change Song Directory</source>
         <translation>Song-Ordner ändern</translation>
     </message>
@@ -1837,32 +1858,32 @@ runterladen...</translation>
         <translation type="obsolete">Lese Songs...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="704"/>
+        <location filename="../../QUMainWindow.cpp" line="703"/>
         <source>Audio file changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Audio-Datei geändert von: &quot;%1&quot; nach: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="710"/>
+        <location filename="../../QUMainWindow.cpp" line="709"/>
         <source>Cover changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Cover geändert von: &quot;%1&quot; nach: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="716"/>
+        <location filename="../../QUMainWindow.cpp" line="715"/>
         <source>Background changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Hintergrund geändert von: &quot;%1&quot; nach: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="722"/>
+        <location filename="../../QUMainWindow.cpp" line="721"/>
         <source>Video file changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Video geändert von: &quot;%1&quot; nach: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="738"/>
+        <location filename="../../QUMainWindow.cpp" line="737"/>
         <source>Applying new value for %1 to all selected songs...</source>
         <translation>Setze neuen Wert für %1 für alle ausgewählten Songs...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="786"/>
+        <location filename="../../QUMainWindow.cpp" line="785"/>
         <source>Applying all checked tasks to all selected songs...</source>
         <translation>Führe alle ausgewählten Aufgaben mit allen selektierten Songs aus...</translation>
     </message>
@@ -1875,7 +1896,7 @@ runterladen...</translation>
         <translation type="obsolete">Updateüberprüfung &lt;b&gt;fehlgeschlagen&lt;/b&gt;. Bist Du mit dem Internet verbunden?</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="961"/>
+        <location filename="../../QUMainWindow.cpp" line="960"/>
         <source>Update check failed. Host unreachable.</source>
         <translation>Updateüberprüfung fehlgeschlagen. Host nicht erreichbar.</translation>
     </message>
@@ -1884,7 +1905,7 @@ runterladen...</translation>
         <translation type="obsolete">Updateüberprüfung &lt;b&gt;fehlgeschlagen&lt;/b&gt;. Keine Schreibrechte für Datei %1.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="974"/>
+        <location filename="../../QUMainWindow.cpp" line="973"/>
         <source>Update check failed. No permission to write file %1.</source>
         <translation>Updateüberprüfung fehlgeschlagen. Keine Schreibrechte für Datei %1.</translation>
     </message>
@@ -1893,12 +1914,12 @@ runterladen...</translation>
         <translation type="obsolete">Updateüberprüfung &lt;b&gt;erfolgreich&lt;/b&gt;. UltraStar Manager %1.%2.%3 ist &lt;b&gt;veraltet&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Lade die neuesten UltraStar Manager %4 &lt;a href=&apos;http://sourceforge.net/projects/uman/&apos;&gt;hier&lt;/a&gt; herunter.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="995"/>
+        <location filename="../../QUMainWindow.cpp" line="994"/>
         <source>Update check successful. A new version of UltraStar Manager is available.</source>
         <translation>Updateüberprüfung erfolgreich. Eine neue Version des UltraStar Managers ist verfügbar.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="997"/>
+        <location filename="../../QUMainWindow.cpp" line="996"/>
         <source>Update check successful. UltraStar Manager is up to date.</source>
         <translation>Updateüberprüfung erfolgreich. Der UltraStar Manager ist aktuell.</translation>
     </message>
@@ -1907,7 +1928,7 @@ runterladen...</translation>
         <translation type="obsolete">Updateüberprüfung &lt;b&gt;erfolgreich&lt;/b&gt;. Der UltraStar Manager %1.%2.%3 ist &lt;b&gt;aktuell&lt;/b&gt;!</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1004"/>
+        <location filename="../../QUMainWindow.cpp" line="1003"/>
         <source>OK. I will check again later.</source>
         <translation>OK. Ich versuche es später wieder.</translation>
     </message>
@@ -1916,56 +1937,66 @@ runterladen...</translation>
         <translation type="obsolete">OK. Bitte beim Programmstart automatisch überprüfen.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="956"/>
-        <location filename="../../QUMainWindow.cpp" line="969"/>
+        <location filename="../../QUMainWindow.cpp" line="955"/>
+        <location filename="../../QUMainWindow.cpp" line="968"/>
         <source>Update check failed.</source>
         <translation>Updateüberprüfung fehlgeschlagen.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="988"/>
-        <location filename="../../QUMainWindow.cpp" line="1001"/>
+        <location filename="../../QUMainWindow.cpp" line="987"/>
+        <location filename="../../QUMainWindow.cpp" line="1000"/>
         <source>Update check successful.</source>
         <translation>Updateüberprüfung erfolgreich.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1009"/>
+        <location filename="../../QUMainWindow.cpp" line="1008"/>
         <source>Automatic check for updates disabled.</source>
         <translation>Automatische Überprüfung auf Updates deaktiviert.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1012"/>
+        <location filename="../../QUMainWindow.cpp" line="1011"/>
         <source>Automatic check for updates enabled.</source>
         <translation>Automatische Überprüfung auf Updates aktiviert.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1057"/>
+        <location filename="../../QUMainWindow.cpp" line="1056"/>
         <source>UltraStar song directory changed to: &quot;%1&quot;.</source>
         <translation>UltraStar-Song-Verzeichnis geändert nach: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1158"/>
+        <location filename="../../QUMainWindow.cpp" line="1157"/>
         <source>Relative song paths are displayed in the song tree now.</source>
         <translation>Relative Pfade werden im Song-Baum angezeigt.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1160"/>
+        <location filename="../../QUMainWindow.cpp" line="1159"/>
         <source>Only song directories are displayed in the song tree now.</source>
         <translation>Nur die Song-Ordner werden im Song-Baum angezeigt.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1418"/>
-        <location filename="../../QUMainWindow.cpp" line="1438"/>
-        <location filename="../../QUMainWindow.cpp" line="1458"/>
-        <location filename="../../QUMainWindow.cpp" line="1478"/>
-        <location filename="../../QUMainWindow.cpp" line="1498"/>
-        <location filename="../../QUMainWindow.cpp" line="1518"/>
+        <location filename="../../QUMainWindow.cpp" line="1417"/>
+        <location filename="../../QUMainWindow.cpp" line="1437"/>
+        <location filename="../../QUMainWindow.cpp" line="1457"/>
+        <location filename="../../QUMainWindow.cpp" line="1477"/>
+        <location filename="../../QUMainWindow.cpp" line="1497"/>
+        <location filename="../../QUMainWindow.cpp" line="1517"/>
         <source>Change Language</source>
         <translation>Sprache ändern</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1419"/>
+        <location filename="../../QUMainWindow.cpp" line="1418"/>
         <source>Application language changed to &lt;b&gt;English&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Die Sprache der Anwendung wurde auf &lt;b&gt;Englisch&lt;/b&gt; geändert. Du musst UltraStar Manager neustarten, damit diese Änderungen wirksam werden.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMainWindow.cpp" line="1419"/>
+        <location filename="../../QUMainWindow.cpp" line="1439"/>
+        <location filename="../../QUMainWindow.cpp" line="1459"/>
+        <location filename="../../QUMainWindow.cpp" line="1479"/>
+        <location filename="../../QUMainWindow.cpp" line="1499"/>
+        <location filename="../../QUMainWindow.cpp" line="1519"/>
+        <source>Quit UltraStar Manager.</source>
+        <translation>Beende UltraStar Manager.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1420"/>
@@ -1974,64 +2005,54 @@ runterladen...</translation>
         <location filename="../../QUMainWindow.cpp" line="1480"/>
         <location filename="../../QUMainWindow.cpp" line="1500"/>
         <location filename="../../QUMainWindow.cpp" line="1520"/>
-        <source>Quit UltraStar Manager.</source>
-        <translation>Beende UltraStar Manager.</translation>
-    </message>
-    <message>
-        <location filename="../../QUMainWindow.cpp" line="1421"/>
-        <location filename="../../QUMainWindow.cpp" line="1441"/>
-        <location filename="../../QUMainWindow.cpp" line="1461"/>
-        <location filename="../../QUMainWindow.cpp" line="1481"/>
-        <location filename="../../QUMainWindow.cpp" line="1501"/>
-        <location filename="../../QUMainWindow.cpp" line="1521"/>
         <source>Continue.</source>
         <translation>Fortsetzen.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1439"/>
+        <location filename="../../QUMainWindow.cpp" line="1438"/>
         <source>Application language changed to &lt;b&gt;German&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Die Sprache der Anwendung wurde auf &lt;b&gt;Deutsch&lt;/b&gt; geändert. Du musst UltraStar Manager neustarten, damit diese Änderungen wirksam werden.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1479"/>
+        <location filename="../../QUMainWindow.cpp" line="1478"/>
         <source>Application language changed to &lt;b&gt;French&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Die Sprache der Anwendung wurde auf &lt;b&gt;Französisch&lt;/b&gt; geändert. Du musst UltraStar Manager neustarten, damit diese Änderungen wirksam werden.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1499"/>
+        <location filename="../../QUMainWindow.cpp" line="1498"/>
         <source>Application language changed to &lt;b&gt;Spanish&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Die Sprache der Anwendung wurde auf &lt;b&gt;Spanisch&lt;/b&gt; geändert. Du musst UltraStar Manager neustarten, damit diese Änderungen wirksam werden.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1519"/>
+        <location filename="../../QUMainWindow.cpp" line="1518"/>
         <source>Application language changed to &lt;b&gt;Portuguese&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Die Sprache der Anwendung wurde auf &lt;b&gt;Portugiesisch&lt;/b&gt; geändert. Du musst UltraStar Manager neustarten, damit diese Änderungen wirksam werden.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1660"/>
+        <location filename="../../QUMainWindow.cpp" line="1659"/>
         <source>Default input encoding changed to &quot;%1&quot;.</source>
         <translation>Standardeingabecodierung geändert auf &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1663"/>
+        <location filename="../../QUMainWindow.cpp" line="1662"/>
         <source>Default output encoding changed to &quot;%1&quot;.</source>
         <translation>Standardausgabecodierung geändert auf &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1684"/>
-        <location filename="../../QUMainWindow.cpp" line="1710"/>
+        <location filename="../../QUMainWindow.cpp" line="1683"/>
+        <location filename="../../QUMainWindow.cpp" line="1709"/>
         <source>Updating audio quality icons...</source>
         <translation>Icons für Audioqualität werden aktualisiert...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1736"/>
-        <location filename="../../QUMainWindow.cpp" line="1762"/>
+        <location filename="../../QUMainWindow.cpp" line="1735"/>
+        <location filename="../../QUMainWindow.cpp" line="1761"/>
         <source>Updating cover quality icons...</source>
         <translation>Icons für Coverqualität werden aktualisiert...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1788"/>
-        <location filename="../../QUMainWindow.cpp" line="1814"/>
+        <location filename="../../QUMainWindow.cpp" line="1787"/>
+        <location filename="../../QUMainWindow.cpp" line="1813"/>
         <source>Updating background quality icons...</source>
         <translation>Icons für Hintergrundqualität werden aktualisiert...</translation>
     </message>
@@ -2048,62 +2069,62 @@ runterladen...</translation>
         <translation type="obsolete">&amp;Deutsch</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1059"/>
+        <location filename="../../QUMainWindow.cpp" line="1058"/>
         <source>Folder (%1)</source>
         <translation>Ordner (%1)</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="124"/>
+        <location filename="../../QUMainWindow.cpp" line="123"/>
         <source>&lt;b&gt;Songs&lt;/b&gt; have been modified.</source>
         <translation>&lt;b&gt;Songs&lt;/b&gt; wurden modifiziert.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="103"/>
+        <location filename="../../QUMainWindow.cpp" line="102"/>
         <source>Ready.</source>
         <translation>Bereit.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="125"/>
+        <location filename="../../QUMainWindow.cpp" line="124"/>
         <source>Save all changed songs.</source>
         <translation>Speichere alle geänderten Songs.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="139"/>
+        <location filename="../../QUMainWindow.cpp" line="138"/>
         <source>&lt;b&gt;Playlists&lt;/b&gt; have been modified.</source>
         <translation>&lt;b&gt;Playlisten&lt;/b&gt; wurden modifiziert.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="140"/>
+        <location filename="../../QUMainWindow.cpp" line="139"/>
         <source>Save all changed playlists.</source>
         <translation>Speichere alle geänderten Playlisten.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="190"/>
+        <location filename="../../QUMainWindow.cpp" line="189"/>
         <source>No song directory was selected.</source>
         <translation>Kein Songordner wurde ausgewählt.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="240"/>
+        <location filename="../../QUMainWindow.cpp" line="239"/>
         <source>Cannot read image formats: %1</source>
         <translation>Folgende Bildformate können nicht gelesen werden: %1</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="258"/>
+        <location filename="../../QUMainWindow.cpp" line="257"/>
         <source>UltraStar Manager</source>
         <translation>UltraStar Manager</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="310"/>
+        <location filename="../../QUMainWindow.cpp" line="309"/>
         <source>Review pictures</source>
         <translation>Bilder durchsehen</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="311"/>
+        <location filename="../../QUMainWindow.cpp" line="310"/>
         <source>Covers...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="312"/>
+        <location filename="../../QUMainWindow.cpp" line="311"/>
         <source>Backgrounds...</source>
         <translation>Hintergründe...</translation>
     </message>
@@ -2112,7 +2133,7 @@ runterladen...</translation>
         <translation type="obsolete">Alles</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1070"/>
+        <location filename="../../QUMainWindow.cpp" line="1069"/>
         <source>Custom Tags</source>
         <translation>Benutzerdefinierte Song-Tags</translation>
     </message>
@@ -2149,32 +2170,32 @@ runterladen...</translation>
         <translation type="obsolete">Song erfolgreich gelöscht: &quot;%1 - %2&quot;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="902"/>
+        <location filename="../../QUMainWindow.cpp" line="901"/>
         <source>The log file was saved to: &quot;%1&quot;</source>
         <translation>Protokoll gesichert: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="904"/>
+        <location filename="../../QUMainWindow.cpp" line="903"/>
         <source>The log file COULD NOT be saved.</source>
         <translation>Das Ereignisprotokoll konnte nicht gespeichert werden.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="921"/>
+        <location filename="../../QUMainWindow.cpp" line="920"/>
         <source>About TagLib</source>
         <translation>Über TagLib</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="922"/>
+        <location filename="../../QUMainWindow.cpp" line="921"/>
         <source>&lt;b&gt;TagLib Audio Meta-Data Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;TagLib is a library for reading and editing the meta-data of several popular audio formats.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;&lt;br&gt;Visit: &lt;a href=&quot;http://developer.kde.org/~wheeler/taglib.html&quot;&gt;TagLib Homepage&lt;/a&gt;</source>
         <translation>&lt;b&gt;TagLib Audio Meta-Data Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;TagLib ist eine Bibliothek zum Lesen und Schreiben von Metadaten vieler bekannter Audioformate.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;&lt;br&gt;Besuche: &lt;a href=&quot;http://developer.kde.org/~wheeler/taglib.html&quot;&gt;TagLib Homepage&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="933"/>
+        <location filename="../../QUMainWindow.cpp" line="932"/>
         <source>About BASS</source>
         <translation>Über BASS</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="934"/>
+        <location filename="../../QUMainWindow.cpp" line="933"/>
         <source>&lt;b&gt;BASS Audio Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;BASS is an audio library for use in Windows and MacOSX software. Its purpose is to provide the most powerful and efficient (yet easy to use), sample, stream, MOD music, and recording functions. All in a tiny DLL, under 100KB in size.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Copyright (c) 1999-2008&lt;br&gt;&lt;a href=&quot;http://www.un4seen.com/bass.html&quot;&gt;Un4seen Developments Ltd.&lt;/a&gt; All rights reserved.</source>
         <translation></translation>
     </message>
@@ -2183,34 +2204,34 @@ runterladen...</translation>
         <translation type="obsolete">Updateüberprüfung &lt;b&gt;erfolgreich&lt;/b&gt;. Der UltraStar Manager %1.%2.%3 ist &lt;b&gt;aktuell&lt;/b&gt;!</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1089"/>
+        <location filename="../../QUMainWindow.cpp" line="1088"/>
         <source>Custom tags changed to: &quot;%1&quot;</source>
         <translation>Benutzerdefinierte Song-Tags geändert auf: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1144"/>
+        <location filename="../../QUMainWindow.cpp" line="1143"/>
         <source>Show relative song path for each song...</source>
         <translation>Zeige relativen Pfad für jeden Song...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1144"/>
+        <location filename="../../QUMainWindow.cpp" line="1143"/>
         <source>Show song folder for each song...</source>
         <translation>Zeige nur Ordner für jeden Song...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1185"/>
+        <location filename="../../QUMainWindow.cpp" line="1184"/>
         <source>Repainting song tree icons...</source>
         <translation>Zeichne Icons vom Song-Baum neu...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1267"/>
-        <location filename="../../QUMainWindow.cpp" line="1285"/>
+        <location filename="../../QUMainWindow.cpp" line="1266"/>
+        <location filename="../../QUMainWindow.cpp" line="1284"/>
         <source>Could NOT open file: &quot;%1&quot;.</source>
         <translation>Datei konnte NICHT geöffnet werden: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1269"/>
-        <location filename="../../QUMainWindow.cpp" line="1287"/>
+        <location filename="../../QUMainWindow.cpp" line="1268"/>
+        <location filename="../../QUMainWindow.cpp" line="1286"/>
         <source>File was opened successfully: &quot;%1&quot;.</source>
         <translation>Datei wurde erfolgreich geöffnet: &quot;%1&quot;.</translation>
     </message>
@@ -2361,17 +2382,17 @@ ausführen</translation>
         <translation type="obsolete">Immer im Vordergrund</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1571"/>
+        <location filename="../../QUMainWindow.cpp" line="1570"/>
         <source>Choose backup destination...</source>
         <translation>Wähle Backupziel...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1576"/>
+        <location filename="../../QUMainWindow.cpp" line="1575"/>
         <source>Backup audio files...</source>
         <translation>Audio-Backup...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1591"/>
+        <location filename="../../QUMainWindow.cpp" line="1590"/>
         <source>Backup for audio files finished.</source>
         <translation>Sicherung der Audiodateien wurde abgeschlossen.</translation>
     </message>
@@ -2388,12 +2409,12 @@ ausführen</translation>
         <translation type="obsolete">Cover von Amazon runterladen...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1116"/>
+        <location filename="../../QUMainWindow.cpp" line="1115"/>
         <source>You can ask me something if you put some keywords in the &lt;i&gt;line edit&lt;/i&gt; below and &lt;i&gt;accept&lt;/i&gt;.&lt;br&gt;&lt;br&gt;I&apos;ll try to understand and answer you. Multiple answers may be possible.</source>
         <translation>Du kannst mich etwas fragen, indem du Schlüsselwörter in das &lt;i&gt;Eingabefeld&lt;/i&gt; unten eintippst und &lt;i&gt;akzeptierst&lt;/i&gt;.&lt;br&gt;&lt;br&gt;Ich werde versuchen, dies zu verstehen und dir antworten. Mehrere Antworten sind möglich.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1459"/>
+        <location filename="../../QUMainWindow.cpp" line="1458"/>
         <source>Application language changed to &lt;b&gt;Polish&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Die Sprache der Anwendung wurde auf &lt;b&gt;Polnisch&lt;/b&gt; geändert. Du musst UltraStar Manager neustarten, damit diese Änderungen wirksam werden.</translation>
     </message>
@@ -2410,6 +2431,11 @@ ausführen</translation>
         <translation>[Media Player] Der Song &quot;%1 - %2&quot; hat keine gültige Audiodatei.</translation>
     </message>
     <message>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="314"/>
+        <source>Bitrate: &lt;b&gt;%1&lt;/b&gt; kbit/s&lt;br&gt;Channels: &lt;b&gt;%2&lt;/b&gt;&lt;br&gt;Sample Rate: &lt;b&gt;%3&lt;/b&gt; kHz</source>
+        <translation>Bitrate: &lt;b&gt;%1&lt;/b&gt; kbit/s&lt;br&gt;Kanäle: &lt;b&gt;%2&lt;/b&gt;&lt;br&gt;Abtastrate: &lt;b&gt;%3&lt;/b&gt; kHz</translation>
+    </message>
+    <message>
         <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="323"/>
         <source>&lt;i&gt;Hit the play-button to fetch all songs of the selected list below. Then the first song will start playing.&lt;/i&gt;</source>
         <translation>&lt;i&gt;Drück den Play-Button um alle Songs der Auswahl zu holen. Es wird der erste Song wiedergegeben.&lt;/i&gt;</translation>
@@ -2418,6 +2444,19 @@ ausführen</translation>
         <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="324"/>
         <source>&lt;i&gt;Used for duet songs.&lt;/i&gt;</source>
         <translation>&lt;i&gt;Platzhalter für Duette.&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="370"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="375"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="382"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="387"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="394"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="399"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="406"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="411"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="433"/>
+        <source>BASS error: %1</source>
+        <translation>BASS Fehler: %1</translation>
     </message>
     <message>
         <location filename="../../mediaplayer/QUMediaPlayer.ui" line="14"/>
@@ -2971,6 +3010,16 @@ margin: 0;</source>
         <translation type="obsolete">Ändere Ordner für Playlisten</translation>
     </message>
     <message>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="71"/>
+        <source>Could NOT add song &quot;%1 - %2&quot; to playlist. Try to create a new playlist.</source>
+        <translation>Konnte das Lied &quot;%1 - %2&quot; nicht zur Playliste hinzufügen. Versuche eine neue Playliste zu erstellen.</translation>
+    </message>
+    <message>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="115"/>
+        <source>UltraStar Playlists (%1)</source>
+        <translation>UltraStar Playlisten (%1)</translation>
+    </message>
+    <message>
         <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="163"/>
         <source>Change Playlist Folder</source>
         <translation>Ändere Ordner für Playlisten</translation>
@@ -3048,6 +3097,11 @@ margin: 0;</source>
         <translation type="obsolete">Playlisten von Songs entkoppeln...</translation>
     </message>
     <message>
+        <location filename="../../playlist/QUPlaylistDatabase.cpp" line="47"/>
+        <source>Playlist path changed to: &quot;%1&quot;</source>
+        <translation>Playlistenpfad geändert zu: &quot;%1&quot;</translation>
+    </message>
+    <message>
         <location filename="../../playlist/QUPlaylistDatabase.cpp" line="60"/>
         <source>Connecting playlists to songs...</source>
         <translation>Verbinde Playlisten mit Songs...</translation>
@@ -3071,6 +3125,11 @@ margin: 0;</source>
         <location filename="../../playlist/QUPlaylistDatabase.cpp" line="134"/>
         <source>Save playlist &quot;%1&quot; as...</source>
         <translation>Playliste &quot;%1&quot; speichern unter...</translation>
+    </message>
+    <message>
+        <location filename="../../playlist/QUPlaylistDatabase.cpp" line="136"/>
+        <source>UltraStar Playlists (%1)</source>
+        <translation>UltraStar Playlisten (%1)</translation>
     </message>
     <message>
         <location filename="../../playlist/QUPlaylistDatabase.cpp" line="142"/>
@@ -3132,6 +3191,19 @@ margin: 0;</source>
         <location filename="../../playlist/QUPlaylistFile.cpp" line="114"/>
         <source>The song &quot;%1 - %2&quot; is already in the current playlist. It was not added.</source>
         <translation>Der Song &quot;%1 - %2&quot; ist bereits in der aktuellen Playliste vorhanden. Er wurde nicht hinzugefügt.</translation>
+    </message>
+    <message>
+        <location filename="../../playlist/QUPlaylistFile.cpp" line="154"/>
+        <source>The order of the playlist &quot;%1&quot; could NOT be changed. The new order misses an entry.</source>
+        <translation>Die Reihenfolge der Playliste &quot;%1&quot; konnte NICHT geändert werden. Es fehlt ein Eintrag in der neuen Reihenfolge.</translation>
+    </message>
+</context>
+<context>
+    <name>QUPlaylistModel</name>
+    <message>
+        <location filename="../../playlistdetails/QUPlaylistModel.cpp" line="41"/>
+        <source>%1. %2 - %3 (not found)</source>
+        <translation>%1. %2 - %3 (nicht gefunden)</translation>
     </message>
 </context>
 <context>
@@ -4790,227 +4862,242 @@ p, li { white-space: pre-wrap; }
         <translation>&quot;%1&quot; wird nicht unterstützt. Verwende %2 für Lieddatei: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="653"/>
+        <location filename="../../song/QUSongFile.cpp" line="650"/>
         <source>Save error! The song file &quot;%1&quot; was NOT saved.</source>
         <translation>Fehler beim Speichern! Die Songdatei &quot;%1&quot; wurde NICHT gespeichert.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="719"/>
+        <location filename="../../song/QUSongFile.cpp" line="716"/>
         <source>The song file &quot;%1&quot; was saved successfully.</source>
         <translation>Die Songdatei &quot;%1&quot; wurde erfolgreich gespeichert.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="761"/>
+        <location filename="../../song/QUSongFile.cpp" line="758"/>
         <source>Could NOT rename the song directory &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Umbenennen fehlgeschlagen! Verzeichnis &quot;%1&quot; konnte nicht nach &quot;%2&quot; umbenannt werden.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="769"/>
+        <location filename="../../song/QUSongFile.cpp" line="766"/>
         <source>Song directory renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Ordner erfolgreich umbenannt von &quot;%1&quot; nach &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="780"/>
+        <location filename="../../song/QUSongFile.cpp" line="777"/>
         <source>Could NOT rename the song file &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Umbenennen fehlgeschlagen! Songdatei &quot;%1&quot; konnte nicht nach &quot;%2&quot; umbenannt werden.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="787"/>
+        <location filename="../../song/QUSongFile.cpp" line="784"/>
         <source>Song file renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Songdatei erfolgreich umbenannt von &quot;%1&quot; nach &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="799"/>
+        <location filename="../../song/QUSongFile.cpp" line="796"/>
         <source>Could NOT rename the audio file &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Umbenennen fehlgeschlagen! Audio-Datei &quot;%1&quot; konnte nicht nach &quot;%2&quot; umbenannt werden.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="805"/>
+        <location filename="../../song/QUSongFile.cpp" line="802"/>
         <source>Audio file renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Audio-Datei erfolgreich umbenannt von &quot;%1&quot; nach &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="817"/>
+        <location filename="../../song/QUSongFile.cpp" line="814"/>
         <source>Could NOT rename the cover picture &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Umbenennen fehlgeschlagen! Cover &quot;%1&quot; konnte nicht nach &quot;%2&quot; umbenannt werden.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="823"/>
+        <location filename="../../song/QUSongFile.cpp" line="820"/>
         <source>Cover picture renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Cover erfolgreich umbenannt von &quot;%1&quot; nach &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="835"/>
+        <location filename="../../song/QUSongFile.cpp" line="832"/>
         <source>Could NOT rename the background picture &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Umbenennen fehlgeschlagen! Hintergrund &quot;%1&quot; konnte nicht nach &quot;%2&quot; umbenannt werden.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="841"/>
+        <location filename="../../song/QUSongFile.cpp" line="838"/>
         <source>Background picture renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Hintergrund erfolgreich umbenannt von &quot;%1&quot; nach &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="853"/>
+        <location filename="../../song/QUSongFile.cpp" line="850"/>
         <source>Could NOT rename the video file &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Umbenennen fehlgeschlagen! Video &quot;%1&quot; konnte nicht nach &quot;%2&quot; umbenannt werden.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="859"/>
+        <location filename="../../song/QUSongFile.cpp" line="856"/>
         <source>Video file renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Video erfolgreich umbenannt von &quot;%1&quot; nach &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="868"/>
+        <location filename="../../song/QUSongFile.cpp" line="865"/>
         <source>The song &quot;%1 - %2&quot; has no audio file assigned. Cannot use ID3 tag for artist.</source>
         <translation>Der Song &quot;%1 - %2&quot; besitzt keine gültige Audio-Datei. ID3-Tag kann nicht als Interpret genutzt werden.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="879"/>
+        <location filename="../../song/QUSongFile.cpp" line="876"/>
         <source>The audio file %1 does not contain ID3 tag information about an artist.</source>
         <translation>Die Audio-Datei %1 besitzt keine ID3-Tag-Information über einen Interpreten.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="884"/>
+        <location filename="../../song/QUSongFile.cpp" line="881"/>
         <source>ID3 tag of &quot;%1&quot; used for artist. Changed from: &quot;%2&quot; to: &quot;%3&quot;.</source>
         <translation>ID3-Tag von &quot;%1&quot; für den Interpreten genutzt. Änderung von &quot;%2&quot; auf &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="889"/>
+        <location filename="../../song/QUSongFile.cpp" line="886"/>
         <source>The song &quot;%1 - %2&quot; has no audio file assigned. Cannot use ID3 tag for title.</source>
         <translation>Der Song &quot;%1 - %2&quot; besitzt keine gültige Audio-Datei. ID3-Tag kann nicht als Titel genutzt werden.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="899"/>
+        <location filename="../../song/QUSongFile.cpp" line="896"/>
         <source>The audio file %1 does not contain ID3 tag information about a title.</source>
         <translation>Die Audio-Datei %1 besitzt keine ID3-Tag-Information über einen Titel.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="904"/>
+        <location filename="../../song/QUSongFile.cpp" line="901"/>
         <source>ID3 tag of &quot;%1&quot; used for title. Changed from: &quot;%2&quot; to: &quot;%3&quot;.</source>
         <translation>ID3-Tag von &quot;%1&quot; für den Titel genutzt. Änderung von &quot;%2&quot; auf &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="909"/>
+        <location filename="../../song/QUSongFile.cpp" line="906"/>
         <source>The song &quot;%1 - %2&quot; has no audio file assigned. Cannot use ID3 tag for genre.</source>
         <translation>Der Song &quot;%1 - %2&quot; besitzt keine gültige Audio-Datei. ID3-Tag kann nicht für das Genre genutzt werden.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="919"/>
+        <location filename="../../song/QUSongFile.cpp" line="916"/>
         <source>The audio file %1 does not contain ID3 tag information about a genre.</source>
         <translation>Die Audio-Datei %1 besitzt keine ID3-Tag-Information über ein Genre.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="924"/>
+        <location filename="../../song/QUSongFile.cpp" line="921"/>
         <source>ID3 tag of &quot;%1&quot; used for genre. Changed from: &quot;%2&quot; to: &quot;%3&quot;.</source>
         <translation>ID3-Tag von &quot;%1&quot; für das Genre genutzt. Änderung von &quot;%2&quot; auf &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="929"/>
+        <location filename="../../song/QUSongFile.cpp" line="926"/>
         <source>The song &quot;%1 - %2&quot; has no audio file assigned. Cannot use ID3 tag for year.</source>
         <translation>Der Song &quot;%1 - %2&quot; besitzt keine gültige Audio-Datei. ID3-Tag kann nicht für das Jahr genutzt werden.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="939"/>
+        <location filename="../../song/QUSongFile.cpp" line="936"/>
         <source>The audio file %1 does not contain ID3 tag information about a year.</source>
         <translation>Die Audio-Datei %1 besitzt keine ID3-Tag-Information über ein Jahr.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="944"/>
+        <location filename="../../song/QUSongFile.cpp" line="941"/>
         <source>ID3 tag of &quot;%1&quot; used for year. Changed from: &quot;%2&quot; to: &quot;%3&quot;.</source>
         <translation>ID3-Tag von &quot;%1&quot; für das Jahr genutzt. Änderung von &quot;%2&quot; auf &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="949"/>
+        <location filename="../../song/QUSongFile.cpp" line="946"/>
         <source>The song &quot;%1 - %2&quot; has no unsupported tags.</source>
         <translation>Der Song &quot;%1 - %2&quot; besitzt keine nicht unterstützten Tags.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="957"/>
+        <location filename="../../song/QUSongFile.cpp" line="954"/>
         <source>Unsupported tag removed: #%1.</source>
         <translation>Nicht unterstützten Tag entfernt: #%1.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="959"/>
+        <location filename="../../song/QUSongFile.cpp" line="956"/>
         <source>Unsupported tag skipped: #%1.</source>
         <translation>Nicht unterstützten Tag übersprungen: #%1.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="980"/>
+        <location filename="../../song/QUSongFile.cpp" line="972"/>
+        <source>Assigned &quot;%1&quot; as audio file for &quot;%2 - %3&quot;.</source>
+        <translation>Audiodatei für &quot;%2 - %3&quot; geändert auf: &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <location filename="../../song/QUSongFile.cpp" line="977"/>
         <source>Assigned &quot;%1&quot; as video file for &quot;%2 - %3&quot;.</source>
         <translation>Video für &quot;%2 - %3&quot; geändert auf: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="988"/>
+        <location filename="../../song/QUSongFile.cpp" line="985"/>
         <source>Assigned &quot;%1&quot; as cover picture for &quot;%2 - %3&quot;.</source>
         <translation>Cover für &quot;%2 - %3&quot; geändert auf: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="991"/>
+        <location filename="../../song/QUSongFile.cpp" line="988"/>
         <source>Assigned &quot;%1&quot; as background picture for &quot;%2 - %3&quot;.</source>
         <translation>Hintergrund für &quot;%2 - %3&quot; geändert auf: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1006"/>
+        <location filename="../../song/QUSongFile.cpp" line="1003"/>
         <source>Could not copy the file &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Datei &quot;%1&quot; konnte nicht nach &quot;%2&quot; kopiert werden.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1010"/>
+        <location filename="../../song/QUSongFile.cpp" line="1007"/>
         <source>The file &quot;%1&quot; was successfully copied to &quot;%2&quot;.</source>
         <translation>Die Datei &quot;%1&quot; wurde erfolgreich nach &quot;%2&quot; kopiert.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1042"/>
+        <location filename="../../song/QUSongFile.cpp" line="1039"/>
         <source>File removed successfully: &quot;%1&quot;.</source>
         <translation>Die Datei &quot;%1&quot; wurde erfolgreich gelöscht.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1044"/>
+        <location filename="../../song/QUSongFile.cpp" line="1041"/>
         <source>File COULD NOT be removed: &quot;%1&quot;.</source>
         <translation>Datei konnte NICHT entfernt werden: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1055"/>
+        <location filename="../../song/QUSongFile.cpp" line="1052"/>
         <source>Audio file tag removed for &quot;%1 - %2&quot;.</source>
         <translation>Audiodatei-Tag entfernt: &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1059"/>
+        <location filename="../../song/QUSongFile.cpp" line="1056"/>
         <source>Cover tag removed for &quot;%1 - %2&quot;.</source>
         <translation>Cover-Tag entfernt: &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1063"/>
+        <location filename="../../song/QUSongFile.cpp" line="1060"/>
         <source>Background tag removed for &quot;%1 - %2&quot;.</source>
         <translation>Hintergrund-Tag entfernt: &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1068"/>
+        <location filename="../../song/QUSongFile.cpp" line="1065"/>
         <source>Video tag removed for &quot;%1 - %2&quot;.</source>
         <translation>Video-Tag entfernt: &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1388"/>
+        <location filename="../../song/QUSongFile.cpp" line="1194"/>
+        <source>INCONSISTENT STATE! The song &quot;%1 - %2&quot; has unsaved changes and its persistent song file &quot;%3&quot; was modified externally. Save your changes or rebuild the tree manually.</source>
+        <translation>INKONSISTENTER ZUSTAND! Der Song &quot;%1 - %2&quot; hat ungespeicherte Änderungen und seine Songdatei &quot;%3&quot; wurde extern verändert. Speichere deine Änderungen oder aktualisiere den Songbaum manuell.</translation>
+    </message>
+    <message>
+        <location filename="../../song/QUSongFile.cpp" line="1200"/>
+        <source>Song file changed: &quot;%1&quot;</source>
+        <translation>Songdatei geändert: &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="../../song/QUSongFile.cpp" line="1385"/>
         <source>Primary song file changed from &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Primärer Song geändert von &quot;%1&quot; auf &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1451"/>
+        <location filename="../../song/QUSongFile.cpp" line="1448"/>
         <source>Error while preparing lyrics for %1 - %2. Could not parse the following line: %3</source>
         <translation>Es ist ein Fehler während des Vorbereitens der Lyrics für &quot;%1 - %2&quot; aufgetreten. Folgende Zeile konnte nicht verarbeitet werden: %3</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1467"/>
+        <location filename="../../song/QUSongFile.cpp" line="1464"/>
         <source>Error while preparing lyrics for %1 - %2. Songs may not start with a line break.</source>
         <translation>Es ist ein Fehler während des Vorbereitens der Lyrics für &quot;%1 - %2&quot; aufgetreten. Lieder dürfen nicht mit einem Zeilenumbruch beginnen.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1537"/>
+        <location filename="../../song/QUSongFile.cpp" line="1534"/>
         <source>More than one score file found for &quot;%1 - %2&quot;. Only one will be used.</source>
         <translation>Mehr als eine Punktedatei gefunden für &quot;%1 - %2&quot;. Nur eine wird benutzt.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="736"/>
+        <location filename="../../song/QUSongFile.cpp" line="733"/>
         <source>Old name and new name match: &quot;%1&quot;</source>
         <translation>Alter und neuer Name stimmen überein: &quot;%1&quot;</translation>
     </message>
@@ -5034,62 +5121,62 @@ p, li { white-space: pre-wrap; }
         <translation>Die Reihenfolge der Tags wurde zurückgesetzt. Du musst deine angepasste Reihenfolge neu festlegen.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1082"/>
+        <location filename="../../song/QUSongFile.cpp" line="1079"/>
         <source>Old path and new path match! Cannot change song path to: &quot;%1&quot;</source>
         <translation>Alter und neuer Pfad stimmen überein! Songpfad konnte NICHT geändert werden: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1087"/>
+        <location filename="../../song/QUSongFile.cpp" line="1084"/>
         <source>Could not create new song path: &quot;%1&quot;</source>
         <translation>Neuer Songpfad konnte nicht erstellt werden: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1101"/>
+        <location filename="../../song/QUSongFile.cpp" line="1098"/>
         <source>Failed to move &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Die Datei &quot;%1&quot; konnte NICHT nach &quot;%2&quot; verschoben werden.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1104"/>
+        <location filename="../../song/QUSongFile.cpp" line="1101"/>
         <source>The file &quot;%1&quot; was successfully moved to &quot;%2&quot;.</source>
         <translation>Die Datei &quot;%1&quot; wurde erfolgreich nach &quot;%2&quot; verschoben.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1108"/>
+        <location filename="../../song/QUSongFile.cpp" line="1105"/>
         <source>Could NOT move all files of the song &quot;%2&quot; to a new location. Check out &quot;%1&quot; for the files which were copied.</source>
         <translation>Nicht alle Dateien des Songs &quot;%2&quot; konnten an die neue Stelle verschoben werden. Prüfe &quot;%1&quot; für verbliebene Dateien.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1118"/>
+        <location filename="../../song/QUSongFile.cpp" line="1115"/>
         <source>Could not remove old, empty folder &quot;%1&quot;. Please do it manually.</source>
         <translation>Altes, leeres Verzeichnis konnte nicht gelöscht werden: &quot;%1&quot;. Lösche dies bitte manuell.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1125"/>
+        <location filename="../../song/QUSongFile.cpp" line="1122"/>
         <source>Location of song &quot;%1 - %2&quot; successfully changed to &quot;%3&quot; in your UltraStar song folder.</source>
         <translation>Ort des Songs &quot;%1 - %2&quot; erfolgreich geändert nach &quot;%3&quot; im UltraStar Song-Ordner.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1136"/>
+        <location filename="../../song/QUSongFile.cpp" line="1133"/>
         <source>Could not fix audio length because no audio file is present: &quot;%1 - %2&quot;</source>
         <translation>Die Länge der Audio-Datei konnte nicht repariert werden, weil keine Audio-Datei vorhanden ist: &quot;%1 - %2&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1147"/>
+        <location filename="../../song/QUSongFile.cpp" line="1144"/>
         <source>Could not fix audio length because audio file is shorter than song: &quot;%1 - %2&quot;</source>
         <translation>Die Länge der Audio-Datei konnte nicht repariert werden, weil die Audio-Datei kürzer als der Song ist: &quot;%1 - %2&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1154"/>
+        <location filename="../../song/QUSongFile.cpp" line="1151"/>
         <source>Could not fix audio length because new value for #END would be greater than length of audio file: &quot;%1 - %2&quot;</source>
         <translation>Die Länge der Audio-Datei konnte nicht repariert werden, weil der neue Wert für#END größer wär, als die Audio-Datei lang ist: &quot;%1 - %2&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1161"/>
+        <location filename="../../song/QUSongFile.cpp" line="1158"/>
         <source>Audio length was fixed for song &quot;%1 - %2&quot;. #END changed to: %3</source>
         <translation>Audio-Länge wurde neu gesetzt für &quot;%1 - %2&quot;. #END ist jetzt: %3</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1185"/>
+        <location filename="../../song/QUSongFile.cpp" line="1182"/>
         <source>The tag #END was removed for: &quot;%1 - %2&quot;</source>
         <translation>Der #END-Tag wurde entfernt für: &quot;%1 - %2&quot;</translation>
     </message>
@@ -5103,17 +5190,17 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Diskrepanz bei der Encodierung. UTF8 BOM wurde gefunden, jedoch &quot;#ENCODING:CP1252&quot; in Lieddatei: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="682"/>
+        <location filename="../../song/QUSongFile.cpp" line="679"/>
         <source>%1 output encoding NOT sufficient. Using UTF8 for song file: &quot;%2&quot;.</source>
         <translation>%1 Ausgabecodierung NICHT ausreichend. Verwende UTF8 für Lieddatei: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1176"/>
+        <location filename="../../song/QUSongFile.cpp" line="1173"/>
         <source>#GAP changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation>#GAP wurde von %1 auf %2 geändert für &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1493"/>
+        <location filename="../../song/QUSongFile.cpp" line="1490"/>
         <source>Line too short: &quot;%1&quot;</source>
         <translation>Zeile zu kurz: &quot;%1&quot;</translation>
     </message>
