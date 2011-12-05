@@ -1,8 +1,154 @@
 <---------------------------->
-< Changelog (1.7.1 to 1.8.0) >
+< Changelog (1.8.0 to 1.8.1) >
 <---------------------------->
 
-*** WORK IN PROGRESS ***
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#  NEW FEATURES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+SONG TREE
+* indicate mp3/cover/background quality in song tree, quality settings adjustable in Options
+* indicate cover/background resolution problems (covers expected to be 1:1, backgrounds expected to be 16:9)
+* do not warn about no background if linked video found and vice versa (either one is enough)
+* option to open files internally/externally in context menu, default action (double-click) is bold
+* refresh selection of songs via F5
+
+SUPPORTED FILE TYPES
+* added support for *.ts and *.m4v video files
+* removed support for *.gif and *.bmp (not supported by UltraStar)
+
+SUPPORTED ENCODINGS
+* CP1250, CP1252 (default) and UTF-8 are supported (with or without BOM)
+* ENCODING tag is only written if CP1250, CP1252 is default
+* default input and output encodings may be changed in Options
+
+SONG DETAILS
+* if user sets CALCMEDLEY to "OFF", MEDLEYSTARTBEAT and MEDLEYENDBEAT are deleted
+
+TRANSLATIONS
+* new French translation (thanks to Fred)
+
+TAGS
+* new tags supported: ENCODING, PREVIEWSTART, MEDLEYSTARTBEAT, MEDLEYENDBEAT, CALCMEDLEY
+
+TASKS:
+* new task: write background tag even if file does not exist now works for songs with title ending with period (e.g. Born In The U.S.A.)
+* new task: increase (double, quadruple...) BPM and all timings for low BPM values
+* new task: normalize note pitches (all notes are shifted octave-wise towards zero mean)
+* new task: capitalize first word of each line
+* new: allow inversion of conditions with "NOT" for scriptable tasks
+* new: task to change song files to "Artist - Title.*" and use "txd" as extension for duets (recommended)
+
+* Rock Band song directories are labeled with "[RB]" in rename tasks
+
+MONTY:
+* Monty knows about the new functions as well ;-)
+
+MENU:
+* set default input and output encoding for song files in Options
+* check for update feature (run once to allow automatic silent check on startup)
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+QT
+* based on Qt 4.7.4 now
+
+BASS
+* based on BASS 2.4.8
+
+DUETS
+* duets are recognized by file extension (txd) or by starting with 'P'
+
+SONG TREE
+* highlight *all* linked files of friends with yellow/orange background
+* links to unsupported files are handled like files that cannot be found
+
+SONG DETAILS
+* default genre list for #GENRE tag is now in alphabetical order
+* additional languages in #LANGUAGE tag dropdown field
+* new default editions (SingStar, Rock Band titles, ...)
+
+MENU
+* language menu is now in a separate tab
+
+TASKS:
+* "Set first timestamp to zero" adjusts medley tags as well
+* change of file extensions "jpeg" to "jpg" and "mpeg" to "mpg" on corresponding rename tasks (silently)
+
+SONG FRIENDS:
+* changes made in one song file are no longer reflected in friends (friends might or might not have resources/tags in common)
+* do not blindly take first text file as primary song file, but try to find the simplest non-duet file
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+TASKS
+* fixed undesired behaviour for renaming files/folders to names
+  that contain slashes ('/', e.g. 'AC/DC')
+  > a slash will be replaced by a hyphen
+  > other unsupported characters will be removed
+* fixed undesired behaviour for changing duet files (P2 appearing in the wrong place at the beginning of the last line of P1)
+
+MAIN WINDOW
+* fixed saving and restoring window state and size
+* fixed column-width for icon-columns (Qt-Bug 19915)
+
+MONTY
+* Monty now handles 0 songs and 1 song in songDB correctly =)
+
+MENU
+* fixed bug where song paths were added twice through paths dialog (forward/backward slash problem)
+
+SONG FILE PREVIEW
+* fixed preview of song file contents (ignored some spaces)
+
+LOG FILE
+* fixed line endings to CR/LF
+
+TRANSLATIONS
+* added Qt translations (shortcuts, standard GUI elements, etc.)
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+INSTALLER
+* Uninstaller does not delete "non-standard" tasks
+
+TASKS
+* convert syllable placeholders does not ignore "wanted" dashes ("A-B-C")
+* "remove empty syllables" breaks timestamps in relative songs
+* capitalization task makes "TV" to "Tv" - should ignore words that are totally upper-case
+
+TASK LIST
+* tooltip of slot buttons is empty before the first selection of the slot
+
+SONG FRIENDS (general workaround: switch friend to primary song with double-click on song text file)
+* cannot add song friends to playlist
+* cannot change #MP3 for karaoke song friend
+* cannot change #EDITION for song friend
+* cannot add song friends in reports
+* cannot play song friends in media player
+* some tasks may not affect song friends (e.g. "Remove unsupported tags")
+
+MEDIA PLAYER
+* correct songs get ansychronous after a while (seek works right)
+* uman crashes if you play a song, change the song directory and skip
+
+AUTO-SAVE
+* tasks that change a song's path perform kind of auto-save because the path change cannot be deferred
+
+REPORTS
+* you cannot sort by a custom tag column in the report
+
+SONG TREE
+* cannot drop external files into song tree anymore :-/
+
+COVER DOWNLOAD
+* AlbumArtExchange blocked by blockscript
+* Amazon yields invalid request
+
+MENU
+* hide/show menu stopped working
+
+<---------------------------->
+< Changelog (1.7.1 to 1.8.0) >
+<---------------------------->
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  NEW FEATURES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
@@ -190,7 +336,7 @@ SONG WATCHER
 * recognition of external song file changes removed
 
 DUPLICATE DETECTION
-* bufix from escaped added (http://github.com/escaped/uman)
+* bugfix from escaped added (http://github.com/escaped/uman)
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
@@ -235,242 +381,8 @@ DUET SONGS
 SONG TREE
 * cannot drop external files into song tree anymore :-/
 
-~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  TODO (all)  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
-* ... neutral item
-! ... important item
-? ... less important or unknown item
 
-! create a feature list =) (promotional purposes only)
-! create a list with keyboard shortcuts
-! prepare plugin SDK
-* drop a picture into song tree: ask for usage as cover or background (dialog)
-! add support/help texts for custom tags
-  > need of #
-  > upper or lowercase?
-! the need of return in the find/search field is not obvious
-  > rethink filter customization
-! make path-delimiter handling editable (QUStringSupport::without..."
-  > remove /
-  > replace / with -
-- remove QtNetwork dependency from main application (only plugins need this)
-- reconsider the user of QU::Error and QU::Warning
-- auto-update mechanism
-- extend Doxygen usage
-  > custom documentation
-  > convert this changes.txt to doxygen output (pdf?)
-  > maybe embed HTML doxygen output into uman (dialog)
-
-NEW STUFF
-* make hard-coded values editable
-  > lower and upper time bound
-  > line break gap in lyrics
-* create an ISO file with MP3s from your collection
-  > let your friends be well prepared for the ultrastar evening
-* get cover picture
-  > extract cover from MP3
-* get background picture
-  > from imagesearch engines (flickr, google, yahoo...)
-! "UmanScore" - some !!user-definied!! indicator for "good" songs
-  > multiple syllables in a line
-  > has video, audio, cover, background
-  > has additional information set (edition, creator, ...)
-* manage covers for
-  > edition
-  > genre
-  > language
-  > folder
-* some extended help system in the application (lowest priority, Monty works well :))
-* checksums for SC-checked song files
-  > QCryptographicHash (md4, md5, sha1)
-? get lyrics
-  > http://lyricwiki.org/LyricWiki:REST
-* get more song information (e.g. #YEAR)
-  > hitparade.ch (?!)
-* look for illegal/invalid lyrics
-  > e.g. ": 20 7ß 38 blubb" (false alpha-numeric..., USdx error)
-* top-ten (by count)
-  > artists
-* compare two song text files (which one is better?)
-* Button to Start UltaStar itself?
-  > and select a song folder to use (rename? config file?)
-* compare your songs against a list of songs
-* manage scores of songs
-* manage default values for #EDITION
-  > "custom editions" like "custom tags"?
-  > check songs if they are in that Edition? -> use for renaming tasks (conditions)
-* use "space", "return" or "ctrl+return" for "open with explorer..."
-* add support for "Frets on Fire"
-* add PDF-Support (QPrinter or so)
-* Office2003-like context menus (more white -> friendly =)
-* finish extended paths support (cover, mdi for songs?, config file...)
-* shell integration
-  > open uman with this song folder
-* open ultrastar with this folder
-  > http://ultrastardeluxe.xtremeweb-hosting.net/wiki/doku.php?id=de:config:commandline
-* "blur behind"
-  > http://labs.trolltech.com/blogs/2009/09/15/using-blur-behind-on-windows/
-
-INSTALLER
-* support MSI (wix.sourceforge.net)
-
-MERGE SONGS
-* merge tags
-
-SUPPORTED FILE TYPES
-* xml files from Singstar (melody.xml or different)
-
-SONGS
-* write empty tags
-  > write only specific empty tags (e.g. #BACKGROUND)
-* open multiple databases -> use MDI-Interface (multiple song-trees)
-
-SONG DETAILS
-* re-calculate BPM
-  > edit facility in "song details"? (only for some specific songs used -> no need for task)
-
-TASKS
-! better error handling for "path change tasks"
-  > make it ACID! (at least atomic...)
-! correct the ratio for pictures
-  > by task
-	> 1:1 for covers
-	> n:m for backgrounds, according to resolution (ingame)
-	> detect selected resolution for UltraStar (read configs...)
-! resize images (background, cover) to a specific size or size limit
-! crop covers to 1:1 (extra task?)
-  > resize and fill with color to ratio ??
-  > fill with transparent color
-* some task to fix lyrics which are always "upper-case"
-* you cannot search after a dot in UltraStar Deluxe 1.0.1a
-  > workaround in uman?
-  > a task that removes all dots from artist/title?
-* modify ID3v2 tags via song tags
-  > genre, year
-! remove empty lines (bad at end of a song?)
-* use correct apostrophes (´, ` -> ')
-! introduce a preview feature for tasks (what will the song look like)
-! modify song tags via folder or song file names
-  > "Juli - Die perfekte Welle.txt" + "#ARTIST - #TITLE.txt" = "Juli", "Die perfekte Welle"
-* make all file extensions lowercase or uppercase
-! rename tasks for two songs that result in same name -> append "001" or so
-! add song length property to rename tasks
-? add general condition to be able to skip a whole task
-  > not for plugin interface, just an idea for the SDK
-* find a solution to test for a specific #EDITION in rename tasks
-* fix file endings/suffix
-  > jpeg -> jpg
-  > mpeg -> mpg
-
-SONG TREE
-? virtual song folders for many song text files in one folder
-  > alternative: better support for karaoke-versions that share resources
-* enable the user to append any custom []-tag to a file/folder
-  > manage these custom/unknown []-tags
-  > available through context menu? (list []-tags, ...)
-! make column tests in 1 and 2 editable
-  > according to renaming style of the user
-* list ratio of cover/background in song tree (extra column)
-  > covers should be 1:1 I think
-* custom rename (context menu, 2nd click, ...)
-  > manually via F2 (edit key)
-  > inline edit of SONG DETAILS?
-* warn, if BGs are bigger than game resolution
-  > will be white otherwise
-	> minification not supported by USdx
-* drop zip files or whole folders in the song tree
-* offer an option to "not resize to contents" all the time
-* let the user choose rename task with target 'dir' which should be
-  done after dropping a song file in the tree
-  > maybe also 'path' and 'dir' possible
-  > better integration
-* add icon to toolbar for "hide" features (like context menu)
-! new columns
-  > bpm (for sorting issues)
-  > gap (for sorting issues)
-
-SONG TREE ALTERNATIVE
-* create a cover view?
-* some SC-Filter/Overview?
-
-PUBLISHING
-* www.qtcentre.org
-* www.heise.de
-* www.chip.de
-! www.sf.net
-* www.ultra-star.de
-
-REPORTS
-* add a "to top" link to each song text
-* PDF-Report (song book feature?)
-* cover into reports (beside lyrics?)
-* header/footer for reports
-  > global stats
-* prepend global stats to report
-  > total length
-  > count
-  > ...
-* add covers and background pictures to reports
-* new column
-  > is SC-checked?
-
-EDIT LYRICS
-* add a edit window with syntax highlighting and code completion
-  
-PLAYLIST SUPPORT
-* auto-create playlists by edition
-* handle duplicates in playlists
-  > UltraStar playlists are more like a subset of all songs
-  > not really playlists...
-? drag&drop from songs to the playlist
-  > consider selection! (broken?)
-! add to playlist context menu "remove invalid entries" 
-! show effective length of playlist in playlist dock
-
-FILTER SUPPORT
-* re-design filter categories
-  > Apply more than one filter?
-* filter presets (more-button in filter area)
-  > duplicates
-  > SC-Songs
-  > CC-Songs
-  > ...
-
-DUPLICATE DETECTION (belongs to FILTER SUPPORT)
-* allow the user to specify false-positives explicitly
-  > manage this "white list" in a table that shows "sound string"
-  > avoid those false-positives next time
-
-FILE PREVIEW/LYRICS
-* make song text files editable
-* add current time instead of line number
-  > beware of relative songs
-  > switch between line number and current time
-
-AMAZON COVER DOWNLOAD
-* auto rename downloaded covers ("Artist - Title [CO].jpg"?)
-
-FIND & REPLACE (new)
-* in song tags
-
-INTERNAL STUFF
-! use internal XML data for melody/lyrics
-  <line out="22" in="25">
-    <note timestamp="123" duration="10" pitch="20" lyric="ah " freestyle="yes" golden="no"></note>
-  </line>
-* do not use only the count for "QUSongFile::verifyTags(QStringList&)"
-* detect not only song file changes but song folder changes
-  > new files...
-* read config.ini from ultrastar (->options?)
-* write some tests for basic song manipulating operations
-! write a model for songs (-> song database)
-* do not sublass QTreeWidget for task list
-  > compose a tree widget together with the slot buttons and remove code from main window
-! move code to monty area
-
-/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
-/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
-/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
 
 
 <---------------------------->
