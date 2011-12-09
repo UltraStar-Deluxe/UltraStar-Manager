@@ -74,10 +74,6 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	initWindow();
 	initRibbonBar();
 
-	// MB TODO:
-	// wait for Portuguese translation (Andre), then remove line
-	_menu->langPtBtn->setVisible(false);
-
 	initStatusBar();
 	initEventLog();
 	initConfig();

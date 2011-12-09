@@ -33,11 +33,10 @@ QUAboutDialog::QUAboutDialog(QWidget *parent): QDialog(parent) {
 	creditsText += "<br>Marcel Taeumel<br>Markus Böhning<br><br>";
 	creditsText += QObject::tr("<b>French Translation</b>");
 	creditsText += "<br>Fred (Pinky)<br><br>";
-
 	creditsText += QObject::tr("<b>Spanish Translation</b>");
 	creditsText += "<br>Pantero<br><br>";
-	//creditsText += QObject::tr("<b>Portuguese Translation</b>");
-	//creditsText += "<br>zup3r_vock<br><br>";
+	creditsText += QObject::tr("<b>Portuguese Translation</b>");
+	creditsText += "<br>zup3r_vock<br><br>";
 	creditsText += QObject::tr("<b>Polish Translation</b>");
 	creditsText += "<br>Robert de Clair<br>";
 	creditsText += QObject::tr("Website:");
