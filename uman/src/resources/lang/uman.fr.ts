@@ -509,8 +509,12 @@
     </message>
     <message>
         <location filename="../../main.cpp" line="154"/>
+        <source>&lt;b&gt;Dear testing person,&lt;/b&gt;&lt;br&gt;&lt;br&gt;this version is meant to be &lt;b&gt;feature-complete and almost bug-free&lt;/b&gt;. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.&lt;br&gt;While testing the release candidate, especially consider the following:&lt;br&gt;&lt;br&gt;- support for CP1252, CP1250 and UTF8 encodings&lt;br&gt;- support for medley and preview tags&lt;br&gt;- mp3/cover/background quality assessment in songtree&lt;br&gt;- shiny new French, Spanish, and Portuguese translation&lt;br&gt;- updated and completed Polish translation&lt;br&gt;- duet bugs fixed&lt;br&gt;- check for update feature&lt;br&gt;- new task to increase low BPMs&lt;br&gt;- new task to normalize note pitches&lt;br&gt;- new task to capitalize the first word of each line&lt;br&gt;&lt;br&gt;Send feedback and bug reports to: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</source>
+        <translation>&lt;b&gt;Cher testeur,&lt;/b&gt;&lt;br&gt;&lt;br&gt;cette version est censée comprendre &lt;b&gt;toutes les fonctionnalitées et être presque sans bugs&lt;/b&gt;. Cependant, il est possible que quelques erreurs puissent corromprent votre base de donnée de chanson. Merci d&apos;en faire une sauvegarde avant de commencer. &lt;br&gt; Pendant que vous testerez cette version Release Candidate, regardez les fonctions suivantes:&lt;br&gt;&lt;br&gt;- Support des encodages CP1252, CP1250 et UTF8&lt;br&gt;- Support des medleys et des champs de prévisualisation&lt;br&gt;- Qualité du MP3, de la couverture ou du fond d&apos;écran dans l&apos;arborescence&lt;br&gt;- Une superbe traduction en français, espagnol et portugais&lt;br&gt;- Les bugs des duos corrigés&lt;br&gt;- Une recherche automatique des mises à jour&lt;br&gt;- Une nouvelle tâche pour augmenter les BPM trop faibles&lt;br&gt;- Une nouvelle tâche pour normaliser le pitch des notes&lt;br&gt;- Une nouvelle tâche pour mettre en capitale le premier mot de chaque ligne&lt;br&gt;&lt;br&gt;Merci d&apos;envoyer vos commentaires et rapports à: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</translation>
+    </message>
+    <message>
         <source>&lt;b&gt;Dear testing person,&lt;/b&gt;&lt;br&gt;&lt;br&gt;this version is meant to be &lt;b&gt;feature-complete and almost bug-free&lt;/b&gt;. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.&lt;br&gt;While testing the release candidate, especially consider the following:&lt;br&gt;&lt;br&gt;- support for CP1252, CP1250 and UTF8 encodings&lt;br&gt;- support for medley and preview tags&lt;br&gt;- mp3/cover/background quality assessment in songtree&lt;br&gt;- shiny new French and Spanish translation&lt;br&gt;- updated and completed Polish translation&lt;br&gt;- duet bugs fixed&lt;br&gt;- check for update feature&lt;br&gt;- new task to increase low BPMs&lt;br&gt;- new task to normalize note pitches&lt;br&gt;- new task to capitalize the first word of each line&lt;br&gt;&lt;br&gt;Send feedback and bug reports to: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</source>
-        <translation>&lt;b&gt;Cher testeur,&lt;/b&gt;&lt;br&gt;&lt;br&gt;cette version est censée comprendre &lt;b&gt;toutes les fonctionnalitées et être presque sans bugs&lt;/b&gt;. Cependant, il est possible que quelques erreurs puissent corromprent votre base de donnée de chanson. Merci d&apos;en faire une sauvegarde avant de commencer. &lt;br&gt; Pendant que vous testerez cette version Release Candidate, regardez les fonctions suivantes:&lt;br&gt;&lt;br&gt;- Support des encodages CP1252, CP1250 et UTF8&lt;br&gt;- Support des medleys et des champs de prévisualisation&lt;br&gt;- Qualité du MP3, de la couverture ou du fond d&apos;écran dans l&apos;arborescence&lt;br&gt;- Une superbe traduction en français et espagnol&lt;br&gt;- Les bugs des duos corrigés&lt;br&gt;- Une recherche automatique des mises à jour&lt;br&gt;- Une nouvelle tâche pour augmenter les BPM trop faibles&lt;br&gt;- Une nouvelle tâche pour normaliser le pitch des notes&lt;br&gt;- Une nouvelle tâche pour mettre en capitale le premier mot de chaque ligne&lt;br&gt;&lt;br&gt;Merci d&apos;envoyer vos commentaires et rapports à: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</translation>
+        <translation type="obsolete">&lt;b&gt;Cher testeur,&lt;/b&gt;&lt;br&gt;&lt;br&gt;cette version est censée comprendre &lt;b&gt;toutes les fonctionnalitées et être presque sans bugs&lt;/b&gt;. Cependant, il est possible que quelques erreurs puissent corromprent votre base de donnée de chanson. Merci d&apos;en faire une sauvegarde avant de commencer. &lt;br&gt; Pendant que vous testerez cette version Release Candidate, regardez les fonctions suivantes:&lt;br&gt;&lt;br&gt;- Support des encodages CP1252, CP1250 et UTF8&lt;br&gt;- Support des medleys et des champs de prévisualisation&lt;br&gt;- Qualité du MP3, de la couverture ou du fond d&apos;écran dans l&apos;arborescence&lt;br&gt;- Une superbe traduction en français et espagnol&lt;br&gt;- Les bugs des duos corrigés&lt;br&gt;- Une recherche automatique des mises à jour&lt;br&gt;- Une nouvelle tâche pour augmenter les BPM trop faibles&lt;br&gt;- Une nouvelle tâche pour normaliser le pitch des notes&lt;br&gt;- Une nouvelle tâche pour mettre en capitale le premier mot de chaque ligne&lt;br&gt;&lt;br&gt;Merci d&apos;envoyer vos commentaires et rapports à: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Dear testing person,&lt;/b&gt;&lt;br&gt;&lt;br&gt;this version is meant to be &lt;b&gt;feature-complete and almost bug-free&lt;/b&gt;. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.&lt;br&gt;While testing the release candidate, especially consider the following:&lt;br&gt;&lt;br&gt;- support for CP1252, CP1250 and UTF8 encodings&lt;br&gt;- support for medley and preview tags&lt;br&gt;- mp3/cover/background quality assessment in songtree&lt;br&gt;- shiny new French translation&lt;br&gt;- duet bugs fixed&lt;br&gt;- check for update feature&lt;br&gt;- new task to increase low BPMs&lt;br&gt;- new task to normalize note pitches&lt;br&gt;- new task to capitalize the first word of each line&lt;br&gt;&lt;br&gt;Send feedback and bug reports to: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</source>
@@ -768,105 +772,110 @@ Essayez de recadrer en %1 x %3 pour avoir des dimensions valides pour un écran 
         <translation>&lt;b&gt;Traduction Française&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="37"/>
+        <location filename="../../QUAboutDialog.cpp" line="36"/>
         <source>&lt;b&gt;Spanish Translation&lt;/b&gt;</source>
         <translation>&lt;b&gt;Traduction Espagnole&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="41"/>
+        <location filename="../../QUAboutDialog.cpp" line="38"/>
+        <source>&lt;b&gt;Portuguese Translation&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Traduction Portugaise&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../QUAboutDialog.cpp" line="40"/>
         <source>&lt;b&gt;Polish Translation&lt;/b&gt;</source>
         <translation>&lt;b&gt;Traduction Polonaise&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="43"/>
-        <location filename="../../QUAboutDialog.cpp" line="52"/>
-        <location filename="../../QUAboutDialog.cpp" line="58"/>
-        <location filename="../../QUAboutDialog.cpp" line="64"/>
-        <location filename="../../QUAboutDialog.cpp" line="70"/>
-        <location filename="../../QUAboutDialog.cpp" line="74"/>
-        <location filename="../../QUAboutDialog.cpp" line="78"/>
-        <location filename="../../QUAboutDialog.cpp" line="84"/>
-        <location filename="../../QUAboutDialog.cpp" line="91"/>
-        <location filename="../../QUAboutDialog.cpp" line="99"/>
+        <location filename="../../QUAboutDialog.cpp" line="42"/>
+        <location filename="../../QUAboutDialog.cpp" line="51"/>
+        <location filename="../../QUAboutDialog.cpp" line="57"/>
+        <location filename="../../QUAboutDialog.cpp" line="63"/>
+        <location filename="../../QUAboutDialog.cpp" line="69"/>
+        <location filename="../../QUAboutDialog.cpp" line="73"/>
+        <location filename="../../QUAboutDialog.cpp" line="77"/>
+        <location filename="../../QUAboutDialog.cpp" line="83"/>
+        <location filename="../../QUAboutDialog.cpp" line="90"/>
+        <location filename="../../QUAboutDialog.cpp" line="98"/>
         <source>Website:</source>
         <translation>Site web:</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="47"/>
+        <location filename="../../QUAboutDialog.cpp" line="46"/>
         <source>&lt;b&gt;CSS Styles (HTML Report)&lt;/b&gt;</source>
         <translation>&lt;b&gt;Feuilles de style CSS (Raport HTML)&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="50"/>
+        <location filename="../../QUAboutDialog.cpp" line="49"/>
         <source>&lt;b&gt;Silk Icons&lt;/b&gt;</source>
         <translation>&lt;b&gt;Icones Silk&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="54"/>
-        <location filename="../../QUAboutDialog.cpp" line="60"/>
-        <location filename="../../QUAboutDialog.cpp" line="66"/>
-        <location filename="../../QUAboutDialog.cpp" line="80"/>
-        <location filename="../../QUAboutDialog.cpp" line="93"/>
+        <location filename="../../QUAboutDialog.cpp" line="53"/>
+        <location filename="../../QUAboutDialog.cpp" line="59"/>
+        <location filename="../../QUAboutDialog.cpp" line="65"/>
+        <location filename="../../QUAboutDialog.cpp" line="79"/>
+        <location filename="../../QUAboutDialog.cpp" line="92"/>
         <source>License:</source>
         <translation>Licence:</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="56"/>
+        <location filename="../../QUAboutDialog.cpp" line="55"/>
         <source>&lt;b&gt;Diagona Icons&lt;/b&gt;</source>
         <translation>&lt;b&gt;Icones Diagona&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="62"/>
+        <location filename="../../QUAboutDialog.cpp" line="61"/>
         <source>&lt;b&gt;Fugue Icons&lt;/b&gt;</source>
         <translation>&lt;b&gt;Icones Fugue&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="68"/>
+        <location filename="../../QUAboutDialog.cpp" line="67"/>
         <source>&lt;b&gt;Monty Icons&lt;/b&gt;</source>
         <translation>&lt;b&gt;Icones Monty&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="72"/>
+        <location filename="../../QUAboutDialog.cpp" line="71"/>
         <source>&lt;b&gt;Boomy Icons&lt;/b&gt;</source>
         <translation>&lt;b&gt;Icones Boomy&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="76"/>
+        <location filename="../../QUAboutDialog.cpp" line="75"/>
         <source>&lt;b&gt;Tiny Animals Icons&lt;/b&gt;</source>
         <translation>&lt;b&gt;Icones Mini-animaux&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="82"/>
+        <location filename="../../QUAboutDialog.cpp" line="81"/>
         <source>&lt;b&gt;Milky Icons&lt;/b&gt;</source>
         <translation>&lt;b&gt;Icones Milky&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="86"/>
+        <location filename="../../QUAboutDialog.cpp" line="85"/>
         <source>&lt;b&gt;Graphical Compositions&lt;/b&gt;</source>
         <translation>&lt;b&gt;Composition graphique&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="89"/>
+        <location filename="../../QUAboutDialog.cpp" line="88"/>
         <source>&lt;b&gt;Picture Flow&lt;/b&gt;</source>
         <translation>&lt;b&gt;Picture Flow&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="95"/>
+        <location filename="../../QUAboutDialog.cpp" line="94"/>
         <source>&lt;b&gt;HMAC-SHA2 Implementation&lt;/b&gt;</source>
         <translation>&lt;b&gt;Implementation HMAC-SHA2&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="97"/>
+        <location filename="../../QUAboutDialog.cpp" line="96"/>
         <source>e-mail:</source>
         <translation>e-mail:</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="102"/>
+        <location filename="../../QUAboutDialog.cpp" line="101"/>
         <source>&lt;b&gt;Tester&lt;/b&gt;</source>
         <translation>&lt;b&gt;Testeurs&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="104"/>
+        <location filename="../../QUAboutDialog.cpp" line="103"/>
         <source>&lt;b&gt;Special Thanks&lt;/b&gt;</source>
         <translation>&lt;b&gt;Remerciements particuliers&lt;/b&gt;</translation>
     </message>
@@ -915,7 +924,7 @@ background-image: url();</source>
         <translation>Fermer</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="117"/>
+        <location filename="../../QUAboutDialog.cpp" line="116"/>
         <source>Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;SVN: #%4, %5</source>
         <translation>Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;SVN: #%4, %5</translation>
     </message>
@@ -1574,155 +1583,155 @@ Tâches</translation>
         <translation>Effacer</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="122"/>
-        <location filename="../../QUMainWindow.cpp" line="137"/>
+        <location filename="../../QUMainWindow.cpp" line="116"/>
+        <location filename="../../QUMainWindow.cpp" line="131"/>
         <source>Quit</source>
         <translation>Quitter</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="123"/>
+        <location filename="../../QUMainWindow.cpp" line="117"/>
         <source>&lt;b&gt;Songs&lt;/b&gt; have been modified.</source>
         <translation>Le dossier &lt;b&gt;Songs&lt;/b&gt; a été modifié.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="124"/>
+        <location filename="../../QUMainWindow.cpp" line="118"/>
         <source>Save all changed songs.</source>
         <translation>Sauvegarder toutes les chansons modifiées.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="125"/>
-        <location filename="../../QUMainWindow.cpp" line="140"/>
-        <location filename="../../QUMainWindow.cpp" line="588"/>
-        <location filename="../../QUMainWindow.cpp" line="1038"/>
-        <location filename="../../QUMainWindow.cpp" line="1072"/>
+        <location filename="../../QUMainWindow.cpp" line="119"/>
+        <location filename="../../QUMainWindow.cpp" line="134"/>
+        <location filename="../../QUMainWindow.cpp" line="582"/>
+        <location filename="../../QUMainWindow.cpp" line="1032"/>
+        <location filename="../../QUMainWindow.cpp" line="1066"/>
         <source>Discard all changes.</source>
         <translation>Annuler tous les changements.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="126"/>
-        <location filename="../../QUMainWindow.cpp" line="141"/>
-        <location filename="../../QUMainWindow.cpp" line="589"/>
-        <location filename="../../QUMainWindow.cpp" line="1039"/>
-        <location filename="../../QUMainWindow.cpp" line="1073"/>
+        <location filename="../../QUMainWindow.cpp" line="120"/>
+        <location filename="../../QUMainWindow.cpp" line="135"/>
+        <location filename="../../QUMainWindow.cpp" line="583"/>
+        <location filename="../../QUMainWindow.cpp" line="1033"/>
+        <location filename="../../QUMainWindow.cpp" line="1067"/>
         <source>Cancel this action.</source>
         <translation>Annuler cette action.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="138"/>
+        <location filename="../../QUMainWindow.cpp" line="132"/>
         <source>&lt;b&gt;Playlists&lt;/b&gt; have been modified.</source>
         <translation>Les &lt;b&gt;Listes de lecture&lt;/b&gt; ont été modifiées.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="139"/>
+        <location filename="../../QUMainWindow.cpp" line="133"/>
         <source>Save all changed playlists.</source>
         <translation>Sauvegarder toutes les listes de lecture modifiées.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="189"/>
+        <location filename="../../QUMainWindow.cpp" line="183"/>
         <source>No song directory was selected.</source>
         <translation>Aucun dossier de chanson n&apos;a été sélectionné.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="239"/>
+        <location filename="../../QUMainWindow.cpp" line="233"/>
         <source>Cannot read image formats: %1</source>
         <translation>Impossible de lire le format de l&apos;image: %1</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="257"/>
+        <location filename="../../QUMainWindow.cpp" line="251"/>
         <source>UltraStar Manager</source>
         <translation>Ultrastar Manager</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="309"/>
+        <location filename="../../QUMainWindow.cpp" line="303"/>
         <source>Review pictures</source>
         <translation>Prévisualiser les images</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="310"/>
+        <location filename="../../QUMainWindow.cpp" line="304"/>
         <source>Covers...</source>
         <translation>Couvertures...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="311"/>
+        <location filename="../../QUMainWindow.cpp" line="305"/>
         <source>Backgrounds...</source>
         <translation>Fond d&apos;écran...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="585"/>
+        <location filename="../../QUMainWindow.cpp" line="579"/>
         <source>Rebuild Song Tree</source>
         <translation>Actualiser l&apos;affichage du répertoire</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="586"/>
-        <location filename="../../QUMainWindow.cpp" line="1036"/>
-        <location filename="../../QUMainWindow.cpp" line="1070"/>
+        <location filename="../../QUMainWindow.cpp" line="580"/>
+        <location filename="../../QUMainWindow.cpp" line="1030"/>
+        <location filename="../../QUMainWindow.cpp" line="1064"/>
         <source>Songs have been modified.</source>
         <translation>Des chansons ont été modifiées.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="587"/>
-        <location filename="../../QUMainWindow.cpp" line="1037"/>
-        <location filename="../../QUMainWindow.cpp" line="1071"/>
+        <location filename="../../QUMainWindow.cpp" line="581"/>
+        <location filename="../../QUMainWindow.cpp" line="1031"/>
+        <location filename="../../QUMainWindow.cpp" line="1065"/>
         <source>Save all changes.</source>
         <translation>Sauvegarder tous les changements.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="703"/>
+        <location filename="../../QUMainWindow.cpp" line="697"/>
         <source>Audio file changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Le fichier audio a été modifié de &quot;%1&quot; en: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="709"/>
+        <location filename="../../QUMainWindow.cpp" line="703"/>
         <source>Cover changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>La couverture a été modifiée de &quot;%1&quot; en: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="715"/>
+        <location filename="../../QUMainWindow.cpp" line="709"/>
         <source>Background changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Le fond d&apos;écran a été modifié de &quot;%1&quot; en: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="721"/>
+        <location filename="../../QUMainWindow.cpp" line="715"/>
         <source>Video file changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Le fichier vidéo a été modifié de &quot;%1&quot; en: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="737"/>
+        <location filename="../../QUMainWindow.cpp" line="731"/>
         <source>Applying new value for %1 to all selected songs...</source>
         <translation>Application d&apos;une nouvelle valeur pour %1 a toutes les chansons sélectionnées...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="785"/>
+        <location filename="../../QUMainWindow.cpp" line="779"/>
         <source>Applying all checked tasks to all selected songs...</source>
         <translation>Application de toutes les taches cochées à toutes les chansons sélectionnées...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="901"/>
+        <location filename="../../QUMainWindow.cpp" line="895"/>
         <source>The log file was saved to: &quot;%1&quot;</source>
         <translation>Le journal des évènements a été sauvé: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="903"/>
+        <location filename="../../QUMainWindow.cpp" line="897"/>
         <source>The log file COULD NOT be saved.</source>
         <translation>Le journal des évènements NE PEUT PAS être sauvé.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="920"/>
+        <location filename="../../QUMainWindow.cpp" line="914"/>
         <source>About TagLib</source>
         <translation>A propos de TagLib</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="921"/>
+        <location filename="../../QUMainWindow.cpp" line="915"/>
         <source>&lt;b&gt;TagLib Audio Meta-Data Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;TagLib is a library for reading and editing the meta-data of several popular audio formats.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;&lt;br&gt;Visit: &lt;a href=&quot;http://developer.kde.org/~wheeler/taglib.html&quot;&gt;TagLib Homepage&lt;/a&gt;</source>
         <translation>&lt;b&gt;TagLib Audio Meta-Data Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;TagLib est une librairie qui permet de lire et éditer les meta-données de nombreux formats audio populaires.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;&lt;br&gt;Visiter: &lt;a href=&quot;http://developer.kde.org/~wheeler/taglib.html&quot;&gt;la page d&apos;accueil de TagLib&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="932"/>
+        <location filename="../../QUMainWindow.cpp" line="926"/>
         <source>About BASS</source>
         <translation>A propos de BASS</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="933"/>
+        <location filename="../../QUMainWindow.cpp" line="927"/>
         <source>&lt;b&gt;BASS Audio Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;BASS is an audio library for use in Windows and MacOSX software. Its purpose is to provide the most powerful and efficient (yet easy to use), sample, stream, MOD music, and recording functions. All in a tiny DLL, under 100KB in size.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Copyright (c) 1999-2008&lt;br&gt;&lt;a href=&quot;http://www.un4seen.com/bass.html&quot;&gt;Un4seen Developments Ltd.&lt;/a&gt; All rights reserved.</source>
         <translation>&lt;b&gt;BASS Audio Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;BASS est une librairie audio à utiliser sous Windows et MacOSX. Elle permet d&apos;utiliser de facon la plus puissante et efficace (et facile à utiliser), des échantillons de musique, des flux audio, Music MOD, et des fonctions d&apos;enregistrement. Tout cela dans une petite bibliothèque DLL, de moins de 100KB.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Copyright (c) 2003-2010&lt;br&gt;&lt;a href=&quot;http://www.un4seen.com/bass.html&quot;&gt;Un4seen Developments Ltd.&lt;/a&gt; Tous droits réservés.</translation>
     </message>
@@ -1735,7 +1744,7 @@ Tâches</translation>
         <translation type="obsolete">La vérification de la mise à jour a &lt;b&gt;échouée&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Etes vous bien connecté à internet?</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="960"/>
+        <location filename="../../QUMainWindow.cpp" line="954"/>
         <source>Update check failed. Host unreachable.</source>
         <translation>La vérification de la mise à jour a échouée. Hôte injoignable.</translation>
     </message>
@@ -1744,7 +1753,7 @@ Tâches</translation>
         <translation type="obsolete">La vérification de la mise à jour a &lt;b&gt;échouée&lt;/b&gt;.&lt;br&gt;&lt;br&gt; Pas de permission d&apos;écrire le fichier %1.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="973"/>
+        <location filename="../../QUMainWindow.cpp" line="967"/>
         <source>Update check failed. No permission to write file %1.</source>
         <translation>La vérification de la mise à jour a échouée. Pas de permission d&apos;écrire le fichier %1.</translation>
     </message>
@@ -1753,12 +1762,12 @@ Tâches</translation>
         <translation type="obsolete">Vérification de la mise à jour &lt;b&gt;réussie&lt;/b&gt;. UltraStar Manager %1.%2.%3 est &lt;b&gt;dépassé&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Téléchargez la dernière version d&apos;UltraStar Manager %4 &lt;a href=&apos;http://sourceforge.net/projects/uman/&apos;&gt;ici&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="994"/>
+        <location filename="../../QUMainWindow.cpp" line="988"/>
         <source>Update check successful. A new version of UltraStar Manager is available.</source>
         <translation>Vérification de la mise à jour réussie. Une nouvelle version d&apos;Ultrastar Manager est disponible.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="996"/>
+        <location filename="../../QUMainWindow.cpp" line="990"/>
         <source>Update check successful. UltraStar Manager is up to date.</source>
         <translation>Vérification de la mise à jour réussie. Ultrastar Manager est à jour.</translation>
     </message>
@@ -1767,7 +1776,7 @@ Tâches</translation>
         <translation type="obsolete">Vérification de la mise à jour &lt;b&gt;réussie&lt;/b&gt;. UltraStar Manager %1.%2.%3 est &lt;b&gt;à jour&lt;/b&gt;!</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1003"/>
+        <location filename="../../QUMainWindow.cpp" line="997"/>
         <source>OK. I will check again later.</source>
         <translation>OK. Je revérifierais plus tard.</translation>
     </message>
@@ -1776,224 +1785,224 @@ Tâches</translation>
         <translation type="obsolete">OK. Merci de continuer à vérifier automatiquement au démarrage.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="102"/>
+        <location filename="../../QUMainWindow.cpp" line="96"/>
         <source>Ready.</source>
         <translation>Prêt.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="955"/>
-        <location filename="../../QUMainWindow.cpp" line="968"/>
+        <location filename="../../QUMainWindow.cpp" line="949"/>
+        <location filename="../../QUMainWindow.cpp" line="962"/>
         <source>Update check failed.</source>
         <translation>La vérification de la mise à jour a échouée.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="956"/>
+        <location filename="../../QUMainWindow.cpp" line="950"/>
         <source>Is your internet connection working?</source>
         <translation>Etes vous bien connecté à internet?</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="969"/>
+        <location filename="../../QUMainWindow.cpp" line="963"/>
         <source>No permission to write file %1.</source>
         <translation>Pas de permission pour écrire le fichier %1.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="987"/>
-        <location filename="../../QUMainWindow.cpp" line="1000"/>
+        <location filename="../../QUMainWindow.cpp" line="981"/>
+        <location filename="../../QUMainWindow.cpp" line="994"/>
         <source>Update check successful.</source>
         <translation>Vérification de la mise à jour réussie.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="988"/>
+        <location filename="../../QUMainWindow.cpp" line="982"/>
         <source>UltraStar Manager %1.%2.%3 is &lt;b&gt;outdated&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Download the most recent UltraStar Manager %4 &lt;a href=&apos;http://sourceforge.net/projects/uman/&apos;&gt;here&lt;/a&gt;.</source>
         <translation>UltraStar Manager %1.%2.%3 est &lt;b&gt;dépassé&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Téléchargez la dernière version d&apos;UltraStar Manager %4 &lt;a href=&apos;http://sourceforge.net/projects/uman/&apos;&gt;ici&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1001"/>
+        <location filename="../../QUMainWindow.cpp" line="995"/>
         <source>UltraStar Manager %1.%2.%3 is &lt;b&gt;up to date&lt;/b&gt;!</source>
         <translation>UltraStar Manager %1.%2.%3 est &lt;b&gt;à jour&lt;/b&gt;!</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1004"/>
+        <location filename="../../QUMainWindow.cpp" line="998"/>
         <source>OK. Check automatically on startup.</source>
         <translation>OK. Vérifier automatiquement au démarrage.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1008"/>
+        <location filename="../../QUMainWindow.cpp" line="1002"/>
         <source>Automatic check for updates disabled.</source>
         <translation>Vérification des mises à jour automatique désactivé.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1011"/>
+        <location filename="../../QUMainWindow.cpp" line="1005"/>
         <source>Automatic check for updates enabled.</source>
         <translation>Vérification des mises à jour automatique activé.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1035"/>
+        <location filename="../../QUMainWindow.cpp" line="1029"/>
         <source>Change Song Directory</source>
         <translation>Changer le répertoire des chansons</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1056"/>
+        <location filename="../../QUMainWindow.cpp" line="1050"/>
         <source>UltraStar song directory changed to: &quot;%1&quot;.</source>
         <translation>Répertoire des chansons d&apos;Ultrastar changé vers: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1058"/>
+        <location filename="../../QUMainWindow.cpp" line="1052"/>
         <source>Folder (%1)</source>
         <translation>Dossier (%1)</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1069"/>
+        <location filename="../../QUMainWindow.cpp" line="1063"/>
         <source>Custom Tags</source>
         <translation>Champs personnalisés</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1088"/>
+        <location filename="../../QUMainWindow.cpp" line="1082"/>
         <source>Custom tags changed to: &quot;%1&quot;</source>
         <translation>Champs personnalisés modifié en: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1115"/>
+        <location filename="../../QUMainWindow.cpp" line="1109"/>
         <source>You can ask me something if you put some keywords in the &lt;i&gt;line edit&lt;/i&gt; below and &lt;i&gt;accept&lt;/i&gt;.&lt;br&gt;&lt;br&gt;I&apos;ll try to understand and answer you. Multiple answers may be possible.</source>
         <translation>Vous pouvez me demander quelque chose si vous tapez des mots clés dans &lt;i&gt;la zone de texte&lt;/i&gt; à coté et &lt;i&gt;appuyer sur entrer&lt;/i&gt;.&lt;br&gt;&lt;br&gt;J&apos;essairaie de vous comprendre. Plusieurs solutions seront peut-être possibles.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1143"/>
+        <location filename="../../QUMainWindow.cpp" line="1137"/>
         <source>Show relative song path for each song...</source>
         <translation>Montrer le chemin relatif du dossier pour chaque chanson...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1143"/>
+        <location filename="../../QUMainWindow.cpp" line="1137"/>
         <source>Show song folder for each song...</source>
         <translation>Montrer le dossier de chaque chanson...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1157"/>
+        <location filename="../../QUMainWindow.cpp" line="1151"/>
         <source>Relative song paths are displayed in the song tree now.</source>
         <translation>Les chemins relatifs des dossiers sont maintenant affichés dans l&apos;affichage du répertoire.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1159"/>
+        <location filename="../../QUMainWindow.cpp" line="1153"/>
         <source>Only song directories are displayed in the song tree now.</source>
         <translation>Seulement les dossier des chansons sont affichés dans l&apos;affichage des répertoires, maintenant.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1184"/>
+        <location filename="../../QUMainWindow.cpp" line="1178"/>
         <source>Repainting song tree icons...</source>
         <translation>Changement des icones de l&apos;affichage des répertoires...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1266"/>
-        <location filename="../../QUMainWindow.cpp" line="1284"/>
+        <location filename="../../QUMainWindow.cpp" line="1260"/>
+        <location filename="../../QUMainWindow.cpp" line="1278"/>
         <source>Could NOT open file: &quot;%1&quot;.</source>
         <translation>IMPOSSIBLE d&apos;ouvrir le fichier: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1268"/>
-        <location filename="../../QUMainWindow.cpp" line="1286"/>
+        <location filename="../../QUMainWindow.cpp" line="1262"/>
+        <location filename="../../QUMainWindow.cpp" line="1280"/>
         <source>File was opened successfully: &quot;%1&quot;.</source>
         <translation>Le fichier a été ouvert avec succès: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1417"/>
-        <location filename="../../QUMainWindow.cpp" line="1437"/>
-        <location filename="../../QUMainWindow.cpp" line="1457"/>
-        <location filename="../../QUMainWindow.cpp" line="1477"/>
-        <location filename="../../QUMainWindow.cpp" line="1497"/>
-        <location filename="../../QUMainWindow.cpp" line="1517"/>
+        <location filename="../../QUMainWindow.cpp" line="1411"/>
+        <location filename="../../QUMainWindow.cpp" line="1431"/>
+        <location filename="../../QUMainWindow.cpp" line="1451"/>
+        <location filename="../../QUMainWindow.cpp" line="1471"/>
+        <location filename="../../QUMainWindow.cpp" line="1491"/>
+        <location filename="../../QUMainWindow.cpp" line="1511"/>
         <source>Change Language</source>
         <translation>Changer la langue</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1418"/>
+        <location filename="../../QUMainWindow.cpp" line="1412"/>
         <source>Application language changed to &lt;b&gt;English&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Application language changed to &lt;b&gt;English&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1419"/>
-        <location filename="../../QUMainWindow.cpp" line="1439"/>
-        <location filename="../../QUMainWindow.cpp" line="1459"/>
-        <location filename="../../QUMainWindow.cpp" line="1479"/>
-        <location filename="../../QUMainWindow.cpp" line="1499"/>
-        <location filename="../../QUMainWindow.cpp" line="1519"/>
+        <location filename="../../QUMainWindow.cpp" line="1413"/>
+        <location filename="../../QUMainWindow.cpp" line="1433"/>
+        <location filename="../../QUMainWindow.cpp" line="1453"/>
+        <location filename="../../QUMainWindow.cpp" line="1473"/>
+        <location filename="../../QUMainWindow.cpp" line="1493"/>
+        <location filename="../../QUMainWindow.cpp" line="1513"/>
         <source>Quit UltraStar Manager.</source>
         <translation>Quitter Ultrastar Manager.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1420"/>
-        <location filename="../../QUMainWindow.cpp" line="1440"/>
-        <location filename="../../QUMainWindow.cpp" line="1460"/>
-        <location filename="../../QUMainWindow.cpp" line="1480"/>
-        <location filename="../../QUMainWindow.cpp" line="1500"/>
-        <location filename="../../QUMainWindow.cpp" line="1520"/>
+        <location filename="../../QUMainWindow.cpp" line="1414"/>
+        <location filename="../../QUMainWindow.cpp" line="1434"/>
+        <location filename="../../QUMainWindow.cpp" line="1454"/>
+        <location filename="../../QUMainWindow.cpp" line="1474"/>
+        <location filename="../../QUMainWindow.cpp" line="1494"/>
+        <location filename="../../QUMainWindow.cpp" line="1514"/>
         <source>Continue.</source>
         <translation>Continuer.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1438"/>
+        <location filename="../../QUMainWindow.cpp" line="1432"/>
         <source>Application language changed to &lt;b&gt;German&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Die Sprache das Programm wurde auf Deutsch geändert. Ultrastar Manager muss  neu gestartet werden, um die Sprache zu ändern.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1458"/>
+        <location filename="../../QUMainWindow.cpp" line="1452"/>
         <source>Application language changed to &lt;b&gt;Polish&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Język aplikacji zmienia się &lt;b&gt;Polska&lt;/b&gt;. Należy ponownie uruchomić Menedżer UltraStar w życie.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1478"/>
+        <location filename="../../QUMainWindow.cpp" line="1472"/>
         <source>Application language changed to &lt;b&gt;French&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>La langue de l&apos;application a été changée en &lt;b&gt; Français &lt;/b&gt;. Vous devez redémarrer Ultrastar Manager pour que cela prenne effet.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1498"/>
+        <location filename="../../QUMainWindow.cpp" line="1492"/>
         <source>Application language changed to &lt;b&gt;Spanish&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Idioma de la aplicación cambia a &lt;b&gt;Español&lt;/b&gt;. Es necesario reiniciar el Gestor de UltraStar para tener efecto.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1518"/>
+        <location filename="../../QUMainWindow.cpp" line="1512"/>
         <source>Application language changed to &lt;b&gt;Portuguese&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>A linguagem da aplicação foi alterada para o &lt;b&gt;Português&lt;/b&gt;. Você deve reiniciar o Ultrastar Manager para que isso tenha efeito.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1570"/>
+        <location filename="../../QUMainWindow.cpp" line="1564"/>
         <source>Choose backup destination...</source>
         <translation>Choisir la destination du fichier de sauvegarde...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1575"/>
+        <location filename="../../QUMainWindow.cpp" line="1569"/>
         <source>Backup audio files...</source>
         <translation>Sauvegarde des fichiers audio...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1590"/>
+        <location filename="../../QUMainWindow.cpp" line="1584"/>
         <source>Backup for audio files finished.</source>
         <translation>Sauvegarde des fichiers audio terminée.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1659"/>
+        <location filename="../../QUMainWindow.cpp" line="1653"/>
         <source>Default input encoding changed to &quot;%1&quot;.</source>
         <translation>Encodage par défaut en entrée changé en &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1662"/>
+        <location filename="../../QUMainWindow.cpp" line="1656"/>
         <source>Default output encoding changed to &quot;%1&quot;.</source>
         <translation>Encodage par défaut en sortie changé en &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1683"/>
-        <location filename="../../QUMainWindow.cpp" line="1709"/>
+        <location filename="../../QUMainWindow.cpp" line="1677"/>
+        <location filename="../../QUMainWindow.cpp" line="1703"/>
         <source>Updating audio quality icons...</source>
         <translation>Mise à jour des icones de qualité des fichiers audio...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1735"/>
-        <location filename="../../QUMainWindow.cpp" line="1761"/>
+        <location filename="../../QUMainWindow.cpp" line="1729"/>
+        <location filename="../../QUMainWindow.cpp" line="1755"/>
         <source>Updating cover quality icons...</source>
         <translation>Mise à jour des icones de qualité des couvertures...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1787"/>
-        <location filename="../../QUMainWindow.cpp" line="1813"/>
+        <location filename="../../QUMainWindow.cpp" line="1781"/>
+        <location filename="../../QUMainWindow.cpp" line="1807"/>
         <source>Updating background quality icons...</source>
         <translation>Mise à jour des icones de qualité des fonds d&apos;écran...</translation>
     </message>

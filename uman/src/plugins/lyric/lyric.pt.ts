@@ -6,17 +6,17 @@
     <message>
         <location filename="QULyricTask.cpp" line="15"/>
         <source>Set first timestamp to zero</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir primeiro timestamp para zero</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="19"/>
         <source>Fix spaces</source>
-        <translation type="unfinished"></translation>
+        <translation>Corrigir espaços</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="20"/>
         <source>Moves spaces from the end of a syllable to the beginning of the next one. Trim the whole song line.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover espaços do fim da sílaba  para o inicio da silaba seguinte. Arranjar todas as linhas da canção.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="24"/>
@@ -41,38 +41,37 @@
     <message>
         <location filename="QULyricTask.cpp" line="34"/>
         <source>Shifts all note pitches octavewise towards a zero mean.</source>
-        <oldsource>Decreases all note pitches by as many octaves as necessary.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="38"/>
         <source>Remove empty syllables</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover sílabas vazias</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="39"/>
         <source>Example:&lt;br&gt;&lt;br&gt;: 230 6 9 be&lt;br&gt;&lt;b&gt;: 236 5 10&lt;/b&gt;&lt;br&gt;: 241 7 3 not.&lt;br&gt;&lt;br&gt;Remove the bold one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Exemplo:&lt;br&gt;&lt;br&gt;: 230 6 9 não&lt;br&gt;&lt;b&gt;: 236 5 10&lt;/b&gt;&lt;br&gt;: 241 7 3 serei.&lt;br&gt;&lt;br&gt;Remove o que está a negrito.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="42"/>
         <source>Convert syllable placeholders from &quot;-&quot; to &quot;~&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Converter mudança de tom de &quot;-&quot; para &quot;~&quot;</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="47"/>
         <source>Convert syllable placeholders from &quot;~&quot; to &quot;-&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Converter mudança de tom de &quot;~&quot; para &quot;-&quot;</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="52"/>
         <source>Convert relative to absolute timestamps</source>
-        <translation type="unfinished"></translation>
+        <translation>Converter timestamp  relativo para absoluto</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="57"/>
         <source>Convert absolute to relative timestamps</source>
-        <translation type="unfinished"></translation>
+        <translation>Converter timestamp absoluto para relativo</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="102"/>
@@ -82,24 +81,23 @@
     <message>
         <location filename="QULyricTask.cpp" line="104"/>
         <source>if BPM &lt;</source>
-        <oldsource>if below:</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="114"/>
         <location filename="QULyricTask.cpp" line="235"/>
         <source>Invalid lyrics in file &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Letra inválida no ficheiro &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="140"/>
         <source>#GAP changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>#GAP alterado de %1 a %2 para &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="185"/>
         <source>Timestamps were changed successfully for &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Timestamps alterados com sucesso para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="195"/>
@@ -110,12 +108,12 @@
         <location filename="QULyricTask.cpp" line="401"/>
         <location filename="QULyricTask.cpp" line="449"/>
         <source>Invalid lyrics: %1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Letra inválida: %1 - %2</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="227"/>
         <source>Spaces were fixed successfully for &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Espaços corrigidos com sucesso para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="271"/>
@@ -135,22 +133,22 @@
     <message>
         <location filename="QULyricTask.cpp" line="370"/>
         <source>Empty syllables were removed successfully for &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sílabas vazias removidas com sucesso para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="389"/>
         <source>Syllable placeholders were converted successfully from &apos;%3&apos; to &apos;%4&apos; for &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sílaba de mudança de tom convertida com sucesso de &apos;%3&apos; a &apos;%4&apos; para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="439"/>
         <source>Relative timestamps converted successfully to absolute timestamps for &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Timestamp relativo convertido com sucesso para absoluto para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="480"/>
         <source>Absolute timestamps converted successfully to relative timestamps for &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Timestamp absoluto convertido com sucesso para relativo para &quot;%1 - %2&quot;.</translation>
     </message>
 </context>
 <context>
@@ -158,12 +156,12 @@
     <message>
         <location filename="QULyricTaskFactory.cpp" line="11"/>
         <source>Lyric Tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarefas Letra</translation>
     </message>
     <message>
         <location filename="QULyricTaskFactory.cpp" line="15"/>
         <source>Modify a song&apos;s lyrics.</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificar a letra da canção.</translation>
     </message>
 </context>
 <context>
@@ -171,17 +169,17 @@
     <message>
         <location filename="../shared/QUMultilingualTaskFactory.h" line="25"/>
         <source>Unnamed plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin sem nome</translation>
     </message>
     <message>
         <location filename="../shared/QUMultilingualTaskFactory.h" line="27"/>
         <source>Unknown person</source>
-        <translation type="unfinished"></translation>
+        <translation>Pessoa desconhecida</translation>
     </message>
     <message>
         <location filename="../shared/QUMultilingualTaskFactory.h" line="28"/>
         <source>No description given.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem descrição.</translation>
     </message>
 </context>
 <context>
@@ -189,7 +187,7 @@
     <message>
         <location filename="../shared/QUSimpleTaskFactory.h" line="16"/>
         <source>Simple Task</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarefa Simples</translation>
     </message>
 </context>
 <context>
@@ -197,7 +195,7 @@
     <message>
         <location filename="../shared/QUSmartSetting.cpp" line="30"/>
         <source>Reset to default value.</source>
-        <translation type="unfinished"></translation>
+        <translation>Reset para o valor padrão.</translation>
     </message>
 </context>
 </TS>
