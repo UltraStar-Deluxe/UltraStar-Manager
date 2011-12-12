@@ -177,7 +177,6 @@ public slots:
 	void changeData(const QString &tag, const QString &value);
 	void renameSong(const QString &fileName);
 	void changeSongPath(const QString &filePath);
-	QUSongFile* duetFriend() const;
 	bool friendHasTag(const QString &tag, const QString &value) const;
 	bool swapWithFriend(QUSongFile *song);
 

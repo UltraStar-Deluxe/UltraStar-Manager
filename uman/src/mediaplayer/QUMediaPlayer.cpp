@@ -26,18 +26,7 @@ QUSongInfo::QUSongInfo(QUSongFile *song) {
 
 	if(song->isDuet()) {
 		melody1 = song->melodyForSinger(QUSongLineInterface::first);
-		if(melody1.isEmpty()) {
-			melody1 = song->loadMelody();
-			// try to find a friend as duet partner
-			QUSongFile *duetFriend = song->duetFriend();
-			if(duetFriend) {
-				melody2 = duetFriend->loadMelody();
-				gap2 = QVariant(duetFriend->gap().replace(",", ".")).toDouble();
-				title = song->titleCompact();
-			}
-		} else {
-			melody2 = song->melodyForSinger(QUSongLineInterface::second);
-		}
+		melody2 = song->melodyForSinger(QUSongLineInterface::second);
 	} else {
 		melody1 = song->loadMelody();
 	}

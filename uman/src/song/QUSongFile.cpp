@@ -1228,12 +1228,20 @@ void QUSongFile::saveMelody() {
 
 /*!
  * \returns Lyrics/Melody for the given singer of this song.
+ * There are two different versions of duets: interleaved (deprecated) and non-interleaved.
  */
 QList<QUSongLineInterface*> QUSongFile::melodyForSinger(QUSongLineInterface::Singers s) {
 	QList<QUSongLineInterface*> result;
-	foreach(QUSongLineInterface *line, loadMelody())
-		if(line->singer() == s || line->singer() == QUSongLineInterface::both)
+
+	QUSongLineInterface::Singers currentSinger = QUSongLineInterface::first;
+
+	foreach(QUSongLineInterface *line, loadMelody()) {
+		if(line->singer() != QUSongLineInterface::undefined)
+			currentSinger = line->singer();
+		if(currentSinger == s || currentSinger == QUSongLineInterface::both)
 			result << line;
+	}
+
 	return result;
 }
 
@@ -1335,20 +1343,6 @@ void QUSongFile::renameSong(const QString &fileName) {
  */
 void QUSongFile::changeSongPath(const QString &filePath) {
 	setFile(QFileInfo(QFileInfo(filePath).dir(), songFileInfo().fileName()).filePath(), false);
-}
-
-/*!
- * Find the friend that is your duet partner to support duets that are spread across two song files.
- */
-QUSongFile* QUSongFile::duetFriend() const {
-	if(!isDuet())
-		return 0;
-
-	foreach(QUSongFile *song, _friends)
-		if(song->isDuet())
-			return song;
-
-	return 0;
 }
 
 /*!
