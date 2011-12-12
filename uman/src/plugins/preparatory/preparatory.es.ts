@@ -56,7 +56,7 @@
         <location filename="QUPreparatoryTask.cpp" line="42"/>
         <source>Capitalize #TITLE tag</source>
         <oldsource>Fix capitalization of #TITLE tag</oldsource>
-        <translation>Arreglar las mayúsculas de la etiqueta #TITLE</translation>
+        <translation>Poner e mayúsculas la etiqueta #TITLE</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="43"/>
@@ -66,38 +66,38 @@
     <message>
         <location filename="QUPreparatoryTask.cpp" line="47"/>
         <source>Capitalize #ARTIST tag</source>
-        <translation>Utilizar mayúsculas en la etiqueta #ARTIST</translation>
+        <translation>Poner en mayúsculas la etiqueta #ARTIST</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="48"/>
         <source>Capitalize each word of the artist, e.g. &quot;michael jackson&quot; -&gt; &quot;Michael Jackson&quot;.</source>
-        <translation>Utilizar mayúsculas en cada palabra del artista, e.g. &quot;michael jackson&quot; -&gt; &quot;Michael Jackson&quot;.</translation>
+        <translation>Utiliza mayúsculas en cada palabra del artista, ej.: &quot;michael jackson&quot; -&gt; &quot;Michael Jackson&quot;.</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="93"/>
         <location filename="QUPreparatoryTask.cpp" line="94"/>
         <source>Pattern:</source>
-        <translation type="unfinished"></translation>
+        <translation>Patron:</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="93"/>
         <source>(cover)</source>
-        <translation type="unfinished"></translation>
+        <translation>(carátula)</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="94"/>
         <source>(background)</source>
-        <translation type="unfinished"></translation>
+        <translation>(imagen de fondo)</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="101"/>
         <source>Buffer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Buffer:</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="101"/>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>segundos</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="104"/>

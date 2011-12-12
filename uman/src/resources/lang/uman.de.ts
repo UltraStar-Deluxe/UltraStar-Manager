@@ -2431,35 +2431,35 @@ ausführen</translation>
 <context>
     <name>QUMediaPlayer</name>
     <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="131"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="120"/>
         <source>[Media Player] The song &quot;%1 - %2&quot; has no valid audio file.</source>
         <translation>[Media Player] Der Song &quot;%1 - %2&quot; hat keine gültige Audiodatei.</translation>
     </message>
     <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="314"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="303"/>
         <source>Bitrate: &lt;b&gt;%1&lt;/b&gt; kbit/s&lt;br&gt;Channels: &lt;b&gt;%2&lt;/b&gt;&lt;br&gt;Sample Rate: &lt;b&gt;%3&lt;/b&gt; kHz</source>
         <translation>Bitrate: &lt;b&gt;%1&lt;/b&gt; kbit/s&lt;br&gt;Kanäle: &lt;b&gt;%2&lt;/b&gt;&lt;br&gt;Abtastrate: &lt;b&gt;%3&lt;/b&gt; kHz</translation>
     </message>
     <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="323"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="312"/>
         <source>&lt;i&gt;Hit the play-button to fetch all songs of the selected list below. Then the first song will start playing.&lt;/i&gt;</source>
         <translation>&lt;i&gt;Drück den Play-Button um alle Songs der Auswahl zu holen. Es wird der erste Song wiedergegeben.&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="324"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="313"/>
         <source>&lt;i&gt;Used for duet songs.&lt;/i&gt;</source>
         <translation>&lt;i&gt;Platzhalter für Duette.&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="370"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="375"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="382"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="387"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="394"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="399"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="406"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="411"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="433"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="359"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="364"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="371"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="376"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="383"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="388"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="395"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="400"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="422"/>
         <source>BASS error: %1</source>
         <translation>BASS Fehler: %1</translation>
     </message>
@@ -2808,14 +2808,19 @@ margin: 0;</source>
 <context>
     <name>QUPdfReport</name>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="42"/>
+        <location filename="../../report/QUPdfReport.cpp" line="78"/>
+        <source>Creating PDF report...</source>
+        <translation>Erzeuge PDF-Bericht...</translation>
+    </message>
+    <message>
+        <location filename="../../report/QUPdfReport.cpp" line="206"/>
         <source>Adding PDF report...done.</source>
-        <translation></translation>
+        <translation>Füge PDF-Bericht hinzu... fertig.</translation>
     </message>
     <message>
         <location filename="../../report/QUPdfReport.h" line="18"/>
         <source>PDF Report</source>
-        <translation></translation>
+        <translation>PDF-Bericht</translation>
     </message>
 </context>
 <context>
@@ -5082,22 +5087,22 @@ p, li { white-space: pre-wrap; }
         <translation>Songdatei geändert: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1385"/>
+        <location filename="../../song/QUSongFile.cpp" line="1380"/>
         <source>Primary song file changed from &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Primärer Song geändert von &quot;%1&quot; auf &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1448"/>
+        <location filename="../../song/QUSongFile.cpp" line="1443"/>
         <source>Error while preparing lyrics for %1 - %2. Could not parse the following line: %3</source>
         <translation>Es ist ein Fehler während des Vorbereitens der Lyrics für &quot;%1 - %2&quot; aufgetreten. Folgende Zeile konnte nicht verarbeitet werden: %3</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1464"/>
+        <location filename="../../song/QUSongFile.cpp" line="1459"/>
         <source>Error while preparing lyrics for %1 - %2. Songs may not start with a line break.</source>
         <translation>Es ist ein Fehler während des Vorbereitens der Lyrics für &quot;%1 - %2&quot; aufgetreten. Lieder dürfen nicht mit einem Zeilenumbruch beginnen.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1534"/>
+        <location filename="../../song/QUSongFile.cpp" line="1529"/>
         <source>More than one score file found for &quot;%1 - %2&quot;. Only one will be used.</source>
         <translation>Mehr als eine Punktedatei gefunden für &quot;%1 - %2&quot;. Nur eine wird benutzt.</translation>
     </message>
@@ -5205,7 +5210,7 @@ p, li { white-space: pre-wrap; }
         <translation>#GAP wurde von %1 auf %2 geändert für &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1490"/>
+        <location filename="../../song/QUSongFile.cpp" line="1485"/>
         <source>Line too short: &quot;%1&quot;</source>
         <translation>Zeile zu kurz: &quot;%1&quot;</translation>
     </message>

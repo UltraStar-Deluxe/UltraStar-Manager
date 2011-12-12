@@ -2304,35 +2304,35 @@ Zadania</translation>
 <context>
     <name>QUMediaPlayer</name>
     <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="131"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="120"/>
         <source>[Media Player] The song &quot;%1 - %2&quot; has no valid audio file.</source>
         <translation>[Odtwarzacz Muzyki] Piosenka &quot;%1 - %2&quot; nie posiada działającego pliku z muzyką.</translation>
     </message>
     <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="314"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="303"/>
         <source>Bitrate: &lt;b&gt;%1&lt;/b&gt; kbit/s&lt;br&gt;Channels: &lt;b&gt;%2&lt;/b&gt;&lt;br&gt;Sample Rate: &lt;b&gt;%3&lt;/b&gt; kHz</source>
         <translation>Bitrate: &lt;b&gt;%1&lt;/b&gt; kbit/s&lt;br&gt;Kanały: &lt;b&gt;%2&lt;/b&gt;&lt;br&gt;Próbkowanie: &lt;b&gt;%3&lt;/b&gt; kHz</translation>
     </message>
     <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="323"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="312"/>
         <source>&lt;i&gt;Hit the play-button to fetch all songs of the selected list below. Then the first song will start playing.&lt;/i&gt;</source>
         <translation>&lt;i&gt;Naciśnij przycisk odtwarzania, aby odtworzyć wszystkie utwory z wybranej listy poniżej. Wtedy pierwszy utwór z listy zacznie grać.&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="324"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="313"/>
         <source>&lt;i&gt;Used for duet songs.&lt;/i&gt;</source>
         <translation>&lt;i&gt;Użyte dla duetów&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="370"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="375"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="382"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="387"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="394"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="399"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="406"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="411"/>
-        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="433"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="359"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="364"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="371"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="376"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="383"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="388"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="395"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="400"/>
+        <location filename="../../mediaplayer/QUMediaPlayer.cpp" line="422"/>
         <source>BASS error: %1</source>
         <translation>Błąd BASS: %1</translation>
     </message>
@@ -2683,7 +2683,12 @@ margin: 0;</translation>
 <context>
     <name>QUPdfReport</name>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="42"/>
+        <location filename="../../report/QUPdfReport.cpp" line="78"/>
+        <source>Creating PDF report...</source>
+        <translation>Tworzenie raportu PDF...</translation>
+    </message>
+    <message>
+        <location filename="../../report/QUPdfReport.cpp" line="206"/>
         <source>Adding PDF report...done.</source>
         <translation>Dodawanie raportu PDF... Skończone.</translation>
     </message>
@@ -4953,22 +4958,22 @@ p, li { white-space: pre-wrap; }
         <translation>Plik piosenki zmieniony: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1385"/>
+        <location filename="../../song/QUSongFile.cpp" line="1380"/>
         <source>Primary song file changed from &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Podstawowy plik piosenki zmieniony z &quot;%1&quot; na &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1448"/>
+        <location filename="../../song/QUSongFile.cpp" line="1443"/>
         <source>Error while preparing lyrics for %1 - %2. Could not parse the following line: %3</source>
         <translation>Błąd podczas przygotowywania teksty piosenki dla %1 - %2. Nie można przetworzyć następującej linijki: %3</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1464"/>
+        <location filename="../../song/QUSongFile.cpp" line="1459"/>
         <source>Error while preparing lyrics for %1 - %2. Songs may not start with a line break.</source>
         <translation>Błąd podczas przygotowywania teksty piosenki dla %1 - %2. Utwory nie może zaczynać się od końcowej linii.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1534"/>
+        <location filename="../../song/QUSongFile.cpp" line="1529"/>
         <source>More than one score file found for &quot;%1 - %2&quot;. Only one will be used.</source>
         <translation>Więcej niż jeden wynik dla pliku %1 - %2&quot;. Tylko jeden będzie użyty.</translation>
     </message>
@@ -4983,7 +4988,7 @@ p, li { white-space: pre-wrap; }
         <translation>%1 kodowanie wyjściowe jest NIE wystarczające. Użyj UTF8 dla pliku piosenki: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1490"/>
+        <location filename="../../song/QUSongFile.cpp" line="1485"/>
         <source>Line too short: &quot;%1&quot;</source>
         <translation>Za krótka linia: &quot;%1&quot;</translation>
     </message>

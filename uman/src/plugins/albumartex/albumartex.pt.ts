@@ -37,7 +37,7 @@
     <message>
         <location filename="../shared2/QUHttpCollector.cpp" line="40"/>
         <source>Could not get covers for &quot;%1 - %2&quot;. HTTP connection is busy.</source>
-        <translation>Não foi possível obter capas para &quot;%1 - %2&quot;. Conexão HTTP está ocupada.</translation>
+        <translation>Não foi possível obter capas para &quot;%1 - %2&quot;. Ligação HTTP está ocupada.</translation>
     </message>
     <message>
         <location filename="../shared2/QUHttpCollector.cpp" line="61"/>

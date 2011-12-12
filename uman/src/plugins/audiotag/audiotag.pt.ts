@@ -7,25 +7,25 @@
         <location filename="language.h" line="1"/>
         <source>Change #ARTIST via ID3 tag from audio file</source>
         <oldsource>Change #ARTIST via ID3 tag from audio file.</oldsource>
-        <translation type="unfinished">Alterar #ARTIST via etiqueta ID3 do ficheiro de audio.</translation>
+        <translation>Alterar #ARTIST via etiqueta ID3 do ficheiro de audio</translation>
     </message>
     <message>
         <location filename="language.h" line="2"/>
         <source>Change #TITLE via ID3 tag from audio file</source>
         <oldsource>Change #TITLE via ID3 tag from audio file.</oldsource>
-        <translation type="unfinished">Alterar #TITLE via etiqueta ID3 do ficheiro de audio.</translation>
+        <translation>Alterar #TITLE via etiqueta ID3 do ficheiro de audio</translation>
     </message>
     <message>
         <location filename="language.h" line="3"/>
         <source>Change #TITLE via ID3 tag from audio file, append &quot;[VIDEO]&quot; if video present</source>
         <oldsource>Change #TITLE via ID3 tag from audio file. Append &quot;[VIDEO]&quot; if video present.</oldsource>
-        <translation type="unfinished">Alterar #TITLE via etiqueta ID3 do ficheiro de audio. Adicionar &quot;[VIDEO]&quot; se existir.</translation>
+        <translation>Alterar #TITLE via etiqueta ID3 do ficheiro de audio, anexando &quot;[VIDEO]&quot; se existir</translation>
     </message>
     <message>
         <location filename="language.h" line="4"/>
         <source>Change #TITLE, append &quot;[VIDEO]&quot; if video present</source>
         <oldsource>Change #TITLE. Append &quot;[VIDEO]&quot; if video present.</oldsource>
-        <translation type="unfinished">Alterar #TITLE . Adicionar &quot;[VIDEO]&quot; se existir.</translation>
+        <translation>Alterar #TITLE , anexando &quot;[VIDEO]&quot; se existir</translation>
     </message>
     <message>
         <location filename="language.h" line="5"/>
@@ -37,22 +37,22 @@
         <location filename="language.h" line="6"/>
         <source>Change #TITLE, remove [...] tags</source>
         <oldsource>Change #TITLE. Remove [...]-Tags.</oldsource>
-        <translation type="unfinished">Alterar #TITLE. Remover [...]-Etiquetas.</translation>
+        <translation>Alterar #TITLE, remover etiquetas [...]</translation>
     </message>
     <message>
         <location filename="language.h" line="8"/>
         <source>Change #TITLE, append &quot;[KARAOKE]&quot; if song is karaoke</source>
-        <translation type="unfinished"></translation>
+        <translation>Alterar #TITLE , anexando &quot;[KARAOKE]&quot; se canção é karaoke</translation>
     </message>
     <message>
         <location filename="language.h" line="10"/>
         <source>Change #YEAR via ID3 tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Alterar #YEAR via etiqueta ID3</translation>
     </message>
     <message>
         <location filename="language.h" line="13"/>
         <source>Write #BACKGROUND even without existing image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escrever #BACKGROUND, mesmo sem ficheiro de imagem existente</translation>
     </message>
     <message>
         <source>Change #GENRE via ID3 tag.</source>
@@ -62,7 +62,7 @@
         <location filename="language.h" line="9"/>
         <source>Change #GENRE via ID3 tag</source>
         <oldsource>Change #YEAR via ID3 tag.</oldsource>
-        <translation type="unfinished">Alterar #YEAR via etiqueta ID3.</translation>
+        <translation>Alterar #GENRE via etiqueta ID3</translation>
     </message>
     <message>
         <location filename="language.h" line="11"/>
@@ -106,7 +106,7 @@
     <message>
         <location filename="QUAudioTagTaskFactory.cpp" line="10"/>
         <source>Song/ID3 Tag Tasks</source>
-        <translation>Tarefas Canção/etiquetaID3</translation>
+        <translation>Tarefas Canção/etiqueta ID3</translation>
     </message>
     <message>
         <location filename="QUAudioTagTaskFactory.cpp" line="14"/>
@@ -150,7 +150,7 @@
     <message>
         <location filename="../shared/QUSmartSetting.cpp" line="30"/>
         <source>Reset to default value.</source>
-        <translation>Reset para os valores por padrão.</translation>
+        <translation>Repor para os valores padrão.</translation>
     </message>
 </context>
 <context>
@@ -173,12 +173,12 @@
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="8"/>
         <source>Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificar</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="14"/>
         <source>Lets you negate the selected condition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Permite negar a condição seleccionada.</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="15"/>
@@ -193,7 +193,7 @@
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="17"/>
         <source>Simple text for static source data or a default value&lt;br&gt;if the dynamic source data is &lt;b&gt;not available&lt;/b&gt;.</source>
-        <translation>Texto simples para fonte de dados estático ou um valor padrão&lt;br&gt;se a fonte de dados dinâmica está &lt;b&gt; indisponível &lt;/b&gt;.</translation>
+        <translation>Texto simples para fonte de dados estático ou um valor padrão&lt;br&gt;se a fonte de dados dinâmica está &lt;b&gt;indisponível&lt;/b&gt;.</translation>
     </message>
 </context>
 <context>
@@ -201,7 +201,7 @@
     <message>
         <location filename="../shared/QUTaskDialog.ui" line="14"/>
         <source>Edit Rename Task</source>
-        <translation>Tarefa Editar Renomear</translation>
+        <translation>Editar Tarefa Renomear</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDialog.ui" line="122"/>
@@ -250,7 +250,7 @@
     <message>
         <location filename="../shared/QUTaskDialog.ui" line="329"/>
         <source>The target specifies the object on which the renaming will be done.</source>
-        <translation>A target especifica o objeto no qual a mudança de nome será feito.</translation>
+        <translation>A target especifica o objecto no qual a mudança de nome será feito.</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDialog.ui" line="333"/>

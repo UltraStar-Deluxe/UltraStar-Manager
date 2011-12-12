@@ -19,7 +19,7 @@
     <message>
         <location filename="QUFreeCoversSource.h" line="17"/>
         <source>The cd covers archive. No uncompressed covers.</source>
-        <translation>Capa  CD  arquivo. Capa não descompactada.</translation>
+        <translation>Ficheiro Capa CD. Capa não descompactada.</translation>
     </message>
 </context>
 <context>
@@ -27,7 +27,7 @@
     <message>
         <location filename="../shared2/QUHttpCollector.cpp" line="40"/>
         <source>Could not get covers for &quot;%1 - %2&quot;. HTTP connection is busy.</source>
-        <translation>Impossível obter capas para &quot;%1 - %2&quot;. Conexão HTTP ocupada.</translation>
+        <translation>Impossível obter capas para &quot;%1 - %2&quot;. Ligação HTTP ocupada.</translation>
     </message>
     <message>
         <location filename="../shared2/QUHttpCollector.cpp" line="61"/>

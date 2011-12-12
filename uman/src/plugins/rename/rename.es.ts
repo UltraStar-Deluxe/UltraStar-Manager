@@ -21,7 +21,7 @@
     <message>
         <location filename="language.h" line="4"/>
         <source>Songs will be organized in subdirectories by their genres.</source>
-        <translation>Las canciones serán organizadas en subdirectorios por género.</translation>
+        <translation>Las canciones son organizadas en subdirectorios por género.</translation>
     </message>
     <message>
         <location filename="language.h" line="5"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="language.h" line="6"/>
         <source>Songs will be organized in subdirectories by their edition.</source>
-        <translation>Las canciones serán organizadas en subdirectorios por edición.</translation>
+        <translation>Las canciones son organizadas en subdirectorios por edición.</translation>
     </message>
     <message>
         <location filename="language.h" line="7"/>
@@ -41,7 +41,7 @@
     <message>
         <location filename="language.h" line="8"/>
         <source>Songs will be organized in subdirectories by their artist.</source>
-        <translation>Las canciones serán organizadas en subdirectorios por artista.</translation>
+        <translation>Las canciones son organizadas en subdirectorios por artista.</translation>
     </message>
     <message>
         <location filename="language.h" line="9"/>
@@ -51,7 +51,7 @@
     <message>
         <location filename="language.h" line="10"/>
         <source>Songs will be organized in subdirectories by their language.</source>
-        <translation>Las canciones serán organizadas en subdirectorios por idioma.</translation>
+        <translation>Las canciones son organizadas en subdirectorios por idioma.</translation>
     </message>
     <message>
         <location filename="language.h" line="11"/>
@@ -61,7 +61,7 @@
     <message>
         <location filename="language.h" line="12"/>
         <source>Songs will be organized in subdirectories by their artist and album.&lt;br&gt;&lt;b&gt;You need the custom tag #ALBUM for this task.&lt;/b&gt;</source>
-        <translation>Las canciones serán organizadas en subdirectorios por artista y álbum.&lt;br&gt;&lt;b&gt;Necesitas la etiqueta personalizada #ALBUM para esta tarea.&lt;/b&gt;</translation>
+        <translation>Las canciones son organizadas en subdirectorios por artista y álbum.&lt;br&gt;&lt;b&gt;Necesitas la etiqueta personalizada #ALBUM para esta tarea.&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="language.h" line="13"/>
@@ -77,7 +77,7 @@
     <message>
         <location filename="language.h" line="15"/>
         <source>Looks for &lt;b&gt;[SC]&lt;/b&gt; in the &lt;b&gt;#EDITION&lt;/b&gt; tag to find out whether it is checked or not.&lt;br&gt;&lt;br&gt;Other folder tags like &lt;b&gt;[KARAOKE]&lt;/b&gt; will be appended to the end if present.</source>
-        <translation>Busca &lt;b&gt;[SC]&lt;/b&gt; en la etiqueta &lt;b&gt;#EDITION&lt;/b&gt; para saber si está revisada o no.&lt;br&gt;&lt;br&gt;Otras etiquetas de carpeta como &lt;b&gt;[KARAOKE]&lt;/b&gt; se añadirán al final si existen.</translation>
+        <translation>Busca &lt;b&gt;[SC]&lt;/b&gt; en la etiqueta &lt;b&gt;#EDITION&lt;/b&gt; para saber si está revisada o no.&lt;br&gt;&lt;br&gt;Otras etiquetas de carpeta como &lt;b&gt;[KARAOKE]&lt;/b&gt; se añaden al final si existen.</translation>
     </message>
     <message>
         <location filename="language.h" line="16"/>
@@ -88,7 +88,7 @@
     <message>
         <location filename="language.h" line="17"/>
         <source>Rename songtext file to &quot;Artist - Title.*&quot; and use &quot;txd&quot; extension for duets</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar nombre del archivo de texto a &quot;Artista - Título.*&quot; y usar la extensión &quot;txd&quot; para duetos</translation>
     </message>
     <message>
         <location filename="language.h" line="18"/>
@@ -103,7 +103,7 @@
     <message>
         <location filename="language.h" line="20"/>
         <source>Rename the cover file to a proper schema.&lt;br&gt;File endings will be preserved.</source>
-        <translation>Renombrar la carátula como un esquema adecuado.&lt;br&gt;Terminaciones de archivo serán conservadas.</translation>
+        <translation>Renombra la carátula con un formato ordenado.&lt;br&gt;Las terminaciones de archivo son conservadas.</translation>
     </message>
     <message>
         <location filename="language.h" line="21"/>
@@ -118,12 +118,12 @@
     <message>
         <location filename="language.h" line="23"/>
         <source>Rename video to &quot;Artist - Title [VD#*].*&quot; considering #VIDEOGAP value</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar nombre del video a &quot;Artista - Título [VD#*].*&quot; considerando el valor de #VIDEOGAP</translation>
     </message>
     <message>
         <location filename="language.h" line="24"/>
         <source>Uses &lt;b&gt;#VIDEOGAP:0&lt;/b&gt; if tag not present.</source>
-        <translation>Usar &lt;b&gt;#VIDEOGAP:0&lt;/b&gt; si la etiqueta no está.</translation>
+        <translation>Usa &lt;b&gt;#VIDEOGAP:0&lt;/b&gt; si la etiqueta no está.</translation>
     </message>
 </context>
 <context>
@@ -219,12 +219,12 @@
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="8"/>
         <source>Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificador</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="14"/>
         <source>Lets you negate the selected condition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Te permite negar la condición seleccionada.</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="15"/>

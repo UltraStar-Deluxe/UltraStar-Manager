@@ -29,7 +29,7 @@
     <message>
         <location filename="QUPreparatoryTask.cpp" line="21"/>
         <source>&lt;b&gt;#MP3&lt;/b&gt; ... first audio file found.&lt;br&gt;&lt;b&gt;#COVER&lt;/b&gt; ... first picture file, following a pattern.&lt;br&gt;&lt;b&gt;#BACKGROUND&lt;/b&gt; ... first picture file, following a pattern.&lt;br&gt;&lt;b&gt;#VIDEO&lt;/b&gt; ... first video file found.&lt;br&gt;&lt;br&gt;Does not reset tags that have already been set.</source>
-        <translation>&lt;b&gt;#MP3&lt;/b&gt; ... primeiro ficheiro audio encontrado.&lt;br&gt;&lt;b&gt;#COVER&lt;/b&gt; ... primeiro ficheiro imagem, seguindo um padrão.&lt;br&gt;&lt;b&gt;#BACKGROUND&lt;/b&gt; ... primeiro ficheiro imagem, seguindo um padrão.&lt;br&gt;&lt;b&gt;#VIDEO&lt;/b&gt; ... primeiro ficheiro video encontrado.&lt;br&gt;&lt;br&gt;Não fazer reset a etiquetas já definidas.</translation>
+        <translation>&lt;b&gt;#MP3&lt;/b&gt; ... primeiro ficheiro audio encontrado.&lt;br&gt;&lt;b&gt;#COVER&lt;/b&gt; ... primeiro ficheiro imagem, seguindo um padrão.&lt;br&gt;&lt;b&gt;#BACKGROUND&lt;/b&gt; ... primeiro ficheiro imagem, seguindo um padrão.&lt;br&gt;&lt;b&gt;#VIDEO&lt;/b&gt; ... primeiro ficheiro video encontrado.&lt;br&gt;&lt;br&gt;Não repor etiquetas já definidas.</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="29"/>
@@ -50,13 +50,13 @@
         <location filename="QUPreparatoryTask.cpp" line="38"/>
         <source>Round #GAP to nearest integer</source>
         <oldsource>Round #GAP to nearest integer.</oldsource>
-        <translation type="unfinished">Arredondar #GAP para o inteiro mais próximo.</translation>
+        <translation>Arredondar #GAP para o inteiro mais próximo</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="42"/>
         <source>Capitalize #TITLE tag</source>
         <oldsource>Fix capitalization of #TITLE tag</oldsource>
-        <translation type="unfinished">Corrigir capitalização da etiqueta #TITLE</translation>
+        <translation>Capitalizar etiqueta #TITLE</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="43"/>
@@ -77,27 +77,27 @@
         <location filename="QUPreparatoryTask.cpp" line="93"/>
         <location filename="QUPreparatoryTask.cpp" line="94"/>
         <source>Pattern:</source>
-        <translation type="unfinished"></translation>
+        <translation>Padrão:</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="93"/>
         <source>(cover)</source>
-        <translation type="unfinished"></translation>
+        <translation>(capa)</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="94"/>
         <source>(background)</source>
-        <translation type="unfinished"></translation>
+        <translation>(fundo)</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="101"/>
         <source>Buffer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Buffer:</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="101"/>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>segundos</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="104"/>
@@ -118,7 +118,7 @@
     <message>
         <location filename="QUPreparatoryTask.cpp" line="148"/>
         <source>Capitalization fix not applicable due to non-english song: &quot;%1 - %2&quot;. Try to configure the task.</source>
-        <translation>Corrigir capitalização não aplicáve, devido às canções não-inglesas: &quot;%1 -%2&quot;. Tente configurar a tarefa.</translation>
+        <translation>Corrigir capitalização não aplicável, devido às canções não-inglesas: &quot;%1 -%2&quot;. Tente configurar a tarefa.</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="156"/>
@@ -167,7 +167,7 @@
     <message>
         <location filename="../shared/QUSmartSetting.cpp" line="30"/>
         <source>Reset to default value.</source>
-        <translation>Reset para o valor padrão.</translation>
+        <translation>Repor para o valor padrão.</translation>
     </message>
 </context>
 </TS>

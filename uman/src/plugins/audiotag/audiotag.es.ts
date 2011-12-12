@@ -25,7 +25,7 @@
         <location filename="language.h" line="4"/>
         <source>Change #TITLE, append &quot;[VIDEO]&quot; if video present</source>
         <oldsource>Change #TITLE. Append &quot;[VIDEO]&quot; if video present.</oldsource>
-        <translation>Cambiar #TITLE. Añadir &quot;[VIDEO]&quot; si existe un video</translation>
+        <translation>Cambiar #TITLE, añadir &quot;[VIDEO]&quot; si existe un video</translation>
     </message>
     <message>
         <location filename="language.h" line="5"/>
@@ -37,22 +37,22 @@
         <location filename="language.h" line="6"/>
         <source>Change #TITLE, remove [...] tags</source>
         <oldsource>Change #TITLE. Remove [...]-Tags.</oldsource>
-        <translation>Cambiar #TITLE. Quitar etiquetas [...]</translation>
+        <translation>Cambiar #TITLE, quitar etiquetas [...]</translation>
     </message>
     <message>
         <location filename="language.h" line="8"/>
         <source>Change #TITLE, append &quot;[KARAOKE]&quot; if song is karaoke</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar #TITLE, añadir &quot;[KARAOKE]&quot; si la canción es un karaoke</translation>
     </message>
     <message>
         <location filename="language.h" line="10"/>
         <source>Change #YEAR via ID3 tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar #YEAR con la etiqueta ID3</translation>
     </message>
     <message>
         <location filename="language.h" line="13"/>
         <source>Write #BACKGROUND even without existing image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Agregar #BACKGROUND aunque no exista un archivo de imagen</translation>
     </message>
     <message>
         <source>Change #GENRE via ID3 tag.</source>
@@ -67,7 +67,7 @@
     <message>
         <location filename="language.h" line="11"/>
         <source>Change #ALBUM via ID3 tag</source>
-        <translation>Cambiar #ALBUM mediante etiqueta ID3.</translation>
+        <translation>Cambiar #ALBUM mediante etiqueta ID3</translation>
     </message>
     <message>
         <location filename="language.h" line="12"/>
@@ -98,7 +98,7 @@
     <message>
         <location filename="QUAudioTagTaskDialog.cpp" line="33"/>
         <source>Add Song/ID3 Tag Task</source>
-        <translation>Agregar tarea de etiqueta Canción/ID3.</translation>
+        <translation>Agregar tarea de etiqueta Canción/ID3</translation>
     </message>
 </context>
 <context>
@@ -106,12 +106,12 @@
     <message>
         <location filename="QUAudioTagTaskFactory.cpp" line="10"/>
         <source>Song/ID3 Tag Tasks</source>
-        <translation>Tareas de etiqueta Canción/ID3.</translation>
+        <translation>Tareas de etiqueta Canción/ID3</translation>
     </message>
     <message>
         <location filename="QUAudioTagTaskFactory.cpp" line="14"/>
         <source>Song/ID3 Tag Task</source>
-        <translation>Tarea de etiqueta Canción/ID3.</translation>
+        <translation>Tarea de etiqueta Canción/ID3</translation>
     </message>
     <message>
         <location filename="QUAudioTagTaskFactory.cpp" line="18"/>
@@ -173,12 +173,12 @@
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="8"/>
         <source>Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificador</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="14"/>
         <source>Lets you negate the selected condition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Te permite negar la condición seleccionada.</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="15"/>
@@ -240,7 +240,7 @@
     <message>
         <location filename="../shared/QUTaskDialog.ui" line="171"/>
         <source>T&amp;oolTip</source>
-        <translation type="unfinished"></translation>
+        <translation>Gl&amp;obo de Sugerencia</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDialog.ui" line="209"/>
@@ -250,7 +250,7 @@
     <message>
         <location filename="../shared/QUTaskDialog.ui" line="228"/>
         <source>Cup</source>
-        <translation type="unfinished"></translation>
+        <translation>Taza</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDialog.ui" line="256"/>
@@ -280,7 +280,7 @@
     <message>
         <location filename="../shared/QUTaskDialog.ui" line="363"/>
         <source>&amp;Schema</source>
-        <translation type="unfinished"></translation>
+        <translation>E&amp;squema</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDialog.ui" line="563"/>

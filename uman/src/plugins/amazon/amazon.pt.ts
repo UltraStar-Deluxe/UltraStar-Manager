@@ -39,7 +39,7 @@
     <message>
         <location filename="QUAmazonImageSource.h" line="17"/>
         <source>Get song covers from Amazon.</source>
-        <translation>Obtenha as capas das canções através da Amazon.</translation>
+        <translation>Obter as capas das canções através da Amazon.</translation>
     </message>
 </context>
 <context>
@@ -47,7 +47,7 @@
     <message>
         <location filename="../shared2/QUHttpCollector.cpp" line="40"/>
         <source>Could not get covers for &quot;%1 - %2&quot;. HTTP connection is busy.</source>
-        <translation>Impossível obter capas para &quot;%1 - %2&quot;. Conexão HTTP está ocupada.</translation>
+        <translation>Impossível obter capas para &quot;%1 - %2&quot;. Ligação HTTP está ocupada.</translation>
     </message>
     <message>
         <location filename="../shared2/QUHttpCollector.cpp" line="61"/>

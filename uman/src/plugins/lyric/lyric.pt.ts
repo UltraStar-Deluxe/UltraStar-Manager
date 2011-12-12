@@ -16,32 +16,32 @@
     <message>
         <location filename="QULyricTask.cpp" line="20"/>
         <source>Moves spaces from the end of a syllable to the beginning of the next one. Trim the whole song line.</source>
-        <translation>Mover espaços do fim da sílaba  para o inicio da silaba seguinte. Arranjar todas as linhas da canção.</translation>
+        <translation>Mover espaços do fim da sílaba  para o inicio da sílaba seguinte. Arranjar todas as linhas da canção.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="24"/>
         <source>Increase low BPM values</source>
-        <translation type="unfinished"></translation>
+        <translation>Aumentar os valores para BPM baixos</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="25"/>
         <source>Doubles BPM value and all note timings while it is below a certain threshold.</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplicar o BPM e todos os tempos das notas enquanto ele estiver abaixo de um certo limite.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="29"/>
         <source>Capitalize first word of each song line</source>
-        <translation type="unfinished"></translation>
+        <translation>Capitalizar primeira palavra de cada linha da canção</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="33"/>
         <source>Normalize pitch values</source>
-        <translation type="unfinished"></translation>
+        <translation>Normalizar os valores dos tons</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="34"/>
         <source>Shifts all note pitches octavewise towards a zero mean.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mudar todos os tons de notas octavas para uma média de zero.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="38"/>
@@ -76,12 +76,12 @@
     <message>
         <location filename="QULyricTask.cpp" line="102"/>
         <source>Start:</source>
-        <translation type="unfinished"></translation>
+        <translation>Inicio:</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="104"/>
         <source>if BPM &lt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Se BPM &lt;</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="114"/>
@@ -118,17 +118,17 @@
     <message>
         <location filename="QULyricTask.cpp" line="271"/>
         <source>#BPM changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>#BPM alterado de %1 para %2 para &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="294"/>
         <source>Line capitalization fixed for &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Capitalização da linha corrigida para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="338"/>
         <source>Mean note pitch changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>A média de tons passou de %1 para %2 para &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="370"/>
@@ -195,7 +195,7 @@
     <message>
         <location filename="../shared/QUSmartSetting.cpp" line="30"/>
         <source>Reset to default value.</source>
-        <translation>Reset para o valor padrão.</translation>
+        <translation>Repor para o valor padrão.</translation>
     </message>
 </context>
 </TS>

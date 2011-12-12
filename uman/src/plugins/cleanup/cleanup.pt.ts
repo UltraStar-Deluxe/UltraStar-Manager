@@ -11,23 +11,43 @@
     <message>
         <location filename="QUCleanUpTask.cpp" line="14"/>
         <source>Every file which is not used by UltraStar will be deleted.&lt;br&gt;&lt;br&gt;&lt;b&gt;This cannot be undone!&lt;/b&gt;</source>
-        <translation>Todos os ficheiros que não são usados pelo UltraStar serão apagados.&lt;br&gt;&lt;br&gt;&lt;b&gt;A acção não pode ser desfeita!&lt;/b&gt;</translation>
+        <translation>Todos os ficheiros que não são usados pelo UltraStar serão eliminados.&lt;br&gt;&lt;br&gt;&lt;b&gt;A acção não pode ser desfeita!&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="18"/>
         <source>Clear invalid file-related tags</source>
-        <translation>Apagar etiquetas inválidas do ficheiro</translation>
+        <translation>Remover etiquetas inválidas do ficheiro</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="19"/>
         <source>Removes the value of invalid file-related tags so that they will not be saved into the song text file.&lt;br&gt;&lt;br&gt;This includes &lt;b&gt;#VIDEOGAP&lt;/b&gt; for invalid video files as well as &lt;b&gt;#START&lt;/b&gt; and &lt;b&gt;#END&lt;/b&gt; for invalid audio files.</source>
-        <translation>Remover o valor de ficheiro inválido relacionado com as etiquetas, de forma  a que eles não serão salvos no arquivo de texto da canção.&lt;br&gt;&lt;br&gt;Isto inclui &lt;b&gt; # VIDEOGAP&lt;/b&gt; para ficheiros de vídeo inválido, bem como &lt;b&gt;#START&lt;/b&gt; e &lt;b&gt;#END&lt;/b&gt; para ficheiros inválidos de áudio.</translation>
+        <translation>Remover o valor de ficheiro inválido, relacionado com as etiquetas, de forma  a que eles não serão guardados no ficheiro de texto da canção.&lt;br&gt;&lt;br&gt;Isto inclui &lt;b&gt; # VIDEOGAP&lt;/b&gt; para ficheiros de vídeo inválidos, bem como &lt;b&gt;#START&lt;/b&gt; e &lt;b&gt;#END&lt;/b&gt; para ficheiros inválidos de áudio.</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="25"/>
         <source>Remove #END tag</source>
         <oldsource>Remove #END tag.</oldsource>
-        <translation type="unfinished">Remover etiqueta #END.</translation>
+        <translation>Remover etiqueta #END</translation>
+    </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="53"/>
+        <source>Audio files</source>
+        <translation>Ficheiros de Audio</translation>
+    </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="54"/>
+        <source>Picture files</source>
+        <translation>Ficheiros de Imagem</translation>
+    </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="55"/>
+        <source>Video files</source>
+        <translation>Ficheiros de Video</translation>
+    </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="56"/>
+        <source>Pattern:</source>
+        <translation>Padrão:</translation>
     </message>
 </context>
 <context>
@@ -74,7 +94,7 @@
     <message>
         <location filename="../shared/QUSmartSetting.cpp" line="30"/>
         <source>Reset to default value.</source>
-        <translation>Reset para o valor padrão.</translation>
+        <translation>Repor para o valor padrão.</translation>
     </message>
 </context>
 </TS>

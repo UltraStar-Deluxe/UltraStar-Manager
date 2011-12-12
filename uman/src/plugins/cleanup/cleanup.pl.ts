@@ -29,6 +29,26 @@
         <oldsource>Remove #END tag.</oldsource>
         <translation>Usuwa etykietę #END</translation>
     </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="53"/>
+        <source>Audio files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="54"/>
+        <source>Picture files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="55"/>
+        <source>Video files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="56"/>
+        <source>Pattern:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QUCleanUpTaskFactory</name>

@@ -11,7 +11,7 @@
     <message>
         <location filename="language.h" line="2"/>
         <source>All songs will be in the UltraStar song folder with a custom subdirectory for each one.</source>
-        <translation>Todas as canções da directoria songs do Ultrastar vão ter um subdirectorio personalizado para cada uma.</translation>
+        <translation>Todas as canções da directoria de canções do Ultrastar vão ter um subdirectório personalizado para cada uma.</translation>
     </message>
     <message>
         <location filename="language.h" line="3"/>
@@ -72,23 +72,23 @@
         <location filename="language.h" line="14"/>
         <source>Rename directory to &quot;Artist - Title [VIDEO] [SC]&quot; if checked or video present, keep other folder tags</source>
         <oldsource>Rename directory to &quot;Artist - Title [VIDEO] [SC]&quot; if checked or video present. Keep other folder tags.</oldsource>
-        <translation type="unfinished">Renomear directório para &quot;Artista - Titulo [VIDEO] [SC]&quot; se verificada e video presente. Manter outras etiquetas da pasta.</translation>
+        <translation>Renomear directório para &quot;Artista - Titulo [VIDEO] [SC]&quot; se verificada e video presente. Manter outras etiquetas da pasta</translation>
     </message>
     <message>
         <location filename="language.h" line="15"/>
         <source>Looks for &lt;b&gt;[SC]&lt;/b&gt; in the &lt;b&gt;#EDITION&lt;/b&gt; tag to find out whether it is checked or not.&lt;br&gt;&lt;br&gt;Other folder tags like &lt;b&gt;[KARAOKE]&lt;/b&gt; will be appended to the end if present.</source>
-        <translation>Procura &lt;b&gt; [SC] &lt;/b&gt; na etiqueta &lt;b&gt;#EDITION&lt;/b&gt; para descobrir se ela está verificada ou não.&lt;br&gt;&lt;br&gt;Outras etiquetas da pasta como &lt;b&gt;[KARAOKE]&lt;/b&gt; será anexado ao final, se houver.</translation>
+        <translation>Procura &lt;b&gt; [SC] &lt;/b&gt; na etiqueta &lt;b&gt;#EDITION&lt;/b&gt; para descobrir se ela está verificada ou não.&lt;br&gt;&lt;br&gt;Outras etiquetas da pasta como &lt;b&gt;[KARAOKE]&lt;/b&gt; será anexado ao final, se existir.</translation>
     </message>
     <message>
         <location filename="language.h" line="16"/>
         <source>Rename songtext file to &quot;Artist - Title.*&quot;</source>
         <oldsource>Rename songtext file to &quot;Artist - Title.txt&quot;</oldsource>
-        <translation type="unfinished">Renomear ficheiro de texto da canção para &quot;Artista - Titulo.txt&quot;</translation>
+        <translation>Renomear ficheiro de texto da canção para &quot;Artista - Titulo.*&quot;</translation>
     </message>
     <message>
         <location filename="language.h" line="17"/>
         <source>Rename songtext file to &quot;Artist - Title.*&quot; and use &quot;txd&quot; extension for duets</source>
-        <translation type="unfinished"></translation>
+        <translation>Renomear ficheiro de texto da canção para &quot;Artista - Titulo.*&quot; e usar a extensão &quot;txd&quot; para duetos</translation>
     </message>
     <message>
         <location filename="language.h" line="18"/>
@@ -118,7 +118,7 @@
     <message>
         <location filename="language.h" line="23"/>
         <source>Rename video to &quot;Artist - Title [VD#*].*&quot; considering #VIDEOGAP value</source>
-        <translation type="unfinished"></translation>
+        <translation>Renomear video para &quot;Artista - Titulo [VD#*].*&quot; considerando o valor do #VIDEOGAP</translation>
     </message>
     <message>
         <location filename="language.h" line="24"/>
@@ -180,7 +180,7 @@
     <message>
         <location filename="QURenameTaskFactory.cpp" line="18"/>
         <source>Move or rename files and folders based on song data.</source>
-        <translation>Mover ou renomear ficheiros e pastas com base dos dados da canção.</translation>
+        <translation>Mover ou renomear ficheiros e pastas com base nos dados da canção.</translation>
     </message>
 </context>
 <context>
@@ -196,7 +196,7 @@
     <message>
         <location filename="../shared/QUSmartSetting.cpp" line="30"/>
         <source>Reset to default value.</source>
-        <translation>Reset para o valor padrão.</translation>
+        <translation>Repor para o valor padrão.</translation>
     </message>
 </context>
 <context>
@@ -219,12 +219,12 @@
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="8"/>
         <source>Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificar</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="14"/>
         <source>Lets you negate the selected condition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Permite negar a condição seleccionada.</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDataTable.cpp" line="15"/>
@@ -247,7 +247,7 @@
     <message>
         <location filename="../shared/QUTaskDialog.ui" line="14"/>
         <source>Edit Rename Task</source>
-        <translation>Tarefa Editar Renomear</translation>
+        <translation>Editar Tarefa Renomear</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDialog.ui" line="122"/>
@@ -296,7 +296,7 @@
     <message>
         <location filename="../shared/QUTaskDialog.ui" line="329"/>
         <source>The target specifies the object on which the renaming will be done.</source>
-        <translation>A target especifica o objeto no qual a mudança de nome será feito.</translation>
+        <translation>A target especifica o objecto no qual a mudança de nome será feito.</translation>
     </message>
     <message>
         <location filename="../shared/QUTaskDialog.ui" line="333"/>

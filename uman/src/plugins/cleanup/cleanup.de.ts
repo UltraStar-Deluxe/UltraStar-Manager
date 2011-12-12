@@ -29,6 +29,26 @@
         <oldsource>Remove #END tag.</oldsource>
         <translation>Entferne den #END-Tag</translation>
     </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="53"/>
+        <source>Audio files</source>
+        <translation>Audiodateien</translation>
+    </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="54"/>
+        <source>Picture files</source>
+        <translation>Bilddateien</translation>
+    </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="55"/>
+        <source>Video files</source>
+        <translation>Videodateien</translation>
+    </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="56"/>
+        <source>Pattern:</source>
+        <translation>Muster:</translation>
+    </message>
 </context>
 <context>
     <name>QUCleanUpTaskFactory</name>

@@ -16,18 +16,38 @@
     <message>
         <location filename="QUCleanUpTask.cpp" line="18"/>
         <source>Clear invalid file-related tags</source>
-        <translation>Eliminar etiquetas inválidas de las relacionadas a archivos</translation>
+        <translation>Eliminar etiquetas de archivo inválidas</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="19"/>
         <source>Removes the value of invalid file-related tags so that they will not be saved into the song text file.&lt;br&gt;&lt;br&gt;This includes &lt;b&gt;#VIDEOGAP&lt;/b&gt; for invalid video files as well as &lt;b&gt;#START&lt;/b&gt; and &lt;b&gt;#END&lt;/b&gt; for invalid audio files.</source>
-        <translation>Remueve el valor de etiquetas inválidas de las relacionadas a archivos, de modo que no sean guardadas en el archivo de texto de la cancion.&lt;br&gt;&lt;br&gt;Esto incluye &lt;b&gt;#VIDEOGAP&lt;/b&gt; para archivos de video invalidos, así como también &lt;b&gt;#START&lt;/b&gt; y &lt;b&gt;#END&lt;/b&gt; para archivos de audio inválidos.</translation>
+        <translation>Elimina etiquetas de archivo inválidas, de modo que no sean guardadas en el archivo de texto de la canción.&lt;br&gt;&lt;br&gt;Esto incluye &lt;b&gt;#VIDEOGAP&lt;/b&gt; para archivos de video inválidos, así como también &lt;b&gt;#START&lt;/b&gt; y &lt;b&gt;#END&lt;/b&gt; para archivos de audio inválidos.</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="25"/>
         <source>Remove #END tag</source>
         <oldsource>Remove #END tag.</oldsource>
         <translation>Eliminar la etiqueta #END</translation>
+    </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="53"/>
+        <source>Audio files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="54"/>
+        <source>Picture files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="55"/>
+        <source>Video files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUCleanUpTask.cpp" line="56"/>
+        <source>Pattern:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
