@@ -34,7 +34,9 @@ QUAboutDialog::QUAboutDialog(QWidget *parent): QDialog(parent) {
 	creditsText += QObject::tr("<b>French Translation</b>");
 	creditsText += "<br>Fred (Pinky)<br><br>";
 	creditsText += QObject::tr("<b>Spanish Translation</b>");
-	creditsText += "<br>Pantero<br><br>";
+	creditsText += "<br>Francisco Montero<br>";
+	creditsText += QObject::tr("e-mail:");
+	creditsText += " <a href=\"mailto:panchomillenium@gmail.com\">panchomillenium@gmail.com</a><br><br>";
 	creditsText += QObject::tr("<b>Portuguese Translation</b>");
 	creditsText += "<br>zup3r_vock<br><br>";
 	creditsText += QObject::tr("<b>Polish Translation</b>");
