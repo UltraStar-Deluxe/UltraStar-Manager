@@ -36,8 +36,8 @@ TASKS:
 * new task: capitalize first word of each line
 * new: allow inversion of conditions with "NOT" for scriptable tasks
 * new: task to change song files to "Artist - Title.*" and use "txd" as extension for duets (recommended)
-
 * Rock Band song directories are labeled with "[RB]" in rename tasks
+* change: pattern change for task assigning files automatically
 
 MONTY:
 * Monty knows about the new functions as well ;-)
@@ -45,6 +45,9 @@ MONTY:
 MENU:
 * set default input and output encoding for song files in Options
 * check for update feature (run once to allow automatic silent check on startup)
+
+REPORTS:
+* PDF report (experimental)
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
