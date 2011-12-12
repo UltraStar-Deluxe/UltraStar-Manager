@@ -90,8 +90,8 @@ QList<QUSmartSettingInterface*> QUPreparatoryTask::smartSettings() const {
 	if(_smartSettings.isEmpty()) {
 		switch(_mode) {
 		case AutoAssignFiles:
-			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_coverPattern", "\\[CO\\]|cove?r?", new QRegExpValidator(QRegExp(".*"), 0), tr("Pattern:"), tr("(cover)")));
-			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_backgroundPattern", "\\[BG\\]|back", new QRegExpValidator(QRegExp(".*"), 0), tr("Pattern:"), tr("(background)")));
+			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_coverPattern", "\\[CO\\]", new QRegExpValidator(QRegExp(".*"), 0), tr("Pattern:"), tr("(cover)")));
+			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_backgroundPattern", "\\[BG\\]", new QRegExpValidator(QRegExp(".*"), 0), tr("Pattern:"), tr("(background)")));
 			break;
 		case RemoveUnsupportedTags:
 			foreach(QString unsupportedTag, _unsupportedTags)
