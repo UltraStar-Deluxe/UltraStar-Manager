@@ -50,10 +50,10 @@ void QUCleanUpTask::startOn(QUSongInterface *song) {
 QList<QUSmartSettingInterface*> QUCleanUpTask::smartSettings() const {
 	if(_smartSettings.isEmpty())
 		if(_mode == UnusedFiles) {
-			_smartSettings.append(new QUSmartCheckBox("cleanup/unusedFiles_audio", "Audio files", true));
-			_smartSettings.append(new QUSmartCheckBox("cleanup/unusedFiles_picture", "Picture files", true));
-			_smartSettings.append(new QUSmartCheckBox("cleanup/unusedFiles_video", "Video files", true));
-			_smartSettings.append(new QUSmartInputCheck("cleanup/unusedFiles_pattern", "\\.xml|\\.sco", 0, "Pattern:"));
+			_smartSettings.append(new QUSmartCheckBox("cleanup/unusedFiles_audio", tr("Audio files"), true));
+			_smartSettings.append(new QUSmartCheckBox("cleanup/unusedFiles_picture", tr("Picture files"), true));
+			_smartSettings.append(new QUSmartCheckBox("cleanup/unusedFiles_video", tr("Video files"), true));
+			_smartSettings.append(new QUSmartInputCheck("cleanup/unusedFiles_pattern", "\\.xml|\\.sco", 0, tr("Pattern:")));
 		}
 	return _smartSettings;
 }
