@@ -27,7 +27,7 @@ QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<Q
 		_allPlaylists(allPlaylists)
 {
 	setupUi(this);
-	createPdfBtn->hide(); // PDF Report not implemented yet
+	//createPdfBtn->hide(); // PDF Report not implemented yet
 
 	infoTextLbl->setText(tr("Select the <b>columns</b> you want to see in the report. Drag & drop them to change their order. Songs of the <b>source</b> will be sorted alphabetically column by column.<br><br>You can <b>append and link</b> lyrics in HTML reports."));
 	radioAllSongs->setText(QString(tr("All Songs (%1)")).arg(allSongs.size()));
@@ -109,7 +109,7 @@ void QUReportDialog::initPlaylistCombo() {
 
 void QUReportDialog::createPdfReport() {
 	QSettings settings;
-	QFileInfo fi(QDir(settings.value("reportPath").toString()), "report.pdf");
+	QFileInfo fi(QDir(settings.value("reportPath").toString()), "Songlist.pdf");
 
 	fi.setFile(QFileDialog::getSaveFileName(this, tr("Save PDF Report"),
 		fi.filePath(),
