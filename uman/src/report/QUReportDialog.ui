@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>418</width>
-    <height>395</height>
+    <height>424</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -657,7 +657,7 @@
      <item>
       <widget class="QPushButton" name="doneBtn">
        <property name="text">
-        <string>OK</string>
+        <string>Close</string>
        </property>
        <property name="icon">
         <iconset resource="../resources/uman.qrc">
