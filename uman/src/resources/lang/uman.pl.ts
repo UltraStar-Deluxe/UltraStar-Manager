@@ -2684,21 +2684,21 @@ margin: 0;</translation>
 <context>
     <name>QUPdfReport</name>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="61"/>
+        <location filename="../../report/QUPdfReport.cpp" line="68"/>
         <source>Creating PDF report...</source>
         <translation>Tworzenie raportu PDF...</translation>
     </message>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="325"/>
+        <location filename="../../report/QUPdfReport.cpp" line="352"/>
         <source>yes</source>
-        <translation type="unfinished">Tak</translation>
+        <translation>Tak</translation>
     </message>
     <message>
         <source>no</source>
         <translation type="obsolete">Nie</translation>
     </message>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="340"/>
+        <location filename="../../report/QUPdfReport.cpp" line="367"/>
         <source>Adding PDF report...done.</source>
         <translation>Dodawanie raportu PDF... Skończone.</translation>
     </message>

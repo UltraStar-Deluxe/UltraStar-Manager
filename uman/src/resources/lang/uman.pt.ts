@@ -2340,21 +2340,21 @@ margin: 0;</translation>
 <context>
     <name>QUPdfReport</name>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="61"/>
+        <location filename="../../report/QUPdfReport.cpp" line="68"/>
         <source>Creating PDF report...</source>
         <translation>Criando relatório PDF...</translation>
     </message>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="325"/>
+        <location filename="../../report/QUPdfReport.cpp" line="352"/>
         <source>yes</source>
-        <translation type="unfinished">sim</translation>
+        <translation>sim</translation>
     </message>
     <message>
         <source>no</source>
         <translation type="obsolete">não</translation>
     </message>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="340"/>
+        <location filename="../../report/QUPdfReport.cpp" line="367"/>
         <source>Adding PDF report...done.</source>
         <translation>Adicionar relatório PDF...feito.</translation>
     </message>
@@ -3355,7 +3355,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.ui" line="660"/>
         <source>Close</source>
-        <translation type="unfinished">Fechar</translation>
+        <translation>Fechar</translation>
     </message>
     <message>
         <source>OK</source>

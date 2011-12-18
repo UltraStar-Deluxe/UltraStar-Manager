@@ -2809,12 +2809,12 @@ margin: 0;</source>
 <context>
     <name>QUPdfReport</name>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="61"/>
+        <location filename="../../report/QUPdfReport.cpp" line="68"/>
         <source>Creating PDF report...</source>
         <translation>Erzeuge PDF-Bericht...</translation>
     </message>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="325"/>
+        <location filename="../../report/QUPdfReport.cpp" line="352"/>
         <source>yes</source>
         <translation>ja</translation>
     </message>
@@ -2823,7 +2823,7 @@ margin: 0;</source>
         <translation type="obsolete">nein</translation>
     </message>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="340"/>
+        <location filename="../../report/QUPdfReport.cpp" line="367"/>
         <source>Adding PDF report...done.</source>
         <translation>Füge PDF-Bericht hinzu... fertig.</translation>
     </message>

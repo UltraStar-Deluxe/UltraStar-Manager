@@ -2388,12 +2388,12 @@ margin: 0;</source>
 <context>
     <name>QUPdfReport</name>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="61"/>
+        <location filename="../../report/QUPdfReport.cpp" line="68"/>
         <source>Creating PDF report...</source>
         <translation>Création du rapport PDF...</translation>
     </message>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="325"/>
+        <location filename="../../report/QUPdfReport.cpp" line="352"/>
         <source>yes</source>
         <translation>oui</translation>
     </message>
@@ -2402,7 +2402,7 @@ margin: 0;</source>
         <translation type="obsolete">non</translation>
     </message>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="340"/>
+        <location filename="../../report/QUPdfReport.cpp" line="367"/>
         <source>Adding PDF report...done.</source>
         <translation>Ajout au rapport PDF...effectué.</translation>
     </message>
