@@ -8,15 +8,19 @@ QUBooleanSongData::QUBooleanSongData(const QString &tag, QObject *parent): QUAbs
 	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/music.png"));
 		this->setDescription(tr("Audio file exists?"));
+		this->setID(AUDIO_EXISTS_COL);
 	} else if(QString::compare(_tag, COVER_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/cover.png"));
 		this->setDescription(tr("Cover file exists?"));
+		this->setID(COVER_EXISTS_COL);
 	} else if(QString::compare(_tag, BACKGROUND_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/background.png"));
 		this->setDescription(tr("Background file exists?"));
+		this->setID(BACKGROUND_EXISTS_COL);
 	} else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/video.png"));
 		this->setDescription(tr("Video file exists?"));
+		this->setID(VIDEO_EXISTS_COL);
 	}
 }
 

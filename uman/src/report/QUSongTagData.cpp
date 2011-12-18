@@ -7,27 +7,35 @@ QUSongTagData::QUSongTagData(const QString &tag, QObject *parent): QUAbstractRep
 	if(QString::compare(_tag, ARTIST_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/user.png"));
 		this->setDescription(tr("Artist"));
+		this->setID(ARTIST_COL);
 	} else if(QString::compare(_tag, TITLE_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/font.png"));
 		this->setDescription(tr("Title"));
+		this->setID(TITLE_COL);
 	} else if(QString::compare(_tag, LANGUAGE_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/language.png"));
 		this->setDescription(tr("Language"));
+		this->setID(LANGUAGE_COL);
 	} else if(QString::compare(_tag, EDITION_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/edition.png"));
 		this->setDescription(tr("Edition"));
+		this->setID(EDITION_COL);
 	} else if(QString::compare(_tag, GENRE_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/genre.png"));
 		this->setDescription(tr("Genre"));
+		this->setID(GENRE_COL);
 	} else if(QString::compare(_tag, YEAR_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/date.png"));
 		this->setDescription(tr("Year"));
+		this->setID(YEAR_COL);
 	} else if(QString::compare(_tag, CREATOR_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/creator.png"));
 		this->setDescription(tr("Creator"));
+		this->setID(CREATOR_COL);
 	} else if(QUSongSupport::availableCustomTags().contains(tag, Qt::CaseInsensitive)) {
 		this->setIcon(QIcon(":/bullets/bullet_star.png"));
 		this->setDescription(tag);
+		this->setID(CUSTOM_TAG_COL);
 	}
 }
 
