@@ -131,7 +131,7 @@ void QUProgressDialog::updateTime() {
 	if(secondsElapsed > 1 && secondsEstimated > 0) {
 		timeLbl->setText(tr("about %1").arg(timeLblText));
 	} else {
-		timeLbl->setText("Calculating...");
+		timeLbl->setText(tr("Calculating..."));
 	}
 
 	// show performance of current operation
