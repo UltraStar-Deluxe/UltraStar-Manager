@@ -23,16 +23,17 @@ public:
 
 private:
 	// vertical spacing
-	int _beforeLetterVSep;
-	int _afterLetterVSep;
-	int _beforeTopLevelEntryVSep;
-	int _afterTopLevelEntryVSep;
-	int _afterSubLevelEntryVSep;
+	int _subLevelToLetterVSep;
+	int _letterToTopLevelVSep;
+	int _topLevelToSubLevelVSep;
+	int _subLevelToSubLevelVSep;
+	int _subLevelToTopLevelVSep;
 
 	// horizontal spacing
 	int _subLevelEntryHIndent;
 	int _colHSep;
 
+	int _subLevelEntryHSep;
 	int _artistHSep;
 	int _titleHSep;
 	int _languageHSep;
@@ -40,10 +41,7 @@ private:
 	int _genreHSep;
 	int _yearHSep;
 	int _creatorHSep;
-	int _audioExistsHSep;
-	int _coverExistsHSep;
-	int _backgroundExistsHSep;
-	int _videoExistsHSep;
+	int _booleanHSep;
 	int _speedHSep;
 	int _lengthHSep;
 	int _songPathHSep;
