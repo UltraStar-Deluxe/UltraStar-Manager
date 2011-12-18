@@ -47,7 +47,7 @@ MENU:
 * check for update feature (run once to allow automatic silent check on startup)
 
 REPORTS:
-* PDF report (experimental)
+* PDF report
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
