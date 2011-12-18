@@ -10,6 +10,8 @@
 #define CHAR_UTF8_APPROX "\xe2\x89\x88"
 #define CHAR_UTF8_NEQUAL "\xe2\x89\xa0"
 #define CHAR_UTF8_DOT    "\xc2\xb7"
+#define CHAR_UTF8_CHECK  "\xe2\x9c\x93"
+#define CHAR_UTF8_BALLOT "\xe2\x9c\x97"
 
 // used for time comparison and fixing
 #define LOWER_TIME_BOUND_DEFAULT 15
