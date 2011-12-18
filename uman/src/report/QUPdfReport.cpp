@@ -19,11 +19,11 @@ QUPdfReport::QUPdfReport(
 		QObject *parent): QUAbstractReport(songFiles, reportDataList, fi, options, userData, parent)
 {
 	// vertical spacing
-	_letterToTopLevelVSep		= 200;
-	_topLevelToSubLevelVSep		= 180;
-	_subLevelToSubLevelVSep		= 180;
-	_subLevelToTopLevelVSep		= 200;
-	_subLevelToLetterVSep		= 400;
+	_letterToTopLevelVSep	= 200;
+	_topLevelToSubLevelVSep	= 180;
+	_subLevelToSubLevelVSep	= 180;
+	_subLevelToTopLevelVSep	= 200;
+	_subLevelToLetterVSep	= 400;
 
 	// horizontal spacing
 	_subLevelEntryHIndent	= 200;
