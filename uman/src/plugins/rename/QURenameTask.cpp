@@ -158,7 +158,7 @@ QStringList QURenameTask::filterUnknownTags(const QString &text) {
 	QStringList dirtyTags(text.split("[").filter("]"));
 	QStringList cleanTags;
 
-	QStringList knownTags(QString("sc video bg co karaoke ss").split(" "));
+	QStringList knownTags(QString("sc video bg co karaoke ss rb").split(" "));
 
 	foreach(QString tag, dirtyTags) {
 		bool keep = true;
