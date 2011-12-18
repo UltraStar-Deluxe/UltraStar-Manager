@@ -373,11 +373,11 @@ void QUSongItem::setTick(int column) {
 				// used for sorting
 				this->setData(column, Qt::UserRole, QVariant(img.width()));
 			} else {
-				int min_dimension = std::min(img.width(), img.height());
+				int min_dimension = qMin(img.width(), img.height());
 				if (min_dimension < QUSongSupport::mediumCoverQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_low_exclamation.png"));
 					this->setToolTip(column, QString(QObject::tr("Non-square low quality cover (%1 x %2).\nTry cropping to %3 x %3.")).arg(img.width()).arg(img.height()).arg(min_dimension));
-				} else if (std::min(img.width(), img.height()) < QUSongSupport::highCoverQuality()) {
+				} else if (qMin(img.width(), img.height()) < QUSongSupport::highCoverQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_medium_exclamation.png"));
 					this->setToolTip(column, QString(QObject::tr("Non-square medium quality cover (%1 x %2).\nTry cropping to %3 x %3.")).arg(img.width()).arg(img.height()).arg(min_dimension));
 				} else {

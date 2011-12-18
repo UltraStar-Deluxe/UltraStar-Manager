@@ -126,7 +126,7 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 	} else {
 		int firstTimestampP1 = song->melodyForSinger(QUSongLineInterface::first).first()->notes().first()->timestamp();
 		int firstTimestampP2 = song->melodyForSinger(QUSongLineInterface::second).first()->notes().first()->timestamp();
-		diff = std::min(firstTimestampP1, firstTimestampP2) - begin;
+		diff = qMin(firstTimestampP1, firstTimestampP2) - begin;
 	}
 
 	double gap = QVariant(song->gap().replace(",", ".")).toDouble();
