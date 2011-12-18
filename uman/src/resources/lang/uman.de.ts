@@ -798,105 +798,106 @@ Try cropping to %3 x %3.</source>
         <translation>&lt;b&gt;Spanische Übersetzung&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="38"/>
+        <location filename="../../QUAboutDialog.cpp" line="40"/>
         <source>&lt;b&gt;Portuguese Translation&lt;/b&gt;</source>
         <translation>&lt;b&gt;Portugiesische Übersetzung&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="40"/>
+        <location filename="../../QUAboutDialog.cpp" line="42"/>
         <source>&lt;b&gt;Polish Translation&lt;/b&gt;</source>
         <translation>&lt;b&gt;Polnische Übersetzung&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="42"/>
-        <location filename="../../QUAboutDialog.cpp" line="51"/>
-        <location filename="../../QUAboutDialog.cpp" line="57"/>
-        <location filename="../../QUAboutDialog.cpp" line="63"/>
-        <location filename="../../QUAboutDialog.cpp" line="69"/>
-        <location filename="../../QUAboutDialog.cpp" line="73"/>
-        <location filename="../../QUAboutDialog.cpp" line="77"/>
-        <location filename="../../QUAboutDialog.cpp" line="83"/>
-        <location filename="../../QUAboutDialog.cpp" line="90"/>
-        <location filename="../../QUAboutDialog.cpp" line="98"/>
+        <location filename="../../QUAboutDialog.cpp" line="44"/>
+        <location filename="../../QUAboutDialog.cpp" line="53"/>
+        <location filename="../../QUAboutDialog.cpp" line="59"/>
+        <location filename="../../QUAboutDialog.cpp" line="65"/>
+        <location filename="../../QUAboutDialog.cpp" line="71"/>
+        <location filename="../../QUAboutDialog.cpp" line="75"/>
+        <location filename="../../QUAboutDialog.cpp" line="79"/>
+        <location filename="../../QUAboutDialog.cpp" line="85"/>
+        <location filename="../../QUAboutDialog.cpp" line="92"/>
+        <location filename="../../QUAboutDialog.cpp" line="100"/>
         <source>Website:</source>
         <translation>Webseite:</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="46"/>
+        <location filename="../../QUAboutDialog.cpp" line="48"/>
         <source>&lt;b&gt;CSS Styles (HTML Report)&lt;/b&gt;</source>
         <translation>&lt;b&gt;CSS Styles (HTML-Bericht)&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="49"/>
+        <location filename="../../QUAboutDialog.cpp" line="51"/>
         <source>&lt;b&gt;Silk Icons&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="53"/>
-        <location filename="../../QUAboutDialog.cpp" line="59"/>
-        <location filename="../../QUAboutDialog.cpp" line="65"/>
-        <location filename="../../QUAboutDialog.cpp" line="79"/>
-        <location filename="../../QUAboutDialog.cpp" line="92"/>
+        <location filename="../../QUAboutDialog.cpp" line="55"/>
+        <location filename="../../QUAboutDialog.cpp" line="61"/>
+        <location filename="../../QUAboutDialog.cpp" line="67"/>
+        <location filename="../../QUAboutDialog.cpp" line="81"/>
+        <location filename="../../QUAboutDialog.cpp" line="94"/>
         <source>License:</source>
         <translation>Lizenz:</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="55"/>
+        <location filename="../../QUAboutDialog.cpp" line="57"/>
         <source>&lt;b&gt;Diagona Icons&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="61"/>
+        <location filename="../../QUAboutDialog.cpp" line="63"/>
         <source>&lt;b&gt;Fugue Icons&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="67"/>
+        <location filename="../../QUAboutDialog.cpp" line="69"/>
         <source>&lt;b&gt;Monty Icons&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="71"/>
+        <location filename="../../QUAboutDialog.cpp" line="73"/>
         <source>&lt;b&gt;Boomy Icons&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="75"/>
+        <location filename="../../QUAboutDialog.cpp" line="77"/>
         <source>&lt;b&gt;Tiny Animals Icons&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="81"/>
+        <location filename="../../QUAboutDialog.cpp" line="83"/>
         <source>&lt;b&gt;Milky Icons&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="85"/>
+        <location filename="../../QUAboutDialog.cpp" line="87"/>
         <source>&lt;b&gt;Graphical Compositions&lt;/b&gt;</source>
         <translation>Grafische Kompositionen</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="88"/>
+        <location filename="../../QUAboutDialog.cpp" line="90"/>
         <source>&lt;b&gt;Picture Flow&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="94"/>
+        <location filename="../../QUAboutDialog.cpp" line="96"/>
         <source>&lt;b&gt;HMAC-SHA2 Implementation&lt;/b&gt;</source>
         <translation>&lt;b&gt;HMAC-SHA2 Implementierung&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="96"/>
+        <location filename="../../QUAboutDialog.cpp" line="38"/>
+        <location filename="../../QUAboutDialog.cpp" line="98"/>
         <source>e-mail:</source>
         <translation>E-Mail:</translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="101"/>
+        <location filename="../../QUAboutDialog.cpp" line="103"/>
         <source>&lt;b&gt;Tester&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="103"/>
+        <location filename="../../QUAboutDialog.cpp" line="105"/>
         <source>&lt;b&gt;Special Thanks&lt;/b&gt;</source>
         <translation>&lt;b&gt;Besonderer Dank&lt;/b&gt;</translation>
     </message>
@@ -904,7 +905,7 @@ Try cropping to %3 x %3.</source>
 <context>
     <name>QUAboutDialog</name>
     <message>
-        <location filename="../../QUAboutDialog.cpp" line="116"/>
+        <location filename="../../QUAboutDialog.cpp" line="118"/>
         <source>Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;SVN: #%4, %5</source>
         <translation>Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;SVN: #%4, %5</translation>
     </message>
@@ -1066,27 +1067,27 @@ runterladen...</translation>
         <translation>Existiert eine Audio-Datei?</translation>
     </message>
     <message>
-        <location filename="../../report/QUBooleanSongData.cpp" line="13"/>
+        <location filename="../../report/QUBooleanSongData.cpp" line="14"/>
         <source>Cover file exists?</source>
         <translation>Existiert ein Cover?</translation>
     </message>
     <message>
-        <location filename="../../report/QUBooleanSongData.cpp" line="16"/>
+        <location filename="../../report/QUBooleanSongData.cpp" line="18"/>
         <source>Background file exists?</source>
         <translation>Existiert ein Hintergrund?</translation>
     </message>
     <message>
-        <location filename="../../report/QUBooleanSongData.cpp" line="19"/>
+        <location filename="../../report/QUBooleanSongData.cpp" line="22"/>
         <source>Video file exists?</source>
         <translation>Existiert ein Video?</translation>
     </message>
     <message>
-        <location filename="../../report/QUBooleanSongData.cpp" line="36"/>
+        <location filename="../../report/QUBooleanSongData.cpp" line="40"/>
         <source>yes</source>
         <translation>ja</translation>
     </message>
     <message>
-        <location filename="../../report/QUBooleanSongData.cpp" line="38"/>
+        <location filename="../../report/QUBooleanSongData.cpp" line="42"/>
         <source>no</source>
         <translation>nein</translation>
     </message>
@@ -2808,17 +2809,26 @@ margin: 0;</source>
 <context>
     <name>QUPdfReport</name>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="78"/>
+        <location filename="../../report/QUPdfReport.cpp" line="61"/>
         <source>Creating PDF report...</source>
         <translation>Erzeuge PDF-Bericht...</translation>
     </message>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="206"/>
+        <location filename="../../report/QUPdfReport.cpp" line="325"/>
+        <source>yes</source>
+        <translation>ja</translation>
+    </message>
+    <message>
+        <source>no</source>
+        <translation type="obsolete">nein</translation>
+    </message>
+    <message>
+        <location filename="../../report/QUPdfReport.cpp" line="340"/>
         <source>Adding PDF report...done.</source>
         <translation>Füge PDF-Bericht hinzu... fertig.</translation>
     </message>
     <message>
-        <location filename="../../report/QUPdfReport.h" line="18"/>
+        <location filename="../../report/QUPdfReport.h" line="21"/>
         <source>PDF Report</source>
         <translation>PDF-Bericht</translation>
     </message>
@@ -3647,6 +3657,11 @@ p, li { white-space: pre-wrap; }
         <translation>etwa %1</translation>
     </message>
     <message>
+        <location filename="../../support/QUProgressDialog.cpp" line="134"/>
+        <source>Calculating...</source>
+        <translation>Berechne...</translation>
+    </message>
+    <message>
         <source>%1:%2</source>
         <translation type="obsolete">%1:%2</translation>
     </message>
@@ -3661,7 +3676,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../support/QUProgressDialog.cpp" line="140"/>
         <source>&lt;b&gt;%1%2&lt;/b&gt; items/sec</source>
-        <translation>&lt;b&gt;%1%2&lt;/b&gt; Items/Sek.</translation>
+        <translation>&lt;b&gt;%1%2&lt;/b&gt; Einträge/Sek.</translation>
     </message>
     <message>
         <location filename="../../support/QUProgressDialog.ui" line="320"/>
@@ -3852,7 +3867,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Bericht speichern</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="145"/>
+        <location filename="../../report/QUReportDialog.cpp" line="146"/>
         <source>Website (*.htm *.html)</source>
         <translation></translation>
     </message>
@@ -3865,7 +3880,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Bericht konnte nicht erstellt werden.</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="175"/>
+        <location filename="../../report/QUReportDialog.cpp" line="176"/>
         <source>Report (*.txt)</source>
         <translation>Bericht (*.txt)</translation>
     </message>
@@ -3885,9 +3900,8 @@ p, li { white-space: pre-wrap; }
         <translation>Text-Bericht</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="660"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="obsolete">OK</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="32"/>
@@ -3905,52 +3919,57 @@ p, li { white-space: pre-wrap; }
         <translation>Sichtbare Songs (%1)</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="114"/>
+        <location filename="../../report/QUReportDialog.cpp" line="112"/>
+        <source>Songlist_%1.pdf</source>
+        <translation>Songliste_%1.pdf</translation>
+    </message>
+    <message>
+        <location filename="../../report/QUReportDialog.cpp" line="115"/>
         <source>Save PDF Report</source>
-        <translation></translation>
+        <translation>PDF-Bericht speichern</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="116"/>
+        <location filename="../../report/QUReportDialog.cpp" line="117"/>
         <source>PDF-Files (*.pdf)</source>
-        <translation></translation>
+        <translation>PDF-Dateien (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="131"/>
+        <location filename="../../report/QUReportDialog.cpp" line="132"/>
         <source>PDF report created successfully to: &quot;%1&quot;.</source>
-        <translation></translation>
+        <translation>PDF-Bericht wurde erfolgreich gespeichert unter: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="134"/>
+        <location filename="../../report/QUReportDialog.cpp" line="135"/>
         <source>PDF report could not be created.</source>
-        <translation></translation>
+        <translation>PDF-Bericht konnte nicht erstellt werden.</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="143"/>
+        <location filename="../../report/QUReportDialog.cpp" line="144"/>
         <source>Save HTML Report</source>
         <translation>HTML-Bericht speichern</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="161"/>
+        <location filename="../../report/QUReportDialog.cpp" line="162"/>
         <source>HTML report created successfully to: &quot;%1&quot;.</source>
         <translation>HTML-Bericht wurde erfolgreich gespeichert unter: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="164"/>
+        <location filename="../../report/QUReportDialog.cpp" line="165"/>
         <source>HTML report could not be created.</source>
         <translation>HTML-Bericht konnte nicht erstellt werden.</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="173"/>
+        <location filename="../../report/QUReportDialog.cpp" line="174"/>
         <source>Save Text Report</source>
         <translation>Text-Bericht speichern</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="190"/>
+        <location filename="../../report/QUReportDialog.cpp" line="191"/>
         <source>Text report created successfully to: &quot;%1&quot;.</source>
         <translation>Text-Bericht wurde erfolgreich gespeichert unter: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="193"/>
+        <location filename="../../report/QUReportDialog.cpp" line="194"/>
         <source>Text report could not be created.</source>
         <translation>Text-Bericht konnte nicht erstellt werden.</translation>
     </message>
@@ -4023,12 +4042,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.ui" line="525"/>
         <source>PDF Report</source>
-        <translation></translation>
+        <translation>PDF-Bericht</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.ui" line="561"/>
         <source>HTML Report</source>
         <translation>HTML-Bericht</translation>
+    </message>
+    <message>
+        <location filename="../../report/QUReportDialog.ui" line="660"/>
+        <source>Close</source>
+        <translation>Schließen</translation>
     </message>
     <message>
         <source>Plain Text Report</source>
@@ -5087,22 +5111,22 @@ p, li { white-space: pre-wrap; }
         <translation>Songdatei geändert: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1380"/>
+        <location filename="../../song/QUSongFile.cpp" line="1379"/>
         <source>Primary song file changed from &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Primärer Song geändert von &quot;%1&quot; auf &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1443"/>
+        <location filename="../../song/QUSongFile.cpp" line="1442"/>
         <source>Error while preparing lyrics for %1 - %2. Could not parse the following line: %3</source>
         <translation>Es ist ein Fehler während des Vorbereitens der Lyrics für &quot;%1 - %2&quot; aufgetreten. Folgende Zeile konnte nicht verarbeitet werden: %3</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1459"/>
+        <location filename="../../song/QUSongFile.cpp" line="1458"/>
         <source>Error while preparing lyrics for %1 - %2. Songs may not start with a line break.</source>
         <translation>Es ist ein Fehler während des Vorbereitens der Lyrics für &quot;%1 - %2&quot; aufgetreten. Lieder dürfen nicht mit einem Zeilenumbruch beginnen.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1529"/>
+        <location filename="../../song/QUSongFile.cpp" line="1528"/>
         <source>More than one score file found for &quot;%1 - %2&quot;. Only one will be used.</source>
         <translation>Mehr als eine Punktedatei gefunden für &quot;%1 - %2&quot;. Nur eine wird benutzt.</translation>
     </message>
@@ -5210,7 +5234,7 @@ p, li { white-space: pre-wrap; }
         <translation>#GAP wurde von %1 auf %2 geändert für &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1485"/>
+        <location filename="../../song/QUSongFile.cpp" line="1484"/>
         <source>Line too short: &quot;%1&quot;</source>
         <translation>Zeile zu kurz: &quot;%1&quot;</translation>
     </message>
@@ -5223,22 +5247,22 @@ p, li { white-space: pre-wrap; }
         <translation>Song-Pfad</translation>
     </message>
     <message>
-        <location filename="../../report/QUSongFileData.cpp" line="13"/>
+        <location filename="../../report/QUSongFileData.cpp" line="14"/>
         <source>Song File Path</source>
         <translation>Song-Pfad mit Dateiname</translation>
     </message>
     <message>
-        <location filename="../../report/QUSongFileData.cpp" line="16"/>
+        <location filename="../../report/QUSongFileData.cpp" line="18"/>
         <source>Relative Song File Path</source>
         <translation>Relativen Song-Pfad mit Dateiname</translation>
     </message>
     <message>
-        <location filename="../../report/QUSongFileData.cpp" line="19"/>
+        <location filename="../../report/QUSongFileData.cpp" line="22"/>
         <source>Length</source>
         <translation>Länge</translation>
     </message>
     <message>
-        <location filename="../../report/QUSongFileData.cpp" line="22"/>
+        <location filename="../../report/QUSongFileData.cpp" line="26"/>
         <source>Speed</source>
         <translation>Tempo</translation>
     </message>
@@ -5259,32 +5283,32 @@ p, li { white-space: pre-wrap; }
         <translation>Interpret</translation>
     </message>
     <message>
-        <location filename="../../report/QUSongTagData.cpp" line="12"/>
+        <location filename="../../report/QUSongTagData.cpp" line="13"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../../report/QUSongTagData.cpp" line="15"/>
+        <location filename="../../report/QUSongTagData.cpp" line="17"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../../report/QUSongTagData.cpp" line="18"/>
+        <location filename="../../report/QUSongTagData.cpp" line="21"/>
         <source>Edition</source>
         <translation>Edition</translation>
     </message>
     <message>
-        <location filename="../../report/QUSongTagData.cpp" line="21"/>
+        <location filename="../../report/QUSongTagData.cpp" line="25"/>
         <source>Genre</source>
         <translation>Genre</translation>
     </message>
     <message>
-        <location filename="../../report/QUSongTagData.cpp" line="24"/>
+        <location filename="../../report/QUSongTagData.cpp" line="29"/>
         <source>Year</source>
         <translation>Jahr</translation>
     </message>
     <message>
-        <location filename="../../report/QUSongTagData.cpp" line="27"/>
+        <location filename="../../report/QUSongTagData.cpp" line="33"/>
         <source>Creator</source>
         <translation>Ersteller</translation>
     </message>
