@@ -881,7 +881,7 @@ void QUMainWindow::saveLog() {
 		return;
 
 	QDir logDir = QDir(QCoreApplication::applicationDirPath()); logDir.mkdir("logs"); logDir.cd("logs");
-	QString filePath = QFileInfo(logDir, QString("%1.txt").arg(QDateTime::currentDateTime().toString("yyMMdd_hhmmss"))).filePath();
+	QString filePath = QFileInfo(logDir, QString("%1.txt").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd_hhmmss"))).filePath();
 	QFile file(filePath);
 
 	if(file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
@@ -938,7 +938,7 @@ void QUMainWindow::checkForUpdate(bool silent) {
 
 	QUrl url("http://uman.svn.sourceforge.net/viewvc/uman/uman/src/latest_version.xml");
 	QNetworkAccessManager *m_NetworkMngr = new QNetworkAccessManager(this);
-	QNetworkReply *reply= m_NetworkMngr->get(QNetworkRequest(url));
+	QNetworkReply *reply = m_NetworkMngr->get(QNetworkRequest(url));
 
 	QEventLoop loop;
 	connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
