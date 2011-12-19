@@ -83,7 +83,7 @@ void QUMonty::initMessages() {
 	messages << QObject::tr("The event log will be saved on exit in the application path.");
 	messages << QObject::tr("The header of the song tree has a context menu. Here you can show and hide columns. Presets offer a more convenient way to do this.");
 	messages << QObject::tr("You can display the lyrics of the currently selected song via <i>Ctrl+L</i>.");
-	messages << QObject::tr("The new-style menu can be collapsed with <i>Ctrl+F1</i>.");
+	//messages << QObject::tr("The new-style menu can be collapsed with <i>Ctrl+F1</i>.");
 	messages << QObject::tr("You can preview whole songs with the new <i>Media Player</i>! It's so cool. Selected songs, the whole song database or the current playlist can be played. You can sing and check the quality even without having to start UltraStar.");
 	messages << QObject::tr("If you right-click in the lyrics of the Media Player while a song is playing, you can jump to the lyrics editor and correct spelling errors and typos.");
 	messages << QObject::tr("You can jump to any position in a song in the Media Player.");
