@@ -495,9 +495,8 @@ Versuche es auf %1 x %3 zu beschneiden, um ein Widescreen Format zu erhalten.</t
         <translation>Mittels &lt;i&gt;Strg+L&lt;/i&gt; kannst du dir die Lyrics des aktuellen Songs anzeigen lassen.</translation>
     </message>
     <message>
-        <location filename="../../QUMonty.cpp" line="86"/>
         <source>The new-style menu can be collapsed with &lt;i&gt;Ctrl+F1&lt;/i&gt;.</source>
-        <translation>Das neue Menü kann mit &lt;i&gt;Strg+F1&lt;/i&gt; zusammengeklappt werden.</translation>
+        <translation type="obsolete">Das neue Menü kann mit &lt;i&gt;Strg+F1&lt;/i&gt; zusammengeklappt werden.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="87"/>

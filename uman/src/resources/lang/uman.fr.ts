@@ -373,9 +373,8 @@
         <translation>Vous pouvez afficher les paroles de la chanson actuelle via &lt;i&gt;Ctrl+L&lt;/i&gt;.</translation>
     </message>
     <message>
-        <location filename="../../QUMonty.cpp" line="86"/>
         <source>The new-style menu can be collapsed with &lt;i&gt;Ctrl+F1&lt;/i&gt;.</source>
-        <translation>Le nouveau style du menu peut être réduit avec &lt;i&gt;Ctrl+F1&lt;/i&gt;.</translation>
+        <translation type="obsolete">Le nouveau style du menu peut être réduit avec &lt;i&gt;Ctrl+F1&lt;/i&gt;.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="87"/>

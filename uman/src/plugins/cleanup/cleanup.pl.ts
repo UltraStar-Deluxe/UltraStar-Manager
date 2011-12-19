@@ -11,7 +11,7 @@
     <message>
         <location filename="QUCleanUpTask.cpp" line="14"/>
         <source>Every file which is not used by UltraStar will be deleted.&lt;br&gt;&lt;br&gt;&lt;b&gt;This cannot be undone!&lt;/b&gt;</source>
-        <translation>Wszystkie pliki które nie są używany przez UltraStar&apos;a zostaną usunięte.&lt;br&gt;&lt;br&gt;&lt;b&gt;Tej operacji nie da się cofnąć!&lt;/b&gt;</translation>
+        <translation>Wszystkie pliki które nie są używane przez UltraStar&apos;a zostaną usunięte.&lt;br&gt;&lt;br&gt;&lt;b&gt;Tej operacji nie da się cofnąć!&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="18"/>
@@ -32,17 +32,17 @@
     <message>
         <location filename="QUCleanUpTask.cpp" line="53"/>
         <source>Audio files</source>
-        <translation type="unfinished"></translation>
+        <translation>Pliki audio</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="54"/>
         <source>Picture files</source>
-        <translation type="unfinished"></translation>
+        <translation>Pliki graficzne</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="55"/>
         <source>Video files</source>
-        <translation type="unfinished"></translation>
+        <translation>Pliki video</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="56"/>

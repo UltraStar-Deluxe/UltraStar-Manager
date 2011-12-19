@@ -76,7 +76,7 @@
     <message>
         <location filename="../../QUMonty.cpp" line="36"/>
         <source>You want to know how many songs you have in your collection? Well, there are &lt;b&gt;%1 songs&lt;/b&gt;. Not bad at all.&lt;br&gt;&lt;br&gt;Do you have a cover, a background or a video for each one? No? Then you&apos;ve got a new task.</source>
-        <translation>¿Quieres saber cuántas canciones tienes en tu colección? Bueno, hay &lt;b&gt;%1 canciones&lt;/b&gt;. No está nada mal.&lt;br&gt;&lt;br&gt;¿Les has puesto una carátula, imagen de fono o video a cada una? ¿No? Entonces tienes una nueva tarea.</translation>
+        <translation>¿Quieres saber cuántas canciones tienes en tu colección? Bueno, hay &lt;b&gt;%1 canciones&lt;/b&gt;. No está nada mal.&lt;br&gt;&lt;br&gt;¿Les has puesto una carátula, imagen de fondo o video a cada una? ¿No? Entonces tienes cosas que hacer.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="37"/>
@@ -291,7 +291,7 @@
     <message>
         <location filename="../../QUMonty.cpp" line="79"/>
         <source>Playlists will be connected to the current song database. Whenever a song is changed, playlists will be updated automatically.&lt;br&gt;&lt;br&gt;Changed playlists need to be saved.</source>
-        <translation>Las listas de reproducción serán conectadas a la base de datos de canciones actual. Toda vez que una canción sea modificada, las listas de reproducción se actualizarán automáticamente.&lt;br&gt;&lt;br&gt;Cambios en listas de reproducción deben guardarse.</translation>
+        <translation>Las listas de reproducción serán vinculadas a la base de datos actual de canciones. Toda vez que una canción sea modificada, las listas de reproducción se actualizarán automáticamente.&lt;br&gt;&lt;br&gt;Los cambios en las listas de reproducción deben guardarse.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="80"/>
@@ -324,9 +324,8 @@
         <translation>Puedes mostrar la letra de la canción seleccionada mediante &lt;i&gt;Ctrl+L&lt;/i&gt;.</translation>
     </message>
     <message>
-        <location filename="../../QUMonty.cpp" line="86"/>
         <source>The new-style menu can be collapsed with &lt;i&gt;Ctrl+F1&lt;/i&gt;.</source>
-        <translation>El nuevo menú puede ser colapsado con &lt;i&gt;Ctrl+F1&lt;/i&gt;.</translation>
+        <translation type="obsolete">El nuevo menú puede ser colapsado con &lt;i&gt;Ctrl+F1&lt;/i&gt;.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="87"/>
@@ -2306,10 +2305,6 @@ margin: 0;</translation>
         <translation>sí</translation>
     </message>
     <message>
-        <source>no</source>
-        <translation type="obsolete">no</translation>
-    </message>
-    <message>
         <location filename="../../report/QUPdfReport.cpp" line="367"/>
         <source>Adding PDF report...done.</source>
         <translation>Agregando reporte en PDF...listo.</translation>
@@ -3231,7 +3226,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="112"/>
         <source>Songlist_%1.pdf</source>
-        <translation type="unfinished">Liste_de_canciones_%1.pdf</translation>
+        <translation type="unfinished">_%1.pdf</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="115"/>
@@ -3387,7 +3382,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.ui" line="660"/>
         <source>Close</source>
-        <translation>Cerrar</translation>
+        <translation type="unfinished">Cerrar</translation>
     </message>
     <message>
         <source>OK</source>
@@ -4685,12 +4680,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="130"/>
         <source>Audio</source>
-        <translation>Audio</translation>
+        <translation>Pista de Audio</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="132"/>
         <source>Shows length of audio file, if present.&lt;br&gt;&lt;br&gt;Can be reset through &lt;b&gt;#END&lt;/b&gt; tag.</source>
-        <translation>Muestra la duración un archivo de audio, si existe.&lt;br&gt;&lt;br&gt;Puede restablecerse con la etiqueta &lt;b&gt;#END&lt;/b&gt;.</translation>
+        <translation>Muestra la duración de la pista de audio, si existe.&lt;br&gt;&lt;br&gt;Puede restablecerse con la etiqueta &lt;b&gt;#END&lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="134"/>
@@ -4750,7 +4745,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="153"/>
         <source>Has relative timestamps.</source>
-        <translation>Las marcas de tiempo son relativas.</translation>
+        <translation>Muestra si los marcadores de tiempo son relativos.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="154"/>

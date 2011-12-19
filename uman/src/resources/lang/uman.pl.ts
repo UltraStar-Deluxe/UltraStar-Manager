@@ -177,12 +177,12 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="682"/>
         <source>%1 syllables per second</source>
-        <translation>%1 sylab na sekunde</translation>
+        <translation>%1 sylab na sekundę</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="22"/>
         <source>If you double-click the cell where the row of an &lt;i&gt;audio file&lt;/i&gt; and the &lt;i&gt;audio column&lt;/i&gt; cross, you can immediately set your song to use this audio file in UltraStar.&lt;br&gt;&lt;br&gt;This also works for cover and background images as well as video files.</source>
-        <translation>Jeśli masz więcej utworów audio w katalogu i klikniesz dwukrotnie na the miejsce łączenia (rząd z plikiem audio i kolumnę z nutką) przypiszesz ten plik audio do tego utworu.&lt;br&gt;&lt;br&gt;To działa także dla grafiki i teledysków.</translation>
+        <translation>Jeśli masz więcej plików audio w katalogu i klikniesz dwukrotnie na miejsce przecięcia się rzędu zwłaściwym plikiem i kolumny z nutką, przypiszesz go do tej piosenki.&lt;br&gt;&lt;br&gt;To działa także dla grafiki i teledysków.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="23"/>
@@ -207,7 +207,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="28"/>
         <source>The BPM tag is not editable? Yeah, that&apos;s right. This is not a song creation tool like the &lt;a href=&quot;http://sourceforge.net/projects/usc&quot;&gt;UltraStar Creator&lt;/a&gt;. Nevertheless, you can modify all lyrics and correct spelling errors.</source>
-        <translation>Niektóre etykiety ni chcą dać się zmienić? Tak masz rację, Wiele z danych pozostanie niezmieniona, bo to narzędzie nie powinno służyć do zmiany takich rzeczy jak prędkość BPM czy GAP. Do tego celu służy edytor w UltraStarze.</translation>
+        <translation>Niektóre etykiety nie chcą dać się zmienić? Tak masz rację, Wiele z danych pozostanie niezmieniona, bo to narzędzie nie powinno służyć do zmiany takich rzeczy jak prędkość BPM czy GAP. Do tego celu służy edytor w UltraStarze.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="29"/>
@@ -217,7 +217,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="31"/>
         <source>You are missing a video for your favourite song? Check out &lt;a href=&quot;http://www.youtube.com&quot;&gt;Youtube&lt;/a&gt;, &lt;a href=&quot;http://www.dailymotion.com&quot;&gt;Dailymotion&lt;/a&gt;, or &lt;a href=&quot;http://vimeo.com&quot;&gt;Vimeo&lt;/a&gt;!</source>
-        <translation>Brakuje Ci teledysku do ulubionej piosenki? poszukaj go na &lt;a href=&quot;http://www.youtube.com&quot;&gt;Youtube&lt;/a&gt;, &lt;a href=&quot;http://www.dailymotion.com&quot;&gt;Dailymotion&lt;/a&gt; lub &lt;a href=&quot;http://vimeo.com&quot;&gt;Vimeo&lt;/a&gt;!</translation>
+        <translation>Brakuje Ci teledysku do ulubionej piosenki? Poszukaj go na &lt;a href=&quot;http://www.youtube.com&quot;&gt;Youtube&lt;/a&gt;, &lt;a href=&quot;http://www.dailymotion.com&quot;&gt;Dailymotion&lt;/a&gt; lub &lt;a href=&quot;http://vimeo.com&quot;&gt;Vimeo&lt;/a&gt;!</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="32"/>
@@ -242,7 +242,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="36"/>
         <source>You want to know how many songs you have in your collection? Well, there are &lt;b&gt;%1 songs&lt;/b&gt;. Not bad at all.&lt;br&gt;&lt;br&gt;Do you have a cover, a background or a video for each one? No? Then you&apos;ve got a new task.</source>
-        <translation>Tak tylko informacyjnie napomykam, że masz &lt;b&gt;%1 utworów&lt;/b&gt;. Całkiem nieźle.&lt;br&gt;&lt;br&gt;A masz do każdego z nich okładkę, teledysk lub tło? Nie??? Nooo to już wiesz za co będziesz robił w długie zimowe wieczory.</translation>
+        <translation>Tak tylko informacyjnie napomykam, że masz &lt;b&gt;%1 utworów&lt;/b&gt;. Całkiem nieźle.&lt;br&gt;&lt;br&gt;A masz do każdego z nich okładkę, teledysk lub tło? Nie??? Nooo to już wiesz co będziesz robił w długie zimowe wieczory.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="37"/>
@@ -252,7 +252,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="38"/>
         <source>Did you remark these nice tooltips at the header of each column in the song tree? There are more tooltips for nearly every button here.</source>
-        <translation>Sprawdzałeś podpisy przy nagłówkach kolumn drzewka utworów? Przytryzmaj nad nimi kursor myszki a dowiesz się jakie znaczenie ma każda z tych kolumn.</translation>
+        <translation>Sprawdzałeś podpisy przy nagłówkach kolumn drzewka utworów? Przytrzymaj nad nimi kursor myszki a dowiesz się jakie znaczenie ma każda z tych kolumn.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="39"/>
@@ -262,7 +262,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="40"/>
         <source>The first *.txt or *.txd file in any subdirectory of your song folder will be recognized as a song and listed in the song tree. Other song files will be so-called &lt;i&gt;friends&lt;/i&gt; to this primary song. You can switch the primary song in the context-menu of a song file.</source>
-        <translation>Pierwszy znaleziony plik *.txt w każdym podfolderze wybranego jako katalog utworów miejsca będzie uznany za utwór, i umieszczony na drzewku utworów.</translation>
+        <translation>Pierwszy znaleziony plik *.txt w każdym podfolderze katalogu wybranego jako katalog utworów, będzie uznany za utwór, i umieszczony na drzewku utworów.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="41"/>
@@ -277,7 +277,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="43"/>
         <source>What are &lt;b&gt;&lt;font color=&quot;royalblue&quot;&gt;blue folders&lt;/font&gt;&lt;/b&gt;? If a tag is found in a song text file that will not be recognized by UltraStar then this song is marked with a blue folder.&lt;br&gt;&lt;br&gt;That&apos;s not bad at all. These tags will stay untouched by default. However, you can either add them using &lt;i&gt;Options &amp;rarr; Custom Tags...&lt;/i&gt; or use a dedicated task to remove all unknown tags, if you want.</source>
-        <translation>Co oznaczają &lt;b&gt;&lt;font color=&quot;royalblue&quot;&gt;niebieskie&lt;/font&gt;&lt;b&gt; katalogi? Nie mniej nie więcej tylko to, że w pliku TXT utworu znajdują się nierozpoznane etykiety.&lt;br&gt;&lt;br&gt;Nie są one szkodliwe, Te etykiety pozostaną przez program nietknięte. Chyba, że zażyczysz sobie by je usunąć.</translation>
+        <translation>Co oznaczają &lt;b&gt;&lt;font color=&quot;royalblue&quot;&gt;niebieskie&lt;/font&gt;&lt;b&gt; katalogi? Nie mniej ni więcej tylko to, że w pliku TXT utworu znajdują się nierozpoznane etykiety.&lt;br&gt;&lt;br&gt;Nie są one szkodliwe, Te etykiety pozostaną przez program nietknięte. Chyba, że zażyczysz sobie by je usunąć.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="44"/>
@@ -287,7 +287,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="45"/>
         <source>Try to click on an audio file and see what appears in the preview window...</source>
-        <translation>Spróbuj kliknąć dwukrotnie na pliku audio i patrz co się stanie...</translation>
+        <translation>Spróbuj kliknąć dwukrotnie na pliku audio i popatrz co się stanie...</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="46"/>
@@ -317,17 +317,17 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="61"/>
         <source>If you drag &amp;amp; drop a song text file from your explorer into the song tree (not at an item), a new folder will be created and your file will be copied to that new location.&lt;br&gt;&lt;br&gt;This way you can easily add new songs to your collection.</source>
-        <translation>Jeśli przeciągniesz i opuścisz plik TXT z explorera na drzewko utworów (lecz nie na jakiś istniejący katalog), zostanie utworzony nowy folder a ten plik zostanie w nim umieszczony.&lt;br&gt;&lt;br&gt;W ten sposób możesz łatwo dodawaća nowe utwory do swojej kolekcji.</translation>
+        <translation>Jeśli przeciągniesz i upuścisz plik TXT z explorera na drzewko utworów (lecz nie na jakiś istniejący katalog), zostanie utworzony nowy folder a ten plik zostanie w nim umieszczony.&lt;br&gt;&lt;br&gt;W ten sposób możesz łatwo dodawać nowe utwory do swojej kolekcji.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="73"/>
         <source>If you want to integrate new songs via drag &amp;amp; drop in the song tree, it may be helpful to hide all other songs first. Simply select &lt;i&gt;Hide &amp;rarr; All&lt;/i&gt; from the song tree context menu.</source>
-        <translation>Jeśli zamierzasz dołączyć nowy utwór do drzewka utworów przez przeciąganie i opuszczanie plików, pomocne może być wcześniejsze ukrycie innych utworów.&lt;br&gt;&lt;br&gt;&lt;i&gt;Ukryj &amp;rarr;Wszystko&lt;/i&gt; (menu kontekstowe).</translation>
+        <translation>Jeśli zamierzasz dołączyć nowy utwór do drzewka utworów przez przeciąganie i upuszczanie plików, pomocne może być wcześniejsze ukrycie innych utworów.&lt;br&gt;&lt;br&gt;&lt;i&gt;Ukryj &amp;rarr;Wszystko&lt;/i&gt; (menu kontekstowe).</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="78"/>
         <source>You can see duplicate songs if you press &lt;i&gt;Find Duplicates&lt;/i&gt; in the filter/search area (&lt;i&gt;Ctrl+F&lt;/i&gt;). Duplicate songs will be listed together.</source>
-        <translation>Możesz sprawdzić czy masz zduplikowane utwory klikając na &lt;i&gt;Duplikaty&lt;/i&gt; na pasku filtrowania. Zduplikowane utwory zostaną natycmiast wyświetlone.</translation>
+        <translation>Możesz sprawdzić czy masz zduplikowane utwory klikając na &lt;i&gt;Duplikaty&lt;/i&gt; na pasku filtrowania. Zduplikowane utwory zostaną natychmiast wyświetlone.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="80"/>
@@ -342,12 +342,12 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="24"/>
         <source>You can modify the order in which tags are saved to a song file by dragging &amp;amp; dropping these tags under &lt;i&gt;Options &amp;rarr; Tag Save Order...&lt;/i&gt;.</source>
-        <translation>Możesz zamieniać kolejność etykiet w jakiej będą one zapisane do pliku TXT utworu. Wystarczy przeciągnąć i opuścić te etykiety w okienku &lt;i&gt;Opcje &amp;rarr;Kolejność Zapisu Etykiet...&lt;/i&gt;.</translation>
+        <translation>Możesz zamieniać kolejność etykiet w jakiej będą one zapisane do pliku TXT utworu. Wystarczy przeciągnąć i upuścić te etykiety w okienku &lt;i&gt;Opcje &amp;rarr;Kolejność Zapisu Etykiet...&lt;/i&gt;.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="51"/>
         <source>If you drag &amp;amp; drop a dockable widget (song details, tasks, event log) over another dockable widget, these two widgets will merge into a single widget with tabs at the bottom.</source>
-        <translation>Jeśli przeciągniesz i opuścisz okienko z możliwością dokowania (szczegóły utworu, zadania, dziennik wydarzeń) nad inne okienko, oba okna zostaną połączone. Pod tymi oknami pojawi się pasek zakładek z nazwami tych okien.</translation>
+        <translation>Jeśli przeciągniesz i upuścisz okienko z możliwością dokowania (szczegóły utworu, zadania, dziennik wydarzeń) nad inne okienko, oba okna zostaną połączone. Pod tymi oknami pojawi się pasek zakładek z nazwami tych okien.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="52"/>
@@ -372,17 +372,17 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="56"/>
         <source>If you double-click a text file, you&apos;ll see its contents.</source>
-        <translation>Jeśli klikniesz dwukrotnie na pliku z tekstem zobaczysz ukaże Ci się jego zawartość.</translation>
+        <translation>Jeśli klikniesz dwukrotnie na pliku z tekstem, ukaże Ci się jego zawartość.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="57"/>
         <source>Did you know that you can drag one or more files from your explorer onto a song in the tree to &lt;i&gt;copy&lt;/i&gt; and use/assign this or these files automatically for that song?</source>
-        <translation>Czy wiesz, że przeciągając i opuszczając jeden lub więcej plików z &lt;i&gt;eksploratora plików&lt;/i&gt; do utworu na drzewku &lt;i&gt;kopiujesz&lt;/i&gt; i automatycznie przypisujesz te pliki do utworu nad którym je opuścisz?</translation>
+        <translation>Czy wiesz, że przeciągając i upuszczając jeden lub więcej plików z &lt;i&gt;eksploratora plików&lt;/i&gt; do utworu na drzewku &lt;i&gt;kopiujesz&lt;/i&gt; i automatycznie przypisujesz te pliki do utworu nad którym je upuścisz?</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="58"/>
         <source>Files that appear &lt;font color=&quot;gray&quot;&gt;&lt;s&gt;striked-out and gray&lt;/s&gt;&lt;/font&gt; cannot be used anywhere and are useless to UltraStar.</source>
-        <translation>Pliki które pojawiają się jako &lt;font color=&quot;gray&quot;&gt;&lt;s&gt;przekreślone i szare&lt;/s&gt;&lt;/font&gt; zazwyczaj są plikami nieużywanymi i nieprzydatnymi w programie UltraStar. Mogą być usunięte. Zważ jednak, że niektórzy twórcy celowo zmieniają rozszerzenie plików np z muzyką. Tak więc jeśli nie widzisz pliku *.mp3 natomiast jest jakiś inny &quot;podejrzany&quot; plik - sprawdź najpierw czy nie odpowiada on za muzykę. (etykieta #mp3 w tabelce Szczegóły utworu &amp;rarr; Pliki)</translation>
+        <translation>Pliki które pojawiają się jako &lt;font color=&quot;gray&quot;&gt;&lt;s&gt;przekreślone i szare&lt;/s&gt;&lt;/font&gt; zazwyczaj są plikami nieużywanymi i nieprzydatnymi w programie UltraStar. Mogą być usunięte. Zważ jednak, że niektórzy twórcy celowo zmieniają rozszerzenie plików np z muzyką. Tak więc jeśli nie widzisz pliku *.mp3 natomiast jest jakiś inny &quot;podejrzany&quot; plik - sprawdź najpierw czy nie odpowiada on za muzykę (etykieta #mp3 w tabelce Szczegóły utworu &amp;rarr; Pliki).</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="59"/>
@@ -407,7 +407,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="64"/>
         <source>Have you ever created a &lt;i&gt;report&lt;/i&gt; of your songs? No?&lt;br&gt;&lt;br&gt;Try &lt;i&gt;Extras &amp;rarr; Create Report...&lt;/i&gt; or simply press &lt;i&gt;F8&lt;/i&gt;.</source>
-        <translation>Tworzyłeś już &lt;i&gt;raport&lt;/i&gt; swoich utworów? Nie?&lt;br&gt;&lt;br&gt;Nie ma na co czekać &lt;i&gt;Utwory &amp;rarr;Stwórz Raport ...&lt;/i&gt;.</translation>
+        <translation>Tworzyłeś już &lt;i&gt;raport&lt;/i&gt; ze swoich utworów? Nie?&lt;br&gt;&lt;br&gt;Nie ma na co czekać &lt;i&gt;Utwory &amp;rarr;Stwórz Raport ...&lt;/i&gt;.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="65"/>
@@ -417,17 +417,17 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="66"/>
         <source>You can delete a rename task by deleting its XML configuration file in the &lt;tt&gt;plugins/config/rename&lt;/tt&gt; subdirectory.</source>
-        <translation>Możesz usunąć zadanie zmiany nazwy poprzez usunięcie jego pliku konfiguracji w katalogu aplikacji UltraStar Manager.</translation>
+        <translation>Możesz usunąć zadanie zmiany nazwy poprzez usunięcie pliku konfiguracyjnego XML w katalogu &lt;tt&gt;plugins/config/rename&lt;/tt&gt; aplikacji UltraStar Manager.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="67"/>
         <source>If you make a double-click on a rename task in the task list you can modify it.</source>
-        <translation>Dwókrotne kliknięcie na zadaniu zmiany nazwy spowoduje, że będziesz mógł je zmodyfikować.</translation>
+        <translation>Dwukrotne kliknięcie na zadaniu zmiany nazwy spowoduje, że będziesz mógł je zmodyfikować.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="68"/>
         <source>There is a context menu in the task list which enables you to add and edit rename tasks.</source>
-        <translation>Zadania maja menu  kontekstowe, które pozwala dodawać i modyfikować zadania zmian nazw.</translation>
+        <translation>Zadania mają menu kontekstowe, które pozwala dodawać i modyfikować zadania zmian nazw.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="69"/>
@@ -442,7 +442,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="71"/>
         <source>A cross with an exclamation mark in the song tree indicates that the value for a file-related tag (e.g. #COVER) was set but the file does not exist.</source>
-        <translation>Krzyżyk z wykrzyknikiem na drzewku utworów zwraca uwagę na brak któregoś z plików powiązanych z utworem. Na przykład istnieje etykieta &lt;b&gt;#COVER:nazwapliku [CO].jpg&lt;/b&gt; ale takiego pliku nie ma w  katalogu utworu.</translation>
+        <translation>Krzyżyk z wykrzyknikiem na drzewku utworów zwraca uwagę na brak któregoś z plików powiązanych z utworem. Na przykład istnieje etykieta &lt;b&gt;#COVER:nazwapliku [CO].jpg&lt;/b&gt; ale takiego pliku nie ma w katalogu utworu.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="72"/>
@@ -467,12 +467,12 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="77"/>
         <source>Nearly all icons in the song tree have a tooltip. Just let the mouse cursor hover and wait a couple of seconds. A hint will appear.</source>
-        <translation>Niemal wszystkie ikony drzewka utworów posiadają własne podpowiedzi. Po prostu przytrzymaj 1-2 sekundy kursor nad wybrana ikonką, a powinna pojawić się informacja.</translation>
+        <translation>Niemal wszystkie ikony drzewka utworów posiadają własne podpowiedzi. Po prostu przytrzymaj 1-2 sekundy kursor nad wybraną ikonką, a powinna pojawić się informacja.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="79"/>
         <source>Playlists will be connected to the current song database. Whenever a song is changed, playlists will be updated automatically.&lt;br&gt;&lt;br&gt;Changed playlists need to be saved.</source>
-        <translation>Listy Odtwarzania połączone są z bazą danych utworów. Za każdym razem, gdy utwór zostanie zmieniony, listy odtwarzania będą automatycznie zaktualizowane.&lt;br&gt;&lt;br&gt;Zmienione listy odtwarzanie wymagają zapisania.</translation>
+        <translation>Listy odtwarzania połączone są z bazą danych utworów. Za każdym razem, gdy utwór zostanie zmieniony, listy odtwarzania będą automatycznie zaktualizowane.&lt;br&gt;&lt;br&gt;Zmienione listy odtwarzania wymagają zapisania.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="81"/>
@@ -482,7 +482,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="82"/>
         <source>Editable tasks can be modified via double-click. Additionally, a context menu is available via right-click.</source>
-        <translation>Zadanie które można modyfikować podatne są na podwójny kilk myszki :) Dodatkowo pod prawym przyciskiem myszki znajduje się tam menu kontekstowe.</translation>
+        <translation>Zadanie które można modyfikować podatne są na podwójny kilk myszki :) Dodatkowo pod prawym przyciskiem myszki znajduje się menu kontekstowe.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="83"/>
@@ -492,7 +492,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="84"/>
         <source>The header of the song tree has a context menu. Here you can show and hide columns. Presets offer a more convenient way to do this.</source>
-        <translation>Czubek drzewka utworów ma menu kontekstowe. Znajdziesz tam ustawienia zapewniające dogodny widok dla aktualnie wykonywanej czynności.</translation>
+        <translation>Wierzchołek drzewka utworów ma menu kontekstowe. Znajdziesz tam ustawienia zapewniające dogodny widok dla aktualnie wykonywanej czynności.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="85"/>
@@ -500,14 +500,13 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
         <translation>Możesz obejrzeć tekst piosenki po prostu naciskając &lt;i&gt;Ctrl+L&lt;/i&gt;.</translation>
     </message>
     <message>
-        <location filename="../../QUMonty.cpp" line="86"/>
         <source>The new-style menu can be collapsed with &lt;i&gt;Ctrl+F1&lt;/i&gt;.</source>
-        <translation>Nowy styl menu można zwinąc za pomocą &lt;i&gt;Ctrl+F1&lt;/i&gt;.</translation>
+        <translation type="obsolete">Nowy styl menu można zwinąc za pomocą &lt;i&gt;Ctrl+F1&lt;/i&gt;.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="87"/>
         <source>You can preview whole songs with the new &lt;i&gt;Media Player&lt;/i&gt;! It&apos;s so cool. Selected songs, the whole song database or the current playlist can be played. You can sing and check the quality even without having to start UltraStar.</source>
-        <translation>Możesz prawdzić całość utworów z nowym &lt;i&gt; Odtwarzaczem muzyki&lt;/i&gt;To takie fajne!  Wybrane utwory, cała baza piosenek lub bieżąca lista odtwarzania mogą być odtwarzane. Możesz śpiewać i sprawdzić jakość nawet bez konieczności uruchamiania UltraStar.</translation>
+        <translation>Możesz sprawdzić całość utworów w nowym &lt;i&gt; Odtwarzaczu muzyki&lt;/i&gt;To takie fajne!  Wybrane utwory, cała baza piosenek lub bieżąca lista odtwarzania mogą być odtwarzane. Możesz śpiewać i sprawdzić jakość nawet bez konieczności uruchamiania UltraStar.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="88"/>
@@ -522,7 +521,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="90"/>
         <source>Having trouble spotting bad song covers? Try the image review via &lt;i&gt;Songs &amp;rarr; Review Images&lt;/i&gt;. You get a cool preview for all covers or backgrounds and can unlink them from a song with your spacebar.</source>
-        <translation>Masz problemy związane ze złą okładką piosenki? Spróbuj przeglądać zdjęcia za pomocą &lt;i&gt;Songs &amp;rarr; Review Images&lt;/i&gt;.Możesz uzyskać podgląd na wszystkie okładki i tła i można odłączyć je od piosenki za pomocą spacji.</translation>
+        <translation>Masz problemy związane ze złą okładką piosenki? Spróbuj przeglądać zdjęcia za pomocą &lt;i&gt;Songs &amp;rarr; Review Images&lt;/i&gt;.Możesz uzyskać podgląd na wszystkie okładki i tła i możesz odłączyć je od piosenki za pomocą spacji.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="91"/>
@@ -542,7 +541,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="94"/>
         <source>Three different encodings are supported for song files: CP1252 (Western European), CP1250 (Central/Eastern European), and UTF8.&lt;br&gt;&lt;br&gt;You can set the default input encoding for song files whose encodings cannot be determined automatically in &lt;i&gt;Options &amp;rarr; Default Encodings...&lt;/i&gt;.</source>
-        <translation>Trzy różne kodowania są obsługiwane przez pliki piosenek: CP1252 (zachodnioeuropejskie), CP1250 (centralno/wschodnioeuropejsskie), oraz UTF8. Możesz wybrać domyślne kodowanie dla plików plików piosenek których kodowanie nie może być określana automatycznie w &lt;i&gt; Opcje &amp;rarr; Kodowanie domyślne ...&lt;/i&gt;.</translation>
+        <translation>Trzy różne kodowania są obsługiwane przez pliki piosenek: CP1252 (zachodnioeuropejskie), CP1250 (centralno/wschodnioeuropejskie), oraz UTF8. Możesz wybrać domyślne kodowanie dla plików piosenek których kodowanie nie może być określana automatycznie w &lt;i&gt; Opcje &amp;rarr; Kodowanie domyślne ...&lt;/i&gt;.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="95"/>
@@ -557,37 +556,37 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="97"/>
         <source>You enjoy high quality audio files, covers and backgrounds? Just set your personal quality preferences in &lt;i&gt;Options&lt;/i&gt; under &lt;i&gt;Quality Thresholds&lt;/i&gt; and sort your song collection by the corresponding column.&lt;br&gt;&lt;br&gt;In addition to the colored ticks, non-square (1:1) covers and non-widescreen (16:9) backgrounds will be indicated by a small exclamation mark next to quality tick.</source>
-        <translation>Chcesz się cieszyć wysoką jakością pliku muzyki, okładki i tła? Po prostu ustaw swoje osobiste preferencje jakości w &lt;i&gt;Opcjach&lt;/i&gt; w &lt;i&gt;Progi Jakości&lt;/i&gt; i sortowanie Twojej kolekcji piosenek w odpowiedniej kolumnie.&lt;br&gt;&lt;br&gt; Nie kwadratowe okładki (1:1) oraz nieproporcjonalne tła (16:9) będą oznaczone małym wykrzyknikiem obok wskaźnika jakości.</translation>
+        <translation>Chcesz się cieszyć wysoką jakością pliku muzyki, okładki i tła? Po prostu ustaw swoje osobiste preferencje jakości w &lt;i&gt;Opcjach&lt;/i&gt; w &lt;i&gt;Progi Jakości&lt;/i&gt; i sortowanie twojej kolekcji piosenek w odpowiedniej kolumnie.&lt;br&gt;&lt;br&gt; Niekwadratowe okładki (1:1) oraz nieproporcjonalne tła (16:9) będą oznaczone małym wykrzyknikiem obok wskaźnika jakości.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="98"/>
         <source>You can open image files externally for cropping and/or resizing using the file context menu.</source>
-        <translation>Możesz otwierać pliki graficzne na zewnątrz do przycinania  i / lub zmiana rozmiaru za pomocą menu kontekstowego pliku.</translation>
+        <translation>Możesz otwierać pliki graficzne na zewnątrz do przycinania  i / lub zmiany rozmiaru za pomocą menu kontekstowego pliku.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="99"/>
         <source>Are you using the latest version of UltraStar Manager? Well, why don&apos;t you check by clicking &lt;i&gt;About &amp;rarr; Check for Update&lt;/i&gt;? You can enable an automatic update check at startup in the resulting dialog.</source>
-        <translation>Używasz starej wersji UltraStar Menadżera? Więc, sprawdź to klikająć &lt;i&gt;Informacje &amp;rarr; Sprawdź aktualizacje&lt;/i&gt;? Mozesz włączyć automatyczne aktualizacje sprawdzające wersje przy włączaniu się programu w oknie dialogowym.</translation>
+        <translation>Używasz starej wersji UltraStar Menadżera? Więc, sprawdź to klikająć &lt;i&gt;Informacje &amp;rarr; Sprawdź aktualizacje&lt;/i&gt;? Możesz włączyć automatyczne aktualizacje sprawdzające wersję podczas uruchamiania programu w oknie dialogowym.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="100"/>
         <source>You can refresh a single song or a selection of songs by choosing &lt;i&gt;Reload&lt;/i&gt; from the context menu or by simply pressing &lt;i&gt;F5&lt;/i&gt;.</source>
-        <translation>Możesz wczytaj ponownie pojedyńcze piosenki lub wybrać kilka piosenek za pomocą&lt;i&gt;Wczytaj ponownie&lt;/i&gt; z menu kontekstowego lub poprzez naciśnięcie &lt;i&gt;F5&lt;/i&gt;.</translation>
+        <translation>Możesz wczytać ponownie pojedyńcze piosenki lub wybrać kilka piosenek za pomocą&lt;i&gt;Wczytaj ponownie&lt;/i&gt; z menu kontekstowego lub poprzez naciśnięcie &lt;i&gt;F5&lt;/i&gt;.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="127"/>
         <source>Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the &lt;i&gt;Hide&lt;/i&gt; button below and I will disappear for now.</source>
-        <translation>Siema! Jestem Monty the Mammoth - przyjaznym Mamutem xD będę Ci podpowiadał czasami. Jeżeli chcesz żebym znikł, kliknij &lt;i&gt;Hide&lt;/i&gt;.</translation>
+        <translation>Siema! Jestem Mamut Monty xD i będę Ci od czasu do czasu podpowiadał i wyjaśniał niektóre rzeczy. Jeżeli chcesz żebym zniknął, kliknij &lt;i&gt;Hide&lt;/i&gt;.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="130"/>
         <source>&lt;br&gt;&lt;br&gt;You have &lt;b&gt;no songs&lt;/b&gt; in your collection. Try choosing a different song directory using &lt;i&gt;Options &amp;rarr; Song Directory&lt;/i&gt; or add a new song path via &lt;i&gt;Options &amp;rarr; Paths...&lt;/i&gt;.</source>
-        <translation>&lt;br&gt;&lt;br&gt;Nie posiadasz &lt;b&gt;utworów&lt;/b&gt; w swojej kolekcji. Spróbuj użyć innej lokalizacji folderu w &lt;i&gt;Opcje &amp;rarr; Folder z Piosenkami&lt;/i&gt;albo dodaj nową ścieżke piosenki za pomocą&lt;i&gt;Opcje &amp;rarr; Ścieżki...&lt;/i&gt;.</translation>
+        <translation>&lt;br&gt;&lt;br&gt;Nie posiadasz &lt;b&gt;utworów&lt;/b&gt; w swojej kolekcji. Spróbuj użyć innej lokalizacji folderu w &lt;i&gt;Opcje &amp;rarr; Folder z Piosenkami&lt;/i&gt;albo dodaj nową ścieżkę piosenki za pomocą&lt;i&gt;Opcje &amp;rarr; Ścieżki...&lt;/i&gt;.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="132"/>
         <source>&lt;br&gt;&lt;br&gt;You have &lt;b&gt;1 song&lt;/b&gt; in your collection. Is it managed well yet?</source>
-        <translation>&lt;br&gt;&lt;br&gt;Posiadasz &lt;b&gt;1 utwór&lt;/b&gt; w swojej kolekcji. Czy jest dobrze zarządzana?</translation>
+        <translation>&lt;br&gt;&lt;br&gt;Posiadasz &lt;b&gt;1 utwór&lt;/b&gt; w swojej kolekcji. Czy jest ona dobrze zarządzana?</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="134"/>
@@ -597,7 +596,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUMonty.cpp" line="168"/>
         <source>Sorry. I don&apos;t understand you.</source>
-        <translation>Wybacz. Nie rozumiem Cie.</translation>
+        <translation>Wybacz. Nie rozumiem Cię.</translation>
     </message>
     <message>
         <location filename="../../main.cpp" line="130"/>
@@ -607,7 +606,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../main.cpp" line="136"/>
         <source>There was no configuration setting about your language. Your &lt;b&gt;system language&lt;/b&gt; will be used if possible.&lt;br&gt;&lt;br&gt;See &lt;b&gt;Options &gt; Language&lt;/b&gt; to change this.</source>
-        <translation>Nie wybrałeś swojego języka. Twój &lt;b&gt;język systemowy&lt;/b&gt; zostanie użyty, jeśli to możliwe.&lt;br&gt;&lt;br&gt;Zobacz &lt;b&gt;Opcje &gt; Język&lt;/b&gt; aby zmienić to.</translation>
+        <translation>Nie wybrałeś swojego języka. Twój &lt;b&gt;język systemowy&lt;/b&gt; zostanie użyty, jeśli jest to możliwe.&lt;br&gt;&lt;br&gt;Użyj: &lt;b&gt;Opcje &gt; Język&lt;/b&gt; aby wybrać.</translation>
     </message>
     <message>
         <location filename="../../main.cpp" line="145"/>
@@ -617,7 +616,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../main.cpp" line="146"/>
         <source>This version is still under development &lt;b&gt;and may not be very stable&lt;/b&gt;. You might loose all your songs if you use it.&lt;br&gt;&lt;br&gt;&lt;b&gt;Please backup&lt;/b&gt; the songs you are working with and do not distribute this version.</source>
-        <translation>Ta wersja jest jeszcze w &lt;b&gt; rozwoju i nie może być bardzo stabilna &lt;/b&gt; Możesz stracić wszystkie swoje utwory, jeśli używasz go.&lt;br&gt;&lt;br&gt;&lt;b&gt;Zrób kopie zapasową&lt;/b&gt;utworów na których pracujesz oraz nie rozprowadzaj tej wersji.</translation>
+        <translation>Ta wersja jest jeszcze w &lt;b&gt;fazie  rozwoju i może być niestabilna &lt;/b&gt; Możesz stracić wszystkie swoje utwory, jeśli zdecydujesz się jej używać. &lt;br&gt;&lt;br&gt;&lt;b&gt;Zrób kopię zapasową&lt;/b&gt;utworów na których pracujesz oraz nie rozprowadzaj tej wersji.</translation>
     </message>
     <message>
         <location filename="../../main.cpp" line="147"/>
@@ -632,7 +631,7 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../main.cpp" line="154"/>
         <source>&lt;b&gt;Dear testing person,&lt;/b&gt;&lt;br&gt;&lt;br&gt;this version is meant to be &lt;b&gt;feature-complete and almost bug-free&lt;/b&gt;. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.&lt;br&gt;While testing the release candidate, especially consider the following:&lt;br&gt;&lt;br&gt;- support for CP1252, CP1250 and UTF8 encodings&lt;br&gt;- support for medley and preview tags&lt;br&gt;- mp3/cover/background quality assessment in songtree&lt;br&gt;- shiny new French, Spanish, and Portuguese translation&lt;br&gt;- updated and completed Polish translation&lt;br&gt;- duet bugs fixed&lt;br&gt;- check for update feature&lt;br&gt;- new task to increase low BPMs&lt;br&gt;- new task to normalize note pitches&lt;br&gt;- new task to capitalize the first word of each line&lt;br&gt;&lt;br&gt;Send feedback and bug reports to: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</source>
-        <translation>&lt;b&gt;Drogi testerze,&lt;/b&gt;&lt;br&gt;&lt;br&gt;ta wersja ma być&lt;b&gt;całkiem wygodna i prawie wolna od błędów&lt;/b&gt;.Niemniej jednak, może to być możliwe, że niektóre błędy mogą doprowadzić do uszkodzenia bazy danych pioseneki.. Prosze, przed użyciem zrób kopie zapasową bazy.&lt;br&gt;Podczas testowania wersji Release Candidate, w szczególności pod weź uwagę:&lt;br&gt;&lt;br&gt;- wspomaganie dla kodowania: CP1252, CP1250 i UTF8 &lt;br&gt;- wspomaganie dla medley oraz etykiety podglądu&lt;br&gt;- jakości mp3/okładki/tła w drzewie piosenek&lt;br&gt;- nowe francuskie, hispanski i portugalski tłumaczenie&lt;br&gt;- naprawione błedy duetów&lt;br&gt;- sprawdzanie aktualizacji&lt;br&gt;- nowego zadania podwajającego BPM&lt;br&gt;- nowego zadanie normalizującego wysokość nut&lt;br&gt;- nowego zadania &quot;Wielką Literą&quot; w linijkach&lt;br&gt;&lt;br&gt;Pomysły oraz błędy wysyłaj na: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</translation>
+        <translation>&lt;b&gt;Drogi testerze,&lt;/b&gt;&lt;br&gt;&lt;br&gt;ta wersja ma być&lt;b&gt;całkiem wygodna i prawie wolna od błędów&lt;/b&gt;.Niemniej jednak, jest możliwe, że niektóre błędy mogą doprowadzić do uszkodzenia bazy danych pioseneki.. Proszę, przed użyciem zrób kopię zapasową bazy.&lt;br&gt;Podczas testowania wersji Release Candidate, w szczególności pod weź uwagę:&lt;br&gt;&lt;br&gt;- wspomaganie dla kodowania: CP1252, CP1250 i UTF8 &lt;br&gt;- wspomaganie dla medley oraz etykiety podglądu&lt;br&gt;- jakości mp3/okładki/tła w drzewie piosenek&lt;br&gt;- nowe francuskie, hispanskie i portugalskie tłumaczenie&lt;br&gt;- naprawione błedy duetów&lt;br&gt;- sprawdzanie aktualizacji&lt;br&gt;- nowego zadania podwajającego BPM&lt;br&gt;- nowego zadanie normalizującego wysokość nut&lt;br&gt;- nowego zadania &quot;Wielką Literą&quot; w linijkach&lt;br&gt;&lt;br&gt;Pomysły oraz błędy wysyłaj na: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Dear testing person,&lt;/b&gt;&lt;br&gt;&lt;br&gt;this version is meant to be &lt;b&gt;feature-complete and almost bug-free&lt;/b&gt;. Nevertheless, it might be possible that some errors may corrupt your song database. Please backup your song database first.&lt;br&gt;While testing the release candidate, especially consider the following:&lt;br&gt;&lt;br&gt;- support for CP1252, CP1250 and UTF8 encodings&lt;br&gt;- support for medley and preview tags&lt;br&gt;- mp3/cover/background quality assessment in songtree&lt;br&gt;- shiny new French translation&lt;br&gt;- duet bugs fixed&lt;br&gt;- check for update feature&lt;br&gt;- new task to increase low BPMs&lt;br&gt;- new task to normalize note pitches&lt;br&gt;- new task to capitalize the first word of each line&lt;br&gt;&lt;br&gt;Send feedback and bug reports to: &lt;a href=&quot;mailto:bohning@users.sourceforge.net&quot;&gt;bohning@users.sourceforge.net&lt;/a&gt;</source>
@@ -706,17 +705,17 @@ Spróbuj zmienić na %1 x %3 dla zachowania proporcji ekranu.</translation>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="36"/>
         <source>&lt;b&gt;Spanish Translation&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Hiszpański tłumaczenie&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Hiszpańskie tłumaczenie&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="40"/>
         <source>&lt;b&gt;Portuguese Translation&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Portugalski tłumaczenie&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Portugalskie tłumaczenie&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="42"/>
         <source>&lt;b&gt;Polish Translation&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Polski tłumaczenie&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Polskie tłumaczenie&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="44"/>
@@ -1087,7 +1086,7 @@ Amazon...</translation>
     <message>
         <location filename="../../remoteimages/QUCoverGroup.cpp" line="85"/>
         <source>Could not copy cover to song path. No cover selected for: &quot;%1 - %2&quot;</source>
-        <translation>Nie mozna skopiować okładki to ścieżki piosenki, Nie wybrałeś okładki dla: &quot;%1 - %2&quot;</translation>
+        <translation>Nie mozna skopiować okładki do ścieżki piosenki, Nie wybrałeś okładki dla: &quot;%1 - %2&quot;</translation>
     </message>
     <message>
         <location filename="../../remoteimages/QUCoverGroup.cpp" line="92"/>
@@ -1124,7 +1123,7 @@ Amazon...</translation>
     <message>
         <location filename="../../preferences/QUCustomTagsDialog.ui" line="121"/>
         <source>Double-click to edit. Drag &amp; drop the tags to change the order.</source>
-        <translation>Kliknij dwa razy lewym przyciskiem myszki by rozpocząć edycję. Przeciągaj i opuszczaj etykiety by zamienić ich kolejność.</translation>
+        <translation>Kliknij dwa razy lewym przyciskiem myszki by rozpocząć edycję. Przeciągaj i upuszczaj etykiety by zamienić ich kolejność.</translation>
     </message>
     <message>
         <location filename="../../preferences/QUCustomTagsDialog.ui" line="179"/>
@@ -1258,17 +1257,17 @@ Amazon...</translation>
     <message>
         <location filename="../../songdetails/QUDetailsTable.cpp" line="62"/>
         <source>CalcMedley</source>
-        <translation></translation>
+        <translation>CalcMedley</translation>
     </message>
     <message>
         <location filename="../../songdetails/QUDetailsTable.cpp" line="63"/>
         <source>MedleyStartBeat</source>
-        <translation></translation>
+        <translation>MedleyStartBeat</translation>
     </message>
     <message>
         <location filename="../../songdetails/QUDetailsTable.cpp" line="64"/>
         <source>MedleyEndBeat</source>
-        <translation></translation>
+        <translation>MedleyEndBeat</translation>
     </message>
     <message>
         <location filename="../../songdetails/QUDetailsTable.cpp" line="65"/>
@@ -1362,7 +1361,7 @@ Amazon...</translation>
     <message>
         <location filename="../../filter/QUFilterArea.ui" line="191"/>
         <source>Look for duplicate songs and show them in the song tree.</source>
-        <translation>Poszukaj zduplikowanych utworów i pokaż je na drzewku utworów.</translation>
+        <translation>Wyszukaj zduplikowane utwory i pokaż je w drzewku utworów.</translation>
     </message>
     <message>
         <source>Duplicates</source>
@@ -1421,7 +1420,7 @@ Amazon...</translation>
     <message>
         <location filename="../../filter/QUFilterArea.cpp" line="16"/>
         <source>Control tags</source>
-        <translation>Controla etykiet</translation>
+        <translation>Kontrola etykiet</translation>
     </message>
     <message>
         <location filename="../../filter/QUFilterArea.cpp" line="17"/>
@@ -1455,7 +1454,7 @@ Amazon...</translation>
     <message>
         <location filename="../../report/QUHtmlReport.cpp" line="74"/>
         <source>Songs Path: &quot;%1&quot;</source>
-        <translation>Ścieżka Utworu: &quot;%1&quot;</translation>
+        <translation>Ścieżka Piosenek: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../../report/QUHtmlReport.cpp" line="139"/>
@@ -2572,7 +2571,7 @@ Zadania</translation>
     <message>
         <location filename="../../preferences/QUPathsDialog.cpp" line="256"/>
         <source>&lt;b&gt;First time path setup:&lt;/b&gt;&lt;br&gt;&lt;br&gt;Choose your UltraStar folder and click on the &lt;b&gt;magic wand&lt;/b&gt;, which appears then, to auto-detect the other folders. You will need at least &lt;b&gt;one song folder&lt;/b&gt;. If you set more than one folder for songs, the first one will be used for now.</source>
-        <translation>&lt;b&gt;Pierwsza konfiguracja ścieżki czasu:&lt;b&gt;&lt;br&gt;&lt;br&gt;Wybierz swój folder z Ultrastar oraz kliknij na &lt;b&gt;magiczną różdżke&lt;/b&gt;, która pojawi się autobatycznie aby wykryć inne foldery. Będziesz potrzebował conajmniej &lt;b&gt;jednego folderu piosenki&lt;/b&gt;. Jeśli ustawisz więcej niż jeden folder piosenek, pierwszy zostaną wykorzystane teraz.</translation>
+        <translation>&lt;b&gt;Pierwsza konfiguracja ścieżki czasu:&lt;b&gt;&lt;br&gt;&lt;br&gt;Wybierz swój folder z Ultrastar oraz kliknij na &lt;b&gt;magiczną różdżke&lt;/b&gt;, która pojawi się automatycznie aby wykryć inne foldery. Będziesz potrzebował co najmniej &lt;b&gt;jednego folderu piosenki&lt;/b&gt;. Jeśli ustawisz więcej niż jeden folder piosenek, pierwszy zostanie wykorzystane teraz.</translation>
     </message>
     <message>
         <location filename="../../preferences/QUPathsDialog.cpp" line="262"/>
@@ -2582,7 +2581,7 @@ Zadania</translation>
     <message>
         <location filename="../../preferences/QUPathsDialog.cpp" line="265"/>
         <source>Set all paths so that a &lt;b&gt;green tick&lt;/b&gt; appears in front of each one. This allows all program features to work properly.</source>
-        <translation>Ustaw wszystkie ścieżki piosenek tak aby &lt;b&gt;zielony ptaszek&lt;/b&gt; Pojawił się przed każdą z nich. Dzięki temu wszystkie funkcje programu będą dostępne do poprawnej pracy.</translation>
+        <translation>Ustaw wszystkie ścieżki piosenek tak aby &lt;b&gt;zielony ptaszek&lt;/b&gt; pojawił się przed każdej z nich. Dzięki temu wszystkie funkcje programu będą dostępne do poprawnej pracy.</translation>
     </message>
     <message>
         <location filename="../../preferences/QUPathsDialog.ui" line="14"/>
@@ -2639,7 +2638,7 @@ Zadania</translation>
     <message>
         <location filename="../../preferences/QUPathsDialog.ui" line="287"/>
         <source>Auto-detect other folders</source>
-        <translation>Auto-detect other folders</translation>
+        <translation>Autodetekcja innych folderów</translation>
     </message>
     <message>
         <location filename="../../preferences/QUPathsDialog.ui" line="290"/>
@@ -2789,7 +2788,7 @@ margin: 0;</translation>
     <message>
         <location filename="../../playlistdetails/QUPlaylistArea.ui" line="14"/>
         <source>Form</source>
-        <translation>Z</translation>
+        <translation>Forma</translation>
     </message>
     <message>
         <location filename="../../playlistdetails/QUPlaylistArea.ui" line="111"/>
@@ -2942,7 +2941,7 @@ margin: 0;</translation>
     <message>
         <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="176"/>
         <source>Select a folder for playlists</source>
-        <translation>Wybierz folder na listy odtwarzania</translation>
+        <translation>Wybierz folder dla listy odtwarzania</translation>
     </message>
     <message>
         <source>Select a location for playlists</source>
@@ -3503,7 +3502,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../support/QUProgressDialog.cpp" line="134"/>
         <source>Calculating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Obliczanie...</translation>
     </message>
     <message>
         <source>%1:%2</source>
@@ -3595,7 +3594,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../remoteimages/QUPropertyTable.cpp" line="55"/>
         <source>Remove old downloads.</source>
-        <translation>Wykasuj stare pobierania.</translation>
+        <translation>Usun stare pobierania.</translation>
     </message>
 </context>
 <context>
@@ -3608,7 +3607,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../remoteimages/QURemoteImageDialog.cpp" line="44"/>
         <source>You need plugins to download images from the internet. Visit the &lt;a href=&quot;http://sf.net/projects/uman&quot;&gt;project page&lt;/a&gt; and try to get some.</source>
-        <translation>Potrzebujesz wtyczek do pobierania obrazków z internetu. Wejdź na &lt;a href=&quot;http://sf.net/projects/uman&quot;&gt;strone projektu&lt;/a&gt; ai spróbuj coś znaleźć.</translation>
+        <translation>Potrzebujesz wtyczek do pobierania obrazków z internetu. Wejdź na &lt;a href=&quot;http://sf.net/projects/uman&quot;&gt;stronę projektu&lt;/a&gt; i spróbuj coś znaleźć.</translation>
     </message>
     <message>
         <location filename="../../remoteimages/QURemoteImageDialog.cpp" line="60"/>
@@ -3630,7 +3629,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../remoteimages/QURemoteImageDialog.cpp" line="81"/>
         <source>Size mismatch between groups and songs. Group size will be corrected.</source>
-        <translation>Niezgodność rozmiaru między grupami i utworami. Wielkości grupy zostaną usunięte.</translation>
+        <translation>Niezgodność rozmiaru między grupami i utworami. Wielkości grupy zostaną poprawione.</translation>
     </message>
     <message>
         <location filename="../../remoteimages/QURemoteImageDialog.cpp" line="113"/>
@@ -3720,7 +3719,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="32"/>
         <source>Select the &lt;b&gt;columns&lt;/b&gt; you want to see in the report. Drag &amp; drop them to change their order. Songs of the &lt;b&gt;source&lt;/b&gt; will be sorted alphabetically column by column.&lt;br&gt;&lt;br&gt;You can &lt;b&gt;append and link&lt;/b&gt; lyrics in HTML reports.</source>
-        <translation>Wybierz &lt;b&gt;kolumny&lt;/b&gt; które mają być umieszczone na raporcie. Możesz je przeciągać i opuszczać, by zamienić ich kolejność. Utwory &lt;b&gt;źródłowe&lt;/b&gt; zostaną posortowane alfabetycznie kolumna po kolumnie.&lt;br&gt;&lt;br&gt;Możesz &lt;b&gt;dołączyć&lt;/b&gt; teksty piosenek w raporcie HTML.</translation>
+        <translation>Wybierz &lt;b&gt;kolumny&lt;/b&gt; które mają być umieszczone w raporcie. Możesz je przeciągać i upuszczać, by zamienić ich kolejność. Utwory &lt;b&gt;źródłowe&lt;/b&gt; zostaną posortowane alfabetycznie, kolumna po kolumnie.&lt;br&gt;&lt;br&gt;Możesz &lt;b&gt;dołączyć&lt;/b&gt; teksty piosenek w raporcie HTML.</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="33"/>
@@ -3735,7 +3734,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="112"/>
         <source>Songlist_%1.pdf</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista piosenek_%1.pdf</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="115"/>
@@ -3750,27 +3749,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="132"/>
         <source>PDF report created successfully to: &quot;%1&quot;.</source>
-        <translation>Raport PDF stworzony z powodzeniem do: &quot;%1&quot;.</translation>
+        <translation>Raport PDF utworzony z powodzeniem do: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="135"/>
         <source>PDF report could not be created.</source>
-        <translation>Raport PDF nie może być stworzony.</translation>
+        <translation>Raport PDF nie może być utworzony.</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="144"/>
         <source>Save HTML Report</source>
-        <translation>Zapisz HTML raport</translation>
+        <translation>Zapisz raport HTML</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="162"/>
         <source>HTML report created successfully to: &quot;%1&quot;.</source>
-        <translation>Raport HTML stworzony z powodzeniem do: &quot;%1&quot;.</translation>
+        <translation>Raport HTML utworzony z powodzeniem do: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="165"/>
         <source>HTML report could not be created.</source>
-        <translation>Raport HTML nie może być stworzony.</translation>
+        <translation>Raport HTML nie może być utworzony.</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="174"/>
@@ -3780,12 +3779,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="191"/>
         <source>Text report created successfully to: &quot;%1&quot;.</source>
-        <translation>Raport tekstowy stworzony z powodzeniem do: &quot;%1&quot;.</translation>
+        <translation>Raport tekstowy utworzony z powodzeniem do: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="194"/>
         <source>Text report could not be created.</source>
-        <translation>Raport tekstowy nie może być stworzony.</translation>
+        <translation>Raport tekstowy nie może być utworzony.</translation>
     </message>
     <message>
         <source>Save Report</source>
@@ -3903,7 +3902,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.ui" line="660"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij</translation>
     </message>
     <message>
         <source>Plain Text Report</source>
@@ -3919,7 +3918,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../ribbon/QURibbonBar.cpp" line="21"/>
         <source>Show Monty now to help you.</source>
-        <translation>Pokaż Mountiego teraz do pomocy.</translation>
+        <translation>Wezwij Mountiego do pomocy.</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.cpp" line="26"/>
@@ -3974,7 +3973,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="138"/>
         <source>Merge all selected songs with the current song.</source>
-        <translation>Scalić wszystkie wybrane utwory z bieżącego utworu.</translation>
+        <translation>Połącz wszystkie wybrane utwory z bieżącego utworu.</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="141"/>
@@ -4028,7 +4027,7 @@ okładki...</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="301"/>
         <source>Compute the number of syllables per second. Fill the column for the song speed in the tree with values.</source>
-        <translation>Oblicz liczbę sylab na sekundę. Wypełnij kolumnę z prędkością piosenki w drzewie z wartości.</translation>
+        <translation>Oblicz liczbę sylab na sekundę. Wypełnij kolumnę  &quot;Prędkość&quot; na drzewie piosenek wyliczoną wartością.</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="304"/>
@@ -4043,7 +4042,7 @@ okładki...</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="349"/>
         <source>Show the lyrics of the current song in a human readable form.</source>
-        <translation>Pokaż teksty bieżącego utworu w postaci czytelnej dla człowieka.</translation>
+        <translation>Pokaż tekst bieżącego utworu w postaci czytelnej dla człowieka.</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="352"/>
@@ -4073,7 +4072,7 @@ okładki...</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="447"/>
         <source>Filter all songs for the current artist.</source>
-        <translation>Filtr wszystkie utwory w bieżącego artysty.</translation>
+        <translation>Filtr wszystkie utwory bieżącego artysty.</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="450"/>
@@ -4105,7 +4104,7 @@ piosenki</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="558"/>
         <source>Show relative paths in the song tree. These paths are relative to the database folder.</source>
-        <translation>Pokaż względne ścieżek w drzewie piosenki. Te ścieżki są względne do folderu bazy danych.</translation>
+        <translation>Pokaż względne ścieżeki w drzewie piosenki. Te ścieżki są względne do folderu bazy danych.</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="561"/>
@@ -4125,7 +4124,7 @@ piosenki</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="607"/>
         <source>Display and edit all song tags.</source>
-        <translation>Wyświetlać i edytuj wszystkie etykiety piosenki.</translation>
+        <translation>Wyświetl i edytuj wszystkie etykiety piosenki.</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="610"/>
@@ -4137,7 +4136,7 @@ piosenki</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="658"/>
         <source>Tasks help you to reorganize and clean-up your songs.</source>
-        <translation>Zadana pomagają Ci w reorganizacji i oczyszczaniu utworów.</translation>
+        <translation>Zadania pomagają Ci w reorganizacji i oczyszczaniu utworów.</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="661"/>
@@ -4167,7 +4166,7 @@ piosenki</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="790"/>
         <source>Show general application information and file-specific details.</source>
-        <translation>Pokaż ogólne informacje o aplikacji i plikach szczegółów.</translation>
+        <translation>Pokaż ogólne informacje o aplikacji i specyfikacje plików.</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="793"/>
@@ -4224,7 +4223,7 @@ piosenki</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1079"/>
         <source>Define your own tags here.</source>
-        <translation>Dodawanie własnych etykiet tutaj.</translation>
+        <translation>Dodawanie własnych etykiet.</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1153"/>
@@ -4280,7 +4279,7 @@ na wierzchu</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1118"/>
         <source>Specify the default input and output encodings of song files.</source>
-        <translation>Okreśal domyślne wejściowe i wyjściowe kodowanie pliku piosenki.</translation>
+        <translation>Określ domyślne wejściowe i wyjściowe kodowanie pliku piosenki.</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1121"/>
@@ -4295,7 +4294,7 @@ na wierzchu</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1206"/>
         <source>Quality Thresholds</source>
-        <translation>Quality Thresholds</translation>
+        <translation>Progi jakości</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1223"/>
@@ -4412,7 +4411,7 @@ na wierzchu</translation>
 (Português)</source>
         <translatorcomment>Portugalski
 (Português)</translatorcomment>
-        <translation></translation>
+        <translation>Portugalski</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1604"/>
@@ -4428,7 +4427,7 @@ na wierzchu</translation>
         <location filename="../../ribbon/QURibbonBar.ui" line="1643"/>
         <source>Create
 Report...</source>
-        <translation>Stwórz
+        <translation>Utwórz
 Raport...</translation>
     </message>
     <message>
@@ -4459,7 +4458,7 @@ Raport...</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1760"/>
         <source>Filter the song tree manually.</source>
-        <translation>Filtruj piosenki w drzewie ręcznie.</translation>
+        <translation>Filtruj ręcznie piosenki w drzewie.</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1763"/>
@@ -4506,7 +4505,7 @@ piosenki</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1912"/>
         <source>Collapse All</source>
-        <translation>Rozwiąż Wszystko</translation>
+        <translation>Zwiń Wszystko</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="2225"/>
@@ -4603,7 +4602,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../slideshow/QUSlideShowDialog.ui" line="212"/>
         <source>Unlink cover from song</source>
-        <translation>Oddziel okładke od piosenki</translation>
+        <translation>Oddziel okładkę od piosenki</translation>
     </message>
     <message>
         <location filename="../../slideshow/QUSlideShowDialog.ui" line="236"/>
@@ -4618,22 +4617,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../slideshow/QUSlideShowDialog.cpp" line="22"/>
         <source>View the cover of each song and decide whether or not to &lt;b&gt;unlink&lt;/b&gt; that cover from the song. Hit space. This helps you to &lt;b&gt;identify bad covers&lt;/b&gt; with ease.</source>
-        <translation>Zobacz okładke każdego utworu i zdecyduj, czy &lt;b&gt;odłączyć&lt;/b&gt; ten obraz z piosenki. Naciśnij spacje. Pomaga to z łatwościa &lt;b&gt;zindentyfikować złe pliki &lt;/b&gt;.</translation>
+        <translation>Zobacz okładkę każdego utworu i zdecyduj, czy &lt;b&gt;odłączyć&lt;/b&gt; ten obrazek od piosenki. Naciśnij spację. To łatwo pomaga&lt;b&gt;zindentyfikować złe pliki &lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../slideshow/QUSlideShowDialog.cpp" line="23"/>
         <source>Clear #COVER tag on OK</source>
-        <translation>Wyczyść etykiete #COVER (okładka)</translation>
+        <translation>Wyczyść etykietę #COVER (okładka)</translation>
     </message>
     <message>
         <location filename="../../slideshow/QUSlideShowDialog.cpp" line="27"/>
         <source>View the background picture of each song and decide whether or not to &lt;b&gt;unlink&lt;/b&gt; that picture from the song. Hit space. This helps you to &lt;b&gt;identify bad ones&lt;/b&gt; with ease.</source>
-        <translation>Zobacz tło każdego utworu i zdecyduj, czy &lt;b&gt;odłączyć&lt;/b&gt; ten obraz z piosenki. Naciśnij spacje. Pomaga to z łatwościa &lt;b&gt;zindentyfikować złe pliki &lt;/b&gt;.</translation>
+        <translation>Zobacz tło każdego utworu i zdecyduj, czy &lt;b&gt;odłączyć&lt;/b&gt; ten obrazek od piosenki. Naciśnij spację. To łatwo pomaga&lt;b&gt;zindentyfikować złe pliki &lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../slideshow/QUSlideShowDialog.cpp" line="28"/>
         <source>Clear #BACKGROUND tag on OK</source>
-        <translation>Wyczyść etykiete #BACKGROUND (tło)</translation>
+        <translation>Wyczyść etykietę #BACKGROUND (tło)</translation>
     </message>
 </context>
 <context>
@@ -4699,7 +4698,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../song/QUSongFile.cpp" line="327"/>
         <source>The tag order was reset to its default order. Check out the options to set up your custom order again.</source>
-        <translation>Aby tag zostało zresetowane do domyślnej kolejności. Zapoznaj się z opcjami, aby skonfigurować niestandardowe żądanie ponownie.</translation>
+        <translation>Tag został zresetowany do domyślnej kolejności. Zapoznaj się z opcjami, aby skonfigurować niestandardowe żądanie ponownie.</translation>
     </message>
     <message>
         <location filename="../../song/QUSongFile.cpp" line="650"/>
@@ -4854,7 +4853,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../song/QUSongFile.cpp" line="972"/>
         <source>Assigned &quot;%1&quot; as audio file for &quot;%2 - %3&quot;.</source>
-        <translation>Przypisane &quot;%1&quot; jako plik audio do &quot;%2 - %3&quot;.</translation>
+        <translation>Przypisano &quot;%1&quot; jako plik audio do &quot;%2 - %3&quot;.</translation>
     </message>
     <message>
         <location filename="../../song/QUSongFile.cpp" line="977"/>
@@ -4974,7 +4973,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../song/QUSongFile.cpp" line="1194"/>
         <source>INCONSISTENT STATE! The song &quot;%1 - %2&quot; has unsaved changes and its persistent song file &quot;%3&quot; was modified externally. Save your changes or rebuild the tree manually.</source>
-        <translation>Niespójny stan! Piosenka &quot;%1 - %2&quot; miała niezapisane zmiany i plik &quot;%3&quot; został zmieniony na poza programem. Zapisz zmiany.</translation>
+        <translation>Niespójny stan! Piosenka &quot;%1 - %2&quot; miała niezapisane zmiany i plik &quot;%3&quot; został zmieniony poza programem. Zapisz zmiany.</translation>
     </message>
     <message>
         <location filename="../../song/QUSongFile.cpp" line="1200"/>
@@ -4994,7 +4993,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../song/QUSongFile.cpp" line="1458"/>
         <source>Error while preparing lyrics for %1 - %2. Songs may not start with a line break.</source>
-        <translation>Błąd podczas przygotowywania teksty piosenki dla %1 - %2. Utwory nie może zaczynać się od końcowej linii.</translation>
+        <translation>Błąd podczas przygotowywania tekstu piosenki dla %1 - %2. Utwory nie mogą zaczynać się od końca linii.</translation>
     </message>
     <message>
         <location filename="../../song/QUSongFile.cpp" line="1528"/>
@@ -5251,7 +5250,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="150"/>
         <source>Skips the first seconds of the video.&lt;br&gt;&lt;br&gt;&lt;i&gt;Use negative values here with positive ones in &lt;b&gt;#START&lt;/b&gt; to fix a short video file.&lt;/i&gt;</source>
-        <translation>Pomija pierwsze sekundy teledysku.&lt;br&gt;&lt;br&gt;&lt;i&gt;Użyj ujemnych wartości tutaj, oraz dodatnic w etykiecie &lt;b&gt;#START&lt;/b&gt; by dopasować zbyt krótki plik teledysku.&lt;/i&gt;</translation>
+        <translation>Pomija pierwsze sekundy teledysku.&lt;br&gt;&lt;br&gt;&lt;i&gt;Użyj ujemnych wartości tutaj, oraz dodatnich w etykiecie &lt;b&gt;#START&lt;/b&gt; by dopasować zbyt krótki plik teledysku.&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="152"/>
@@ -5271,7 +5270,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="156"/>
         <source>beats per minute</source>
-        <translation>uderzeń na minute</translation>
+        <translation>uderzeń na minutę</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="157"/>
@@ -5376,7 +5375,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1293"/>
         <source>Set as primary song</source>
-        <translation>Ustaw jako podstawą piosenke</translation>
+        <translation>Ustaw jako podstawą piosenkę</translation>
     </message>
     <message>
         <source>Open</source>
@@ -5481,7 +5480,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="617"/>
         <source>Spell &amp;&amp; File Checking</source>
-        <translation>Sprawdzanie Słownitwa i Plików</translation>
+        <translation>Sprawdzanie Słownictwa i Plików</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="618"/>
@@ -5631,7 +5630,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1138"/>
         <source>Could not copy song file &quot;%1&quot; to new song directory &quot;%2&quot;!</source>
-        <translation>Nie mogę skopiować utworui &quot;%1&quot; do nowego katalogu &quot;%2&quot;!</translation>
+        <translation>Nie mogę skopiować utworu &quot;%1&quot; do nowego katalogu &quot;%2&quot;!</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1148"/>
@@ -5754,7 +5753,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../preferences/QUTagOrderDialog.ui" line="122"/>
         <source>Drag &amp; drop the tags do edit their order.</source>
-        <translation>Przeciągaj i opuszczaj etykiety by zamieniać ich kolejność.</translation>
+        <translation>Przeciągaj i upuszczaj etykiety by zamieniać ich kolejność.</translation>
     </message>
     <message>
         <location filename="../../preferences/QUTagOrderDialog.ui" line="188"/>

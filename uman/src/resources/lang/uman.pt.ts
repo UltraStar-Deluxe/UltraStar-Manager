@@ -324,9 +324,8 @@
         <translation>Você pode exibir a letra da canção actualmente seleccionada via &lt;i&gt;Ctrl+L&lt;/i&gt;.</translation>
     </message>
     <message>
-        <location filename="../../QUMonty.cpp" line="86"/>
         <source>The new-style menu can be collapsed with &lt;i&gt;Ctrl+F1&lt;/i&gt;.</source>
-        <translation>O novo estilo do menu pode ser fechado com &lt;i&gt;Ctrl+F1&lt;/i&gt;.</translation>
+        <translation type="obsolete">O novo estilo do menu pode ser fechado com &lt;i&gt;Ctrl+F1&lt;/i&gt;.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="87"/>

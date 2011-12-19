@@ -88,7 +88,7 @@
     <message>
         <location filename="language.h" line="17"/>
         <source>Rename songtext file to &quot;Artist - Title.*&quot; and use &quot;txd&quot; extension for duets</source>
-        <translation>Cambiar nombre del archivo de texto a &quot;Artista - Título.*&quot; y usar la extensión &quot;txd&quot; para duetos</translation>
+        <translation>Renombrar el archivo de texto a &quot;Artista - Título.*&quot; y usar la extensión &quot;txd&quot; para duetos</translation>
     </message>
     <message>
         <location filename="language.h" line="18"/>
@@ -118,7 +118,7 @@
     <message>
         <location filename="language.h" line="23"/>
         <source>Rename video to &quot;Artist - Title [VD#*].*&quot; considering #VIDEOGAP value</source>
-        <translation>Cambiar nombre del video a &quot;Artista - Título [VD#*].*&quot; considerando el valor de #VIDEOGAP</translation>
+        <translation>Renombrar del video a &quot;Artista - Título [VD#*].*&quot; considerando el valor de #VIDEOGAP</translation>
     </message>
     <message>
         <location filename="language.h" line="24"/>
@@ -180,7 +180,7 @@
     <message>
         <location filename="QURenameTaskFactory.cpp" line="18"/>
         <source>Move or rename files and folders based on song data.</source>
-        <translation>Mover o cambiar nombres de archivos y carpetas basado en datos de las canciones.</translation>
+        <translation>Mover o renombrar archivos y carpetas basado en datos de las canciones.</translation>
     </message>
 </context>
 <context>
