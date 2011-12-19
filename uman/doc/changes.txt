@@ -149,6 +149,9 @@ COVER DOWNLOAD
 MENU
 * hide/show menu stopped working
 
+PLAYLISTS
+* adding multiple songs to an existing playlist stopped working
+
 <---------------------------->
 < Changelog (1.7.1 to 1.8.0) >
 <---------------------------->
