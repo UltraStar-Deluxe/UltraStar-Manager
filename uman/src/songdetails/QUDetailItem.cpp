@@ -47,7 +47,7 @@ void QUDetailItem::reset() {
 	// default values
 	_flagsForSingleSong = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
 	_flagsForMultipleSongs = 0;
-	_textMask = QString(QObject::tr("%1"));
+	_textMask = QString("%1");
 	_hasDynamicDefaultData = true;
 
 	if(QString::compare(_tag, ENCODING_TAG) == 0) {
