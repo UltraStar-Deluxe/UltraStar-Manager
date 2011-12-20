@@ -85,7 +85,7 @@
         </attribute>
         <column>
          <property name="text">
-          <string>1</string>
+          <string notr="true">1</string>
          </property>
         </column>
        </widget>
@@ -216,6 +216,9 @@
             </item>
             <item>
              <widget class="QToolButton" name="tasksSlot1Btn">
+              <property name="text">
+               <string notr="true"/>
+              </property>
               <property name="icon">
                <iconset resource="resources/uman.qrc">
                 <normaloff>:/marks/flag_blue.png</normaloff>:/marks/flag_blue.png</iconset>
@@ -233,6 +236,9 @@
             </item>
             <item>
              <widget class="QToolButton" name="tasksSlot2Btn">
+              <property name="text">
+               <string notr="true"/>
+              </property>
               <property name="icon">
                <iconset resource="resources/uman.qrc">
                 <normaloff>:/marks/flag_green.png</normaloff>:/marks/flag_green.png</iconset>
@@ -251,7 +257,7 @@
             <item>
              <widget class="QToolButton" name="tasksSlot3Btn">
               <property name="text">
-               <string>...</string>
+               <string notr="true"/>
               </property>
               <property name="icon">
                <iconset resource="resources/uman.qrc">
@@ -271,7 +277,7 @@
             <item>
              <widget class="QToolButton" name="tasksSlot4Btn">
               <property name="text">
-               <string>...</string>
+               <string notr="true"/>
               </property>
               <property name="icon">
                <iconset resource="resources/uman.qrc">
@@ -684,7 +690,7 @@ Tasks</string>
                    <string>Information</string>
                   </property>
                   <property name="text">
-                   <string>...</string>
+                   <string notr="true"/>
                   </property>
                   <property name="icon">
                    <iconset resource="resources/uman.qrc">
@@ -704,7 +710,7 @@ Tasks</string>
                    <string>Hints and tips</string>
                   </property>
                   <property name="text">
-                   <string>...</string>
+                   <string notr="true"/>
                   </property>
                   <property name="icon">
                    <iconset resource="resources/uman.qrc">
@@ -724,7 +730,7 @@ Tasks</string>
                    <string>Save hints</string>
                   </property>
                   <property name="text">
-                   <string>...</string>
+                   <string notr="true"/>
                   </property>
                   <property name="icon">
                    <iconset resource="resources/uman.qrc">
@@ -744,7 +750,7 @@ Tasks</string>
                    <string>Warnings</string>
                   </property>
                   <property name="text">
-                   <string>...</string>
+                   <string notr="true"/>
                   </property>
                   <property name="icon">
                    <iconset resource="resources/uman.qrc">
@@ -764,7 +770,7 @@ Tasks</string>
                    <string>Errors</string>
                   </property>
                   <property name="text">
-                   <string>...</string>
+                   <string notr="true"/>
                   </property>
                   <property name="icon">
                    <iconset resource="resources/uman.qrc">

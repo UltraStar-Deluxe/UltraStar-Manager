@@ -142,7 +142,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>-</string>
+         <string notr="true">-</string>
         </property>
         <property name="textFormat">
          <enum>Qt::RichText</enum>
@@ -158,7 +158,7 @@
       <item>
        <widget class="QLabel" name="timeLbl">
         <property name="text">
-         <string>-:--</string>
+         <string notr="true">-:--</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
@@ -324,7 +324,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>stop</string>
+            <string notr="true">stop</string>
            </property>
            <property name="icon">
             <iconset resource="../resources/uman.qrc">
@@ -366,7 +366,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>prev</string>
+            <string notr="true">prev</string>
            </property>
            <property name="icon">
             <iconset resource="../resources/uman.qrc">
@@ -392,7 +392,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>play</string>
+            <string notr="true">play</string>
            </property>
            <property name="icon">
             <iconset resource="../resources/uman.qrc">
@@ -418,7 +418,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>next</string>
+            <string notr="true">next</string>
            </property>
            <property name="icon">
             <iconset resource="../resources/uman.qrc">

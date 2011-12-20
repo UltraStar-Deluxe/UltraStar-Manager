@@ -162,7 +162,7 @@
          <string>Clear the current filter. Show all songs.</string>
         </property>
         <property name="text">
-         <string>...</string>
+         <string notr="true"/>
         </property>
         <property name="icon">
          <iconset resource="../resources/uman.qrc">

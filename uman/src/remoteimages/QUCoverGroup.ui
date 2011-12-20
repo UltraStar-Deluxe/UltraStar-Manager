@@ -41,7 +41,7 @@
       </size>
      </property>
      <property name="title">
-      <string>GroupBox</string>
+      <string notr="true">GroupBox</string>
      </property>
      <property name="flat">
       <bool>true</bool>

@@ -108,7 +108,7 @@
       <item>
        <widget class="QLabel" name="playlistPathLbl">
         <property name="text">
-         <string>(currentPath)</string>
+         <string notr="true">(currentPath)</string>
         </property>
        </widget>
       </item>
