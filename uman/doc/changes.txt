@@ -25,6 +25,9 @@ SONG DETAILS
 
 TRANSLATIONS
 * new French translation (thanks to Fred)
+* new Spanish translation (thanks to Pantero)
+* new Portuguese translation (thanks to zup3r_vock)
+* updated Polish translation (thanks to michalek^)
 
 TAGS
 * new tags supported: ENCODING, PREVIEWSTART, MEDLEYSTARTBEAT, MEDLEYENDBEAT, CALCMEDLEY
