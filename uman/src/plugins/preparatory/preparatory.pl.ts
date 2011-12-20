@@ -81,7 +81,7 @@
         <location filename="QUPreparatoryTask.cpp" line="93"/>
         <location filename="QUPreparatoryTask.cpp" line="94"/>
         <source>Pattern:</source>
-        <translation>Pattern (np. [CO], [BG]):</translation>
+        <translation>Wzór:</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="93"/>

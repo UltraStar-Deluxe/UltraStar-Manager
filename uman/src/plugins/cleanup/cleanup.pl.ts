@@ -47,7 +47,7 @@
     <message>
         <location filename="QUCleanUpTask.cpp" line="56"/>
         <source>Pattern:</source>
-        <translation>Pattern:</translation>
+        <translation>Wzór:</translation>
     </message>
 </context>
 <context>
