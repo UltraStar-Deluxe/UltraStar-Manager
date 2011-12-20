@@ -4,11 +4,6 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../songdetails/QUDetailItem.cpp" line="50"/>
-        <source>%1</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../songdetails/QUDetailItem.cpp" line="79"/>
         <location filename="../../songdetails/QUDetailItem.cpp" line="81"/>
         <location filename="../../songdetails/QUDetailItem.cpp" line="87"/>
@@ -571,7 +566,7 @@ Versuche es auf %1 x %3 zu beschneiden, um ein Widescreen Format zu erhalten.</t
     <message>
         <location filename="../../QUMonty.cpp" line="130"/>
         <source>&lt;br&gt;&lt;br&gt;You have &lt;b&gt;no songs&lt;/b&gt; in your collection. Try choosing a different song directory using &lt;i&gt;Options &amp;rarr; Song Directory&lt;/i&gt; or add a new song path via &lt;i&gt;Options &amp;rarr; Paths...&lt;/i&gt;.</source>
-        <translation>&lt;br&gt;&lt;br&gt;Du hast &lt;b&gt;keine Songs&lt;/b&gt; in Deiner Sammlung. Versuche, ein anderes Verzeichnis über &lt;i&gt;Optionen &amp;rarr; Song Directory&lt;/i&gt; auszuwählen oder ein neues Liederverzechnisse über &lt;i&gt;Optionen &amp;rarr; Pfade...&lt;/i&gt; hinzuzufügen.</translation>
+        <translation>&lt;br&gt;&lt;br&gt;Du hast &lt;b&gt;keine Songs&lt;/b&gt; in Deiner Sammlung. Versuche, ein anderes Verzeichnis über &lt;i&gt;Einstellungen &amp;rarr; Song Directory&lt;/i&gt; auszuwählen oder ein neues Liederverzechnisse über &lt;i&gt;Einstellungen &amp;rarr; Pfade...&lt;/i&gt; hinzuzufügen.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="132"/>
@@ -606,12 +601,12 @@ Versuche es auf %1 x %3 zu beschneiden, um ein Widescreen Format zu erhalten.</t
     <message>
         <location filename="../../main.cpp" line="146"/>
         <source>This version is still under development &lt;b&gt;and may not be very stable&lt;/b&gt;. You might loose all your songs if you use it.&lt;br&gt;&lt;br&gt;&lt;b&gt;Please backup&lt;/b&gt; the songs you are working with and do not distribute this version.</source>
-        <translation></translation>
+        <translation>Diese Version steckt mitten in der Entwicklung &lt;b&gt;und ist eventuell nicht sehr stabil&lt;/b&gt;. Du könntest alle deine Songs verlieren, wenn du sie verwendest.&lt;br&gt;&lt;br&gt;&lt;b&gt;Bitte mache ein Backup&lt;/b&gt; deiner Songs, mit denen du arbeitest und gib diese Version nicht weiter.</translation>
     </message>
     <message>
         <location filename="../../main.cpp" line="147"/>
         <source>I will be careful.</source>
-        <translation></translation>
+        <translation>Ich bin vorsichtig.</translation>
     </message>
     <message>
         <location filename="../../main.cpp" line="153"/>
@@ -642,7 +637,7 @@ Versuche es auf %1 x %3 zu beschneiden, um ein Widescreen Format zu erhalten.</t
     <message>
         <location filename="../../main.cpp" line="155"/>
         <source>Okay!</source>
-        <translation></translation>
+        <translation>Okay!</translation>
     </message>
     <message>
         <location filename="../../main.cpp" line="169"/>
@@ -828,7 +823,7 @@ Try cropping to %3 x %3.</source>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="51"/>
         <source>&lt;b&gt;Silk Icons&lt;/b&gt;</source>
-        <translation></translation>
+        <translation>&lt;b&gt;Silk Icons&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="55"/>
@@ -842,32 +837,32 @@ Try cropping to %3 x %3.</source>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="57"/>
         <source>&lt;b&gt;Diagona Icons&lt;/b&gt;</source>
-        <translation></translation>
+        <translation>&lt;b&gt;Diagona Icons&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="63"/>
         <source>&lt;b&gt;Fugue Icons&lt;/b&gt;</source>
-        <translation></translation>
+        <translation>&lt;b&gt;Fugue Icons&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="69"/>
         <source>&lt;b&gt;Monty Icons&lt;/b&gt;</source>
-        <translation></translation>
+        <translation>&lt;b&gt;Monty Icons&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="73"/>
         <source>&lt;b&gt;Boomy Icons&lt;/b&gt;</source>
-        <translation></translation>
+        <translation>&lt;b&gt;Boomy Icons&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="77"/>
         <source>&lt;b&gt;Tiny Animals Icons&lt;/b&gt;</source>
-        <translation></translation>
+        <translation>&lt;b&gt;Tiny Animals Icons&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="83"/>
         <source>&lt;b&gt;Milky Icons&lt;/b&gt;</source>
-        <translation></translation>
+        <translation>&lt;b&gt;Milky Icons&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="87"/>
@@ -877,7 +872,7 @@ Try cropping to %3 x %3.</source>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="90"/>
         <source>&lt;b&gt;Picture Flow&lt;/b&gt;</source>
-        <translation></translation>
+        <translation>&lt;b&gt;Picture Flow&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="96"/>
@@ -893,7 +888,7 @@ Try cropping to %3 x %3.</source>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="103"/>
         <source>&lt;b&gt;Tester&lt;/b&gt;</source>
-        <translation></translation>
+        <translation>&lt;b&gt;Tester&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="105"/>
@@ -1117,11 +1112,6 @@ runterladen...</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../remoteimages/QUCoverGroup.ui" line="44"/>
-        <source>GroupBox</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Could not get covers. No song was set.</source>
         <translation type="obsolete">Konnte keine Cover holen. Es wurde kein Song ausgewählt.</translation>
     </message>
@@ -1199,28 +1189,26 @@ runterladen...</translation>
         <translation>Benutzerdefinierten Song-Tag erstellen</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUCustomTagsDialog.ui" line="13"/>
+        <location filename="../../preferences/QUCustomTagsDialog.ui" line="14"/>
         <source>Custom Tags</source>
         <translation>Benutzerdefinierte Song-Tags</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUCustomTagsDialog.ui" line="121"/>
+        <location filename="../../preferences/QUCustomTagsDialog.ui" line="122"/>
         <source>Double-click to edit. Drag &amp; drop the tags to change the order.</source>
         <translation>Bearbeiten mittels Doppelklick. Mit Hilfe von Drag&amp;Drop kann die Reihenfolge geändert werden.</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUCustomTagsDialog.ui" line="179"/>
-        <location filename="../../preferences/QUCustomTagsDialog.ui" line="193"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUCustomTagsDialog.ui" line="252"/>
+        <location filename="../../preferences/QUCustomTagsDialog.ui" line="253"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUCustomTagsDialog.ui" line="266"/>
+        <location filename="../../preferences/QUCustomTagsDialog.ui" line="267"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
@@ -1475,9 +1463,8 @@ runterladen...</translation>
         <translation>Gib einen regulären Ausdruck ein und drück &quot;Enter&quot;.</translation>
     </message>
     <message>
-        <location filename="../../filter/QUFilterArea.ui" line="165"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <location filename="../../filter/QUFilterArea.ui" line="194"/>
@@ -1572,10 +1559,8 @@ runterladen...</translation>
         <translation>Lyrics bearbeiten</translation>
     </message>
     <message>
-        <location filename="../../lyricseditor/QULyricsEditorDialog.ui" line="122"/>
-        <location filename="../../lyricseditor/QULyricsEditorDialog.ui" line="174"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <location filename="../../lyricseditor/QULyricsEditorDialog.ui" line="194"/>
@@ -1700,8 +1685,7 @@ runterladen...</translation>
         <translation type="obsolete">Filter</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="88"/>
-        <location filename="../../QUMainWindow.ui" line="495"/>
+        <location filename="../../QUMainWindow.ui" line="501"/>
         <source>1</source>
         <translation></translation>
     </message>
@@ -1716,37 +1700,37 @@ runterladen...</translation>
         <translation>Aufgaben</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="335"/>
+        <location filename="../../QUMainWindow.ui" line="341"/>
         <source>Apply all checked tasks to all selected songs. (Ctrl+R)</source>
         <translation>Alle ausgewählten Aufgaben mit allen selektierten Songs ausführen. (Strg+R)</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="352"/>
+        <location filename="../../QUMainWindow.ui" line="358"/>
         <source>Ctrl+R</source>
         <translation>Strg+R</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="415"/>
+        <location filename="../../QUMainWindow.ui" line="421"/>
         <source>Uncheck all tasks</source>
         <translation>Nichts auswählen</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="418"/>
+        <location filename="../../QUMainWindow.ui" line="424"/>
         <source>Uncheck All</source>
         <translation>Nichts auswählen</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="432"/>
+        <location filename="../../QUMainWindow.ui" line="438"/>
         <source>Check all tasks</source>
         <translation>Alles auswählen</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="435"/>
+        <location filename="../../QUMainWindow.ui" line="441"/>
         <source>Check All</source>
         <translation>Alles auswählen</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="563"/>
+        <location filename="../../QUMainWindow.ui" line="569"/>
         <source>Event Log</source>
         <translation>Ereignisprotokoll</translation>
     </message>
@@ -2260,85 +2244,78 @@ runterladen...</translation>
         <translation>Gespeicherte Auswahl:</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="254"/>
-        <location filename="../../QUMainWindow.ui" line="274"/>
-        <location filename="../../QUMainWindow.ui" line="687"/>
-        <location filename="../../QUMainWindow.ui" line="707"/>
-        <location filename="../../QUMainWindow.ui" line="727"/>
-        <location filename="../../QUMainWindow.ui" line="747"/>
-        <location filename="../../QUMainWindow.ui" line="767"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="338"/>
+        <location filename="../../QUMainWindow.ui" line="344"/>
         <source>Run
 Tasks</source>
         <translation>Aufgaben
 ausführen</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="388"/>
+        <location filename="../../QUMainWindow.ui" line="394"/>
         <source>Add</source>
         <translation>Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="478"/>
+        <location filename="../../QUMainWindow.ui" line="484"/>
         <source>File Information</source>
         <translation>Datei-Infos</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="503"/>
+        <location filename="../../QUMainWindow.ui" line="509"/>
         <source>Show selected lengths</source>
         <translation>Zeige ausgewählte Zeiten</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="523"/>
+        <location filename="../../QUMainWindow.ui" line="529"/>
         <source>Playlist</source>
         <translation>Playliste</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="543"/>
+        <location filename="../../QUMainWindow.ui" line="549"/>
         <source>Media Player</source>
         <translation>Media-Player</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="666"/>
+        <location filename="../../QUMainWindow.ui" line="672"/>
         <source>Messages:</source>
         <translation>Nachrichten:</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="684"/>
+        <location filename="../../QUMainWindow.ui" line="690"/>
         <source>Information</source>
         <translation>Informationen</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="704"/>
+        <location filename="../../QUMainWindow.ui" line="710"/>
         <source>Hints and tips</source>
         <translation>Tipps &amp;&amp; Hinweise</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="724"/>
+        <location filename="../../QUMainWindow.ui" line="730"/>
         <source>Save hints</source>
         <translation>Speichere Hinweise</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="744"/>
+        <location filename="../../QUMainWindow.ui" line="750"/>
         <source>Warnings</source>
         <translation>Warnungen</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="764"/>
+        <location filename="../../QUMainWindow.ui" line="770"/>
         <source>Errors</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="801"/>
+        <location filename="../../QUMainWindow.ui" line="807"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.ui" line="825"/>
+        <location filename="../../QUMainWindow.ui" line="831"/>
         <source>Clear</source>
         <translation>Leeren</translation>
     </message>
@@ -2469,16 +2446,6 @@ ausführen</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.ui" line="145"/>
-        <source>-</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.ui" line="161"/>
-        <source>-:--</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../mediaplayer/QUMediaPlayer.ui" line="189"/>
         <source>Drag &amp; drop the slider position mark to seek.</source>
         <translation>Der Slider kann verschoben werden, um im Song zu springen.</translation>
@@ -2524,24 +2491,8 @@ ausführen</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.ui" line="327"/>
         <source>stop</source>
-        <translation>Anhalten</translation>
-    </message>
-    <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.ui" line="369"/>
-        <source>prev</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.ui" line="395"/>
-        <source>play</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../mediaplayer/QUMediaPlayer.ui" line="421"/>
-        <source>next</source>
-        <translation></translation>
+        <translation type="obsolete">Anhalten</translation>
     </message>
 </context>
 <context>
@@ -2554,78 +2505,72 @@ ausführen</translation>
     <message>
         <location filename="../../support/QUMessageBox.ui" line="129"/>
         <source>This is an example message. You&apos;ll have to change it to fit your needs.</source>
-        <translation></translation>
+        <translation>Dies ist eine Beispielnachricht. Du musst sie an Deine Anforderungen anpassen.</translation>
     </message>
     <message>
         <location filename="../../support/QUMessageBox.ui" line="190"/>
         <source>Okay, I get it.</source>
-        <translation></translation>
+        <translation>Okay, verstanden.</translation>
     </message>
     <message>
         <location filename="../../support/QUMessageBox.ui" line="201"/>
         <source>What do you mean?</source>
-        <translation></translation>
+        <translation>Was meinst Du?</translation>
     </message>
     <message>
         <location filename="../../support/QUMessageBox.ui" line="212"/>
         <source>I&apos;m outta here...</source>
-        <translation></translation>
+        <translation>Ich bin raus hier...</translation>
     </message>
 </context>
 <context>
     <name>QUMontyArea</name>
     <message>
-        <location filename="../../monty/QUMontyArea.ui" line="13"/>
+        <location filename="../../monty/QUMontyArea.ui" line="14"/>
         <source>Form</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../monty/QUMontyArea.ui" line="59"/>
-        <source>monty</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../monty/QUMontyArea.ui" line="259"/>
         <source>..information here...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
-        <location filename="../../monty/QUMontyArea.ui" line="392"/>
+        <location filename="../../monty/QUMontyArea.ui" line="393"/>
         <source>Ask</source>
         <translation>Fragen</translation>
     </message>
     <message>
-        <location filename="../../monty/QUMontyArea.ui" line="409"/>
+        <location filename="../../monty/QUMontyArea.ui" line="410"/>
         <source>Listen</source>
         <translation>Zuhören</translation>
     </message>
     <message>
-        <location filename="../../monty/QUMontyArea.ui" line="445"/>
+        <location filename="../../monty/QUMontyArea.ui" line="446"/>
         <source>Hide</source>
         <translation>Verstecken</translation>
     </message>
     <message>
-        <location filename="../../monty/QUMontyArea.ui" line="492"/>
+        <location filename="../../monty/QUMontyArea.ui" line="493"/>
         <source>Tell me...</source>
         <translation>Sag mir...</translation>
     </message>
     <message>
-        <location filename="../../monty/QUMontyArea.ui" line="509"/>
+        <location filename="../../monty/QUMontyArea.ui" line="510"/>
         <source>Talk</source>
         <translation>Reden</translation>
     </message>
     <message>
-        <location filename="../../monty/QUMontyArea.ui" line="559"/>
+        <location filename="../../monty/QUMontyArea.ui" line="560"/>
         <source>What did you say just before?</source>
         <translation>Was hast du vorher gesagt?</translation>
     </message>
     <message>
-        <location filename="../../monty/QUMontyArea.ui" line="582"/>
+        <location filename="../../monty/QUMontyArea.ui" line="583"/>
         <source>Tell me more...</source>
         <translation>Erzähl mir mehr...</translation>
     </message>
     <message>
-        <location filename="../../monty/QUMontyArea.ui" line="605"/>
+        <location filename="../../monty/QUMontyArea.ui" line="606"/>
         <source>Thanks for your time.</source>
         <translation>Vielen Dank!</translation>
     </message>
@@ -2913,11 +2858,6 @@ margin: 0;</source>
     <message>
         <location filename="../../playlistdetails/QUPlaylistArea.ui" line="14"/>
         <source>Form</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.ui" line="111"/>
-        <source>(currentPath)</source>
         <translation></translation>
     </message>
     <message>
@@ -3293,27 +3233,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../plugins/QUPluginModel.cpp" line="41"/>
         <source>Type: Task Factory Plugin</source>
-        <translation></translation>
+        <translation>Typ: Task Factory Plugin</translation>
     </message>
     <message>
         <location filename="../../plugins/QUPluginModel.cpp" line="43"/>
         <source>Type: Remote Image Source Plugin</source>
-        <translation></translation>
+        <translation>Typ: Remote Image Source Plugin</translation>
     </message>
     <message>
         <location filename="../../plugins/QUPluginModel.cpp" line="45"/>
         <source>&lt;br&gt;Subtype: Cover Images</source>
-        <translation></translation>
+        <translation>&lt;br&gt;Subtyp: Cover-Bilder</translation>
     </message>
     <message>
         <location filename="../../plugins/QUPluginModel.cpp" line="47"/>
         <source>&lt;br&gt;Subtype: Background Images</source>
-        <translation></translation>
+        <translation>&lt;br&gt;Subtyp: Hintergrund-Bilder</translation>
     </message>
     <message>
         <location filename="../../plugins/QUPluginModel.cpp" line="50"/>
         <source>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;%2&lt;br&gt;&lt;br&gt;Author: %3&lt;br&gt;Version: %4&lt;br&gt;%5</source>
-        <translation></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;%2&lt;br&gt;&lt;br&gt;Autor: %3&lt;br&gt;Version: %4&lt;br&gt;%5</translation>
     </message>
 </context>
 <context>
@@ -3693,7 +3633,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../remoteimages/QUPropertyTable.cpp" line="38"/>
         <source>Host</source>
-        <translation></translation>
+        <translation>Host</translation>
     </message>
     <message>
         <location filename="../../remoteimages/QUPropertyTable.cpp" line="39"/>
@@ -3718,12 +3658,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../remoteimages/QUPropertyTable.cpp" line="55"/>
         <source>Keep downloaded pictures.</source>
-        <translation></translation>
+        <translation>Vorherige Downloads behalten.</translation>
     </message>
     <message>
         <location filename="../../remoteimages/QUPropertyTable.cpp" line="55"/>
         <source>Remove old downloads.</source>
-        <translation></translation>
+        <translation>Vorherige Downloads entfernen.</translation>
     </message>
 </context>
 <context>
@@ -3868,7 +3808,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="146"/>
         <source>Website (*.htm *.html)</source>
-        <translation></translation>
+        <translation>Webseite (*.htm *.html)</translation>
     </message>
     <message>
         <source>Report created successfully to: &quot;%1&quot;.</source>
@@ -4083,7 +4023,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="23"/>
         <source>TabWidget</source>
-        <translation></translation>
+        <translation>TabWidget</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="39"/>
@@ -4294,7 +4234,7 @@ durchsehen</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="583"/>
         <source>Song Management</source>
-        <translation></translation>
+        <translation>Song-Management</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="607"/>
@@ -4305,7 +4245,7 @@ durchsehen</translation>
         <location filename="../../ribbon/QURibbonBar.ui" line="610"/>
         <source>Song
 Details</source>
-        <translation></translation>
+        <translation>Song-Details</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="658"/>
@@ -4330,7 +4270,7 @@ Details</source>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="718"/>
         <source>Info &amp;&amp; Log</source>
-        <translation></translation>
+        <translation>Info &amp;&amp; Log</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="742"/>
@@ -4610,7 +4550,7 @@ Speichern</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1604"/>
         <source>E&amp;xtras</source>
-        <translation></translation>
+        <translation>E&amp;xtras</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="745"/>
@@ -4653,7 +4593,7 @@ erstellen...</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1714"/>
         <source>Plugins...</source>
-        <translation></translation>
+        <translation>Plugins...</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1736"/>
@@ -4720,22 +4660,22 @@ verstecken</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="2260"/>
         <source>Qt Open Source Edition...</source>
-        <translation></translation>
+        <translation>Qt Open Source Edition...</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="2283"/>
         <source>UltraStar Manager...</source>
-        <translation></translation>
+        <translation>UltraStar Manager...</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="2305"/>
         <source>Third-Party Libs</source>
-        <translation></translation>
+        <translation>Third-Party Bibliotheken</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="2328"/>
         <source>TagLib...</source>
-        <translation></translation>
+        <translation>TabLib...</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="2354"/>
@@ -5584,7 +5524,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="152"/>
         <source>Relative?</source>
-        <translation></translation>
+        <translation>Relativ?</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="153"/>
@@ -5599,12 +5539,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="156"/>
         <source>beats per minute</source>
-        <translation></translation>
+        <translation>Beats pro Minute</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="157"/>
         <source>GAP</source>
-        <translation></translation>
+        <translation>GAP</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="159"/>
@@ -5614,7 +5554,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="162"/>
         <source>Indicate duplicate songs. &lt;b&gt;You should not see me.&lt;/b&gt;</source>
-        <translation></translation>
+        <translation>Zeige doppelte Songs an. &lt;b&gt;Du solltest mich nicht sehen.&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="473"/>
@@ -5712,7 +5652,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1313"/>
         <source>Covers...</source>
-        <translation></translation>
+        <translation>Cover...</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1314"/>
@@ -6031,7 +5971,7 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../support/QUTextDialog.ui" line="198"/>
+        <location filename="../../support/QUTextDialog.ui" line="252"/>
         <source>background-color: rgba(255, 255, 255, 0);</source>
         <translation></translation>
     </message>
@@ -6040,9 +5980,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Der Inhalt dieser Datei ist &lt;b&gt;schreibgeschützt&lt;/b&gt;. Zeilennummern wurden automatisch erzeugt.</translation>
     </message>
     <message>
-        <location filename="../../support/QUTextDialog.ui" line="125"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <location filename="../../support/QUTextDialog.cpp" line="45"/>
@@ -6055,7 +5994,7 @@ p, li { white-space: pre-wrap; }
         <translation>Der Inhalt dieser Datei ist &lt;b&gt;schreibgeschützt&lt;/b&gt;. Zeilennummern wurden automatisch erzeugt.</translation>
     </message>
     <message>
-        <location filename="../../support/QUTextDialog.ui" line="244"/>
+        <location filename="../../support/QUTextDialog.ui" line="298"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
