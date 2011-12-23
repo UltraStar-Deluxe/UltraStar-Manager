@@ -26,7 +26,7 @@
     <message>
         <location filename="../../QUMonty.cpp" line="26"/>
         <source>You can hide the event log by unchecking &lt;i&gt;View &amp;rarr; Event Log&lt;/i&gt;.&lt;br&gt;&lt;br&gt;This also works for &lt;i&gt;Song Details&lt;/i&gt; and the &lt;i&gt;Tasks&lt;/i&gt; area.</source>
-        <translation>Puedes ocultar el registro de eventos presionando el botón en &lt;i&gt;Ver &amp;rarr; Registro de Eventos&lt;/i&gt;.&lt;br&gt;&lt;br&gt;Estp también funciona para detalles de canciones y el área de tareas.</translation>
+        <translation>Puedes ocultar el registro de eventos presionando su botón en &lt;i&gt;Ver &amp;rarr; Registro de Eventos&lt;/i&gt;.&lt;br&gt;&lt;br&gt;Esto también funciona para el panel de detalles de las canciones y el de tareas.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="27"/>
@@ -171,7 +171,7 @@
     <message>
         <location filename="../../QUMonty.cpp" line="55"/>
         <source>You have a problem with changing the artist tag because autocomplete wants to use the ID3 tag value? (e.g. &quot;abba&quot; &amp;rarr; &quot;Abba&quot;)&lt;br&gt;&lt;br&gt;Try to check &lt;i&gt;Use Case-sensitive Autocomplete&lt;/i&gt; in the &lt;i&gt;Song Details&lt;/i&gt; table.</source>
-        <translation>¿Tienes problemas para cambiar la etiqueta de artista porque la autocompletación quiere usar el valor de la etiqueta ID3? (ej. &quot;abba&quot; &amp;rarr; &quot;Abba&quot;)&lt;br&gt;&lt;br&gt;Prueba a tiquear en &lt;i&gt;Usar Autocompletación con Mayúsculas y Minúsculas&lt;/i&gt; en la tabla de detalles.</translation>
+        <translation>¿Tienes problemas para cambiar la etiqueta de artista porque la autocompletación quiere usar el valor de la etiqueta ID3? (ej. &quot;abba&quot; &amp;rarr; &quot;Abba&quot;)&lt;br&gt;&lt;br&gt;Prueba a tiquear en &lt;i&gt;Autocompletación considerando mayúsculas y minúsculas&lt;/i&gt; en la tabla de detalles.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="56"/>
@@ -1134,7 +1134,7 @@ background-image: url();</translation>
     <message>
         <location filename="../../songdetails/QUDetailsTable.cpp" line="68"/>
         <source>Custom</source>
-        <translation>Personalizada</translation>
+        <translation>Personalizadas</translation>
     </message>
 </context>
 <context>
@@ -1774,7 +1774,7 @@ background-image: url();</translation>
     <message>
         <location filename="../../QUMainWindow.ui" line="171"/>
         <source>Use Case-sensitive Autocomplete</source>
-        <translation>Usar Autocompletación Considerando Mayúsculas y Minúsculas</translation>
+        <translation>Autocompletación considerando mayúsculas y minúsculas</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.ui" line="182"/>
@@ -2360,12 +2360,12 @@ margin: 0;</translation>
     <message>
         <location filename="../../playlistdetails/QUPlayList.cpp" line="58"/>
         <source>Remove from list</source>
-        <translation>Sacar de la lista</translation>
+        <translation>Quitar éstas de la lista</translation>
     </message>
     <message>
         <location filename="../../playlistdetails/QUPlayList.cpp" line="59"/>
         <source>Remove unknown entries</source>
-        <translation>Sacar entradas desconocidas</translation>
+        <translation>Quitartodas las canciones inválidas</translation>
     </message>
 </context>
 <context>
@@ -4822,22 +4822,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="612"/>
         <source>Presets</source>
-        <translation>Prestablecidos</translation>
+        <translation>Prestablecidas</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="614"/>
         <source>Default</source>
-        <translation>Por Defecto</translation>
+        <translation>Por defecto</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="615"/>
         <source>Minimum</source>
-        <translation>Mínimo</translation>
+        <translation>Mínimas</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="617"/>
         <source>Spell &amp;&amp; File Checking</source>
-        <translation>Deletreo &amp;&amp; Revisión de Archivos</translation>
+        <translation>Nombres y validación de archivos</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="618"/>
