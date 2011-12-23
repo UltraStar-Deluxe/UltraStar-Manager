@@ -153,7 +153,7 @@ MENU
 * hide/show menu stopped working
 
 PLAYLISTS
-* adding multiple songs to an existing playlist stopped working
+* there are several playlist-related issues not working correctly
 
 <---------------------------->
 < Changelog (1.7.1 to 1.8.0) >
