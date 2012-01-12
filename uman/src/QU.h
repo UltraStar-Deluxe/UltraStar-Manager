@@ -17,6 +17,11 @@
 #define LOWER_TIME_BOUND_DEFAULT 15
 #define UPPER_TIME_BOUND_DEFAULT 30
 
+// used for encodings
+#define ENCODING_CP1250 "CP1250"
+#define ENCODING_CP1252 "CP1252"
+#define ENCODING_UTF8   "UTF8"
+
 //! This class provides global flags and enumerations.
 class QU: QObject {
 	Q_OBJECT
