@@ -504,7 +504,7 @@
         <location filename="../../songdetails/QUDetailItem.cpp" line="79"/>
         <location filename="../../songdetails/QUDetailItem.cpp" line="81"/>
         <location filename="../../songdetails/QUDetailItem.cpp" line="87"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="659"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="686"/>
         <source>%1 seconds</source>
         <translation>%1 segundos</translation>
     </message>
@@ -538,132 +538,142 @@
         <translation>Esta é uma canção de karaoke, o que significa que o ficheiro de áudio não contém vocais.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="310"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="311"/>
         <source>Unused files found:</source>
         <translation>Ficheiros não utilizados encontrados:</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="323"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="324"/>
         <source>Multiple songs found:
 * %1 (primary)</source>
         <translation>Várias canções encontradas:
 * %1 (primária)</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="348"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="349"/>
         <source>Low quality audio file (%1 kbit/s)</source>
         <translation>Audio de baixa qualidade (%1 kbit/s)</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="351"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="352"/>
         <source>Medium quality audio file (%1 kbit/s)</source>
         <translation>Audio de média qualidade (%1 kbit/s)</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="354"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="355"/>
         <source>High quality audio file (%1 kbit/s)</source>
         <translation>Audio de alta qualidade (%1 kbit/s)</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="364"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="365"/>
         <source>Low quality cover (%1 x %2)</source>
         <translation>Capa de baixa qualidade (%1 x %2)</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="367"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="368"/>
         <source>Medium quality cover (%1 x %2)</source>
         <translation>Capa de média qualidade (%1 x %2)</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="370"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="371"/>
         <source>High quality cover (%1 x %2)</source>
         <translation>Capa de alta qualidade (%1 x %2)</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="379"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="380"/>
         <source>Non-square low quality cover (%1 x %2).
 Try cropping to %3 x %3.</source>
         <translation>Capa não quadrada de baixa qualidade (%1 x %2).
 Tente cortar para %3 x %3.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="382"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="383"/>
         <source>Non-square medium quality cover (%1 x %2).
 Try cropping to %3 x %3.</source>
         <translation>Capa não quadrada de média qualidade (%1 x %2).
 Tente cortar para %3 x %3.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="385"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="386"/>
         <source>Non-square high quality cover (%1 x %2).
 Try cropping to %3 x %3.</source>
         <translation>Capa não quadrada de alta qualidade (%1 x %2).
 Tente cortar para %3 x %3.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="396"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="397"/>
         <source>Low quality background (%1 x %2)</source>
         <translation>Fundo de baixa qualidade (%1 x %2)</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="399"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="400"/>
         <source>Medium quality background (%1 x %2)</source>
         <translation>Fundo de média qualidade (%1 x %2)</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="402"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="403"/>
         <source>High quality background (%1 x %2)</source>
         <translation>Fundo de alta qualidade (%1 x %2)</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="407"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="408"/>
         <source>Low quality background with non-widescreen aspect ratio (%1 x %2).
 Try cropping to %1 x %3 for a widescreen aspect ratio.</source>
         <translation>Fundo de baixa qualidade sem aspecto panorâmico (%1 x %2).
 Tente cortar para %1 x %3  para ter um aspecto panorâmico.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="410"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="411"/>
         <source>Medium quality background with non-widescreen aspect ratio (%1 x %2).
 Try cropping to %1 x %3 for a widescreen aspect ratio.</source>
         <translation>Fundo de média qualidade sem aspecto panorâmico (%1 x %2).
 Tente cortar para %1 x %3  para ter um aspecto panorâmico.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="413"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="414"/>
         <source>High quality background with non-widescreen aspect ratio (%1 x %2).
 Try cropping to %1 x %3 for a widescreen aspect ratio.</source>
         <translation>Fundo de alta qualidade sem aspecto panorâmico (%1 x %2).
 Tente cortar para %1 x %3  para ter um aspecto panorâmico.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="598"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="603"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="608"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="613"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="607"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="612"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="617"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="622"/>
         <source>File not found: &quot;%1&quot;</source>
         <translation>Ficheiro não encontrado: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="599"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="604"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="609"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="614"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="608"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="613"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="618"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="623"/>
         <source>File type unsupported: &quot;%1&quot;</source>
         <translation>Tipo de ficheiro não suportado: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="667"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="646"/>
+        <source>Medley available (%1 seconds).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongItem.cpp" line="652"/>
+        <source>Medley disabled by CALCMEDLEY:OFF.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongItem.cpp" line="694"/>
         <source>Not calculated.</source>
         <translation>Não calculado.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="668"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="695"/>
         <source>Calculate the speed first.</source>
         <translation>Calcular a velocidade em primeiro lugar.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="682"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="709"/>
         <source>%1 syllables per second</source>
         <translation>%1 sílabas por segundo</translation>
     </message>
@@ -893,14 +903,45 @@ background-image: url();</translation>
         <translation>Video existe?</translation>
     </message>
     <message>
-        <location filename="../../report/QUBooleanSongData.cpp" line="40"/>
+        <location filename="../../report/QUBooleanSongData.cpp" line="26"/>
+        <source>Medley exists?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../report/QUBooleanSongData.cpp" line="30"/>
+        <source>Golden Notes exist?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../report/QUBooleanSongData.cpp" line="52"/>
         <source>yes</source>
         <translation>sim</translation>
     </message>
     <message>
-        <location filename="../../report/QUBooleanSongData.cpp" line="42"/>
+        <location filename="../../report/QUBooleanSongData.cpp" line="54"/>
         <source>no</source>
         <translation>não</translation>
+    </message>
+</context>
+<context>
+    <name>QUCSVReport</name>
+    <message>
+        <location filename="../../report/QUCSVReport.cpp" line="30"/>
+        <source>Songs Path: &quot;%1&quot;</source>
+        <translation type="unfinished">Caminho das canções: &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="../../report/QUCSVReport.cpp" line="46"/>
+        <source>Creating CSV report...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Creating plain text report...</source>
+        <translation type="obsolete">Creando relatório de texto...</translation>
+    </message>
+    <message>
+        <source>Appending lyrics...</source>
+        <translation type="obsolete">Anexando letras...</translation>
     </message>
 </context>
 <context>
@@ -919,6 +960,16 @@ background-image: url();</translation>
         <location filename="../../songtree/QUColumnAction.cpp" line="14"/>
         <source>Karaoke</source>
         <translation>Karaoke</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUColumnAction.cpp" line="16"/>
+        <source>Medley</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUColumnAction.cpp" line="18"/>
+        <source>Golden Notes</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1494,155 +1545,155 @@ Tarefas</translation>
         <translation>Limpar</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="116"/>
-        <location filename="../../QUMainWindow.cpp" line="131"/>
+        <location filename="../../QUMainWindow.cpp" line="117"/>
+        <location filename="../../QUMainWindow.cpp" line="132"/>
         <source>Quit</source>
         <translation>Sair</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="117"/>
+        <location filename="../../QUMainWindow.cpp" line="118"/>
         <source>&lt;b&gt;Songs&lt;/b&gt; have been modified.</source>
         <translation>As &lt;b&gt;Canções&lt;/b&gt; foram modificadas.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="118"/>
+        <location filename="../../QUMainWindow.cpp" line="119"/>
         <source>Save all changed songs.</source>
         <translation>Guardar todas as canções alteradas.</translation>
-    </message>
-    <message>
-        <location filename="../../QUMainWindow.cpp" line="119"/>
-        <location filename="../../QUMainWindow.cpp" line="134"/>
-        <location filename="../../QUMainWindow.cpp" line="582"/>
-        <location filename="../../QUMainWindow.cpp" line="1032"/>
-        <location filename="../../QUMainWindow.cpp" line="1066"/>
-        <source>Discard all changes.</source>
-        <translation>Rejeitar todas as alterações.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="120"/>
         <location filename="../../QUMainWindow.cpp" line="135"/>
         <location filename="../../QUMainWindow.cpp" line="583"/>
-        <location filename="../../QUMainWindow.cpp" line="1033"/>
-        <location filename="../../QUMainWindow.cpp" line="1067"/>
+        <location filename="../../QUMainWindow.cpp" line="1035"/>
+        <location filename="../../QUMainWindow.cpp" line="1069"/>
+        <source>Discard all changes.</source>
+        <translation>Rejeitar todas as alterações.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMainWindow.cpp" line="121"/>
+        <location filename="../../QUMainWindow.cpp" line="136"/>
+        <location filename="../../QUMainWindow.cpp" line="584"/>
+        <location filename="../../QUMainWindow.cpp" line="1036"/>
+        <location filename="../../QUMainWindow.cpp" line="1070"/>
         <source>Cancel this action.</source>
         <translation>Cancelar esta acção.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="132"/>
+        <location filename="../../QUMainWindow.cpp" line="133"/>
         <source>&lt;b&gt;Playlists&lt;/b&gt; have been modified.</source>
         <translation>As &lt;b&gt;Playlists&lt;/b&gt; foram modificadas.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="133"/>
+        <location filename="../../QUMainWindow.cpp" line="134"/>
         <source>Save all changed playlists.</source>
         <translation>Guardar todas as playlists alteradas.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="183"/>
+        <location filename="../../QUMainWindow.cpp" line="184"/>
         <source>No song directory was selected.</source>
         <translation>Nenhum directório de canções seleccionado.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="233"/>
+        <location filename="../../QUMainWindow.cpp" line="234"/>
         <source>Cannot read image formats: %1</source>
         <translation>Não é possível ler os formatos de imagem: %1</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="251"/>
+        <location filename="../../QUMainWindow.cpp" line="252"/>
         <source>UltraStar Manager</source>
         <translation>Ultrastar Manager</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="303"/>
+        <location filename="../../QUMainWindow.cpp" line="304"/>
         <source>Review pictures</source>
         <translation>Rever imagens</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="304"/>
+        <location filename="../../QUMainWindow.cpp" line="305"/>
         <source>Covers...</source>
         <translation>Capas...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="305"/>
+        <location filename="../../QUMainWindow.cpp" line="306"/>
         <source>Backgrounds...</source>
         <translation>Fundos...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="579"/>
+        <location filename="../../QUMainWindow.cpp" line="580"/>
         <source>Rebuild Song Tree</source>
         <translation>Reconstruir Listagem de canções</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="580"/>
-        <location filename="../../QUMainWindow.cpp" line="1030"/>
-        <location filename="../../QUMainWindow.cpp" line="1064"/>
+        <location filename="../../QUMainWindow.cpp" line="581"/>
+        <location filename="../../QUMainWindow.cpp" line="1033"/>
+        <location filename="../../QUMainWindow.cpp" line="1067"/>
         <source>Songs have been modified.</source>
         <translation>As canções foram modificadas.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="581"/>
-        <location filename="../../QUMainWindow.cpp" line="1031"/>
-        <location filename="../../QUMainWindow.cpp" line="1065"/>
+        <location filename="../../QUMainWindow.cpp" line="582"/>
+        <location filename="../../QUMainWindow.cpp" line="1034"/>
+        <location filename="../../QUMainWindow.cpp" line="1068"/>
         <source>Save all changes.</source>
         <translation>Guardar todas as alterações.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="697"/>
+        <location filename="../../QUMainWindow.cpp" line="698"/>
         <source>Audio file changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Ficheiro Audio alterado de &quot;%1&quot; para: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="703"/>
+        <location filename="../../QUMainWindow.cpp" line="704"/>
         <source>Cover changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Capa alterada de &quot;%1&quot; para: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="709"/>
+        <location filename="../../QUMainWindow.cpp" line="710"/>
         <source>Background changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Fundo alterado de &quot;%1&quot; para: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="715"/>
+        <location filename="../../QUMainWindow.cpp" line="716"/>
         <source>Video file changed from &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Video alterado de &quot;%1&quot; para: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="731"/>
+        <location filename="../../QUMainWindow.cpp" line="732"/>
         <source>Applying new value for %1 to all selected songs...</source>
         <translation>Aplicando o novo valor para %1 a todas as canções seleccionadas...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="779"/>
+        <location filename="../../QUMainWindow.cpp" line="780"/>
         <source>Applying all checked tasks to all selected songs...</source>
         <translation>Aplicando todas as tarefas marcadas a todas as canções seleccionadas...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="895"/>
+        <location filename="../../QUMainWindow.cpp" line="898"/>
         <source>The log file was saved to: &quot;%1&quot;</source>
         <translation>O ficheiro de log foi guardado para: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="897"/>
+        <location filename="../../QUMainWindow.cpp" line="900"/>
         <source>The log file COULD NOT be saved.</source>
         <translation>Não foi possível guardar o ficheiro de log.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="914"/>
+        <location filename="../../QUMainWindow.cpp" line="917"/>
         <source>About TagLib</source>
         <translation>Sobre TagLib</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="915"/>
+        <location filename="../../QUMainWindow.cpp" line="918"/>
         <source>&lt;b&gt;TagLib Audio Meta-Data Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;TagLib is a library for reading and editing the meta-data of several popular audio formats.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1.%2.%3&lt;/b&gt;&lt;br&gt;&lt;br&gt;Visit: &lt;a href=&quot;http://developer.kde.org/~wheeler/taglib.html&quot;&gt;TagLib Homepage&lt;/a&gt;</source>
         <translation>&lt;b&gt;Bibioteca TagLib Audio Meta-Data&lt;/b&gt;&lt;br&gt;&lt;br&gt;TagLib é uma biblioteca para ler e editar os dados de meta-de vários formatos populares de áudio.&lt;br&lt;br&gt;Versão: &lt;b&gt;%1.%2%.%3&lt;/b&gt;&lt;br&gt;&lt;br&gt;Visite: &lt;a href=&quot;http://developer.kde.org/~wheeler/taglib.html&quot;&gt;TagLib Homepage&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="926"/>
+        <location filename="../../QUMainWindow.cpp" line="929"/>
         <source>About BASS</source>
         <translation>Sobre BASS</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="927"/>
+        <location filename="../../QUMainWindow.cpp" line="930"/>
         <source>&lt;b&gt;BASS Audio Library&lt;/b&gt;&lt;br&gt;&lt;br&gt;BASS is an audio library for use in Windows and MacOSX software. Its purpose is to provide the most powerful and efficient (yet easy to use), sample, stream, MOD music, and recording functions. All in a tiny DLL, under 100KB in size.&lt;br&gt;&lt;br&gt;Version: &lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Copyright (c) 1999-2008&lt;br&gt;&lt;a href=&quot;http://www.un4seen.com/bass.html&quot;&gt;Un4seen Developments Ltd.&lt;/a&gt; All rights reserved.</source>
         <translation>&lt;b&gt;Biblioteca BASS Audio&lt;/b&gt;&lt;br&gt;&lt;br&gt;BASS é uma biblioteca de áudio para uso no Windows e MacOSX. Sua finalidade é fornecer o mais poderoso e eficiente (mas fácil de usar), amostra de fluxo, música MOD e funções de gravação. Tudo em uma DLL leve, sob 100KB no tamanho.&lt;br&gt;&lt;br&gt;Versão: &lt;b&gt;%1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Copyright (c) 1999-2008&lt;br&gt;&lt;a href=&quot;http://www.un4seen.com/bass.html &quot;&gt;Un4seen Developments Ltd.&lt;/a&gt;Todos os direitos reservados.</translation>
     </message>
@@ -1655,7 +1706,7 @@ Tarefas</translation>
         <translation type="obsolete">A verificação de actualização&lt;b&gt;falhou&lt;/b&gt;.&lt;br&gt;A sua ligação de internet está ligada?</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="954"/>
+        <location filename="../../QUMainWindow.cpp" line="957"/>
         <source>Update check failed. Host unreachable.</source>
         <translation>A verificação de actualização falhou. Host inacessível.</translation>
     </message>
@@ -1664,7 +1715,7 @@ Tarefas</translation>
         <translation type="obsolete">A verificação de actualização&lt;b&gt;falhou&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Sem permissão para escrever ficheiro %1.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="967"/>
+        <location filename="../../QUMainWindow.cpp" line="970"/>
         <source>Update check failed. No permission to write file %1.</source>
         <translation>A verificação de actualização falhou. Sem permissão para escrever ficheiro %1.</translation>
     </message>
@@ -1673,12 +1724,12 @@ Tarefas</translation>
         <translation type="obsolete">Verificação de actualização com &lt;b&gt;sucesso&lt;/b&gt;. UltraStar Manager %1.%2.%3 está &lt;b&gt;desactualizado&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Download do UltraStar Manager  mais recente %4 &lt;a href=&apos;http://sourceforge.net/projects/uman/&apos;&gt;aqui&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="988"/>
+        <location filename="../../QUMainWindow.cpp" line="991"/>
         <source>Update check successful. A new version of UltraStar Manager is available.</source>
         <translation>Verificação de actualização com sucesso. Uma nova versão do Ultrastar Manager encontra-se disponível.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="990"/>
+        <location filename="../../QUMainWindow.cpp" line="993"/>
         <source>Update check successful. UltraStar Manager is up to date.</source>
         <translation>Verificação de actualização com sucesso. Ultrastar Manager está actualizado.</translation>
     </message>
@@ -1687,7 +1738,7 @@ Tarefas</translation>
         <translation type="obsolete">Verificação de actualização com &lt;b&gt;sucesso&lt;/b&gt;. UltraStar Manager %1.%2.%3 está &lt;b&gt;actualizado&lt;/b&gt;!</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="997"/>
+        <location filename="../../QUMainWindow.cpp" line="1000"/>
         <source>OK. I will check again later.</source>
         <translation>OK. Eu verificarei mais tarde.</translation>
     </message>
@@ -1696,148 +1747,123 @@ Tarefas</translation>
         <translation type="obsolete">OK. Por favor, verifique automáticamente no arranque.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="96"/>
+        <location filename="../../QUMainWindow.cpp" line="97"/>
         <source>Ready.</source>
         <translation>Pronto.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="949"/>
-        <location filename="../../QUMainWindow.cpp" line="962"/>
+        <location filename="../../QUMainWindow.cpp" line="952"/>
+        <location filename="../../QUMainWindow.cpp" line="965"/>
         <source>Update check failed.</source>
         <translation>Verificação de actualização falhada.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="950"/>
+        <location filename="../../QUMainWindow.cpp" line="953"/>
         <source>Is your internet connection working?</source>
         <translation>A sua ligação à internet está ligada?</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="963"/>
+        <location filename="../../QUMainWindow.cpp" line="966"/>
         <source>No permission to write file %1.</source>
         <translation>Sem permissão para escrever ficheiro %1.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="981"/>
-        <location filename="../../QUMainWindow.cpp" line="994"/>
+        <location filename="../../QUMainWindow.cpp" line="984"/>
+        <location filename="../../QUMainWindow.cpp" line="997"/>
         <source>Update check successful.</source>
         <translation>Verificação de actualização feita com sucesso.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="982"/>
+        <location filename="../../QUMainWindow.cpp" line="985"/>
         <source>UltraStar Manager %1.%2.%3 is &lt;b&gt;outdated&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Download the most recent UltraStar Manager %4 &lt;a href=&apos;http://sourceforge.net/projects/uman/&apos;&gt;here&lt;/a&gt;.</source>
         <translation>UltraStar Manager %1.%2.%3 está &lt;b&gt;desactualizado&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Faça o download da versao mais recente do UltraStar Manager %4 &lt;a href=&apos;http://sourceforge.net/projects/uman/&apos;&gt;aqui&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="995"/>
+        <location filename="../../QUMainWindow.cpp" line="998"/>
         <source>UltraStar Manager %1.%2.%3 is &lt;b&gt;up to date&lt;/b&gt;!</source>
         <translation>UltraStar Manager %1.%2.%3 está &lt;b&gt;actualizado&lt;/b&gt;!</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="998"/>
+        <location filename="../../QUMainWindow.cpp" line="1001"/>
         <source>OK. Check automatically on startup.</source>
         <translation>OK. Verificar automaticamente no arranque.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1002"/>
+        <location filename="../../QUMainWindow.cpp" line="1005"/>
         <source>Automatic check for updates disabled.</source>
         <translation>Verificação automática de updates desactivada.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1005"/>
+        <location filename="../../QUMainWindow.cpp" line="1008"/>
         <source>Automatic check for updates enabled.</source>
         <translation>Verificação automática de updates activada.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1029"/>
+        <location filename="../../QUMainWindow.cpp" line="1032"/>
         <source>Change Song Directory</source>
         <translation>Alterar directório de canções</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1050"/>
+        <location filename="../../QUMainWindow.cpp" line="1053"/>
         <source>UltraStar song directory changed to: &quot;%1&quot;.</source>
         <translation>Directório de canções do Ultrastar alterado para: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1052"/>
+        <location filename="../../QUMainWindow.cpp" line="1055"/>
         <source>Folder (%1)</source>
         <translation>Pasta (%1)</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1063"/>
+        <location filename="../../QUMainWindow.cpp" line="1066"/>
         <source>Custom Tags</source>
         <translation>Etiquetas Personalizadas</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1082"/>
+        <location filename="../../QUMainWindow.cpp" line="1085"/>
         <source>Custom tags changed to: &quot;%1&quot;</source>
         <translation>Etiquetas personalizadas alterada para: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1109"/>
+        <location filename="../../QUMainWindow.cpp" line="1112"/>
         <source>You can ask me something if you put some keywords in the &lt;i&gt;line edit&lt;/i&gt; below and &lt;i&gt;accept&lt;/i&gt;.&lt;br&gt;&lt;br&gt;I&apos;ll try to understand and answer you. Multiple answers may be possible.</source>
         <translation>Você pode perguntar-me alguma coisa se ​​você colocar algumas palavras-chave na &lt;i&gt;linha de editar&lt;/i&gt; abaixo e &lt;i&gt;aceitar&lt;/i&gt;.&lt;br&gt;&lt;br&gt; Vou tentar entender e responder-lhe. Respostas múltiplas podem ser possíveis.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1137"/>
+        <location filename="../../QUMainWindow.cpp" line="1140"/>
         <source>Show relative song path for each song...</source>
         <translation>Mostrar caminho relativo da canção para cada canção...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1137"/>
+        <location filename="../../QUMainWindow.cpp" line="1140"/>
         <source>Show song folder for each song...</source>
         <translation>Mostrar pasta da canção para cada canção...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1151"/>
+        <location filename="../../QUMainWindow.cpp" line="1154"/>
         <source>Relative song paths are displayed in the song tree now.</source>
         <translation>Caminho relativo da canção é agora mostrado na listagem.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1153"/>
+        <location filename="../../QUMainWindow.cpp" line="1156"/>
         <source>Only song directories are displayed in the song tree now.</source>
         <translation>Apenas directório da canção é mostrado agora na listagem.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1178"/>
+        <location filename="../../QUMainWindow.cpp" line="1181"/>
         <source>Repainting song tree icons...</source>
         <translation>Reconstruindo icons da listagem...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1260"/>
-        <location filename="../../QUMainWindow.cpp" line="1278"/>
+        <location filename="../../QUMainWindow.cpp" line="1263"/>
+        <location filename="../../QUMainWindow.cpp" line="1281"/>
         <source>Could NOT open file: &quot;%1&quot;.</source>
         <translation>Impossível abrir ficheiro: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1262"/>
-        <location filename="../../QUMainWindow.cpp" line="1280"/>
+        <location filename="../../QUMainWindow.cpp" line="1265"/>
+        <location filename="../../QUMainWindow.cpp" line="1283"/>
         <source>File was opened successfully: &quot;%1&quot;.</source>
         <translation>Ficheiro aberto com sucesso: &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <location filename="../../QUMainWindow.cpp" line="1411"/>
-        <location filename="../../QUMainWindow.cpp" line="1431"/>
-        <location filename="../../QUMainWindow.cpp" line="1451"/>
-        <location filename="../../QUMainWindow.cpp" line="1471"/>
-        <location filename="../../QUMainWindow.cpp" line="1491"/>
-        <location filename="../../QUMainWindow.cpp" line="1511"/>
-        <source>Change Language</source>
-        <translation>Idioma alterado</translation>
-    </message>
-    <message>
-        <location filename="../../QUMainWindow.cpp" line="1412"/>
-        <source>Application language changed to &lt;b&gt;English&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
-        <translation>Idioma da aplicação alterado para &lt;b&gt;Inglês&lt;/b&gt;. É necessário reiniciar o Ultrastar Manager para que tenha efeito.</translation>
-    </message>
-    <message>
-        <location filename="../../QUMainWindow.cpp" line="1413"/>
-        <location filename="../../QUMainWindow.cpp" line="1433"/>
-        <location filename="../../QUMainWindow.cpp" line="1453"/>
-        <location filename="../../QUMainWindow.cpp" line="1473"/>
-        <location filename="../../QUMainWindow.cpp" line="1493"/>
-        <location filename="../../QUMainWindow.cpp" line="1513"/>
-        <source>Quit UltraStar Manager.</source>
-        <translation>Sair do Ultrastar Manager.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1414"/>
@@ -1846,74 +1872,99 @@ Tarefas</translation>
         <location filename="../../QUMainWindow.cpp" line="1474"/>
         <location filename="../../QUMainWindow.cpp" line="1494"/>
         <location filename="../../QUMainWindow.cpp" line="1514"/>
+        <source>Change Language</source>
+        <translation>Idioma alterado</translation>
+    </message>
+    <message>
+        <location filename="../../QUMainWindow.cpp" line="1415"/>
+        <source>Application language changed to &lt;b&gt;English&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
+        <translation>Idioma da aplicação alterado para &lt;b&gt;Inglês&lt;/b&gt;. É necessário reiniciar o Ultrastar Manager para que tenha efeito.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMainWindow.cpp" line="1416"/>
+        <location filename="../../QUMainWindow.cpp" line="1436"/>
+        <location filename="../../QUMainWindow.cpp" line="1456"/>
+        <location filename="../../QUMainWindow.cpp" line="1476"/>
+        <location filename="../../QUMainWindow.cpp" line="1496"/>
+        <location filename="../../QUMainWindow.cpp" line="1516"/>
+        <source>Quit UltraStar Manager.</source>
+        <translation>Sair do Ultrastar Manager.</translation>
+    </message>
+    <message>
+        <location filename="../../QUMainWindow.cpp" line="1417"/>
+        <location filename="../../QUMainWindow.cpp" line="1437"/>
+        <location filename="../../QUMainWindow.cpp" line="1457"/>
+        <location filename="../../QUMainWindow.cpp" line="1477"/>
+        <location filename="../../QUMainWindow.cpp" line="1497"/>
+        <location filename="../../QUMainWindow.cpp" line="1517"/>
         <source>Continue.</source>
         <translation>Continuar.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1432"/>
+        <location filename="../../QUMainWindow.cpp" line="1435"/>
         <source>Application language changed to &lt;b&gt;German&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Idioma da aplicação alterado para &lt;b&gt;Alemão&lt;/b&gt;. É necessário reiniciar o Ultrastar Manager para que tenha efeito.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1452"/>
+        <location filename="../../QUMainWindow.cpp" line="1455"/>
         <source>Application language changed to &lt;b&gt;Polish&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Idioma da aplicação alterado para &lt;b&gt;Polaco&lt;/b&gt;. É necessário reiniciar o Ultrastar Manager para que tenha efeito.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1472"/>
+        <location filename="../../QUMainWindow.cpp" line="1475"/>
         <source>Application language changed to &lt;b&gt;French&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Idioma da aplicação alterado para &lt;b&gt;Francês&lt;/b&gt;. É necessário reiniciar o Ultrastar Manager para que tenha efeito.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1492"/>
+        <location filename="../../QUMainWindow.cpp" line="1495"/>
         <source>Application language changed to &lt;b&gt;Spanish&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Idioma da aplicação alterado para &lt;b&gt;Espanhol&lt;/b&gt;. É necessário reiniciar o Ultrastar Manager para que tenha efeito.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1512"/>
+        <location filename="../../QUMainWindow.cpp" line="1515"/>
         <source>Application language changed to &lt;b&gt;Portuguese&lt;/b&gt;. You need to restart UltraStar Manager to take effect.</source>
         <translation>Idioma da aplicação alterado para &lt;b&gt;Português&lt;/b&gt;. É necessário reiniciar o Ultrastar Manager para que tenha efeito.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1564"/>
+        <location filename="../../QUMainWindow.cpp" line="1567"/>
         <source>Choose backup destination...</source>
         <translation>Escolher destino do backup...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1569"/>
+        <location filename="../../QUMainWindow.cpp" line="1572"/>
         <source>Backup audio files...</source>
         <translation>Backup ficheiros audio...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1584"/>
+        <location filename="../../QUMainWindow.cpp" line="1587"/>
         <source>Backup for audio files finished.</source>
         <translation>Backup dos ficheiros audio acabado.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1653"/>
+        <location filename="../../QUMainWindow.cpp" line="1656"/>
         <source>Default input encoding changed to &quot;%1&quot;.</source>
         <translation>Codificação de entrada padrão alterado para &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1656"/>
+        <location filename="../../QUMainWindow.cpp" line="1659"/>
         <source>Default output encoding changed to &quot;%1&quot;.</source>
         <translation>Codificação de saída padrão alterado para &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1677"/>
-        <location filename="../../QUMainWindow.cpp" line="1703"/>
+        <location filename="../../QUMainWindow.cpp" line="1680"/>
+        <location filename="../../QUMainWindow.cpp" line="1706"/>
         <source>Updating audio quality icons...</source>
         <translation>Actualizando icons de qualidade do audio...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1729"/>
-        <location filename="../../QUMainWindow.cpp" line="1755"/>
+        <location filename="../../QUMainWindow.cpp" line="1732"/>
+        <location filename="../../QUMainWindow.cpp" line="1758"/>
         <source>Updating cover quality icons...</source>
         <translation>Actualizando icons de qualidade das capas...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1781"/>
-        <location filename="../../QUMainWindow.cpp" line="1807"/>
+        <location filename="../../QUMainWindow.cpp" line="1784"/>
+        <location filename="../../QUMainWindow.cpp" line="1810"/>
         <source>Updating background quality icons...</source>
         <translation>Actualizando icons de qualidade do fundo...</translation>
     </message>
@@ -2321,7 +2372,7 @@ margin: 0;</translation>
         <translation>Criando relatório PDF...</translation>
     </message>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="352"/>
+        <location filename="../../report/QUPdfReport.cpp" line="396"/>
         <source>yes</source>
         <translation>sim</translation>
     </message>
@@ -2330,7 +2381,7 @@ margin: 0;</translation>
         <translation type="obsolete">não</translation>
     </message>
     <message>
-        <location filename="../../report/QUPdfReport.cpp" line="367"/>
+        <location filename="../../report/QUPdfReport.cpp" line="416"/>
         <source>Adding PDF report...done.</source>
         <translation>Adicionar relatório PDF...feito.</translation>
     </message>
@@ -2505,9 +2556,13 @@ margin: 0;</translation>
         <translation>UltraStar Playlists (%1)</translation>
     </message>
     <message>
-        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="149"/>
         <source>No playlists found. Try another folder:</source>
-        <translation>Playlists não encontradas. Tente outro directório:</translation>
+        <translation type="obsolete">Playlists não encontradas. Tente outro directório:</translation>
+    </message>
+    <message>
+        <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="149"/>
+        <source>No playlists found.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="163"/>
@@ -2625,6 +2680,11 @@ margin: 0;</translation>
 </context>
 <context>
     <name>QUPlaylistFile</name>
+    <message>
+        <location filename="../../playlist/QUPlaylistFile.cpp" line="13"/>
+        <source>unnamed.upl</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../../playlist/QUPlaylistFile.cpp" line="14"/>
         <source>New Playlist</source>
@@ -3273,8 +3333,17 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../report/QUReportDialog.ui" line="338"/>
+        <source>Header Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../report/QUReportDialog.ui" line="477"/>
+        <source>Use Style Sheet:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Additional Options</source>
-        <translation>Opções adicionais</translation>
+        <translation type="obsolete">Opções adicionais</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.ui" line="371"/>
@@ -3287,48 +3356,57 @@ p, li { white-space: pre-wrap; }
         <translation>Prefixo Nome da Playlist</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="391"/>
+        <location filename="../../report/QUReportDialog.ui" line="388"/>
+        <source>HTML Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../report/QUReportDialog.ui" line="421"/>
         <source>Append Lyrics</source>
         <translation>Anexar letras</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="415"/>
-        <location filename="../../report/QUReportDialog.ui" line="444"/>
+        <location filename="../../report/QUReportDialog.ui" line="445"/>
+        <location filename="../../report/QUReportDialog.ui" line="474"/>
         <source>For HTML reports only.</source>
         <translation>Apenas para relatórios HTML.</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="418"/>
+        <location filename="../../report/QUReportDialog.ui" line="448"/>
         <source>Link Lyrics with Table</source>
         <translation>Ligação da letra com a tabela</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="447"/>
         <source>Use Style-Sheet:</source>
-        <translation>Usar folha de estilos:</translation>
+        <translation type="obsolete">Usar folha de estilos:</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="485"/>
+        <location filename="../../report/QUReportDialog.ui" line="515"/>
         <source>Create</source>
         <translation>Criar</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="525"/>
+        <location filename="../../report/QUReportDialog.ui" line="555"/>
         <source>PDF Report</source>
         <translation>Relatório PDF</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="561"/>
+        <location filename="../../report/QUReportDialog.ui" line="591"/>
         <source>HTML Report</source>
         <translation>Relatório HTML</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="600"/>
+        <location filename="../../report/QUReportDialog.ui" line="630"/>
         <source>Text Report</source>
         <translation>Relatório de Texto</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="660"/>
+        <location filename="../../report/QUReportDialog.ui" line="669"/>
+        <source>CSV Report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../report/QUReportDialog.ui" line="729"/>
         <source>Close</source>
         <translation>Fechar</translation>
     </message>
@@ -3337,84 +3415,123 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="32"/>
-        <source>Select the &lt;b&gt;columns&lt;/b&gt; you want to see in the report. Drag &amp; drop them to change their order. Songs of the &lt;b&gt;source&lt;/b&gt; will be sorted alphabetically column by column.&lt;br&gt;&lt;br&gt;You can &lt;b&gt;append and link&lt;/b&gt; lyrics in HTML reports.</source>
-        <translation></translation>
+        <location filename="../../report/QUReportDialog.cpp" line="33"/>
+        <source>Select the &lt;b&gt;columns&lt;/b&gt; you want to see in the report. Drag &amp; drop them to change their order. Songs of the &lt;b&gt;source&lt;/b&gt; will be sorted alphabetically column by column.&lt;br&gt;&lt;br&gt;You can &lt;b&gt;append and link&lt;/b&gt; lyrics and use style sheets in HTML reports.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="33"/>
+        <location filename="../../report/QUReportDialog.cpp" line="34"/>
         <source>All Songs (%1)</source>
         <translation>Todas as canções (%1)</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="34"/>
+        <location filename="../../report/QUReportDialog.cpp" line="35"/>
         <source>Visible Songs (%1)</source>
         <translation>Canções Visiveis (%1)</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="112"/>
+        <location filename="../../report/QUReportDialog.cpp" line="117"/>
         <source>Songlist_%1.pdf</source>
         <translation>ListaDeCancoes_%1.pdf</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="115"/>
+        <location filename="../../report/QUReportDialog.cpp" line="120"/>
         <source>Save PDF Report</source>
         <translation>Guardar Relatório PDF</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="117"/>
         <source>PDF-Files (*.pdf)</source>
-        <translation>Ficheiros-PDF (*.pdf)</translation>
+        <translation type="obsolete">Ficheiros-PDF (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="132"/>
+        <location filename="../../report/QUReportDialog.cpp" line="122"/>
+        <source>PDF files (*.pdf)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../report/QUReportDialog.cpp" line="137"/>
         <source>PDF report created successfully to: &quot;%1&quot;.</source>
         <translation>Relatório PDF criado com sucesso para: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="135"/>
+        <location filename="../../report/QUReportDialog.cpp" line="140"/>
         <source>PDF report could not be created.</source>
         <translation>Não foi possível criar relatório PDF.</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="144"/>
+        <location filename="../../report/QUReportDialog.cpp" line="147"/>
+        <source>Songlist_%1.html</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../report/QUReportDialog.cpp" line="150"/>
         <source>Save HTML Report</source>
         <translation>Guardar relatório HTML</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="146"/>
+        <location filename="../../report/QUReportDialog.cpp" line="152"/>
         <source>Website (*.htm *.html)</source>
         <translation>Website (*.htm *.html)</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="162"/>
+        <location filename="../../report/QUReportDialog.cpp" line="168"/>
         <source>HTML report created successfully to: &quot;%1&quot;.</source>
         <translation>Relatório HTML criado com sucesso para: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="165"/>
+        <location filename="../../report/QUReportDialog.cpp" line="171"/>
         <source>HTML report could not be created.</source>
         <translation>Não foi possível criar relatório HTML.</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="174"/>
+        <location filename="../../report/QUReportDialog.cpp" line="178"/>
+        <source>Songlist_%1.txt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../report/QUReportDialog.cpp" line="181"/>
         <source>Save Text Report</source>
         <translation>Guardar Relatório de Texto</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="176"/>
+        <location filename="../../report/QUReportDialog.cpp" line="183"/>
         <source>Report (*.txt)</source>
         <translation>Relatório (*.txt)</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="191"/>
+        <location filename="../../report/QUReportDialog.cpp" line="198"/>
         <source>Text report created successfully to: &quot;%1&quot;.</source>
         <translation>Relatório de Texto criado com sucesso para: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="194"/>
+        <location filename="../../report/QUReportDialog.cpp" line="201"/>
         <source>Text report could not be created.</source>
         <translation>Não foi possível criar relatório de texto.</translation>
+    </message>
+    <message>
+        <location filename="../../report/QUReportDialog.cpp" line="208"/>
+        <source>Songlist_%1.csv</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../report/QUReportDialog.cpp" line="211"/>
+        <source>Save CSV Report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../report/QUReportDialog.cpp" line="213"/>
+        <source>CSV files (*.csv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../report/QUReportDialog.cpp" line="228"/>
+        <source>CSV report created successfully to: &quot;%1&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../report/QUReportDialog.cpp" line="231"/>
+        <source>CSV report could not be created.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4191,7 +4308,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QUSongFile</name>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="164"/>
+        <location filename="../../song/QUSongFile.cpp" line="167"/>
         <source>Could NOT open song file: &quot;%1&quot;</source>
         <translation>Impossível abrir ficheiro da canção: &quot;%1&quot;</translation>
     </message>
@@ -4204,342 +4321,342 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&quot;%1&quot; não suportado. Utilizando padrão para %2 no ficheiro da canção: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="207"/>
+        <location filename="../../song/QUSongFile.cpp" line="210"/>
         <source>Encoding mismatch. Defaulting to %1 for song file: &quot;%2&quot;</source>
         <translation>Codificação incompativél. Restaurado para %1 na canção: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="210"/>
+        <location filename="../../song/QUSongFile.cpp" line="213"/>
         <source>&quot;%1&quot; unsupported. Defaulting to %2 for song file: &quot;%3&quot;</source>
         <translation>&quot;%1&quot; não suportado. Restaurado para %2 na canção: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="325"/>
+        <location filename="../../song/QUSongFile.cpp" line="328"/>
         <source>Deprecated tag information detected.</source>
         <translation>Informação de etiqueta obsoleta detectada.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="326"/>
+        <location filename="../../song/QUSongFile.cpp" line="329"/>
         <source>The number of available tags in your configuration and that one this application offers are different.</source>
         <translation>O número de etiquetas disponíveis na sua configuração e que esta aplicação oferece são diferentes.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="327"/>
+        <location filename="../../song/QUSongFile.cpp" line="330"/>
         <source>The tag order was reset to its default order. Check out the options to set up your custom order again.</source>
         <translation>A ordem das etiquetas foi reposta à sua ordem padrão. Confira as opções para configurar a sua ordem personalizada novamente.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="650"/>
+        <location filename="../../song/QUSongFile.cpp" line="662"/>
         <source>Save error! The song file &quot;%1&quot; was NOT saved.</source>
         <translation>Erro ao guardar! O ficheiro da canção &quot;%1&quot; não foi guardado.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="679"/>
+        <location filename="../../song/QUSongFile.cpp" line="691"/>
         <source>%1 output encoding NOT sufficient. Using UTF8 for song file: &quot;%2&quot;.</source>
         <translation>Codificação de saída%1 não é suficiente. Usando UTF8 para o ficheiro da canção: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="716"/>
+        <location filename="../../song/QUSongFile.cpp" line="728"/>
         <source>The song file &quot;%1&quot; was saved successfully.</source>
         <translation>O ficheiro da canção &quot;%1&quot; foi guardado com sucesso.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="733"/>
+        <location filename="../../song/QUSongFile.cpp" line="745"/>
         <source>Old name and new name match: &quot;%1&quot;</source>
         <translation>Novo nome e antigo são iguais: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="758"/>
+        <location filename="../../song/QUSongFile.cpp" line="770"/>
         <source>Could NOT rename the song directory &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Não foi possível renomear o directório de canções de &quot;%1&quot; para &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="766"/>
+        <location filename="../../song/QUSongFile.cpp" line="778"/>
         <source>Song directory renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Directório de canções renomeado de: &quot;%1&quot; para: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="777"/>
+        <location filename="../../song/QUSongFile.cpp" line="789"/>
         <source>Could NOT rename the song file &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Não foi possível renomear o ficheiro da canção de &quot;%1&quot; para &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="784"/>
+        <location filename="../../song/QUSongFile.cpp" line="796"/>
         <source>Song file renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Ficheiro da canção renomeado de: &quot;%1&quot; para: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="796"/>
+        <location filename="../../song/QUSongFile.cpp" line="808"/>
         <source>Could NOT rename the audio file &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Não foi possível renomear o ficheiro audio de &quot;%1&quot; para &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="802"/>
+        <location filename="../../song/QUSongFile.cpp" line="814"/>
         <source>Audio file renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Ficheiro audio renomeado de: &quot;%1&quot; para: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="814"/>
+        <location filename="../../song/QUSongFile.cpp" line="826"/>
         <source>Could NOT rename the cover picture &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Não foi possível renomear a imagem da capa de &quot;%1&quot; para &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="820"/>
+        <location filename="../../song/QUSongFile.cpp" line="832"/>
         <source>Cover picture renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Imagem da capa renomeada de: &quot;%1&quot; para: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="832"/>
+        <location filename="../../song/QUSongFile.cpp" line="844"/>
         <source>Could NOT rename the background picture &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Não foi possível renomeara imagem de fundo de &quot;%1&quot; para &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="838"/>
+        <location filename="../../song/QUSongFile.cpp" line="850"/>
         <source>Background picture renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Imagem de Fundo renomeada de: &quot;%1&quot; para: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="850"/>
+        <location filename="../../song/QUSongFile.cpp" line="862"/>
         <source>Could NOT rename the video file &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Não foi possível renomear o ficheiro de video de &quot;%1&quot; para &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="856"/>
+        <location filename="../../song/QUSongFile.cpp" line="868"/>
         <source>Video file renamed from: &quot;%1&quot; to: &quot;%2&quot;.</source>
         <translation>Ficheiro de video renomeado de: &quot;%1&quot; para: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="865"/>
+        <location filename="../../song/QUSongFile.cpp" line="877"/>
         <source>The song &quot;%1 - %2&quot; has no audio file assigned. Cannot use ID3 tag for artist.</source>
         <translation>A canção &quot;%1 - %2&quot; não tem nenhum ficheiro de áudio atribuido. Não é possível usar a etiqueta ID3 para o artista.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="876"/>
+        <location filename="../../song/QUSongFile.cpp" line="888"/>
         <source>The audio file %1 does not contain ID3 tag information about an artist.</source>
         <translation>O ficheiro de áudio%1 não contém informações da etiqueta ID3 sobre artista.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="881"/>
+        <location filename="../../song/QUSongFile.cpp" line="893"/>
         <source>ID3 tag of &quot;%1&quot; used for artist. Changed from: &quot;%2&quot; to: &quot;%3&quot;.</source>
         <translation>Etiqueta ID3 de &quot;%1&quot; utilizada para artista. Alterado de: &quot;%2&quot; para: &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="886"/>
+        <location filename="../../song/QUSongFile.cpp" line="898"/>
         <source>The song &quot;%1 - %2&quot; has no audio file assigned. Cannot use ID3 tag for title.</source>
         <translation>A canção &quot;%1 - %2&quot; não tem nenhum ficheiro de áudio atribuido. Não é possível usar a etiqueta ID3 para o título.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="896"/>
+        <location filename="../../song/QUSongFile.cpp" line="908"/>
         <source>The audio file %1 does not contain ID3 tag information about a title.</source>
         <translation>O ficheiro de áudio%1 não contém informações da etiqueta ID3 sobre título.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="901"/>
+        <location filename="../../song/QUSongFile.cpp" line="913"/>
         <source>ID3 tag of &quot;%1&quot; used for title. Changed from: &quot;%2&quot; to: &quot;%3&quot;.</source>
         <translation>Etiqueta ID3 de &quot;%1&quot; utilizada para título. Alterado de: &quot;%2&quot; para: &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="906"/>
+        <location filename="../../song/QUSongFile.cpp" line="918"/>
         <source>The song &quot;%1 - %2&quot; has no audio file assigned. Cannot use ID3 tag for genre.</source>
         <translation>A canção &quot;%1 - %2&quot; não tem nenhum ficheiro de áudio atribuido. Não é possível usar a etiqueta ID3 para o gênero.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="916"/>
+        <location filename="../../song/QUSongFile.cpp" line="928"/>
         <source>The audio file %1 does not contain ID3 tag information about a genre.</source>
         <translation>O ficheiro de áudio%1 não contém informações da etiqueta ID3 sobre gênero.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="921"/>
+        <location filename="../../song/QUSongFile.cpp" line="933"/>
         <source>ID3 tag of &quot;%1&quot; used for genre. Changed from: &quot;%2&quot; to: &quot;%3&quot;.</source>
         <translation>Etiqueta ID3 de &quot;%1&quot; utilizada para gênero. Alterado de: &quot;%2&quot; para: &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="926"/>
+        <location filename="../../song/QUSongFile.cpp" line="938"/>
         <source>The song &quot;%1 - %2&quot; has no audio file assigned. Cannot use ID3 tag for year.</source>
         <translation>A canção &quot;%1 - %2&quot; não tem nenhum ficheiro de áudio atribuido. Não é possível usar a etiqueta ID3 para ano.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="936"/>
+        <location filename="../../song/QUSongFile.cpp" line="948"/>
         <source>The audio file %1 does not contain ID3 tag information about a year.</source>
         <translation>O ficheiro de áudio%1 não contém informações da etiqueta ID3 sobre ano.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="941"/>
+        <location filename="../../song/QUSongFile.cpp" line="953"/>
         <source>ID3 tag of &quot;%1&quot; used for year. Changed from: &quot;%2&quot; to: &quot;%3&quot;.</source>
         <translation>Etiqueta ID3 de &quot;%1&quot; utilizada para ano. Alterado de: &quot;%2&quot; para: &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="946"/>
+        <location filename="../../song/QUSongFile.cpp" line="958"/>
         <source>The song &quot;%1 - %2&quot; has no unsupported tags.</source>
         <translation>A canção &quot;%1 - %2&quot; não tem etiquetas não suportadas.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="954"/>
+        <location filename="../../song/QUSongFile.cpp" line="966"/>
         <source>Unsupported tag removed: #%1.</source>
         <translation>Etiquetas não suportadas removidas: #%1.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="956"/>
+        <location filename="../../song/QUSongFile.cpp" line="968"/>
         <source>Unsupported tag skipped: #%1.</source>
         <translation>Etiquetas não suportadas ignoradas: #%1.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="972"/>
+        <location filename="../../song/QUSongFile.cpp" line="984"/>
         <source>Assigned &quot;%1&quot; as audio file for &quot;%2 - %3&quot;.</source>
         <translation>Atribuído &quot;%1&quot; como ficheiro de audio para &quot;%2 - %3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="977"/>
+        <location filename="../../song/QUSongFile.cpp" line="989"/>
         <source>Assigned &quot;%1&quot; as video file for &quot;%2 - %3&quot;.</source>
         <translation>Atribuído &quot;%1&quot; como ficheiro de vídeo para &quot;%2 - %3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="985"/>
+        <location filename="../../song/QUSongFile.cpp" line="997"/>
         <source>Assigned &quot;%1&quot; as cover picture for &quot;%2 - %3&quot;.</source>
         <translation>Atribuído &quot;%1&quot; como imagem de capa para &quot;%2 - %3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="988"/>
+        <location filename="../../song/QUSongFile.cpp" line="1000"/>
         <source>Assigned &quot;%1&quot; as background picture for &quot;%2 - %3&quot;.</source>
         <translation>Atribuído &quot;%1&quot; como imagem de fundo para &quot;%2 - %3&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1003"/>
+        <location filename="../../song/QUSongFile.cpp" line="1015"/>
         <source>Could not copy the file &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Não foi possível copiar o ficheiro &quot;%1&quot; para &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1007"/>
+        <location filename="../../song/QUSongFile.cpp" line="1019"/>
         <source>The file &quot;%1&quot; was successfully copied to &quot;%2&quot;.</source>
         <translation>O ficheiro &quot;%1&quot; foi copiado com sucesso para &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1039"/>
+        <location filename="../../song/QUSongFile.cpp" line="1051"/>
         <source>File removed successfully: &quot;%1&quot;.</source>
         <translation>Ficheiro removido com sucesso: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1041"/>
+        <location filename="../../song/QUSongFile.cpp" line="1053"/>
         <source>File COULD NOT be removed: &quot;%1&quot;.</source>
         <translation>Não foi possível remover o ficheiro: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1052"/>
+        <location filename="../../song/QUSongFile.cpp" line="1064"/>
         <source>Audio file tag removed for &quot;%1 - %2&quot;.</source>
         <translation>Etiqueta de audio removida para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1056"/>
+        <location filename="../../song/QUSongFile.cpp" line="1068"/>
         <source>Cover tag removed for &quot;%1 - %2&quot;.</source>
         <translation>Etiqueta da capa removida para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1060"/>
+        <location filename="../../song/QUSongFile.cpp" line="1072"/>
         <source>Background tag removed for &quot;%1 - %2&quot;.</source>
         <translation>Etiqueta do fundo removida para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1065"/>
+        <location filename="../../song/QUSongFile.cpp" line="1077"/>
         <source>Video tag removed for &quot;%1 - %2&quot;.</source>
         <translation>Etiqueta de video removida para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1079"/>
+        <location filename="../../song/QUSongFile.cpp" line="1091"/>
         <source>Old path and new path match! Cannot change song path to: &quot;%1&quot;</source>
         <translation>Antigo caminho corresponde aor novo caminho! Não pode mudar caminho da canção: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1084"/>
+        <location filename="../../song/QUSongFile.cpp" line="1096"/>
         <source>Could not create new song path: &quot;%1&quot;</source>
         <translation>Não foi possível criar o novo caminho da canção: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1098"/>
+        <location filename="../../song/QUSongFile.cpp" line="1110"/>
         <source>Failed to move &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Falha ao mover &quot;%1&quot; para &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1101"/>
+        <location filename="../../song/QUSongFile.cpp" line="1113"/>
         <source>The file &quot;%1&quot; was successfully moved to &quot;%2&quot;.</source>
         <translation>O ficheiro &quot;%1&quot; foi movido com sucesso para &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1105"/>
+        <location filename="../../song/QUSongFile.cpp" line="1117"/>
         <source>Could NOT move all files of the song &quot;%2&quot; to a new location. Check out &quot;%1&quot; for the files which were copied.</source>
         <translation>Não foi possível mover todos os ficheiros da canção &quot;%2&quot; para um novo local. Verificar &quot;%1&quot; para os ficheiros que foram copiados.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1115"/>
+        <location filename="../../song/QUSongFile.cpp" line="1127"/>
         <source>Could not remove old, empty folder &quot;%1&quot;. Please do it manually.</source>
         <translation>Não foi possível remover o antigo, esvaziar a pasta &quot;%1&quot;. Por favor, faça-o manualmente.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1122"/>
+        <location filename="../../song/QUSongFile.cpp" line="1134"/>
         <source>Location of song &quot;%1 - %2&quot; successfully changed to &quot;%3&quot; in your UltraStar song folder.</source>
         <translation>Localização da canção &quot;%1 - %2&quot; alterada com sucesso para &quot;%3&quot; na sua pasta de canções UltraStar.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1133"/>
+        <location filename="../../song/QUSongFile.cpp" line="1145"/>
         <source>Could not fix audio length because no audio file is present: &quot;%1 - %2&quot;</source>
         <translation>Não foi possível corrigir comprimento de áudio, porque nenhum ficheiro de áudio está presente: &quot;%1 - %2&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1144"/>
+        <location filename="../../song/QUSongFile.cpp" line="1156"/>
         <source>Could not fix audio length because audio file is shorter than song: &quot;%1 - %2&quot;</source>
         <translation>Não foi possível corrigir comprimento de áudio, porque é mais curto do que música: &quot;%1 - %2&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1151"/>
+        <location filename="../../song/QUSongFile.cpp" line="1163"/>
         <source>Could not fix audio length because new value for #END would be greater than length of audio file: &quot;%1 - %2&quot;</source>
         <translation>Não foi possível corrigir comprimento de áudio, porque novo valor para etiqueta #END seria maior do que o comprimento do ficheiro de áudio: &quot;%1 - %2&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1158"/>
+        <location filename="../../song/QUSongFile.cpp" line="1170"/>
         <source>Audio length was fixed for song &quot;%1 - %2&quot;. #END changed to: %3</source>
         <translation>Comprimento de áudio foi fixado para a canção &quot;%1 - %2&quot;. Etiqueta #END alterada para: %3</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1173"/>
+        <location filename="../../song/QUSongFile.cpp" line="1185"/>
         <source>#GAP changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation>#GAP passou de %1 a %2 para &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1182"/>
+        <location filename="../../song/QUSongFile.cpp" line="1194"/>
         <source>The tag #END was removed for: &quot;%1 - %2&quot;</source>
         <translation>Etiqueta #END removida para: &quot;%1 - %2&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1194"/>
+        <location filename="../../song/QUSongFile.cpp" line="1206"/>
         <source>INCONSISTENT STATE! The song &quot;%1 - %2&quot; has unsaved changes and its persistent song file &quot;%3&quot; was modified externally. Save your changes or rebuild the tree manually.</source>
         <translation>Estado inconsistente! A canção &quot;%1 - %2&quot; tem alterações não guardadas e o seu ficheiro da canção &quot;%3&quot; foi modificado externamente. Guarde as suas alterações ou reconstruir a listagem manualmente.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1200"/>
+        <location filename="../../song/QUSongFile.cpp" line="1212"/>
         <source>Song file changed: &quot;%1&quot;</source>
         <translation>Ficheiro da canção alterado: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1379"/>
+        <location filename="../../song/QUSongFile.cpp" line="1391"/>
         <source>Primary song file changed from &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Ficheiro da canção primário passou de &quot;%1&quot; para &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1442"/>
+        <location filename="../../song/QUSongFile.cpp" line="1454"/>
         <source>Error while preparing lyrics for %1 - %2. Could not parse the following line: %3</source>
         <translation>Erro ao preparar letras para %1 - %2. Não foi possível analisar a seguinte linha: %3</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1458"/>
+        <location filename="../../song/QUSongFile.cpp" line="1470"/>
         <source>Error while preparing lyrics for %1 - %2. Songs may not start with a line break.</source>
         <translation>Erro ao preparar letras para %1 - %2. As canções não podem começar com uma quebra de linha.</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1484"/>
+        <location filename="../../song/QUSongFile.cpp" line="1496"/>
         <source>Line too short: &quot;%1&quot;</source>
         <translation>Linha muito curta: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../song/QUSongFile.cpp" line="1528"/>
+        <location filename="../../song/QUSongFile.cpp" line="1540"/>
         <source>More than one score file found for &quot;%1 - %2&quot;. Only one will be used.</source>
         <translation>Mais de um ficheiro de pontuação encontrado para &quot;%1 - %2&quot;. Apenas um será usado.</translation>
     </message>
@@ -4666,595 +4783,605 @@ p, li { white-space: pre-wrap; }
         <translation>Mostra se a canção é um dueto.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="96"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="95"/>
+        <source>Shows whether the song has a medley section.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="98"/>
+        <source>Shows whether the song has golden notes.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="102"/>
         <source>Shows whether your folder contains unused files.</source>
         <translation>Mostra se a pasta contém ficheiros não utilizados.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="99"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="105"/>
         <source>Shows whether your folder contains more than one song text file.</source>
         <translation>Mostra se a pasta contêm mais que um ficheiro de texto para a canção.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="103"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="109"/>
         <source>Shows whether a score file was found.</source>
         <translation>Mostra se um ficheiro de pontuação foi encontrado.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="106"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="112"/>
         <source>Artist</source>
         <translation>Artista</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="108"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="114"/>
         <source>Title</source>
         <translation>Título</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="111"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="117"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="113"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="119"/>
         <source>Edition</source>
         <translation>Edição</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="115"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="121"/>
         <source>Genre</source>
         <translation>Gênero</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="117"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="123"/>
         <source>Year</source>
         <translation>Ano</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="119"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="125"/>
         <source>Creator</source>
         <translation>Criador</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="122"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="128"/>
         <source>Song</source>
         <translation>Canção</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="124"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="130"/>
         <source>Song length calculated from BPM and lyrics.</source>
         <translation>Comprimento da canção calculado pelo BPM e letra.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="127"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="133"/>
         <source>Indicates a problem with the difference of &lt;i&gt;song length&lt;/i&gt; and &lt;i&gt;audio length&lt;/i&gt;.&lt;br&gt;&lt;br&gt;The tooltip shows the difference.</source>
         <translation>Indica um problema com a diferença de &lt;i&gt;duração da canção&lt;/i&gt; e &lt;i&gt; comprimento de áudio &lt;/i&gt;.&lt;br&gt;&lt;br&gt;A dica mostra a diferença.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="130"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="136"/>
         <source>Audio</source>
         <translation>Audio</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="132"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="138"/>
         <source>Shows length of audio file, if present.&lt;br&gt;&lt;br&gt;Can be reset through &lt;b&gt;#END&lt;/b&gt; tag.</source>
         <translation>Mostra o comprimento do ficheiro de áudio, se presente.&lt;br&gt;&lt;br&gt;Pode ser reposto através da etiqueta &lt;b&gt;#END&lt;/b&gt;.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="134"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="140"/>
         <source>Total</source>
         <translation>Total</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="136"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="142"/>
         <source>Shows the effective length:&lt;br&gt;&lt;b&gt;audio length - #START&lt;/b&gt;.</source>
         <translation>Mostra o comprimento efectivo:&lt;br&gt;&lt;b&gt;comprimento de áudio - #START&lt;/b&gt;.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="138"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="144"/>
         <source>Speed</source>
         <translation>Velocidade</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="140"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="146"/>
         <source>Shows the number of singable syllables per second. No freestyle or pauses included.</source>
         <translation>Mostra o número de sílabas por segundo cantáveis​​. Não incluídas sílabas freestyle ou pausas.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="142"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="148"/>
         <source>Start</source>
         <translation>Inicio</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="144"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="150"/>
         <source>Skips the first seconds of the song.</source>
         <translation>Ignorar os primeiros segundos da canção.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="145"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="151"/>
         <source>End</source>
         <translation>Fim</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="147"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="153"/>
         <source>Resets the length of the audio file.&lt;br&gt;&lt;i&gt;(in milliseconds)&lt;/i&gt;</source>
         <translation>Repor o tamanho do ficheiro de áudio.&lt;br&gt;&lt;i&gt;(em milisegundos)&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="148"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="154"/>
         <source>Videogap</source>
         <translation>Videogap</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="150"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="156"/>
         <source>Skips the first seconds of the video.&lt;br&gt;&lt;br&gt;&lt;i&gt;Use negative values here with positive ones in &lt;b&gt;#START&lt;/b&gt; to fix a short video file.&lt;/i&gt;</source>
         <translation>Ignorar os primeiros segundos do vídeo.&lt;br&gt;&lt;br&gt;&lt;i&gt;Use valores negativos ou positivos em &lt;b&gt;#START&lt;/b&gt; para corrigir um ficheiro de vídeo de curta duração.&lt;/I&gt;</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="152"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="158"/>
         <source>Relative?</source>
         <translation>Relativo?</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="153"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="159"/>
         <source>Has relative timestamps.</source>
         <translation>Tem timestamps relativos.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="154"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="160"/>
         <source>BPM</source>
         <translation>BPM</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="156"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="162"/>
         <source>beats per minute</source>
         <translation>Batidas por minuto</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="157"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="163"/>
         <source>GAP</source>
         <translation>GAP</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="159"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="165"/>
         <source>Time to first syllable.</source>
         <translation>Tempo até à primeira sílaba.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="162"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="168"/>
         <source>Indicate duplicate songs. &lt;b&gt;You should not see me.&lt;/b&gt;</source>
         <translation>Indica canções duplicadas. &lt;b&gt;Você nao me deve ver.&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="300"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="306"/>
         <source>Saving unsaved changes...</source>
         <translation>Guardando alterações não guardadas...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="369"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="375"/>
         <source>Filter removed. All songs are visible now.</source>
         <translation>Filtro removido. Agora todas as canções estão visiveis.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="381"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="387"/>
         <source>Applying filter...</source>
         <translation>Aplicando filtro...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="473"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="479"/>
         <source>Filter applied: &quot;%1&quot;%2</source>
         <translation>Filtro aplicado: &quot;%1&quot;%2</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="473"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="479"/>
         <source>, negated</source>
         <translation>, negado</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="493"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="499"/>
         <source>Looking for duplicate songs...</source>
         <translation>Procurando por canções duplicadas...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="544"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="550"/>
         <source>Filter applied. Duplicates for %1 songs found.</source>
         <translation>Filtro aplicado. Encontradas %1 canções duplicadas.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="546"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="552"/>
         <source>No duplicate songs found.</source>
         <translation>Não foram encontradas canções duplicadas.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="595"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="601"/>
         <source>Hide</source>
         <translation>Esconder</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="597"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="603"/>
         <source>Selected Songs</source>
         <translation>Canções seleccionadas</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="598"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="604"/>
         <source>Selected Songs Only</source>
         <translation>Apenas canções seleccionadas</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="599"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="605"/>
         <source>Unselected Songs</source>
         <translation>Canções não seleccionadas</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="601"/>
-        <location filename="../../songtree/QUSongTree.cpp" line="613"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="607"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="619"/>
         <source>All</source>
         <translation>Todas</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="602"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="608"/>
         <source>None</source>
         <translation>Nenhuma</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="612"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="618"/>
         <source>Presets</source>
         <translation>Predefinições</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="614"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="620"/>
         <source>Default</source>
         <translation>Padrão</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="615"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="621"/>
         <source>Minimum</source>
         <translation>Mínimo</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="617"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="623"/>
         <source>Spell &amp;&amp; File Checking</source>
         <translation>Ortografia &amp;&amp; Verificar ficheiro</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="618"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="624"/>
         <source>Time Comparison</source>
         <translation>Comparação de tempo</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="622"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="628"/>
         <source>Custom Tags</source>
         <translation>Etiquetas personalizadas</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="623"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="629"/>
         <source>Time &amp;&amp; Speed</source>
         <translation>Tempo &amp;&amp; Velocidade</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="624"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="630"/>
         <source>Types</source>
         <translation>Tipos</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="816"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="830"/>
         <source>Hiding all visible songs...</source>
         <translation>Esconder todas as canções visiveis...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="839"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="853"/>
         <source>Could not hide any item.</source>
         <translation>Não foi possível esconder qualquer item.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="843"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="857"/>
         <source>Hiding selected songs...</source>
         <translation>Escondendo canções seleccionadas...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="858"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="872"/>
         <source>%1 songs added to list of invisible songs.</source>
         <translation>%1 canções adicionadas à lista de canções invisiveis.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="883"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="897"/>
         <source>%1 songs are visible now.</source>
         <translation>%1 canções são visiveis.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="910"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="924"/>
         <source>All files in the song directory will be deleted including the directory itself if it is not empty.&lt;br&gt;&lt;br&gt;You want to delete the following &lt;b&gt;%1&lt;/b&gt; songs:</source>
         <translation>Todos os ficheiros no directório de canções será eliminado, incluindo o próprio directório, se ele não está vazio.&lt;br&gt;&lt;br&gt;Você deseja eliminar as seguintes &lt;b&gt;%1&lt;/b&gt; canções:</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="923"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="937"/>
         <source>Delete Songs</source>
         <translation>Eliminar canções</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="925"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="939"/>
         <source>Delete these songs.</source>
         <translation>Eliminar estas canções.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="926"/>
-        <location filename="../../songtree/QUSongTree.cpp" line="1352"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="940"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1366"/>
         <source>Cancel delete operation.</source>
         <translation>Cancelar operação de eliminar.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="933"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="947"/>
         <source>Deleting selected songs...</source>
         <translation>Eliminando canções seleccionadas...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="963"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="977"/>
         <source>Too few songs selected. You have to merge at least 2 songs.</source>
         <translation>Muito poucas canções seleccionadas. Você tem de juntar pelo menos 2 canções.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="976"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="990"/>
         <source>You want to merge songs with &lt;b&gt;&quot;%1 - %2&quot;&lt;/b&gt;. All files of the other songs will be moved to that song&apos;s path.&lt;br&gt;&lt;br&gt;The following &lt;b&gt;%3&lt;/b&gt; songs will disappear:</source>
         <translation>Você deseja juntar as canções com &lt;b&gt;&quot;%1 - %2&quot;&lt;/b&gt;. Todos os ficheiros das outras canções serão movidos para o caminho desta canção.&lt;br&gt;&lt;br&gt; A seguiintes &lt;b&gt;%3&lt;/b&gt; canções desaparecerão:</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="992"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1006"/>
         <source>Merge Songs</source>
         <translation>Juntar Canções</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="994"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1008"/>
         <source>Merge these songs.</source>
         <translation>Juntar estas canções.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="995"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1009"/>
         <source>Cancel merge operation.</source>
         <translation>Cancelar operação de juntar.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1002"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1016"/>
         <source>Merging selected songs with &quot;%1 - %2&quot;...</source>
         <translation>Juntando canções seleccionadas com &quot;%1 - %2&quot;...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1023"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1037"/>
         <source>Could NOT copy file &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Não foi possível copiar o ficheiro &quot;%1&quot; para &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1025"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1039"/>
         <source>File was copied successfully from &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation>Ficheiro foi copiado com sucesso de &quot;%1&quot; para &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1034"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1048"/>
         <source>Not all files of &quot;%1 - %2&quot; were copied. Song will not be deleted. Merging failed.</source>
         <translation>Nem todos os ficheiros de &quot;%1 - %2&quot; foram copiados. Canção não será apagado. Junção falhou.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1048"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1062"/>
         <source>Calculate selected song speeds...</source>
         <translation>Calcular velocidade das canções seleccionadas...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1068"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1082"/>
         <source>Copy Files</source>
         <translation>Copiar Ficheiros</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1069"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1083"/>
         <source>You want to copy &lt;b&gt;%1&lt;/b&gt; files to &lt;b&gt;&quot;%2&quot;&lt;/b&gt;.</source>
         <translation>Você quer copiar os ficheiros de &lt;b&gt;%1&lt;/b&gt; para &lt;b&gt;&quot;%2&quot;&lt;/b&gt;.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1070"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1084"/>
         <source>Copy these files.</source>
         <translation>Copiar estes ficheiros.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1071"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1085"/>
         <source>Cancel copy operation.</source>
         <translation>Cancelar operação de copiar.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1078"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1092"/>
         <source>Copy &amp; Use files for the song: &quot;%1 - %2&quot;...</source>
         <translation>Copiar &amp; Usar ficheiros para a canção: &quot;%1 - %2&quot;...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1108"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1122"/>
         <source>Including new songs to database...</source>
         <translation>Incluindo novas canções à base de dados...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1122"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1136"/>
         <source>Invalid song file found: &quot;%1&quot;. Cannot include those.</source>
         <translation>Ficheiro de canção inválida encontrado: &quot;%1&quot;. Impossível incluir.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1127"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1141"/>
         <source>Cannot include license files as songs: &quot;%1&quot;</source>
         <translation>Não pode incluir ficheiros de licença como canções: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1138"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1152"/>
         <source>Could not copy song file &quot;%1&quot; to new song directory &quot;%2&quot;!</source>
         <translation>Não foi possível copiar ficheiro da canção &quot;%1&quot; para o directório da nova canção &quot;%2&quot;!</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1148"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1162"/>
         <source>New song included to your song collection: &quot;%1 - %2&quot;.</source>
         <translation>Nova canção incluída na sua colecção: &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1185"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1199"/>
         <source>Could not create directory: &quot;%1&quot;. Disk full?</source>
         <translation>Não foi possível criar directório: &quot;%1&quot;. Disco cheio?</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1205"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1219"/>
         <source>Refreshing selected songs...</source>
         <translation>Actualizando canções seleccionadas...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1250"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1264"/>
         <source>Saving selected songs...</source>
         <translation>Guardando canções actualizadas...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1283"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1297"/>
         <source>Show preview</source>
         <translation>Mostrar Pré-Visualização</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1284"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1298"/>
         <source>Open image file externally</source>
         <translation>Abrir ficheiro de imagem externamente</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1286"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1300"/>
         <source>Open video file externally</source>
         <translation>Abrir ficheiro de video externamente</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1288"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1302"/>
         <source>Open audio file externally</source>
         <translation>Abrir ficheiro de audio externamente</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1290"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1304"/>
         <source>Show file contents</source>
         <translation>Mostrar o conteúdo do ficheiro</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1291"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1305"/>
         <source>Open text file externally</source>
         <translation>Abrir ficheiro de texto externamente</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1293"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1307"/>
         <source>Set as primary song</source>
         <translation>Definir como canção principal</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1296"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1310"/>
         <source>Open externally</source>
         <translation>Abrir externamente</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1298"/>
-        <location filename="../../songtree/QUSongTree.cpp" line="1303"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1312"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1317"/>
         <source>Delete</source>
         <translation>Eliminar</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1301"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1315"/>
         <source>Refresh</source>
         <translation>Actualizar</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1302"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1316"/>
         <source>Save</source>
         <translation>Guardar</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1304"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1318"/>
         <source>Merge</source>
         <translation>Juntar</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1306"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1320"/>
         <source>Play</source>
         <translation>Play</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1309"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1323"/>
         <source>Send To Playlist</source>
         <translation>Enviar para Playlist</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1310"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1324"/>
         <source>Get Covers...</source>
         <translation>Obter capas...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1312"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1326"/>
         <source>Review pictures</source>
         <translation>Rever imagens</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1313"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1327"/>
         <source>Covers...</source>
         <translation>Capas...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1314"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1328"/>
         <source>Backgrounds...</source>
         <translation>Fundos...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1318"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1332"/>
         <source>Calculate Song Speed</source>
         <translation>Calcular velocidade da canção</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1321"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1335"/>
         <source>Open With Explorer...</source>
         <translation>Abrir com o Explorer...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1322"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1336"/>
         <source>Find More From Artist</source>
         <translation>Procurar mais do Artista</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1323"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1337"/>
         <source>Show Lyrics...</source>
         <translation>Mostrar letra...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1324"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1338"/>
         <source>Edit Lyrics...</source>
         <translation>Editar Letra...</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1349"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1363"/>
         <source>Delete File</source>
         <translation>Eliminar Ficheiro</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1350"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1364"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; will be deleted permanently. You cannot undo a delete operation.</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; será eliminado permanentemente. Você não pode desfazer uma operação de eliminação.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1351"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1365"/>
         <source>Delete this file.</source>
         <translation>Eliminar este ficheiro.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1357"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1371"/>
         <source>The file &quot;%1&quot; was deleted successfully.</source>
         <translation>O ficheiro &quot;%1&quot; foi eliminado com sucesso.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1359"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1373"/>
         <source>The file &quot;%1&quot; was NOT deleted.</source>
         <translation>O ficheiro &quot;%1&quot; não foi eliminado.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1396"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1410"/>
         <source>You can only display the lyrics of one song at a time.</source>
         <translation>Você só pode exibir a letra de uma canção de cada vez.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1406"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1420"/>
         <source>You can only edit the lyrics of one song at a time.</source>
         <translation>Você apenas pode editar a letra de uma canção de cada vez.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="1428"/>
+        <location filename="../../songtree/QUSongTree.cpp" line="1442"/>
         <source>Removing current filter...</source>
         <translation>Removendo filtro actual...</translation>
     </message>
