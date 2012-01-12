@@ -4,6 +4,7 @@
 
 #include <QVariant>
 #include <QRegExpValidator>
+#include <QList>
 
 QULyricTask::QULyricTask(TaskModes mode, QObject *parent):
 	QUSimpleTask(parent),
@@ -14,6 +15,16 @@ QULyricTask::QULyricTask(TaskModes mode, QObject *parent):
 		this->setIcon(QIcon(":/control/zero.png"));
 		this->setDescription(tr("Set first timestamp to zero"));
 		break;
+	case FixOverlappingNotes:
+		this->setIcon(QIcon(":/control/fix_overlapping_notes.png"));
+		this->setDescription(tr("Fix overlapping notes"));
+		this->setToolTip(tr("Shortens adjacent notes to remove overlapping."));
+		break;
+	case FixLineBreaks:
+		this->setIcon(QIcon(":/control/edit_direction.png"));
+		this->setDescription(tr("Fix line break timings"));
+		this->setToolTip(tr("Moves line break timing to the middle of one line's end and the next line's beginning."));
+		break;
 	case FixSpaces:
 		this->setIcon(QIcon(":/control/space.png"));
 		this->setDescription(tr("Fix spaces"));
@@ -23,6 +34,11 @@ QULyricTask::QULyricTask(TaskModes mode, QObject *parent):
 		this->setIcon(QIcon(":/control/bpm_increase.png"));
 		this->setDescription(tr("Increase low BPM values"));
 		this->setToolTip(tr("Doubles BPM value and all note timings while it is below a certain threshold."));
+		break;
+	case SetMedleyTags:
+		this->setIcon(QIcon(":/types/medley.png"));
+		this->setDescription(tr("Set medley and preview tags if not present"));
+		this->setToolTip(tr("Tries to determine a suitable medley section and sets medley tags accordingly, if successful."));
 		break;
 	case FixLineCapitalization:
 		this->setIcon(QIcon(":/control/edit_uppercase.png"));
@@ -66,11 +82,20 @@ void QULyricTask::startOn(QUSongInterface *song) {
 	case FixTimeStamps:
 		fixTimeStamps(song, smartSettings().first()->value().toInt());
 		break;
+	case FixOverlappingNotes:
+		fixOverlappingNotes(song);
+		break;
+	case FixLineBreaks:
+		fixLineBreaks(song);
+		break;
 	case FixSpaces:
 		fixSpaces(song);
 		break;
 	case FixLowBPM:
 		fixLowBPM(song, smartSettings().first()->value().toInt());
+		break;
+	case SetMedleyTags:
+		setMedleyTags(song, smartSettings().first()->value().toInt(), smartSettings().at(1)->value().toBool());
 		break;
 	case FixLineCapitalization:
 		fixLineCapitalization(song);
@@ -98,10 +123,16 @@ void QULyricTask::startOn(QUSongInterface *song) {
 
 QList<QUSmartSettingInterface*> QULyricTask::smartSettings() const {
 	if(_smartSettings.isEmpty()) {
-		if(_mode == FixTimeStamps)
+		if(_mode == FixTimeStamps) {
 			_smartSettings.append(new QUSmartInputField("lyric/fixTimeStamps", "0", new QRegExpValidator(QRegExp("-?\\d*"), 0), tr("Start:"), ""));
-		if(_mode == FixLowBPM)
-			_smartSettings.append(new QUSmartInputField("lyric/fixLowBPM", "200", new QRegExpValidator(QRegExp("\\d*"), 0), tr("if BPM <"), ""));
+		}
+		if(_mode == FixLowBPM) {
+			_smartSettings.append(new QUSmartInputField("lyric/fixLowBPM", "200", new QRegExpValidator(QRegExp("\\d*"), 0), tr("if BPM less than:"), ""));
+		}
+		if(_mode == SetMedleyTags) {
+			_smartSettings.append(new QUSmartInputField("lyric/medleyMinDuration", "30", new QRegExpValidator(QRegExp("\\d*"), 0), tr("Minimum length:"), tr("seconds")));
+			_smartSettings.append(new QUSmartCheckBox("lyric/overwriteExisting", tr("Overwrite existing values"), false));
+		}
 	}
 	return _smartSettings;
 }
@@ -143,6 +174,12 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 			  .arg(song->artist())
 			  .arg(song->title()), QU::Information);
 
+	//adjust medley tags if (both) present
+	if(song->hasMedley()) {
+		song->setInfo(MEDLEYSTARTBEAT_TAG, QString::number(song->medleystartbeat().toInt() - diff));
+		song->setInfo(MEDLEYENDBEAT_TAG, QString::number(song->medleyendbeat().toInt() - diff));
+	}
+
 	// modify all timestamps
 	if(!song->isRelative()) { // simple way: not relative
 		foreach(QUSongLineInterface *line, song->loadMelody()) {
@@ -171,18 +208,144 @@ void QULyricTask::fixTimeStamps(QUSongInterface *song, int start) {
 		}
 	}
 
-	//adjust medley tags if (both) present
-	if(song->hasMedley()) {
-		int medleystartbeat = QVariant(song->medleystartbeat()).toInt();
-		song->setInfo(MEDLEYSTARTBEAT_TAG, QString::number(medleystartbeat - diff));
-		int medleyendbeat = QVariant(song->medleyendbeat()).toInt();
-		song->setInfo(MEDLEYENDBEAT_TAG, QString::number(medleyendbeat - diff));
+	song->saveMelody();
+	song->clearMelody(); // save memory
+
+	song->log(QString(tr("Timestamps were changed successfully for \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::Information);
+}
+
+/*!
+ * Fixes overlapping notes be either
+ *  - shortening the end of the first note
+ *  - shortening the beginning of the second note
+ *  - shortening both the end of the first and the beginning of the second note
+ */
+void QULyricTask::fixOverlappingNotes(QUSongInterface *song) {
+	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
+		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::Warning);
+		return;
+	}
+
+	// check for overlapping notes
+	int overlappingNotesCnt = 0;
+	int overlappingNotesFixed = 0;
+
+	for(int i = 0; i < song->loadMelody().length() - 1; i++) {
+		QUSongLineInterface *currentLine = song->loadMelody().at(i);
+		for(int j = 0; j < currentLine->notes().size(); j++) {
+			QUSongNoteInterface *currentNote = currentLine->notes().at(j);
+
+			// the very last note of a song can't overlap
+			if(currentLine == song->loadMelody().last() && currentNote == currentLine->notes().last())
+				break;
+
+			// the very last note of singer 1 of a duet can't overlap either
+			if(song->isDuet() && currentNote == song->melodyForSinger(QUSongLineInterface::first).last()->notes().last())
+				break;
+
+			// relative songs can't have overlaps across lines
+			if(song->isRelative() && currentNote == currentLine->notes().last())
+				break;
+
+			QUSongNoteInterface *nextNote;
+			if(currentNote == currentLine->notes().last() && currentLine != song->loadMelody().last()) {
+				nextNote = song->loadMelody().at(i+1)->notes().first();
+			} else {
+				nextNote = currentLine->notes().at(j+1);
+			}
+
+			int currentNoteStartBeat = currentNote->timestamp();
+			int currentNoteEndBeat   = currentNote->timestamp() + currentNote->duration();
+			int nextNoteStartBeat    = nextNote->timestamp();
+			int nextNoteEndBeat      = nextNote->timestamp() + nextNote->duration();
+
+			if(currentNoteEndBeat > nextNoteStartBeat) {
+				overlappingNotesCnt++;
+				if(currentNoteStartBeat < nextNoteStartBeat) {
+					currentNote->setDuration(nextNoteStartBeat - currentNoteStartBeat);
+					overlappingNotesFixed++;
+				}
+				else { // next note starts before current note - out of sequence
+					if(currentNoteEndBeat < nextNoteEndBeat) {
+						nextNote->setTimestamp(currentNoteEndBeat);
+						nextNote->setDuration(nextNoteEndBeat - currentNoteEndBeat);
+						overlappingNotesFixed++;
+					} else { // next note ends even before current note, something must be seriously wrong
+						song->log(QString(tr("Unable to fix out of sequence notes at beats %1 to %2 for \"%3 - %4\".")).arg(currentNoteStartBeat).arg(nextNoteStartBeat).arg(song->artist()).arg(song->title()), QU::Information);
+					}
+				}
+			}
+
+			if(currentNoteEndBeat == song->medleyendbeat().toInt()) {
+				song->setInfo(MEDLEYENDBEAT_TAG, QString::number(currentNote->timestamp() + currentNote->duration()));
+				song->log(QString(tr("Adjusted medley end beat from %1 to %2 for \"%3 - %4\".")).arg(currentNoteEndBeat).arg(song->medleyendbeat()).arg(song->artist()).arg(song->title()), QU::Information);
+			}
+		}
 	}
 
 	song->saveMelody();
 	song->clearMelody(); // save memory
 
-	song->log(QString(tr("Timestamps were changed successfully for \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::Information);
+	if(overlappingNotesCnt > 0)
+		song->log(QString(tr("%1 of %2 overlapping notes were fixed successfully for \"%3 - %4\".")).arg(overlappingNotesFixed).arg(overlappingNotesCnt).arg(song->artist()).arg(song->title()), QU::Information);
+}
+
+/*!
+ * Recalculate line break timings to be after the last beat of the current line and the first beat of the subsequent line.
+ */
+void QULyricTask::fixLineBreaks(QUSongInterface *song) {
+	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
+		song->log(QString(tr("Invalid lyrics in file \"%1\"")).arg(song->txt()), QU::Warning);
+		return;
+	}
+
+	if(song->isRelative()) {
+		return;
+	}
+
+	// fix all line breaks
+	for(int i = 0; i < song->loadMelody().length() - 2; i++) {
+		QUSongLineInterface *line = song->loadMelody().at(i);
+
+		if(line->outTime() != 0) {
+			QUSongLineInterface *nextLine = song->loadMelody().at(i+1);
+			int lineEnd = line->notes().last()->timestamp() + line->notes().last()->duration();
+			int nextLineStart = nextLine->notes().first()->timestamp();
+			int lineGap = nextLineStart - lineEnd;
+
+
+			if(lineGap < 0) { // overlapping lines
+				line->setOutTime(nextLineStart);
+				line->removeInTime();
+				song->log(QString("Lines %1 and %2 are overlapping from beat %3 to beat %4 for \"%5 - %6\".")
+						.arg(QString::number(i+1))
+						.arg(QString::number(i+2))
+						.arg(QString::number(nextLineStart))
+						.arg(QString::number(lineEnd))
+						.arg(song->artist())
+						.arg(song->title()), QU::Warning);
+			} else if(lineGap == 0) { // touching lines
+				line->setOutTime(nextLineStart);
+				line->removeInTime();
+				song->log(QString("Lines %1 and %2 are touching at beat %3 for \"%4 - %5\".")
+						.arg(QString::number(i+1))
+						.arg(QString::number(i+2))
+						.arg(QString::number(nextLineStart))
+						.arg(song->artist())
+						.arg(song->title()), QU::Information);
+			} else { // gap between lines
+				line->setOutTime(lineEnd + lineGap/2);
+				line->removeInTime();
+			}
+		}
+	}
+
+	song->saveMelody();
+	song->clearMelody(); // save memory
+
+	song->log(QString(tr("Line break timings adjusted for \"%1 - %2\"."))
+			  .arg(song->artist())
+			  .arg(song->title()), QU::Information);
 }
 
 /*!
@@ -248,8 +411,17 @@ void QULyricTask::fixLowBPM(QUSongInterface *song, int threshold) {
 		}
 		song->setInfo(BPM_TAG, QString::number(newBPM));
 
-		// modify all timestamps
 		int multiplicator = newBPM / BPM;
+
+		// modify medley tags, if present
+		if(song->hasMedley()) {
+			int test = song->medleystartbeat().toInt() * multiplicator;
+			song->log(QString::number(test), QU::Warning);
+			song->setInfo(MEDLEYSTARTBEAT_TAG, QString::number(song->medleystartbeat().toInt() * multiplicator));
+			song->setInfo(MEDLEYENDBEAT_TAG, QString::number(song->medleyendbeat().toInt() * multiplicator));
+		}
+
+		// modify all timestamps
 		foreach(QUSongLineInterface *line, song->loadMelody()) {
 			foreach(QUSongNoteInterface *note, line->notes()) {
 				note->setTimestamp(note->timestamp() * multiplicator);
@@ -268,11 +440,144 @@ void QULyricTask::fixLowBPM(QUSongInterface *song, int threshold) {
 	song->saveMelody();
 	song->clearMelody(); // save memory
 
-	song->log(QString(tr("#BPM changed from %1 to %2 for \"%3 - %4\"."))
+	song->log(QString(tr("BPM changed from %1 to %2 for \"%3 - %4\"."))
 			  .arg(BPM)
 			  .arg(song->bpm())
 			  .arg(song->artist())
 			  .arg(song->title()), QU::Information);
+}
+
+/*!
+ * Tries to detect the beginning of a chorus to use a starting point for a medley
+ * and sets medley tags accordingly (thanks to brunzel's CMD mod code from USong.pas)
+ */
+void QULyricTask::setMedleyTags(QUSongInterface *song, int medleyMinDuration, bool overwriteExisting) {
+	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
+		song->log(QString(tr("Invalid lyrics in file \"%1\"")).arg(song->txt()), QU::Warning);
+		return;
+	}
+
+	if(song->hasMedley() && !overwriteExisting) {
+		song->log(QString(tr("Skipping medley search: medley tags already set for \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::Warning);
+		return;
+	}
+
+	if(song->isDuet()) {
+		song->log(QString(tr("Skipping medley search: medley tags not supported for duet \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::Warning);
+		return;
+	}
+
+	if(song->isRelative()) {
+		song->log(QString(tr("Skipping medley search: relative format not supported for \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::Warning);
+		return;
+	}
+
+	if(song->calcmedley().toLower() == "off") {
+		song->log(QString(tr("Skipping medley search: search disabled by CALCMEDLEY tag for song \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::Warning);
+		return;
+	}
+
+	bool medleyFound = false;
+
+	// find all medley candidates
+	QPair<int, int> tempMedley;
+	QList<QPair<int, int> > medleyCandidates;
+
+	for(int i = 0; i <= song->loadMelody().size() - 2; i++) {
+		QString firstLine = song->loadMelody().at(i)->toString().toLower().remove(QRegExp("[,\\.!\\?~ ]"));
+		for(int j = i + 4; j <= song->loadMelody().size() - 1; j++) {
+			QString secondLine = song->loadMelody().at(j)->toString().toLower().remove(QRegExp("[,\\.!\\?~ ]"));
+			if(firstLine == secondLine) {
+				tempMedley.first = i;
+				tempMedley.second = i;
+
+				int max = 0;
+				if(j + (j - i) - 1 > song->loadMelody().size() - 1) {
+					max = song->loadMelody().size() - j - 1;
+				} else {
+					max = j - i - 1;
+				}
+
+				for(int k = 1; k <= max; k++) {
+					firstLine = song->loadMelody().at(i+k)->toString().toLower().remove(QRegExp("[,\\.!\\?~ ]"));
+					secondLine = song->loadMelody().at(j+k)->toString().toLower().remove(QRegExp("[,\\.!\\?~ ]"));
+					if(firstLine == secondLine) {
+						tempMedley.second = i + k;
+					} else {
+						break;
+					}
+				}
+				medleyCandidates.append(tempMedley);
+			}
+		}
+	}
+
+	// find longest medley candidate
+	int longestMedleyIndex = 0;
+	if(medleyCandidates.size() == 0) { // no medley candidates found
+		song->log(QString(tr("No medley candiates found for song \"%1 - %2\"")).arg(song->artist()).arg(song->title()), QU::Warning);
+		return;
+	} else { // find longest of all medley candidates (backwards to take first longest, not last longest
+		for (int l = medleyCandidates.size() - 1; l >= 0; l--) {
+			if( (medleyCandidates.at(l).second - medleyCandidates.at(l).first) >= (medleyCandidates.at(longestMedleyIndex).second - medleyCandidates.at(longestMedleyIndex).first) ) {
+				longestMedleyIndex = l;
+			}
+		}
+	}
+
+	double bpm = song->bpm().replace(',','.').toDouble();
+	int medleyMinBeats = QVariant(medleyMinDuration * bpm / 15).toInt();
+	double medleyDuration = 0;
+	int medleyStartBeat = 0;
+	int medleyEndBeat = 0;
+
+	int medleyStartLine = medleyCandidates.at(longestMedleyIndex).first;
+	int medleyEndLine   = medleyCandidates.at(longestMedleyIndex).second;
+	int medleyLineCount = medleyEndLine - medleyStartLine + 1;
+
+	if( medleyLineCount > 3 ) {
+		medleyStartBeat = song->loadMelody().at(medleyStartLine)->notes().first()->timestamp();
+		medleyEndBeat   = song->loadMelody().at(medleyStartLine)->notes().last()->timestamp() + song->loadMelody().at(medleyEndLine)->notes().last()->duration();
+
+		medleyDuration = (medleyEndBeat - medleyStartBeat + 1) * 15 / bpm;
+		if( medleyDuration >= medleyMinDuration) {
+			medleyFound = true;
+		} else {
+			int approximateEndBeat = medleyStartBeat + medleyMinBeats - 1;
+			// find line that contains approximateEnd, set medleyendbeat to last beat of this line
+			foreach(QUSongLineInterface *line, song->loadMelody()) {
+				if(medleyFound)
+					break;
+				foreach(QUSongNoteInterface *note, line->notes()) {
+					if(note->timestamp() > approximateEndBeat) {
+						medleyEndBeat = line->notes().last()->timestamp() + line->notes().last()->duration();
+						medleyDuration = (medleyEndBeat - medleyStartBeat + 1) * 15 / bpm;
+						medleyFound = true;
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	song->saveMelody();
+	song->clearMelody(); // save memory
+
+	if(medleyFound) {
+		song->setInfo(MEDLEYSTARTBEAT_TAG, QString::number(medleyStartBeat));
+		song->setInfo(MEDLEYENDBEAT_TAG, QString::number(medleyEndBeat));
+		song->log(QString(tr("Medley with a duration of %1 seconds set for \"%2 - %3\"."))
+				  .arg(medleyDuration, 0, 'f', 1)
+				  .arg(song->artist())
+				  .arg(song->title()), QU::Information);
+		if(song->previewstart() == N_A || overwriteExisting) {
+			song->setInfo(PREVIEWSTART_TAG, QString::number(song->medleystartbeat().toInt() * 15 / bpm + song->gap().toFloat() / 1000, 'f', 3));
+		}
+	} else {
+		song->log(QString(tr("No suitable medley section found for \"%1 - %2\"."))
+				  .arg(song->artist())
+				  .arg(song->title()), QU::Warning);
+	}
 }
 
 /*!

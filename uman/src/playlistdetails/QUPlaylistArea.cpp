@@ -146,7 +146,7 @@ void QUPlaylistArea::setAreaEnabled(bool enabled) {
 	savePlaylistAsBtn->setEnabled(enabled);
 	removePlaylistBtn->setEnabled(enabled);
 	playlistCombo->setHidden(!enabled);
-	comboLbl->setText(enabled ? tr("Active List:") : tr("No playlists found. Try another folder:"));
+	comboLbl->setText(enabled ? tr("Active List:") : tr("No playlists found."));
 
 	if(!enabled) {
 //		playlist->clear();

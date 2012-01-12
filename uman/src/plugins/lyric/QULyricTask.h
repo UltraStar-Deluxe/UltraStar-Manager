@@ -12,8 +12,11 @@ class QULyricTask: public QUSimpleTask {
 public:
 	enum TaskMode {
 		FixTimeStamps,
+		FixOverlappingNotes,
+		FixLineBreaks,
 		FixSpaces,
 		FixLowBPM,
+		SetMedleyTags,
 		FixLineCapitalization,
 		NormalizePitches,
 		RemoveEmptySyllables,
@@ -34,8 +37,11 @@ private:
 	mutable QList<QUSmartSettingInterface*> _smartSettings;
 
 	void fixTimeStamps(QUSongInterface *song, int start = 0);
+	void fixOverlappingNotes(QUSongInterface *song);
+	void fixLineBreaks(QUSongInterface *song);
 	void fixSpaces(QUSongInterface *song);
 	void fixLowBPM(QUSongInterface *song, int threshold = 200);
+	void setMedleyTags(QUSongInterface *song, int medleyMinDuration = 30, bool overwriteExisting = false);
 	void fixLineCapitalization(QUSongInterface *song);
 	void normalizePitches(QUSongInterface *song);
 	void removeEmptySyllables(QUSongInterface *song);

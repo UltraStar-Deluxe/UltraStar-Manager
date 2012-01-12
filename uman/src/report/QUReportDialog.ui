@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>418</width>
-    <height>424</height>
+    <height>452</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -335,7 +335,7 @@
          <item>
           <widget class="QGroupBox" name="extraGroup">
            <property name="title">
-            <string>Additional Options</string>
+            <string>Header Options</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -379,6 +379,36 @@
               </property>
              </widget>
             </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="HTMLGroup">
+           <property name="title">
+            <string>HTML Options</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>10</number>
+            </property>
+            <property name="topMargin">
+             <number>5</number>
+            </property>
+            <property name="rightMargin">
+             <number>10</number>
+            </property>
+            <property name="bottomMargin">
+             <number>5</number>
+            </property>
             <item>
              <widget class="QCheckBox" name="appendLyricsChk">
               <property name="minimumSize">
@@ -393,7 +423,7 @@
              </widget>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
               <property name="spacing">
                <number>0</number>
               </property>
@@ -422,7 +452,7 @@
              </layout>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
               <property name="spacing">
                <number>5</number>
               </property>
@@ -444,7 +474,7 @@
                  <string>For HTML reports only.</string>
                 </property>
                 <property name="text">
-                 <string>Use Style-Sheet:</string>
+                 <string>Use Style Sheet:</string>
                 </property>
                </widget>
               </item>
@@ -602,6 +632,45 @@
               <property name="icon">
                <iconset resource="../resources/uman.qrc">
                 <normaloff>:/types/text_plain.png</normaloff>:/types/text_plain.png</iconset>
+              </property>
+              <property name="toolButtonStyle">
+               <enum>Qt::ToolButtonTextBesideIcon</enum>
+              </property>
+              <property name="autoRaise">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="createCSVBtn">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>CSV Report</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../resources/uman.qrc">
+                <normaloff>:/types/csv.png</normaloff>:/types/csv.png</iconset>
               </property>
               <property name="toolButtonStyle">
                <enum>Qt::ToolButtonTextBesideIcon</enum>

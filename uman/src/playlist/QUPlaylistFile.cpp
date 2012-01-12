@@ -10,7 +10,7 @@ QUPlaylistFile::QUPlaylistFile(QObject *parent):
 		_nameChanged(false),
 		_playlistChanged(false)
 {
-	_fi.setFile(playlistDB->dir(), "unnamed.upl");
+	_fi.setFile(playlistDB->dir(), tr("unnamed.upl"));
 	setName(tr("New Playlist"));
 }
 
