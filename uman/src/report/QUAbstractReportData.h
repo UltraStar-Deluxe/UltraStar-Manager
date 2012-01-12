@@ -18,12 +18,14 @@
 #define COVER_EXISTS_COL	8
 #define BACKGROUND_EXISTS_COL	9
 #define VIDEO_EXISTS_COL	10
-#define SONG_PATH_COL		11
-#define SONG_FILE_PATH_COL	12
-#define REL_SONG_FILE_PATH_COL	13
-#define LENGTH_COL		14
-#define SPEED_COL		15
-#define CUSTOM_TAG_COL		16
+#define MEDLEY_EXISTS_COL	11
+#define GOLDEN_NOTES_EXIST_COL	12
+#define SONG_PATH_COL		13
+#define SONG_FILE_PATH_COL	14
+#define REL_SONG_FILE_PATH_COL	15
+#define LENGTH_COL		16
+#define SPEED_COL		17
+#define CUSTOM_TAG_COL		18
 
 class QUAbstractReportData: public QObject {
 	Q_OBJECT
