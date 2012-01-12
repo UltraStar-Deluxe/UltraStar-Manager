@@ -91,6 +91,12 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(TYPE_DUET_COLUMN, QIcon(":/types/duet.png"));
 	header->setToolTip(TYPE_DUET_COLUMN, tr("Shows whether the song is a duet."));
 	header->setSizeHint(TYPE_DUET_COLUMN, QSize(25,0));
+	header->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley.png"));
+	header->setToolTip(MEDLEY_COLUMN, tr("Shows whether the song has a medley section."));
+	header->setSizeHint(MEDLEY_COLUMN, QSize(25,0));
+	header->setIcon(GOLDEN_NOTES_COLUMN, QIcon(":/types/golden_notes.png"));
+	header->setToolTip(GOLDEN_NOTES_COLUMN, tr("Shows whether the song has golden notes."));
+	header->setSizeHint(GOLDEN_NOTES_COLUMN, QSize(25,0));
 
 	header->setIcon(UNUSED_FILES_COLUMN, QIcon(":/types/unused_files.png"));
 	header->setToolTip(UNUSED_FILES_COLUMN, tr("Shows whether your folder contains unused files."));
@@ -627,6 +633,8 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 		if(i != LENGTH_DIFF_COLUMN
 		   and i != TYPE_DUET_COLUMN
 		   and i != TYPE_KARAOKE_COLUMN
+		   and i != MEDLEY_COLUMN
+		   and i != GOLDEN_NOTES_COLUMN
 		   and (headerItem()->text(i).isEmpty() or i == FOLDER_COLUMN))
 			continue;
 
@@ -637,7 +645,9 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 
 		switch(i) {
 		case TYPE_KARAOKE_COLUMN:
-		case TYPE_DUET_COLUMN: typesMenu.addAction(a); break;
+		case TYPE_DUET_COLUMN:
+		case MEDLEY_COLUMN:
+		case GOLDEN_NOTES_COLUMN: typesMenu.addAction(a); break;
 		case SPEED_COLUMN: lengthsMenu.addSeparator();
 		case START_COLUMN: lengthsMenu.addSeparator();
 		case LENGTH_COLUMN:
@@ -697,6 +707,8 @@ void QUSongTree::showDefaultColumns(bool save) {
 	this->header()->showSection(VIDEO_COLUMN);
 	this->header()->showSection(TYPE_KARAOKE_COLUMN);
 	this->header()->showSection(TYPE_DUET_COLUMN);
+	this->header()->showSection(MEDLEY_COLUMN);
+	this->header()->showSection(GOLDEN_NOTES_COLUMN);
 	this->header()->showSection(UNUSED_FILES_COLUMN);
 	this->header()->showSection(MULTIPLE_SONGS_COLUMN);
 	this->header()->showSection(SCORE_COLUMN);
@@ -764,6 +776,8 @@ void QUSongTree::showCheckColumns() {
 	this->header()->showSection(COVER_COLUMN);
 	this->header()->showSection(BACKGROUND_COLUMN);
 	this->header()->showSection(VIDEO_COLUMN);
+	this->header()->showSection(MEDLEY_COLUMN);
+	this->header()->showSection(GOLDEN_NOTES_COLUMN);
 	this->header()->showSection(UNUSED_FILES_COLUMN);
 	this->header()->showSection(MULTIPLE_SONGS_COLUMN);
 	this->header()->showSection(SCORE_COLUMN);
@@ -1066,7 +1080,7 @@ bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
 	if(files.size() > FILE_DROP_LIMIT) {
 		int result = QUMessageBox::information(this,
 				tr("Copy Files"),
-				QString(tr("You want to copy <b>%1</b> files to <b>\"%2\"</b>.")).arg(files.size()).arg(item->song()->songFileInfo().dir().path()),
+				QString(tr("You want to copy <b>%1</b> files to <b>\"%2\"</b>.")).arg(files.size()).arg(QDir::toNativeSeparators(item->song()->songFileInfo().dir().path())),
 				BTN << ":/control/save_all.png" << tr("Copy these files.")
 				    << ":/marks/cancel.png"     << tr("Cancel copy operation."));
 		if(result == 1)
@@ -1137,7 +1151,7 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 		if(!QFile::copy(fi.filePath(), newFileInfo.filePath())) {
 			logSrv->add(QString(tr("Could not copy song file \"%1\" to new song directory \"%2\"!"))
 						.arg(fi.fileName())
-						.arg(newFileInfo.path()), QU::Warning);
+						.arg(QDir::toNativeSeparators(newFileInfo.path())), QU::Warning);
 			continue;
 		}
 

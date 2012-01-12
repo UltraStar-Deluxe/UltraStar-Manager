@@ -32,6 +32,9 @@ class QFileInfo;
 #define BPM_TAG			"BPM"
 #define GAP_TAG			"GAP"
 
+#define MEDLEY_TAGS		"MEDLEYTAGS"
+#define GOLDEN_NOTES		"GOLDENNOTES"
+
 class QUSongNoteInterface: public QObject {
 	Q_OBJECT
 
@@ -139,6 +142,7 @@ class QUSongInterface: public QObject {
 	Q_PROPERTY(bool hasBackground READ hasBackground)
 	Q_PROPERTY(bool hasVideo READ hasVideo)
 	Q_PROPERTY(bool hasMedley READ hasMedley)
+	Q_PROPERTY(bool hasGoldenNotes READ hasGoldenNotes)
 	Q_PROPERTY(bool isSongChecked READ isSongChecked)
 	Q_PROPERTY(bool isDuet READ isDuet)
 	Q_PROPERTY(bool isKaraoke READ isKaraoke)
@@ -187,6 +191,7 @@ public:
 	virtual bool hasBackground() const = 0;
 	virtual bool hasVideo() const = 0;
 	virtual bool hasMedley() const = 0;
+	virtual bool hasGoldenNotes() const = 0;
 	virtual bool isSongChecked() const = 0;
 	virtual bool isDuet() const = 0;
 	virtual bool isKaraoke() const = 0;

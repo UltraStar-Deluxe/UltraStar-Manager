@@ -26,6 +26,7 @@
 #include "QUMetaphoneString.h"
 #include "QUStringSupport.h"
 #include "QUSongSupport.h"
+#include "QU.h"
 
 /*!
  * Creates a new song file object.
@@ -110,10 +111,12 @@ bool QUSongFile::pathLessThan (QUSongFile *s1, QUSongFile *s2)             { ret
 bool QUSongFile::filePathLessThan (QUSongFile *s1, QUSongFile *s2)         { return QString::compare(s1->filePath(), s2->filePath(), Qt::CaseInsensitive) < 0; }
 bool QUSongFile::relativeFilePathLessThan (QUSongFile *s1, QUSongFile *s2) { return QString::compare(s1->relativeFilePath(), s2->relativeFilePath(), Qt::CaseInsensitive) < 0; }
 
-bool QUSongFile::hasMp3LessThan (QUSongFile *s1, QUSongFile *s2)         { return !s1->hasMp3() && s2->hasMp3(); }
-bool QUSongFile::hasCoverLessThan (QUSongFile *s1, QUSongFile *s2)       { return !s1->hasCover() && s2->hasCover(); }
-bool QUSongFile::hasBackgroundLessThan (QUSongFile *s1, QUSongFile *s2)  { return !s1->hasBackground() && s2->hasBackground(); }
-bool QUSongFile::hasVideoLessThan (QUSongFile *s1, QUSongFile *s2)       { return !s1->hasVideo() && s2->hasVideo(); }
+bool QUSongFile::hasMp3LessThan (QUSongFile *s1, QUSongFile *s2)           { return !s1->hasMp3() && s2->hasMp3(); }
+bool QUSongFile::hasCoverLessThan (QUSongFile *s1, QUSongFile *s2)         { return !s1->hasCover() && s2->hasCover(); }
+bool QUSongFile::hasBackgroundLessThan (QUSongFile *s1, QUSongFile *s2)    { return !s1->hasBackground() && s2->hasBackground(); }
+bool QUSongFile::hasVideoLessThan (QUSongFile *s1, QUSongFile *s2)         { return !s1->hasVideo() && s2->hasVideo(); }
+bool QUSongFile::hasMedleyLessThan (QUSongFile *s1, QUSongFile *s2)        { return !s1->hasMedley() && s2->hasMedley(); }
+bool QUSongFile::hasGoldenNotesLessThan (QUSongFile *s1, QUSongFile *s2)   { return !s1->hasGoldenNotes() && s2->hasGoldenNotes(); }
 
 /* SORTING FUNCTIONS END */
 
@@ -186,7 +189,7 @@ bool QUSongFile::updateCache() {
 
 	// if file starts with UTF8 BOM and containts valid UTF8 syntax -> enforce UTF8 encoding
 	if((_file.read(3).toHex().toUpper() == "EFBBBF") && isValidUTF8(_file)) {
-		setInfo(ENCODING_TAG, QString("UTF8"));
+		setInfo(ENCODING_TAG, ENCODING_UTF8);
 		//logSrv->add(QString(tr("UTF8 detected in song file: \"%1\"")).arg(QDir::toNativeSeparators(_fi.filePath())), QU::Information);
 	} else {
 		// Check if #ENCODING tag is present
@@ -195,13 +198,13 @@ bool QUSongFile::updateCache() {
 		QString firstLine = QUStringSupport::withoutLeadingBlanks(_in.readLine());
 
 		if(firstLine.startsWith("#ENCODING:", Qt::CaseInsensitive)) {
-			if (firstLine.endsWith("CP1252")) {
-				setInfo(ENCODING_TAG, QString("CP1252"));
+			if (firstLine.endsWith(ENCODING_CP1252)) {
+				setInfo(ENCODING_TAG, ENCODING_CP1252);
 				//logSrv->add(QString(tr("ENCODING:CP1252 found in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
-			} else if (firstLine.endsWith("CP1250")) {
-				setInfo(ENCODING_TAG, QString("CP1250"));
+			} else if (firstLine.endsWith(ENCODING_CP1250)) {
+				setInfo(ENCODING_TAG, ENCODING_CP1250);
 				//logSrv->add(QString(tr("ENCODING:CP1250 found in song file: \"%1\"")).arg(_fi.filePath()), QU::Information);
-			} else if (firstLine.endsWith("UTF")) {
+			} else if (firstLine.endsWith(ENCODING_UTF8)) {
 				// isValidUTF8 check failed, so something must be wrong
 				setInfo(ENCODING_TAG, QUSongSupport::defaultInputEncoding());
 				logSrv->add(QString(tr("Encoding mismatch. Defaulting to %1 for song file: \"%2\"")).arg(encoding()).arg(QDir::toNativeSeparators(_fi.filePath())), QU::Warning);
@@ -218,11 +221,11 @@ bool QUSongFile::updateCache() {
 		}
 	}
 
-	if(encoding() == "CP1252")
+	if(encoding() == ENCODING_CP1252)
 		_in.setCodec(QTextCodec::codecForName("windows-1252"));
-	else if(encoding() == "UTF8")
+	else if(encoding() == ENCODING_UTF8)
 		_in.setCodec(QTextCodec::codecForName("UTF-8"));
-	else if(encoding() == "CP1250")
+	else if(encoding() == ENCODING_CP1250)
 		_in.setCodec(QTextCodec::codecForName("windows-1250"));
 
 	/*
@@ -363,7 +366,16 @@ bool QUSongFile::hasVideo() const {
 }
 
 bool QUSongFile::hasMedley() const {
-	return (medleystartbeat().isEmpty() && medleyendbeat().isEmpty());
+	return ( (medleystartbeat() != N_A) && (medleyendbeat() != N_A) );
+}
+
+bool QUSongFile::hasGoldenNotes() const {
+	foreach(QString line, _lyrics) {
+		if(line.startsWith('*'))
+			return true;
+	}
+
+	return false;
 }
 
 /*!
@@ -507,7 +519,7 @@ QString QUSongFile::speedFormatted() const {
 }
 
 /*!
- * Try to give a useful answer to the hardness of a song. For this, several parts
+ * Try to give a useful answer to the difficulty of a song. For this, several parts
  * are analysed and the fastest one will be returned.
  *
  * This is a little bit better than an average value of the whole song because some
@@ -660,32 +672,32 @@ bool QUSongFile::save(bool force) {
 
 	QTextStream _out(&_file);
 	QTextCodec *codec = QTextCodec::codecForName("windows-1252");
-	if (QUSongSupport::defaultOutputEncoding() == "CP1252")
+	if (QUSongSupport::defaultOutputEncoding() == ENCODING_CP1252)
 		codec = QTextCodec::codecForName("windows-1252");
-	else if (QUSongSupport::defaultOutputEncoding() == "UTF8")
+	else if (QUSongSupport::defaultOutputEncoding() == ENCODING_UTF8)
 		codec = QTextCodec::codecForName("UTF-8");
-	else if (QUSongSupport::defaultOutputEncoding() == "CP1250")
+	else if (QUSongSupport::defaultOutputEncoding() == ENCODING_CP1250)
 		codec = QTextCodec::codecForName("windows-1250");
 
 	// try defaultOutputEncoding
 	if (codec->canEncode((QStringList(_info.values()) + _foundUnsupportedTags + _lyrics + _footer).join(""))) {
 		_out.setCodec(codec);
 		setInfo(ENCODING_TAG, QUSongSupport::defaultOutputEncoding());
-		if (QUSongSupport::defaultOutputEncoding() == "UTF8") {
+		if (QUSongSupport::defaultOutputEncoding() == ENCODING_UTF8) {
 			_out.setGenerateByteOrderMark(true); // BOM needed by UltraStar 1.1
 		}
 	} else {
 		// defaultOutputEncoding not sufficient, UTF-8 necessary
-		logSrv->add(QString(tr("%1 output encoding NOT sufficient. Using UTF8 for song file: \"%2\".")).arg(encoding()).arg(_fi.filePath()), QU::Warning);
+		logSrv->add(QString(tr("%1 output encoding NOT sufficient. Using UTF8 for song file: \"%2\".")).arg(QUSongSupport::defaultOutputEncoding()).arg(_fi.filePath()), QU::Warning);
 		_out.setCodec(QTextCodec::codecForName("UTF-8"));
 		_out.setGenerateByteOrderMark(true); // BOM needed by UltraStar 1.1
-		setInfo(ENCODING_TAG, QString("UTF8"));
+		setInfo(ENCODING_TAG, ENCODING_UTF8);
 	}
 
 	// write supported tags
 	foreach(QString tag, tags) {
 		if(tag == ENCODING_TAG) { // only write ENCODING tag if necessary (CP1250)
-			if (_info.value(tag.toUpper()) == "CP1250") {
+			if (_info.value(tag.toUpper()) == ENCODING_CP1250) {
 				_out << "#" << tag.toUpper() << ":" << _info.value(tag.toUpper()) << endl;
 			}
 		} else if (_info.value(tag.toUpper()) != "") { // do not write empty tags
@@ -1000,11 +1012,11 @@ void QUSongFile::useExternalFile(const QString &filePath) {
 	QFileInfo destination(this->songFileInfo().dir(), source.fileName());
 
 	if(!QFile::copy(source.filePath(), destination.filePath())) {
-		logSrv->add(QString(tr("Could not copy the file \"%1\" to \"%2\".")).arg(source.fileName()).arg(destination.path()), QU::Warning);
+		logSrv->add(QString(tr("Could not copy the file \"%1\" to \"%2\".")).arg(source.fileName()).arg(QDir::toNativeSeparators(destination.path())), QU::Warning);
 		return;
 	}
 
-	logSrv->add(QString(tr("The file \"%1\" was successfully copied to \"%2\".")).arg(source.fileName()).arg(destination.path()), QU::Saving);
+	logSrv->add(QString(tr("The file \"%1\" was successfully copied to \"%2\".")).arg(source.fileName()).arg(QDir::toNativeSeparators(destination.path())), QU::Saving);
 	this->autoSetFile(destination, true);
 }
 
@@ -1197,7 +1209,7 @@ void QUSongFile::songFileChanged(const QString &filePath) {
 
 	updateCache();
 
-	logSrv->add(QString(tr("Song file changed: \"%1\"")).arg(songFileInfo().filePath()), QU::Information);
+	logSrv->add(QString(tr("Song file changed: \"%1\"")).arg(QDir::toNativeSeparators(songFileInfo().filePath())), QU::Information);
 	emit dataChanged();
 }
 

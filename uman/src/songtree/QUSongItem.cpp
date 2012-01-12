@@ -104,7 +104,7 @@ void QUSongItem::updateAsDirectory(bool showRelativePath) {
 	clearContents();
 
 	if(showRelativePath)
-		this->setText(FOLDER_COLUMN, QU::BaseDir.relativeFilePath(song()->songFileInfo().path()));
+		this->setText(FOLDER_COLUMN, QU::BaseDir.relativeFilePath(QDir::toNativeSeparators(song()->songFileInfo().path())));
 	else
 		this->setText(FOLDER_COLUMN, song()->songFileInfo().dir().dirName());
 
@@ -261,6 +261,7 @@ void QUSongItem::updateAsScore() {
 	clearContents();
 
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/score.png"));
+	(dynamic_cast<QUSongItem*>(this->parent()))->setData(SCORE_COLUMN, Qt::UserRole, QVariant(-1));
 
 	if(song()->score() && QFileInfo(song()->score()->filePath()).fileName() == text(FOLDER_COLUMN))
 		return;
@@ -459,26 +460,31 @@ void QUSongItem::setCross(int column, bool isWarning, QString toolTip) {
 			else if(column == VIDEO_COLUMN)		this->setIcon(column, QIcon(":/types/video_warn.png"));
 		}
 
-		this->setData(column, Qt::UserRole, QVariant(-1)); // used for sorting, should be smaller than a "tick" icon
+		this->setData(column, Qt::UserRole, QVariant(-2)); // used for sorting, should be smaller than a "tick" icon
 	} else {
 		if(!altViewEnabled()) {
 			if(column == BACKGROUND_COLUMN) {
-				if (!this->song()->hasVideo())
+				if (!this->song()->hasVideo()) {
 					this->setIcon(column, QIcon(":/marks/cross.png"));
+					this->setData(column, Qt::UserRole, QVariant(-1)); // used for sorting, should be smaller than a "tick" icon
+				}
 			} else if(column == VIDEO_COLUMN) {
-				if (!this->song()->hasBackground())
+				if (!this->song()->hasBackground()) {
 					this->setIcon(column, QIcon(":/marks/cross.png"));
+					this->setData(column, Qt::UserRole, QVariant(-1)); // used for sorting, should be smaller than a "tick" icon
+				}
 			} else {
 				this->setIcon(column, QIcon(":/marks/cross.png"));
+				this->setData(column, Qt::UserRole, QVariant(-1)); // used for sorting, should be smaller than a "tick" icon
 			}
 		}
 		else if(column == MP3_COLUMN) {
 			this->setIcon(column, QIcon(":/types/music_error.png"));
+			this->setData(column, Qt::UserRole, QVariant(0)); // used for sorting, should be smaller than a "tick" icon
 		} else {
 			this->setIcon(column, QIcon());
+			this->setData(column, Qt::UserRole, QVariant(0)); // used for sorting, should be smaller than a "tick" icon
 		}
-
-		this->setData(column, Qt::UserRole, QVariant(0)); // used for sorting, should be smaller than a "tick" icon
 	}
 
 	this->setToolTip(column, toolTip);
@@ -523,8 +529,11 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case VIDEO_COLUMN:
 	case TYPE_DUET_COLUMN:
 	case TYPE_KARAOKE_COLUMN:
+	case MEDLEY_COLUMN:
+	case GOLDEN_NOTES_COLUMN:
 	case UNUSED_FILES_COLUMN:
 	case MULTIPLE_SONGS_COLUMN:
+	case SCORE_COLUMN:
 	case LENGTH_COLUMN:
 	case LENGTH_DIFF_COLUMN:
 	case LENGTH_MP3_COLUMN:
@@ -628,6 +637,24 @@ void QUSongItem::updateTypeColumns() {
 	if(song()->isKaraoke()) {
 		this->setIcon(TYPE_KARAOKE_COLUMN, QIcon(":/types/karaoke.png"));
 		this->setData(TYPE_KARAOKE_COLUMN, Qt::UserRole, -1);
+	}
+
+	if(song()->hasMedley()) {
+		this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley.png"));
+		double medleyDuration = (song()->medleyendbeat().toInt() - song()->medleystartbeat().toInt() + 1) * 15 / song()->bpm().replace(',','.').toDouble();
+		this->setData(MEDLEY_COLUMN, Qt::UserRole, medleyDuration);
+		this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley available (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+	}
+
+	if(QString::compare(song()->calcmedley(), "off", Qt::CaseInsensitive) == 0) {
+		this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley_off.png"));
+		this->setData(MEDLEY_COLUMN, Qt::UserRole, -1);
+		this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley disabled by CALCMEDLEY:OFF."));
+	}
+
+	if(song()->hasGoldenNotes()) {
+		this->setIcon(GOLDEN_NOTES_COLUMN, QIcon(":/types/golden_notes.png"));
+		this->setData(GOLDEN_NOTES_COLUMN, Qt::UserRole, -1);
 	}
 }
 
