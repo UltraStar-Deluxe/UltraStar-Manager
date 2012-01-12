@@ -39,7 +39,7 @@ void QUPlainTextReport::computePaddings() {
 
 void QUPlainTextReport::printHeading(QTextStream &out) {
 	if(options().testFlag(QU::reportPrependCurrentPath))
-		out << QString(tr("Songs Path: \"%1\"")).arg(QU::BaseDir.path()) << endl << endl;
+		out << QString(tr("Songs Path: \"%1\"")).arg(QDir::toNativeSeparators(QU::BaseDir.path())) << endl << endl;
 
 	if(options().testFlag(QU::reportPrependUserData))
 		out << QString("\"%1\"").arg(userData().toString()) << endl << endl;
@@ -53,14 +53,14 @@ void QUPlainTextReport::printHeading(QTextStream &out) {
 	int lineSize = rnWidth;
 	for(int i = 0; i < reportDataList().size(); i++) {
 		out.setFieldWidth(0);
-		out << " | ";                                     lineSize += 3;
-		out.setFieldWidth(_paddings[i]);                  lineSize += _paddings[i];
+		out << " | ";						lineSize += 3;
+		out.setFieldWidth(_paddings[i]);			lineSize += _paddings[i];
 		out << reportDataList().at(i)->headerTextData();
 	}
 	out.setFieldWidth(0);
-	out << " | " << endl;                                 lineSize += 3;
+	out << " | " << endl;						lineSize += 3;
 
-	out << QString(lineSize, '=') << endl;
+	out << QString(lineSize, '=') << ' ' << endl;
 }
 
 void QUPlainTextReport::printSongTable(QTextStream &out) {
