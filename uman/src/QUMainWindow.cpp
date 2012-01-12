@@ -23,6 +23,7 @@
 #include <QFileInfo>
 #include <QFileInfoList>
 #include <QTextStream>
+#include <QTextCodec>
 #include <QProgressDialog>
 
 #include <QDesktopServices>
@@ -886,6 +887,8 @@ void QUMainWindow::saveLog() {
 
 	if(file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
 		QTextStream out(&file);
+		out.setCodec(QTextCodec::codecForName("UTF-8"));
+		out.setGenerateByteOrderMark(true);
 
 		for(int row = 0; row < log->count(); row++) {
 			out << QString("%1 %2").arg(log->item(row)->data(Qt::UserRole).toString()).arg(log->item(row)->text()) << endl;
@@ -1047,9 +1050,9 @@ void QUMainWindow::changeSongDir(const QString &path) {
 
 	montyTalk();
 
-	logSrv->add(QString(tr("UltraStar song directory changed to: \"%1\".")).arg(QU::BaseDir.path()), QU::Information);
+	logSrv->add(QString(tr("UltraStar song directory changed to: \"%1\".")).arg(QDir::toNativeSeparators(QU::BaseDir.path())), QU::Information);
 
-	songTree->headerItem()->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(QU::BaseDir.path()));
+	songTree->headerItem()->setText(FOLDER_COLUMN, QString(tr("Folder (%1)")).arg(QDir::toNativeSeparators(QU::BaseDir.path())));
 }
 
 /*!
@@ -1554,7 +1557,7 @@ void QUMainWindow::getCovers() {
 //		}
 //	}
 //
-//	logSrv->add(QString(tr("Song file changed: \"%1\"")).arg(song->songFileInfo().filePath()), QU::Information);
+//	logSrv->add(QString(tr("Song file changed: \"%1\"")).arg(QDir::toNativeSeparators(song->songFileInfo().filePath())), QU::Information);
 //}
 
 /*!
