@@ -1,4 +1,85 @@
 <---------------------------->
+< Changelog (1.8.1 to 1.8.2) >
+<---------------------------->
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#  NEW FEATURES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+TASKS
+* new task to fix line break timings
+* new task to set medley tags (experimental?)
+* new task to fix overlapping notes
+
+REPORTS
+* new columns "Medley exists?" and "Golden Notes exist?" for report generation
+* new CSV report
+
+SONGTREE
+* new columns "Medley exists?" and "Golden Notes exist?"
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+REPORTS
+* text report now has CR/LF line endings
+* HTML and text report are UTF-8 encoded and file names include the current date (just like PDF report)
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+TASKS
+* increase low BPM values now also adjusts medley tags, if (both) present
+* set first timestamp to zero now also adjusts medley tags, if (both) present
+
+LOG
+* log message about defaultOutputEncoding not being sufficient is now correct
+
+SONGTREE
+* sorting by score file
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+INSTALLER
+* Uninstaller does not delete "non-standard" tasks
+
+TASKS
+* convert syllable placeholders does not ignore "wanted" dashes ("A-B-C")
+* "remove empty syllables" breaks timestamps in relative songs
+* capitalization task makes "TV" to "Tv" - should ignore words that are entirely upper-case
+
+TASK LIST
+* tooltip of slot buttons is empty before the first selection of the slot
+
+SONG FRIENDS (general workaround: switch friend to primary song with double-click on song text file)
+* cannot add song friends to playlist
+* cannot change #MP3 for karaoke song friend
+* cannot change #EDITION for song friend
+* cannot add song friends in reports
+* cannot play song friends in media player
+* some tasks may not affect song friends (e.g. "Remove unsupported tags")
+
+MEDIA PLAYER
+* correct songs get ansychronous after a while (seek works right)
+* uman crashes if you play a song, change the song directory and skip
+
+AUTO-SAVE
+* tasks that change a song's path perform kind of auto-save because the path change cannot be deferred
+
+REPORTS
+* you cannot sort by a custom tag column in the report
+* Unicode symbols (e.g. Chinese/Japanese characters) break fixed column width in text report
+
+SONG TREE
+* cannot drop external files into song tree anymore :-/
+
+COVER DOWNLOAD
+* AlbumArtExchange blocked by blockscript
+* Amazon yields invalid request
+
+MENU
+* hide/show menu stopped working
+
+PLAYLISTS
+* there are several playlist-related issues not working correctly
+
+<---------------------------->
 < Changelog (1.8.0 to 1.8.1) >
 <---------------------------->
 
@@ -119,7 +200,7 @@ INSTALLER
 TASKS
 * convert syllable placeholders does not ignore "wanted" dashes ("A-B-C")
 * "remove empty syllables" breaks timestamps in relative songs
-* capitalization task makes "TV" to "Tv" - should ignore words that are totally upper-case
+* capitalization task makes "TV" to "Tv" - should ignore words that are entirely upper-case
 
 TASK LIST
 * tooltip of slot buttons is empty before the first selection of the slot
@@ -359,7 +440,7 @@ TRANSLATION
 TASKS
 * convert syllable placeholders does not ignore "wanted" dashes ("A-B-C")
 * "remove empty syllables" breaks timestamps in relative songs
-* capitalization task makes "TV" to "Tv" - should ignore words that are totally upper-case
+* capitalization task makes "TV" to "Tv" - should ignore words that are entirely upper-case
 
 TASK LIST
 * tooltip of slot buttons is empty before the first selection of the slot
