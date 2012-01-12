@@ -51,9 +51,9 @@ void QUSongDatabase::deleteSong(QUSongFile *song) {
 	dir.cdUp();
 
 	if(!dir.rmdir(dirName))
-		logSrv->add(QString(tr("Could NOT delete directory: \"%1\". Maybe it is not empty.")).arg(song->songFileInfo().path()), QU::Warning);
+		logSrv->add(QString(tr("Could NOT delete directory: \"%1\". Maybe it is not empty.")).arg(QDir::toNativeSeparators(song->songFileInfo().path())), QU::Warning);
 	else
-		logSrv->add(QString(tr("Directory was deleted successfully: \"%1\"")).arg(song->songFileInfo().path()), QU::Information);
+		logSrv->add(QString(tr("Directory was deleted successfully: \"%1\"")).arg(QDir::toNativeSeparators(song->songFileInfo().path())), QU::Information);
 
 	_songs.removeAll(song);
 
