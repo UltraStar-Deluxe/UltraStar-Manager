@@ -21,6 +21,14 @@ QUBooleanSongData::QUBooleanSongData(const QString &tag, QObject *parent): QUAbs
 		this->setIcon(QIcon(":/types/video.png"));
 		this->setDescription(tr("Video file exists?"));
 		this->setID(VIDEO_EXISTS_COL);
+	} else if(QString::compare(_tag, MEDLEY_TAGS, Qt::CaseInsensitive) == 0) {
+		this->setIcon(QIcon(":/types/medley.png"));
+		this->setDescription(tr("Medley exists?"));
+		this->setID(MEDLEY_EXISTS_COL);
+	} else if(QString::compare(_tag, GOLDEN_NOTES, Qt::CaseInsensitive) == 0) {
+		this->setIcon(QIcon(":/types/golden_notes.png"));
+		this->setDescription(tr("Golden Notes exist?"));
+		this->setID(GOLDEN_NOTES_EXIST_COL);
 	}
 }
 
@@ -35,6 +43,10 @@ QString QUBooleanSongData::textData(QUSongFile *song) {
 		result = song->hasBackground();
 	else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0)
 		result = song->hasVideo();
+	else if(QString::compare(_tag, MEDLEY_TAGS, Qt::CaseInsensitive) == 0)
+		result = song->hasMedley();
+	else if(QString::compare(_tag, GOLDEN_NOTES, Qt::CaseInsensitive) == 0)
+		result = song->hasGoldenNotes();
 
 	if(result)
 		return tr("yes");
@@ -66,6 +78,16 @@ QString QUBooleanSongData::iconData(QUSongFile *song) {
 			return useAltIcons ? ":/types/video.png" : ":/marks/tick.png";
 		else
 			return useAltIcons ? "" : ":/marks/cross.png";
+	} else if(QString::compare(_tag, MEDLEY_TAGS, Qt::CaseInsensitive) == 0) {
+		if (song->hasMedley())
+			return useAltIcons ? ":/types/medley.png" : ":/marks/tick.png";
+		else
+			return useAltIcons ? "" : ":/marks/cross.png";
+	} else if(QString::compare(_tag, GOLDEN_NOTES, Qt::CaseInsensitive) == 0) {
+		if (song->hasGoldenNotes())
+			return useAltIcons ? ":/types/golden_notes.png" : ":/marks/tick.png";
+		else
+			return useAltIcons ? "" : ":/marks/cross.png";
 	}
 
 	return "";
@@ -84,6 +106,10 @@ QString QUBooleanSongData::headerIconData() {
 		return ":/types/background.png";
 	else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0)
 		return ":/types/video.png";
+	else if(QString::compare(_tag, MEDLEY_TAGS, Qt::CaseInsensitive) == 0)
+		return ":/types/medley.png";
+	else if(QString::compare(_tag, GOLDEN_NOTES, Qt::CaseInsensitive) == 0)
+		return ":/types/golden_notes.png";
 
 	return QString();
 }
@@ -100,4 +126,8 @@ void QUBooleanSongData::sort(QList<QUSongFile*> &songs) {
 		qStableSort(songs.begin(), songs.end(), QUSongFile::hasBackgroundLessThan);
 	else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0)
 		qStableSort(songs.begin(), songs.end(), QUSongFile::hasVideoLessThan);
+	else if(QString::compare(_tag, MEDLEY_TAGS, Qt::CaseInsensitive) == 0)
+		qStableSort(songs.begin(), songs.end(), QUSongFile::hasMedleyLessThan);
+	else if(QString::compare(_tag, GOLDEN_NOTES, Qt::CaseInsensitive) == 0)
+		qStableSort(songs.begin(), songs.end(), QUSongFile::hasGoldenNotesLessThan);
 }
