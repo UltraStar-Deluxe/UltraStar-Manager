@@ -3,6 +3,7 @@
 #include "QUHtmlReport.h"
 #include "QUPlainTextReport.h"
 #include "QUPdfReport.h"
+#include "QUCSVReport.h"
 
 #include "QULogService.h"
 
@@ -29,7 +30,7 @@ QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<Q
 {
 	setupUi(this);
 
-	infoTextLbl->setText(tr("Select the <b>columns</b> you want to see in the report. Drag & drop them to change their order. Songs of the <b>source</b> will be sorted alphabetically column by column.<br><br>You can <b>append and link</b> lyrics in HTML reports."));
+	infoTextLbl->setText(tr("Select the <b>columns</b> you want to see in the report. Drag & drop them to change their order. Songs of the <b>source</b> will be sorted alphabetically column by column.<br><br>You can <b>append and link</b> lyrics and use style sheets in HTML reports."));
 	radioAllSongs->setText(QString(tr("All Songs (%1)")).arg(allSongs.size()));
 	radioVisibleSongs->setText(QString(tr("Visible Songs (%1)")).arg(visibleSongs.size()));
 
@@ -41,6 +42,7 @@ QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<Q
 	connect(createPdfBtn, SIGNAL(clicked()), this, SLOT(createPdfReport()));
 	connect(createHtmlBtn, SIGNAL(clicked()), this, SLOT(createHtmlReport()));
 	connect(createPlainTextBtn, SIGNAL(clicked()), this, SLOT(createPlainTextReport()));
+	connect(createCSVBtn, SIGNAL(clicked()), this, SLOT(createCSVReport()));
 
 	connect(radioPlaylist, SIGNAL(toggled(bool)), this, SLOT(togglePlaylistSource(bool)));
 	togglePlaylistSource(false);
@@ -72,6 +74,9 @@ void QUReportDialog::initReportList() {
 	reportList->addItem(new QUReportItem(new QUBooleanSongData(COVER_TAG)));
 	reportList->addItem(new QUReportItem(new QUBooleanSongData(BACKGROUND_TAG)));
 	reportList->addItem(new QUReportItem(new QUBooleanSongData(VIDEO_TAG)));
+
+	reportList->addItem(new QUReportItem(new QUBooleanSongData(MEDLEY_TAGS)));
+	reportList->addItem(new QUReportItem(new QUBooleanSongData(GOLDEN_NOTES)));
 
 	reportList->addItem(new QUReportItem(new QUSongFileData("speed")));
 	reportList->addItem(new QUReportItem(new QUSongFileData("lengthTotal")));
@@ -114,7 +119,7 @@ void QUReportDialog::createPdfReport() {
 
 	fi.setFile(QFileDialog::getSaveFileName(this, tr("Save PDF Report"),
 		fi.filePath(),
-		tr("PDF-Files (*.pdf)")));
+		tr("PDF files (*.pdf)")));
 
 	if(!fi.fileName().isEmpty()) {
 		settings.setValue("reportPath", QVariant(fi.path())); // remember folder
@@ -139,7 +144,8 @@ void QUReportDialog::createPdfReport() {
 
 void QUReportDialog::createHtmlReport() {
 	QSettings settings;
-	QFileInfo fi(QDir(settings.value("reportPath").toString()), "report.html");
+	QString reportFileName = tr("Songlist_%1.html").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd"));
+	QFileInfo fi(QDir(settings.value("reportPath").toString()), reportFileName);
 
 	fi.setFile(QFileDialog::getSaveFileName(this, tr("Save HTML Report"),
 		fi.filePath(),
@@ -169,7 +175,8 @@ void QUReportDialog::createHtmlReport() {
 
 void QUReportDialog::createPlainTextReport() {
 	QSettings settings;
-	QFileInfo fi(QDir(settings.value("reportPath").toString()), "report.txt");
+	QString reportFileName = tr("Songlist_%1.txt").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd"));
+	QFileInfo fi(QDir(settings.value("reportPath").toString()), reportFileName);
 
 	fi.setFile(QFileDialog::getSaveFileName(this, tr("Save Text Report"),
 		fi.filePath(),
@@ -192,6 +199,36 @@ void QUReportDialog::createPlainTextReport() {
 			QDesktopServices::openUrl(QUrl::fromLocalFile(fi.filePath()));
 		} else {
 			logSrv->add(tr("Text report could not be created."), QU::Error);
+		}
+	}
+}
+
+void QUReportDialog::createCSVReport() {
+	QSettings settings;
+	QString reportFileName = tr("Songlist_%1.csv").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd"));
+	QFileInfo fi(QDir(settings.value("reportPath").toString()), reportFileName);
+
+	fi.setFile(QFileDialog::getSaveFileName(this, tr("Save CSV Report"),
+		fi.filePath(),
+		tr("CSV files (*.csv)")));
+
+	if(!fi.fileName().isEmpty()) {
+		settings.setValue("reportPath", QVariant(fi.path())); // remember folder
+
+		this->fetchData();
+
+		QUCSVReport report(
+				sortedSongs(),
+				_data,
+				fi,
+				this->selectedOptions(),
+				this->currentPlaylistName());
+
+		if(report.save()) {
+			logSrv->add(QString(tr("CSV report created successfully to: \"%1\".")).arg(fi.filePath()), QU::Information);
+			QDesktopServices::openUrl(QUrl::fromLocalFile(fi.filePath()));
+		} else {
+			logSrv->add(tr("CSV report could not be created."), QU::Error);
 		}
 	}
 }
