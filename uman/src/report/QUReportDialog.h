@@ -29,6 +29,7 @@ private slots:
 	void createPdfReport();
 	void createHtmlReport();
 	void createPlainTextReport();
+	void createCSVReport();
 
 	void togglePlaylistSource(bool checked);
 	void toggleStyleCombo(bool checked);

@@ -101,7 +101,8 @@ HEADERS += plugins/QUPluginManager.h \
     lyricseditor/QUSyllableDelegate.h \
     preferences/QUPathsDialog.h \
     score/QUScoreFile.h \
-    preferences/QUEncodingsDialog.h
+    preferences/QUEncodingsDialog.h \
+    report/QUCSVReport.h
 #   support/qkFileWatcher.h
 SOURCES += plugins/QUPluginManager.cpp \
     plugins/QUPluginDialog.cpp \
@@ -176,7 +177,8 @@ SOURCES += plugins/QUPluginManager.cpp \
     lyricseditor/QUSyllableDelegate.cpp \
     preferences/QUPathsDialog.cpp \
     score/QUScoreFile.cpp \
-    preferences/QUEncodingsDialog.cpp
+    preferences/QUEncodingsDialog.cpp \
+    report/QUCSVReport.cpp
     #support/qkFileWatcher.cpp
 FORMS += plugins/QUPluginDialog.ui \
     QUMainWindow.ui \
