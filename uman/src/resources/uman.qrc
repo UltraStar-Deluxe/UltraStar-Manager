@@ -130,6 +130,8 @@
         <file>bpm_increase.png</file>
         <file>normalize_pitches.png</file>
         <file>edit_uppercase.png</file>
+        <file>edit_direction.png</file>
+        <file>fix_overlapping_notes.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>splash.png</file>
@@ -248,6 +250,9 @@
         <file>medley_calc.png</file>
         <file>medley_end_beat.png</file>
         <file>medley_start_beat.png</file>
+        <file>csv.png</file>
+        <file>golden_notes.png</file>
+        <file>medley_off.png</file>
     </qresource>
     <qresource prefix="/big">
         <file>save_big.png</file>
