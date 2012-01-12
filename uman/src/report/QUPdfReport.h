@@ -22,6 +22,7 @@ public:
 	virtual bool save();
 
 private:
+	QList<int> _colWidth;
 	// vertical spacing
 	int _subLevelToLetterVSep;
 	int _letterToTopLevelVSep;

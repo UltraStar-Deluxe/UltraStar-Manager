@@ -78,6 +78,10 @@ bool QUPdfReport::save() {
 	int x = 0;
 	int y = 0;
 
+	if(options().testFlag(QU::reportPrependCurrentPath)) {
+		// MB TODO
+	}
+
 	painter.setFont(_letterFnt);
 	int letterHeight = painter.fontMetrics().height();
 	painter.setFont(_topLevelEntryFnt);
@@ -110,8 +114,48 @@ bool QUPdfReport::save() {
 		maxSubLevelEntryWidth = (currentSubLevelEntryWidth > maxSubLevelEntryWidth) ? currentSubLevelEntryWidth : maxSubLevelEntryWidth;
 		painter.setFont(_subSubLevelEntryFnt);
 		for(int i = 2; i < reportDataList().size(); i++) {
+			int currentEntryWidth = painter.fontMetrics().width(reportDataList().at(i)->textData(song));
 			int currentColumn = reportDataList().at(i)->id();
 
+			switch(currentColumn)
+			{
+			case ARTIST_COL:
+				maxArtistWidth = (currentEntryWidth > maxArtistWidth) ? currentEntryWidth : maxArtistWidth;
+				break;
+			case TITLE_COL:
+				maxTitleWidth = (currentEntryWidth > maxTitleWidth) ? currentEntryWidth : maxTitleWidth;
+				break;
+			case LANGUAGE_COL:
+				maxLanguageWidth = (currentEntryWidth > maxLanguageWidth) ? currentEntryWidth : maxLanguageWidth;
+				break;
+			case EDITION_COL:
+				maxEditionWidth = (currentEntryWidth > maxEditionWidth) ? currentEntryWidth : maxEditionWidth;
+				break;
+			case GENRE_COL:
+				maxGenreWidth = (currentEntryWidth > maxGenreWidth) ? currentEntryWidth : maxGenreWidth;
+				break;
+			case YEAR_COL:
+				maxYearWidth = (currentEntryWidth > maxYearWidth) ? currentEntryWidth : maxYearWidth;
+				break;
+			case CREATOR_COL:
+				maxCreatorWidth = (currentEntryWidth > maxCreatorWidth) ? currentEntryWidth : maxCreatorWidth;
+				break;
+			case SPEED_COL:
+				maxSpeedWidth = (currentEntryWidth > maxSpeedWidth) ? currentEntryWidth : maxSpeedWidth;
+				break;
+			case LENGTH_COL:
+				maxLengthWidth = (currentEntryWidth > maxLengthWidth) ? currentEntryWidth : maxLengthWidth;
+				break;
+			case SONG_PATH_COL:
+				maxPathWidth = (currentEntryWidth > maxPathWidth) ? currentEntryWidth : maxPathWidth;
+				break;
+			case SONG_FILE_PATH_COL:
+				maxFilePathWidth = (currentEntryWidth > maxFilePathWidth) ? currentEntryWidth : maxFilePathWidth;
+				break;
+			case REL_SONG_FILE_PATH_COL:
+				maxRelFilePathWidth = (currentEntryWidth > maxRelFilePathWidth) ? currentEntryWidth : maxRelFilePathWidth;
+			}
+			/*
 			if(currentColumn == ARTIST_COL) {
 				int currentArtistWidth = painter.fontMetrics().width(song->artist());
 				maxArtistWidth = (currentArtistWidth > maxArtistWidth) ? currentArtistWidth : maxArtistWidth;
@@ -148,7 +192,7 @@ bool QUPdfReport::save() {
 			} else if(currentColumn == REL_SONG_FILE_PATH_COL) {
 				int currentRelFilePathWidth = painter.fontMetrics().width(song->relativeFilePath());
 				maxRelFilePathWidth = (currentRelFilePathWidth > maxRelFilePathWidth) ? currentRelFilePathWidth : maxRelFilePathWidth;
-			}
+			}*/
 		}
 	}
 
@@ -347,12 +391,17 @@ bool QUPdfReport::save() {
 			} else if(currentColumn == REL_SONG_FILE_PATH_COL) {
 				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideLeft, _relSongFilePathHSep));
 				x += _relSongFilePathHSep + _colHSep;
-			} else if(currentColumn == AUDIO_EXISTS_COL || currentColumn == COVER_EXISTS_COL || currentColumn == BACKGROUND_EXISTS_COL || currentColumn == VIDEO_EXISTS_COL) {
+			} else if(currentColumn == AUDIO_EXISTS_COL || currentColumn == COVER_EXISTS_COL || currentColumn == BACKGROUND_EXISTS_COL || currentColumn == VIDEO_EXISTS_COL || currentColumn == MEDLEY_EXISTS_COL || currentColumn == GOLDEN_NOTES_EXIST_COL) {
 
-				if(reportDataList().at(i)->textData(song) == tr("yes"))
+				if(reportDataList().at(i)->textData(song) == tr("yes")) {
+					painter.setPen(Qt::darkGreen);
 					painter.drawText(x, y, QString::fromUtf8(CHAR_UTF8_CHECK));
-				else
+					painter.setPen(Qt::black);
+				} else {
+					painter.setPen(Qt::darkRed);
 					painter.drawText(x, y, QString::fromUtf8(CHAR_UTF8_BALLOT));
+					painter.setPen(Qt::black);
+				}
 				x += _booleanHSep + _colHSep;
 			} else {
 				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _defaultHSep));
