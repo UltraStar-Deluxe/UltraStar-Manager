@@ -12,7 +12,7 @@ QUStringSupport::QUStringSupport(QObject *parent): QObject(parent) {}
  *
  * \param text A single line of text without line breaks.
  */
-QString QUStringSupport::withoutUnsupportedCharacters (const QString &text) {
+QString QUStringSupport::withoutUnsupportedCharacters(const QString &text) {
 	QString cleanText = text;
 #ifdef Q_OS_WIN32
 	// replace colons by dashes
