@@ -24,8 +24,11 @@ QList<int> QULyricTaskFactory::types() const {
 	result << QULyricTask::ConvertRelativeToAbsolute;
 	result << QULyricTask::ConvertAbsoluteToRelative;
 	result << QULyricTask::FixTimeStamps;
+	result << QULyricTask::FixOverlappingNotes;
+	result << QULyricTask::FixLineBreaks;
 	result << QULyricTask::FixSpaces;
 	result << QULyricTask::FixLowBPM;
+	result << QULyricTask::SetMedleyTags;
 	result << QULyricTask::FixLineCapitalization;
 	result << QULyricTask::NormalizePitches;
 	result << QULyricTask::RemoveEmptySyllables;
