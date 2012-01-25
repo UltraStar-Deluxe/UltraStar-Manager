@@ -253,6 +253,8 @@
         <file>csv.png</file>
         <file>golden_notes.png</file>
         <file>medley_off.png</file>
+        <file>medley_error.png</file>
+        <file>medley_warning.png</file>
     </qresource>
     <qresource prefix="/big">
         <file>save_big.png</file>
