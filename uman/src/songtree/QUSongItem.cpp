@@ -529,8 +529,6 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case VIDEO_COLUMN:
 	case TYPE_DUET_COLUMN:
 	case TYPE_KARAOKE_COLUMN:
-	case MEDLEY_COLUMN:
-	case GOLDEN_NOTES_COLUMN:
 	case UNUSED_FILES_COLUMN:
 	case MULTIPLE_SONGS_COLUMN:
 	case SCORE_COLUMN:
@@ -545,6 +543,8 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case VIDEOGAP_COLUMN:
 	case BPM_COLUMN:
 	case GAP_COLUMN:
+	case MEDLEY_COLUMN:
+	case GOLDEN_NOTES_COLUMN:
 		return this->data(column, Qt::UserRole).toDouble() < other.data(column, Qt::UserRole).toDouble(); break;
 	default:
 		return text(column) < other.text(column);
@@ -640,10 +640,49 @@ void QUSongItem::updateTypeColumns() {
 	}
 
 	if(song()->hasMedley()) {
-		this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley.png"));
+		bool medleyStartBeatAtLineStart = false;
+		bool medleyStartBeatAtNoteStart = false;
+		bool medleyEndBeatAtLineEnd = false;
+		bool medleyEndBeatAtNoteEnd = false;
+
+		for(int i = 0; i < song()->loadMelody().length(); i++) {
+			QUSongLineInterface *currentLine = song()->loadMelody().at(i);
+			for(int j = 0; j < currentLine->notes().size(); j++) {
+				QUSongNoteInterface *currentNote = currentLine->notes().at(j);
+				int currentNoteStartBeat = currentNote->timestamp();
+				int currentNoteEndBeat   = currentNote->timestamp() + currentNote->duration();
+
+				if(currentNoteStartBeat == song()->medleystartbeat().toInt()) {
+					if(j == 0)
+						medleyStartBeatAtLineStart = true;
+					else
+						medleyStartBeatAtNoteStart = true;
+				}
+
+				if(currentNoteEndBeat == song()->medleyendbeat().toInt()) {
+					if(j == currentLine->notes().size() - 1)
+						medleyEndBeatAtLineEnd = true;
+					else
+						medleyEndBeatAtNoteEnd = true;
+				}
+			}
+		}
+
 		double medleyDuration = (song()->medleyendbeat().toInt() - song()->medleystartbeat().toInt() + 1) * 15 / song()->bpm().replace(',','.').toDouble();
-		this->setData(MEDLEY_COLUMN, Qt::UserRole, medleyDuration);
-		this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley available (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+
+		if(medleyStartBeatAtLineStart && medleyEndBeatAtLineEnd) {
+			this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley.png"));
+			this->setData(MEDLEY_COLUMN, Qt::UserRole, medleyDuration);
+			this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley available (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+		} else if((medleyStartBeatAtLineStart && medleyEndBeatAtNoteEnd) || (medleyStartBeatAtNoteStart && medleyEndBeatAtLineEnd) || (medleyStartBeatAtNoteStart && medleyEndBeatAtNoteEnd)) {
+			this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley_warning.png"));
+			this->setData(MEDLEY_COLUMN, Qt::UserRole, 0.2);
+			this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley does not start at the beginning of a line or end at the end of a line (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+		} else {
+			this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley_error.png"));
+			this->setData(MEDLEY_COLUMN, Qt::UserRole, 0.1);
+			this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley does not start at the beginning of a note or end at the end of a note (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+		}
 	}
 
 	if(QString::compare(song()->calcmedley(), "off", Qt::CaseInsensitive) == 0) {
@@ -653,8 +692,21 @@ void QUSongItem::updateTypeColumns() {
 	}
 
 	if(song()->hasGoldenNotes()) {
+		int notesCnt = 0;
+		int goldenNotesCnt = 0;
+		foreach(QUSongLineInterface *line, song()->loadMelody()) {
+			foreach(QUSongNoteInterface *note, line->notes()) {
+				notesCnt++;
+				if(note->type() == QUSongNoteInterface::golden)
+					goldenNotesCnt++;
+			}
+		}
+
+		double goldenNotesPercentage = double(goldenNotesCnt)/double(notesCnt)*100;
+
 		this->setIcon(GOLDEN_NOTES_COLUMN, QIcon(":/types/golden_notes.png"));
-		this->setData(GOLDEN_NOTES_COLUMN, Qt::UserRole, -1);
+		this->setData(GOLDEN_NOTES_COLUMN, Qt::UserRole, goldenNotesPercentage);
+		this->setToolTip(GOLDEN_NOTES_COLUMN, QObject::tr("%1\% golden notes.").arg(goldenNotesPercentage, 0, 'f', 1));
 	}
 }
 
