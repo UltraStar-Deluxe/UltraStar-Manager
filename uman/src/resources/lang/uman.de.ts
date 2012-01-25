@@ -7,7 +7,7 @@
         <location filename="../../songdetails/QUDetailItem.cpp" line="79"/>
         <location filename="../../songdetails/QUDetailItem.cpp" line="81"/>
         <location filename="../../songdetails/QUDetailItem.cpp" line="87"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="686"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="738"/>
         <source>%1 seconds</source>
         <translation>%1 Sekunden</translation>
     </message>
@@ -112,17 +112,32 @@ Versuche es auf %1 x %3 zu beschneiden, um ein Widescreen Format zu erhalten.</t
         <translation>Dateityp nicht unterstützt: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="646"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="676"/>
         <source>Medley available (%1 seconds).</source>
         <translation>Medley vorhanden (%1 Sekunden).</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="652"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="680"/>
+        <source>Medley does not start at the beginning of a line or end at the end of a line (%1 seconds).</source>
+        <translation>Das Medley fängt entweder nicht am Zeilenanfang an oder hört nicht am Zeilenende auf (%1 Sekunden).</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongItem.cpp" line="684"/>
+        <source>Medley does not start at the beginning of a note or end at the end of a note (%1 seconds).</source>
+        <translation>Das Medley fängt entweder nicht am Notenanfang an oder hört nicht am Notenende auf (%1 Sekunden).</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongItem.cpp" line="691"/>
         <source>Medley disabled by CALCMEDLEY:OFF.</source>
         <translation>Medley deaktiviert mittles CALCMEDLEY:OFF.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="709"/>
+        <source>%1% golden notes.</source>
+        <translation>%1% goldene Noten.</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongItem.cpp" line="761"/>
         <source>%1 syllables per second</source>
         <translation>%1 Silben pro Sekunde</translation>
     </message>
@@ -757,12 +772,12 @@ Try cropping to %3 x %3.</source>
         <translation type="obsolete">Gute Hintergrundqualität ohne Widescreen Format (%1 x %2)</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="694"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="746"/>
         <source>Not calculated.</source>
         <translation>Nicht berechnet.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="695"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="747"/>
         <source>Calculate the speed first.</source>
         <translation>Tempo muss erst errechnet werden.</translation>
     </message>
@@ -5440,6 +5455,21 @@ p, li { white-space: pre-wrap; }
         <translation>Ersteller</translation>
     </message>
     <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="150"/>
+        <source>Shows how much time is skipped from the beginning of the audio file.&lt;br&gt;&lt;i&gt;(in seconds)&lt;/i&gt;</source>
+        <translation>Zeigt an, welche Zeit vom Anfang der Audio-Datei übersprungen werden.&lt;br&gt;&lt;i&gt;(in Sekunden)&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="153"/>
+        <source>Shows how much time is skipped from the end of the audio file.&lt;br&gt;&lt;i&gt;(in milliseconds)&lt;/i&gt;</source>
+        <translation>Zeigt an, welche Zeit vom Ende der Audio-Datei übersprungen werden.&lt;br&gt;&lt;i&gt;(in Millisekunden)&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="156"/>
+        <source>Shows how much time is skipped from the video file.&lt;br&gt;&lt;i&gt;(in seconds)&lt;/i&gt;</source>
+        <translation>Zeigt an, welche Zeit vom Anfang der Video-Datei übersprungen werden.&lt;br&gt;&lt;i&gt;(in Sekunden)&lt;/i&gt;</translation>
+    </message>
+    <message>
         <location filename="../../songtree/QUSongTree.cpp" line="306"/>
         <source>Saving unsaved changes...</source>
         <translation>Speichere Änderungen...</translation>
@@ -5632,9 +5662,8 @@ p, li { white-space: pre-wrap; }
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="150"/>
         <source>Skips the first seconds of the song.</source>
-        <translation>Überspringt die ersten Sekunden des Songs.</translation>
+        <translation type="obsolete">Überspringt die ersten Sekunden des Songs.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="151"/>
@@ -5642,9 +5671,8 @@ p, li { white-space: pre-wrap; }
         <translation>Ende</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="153"/>
         <source>Resets the length of the audio file.&lt;br&gt;&lt;i&gt;(in milliseconds)&lt;/i&gt;</source>
-        <translation>Setzt die Länge der Audio-Datei.&lt;br&gt;&lt;i&gt;(in Millisekunden)&lt;/i&gt;</translation>
+        <translation type="obsolete">Setzt die Länge der Audio-Datei.&lt;br&gt;&lt;i&gt;(in Millisekunden)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="154"/>
@@ -5652,9 +5680,8 @@ p, li { white-space: pre-wrap; }
         <translation>Videogap</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="156"/>
         <source>Skips the first seconds of the video.&lt;br&gt;&lt;br&gt;&lt;i&gt;Use negative values here with positive ones in &lt;b&gt;#START&lt;/b&gt; to fix a short video file.&lt;/i&gt;</source>
-        <translation>Überspringt die ersten Sekunden des Videos.&lt;br&gt;&lt;br&gt;&lt;i&gt;Mit negativen Werten hier und positiven im &lt;b&gt;#START&lt;/b&gt;-Tag lässt sich ein kurzes Video nutzen.&lt;/i&gt;</translation>
+        <translation type="obsolete">Überspringt die ersten Sekunden des Videos.&lt;br&gt;&lt;br&gt;&lt;i&gt;Mit negativen Werten hier und positiven im &lt;b&gt;#START&lt;/b&gt;-Tag lässt sich ein kurzes Video nutzen.&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="158"/>

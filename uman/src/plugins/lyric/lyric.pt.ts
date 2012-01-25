@@ -135,7 +135,8 @@
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="518"/>
-        <source>No medley candiates found for song &quot;%1 - %2&quot;</source>
+        <source>No medley candidates found for song &quot;%1 - %2&quot;</source>
+        <oldsource>No medley candiates found for song &quot;%1 - %2&quot;</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
