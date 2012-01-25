@@ -515,7 +515,7 @@ void QULyricTask::setMedleyTags(QUSongInterface *song, int medleyMinDuration, bo
 	// find longest medley candidate
 	int longestMedleyIndex = 0;
 	if(medleyCandidates.size() == 0) { // no medley candidates found
-		song->log(QString(tr("No medley candiates found for song \"%1 - %2\"")).arg(song->artist()).arg(song->title()), QU::Warning);
+		song->log(QString(tr("No medley candidates found for song \"%1 - %2\"")).arg(song->artist()).arg(song->title()), QU::Warning);
 		return;
 	} else { // find longest of all medley candidates (backwards to take first longest, not last longest
 		for (int l = medleyCandidates.size() - 1; l >= 0; l--) {
