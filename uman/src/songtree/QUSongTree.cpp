@@ -147,13 +147,13 @@ void QUSongTree::initHorizontalHeader() {
 
 	header->setText(START_COLUMN, tr("Start"));
 	header->setIcon(START_COLUMN, QIcon(":/types/start.png"));
-	header->setToolTip(START_COLUMN, tr("Skips the first seconds of the song."));
+	header->setToolTip(START_COLUMN, tr("Shows how much time is skipped from the beginning of the audio file.<br><i>(in seconds)</i>"));
 	header->setText(END_COLUMN, tr("End"));
 	header->setIcon(END_COLUMN, QIcon(":/types/end.png"));
-	header->setToolTip(END_COLUMN, tr("Resets the length of the audio file.<br><i>(in milliseconds)</i>"));
+	header->setToolTip(END_COLUMN, tr("Shows how much time is skipped from the end of the audio file.<br><i>(in milliseconds)</i>"));
 	header->setText(VIDEOGAP_COLUMN, tr("Videogap"));
 	header->setIcon(VIDEOGAP_COLUMN, QIcon(":/types/videogap.png"));
-	header->setToolTip(VIDEOGAP_COLUMN, tr("Skips the first seconds of the video.<br><br><i>Use negative values here with positive ones in <b>#START</b> to fix a short video file.</i>"));
+	header->setToolTip(VIDEOGAP_COLUMN, tr("Shows how much time is skipped from the video file.<br><i>(in seconds)</i>"));
 
 	header->setText(RELATIVE_COLUMN, tr("Relative?"));
 	header->setToolTip(RELATIVE_COLUMN, tr("Has relative timestamps."));
