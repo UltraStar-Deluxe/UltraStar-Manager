@@ -655,27 +655,27 @@ Tente cortar para %1 x %3  para ter um aspecto panorâmico.</translation>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="676"/>
         <source>Medley available (%1 seconds).</source>
-        <translation type="unfinished"></translation>
+        <translation>Medley disponível (%1 segundos).</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="680"/>
         <source>Medley does not start at the beginning of a line or end at the end of a line (%1 seconds).</source>
-        <translation type="unfinished"></translation>
+        <translation>Medley não inicia no inicio da linha ou não acaba no fim da linha (%1 segundos).</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="684"/>
         <source>Medley does not start at the beginning of a note or end at the end of a note (%1 seconds).</source>
-        <translation type="unfinished"></translation>
+        <translation>Medley não inicia no inicio de uma nota ou não acaba no fim de uma nota (%1 segundos).</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="691"/>
         <source>Medley disabled by CALCMEDLEY:OFF.</source>
-        <translation type="unfinished"></translation>
+        <translation>Medley desabilitado por #CALCMEDLEY:OFF.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="709"/>
         <source>%1% golden notes.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1% notas douradas.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="746"/>
@@ -920,12 +920,12 @@ background-image: url();</translation>
     <message>
         <location filename="../../report/QUBooleanSongData.cpp" line="26"/>
         <source>Medley exists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Medley existe?</translation>
     </message>
     <message>
         <location filename="../../report/QUBooleanSongData.cpp" line="30"/>
         <source>Golden Notes exist?</source>
-        <translation type="unfinished"></translation>
+        <translation>Notas douradas existem?</translation>
     </message>
     <message>
         <location filename="../../report/QUBooleanSongData.cpp" line="52"/>
@@ -943,12 +943,12 @@ background-image: url();</translation>
     <message>
         <location filename="../../report/QUCSVReport.cpp" line="30"/>
         <source>Songs Path: &quot;%1&quot;</source>
-        <translation type="unfinished">Caminho das canções: &quot;%1&quot;</translation>
+        <translation>Caminho das canções: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../../report/QUCSVReport.cpp" line="46"/>
         <source>Creating CSV report...</source>
-        <translation type="unfinished"></translation>
+        <translation>Creando relatório CSV...</translation>
     </message>
     <message>
         <source>Creating plain text report...</source>
@@ -979,12 +979,12 @@ background-image: url();</translation>
     <message>
         <location filename="../../songtree/QUColumnAction.cpp" line="16"/>
         <source>Medley</source>
-        <translation type="unfinished"></translation>
+        <translation>Medley</translation>
     </message>
     <message>
         <location filename="../../songtree/QUColumnAction.cpp" line="18"/>
         <source>Golden Notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Notas Douradas</translation>
     </message>
 </context>
 <context>
@@ -2577,7 +2577,7 @@ margin: 0;</translation>
     <message>
         <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="149"/>
         <source>No playlists found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Playlists não encontradas.</translation>
     </message>
     <message>
         <location filename="../../playlistdetails/QUPlaylistArea.cpp" line="163"/>
@@ -2698,7 +2698,7 @@ margin: 0;</translation>
     <message>
         <location filename="../../playlist/QUPlaylistFile.cpp" line="13"/>
         <source>unnamed.upl</source>
-        <translation type="unfinished"></translation>
+        <translation>semnome.upl</translation>
     </message>
     <message>
         <location filename="../../playlist/QUPlaylistFile.cpp" line="14"/>
@@ -3349,12 +3349,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.ui" line="338"/>
         <source>Header Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opções Cabeçalho</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.ui" line="477"/>
         <source>Use Style Sheet:</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar Folha de Estilos:</translation>
     </message>
     <message>
         <source>Additional Options</source>
@@ -3373,7 +3373,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.ui" line="388"/>
         <source>HTML Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opções HTML</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.ui" line="421"/>
@@ -3418,7 +3418,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.ui" line="669"/>
         <source>CSV Report</source>
-        <translation type="unfinished"></translation>
+        <translation>Relatório CSV</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.ui" line="729"/>
@@ -3432,7 +3432,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="33"/>
         <source>Select the &lt;b&gt;columns&lt;/b&gt; you want to see in the report. Drag &amp; drop them to change their order. Songs of the &lt;b&gt;source&lt;/b&gt; will be sorted alphabetically column by column.&lt;br&gt;&lt;br&gt;You can &lt;b&gt;append and link&lt;/b&gt; lyrics and use style sheets in HTML reports.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccione as &lt;b&gt;colunas&lt;/b&gt; que você quer ver no relatório. Arraste &amp; Larque para mudar sua ordem. Canções da &lt;b&gt;fonte&lt;/b&gt; serão ordenadas alfabéticamente coluna por coluna.&lt;br&gt;&lt;br&gt;Você pode &lt;b&gt;acrescentar e âncorar&lt;/b&gt; letras e usar folhas de estilo em relatórios HTML.</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="34"/>
@@ -3461,7 +3461,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="122"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ficheiros PDF (*.pdf)</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="137"/>
@@ -3476,7 +3476,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="147"/>
         <source>Songlist_%1.html</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista_%1.html</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="150"/>
@@ -3501,7 +3501,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="178"/>
         <source>Songlist_%1.txt</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista_%1.txt</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="181"/>
@@ -3526,27 +3526,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="208"/>
         <source>Songlist_%1.csv</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista_%1.csv</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="211"/>
         <source>Save CSV Report</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar Relatório CSV</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="213"/>
         <source>CSV files (*.csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ficheiros CSV (*.csv)</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="228"/>
         <source>CSV report created successfully to: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Relatório CSV criado com sucesso para: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../../report/QUReportDialog.cpp" line="231"/>
         <source>CSV report could not be created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível criar relatório CSV.</translation>
     </message>
 </context>
 <context>
@@ -4800,12 +4800,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="95"/>
         <source>Shows whether the song has a medley section.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra se a canção contém medley.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="98"/>
         <source>Shows whether the song has golden notes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra se a canção contém notas douradas.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="102"/>
@@ -4932,17 +4932,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="150"/>
         <source>Shows how much time is skipped from the beginning of the audio file.&lt;br&gt;&lt;i&gt;(in seconds)&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra quanto tempo é ignorado desde o início do ficheiro de áudio.&lt;br&gt;&lt;i&gt;(em segundos)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="153"/>
         <source>Shows how much time is skipped from the end of the audio file.&lt;br&gt;&lt;i&gt;(in milliseconds)&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra quanto tempo é ignorado a partir do final do ficheiro de áudio.&lt;br&gt;&lt;i&gt;(em milisegundos)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="156"/>
         <source>Shows how much time is skipped from the video file.&lt;br&gt;&lt;i&gt;(in seconds)&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra quanto tempo é ignorado a partir do ficheiro de vídeo.&lt;br&gt;&lt;i&gt;(em segundos)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="158"/>

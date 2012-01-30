@@ -11,22 +11,22 @@
     <message>
         <location filename="QULyricTask.cpp" line="20"/>
         <source>Fix overlapping notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Arreglar notas traslapadas</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="21"/>
         <source>Shortens adjacent notes to remove overlapping.</source>
-        <translation type="unfinished"></translation>
+        <translation>Acorta notas adyacentes para eliminar traslapes.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="25"/>
         <source>Fix line break timings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustar saltos de línea</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="26"/>
         <source>Moves line break timing to the middle of one line&apos;s end and the next line&apos;s beginning.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mueve el salto de línea al medio entre el final de una línea y el principio de la siguiente.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="30"/>
@@ -51,12 +51,12 @@
     <message>
         <location filename="QULyricTask.cpp" line="40"/>
         <source>Set medley and preview tags if not present</source>
-        <translation type="unfinished"></translation>
+        <translation>Establecer las etiquetas para medley y previsualización si no están</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="41"/>
         <source>Tries to determine a suitable medley section and sets medley tags accordingly, if successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Intenta determinar una sección apropiada para un medley y establece las etiquetas si lo consigue.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="45"/>
@@ -111,43 +111,43 @@
     <message>
         <location filename="QULyricTask.cpp" line="443"/>
         <source>BPM changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>BPM cambió de %1 a %2 para &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="461"/>
         <source>Skipping medley search: medley tags already set for &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Omision de la búsqueda del medley: las etiquetas de medley ya están para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="466"/>
         <source>Skipping medley search: medley tags not supported for duet &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Omisión de la búsqueda del medley: las etiquetas de medley no están soportadas para el dueto &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="471"/>
         <source>Skipping medley search: relative format not supported for &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Omisión de la búsqueda del medley: formato relativo no soportado para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="476"/>
         <source>Skipping medley search: search disabled by CALCMEDLEY tag for song &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Omisión de la búsqueda del medley: búsqueda desactivada por la etiqueta CALCMEDLEY en la canción &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="518"/>
         <source>No medley candidates found for song &quot;%1 - %2&quot;</source>
         <oldsource>No medley candiates found for song &quot;%1 - %2&quot;</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>No se encontraron candidatos para medley en la canción &quot;%1 - %2&quot;</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="569"/>
         <source>Medley with a duration of %1 seconds set for &quot;%2 - %3&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Se estableció un medley de duración %1 segundos para &quot;%2 - %3&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="577"/>
         <source>No suitable medley section found for &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se encontró ninguna seccion apropiada para el medley de &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
         <source>if BPM &lt;</source>
@@ -165,7 +165,7 @@
     <message>
         <location filename="QULyricTask.cpp" line="346"/>
         <source>Line break timings adjusted for &quot;%1 - %2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Saltos de línea ajustados para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="225"/>
@@ -182,22 +182,22 @@
     <message>
         <location filename="QULyricTask.cpp" line="130"/>
         <source>if BPM less than:</source>
-        <translation type="unfinished"></translation>
+        <translation>si BPM es menor a:</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="133"/>
         <source>Minimum length:</source>
-        <translation type="unfinished"></translation>
+        <translation>Largo mínimo:</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="133"/>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>segundos</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="134"/>
         <source>Overwrite existing values</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobreescribir valores actuales</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="171"/>
@@ -212,17 +212,17 @@
     <message>
         <location filename="QULyricTask.cpp" line="274"/>
         <source>Unable to fix out of sequence notes at beats %1 to %2 for &quot;%3 - %4&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>No fue posible arreglar notas fuera de secuencia entre los beats %1 y %2 para &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="281"/>
         <source>Adjusted medley end beat from %1 to %2 for &quot;%3 - %4&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustado end beat del medley de %1 a %2 para &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="290"/>
         <source>%1 of %2 overlapping notes were fixed successfully for &quot;%3 - %4&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 de %2 notas traslapadas fuero corregidas con éxito para &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="390"/>
