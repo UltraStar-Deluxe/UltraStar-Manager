@@ -17,6 +17,7 @@ QUAudioTagTask::QUAudioTagTask(QDomDocument *taskConfig, QObject *parent): QUScr
 			QDomElement data = id3.childNodes().at(i).toElement();
 			if(!data.isNull() and data.tagName() == "data") {
 				QUScriptData *newData = new QUScriptData();
+				newData->_modifier = data.attribute("modifier");
 				newData->_source = data.attribute("source");
 				newData->_text = data.attribute("text");
 				newData->_if = data.attribute("if");
@@ -34,7 +35,9 @@ void QUAudioTagTask::startOn(QUSongInterface *song) {
 	QString schema = this->_schema.trimmed(); // DO NOT overwrite the template!
 
 	foreach(QUScriptData* currentData, _data) {
-		if(currentData->_if.isEmpty() or song->property(currentData->_if.toLocal8Bit().data()).toBool()) {
+		if((currentData->_modifier.isEmpty() && currentData->_if.isEmpty()) or // not negated unconditional true
+		   (currentData->_modifier.isEmpty() && song->property(currentData->_if.toLocal8Bit().data()).toBool()) or // not negated conditional
+		   (!currentData->_modifier.isEmpty() && !song->property(currentData->_if.toLocal8Bit().data()).toBool())) { // negated conditional
 			if (!currentData->_text.isEmpty()) {
 				schema = schema.arg(currentData->_text);
 			} else if (!currentData->_source.isEmpty()) {

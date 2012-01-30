@@ -62,18 +62,21 @@ bool QUAudioTagTaskDialog::saveTask(const QString &filePath) {
 	for(int row = 0; row < dataTable->rowCount(); row++) {
 		QDomElement data = _doc.createElement("data");
 
-		if(dataTable->item(row, 0)->text() != "true")
-			data.setAttribute("if", dataTable->item(row, 0)->text());
+		if(dataTable->item(row, MODIFIER_COL)->text() == NEGATE_CONDITION)
+			data.setAttribute("modifier", dataTable->item(row, MODIFIER_COL)->text());
 
-		if(dataTable->item(row, 1)->text() == TEXT_SOURCE)
-			data.setAttribute("text", dataTable->item(row, 2)->text());
+		if(dataTable->item(row, CONDITION_COL)->text() != "true")
+			data.setAttribute("if", dataTable->item(row, CONDITION_COL)->text());
+
+		if(dataTable->item(row, SOURCE_COL)->text() == TEXT_SOURCE)
+			data.setAttribute("text", dataTable->item(row, DEFAULT_COL)->text());
 		else {
-			data.setAttribute("source", dataTable->item(row, 1)->text());
+			data.setAttribute("source", dataTable->item(row, SOURCE_COL)->text());
 
-			if(QUAudioTagTask::availableSpecialSources().contains(dataTable->item(row, 2)->text(), Qt::CaseInsensitive))
-				data.setAttribute("ignoreEmpty", dataTable->item(row, 2)->text());
-			else if(dataTable->item(row, 2)->text() != N_A)
-				data.setAttribute("default", dataTable->item(row, 2)->text());
+			if(QUAudioTagTask::availableSpecialSources().contains(dataTable->item(row, DEFAULT_COL)->text(), Qt::CaseInsensitive))
+				data.setAttribute("ignoreEmpty", dataTable->item(row, DEFAULT_COL)->text());
+			else if(dataTable->item(row, DEFAULT_COL)->text() != N_A)
+				data.setAttribute("default", dataTable->item(row, DEFAULT_COL)->text());
 		}
 
 		id3.appendChild(data);
