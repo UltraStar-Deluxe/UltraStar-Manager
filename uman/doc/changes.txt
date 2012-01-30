@@ -27,12 +27,13 @@ REPORTS
 TASKS
 * increase low BPM values now also adjusts medley tags, if (both) present
 * set first timestamp to zero now also adjusts medley tags, if (both) present
+* fixed modifier (negation) handling for song/ID3 tag tasks
 
 LOG
 * log message about defaultOutputEncoding not being sufficient is now correct
 
 SONGTREE
-* sorting by score file
+* sorting by score file working
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
