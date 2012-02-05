@@ -77,12 +77,12 @@
 <context>
     <name>QUAudioTagTask</name>
     <message>
-        <location filename="QUAudioTagTask.cpp" line="80"/>
+        <location filename="QUAudioTagTask.cpp" line="83"/>
         <source>The song tag &quot;%1&quot; of &quot;%4 - %5&quot; was changed from &quot;%2&quot; to &quot;%3&quot;.</source>
         <translation>Le champ %1 de la chanson &quot;%4 - %5&quot; a été changé de &quot;%2&quot; en &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="QUAudioTagTask.cpp" line="87"/>
+        <location filename="QUAudioTagTask.cpp" line="90"/>
         <source>The song tag &quot;%1&quot; is NOT VALID.</source>
         <translation>Le champ &quot;%1&quot; de la chanson est NON VALIDE.</translation>
     </message>
