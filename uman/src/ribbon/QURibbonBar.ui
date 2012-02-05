@@ -553,22 +553,60 @@ border-left-color: #C2C7CB;</string>
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="relativePathsChk">
+          <widget class="QToolButton" name="relativePathsChk">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="toolTip">
             <string>Show relative paths in the song tree. These paths are relative to the database folder.</string>
            </property>
            <property name="text">
             <string>Show Relative Song Paths</string>
            </property>
+           <property name="icon">
+            <iconset resource="../resources/uman.qrc">
+             <normaloff>:/control/folder_relative.png</normaloff>:/control/folder_relative.png</iconset>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextBesideIcon</enum>
+           </property>
+           <property name="autoRaise">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="otherSymbolsChk">
+          <widget class="QToolButton" name="otherSymbolsChk">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="toolTip">
             <string>Display other symbols in the song tree that may be less annoying for the user. =)</string>
            </property>
            <property name="text">
             <string>Alternative Tree Symbols</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../resources/uman.qrc">
+             <normaloff>:/types/music.png</normaloff>:/types/music.png</iconset>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextBesideIcon</enum>
+           </property>
+           <property name="autoRaise">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
