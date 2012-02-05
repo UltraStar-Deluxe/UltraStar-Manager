@@ -61,7 +61,7 @@ void QUMonty::initMessages() {
 	messages << QObject::tr("If you drag &amp; drop a song text file from your explorer into the song tree (not at an item), a new folder will be created and your file will be copied to that new location.<br><br>This way you can easily add new songs to your collection.");
 	messages << QObject::tr("Whenever a folder appears <b>bold</b>, there are unsaved changes. Don't forget to save them or turn on <i>Options &rarr; Auto-Save</i>!");
 	messages << QObject::tr("You can filter the song tree. Just hit <i>Ctrl+F</i> and type some regular expression. Then press the filter button.");
-	messages << QObject::tr("Have you ever created a <i>report</i> of your songs? No?<br><br>Try <i>Extras &rarr; Create Report...</i> or simply press <i>F8</i>.");
+	messages << QObject::tr("Have you ever created a <i>report</i> of your songs? No?<br><br>Try <i>Extras &rarr; Create Report...</i> or simply press <i>F8</i> to export your song collection to PDF, HTML, CSV, or plain text.");
 	messages << QObject::tr("If you double-click an image file you'll get a preview of it.");
 	messages << QObject::tr("You can delete a rename task by deleting its XML configuration file in the <tt>plugins/config/rename</tt> subdirectory.");
 	messages << QObject::tr("If you make a double-click on a rename task in the task list you can modify it.");
