@@ -1,10 +1,10 @@
 #ifndef QUSCRIPTABLETASK_H_
 #define QUSCRIPTABLETASK_H_
 
-#define NEGATE_CONDITION       "NOT"
-#define TEXT_SOURCE            "*TEXT*"
-#define KEEP_SUFFIX_SOURCE     "*SUFFIX*"
-#define UNKNOWN_TAGS_SOURCE    "*UNKNOWN_TAGS*"
+#define NEGATE_CONDITION	"NOT"
+#define TEXT_SOURCE			"*TEXT*"
+#define KEEP_SUFFIX_SOURCE	"*SUFFIX*"
+#define UNKNOWN_TAGS_SOURCE	"*UNKNOWN_TAGS*"
 
 #include "QUSimpleTask.h"
 

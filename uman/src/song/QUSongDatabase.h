@@ -47,7 +47,7 @@ protected:
 
 private:
 	QList<QUSongFile*> _songs;
-	QWidget           *_parent; // used for dialogs like progress bars
+	QWidget		   *_parent; // used for dialogs like progress bars
 
 /*!
  * Use the singleton pattern because we need only one

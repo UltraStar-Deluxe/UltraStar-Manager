@@ -163,7 +163,7 @@ void QUPlaylistDatabase::deletePlaylist(QUPlaylistFile *playlist) {
 }
 
 QUPlaylistFile* QUPlaylistDatabase::at(int index) const {
-	if(index < 0 or index > playlists().size() - 1)
+	if(index < 0 || index > playlists().size() - 1)
 		return 0;
 	return playlists().at(index);
 }

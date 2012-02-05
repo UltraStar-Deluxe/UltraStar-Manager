@@ -179,7 +179,7 @@ void QURemoteImageDialog::getCovers() {
 }
 
 QURemoteImageSource* QURemoteImageDialog::currentImageSource() const {
-	if(sourcesCombo->currentIndex() < 0 or sourcesCombo->currentIndex() >= pluginMGR->imageSourcePlugins().size())
+	if(sourcesCombo->currentIndex() < 0 || sourcesCombo->currentIndex() >= pluginMGR->imageSourcePlugins().size())
 		return 0;
 
 	return pluginMGR->imageSourcePlugins().at(sourcesCombo->currentIndex());

@@ -99,7 +99,7 @@ void QUHtmlReport::appendSongsTable(QDomNode &parent) {
 
 void QUHtmlReport::appendSongsTableHead(QDomNode &parent) {
 	QDomElement thead = _report.createElement("thead");
-	QDomElement tr    = _report.createElement("tr");
+	QDomElement tr	= _report.createElement("tr");
 
 	/* running number */
 	tr.appendChild(_report.createElement("th"));
@@ -163,7 +163,7 @@ void QUHtmlReport::appendSongsTableBody(QDomNode &parent) {
 			a.setAttribute("href", QString("#%1").arg(rn));
 
 			QUBooleanSongData *bData = dynamic_cast<QUBooleanSongData*>(rd);
-			if(bData and !bData->iconData(song).isEmpty()) {
+			if(bData && !bData->iconData(song).isEmpty()) {
 				QDomElement img = _report.createElement("img");
 				QDomAttr src = _report.createAttribute("src");
 				QDomAttr alt = _report.createAttribute("alt");
@@ -183,7 +183,7 @@ void QUHtmlReport::appendSongsTableBody(QDomNode &parent) {
 				} else {
 					td.appendChild(img);
 				}
-			} else if(!bData and !rd->textData(song).isEmpty()) {
+			} else if(!bData && !rd->textData(song).isEmpty()) {
 				if(options().testFlag(QU::reportLinkLyrics)) {
 					a.appendChild(_report.createTextNode(rd->textData(song)));
 					td.appendChild(a);

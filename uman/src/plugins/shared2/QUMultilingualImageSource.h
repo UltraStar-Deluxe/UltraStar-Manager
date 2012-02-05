@@ -64,7 +64,7 @@ protected:
 
 private:
 	mutable QMap<QString, QTranslator*> _translations;
-	QList<QURemoteImageCollector*>      _collectors;
+	QList<QURemoteImageCollector*> _collectors;
 };
 
 #endif // QUMULTILINGUALIMAGESOURCE_H

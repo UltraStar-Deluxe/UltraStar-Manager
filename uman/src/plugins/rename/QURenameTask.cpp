@@ -35,10 +35,10 @@ QURenameTask::QURenameTask(QDomDocument *taskConfig, QObject *parent):
 
 /*!
  * Invokes the task on a song. Data priorities are: if, keepSuffix, text, source, keepUnknownTags
- *              if ... condition for any other attribute in data-element
- *      keepSuffix ... replaces placeholder with current file suffix
- *            text ... replaces placeholder with hard-coded text (useful with 'if')
- *          source ... dynamically retrieves data from current song object
+ *				if ... condition for any other attribute in data-element
+ *		keepSuffix ... replaces placeholder with current file suffix
+ *			  text ... replaces placeholder with hard-coded text (useful with 'if')
+ *		 	source ... dynamically retrieves data from current song object
  * keepUnknownTags ... replaces placeholder with all unknown tags found
  *
  * \sa filterUnknownTags
@@ -99,13 +99,13 @@ void QURenameTask::startOn(QUSongInterface *song) {
 	// you must not use trailing spaces - could corrupt the file system
 	schema = schema.trimmed();
 
-	     if (QString::compare(this->_target, "dir", Qt::CaseInsensitive) == 0)        song->renameSongDir(schema);
-	else if (QString::compare(this->_target, "path", Qt::CaseInsensitive) == 0)       song->moveAllFiles(schema);
-	else if (QString::compare(this->_target, "txt", Qt::CaseInsensitive) == 0)        song->renameSongTxt(schema);
-	else if (QString::compare(this->_target, "mp3", Qt::CaseInsensitive) == 0)        song->renameSongMp3(schema);
-	else if (QString::compare(this->_target, "cover", Qt::CaseInsensitive) == 0)      song->renameSongCover(schema);
+		 if (QString::compare(this->_target, "dir", Qt::CaseInsensitive) == 0)		song->renameSongDir(schema);
+	else if (QString::compare(this->_target, "path", Qt::CaseInsensitive) == 0)	   song->moveAllFiles(schema);
+	else if (QString::compare(this->_target, "txt", Qt::CaseInsensitive) == 0)		song->renameSongTxt(schema);
+	else if (QString::compare(this->_target, "mp3", Qt::CaseInsensitive) == 0)		song->renameSongMp3(schema);
+	else if (QString::compare(this->_target, "cover", Qt::CaseInsensitive) == 0)	  song->renameSongCover(schema);
 	else if (QString::compare(this->_target, "background", Qt::CaseInsensitive) == 0) song->renameSongBackground(schema);
-	else if (QString::compare(this->_target, "video", Qt::CaseInsensitive) == 0)      song->renameSongVideo(schema);
+	else if (QString::compare(this->_target, "video", Qt::CaseInsensitive) == 0)	  song->renameSongVideo(schema);
 	else
 		song->log(QString(tr("Invalid target: %1")).arg(this->_target), QU::Warning);
 }

@@ -80,7 +80,7 @@ bool QUPlaylistFile::save() {
 }
 
 QUPlaylistEntry* QUPlaylistFile::entry(int index) {
-	if(index < 0 or index >= _playlist.size())
+	if(index < 0 || index >= _playlist.size())
 		return 0;
 
 	return _playlist.at(index);
@@ -91,7 +91,7 @@ QUPlaylistEntry* QUPlaylistFile::last() {
 }
 
 bool QUPlaylistFile::hasUnsavedChanges() const {
-	if(_nameChanged or _playlistChanged or !_fi.exists())
+	if(_nameChanged || _playlistChanged || !_fi.exists())
 		return true;
 
 	foreach(QUPlaylistEntry *entry, _playlist) {

@@ -16,7 +16,7 @@ void QUPlaylistEntry::setLinks(const QString &artistLink, const QString &titleLi
  * Connects the given song if artist and title match.
  */
 void QUPlaylistEntry::connectSong(QUSongFile* song) {
-	if( QString::compare(artistLink(), song->artist(), Qt::CaseInsensitive) == 0 and
+	if( QString::compare(artistLink(), song->artist(), Qt::CaseInsensitive) == 0 &&
 		QString::compare(titleLink(),  song->title(),  Qt::CaseInsensitive) == 0 ) {
 		this->_song = song;
 	}
@@ -38,8 +38,8 @@ void QUPlaylistEntry::connectSong() {
  * \returns Whether this playlist entry has to be saved.
  */
 bool QUPlaylistEntry::hasUnsavedChanges() const {
-	return( song() and (
-			QString::compare(artistLink(), song()->artist(), Qt::CaseInsensitive) != 0 or
+	return( song() && (
+			QString::compare(artistLink(), song()->artist(), Qt::CaseInsensitive) != 0 ||
 			QString::compare(titleLink(),  song()->title(),  Qt::CaseInsensitive) != 0 ));
 }
 

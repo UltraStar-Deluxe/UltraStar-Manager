@@ -170,7 +170,7 @@ void handlePreviousAppCrash() {
 			QObject::tr("The UltraStar Manager did not exit successfully last time. Maybe you've chosen a <b>bad song folder</b>.<br>"
 					"<br>"
 					"Please report this problem <a href=\"http://uman.sf.net\">here</a>."),
-			BTN	<< ":/marks/accept.png"        << QObject::tr("Try again.")
+			BTN	<< ":/marks/accept.png" << QObject::tr("Try again.")
 				<< ":/control/folder_note.png" << QObject::tr("Select another song folder."));
 	if(result == 1) {
 		QSettings settings;

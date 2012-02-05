@@ -351,7 +351,7 @@ void QULyricTask::fixLineBreaks(QUSongInterface *song) {
 /*!
  * Avoid a space at the end of a syllable.
  * ": 200 5 20 'cause " -> ": 200 5 20 'cause"
- * ": 205 2 10 I"       -> ": 205 2 10  I"
+ * ": 205 2 10 I"	   -> ": 205 2 10  I"
  */
 void QULyricTask::fixSpaces(QUSongInterface *song) {
 	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {

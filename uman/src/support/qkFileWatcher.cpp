@@ -135,25 +135,25 @@ QString qkFileWatch::name() const { return mName; }
 bool qkFileWatch::isValid() const
 {
 	if (mType == invalidType) return false;
-	else                      return true;
+	else					  return true;
 }
 
 bool qkFileWatch::isFile() const
 {
 	if (mType == fileType) return true;
-	else                   return false;
+	else				   return false;
 }
 
 bool qkFileWatch::isDirectory() const
 {
 	if (mType == folderType) return true;
-	else                     return false;
+	else					 return false;
 }
 
 bool qkFileWatch::exists() const
 {
 	if (mSize == -1) return false;
-	else             return true;
+	else			 return true;
 }
 
 qkFileWatch::FileType qkFileWatch::type() const

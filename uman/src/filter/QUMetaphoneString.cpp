@@ -10,7 +10,7 @@ bool QUMetaphoneString::isSlavoGermanic() {
 }
 
 bool QUMetaphoneString::hasVowel(int at) {
-	if( (at < 0) or (at >= _length) )
+	if( (at < 0) || (at >= _length) )
 		return false;
 
 	return QRegExp("[AEIOUY]").exactMatch(mid(at, 1));
@@ -31,7 +31,7 @@ inline void QUMetaphoneString::add(const char *main, const char *alt) {
 		if(alt[0] != ' ')
 			_secondary += alt;
 	} else
-		if( *main and (main[0] != ' ') )
+		if( *main && (main[0] != ' ') )
 			_secondary += main;
 }
 
@@ -39,27 +39,27 @@ inline void QUMetaphoneString::add(const char *main, const char *alt) {
  * Checks if any of the given test strings is at the given position.
  */
 bool QUMetaphoneString::anyStringAt(int start, int length, ... ) {
-    char    buffer[64];
-    char*   test;
-    QString target;
+	char	buffer[64];
+	char*   test;
+	QString target;
 
-    test = buffer;
-    target = mid(start, length);
+	test = buffer;
+	target = mid(start, length);
 
-    va_list sstrings;
-    va_start(sstrings, length);
+	va_list sstrings;
+	va_start(sstrings, length);
 
-    do
-    {
-            test = va_arg(sstrings, char*);
-            if(*test and (target == test))
-                    return true;
+	do
+	{
+			test = va_arg(sstrings, char*);
+			if(*test && (target == test))
+					return true;
 
-    }while(strcmp(test, ""));
+	}while(strcmp(test, ""));
 
-    va_end(sstrings);
+	va_end(sstrings);
 
-    return false;
+	return false;
 }
 
 /*!
@@ -76,7 +76,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 	_hasAlternate = false;
 
 	//pad the original string so that we can index beyond the edge of the world
-	insert(this->size(), "     ");
+	insert(this->size(), "	 ");
 
 	//skip these when at start of word
 	if(anyStringAt(0, 2, "GN", "KN", "PN", "WR", "PS", ""))
@@ -90,7 +90,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 	}
 
 	///////////main loop//////////////////////////
-	while((_primary.size() < 4) or (_secondary.size() < 4))
+	while((_primary.size() < 4) || (_secondary.size() < 4))
 	{
 		if(current >= _length)
 			break;
@@ -128,10 +128,10 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 		case 'C':
 			//various germanic
 			if((current > 1)
-					and !hasVowel(current - 2)
-					and anyStringAt((current - 1), 3, "ACH", "")
-			and ((at(current + 2) != 'I') and ((at(current + 2) != 'E')
-					or anyStringAt((current - 2), 6, "BACHER", "MACHER", "")) ))
+					&& !hasVowel(current - 2)
+					&& anyStringAt((current - 1), 3, "ACH", "")
+			&& ((at(current + 2) != 'I') && ((at(current + 2) != 'E')
+					|| anyStringAt((current - 2), 6, "BACHER", "MACHER", "")) ))
 			{
 				add("K");
 				current +=2;
@@ -139,7 +139,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			}
 
 			//special case 'caesar'
-			if((current == 0) and anyStringAt(current, 6, "CAESAR", ""))
+			if((current == 0) && anyStringAt(current, 6, "CAESAR", ""))
 			{
 				add("S");
 				current +=2;
@@ -157,7 +157,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			if(anyStringAt(current, 2, "CH", ""))
 			{
 				//find 'michael'
-				if((current > 0) and anyStringAt(current, 4, "CHAE", ""))
+				if((current > 0) && anyStringAt(current, 4, "CHAE", ""))
 				{
 					add("K", "X");
 					current +=2;
@@ -166,9 +166,9 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 
 				//greek roots e.g. 'chemistry', 'chorus'
 				if((current == 0)
-						and (anyStringAt((current + 1), 5, "HARAC", "HARIS", "")
-								or anyStringAt((current + 1), 3, "HOR", "HYM", "HIA", "HEM", ""))
-								and !anyStringAt(0, 5, "CHORE", ""))
+						&& (anyStringAt((current + 1), 5, "HARAC", "HARIS", "")
+								|| anyStringAt((current + 1), 3, "HOR", "HYM", "HIA", "HEM", ""))
+								&& !anyStringAt(0, 5, "CHORE", ""))
 				{
 					add("K");
 					current +=2;
@@ -176,13 +176,13 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 				}
 
 				//germanic, greek, or otherwise 'ch' for 'kh' sound
-				if((anyStringAt(0, 4, "VAN ", "VON ", "") or anyStringAt(0, 3, "SCH", ""))
+				if((anyStringAt(0, 4, "VAN ", "VON ", "") || anyStringAt(0, 3, "SCH", ""))
 						// 'architect but not 'arch', 'orchestra', 'orchid'
-                                                or anyStringAt((current - 2), 6, "ORCHES", "ARCHIT", "ORCHID", "")
-				or anyStringAt((current + 2), 1, "T", "S", "")
-				or ((anyStringAt((current - 1), 1, "A", "O", "U", "E", "") or (current == 0))
+												|| anyStringAt((current - 2), 6, "ORCHES", "ARCHIT", "ORCHID", "")
+				|| anyStringAt((current + 2), 1, "T", "S", "")
+				|| ((anyStringAt((current - 1), 1, "A", "O", "U", "E", "") || (current == 0))
 						//e.g., 'wachtler', 'wechsler', but not 'tichner'
-						and anyStringAt((current + 2), 1, "L", "R", "N", "M", "B", "H", "F", "V", "W", " ", "")))
+						&& anyStringAt((current + 2), 1, "L", "R", "N", "M", "B", "H", "F", "V", "W", " ", "")))
 				{
 					add("K");
 				}else{
@@ -200,7 +200,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 				break;
 			}
 			//e.g, 'czerny'
-			if(anyStringAt(current, 2, "CZ", "") and !anyStringAt((current - 2), 4, "WICZ", ""))
+			if(anyStringAt(current, 2, "CZ", "") && !anyStringAt((current - 2), 4, "WICZ", ""))
 			{
 				add("S", "X");
 				current += 2;
@@ -216,14 +216,14 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			}
 
 			//double 'C', but not if e.g. 'McClellan'
-                        if(anyStringAt(current, 2, "CC", "") and !((current == 1) and (at(0) == 'M')))
-                        {
+			if(anyStringAt(current, 2, "CC", "") && !((current == 1) && (at(0) == 'M')))
+			{
 				//'bellocchio' but not 'bacchus'
-                                if(anyStringAt((current + 2), 1, "I", "E", "H", "") and !anyStringAt((current + 2), 2, "HU", ""))
+								if(anyStringAt((current + 2), 1, "I", "E", "H", "") && !anyStringAt((current + 2), 2, "HU", ""))
 				{
 					//'accident', 'accede' 'succeed'
-					if(((current == 1) and (at(current - 1) == 'A'))
-							or anyStringAt((current - 1), 5, "UCCEE", "UCCES", ""))
+					if(((current == 1) && (at(current - 1) == 'A'))
+							|| anyStringAt((current - 1), 5, "UCCEE", "UCCES", ""))
 						add("KS");
 					//'bacci', 'bertucci', other italian
 					else
@@ -235,7 +235,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 					current += 2;
 					break;
 				}
-                        }
+			}
 			if(anyStringAt(current, 2, "CK", "CG", "CQ", ""))
 			{
 				add("K");
@@ -262,7 +262,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 				current += 3;
 			else
 				if(anyStringAt((current + 1), 1, "C", "K", "Q", "")
-						and !anyStringAt((current + 1), 2, "CE", "CI", ""))
+						&& !anyStringAt((current + 1), 2, "CE", "CI", ""))
 					current += 2;
 				else
 					current += 1;
@@ -270,7 +270,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 
 		case 'D':
 			if(anyStringAt(current, 2, "DG", ""))
-                        {
+						{
 				if(anyStringAt((current + 2), 1, "I", "E", "Y", ""))
 				{
 					//e.g. 'edge'
@@ -283,7 +283,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 					current += 2;
 					break;
 				}
-                        }
+						}
 			if(anyStringAt(current, 2, "DT", "DD", ""))
 			{
 				add("T");
@@ -307,7 +307,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 		case 'G':
 			if(at(current + 1) == 'H')
 			{
-				if((current > 0) and !hasVowel(current - 1))
+				if((current > 0) && !hasVowel(current - 1))
 				{
 					add("K");
 					current += 2;
@@ -328,23 +328,23 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 					}
 				}
 				//Parker's rule (with some further refinements) - e.g., 'hugh'
-				if(((current > 1) and anyStringAt((current - 2), 1, "B", "H", "D", "") )
+				if(((current > 1) && anyStringAt((current - 2), 1, "B", "H", "D", "") )
 						//e.g., 'bough'
-						or ((current > 2) and anyStringAt((current - 3), 1, "B", "H", "D", "") )
+						|| ((current > 2) && anyStringAt((current - 3), 1, "B", "H", "D", "") )
 						//e.g., 'broughton'
-						or ((current > 3) and anyStringAt((current - 4), 1, "B", "H", "") ) )
+						|| ((current > 3) && anyStringAt((current - 4), 1, "B", "H", "") ) )
 				{
 					current += 2;
 					break;
 				}else{
 					//e.g., 'laugh', 'McLaughlin', 'cough', 'gough', 'rough', 'tough'
 					if((current > 2)
-							and (at(current - 1) == 'U')
-							and anyStringAt((current - 3), 1, "C", "G", "L", "R", "T", "") )
+							&& (at(current - 1) == 'U')
+							&& anyStringAt((current - 3), 1, "C", "G", "L", "R", "T", "") )
 					{
 						add("F");
 					}else
-						if((current > 0) and at(current - 1) != 'I')
+						if((current > 0) && at(current - 1) != 'I')
 							add("K");
 
 					current += 2;
@@ -354,13 +354,13 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 
 			if(at(current + 1) == 'N')
 			{
-				if((current == 1) and hasVowel(0) and !isSlavoGermanic())
+				if((current == 1) && hasVowel(0) && !isSlavoGermanic())
 				{
 					add("KN", "N");
 				}else
 					//not e.g. 'cagney'
 					if(!anyStringAt((current + 2), 2, "EY", "")
-							and (at(current + 1) != 'Y') and !isSlavoGermanic())
+							&& (at(current + 1) != 'Y') && !isSlavoGermanic())
 					{
 						add("N", "KN");
 					}else
@@ -370,7 +370,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			}
 
 			//'tagliaro'
-			if(anyStringAt((current + 1), 2, "LI", "") and !isSlavoGermanic())
+			if(anyStringAt((current + 1), 2, "LI", "") && !isSlavoGermanic())
 			{
 				add("KL", "L");
 				current += 2;
@@ -379,8 +379,8 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 
 			//-ges-,-gep-,-gel-, -gie- at beginning
 			if((current == 0)
-					and ((at(current + 1) == 'Y')
-							or anyStringAt((current + 1), 2, "ES", "EP", "EB", "EL", "EY", "IB", "IL", "IN", "IE", "EI", "ER", "")) )
+					&& ((at(current + 1) == 'Y')
+							|| anyStringAt((current + 1), 2, "ES", "EP", "EB", "EL", "EY", "IB", "IL", "IN", "IE", "EI", "ER", "")) )
 			{
 				add("K", "J");
 				current += 2;
@@ -388,10 +388,10 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			}
 
 			// -ger-,  -gy-
-			if((anyStringAt((current + 1), 2, "ER", "") or (at(current + 1) == 'Y'))
-					and !anyStringAt(0, 6, "DANGER", "RANGER", "MANGER", "")
-					and !anyStringAt((current - 1), 1, "E", "I", "")
-					and !anyStringAt((current - 1), 3, "RGY", "OGY", "") )
+			if((anyStringAt((current + 1), 2, "ER", "") || (at(current + 1) == 'Y'))
+					&& !anyStringAt(0, 6, "DANGER", "RANGER", "MANGER", "")
+					&& !anyStringAt((current - 1), 1, "E", "I", "")
+					&& !anyStringAt((current - 1), 3, "RGY", "OGY", "") )
 			{
 				add("K", "J");
 				current += 2;
@@ -399,11 +399,11 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			}
 
 			// italian e.g, 'biaggi'
-			if(anyStringAt((current + 1), 1, "E", "I", "Y", "") or anyStringAt((current - 1), 4, "AGGI", "OGGI", ""))
+			if(anyStringAt((current + 1), 1, "E", "I", "Y", "") || anyStringAt((current - 1), 4, "AGGI", "OGGI", ""))
 			{
 				//obvious germanic
-				if((anyStringAt(0, 4, "VAN ", "VON ", "") or anyStringAt(0, 3, "SCH", ""))
-						or anyStringAt((current + 1), 2, "ET", ""))
+				if((anyStringAt(0, 4, "VAN ", "VON ", "") || anyStringAt(0, 3, "SCH", ""))
+						|| anyStringAt((current + 1), 2, "ET", ""))
 					add("K");
 				else
 					//always soft if french ending
@@ -424,8 +424,8 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 
 		case 'H':
 			//only keep if first & before vowel or btw. 2 vowels
-			if(((current == 0) or hasVowel(current - 1))
-					and hasVowel(current + 1))
+			if(((current == 0) || hasVowel(current - 1))
+					&& hasVowel(current + 1))
 			{
 				add("H");
 				current += 2;
@@ -435,9 +435,9 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 
 		case 'J':
 			//obvious spanish, 'jose', 'san jacinto'
-                        if(anyStringAt(current, 4, "JOSE", "") or anyStringAt(0, 4, "SAN ", "") )
+			if(anyStringAt(current, 4, "JOSE", "") || anyStringAt(0, 4, "SAN ", "") )
 			{
-				if(((current == 0) and (at(current + 4) == ' ')) or anyStringAt(0, 4, "SAN ", "") )
+				if(((current == 0) && (at(current + 4) == ' ')) || anyStringAt(0, 4, "SAN ", "") )
 					add("H");
 				else
 				{
@@ -447,20 +447,20 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 				break;
 			}
 
-                        if((current == 0) and !anyStringAt(current, 4, "JOSE", ""))
+			if((current == 0) && !anyStringAt(current, 4, "JOSE", ""))
 				add("J", "A");//Yankelovich/Jankelowicz
 			else
 				//spanish pron. of e.g. 'bajador'
 				if(hasVowel(current - 1)
-						and !isSlavoGermanic()
-						and ((at(current + 1) == 'A') or (at(current + 1) == 'O')))
+						&& !isSlavoGermanic()
+						&& ((at(current + 1) == 'A') || (at(current + 1) == 'O')))
 					add("J", "H");
 				else
 					if(current == _last)
 						add("J", " ");
 					else
 						if(!anyStringAt((current + 1), 1, "L", "T", "K", "S", "N", "M", "B", "Z", "")
-								and !anyStringAt((current - 1), 1, "S", "K", "L", ""))
+								&& !anyStringAt((current - 1), 1, "S", "K", "L", ""))
 							add("J");
 
 			if(at(current + 1) == 'J')//it could happen!
@@ -482,9 +482,9 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			{
 				//spanish e.g. 'cabrillo', 'gallegos'
 				if(((current == (_length - 3))
-						and anyStringAt((current - 1), 4, "ILLO", "ILLA", "ALLE", ""))
-						or ((anyStringAt((_last - 1), 2, "AS", "OS", "") or anyStringAt(_last, 1, "A", "O", ""))
-								and anyStringAt((current - 1), 4, "ALLE", "")) )
+						&& anyStringAt((current - 1), 4, "ILLO", "ILLA", "ALLE", ""))
+						|| ((anyStringAt((_last - 1), 2, "AS", "OS", "") || anyStringAt(_last, 1, "A", "O", ""))
+								&& anyStringAt((current - 1), 4, "ALLE", "")) )
 				{
 					add("L", " ");
 					current += 2;
@@ -498,9 +498,9 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 
 		case 'M':
 			if((anyStringAt((current - 1), 3, "UMB", "")
-					and (((current + 1) == _last) or anyStringAt((current + 2), 2, "ER", "")))
+					&& (((current + 1) == _last) || anyStringAt((current + 2), 2, "ER", "")))
 					//'dumb','thumb'
-					or  (at(current + 1) == 'M') )
+					||  (at(current + 1) == 'M') )
 				current += 2;
 			else
 				current += 1;
@@ -547,9 +547,9 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 		case 'R':
 			//french e.g. 'rogier', but exclude 'hochmeier'
 			if((current == _last)
-					and !isSlavoGermanic()
-					and anyStringAt((current - 2), 2, "IE", "")
-			and !anyStringAt((current - 4), 2, "ME", "MA", ""))
+					&& !isSlavoGermanic()
+					&& anyStringAt((current - 2), 2, "IE", "")
+			&& !anyStringAt((current - 4), 2, "ME", "MA", ""))
 				add("", "R");
 			else
 				add("R");
@@ -569,7 +569,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			}
 
 			//special case 'sugar-'
-			if((current == 0) and anyStringAt(current, 5, "SUGAR", ""))
+			if((current == 0) && anyStringAt(current, 5, "SUGAR", ""))
 			{
 				add("X", "S");
 				current += 1;
@@ -588,7 +588,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			}
 
 			//italian & armenian
-			if(anyStringAt(current, 3, "SIO", "SIA", "") or anyStringAt(current, 4, "SIAN", ""))
+			if(anyStringAt(current, 3, "SIO", "SIA", "") || anyStringAt(current, 4, "SIAN", ""))
 			{
 				if(!isSlavoGermanic())
 					add("S", "X");
@@ -601,8 +601,8 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			//german & anglicisations, e.g. 'smith' match 'schmidt', 'snider' match 'schneider'
 			//also, -sz- in slavic language altho in hungarian it is pronounced 's'
 			if(((current == 0)
-					and anyStringAt((current + 1), 1, "M", "N", "L", "W", ""))
-					or anyStringAt((current + 1), 1, "Z", ""))
+					&& anyStringAt((current + 1), 1, "M", "N", "L", "W", ""))
+					|| anyStringAt((current + 1), 1, "Z", ""))
 			{
 				add("S", "X");
 				if(anyStringAt((current + 1), 1, "Z", ""))
@@ -616,7 +616,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			{
 				//Schlesinger's rule
 				if(at(current + 2) == 'H')
-                                {
+				{
 					//dutch origin, e.g. 'school', 'schooner'
 					if(anyStringAt((current + 3), 2, "OO", "ER", "EN", "UY", "ED", "EM", ""))
 					{
@@ -629,14 +629,14 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 						current += 3;
 						break;
 					}else{
-						if((current == 0) and !hasVowel(3) and (at(3) != 'W'))
+						if((current == 0) && !hasVowel(3) && (at(3) != 'W'))
 							add("X", "S");
 						else
 							add("X");
 						current += 3;
 						break;
 					}
-                                }
+				}
 				if(anyStringAt((current + 2), 1, "I", "E", "Y", ""))
 				{
 					add("S");
@@ -650,7 +650,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			}
 
 			//french e.g. 'resnais', 'artois'
-			if((current == _last) and anyStringAt((current - 2), 2, "AI", "OI", ""))
+			if((current == _last) && anyStringAt((current - 2), 2, "AI", "OI", ""))
 				add("", "S");
 			else
 				add("S");
@@ -677,12 +677,12 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			}
 
 			if(anyStringAt(current, 2, "TH", "")
-					or anyStringAt(current, 3, "TTH", ""))
+					|| anyStringAt(current, 3, "TTH", ""))
 			{
 				//special case 'thomas', 'thames' or germanic
 				if(anyStringAt((current + 2), 2, "OM", "AM", "")
-						or anyStringAt(0, 4, "VAN ", "VON ", "")
-				or anyStringAt(0, 3, "SCH", ""))
+						|| anyStringAt(0, 4, "VAN ", "VON ", "")
+				|| anyStringAt(0, 3, "SCH", ""))
 				{
 					add("T");
 				}else{
@@ -717,7 +717,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			}
 
 			if((current == 0)
-					and (hasVowel(current + 1) or anyStringAt(current, 2, "WH", "")))
+					&& (hasVowel(current + 1) || anyStringAt(current, 2, "WH", "")))
 			{
 				//Wasserman should match Vasserman
 				if(hasVowel(current + 1))
@@ -728,9 +728,9 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			}
 
 			//Arnow should match Arnoff
-			if(((current == _last) and hasVowel(current - 1))
-					or anyStringAt((current - 1), 5, "EWSKI", "EWSKY", "OWSKI", "OWSKY", "")
-			or anyStringAt(0, 3, "SCH", ""))
+			if(((current == _last) && hasVowel(current - 1))
+					|| anyStringAt((current - 1), 5, "EWSKI", "EWSKY", "OWSKI", "OWSKY", "")
+			|| anyStringAt(0, 3, "SCH", ""))
 			{
 				add("", "F");
 				current +=1;
@@ -738,7 +738,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			}
 
 			//polish e.g. 'filipowicz'
-                        if(anyStringAt(current, 4, "WICZ", "WITZ", ""))
+			if(anyStringAt(current, 4, "WICZ", "WITZ", ""))
 			{
 				add("TS", "FX");
 				current +=4;
@@ -752,8 +752,8 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 		case 'X':
 			//french e.g. breaux
 			if(!((current == _last)
-					and (anyStringAt((current - 3), 3, "IAU", "EAU", "")
-							or anyStringAt((current - 2), 2, "AU", "OU", ""))) )
+					&& (anyStringAt((current - 3), 3, "IAU", "EAU", "")
+							|| anyStringAt((current - 2), 2, "AU", "OU", ""))) )
 				add("KS");
 
 			if(anyStringAt((current + 1), 1, "C", "X", ""))
@@ -771,7 +771,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 				break;
 			}else
 				if(anyStringAt((current + 1), 2, "ZO", "ZI", "ZA", "")
-						or (isSlavoGermanic() and ((current > 0) and at(current - 1) != 'T')))
+						|| (isSlavoGermanic() && ((current > 0) && at(current - 1) != 'T')))
 				{
 					add("S", "TS");
 				}
@@ -809,8 +809,8 @@ bool QUMetaphoneString::equal(QString token1, QString token2, bool ignoreEmpty) 
 	token2 = QUStringSupport::withoutAnyUmlautEx(token2).toUpper();
 
 	// remove special characters
-	for(int i = 0; i < token1.length(); i++) if(token1[i] != QChar(' ') and token1[i].category() != QChar::Letter_Uppercase) token1.remove(i, 1);
-	for(int i = 0; i < token2.length(); i++) if(token2[i] != QChar(' ') and token2[i].category() != QChar::Letter_Uppercase) token2.remove(i, 1);
+	for(int i = 0; i < token1.length(); i++) if(token1[i] != QChar(' ') && token1[i].category() != QChar::Letter_Uppercase) token1.remove(i, 1);
+	for(int i = 0; i < token2.length(); i++) if(token2[i] != QChar(' ') && token2[i].category() != QChar::Letter_Uppercase) token2.remove(i, 1);
 
 	// replace "lonely, unimportant" words
 	token1.append(' '); token1.prepend(' ');
@@ -822,7 +822,7 @@ bool QUMetaphoneString::equal(QString token1, QString token2, bool ignoreEmpty) 
 	token1 = token1.simplified().trimmed();
 	token2 = token2.simplified().trimmed();
 
-	if(token1.isEmpty() or token2.isEmpty())
+	if(token1.isEmpty() || token2.isEmpty())
 		return !ignoreEmpty;
 
 	/* Use MetaPhone */
@@ -861,11 +861,11 @@ bool QUMetaphoneString::equal(QString token1, QString token2, bool ignoreEmpty) 
 
 			if(QString::compare(mp1.at(i).first, mp2.at(j).first) == 0)
 				hits++;
-			else if(mp2.at(j).second.length() > 1 and mp1.at(i).first == mp2.at(j).second)
+			else if(mp2.at(j).second.length() > 1 && mp1.at(i).first == mp2.at(j).second)
 				hits++;
-			else if(mp1.at(i).second.length() > 1 and mp1.at(i).second == mp2.at(j).first)
+			else if(mp1.at(i).second.length() > 1 && mp1.at(i).second == mp2.at(j).first)
 				hits++;
-			else if(mp1.at(i).second.length() > 1 and mp2.at(j).second.length() > 1 and mp1.at(i).second == mp2.at(j).second)
+			else if(mp1.at(i).second.length() > 1 && mp2.at(j).second.length() > 1 && mp1.at(i).second == mp2.at(j).second)
 				hits++;
 
 			if(hits >= neededHits)

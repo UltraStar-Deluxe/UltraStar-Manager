@@ -46,7 +46,7 @@ void QUSlideShowDialog::keyPressEvent(QKeyEvent* event) {
 }
 
 void QUSlideShowDialog::changeSelection(int index) {
-	if(index < 0 or index >= _items.size())
+	if(index < 0 || index >= _items.size())
 		return;
 
 	songLbl->setText(QString("%1<br><b>%2</b>")
@@ -59,7 +59,7 @@ void QUSlideShowDialog::changeSelection(int index) {
 }
 
 void QUSlideShowDialog::changeUnlinkFlag(bool unlink) {
-	if(pictureFlow->centerIndex() < 0 or pictureFlow->centerIndex() >= _items.size())
+	if(pictureFlow->centerIndex() < 0 || pictureFlow->centerIndex() >= _items.size())
 		return;
 
 	if(_mode == QUSlideShowDialog::coverflow)

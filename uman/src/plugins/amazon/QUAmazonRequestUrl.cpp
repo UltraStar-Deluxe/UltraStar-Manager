@@ -47,11 +47,11 @@ void QUAmazonRequestUrl::initQuery() {
 		query << QPair<QString, QString>("Artist",
 			(QUStringSupport::withoutAnyUmlaut(song()->property(properties().at(0).toLower().toLocal8Bit().data()).toString())));
 
-	query << QPair<QString, QString>("Operation",      "ItemSearch");
-	query << QPair<QString, QString>("ResponseGroup",  "Images");
-	query << QPair<QString, QString>("SearchIndex",    "Music");
-	query << QPair<QString, QString>("Service",        "AWSECommerceService");
-	query << QPair<QString, QString>("Timestamp",      QDateTime::currentDateTime().toUTC().toString(Qt::ISODate) + ".000Z");
+	query << QPair<QString, QString>("Operation", "ItemSearch");
+	query << QPair<QString, QString>("ResponseGroup", "Images");
+	query << QPair<QString, QString>("SearchIndex", "Music");
+	query << QPair<QString, QString>("Service", "AWSECommerceService");
+	query << QPair<QString, QString>("Timestamp", QDateTime::currentDateTime().toUTC().toString(Qt::ISODate) + ".000Z");
 
 	if(QString::compare(properties().at(1), NONE, Qt::CaseInsensitive) == 0)
 		query << QPair<QString, QString>("Title", "");
@@ -62,7 +62,7 @@ void QUAmazonRequestUrl::initQuery() {
 		query << QPair<QString, QString>("Title",
 			(QUStringSupport::withoutAnyUmlaut(song()->property(properties().at(1).toLower().toLocal8Bit().data()).toString())));
 
-	query << QPair<QString, QString>("Version",        "2009-03-31");
+	query << QPair<QString, QString>("Version", "2009-03-31");
 
 	setQueryItems(query);
 }
@@ -85,6 +85,6 @@ QByteArray QUAmazonRequestUrl::signWithSHA256(const QString &text) const {
 		(unsigned char*) secret.toLatin1().data(), secret.length(),
 		(unsigned char*) text.toLatin1().data(), text.length(),
 		buf, SHA256_BLOCK_SIZE);
-             
+			 
 	return QByteArray((const char*)buf, 32);
 }

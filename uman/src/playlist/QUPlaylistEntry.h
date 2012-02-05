@@ -36,8 +36,8 @@ private:
 	QUSongFile *_song;
 
 	// textual links that should be used to find the real songs
-	QString     _artistLink;
-	QString     _titleLink;
+	QString _artistLink;
+	QString _titleLink;
 };
 
 #endif // QUPLAYLISTENTRY_H_

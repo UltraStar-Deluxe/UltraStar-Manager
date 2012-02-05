@@ -37,7 +37,7 @@ private:
 	QTime   _startTime; // used to defer the task dialog
 	QTime   _lastStep;
 	QString _label;
-	int     _progress;
+	int	 _progress;
 };
 
 #endif /*QUPROGRESSDIALOG_H_*/

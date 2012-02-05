@@ -64,8 +64,8 @@ signals:
 
 private:
 	QList<QUPlaylistFile*>  _playlists;
-	int                     _currentIndex;
-	QWidget                *_parent; // used for dialogs like progress bars
+	int _currentIndex;
+	QWidget *_parent; // used for dialogs like progress bars
 
 /*!
  * Use the singleton pattern because we need only one

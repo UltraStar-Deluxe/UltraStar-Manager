@@ -22,7 +22,7 @@ public:
 
 private:
 	QDomDocument _report;
-	QFileInfo    _css;
+	QFileInfo	_css;
 
 	QDomElement html();
 

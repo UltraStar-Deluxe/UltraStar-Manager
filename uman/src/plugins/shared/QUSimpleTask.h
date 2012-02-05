@@ -10,7 +10,7 @@
 
 class QUSimpleTask: public QObject, public QUTask {
 	Q_OBJECT
-    Q_INTERFACES(QUTask)
+	Q_INTERFACES(QUTask)
 
 public:
 	QUSimpleTask(QObject *parent = 0);
@@ -32,7 +32,7 @@ private:
 	QIcon   _icon;
 	QString _description;
 	QString _toolTip;
-	int     _group;
+	int	 _group;
 
 protected:
 	void setIcon(const QIcon &icon) { _icon = icon; }

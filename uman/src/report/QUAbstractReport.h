@@ -28,17 +28,17 @@ public:
 
 protected:
 	QList<QUAbstractReportData*> reportDataList() const { return _reportDataList; }
-	QList<QUSongFile*>           songs() const { return _songFiles; }
-	QFileInfo                    fileInfo() const { return _fi; }
-	QU::ReportOptions            options() const { return _options; }
-	QVariant                     userData() const { return _userData; }
+	QList<QUSongFile*>		   songs() const { return _songFiles; }
+	QFileInfo					fileInfo() const { return _fi; }
+	QU::ReportOptions			options() const { return _options; }
+	QVariant					 userData() const { return _userData; }
 
 private:
 	QList<QUAbstractReportData*> _reportDataList;
-	QList<QUSongFile*>           _songFiles;
-	QFileInfo                    _fi;
-	QU::ReportOptions            _options;
-	QVariant                     _userData;
+	QList<QUSongFile*>		   _songFiles;
+	QFileInfo					_fi;
+	QU::ReportOptions			_options;
+	QVariant					 _userData;
 };
 
 #endif /*QUABSTRACTREPORT_H_*/

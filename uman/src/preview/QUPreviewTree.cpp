@@ -7,7 +7,7 @@
 #include "tstring.h"
 
 //extern "C" {
-//	#include "avformat.h" /* ffmpeg */
+//  #include "avformat.h" /* ffmpeg */
 //}
 
 #include <QStringList>
@@ -257,7 +257,7 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 	current->setHidden(false);
 /*
 	AVFormatContext *pFormatCtx;
-	const char      *filename=fi.filePath().toLocal8Bit().data();
+	const char *filename=fi.filePath().toLocal8Bit().data();
 
 	// Open video file
 	if(av_open_input_file(&pFormatCtx, filename, NULL, 0, NULL)!=0) {

@@ -7,20 +7,20 @@
 #define N_A "-"
 #define NONE "(none)"
 
-#define CHAR_UTF8_APPROX "\xe2\x89\x88"
-#define CHAR_UTF8_NEQUAL "\xe2\x89\xa0"
-#define CHAR_UTF8_DOT    "\xc2\xb7"
-#define CHAR_UTF8_CHECK  "\xe2\x9c\x93"
-#define CHAR_UTF8_BALLOT "\xe2\x9c\x97"
+#define CHAR_UTF8_APPROX	"\xe2\x89\x88"
+#define CHAR_UTF8_NEQUAL	"\xe2\x89\xa0"
+#define CHAR_UTF8_DOT		"\xc2\xb7"
+#define CHAR_UTF8_CHECK		"\xe2\x9c\x93"
+#define CHAR_UTF8_BALLOT	"\xe2\x9c\x97"
 
 // used for time comparison and fixing
 #define LOWER_TIME_BOUND_DEFAULT 15
 #define UPPER_TIME_BOUND_DEFAULT 30
 
 // used for encodings
-#define ENCODING_CP1250 "CP1250"
-#define ENCODING_CP1252 "CP1252"
-#define ENCODING_UTF8   "UTF8"
+#define ENCODING_CP1250	"CP1250"
+#define ENCODING_CP1252	"CP1252"
+#define ENCODING_UTF8	"UTF8"
 
 //! This class provides global flags and enumerations.
 class QU: QObject {

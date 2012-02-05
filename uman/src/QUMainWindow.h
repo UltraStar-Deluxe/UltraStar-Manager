@@ -144,9 +144,9 @@ private slots:
 
 private:
 	QURibbonBar *_menu;
-	QTimer       _timer;
-	QLabel      *_statusIconLbl;
-	QLabel      *_statusMessageLbl;
+	QTimer _timer;
+	QLabel *_statusIconLbl;
+	QLabel *_statusMessageLbl;
 	QToolButton *_toggleEventLogBtn;
 };
 

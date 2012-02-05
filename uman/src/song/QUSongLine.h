@@ -33,9 +33,9 @@ public:
 private:
 	// ": 200 5 10 foo" => "type timestamp duration pitch syllable"
 	Types   _type;
-	int     _timestamp;
-	int     _duration;
-	int     _pitch;
+	int	 _timestamp;
+	int	 _duration;
+	int	 _pitch;
 	QString _syllable;
 };
 

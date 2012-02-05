@@ -20,9 +20,9 @@ class QUTaskFactory: public QUPlugin {
 	Q_INTERFACES(QUPlugin)
 
 public:
-    virtual ~QUTaskFactory() {}
+	virtual ~QUTaskFactory() {}
 
-    // create all tasks based on their configurations
+	// create all tasks based on their configurations
 	virtual QList<QUTask*> createTasks() = 0;
 
 	// use product names to give correct information about what is being added
@@ -42,17 +42,17 @@ public:
 	};
 	Q_DECLARE_FLAGS(TaskDataTypes, TaskDataType)
 
-    virtual ~QUTask() {}
+	virtual ~QUTask() {}
 
-    virtual void startOn(QUSongInterface *song) = 0;
+	virtual void startOn(QUSongInterface *song) = 0;
 
-    virtual QIcon icon() const = 0;
-    virtual QString description() const = 0;
-    virtual QString toolTip() const = 0;
-    virtual int group() const = 0;
+	virtual QIcon icon() const = 0;
+	virtual QString description() const = 0;
+	virtual QString toolTip() const = 0;
+	virtual int group() const = 0;
 
 	virtual int configure(QWidget *parent = 0) = 0;
-    virtual bool isConfigurable() const = 0;
+	virtual bool isConfigurable() const = 0;
 
 	// smart settings (small inline configuration possibilities in the task list)
 	virtual QList<QUSmartSettingInterface*> smartSettings() const = 0;

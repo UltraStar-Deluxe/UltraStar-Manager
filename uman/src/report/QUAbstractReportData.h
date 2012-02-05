@@ -53,7 +53,7 @@ private:
 	QIcon   _icon;
 	QString _description;
 	QString _toolTip;
-	int     _id;
+	int	 _id;
 	QUAbstractReportData *_next;
 
 protected:

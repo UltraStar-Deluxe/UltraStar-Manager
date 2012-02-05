@@ -23,7 +23,7 @@ public:
 private:
 	QMenu *_filterMenu;
 	QActionGroup *_tagGroup;
-	QAction      *_invertedSearch;
+	QAction *_invertedSearch;
 };
 
 #endif /* QUFILTERAREA_H_ */

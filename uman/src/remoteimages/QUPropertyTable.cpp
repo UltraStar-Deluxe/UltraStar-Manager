@@ -109,7 +109,7 @@ void QUPropertyTable::setValueItem(
 
 	result->setData(QUFieldDelegate::FieldName, key);
 
-	if(mode == QUFieldDelegate::Switch and allValues.size() == 2) {
+	if(mode == QUFieldDelegate::Switch && allValues.size() == 2) {
 		result->setData(Qt::DisplayRole, value.toBool() ? allValues.at(0) : allValues.at(1));
 	} else {
 		result->setData(Qt::DisplayRole, value);

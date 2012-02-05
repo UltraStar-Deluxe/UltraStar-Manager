@@ -26,7 +26,7 @@ protected:
 
 private:
 	QUSongInterface *_song;
-	QStringList      _properties;
+	QStringList _properties;
 };
 
 #endif // QUREQUESTURL_H

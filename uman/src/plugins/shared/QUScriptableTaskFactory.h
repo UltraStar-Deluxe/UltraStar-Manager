@@ -12,7 +12,7 @@ class QUScriptableTaskFactory: public QUMultilingualTaskFactory {
 public:
 	QUScriptableTaskFactory(QObject *parent = 0);
 
-    virtual QList<QUTask*> createTasks();
+	virtual QList<QUTask*> createTasks();
 	virtual bool canAddConfigurations() const { return true; }
 
 protected:
@@ -20,7 +20,7 @@ protected:
 	virtual QUTask* createTask(QDomDocument *configuration) = 0;
 
 private:
-    QList<QDomDocument*> loadTaskConfigurations();
+	QList<QDomDocument*> loadTaskConfigurations();
 };
 
 #endif // QUSCRIPTABLETASKFACTORY_H_H

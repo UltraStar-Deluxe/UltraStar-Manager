@@ -176,9 +176,9 @@ bool QUTaskDialog::saveDocument(const QString &filePath) {
 void QUTaskDialog::appendGeneral(QDomElement &parent, QUScriptableTask::TaskTypes type) {
 	QDomElement general = _doc.createElement("general");
 
-	QDomElement icon = _doc.createElement("icon");               general.appendChild(icon);
-	QDomElement description = _doc.createElement("description"); general.appendChild(description);
-	QDomElement tooltip = _doc.createElement("tooltip");         general.appendChild(tooltip);
+	QDomElement icon = _doc.createElement("icon");					general.appendChild(icon);
+	QDomElement description = _doc.createElement("description");	general.appendChild(description);
+	QDomElement tooltip = _doc.createElement("tooltip");			general.appendChild(tooltip);
 
 	if(type == QUScriptableTask::RenameTask)
 		general.setAttribute("type", "rename");

@@ -2,9 +2,9 @@
 #include <QPixmap>
 #include <QTimer>
 
-#define HIDE_LIMIT       2 // only show this dialog above HIDE_LIMIT
+#define HIDE_LIMIT	   2 // only show this dialog above HIDE_LIMIT
 #define MINIMUM_DURATION 500 // show after milliseconds
-#define STEP_SIZE        500 // show every milliseconds
+#define STEP_SIZE		500 // show every milliseconds
 
 /*!
  * \param thread The thread which is executed. Will be deleted after finishing.
@@ -59,7 +59,7 @@ void QUProgressDialog::update(const QString &itemText, bool forceUpdate) {
 	}
 
 	// only show update in certain steps
-	if(!forceUpdate and _lastStep.msecsTo(QTime::currentTime()) < STEP_SIZE)
+	if(!forceUpdate && _lastStep.msecsTo(QTime::currentTime()) < STEP_SIZE)
 		return;
 
 	progress->setValue(_progress);

@@ -54,63 +54,63 @@ public:
 
   enum ReflectionEffect
   {
-    NoReflection,
-    PlainReflection,
-    BlurredReflection
+	NoReflection,
+	PlainReflection,
+	BlurredReflection
   };
 
   /*!
-    Creates a new PictureFlow widget.
+	Creates a new PictureFlow widget.
   */  
   PictureFlow(QWidget* parent = 0);
 
   /*!
-    Destroys the widget.
+	Destroys the widget.
   */
   ~PictureFlow();
 
   /*!
-    Returns the background color.
+	Returns the background color.
   */
   QColor backgroundColor() const;
 
   /*!
-    Sets the background color. By default it is black.
+	Sets the background color. By default it is black.
   */
   void setBackgroundColor(const QColor& c);
 
   /*!
-    Returns the dimension of each slide (in pixels).
+	Returns the dimension of each slide (in pixels).
   */  
   QSize slideSize() const;
 
   /*!
-    Sets the dimension of each slide (in pixels).
+	Sets the dimension of each slide (in pixels).
   */  
   void setSlideSize(QSize size);
 
   /*!
-    Returns the total number of slides.
+	Returns the total number of slides.
   */
   int slideCount() const;
 
   /*!
-    Returns QImage of specified slide.
+	Returns QImage of specified slide.
   */  
   QImage slide(int index) const;
 
   /*!
-    Returns the index of slide currently shown in the middle of the viewport.
+	Returns the index of slide currently shown in the middle of the viewport.
   */  
   int centerIndex() const;
 
   /*!
-    Returns the effect applied to the reflection.
+	Returns the effect applied to the reflection.
   */  
   ReflectionEffect reflectionEffect() const;
 
   /*!
-    Sets the effect applied to the reflection. The default is PlainReflection.
+	Sets the effect applied to the reflection. The default is PlainReflection.
   */  
   void setReflectionEffect(ReflectionEffect effect);
 
@@ -118,62 +118,62 @@ public:
 public slots:
 
   /*!
-    Adds a new slide.
+	Adds a new slide.
   */  
   void addSlide(const QImage& image);
 
   /*!
-    Adds a new slide.
+	Adds a new slide.
   */  
   void addSlide(const QPixmap& pixmap);
 
   /*!
-    Sets an image for specified slide. If the slide already exists,
-    it will be replaced.
+	Sets an image for specified slide. If the slide already exists,
+	it will be replaced.
   */  
   void setSlide(int index, const QImage& image);
 
   /*!
-    Sets a pixmap for specified slide. If the slide already exists,
-    it will be replaced.
+	Sets a pixmap for specified slide. If the slide already exists,
+	it will be replaced.
   */  
   void setSlide(int index, const QPixmap& pixmap);
 
   /*!
-    Sets slide to be shown in the middle of the viewport. No animation 
-    effect will be produced, unlike using showSlide.
+	Sets slide to be shown in the middle of the viewport. No animation 
+	effect will be produced, unlike using showSlide.
   */  
   void setCenterIndex(int index);
 
   /*!
-    Clears all slides.
+	Clears all slides.
   */
   void clear();
 
   /*!
-    Shows previous slide using animation effect.
+	Shows previous slide using animation effect.
   */
   void showPrevious();
 
   /*!
-    Shows next slide using animation effect.
+	Shows next slide using animation effect.
   */
   void showNext();
 
   /*!
-    Go to specified slide using animation effect.
+	Go to specified slide using animation effect.
   */
   void showSlide(int index);
 
   /*!
-    Rerender the widget. Normally this function will be automatically invoked
-    whenever necessary, e.g. during the transition animation.
+	Rerender the widget. Normally this function will be automatically invoked
+	whenever necessary, e.g. during the transition animation.
   */
   void render();
 
   /*!
-    Schedules a rendering update. Unlike render(), this function does not cause
-    immediate rendering.
+	Schedules a rendering update. Unlike render(), this function does not cause
+	immediate rendering.
   */  
   void triggerRender();
 

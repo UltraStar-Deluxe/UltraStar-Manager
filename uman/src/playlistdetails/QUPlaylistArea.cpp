@@ -163,8 +163,8 @@ void QUPlaylistArea::browse() {
 				tr("Change Playlist Folder"),
 				tr("Playlists have been modified."),
 				BTN << ":/control/save_all.png" << tr("Save all changed playlists.")
-				    << ":/control/bin.png"      << tr("Discard all changes.")
-				    << ":/marks/cancel.png"     << tr("Cancel this action."));
+					<< ":/control/bin.png"	  << tr("Discard all changes.")
+					<< ":/marks/cancel.png"	 << tr("Cancel this action."));
 		if(result == 0)
 			playlistDB->saveUnsavedChanges();
 		else if(result == 2)
@@ -189,7 +189,7 @@ void QUPlaylistArea::removeCurrentPlaylist() {
 				.arg(playlistDB->currentPlaylist()->name())
 				.arg(playlistDB->currentPlaylist()->fileInfo().fileName()),
 			BTN << ":/control/bin.png"  << tr("Delete this playlist.")
-			    << ":/marks/cancel.png" << tr("Cancel delete operation."));
+				<< ":/marks/cancel.png" << tr("Cancel delete operation."));
 	if(result == 1)
 		return;
 

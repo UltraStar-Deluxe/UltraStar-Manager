@@ -55,9 +55,9 @@ protected:
 	void load();
 
 private:
-	QFileInfo               _fi;
-	QString                 _name;
-	QStringList             _comments; // comments at the beginning of a playlist file
+	QFileInfo _fi;
+	QString _name;
+	QStringList _comments; // comments at the beginning of a playlist file
 	QList<QUPlaylistEntry*> _playlist;
 
 	bool _nameChanged;

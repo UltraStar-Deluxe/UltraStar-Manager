@@ -35,7 +35,7 @@ private slots:
 	void showSecretHelp();
 
 private:
-	QVBoxLayout         *_contentLayout;
+	QVBoxLayout *_contentLayout;
 	QList<QUCoverGroup*> _groups;
 
 	void createGroups(const QList<QUSongItem*> &items);

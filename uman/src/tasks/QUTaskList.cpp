@@ -139,7 +139,7 @@ void QUTaskList::uncheckAllExclusiveTasks(QTreeWidgetItem *item) {
 void QUTaskList::editCurrentTask() {
 	QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(this->currentItem());
 
-	if(!taskItem or !taskItem->task()->isConfigurable())
+	if(!taskItem || !taskItem->task()->isConfigurable())
 		return;
 
 	if(taskItem->task()->configure(this)) {

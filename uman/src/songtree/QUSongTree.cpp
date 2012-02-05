@@ -337,7 +337,7 @@ void QUSongTree::addItem(QUSongFile *song) {
 
 void QUSongTree::updateItem(QUSongFile *song) {
 	foreach(QUSongItem *songItem, allSongItems()) {
-		if(songItem->song() == song or songItem->song()->isFriend(song)) {
+		if(songItem->song() == song || songItem->song()->isFriend(song)) {
 			songItem->update();
 			setCurrentItem(songItem);
 			emit itemSelectionChanged();
@@ -631,11 +631,11 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 
 	for(int i = 0; i < headerItem()->columnCount(); i++) {
 		if(i != LENGTH_DIFF_COLUMN
-		   and i != TYPE_DUET_COLUMN
-		   and i != TYPE_KARAOKE_COLUMN
-		   and i != MEDLEY_COLUMN
-		   and i != GOLDEN_NOTES_COLUMN
-		   and (headerItem()->text(i).isEmpty() or i == FOLDER_COLUMN))
+		   && i != TYPE_DUET_COLUMN
+		   && i != TYPE_KARAOKE_COLUMN
+		   && i != MEDLEY_COLUMN
+		   && i != GOLDEN_NOTES_COLUMN
+		   && (headerItem()->text(i).isEmpty() || i == FOLDER_COLUMN))
 			continue;
 
 		QUColumnAction *a = new QUColumnAction(headerItem()->text(i), i); // save the logical index of this column
@@ -937,7 +937,7 @@ void QUSongTree::requestDeleteSelectedSongs() {
 			tr("Delete Songs"),
 			infoText,
 			BTN << ":/control/bin.png"  << tr("Delete these songs.")
-			    << ":/marks/cancel.png" << tr("Cancel delete operation."),
+				<< ":/marks/cancel.png" << tr("Cancel delete operation."),
 			270);
 	if(result == 1)
 		return;
@@ -1006,7 +1006,7 @@ void QUSongTree::mergeSelectedSongs() {
 			tr("Merge Songs"),
 			infoText,
 			BTN << ":/control/bin.png"  << tr("Merge these songs.")
-			    << ":/marks/cancel.png" << tr("Cancel merge operation."),
+				<< ":/marks/cancel.png" << tr("Cancel merge operation."),
 			320);
 	if(result == 1)
 		return;
@@ -1082,7 +1082,7 @@ bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
 				tr("Copy Files"),
 				QString(tr("You want to copy <b>%1</b> files to <b>\"%2\"</b>.")).arg(files.size()).arg(QDir::toNativeSeparators(item->song()->songFileInfo().dir().path())),
 				BTN << ":/control/save_all.png" << tr("Copy these files.")
-				    << ":/marks/cancel.png"     << tr("Cancel copy operation."));
+					<< ":/marks/cancel.png"	 << tr("Cancel copy operation."));
 		if(result == 1)
 			return false;
 	}
@@ -1211,7 +1211,7 @@ QFileInfo QUSongTree::createSongFolder(QUSongFile *song) {
 
 void QUSongTree::refreshSelectedItems() {
 	QList<QUSongItem*> songItems = this->selectedSongItems();
-	QList<bool>        itemExpandedStates;
+	QList<bool>		itemExpandedStates;
 
 	if(songItems.isEmpty())
 		return;
@@ -1312,10 +1312,10 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 		menu->addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), Qt::Key_Delete);
 	} else {
 		// song/folder menu
-		menu->addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),              Qt::Key_F5);
-		menu->addAction(QIcon(":/control/save.png"),    tr("Save"),    this, SLOT(saveSelectedSongs()),                 Qt::CTRL  + Qt::Key_S);
-		menu->addAction(QIcon(":/control/bin.png"),     tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()),        Qt::SHIFT + Qt::Key_Delete);
-		QAction *a = menu->addAction(QIcon(":/control/merge.png"), tr("Merge"),   this, SLOT(mergeSelectedSongs()),     Qt::CTRL  + Qt::Key_M);
+		menu->addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),			  Qt::Key_F5);
+		menu->addAction(QIcon(":/control/save.png"),	tr("Save"),	this, SLOT(saveSelectedSongs()),				 Qt::CTRL  + Qt::Key_S);
+		menu->addAction(QIcon(":/control/bin.png"),	 tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()),		Qt::SHIFT + Qt::Key_Delete);
+		QAction *a = menu->addAction(QIcon(":/control/merge.png"), tr("Merge"),   this, SLOT(mergeSelectedSongs()),	 Qt::CTRL  + Qt::Key_M);
 		if(selectedItems().size() < 2) a->setEnabled(false);
 		menu->addAction(QIcon(":/player/play.png"), tr("Play"), this, SIGNAL(playSelectedSongsRequested()));
 
@@ -1324,7 +1324,7 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 		menu->addAction(QIcon(":/control/image_go.png"), tr("Get Covers..."), this, SLOT(requestCovers()));
 
 		QMenu *pictureFlowMenu = menu->addMenu(QIcon(":/control/images.png"), tr("Review pictures"));
-		pictureFlowMenu->addAction(QIcon(":/types/cover.png"),      tr("Covers..."),      this, SLOT(requestCoverFlow()));
+		pictureFlowMenu->addAction(QIcon(":/types/cover.png"),	  tr("Covers..."),	  this, SLOT(requestCoverFlow()));
 		pictureFlowMenu->addAction(QIcon(":/types/background.png"), tr("Backgrounds..."), this, SLOT(requestBackgroundFlow()));
 
 		menu->addMenu(hideMenu());
@@ -1363,7 +1363,7 @@ void QUSongTree::deleteCurrentItem() {
 			tr("Delete File"),
 			QString(tr("<b>\"%1\"</b> will be deleted permanently. You cannot undo a delete operation.")).arg(item->text(FOLDER_COLUMN)),
 			BTN << ":/control/bin.png"  << tr("Delete this file.")
-			    << ":/marks/cancel.png" << tr("Cancel delete operation."));
+				<< ":/marks/cancel.png" << tr("Cancel delete operation."));
 	if(result == 1)
 		return;
 

@@ -59,7 +59,7 @@ void QUTaskDataTable::appendRow() {
 	for(int column = 0; column < this->columnCount(); column++) {
 		QTableWidgetItem *newItem = new QTableWidgetItem;
 
-		     if(column == MODIFIER_COL) newItem->setText(QUScriptableTask::availableModifiers().first());
+			 if(column == MODIFIER_COL) newItem->setText(QUScriptableTask::availableModifiers().first());
 		else if(column == CONDITION_COL) newItem->setText(QUScriptableTask::availableConditions().first());
 		else if(column == SOURCE_COL) newItem->setText(QUScriptableTask::availableSources().first());
 		else

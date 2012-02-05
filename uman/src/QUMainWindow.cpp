@@ -116,9 +116,9 @@ void QUMainWindow::closeEvent(QCloseEvent *event) {
 		result = QUMessageBox::information(this,
 				tr("Quit"),
 				tr("<b>Songs</b> have been modified."),
-				BTN << ":/control/save_all.png" << tr("Save all changed songs.")
-				    << ":/control/bin.png"      << tr("Discard all changes.")
-				    << ":/marks/cancel.png"     << tr("Cancel this action."));
+				BTN << ":/control/save_all.png"	<< tr("Save all changed songs.")
+					<< ":/control/bin.png"		<< tr("Discard all changes.")
+					<< ":/marks/cancel.png"		<< tr("Cancel this action."));
 		if(result == 0)
 			songTree->saveUnsavedChanges();
 		else if(result == 2) {
@@ -131,9 +131,9 @@ void QUMainWindow::closeEvent(QCloseEvent *event) {
 		result = QUMessageBox::information(this,
 				tr("Quit"),
 				tr("<b>Playlists</b> have been modified."),
-				BTN << ":/control/save_all.png" << tr("Save all changed playlists.")
-				    << ":/control/bin.png"      << tr("Discard all changes.")
-				    << ":/marks/cancel.png"     << tr("Cancel this action."));
+				BTN << ":/control/save_all.png"	<< tr("Save all changed playlists.")
+					<< ":/control/bin.png"		<< tr("Discard all changes.")
+					<< ":/marks/cancel.png"		<< tr("Cancel this action."));
 		if(result == 0)
 			playlistDB->saveUnsavedChanges();
 		else if(result == 2) {
@@ -302,7 +302,7 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->getCoversBtn, SIGNAL(clicked()), this, SLOT(getCovers()));
 
 	QMenu *pictureFlowMenu = new QMenu(tr("Review pictures"));
-	pictureFlowMenu->addAction(QIcon(":/types/cover.png"),      tr("Covers..."),      songTree, SLOT(requestCoverFlow()));
+	pictureFlowMenu->addAction(QIcon(":/types/cover.png"),	  tr("Covers..."),	  songTree, SLOT(requestCoverFlow()));
 	pictureFlowMenu->addAction(QIcon(":/types/background.png"), tr("Backgrounds..."), songTree, SLOT(requestBackgroundFlow()));
 	_menu->reviewPicturesBtn->setMenu(pictureFlowMenu);
 
@@ -338,9 +338,9 @@ void QUMainWindow::initRibbonBar() {
 	_menu->setShortcut(_menu->findSongsBtn, Qt::CTRL + Qt::Key_F);
 
 	_menu->setShortcut(_menu->detailsBtn,   Qt::CTRL + Qt::Key_1);
-	_menu->setShortcut(_menu->tasksBtn,     Qt::CTRL + Qt::Key_2);
+	_menu->setShortcut(_menu->tasksBtn,	 Qt::CTRL + Qt::Key_2);
 	_menu->setShortcut(_menu->playlistsBtn, Qt::CTRL + Qt::Key_3);
-	_menu->setShortcut(_menu->playerBtn,    Qt::CTRL + Qt::Key_4);
+	_menu->setShortcut(_menu->playerBtn,	Qt::CTRL + Qt::Key_4);
 	_menu->setShortcut(_menu->fileInfoBtn,  Qt::CTRL + Qt::Key_5);
 	_menu->setShortcut(_menu->eventLogBtn,  Qt::CTRL + Qt::Key_6);
 
@@ -580,8 +580,8 @@ void QUMainWindow::refreshAllSongs(bool force) {
 				tr("Rebuild Song Tree"),
 				tr("Songs have been modified."),
 				BTN << ":/control/save_all.png" << tr("Save all changes.")
-				    << ":/control/bin.png"      << tr("Discard all changes.")
-				    << ":/marks/cancel.png"     << tr("Cancel this action."));
+					<< ":/control/bin.png"	  << tr("Discard all changes.")
+					<< ":/marks/cancel.png"	 << tr("Cancel this action."));
 		if(result == 2)
 			return;
 		else if(result == 0)
@@ -680,7 +680,7 @@ void QUMainWindow::updateViewButtons() {
  * \sa updateDetails()
  */
 void QUMainWindow::editSongSetFileLink(QTreeWidgetItem *item, int column) {
-	if(column < MP3_COLUMN or column > VIDEO_COLUMN)
+	if(column < MP3_COLUMN || column > VIDEO_COLUMN)
 		return;
 
 	QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
@@ -693,26 +693,26 @@ void QUMainWindow::editSongSetFileLink(QTreeWidgetItem *item, int column) {
 	QString fileScheme("*." + QFileInfo(songItem->text(FOLDER_COLUMN)).suffix());
 
 	if( songItem->icon(MP3_COLUMN).isNull()
-			and QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)
-			and column == MP3_COLUMN ) {
+			&& QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)
+			&& column == MP3_COLUMN ) {
 		logSrv->add(QString(tr("Audio file changed from \"%1\" to: \"%2\".")).arg(song->mp3()).arg(songItem->text(FOLDER_COLUMN)), QU::Information);
 		song->setInfo(MP3_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	} else if( songItem->icon(COVER_COLUMN).isNull()
-			and QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)
-			and column == COVER_COLUMN ) {
+			&& QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)
+			&& column == COVER_COLUMN ) {
 		logSrv->add(QString(tr("Cover changed from \"%1\" to: \"%2\".")).arg(song->cover()).arg(songItem->text(FOLDER_COLUMN)), QU::Information);
 		song->setInfo(COVER_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	} else if( songItem->icon(BACKGROUND_COLUMN).isNull()
-			and QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)
-			and column == BACKGROUND_COLUMN ) {
+			&& QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)
+			&& column == BACKGROUND_COLUMN ) {
 		logSrv->add(QString(tr("Background changed from \"%1\" to: \"%2\".")).arg(song->background()).arg(songItem->text(FOLDER_COLUMN)), QU::Information);
 		song->setInfo(BACKGROUND_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	} else if( songItem->icon(VIDEO_COLUMN).isNull()
-			and QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)
-			and column == VIDEO_COLUMN ) {
+			&& QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)
+			&& column == VIDEO_COLUMN ) {
 		logSrv->add(QString(tr("Video file changed from \"%1\" to: \"%2\".")).arg(song->video()).arg(songItem->text(FOLDER_COLUMN)), QU::Information);
 		song->setInfo(VIDEO_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
@@ -772,7 +772,7 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
  */
 void QUMainWindow::editSongApplyTasks() {
 	QList<QUSongItem*> songItems = songTree->selectedSongItems();
-	QList<bool>        itemExpandedStates;
+	QList<bool>		itemExpandedStates;
 
 	if(songItems.isEmpty())
 		return;
@@ -840,15 +840,15 @@ void QUMainWindow::editSongLyrics(QUSongFile *song, int line) {
 }
 
 void QUMainWindow::addLogMsg(const QString &msg, QU::MessageTypes type) {
-	if(type == QU::Information and !showInfosBtn->isChecked())
+	if(type == QU::Information && !showInfosBtn->isChecked())
 		return;
-	if(type == QU::Warning and !showWarningsBtn->isChecked())
+	if(type == QU::Warning && !showWarningsBtn->isChecked())
 		return;
-	if(type == QU::Saving and !showSaveHintsBtn->isChecked())
+	if(type == QU::Saving && !showSaveHintsBtn->isChecked())
 		return;
-	if(type == QU::Help and !showHelpBtn->isChecked())
+	if(type == QU::Help && !showHelpBtn->isChecked())
 		return;
-	if(type == QU::Error and !showErrorsBtn->isChecked())
+	if(type == QU::Error && !showErrorsBtn->isChecked())
 		return;
 
 	log->insertItem(0, QDateTime::currentDateTime().toString("[hh:mm:ss] ") + msg);
@@ -998,7 +998,7 @@ void QUMainWindow::checkForUpdate(bool silent) {
 					QString(tr("UltraStar Manager %1.%2.%3 is <b>up to date</b>!"))
 							.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION),
 					BTN << ":/marks/accept.png" << tr("OK. I will check again later.")
-					    << ":/marks/accept.png" << tr("OK. Check automatically on startup."),
+						<< ":/marks/accept.png" << tr("OK. Check automatically on startup."),
 					240);
 			if(result == 0) {
 				settings.setValue("allowUpdateCheck", QVariant(false));
@@ -1032,8 +1032,8 @@ void QUMainWindow::changeSongDir(const QString &path) {
 				tr("Change Song Directory"),
 				tr("Songs have been modified."),
 				BTN << ":/control/save_all.png" << tr("Save all changes.")
-				    << ":/control/bin.png"      << tr("Discard all changes.")
-				    << ":/marks/cancel.png"     << tr("Cancel this action."));
+					<< ":/control/bin.png"	  << tr("Discard all changes.")
+					<< ":/marks/cancel.png"	 << tr("Cancel this action."));
 		if(result == 2)
 			return;
 		else if(result == 0)
@@ -1066,8 +1066,8 @@ void QUMainWindow::editCustomTags() {
 				tr("Custom Tags"),
 				tr("Songs have been modified."),
 				BTN << ":/control/save_all.png" << tr("Save all changes.")
-				    << ":/control/bin.png"      << tr("Discard all changes.")
-				    << ":/marks/cancel.png"     << tr("Cancel this action."));
+					<< ":/control/bin.png"	  << tr("Discard all changes.")
+					<< ":/marks/cancel.png"	 << tr("Cancel this action."));
 		if(result == 2)
 			return;
 		else if(result == 0)
@@ -1091,7 +1091,7 @@ void QUMainWindow::editCustomTags() {
 }
 
 void QUMainWindow::montyTalk(bool force) {
-	if(!force and !_menu->montyBtn->isChecked())
+	if(!force && !_menu->montyBtn->isChecked())
 		return;
 
 	montyArea->show();
@@ -1203,7 +1203,7 @@ void QUMainWindow::toggleAlwaysOnTop(bool checked) {
 	if(checked)
 		this->setWindowFlags(this->windowFlags() | Qt::WindowStaysOnTopHint);
 	else
-		this->setWindowFlags(this->windowFlags() & !Qt::WindowStaysOnTopHint);
+		this->setWindowFlags(this->windowFlags() & uint(!Qt::WindowStaysOnTopHint));
 
 	this->show();
 }
@@ -1253,10 +1253,10 @@ void QUMainWindow::applyDefaultAction(QTreeWidgetItem *item, int column) {
 		QUPictureDialog dlg(QFileInfo(songItem->song()->songFileInfo().dir(), songItem->text(FOLDER_COLUMN)).filePath(), this);
 		dlg.exec();
 	} else if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)
-		or QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)
-		or QUSongSupport::allowedKaraokeFiles().contains(fileScheme, Qt::CaseInsensitive)
-		or QUSongSupport::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)
-		or QUSongSupport::allowedScoreFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		|| QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)
+		|| QUSongSupport::allowedKaraokeFiles().contains(fileScheme, Qt::CaseInsensitive)
+		|| QUSongSupport::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)
+		|| QUSongSupport::allowedScoreFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QFileInfo fi(songItem->song()->path(), songItem->text(FOLDER_COLUMN));
 
 		if( !QDesktopServices::openUrl(QUrl::fromLocalFile(fi.filePath())) )
@@ -1414,7 +1414,7 @@ void QUMainWindow::enableEnglish() {
 			tr("Change Language"),
 			tr("Application language changed to <b>English</b>. You need to restart UltraStar Manager to take effect."),
 			BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
-			    << ":/marks/accept.png" << tr("Continue."));
+				<< ":/marks/accept.png" << tr("Continue."));
 	if(result == 0)
 		this->close();
 }
@@ -1434,7 +1434,7 @@ void QUMainWindow::enableGerman() {
 			tr("Change Language"),
 			tr("Application language changed to <b>German</b>. You need to restart UltraStar Manager to take effect."),
 			BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
-			    << ":/marks/accept.png" << tr("Continue."));
+				<< ":/marks/accept.png" << tr("Continue."));
 	if(result == 0)
 		this->close();
 }
@@ -1454,7 +1454,7 @@ void QUMainWindow::enablePolish() {
 			tr("Change Language"),
 			tr("Application language changed to <b>Polish</b>. You need to restart UltraStar Manager to take effect."),
 			BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
-			    << ":/marks/accept.png" << tr("Continue."));
+				<< ":/marks/accept.png" << tr("Continue."));
 	if(result == 0)
 		this->close();
 }
@@ -1474,7 +1474,7 @@ void QUMainWindow::enableFrench() {
 			tr("Change Language"),
 			tr("Application language changed to <b>French</b>. You need to restart UltraStar Manager to take effect."),
 			BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
-			    << ":/marks/accept.png" << tr("Continue."));
+				<< ":/marks/accept.png" << tr("Continue."));
 	if(result == 0)
 		this->close();
 }
@@ -1494,7 +1494,7 @@ void QUMainWindow::enableSpanish() {
 			tr("Change Language"),
 			tr("Application language changed to <b>Spanish</b>. You need to restart UltraStar Manager to take effect."),
 			BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
-			    << ":/marks/accept.png" << tr("Continue."));
+				<< ":/marks/accept.png" << tr("Continue."));
 	if(result == 0)
 		this->close();
 }
@@ -1514,7 +1514,7 @@ void QUMainWindow::enablePortuguese() {
 			tr("Change Language"),
 			tr("Application language changed to <b>Portuguese</b>. You need to restart UltraStar Manager to take effect."),
 			BTN << ":/control/quit.png" << tr("Quit UltraStar Manager.")
-			    << ":/marks/accept.png" << tr("Continue."));
+				<< ":/marks/accept.png" << tr("Continue."));
 	if(result == 0)
 		this->close();
 }

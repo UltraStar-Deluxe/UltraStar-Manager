@@ -603,22 +603,22 @@ void QUSongItem::updateSpellCheckColumns() {
 void QUSongItem::updateFileCheckColumns() {
 	/* file-related columns */
 
-	     if(song()->hasMp3())							this->setTick(MP3_COLUMN);
+		 if(song()->hasMp3())							this->setTick(MP3_COLUMN);
 	else if(song()->mp3() != N_A && !song()->mp3FileInfo().exists())		this->setCross(MP3_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->mp3()));
 	else if(song()->mp3() != N_A && song()->mp3FileInfo().exists())			this->setCross(MP3_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->mp3()));
 	else										this->setCross(MP3_COLUMN);
 
-	     if(song()->hasCover())							this->setTick(COVER_COLUMN);
+		 if(song()->hasCover())							this->setTick(COVER_COLUMN);
 	else if(song()->cover() != N_A && !song()->coverFileInfo().exists())		this->setCross(COVER_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->cover()));
 	else if(song()->cover() != N_A && song()->coverFileInfo().exists())		this->setCross(COVER_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->cover()));
 	else										this->setCross(COVER_COLUMN);
 
-	     if(song()->hasBackground())						this->setTick(BACKGROUND_COLUMN);
+		 if(song()->hasBackground())						this->setTick(BACKGROUND_COLUMN);
 	else if(song()->background() != N_A && !song()->backgroundFileInfo().exists())	this->setCross(BACKGROUND_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->background()));
 	else if(song()->background() != N_A && song()->backgroundFileInfo().exists())	this->setCross(BACKGROUND_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->background()));
 	else										this->setCross(BACKGROUND_COLUMN);
 
-	     if(song()->hasVideo())							this->setTick(VIDEO_COLUMN);
+		 if(song()->hasVideo())							this->setTick(VIDEO_COLUMN);
 	else if(song()->video() != N_A && !song()->videoFileInfo().exists())		this->setCross(VIDEO_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->video()));
 	else if(song()->video() != N_A && song()->videoFileInfo().exists())		this->setCross(VIDEO_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->video()));
 	else										this->setCross(VIDEO_COLUMN);
@@ -706,7 +706,7 @@ void QUSongItem::updateTypeColumns() {
 
 		this->setIcon(GOLDEN_NOTES_COLUMN, QIcon(":/types/golden_notes.png"));
 		this->setData(GOLDEN_NOTES_COLUMN, Qt::UserRole, goldenNotesPercentage);
-		this->setToolTip(GOLDEN_NOTES_COLUMN, QObject::tr("%1\% golden notes.").arg(goldenNotesPercentage, 0, 'f', 1));
+		this->setToolTip(GOLDEN_NOTES_COLUMN, QObject::tr("%1% golden notes.").arg(goldenNotesPercentage, 0, 'f', 1));
 	}
 }
 
@@ -727,9 +727,9 @@ void QUSongItem::updateTimeCheckColumns() {
 	int timeDiffLower = settings.value("timeDiffLower", LOWER_TIME_BOUND_DEFAULT).toInt();
 	int timeDiffUpper = settings.value("timeDiffUpper", UPPER_TIME_BOUND_DEFAULT).toInt();
 
-	if(lengthMp3 >= length and timeDiff <= timeDiffLower)
+	if(lengthMp3 >= length && timeDiff <= timeDiffLower)
 		; // well done ^_^
-	else if(lengthMp3 > length and timeDiff <= timeDiffUpper)
+	else if(lengthMp3 > length && timeDiff <= timeDiffUpper)
 		this->setIcon(LENGTH_DIFF_COLUMN, QIcon(":/bullets/bullet_warning.png"));
 	else
 		this->setIcon(LENGTH_DIFF_COLUMN, QIcon(":/bullets/bullet_cancel.png"));
@@ -778,14 +778,14 @@ void QUSongItem::updateTextColumns() {
 
 	this->setText(LANGUAGE_COLUMN, song()->language()); if(song()->language() != N_A) this->setToolTip(LANGUAGE_COLUMN,  song()->language());
 	this->setText(EDITION_COLUMN,  song()->edition());  if(song()->edition()  != N_A) this->setToolTip(EDITION_COLUMN,   song()->edition());
-	this->setText(GENRE_COLUMN,    song()->genre());    if(song()->genre()    != N_A) this->setToolTip(GENRE_COLUMN,     song()->genre());
-	this->setText(YEAR_COLUMN,     song()->year());     if(song()->year()     != N_A) this->setToolTip(YEAR_COLUMN,      song()->year());
+	this->setText(GENRE_COLUMN,	song()->genre());	if(song()->genre()	!= N_A) this->setToolTip(GENRE_COLUMN,	 song()->genre());
+	this->setText(YEAR_COLUMN,	 song()->year());	 if(song()->year()	 != N_A) this->setToolTip(YEAR_COLUMN,	  song()->year());
 	this->setText(CREATOR_COLUMN,  song()->creator());  if(song()->creator()  != N_A) this->setToolTip(CREATOR_COLUMN,   song()->creator());
 
 	// show custom tags
 	int i = 0;
 	foreach(QString customTag, QUSongSupport::availableCustomTags()) {
-		this->setText(FIRST_CUSTOM_TAG_COLUMN + (i),      song()->customTag(customTag));
+		this->setText(FIRST_CUSTOM_TAG_COLUMN + (i),	  song()->customTag(customTag));
 		this->setToolTip(FIRST_CUSTOM_TAG_COLUMN + (i++), song()->customTag(customTag));
 	}
 }

@@ -267,7 +267,7 @@ QList<QUSongFile*> QUReportDialog::sortedSongs() {
 	} else if(radioPlaylist->isChecked()) {
 		int index = playlistCombo->itemData(playlistCombo->currentIndex(), Qt::UserRole).toInt();
 
-		if(index >= 0 and index < _allPlaylists.size())
+		if(index >= 0 && index < _allPlaylists.size())
 			songs << _allPlaylists.at(index)->connectedSongs();
 	}
 
@@ -283,15 +283,15 @@ QList<QUSongFile*> QUReportDialog::sortedSongs() {
 QU::ReportOptions QUReportDialog::selectedOptions() const {
 	QU::ReportOptions options;
 
-	if(showBaseDirChk->isEnabled() and showBaseDirChk->isChecked())
+	if(showBaseDirChk->isEnabled() && showBaseDirChk->isChecked())
 		options |= QU::reportPrependCurrentPath;
-	if(showPlaylistName->isEnabled() and showPlaylistName->isChecked())
+	if(showPlaylistName->isEnabled() && showPlaylistName->isChecked())
 		options |= QU::reportPrependUserData;
-	if(appendLyricsChk->isEnabled() and appendLyricsChk->isChecked())
+	if(appendLyricsChk->isEnabled() && appendLyricsChk->isChecked())
 		options |= QU::reportAppendLyrics;
-	if(linkLyricsChk->isEnabled() and linkLyricsChk->isChecked())
+	if(linkLyricsChk->isEnabled() && linkLyricsChk->isChecked())
 		options |= QU::reportLinkLyrics;
-	if(useStyleChk->isEnabled() and useStyleChk->isChecked())
+	if(useStyleChk->isEnabled() && useStyleChk->isChecked())
 		options |= QU::reportUseStyleSheet;
 
 	return options;
@@ -303,7 +303,7 @@ QU::ReportOptions QUReportDialog::selectedOptions() const {
 QString QUReportDialog::currentPlaylistName() const {
 	int index = playlistCombo->itemData(playlistCombo->currentIndex(), Qt::UserRole).toInt();
 
-	if(index >= 0 and index < _allPlaylists.size())
+	if(index >= 0 && index < _allPlaylists.size())
 		return _allPlaylists.at(index)->name();
 	else
 		return "";
@@ -344,20 +344,20 @@ void QUReportDialog::saveState() {
 	int otherOptions = 0;
 
 	// current source
-	if(radioAllSongs->isChecked())     otherOptions |= 1 << 0;
+	if(radioAllSongs->isChecked())	 otherOptions |= 1 << 0;
 	if(radioVisibleSongs->isChecked()) otherOptions |= 1 << 1;
-	if(radioPlaylist->isChecked())     otherOptions |= 1 << 2;
+	if(radioPlaylist->isChecked())	 otherOptions |= 1 << 2;
 
 	// additional options
 	if(showBaseDirChk->isChecked())   otherOptions |= 1 << 3;
 	if(showPlaylistName->isChecked()) otherOptions |= 1 << 4;
 	if(appendLyricsChk->isChecked())  otherOptions |= 1 << 5;
-	if(linkLyricsChk->isChecked())    otherOptions |= 1 << 6;
-	if(useStyleChk->isChecked())      otherOptions |= 1 << 7;
+	if(linkLyricsChk->isChecked())	otherOptions |= 1 << 6;
+	if(useStyleChk->isChecked())	  otherOptions |= 1 << 7;
 
 	// current combo box items
 	int playlistComboIndex = playlistCombo->currentIndex();
-	int styleComboIndex    = styleCombo->currentIndex();
+	int styleComboIndex	= styleCombo->currentIndex();
 
 	// store values into registry
 	QSettings settings;
@@ -384,20 +384,20 @@ void QUReportDialog::loadState() {
 	int otherOptions = settings.value("reportOtherOptions", 1).toInt();;
 
 	// current source
-	    radioAllSongs->setChecked(otherOptions & (1 << 0));
+		radioAllSongs->setChecked(otherOptions & (1 << 0));
 	radioVisibleSongs->setChecked(otherOptions & (1 << 1));
-	    radioPlaylist->setChecked(otherOptions & (1 << 2));
+		radioPlaylist->setChecked(otherOptions & (1 << 2));
 
 	// additional options
 	  showBaseDirChk->setChecked(otherOptions & (1 << 3));
 	showPlaylistName->setChecked(otherOptions & (1 << 4));
 	 appendLyricsChk->setChecked(otherOptions & (1 << 5));
 	   linkLyricsChk->setChecked(otherOptions & (1 << 6));
-	     useStyleChk->setChecked(otherOptions & (1 << 7));
+		 useStyleChk->setChecked(otherOptions & (1 << 7));
 
 	// current combo box items
 	int playlistComboIndex = settings.value("reportPlaylistComboIndex", 0).toInt();
-	int styleComboIndex    = settings.value("reportStyleComboIndex", 0).toInt();
+	int styleComboIndex	= settings.value("reportStyleComboIndex", 0).toInt();
 	playlistCombo->setCurrentIndex(playlistComboIndex >= playlistCombo->count() ? 0 : playlistComboIndex);
 	styleCombo->setCurrentIndex(styleComboIndex >= styleCombo->count() ? 0 : styleComboIndex);
 }

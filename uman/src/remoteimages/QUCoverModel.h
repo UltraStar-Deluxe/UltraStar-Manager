@@ -29,9 +29,9 @@ public:
 	void addCover(const QString &filePath);
 	void clear();
 private:
-	QList<QIcon>   _iconList;
-	QList<QSize>   _dimensionsList;
-	QStringList    _filePathList;
+	QList<QIcon> _iconList;
+	QList<QSize> _dimensionsList;
+	QStringList _filePathList;
 
 };
 

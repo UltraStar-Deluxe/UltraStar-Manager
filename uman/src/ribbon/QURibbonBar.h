@@ -45,9 +45,9 @@ protected:
 	void useHiddenStyle();
 
 private:
-	bool            _menuHidden;
-	QList<QAction*> _pathActions;
-	QActionGroup    *_ag;
+	bool			_menuHidden;
+	QList<QAction*>	_pathActions;
+	QActionGroup	*_ag;
 };
 
 #endif // QURIBBONBAR_H

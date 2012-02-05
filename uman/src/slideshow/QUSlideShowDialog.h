@@ -32,7 +32,7 @@ protected:
 
 private:
 	QList<QUSongItem*> _items;
-	Modes              _mode;
+	Modes			  _mode;
 
 	void preparePictures();
 };

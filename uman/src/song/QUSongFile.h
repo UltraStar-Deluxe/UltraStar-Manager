@@ -197,16 +197,16 @@ private:
 	QStringList _fiTags; // list of original []-tags, e.g. "Wizo - Hund [karaoke] [blubb].txt"
 
 	QMap<QString, QString> _info; // song header
-	QStringList _lyrics;          // lyrics
-	QStringList _footer;          // other stuff after the end mark 'E' in the song file
+	QStringList _lyrics;		  // lyrics
+	QStringList _footer;		  // other stuff after the end mark 'E' in the song file
 
 	QStringList _foundUnsupportedTags;
 	bool _hasUnsavedChanges;
 
-	mutable int     _songLengthCache;
-	mutable bool    _songLengthCacheValid;
+	mutable int	 _songLengthCache;
+	mutable bool	_songLengthCacheValid;
 	mutable double  _songSpeedCache;
-	mutable bool    _songSpeedCacheValid;
+	mutable bool	_songSpeedCacheValid;
 
 	void invalidateCaches() const;
 	int calculateSongLength() const;

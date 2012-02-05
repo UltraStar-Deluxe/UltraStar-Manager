@@ -94,28 +94,28 @@ void QUSongFile::setFile(const QString &filePath, bool update) {
  * Checks whether this is a valid UltraStar song file.
  */
 bool QUSongFile::isValid() {
-	return (length() > 0) and (artist() != N_A) and (title() != N_A) and (bpm() != N_A);
+	return (length() > 0) && (artist() != N_A) && (title() != N_A) && (bpm() != N_A);
 }
 
 /* SORTING FUNCTIONS BEGIN */
 
 bool QUSongFile::artistLessThan (QUSongFile *s1, QUSongFile *s2)   { return QString::compare(s1->artist(), s2->artist(), Qt::CaseInsensitive) < 0; }
-bool QUSongFile::titleLessThan (QUSongFile *s1, QUSongFile *s2)    { return QString::compare(s1->title(), s2->title(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::titleLessThan (QUSongFile *s1, QUSongFile *s2)	{ return QString::compare(s1->title(), s2->title(), Qt::CaseInsensitive) < 0; }
 bool QUSongFile::languageLessThan (QUSongFile *s1, QUSongFile *s2) { return QString::compare(s1->language(), s2->language(), Qt::CaseInsensitive) < 0; }
 bool QUSongFile::editionLessThan (QUSongFile *s1, QUSongFile *s2)  { return QString::compare(s1->edition(), s2->edition(), Qt::CaseInsensitive) < 0; }
-bool QUSongFile::genreLessThan (QUSongFile *s1, QUSongFile *s2)    { return QString::compare(s1->genre(), s2->genre(), Qt::CaseInsensitive) < 0; }
-bool QUSongFile::yearLessThan (QUSongFile *s1, QUSongFile *s2)     { return QString::compare(s1->year(), s2->year(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::genreLessThan (QUSongFile *s1, QUSongFile *s2)	{ return QString::compare(s1->genre(), s2->genre(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::yearLessThan (QUSongFile *s1, QUSongFile *s2)	 { return QString::compare(s1->year(), s2->year(), Qt::CaseInsensitive) < 0; }
 bool QUSongFile::creatorLessThan (QUSongFile *s1, QUSongFile *s2)  { return QString::compare(s1->creator(), s2->creator(), Qt::CaseInsensitive) < 0; }
 
-bool QUSongFile::pathLessThan (QUSongFile *s1, QUSongFile *s2)             { return QString::compare(s1->path(), s2->path(), Qt::CaseInsensitive) < 0; }
-bool QUSongFile::filePathLessThan (QUSongFile *s1, QUSongFile *s2)         { return QString::compare(s1->filePath(), s2->filePath(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::pathLessThan (QUSongFile *s1, QUSongFile *s2)			 { return QString::compare(s1->path(), s2->path(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::filePathLessThan (QUSongFile *s1, QUSongFile *s2)		 { return QString::compare(s1->filePath(), s2->filePath(), Qt::CaseInsensitive) < 0; }
 bool QUSongFile::relativeFilePathLessThan (QUSongFile *s1, QUSongFile *s2) { return QString::compare(s1->relativeFilePath(), s2->relativeFilePath(), Qt::CaseInsensitive) < 0; }
 
-bool QUSongFile::hasMp3LessThan (QUSongFile *s1, QUSongFile *s2)           { return !s1->hasMp3() && s2->hasMp3(); }
-bool QUSongFile::hasCoverLessThan (QUSongFile *s1, QUSongFile *s2)         { return !s1->hasCover() && s2->hasCover(); }
-bool QUSongFile::hasBackgroundLessThan (QUSongFile *s1, QUSongFile *s2)    { return !s1->hasBackground() && s2->hasBackground(); }
-bool QUSongFile::hasVideoLessThan (QUSongFile *s1, QUSongFile *s2)         { return !s1->hasVideo() && s2->hasVideo(); }
-bool QUSongFile::hasMedleyLessThan (QUSongFile *s1, QUSongFile *s2)        { return !s1->hasMedley() && s2->hasMedley(); }
+bool QUSongFile::hasMp3LessThan (QUSongFile *s1, QUSongFile *s2)		   { return !s1->hasMp3() && s2->hasMp3(); }
+bool QUSongFile::hasCoverLessThan (QUSongFile *s1, QUSongFile *s2)		 { return !s1->hasCover() && s2->hasCover(); }
+bool QUSongFile::hasBackgroundLessThan (QUSongFile *s1, QUSongFile *s2)	{ return !s1->hasBackground() && s2->hasBackground(); }
+bool QUSongFile::hasVideoLessThan (QUSongFile *s1, QUSongFile *s2)		 { return !s1->hasVideo() && s2->hasVideo(); }
+bool QUSongFile::hasMedleyLessThan (QUSongFile *s1, QUSongFile *s2)		{ return !s1->hasMedley() && s2->hasMedley(); }
 bool QUSongFile::hasGoldenNotesLessThan (QUSongFile *s1, QUSongFile *s2)   { return !s1->hasGoldenNotes() && s2->hasGoldenNotes(); }
 
 /* SORTING FUNCTIONS END */
@@ -136,7 +136,7 @@ bool QUSongFile::hasGoldenNotesLessThan (QUSongFile *s1, QUSongFile *s2)   { ret
  * QChar::decomposition()
  */
 bool QUSongFile::equal(QUSongFile *s1, QUSongFile *s2) {
-	return ( QUMetaphoneString::equal(s1->artist(), s2->artist()) and QUMetaphoneString::equal(s1->title(), s2->title(), true) );
+	return ( QUMetaphoneString::equal(s1->artist(), s2->artist()) && QUMetaphoneString::equal(s1->title(), s2->title(), true) );
 }
 
 /* COMPARING FUNCTIONS END */
@@ -250,11 +250,11 @@ bool QUSongFile::updateCache() {
 		}
 
 		// read unsupported tags
-		if(!isSupported and line.startsWith("#")) {
+		if(!isSupported && line.startsWith("#")) {
 			QString uTag(line.section(":", 0, 0).remove("#").trimmed());
 			QString uValue(line.section("#" + uTag + ":", 0, 0, QString::SectionSkipEmpty).trimmed());
 
-			if(!uTag.isEmpty() and !uValue.isEmpty()) {
+			if(!uTag.isEmpty() && !uValue.isEmpty()) {
 				setInfo(uTag, uValue);
 				_foundUnsupportedTags << uTag;
 				monty->addUnsupportedTag(uTag);
@@ -473,7 +473,7 @@ int QUSongFile::calculateSongLength() const {
 int QUSongFile::lengthMp3() const {
 	TagLib::FileRef ref(this->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
 
-	if(ref.isNull() or !ref.audioProperties())
+	if(ref.isNull() || !ref.audioProperties())
 		return 0;
 
 	if(this->end() != N_A)
@@ -496,7 +496,7 @@ int QUSongFile::lengthEffective() const {
 int QUSongFile::lengthAudioFile() const {
 	TagLib::FileRef ref(this->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
 
-	if(ref.isNull() or !ref.audioProperties())
+	if(ref.isNull() || !ref.audioProperties())
 		return 0;
 
 	return ref.audioProperties()->length();
@@ -551,7 +551,7 @@ double QUSongFile::calculateSongSpeed() const {
 	QList<int> durations;
 
 	foreach(QString line, _lyrics) {
-		if(line.trimmed().startsWith(":") or line.trimmed().startsWith("*")) { // only singable notes (normal, golden)
+		if(line.trimmed().startsWith(":") || line.trimmed().startsWith("*")) { // only singable notes (normal, golden)
 			QStringList syllable = line.split(" ", QString::SkipEmptyParts);
 
 			// singable syllables have a duration as second number
@@ -1120,7 +1120,7 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 
 	// remove empty folders
 	QDir oldDir = _fi.dir();
-	while(!oldDir.isRoot() and oldDir.entryList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot).isEmpty() and oldDir != QU::BaseDir) {
+	while(!oldDir.isRoot() && oldDir.entryList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot).isEmpty() && oldDir != QU::BaseDir) {
 		QString dirName = oldDir.dirName();
 		oldDir.cdUp();
 		if(!oldDir.rmdir(dirName))
@@ -1313,18 +1313,18 @@ void QUSongFile::changeData(const QString &tag, const QString &value) {
 	QUSongFile *senderSong = qobject_cast<QUSongFile*>(sender());
 
 	/* MB: friends might not even have one thing in common
-	       they could have different
-	       -  titles ("..." / "... (live)")
-	       - artists ("..." / "... feat. ...")
-	       - languages ("English" / "German")
-	       - different editions ("None" / "[SC]-Songs")
-	       - genres ("Rock" / "a capella")
-	       - years due to different releases ("1982" / "1983")
-	       - creators
-	       - linked files (mp3/cover/background/video)
-	       - videogaps ("0" / "5.0")
-	       - BPM
-	       - GAP
+		   they could have different
+		   -  titles ("..." / "... (live)")
+		   - artists ("..." / "... feat. ...")
+		   - languages ("English" / "German")
+		   - different editions ("None" / "[SC]-Songs")
+		   - genres ("Rock" / "a capella")
+		   - years due to different releases ("1982" / "1983")
+		   - creators
+		   - linked files (mp3/cover/background/video)
+		   - videogaps ("0" / "5.0")
+		   - BPM
+		   - GAP
 	// restore all []-tags for the title
 	if(QString::compare(tag, TITLE_TAG, Qt::CaseInsensitive) == 0) {
 		setInfo(tag, QString("%1%2")
@@ -1422,9 +1422,9 @@ void QUSongFile::convertLyricsToRaw() {
 
 		foreach(QUSongNoteInterface *note, line->notes()) {
 			QStringList out;
-			if(note->type() == QUSongNoteInterface::freestyle)      out.append("F");
-			else if(note->type() == QUSongNoteInterface::golden)    out.append("*");
-			else                                                    out.append(":");
+			if(note->type() == QUSongNoteInterface::freestyle)	  out.append("F");
+			else if(note->type() == QUSongNoteInterface::golden)	out.append("*");
+			else													out.append(":");
 
 			out.append(QVariant(note->timestamp()).toString());
 			out.append(QVariant(note->duration()).toString());

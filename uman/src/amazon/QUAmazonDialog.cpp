@@ -28,18 +28,18 @@ QUAmazonDialog::QUAmazonDialog(const QList<QUSongItem*> &items, QWidget *parent)
 	infoLbl->setText(tr("Choose valid local sources for the keywords <b>artist and title</b>. Only checked songs will be considered for downloading and setting. <b>Internet connection required.</b>"));
 
 	_contentLayout = new QVBoxLayout;
-    _contentLayout->setSpacing(10);
-    _contentLayout->setMargin(5);
-    _contentLayout->setObjectName(QString::fromUtf8("contentLayout"));
+	_contentLayout->setSpacing(10);
+	_contentLayout->setMargin(5);
+	_contentLayout->setObjectName(QString::fromUtf8("contentLayout"));
 
-    content->setLayout(_contentLayout);
-    scrollArea->setWidget(content);
+	content->setLayout(_contentLayout);
+	scrollArea->setWidget(content);
 
-    connect(getCoversBtn, SIGNAL(clicked()), this, SLOT(getCovers()));
-    connect(applyBtn, SIGNAL(clicked()), this, SLOT(accept()));
-    connect(cancelBtn, SIGNAL(clicked()), this, SLOT(reject()));
-    connect(checkAllBtn, SIGNAL(clicked()), this, SLOT(checkAllGroups()));
-    connect(uncheckAllBtn, SIGNAL(clicked()), this, SLOT(uncheckAllGroups()));
+	connect(getCoversBtn, SIGNAL(clicked()), this, SLOT(getCovers()));
+	connect(applyBtn, SIGNAL(clicked()), this, SLOT(accept()));
+	connect(cancelBtn, SIGNAL(clicked()), this, SLOT(reject()));
+	connect(checkAllBtn, SIGNAL(clicked()), this, SLOT(checkAllGroups()));
+	connect(uncheckAllBtn, SIGNAL(clicked()), this, SLOT(uncheckAllGroups()));
 
 	endpointCombo->addItem(tr("United States (amazon.com)"), "http://ecs.amazonaws.com");
 	endpointCombo->addItem(tr("United Kingdom (amazon.co.uk)"), "http://ecs.amazonaws.co.uk");

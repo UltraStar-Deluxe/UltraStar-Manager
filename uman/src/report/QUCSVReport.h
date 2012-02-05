@@ -20,7 +20,7 @@ public:
 	virtual QString content() const;
 
 private:
-	QString    _content;
+	QString _content;
 
 	void createContent();
 

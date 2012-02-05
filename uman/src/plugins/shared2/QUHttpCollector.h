@@ -61,13 +61,13 @@ protected:
 	virtual void processImageResults(int count);
 
 private:
-	State                      _state;
-	QUMultilingualImageSource *_source;
-	QUCommunicatorInterface   *_communicator;
-	QHttp                     *_http;
-	QUSongInterface           *_song;
-	QBuffer                   *_buffer;
-	QList<QFile*>              _localFiles; // should all be open
+	State						_state;
+	QUMultilingualImageSource	*_source;
+	QUCommunicatorInterface		*_communicator;
+	QHttp						*_http;
+	QUSongInterface				*_song;
+	QBuffer						*_buffer;
+	QList<QFile*>				_localFiles; // should all be open
 };
 
 #endif // QUHTTPCOLLECTOR_H

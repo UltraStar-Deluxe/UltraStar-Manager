@@ -24,10 +24,10 @@ int QUCoverModel::rowCount (const QModelIndex &parent) const {
 }
 
 Qt::ItemFlags QUCoverModel::flags (const QModelIndex &index) const {
-    if (index.isValid())
-        return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	if (index.isValid())
+		return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
-    return 0;
+	return 0;
 }
 
 /*!
@@ -45,7 +45,7 @@ void QUCoverModel::addCover(const QString &filePath) {
 	_dimensionsList.append(pixmap.size());
 	_filePathList.append(filePath);
 
-     endInsertRows();
+	 endInsertRows();
 }
 
 /*!

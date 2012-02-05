@@ -43,7 +43,7 @@ void QUFreeCoversCollector::processSearchResults() {
 
 	setState(ImageRequest);
 
-	for(int i = 0; i < response.results().size() and i < source()->limit(); i++) {
+	for(int i = 0; i < response.results().size() && i < source()->limit(); i++) {
 		QString fileName = response.results().at(i).path().remove("/").remove("preview0");
 		QFile *file = openLocalFile(source()->imageFolder(song()).filePath(fileName));
 

@@ -34,7 +34,7 @@ protected:
 	QURemoteImageCollector* collector() const { return _collector; }
 
 private:
-	QUSongItem             *_item;
+	QUSongItem			 *_item;
 	QURemoteImageCollector *_collector;
 
 	QString currentFilePath() const;

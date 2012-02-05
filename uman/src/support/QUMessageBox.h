@@ -20,7 +20,7 @@ class QUMessageBox: public QDialog, private Ui::QUMessageBox {
 public:
 	static int information(QWidget *parent, const QString &title, const QString &msg, const QStringList &buttons = QStringList() << ":/marks/accept.png" << "OK", int widthHint = -1, int defaultIndex = -1);
 	static int question   (QWidget *parent, const QString &title, const QString &msg, const QStringList &buttons = QStringList() << ":/marks/accept.png" << "OK", int widthHint = -1, int defaultIndex = -1);
-	static int warning    (QWidget *parent, const QString &title, const QString &msg, const QStringList &buttons = QStringList() << ":/marks/accept.png" << "OK", int widthHint = -1, int defaultIndex = -1);
+	static int warning	(QWidget *parent, const QString &title, const QString &msg, const QStringList &buttons = QStringList() << ":/marks/accept.png" << "OK", int widthHint = -1, int defaultIndex = -1);
 	static int critical   (QWidget *parent, const QString &title, const QString &msg, const QStringList &buttons = QStringList() << ":/marks/accept.png" << "OK", int widthHint = -1, int defaultIndex = -1);
 
 public slots:

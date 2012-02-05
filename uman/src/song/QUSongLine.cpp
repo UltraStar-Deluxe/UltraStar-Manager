@@ -15,7 +15,7 @@ QUSongNote::QUSongNote(Types ty, int t, int d, int p, const QString &s, QObject 
  */
 void QUSongNote::resetTrailingSpaces(int prefixCount, int suffixCount) {
 	// the simple way
-	if(prefixCount != -1 and suffixCount != -1) {
+	if(prefixCount != -1 && suffixCount != -1) {
 		setSyllable(syllable().trimmed());
 
 		for(int i = 0; i < prefixCount; i++)
