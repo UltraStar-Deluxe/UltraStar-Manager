@@ -18,6 +18,12 @@ SONGTREE
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
+QT
+* based on Qt 4.8.0 now
+
+RIBBON MENU
+* replaced last two checkboxes by toolbuttons in View
+
 REPORTS
 * text report now has CR/LF line endings
 * HTML and text report are UTF-8 encoded and file names include the current date (just like PDF report)
