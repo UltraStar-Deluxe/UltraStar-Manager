@@ -17,7 +17,6 @@ QUAboutDialog::QUAboutDialog(QWidget *parent): QDialog(parent) {
 
 	connect(acceptBtn, SIGNAL(clicked()), this, SLOT(accept()));
 
-	//QFile f(":/txt/credits");
 	QString creditsText;
 	creditsText += "<style>a { color: #4479D4; text-decoration: none;}</style>";
 	creditsText += "<center><br><br><br><br><br>";
@@ -104,12 +103,7 @@ QUAboutDialog::QUAboutDialog(QWidget *parent): QDialog(parent) {
 	creditsText += "<br>Michael Grünewald<br>Matthias Jacob<br>BlindGuard<br>MasterPhW<br>hanzmole<br>Tokutai<br>Robert de Clair<br>escaped<br>DeathStar<br>gabro<br><br>";
 	creditsText += QObject::tr("<b>Special Thanks</b>");
 	creditsText += "<br>escaped<br>BlindGuard<br><br><br><br><br>";
-	creditsText += "<b>Copyright © 2008-2011</b></center>";
-
-	/*if(f.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		credits->setHtml(QString(f.readAll()).replace("\n", "<br>"));
-		f.close();
-	}*/
+	creditsText += "<b>Copyright © 2008-2012</b></center>";
 
 	credits->setHtml(creditsText);
 
