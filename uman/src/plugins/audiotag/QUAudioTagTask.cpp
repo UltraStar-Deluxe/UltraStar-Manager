@@ -139,7 +139,7 @@ QStringList QUAudioTagTask::availableCustomTargets() {
 
 TagLib::FileRef QUAudioTagTask::ref() {
 	if(!_currentSong)
-		return TagLib::FileRef(0);
+        return TagLib::FileRef();
 
 	return TagLib::FileRef(_currentSong->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
 }
