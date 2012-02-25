@@ -244,18 +244,22 @@ unix {
         -ltag \
         -lbass
 }
+win32 {
 QMAKE_EXTRA_TARGETS += revtarget
 PRE_TARGETDEPS += version.h
 revtarget.target = version.h
 revtarget.commands = @echo \
-    "const char *revision = \"r$(shell svnversion .)\"; \
-    const \
-    char \
-    *date_time \
-    = \
-    \"$(shell date /T)$(shell time /T)\";" \
-    > \
-    $$revtarget.target
+    "const char *revision = \"r$(shell svnversion .)\"; const char *date_time = \"$(shell date /T)$(shell time /T)\";" > $$revtarget.target
 revtarget.depends = $$SOURCES \
     $$HEADERS \
     $$FORMS
+}
+unix {
+QMAKE_EXTRA_TARGETS += revtarget
+PRE_TARGETDEPS += version.h
+revtarget.target = version.h
+revtarget.commands = @echo "const char *revision = \"r$(shell svnversion .)\"; const char *date_time = \"$(shell date \"+%d.%m.%Y %R\")\";" > $$revtarget.target
+revtarget.depends = $$SOURCES \
+    $$HEADERS \
+    $$FORMS
+}
