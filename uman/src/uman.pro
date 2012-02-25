@@ -258,7 +258,7 @@ unix {
 QMAKE_EXTRA_TARGETS += revtarget
 PRE_TARGETDEPS += version.h
 revtarget.target = version.h
-revtarget.commands = @echo "const char *revision = \"r$(shell svnversion .)\"; const char *date_time = \"$(shell date +%d.%m.%Y%6R)\";" > $$revtarget.target
+revtarget.commands = @echo \"const char *revision = \\\"r$(shell svnversion .)\\\"; const char *date_time = \\\"$(shell date +%d.%m.%Y%6R)\\\";\" > $$revtarget.target
 revtarget.depends = $$SOURCES \
     $$HEADERS \
     $$FORMS
