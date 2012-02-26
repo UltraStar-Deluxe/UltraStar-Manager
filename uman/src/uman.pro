@@ -242,7 +242,9 @@ unix {
         ../include/bass
     LIBS += -L"../lib" \
         -ltag \
+#        -ltag64 \
         -lbass
+#        -lbass64
 }
 win32 {
 QMAKE_EXTRA_TARGETS += revtarget
