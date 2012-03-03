@@ -7,7 +7,7 @@
         <location filename="../../songdetails/QUDetailItem.cpp" line="79"/>
         <location filename="../../songdetails/QUDetailItem.cpp" line="81"/>
         <location filename="../../songdetails/QUDetailItem.cpp" line="87"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="738"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="739"/>
         <source>%1 seconds</source>
         <translation>%1 Sekunden</translation>
     </message>
@@ -96,50 +96,65 @@ Try cropping to %1 x %3 for a widescreen aspect ratio.</source>
 Versuche es auf %1 x %3 zu beschneiden, um ein Widescreen Format zu erhalten.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="607"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="612"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="617"/>
-        <location filename="../../songtree/QUSongItem.cpp" line="622"/>
-        <source>File not found: &quot;%1&quot;</source>
-        <translation>Datei nicht gefunden: &quot;%1&quot;</translation>
-    </message>
-    <message>
         <location filename="../../songtree/QUSongItem.cpp" line="608"/>
         <location filename="../../songtree/QUSongItem.cpp" line="613"/>
         <location filename="../../songtree/QUSongItem.cpp" line="618"/>
         <location filename="../../songtree/QUSongItem.cpp" line="623"/>
+        <source>File not found: &quot;%1&quot;</source>
+        <translation>Datei nicht gefunden: &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongItem.cpp" line="609"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="614"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="619"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="624"/>
         <source>File type unsupported: &quot;%1&quot;</source>
         <translation>Dateityp nicht unterstützt: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="676"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="677"/>
         <source>Medley available (%1 seconds).</source>
         <translation>Medley vorhanden (%1 Sekunden).</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="680"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="681"/>
         <source>Medley does not start at the beginning of a line or end at the end of a line (%1 seconds).</source>
         <translation>Das Medley fängt entweder nicht am Zeilenanfang an oder hört nicht am Zeilenende auf (%1 Sekunden).</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="684"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="685"/>
         <source>Medley does not start at the beginning of a note or end at the end of a note (%1 seconds).</source>
         <translation>Das Medley fängt entweder nicht am Notenanfang an oder hört nicht am Notenende auf (%1 Sekunden).</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="691"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="692"/>
         <source>Medley disabled by CALCMEDLEY:OFF.</source>
         <translation>Medley deaktiviert mittles CALCMEDLEY:OFF.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="709"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="710"/>
         <source>%1% golden notes.</source>
         <translation>%1% goldene Noten.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="761"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="762"/>
         <source>%1 syllables per second</source>
         <translation>%1 Silben pro Sekunde</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongItem.cpp" line="769"/>
+        <source>Song starts at %1:%2.</source>
+        <translation>Lied beginnt bei %1:%2.</translation>
+    </message>
+    <message>
+        <source>Song starts at %1:%2</source>
+        <translation type="obsolete">Lied beginnt bei %1:%2.</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongItem.cpp" line="774"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="776"/>
+        <source>Song ends at %1:%2.</source>
+        <translation>Lied endet bei %1:%2.</translation>
     </message>
     <message>
         <source>Hello! I am Monty the Mammoth. I will tell you some hints from time to time. Just press the &lt;i&gt;hide&lt;/i&gt; button below and I will disappear for now.&lt;br&gt;&lt;br&gt;You have a nice collection of &lt;b&gt;%1 songs&lt;/b&gt; there. Are they managed well yet?</source>
@@ -776,12 +791,12 @@ Try cropping to %3 x %3.</source>
         <translation type="obsolete">Gute Hintergrundqualität ohne Widescreen Format (%1 x %2)</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="746"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="747"/>
         <source>Not calculated.</source>
         <translation>Nicht berechnet.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongItem.cpp" line="747"/>
+        <location filename="../../songtree/QUSongItem.cpp" line="748"/>
         <source>Calculate the speed first.</source>
         <translation>Tempo muss erst errechnet werden.</translation>
     </message>
@@ -5459,14 +5474,33 @@ p, li { white-space: pre-wrap; }
         <translation>Ersteller</translation>
     </message>
     <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="130"/>
+        <source>Shows the song length calculated from BPM and lyrics.</source>
+        <translation>Zeigt die Länge des Songs - berechnet aus BPM und Lyrics.</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="138"/>
+        <source>Shows the length of audio file, if present.&lt;br&gt;&lt;br&gt;Can be reset through &lt;b&gt;#END&lt;/b&gt; tag.</source>
+        <translation>Zeigt die Länge der Audio-Datei, wenn vorhanden.&lt;br&gt;&lt;br&gt;Kann mittels &lt;b&gt;#END&lt;/b&gt;-Tag neu gesetzt werden.</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="140"/>
+        <source>Effective</source>
+        <translation>Effektiv</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="142"/>
+        <source>Shows the effective song length:&lt;br&gt;&lt;b&gt;audio length - #START&lt;/b&gt;.</source>
+        <translation>Zeigt die effektive Länge:&lt;br&gt;&lt;b&gt;Audio-Länge - #START&lt;/b&gt;.</translation>
+    </message>
+    <message>
         <location filename="../../songtree/QUSongTree.cpp" line="150"/>
         <source>Shows how much time is skipped from the beginning of the audio file.&lt;br&gt;&lt;i&gt;(in seconds)&lt;/i&gt;</source>
         <translation>Zeigt an, welche Zeit vom Anfang der Audio-Datei übersprungen werden.&lt;br&gt;&lt;i&gt;(in Sekunden)&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="153"/>
         <source>Shows how much time is skipped from the end of the audio file.&lt;br&gt;&lt;i&gt;(in milliseconds)&lt;/i&gt;</source>
-        <translation>Zeigt an, welche Zeit vom Ende der Audio-Datei übersprungen werden.&lt;br&gt;&lt;i&gt;(in Millisekunden)&lt;/i&gt;</translation>
+        <translation type="obsolete">Zeigt an, welche Zeit vom Ende der Audio-Datei übersprungen werden.&lt;br&gt;&lt;i&gt;(in Millisekunden)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="156"/>
@@ -5631,9 +5665,8 @@ p, li { white-space: pre-wrap; }
         <translation>Song</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="130"/>
         <source>Song length calculated from BPM and lyrics.</source>
-        <translation>Länge des Songs - berechnet aus BPM und Lyrics.</translation>
+        <translation type="obsolete">Länge des Songs - berechnet aus BPM und Lyrics.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="133"/>
@@ -5646,19 +5679,16 @@ p, li { white-space: pre-wrap; }
         <translation>Audio</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="138"/>
         <source>Shows length of audio file, if present.&lt;br&gt;&lt;br&gt;Can be reset through &lt;b&gt;#END&lt;/b&gt; tag.</source>
-        <translation>Zeigt die Länge der Audio-Datei, wenn vorhanden.&lt;br&gt;&lt;br&gt;Kann mittels &lt;b&gt;#END&lt;/b&gt;-Tag neu gesetzt werden.</translation>
+        <translation type="obsolete">Zeigt die Länge der Audio-Datei, wenn vorhanden.&lt;br&gt;&lt;br&gt;Kann mittels &lt;b&gt;#END&lt;/b&gt;-Tag neu gesetzt werden.</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="140"/>
         <source>Total</source>
-        <translation>Gesamt</translation>
+        <translation type="obsolete">Gesamt</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="142"/>
         <source>Shows the effective length:&lt;br&gt;&lt;b&gt;audio length - #START&lt;/b&gt;.</source>
-        <translation>Zeigt die effektive Länge:&lt;br&gt;&lt;b&gt;Audio-Länge - #START&lt;/b&gt;.</translation>
+        <translation type="obsolete">Zeigt die effektive Länge:&lt;br&gt;&lt;b&gt;Audio-Länge - #START&lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="148"/>
@@ -5693,9 +5723,8 @@ p, li { white-space: pre-wrap; }
         <translation>Relativ?</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="159"/>
         <source>Has relative timestamps.</source>
-        <translation>Besitzt relative Zeitstempel.</translation>
+        <translation type="obsolete">Besitzt relative Zeitstempel.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="160"/>
@@ -5703,9 +5732,8 @@ p, li { white-space: pre-wrap; }
         <translation>BPM</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="162"/>
         <source>beats per minute</source>
-        <translation>Beats pro Minute</translation>
+        <translation type="obsolete">Beats pro Minute</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="163"/>
@@ -5713,9 +5741,8 @@ p, li { white-space: pre-wrap; }
         <translation>GAP</translation>
     </message>
     <message>
-        <location filename="../../songtree/QUSongTree.cpp" line="165"/>
         <source>Time to first syllable.</source>
-        <translation>Zeit bis zur ersten Silbe.</translation>
+        <translation type="obsolete">Zeit bis zur ersten Silbe.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="168"/>
@@ -5867,6 +5894,11 @@ p, li { white-space: pre-wrap; }
         <translation>Vorgaben</translation>
     </message>
     <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="165"/>
+        <source>Shows the gap between the beginning of the song and the first syllable.&lt;br&gt;&lt;i&gt;(in milliseconds)&lt;/i&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../songtree/QUSongTree.cpp" line="620"/>
         <source>Default</source>
         <translation>Standard</translation>
@@ -5974,6 +6006,25 @@ p, li { white-space: pre-wrap; }
         <location filename="../../songtree/QUSongTree.cpp" line="630"/>
         <source>Types</source>
         <translation>Typen</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="153"/>
+        <source>Shows when the song playback stops.&lt;br&gt;&lt;i&gt;(in &lt;b&gt;milli&lt;/b&gt;seconds)&lt;/i&gt;</source>
+        <translation>Zeigt an, zu welchem Zeitpunkt die Audiowiedergabe stoppt.&lt;br&gt;&lt;i&gt;(in &lt;b&gt;Milli&lt;/b&gt;sekunden)&lt;/i&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="159"/>
+        <source>Shows whether the song has relative timestamps.</source>
+        <translation>Zeigt an, ob der Song relative Zeitstempel besitzt.</translation>
+    </message>
+    <message>
+        <location filename="../../songtree/QUSongTree.cpp" line="162"/>
+        <source>Shows the song tempo.&lt;br&gt;&lt;i&gt;(in beats per 15 seconds)</source>
+        <translation>Zeigt das Songtempo an.&lt;br&gt;&lt;i&gt;(in Beats pro 15 Sekunden)</translation>
+    </message>
+    <message>
+        <source>Time to first syllable.&lt;br&gt;&lt;i&gt;(in milliseconds)&lt;/i&gt;</source>
+        <translation type="obsolete">Zeigt die Zeit zwischen Songanfang und der ersten Silbe an.&lt;br&gt;&lt;i&gt;(in Millisekunden)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="977"/>
