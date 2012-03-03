@@ -2021,12 +2021,21 @@ border-left-color: #C2C7CB;</string>
          <property name="toolTip">
           <string>Change application language to 'English'.</string>
          </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
          <property name="text">
-          <string>English</string>
+          <string notr="true">English</string>
          </property>
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
            <normaloff>:/lang/us.png</normaloff>:/lang/us.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>16</width>
+           <height>16</height>
+          </size>
          </property>
          <property name="checkable">
           <bool>true</bool>
@@ -2063,8 +2072,7 @@ border-left-color: #C2C7CB;</string>
           <string>Change application language to 'Spanish (Español)'.</string>
          </property>
          <property name="text">
-          <string>Spanish
-(Español)</string>
+          <string notr="true">Español</string>
          </property>
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
@@ -2102,8 +2110,7 @@ border-left-color: #C2C7CB;</string>
           <string>Change application language to 'German (Deutsch)'.</string>
          </property>
          <property name="text">
-          <string>German
-(Deutsch)</string>
+          <string notr="true">Deutsch</string>
          </property>
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
@@ -2141,8 +2148,7 @@ border-left-color: #C2C7CB;</string>
           <string>Change application language to 'French (Français)'.</string>
          </property>
          <property name="text">
-          <string>French
-(Français)</string>
+          <string notr="true">Français</string>
          </property>
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
@@ -2180,8 +2186,7 @@ border-left-color: #C2C7CB;</string>
           <string>Change application language to 'Polish (Polski)'.</string>
          </property>
          <property name="text">
-          <string>Polish
-(Polski)</string>
+          <string notr="true">Polski</string>
          </property>
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
@@ -2219,8 +2224,7 @@ border-left-color: #C2C7CB;</string>
           <string>Change application language to 'Portuguese (Português)'.</string>
          </property>
          <property name="text">
-          <string>Portuguese
-(Português)</string>
+          <string notr="true">Português</string>
          </property>
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
