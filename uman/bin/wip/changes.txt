@@ -18,6 +18,16 @@ SONGTREE
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
+QT
+* based on Qt 4.8.0 now
+
+RIBBON MENU
+* replaced last two checkboxes by toolbuttons in View
+* simplified language menu (removed translated language string)
+
+SONGTREE
+* tooltip for #START and #END tag now shows start and end time in min:sec
+
 REPORTS
 * text report now has CR/LF line endings
 * HTML and text report are UTF-8 encoded and file names include the current date (just like PDF report)
@@ -34,6 +44,10 @@ LOG
 
 SONGTREE
 * sorting by score file working
+* sorting by relative tag working
+
+SONGDETAILS
+* suffix vanishes also for values entered using decimal dot instead of decimal comma
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
