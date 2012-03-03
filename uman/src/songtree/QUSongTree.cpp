@@ -127,7 +127,7 @@ void QUSongTree::initHorizontalHeader() {
 
 	header->setText(LENGTH_COLUMN, tr("Song"));
 	header->setIcon(LENGTH_COLUMN, QIcon(":/types/time_song.png"));
-	header->setToolTip(LENGTH_COLUMN, tr("Song length calculated from BPM and lyrics."));
+	header->setToolTip(LENGTH_COLUMN, tr("Shows the song length calculated from BPM and lyrics."));
 
 	header->setIcon(LENGTH_DIFF_COLUMN, QIcon(":/types/time_warning.png"));
 	header->setToolTip(LENGTH_DIFF_COLUMN, tr("Indicates a problem with the difference of <i>song length</i> and <i>audio length</i>.<br><br>The tooltip shows the difference."));
@@ -135,11 +135,11 @@ void QUSongTree::initHorizontalHeader() {
 
 	header->setText(LENGTH_MP3_COLUMN, tr("Audio"));
 	header->setIcon(LENGTH_MP3_COLUMN, QIcon(":/types/time_mp3.png"));
-	header->setToolTip(LENGTH_MP3_COLUMN, tr("Shows length of audio file, if present.<br><br>Can be reset through <b>#END</b> tag."));
+	header->setToolTip(LENGTH_MP3_COLUMN, tr("Shows the length of audio file, if present.<br><br>Can be reset through <b>#END</b> tag."));
 
-	header->setText(LENGTH_EFF_COLUMN, tr("Total"));
+	header->setText(LENGTH_EFF_COLUMN, tr("Effective"));
 	header->setIcon(LENGTH_EFF_COLUMN, QIcon(":/types/time_eff.png"));
-	header->setToolTip(LENGTH_EFF_COLUMN, tr("Shows the effective length:<br><b>audio length - #START</b>."));
+	header->setToolTip(LENGTH_EFF_COLUMN, tr("Shows the effective song length:<br><b>audio length - #START</b>."));
 
 	header->setText(SPEED_COLUMN, tr("Speed"));
 //	header->setIcon(SPEED_COLUMN, QIcon(":/types/time_eff.png"));
@@ -150,19 +150,19 @@ void QUSongTree::initHorizontalHeader() {
 	header->setToolTip(START_COLUMN, tr("Shows how much time is skipped from the beginning of the audio file.<br><i>(in seconds)</i>"));
 	header->setText(END_COLUMN, tr("End"));
 	header->setIcon(END_COLUMN, QIcon(":/types/end.png"));
-	header->setToolTip(END_COLUMN, tr("Shows how much time is skipped from the end of the audio file.<br><i>(in milliseconds)</i>"));
+	header->setToolTip(END_COLUMN, tr("Shows when the song playback stops.<br><i>(in <b>milli</b>seconds)</i>"));
 	header->setText(VIDEOGAP_COLUMN, tr("Videogap"));
 	header->setIcon(VIDEOGAP_COLUMN, QIcon(":/types/videogap.png"));
 	header->setToolTip(VIDEOGAP_COLUMN, tr("Shows how much time is skipped from the video file.<br><i>(in seconds)</i>"));
 
 	header->setText(RELATIVE_COLUMN, tr("Relative?"));
-	header->setToolTip(RELATIVE_COLUMN, tr("Has relative timestamps."));
+	header->setToolTip(RELATIVE_COLUMN, tr("Shows whether the song has relative timestamps."));
 	header->setText(BPM_COLUMN, tr("BPM"));
 	header->setIcon(BPM_COLUMN, QIcon(":/types/bpm.png"));
-	header->setToolTip(BPM_COLUMN, tr("beats per minute"));
+	header->setToolTip(BPM_COLUMN, tr("Shows the song tempo.<br><i>(in beats per 15 seconds)"));
 	header->setText(GAP_COLUMN, tr("GAP"));
 	header->setIcon(GAP_COLUMN, QIcon(":/types/gap.png"));
-	header->setToolTip(GAP_COLUMN, tr("Time to first syllable."));
+	header->setToolTip(GAP_COLUMN, tr("Shows the gap between the beginning of the song and the first syllable.<br><i>(in milliseconds)</i>"));
 
 	//header->setText(DUPLICATE_ID_COLUMN, "ID");
 	header->setToolTip(DUPLICATE_ID_COLUMN, tr("Indicate duplicate songs. <b>You should not see me.</b>"));
