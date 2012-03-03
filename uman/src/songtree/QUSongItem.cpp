@@ -537,6 +537,7 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case LENGTH_MP3_COLUMN:
 	case LENGTH_EFF_COLUMN:
 	case SPEED_COLUMN:
+	case RELATIVE_COLUMN:
 		return this->data(column, Qt::UserRole).toInt() < other.data(column, Qt::UserRole).toInt(); break;
 	case START_COLUMN:
 	case END_COLUMN:
@@ -603,25 +604,25 @@ void QUSongItem::updateSpellCheckColumns() {
 void QUSongItem::updateFileCheckColumns() {
 	/* file-related columns */
 
-		 if(song()->hasMp3())							this->setTick(MP3_COLUMN);
+		 if(song()->hasMp3())												this->setTick(MP3_COLUMN);
 	else if(song()->mp3() != N_A && !song()->mp3FileInfo().exists())		this->setCross(MP3_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->mp3()));
 	else if(song()->mp3() != N_A && song()->mp3FileInfo().exists())			this->setCross(MP3_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->mp3()));
-	else										this->setCross(MP3_COLUMN);
+	else																	this->setCross(MP3_COLUMN);
 
-		 if(song()->hasCover())							this->setTick(COVER_COLUMN);
-	else if(song()->cover() != N_A && !song()->coverFileInfo().exists())		this->setCross(COVER_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->cover()));
+		 if(song()->hasCover())												this->setTick(COVER_COLUMN);
+	else if(song()->cover() != N_A && !song()->coverFileInfo().exists())	this->setCross(COVER_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->cover()));
 	else if(song()->cover() != N_A && song()->coverFileInfo().exists())		this->setCross(COVER_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->cover()));
-	else										this->setCross(COVER_COLUMN);
+	else																	this->setCross(COVER_COLUMN);
 
-		 if(song()->hasBackground())						this->setTick(BACKGROUND_COLUMN);
+		 if(song()->hasBackground())										this->setTick(BACKGROUND_COLUMN);
 	else if(song()->background() != N_A && !song()->backgroundFileInfo().exists())	this->setCross(BACKGROUND_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->background()));
 	else if(song()->background() != N_A && song()->backgroundFileInfo().exists())	this->setCross(BACKGROUND_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->background()));
-	else										this->setCross(BACKGROUND_COLUMN);
+	else																	this->setCross(BACKGROUND_COLUMN);
 
-		 if(song()->hasVideo())							this->setTick(VIDEO_COLUMN);
-	else if(song()->video() != N_A && !song()->videoFileInfo().exists())		this->setCross(VIDEO_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->video()));
+		 if(song()->hasVideo())												this->setTick(VIDEO_COLUMN);
+	else if(song()->video() != N_A && !song()->videoFileInfo().exists())	this->setCross(VIDEO_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->video()));
 	else if(song()->video() != N_A && song()->videoFileInfo().exists())		this->setCross(VIDEO_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->video()));
-	else										this->setCross(VIDEO_COLUMN);
+	else																	this->setCross(VIDEO_COLUMN);
 
 	// score files
 	if(song()->score())
@@ -712,7 +713,7 @@ void QUSongItem::updateTypeColumns() {
 
 void QUSongItem::updateTimeCheckColumns() {
 	int length = song()->length();
-	this->setTextAlignment(LENGTH_COLUMN, Qt::AlignRight);
+	this->setTextAlignment(LENGTH_COLUMN, Qt::AlignLeft);
 	this->setText(LENGTH_COLUMN, length == 0 ? N_A : QString("%1:%2").arg(length / 60).arg(length % 60, 2, 10, QChar('0')));
 	this->setData(LENGTH_COLUMN, Qt::UserRole, QVariant(length));
 	int lengthMp3 = song()->lengthMp3();
@@ -764,8 +765,15 @@ void QUSongItem::updateTimeCheckColumns() {
 	// show some time control tags
 	this->setText(START_COLUMN, song()->start());
 	this->setData(START_COLUMN, Qt::UserRole, song()->start().replace(",", "."));
+	int startSeconds = qRound(song()->start().replace(",", ".").toDouble());
+	this->setToolTip(START_COLUMN, QString(QObject::tr("Song starts at %1:%2.")).arg(startSeconds / 60, 1, 10, QChar('0')).arg(startSeconds % 60, 2, 10, QChar('0')));
 	this->setText(END_COLUMN, song()->end());
 	this->setData(END_COLUMN, Qt::UserRole, song()->end().replace(",", "."));
+	int endSeconds = qRound(song()->end().replace(",", ".").toDouble() / 1000);
+	if(endSeconds != 0)
+		this->setToolTip(END_COLUMN, QString(QObject::tr("Song ends at %1:%2.")).arg(endSeconds / 60, 1, 10, QChar('0')).arg(endSeconds % 60, 2, 10, QChar('0')));
+	else
+		this->setToolTip(END_COLUMN, QString(QObject::tr("Song ends at %1:%2.")).arg(lengthMp3 / 60).arg(lengthMp3 % 60, 2, 10, QChar('0')));
 	this->setText(VIDEOGAP_COLUMN, song()->videogap());
 	this->setData(VIDEOGAP_COLUMN, Qt::UserRole, song()->videogap().replace(",", "."));
 }
@@ -773,14 +781,14 @@ void QUSongItem::updateTimeCheckColumns() {
 void QUSongItem::updateTextColumns() {
 	/* other tag columns */
 
-	this->setText(ARTIST_COLUMN_EX, song()->artist());  if(song()->artist() != N_A) this->setToolTip(ARTIST_COLUMN_EX, song()->artist());
-	this->setText(TITLE_COLUMN_EX,  song()->title());   if(song()->title()  != N_A) this->setToolTip(TITLE_COLUMN_EX,  song()->title());
+	this->setText(ARTIST_COLUMN_EX,	song()->artist());	if(song()->artist()		!= N_A) this->setToolTip(ARTIST_COLUMN_EX,	song()->artist());
+	this->setText(TITLE_COLUMN_EX,	song()->title());	if(song()->title()		!= N_A) this->setToolTip(TITLE_COLUMN_EX,	song()->title());
 
-	this->setText(LANGUAGE_COLUMN, song()->language()); if(song()->language() != N_A) this->setToolTip(LANGUAGE_COLUMN,  song()->language());
-	this->setText(EDITION_COLUMN,  song()->edition());  if(song()->edition()  != N_A) this->setToolTip(EDITION_COLUMN,   song()->edition());
-	this->setText(GENRE_COLUMN,	song()->genre());	if(song()->genre()	!= N_A) this->setToolTip(GENRE_COLUMN,	 song()->genre());
-	this->setText(YEAR_COLUMN,	 song()->year());	 if(song()->year()	 != N_A) this->setToolTip(YEAR_COLUMN,	  song()->year());
-	this->setText(CREATOR_COLUMN,  song()->creator());  if(song()->creator()  != N_A) this->setToolTip(CREATOR_COLUMN,   song()->creator());
+	this->setText(LANGUAGE_COLUMN,	song()->language());if(song()->language()	!= N_A) this->setToolTip(LANGUAGE_COLUMN,	song()->language());
+	this->setText(EDITION_COLUMN,	song()->edition());	if(song()->edition()	!= N_A) this->setToolTip(EDITION_COLUMN,	song()->edition());
+	this->setText(GENRE_COLUMN,		song()->genre());	if(song()->genre()		!= N_A) this->setToolTip(GENRE_COLUMN,		song()->genre());
+	this->setText(YEAR_COLUMN,		song()->year());	if(song()->year()		!= N_A) this->setToolTip(YEAR_COLUMN,		song()->year());
+	this->setText(CREATOR_COLUMN,	song()->creator());	if(song()->creator()	!= N_A) this->setToolTip(CREATOR_COLUMN,	song()->creator());
 
 	// show custom tags
 	int i = 0;
@@ -791,8 +799,9 @@ void QUSongItem::updateTextColumns() {
 }
 
 void QUSongItem::updateControlColumns() {
-	setText(RELATIVE_COLUMN, song()->relative());
+	//setText(RELATIVE_COLUMN, song()->relative());
 	setIcon(RELATIVE_COLUMN, QIcon(song()->isRelative() ? ":/marks/tick.png": ":/marks/cross.png"));
+	setData(RELATIVE_COLUMN, Qt::UserRole, song()->isRelative() ? -1 : 0);
 
 	setText(BPM_COLUMN, song()->bpm());
 	setData(BPM_COLUMN, Qt::UserRole, song()->bpm().replace(",", "."));
