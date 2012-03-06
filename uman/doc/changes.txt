@@ -62,7 +62,7 @@ TASKS
 TASK LIST
 * tooltip of slot buttons is empty before the first selection of the slot
 
-SONG FRIENDS (general workaround: switch friend to primary song with double-click on song text file)
+SONG FRIENDS (general workaround: switch friend to primary song using the context menu)
 * cannot add song friends to playlist
 * cannot change #MP3 for karaoke song friend
 * cannot change #EDITION for song friend
@@ -71,7 +71,7 @@ SONG FRIENDS (general workaround: switch friend to primary song with double-clic
 * some tasks may not affect song friends (e.g. "Remove unsupported tags")
 
 MEDIA PLAYER
-* correct songs get ansychronous after a while (seek works right)
+* correct songs get ansychronous after a while (seek works correctly)
 * uman crashes if you play a song, change the song directory and skip
 
 AUTO-SAVE
@@ -85,7 +85,7 @@ SONG TREE
 * cannot drop external files into song tree anymore :-/
 
 COVER DOWNLOAD
-* AlbumArtExchange blocked by blockscript
+* AlbumArtExchange blocked by Blockscript (http://www.blockscript.com/)
 * Amazon yields invalid request
 
 MENU
