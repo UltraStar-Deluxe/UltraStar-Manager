@@ -326,7 +326,7 @@
     <message>
         <location filename="../../QUMonty.cpp" line="64"/>
         <source>Have you ever created a &lt;i&gt;report&lt;/i&gt; of your songs? No?&lt;br&gt;&lt;br&gt;Try &lt;i&gt;Extras &amp;rarr; Create Report...&lt;/i&gt; or simply press &lt;i&gt;F8&lt;/i&gt; to export your song collection to PDF, HTML, CSV, or plain text.</source>
-        <translation type="unfinished"></translation>
+        <translation>Avez-vous déjà créé un &lt;i&gt;rapport&lt;/i&gt; de vos chansons? Non?&lt;br&gt;&lt;br&gt; Essayez&lt;i&gt;Extras &amp;rarr; Créer un Rapport...&lt;/i&gt; ou appuyez tout simplement sur &lt;i&gt;F8&lt;/i&gt; pour exporter votre collection de chansons au format PDF, HTML, CSV ou en texte.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="73"/>
@@ -771,13 +771,13 @@ Essayez de recadrer en %1 x %3 pour avoir des dimensions valides pour un écran 
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="769"/>
         <source>Song starts at %1:%2.</source>
-        <translation type="unfinished"></translation>
+        <translation>La chanson démarre à %1:%2.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="774"/>
         <location filename="../../songtree/QUSongItem.cpp" line="776"/>
         <source>Song ends at %1:%2.</source>
-        <translation type="unfinished"></translation>
+        <translation>La chanson fini à %1:%2.</translation>
     </message>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="23"/>
@@ -3942,7 +3942,7 @@ Multimédia</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="911"/>
         <location filename="../../ribbon/QURibbonBar.ui" line="1654"/>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2275"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2279"/>
         <source>General</source>
         <translation>Général</translation>
     </message>
@@ -4061,17 +4061,17 @@ premier plan</translation>
         <translation>&amp;Langues</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2414"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2418"/>
         <source>Update</source>
         <translation>Mise à jour</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2446"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2450"/>
         <source>Check for Update. Internet connection required.</source>
         <translation>Vérification des mises à jour. Une connection internet est requise.</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2449"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2453"/>
         <source>Check for
 Update</source>
         <translation>Vérifier les
@@ -4142,68 +4142,62 @@ UTF-8</translation>
         <translation>Changer la langue de l&apos;application en &apos;Anglais (English)&apos;.</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2025"/>
         <source>English</source>
-        <translation>Anglais
+        <translation type="obsolete">Anglais
 (English)</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2102"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2110"/>
         <source>Change application language to &apos;German (Deutsch)&apos;.</source>
         <translation>Changer la langue de l&apos;application en &apos;Allemand (Deutsch)&apos;.</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2105"/>
         <source>German
 (Deutsch)</source>
-        <translation>Allemand
+        <translation type="obsolete">Allemand
 (Deutsch)</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2180"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2186"/>
         <source>Change application language to &apos;Polish (Polski)&apos;.</source>
         <translation>Changer la langue de l&apos;application en &apos;Polonais (Polski)&apos;.</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2183"/>
         <source>Polish
 (Polski)</source>
-        <translation>Polonais
+        <translation type="obsolete">Polonais
 (Polski)</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="2141"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2148"/>
         <source>Change application language to &apos;French (Français)&apos;.</source>
         <translation>Changer la langue de l&apos;application en &apos;Français&apos;.</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="2144"/>
         <source>French
 (Français)</source>
-        <translation>Français</translation>
+        <translation type="obsolete">Français</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="2063"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2072"/>
         <source>Change application language to &apos;Spanish (Español)&apos;.</source>
         <translation>Changer la langue de l&apos;application en &apos;Espagnol (Español)&apos;.</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="2066"/>
         <source>Spanish
 (Español)</source>
-        <translation>Espagnol
+        <translation type="obsolete">Espagnol
 (Español)</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="2219"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2224"/>
         <source>Change application language to &apos;Portuguese (Português)&apos;.</source>
         <translation>Changer la langue de l&apos;application en &apos;Portuguais (Português)&apos;.</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="2222"/>
         <source>Portuguese
 (Português)</source>
-        <translation>Portugais
+        <translation type="obsolete">Portugais
 (Português)</translation>
     </message>
     <message>
@@ -4305,32 +4299,32 @@ Chansons</translation>
         <translation>Tout réduire</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2263"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2267"/>
         <source>&amp;About</source>
         <translation>&amp;A propos</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2298"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2302"/>
         <source>Qt Open Source Edition...</source>
         <translation>Qt Open Source Edition...</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2321"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2325"/>
         <source>UltraStar Manager...</source>
         <translation>UltraStar Manager...</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2343"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2347"/>
         <source>Third-Party Libs</source>
         <translation>Autres librairies</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2366"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2370"/>
         <source>TagLib...</source>
         <translation>TagLib...</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2392"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2396"/>
         <source>BASS...</source>
         <translation>BASS...</translation>
     </message>
@@ -5155,42 +5149,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="130"/>
         <source>Shows the song length calculated from BPM and lyrics.</source>
-        <translation type="unfinished"></translation>
+        <translation>Montre la longueur de la chanson calculée à partir du BPM et des paroles.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="138"/>
         <source>Shows the length of audio file, if present.&lt;br&gt;&lt;br&gt;Can be reset through &lt;b&gt;#END&lt;/b&gt; tag.</source>
-        <translation type="unfinished"></translation>
+        <translation>Montre la longueur du fichier audio, si il est présent.&lt;br&gt;&lt;br&gt;Cela peut être changé grâce au champ &lt;b&gt;#END&lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="140"/>
         <source>Effective</source>
-        <translation type="unfinished"></translation>
+        <translation>Effectif</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="142"/>
         <source>Shows the effective song length:&lt;br&gt;&lt;b&gt;audio length - #START&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer la longueur réelle de la chanson:&lt;br&gt;&lt;b&gt;longueur du fichier audio - #START&lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="153"/>
         <source>Shows when the song playback stops.&lt;br&gt;&lt;i&gt;(in &lt;b&gt;milli&lt;/b&gt;seconds)&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Montre quand la lecture de la chanson s&apos;arrète.&lt;br&gt;&lt;i&gt;(en &lt;b&gt;milli&lt;/b&gt;secondes)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="159"/>
         <source>Shows whether the song has relative timestamps.</source>
-        <translation type="unfinished"></translation>
+        <translation>Montre si votre chanson a des marqueurs de temps relatifs.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="162"/>
         <source>Shows the song tempo.&lt;br&gt;&lt;i&gt;(in beats per 15 seconds)</source>
-        <translation type="unfinished"></translation>
+        <translation>Montre le tempo de la chanson.&lt;br&gt;&lt;i&gt;(en nombre de beats par 15 secondes)</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="165"/>
         <source>Shows the gap between the beginning of the song and the first syllable.&lt;br&gt;&lt;i&gt;(in milliseconds)&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Montre le gap entre le début de la chanson et la première syllabe.&lt;br&gt;&lt;i&gt;(en millisecondes)&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="168"/>

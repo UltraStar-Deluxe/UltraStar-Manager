@@ -4464,7 +4464,7 @@ Details</source>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="911"/>
         <location filename="../../ribbon/QURibbonBar.ui" line="1654"/>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2275"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2279"/>
         <source>General</source>
         <translation>Allgemeines</translation>
     </message>
@@ -4566,17 +4566,17 @@ Vordergrund</translation>
         <translation>S&amp;prache</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2414"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2418"/>
         <source>Update</source>
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2446"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2450"/>
         <source>Check for Update. Internet connection required.</source>
         <translation>Prüfung auf Update. Internetverbindung erforderlich.</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2449"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2453"/>
         <source>Check for
 Update</source>
         <translation>Auf Update
@@ -4642,68 +4642,62 @@ Speichern</translation>
         <translation>Ändere Sprache der Anwendung auf &quot;Englisch (English)&quot;.</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2025"/>
         <source>English</source>
-        <translation>Englisch
+        <translation type="obsolete">Englisch
 (English)</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2102"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2110"/>
         <source>Change application language to &apos;German (Deutsch)&apos;.</source>
         <translation>Ändere Sprache der Anwendung auf &quot;Deutsch&quot;.</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2105"/>
         <source>German
 (Deutsch)</source>
-        <translation>Deutsch</translation>
+        <translation type="obsolete">Deutsch</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2180"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2186"/>
         <source>Change application language to &apos;Polish (Polski)&apos;.</source>
         <translation>Ändere Sprache der Anwendung auf &quot;Polnisch (Polski)&quot;.</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2183"/>
         <source>Polish
 (Polski)</source>
-        <translation>Polnisch
+        <translation type="obsolete">Polnisch
 (Polski)</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="2141"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2148"/>
         <source>Change application language to &apos;French (Français)&apos;.</source>
         <translation>Ändere Sprache der Anwendung auf &quot;Französisch (Français)&quot;.</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="2144"/>
         <source>French
 (Français)</source>
-        <translation>Französisch
+        <translation type="obsolete">Französisch
 (Français)</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="2063"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2072"/>
         <source>Change application language to &apos;Spanish (Español)&apos;.</source>
         <translation>Ändere Sprache der Anwendung auf &quot;Spanisch (Español)&quot;.</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="2066"/>
         <source>Spanish
 (Español)</source>
-        <translation>Spanisch
+        <translation type="obsolete">Spanisch
 (Español)</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="2219"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2224"/>
         <source>Change application language to &apos;Portuguese (Português)&apos;.</source>
         <translation>Ändere Sprache der Anwendung auf &quot;Portugiesisch (Português)&quot;.</translation>
     </message>
     <message utf8="true">
-        <location filename="../../ribbon/QURibbonBar.ui" line="2222"/>
         <source>Portuguese
 (Português)</source>
-        <translation>Portugiesisch
+        <translation type="obsolete">Portugiesisch
 (Português)</translation>
     </message>
     <message>
@@ -4812,32 +4806,32 @@ verstecken</translation>
         <translation>Baum einklappen</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2263"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2267"/>
         <source>&amp;About</source>
         <translation>Ü&amp;ber</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2298"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2302"/>
         <source>Qt Open Source Edition...</source>
         <translation>Qt Open Source Edition...</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2321"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2325"/>
         <source>UltraStar Manager...</source>
         <translation>UltraStar Manager...</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2343"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2347"/>
         <source>Third-Party Libs</source>
         <translation>Third-Party Bibliotheken</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2366"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2370"/>
         <source>TagLib...</source>
         <translation>TabLib...</translation>
     </message>
     <message>
-        <location filename="../../ribbon/QURibbonBar.ui" line="2392"/>
+        <location filename="../../ribbon/QURibbonBar.ui" line="2396"/>
         <source>BASS...</source>
         <translation></translation>
     </message>
