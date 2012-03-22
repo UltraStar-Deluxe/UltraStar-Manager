@@ -1,7 +1,7 @@
 XPStyle on
 
 !define PRODUCTNAME "UltraStar Manager"
-!define PRODUCTVERSION "1.8.1"
+!define PRODUCTVERSION "1.8.2"
 Name "${PRODUCTNAME} ${PRODUCTVERSION}"
 
 !include "MUI.nsh"
