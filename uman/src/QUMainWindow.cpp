@@ -1091,8 +1091,8 @@ void QUMainWindow::editCustomTags() {
 }
 
 void QUMainWindow::montyTalk(bool force) {
-    //if(!force && !_menu->montyBtn->isChecked())
-        //return;
+	//if(!force && !_menu->montyBtn->isChecked())
+		//return;
 
 	montyArea->show();
 	monty->talk(montyArea->montyLbl, montyArea->helpLbl);
@@ -1707,12 +1707,15 @@ void QUMainWindow::setHighMp3Quality(QString quality) {
 	settings.setValue("highMp3Quality", quality.split(" ").first().toInt());
 
 	// ensure that mediumMp3Quality is at least one level lower
-	if(_menu->mediumMp3QualityComboBox->currentIndex() >= _menu->mediumMp3QualityComboBox->findText(quality)) {
-		disconnect(_menu->mediumMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumMp3Quality(QString)));
-		_menu->mediumMp3QualityComboBox->setCurrentIndex(_menu->mediumMp3QualityComboBox->findText(quality) - 1);
-		connect(_menu->mediumMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumMp3Quality(QString)));
-		settings.setValue("mediumMp3Quality", _menu->mediumMp3QualityComboBox->currentText().split(" ").first().toInt());
+	if(_menu->mediumMp3QualityComboBox->findText(quality) != -1) {
+		if(_menu->mediumMp3QualityComboBox->currentIndex() >= _menu->mediumMp3QualityComboBox->findText(quality)) {
+			disconnect(_menu->mediumMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumMp3Quality(QString)));
+			_menu->mediumMp3QualityComboBox->setCurrentIndex(_menu->mediumMp3QualityComboBox->findText(quality) - 1);
+			connect(_menu->mediumMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumMp3Quality(QString)));
+			settings.setValue("mediumMp3Quality", _menu->mediumMp3QualityComboBox->currentText().split(" ").first().toInt());
+		}
 	}
+
 
 	QUProgressDialog dlg(tr("Updating audio quality icons..."), songTree->topLevelItemCount(), this, false);
 	dlg.setPixmap(":/types/folder.png");
@@ -1759,11 +1762,13 @@ void QUMainWindow::setHighCoverQuality(QString quality) {
 	settings.setValue("highCoverQuality", quality);
 
 	// ensure that mediumCoverQuality is at least one level lower
-	if(_menu->mediumCoverQualityComboBox->currentIndex() >= _menu->mediumCoverQualityComboBox->findText(quality)) {
-		disconnect(_menu->mediumCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumCoverQuality(QString)));
-		_menu->mediumCoverQualityComboBox->setCurrentIndex(_menu->mediumCoverQualityComboBox->findText(quality) - 1);
-		connect(_menu->mediumCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumCoverQuality(QString)));
-		settings.setValue("mediumCoverQuality", _menu->mediumCoverQualityComboBox->currentText().split(" ").first().toInt());
+	if(_menu->mediumCoverQualityComboBox->findText(quality) != -1) {
+		if(_menu->mediumCoverQualityComboBox->currentIndex() >= _menu->mediumCoverQualityComboBox->findText(quality)) {
+			disconnect(_menu->mediumCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumCoverQuality(QString)));
+			_menu->mediumCoverQualityComboBox->setCurrentIndex(_menu->mediumCoverQualityComboBox->findText(quality) - 1);
+			connect(_menu->mediumCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumCoverQuality(QString)));
+			settings.setValue("mediumCoverQuality", _menu->mediumCoverQualityComboBox->currentText().split(" ").first().toInt());
+		}
 	}
 
 	QUProgressDialog dlg(tr("Updating cover quality icons..."), songTree->topLevelItemCount(), this, false);
@@ -1811,11 +1816,13 @@ void QUMainWindow::setHighBackgroundQuality(QString quality) {
 	settings.setValue("highBackgroundQuality", quality);
 
 	// ensure that mediumBackgroundQuality is at least one level lower
-	if(_menu->mediumBackgroundQualityComboBox->currentIndex() >= _menu->mediumBackgroundQualityComboBox->findText(quality)) {
-		disconnect(_menu->mediumBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumBackgroundQuality(QString)));
-		_menu->mediumBackgroundQualityComboBox->setCurrentIndex(_menu->mediumBackgroundQualityComboBox->findText(quality) - 1);
-		connect(_menu->mediumBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumBackgroundQuality(QString)));
-		settings.setValue("mediumBackgroundQuality", _menu->mediumBackgroundQualityComboBox->currentText().split(" ").first().toInt());
+	if(_menu->mediumBackgroundQualityComboBox->findText(quality) != -1) {
+		if(_menu->mediumBackgroundQualityComboBox->currentIndex() >= _menu->mediumBackgroundQualityComboBox->findText(quality)) {
+			disconnect(_menu->mediumBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumBackgroundQuality(QString)));
+			_menu->mediumBackgroundQualityComboBox->setCurrentIndex(_menu->mediumBackgroundQualityComboBox->findText(quality) - 1);
+			connect(_menu->mediumBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumBackgroundQuality(QString)));
+			settings.setValue("mediumBackgroundQuality", _menu->mediumBackgroundQualityComboBox->currentText().split(" ").first().toInt());
+		}
 	}
 
 	QUProgressDialog dlg(tr("Updating background quality icons..."), songTree->topLevelItemCount(), this, false);
