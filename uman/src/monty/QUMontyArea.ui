@@ -104,7 +104,7 @@
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/bubble/speech1.png</pixmap>
+            <pixmap resource="../resources/uman.qrc">:/monty/speech1.png</pixmap>
            </property>
           </widget>
          </item>
@@ -120,7 +120,7 @@
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/bubble/speech2.png</pixmap>
+            <pixmap resource="../resources/uman.qrc">:/monty/speech2.png</pixmap>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
@@ -139,7 +139,7 @@
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/bubble/speech6.png</pixmap>
+            <pixmap resource="../resources/uman.qrc">:/monty/speech6.png</pixmap>
            </property>
           </widget>
          </item>
@@ -162,7 +162,7 @@
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/bubble/speech4.png</pixmap>
+            <pixmap resource="../resources/uman.qrc">:/monty/speech4.png</pixmap>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
@@ -288,7 +288,7 @@
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/bubble/speech5.png</pixmap>
+            <pixmap resource="../resources/uman.qrc">:/monty/speech5.png</pixmap>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
@@ -314,7 +314,7 @@
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/bubble/speech8.png</pixmap>
+            <pixmap resource="../resources/uman.qrc">:/monty/speech8.png</pixmap>
            </property>
           </widget>
          </item>
@@ -330,7 +330,7 @@
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/bubble/speech3.png</pixmap>
+            <pixmap resource="../resources/uman.qrc">:/monty/speech3.png</pixmap>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
@@ -349,7 +349,7 @@
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/bubble/speech7.png</pixmap>
+            <pixmap resource="../resources/uman.qrc">:/monty/speech7.png</pixmap>
            </property>
           </widget>
          </item>
