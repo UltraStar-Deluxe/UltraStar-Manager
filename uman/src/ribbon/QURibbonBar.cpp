@@ -31,8 +31,10 @@ QURibbonBar::QURibbonBar(QWidget *parent): QTabWidget(parent), _menuHidden(false
 	corner->setLayout(new QHBoxLayout(this));
 	corner->layout()->addWidget(montyBtn);
 	corner->layout()->addWidget(helpBtn);
-	// MB: 0 --> 65 for bottom seems to fix the problem with the menu not showing since Qt 4.8.0
-	corner->layout()->setContentsMargins(0, 0, 0, 65);
+
+	//MB quick and dirty fix for menu not showing - hides montyBtn and helpBtn =(
+	corner->layout()->setContentsMargins(0, 0, 0, /*0*/64);
+
 	corner->layout()->setSpacing(0);
 
 	setCornerWidget(corner, Qt::TopRightCorner);

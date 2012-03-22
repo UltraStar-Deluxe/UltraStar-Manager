@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1157</width>
-    <height>98</height>
+    <height>95</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -15,6 +15,12 @@
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
   </property>
   <property name="contextMenuPolicy">
    <enum>Qt::NoContextMenu</enum>
@@ -46,13 +52,192 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QGroupBox" name="groupBox_8">
+     <widget class="QGroupBox" name="currentSong">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Current Song</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QToolButton" name="showLyricsBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Show the lyrics of the current song in a human readable form.</string>
+         </property>
+         <property name="text">
+          <string>Show
+Lyrics...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/types/text.png</normaloff>:/types/text.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="editLyricsBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Modify each syllable of the song. Perform manual corrections.</string>
+         </property>
+         <property name="text">
+          <string>Edit
+Lyrics...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/text_edit.png</normaloff>:/control/text_edit.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="openExpBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Open the folder of the current song.</string>
+         </property>
+         <property name="text">
+          <string>Open with
+ Explorer...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/types/folder.png</normaloff>:/types/folder.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="moreArtistBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Filter all songs for the current artist.</string>
+         </property>
+         <property name="text">
+          <string>Find more
+from Artist</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/types/user.png</normaloff>:/types/user.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="selectedSongs">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="title">
        <string>Selected Songs</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <property name="spacing">
-        <number>2</number>
+        <number>0</number>
        </property>
        <property name="margin">
         <number>0</number>
@@ -67,9 +252,14 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>60</width>
+           <width>54</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
          </property>
          <property name="toolTip">
           <string>Save selected songs.</string>
@@ -96,77 +286,76 @@
         </widget>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <property name="spacing">
-          <number>0</number>
+        <widget class="QToolButton" name="deleteBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <item>
-          <widget class="QToolButton" name="deleteBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Delete selected songs from the database.</string>
-           </property>
-           <property name="text">
-            <string>Delete</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/bin.png</normaloff>:/control/bin.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="mergeBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Merge all selected songs with the current song.</string>
-           </property>
-           <property name="text">
-            <string>Merge</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/merge.png</normaloff>:/control/merge.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Delete selected songs from the database.</string>
+         </property>
+         <property name="text">
+          <string>Delete</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/bin.png</normaloff>:/control/bin.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
        <item>
-        <widget class="Line" name="line_2">
-         <property name="styleSheet">
-          <string>border: 0;
-border-left-width: 1px;
-border-left-style: dotted;
-border-left-color: #C2C7CB;</string>
+        <widget class="QToolButton" name="mergeBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
          </property>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Merge all selected songs with the current song.</string>
+         </property>
+         <property name="text">
+          <string>Merge</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/merge.png</normaloff>:/control/merge.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -180,9 +369,14 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>60</width>
+           <width>54</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
          </property>
          <property name="toolTip">
           <string>Get covers for the selected songs from remote image sources.</string>
@@ -219,9 +413,14 @@ Covers...</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>60</width>
+           <width>54</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
          </property>
          <property name="toolTip">
           <string>Show a slideshow of pictures like iTunes CoverFlow.</string>
@@ -246,222 +445,337 @@ Images</string>
         </widget>
        </item>
        <item>
-        <widget class="Line" name="line_11">
-         <property name="styleSheet">
-          <string>border: 0;
-border-left-width: 1px;
-border-left-style: dotted;
-border-left-color: #C2C7CB;</string>
+        <widget class="QToolButton" name="calcSongSpeed">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Compute the number of syllables per second. Fill the column for the song speed in the tree with values.</string>
+         </property>
+         <property name="text">
+          <string>Calculate
+Speed</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/marks/speed_slow_turtle.png</normaloff>:/marks/speed_slow_turtle.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <property name="spacing">
-          <number>0</number>
+        <widget class="QToolButton" name="sendToPlaylistBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <item>
-          <widget class="QToolButton" name="sendToPlaylistBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Add the selected songs to the current playlist.</string>
-           </property>
-           <property name="text">
-            <string>Send To Playlist</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/playlist_to.png</normaloff>:/control/playlist_to.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="calcSongSpeed">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Compute the number of syllables per second. Fill the column for the song speed in the tree with values.</string>
-           </property>
-           <property name="text">
-            <string>Calculate Song Speed</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/marks/speed_slow_turtle.png</normaloff>:/marks/speed_slow_turtle.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Add the selected songs to the current playlist.</string>
+         </property>
+         <property name="text">
+          <string>Send to
+ Playlist</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/playlist_to.png</normaloff>:/control/playlist_to.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
     </item>
     <item>
-     <widget class="QGroupBox" name="groupBox_7">
-      <property name="title">
-       <string>Current Song</string>
+     <widget class="QGroupBox" name="allSongs">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_10">
+      <property name="title">
+       <string>All Songs</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
        <property name="spacing">
-        <number>2</number>
+        <number>0</number>
        </property>
        <property name="margin">
         <number>0</number>
        </property>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <property name="spacing">
-          <number>0</number>
+        <widget class="QToolButton" name="findSongsBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <item>
-          <widget class="QToolButton" name="showLyricsBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Show the lyrics of the current song in a human readable form.</string>
-           </property>
-           <property name="text">
-            <string>Show Lyrics...</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/types/text.png</normaloff>:/types/text.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="editLyricsBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Modify each syllable of the song. Perform manual corrections.</string>
-           </property>
-           <property name="text">
-            <string>Edit Lyrics...</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/text_edit.png</normaloff>:/control/text_edit.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="Line" name="line">
-         <property name="styleSheet">
-          <string>border: 0;
-border-left-width: 1px;
-border-left-style: dotted;
-border-left-color: #C2C7CB;</string>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
          </property>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Find songs by adding a filter to the song tree. Use regular expressions.</string>
+         </property>
+         <property name="text">
+          <string>Find
+Songs</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/magnifier.png</normaloff>:/control/magnifier.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
-         <property name="spacing">
-          <number>0</number>
+        <widget class="QToolButton" name="saveAllBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <item>
-          <widget class="QToolButton" name="openExpBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Open the folder of the current song.</string>
-           </property>
-           <property name="text">
-            <string>Open With Explorer...</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/types/folder.png</normaloff>:/types/folder.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="moreArtistBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Filter all songs for the current artist.</string>
-           </property>
-           <property name="text">
-            <string>Find More From Artist</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/types/user.png</normaloff>:/types/user.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Save all modified but unsaved songs (the bold ones).</string>
+         </property>
+         <property name="text">
+          <string>Save All
+Changes</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/save_all.png</normaloff>:/control/save_all.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="rescanSongsBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Reload all songs into memory. This may take a while.</string>
+         </property>
+         <property name="text">
+          <string>Rescan
+Song Folder</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/refresh.png</normaloff>:/control/refresh.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="expandAllBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Expand all nodes in the song tree.</string>
+         </property>
+         <property name="text">
+          <string>Expand
+all</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/expand.png</normaloff>:/control/expand.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="collapseAllBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Collapse all nodes in the song tree.</string>
+         </property>
+         <property name="text">
+          <string>Collapse
+all</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/collapse.png</normaloff>:/control/collapse.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="hideSongsBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Filter the song tree manually.</string>
+         </property>
+         <property name="text">
+          <string>Hide</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/eye.png</normaloff>:/control/eye.png</iconset>
+         </property>
+         <property name="popupMode">
+          <enum>QToolButton::InstantPopup</enum>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+         <property name="arrowType">
+          <enum>Qt::NoArrow</enum>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -494,46 +808,22 @@ border-left-color: #C2C7CB;</string>
     </property>
     <item>
      <widget class="QGroupBox" name="groupBox_4">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="title">
        <string>Song Tree</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <property name="spacing">
-        <number>2</number>
+        <number>0</number>
        </property>
        <property name="margin">
         <number>0</number>
        </property>
-       <item>
-        <widget class="QToolButton" name="findSongsBtn">
-         <property name="minimumSize">
-          <size>
-           <width>60</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="toolTip">
-          <string>Find songs by adding a filter to the song tree. Use regular expressions.</string>
-         </property>
-         <property name="text">
-          <string>Find
-Songs</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources/uman.qrc">
-           <normaloff>:/control/magnifier.png</normaloff>:/control/magnifier.png</iconset>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-         <property name="autoRaise">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
        <item>
         <widget class="Line" name="line_3">
          <property name="styleSheet">
@@ -548,81 +838,104 @@ border-left-color: #C2C7CB;</string>
         </widget>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_11">
-         <property name="spacing">
-          <number>0</number>
+        <widget class="QToolButton" name="relativePathsChk">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <item>
-          <widget class="QToolButton" name="relativePathsChk">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Show relative paths in the song tree. These paths are relative to the database folder.</string>
-           </property>
-           <property name="text">
-            <string>Show Relative Song Paths</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/folder_relative.png</normaloff>:/control/folder_relative.png</iconset>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="otherSymbolsChk">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Display other symbols in the song tree that may be less annoying for the user. =)</string>
-           </property>
-           <property name="text">
-            <string>Alternative Tree Symbols</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/types/music.png</normaloff>:/types/music.png</iconset>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Show relative paths in the song tree. These paths are relative to the database folder.</string>
+         </property>
+         <property name="text">
+          <string>Relative
+Paths</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/folder_relative.png</normaloff>:/control/folder_relative.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="otherSymbolsChk">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Display other symbols in the song tree that may be less annoying for the user. =)</string>
+         </property>
+         <property name="text">
+          <string>Alternative
+Symbols</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/types/music.png</normaloff>:/types/music.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
     </item>
     <item>
      <widget class="QGroupBox" name="groupBox_5">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="title">
-       <string>Song Management</string>
+       <string>Dock Widgets</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_7">
        <property name="spacing">
-        <number>2</number>
+        <number>0</number>
        </property>
        <property name="margin">
         <number>0</number>
@@ -637,9 +950,14 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>60</width>
+           <width>54</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
          </property>
          <property name="toolTip">
           <string>Display and edit all song tags.</string>
@@ -667,101 +985,88 @@ Details</string>
         </widget>
        </item>
        <item>
-        <widget class="Line" name="line_6">
-         <property name="styleSheet">
-          <string>border: 0;
-border-left-width: 1px;
-border-left-style: dotted;
-border-left-color: #C2C7CB;</string>
+        <widget class="QToolButton" name="tasksBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Tasks help you to reorganize and clean-up your songs.</string>
+         </property>
+         <property name="text">
+          <string>Tasks</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/tasks.png</normaloff>:/control/tasks.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_8">
-         <property name="spacing">
-          <number>0</number>
+        <widget class="QToolButton" name="playlistsBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <item>
-          <widget class="QToolButton" name="tasksBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Tasks help you to reorganize and clean-up your songs.</string>
-           </property>
-           <property name="text">
-            <string>Tasks</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/tasks.png</normaloff>:/control/tasks.png</iconset>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <property name="checked">
-            <bool>false</bool>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="playlistsBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Playlists are subsets of your songs.</string>
-           </property>
-           <property name="text">
-            <string>Playlists</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/playlist.png</normaloff>:/control/playlist.png</iconset>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Playlists are subsets of your songs.</string>
+         </property>
+         <property name="text">
+          <string>Playlists</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/playlist.png</normaloff>:/control/playlist.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="groupBox_6">
-      <property name="title">
-       <string>Info &amp;&amp; Log</string>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_8">
-       <property name="spacing">
-        <number>2</number>
-       </property>
-       <property name="margin">
-        <number>0</number>
-       </property>
        <item>
         <widget class="QToolButton" name="playerBtn">
          <property name="sizePolicy">
@@ -772,9 +1077,14 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>60</width>
+           <width>54</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
          </property>
          <property name="toolTip">
           <string>Preview each song without launching UltraStar. You may sing. =)</string>
@@ -799,82 +1109,86 @@ Player</string>
         </widget>
        </item>
        <item>
-        <widget class="Line" name="line_7">
-         <property name="styleSheet">
-          <string>border: 0;
-border-left-width: 1px;
-border-left-style: dotted;
-border-left-color: #C2C7CB;</string>
+        <widget class="QToolButton" name="fileInfoBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Show general application information and file-specific details.</string>
+         </property>
+         <property name="text">
+          <string>File
+Information</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/file_info.png</normaloff>:/control/file_info.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_10">
-         <property name="spacing">
-          <number>0</number>
+        <widget class="QToolButton" name="eventLogBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <item>
-          <widget class="QToolButton" name="fileInfoBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Show general application information and file-specific details.</string>
-           </property>
-           <property name="text">
-            <string>File Information</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/file_info.png</normaloff>:/control/file_info.png</iconset>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="eventLogBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Read what happens to your songs and notice errors.</string>
-           </property>
-           <property name="text">
-            <string>Event Log</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/log.png</normaloff>:/control/log.png</iconset>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Read what happens to your songs and notice errors.</string>
+         </property>
+         <property name="text">
+          <string>Event
+Log</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/log.png</normaloff>:/control/log.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -907,94 +1221,94 @@ border-left-color: #C2C7CB;</string>
     </property>
     <item>
      <widget class="QGroupBox" name="groupBox_2">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="title">
        <string>General</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <property name="spacing">
-        <number>2</number>
+        <number>0</number>
        </property>
        <property name="margin">
         <number>0</number>
        </property>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_14">
-         <property name="spacing">
-          <number>0</number>
+        <widget class="QToolButton" name="pathsBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <property name="leftMargin">
-          <number>0</number>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
          </property>
-         <item>
-          <widget class="QToolButton" name="pathsBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>60</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string>Setup all necessary paths to ensure full application functionality.</string>
-           </property>
-           <property name="text">
-            <string>Paths...</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/types/folder_go.png</normaloff>:/types/folder_go.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="baseDirBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Song Directory</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/folder_note.png</normaloff>:/control/folder_note.png</iconset>
-           </property>
-           <property name="popupMode">
-            <enum>QToolButton::InstantPopup</enum>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Setup all necessary paths to ensure full application functionality.</string>
+         </property>
+         <property name="text">
+          <string>Paths...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/types/folder_go.png</normaloff>:/types/folder_go.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
        <item>
-        <widget class="Line" name="line_12">
-         <property name="styleSheet">
-          <string>border: 0;
-border-left-width: 1px;
-border-left-style: dotted;
-border-left-color: #C2C7CB;</string>
+        <widget class="QToolButton" name="baseDirBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Song
+Directory</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/folder_note.png</normaloff>:/control/folder_note.png</iconset>
+         </property>
+         <property name="popupMode">
+          <enum>QToolButton::InstantPopup</enum>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -1008,9 +1322,14 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>64</width>
+           <width>54</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
          </property>
          <property name="toolTip">
           <string>Let no other window overlap this application.</string>
@@ -1052,166 +1371,97 @@ border-left-color: #C2C7CB;</string>
     </item>
     <item>
      <widget class="QGroupBox" name="groupBox_3">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="title">
        <string>Save &amp;&amp; Load</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_5">
        <property name="spacing">
-        <number>2</number>
+        <number>0</number>
        </property>
        <property name="margin">
         <number>0</number>
        </property>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_12">
-         <property name="spacing">
-          <number>0</number>
+        <widget class="QToolButton" name="tagSaveOrder">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <item>
-          <widget class="QToolButton" name="tagSaveOrder">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string>Specify the order in which tags will be saved into the song file.</string>
-           </property>
-           <property name="text">
-            <string>Tag Save Order...</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/tag_disk.png</normaloff>:/control/tag_disk.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="customTagsBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string>Define your own tags here.</string>
-           </property>
-           <property name="text">
-            <string>Custom Tags...</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/tag_custom.png</normaloff>:/control/tag_custom.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Specify the order in which tags will be saved into the song file.</string>
+         </property>
+         <property name="text">
+          <string>Tag Save
+Order...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/tag_disk.png</normaloff>:/control/tag_disk.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_16">
-         <property name="spacing">
-          <number>0</number>
+        <widget class="QToolButton" name="customTagsBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <item>
-          <widget class="QToolButton" name="defaultEncodingsBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string>Specify the default input and output encodings of song files.</string>
-           </property>
-           <property name="text">
-            <string>Default Encodings...</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/encoding.png</normaloff>:/control/encoding.png</iconset>
-           </property>
-           <property name="popupMode">
-            <enum>QToolButton::InstantPopup</enum>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="autoSaveBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string>Always save a song after each change.</string>
-           </property>
-           <property name="text">
-            <string>Auto-Save</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/auto_save.png</normaloff>:/control/auto_save.png</iconset>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <property name="checked">
-            <bool>false</bool>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Define your own tags here.</string>
+         </property>
+         <property name="text">
+          <string>Custom
+Tags...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/tag_custom.png</normaloff>:/control/tag_custom.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="Line" name="line_4">
@@ -1229,6 +1479,91 @@ border-left-color: #C2C7CB;</string>
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QToolButton" name="defaultEncodingsBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Specify the default input and output encodings of song files.</string>
+         </property>
+         <property name="text">
+          <string>Default
+Encodings...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/encoding.png</normaloff>:/control/encoding.png</iconset>
+         </property>
+         <property name="popupMode">
+          <enum>QToolButton::InstantPopup</enum>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="autoSaveBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Always save a song after each change.</string>
+         </property>
+         <property name="text">
+          <string>Auto-
+Save</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/auto_save.png</normaloff>:/control/auto_save.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>
@@ -1236,7 +1571,7 @@ border-left-color: #C2C7CB;</string>
      <widget class="QGroupBox" name="groupBox_14">
       <property name="minimumSize">
        <size>
-        <width>295</width>
+        <width>0</width>
         <height>0</height>
        </size>
       </property>
@@ -1245,7 +1580,7 @@ border-left-color: #C2C7CB;</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_21">
        <property name="spacing">
-        <number>8</number>
+        <number>2</number>
        </property>
        <property name="margin">
         <number>0</number>
@@ -1339,6 +1674,9 @@ border-left-color: #C2C7CB;</string>
            <property name="currentIndex">
             <number>1</number>
            </property>
+           <property name="frame">
+            <bool>true</bool>
+           </property>
            <item>
             <property name="text">
              <string notr="true">64 kbit/s</string>
@@ -1372,6 +1710,22 @@ border-left-color: #C2C7CB;</string>
           </widget>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line_8">
+         <property name="styleSheet">
+          <string>border: 0;
+border-left-width: 1px;
+border-left-style: dotted;
+border-left-color: #C2C7CB;</string>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout_2">
@@ -1475,6 +1829,22 @@ border-left-color: #C2C7CB;</string>
           </widget>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line_9">
+         <property name="styleSheet">
+          <string>border: 0;
+border-left-width: 1px;
+border-left-style: dotted;
+border-left-color: #C2C7CB;</string>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout_3">
@@ -1650,12 +2020,18 @@ border-left-color: #C2C7CB;</string>
     </property>
     <item>
      <widget class="QGroupBox" name="groupBox_10">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="title">
        <string>General</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_13">
        <property name="spacing">
-        <number>2</number>
+        <number>0</number>
        </property>
        <property name="margin">
         <number>0</number>
@@ -1670,9 +2046,14 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>60</width>
+           <width>54</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
          </property>
          <property name="toolTip">
           <string>Export informative lists of your song database.</string>
@@ -1694,94 +2075,7 @@ Report...</string>
         </widget>
        </item>
        <item>
-        <widget class="Line" name="line_10">
-         <property name="styleSheet">
-          <string>border: 0;
-border-left-width: 1px;
-border-left-style: dotted;
-border-left-color: #C2C7CB;</string>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_6">
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QToolButton" name="backupAudioBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Copy all audio files to a secure place.</string>
-           </property>
-           <property name="text">
-            <string>Backup Audio Files...</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/types/music.png</normaloff>:/types/music.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="pluginsBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>See and reload all plugins.</string>
-           </property>
-           <property name="text">
-            <string>Plugins...</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/plugin.png</normaloff>:/control/plugin.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="groupBox_9">
-      <property name="title">
-       <string>Database &amp;&amp; Song Tree</string>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_12">
-       <property name="spacing">
-        <number>2</number>
-       </property>
-       <property name="margin">
-        <number>0</number>
-       </property>
-       <item>
-        <widget class="QToolButton" name="hideSongsBtn">
+        <widget class="QToolButton" name="backupAudioBtn">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -1790,23 +2084,25 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>60</width>
+           <width>54</width>
            <height>0</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
          <property name="toolTip">
-          <string>Filter the song tree manually.</string>
+          <string>Copy all audio files to a secure place.</string>
          </property>
          <property name="text">
-          <string>Hide
-Songs</string>
+          <string>Backup
+Audio Files...</string>
          </property>
          <property name="icon">
           <iconset resource="../resources/uman.qrc">
-           <normaloff>:/control/eye.png</normaloff>:/control/eye.png</iconset>
-         </property>
-         <property name="popupMode">
-          <enum>QToolButton::InstantPopup</enum>
+           <normaloff>:/types/music.png</normaloff>:/types/music.png</iconset>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -1814,154 +2110,103 @@ Songs</string>
          <property name="autoRaise">
           <bool>true</bool>
          </property>
-         <property name="arrowType">
-          <enum>Qt::NoArrow</enum>
-         </property>
         </widget>
        </item>
        <item>
-        <widget class="Line" name="line_9">
-         <property name="styleSheet">
-          <string>border: 0;
-border-left-width: 1px;
-border-left-style: dotted;
-border-left-color: #C2C7CB;</string>
+        <widget class="QToolButton" name="pluginsBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
          </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_5">
-         <property name="spacing">
-          <number>0</number>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
          </property>
-         <item>
-          <widget class="QToolButton" name="saveAllBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Save all modified but unsaved songs (the bold ones).</string>
-           </property>
-           <property name="text">
-            <string>Save All Changes</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/save_all.png</normaloff>:/control/save_all.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="rescanSongsBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Reload all songs into memory. This may take a while.</string>
-           </property>
-           <property name="text">
-            <string>Rescan Song Folder</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/refresh.png</normaloff>:/control/refresh.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="Line" name="line_8">
-         <property name="styleSheet">
-          <string>border: 0;
-border-left-width: 1px;
-border-left-style: dotted;
-border-left-color: #C2C7CB;</string>
+         <property name="toolTip">
+          <string>See and reload all plugins.</string>
          </property>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+         <property name="text">
+          <string>Plugins...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/plugin.png</normaloff>:/control/plugin.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBox_13">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Update</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_18">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_7">
-         <property name="spacing">
-          <number>0</number>
+        <widget class="QToolButton" name="checkForUpdateBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <item>
-          <widget class="QToolButton" name="expandAllBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Expand all nodes in the song tree.</string>
-           </property>
-           <property name="text">
-            <string>Expand All</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/expand.png</normaloff>:/control/expand.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="collapseAllBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Collapse all nodes in the song tree.</string>
-           </property>
-           <property name="text">
-            <string>Collapse All</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/collapse.png</normaloff>:/control/collapse.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Check for Update. Internet connection required.</string>
+         </property>
+         <property name="text">
+          <string>Check for
+Update</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/control/check_for_update.png</normaloff>:/control/check_for_update.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -1994,6 +2239,12 @@ border-left-color: #C2C7CB;</string>
     </property>
     <item>
      <widget class="QGroupBox" name="groupBox">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="title">
        <string>Languages</string>
       </property>
@@ -2014,9 +2265,14 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>68</width>
+           <width>54</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
          </property>
          <property name="toolTip">
           <string>Change application language to 'English'.</string>
@@ -2064,9 +2320,14 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>68</width>
+           <width>54</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
          </property>
          <property name="toolTip">
           <string>Change application language to 'Spanish (Español)'.</string>
@@ -2102,9 +2363,14 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>68</width>
+           <width>54</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
          </property>
          <property name="toolTip">
           <string>Change application language to 'German (Deutsch)'.</string>
@@ -2140,9 +2406,14 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>68</width>
+           <width>54</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
          </property>
          <property name="toolTip">
           <string>Change application language to 'French (Français)'.</string>
@@ -2178,9 +2449,14 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>68</width>
+           <width>54</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
          </property>
          <property name="toolTip">
           <string>Change application language to 'Polish (Polski)'.</string>
@@ -2216,9 +2492,14 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>68</width>
+           <width>54</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
          </property>
          <property name="toolTip">
           <string>Change application language to 'Portuguese (Português)'.</string>
@@ -2275,197 +2556,194 @@ border-left-color: #C2C7CB;</string>
     </property>
     <item>
      <widget class="QGroupBox" name="groupBox_12">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="title">
        <string>General</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_16">
        <property name="spacing">
-        <number>2</number>
+        <number>0</number>
        </property>
        <property name="margin">
         <number>0</number>
        </property>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_13">
-         <property name="spacing">
-          <number>0</number>
+        <widget class="QToolButton" name="aboutUmanBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <item>
-          <widget class="QToolButton" name="aboutQtBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Qt Open Source Edition...</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/qt.png</normaloff>:/qt.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="aboutUmanBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>UltraStar Manager...</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/icons/cup.png</normaloff>:/icons/cup.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>UltraStar
+Manager...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/icons/cup.png</normaloff>:/icons/cup.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="aboutQtBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Qt...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/qt.png</normaloff>:/qt.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
     </item>
     <item>
      <widget class="QGroupBox" name="groupBox_11">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="title">
        <string>Third-Party Libs</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_15">
        <property name="spacing">
-        <number>2</number>
+        <number>0</number>
        </property>
        <property name="margin">
         <number>0</number>
        </property>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_9">
-         <property name="spacing">
-          <number>0</number>
+        <widget class="QToolButton" name="aboutTagLibBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <item>
-          <widget class="QToolButton" name="aboutTagLibBtn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>TagLib...</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/types/music.png</normaloff>:/types/music.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="aboutBASSBtn">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>BASS...</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/player/play.png</normaloff>:/player/play.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>TagLib...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/taglib.png</normaloff>:/taglib.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>26</width>
+           <height>26</height>
+          </size>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="groupBox_13">
-      <property name="title">
-       <string>Update</string>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_18">
-       <property name="spacing">
-        <number>2</number>
-       </property>
-       <property name="margin">
-        <number>0</number>
-       </property>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_15">
-         <property name="spacing">
-          <number>0</number>
+        <widget class="QToolButton" name="aboutBASSBtn">
+         <property name="enabled">
+          <bool>true</bool>
          </property>
-         <item>
-          <widget class="QToolButton" name="checkForUpdateBtn">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>60</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string>Check for Update. Internet connection required.</string>
-           </property>
-           <property name="text">
-            <string>Check for
-Update</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../resources/uman.qrc">
-             <normaloff>:/control/check_for_update.png</normaloff>:/control/check_for_update.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextUnderIcon</enum>
-           </property>
-           <property name="autoRaise">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>54</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>BASS...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/uman.qrc">
+           <normaloff>:/bass.png</normaloff>:/bass.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
