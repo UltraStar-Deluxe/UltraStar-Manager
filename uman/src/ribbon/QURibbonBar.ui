@@ -79,7 +79,7 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -117,7 +117,7 @@ Lyrics...</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -155,7 +155,7 @@ Lyrics...</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -193,7 +193,7 @@ Lyrics...</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -252,7 +252,7 @@ from Artist</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -295,7 +295,7 @@ from Artist</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -332,7 +332,7 @@ from Artist</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -369,7 +369,7 @@ from Artist</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -413,7 +413,7 @@ Covers...</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -454,7 +454,7 @@ Images</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -492,7 +492,7 @@ Speed</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -551,7 +551,7 @@ Speed</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -592,7 +592,7 @@ Songs</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -630,7 +630,7 @@ Changes</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -668,7 +668,7 @@ Song Folder</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -706,7 +706,7 @@ all</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -744,7 +744,7 @@ all</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -847,7 +847,7 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -888,7 +888,7 @@ Paths</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -950,7 +950,7 @@ Symbols</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -994,7 +994,7 @@ Details</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -1037,7 +1037,7 @@ Details</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -1077,7 +1077,7 @@ Details</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -1118,7 +1118,7 @@ Player</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -1159,7 +1159,7 @@ Information</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -1247,7 +1247,7 @@ Log</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -1284,7 +1284,7 @@ Log</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -1322,7 +1322,7 @@ Directory</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -1397,7 +1397,7 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -1435,7 +1435,7 @@ Order...</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -1489,7 +1489,7 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -1530,7 +1530,7 @@ Encodings...</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -2046,7 +2046,7 @@ border-left-color: #C2C7CB;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -2084,7 +2084,7 @@ Report...</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -2122,7 +2122,7 @@ Audio Files...</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -2180,7 +2180,7 @@ Audio Files...</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -2265,7 +2265,7 @@ Update</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -2320,7 +2320,7 @@ Update</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -2363,7 +2363,7 @@ Update</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -2406,7 +2406,7 @@ Update</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -2449,7 +2449,7 @@ Update</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -2492,7 +2492,7 @@ Update</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -2582,7 +2582,7 @@ Update</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -2617,7 +2617,7 @@ Manager...</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -2672,7 +2672,7 @@ Manager...</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
@@ -2715,7 +2715,7 @@ Manager...</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>54</width>
+           <width>64</width>
            <height>0</height>
           </size>
          </property>
