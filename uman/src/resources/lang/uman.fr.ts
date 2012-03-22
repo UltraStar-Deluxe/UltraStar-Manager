@@ -147,7 +147,7 @@
     <message>
         <location filename="../../QUMonty.cpp" line="95"/>
         <source>By default, song files are saved with CP1252 encoding to keep compatibility with older versions of UltraStar. If this encoding is insufficient for encoding your song file due to some special characters, it will automatically be saved using UTF8 encoding.&lt;br&gt;&lt;br&gt;You can change the default output encoding for song files in &lt;i&gt;Options &amp;rarr; Default Encodings...&lt;/i&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Par défaut, les fichiers de chanson sont sauvegardés avec l&apos;encodage CP1252 pour garder la compatibilités avec les anciennes versions d&apos;UltraStar. Si cet encodage est insuffisant pour encoder vos fichiers de chanson à cause de caractères spéciaux, ils seront automatiquement enregistrés avec l&apos;encodage UTF8.&lt;br&gt;&lt;br&gt;Vous pouvez changer l&apos;encodage par défaut en sortie pour les chansons dans &lt;i&gt;Options &amp;rarr; Encodages par défaut...&lt;/i&gt;.</translation>
     </message>
     <message>
         <source>The default values for an artist, a title and the year in the &lt;i&gt;Song Details&lt;/i&gt; are taken from the ID3 tag, if available.</source>
@@ -175,7 +175,7 @@
     <message>
         <location filename="../../QUMonty.cpp" line="48"/>
         <source>The default values for Artist, Title and Year in the &lt;i&gt;Song Details&lt;/i&gt; are read from the ID3 tag, if available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Les valeurs par défaut pour un artiste, un titre et l&apos;année dans les &lt;i&gt;Détails de la chanson&lt;/i&gt; proviennent du tag ID3.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="51"/>
@@ -3678,25 +3678,29 @@ p, li { white-space: pre-wrap; }
         <location filename="../../ribbon/QURibbonBar.ui" line="95"/>
         <source>Show
 Lyrics...</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher
+les paroles...</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="133"/>
         <source>Edit
 Lyrics...</source>
-        <translation type="unfinished"></translation>
+        <translation>Editer
+les paroles...</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="171"/>
         <source>Open with
  Explorer...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir avec
+l&apos;explorateur...</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="209"/>
         <source>Find more
 from Artist</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouver plus
+du même artiste</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="236"/>
@@ -3737,47 +3741,53 @@ from Artist</source>
         <location filename="../../ribbon/QURibbonBar.ui" line="470"/>
         <source>Calculate
 Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Calcul de
+la vitesse</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="508"/>
         <source>Send to
  Playlist</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter à la
+liste de lecture</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="535"/>
         <source>All Songs</source>
-        <translation type="unfinished">Toutes les chansons</translation>
+        <translation>Toutes les chansons</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="608"/>
         <source>Save All
 Changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder
+tous</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="646"/>
         <source>Rescan
 Song Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Rescanner
+le dossier</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="684"/>
         <source>Expand
 all</source>
-        <translation type="unfinished"></translation>
+        <translation>Tout
+développer</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="722"/>
         <source>Collapse
 all</source>
-        <translation type="unfinished"></translation>
+        <translation>Tout
+réduire</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="760"/>
         <source>Hide</source>
-        <translation type="unfinished">Masquer</translation>
+        <translation>Masquer</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="830"/>
@@ -3795,12 +3805,13 @@ border-left-color: #C2C7CB;</source>
         <location filename="../../ribbon/QURibbonBar.ui" line="2595"/>
         <source>UltraStar
 Manager...</source>
-        <translation type="unfinished"></translation>
+        <translation>UltraStar
+Manager...</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="2630"/>
         <source>Qt...</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt...</translation>
     </message>
     <message>
         <source>Get covers for the selected songs from Amazon.</source>
@@ -3810,7 +3821,8 @@ Manager...</source>
         <location filename="../../ribbon/QURibbonBar.ui" line="385"/>
         <source>Get
 Covers...</source>
-        <translation>Obtention des couvertures...</translation>
+        <translation>Obtention des
+couvertures...</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="426"/>
@@ -3980,7 +3992,8 @@ Chanson</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1053"/>
         <source>Playlists</source>
-        <translation>Listes de lecture</translation>
+        <translation type="unfinished">Listes de
+lecture</translation>
     </message>
     <message>
         <source>Info &amp;&amp; Log</source>
@@ -4144,13 +4157,15 @@ premier plan</translation>
         <location filename="../../ribbon/QURibbonBar.ui" line="863"/>
         <source>Relative
 Paths</source>
-        <translation type="unfinished"></translation>
+        <translation>Dossiers
+relatifs</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="904"/>
         <source>Alternative
 Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Symboles
+alternatifs</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="934"/>
@@ -4161,43 +4176,50 @@ Symbols</source>
         <location filename="../../ribbon/QURibbonBar.ui" line="1134"/>
         <source>File
 Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informations
+des fichiers</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1175"/>
         <source>Event
 Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Journal des
+évènements</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1297"/>
         <source>Song
 Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Dossier des
+chansons</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1413"/>
         <source>Tag Save
 Order...</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;ordre des
+champs...</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1451"/>
         <source>Custom
 Tags...</source>
-        <translation type="unfinished"></translation>
+        <translation>Champs
+personnalisés...</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1505"/>
         <source>Default
 Encodings...</source>
-        <translation type="unfinished"></translation>
+        <translation>Encodages
+par défaut...</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="2100"/>
         <source>Backup
 Audio Files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarde des
+fichiers audio...</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="2193"/>
@@ -4247,7 +4269,7 @@ Mises à Jour</translation>
         <location filename="../../ribbon/QURibbonBar.ui" line="1546"/>
         <source>Auto-
 Save</source>
-        <translation type="unfinished">Sauvegarde
+        <translation>Sauvegarde
 Automatique</translation>
     </message>
     <message>
