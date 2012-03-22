@@ -42,6 +42,9 @@ TASKS
 * set first timestamp to zero now also adjusts medley tags, if (both) present
 * fixed modifier (negation) handling for song/ID3 tag tasks
 
+RIBBON MENU
+* fixed automatic setting of medium quality for MP3/cover/background when highest setting was chosen for high quality
+
 LOG
 * log message about defaultOutputEncoding not being sufficient is now correct
 
