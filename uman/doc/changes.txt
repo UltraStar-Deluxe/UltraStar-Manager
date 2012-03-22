@@ -15,6 +15,8 @@ REPORTS
 
 SONGTREE
 * new columns "Medley exists?" and "Golden Notes exist?"
+* new action "Lookup on swisscharts" to check artist/title spelling and release year
+  (swisscharts seems to have a large and complete database and is quite exact with spelling)
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
@@ -24,6 +26,7 @@ QT
 RIBBON MENU
 * replaced last two checkboxes by toolbuttons in View
 * simplified language menu (removed translated language string)
+* reorganized actions
 
 SONGTREE
 * tooltip for #START and #END tag now shows start and end time in min:sec
