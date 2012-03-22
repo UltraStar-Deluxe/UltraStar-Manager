@@ -114,7 +114,7 @@ QUAboutDialog::QUAboutDialog(QWidget *parent): QDialog(parent) {
 			.arg(MINOR_VERSION)
 			.arg(PATCH_VERSION)
 			.arg(QString(revision).remove(QRegExp("(.*:)|\\D")))
-			.arg(dateTime.toString("MMM dd yyyy, HH:mm")));
+			.arg(dateTime.toString("yyyy-MM-dd, HH:mm")));
 
 	resetText();
 	credits->document()->setDefaultStyleSheet("a {color: white}");
