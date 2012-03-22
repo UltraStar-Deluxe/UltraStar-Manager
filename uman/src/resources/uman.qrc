@@ -29,16 +29,16 @@
         <file>lang/qt_fr.qm</file>
         <file>lang/qt_pl.qm</file>
         <file>lang/qt_pt.qm</file>
-    </qresource>
-    <qresource prefix="/bubble">
-        <file>speech8.png</file>
-        <file>speech1.png</file>
-        <file>speech2.png</file>
-        <file>speech3.png</file>
-        <file>speech4.png</file>
-        <file>speech5.png</file>
-        <file>speech6.png</file>
-        <file>speech7.png</file>
+        <file>bass.png</file>
+        <file>taglib.png</file>
+        <file>monty/speech1.png</file>
+        <file>monty/speech2.png</file>
+        <file>monty/speech3.png</file>
+        <file>monty/speech4.png</file>
+        <file>monty/speech5.png</file>
+        <file>monty/speech6.png</file>
+        <file>monty/speech7.png</file>
+        <file>monty/speech8.png</file>
     </qresource>
     <qresource prefix="/bullets">
         <file>arrow_down_small.png</file>
@@ -255,6 +255,7 @@
         <file>medley_off.png</file>
         <file>medley_error.png</file>
         <file>medley_warning.png</file>
+        <file>world.png</file>
     </qresource>
     <qresource prefix="/big">
         <file>save_big.png</file>
