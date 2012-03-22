@@ -80,11 +80,6 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	initConfig();
 	initPluginManager();
 
-	QSettings settings;
-	if (settings.value("allowUpdateCheck", QVariant(false)).toBool()) {
-		this->checkForUpdate(true);
-	}
-
 	initSongTree();
 	initDetailsTable();
 	initTaskList();
@@ -93,6 +88,11 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	initMediaPlayer();
 
 	playlistDB->reload();
+
+	QSettings settings;
+	if (settings.value("allowUpdateCheck", QVariant(false)).toBool()) {
+		this->checkForUpdate(true);
+	}
 
 	addLogMsg(tr("Ready."), QU::Information);
 }
@@ -1091,8 +1091,8 @@ void QUMainWindow::editCustomTags() {
 }
 
 void QUMainWindow::montyTalk(bool force) {
-	if(!force && !_menu->montyBtn->isChecked())
-		return;
+    //if(!force && !_menu->montyBtn->isChecked())
+        //return;
 
 	montyArea->show();
 	monty->talk(montyArea->montyLbl, montyArea->helpLbl);
@@ -1164,6 +1164,9 @@ void QUMainWindow::toggleCompleterChk(bool checked) {
 	settings.setValue("caseSensitiveAutoCompletion", QVariant(checked));
 }
 
+/*!
+ * Toggle whether changes are saved automatically or need to be saved manually.
+ */
 void QUMainWindow::toggleAutoSaveChk(bool checked) {
 	QSettings settings;
 	settings.setValue("autoSave", QVariant(checked));
@@ -1171,6 +1174,9 @@ void QUMainWindow::toggleAutoSaveChk(bool checked) {
 	_menu->saveAllBtn->setEnabled(!checked);
 }
 
+/*!
+ * Toggle whether alternative song tree icons are used.
+ */
 void QUMainWindow::toggleAltSongTreeChk(bool checked) {
 	QSettings settings;
 	if(settings.value("altSongTree", false) == checked)
@@ -1190,6 +1196,11 @@ void QUMainWindow::toggleAltSongTreeChk(bool checked) {
 			songItem->updateSpellFileCheckColumns();
 		}
 	}
+
+	if(checked)
+		logSrv->add(tr("Alternative tree symbols are displayed in the song tree now."), QU::Information);
+	else
+		logSrv->add(tr("Normal tree symbols are displayed in the song tree now."), QU::Information);
 }
 
 /*!

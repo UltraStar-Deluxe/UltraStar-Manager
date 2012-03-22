@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>912</width>
+    <width>954</width>
     <height>765</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>954</width>
+    <height>0</height>
+   </size>
   </property>
   <property name="acceptDrops">
    <bool>false</bool>
@@ -857,7 +863,7 @@ Tasks</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>912</width>
+     <width>954</width>
      <height>21</height>
     </rect>
    </property>
@@ -865,6 +871,12 @@ Tasks</string>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>QUMontyArea</class>
+   <extends>QWidget</extends>
+   <header>QUMontyArea.h</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>QUTaskList</class>
    <extends>QListWidget</extends>
@@ -895,12 +907,6 @@ Tasks</string>
    <class>QUFilterArea</class>
    <extends>QWidget</extends>
    <header>QUFilterArea.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>QUMontyArea</class>
-   <extends>QWidget</extends>
-   <header>QUMontyArea.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
