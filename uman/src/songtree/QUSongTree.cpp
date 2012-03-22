@@ -22,6 +22,7 @@
 #include <QTime>
 #include <QDesktopServices>
 #include <QShortcut>
+#include <QUrl>
 
 #include "QUProgressDialog.h"
 
@@ -1302,7 +1303,7 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 			menu->addAction(QIcon(":/types/music_openexternal.png"), tr("Open audio file externally"), this, SLOT(openCurrentFileExternal()), Qt::Key_Enter)->setFont(*font);
 		} else if(QUSongSupport::allowedSongFiles().contains(extension)) {
 			menu->addAction(QIcon(":/types/text.png"), tr("Show file contents"), this, SLOT(openCurrentFileInternal()), Qt::Key_Enter)->setFont(*font);
-			menu->addAction(QIcon(":/types/text_openexternal.png"), tr("Open text file externally"), this, SLOT(openCurrentFileExternal()));
+            menu->addAction(QIcon(":/types/text_openexternal.png"), tr("Open text file externally"), this, SLOT(openCurrentFileExternal()), Qt::SHIFT + Qt::Key_Enter);
 			if(item->song()->isFriend(item->text(0))) {
 				menu->addAction(QIcon(":/types/text_setprimary.png"), tr("Set as primary song"), this, SLOT(setCurrentFilePrimary()));
 			}
@@ -1312,15 +1313,15 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 		menu->addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), Qt::Key_Delete);
 	} else {
 		// song/folder menu
-		menu->addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),			  Qt::Key_F5);
-		menu->addAction(QIcon(":/control/save.png"),	tr("Save"),	this, SLOT(saveSelectedSongs()),				 Qt::CTRL  + Qt::Key_S);
-		menu->addAction(QIcon(":/control/bin.png"),	 tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()),		Qt::SHIFT + Qt::Key_Delete);
-		QAction *a = menu->addAction(QIcon(":/control/merge.png"), tr("Merge"),   this, SLOT(mergeSelectedSongs()),	 Qt::CTRL  + Qt::Key_M);
+        menu->addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),			Qt::Key_F5);
+        menu->addAction(QIcon(":/control/save.png"),	tr("Save"),	this, SLOT(saveSelectedSongs()),				Qt::CTRL  + Qt::Key_S);
+        menu->addAction(QIcon(":/control/bin.png"),     tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()),	Qt::SHIFT + Qt::Key_Delete);
+        QAction *a = menu->addAction(QIcon(":/control/merge.png"), tr("Merge"),   this, SLOT(mergeSelectedSongs()),	Qt::CTRL  + Qt::Key_M);
 		if(selectedItems().size() < 2) a->setEnabled(false);
 		menu->addAction(QIcon(":/player/play.png"), tr("Play"), this, SIGNAL(playSelectedSongsRequested()));
 
 		menu->addSeparator();
-		menu->addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence::fromString("Ctrl+P"));
+        menu->addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), Qt::CTRL + Qt::Key_P);
 		menu->addAction(QIcon(":/control/image_go.png"), tr("Get Covers..."), this, SLOT(requestCovers()));
 
 		QMenu *pictureFlowMenu = menu->addMenu(QIcon(":/control/images.png"), tr("Review pictures"));
@@ -1336,6 +1337,9 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 		menu->addAction(QIcon(":/types/user.png"), tr("Find More From Artist"), this, SLOT(showMoreCurrentArtist()));
 		menu->addAction(QIcon(":/types/text.png"), tr("Show Lyrics..."), this, SLOT(requestLyrics()), Qt::CTRL + Qt::Key_L);
 		menu->addAction(QIcon(":/control/text_edit.png"), tr("Edit Lyrics..."), this, SLOT(requestEditLyrics()), Qt::CTRL + Qt::Key_E);
+
+		menu->addSeparator();
+		menu->addAction(QIcon(":/types/world.png"),tr("Look up on Swisscharts..."), this, SLOT(lookUpOnSwisscharts()));
 	}
 
 	return menu;
@@ -1479,3 +1483,30 @@ void QUSongTree::restoreSelection(const QList<QUSongItem*> &selectedItems) {
 
 	selectionModel()->select(selection, QItemSelectionModel::Select | QItemSelectionModel::Rows);
 }
+
+/*!
+ * Look up song at swisscharts.com, e.g. for correct spelling and release year
+ */
+void QUSongTree::lookUpOnSwisscharts() {
+	QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->currentItem());
+
+	if(songItem) {
+		QUrl url("http://swisscharts.com/search.asp");
+		url.addQueryItem("cat", "s");
+		QString queryString = songItem->song()->artist() + " " +  songItem->song()->title();
+		QStringList queryStrings = queryString.split(QRegExp("(\\s+)"));
+		QByteArray encodedQuery;
+		foreach(QString queryString, queryStrings) {
+			encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
+		}
+
+		url.addEncodedQueryItem("search", encodedQuery);
+
+		QDesktopServices::openUrl(url);
+	}
+
+	if(selectedSongItems().size() > 1)
+		logSrv->add(tr("You can only look up one song at a time."), QU::Information);
+
+}
+
