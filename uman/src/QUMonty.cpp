@@ -45,7 +45,7 @@ void QUMonty::initMessages() {
 	messages << QObject::tr("Try to click on an audio file and see what appears in the preview window...");
 	messages << QObject::tr("Did you notice the large number of default values for a genre in the <i>Song Details</i>? These genres originate from the good old ID3v1 specification as well as some custom Winamp extensions.");
 	messages << QObject::tr("I shall be quiet? Then uncheck me <i>in the top right corner of the main menu</i>.");
-	messages << QObject::tr("The default values for an artist, a title and the year in the <i>Song Details</i> are taken from the ID3 tag, if available.");
+    messages << QObject::tr("The default values for Artist, Title and Year in the <i>Song Details</i> are read from the ID3 tag, if available.");
 	messages << QObject::tr("There is a task that enables you to set up missing files for a song automatically. That task looks for the first proper files (audio, image, video) and uses that file if the present entry is invalid or missing.");
 	messages << QObject::tr("Some details can be edited simultaneously for a selection of songs. Simply select some songs and use the <i>Song Details</i> table.");
 	messages << QObject::tr("If you drag &amp; drop a dockable widget (song details, tasks, event log) over another dockable widget, these two widgets will merge into a single widget with tabs at the bottom.");
@@ -92,7 +92,7 @@ void QUMonty::initMessages() {
 	messages << QObject::tr("All tasks and cover downloads are implemented as <i>plugins</i>. You can write your own plugins with the <b>UltarStar Manager Plugin SDK</b>.");
 	messages << QObject::tr("You can edit lyrics with <i>Ctrl+E</i>.");
 	messages << QObject::tr("Three different encodings are supported for song files: CP1252 (Western European), CP1250 (Central/Eastern European), and UTF8.<br><br>You can set the default input encoding for song files whose encodings cannot be determined automatically in <i>Options &rarr; Default Encodings...</i>.");
-	messages << QObject::tr("By default, song files are saved with CP1252 encoding to keep compatibility with older versions of UltraStar. If this encoding is insufficient for encoding your song file due to some special characters, it will automatically be saved using the UTF8 encoding.<br><br>You can change the default output encoding for song files in <i>Options &rarr; Default Encodings...</i>.");
+    messages << QObject::tr("By default, song files are saved with CP1252 encoding to keep compatibility with older versions of UltraStar. If this encoding is insufficient for encoding your song file due to some special characters, it will automatically be saved using UTF8 encoding.<br><br>You can change the default output encoding for song files in <i>Options &rarr; Default Encodings...</i>.");
 	messages << QObject::tr("UltraStar Manager is not available in your language? Well, if you are interested in translating, just get in touch with one of the developers at the <a href=\"http://sourceforge.net/projects/uman\">project site</a>.");
 	messages << QObject::tr("You enjoy high quality audio files, covers and backgrounds? Just set your personal quality preferences in <i>Options</i> under <i>Quality Thresholds</i> and sort your song collection by the corresponding column.<br><br>In addition to the colored ticks, non-square (1:1) covers and non-widescreen (16:9) backgrounds will be indicated by a small exclamation mark next to quality tick.");
 	messages << QObject::tr("You can open image files externally for cropping and/or resizing using the file context menu.");
