@@ -1728,12 +1728,12 @@ background-image: url();</translation>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1201"/>
         <source>Alternative tree symbols are displayed in the song tree now.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ahora se muestran símbolos alternativos en el árbol de canciones.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1203"/>
         <source>Normal tree symbols are displayed in the song tree now.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ahora se muestran los símbolos normales en el árbol de canciones.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1274"/>
@@ -1834,19 +1834,19 @@ background-image: url();</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1691"/>
-        <location filename="../../QUMainWindow.cpp" line="1717"/>
+        <location filename="../../QUMainWindow.cpp" line="1720"/>
         <source>Updating audio quality icons...</source>
         <translation>Actualizando íconos de calidad de audio...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1743"/>
-        <location filename="../../QUMainWindow.cpp" line="1769"/>
+        <location filename="../../QUMainWindow.cpp" line="1746"/>
+        <location filename="../../QUMainWindow.cpp" line="1774"/>
         <source>Updating cover quality icons...</source>
         <translation>Actualizando íconos de calidad de carátulas...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1795"/>
-        <location filename="../../QUMainWindow.cpp" line="1821"/>
+        <location filename="../../QUMainWindow.cpp" line="1800"/>
+        <location filename="../../QUMainWindow.cpp" line="1828"/>
         <source>Updating background quality icons...</source>
         <translation>Actualizando íconos de calidad de imágenes de fondo...</translation>
     </message>
@@ -1944,7 +1944,7 @@ Tareas</translation>
     <message>
         <location filename="../../QUMainWindow.ui" line="535"/>
         <source>Playlist</source>
-        <translation>Listas de Reproducción</translation>
+        <translation>Listas de reproducción</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.ui" line="555"/>
@@ -3700,7 +3700,8 @@ border-left-color: #C2C7CB;</translation>
         <location filename="../../ribbon/QURibbonBar.ui" line="2595"/>
         <source>UltraStar
 Manager...</source>
-        <translation>UltraStar Manager...</translation>
+        <translation>UltraSta
+ Manager...</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="2630"/>
@@ -3848,7 +3849,8 @@ de la Canción</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1053"/>
         <source>Playlists</source>
-        <translation>Listas de reproducción</translation>
+        <translation>Listas de
+reproducción</translation>
     </message>
     <message>
         <source>Info &amp;&amp; Log</source>
@@ -3892,7 +3894,8 @@ de la Canción</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1263"/>
         <source>Paths...</source>
-        <translation>Rutas de Acceso...</translation>
+        <translation>Rutas de
+Acceso...</translation>
     </message>
     <message>
         <source>Song Directory</source>
@@ -4218,8 +4221,8 @@ Canciones</translation>
         <location filename="../../ribbon/QURibbonBar.ui" line="863"/>
         <source>Relative
 Paths</source>
-        <translation>Ruta de Acceso
-Relativa</translation>
+        <translation>Ruta de
+Acceso Relativa</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="904"/>
@@ -4231,7 +4234,7 @@ Alternativos</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="934"/>
         <source>Dock Widgets</source>
-        <translation type="unfinished"></translation>
+        <translation>Ventanas Acoplables</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1134"/>
@@ -5494,7 +5497,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1342"/>
         <source>Look up on Swisscharts...</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar en Swisscharts...</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1367"/>
@@ -5539,7 +5542,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1509"/>
         <source>You can only look up one song at a time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Solo puedes buscar una canción a la vez.</translation>
     </message>
 </context>
 <context>

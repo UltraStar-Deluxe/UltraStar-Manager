@@ -2132,19 +2132,19 @@ runterladen...</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1691"/>
-        <location filename="../../QUMainWindow.cpp" line="1717"/>
+        <location filename="../../QUMainWindow.cpp" line="1720"/>
         <source>Updating audio quality icons...</source>
         <translation>Icons für Audioqualität werden aktualisiert...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1743"/>
-        <location filename="../../QUMainWindow.cpp" line="1769"/>
+        <location filename="../../QUMainWindow.cpp" line="1746"/>
+        <location filename="../../QUMainWindow.cpp" line="1774"/>
         <source>Updating cover quality icons...</source>
         <translation>Icons für Coverqualität werden aktualisiert...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1795"/>
-        <location filename="../../QUMainWindow.cpp" line="1821"/>
+        <location filename="../../QUMainWindow.cpp" line="1800"/>
+        <location filename="../../QUMainWindow.cpp" line="1828"/>
         <source>Updating background quality icons...</source>
         <translation>Icons für Hintergrundqualität werden aktualisiert...</translation>
     </message>

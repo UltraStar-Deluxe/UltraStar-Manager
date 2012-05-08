@@ -358,7 +358,7 @@
     <message>
         <location filename="../../QUMonty.cpp" line="80"/>
         <source>The &lt;i&gt;Songs &amp;rarr; Get Covers...&lt;/i&gt; feature allows you to download covers from remote image source. They will only be downloaded for songs that are checked. That also applies to &lt;i&gt;Copy &amp;amp; Set&lt;/i&gt;.</source>
-        <translation>L&apos;option &lt;i&gt;Chansons &amp;rarr; Obtention des couvertures...&lt;/i&gt;vous permet de télécharger les couvertures à partir des sources proposées. Les couvertures ne seront téléchargées que pour les chansons qui sont cochées. Cela s&apos;applique également à &lt;i&gt;Copier &amp;amp; Intégrer&lt;/i&gt;.</translation>
+        <translation>L&apos;option &lt;i&gt;Chansons &amp;rarr; Obtention des couvertures...&lt;/i&gt; vous permet de télécharger les couvertures à partir des sources proposées. Les couvertures ne seront téléchargées que pour les chansons qui sont cochées. Cela s&apos;applique également à &lt;i&gt;Copier &amp;amp; Intégrer&lt;/i&gt;.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="81"/>
@@ -703,22 +703,22 @@ Essayez de recadrer en %3 x %3.</translation>
         <location filename="../../songtree/QUSongItem.cpp" line="408"/>
         <source>Low quality background with non-widescreen aspect ratio (%1 x %2).
 Try cropping to %1 x %3 for a widescreen aspect ratio.</source>
-        <translation>Fond d&apos;écran de mauvaise qualité et de dimensions invalides pour un écran widescreen (%1 x %2).
-Essayez de recadrer en %1 x %3 pour avoir des dimensions valides pour un écran widescreen.</translation>
+        <translation>Fond d&apos;écran de mauvaise qualité et de dimensions non optimales pour un écran widescreen (%1 x %2).
+Essayez de recadrer en %1 x %3 afin d&apos;obtenir les dimensions optimales pour un écran widescreen.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="411"/>
         <source>Medium quality background with non-widescreen aspect ratio (%1 x %2).
 Try cropping to %1 x %3 for a widescreen aspect ratio.</source>
-        <translation>Fond d&apos;écran de  qualité moyenne et de dimensions invalides pour un écran widescreen (%1 x %2).
-Essayez de recadrer en %1 x %3 pour avoir des dimensions valides pour un écran widescreen.</translation>
+        <translation>Fond d&apos;écran de qualité moyenne et de dimensions non optimales pour un écran widescreen (%1 x %2).
+Essayez de recadrer en %1 x %3 afin d&apos;obtenir les dimensions optimales pour un écran widescreen.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="414"/>
         <source>High quality background with non-widescreen aspect ratio (%1 x %2).
 Try cropping to %1 x %3 for a widescreen aspect ratio.</source>
-        <translation>Fond d&apos;écran de bonne qualité mais de dimensions invalides pour un écran widescreen (%1 x %2).
-Essayez de recadrer en %1 x %3 pour avoir des dimensions valides pour un écran widescreen.</translation>
+        <translation>Fond d&apos;écran de bonne qualité mais de dimensions non optimales pour un écran widescreen (%1 x %2).
+Essayez de recadrer en %1 x %3 afin d&apos;obtenir les dimensions optimales pour un écran widescreen.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="608"/>
@@ -1384,7 +1384,7 @@ background-image: url();</source>
     <message>
         <location filename="../../filter/QUFilterArea.ui" line="191"/>
         <source>Look for duplicate songs and show them in the song tree.</source>
-        <translation>Rechercher les chansons en double et les montrer dans l&apos;affichage du répertoire.</translation>
+        <translation>Rechercher les chansons en double et les montrer dans l&apos;arborescence.</translation>
     </message>
     <message>
         <location filename="../../filter/QUFilterArea.ui" line="194"/>
@@ -1620,7 +1620,7 @@ Tâches</translation>
     <message>
         <location filename="../../QUMainWindow.ui" line="696"/>
         <source>Information</source>
-        <translation>Information</translation>
+        <translation>Informations</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.ui" line="716"/>
@@ -1729,7 +1729,7 @@ Tâches</translation>
     <message>
         <location filename="../../QUMainWindow.cpp" line="580"/>
         <source>Rebuild Song Tree</source>
-        <translation>Actualiser l&apos;affichage du répertoire</translation>
+        <translation>Actualiser l&apos;arborescence</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="581"/>
@@ -1949,27 +1949,27 @@ Tâches</translation>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1154"/>
         <source>Relative song paths are displayed in the song tree now.</source>
-        <translation>Les chemins relatifs des dossiers sont maintenant affichés dans l&apos;affichage du répertoire.</translation>
+        <translation>Les chemins relatifs des dossiers sont maintenant affichés dans l&apos;arborescence.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1156"/>
         <source>Only song directories are displayed in the song tree now.</source>
-        <translation>Seulement les dossier des chansons sont affichés dans l&apos;affichage des répertoires, maintenant.</translation>
+        <translation>Seulement les dossier des chansons sont maintenant affichés dans l&apos;arborescence.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1187"/>
         <source>Repainting song tree icons...</source>
-        <translation>Changement des icones de l&apos;affichage des répertoires...</translation>
+        <translation>Changement des icones dans l&apos;affichage de l&apos;arborescence...</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1201"/>
         <source>Alternative tree symbols are displayed in the song tree now.</source>
-        <translation type="unfinished"></translation>
+        <translation>Les symboles alternatifs sont maintenant affichés dans l&apos;arborescence des chansons.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1203"/>
         <source>Normal tree symbols are displayed in the song tree now.</source>
-        <translation type="unfinished"></translation>
+        <translation>Les symboles normaux sont maintenant affichés dans l&apos;arborescence des chansons.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1274"/>
@@ -2070,19 +2070,19 @@ Tâches</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1691"/>
-        <location filename="../../QUMainWindow.cpp" line="1717"/>
+        <location filename="../../QUMainWindow.cpp" line="1720"/>
         <source>Updating audio quality icons...</source>
         <translation>Mise à jour des icones de qualité des fichiers audio...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1743"/>
-        <location filename="../../QUMainWindow.cpp" line="1769"/>
+        <location filename="../../QUMainWindow.cpp" line="1746"/>
+        <location filename="../../QUMainWindow.cpp" line="1774"/>
         <source>Updating cover quality icons...</source>
         <translation>Mise à jour des icones de qualité des couvertures...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1795"/>
-        <location filename="../../QUMainWindow.cpp" line="1821"/>
+        <location filename="../../QUMainWindow.cpp" line="1800"/>
+        <location filename="../../QUMainWindow.cpp" line="1828"/>
         <source>Updating background quality icons...</source>
         <translation>Mise à jour des icones de qualité des fonds d&apos;écran...</translation>
     </message>
@@ -2338,7 +2338,7 @@ Tâches</translation>
     <message>
         <location filename="../../preferences/QUPathsDialog.ui" line="287"/>
         <source>Auto-detect other folders</source>
-        <translation>Détecter automatiquement les autres fichiers</translation>
+        <translation>Détecter automatiquement les autres dossiers</translation>
     </message>
     <message>
         <location filename="../../preferences/QUPathsDialog.ui" line="290"/>
@@ -2453,7 +2453,7 @@ margin: 0;</source>
     <message>
         <location filename="../../preferences/QUPathsDialog.cpp" line="265"/>
         <source>Set all paths so that a &lt;b&gt;green tick&lt;/b&gt; appears in front of each one. This allows all program features to work properly.</source>
-        <translation>Réglez tous les dossier de façon à ce qu&apos;un &lt;b&gt; √ vert &lt;/b&gt; apparraisse devant chacun d&apos;eux. Cela permet à toutes les fonctionnalités du programme de fonctionner normalement.</translation>
+        <translation>Réglez tous les dossier de façon à ce qu&apos;un &lt;b&gt;&lt;font color=&quot;green&quot;&gt;&lt;/font&gt; √ &lt;/font&gt;&lt;/b&gt; apparaisse devant chacun d&apos;eux. Cela permet à toutes les fonctionnalités du programme de fonctionner normalement.</translation>
     </message>
 </context>
 <context>
@@ -2717,12 +2717,12 @@ margin: 0;</source>
     <message>
         <location filename="../../playlist/QUPlaylistDatabase.cpp" line="60"/>
         <source>Connecting playlists to songs...</source>
-        <translation>Connection des listes de lecture aux chansons...</translation>
+        <translation>Connexion des listes de lecture aux chansons...</translation>
     </message>
     <message>
         <location filename="../../playlist/QUPlaylistDatabase.cpp" line="73"/>
         <source>Disconnecting playlists from songs...</source>
-        <translation>Déconnection des listes de lecture et des chansons...</translation>
+        <translation>Déconnexion des listes de lecture et des chansons...</translation>
     </message>
     <message>
         <location filename="../../playlist/QUPlaylistDatabase.cpp" line="94"/>
@@ -3299,7 +3299,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../remoteimages/QURemoteImageDialog.ui" line="134"/>
         <source>Internet connection required.</source>
-        <translation>Connection internet nécessaire.</translation>
+        <translation>Connexion internet nécessaire.</translation>
     </message>
     <message>
         <location filename="../../remoteimages/QURemoteImageDialog.ui" line="183"/>
@@ -3378,7 +3378,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../remoteimages/QURemoteImageDialog.cpp" line="15"/>
         <source>Choose a remote image source and hit the search button. If you get no results consider a configuration of the source. Only checked songs will be considered for downloading and setting. &lt;b&gt;Internet connection required.&lt;/b&gt;</source>
-        <translation>Choisissez une source d&apos;image et appuyez sur le bouton de recherche. Si vous n&apos;obtenez aucun résultats, vérifiez la configuration de la source. Seulement les chansons sélectionnées seront considérées pour le téléchargement et les réglages. &lt;b&gt;Une connection internet est requise.&lt;/b&gt;</translation>
+        <translation>Choisissez une source d&apos;image et appuyez sur le bouton de recherche. Si vous n&apos;obtenez aucun résultats, vérifiez la configuration de la source. Seulement les chansons sélectionnées seront considérées pour le téléchargement et les réglages. &lt;b&gt;Une connexion internet est requise.&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../remoteimages/QURemoteImageDialog.cpp" line="44"/>
@@ -3847,7 +3847,7 @@ Images</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="467"/>
         <source>Compute the number of syllables per second. Fill the column for the song speed in the tree with values.</source>
-        <translation>Calculer le nombre de syllabe par seconde. Complète la colonne de vitesse de la chanson dans l&apos;affichage du répertoire.</translation>
+        <translation>Calculer le nombre de syllabe par seconde. Complète la colonne de vitesse de la chanson dans l&apos;arborescence.</translation>
     </message>
     <message>
         <source>Calculate Song Speed</source>
@@ -3902,7 +3902,7 @@ Images</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="818"/>
         <source>Song Tree</source>
-        <translation>Répertoire des chansons</translation>
+        <translation>Arborescence des chansons</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="564"/>
@@ -3923,7 +3923,7 @@ Chansons</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="860"/>
         <source>Show relative paths in the song tree. These paths are relative to the database folder.</source>
-        <translation>Afficher les dossier relatifs dans le répertoire des chansons. Ces dossiers sont relatifs au dossier de la base de donnée.</translation>
+        <translation>Afficher les dossier relatifs dans l&apos;arborescence des chansons. Ces dossiers sont relatifs au dossier de la base de donnée.</translation>
     </message>
     <message>
         <source>Relative paths</source>
@@ -3932,7 +3932,7 @@ Chansons</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="901"/>
         <source>Display other symbols in the song tree that may be less annoying for the user. =)</source>
-        <translation>Afficher d&apos;autres symboles dans le répertoire des chansons, qui peuvent être moins agaçants pour l&apos;utilisateur. =)</translation>
+        <translation>Afficher d&apos;autres symboles dans l&apos;arborescence des chansons, qui peuvent être moins agaçants pour l&apos;utilisateur. =)</translation>
     </message>
     <message>
         <source>Other tree symbols</source>
@@ -3941,7 +3941,7 @@ Chansons</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="382"/>
         <source>Get covers for the selected songs from remote image sources.</source>
-        <translation>Obtenir les couvertures pour les images sélectionnées des sources.</translation>
+        <translation>Obtenir les couvertures pour les chansons sélectionnées à partir des sources d&apos;image externes.</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="429"/>
@@ -3992,7 +3992,7 @@ Chanson</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1053"/>
         <source>Playlists</source>
-        <translation type="unfinished">Listes de
+        <translation>Listes de
 lecture</translation>
     </message>
     <message>
@@ -4170,7 +4170,7 @@ alternatifs</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="934"/>
         <source>Dock Widgets</source>
-        <translation type="unfinished"></translation>
+        <translation>Fenêtres ancrables</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1134"/>
@@ -4224,7 +4224,7 @@ fichiers audio...</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="2193"/>
         <source>Check for Update. Internet connection required.</source>
-        <translation>Vérification des mises à jour. Une connection internet est requise.</translation>
+        <translation>Vérification des mises à jour. Une connexion internet est requise.</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="2196"/>
@@ -4404,7 +4404,7 @@ Rapport...</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="757"/>
         <source>Filter the song tree manually.</source>
-        <translation>Filtrer le répertoire des chansons manuellement.</translation>
+        <translation>Filtrer l&apos;arborescence des chansons manuellement.</translation>
     </message>
     <message>
         <source>Hide
@@ -4433,7 +4433,7 @@ Chansons</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="681"/>
         <source>Expand all nodes in the song tree.</source>
-        <translation>Dérouler tous les noeuds dans le répertoire des chansons.</translation>
+        <translation>Dérouler tous les noeuds dans l&apos;arborescence des chansons.</translation>
     </message>
     <message>
         <source>Expand All</source>
@@ -4442,7 +4442,7 @@ Chansons</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="719"/>
         <source>Collapse all nodes in the song tree.</source>
-        <translation>Refermer tous les noeuds dans le répertoire des chansons.</translation>
+        <translation>Refermer tous les noeuds dans l&apos;arborescence des chansons.</translation>
     </message>
     <message>
         <source>Collapse All</source>
@@ -4578,7 +4578,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../slideshow/QUSlideShowDialog.cpp" line="23"/>
         <source>Clear #COVER tag on OK</source>
-        <translation>Suppression du champ #COVER réalisé</translation>
+        <translation>Réaliser automatiquement la suppression du champ #COVER</translation>
     </message>
     <message>
         <location filename="../../slideshow/QUSlideShowDialog.cpp" line="27"/>
@@ -4592,7 +4592,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../slideshow/QUSlideShowDialog.cpp" line="28"/>
         <source>Clear #BACKGROUND tag on OK</source>
-        <translation>Suppression du champ #BACKGROUND réalisé</translation>
+        <translation>Réaliser automatiquement la suppression du champ #BACKGROUND</translation>
     </message>
 </context>
 <context>
@@ -5659,7 +5659,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1509"/>
         <source>You can only look up one song at a time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous ne pouvez regarder qu&apos;une seule chanson à la fois.</translation>
     </message>
     <message>
         <source>Open</source>
@@ -5744,7 +5744,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1342"/>
         <source>Look up on Swisscharts...</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche sur Swisscharts...</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1367"/>

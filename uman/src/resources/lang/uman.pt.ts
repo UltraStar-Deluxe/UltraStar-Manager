@@ -1894,12 +1894,12 @@ Tarefas</translation>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1201"/>
         <source>Alternative tree symbols are displayed in the song tree now.</source>
-        <translation type="unfinished"></translation>
+        <translation>Símbolos alternativos são agora mostrados na listagem.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1203"/>
         <source>Normal tree symbols are displayed in the song tree now.</source>
-        <translation type="unfinished"></translation>
+        <translation>Símbolos normais são agora mostrados na listagem.</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1274"/>
@@ -2000,19 +2000,19 @@ Tarefas</translation>
     </message>
     <message>
         <location filename="../../QUMainWindow.cpp" line="1691"/>
-        <location filename="../../QUMainWindow.cpp" line="1717"/>
+        <location filename="../../QUMainWindow.cpp" line="1720"/>
         <source>Updating audio quality icons...</source>
         <translation>Actualizando icons de qualidade do audio...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1743"/>
-        <location filename="../../QUMainWindow.cpp" line="1769"/>
+        <location filename="../../QUMainWindow.cpp" line="1746"/>
+        <location filename="../../QUMainWindow.cpp" line="1774"/>
         <source>Updating cover quality icons...</source>
         <translation>Actualizando icons de qualidade das capas...</translation>
     </message>
     <message>
-        <location filename="../../QUMainWindow.cpp" line="1795"/>
-        <location filename="../../QUMainWindow.cpp" line="1821"/>
+        <location filename="../../QUMainWindow.cpp" line="1800"/>
+        <location filename="../../QUMainWindow.cpp" line="1828"/>
         <source>Updating background quality icons...</source>
         <translation>Actualizando icons de qualidade do fundo...</translation>
     </message>
@@ -3729,7 +3729,8 @@ border-left-color: #C2C7CB;</translation>
         <location filename="../../ribbon/QURibbonBar.ui" line="2595"/>
         <source>UltraStar
 Manager...</source>
-        <translation>UltraStar Manager...</translation>
+        <translation>UltraStar
+Manager...</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="2630"/>
@@ -4277,7 +4278,7 @@ Alternativos</translation>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="934"/>
         <source>Dock Widgets</source>
-        <translation type="unfinished"></translation>
+        <translation>Dock Widgets</translation>
     </message>
     <message>
         <location filename="../../ribbon/QURibbonBar.ui" line="1134"/>
@@ -5568,7 +5569,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1342"/>
         <source>Look up on Swisscharts...</source>
-        <translation type="unfinished"></translation>
+        <translation>Localizar no Swisscharts...</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1367"/>
@@ -5613,7 +5614,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../songtree/QUSongTree.cpp" line="1509"/>
         <source>You can only look up one song at a time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Apenas pode localizar uma música ao mesmo tempo.</translation>
     </message>
 </context>
 <context>
