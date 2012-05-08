@@ -1295,33 +1295,33 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 		// file menu
 		QString extension = "*" + item->text(0).remove(0,item->text(0).lastIndexOf('.')).toLower();
 		if(QUSongSupport::allowedImageFiles().contains(extension)) {
-			menu->addAction(QIcon(":/types/image_show.png"), tr("Show preview"), this, SLOT(openCurrentFileInternal()), Qt::Key_Enter)->setFont(*font);
+			menu->addAction(QIcon(":/types/image_show.png"), tr("Show preview"), this, SLOT(openCurrentFileInternal()), QKeySequence(Qt::Key_Enter))->setFont(*font);
 			menu->addAction(QIcon(":/types/image_openexternal.png"), tr("Open image file externally"), this, SLOT(openCurrentFileExternal()));
 		} else if(QUSongSupport::allowedVideoFiles().contains(extension)) {
-			menu->addAction(QIcon(":/types/video_openexternal.png"), tr("Open video file externally"), this, SLOT(openCurrentFileExternal()), Qt::Key_Enter)->setFont(*font);
+			menu->addAction(QIcon(":/types/video_openexternal.png"), tr("Open video file externally"), this, SLOT(openCurrentFileExternal()), QKeySequence(Qt::Key_Enter))->setFont(*font);
 		} else if(QUSongSupport::allowedAudioFiles().contains(extension)) {
-			menu->addAction(QIcon(":/types/music_openexternal.png"), tr("Open audio file externally"), this, SLOT(openCurrentFileExternal()), Qt::Key_Enter)->setFont(*font);
+			menu->addAction(QIcon(":/types/music_openexternal.png"), tr("Open audio file externally"), this, SLOT(openCurrentFileExternal()), QKeySequence(Qt::Key_Enter))->setFont(*font);
 		} else if(QUSongSupport::allowedSongFiles().contains(extension)) {
-			menu->addAction(QIcon(":/types/text.png"), tr("Show file contents"), this, SLOT(openCurrentFileInternal()), Qt::Key_Enter)->setFont(*font);
-            menu->addAction(QIcon(":/types/text_openexternal.png"), tr("Open text file externally"), this, SLOT(openCurrentFileExternal()), Qt::SHIFT + Qt::Key_Enter);
+			menu->addAction(QIcon(":/types/text.png"), tr("Show file contents"), this, SLOT(openCurrentFileInternal()), QKeySequence(Qt::Key_Enter))->setFont(*font);
+			menu->addAction(QIcon(":/types/text_openexternal.png"), tr("Open text file externally"), this, SLOT(openCurrentFileExternal()), QKeySequence(Qt::SHIFT + Qt::Key_Enter));
 			if(item->song()->isFriend(item->text(0))) {
 				menu->addAction(QIcon(":/types/text_setprimary.png"), tr("Set as primary song"), this, SLOT(setCurrentFilePrimary()));
 			}
 		} else {
-			menu->addAction(QIcon(":/types/file.png"), tr("Open externally"), this, SLOT(openCurrentFileExternal()), Qt::Key_Enter)->setFont(*font);;
+			menu->addAction(QIcon(":/types/file.png"), tr("Open externally"), this, SLOT(openCurrentFileExternal()), QKeySequence(Qt::Key_Enter))->setFont(*font);;
 		}
-		menu->addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), Qt::Key_Delete);
+		menu->addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), QKeySequence(Qt::Key_Delete));
 	} else {
 		// song/folder menu
-        menu->addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),			Qt::Key_F5);
-        menu->addAction(QIcon(":/control/save.png"),	tr("Save"),	this, SLOT(saveSelectedSongs()),				Qt::CTRL  + Qt::Key_S);
-        menu->addAction(QIcon(":/control/bin.png"),     tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()),	Qt::SHIFT + Qt::Key_Delete);
-        QAction *a = menu->addAction(QIcon(":/control/merge.png"), tr("Merge"),   this, SLOT(mergeSelectedSongs()),	Qt::CTRL  + Qt::Key_M);
+		menu->addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),			QKeySequence(Qt::Key_F5));
+		menu->addAction(QIcon(":/control/save.png"),	tr("Save"),	this, SLOT(saveSelectedSongs()),				QKeySequence(Qt::CTRL  + Qt::Key_S));
+		menu->addAction(QIcon(":/control/bin.png"),     tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()),	QKeySequence(Qt::SHIFT + Qt::Key_Delete));
+		QAction *a = menu->addAction(QIcon(":/control/merge.png"), tr("Merge"),   this, SLOT(mergeSelectedSongs()),	QKeySequence(Qt::CTRL  + Qt::Key_M));
 		if(selectedItems().size() < 2) a->setEnabled(false);
 		menu->addAction(QIcon(":/player/play.png"), tr("Play"), this, SIGNAL(playSelectedSongsRequested()));
 
 		menu->addSeparator();
-        menu->addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), Qt::CTRL + Qt::Key_P);
+		menu->addAction(QIcon(":/control/playlist_to.png"), tr("Send To Playlist"), this, SLOT(sendSelectedSongsToPlaylist()), QKeySequence(Qt::CTRL + Qt::Key_P));
 		menu->addAction(QIcon(":/control/image_go.png"), tr("Get Covers..."), this, SLOT(requestCovers()));
 
 		QMenu *pictureFlowMenu = menu->addMenu(QIcon(":/control/images.png"), tr("Review pictures"));
@@ -1333,10 +1333,10 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 		menu->addAction(QIcon(":/marks/speed_slow_turtle.png"), tr("Calculate Song Speed"), this, SLOT(calculateSpeed()));
 
 		menu->addSeparator();
-		menu->addAction(QIcon(":/types/folder.png"),tr("Open With Explorer..."), this, SLOT(openCurrentFolder()), Qt::CTRL + Qt::Key_Return);
+		menu->addAction(QIcon(":/types/folder.png"),tr("Open With Explorer..."), this, SLOT(openCurrentFolder()), QKeySequence(Qt::CTRL + Qt::Key_Return));
 		menu->addAction(QIcon(":/types/user.png"), tr("Find More From Artist"), this, SLOT(showMoreCurrentArtist()));
-		menu->addAction(QIcon(":/types/text.png"), tr("Show Lyrics..."), this, SLOT(requestLyrics()), Qt::CTRL + Qt::Key_L);
-		menu->addAction(QIcon(":/control/text_edit.png"), tr("Edit Lyrics..."), this, SLOT(requestEditLyrics()), Qt::CTRL + Qt::Key_E);
+		menu->addAction(QIcon(":/types/text.png"), tr("Show Lyrics..."), this, SLOT(requestLyrics()), QKeySequence(Qt::CTRL + Qt::Key_L));
+		menu->addAction(QIcon(":/control/text_edit.png"), tr("Edit Lyrics..."), this, SLOT(requestEditLyrics()), QKeySequence(Qt::CTRL + Qt::Key_E));
 
 		menu->addSeparator();
 		menu->addAction(QIcon(":/types/world.png"),tr("Look up on Swisscharts..."), this, SLOT(lookUpOnSwisscharts()));
