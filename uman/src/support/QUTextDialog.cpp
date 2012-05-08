@@ -49,7 +49,7 @@ void QUTextDialog::showLyrics(QUSongFile *song) {
 }
 
 void QUTextDialog::showFile(QUSongFile *song) {
-	this->setWindowTitle(song->songFileInfo().filePath());
+	this->setWindowTitle(QDir::toNativeSeparators(song->songFileInfo().filePath()));
 	textLbl->setText(tr("The content of the song text file is <b>read-only</b>. Line numbers are auto-generated."));
 
 	this->initFile(song);
