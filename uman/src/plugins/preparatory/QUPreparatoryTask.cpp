@@ -26,7 +26,8 @@ QUPreparatoryTask::QUPreparatoryTask(TaskModes mode, QObject *parent):
 		break;
 	case RemoveUnsupportedTags:
 		this->setIcon(QIcon(":/types/folder_blue.png"));
-		this->setDescription(tr("Remove unsupported tags"));
+		this->setDescription(tr("Fix or remove unsupported tags"));
+		this->setToolTip(tr("Replaces the incorrect <b>#AUTHOR</b> tag by the correct <b>#CREATOR</b> tag and deletes all other unsupported tags."));
 		break;
 	case FixAudioLength:
 		this->setIcon(QIcon(":/types/time_mp3.png"));
@@ -211,7 +212,7 @@ void QUPreparatoryTask::capitalizeTitle(QUSongInterface *song) {
 		words.first()[0] = words.first()[0].toUpper();
 
 	if(!onlyFirstWord)
-		words.last()[0] = words.last()[0].toUpper();	
+		words.last()[0] = words.last()[0].toUpper();
 
 	if(suffixes.isEmpty())
 		song->setInfo(TITLE_TAG, words.join(" "));
