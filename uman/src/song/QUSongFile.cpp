@@ -255,7 +255,12 @@ bool QUSongFile::updateCache() {
 			QString uValue(line.section("#" + uTag + ":", 0, 0, QString::SectionSkipEmpty).trimmed());
 
 			if(!uTag.isEmpty() && !uValue.isEmpty()) {
-				setInfo(uTag, uValue);
+				if(QString::compare(uTag, "Author", Qt::CaseInsensitive) == 0) {
+					// silently accept #AUTHOR as #CREATOR
+					setInfo(CREATOR_TAG, uValue);
+				} else {
+					setInfo(uTag, uValue);
+				}
 				_foundUnsupportedTags << uTag;
 				monty->addUnsupportedTag(uTag);
 			}
