@@ -1,4 +1,79 @@
 <---------------------------->
+< Changelog (1.8.2 to 1.8.3) >
+<---------------------------->
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#  NEW FEATURES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~
+SONG DETAILS
+* Added news tags: #ALBUM, #COVER, #P1, and #P2
+
+SONG TREE
+* Video files may now be set for both audio and video file (also simultaneously).
+
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+QT
+* updated to Qt 4.8.2
+
+BASS/BASS FX
+* updated to BASS 2.4.9
+* updated to BASS FX 2.4.8
+
+TAGLIB
+* updated to TagLib 1.8.0
+
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+
+
+~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
+
+INSTALLER
+* Uninstaller does not delete "non-standard" tasks
+
+TASKS
+* convert syllable placeholders does not ignore "wanted" dashes ("A-B-C")
+* "remove empty syllables" breaks timestamps in relative songs
+* capitalization task makes "TV" to "Tv" - should ignore words that are entirely upper-case
+
+TASK LIST
+* tooltip of slot buttons is empty before the first selection of the slot
+
+SONG FRIENDS (general workaround: switch friend to primary song using the context menu)
+* cannot add song friends to playlist
+* cannot change #MP3 for karaoke song friend
+* cannot change #EDITION for song friend
+* cannot add song friends in reports
+* cannot play song friends in media player
+* some tasks may not affect song friends (e.g. "Remove unsupported tags")
+
+MEDIA PLAYER
+* correct songs get ansychronous after a while (seek works correctly)
+* uman crashes if you play a song, change the song directory and skip
+
+AUTO-SAVE
+* tasks that change a song's path perform kind of auto-save because the path change cannot be deferred
+
+REPORTS
+* you cannot sort by a custom tag column in the report
+* Unicode symbols (e.g. Chinese/Japanese characters) break fixed column width in text report
+
+SONG TREE
+* cannot drop external files into song tree anymore :-/
+
+COVER DOWNLOAD
+* AlbumArtExchange blocked by Blockscript (http://www.blockscript.com/)
+* Amazon yields invalid request
+
+MENU
+* hide/show menu stopped working
+
+PLAYLISTS
+* there are several playlist-related issues not working correctly
+
+
+<---------------------------->
 < Changelog (1.8.1 to 1.8.2) >
 <---------------------------->
 
@@ -21,7 +96,11 @@ SONGTREE
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 QT
-* based on Qt 4.8.0 now
+* based on Qt 4.8.2 now
+
+BASS/BASS FX
+* updated to BASS 2.4.9
+* updated to BASS FX 2.4.8
 
 RIBBON MENU
 * replaced last two checkboxes by toolbuttons in View
