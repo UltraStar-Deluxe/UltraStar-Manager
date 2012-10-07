@@ -1,7 +1,7 @@
 XPStyle on
 
 !define PRODUCTNAME "UltraStar Manager"
-!define PRODUCTVERSION "1.8.2"
+!define PRODUCTVERSION "1.8.3"
 Name "${PRODUCTNAME} ${PRODUCTVERSION}"
 
 !include "MUI.nsh"
@@ -63,7 +63,9 @@ Section "Application" SecCopyUI
 	File "changes.txt"
 	File "uman.exe"
 	File "libgcc_s_dw2-1.dll"
+	File "libstdc++-6.dll"
 	File "libtag.dll"
+	File "libz-1.dll"
 	File "mingwm10.dll"
 	File "QtCore4.dll"
 	File "QtGui4.dll"
@@ -154,14 +156,14 @@ Section "Application" SecCopyUI
 	File "plugins\config\rename\080-renameSongVideoSpecial.xml"
 
 	;; setup initial reg values
-	WriteRegStr HKCU "Software\HPI\${PRODUCTNAME}" "customTags" "Comment Album"
+	;;WriteRegStr HKCU "Software\HPI\${PRODUCTNAME}" "customTags" "Comment Album"
 
 	;; remove old values
 	DeleteRegValue HKCU "Software\HPI\${PRODUCTNAME}" "allowedAudioFiles"
 	DeleteRegValue HKCU "Software\HPI\${PRODUCTNAME}" "allowedKaraokeFiles"
 	DeleteRegValue HKCU "Software\HPI\${PRODUCTNAME}" "allowedLicenseFiles"
 	DeleteRegValue HKCU "Software\HPI\${PRODUCTNAME}" "allowedMidiFiles"
-	DeleteRegValue HKCU "Software\HPI\${PRODUCTNAME}" "allowedPictureFiles"
+	DeleteRegValue HKCU "Software\HPI\${PRODUCTNAME}" "allowedImageFiles"
 	DeleteRegValue HKCU "Software\HPI\${PRODUCTNAME}" "allowedPlaylistFiles"
 	DeleteRegValue HKCU "Software\HPI\${PRODUCTNAME}" "allowedScoreFiles"
 	DeleteRegValue HKCU "Software\HPI\${PRODUCTNAME}" "allowedSongFiles"
@@ -276,7 +278,9 @@ Section "Uninstall"
 	Delete "$INSTDIR\bass.dll"
 	Delete "$INSTDIR\changes.txt"
 	Delete "$INSTDIR\libgcc_s_dw2-1.dll"
+	Delete "$INSTDIR\libstdc++-6.dll"
 	Delete "$INSTDIR\libtag.dll"
+	Delete "$INSTDIR\libz-1.dll"
 	Delete "$INSTDIR\mingwm10.dll"
 	Delete "$INSTDIR\QtCore4.dll"
 	Delete "$INSTDIR\QtGui4.dll"
