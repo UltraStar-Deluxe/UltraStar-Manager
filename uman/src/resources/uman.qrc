@@ -256,6 +256,9 @@
         <file>medley_error.png</file>
         <file>medley_warning.png</file>
         <file>world.png</file>
+        <file>P1.png</file>
+        <file>P2.png</file>
+        <file>album.png</file>
     </qresource>
     <qresource prefix="/big">
         <file>save_big.png</file>
