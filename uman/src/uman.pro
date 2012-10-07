@@ -232,6 +232,7 @@ INCLUDEPATH += . \
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib \
+		../include/taglib/toolkit \
         ../include/bass
     LIBS += -L"../lib" \
         -ltag \
