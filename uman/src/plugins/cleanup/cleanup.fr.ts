@@ -16,12 +16,12 @@
     <message>
         <location filename="QUCleanUpTask.cpp" line="18"/>
         <source>Clear invalid file-related tags</source>
-        <translation>Nettoyer les champs reliants à des fichiers invalides</translation>
+        <translation>Nettoyer les champs pointant vers des fichiers invalides</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="19"/>
         <source>Removes the value of invalid file-related tags so that they will not be saved into the song text file.&lt;br&gt;&lt;br&gt;This includes &lt;b&gt;#VIDEOGAP&lt;/b&gt; for invalid video files as well as &lt;b&gt;#START&lt;/b&gt; and &lt;b&gt;#END&lt;/b&gt; for invalid audio files.</source>
-        <translation>Enlève les valeurs incorrectes reliant à des fichiers invalides, ainsi ils ne seront plus inclus dans le fichier texte de la chanson.&lt;br&gt;&lt;br&gt;Ceci inclus &lt;b&gt;#VIDEOGAP&lt;/b&gt; pour les fichiers video invalides ainsi que &lt;b&gt;#START&lt;/b&gt; et &lt;b&gt;#END&lt;/b&gt; pour les fichiers audio invalides.</translation>
+        <translation>Enlève les valeurs incorrectes pointant vers des fichiers invalides, ainsi ils ne seront plus inclus dans le fichier texte de la chanson.&lt;br&gt;&lt;br&gt;Ceci inclus &lt;b&gt;#VIDEOGAP&lt;/b&gt; pour les fichiers vidéo invalides ainsi que &lt;b&gt;#START&lt;/b&gt; et &lt;b&gt;#END&lt;/b&gt; pour les fichiers audio invalides.</translation>
     </message>
     <message>
         <location filename="QUCleanUpTask.cpp" line="25"/>

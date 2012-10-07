@@ -29,12 +29,12 @@
     <message>
         <location filename="QUPreparatoryTask.cpp" line="21"/>
         <source>&lt;b&gt;#MP3&lt;/b&gt; ... first audio file found.&lt;br&gt;&lt;b&gt;#COVER&lt;/b&gt; ... first picture file, following a pattern.&lt;br&gt;&lt;b&gt;#BACKGROUND&lt;/b&gt; ... first picture file, following a pattern.&lt;br&gt;&lt;b&gt;#VIDEO&lt;/b&gt; ... first video file found.&lt;br&gt;&lt;br&gt;Does not reset tags that have already been set.</source>
-        <translation>&lt;b&gt;#MP3&lt;/b&gt; ... premier fichier audio trouvé.&lt;br&gt;&lt;b&gt;#COVER&lt;/b&gt; ... première image suivant le modèle.&lt;br&gt;&lt;b&gt;#BACKGROUND&lt;/b&gt; ... première image suivant le modèle.&lt;br&gt;&lt;b&gt;#VIDEO&lt;/b&gt; ... premier fichier video trouvé.&lt;br&gt;&lt;br&gt;Pas de remise à zéro des champs qui sont déjà fixés.</translation>
+        <translation>&lt;b&gt;#MP3&lt;/b&gt; ... premier fichier audio trouvé.&lt;br&gt;&lt;b&gt;#COVER&lt;/b&gt; ... première image suivant le modèle.&lt;br&gt;&lt;b&gt;#BACKGROUND&lt;/b&gt; ... première image suivant le modèle.&lt;br&gt;&lt;b&gt;#VIDEO&lt;/b&gt; ... premier fichier vidéo trouvé.&lt;br&gt;&lt;br&gt;Pas de remise à zéro des champs qui sont déjà fixés.</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="29"/>
         <source>Remove unsupported tags</source>
-        <translation>Suppresion des champs non supportés</translation>
+        <translation>Suppression des champs non supportés</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="33"/>
@@ -66,12 +66,12 @@
     <message>
         <location filename="QUPreparatoryTask.cpp" line="47"/>
         <source>Capitalize #ARTIST tag</source>
-        <translation>Mettre les capitale dans le champ #ARTIST</translation>
+        <translation>Mettre les capitales dans le champ #ARTIST</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="48"/>
         <source>Capitalize each word of the artist, e.g. &quot;michael jackson&quot; -&gt; &quot;Michael Jackson&quot;.</source>
-        <translation>Mettre des capitale à chaque mot du champ #ARTIST, par exemple &quot;michael jackson&quot; -&gt; &quot;Michael Jackson&quot;.</translation>
+        <translation>Mettre des capitales à chaque mot du champ #ARTIST, par exemple &quot;michael jackson&quot; -&gt; &quot;Michael Jackson&quot;.</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="93"/>

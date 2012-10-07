@@ -21,7 +21,7 @@
     <message>
         <location filename="language.h" line="4"/>
         <source>Songs will be organized in subdirectories by their genres.</source>
-        <translation>Les chansons vont être organisées en sous dossier par genres.</translation>
+        <translation>Les chansons vont être organisées en sous-dossiers par genres.</translation>
     </message>
     <message>
         <location filename="language.h" line="5"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="language.h" line="6"/>
         <source>Songs will be organized in subdirectories by their edition.</source>
-        <translation>Les chansons vont être organisées en sous dossier par éditions.</translation>
+        <translation>Les chansons vont être organisées en sous-dossiers par éditions.</translation>
     </message>
     <message>
         <location filename="language.h" line="7"/>
@@ -41,7 +41,7 @@
     <message>
         <location filename="language.h" line="8"/>
         <source>Songs will be organized in subdirectories by their artist.</source>
-        <translation>Les chansons vont être organisées en sous dossier par artistes.</translation>
+        <translation>Les chansons vont être organisées en sous-dossiers par artistes.</translation>
     </message>
     <message>
         <location filename="language.h" line="9"/>
@@ -51,7 +51,7 @@
     <message>
         <location filename="language.h" line="10"/>
         <source>Songs will be organized in subdirectories by their language.</source>
-        <translation>Les chansons vont être organisées en sous dossier par langues.</translation>
+        <translation>Les chansons vont être organisées en sous-dossiers par langues.</translation>
     </message>
     <message>
         <location filename="language.h" line="11"/>
@@ -61,7 +61,7 @@
     <message>
         <location filename="language.h" line="12"/>
         <source>Songs will be organized in subdirectories by their artist and album.&lt;br&gt;&lt;b&gt;You need the custom tag #ALBUM for this task.&lt;/b&gt;</source>
-        <translation>Les chansons vont être organisées en sous dossier par artistes et albums.&lt;br&gt;&lt;b&gt; Vous devez avoir le champ personnalisé #ALBUM pour effectuer cette tâche.&lt;/b&gt;</translation>
+        <translation>Les chansons vont être organisées en sous-dossiers par artistes et albums.&lt;br&gt;&lt;b&gt; Vous devez avoir le champ personnalisé #ALBUM pour effectuer cette tâche.&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="language.h" line="13"/>
@@ -72,7 +72,7 @@
         <location filename="language.h" line="14"/>
         <source>Rename directory to &quot;Artist - Title [VIDEO] [SC]&quot; if checked or video present, keep other folder tags</source>
         <oldsource>Rename directory to &quot;Artist - Title [VIDEO] [SC]&quot; if checked or video present. Keep other folder tags.</oldsource>
-        <translation>Renommer le dossier en &quot;Artiste - Titre [VIDEO] [SC]&quot; si la video est présente. Garder les autres champ du dossier</translation>
+        <translation>Renommer le dossier en &quot;Artiste - Titre [VIDEO] [SC]&quot; si la vidéo est présente. Garder les autres champs du dossier</translation>
     </message>
     <message>
         <location filename="language.h" line="15"/>
@@ -116,13 +116,13 @@
     <message>
         <location filename="language.h" line="22"/>
         <source>Rename video to &quot;Artist - Title.*&quot;</source>
-        <translation>Renommer la video en &quot;Artiste - Titre.*&quot;</translation>
+        <translation>Renommer la vidéo en &quot;Artiste - Titre.*&quot;</translation>
     </message>
     <message>
         <location filename="language.h" line="23"/>
         <source>Rename video to &quot;Artist - Title [VD#*].*&quot; considering #VIDEOGAP value</source>
         <oldsource>Rename video to &quot;Artist - Title [VD#*].*&quot; consider VIDEOGAP</oldsource>
-        <translation>Renommer la video en &quot;Artiste - Titre [VD#*].*&quot; en prenant en compte le champ #VIDEOGAP</translation>
+        <translation>Renommer la vidéo en &quot;Artiste - Titre [VD#*].*&quot; en prenant en compte le champ #VIDEOGAP</translation>
     </message>
     <message>
         <location filename="language.h" line="24"/>

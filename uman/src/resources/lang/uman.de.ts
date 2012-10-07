@@ -608,7 +608,7 @@ Versuche es auf %1 x %3 zu beschneiden, um ein Widescreen Format zu erhalten.</t
     <message>
         <location filename="../../QUMonty.cpp" line="99"/>
         <source>Are you using the latest version of UltraStar Manager? Well, why don&apos;t you check by clicking &lt;i&gt;About &amp;rarr; Check for Update&lt;/i&gt;? You can enable an automatic update check at startup in the resulting dialog.</source>
-        <translation>Verwendest Du die neueste Version des UltraStar Managers? Na warum überprüfst Du es nicht mal, indem Du auf &lt;i&gt;Über &amp;rarr; Auf Update prüfen&lt;/i&gt;? Dort kannst Du auch eine automatische Überprüfung beim Programmstart erlauben.</translation>
+        <translation>Verwendest Du die neueste Version des UltraStar Managers? Na warum überprüfst Du es nicht mal, indem Du auf &lt;i&gt;Extras &amp;rarr; Auf Update prüfen&lt;/i&gt; klickst? Dort kannst Du auch eine automatische Überprüfung beim Programmstart erlauben.</translation>
     </message>
     <message>
         <location filename="../../QUMonty.cpp" line="100"/>
@@ -919,7 +919,7 @@ Try cropping to %3 x %3.</source>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="86"/>
         <source>&lt;b&gt;Graphical Compositions&lt;/b&gt;</source>
-        <translation>Grafische Kompositionen</translation>
+        <translation>&lt;b&gt;Grafische Kompositionen&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../QUAboutDialog.cpp" line="89"/>

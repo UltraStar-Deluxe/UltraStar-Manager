@@ -72,7 +72,7 @@
         <location filename="QULyricTask.cpp" line="50"/>
         <source>Shifts all note pitches octavewise towards a zero mean.</source>
         <oldsource>Decreases all note pitches by as many octaves as necessary.</oldsource>
-        <translation>Décaller toutes les pitchs des notes d&apos;un octave vers zéro.</translation>
+        <translation>Décaller tous les pitchs des notes d&apos;un octave vers zéro.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="54"/>
@@ -87,12 +87,12 @@
     <message>
         <location filename="QULyricTask.cpp" line="58"/>
         <source>Convert syllable placeholders from &quot;-&quot; to &quot;~&quot;</source>
-        <translation>Convertit les syllabes longues de &quot;-&quot; en &quot;~&quot;</translation>
+        <translation>Convertir les syllabes longues de &quot;-&quot; en &quot;~&quot;</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="63"/>
         <source>Convert syllable placeholders from &quot;~&quot; to &quot;-&quot;</source>
-        <translation>Convertit les syllabes longues de &quot;~&quot; en &quot;-&quot;</translation>
+        <translation>Convertir les syllabes longues de &quot;~&quot; en &quot;-&quot;</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="68"/>
