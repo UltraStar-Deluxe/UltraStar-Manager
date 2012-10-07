@@ -34,6 +34,12 @@ QStringList QUSongSupport::availableTags() {
 	result << MEDLEYENDBEAT_TAG;
 	result << BPM_TAG;
 	result << GAP_TAG;
+	result << P1_TAG;
+	result << P2_TAG;
+	result << ALBUM_TAG;
+	result << COMMENT_TAG;
+	result << ARTISTONSORTING_TAG;
+	result << TITLEONSORTING_TAG;
 
 	// all custom tags that will be supported
 	result << availableCustomTags();
@@ -78,7 +84,7 @@ QStringList QUSongSupport::allowedScoreFiles() {
 }
 
 QStringList QUSongSupport::allowedAudioFiles() {
-	return registryKey("allowedAudioFiles", "*.mp3 *.ogg");
+	return registryKey("allowedAudioFiles", "*.mp3 *.ogg *.avi *.divx *.flv *.m2v *.m4v *.mkv *.mov *.mp4 *.mpeg *.mpg *.ogm *.ts *.vob *.webm *.wmv");
 }
 
 QStringList QUSongSupport::allowedImageFiles() {
@@ -86,7 +92,7 @@ QStringList QUSongSupport::allowedImageFiles() {
 }
 
 QStringList QUSongSupport::allowedVideoFiles() {
-	return registryKey("allowedVideoFiles", "*.mpg *.mpeg *.avi *.flv *.ogm *.mp4 *.divx *.wmv *.mov *.mkv *.vob *.m2v *.m4v *.ts");
+	return registryKey("allowedVideoFiles", "*.avi *.divx *.flv *.m2v *.m4v *.mkv *.mov *.mp4 *.mpeg *.mpg *.ogm *.ts *.vob *.webm *.wmv");
 }
 
 QStringList QUSongSupport::allowedPlaylistFiles() {

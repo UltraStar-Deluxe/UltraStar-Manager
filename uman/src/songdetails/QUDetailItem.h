@@ -21,16 +21,16 @@ public:
 	void setSongItems(const QList<QUSongItem*> &songItems);
 
 private:
-	QString			_tag;
-	QList<QUSongItem*> _songItems;
-	Qt::ItemFlags	  _flagsForSingleSong;
-	Qt::ItemFlags	  _flagsForMultipleSongs;
-	QString			_textMask;
-	bool			   _hasDynamicDefaultData;
+	QString				_tag;
+	QList<QUSongItem*>	_songItems;
+	Qt::ItemFlags		_flagsForSingleSong;
+	Qt::ItemFlags		_flagsForMultipleSongs;
+	QString				_textMask;
+	bool				_hasDynamicDefaultData;
 
 	void reset();
 
-	void updateItemForSingleSong(bool fullUpdate = false);
+	void updateItemForSingleSong();
 	void updateDefaultDataForSingleSong();
 
 	void updateItemForMultipleSongs(bool fullUpdate = false);

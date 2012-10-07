@@ -172,13 +172,28 @@ void QUSongItem::updateAsMp3() {
 
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/music.png"));
 
+	bool used = false;
+
 	if(QString::compare(song()->mp3(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
 		this->setIcon(MP3_COLUMN, QIcon(":/marks/link.png"));
+		used = true;
 	} else if(song()->friendHasTag(MP3_TAG, this->text(FOLDER_COLUMN))) { // audio file used by friend
 		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
 		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
-	} else {
-		this->setTextColor(FOLDER_COLUMN, Qt::gray); // unused mp3
+		used = true;
+	}
+
+	if(QString::compare(song()->video(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
+		this->setIcon(VIDEO_COLUMN, QIcon(":/marks/link.png"));
+		used = true;
+	} else if(song()->friendHasTag(VIDEO_TAG, this->text(FOLDER_COLUMN))) {
+		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
+		used = true;
+	}
+
+	if(!used) {
+		this->setTextColor(FOLDER_COLUMN, Qt::gray);
 		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
 	}
 }
@@ -219,12 +234,27 @@ void QUSongItem::updateAsVideo() {
 
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/video.png"));
 
+	bool used = false;
+
 	if(QString::compare(song()->video(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
 		this->setIcon(VIDEO_COLUMN, QIcon(":/marks/link.png"));
+		used = true;
 	} else if(song()->friendHasTag(VIDEO_TAG, this->text(FOLDER_COLUMN))) { // video file used by friend
 		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
 		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
-	} else {
+		used = true;
+	}
+
+	if(QString::compare(song()->mp3(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
+		this->setIcon(MP3_COLUMN, QIcon(":/marks/link.png"));
+		used = true;
+	} else if(song()->friendHasTag(MP3_TAG, this->text(FOLDER_COLUMN))) { // file used by friend as background
+		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
+		used = true;
+	}
+
+	if(!used) {
 		this->setTextColor(FOLDER_COLUMN, Qt::gray);
 		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
 	}
@@ -454,10 +484,10 @@ void QUSongItem::setCross(int column, bool isWarning, QString toolTip) {
 		if(!altViewEnabled()) {
 			this->setIcon(column, QIcon(":/marks/cross_error.png"));
 		} else {
-			if(column == MP3_COLUMN)		this->setIcon(column, QIcon(":/types/music_warn.png"));
-			else if(column == COVER_COLUMN)		this->setIcon(column, QIcon(":/types/image_warn.png"));
+			if(column == MP3_COLUMN)				this->setIcon(column, QIcon(":/types/music_warn.png"));
+			else if(column == COVER_COLUMN)			this->setIcon(column, QIcon(":/types/image_warn.png"));
 			else if(column == BACKGROUND_COLUMN)	this->setIcon(column, QIcon(":/types/image_warn.png"));
-			else if(column == VIDEO_COLUMN)		this->setIcon(column, QIcon(":/types/video_warn.png"));
+			else if(column == VIDEO_COLUMN)			this->setIcon(column, QIcon(":/types/video_warn.png"));
 		}
 
 		this->setData(column, Qt::UserRole, QVariant(-2)); // used for sorting, should be smaller than a "tick" icon

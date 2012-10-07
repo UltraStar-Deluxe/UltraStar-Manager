@@ -5,51 +5,51 @@
 #include "QU.h"
 #include "QUSongFile.h"
 
-#define FIXED_COLUMN_COUNT	33
+#define FIXED_COLUMN_COUNT		33
 
-#define FOLDER_COLUMN		  0
+#define FOLDER_COLUMN			0
 
-#define ARTIST_COLUMN		  1
-#define TITLE_COLUMN		   2
+#define ARTIST_COLUMN			1
+#define TITLE_COLUMN			2
 
-#define MP3_COLUMN			 3
-#define COVER_COLUMN		   4
-#define BACKGROUND_COLUMN	  5
-#define VIDEO_COLUMN		   6
+#define MP3_COLUMN				3
+#define COVER_COLUMN			4
+#define BACKGROUND_COLUMN		5
+#define VIDEO_COLUMN			6
 
-#define TYPE_KARAOKE_COLUMN	7
-#define TYPE_DUET_COLUMN	   8
-#define MEDLEY_COLUMN		  9
-#define GOLDEN_NOTES_COLUMN   10
-#define UNUSED_FILES_COLUMN   11
-#define MULTIPLE_SONGS_COLUMN 12
-#define SCORE_COLUMN		  13
+#define TYPE_KARAOKE_COLUMN		7
+#define TYPE_DUET_COLUMN		8
+#define MEDLEY_COLUMN			9
+#define GOLDEN_NOTES_COLUMN		10
+#define UNUSED_FILES_COLUMN		11
+#define MULTIPLE_SONGS_COLUMN	12
+#define SCORE_COLUMN			13
 
-#define LENGTH_COLUMN		 14
-#define LENGTH_DIFF_COLUMN	15
-#define LENGTH_MP3_COLUMN	 16
-#define LENGTH_EFF_COLUMN	 17
-#define SPEED_COLUMN		  18
+#define LENGTH_COLUMN			14
+#define LENGTH_DIFF_COLUMN		15
+#define LENGTH_MP3_COLUMN		16
+#define LENGTH_EFF_COLUMN		17
+#define SPEED_COLUMN			18
 
-#define START_COLUMN		  19
-#define END_COLUMN			20
-#define VIDEOGAP_COLUMN	   21
+#define START_COLUMN			19
+#define END_COLUMN				20
+#define VIDEOGAP_COLUMN			21
 
-#define ARTIST_COLUMN_EX	  22
-#define TITLE_COLUMN_EX	   23
-#define LANGUAGE_COLUMN	   24
-#define EDITION_COLUMN		25
-#define GENRE_COLUMN		  26
-#define YEAR_COLUMN		   27
-#define CREATOR_COLUMN		28
+#define ARTIST_COLUMN_EX		22
+#define TITLE_COLUMN_EX			23
+#define LANGUAGE_COLUMN			24
+#define EDITION_COLUMN			25
+#define GENRE_COLUMN			26
+#define YEAR_COLUMN				27
+#define CREATOR_COLUMN			28
 
-#define RELATIVE_COLUMN	   29
-#define BPM_COLUMN			30
-#define GAP_COLUMN			31
+#define RELATIVE_COLUMN			29
+#define BPM_COLUMN				30
+#define GAP_COLUMN				31
 
-#define DUPLICATE_ID_COLUMN   32
+#define DUPLICATE_ID_COLUMN		32
 
-#define FIRST_CUSTOM_TAG_COLUMN 33
+#define FIRST_CUSTOM_TAG_COLUMN	33
 
 /*!
  * This class encapsulates a pointer to a QUSongFile object to be able
@@ -101,7 +101,6 @@ private:
 	void updateTimeCheckColumns();
 	void updateTextColumns();
 	void updateControlColumns();
-
 	void updateBackground();
 };
 
