@@ -33,15 +33,17 @@ QVariant QUPlaylistModel::data(const QModelIndex &index, int role) const {
 
 	if(role == Qt::DisplayRole) {
 		if(song)
-			return QString("%1. %2 - %3")
+			return QString("%1. %2 - %3 (%4)")
 				.arg( index.row() + 1)
 				.arg( song->artist() )
-				.arg( song->title() );
+				.arg( song->title() )
+				.arg( entry->gameMode().remove("TR_GAMEMODE_").toLower() );
 		else
-			return QString(tr("%1. %2 - %3 (not found)"))
+			return QString(tr("%1. %2 - %3 (%4) (not found)"))
 				.arg( index.row() + 1)
 				.arg( entry->artistLink() )
-				.arg( entry->titleLink() );
+				.arg( entry->titleLink() )
+				.arg( entry->gameMode().remove("TR_GAMEMODE_").toLower() );
 	} else if(role == Qt::FontRole) {
 		QFont f("MS Shell Dlg", 8, QFont::Normal, false);
 		if(entry->hasUnsavedChanges())
@@ -49,14 +51,16 @@ QVariant QUPlaylistModel::data(const QModelIndex &index, int role) const {
 		return f;
 	} else if(role == Qt::ForegroundRole) {
 		if(song)
-			return Qt::black;
+			return QColor(Qt::black);
 		else
-			return Qt::gray;
+			return QColor(Qt::gray);
 	}
 
 	return QVariant();
 }
 
 void QUPlaylistModel::reload() {
-	reset();
+	beginResetModel();
+	//reset();
+	endResetModel();
 }

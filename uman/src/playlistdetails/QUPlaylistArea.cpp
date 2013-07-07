@@ -33,6 +33,7 @@ QUPlaylistArea::QUPlaylistArea(QWidget *parent): QWidget(parent) {
 	connect(playlistDB, SIGNAL(currentPlaylistChanged(QUPlaylistFile*)), this, SLOT(updateCurrentPlaylistNameEdit()));
 	connect(playlistDB, SIGNAL(currentPlaylistChanged(QUPlaylistFile*)), this, SLOT(updateComboboxIndex()));
 	connect(playlistDB, SIGNAL(playlistChanged(QUPlaylistFile*)), this, SLOT(updateComboboxIndex()));
+	connect(playlistDB, SIGNAL(playlistAdded(QUPlaylistFile*)), this, SLOT(reset()));
 
 	connect(playlistCombo, SIGNAL(currentIndexChanged(int)), playlistDB, SLOT(setCurrentIndex(int)));
 	connect(playlistEdit, SIGNAL(textEdited(const QString&)), this, SLOT(updateCurrentPlaylistName(const QString&)));
@@ -112,7 +113,7 @@ void QUPlaylistArea::saveCurrentPlaylistAs() {
 	if(!playlistDB->currentPlaylist())
 		return;
 
-	QString filePath = QFileDialog::getSaveFileName(this, tr("Save playlist as..."), playlistDB->dir().path(), QString(tr("UltraStar Playlists (%1)")).arg(QUSongSupport::allowedPlaylistFiles().join(" ")));
+	QString filePath = QFileDialog::getSaveFileName(this, tr("Save playlist as..."), playlistDB->dir().path(), QString(tr("Vocaluxe Playlists (%1);;UltraStar Playlists (%2)")).arg(QUSongSupport::allowedVocaluxePlaylistFiles().join(" ")).arg(QUSongSupport::allowedUltraStarPlaylistFiles().join(" ")));
 
 	if(!filePath.isEmpty()) {
 		QFileInfo oldFi = playlistDB->currentPlaylist()->fileInfo();
@@ -127,7 +128,7 @@ void QUPlaylistArea::saveCurrentPlaylistAs() {
 		playlistDB->currentPlaylist()->save();
 		this->saveCurrentPlaylist();
 
-		// restore old playlist, not needed for new, not-existent playlists
+		// restore old playlist, not needed for new, non-existent playlists
 		if(oldFi.exists())
 			playlistDB->loadPlaylist(oldFi.filePath());
 

@@ -12,13 +12,15 @@ class QUPlaylistEntry: public QObject {
 	Q_OBJECT
 
 public:
-	QUPlaylistEntry(const QString &artist, const QString & title, QObject *parent = 0);
+	QUPlaylistEntry(const QString &artist, const QString &title, const QString &gameMode, QObject *parent = 0);
 
 	QUSongFile* song() const { return _song; }
 
 	QString artistLink() const { return _artistLink; }
 	QString titleLink() const { return _titleLink; }
+	QString gameMode() const { return _gameMode; }
 	void setLinks(const QString &artistLink, const QString &titleLink);
+	void setGameMode(const QString &gameMode);
 
 	void connectSong(QUSongFile* song);
 	void connectSong();
@@ -38,6 +40,7 @@ private:
 	// textual links that should be used to find the real songs
 	QString _artistLink;
 	QString _titleLink;
+	QString _gameMode;
 };
 
 #endif // QUPLAYLISTENTRY_H_

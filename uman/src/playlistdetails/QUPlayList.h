@@ -30,6 +30,10 @@ signals:
 private slots:
 	void removeSelectedItems();
 	void removeUnknownEntries();
+	void setGameModeNormal();
+	void setGameModeShort();
+	void setGameModeMedley();
+	void setGameModeDuet();
 };
 
 #endif /* QUPLAYLIST_H_ */

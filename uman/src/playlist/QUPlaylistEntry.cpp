@@ -1,8 +1,8 @@
 #include "QUPlaylistEntry.h"
 #include "QUSongDatabase.h"
 
-QUPlaylistEntry::QUPlaylistEntry(const QString &artist, const QString & title, QObject *parent):
-	QObject(parent), _song(0), _artistLink(artist), _titleLink(title)
+QUPlaylistEntry::QUPlaylistEntry(const QString &artist, const QString &title, const QString &gameMode, QObject *parent):
+	QObject(parent), _song(0), _artistLink(artist), _titleLink(title), _gameMode(gameMode)
 {
 	connect(songDB, SIGNAL(songDeleted(QUSongFile*)), this, SLOT(disconnectSong(QUSongFile*)));
 }
@@ -10,6 +10,10 @@ QUPlaylistEntry::QUPlaylistEntry(const QString &artist, const QString & title, Q
 void QUPlaylistEntry::setLinks(const QString &artistLink, const QString &titleLink) {
 	_artistLink = artistLink;
 	_titleLink = titleLink;
+}
+
+void QUPlaylistEntry::setGameMode(const QString &gameMode) {
+	_gameMode = gameMode;
 }
 
 /*!

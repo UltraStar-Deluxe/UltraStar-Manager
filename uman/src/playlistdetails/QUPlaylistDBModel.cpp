@@ -41,6 +41,8 @@ QVariant QUPlaylistDBModel::data(const QModelIndex &index, int role) const {
 void QUPlaylistDBModel::reload() {
 	// MB TODO: added first and third line to quick-and-dirty-fix playlist bugs, needs more work
 	int currentIndex = playlistDB->currentIndex();
-	reset();
+	beginResetModel();
+	//reset();
+	endResetModel();
 	playlistDB->setCurrentIndex(currentIndex);
 }

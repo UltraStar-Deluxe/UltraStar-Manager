@@ -23,6 +23,8 @@ public:
 	static QStringList allowedImageFiles();
 	static QStringList allowedVideoFiles();
 	static QStringList allowedPlaylistFiles();
+	static QStringList allowedUltraStarPlaylistFiles();
+	static QStringList allowedVocaluxePlaylistFiles();
 
 	static QStringList allowedEncodingTypes();
 	static QStringList availableSongLanguages();

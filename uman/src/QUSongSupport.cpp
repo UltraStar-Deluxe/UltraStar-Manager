@@ -96,7 +96,15 @@ QStringList QUSongSupport::allowedVideoFiles() {
 }
 
 QStringList QUSongSupport::allowedPlaylistFiles() {
-	return registryKey("allowedPlaylistFiles", "*.upl");
+	return registryKey("allowedPlaylistFiles", "*.upl *.xml");
+}
+
+QStringList QUSongSupport::allowedUltraStarPlaylistFiles() {
+	return registryKey("allowedUltraStarPlaylistFiles", "*.upl");
+}
+
+QStringList QUSongSupport::allowedVocaluxePlaylistFiles() {
+	return registryKey("allowedVocaluxePlaylistFiles", "*.xml");
 }
 
 QStringList QUSongSupport::allowedEncodingTypes() {
@@ -424,6 +432,7 @@ QStringList QUSongSupport::availableSongGenres() {
 	result << "Rock & Roll";
 	result << "Samba";
 	result << "Satire";
+	result << "Schlager";
 	result << "Showtunes";
 	result << "Ska";
 	result << "Slow Jam";
