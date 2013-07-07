@@ -4,8 +4,12 @@
 #include <QObject>
 #include <QFileInfo>
 
-#define N_A "-"
-#define NONE "(none)"
+#define N_A					"-"
+#define NONE				"(none)"
+#define GAMEMODE_NORMAL		"TR_GAMEMODE_NORMAL"
+#define GAMEMODE_SHORT		"TR_GAMEMODE_SHORTSONG"
+#define GAMEMODE_MEDLEY		"TR_GAMEMODE_MEDLEY"
+#define GAMEMODE_DUET		"TR_GAMEMODE_DUET"
 
 #define CHAR_UTF8_APPROX	"\xe2\x89\x88"
 #define CHAR_UTF8_NEQUAL	"\xe2\x89\xa0"

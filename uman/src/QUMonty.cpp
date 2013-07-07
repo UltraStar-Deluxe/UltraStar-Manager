@@ -48,7 +48,7 @@ void QUMonty::initMessages() {
     messages << QObject::tr("The default values for Artist, Title and Year in the <i>Song Details</i> are read from the ID3 tag, if available.");
 	messages << QObject::tr("There is a task that enables you to set up missing files for a song automatically. That task looks for the first proper files (audio, image, video) and uses that file if the present entry is invalid or missing.");
 	messages << QObject::tr("Some details can be edited simultaneously for a selection of songs. Simply select some songs and use the <i>Song Details</i> table.");
-	messages << QObject::tr("If you drag &amp; drop a dockable widget (song details, tasks, event log) over another dockable widget, these two widgets will merge into a single widget with tabs at the bottom.");
+	messages << QObject::tr("If you drag & drop a dockable widget (song details, tasks, event log) over another dockable widget, these two widgets will merge into a single widget with tabs at the bottom.");
 	messages << QObject::tr("You can make a dockable widget (song details, tasks, event log) floatable if you double-click on its title bar.");
 	messages << QObject::tr("Did you remark that the state of the application window as well as all dockable widgets is saved on exit?");
 	messages << QObject::tr("Unsupported tags will be saved after all other tags in the song file. You can add these tags as custom tags via <i>Options &rarr; Custom Tags...</i> and then specify their save order in <i>Options &rarr; Tag Save Order...</i>.");
@@ -64,7 +64,7 @@ void QUMonty::initMessages() {
 	messages << QObject::tr("Have you ever created a <i>report</i> of your songs? No?<br><br>Try <i>Extras &rarr; Create Report...</i> or simply press <i>F8</i> to export your song collection to PDF, HTML, CSV, or plain text.");
 	messages << QObject::tr("If you double-click an image file you'll get a preview of it.");
 	messages << QObject::tr("You can delete a rename task by deleting its XML configuration file in the <tt>plugins/config/rename</tt> subdirectory.");
-	messages << QObject::tr("If you make a double-click on a rename task in the task list you can modify it.");
+	messages << QObject::tr("If you double-click on a rename task in the task list you can modify it.");
 	messages << QObject::tr("There is a context menu in the task list which enables you to add and edit rename tasks.");
 	messages << QObject::tr("Some operations cannot be cancelled because that would lead to an inconsistent state, e.g. applying a filter.");
 	messages << QObject::tr("You can expand and collapse the categories in the <i>File Information</i> window by double-clicking their names.");
