@@ -32,8 +32,7 @@ QURibbonBar::QURibbonBar(QWidget *parent): QTabWidget(parent), _menuHidden(false
 	corner->layout()->addWidget(montyBtn);
 	corner->layout()->addWidget(helpBtn);
 
-	//MB quick and dirty fix for menu not showing - hides montyBtn and helpBtn =(
-	corner->layout()->setContentsMargins(0, 0, 0, /*0*/64);
+	corner->layout()->setContentsMargins(0, 0, 0, 0/*64*/);
 
 	corner->layout()->setSpacing(0);
 
