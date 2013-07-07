@@ -532,7 +532,7 @@ Tasks</string>
          <string/>
         </property>
         <property name="windowTitle">
-         <string>Playlist</string>
+         <string>Playlists</string>
         </property>
         <widget class="QWidget" name="dockWidgetContents_5">
          <layout class="QHBoxLayout" name="horizontalLayout">
