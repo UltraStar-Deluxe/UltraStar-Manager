@@ -175,12 +175,12 @@ qkFolderWatch::qkFolderWatch(const QString & path, qkFileWatcher * watcher)
 
 bool qkFolderWatch::contains(const QString & path)
 {
-	for (int i = 0; i < mFolderWatchs.size(); i++)
+	for(int i = 0; i < mFolderWatchs.size(); ++i)
 	{
 		if (mFolderWatchs[i].path() == path) return true;
 	}
 
-	for (int i = 0; i < mFileWatchs.size(); i++)
+	for(int i = 0; i < mFileWatchs.size(); ++i)
 	{
 		if (mFileWatchs[i].path() == path) return true;
 	}
@@ -195,13 +195,13 @@ void qkFolderWatch::checkChange()
 	qkFileWatch::checkChange();
 
 	// Checking all sub-directories
-	for (int i = 0; i < mFolderWatchs.size(); i++)
+	for(int i = 0; i < mFolderWatchs.size(); ++i)
 	{
 		mFolderWatchs[i].checkChange();
 	}
 
 	// Note: on windows we have to check files even if the directory has not changed
-	for (int i = 0; i < mFileWatchs.size(); i++)
+	for(int i = 0; i < mFileWatchs.size(); ++i)
 	{
 		mFileWatchs[i].checkChange();
 	}
@@ -264,7 +264,7 @@ void qkFolderWatch::checkDeleted()
 	QStringList deletedFolders;
 	QStringList deletedFiles;
 
-	for (int i = 0; i < mFolderWatchs.size(); i++)
+	for(int i = 0; i < mFolderWatchs.size(); ++i)
 	{
 		if (mFolderWatchs[i].exists() == false)
 		{
@@ -275,7 +275,7 @@ void qkFolderWatch::checkDeleted()
 		}
 	}
 
-	for (int i = 0; i < mFileWatchs.size(); i++)
+	for(int i = 0; i < mFileWatchs.size(); ++i)
 	{
 		if (mFileWatchs[i].exists() == false)
 		{
@@ -301,7 +301,7 @@ void qkFolderWatch::checkDeleted()
 
 int qkFolderWatch::getFolderIndex_from_path(const QString & path)
 {
-	for (int i = 0; i < mFolderWatchs.size(); i++)
+	for(int i = 0; i < mFolderWatchs.size(); ++i)
 	{
 		if (mFolderWatchs[i].path() == path) return i;
 	}
@@ -310,7 +310,7 @@ int qkFolderWatch::getFolderIndex_from_path(const QString & path)
 
 int qkFolderWatch::getFileIndex_from_path(const QString & path)
 {
-	for (int i = 0; i < mFileWatchs.size(); i++)
+	for(int i = 0; i < mFileWatchs.size(); ++i)
 	{
 		if (mFileWatchs[i].path() == path) return i;
 	}
@@ -393,7 +393,7 @@ void qkFileWatcherPrivate::removePath(const QString & path)
 
 int qkFileWatcherPrivate::getFolderIndex_from_path(const QString & path)
 {
-	for (int i = 0; i < folderWatchs.size(); i++)
+	for(int i = 0; i < folderWatchs.size(); ++i)
 	{
 		if (folderWatchs[i].path() == path) return i;
 	}
@@ -402,7 +402,7 @@ int qkFileWatcherPrivate::getFolderIndex_from_path(const QString & path)
 
 int qkFileWatcherPrivate::getFileIndex_from_path(const QString & path)
 {
-	for (int i = 0; i < fileWatchs.size(); i++)
+	for(int i = 0; i < fileWatchs.size(); ++i)
 	{
 		if (fileWatchs[i].path() == path) return i;
 	}
@@ -450,12 +450,12 @@ bool qkFileWatcher::contains(const QString & path)
 {
 	Q_D(qkFileWatcher);
 
-	for (int i = 0; i < d->folderWatchs.size(); i++)
+	for(int i = 0; i < d->folderWatchs.size(); ++i)
 	{
 		if (d->folderWatchs[i].path() == path) return true;
 	}
 
-	for (int i = 0; i < d->fileWatchs.size(); i++)
+	for(int i = 0; i < d->fileWatchs.size(); ++i)
 	{
 		if (d->fileWatchs[i].path() == path) return true;
 	}
@@ -473,7 +473,7 @@ void qkFileWatcher::onCheckForChange()
 
 	QFileInfo info;
 
-	for (int i = 0; i < d->fileWatchs.size(); i++)
+	for(int i = 0; i < d->fileWatchs.size(); ++i)
 	{
 		d->fileWatchs[i].checkChange();
 
@@ -487,7 +487,7 @@ void qkFileWatcher::onCheckForChange()
 		}
 	}
 
-	for (int i = 0; i < d->folderWatchs.size(); i++)
+	for(int i = 0; i < d->folderWatchs.size(); ++i)
 	{
 		d->folderWatchs[i].checkChange();
 

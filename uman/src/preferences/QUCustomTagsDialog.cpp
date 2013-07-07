@@ -14,7 +14,7 @@ QUCustomTagsDialog::QUCustomTagsDialog(QWidget *parent): QDialog(parent) {
 
 	tagList->addItems(QUSongSupport::availableCustomTags());
 
-	for(int row = 0; row < tagList->count(); row++) {
+	for(int row = 0; row < tagList->count(); ++row) {
 		tagList->item(row)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsDragEnabled);
 		tagList->item(row)->setIcon(QIcon(":/bullets/bullet_star.png"));
 	}
@@ -26,11 +26,11 @@ void QUCustomTagsDialog::save() {
 	QSettings settings;
 	QStringList customTags;
 
-	for(int row = 0; row < tagList->count(); row++) {
+	for(int row = 0; row < tagList->count(); ++row) {
 		QString customTag = tagList->item(row)->text().trimmed();
 
 		// remove whitespaces
-		for(int i = 0; i < customTag.length(); i++)
+		for(int i = 0; i < customTag.length(); ++i)
 			if(customTag[i].isSpace())
 				customTag.remove(i, 1);
 

@@ -33,7 +33,7 @@ void QUCSVReport::printHeading(QTextStream &out) {
 		out << QString("\"%1\"").arg(userData().toString()) << endl << endl;
 
 	/* selected columns */
-	for(int i = 0; i < reportDataList().size(); i++) {
+	for(int i = 0; i < reportDataList().size(); ++i) {
 		out.setFieldWidth(0);
 		out << ";";
 		out << reportDataList().at(i)->headerTextData();
@@ -56,7 +56,7 @@ void QUCSVReport::printSongTable(QTextStream &out) {
 		out.setFieldWidth(0);
 		out << QString("%1").arg(rn++, max, 10, QChar('0'));
 
-		for(int i = 0; i < reportDataList().size(); i++) {
+		for(int i = 0; i < reportDataList().size(); ++i) {
 			out.setFieldWidth(0);
 			out << ";";
 			out << reportDataList().at(i)->textData(song);

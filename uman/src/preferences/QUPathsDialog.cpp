@@ -40,7 +40,7 @@ QUPathsDialog::QUPathsDialog(bool firstTimeSetup, QWidget *parent): QDialog(pare
 	songPathList->clear();
 	if(s.contains("songPaths"))
 		songPathList->addItems(s.value("songPaths", "").toStringList());
-	for(int row = 0; row < songPathList->count(); row++)
+	for(int row = 0; row < songPathList->count(); ++row)
 		songPathList->item(row)->setFlags(songPathList->item(row)->flags() | Qt::ItemIsEditable);
 
 	updateHelpText();
@@ -56,7 +56,7 @@ void QUPathsDialog::accept() {
 	playlistDB->setDir(pathEditPlaylist->text());
 
 	QStringList songPaths;
-	for(int row = 0; row < songPathList->count(); row++)
+	for(int row = 0; row < songPathList->count(); ++row)
 		songPaths << songPathList->item(row)->text();
 	if(!s.value("songPath", QString()).toString().isEmpty() && !songPaths.contains(QDir::toNativeSeparators(QU::BaseDir.path())))
 		songPaths.append(QDir::toNativeSeparators(QU::BaseDir.path()));

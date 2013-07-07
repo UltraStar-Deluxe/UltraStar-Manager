@@ -28,7 +28,7 @@ QUTagOrderDialog::~QUTagOrderDialog() {
 
 void QUTagOrderDialog::saveOrder() {
 	QStringList tags;
-	for(int i = 0; i < tagList->count(); i++)
+	for(int i = 0; i < tagList->count(); ++i)
 		tags << tagList->item(i)->text();
 
 	QSettings settings;

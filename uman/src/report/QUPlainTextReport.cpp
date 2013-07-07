@@ -28,7 +28,7 @@ QString QUPlainTextReport::content() const {
 }
 
 void QUPlainTextReport::computePaddings() {
-	for(int i = 0; i < reportDataList().size(); i++) {
+	for(int i = 0; i < reportDataList().size(); ++i) {
 		_paddings.append(reportDataList().at(i)->headerTextData().length());
 
 		foreach(QUSongFile *song, songs()) {
@@ -51,7 +51,7 @@ void QUPlainTextReport::printHeading(QTextStream &out) {
 
 	/* selected columns */
 	int lineSize = rnWidth;
-	for(int i = 0; i < reportDataList().size(); i++) {
+	for(int i = 0; i < reportDataList().size(); ++i) {
 		out.setFieldWidth(0);
 		out << " | ";						lineSize += 3;
 		out.setFieldWidth(_paddings[i]);			lineSize += _paddings[i];
@@ -77,7 +77,7 @@ void QUPlainTextReport::printSongTable(QTextStream &out) {
 		out.setFieldWidth(0);
 		out << " " << QString("%1").arg(rn++, max, 10, QChar('0'));
 
-		for(int i = 0; i < reportDataList().size(); i++) {
+		for(int i = 0; i < reportDataList().size(); ++i) {
 			out.setFieldWidth(0);
 			out << " | ";
 			out.setFieldWidth(_paddings[i]);

@@ -37,7 +37,7 @@ QUSongItem::QUSongItem(QUSongFile *song, bool isToplevel):
  * Resets font color to black.
  */
 void QUSongItem::clearContents() {
-	for(int i = 0; i < this->columnCount(); i++) {
+	for(int i = 0; i < this->columnCount(); ++i) {
 		this->setIcon(i, QIcon());
 		this->setTextColor(i, Qt::black);
 		this->setToolTip(i, "");
@@ -64,7 +64,7 @@ void QUSongItem::update() {
 
 	qDeleteAll(this->takeChildren());
 
-	for(int i = 0; i < fileNames.size(); i++) {
+	for(int i = 0; i < fileNames.size(); ++i) {
 		child = new QUSongItem(song());
 		this->addChild(child);
 
@@ -435,13 +435,13 @@ void QUSongItem::setTick(int column) {
 			} else {
 				if (img.width() < QUSongSupport::mediumBackgroundQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_low_exclamation.png"));
-					this->setToolTip(column, QString(QObject::tr("Low quality background with non-widescreen aspect ratio (%1 x %2).\nTry cropping to %1 x %3 for a widescreen aspect ratio.")).arg(img.width()).arg(img.height()).arg(qRound(img.width()*9/16)));
+					this->setToolTip(column, QString(QObject::tr("Low quality background with non-widescreen aspect ratio (%1 x %2).\nTry cropping to %1 x %3 for a widescreen aspect ratio.")).arg(img.width()).arg(img.height()).arg(qRound(float(img.width()*9/16))));
 				} else if (img.width() < QUSongSupport::highBackgroundQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_medium_exclamation.png"));
-					this->setToolTip(column, QString(QObject::tr("Medium quality background with non-widescreen aspect ratio (%1 x %2).\nTry cropping to %1 x %3 for a widescreen aspect ratio.")).arg(img.width()).arg(img.height()).arg(qRound(img.width()*9/16)));
+					this->setToolTip(column, QString(QObject::tr("Medium quality background with non-widescreen aspect ratio (%1 x %2).\nTry cropping to %1 x %3 for a widescreen aspect ratio.")).arg(img.width()).arg(img.height()).arg(qRound(float(img.width()*9/16))));
 				} else {
 					this->setIcon(column, QIcon(":/marks/tick_high_exclamation.png"));
-					this->setToolTip(column, QString(QObject::tr("High quality background with non-widescreen aspect ratio (%1 x %2).\nTry cropping to %1 x %3 for a widescreen aspect ratio.")).arg(img.width()).arg(img.height()).arg(qRound(img.width()*9/16)));
+					this->setToolTip(column, QString(QObject::tr("High quality background with non-widescreen aspect ratio (%1 x %2).\nTry cropping to %1 x %3 for a widescreen aspect ratio.")).arg(img.width()).arg(img.height()).arg(qRound(float(img.width()*9/16))));
 				}
 			}
 			// used for sorting
@@ -676,9 +676,9 @@ void QUSongItem::updateTypeColumns() {
 		bool medleyEndBeatAtLineEnd = false;
 		bool medleyEndBeatAtNoteEnd = false;
 
-		for(int i = 0; i < song()->loadMelody().length(); i++) {
+		for(int i = 0; i < song()->loadMelody().length(); ++i) {
 			QUSongLineInterface *currentLine = song()->loadMelody().at(i);
-			for(int j = 0; j < currentLine->notes().size(); j++) {
+			for(int j = 0; j < currentLine->notes().size(); ++j) {
 				QUSongNoteInterface *currentNote = currentLine->notes().at(j);
 				int currentNoteStartBeat = currentNote->timestamp();
 				int currentNoteEndBeat   = currentNote->timestamp() + currentNote->duration();
@@ -842,10 +842,10 @@ void QUSongItem::updateControlColumns() {
 
 void QUSongItem::updateBackground() {
 	if(!song()->isValid())
-		for(int i = 0; i < this->columnCount(); i++)
+		for(int i = 0; i < this->columnCount(); ++i)
 			this->setBackgroundColor(i, QColor(255, 48, 48, 50));
 	else
-		for(int i = 0; i < this->columnCount(); i++)
+		for(int i = 0; i < this->columnCount(); ++i)
 			this->setBackgroundColor(i, QColor(0, 0, 0, 0));
 
 }

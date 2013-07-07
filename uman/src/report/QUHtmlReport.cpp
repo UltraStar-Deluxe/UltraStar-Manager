@@ -235,7 +235,7 @@ void QUHtmlReport::appendLyrics(QDomNode &parent) {
 		QDomDocument tmp; tmp.setContent(lyrics);
 		QDomNodeList nodes = tmp.firstChildElement("root").childNodes();
 
-		for(int i = 0; i < nodes.count(); i++)
+		for(int i = 0; i < nodes.count(); ++i)
 			div.appendChild(nodes.at(i));
 
 		td.appendChild(div);

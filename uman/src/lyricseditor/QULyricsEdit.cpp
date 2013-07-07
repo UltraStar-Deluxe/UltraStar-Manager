@@ -115,10 +115,10 @@ void QULyricsEdit::setShowWhitespace(bool enabled) {
 	disconnect(this, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(lineModified(QTableWidgetItem*)));
 
 	if(enabled)
-		for(int row = 0; row < rowCount(); row++)
+		for(int row = 0; row < rowCount(); ++row)
 			this->item(row, 1)->setText(item(row, 1)->text().replace(" ", QObject::trUtf8(CHAR_UTF8_DOT)));
 	else
-		for(int row = 0; row < rowCount(); row++)
+		for(int row = 0; row < rowCount(); ++row)
 			this->item(row, 1)->setText(item(row, 1)->text().replace(QObject::trUtf8(CHAR_UTF8_DOT), " "));
 
 	connect(this, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(lineModified(QTableWidgetItem*)));

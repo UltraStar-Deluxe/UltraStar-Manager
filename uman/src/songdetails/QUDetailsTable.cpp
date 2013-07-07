@@ -158,7 +158,7 @@ void QUDetailsTable::initSeparator(const QString &text, int row) {
 }
 
 void QUDetailsTable::updateValueColumn(const QList<QUSongItem*> &songItems) {
-	for(int i = 0; i < this->rowCount(); i++) {
+	for(int i = 0; i < this->rowCount(); ++i) {
 		QUDetailItem *detailItem = dynamic_cast<QUDetailItem*>(this->item(i, 1));
 
 		if(detailItem)

@@ -27,29 +27,29 @@ QUPdfReport::QUPdfReport(
 
 	// horizontal spacing
 	_subLevelEntryHIndent	= 200;
-	_colHSep		= 120;
+	_colHSep				= 120;
 
-	_subLevelEntryHSep	= 3500;
-	_artistHSep		= 3500;
-	_titleHSep		= 3500;
-	_languageHSep		= 700;
-	_editionHSep		= 2000;
-	_genreHSep		= 1000;
-	_yearHSep		= 400;
-	_creatorHSep		= 1000;
-	_booleanHSep		= 100;
-	_speedHSep		= 400;
-	_lengthHSep		= 400;
-	_songPathHSep		= 2000;
-	_songFilePathHSep	= 2000;
+	_subLevelEntryHSep		= 3500;
+	_artistHSep				= 3500;
+	_titleHSep				= 3500;
+	_languageHSep			= 700;
+	_editionHSep			= 2000;
+	_genreHSep				= 1000;
+	_yearHSep				= 400;
+	_creatorHSep			= 1000;
+	_booleanHSep			= 100;
+	_speedHSep				= 400;
+	_lengthHSep				= 400;
+	_songPathHSep			= 2000;
+	_songFilePathHSep		= 2000;
 	_relSongFilePathHSep	= 2000;
-	_defaultHSep		= 1000;
+	_defaultHSep			= 1000;
 
-	_letterFnt		= QFont("Verdana", 14, QFont::Black, false);
-	_topLevelEntryFnt	= QFont("Verdana", 7, QFont::DemiBold, false);
-	_subLevelEntryFnt	= QFont("Verdana", 7, QFont::Normal, false);
+	_letterFnt				= QFont("Verdana", 14, QFont::Black, false);
+	_topLevelEntryFnt		= QFont("Verdana", 7, QFont::DemiBold, false);
+	_subLevelEntryFnt		= QFont("Verdana", 7, QFont::Normal, false);
 	_subSubLevelEntryFnt	= QFont("Verdana", 6, QFont::Normal, false);
-	_numberFnt		= QFont("Verdana", 6, QFont::Normal, true);
+	_numberFnt				= QFont("Verdana", 6, QFont::Normal, true);
 }
 
 bool QUPdfReport::save() {
@@ -68,9 +68,6 @@ bool QUPdfReport::save() {
 	QUProgressDialog pDlg(tr("Creating PDF report..."), songs().size());
 	pDlg.setPixmap(":/types/folder.png");
 	pDlg.show();
-
-	//int rn = 1;
-	//int max = QVariant(songs().size()).toString().length();
 
 	QString previousTopLevelEntry("Zyxel");
 
@@ -91,16 +88,16 @@ bool QUPdfReport::save() {
 
 	// find longest entries
 	int maxSubLevelEntryWidth	= 0;
-	int maxArtistWidth		= 0;
-	int maxTitleWidth		= 0;
+	int maxArtistWidth			= 0;
+	int maxTitleWidth			= 0;
 	int maxLanguageWidth		= 0;
-	int maxEditionWidth		= 0;
-	int maxGenreWidth		= 0;
-	int maxYearWidth		= 0;
-	int maxCreatorWidth		= 0;
-	int maxSpeedWidth		= 0;
-	int maxLengthWidth		= 0;
-	int maxPathWidth		= 0;
+	int maxEditionWidth			= 0;
+	int maxGenreWidth			= 0;
+	int maxYearWidth			= 0;
+	int maxCreatorWidth			= 0;
+	int maxSpeedWidth			= 0;
+	int maxLengthWidth			= 0;
+	int maxPathWidth			= 0;
 	int maxFilePathWidth		= 0;
 	int maxRelFilePathWidth		= 0;
 
@@ -113,7 +110,7 @@ bool QUPdfReport::save() {
 		int currentSubLevelEntryWidth = painter.fontMetrics().width(reportDataList().at(1)->textData(song));
 		maxSubLevelEntryWidth = (currentSubLevelEntryWidth > maxSubLevelEntryWidth) ? currentSubLevelEntryWidth : maxSubLevelEntryWidth;
 		painter.setFont(_subSubLevelEntryFnt);
-		for(int i = 2; i < reportDataList().size(); i++) {
+		for(int i = 2; i < reportDataList().size(); ++i) {
 			int currentEntryWidth = painter.fontMetrics().width(reportDataList().at(i)->textData(song));
 			int currentColumn = reportDataList().at(i)->id();
 
@@ -155,59 +152,21 @@ bool QUPdfReport::save() {
 			case REL_SONG_FILE_PATH_COL:
 				maxRelFilePathWidth = (currentEntryWidth > maxRelFilePathWidth) ? currentEntryWidth : maxRelFilePathWidth;
 			}
-			/*
-			if(currentColumn == ARTIST_COL) {
-				int currentArtistWidth = painter.fontMetrics().width(song->artist());
-				maxArtistWidth = (currentArtistWidth > maxArtistWidth) ? currentArtistWidth : maxArtistWidth;
-			} else if(currentColumn == TITLE_COL) {
-				int currentTitleWidth = painter.fontMetrics().width(song->title());
-				maxTitleWidth = (currentTitleWidth > maxTitleWidth) ? currentTitleWidth : maxTitleWidth;
-			} else if(currentColumn == LANGUAGE_COL) {
-				int currentLanguageWidth = painter.fontMetrics().width(song->language());
-				maxLanguageWidth = (currentLanguageWidth > maxLanguageWidth) ? currentLanguageWidth : maxLanguageWidth;
-			} else if(currentColumn == EDITION_COL) {
-				int currentEditionWidth = painter.fontMetrics().width(song->edition());
-				maxEditionWidth = (currentEditionWidth > maxEditionWidth) ? currentEditionWidth : maxEditionWidth;
-			} else if(currentColumn == GENRE_COL) {
-				int currentGenreWidth = painter.fontMetrics().width(song->genre());
-				maxGenreWidth = (currentGenreWidth > maxGenreWidth) ? currentGenreWidth : maxGenreWidth;
-			} else if(currentColumn == YEAR_COL) {
-				int currentYearWidth = painter.fontMetrics().width(song->year());
-				maxYearWidth = (currentYearWidth > maxYearWidth) ? currentYearWidth : maxYearWidth;
-			} else if(currentColumn == CREATOR_COL) {
-				int currentCreatorWidth = painter.fontMetrics().width(song->creator());
-				maxCreatorWidth = (currentCreatorWidth > maxCreatorWidth) ? currentCreatorWidth : maxCreatorWidth;
-			} else if(currentColumn == SPEED_COL) {
-				int currentSpeedWidth = painter.fontMetrics().width(song->speedFormatted());
-				maxSpeedWidth = (currentSpeedWidth > maxSpeedWidth) ? currentSpeedWidth : maxSpeedWidth;
-			} else if(currentColumn == LENGTH_COL) {
-				int currentLengthWidth = painter.fontMetrics().width(song->lengthEffectiveFormatted());
-				maxLengthWidth = (currentLengthWidth > maxLengthWidth) ? currentLengthWidth : maxLengthWidth;
-			} else if(currentColumn == SONG_PATH_COL) {
-				int currentPathWidth = painter.fontMetrics().width(song->path());
-				maxPathWidth = (currentPathWidth > maxPathWidth) ? currentPathWidth : maxPathWidth;
-			} else if(currentColumn == SONG_FILE_PATH_COL) {
-				int currentFilePathWidth = painter.fontMetrics().width(song->filePath());
-				maxFilePathWidth = (currentFilePathWidth > maxFilePathWidth) ? currentFilePathWidth : maxFilePathWidth;
-			} else if(currentColumn == REL_SONG_FILE_PATH_COL) {
-				int currentRelFilePathWidth = painter.fontMetrics().width(song->relativeFilePath());
-				maxRelFilePathWidth = (currentRelFilePathWidth > maxRelFilePathWidth) ? currentRelFilePathWidth : maxRelFilePathWidth;
-			}*/
 		}
 	}
 
-	_subLevelEntryHSep	= qMin(_subLevelEntryHSep, maxSubLevelEntryWidth);
-	_artistHSep		= qMin(_artistHSep, maxArtistWidth);
-	_titleHSep		= qMin(_titleHSep, maxTitleWidth);
-	_languageHSep		= qMin(_languageHSep, maxLanguageWidth);
-	_editionHSep		= qMin(_editionHSep, maxEditionWidth);
-	_genreHSep		= qMin(_genreHSep, maxGenreWidth);
-	_yearHSep		= qMin(_yearHSep, maxYearWidth);
-	_creatorHSep		= qMin(_creatorHSep, maxCreatorWidth);
-	_speedHSep		= qMin(_speedHSep, maxSpeedWidth);
-	_lengthHSep		= qMin(_lengthHSep, maxLengthWidth);
-	_songPathHSep		= qMin(_songPathHSep, maxPathWidth);
-	_songFilePathHSep	= qMin(_songFilePathHSep, maxFilePathWidth);
+	_subLevelEntryHSep		= qMin(_subLevelEntryHSep, maxSubLevelEntryWidth);
+	_artistHSep				= qMin(_artistHSep, maxArtistWidth);
+	_titleHSep				= qMin(_titleHSep, maxTitleWidth);
+	_languageHSep			= qMin(_languageHSep, maxLanguageWidth);
+	_editionHSep			= qMin(_editionHSep, maxEditionWidth);
+	_genreHSep				= qMin(_genreHSep, maxGenreWidth);
+	_yearHSep				= qMin(_yearHSep, maxYearWidth);
+	_creatorHSep			= qMin(_creatorHSep, maxCreatorWidth);
+	_speedHSep				= qMin(_speedHSep, maxSpeedWidth);
+	_lengthHSep				= qMin(_lengthHSep, maxLengthWidth);
+	_songPathHSep			= qMin(_songPathHSep, maxPathWidth);
+	_songFilePathHSep		= qMin(_songFilePathHSep, maxFilePathWidth);
 	_relSongFilePathHSep	= qMin(_relSongFilePathHSep, maxRelFilePathWidth);
 
 	bool letterBefore = false;
@@ -215,7 +174,7 @@ bool QUPdfReport::save() {
 
 	/* // find optimal colHSep to spread contents over page width
 	int usedLineWidth = _subLevelEntryHIndent + _subLevelEntryHSep;
-	for(int i = 2; i < reportDataList().size(); i++) {
+	for(int i = 2; i < reportDataList().size(); ++i) {
 		int currentColumn = reportDataList().at(i)->id();
 
 		if(currentColumn == ARTIST_COL) {
@@ -338,7 +297,7 @@ bool QUPdfReport::save() {
 		}
 
 		// paint all subsublevel entries
-		for(int i = 2; i < reportDataList().size(); i++) {
+		for(int i = 2; i < reportDataList().size(); ++i) {
 			painter.setFont(_subSubLevelEntryFnt);
 
 			/*

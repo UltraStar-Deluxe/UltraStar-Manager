@@ -104,7 +104,7 @@ void QUReportDialog::initStyleCombo() {
 }
 
 void QUReportDialog::initPlaylistCombo() {
-	for(int i = 0; i < _allPlaylists.size(); i++) {
+	for(int i = 0; i < _allPlaylists.size(); ++i) {
 		playlistCombo->addItem(QString("%1 (%2)").arg(_allPlaylists.at(i)->name()).arg(_allPlaylists.at(i)->count()), i);
 	}
 
@@ -239,7 +239,7 @@ void QUReportDialog::createCSVReport() {
 void QUReportDialog::fetchData() {
 	_data.clear();
 
-	for(int i = 0; i < reportList->count(); i++) {
+	for(int i = 0; i < reportList->count(); ++i) {
 		QUReportItem *item = dynamic_cast<QUReportItem*>(reportList->item(i));
 
 		if(item && item->checkState() == Qt::Checked) {
@@ -336,7 +336,7 @@ void QUReportDialog::toggleAppendLyrics(bool checked) {
  */
 void QUReportDialog::saveState() {
 	int reportColumns = 0;
-	for(int row = 0; row < reportList->count(); row++) {
+	for(int row = 0; row < reportList->count(); ++row) {
 		if(reportList->item(row)->checkState() == Qt::Checked)
 			reportColumns |= 1 << row;
 	}
@@ -374,7 +374,7 @@ void QUReportDialog::loadState() {
 	QSettings settings;
 	int reportColumns = settings.value("reportColumns", 3).toInt();
 
-	for(int row = 0; row < reportList->count(); row++) {
+	for(int row = 0; row < reportList->count(); ++row) {
 		if(reportColumns & (1 << row))
 			reportList->item(row)->setCheckState(Qt::Checked);
 		else

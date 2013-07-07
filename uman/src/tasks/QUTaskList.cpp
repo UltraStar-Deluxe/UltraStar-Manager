@@ -172,8 +172,8 @@ void QUTaskList::backupCurrentSelection() {
 	updateToolTip();
 
 	QString state;
-	for(int i = 0; i < topLevelItemCount(); i++) {
-		for(int j = 0; j < topLevelItem(i)->childCount(); j++)
+	for(int i = 0; i < topLevelItemCount(); ++i) {
+		for(int j = 0; j < topLevelItem(i)->childCount(); ++j)
 			state.append(topLevelItem(i)->child(j)->checkState(0) == Qt::Checked ? "1" : "0");
 		state.append("-");
 	}
@@ -188,8 +188,8 @@ void QUTaskList::restoreCurrentSelection() {
 
 	this->uncheckAllTasks();
 
-	for(int i = 0; i < states.size() && i < topLevelItemCount(); i++)
-		for(int j = 0; j < states.at(i).length() && j < topLevelItem(i)->childCount(); j++)
+	for(int i = 0; i < states.size() && i < topLevelItemCount(); ++i)
+		for(int j = 0; j < states.at(i).length() && j < topLevelItem(i)->childCount(); ++j)
 			topLevelItem(i)->child(j)->setCheckState(0, states.at(i).at(j) == QChar('1') ? Qt::Checked : Qt::Unchecked);
 
 	updateToolTip();
@@ -200,10 +200,10 @@ void QUTaskList::restoreCurrentSelection() {
  */
 void QUTaskList::updateToolTip() {
 	QString tooltip;
-	for(int i = 0; i < topLevelItemCount(); i++) {
+	for(int i = 0; i < topLevelItemCount(); ++i) {
 		bool isCheckedFirst = true;
 
-		for(int j = 0; j < topLevelItem(i)->childCount(); j++) {
+		for(int j = 0; j < topLevelItem(i)->childCount(); ++j) {
 			if(topLevelItem(i)->child(j)->checkState(0) == Qt::Unchecked)
 				continue;
 
@@ -226,8 +226,8 @@ void QUTaskList::updateToolTip() {
 
 QList<QUTaskItem*> QUTaskList::allTaskItems() const {
 	QList<QUTaskItem*> result;
-	for(int i = 0; i < topLevelItemCount(); i++)
-		for(int j = 0; j < topLevelItem(i)->childCount(); j++) {
+	for(int i = 0; i < topLevelItemCount(); ++i)
+		for(int j = 0; j < topLevelItem(i)->childCount(); ++j) {
 			QUTaskItem *taskItem = dynamic_cast<QUTaskItem*>(topLevelItem(i)->child(j));
 			if(taskItem)
 				result.append(taskItem);

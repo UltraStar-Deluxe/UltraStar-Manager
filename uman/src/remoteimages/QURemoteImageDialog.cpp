@@ -86,7 +86,7 @@ void QURemoteImageDialog::initResultsPage(const QList<QUSongItem*> &items) {
 
 	bool createGroups = _groups.isEmpty();
 
-	for(int i = 0; i < songs.size(); i++) {
+	for(int i = 0; i < songs.size(); ++i) {
 		dlg.update(QString("%1 - %2").arg(songs.at(i)->artist()).arg(songs.at(i)->title()));
 		if(dlg.cancelled()) break;
 
@@ -131,7 +131,7 @@ void QURemoteImageDialog::updateResultsPage() {
 		return;
 	}
 
-	for(int i = 0; i < songs.size(); i++) {
+	for(int i = 0; i < songs.size(); ++i) {
 		dlg.update(QString("%1 - %2").arg(songs.at(i)->artist()).arg(songs.at(i)->title()));
 		if(dlg.cancelled()) break;
 

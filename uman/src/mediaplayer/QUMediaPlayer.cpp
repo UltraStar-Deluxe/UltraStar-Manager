@@ -96,7 +96,7 @@ void QUMediaPlayer::setSongs(const QList<QUSongFile*> &songs, Source src) {
 	_currentSongIndex = -1;
 	_lastIndices.clear();
 	_freeIndices.clear();
-	for(int i = 0; i < _songs.size(); i++) {
+	for(int i = 0; i < _songs.size(); ++i) {
 		_freeIndices << i;
 	}
 }
@@ -191,7 +191,7 @@ void QUMediaPlayer::next() {
 	// any song left?
 	if(_freeIndices.isEmpty()) {
 		if(loopBtn->isChecked()) {
-			for(int i = 0; i < _songs.size(); i++)
+			for(int i = 0; i < _songs.size(); ++i)
 				_freeIndices << i;
 		} else {
 			this->stop();

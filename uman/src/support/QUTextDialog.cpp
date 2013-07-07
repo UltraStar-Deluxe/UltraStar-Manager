@@ -28,7 +28,7 @@ QUTextDialog::QUTextDialog(const QString &filePath, QWidget *parent): QDialog(pa
 	if(f.open(QIODevice::ReadOnly | QIODevice::Text)) {
 		QStringList lines(QString::fromLocal8Bit(f.readAll()).split("\n"));
 
-		for(int i = 0; i < lines.size(); i++) { // format line numbers
+		for(int i = 0; i < lines.size(); ++i) { // format line numbers
 			lines[i].prepend(QString("<font color=#808080>%1 </font>").arg(i + 1, 3, 10, QChar('0')));
 		}
 

@@ -890,7 +890,7 @@ void QUMainWindow::saveLog() {
 		out.setCodec(QTextCodec::codecForName("UTF-8"));
 		out.setGenerateByteOrderMark(true);
 
-		for(int row = 0; row < log->count(); row++) {
+		for(int row = 0; row < log->count(); ++row) {
 			out << QString("%1 %2").arg(log->item(row)->data(Qt::UserRole).toString()).arg(log->item(row)->text()) << endl;
 		}
 		file.close();
@@ -1147,7 +1147,7 @@ void QUMainWindow::toggleRelativeSongPath(bool checked) {
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 
-	for(int i = 0; i < songTree->topLevelItemCount(); i++)
+	for(int i = 0; i < songTree->topLevelItemCount(); ++i)
 		tmpList.append(dynamic_cast<QUSongItem*>(songTree->topLevelItem(i)));
 
 	foreach(QUSongItem *item, tmpList) {
@@ -1194,7 +1194,7 @@ void QUMainWindow::toggleAltSongTreeChk(bool checked) {
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 
-	for(int i = 0; i < songTree->topLevelItemCount(); i++) {
+	for(int i = 0; i < songTree->topLevelItemCount(); ++i) {
 		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
 
 		if(songItem) {
@@ -1698,7 +1698,7 @@ void QUMainWindow::setMediumMp3Quality(QString quality) {
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 
-	for(int i = 0; i < songTree->topLevelItemCount(); i++) {
+	for(int i = 0; i < songTree->topLevelItemCount(); ++i) {
 		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
 
 		if(songItem) {
@@ -1727,7 +1727,7 @@ void QUMainWindow::setHighMp3Quality(QString quality) {
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 
-	for(int i = 0; i < songTree->topLevelItemCount(); i++) {
+	for(int i = 0; i < songTree->topLevelItemCount(); ++i) {
 		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
 
 		if(songItem) {
@@ -1753,7 +1753,7 @@ void QUMainWindow::setMediumCoverQuality(QString quality) {
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 
-	for(int i = 0; i < songTree->topLevelItemCount(); i++) {
+	for(int i = 0; i < songTree->topLevelItemCount(); ++i) {
 		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
 
 		if(songItem) {
@@ -1781,7 +1781,7 @@ void QUMainWindow::setHighCoverQuality(QString quality) {
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 
-	for(int i = 0; i < songTree->topLevelItemCount(); i++) {
+	for(int i = 0; i < songTree->topLevelItemCount(); ++i) {
 		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
 
 		if(songItem) {
@@ -1807,7 +1807,7 @@ void QUMainWindow::setMediumBackgroundQuality(QString quality) {
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 
-	for(int i = 0; i < songTree->topLevelItemCount(); i++) {
+	for(int i = 0; i < songTree->topLevelItemCount(); ++i) {
 		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
 
 		if(songItem) {
@@ -1835,7 +1835,7 @@ void QUMainWindow::setHighBackgroundQuality(QString quality) {
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 
-	for(int i = 0; i < songTree->topLevelItemCount(); i++) {
+	for(int i = 0; i < songTree->topLevelItemCount(); ++i) {
 		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
 
 		if(songItem) {

@@ -276,7 +276,7 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 
 	// Find the first video stream
 	videoStream = -1;
-	for(i = 0; i < (int)pFormatCtx->nb_streams; i++)
+	for(i = 0; i < (int)pFormatCtx->nb_streams; ++i)
 		if(pFormatCtx->streams[i]->codec->codec_type == CODEC_TYPE_VIDEO) {
 			videoStream = i;
 			break;

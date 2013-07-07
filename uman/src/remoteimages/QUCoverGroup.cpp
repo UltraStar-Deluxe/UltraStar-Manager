@@ -54,7 +54,7 @@ void QUCoverGroup::showCovers() {
 		int itemCount = list->model()->rowCount();
 
 		int maxItemHeight = 1;
-		for(int i = 0; i < itemCount; i++)
+		for(int i = 0; i < itemCount; ++i)
 			maxItemHeight = qMax(maxItemHeight, list->sizeHintForRow(i));
 
 		int rowCount = qRound((double)itemCount / 5.0);
