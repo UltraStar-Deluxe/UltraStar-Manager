@@ -4,7 +4,7 @@
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  NEW FEATURES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~
 SONG DETAILS
-* Added news tags: #ALBUM, #COVER, #P1, and #P2
+* Added news tags: #ALBUM, #COVER, #P1, #P2, #ARTIST-ON-SORTING, #TITLE-ON-SORTING
 
 SONG TREE
 * Video files may now be set for both audio and video file (also simultaneously).
@@ -13,11 +13,10 @@ SONG TREE
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 QT
-* updated to Qt 4.8.2
+* updated to Qt 4.8.5
 
-BASS/BASS FX
-* updated to BASS 2.4.9
-* updated to BASS FX 2.4.8
+BASS
+* updated to BASS 2.4.10
 
 TAGLIB
 * updated to TagLib 1.8.0
@@ -25,7 +24,8 @@ TAGLIB
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
-
+RENAME TASK
+* Fixed renamed cover/background when a single file was assigned to both cover and background
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#  KNOWN BUGS  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
