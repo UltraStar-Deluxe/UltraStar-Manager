@@ -46,7 +46,8 @@ INCLUDEPATH += . \
     ../.. \
     ../../song \
     ../shared \
-    ../../../include/taglib
+	../../../include/taglib \
+	../../../include/taglib/toolkit
 TEMPLATE = lib
 CONFIG += plugin
 UI_DIR = ../ui
