@@ -1756,7 +1756,7 @@ border-left-color: #C2C7CB;</string>
             <string>Specify the minimum resolution for medium cover quality.</string>
            </property>
            <property name="currentIndex">
-            <number>1</number>
+            <number>0</number>
            </property>
            <item>
             <property name="text">
@@ -1765,7 +1765,17 @@ border-left-color: #C2C7CB;</string>
            </item>
            <item>
             <property name="text">
+             <string>128 x 128</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string notr="true">200 x 200</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>256 x 256</string>
             </property>
            </item>
            <item>
@@ -1776,6 +1786,11 @@ border-left-color: #C2C7CB;</string>
            <item>
             <property name="text">
              <string notr="true">400 x 400</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>500 x 500</string>
             </property>
            </item>
           </widget>
@@ -1804,11 +1819,21 @@ border-left-color: #C2C7CB;</string>
             <string>Specify the minimum resolution for high cover quality.</string>
            </property>
            <property name="currentIndex">
-            <number>1</number>
+            <number>0</number>
            </property>
            <item>
             <property name="text">
+             <string>128 x 128</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string notr="true">200 x 200</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>256 x 256</string>
             </property>
            </item>
            <item>
@@ -1824,6 +1849,11 @@ border-left-color: #C2C7CB;</string>
            <item>
             <property name="text">
              <string notr="true">500 x 500</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>512 x 512</string>
             </property>
            </item>
           </widget>
