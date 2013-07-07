@@ -41,8 +41,15 @@ bool QU::fileTypeLessThan(const QFileInfo &fi1, const QFileInfo &fi2) {
 			if(QString::compare(type, suffix2, Qt::CaseInsensitive) == 0)
 				return false;
 		}
-	} else  if(QUSongSupport::allowedPlaylistFiles().contains(suffix1) && QUSongSupport::allowedPlaylistFiles().contains(suffix2)) {
-		foreach(QString type, QUSongSupport::allowedPlaylistFiles()) {
+	} else  if(QUSongSupport::allowedUltraStarPlaylistFiles().contains(suffix1) && QUSongSupport::allowedUltraStarPlaylistFiles().contains(suffix2)) {
+		foreach(QString type, QUSongSupport::allowedUltraStarPlaylistFiles()) {
+			if(QString::compare(type, suffix1, Qt::CaseInsensitive) == 0)
+				return true;
+			if(QString::compare(type, suffix2, Qt::CaseInsensitive) == 0)
+				return false;
+		}
+	} else  if(QUSongSupport::allowedVocaluxePlaylistFiles().contains(suffix1) && QUSongSupport::allowedVocaluxePlaylistFiles().contains(suffix2)) {
+		foreach(QString type, QUSongSupport::allowedVocaluxePlaylistFiles()) {
 			if(QString::compare(type, suffix1, Qt::CaseInsensitive) == 0)
 				return true;
 			if(QString::compare(type, suffix2, Qt::CaseInsensitive) == 0)
