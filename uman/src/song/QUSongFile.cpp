@@ -573,7 +573,7 @@ double QUSongFile::calculateSongSpeed() const {
 	int beatCount1 = 0;
 	int beatCount2 = 0;
 	int beatCount3 = 0;
-	for(int i = 0; i < durations.size() / 2; i++) {
+	for(int i = 0; i < durations.size() / 2; ++i) {
 		beatCount1 += durations.at(i);
 		beatCount2 += durations.at(i + durations.size() / 4);
 		beatCount3 += durations.at(qMin(i + durations.size() / 2, durations.size())); // qMin to avoid an access violation
@@ -815,8 +815,12 @@ void QUSongFile::renameSongMp3(const QString &newName) {
 	}
 
 	setInfo(MP3_TAG, newName);
-
 	logSrv->add(QString(tr("Audio file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
+
+	if(QString::compare(video(), oldName, Qt::CaseInsensitive) == 0) {
+		setInfo(VIDEO_TAG, newName);
+		logSrv->add(QString(tr("Video file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
+	}
 }
 
 /*!
@@ -833,8 +837,12 @@ void QUSongFile::renameSongCover(const QString &newName) {
 	}
 
 	setInfo(COVER_TAG, newName);
-
 	logSrv->add(QString(tr("Cover picture renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
+
+	if(QString::compare(background(), oldName, Qt::CaseInsensitive) == 0) {
+		setInfo(BACKGROUND_TAG, newName);
+		logSrv->add(QString(tr("Background picture renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
+	}
 }
 
 /*!
@@ -851,8 +859,12 @@ void QUSongFile::renameSongBackground(const QString &newName) {
 	}
 
 	setInfo(BACKGROUND_TAG, newName);
-
 	logSrv->add(QString(tr("Background picture renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
+
+	if(QString::compare(cover(), oldName, Qt::CaseInsensitive) == 0) {
+		setInfo(COVER_TAG, newName);
+		logSrv->add(QString(tr("Cover picture renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
+	}
 }
 
 /*!
@@ -869,8 +881,12 @@ void QUSongFile::renameSongVideo(const QString &newName) {
 	}
 
 	setInfo(VIDEO_TAG, newName);
-
 	logSrv->add(QString(tr("Video file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
+
+	if(QString::compare(mp3(), oldName, Qt::CaseInsensitive) == 0) {
+		setInfo(MP3_TAG, newName);
+		logSrv->add(QString(tr("Audio file renamed from: \"%1\" to: \"%2\".")).arg(oldName).arg(newName), QU::Information);
+	}
 }
 
 /*!
@@ -1322,7 +1338,7 @@ void QUSongFile::changeData(const QString &tag, const QString &value) {
 		   -  titles ("..." / "... (live)")
 		   - artists ("..." / "... feat. ...")
 		   - languages ("English" / "German")
-		   - different editions ("None" / "[SC]-Songs")
+		   - editions ("None" / "[SC]-Songs")
 		   - genres ("Rock" / "a capella")
 		   - years due to different releases ("1982" / "1983")
 		   - creators
