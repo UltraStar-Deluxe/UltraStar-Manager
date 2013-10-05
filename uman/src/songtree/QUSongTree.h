@@ -108,7 +108,9 @@ private slots:
 	void mergeSelectedSongs();
 	void calculateSpeed();
 
-    void lookUpOnSwisscharts();
+	void lookUpOnSwisscharts();
+	void lookUpOnUSDB();
+	void createDuetFromSongFiles();
 
 protected:
 	virtual void keyPressEvent(QKeyEvent *event);

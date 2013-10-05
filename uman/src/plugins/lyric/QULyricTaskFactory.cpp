@@ -51,5 +51,3 @@ QMap<QString, QString> QULyricTaskFactory::translationLocations() const {
 
 	return locations;
 }
-
-Q_EXPORT_PLUGIN2(qulyrictaskfactory, QULyricTaskFactory);

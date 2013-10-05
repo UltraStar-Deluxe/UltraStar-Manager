@@ -1,7 +1,7 @@
 SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
 	QULyricTaskFactory.cpp \
-    QULyricTask.cpp \
-    ../shared/QUSimpleTask.cpp \
+	QULyricTask.cpp \
+	../shared/QUSimpleTask.cpp \
 	../shared/QUSimpleTaskFactory.cpp \
 	../shared/QUSmartSetting.cpp \
 	../shared/QUSmartCheckBox.cpp \
@@ -15,19 +15,21 @@ HEADERS = ../shared/QUMultilingualTaskFactory.h \
 	../shared/QUSmartCheckBox.h \
 	../shared/QUSmartInputField.h \
 	../QUSmartSettingInterface.h
+OTHER_FILES += lyric.json
 TRANSLATIONS = lyric.de.ts \
 	lyric.pl.ts \
-    lyric.es.ts \
-    lyric.fr.ts \
+	lyric.es.ts \
+	lyric.fr.ts \
 	lyric.pt.ts
 INCLUDEPATH += . \
-    .. \
-    ../.. \
-    ../../song \
-    ../shared
+	.. \
+	../.. \
+	../../song \
+	../shared
 
 TEMPLATE = lib
 CONFIG += plugin
+QT += widgets
 
 CONFIG(release, debug|release) {
 	TARGET = 2-lyric

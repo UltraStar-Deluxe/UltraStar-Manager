@@ -11,6 +11,7 @@
 
 #include <QMessageBox>
 #include <QUrl>
+#include <QUrlQuery>
 #include <QIcon>
 #include <QMenu>
 #include <QList>
@@ -23,6 +24,8 @@
 #include <QDesktopServices>
 #include <QShortcut>
 #include <QUrl>
+#include <QTextStream>
+#include <QMimeData>
 
 #include "QUProgressDialog.h"
 
@@ -254,7 +257,7 @@ QList<QUSongItem*> QUSongTree::visibleSongItems() const {
 	QList<QUSongItem*> items;
 
 	QList<QTreeWidgetItem*> topLevelItems;
-	for(int i = 0; i < this->topLevelItemCount(); i++)
+	for(int i = 0; i < this->topLevelItemCount(); ++i)
 		topLevelItems.append(this->topLevelItem(i));
 
 	foreach(QTreeWidgetItem *item, topLevelItems) {
@@ -382,7 +385,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 
 	// collect all toplevel items
 	QList<QTreeWidgetItem*> topLevelItems;
-	for(int i = 0; i < this->topLevelItemCount(); i++)
+	for(int i = 0; i < this->topLevelItemCount(); ++i)
 		topLevelItems.append(this->topLevelItem(i));
 
 	QUProgressDialog progress(tr("Applying filter..."), topLevelItems.size(), this, false);
@@ -584,7 +587,7 @@ QStringList QUSongTree::mimeTypes() const {
 void QUSongTree::showItemMenu(const QPoint &point) {
 	QMenu *menu;
 
-	if(!itemAt(point))
+	if(!this->itemAt(point))
 		menu = generalMenu();
 	else {
 		QUSongItem *item = dynamic_cast<QUSongItem*>(this->currentItem());
@@ -630,7 +633,7 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 	QMenu lengthsMenu(tr("Time && Speed"), this); lengthsMenu.setIcon(QIcon(":/types/time.png"));
 	QMenu typesMenu(tr("Types"), this);
 
-	for(int i = 0; i < headerItem()->columnCount(); i++) {
+	for(int i = 0; i < headerItem()->columnCount(); ++i) {
 		if(i != LENGTH_DIFF_COLUMN
 		   && i != TYPE_DUET_COLUMN
 		   && i != TYPE_KARAOKE_COLUMN
@@ -684,7 +687,7 @@ void QUSongTree::toggleColumn(bool show, int index) {
 }
 
 void QUSongTree::showAllColumns() {
-	for(int i = 0; i < headerItem()->columnCount(); i++)
+	for(int i = 0; i < headerItem()->columnCount(); ++i)
 		header()->showSection(i);
 
 	this->header()->setSectionHidden(DUPLICATE_ID_COLUMN, true);
@@ -696,7 +699,7 @@ void QUSongTree::showAllColumns() {
 }
 
 void QUSongTree::showDefaultColumns(bool save) {
-	for(int i = 0; i < headerItem()->columnCount(); i++)
+	for(int i = 0; i < headerItem()->columnCount(); ++i)
 		header()->hideSection(i);
 
 	this->header()->showSection(FOLDER_COLUMN);
@@ -720,7 +723,7 @@ void QUSongTree::showDefaultColumns(bool save) {
 	this->header()->showSection(CREATOR_COLUMN);
 
 	int customTagsCount = QUSongSupport::availableCustomTags().size();
-	for(int i = 0; i < customTagsCount; i++)
+	for(int i = 0; i < customTagsCount; ++i)
 		header()->showSection(FIRST_CUSTOM_TAG_COLUMN + i);
 
 	this->resizeToContents();
@@ -735,7 +738,7 @@ void QUSongTree::showDefaultColumns(bool save) {
  * Hide all but the folder column.
  */
 void QUSongTree::showMinimalColumns() {
-	for(int i = 0; i < headerItem()->columnCount(); i++)
+	for(int i = 0; i < headerItem()->columnCount(); ++i)
 		header()->hideSection(i);
 
 	this->header()->showSection(FOLDER_COLUMN);
@@ -747,7 +750,7 @@ void QUSongTree::showMinimalColumns() {
 }
 
 void QUSongTree::showTimeColumns() {
-	for(int i = 0; i < headerItem()->columnCount(); i++)
+	for(int i = 0; i < headerItem()->columnCount(); ++i)
 		header()->hideSection(i);
 
 	this->header()->showSection(FOLDER_COLUMN);
@@ -767,7 +770,7 @@ void QUSongTree::showTimeColumns() {
 }
 
 void QUSongTree::showCheckColumns() {
-	for(int i = 0; i < headerItem()->columnCount(); i++)
+	for(int i = 0; i < headerItem()->columnCount(); ++i)
 		header()->hideSection(i);
 
 	this->header()->showSection(FOLDER_COLUMN);
@@ -1252,7 +1255,7 @@ void QUSongTree::refreshSelectedItems() {
 }
 
 void QUSongTree::resizeToContents() {
-	for(int i = 0; i < this->columnCount(); i++)
+	for(int i = 0; i < this->columnCount(); ++i)
 		this->resizeColumnToContents(i);
 }
 
@@ -1313,9 +1316,9 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 		menu->addAction(QIcon(":/control/bin.png"), tr("Delete"), this, SLOT(deleteCurrentItem()), QKeySequence(Qt::Key_Delete));
 	} else {
 		// song/folder menu
-		menu->addAction(QIcon(":/control/refresh.png"), tr("Refresh"), this, SLOT(refreshSelectedItems()),			QKeySequence(Qt::Key_F5));
-		menu->addAction(QIcon(":/control/save.png"),	tr("Save"),	this, SLOT(saveSelectedSongs()),				QKeySequence(Qt::CTRL  + Qt::Key_S));
-		menu->addAction(QIcon(":/control/bin.png"),     tr("Delete"),  this, SLOT(requestDeleteSelectedSongs()),	QKeySequence(Qt::SHIFT + Qt::Key_Delete));
+		menu->addAction(QIcon(":/control/refresh.png"), tr("Refresh"),	this, SLOT(refreshSelectedItems()),			QKeySequence(Qt::Key_F5));
+		menu->addAction(QIcon(":/control/save.png"),	tr("Save"),		this, SLOT(saveSelectedSongs()),			QKeySequence(Qt::CTRL  + Qt::Key_S));
+		menu->addAction(QIcon(":/control/bin.png"),     tr("Delete"),	this, SLOT(requestDeleteSelectedSongs()),	QKeySequence(Qt::SHIFT + Qt::Key_Delete));
 		QAction *a = menu->addAction(QIcon(":/control/merge.png"), tr("Merge"),   this, SLOT(mergeSelectedSongs()),	QKeySequence(Qt::CTRL  + Qt::Key_M));
 		if(selectedItems().size() < 2) a->setEnabled(false);
 		menu->addAction(QIcon(":/player/play.png"), tr("Play"), this, SIGNAL(playSelectedSongsRequested()));
@@ -1340,6 +1343,13 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 
 		menu->addSeparator();
 		menu->addAction(QIcon(":/types/world.png"),tr("Look up on Swisscharts..."), this, SLOT(lookUpOnSwisscharts()));
+		menu->addAction(QIcon(":/types/world.png"),tr("Look up on USDB..."), this, SLOT(lookUpOnUSDB()));
+
+		if ( item->song()->songFileInfo().dir().entryList(QStringList("*.txt"), QDir::Files).size() == 2 ) {
+			menu->addSeparator();
+			menu->addAction(QIcon(":/types/duet.png"),tr("Create Duet From Song Files"), this, SLOT(createDuetFromSongFiles()));
+		}
+
 	}
 
 	return menu;
@@ -1492,21 +1502,74 @@ void QUSongTree::lookUpOnSwisscharts() {
 
 	if(songItem) {
 		QUrl url("http://swisscharts.com/search.asp");
-		url.addQueryItem("cat", "s");
-		QString queryString = songItem->song()->artist() + " " +  songItem->song()->title();
+		QUrlQuery urlQuery;
+		urlQuery.addQueryItem("cat", "s");
+		QString queryString = songItem->song()->artist() + " " + songItem->song()->title();
 		QStringList queryStrings = queryString.split(QRegExp("(\\s+)"));
 		QByteArray encodedQuery;
 		foreach(QString queryString, queryStrings) {
 			encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
 		}
+		urlQuery.addQueryItem("search", encodedQuery);
+		url.setQuery(urlQuery);
+		QDesktopServices::openUrl(url);
+	}
 
-		url.addEncodedQueryItem("search", encodedQuery);
+	if(selectedSongItems().size() > 1) {
+		logSrv->add(tr("You can only look up one song at a time."), QU::Information);
+	}
+}
+
+/*!
+ * Look up song at usdb.animux.de, e.g. to see if it is already available there or has been updated
+ */
+void QUSongTree::lookUpOnUSDB() {
+	QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->currentItem());
+
+	if(songItem) {
+		QUrl url("http://usdb.animux.de/");
+		QUrlQuery urlQuery;
+		urlQuery.addQueryItem("link", "list");
+		urlQuery.addQueryItem("interpret", songItem->song()->artist());
+		urlQuery.addQueryItem("title", songItem->song()->title());
+		url.setQuery(urlQuery);
 
 		QDesktopServices::openUrl(url);
 	}
 
-	if(selectedSongItems().size() > 1)
+	if(selectedSongItems().size() > 1) {
 		logSrv->add(tr("You can only look up one song at a time."), QU::Information);
-
+	}
 }
 
+/*!
+ * Create Duet From Song Files
+ */
+void QUSongTree::createDuetFromSongFiles() {
+	QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->currentItem());
+
+	if(songItem) {
+		QString duetFilename = songItem->song()->path() + QDir::separator() + songItem->song()->artist() + " - " + songItem->song()->title() + ".txd";
+		QUSongFile *duet = new QUSongFile(duetFilename);
+
+		duet->setInfo(ARTIST_TAG, songItem->song()->artist());
+		duet->setInfo(TITLE_TAG, songItem->song()->title());
+		duet->setInfo(MP3_TAG, songItem->song()->mp3());
+		duet->setInfo(BPM_TAG, songItem->song()->bpm());
+		duet->setInfo(P1_TAG, "Singer 1");
+		duet->setInfo(P2_TAG, "Singer 2");
+
+		double gapMain = QVariant(songItem->song()->gap().replace(",", ".")).toDouble();
+		double gapFriend = QVariant(songItem->song()->friends().first()->gap().replace(",", ".")).toDouble();
+		//logSrv->add("gapMain: " + QString::number(int(gapMain)), QU::Information);
+		if(gapMain < gapFriend) {
+			duet->setInfo(GAP_TAG, songItem->song()->gap());
+		} else {
+			duet->setInfo(GAP_TAG, songItem->song()->friends().first()->gap());
+		}
+
+		duet->saveMelody();
+		// TODO: adjust gap, prepend P1, append P2 and corresponding lyrics
+		duet->save();
+	}
+}

@@ -5,6 +5,7 @@
 
 class QUCleanUpTaskFactory: public QUSimpleTaskFactory {
 	Q_OBJECT
+	Q_PLUGIN_METADATA(IID "QUCleanUpTaskFactory" FILE "cleanup.json")
 
 public:
 	QUCleanUpTaskFactory(QObject *parent = 0);

@@ -42,7 +42,7 @@ public:
 	const QIcon& icon() const { return _icon; }
 	const QString& description() const { return _description; }
 	const QString& toolTip() const { return _toolTip; }
-	const int id() const { return _id; }
+	int id() const { return _id; }
 	
 	virtual void sort(QList<QUSongFile*> &songs) = 0;
 	

@@ -18,11 +18,11 @@ QUDetailsTable::QUDetailsTable(QWidget *parent): QTableWidget(parent) {
 
 	// setup headers
 	this->verticalHeader()->hide();
-	this->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+	this->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
 	this->setHorizontalHeaderLabels(QStringList() << tr("Tag") << tr("Value"));
-	this->horizontalHeader()->setResizeMode(0, QHeaderView::ResizeToContents);
-	this->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
+	this->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+	this->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
 	this->horizontalHeader()->hide();
 
 	// set value editor
@@ -152,7 +152,7 @@ void QUDetailsTable::initSeparator(const QString &text, int row) {
 	this->setItem(row, 0, separator);
 	this->setSpan(row, 0, 1, 2);
 
-	this->verticalHeader()->setResizeMode(row, QHeaderView::Fixed);
+	this->verticalHeader()->setSectionResizeMode(row, QHeaderView::Fixed);
 	this->verticalHeader()->resizeSection(row, 16);
 
 }

@@ -11,7 +11,7 @@ class QUSmartSetting;
 
 class QUPreparatoryTask : public QUSimpleTask {
 	Q_OBJECT
-	
+
 public:
 	enum TaskMode {
 		AutoAssignFiles,

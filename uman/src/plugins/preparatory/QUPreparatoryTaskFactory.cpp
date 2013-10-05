@@ -44,5 +44,3 @@ QMap<QString, QString> QUPreparatoryTaskFactory::translationLocations() const {
 
 	return locations;
 }
-
-Q_EXPORT_PLUGIN2(qupreparatorytaskfactory, QUPreparatoryTaskFactory);

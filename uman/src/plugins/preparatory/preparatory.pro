@@ -1,7 +1,7 @@
 SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
 	QUPreparatoryTaskFactory.cpp \
-    QUPreparatoryTask.cpp \
-    ../shared/QUSimpleTask.cpp \
+	QUPreparatoryTask.cpp \
+	../shared/QUSimpleTask.cpp \
 	../shared/QUSimpleTaskFactory.cpp \
 	../shared/QUSmartSetting.cpp \
 	../shared/QUSmartCheckBox.cpp \
@@ -9,27 +9,29 @@ SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
 	../../QUSongSupport.cpp
 HEADERS = ../shared/QUMultilingualTaskFactory.h \
 	QUPreparatoryTaskFactory.h \
-    QUPreparatoryTask.h \
-    ../shared/QUSimpleTask.h \
+	QUPreparatoryTask.h \
+	../shared/QUSimpleTask.h \
 	../shared/QUSimpleTaskFactory.h \
 	../shared/QUSmartSetting.h \
 	../shared/QUSmartCheckBox.h \
 	../shared/QUSmartInputField.h \
 	../../QUSongSupport.h \
 	../QUSmartSettingInterface.h
+OTHER_FILES += preparatory.json
 TRANSLATIONS = preparatory.de.ts \
 	preparatory.pl.ts \
-    preparatory.es.ts \
-    preparatory.fr.ts \
+	preparatory.es.ts \
+	preparatory.fr.ts \
 	preparatory.pt.ts
 INCLUDEPATH += . \
-    .. \
-    ../.. \
-    ../../song \
-    ../shared
+	.. \
+	../.. \
+	../../song \
+	../shared
 TARGET = 1-preparatory
 TEMPLATE = lib
 CONFIG += plugin
+QT += widgets
 
 CONFIG(release, debug|release) {
 	TARGET = 1-preparatory

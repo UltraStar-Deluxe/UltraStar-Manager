@@ -18,12 +18,12 @@ QUAudioTagTaskDialog::QUAudioTagTaskDialog(QUAudioTagTask *task, QWidget *parent
 	int i = targetCombo->count();
 	targetCombo->addItems(QUAudioTagTask::availableFileTargets());
 	for(; i < targetCombo->count(); i++)
-		targetCombo->setItemData(i, Qt::red, Qt::ForegroundRole);
+		targetCombo->setItemData(i, QColor(Qt::red), Qt::ForegroundRole);
 
 	i = targetCombo->count();
 	targetCombo->addItems(QUScriptableTask::availableCustomSources());
 	for(; i < targetCombo->count(); i++)
-		targetCombo->setItemData(i, Qt::blue, Qt::ForegroundRole);
+		targetCombo->setItemData(i, QColor(Qt::blue), Qt::ForegroundRole);
 
 	infoLbl->setText(tr("Select a proper <b>target tag</b> and create a custom <b>schema</b> for the operation. You can use <b>custom tags</b> as targets."));
 

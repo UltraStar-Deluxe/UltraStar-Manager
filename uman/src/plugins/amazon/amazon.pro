@@ -20,10 +20,11 @@ HEADERS = ../../QUStringSupport.h \
 	../shared2/QUMultilingualImageSource.h \
 	../shared2/QURequestUrl.h \
 	../shared2/QUHttpCollector.h
+OTHER_FILES += amazon.json
 TRANSLATIONS = amazon.de.ts \
 	amazon.pl.ts \
-    amazon.es.ts \
-    amazon.fr.ts \
+	amazon.es.ts \
+	amazon.fr.ts \
 	amazon.pt.ts
 INCLUDEPATH += . \
 	.. \
@@ -34,7 +35,9 @@ INCLUDEPATH += . \
 TEMPLATE = lib
 CONFIG += plugin
 UI_DIR = ../ui
-QT += xml network
+QT += xml \
+	network \
+	widgets
 
 CONFIG(release, debug|release) {
 	TARGET = amazon

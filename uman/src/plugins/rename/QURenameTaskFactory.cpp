@@ -52,5 +52,3 @@ QMap<QString, QString> QURenameTaskFactory::translationLocations() const {
 
 	return locations;
 }
-
-Q_EXPORT_PLUGIN2(qurenametaskfactory, QURenameTaskFactory);

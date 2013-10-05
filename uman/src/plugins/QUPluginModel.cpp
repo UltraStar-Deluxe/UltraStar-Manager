@@ -59,5 +59,5 @@ QVariant QUPluginModel::data(const QModelIndex &index, int role) const {
 }
 
 void QUPluginModel::invalidateData() {
-	reset(); // ... because this is no slot
+	//reset(); // ... because this is no slot
 }

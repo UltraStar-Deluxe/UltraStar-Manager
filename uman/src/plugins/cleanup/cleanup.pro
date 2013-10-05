@@ -17,6 +17,7 @@ HEADERS = ../shared/QUMultilingualTaskFactory.h \
 	../shared/QUSmartInputCheck.h \
 	../../QUSongSupport.h \
 	../QUSmartSettingInterface.h
+OTHER_FILES += cleanup.json
 TRANSLATIONS = cleanup.de.ts \
 	cleanup.pl.ts \
     cleanup.es.ts \
@@ -29,6 +30,7 @@ INCLUDEPATH += . \
     ../shared
 TEMPLATE = lib
 CONFIG += plugin
+QT += widgets
 
 CONFIG(release, debug|release) {
 	TARGET = 5-cleanup

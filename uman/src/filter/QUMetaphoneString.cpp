@@ -95,7 +95,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 		if(current >= _length)
 			break;
 
-		switch(at(current).toAscii())
+		switch(at(current).toLatin1())
 		{
 		case 'A':
 		case 'E':

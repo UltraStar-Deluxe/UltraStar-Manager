@@ -9,6 +9,7 @@
 
 class QURenameTaskFactory: public QUScriptableTaskFactory {
 	Q_OBJECT
+	Q_PLUGIN_METADATA(IID "QURenameTaskFactory" FILE "rename.json")
 
 public:
 	QURenameTaskFactory(QObject *parent = 0);

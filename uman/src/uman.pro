@@ -2,8 +2,10 @@ TEMPLATE = app
 UI_DIR = ui
 QT += core \
 	gui \
+	widgets \
 	xml \
-	network
+	network \
+	printsupport
 
 #CONFIG += release
 

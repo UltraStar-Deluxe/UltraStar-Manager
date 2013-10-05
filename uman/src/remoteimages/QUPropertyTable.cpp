@@ -17,11 +17,11 @@ QUPropertyTable::QUPropertyTable(QURemoteImageSource *src, QWidget *parent):
 
 	// setup headers
 	verticalHeader()->hide();
-	verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+	verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-	horizontalHeader()->setResizeMode(0, QHeaderView::ResizeToContents);
-	horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
-	horizontalHeader()->setResizeMode(2, QHeaderView::ResizeToContents);
+	horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+	horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+	horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
 	horizontalHeader()->hide();
 
 	connect(this, SIGNAL(currentCellChanged(int,int,int,int)), SLOT(skipReadOnlyCells(int, int, int, int)));
@@ -79,7 +79,7 @@ void QUPropertyTable::initSeparator(const QString &text, int row) {
 	this->setItem(row, 0, separator);
 	this->setSpan(row, 0, 1, 3);
 
-	this->verticalHeader()->setResizeMode(row, QHeaderView::Fixed);
+	this->verticalHeader()->setSectionResizeMode(row, QHeaderView::Fixed);
 	this->verticalHeader()->resizeSection(row, 16);
 }
 

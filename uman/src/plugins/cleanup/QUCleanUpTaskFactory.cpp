@@ -41,5 +41,3 @@ QMap<QString, QString> QUCleanUpTaskFactory::translationLocations() const {
 
 	return locations;
 }
-
-Q_EXPORT_PLUGIN2(qucleanuptaskfactory, QUCleanUpTaskFactory);

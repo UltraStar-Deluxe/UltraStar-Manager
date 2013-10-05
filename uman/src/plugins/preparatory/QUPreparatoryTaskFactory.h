@@ -5,6 +5,7 @@
 
 class QUPreparatoryTaskFactory: public QUSimpleTaskFactory {
 	Q_OBJECT
+	Q_PLUGIN_METADATA(IID "QUPreparatoryTaskFactory" FILE "preparatory.json")
 
 public:
 	QUPreparatoryTaskFactory(QObject *parent = 0);

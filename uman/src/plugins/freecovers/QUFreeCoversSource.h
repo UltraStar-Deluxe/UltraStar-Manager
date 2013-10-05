@@ -5,6 +5,7 @@
 
 class QUFreeCoversSource: public QUMultilingualImageSource {
 	Q_OBJECT
+	Q_PLUGIN_METADATA(IID "QUFreeCoversSource" FILE "freecovers.json")
 
 public:
 	QUFreeCoversSource(QObject *parent = 0);

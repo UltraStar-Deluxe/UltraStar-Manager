@@ -52,5 +52,3 @@ QMap<QString, QString> QUAudioTagTaskFactory::translationLocations() const {
 
 	return locations;
 }
-
-Q_EXPORT_PLUGIN2(quaudiotagtaskfactory, QUAudioTagTaskFactory);

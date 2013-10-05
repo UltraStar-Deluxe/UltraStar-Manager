@@ -8,6 +8,7 @@
 
 class QUAudioTagTaskFactory: public QUScriptableTaskFactory {
 	Q_OBJECT
+	Q_PLUGIN_METADATA(IID "QUAudioTagTaskFactory" FILE "audiotag.json")
 
 public:
 	QUAudioTagTaskFactory(QObject *parent = 0);

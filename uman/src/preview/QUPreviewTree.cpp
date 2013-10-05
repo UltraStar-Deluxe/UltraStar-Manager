@@ -22,8 +22,8 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 	this->setColumnCount(2);
 
 	this->header()->hide();
-	this->header()->setResizeMode(0, QHeaderView::ResizeToContents);
-	this->header()->setResizeMode(1, QHeaderView::Stretch);
+	this->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+	this->header()->setSectionResizeMode(1, QHeaderView::Stretch);
 
 	this->setRootIsDecorated(false);
 	this->setIndentation(10);

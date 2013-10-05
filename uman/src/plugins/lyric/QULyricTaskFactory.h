@@ -5,6 +5,7 @@
 
 class QULyricTaskFactory: public QUSimpleTaskFactory {
 	Q_OBJECT
+	Q_PLUGIN_METADATA(IID "QULyricTaskFactory" FILE "lyric.json")
 
 public:
 	QULyricTaskFactory(QObject *parent = 0);

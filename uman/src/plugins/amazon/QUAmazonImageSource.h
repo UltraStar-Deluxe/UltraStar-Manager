@@ -5,6 +5,7 @@
 
 class QUAmazonImageSource: public QUMultilingualImageSource {
 	Q_OBJECT
+	Q_PLUGIN_METADATA(IID "QUAmazonImageSource" FILE "amazon.json")
 
 public:
 	QUAmazonImageSource(QObject *parent = 0);

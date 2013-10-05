@@ -6,10 +6,10 @@ QUTaskDataTable::QUTaskDataTable(QWidget *parent): QTableWidget(parent) {
 	this->setColumnCount(4);
 
 	this->setHorizontalHeaderLabels(QStringList() << tr("Modifier") << tr("Condition") << tr("Source") << tr("Default"));
-	this->horizontalHeader()->setResizeMode(MODIFIER_COL, QHeaderView::Interactive);
-	this->horizontalHeader()->setResizeMode(CONDITION_COL, QHeaderView::Interactive);
-	this->horizontalHeader()->setResizeMode(SOURCE_COL, QHeaderView::Interactive);
-	this->horizontalHeader()->setResizeMode(DEFAULT_COL, QHeaderView::Stretch);
+	this->horizontalHeader()->setSectionResizeMode(MODIFIER_COL, QHeaderView::Interactive);
+	this->horizontalHeader()->setSectionResizeMode(CONDITION_COL, QHeaderView::Interactive);
+	this->horizontalHeader()->setSectionResizeMode(SOURCE_COL, QHeaderView::Interactive);
+	this->horizontalHeader()->setSectionResizeMode(DEFAULT_COL, QHeaderView::Stretch);
 
 	this->horizontalHeaderItem(MODIFIER_COL)->setToolTip(tr("Lets you negate the selected condition."));
 	this->horizontalHeaderItem(CONDITION_COL)->setToolTip(tr("Placeholder will be replaced with<br>source data if condition is fullfilled."));
@@ -68,7 +68,7 @@ void QUTaskDataTable::appendRow() {
 		this->setItem(this->rowCount() - 1, column, newItem);
 	}
 
-	this->verticalHeader()->setResizeMode(this->rowCount() - 1, QHeaderView::Fixed);
+	this->verticalHeader()->setSectionResizeMode(this->rowCount() - 1, QHeaderView::Fixed);
 	this->verticalHeader()->resizeSection(this->rowCount() - 1, 20);
 
 	this->setCurrentCell(this->rowCount() - 1, this->currentColumn());

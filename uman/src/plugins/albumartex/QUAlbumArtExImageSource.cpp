@@ -55,5 +55,3 @@ QMap<QString, QString> QUAlbumArtExImageSource::translationLocations() const {
 
 	return locations;
 }
-
-Q_EXPORT_PLUGIN2(qualbumarteximagesource, QUAlbumArtExImageSource);

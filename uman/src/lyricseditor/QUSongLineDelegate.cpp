@@ -33,9 +33,9 @@ QWidget* QUSongLineDelegate::createEditor(
 	editor->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	editor->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-	editor->verticalHeader()->setResizeMode(0, QHeaderView::Fixed);
+	editor->verticalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
 	editor->verticalHeader()->resizeSection(0, 16);
-	editor->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+	editor->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
 	editor->setItemDelegate(new QUSyllableDelegate(editor));
 
