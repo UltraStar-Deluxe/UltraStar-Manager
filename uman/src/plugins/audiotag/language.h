@@ -9,5 +9,5 @@
 #define TASKTEXT9 QObject::tr("Change #GENRE via ID3 tag")
 #define TASKTEXT10 QObject::tr("Change #YEAR via ID3 tag")
 #define TASKTEXT11 QObject::tr("Change #ALBUM via ID3 tag")
-#define TASKTEXT12 QObject::tr("You need the custom tag #ALBUM for this task.")
+//#define TASKTEXT12 QObject::tr("You need the custom tag #ALBUM for this task.")
 #define TASKTEXT13 QObject::tr("Write #BACKGROUND even without existing image file")
