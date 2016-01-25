@@ -1097,8 +1097,8 @@ void QUMainWindow::editCustomTags() {
 }
 
 void QUMainWindow::montyTalk(bool force) {
-	//if(!force && !_menu->montyBtn->isChecked())
-		//return;
+	if(!force && !_menu->montyBtn->isChecked())
+		return;
 
 	montyArea->show();
 	monty->talk(montyArea->montyLbl, montyArea->helpLbl);
