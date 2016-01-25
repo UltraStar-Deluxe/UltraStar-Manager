@@ -2,9 +2,9 @@
 #include <QPixmap>
 #include <QTimer>
 
-#define HIDE_LIMIT	   2 // only show this dialog above HIDE_LIMIT
-#define MINIMUM_DURATION 500 // show after milliseconds
-#define STEP_SIZE		500 // show every milliseconds
+#define HIDE_LIMIT			2	// only show this dialog above HIDE_LIMIT
+#define MINIMUM_DURATION	500 // show after milliseconds
+#define STEP_SIZE			500 // show every milliseconds
 
 /*!
  * \param thread The thread which is executed. Will be deleted after finishing.

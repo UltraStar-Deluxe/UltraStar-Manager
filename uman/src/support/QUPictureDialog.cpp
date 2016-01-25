@@ -56,7 +56,7 @@ void QUPictureDialog::fitPicture() {
 	QPixmap pixmap(_filePath);
 
 	double viewportRatio = scrollArea->maximumViewportSize().width() / scrollArea->maximumViewportSize().height();
-	double gfxRatio	  = pixmap.width() / pixmap.height();
+	double gfxRatio = pixmap.width() / pixmap.height();
 
 	if(viewportRatio >= gfxRatio)
 		gfx->setPixmap(pixmap.scaledToHeight(scrollArea->maximumViewportSize().height(), Qt::SmoothTransformation));
