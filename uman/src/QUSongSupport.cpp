@@ -1,4 +1,4 @@
-#include "QUSongSupport.h"
+ï»¿#include "QUSongSupport.h"
 #include "QUSongInterface.h"
 
 #include <QMap>
@@ -38,6 +38,7 @@ QStringList QUSongSupport::availableTags() {
 	result << P2_TAG;
 	result << ALBUM_TAG;
 	result << COMMENT_TAG;
+	result << SOURCE_TAG;
 	result << ARTISTONSORTING_TAG;
 	result << TITLEONSORTING_TAG;
 
@@ -208,26 +209,26 @@ QStringList QUSongSupport::availableSongEditions() {
 	result << "SingStar Amped German";
 	result << "SingStar Amped USA";
 	result << "SingStar Anthems";
-	result << "SingStar Après-Ski Party";
-	result << "SingStar Après-Ski Party 2";
+	result << "SingStar AprÃ¨s-Ski Party";
+	result << "SingStar AprÃ¨s-Ski Party 2";
 	result << "SingStar best of Disney";
 	result << "SingStar Bollywood";
 	result << "SingStar Boy Bands vs Girl Bands";
-	result << "SingStar Canções Disney";
+	result << "SingStar CanÃ§Ãµes Disney";
 	result << "SingStar canciones Disney";
 	result << "SingStar Chansons Magiques de Disney";
 	result << "SingStar Chartbreaker";
-	result << "SingStar Clásicos";
+	result << "SingStar ClÃ¡sicos";
 	result << "SingStar Country";
 	result << "SingStar Deutsch Rock-Pop";
 	result << "SingStar Deutsch Rock-Pop Vol. 2";
-	result << "SingStar Die größten Solokünstler";
+	result << "SingStar Die grÃ¶ÃŸten SolokÃ¼nstler";
 	result << "SingStar Die Toten Hosen";
 	result << "SingStar e la magia Disney";
 	result << "SingStar English";
 	result << "SingStar ESKA Hity Na Czasie";
 	result << "SingStar French";
-	result << "SingStar Fußballhits";
+	result << "SingStar FuÃŸballhits";
 	result << "SingStar German";
 	result << "SingStar Hottest Hits German";
 	result << "SingStar Hottest Hits UK";
@@ -235,7 +236,7 @@ QStringList QUSongSupport::availableSongEditions() {
 	result << "SingStar Italian Greatest Hits";
 	result << "SingStar Italian Party";
 	result << "SingStar Italian Party 2";
-	result << "SingStar La Edad de Oro del Pop Español";
+	result << "SingStar La Edad de Oro del Pop EspaÃ±ol";
 	result << "SingStar Latino Spanish";
 	result << "SingStar Latino Portuguese";
 	result << "SingStar Legendat";
@@ -251,11 +252,11 @@ QStringList QUSongSupport::availableSongEditions() {
 	result << "SingStar Mallorca Party";
 	result << "SingStar Mecano";
 	result << "SingStar Miliki";
-	result << "SingStar Morangos com Açucar";
+	result << "SingStar Morangos com AÃ§ucar";
 	result << "SingStar Motown";
-	result << "SingStar Norsk På Norsk";
+	result << "SingStar Norsk PÃ¥ Norsk";
 	result << "SingStar Norske Hits";
-	result << "SingStar Operación Triunfo";
+	result << "SingStar OperaciÃ³n Triunfo";
 	result << "SingStar Party";
 	result << "SingStar Party UK";
 	result << "SingStar Party German";

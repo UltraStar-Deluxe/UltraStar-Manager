@@ -259,6 +259,7 @@
         <file>P1.png</file>
         <file>P2.png</file>
         <file>album.png</file>
+        <file>source.png</file>
     </qresource>
     <qresource prefix="/big">
         <file>save_big.png</file>

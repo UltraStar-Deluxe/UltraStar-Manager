@@ -18,7 +18,8 @@ QUDetailsTable::QUDetailsTable(QWidget *parent): QTableWidget(parent) {
 
 	// setup headers
 	this->verticalHeader()->hide();
-	this->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+	//this->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+	this->verticalHeader()->setDefaultSectionSize(20);
 
 	this->setHorizontalHeaderLabels(QStringList() << tr("Tag") << tr("Value"));
 	this->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
@@ -49,6 +50,7 @@ void QUDetailsTable::initTagColumn() {
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/creator.png"),				tr("Creator")));
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/album.png"),				tr("Album")));
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/comment.png"),				tr("Comment")));
+	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/source.png"),				tr("Source")));
 
 	this->initSeparator(tr("Files"), row++);
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/music.png"),				tr("MP3")));
@@ -98,6 +100,7 @@ void QUDetailsTable::initValueColumn() {
 	this->setItem(row++, 1, new QUDetailItem(CREATOR_TAG));
 	this->setItem(row++, 1, new QUDetailItem(ALBUM_TAG));
 	this->setItem(row++, 1, new QUDetailItem(COMMENT_TAG));
+	this->setItem(row++, 1, new QUDetailItem(SOURCE_TAG));
 
 	/* separator here - skip a row */
 	row++;

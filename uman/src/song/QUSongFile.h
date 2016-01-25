@@ -85,6 +85,7 @@ public slots:
 	QString p2() const				{return _info.value(P2_TAG,					QString(N_A));}
 	QString album() const			{return _info.value(ALBUM_TAG,				QString(N_A));}
 	QString comment() const			{return _info.value(COMMENT_TAG,			QString(N_A));}
+	QString source() const			{return _info.value(SOURCE_TAG,				QString(N_A));}
 	QString artistonsorting() const	{return _info.value(ARTISTONSORTING_TAG,	QString(N_A));}
 	QString titleonsorting() const	{return _info.value(TITLEONSORTING_TAG,		QString(N_A));}
 

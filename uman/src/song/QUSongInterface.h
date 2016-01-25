@@ -35,8 +35,11 @@ class QFileInfo;
 #define P2_TAG					"P2"
 #define ALBUM_TAG				"ALBUM"
 #define COMMENT_TAG				"COMMENT"
+#define SOURCE_TAG				"SOURCE"
 #define ARTISTONSORTING_TAG		"ARTIST-ON-SORTING"
 #define TITLEONSORTING_TAG		"TITLE-ON-SORTING"
+// currently unsupported tags:
+//#VERSION, #SOURCE, #VIDEOASPECT, #PREVIEW (alias of PREVIEWSTART), #P4, #DUETSINGERP1, #DUETSINGERP2, ...
 
 #define MEDLEY_TAGS				"MEDLEYTAGS"
 #define GOLDEN_NOTES			"GOLDENNOTES"
@@ -137,6 +140,7 @@ class QUSongInterface: public QObject {
 	Q_PROPERTY(QString p2 READ p2)
 	Q_PROPERTY(QString album READ album)
 	Q_PROPERTY(QString comment READ comment)
+	Q_PROPERTY(QString source READ source)
 	Q_PROPERTY(QString artistonsorting READ artistonsorting)
 	Q_PROPERTY(QString titleonsorting READ titleonsorting)
 	// additional properties
@@ -193,6 +197,7 @@ public:
 	virtual QString p2() const = 0;
 	virtual QString album() const = 0;
 	virtual QString comment() const = 0;
+	virtual QString source() const = 0;
 	virtual QString artistonsorting() const = 0;
 	virtual QString titleonsorting() const = 0;
 

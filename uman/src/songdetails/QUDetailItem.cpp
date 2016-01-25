@@ -105,6 +105,8 @@ void QUDetailItem::reset() {
 	} else if(QString::compare(_tag, COMMENT_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
 		_hasDynamicDefaultData = false;
+	} else if(QString::compare(_tag, SOURCE_TAG) == 0) {
+		_hasDynamicDefaultData = false;
 	} else if(QString::compare(_tag, TITLEONSORTING_TAG) == 0) {
 		_hasDynamicDefaultData = false;
 	} else if(QString::compare(_tag, ARTISTONSORTING_TAG) == 0) {
