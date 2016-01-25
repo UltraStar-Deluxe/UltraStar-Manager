@@ -16,7 +16,7 @@ QWidget* QUTaskConditionDelegate::createEditor(
 {
 	QComboBox *editor = new QComboBox(parent);
 	editor->addItems(QUScriptableTask::availableConditions());
-	editor->setItemData(0, Qt::darkGray, Qt::ForegroundRole); // should be the "true" entry
+	editor->setItemData(0, QColor(Qt::darkGray), Qt::ForegroundRole); // should be the "true" entry
 	editor->setEditable(false);
 
 	return editor;

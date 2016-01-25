@@ -18,7 +18,7 @@ QWidget* QUDefaultDelegate::createEditor(
 
 	editor->addItems(QUAudioTagTask::availableSpecialSources());
 	for(int i = 0; i < editor->count(); i++)
-		editor->setItemData(i, Qt::darkGray, Qt::ForegroundRole);
+		editor->setItemData(i, QColor(Qt::darkGray), Qt::ForegroundRole);
 
 	editor->setEditable(true);
 

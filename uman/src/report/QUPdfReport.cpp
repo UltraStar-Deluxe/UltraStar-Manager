@@ -26,17 +26,17 @@ QUPdfReport::QUPdfReport(
 	_subLevelToLetterVSep	= 400;
 
 	// horizontal spacing
-	_subLevelEntryHIndent	= 200;
+	_subLevelEntryHIndent	= 120;
 	_colHSep				= 120;
 
-	_subLevelEntryHSep		= 3500;
-	_artistHSep				= 3500;
-	_titleHSep				= 3500;
-	_languageHSep			= 700;
-	_editionHSep			= 2000;
+	_subLevelEntryHSep		= 2000;
+	_artistHSep				= 2000;
+	_titleHSep				= 2000;
+	_languageHSep			= 500;
+	_editionHSep			= 1000;
 	_genreHSep				= 1000;
 	_yearHSep				= 400;
-	_creatorHSep			= 1000;
+	_creatorHSep			= 700;
 	_booleanHSep			= 100;
 	_speedHSep				= 400;
 	_lengthHSep				= 400;
@@ -76,7 +76,7 @@ bool QUPdfReport::save() {
 	int y = 0;
 
 	if(options().testFlag(QU::reportPrependCurrentPath)) {
-		// MB TODO
+		// TODO
 	}
 
 	painter.setFont(_letterFnt);
@@ -212,6 +212,8 @@ bool QUPdfReport::save() {
 		logSrv->add(tr(""), QU::Warning);
 	*/
 
+	bool secondColumn = false;
+
 	foreach(QUSongFile *song, songs()) {
 		pDlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
 		if(pDlg.cancelled())
@@ -226,12 +228,25 @@ bool QUPdfReport::save() {
 
 		if(reportDataList().at(0)->textData(song).at(0).toUpper() != previousTopLevelEntry.at(0).toUpper()) {
 			// new letter
-			x = 0;
+			if(secondColumn) {
+				x = painter.window().width()/2;
+			} else {
+				x = 0;
+			}
 
 			// check if letter + topLevelEntry + first subLevelEntry will fit on page
 			if((y + _subLevelToLetterVSep + _letterToTopLevelVSep + _topLevelToSubLevelVSep) > pageHeight) {
-				printer.newPage();
 				y = letterHeight;
+
+				if( secondColumn ) {
+					printer.newPage();
+					secondColumn = false;
+					x = 0;
+				} else {
+					secondColumn = true;
+					x = painter.window().width()/2;
+				}
+
 			} else {
 				if(y == 0)
 					y = letterHeight;
@@ -248,7 +263,11 @@ bool QUPdfReport::save() {
 
 		if(reportDataList().at(0)->textData(song) != previousTopLevelEntry) {
 			// new topLevelEntry
-			x = 0;
+			if(secondColumn) {
+				x = painter.window().width()/2;
+			} else {
+				x = 0;
+			}
 
 			// check if topLevelEntry + first subLevelEntry will fit on page
 			if(letterBefore) {
@@ -257,8 +276,17 @@ bool QUPdfReport::save() {
 			}
 			else {
 				if((y + _subLevelToTopLevelVSep + _topLevelToSubLevelVSep) > pageHeight) {
-					printer.newPage();
 					y = topLevelEntryHeight;
+
+					if( secondColumn ) {
+						printer.newPage();
+						secondColumn = false;
+						x = 0;
+					} else {
+						secondColumn = true;
+						x = painter.window().width()/2;
+					}
+
 				} else {
 					y += _subLevelToTopLevelVSep;
 				}
@@ -282,8 +310,16 @@ bool QUPdfReport::save() {
 			}
 		else {
 			if((y + _subLevelToSubLevelVSep) > pageHeight) {
-				printer.newPage();
 				y = subLevelEntryHeight;
+
+				if( secondColumn ) {
+					printer.newPage();
+					secondColumn = false;
+					x = _subLevelEntryHIndent;
+				} else {
+					secondColumn = true;
+					x = painter.window().width()/2 + _subLevelEntryHIndent;
+				}
 			} else {
 				y += _subLevelToSubLevelVSep;
 			}
@@ -291,6 +327,7 @@ bool QUPdfReport::save() {
 
 		// paint sublevel entry
 		if(reportDataList().size() > 1) {
+			painter.setPen(Qt::black);
 			painter.setFont(_subLevelEntryFnt);
 			painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(1)->textData(song), Qt::ElideRight, _subLevelEntryHSep));
 			x += _subLevelEntryHSep + _colHSep;
@@ -315,39 +352,51 @@ bool QUPdfReport::save() {
 			int currentColumn = reportDataList().at(i)->id();
 
 			if(currentColumn == ARTIST_COL) {
+				painter.setPen(Qt::black);
 				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _artistHSep));
 				x += _artistHSep + _colHSep;
 			} else if(currentColumn == TITLE_COL) {
+				painter.setPen(Qt::black);
 				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _titleHSep));
 				x += _titleHSep + _colHSep;
 			} else if(currentColumn == LANGUAGE_COL) {
+				painter.setPen(Qt::gray);
 				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _languageHSep));
 				x += _languageHSep + _colHSep;
 			} else if(currentColumn == EDITION_COL) {
+				painter.setPen(Qt::gray);
 				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _editionHSep));
 				x += _editionHSep + _colHSep;
 			} else if(currentColumn == GENRE_COL) {
+				painter.setPen(Qt::gray);
 				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _genreHSep));
 				x +=_genreHSep + _colHSep;
 			} else if(currentColumn == YEAR_COL) {
+				painter.setPen(Qt::gray);
 				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _yearHSep));
 				x += _yearHSep + _colHSep;
 			} else if(currentColumn == CREATOR_COL) {
+				painter.setPen(Qt::gray);
 				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _creatorHSep));
 				x += _creatorHSep + _colHSep;
 			} else if(currentColumn == SPEED_COL) {
+				painter.setPen(Qt::gray);
 				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _speedHSep));
 				x += _speedHSep + _colHSep;
 			} else if(currentColumn == LENGTH_COL) {
+				painter.setPen(Qt::gray);
 				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _lengthHSep));
 				x += _lengthHSep + _colHSep;
 			} else if(currentColumn == SONG_PATH_COL) {
+				painter.setPen(Qt::gray);
 				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideLeft, _songPathHSep));
 				x += _songPathHSep + _colHSep;
 			} else if(currentColumn == SONG_FILE_PATH_COL) {
+				painter.setPen(Qt::gray);
 				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideLeft, _songFilePathHSep));
 				x += _songFilePathHSep + _colHSep;
 			} else if(currentColumn == REL_SONG_FILE_PATH_COL) {
+				painter.setPen(Qt::gray);
 				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideLeft, _relSongFilePathHSep));
 				x += _relSongFilePathHSep + _colHSep;
 			} else if(currentColumn == AUDIO_EXISTS_COL || currentColumn == COVER_EXISTS_COL || currentColumn == BACKGROUND_EXISTS_COL || currentColumn == VIDEO_EXISTS_COL || currentColumn == MEDLEY_EXISTS_COL || currentColumn == GOLDEN_NOTES_EXIST_COL) {
@@ -367,7 +416,12 @@ bool QUPdfReport::save() {
 				x += _defaultHSep + _colHSep;
 			}
 		}
-		x = 0;
+		if(secondColumn) {
+			x = painter.window().width()/2;
+		} else {
+			x = 0;
+		}
+
 	}
 
 	painter.end();
