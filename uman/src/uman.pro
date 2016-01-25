@@ -5,7 +5,8 @@ QT += core \
 	widgets \
 	xml \
 	network \
-	printsupport
+	printsupport \
+	webkitwidgets
 
 #CONFIG += release
 
