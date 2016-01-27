@@ -232,27 +232,24 @@ INCLUDEPATH += . \
     lyricseditor \
     score \
     remoteimages
-win32 { 
+INCLUDEPATH += ../include/taglib \
+    ../include/bass
+win32 {
     RC_FILE = uman.rc
-    INCLUDEPATH += ../include/taglib \
-        ../include/bass
-    LIBS += -L"../lib" \
+
+    LIBS += -L"../lib/Windows" \
         -ltag \
         -lbass
 }
-unix { 
-    INCLUDEPATH += ../include/taglib \
-        ../include/bass
-    LIBS += -L"../lib" \
+unix:!macx {
+    LIBS += -L"../lib/Unix" \
         -ltag \
 #        -ltag64 \
         -lbass
 #        -lbass64
 }
 mac {
-    INCLUDEPATH += "$PWD/include/taglib" \
-        "$PWD/include/bass"
-    LIBS += -L"$PWD/lib" \
+    LIBS += -L"../lib/MacOS" \
         -ltag \
         -lbass
     CONFIG += app_bundle
@@ -280,8 +277,8 @@ mac{
     plugins.files = ../bin/wip/plugins
     plugins.path = Contents/MacOS
     QMAKE_BUNDLE_DATA += plugins
-    dylibs.files = ../lib/libbass.dylib \
-        ../lib/libtag.1.15.1.dylib
+    dylibs.files = ../lib/MacOS/libbass.dylib \
+        ../lib/MacOS/libtag.1.15.1.dylib
     dylibs.path = Contents/Frameworks
     QMAKE_BUNDLE_DATA += dylibs
     ICON = resources/uman.icns
