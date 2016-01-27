@@ -245,9 +245,9 @@ unix {
     INCLUDEPATH += ../include/taglib \
         ../include/bass
     LIBS += -L"../lib" \
-#        -ltag \
+        -ltag \
 #        -ltag64 \
-#        -lbass
+        -lbass
 #        -lbass64
 }
 mac {
