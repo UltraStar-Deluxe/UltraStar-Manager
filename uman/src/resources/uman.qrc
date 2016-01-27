@@ -145,6 +145,7 @@
         <file>uman96.png</file>
         <file>uman16.png</file>
         <file>uman24.png</file>
+        <file>uman.icns</file>
     </qresource>
     <qresource prefix="/marks">
         <file>accept.png</file>

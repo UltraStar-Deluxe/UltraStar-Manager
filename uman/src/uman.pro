@@ -11,7 +11,7 @@ QT += core \
 #CONFIG += release
 
 CONFIG(release, debug|release) {
-	TARGET = uman
+        TARGET = "UltraStar Manager"
 	DESTDIR = ../bin/wip
 	MOC_DIR = tmp/release
 	OBJECTS_DIR = tmp/release
@@ -235,7 +235,6 @@ INCLUDEPATH += . \
 win32 { 
     RC_FILE = uman.rc
     INCLUDEPATH += ../include/taglib \
-		../include/taglib/toolkit \
         ../include/bass
     LIBS += -L"../lib" \
         -ltag \
@@ -251,12 +250,12 @@ unix {
 #        -lbass64
 }
 mac {
-    INCLUDEPATH += /usr/local/include/taglib/ \
-        /usr/local/include/
-    LIBS += -L"/usr/local/lib" \
+    INCLUDEPATH += "$PWD/include/taglib" \
+        "$PWD/include/bass"
+    LIBS += -L"$PWD/lib" \
         -ltag \
         -lbass
-    CONFIG -= app_bundle
+    CONFIG += app_bundle
 }
 QMAKE_EXTRA_TARGETS += revtarget
 PRE_TARGETDEPS += version.h
@@ -277,3 +276,13 @@ revtarget.commands = @echo \
 revtarget.depends = $$SOURCES \
     $$HEADERS \
     $$FORMS
+mac{
+    plugins.files = ../bin/wip/plugins
+    plugins.path = Contents/MacOS
+    QMAKE_BUNDLE_DATA += plugins
+    dylibs.files = ../lib/libbass.dylib \
+        ../lib/libtag.1.15.1.dylib
+    dylibs.path = Contents/Frameworks
+    QMAKE_BUNDLE_DATA += dylibs
+    ICON = resources/uman.icns
+}
