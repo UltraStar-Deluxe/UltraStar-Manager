@@ -234,6 +234,7 @@ INCLUDEPATH += . \
     remoteimages
 INCLUDEPATH += ../include/taglib \
     ../include/bass
+
 win32 {
     RC_FILE = uman.rc
 
@@ -241,19 +242,22 @@ win32 {
         -ltag \
         -lbass
 }
-unix:!macx {
-    LIBS += -L"../lib/Unix" \
-        -ltag \
-#        -ltag64 \
-        -lbass
-#        -lbass64
-}
+
 mac {
     LIBS += -L"../lib/MacOS" \
         -ltag \
         -lbass
     CONFIG += app_bundle
 }
+
+unix:!macx {
+    LIBS += -L"../lib/Unix" \
+        -ltag64 \
+        -lbass64
+#        -ltag \
+#        -lbass
+}
+
 QMAKE_EXTRA_TARGETS += revtarget
 PRE_TARGETDEPS += version.h
 revtarget.target = version.h
