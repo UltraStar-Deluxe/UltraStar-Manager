@@ -132,7 +132,7 @@ bool QUPdfReport::save() {
 				maxGenreWidth = (currentEntryWidth > maxGenreWidth) ? currentEntryWidth : maxGenreWidth;
 				break;
 			case YEAR_COL:
-				maxYearWidth = (currentEntryWidth > maxYearWidth) ? currentEntryWidth : maxYearWidth;
+				//maxYearWidth = (currentEntryWidth > maxYearWidth) ? currentEntryWidth : maxYearWidth;
 				break;
 			case CREATOR_COL:
 				maxCreatorWidth = (currentEntryWidth > maxCreatorWidth) ? currentEntryWidth : maxCreatorWidth;
@@ -161,7 +161,7 @@ bool QUPdfReport::save() {
 	_languageHSep			= qMin(_languageHSep, maxLanguageWidth);
 	_editionHSep			= qMin(_editionHSep, maxEditionWidth);
 	_genreHSep				= qMin(_genreHSep, maxGenreWidth);
-	_yearHSep				= qMin(_yearHSep, maxYearWidth);
+	_yearHSep				= 400;//qMin(_yearHSep, maxYearWidth);
 	_creatorHSep			= qMin(_creatorHSep, maxCreatorWidth);
 	_speedHSep				= qMin(_speedHSep, maxSpeedWidth);
 	_lengthHSep				= qMin(_lengthHSep, maxLengthWidth);

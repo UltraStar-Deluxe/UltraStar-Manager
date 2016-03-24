@@ -5,7 +5,7 @@ QT += core \
 	widgets \
 	xml \
 	network \
-        printsupport
+	printsupport
 
 #CONFIG += release
 
@@ -260,6 +260,7 @@ unix:!macx {
 QMAKE_EXTRA_TARGETS += revtarget
 PRE_TARGETDEPS += version.h
 revtarget.target = version.h
+
 win32 {
 revtarget.commands = @echo \
     "const char *revision = \"r$(shell svnversion .)\"; const char *date_time = \"$(shell date /T)$(shell time /T)\";" > $$revtarget.target
@@ -267,16 +268,19 @@ revtarget.depends = $$SOURCES \
     $$HEADERS \
     $$FORMS
 }
+
 unix {
 revtarget.commands = @echo \
         "const char *revision = \\\"rev`git rev-parse --short HEAD`\\\"\\; \
         const char *date_time = \\\"`date`\\\"\\;" \
         > $${PWD}/$$revtarget.target
 }
+
 revtarget.depends = $$SOURCES \
     $$HEADERS \
     $$FORMS
-mac{
+
+mac {
     plugins.files = ../bin/wip/plugins
     plugins.path = Contents/MacOS
     QMAKE_BUNDLE_DATA += plugins

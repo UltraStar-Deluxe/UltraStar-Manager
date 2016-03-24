@@ -47,20 +47,20 @@ INCLUDEPATH += . \
 	../.. \
 	../../song \
 	../shared \
-        ../../../include/taglib
+	../../../include/taglib
 TEMPLATE = lib
 CONFIG += plugin
 UI_DIR = ../ui
 QT += xml \
-        widgets
+	widgets
 
-win32 { 
+win32 {
     LIBS += -L"../../../lib/Windows" \
-        -ltag
-}
+		-ltag
+
 mac {
     LIBS += -L"../../../lib/MacOS" \
-        -ltag
+		-ltag
 }
 unix:!macx  {
     LIBS += -L"../../../lib/Unix" \
