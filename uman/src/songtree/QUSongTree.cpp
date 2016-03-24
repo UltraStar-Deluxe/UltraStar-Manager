@@ -26,9 +26,6 @@
 #include <QUrl>
 #include <QTextStream>
 #include <QMimeData>
-#include <QWebView>
-#include <QWebFrame>
-#include <QWebElement>
 
 #include "QUProgressDialog.h"
 

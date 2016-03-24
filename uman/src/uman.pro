@@ -5,13 +5,12 @@ QT += core \
 	widgets \
 	xml \
 	network \
-	printsupport \
-	webkitwidgets
+        printsupport
 
 #CONFIG += release
 
 CONFIG(release, debug|release) {
-        TARGET = "UltraStar Manager"
+        TARGET = "UltraStarManager"
 	DESTDIR = ../bin/wip
 	MOC_DIR = tmp/release
 	OBJECTS_DIR = tmp/release

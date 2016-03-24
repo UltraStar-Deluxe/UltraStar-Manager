@@ -47,27 +47,25 @@ INCLUDEPATH += . \
 	../.. \
 	../../song \
 	../shared \
-	../../../include/taglib \
-	../../../include/taglib/toolkit
+        ../../../include/taglib
 TEMPLATE = lib
 CONFIG += plugin
 UI_DIR = ../ui
 QT += xml \
-	widgets
+        widgets
+
 win32 { 
-	INCLUDEPATH += ../../../include/taglib
-	LIBS += -L"../../../lib" \
-		-ltag
-}
-unix { 
-	INCLUDEPATH += /usr/include/taglib
-	LIBS += -L"/usr/lib" \
-		-ltag
+    LIBS += -L"../../../lib/Windows" \
+        -ltag
 }
 mac {
-    INCLUDEPATH += /usr/local/include/taglib/
-    LIBS += -L"/usr/local/lib" \
-        -ltag \
+    LIBS += -L"../../../lib/MacOS" \
+        -ltag
+}
+unix:!macx  {
+    LIBS += -L"../../../lib/Unix" \
+        -ltag64 \
+#        -ltag
 }
 QMAKE_EXTRA_TARGETS += langtarget
 PRE_TARGETDEPS += language.h
