@@ -3,6 +3,7 @@ UI_DIR = ui
 QT += core \
 	gui \
 	widgets \
+	multimedia \
 	xml \
 	network \
 	printsupport
@@ -10,7 +11,7 @@ QT += core \
 #CONFIG += release
 
 CONFIG(release, debug|release) {
-        TARGET = "UltraStarManager"
+	TARGET = "UltraStarManager"
 	DESTDIR = ../bin/wip
 	MOC_DIR = tmp/release
 	OBJECTS_DIR = tmp/release
@@ -18,7 +19,7 @@ CONFIG(release, debug|release) {
 }
 
 CONFIG(debug, debug|release) {
-	TARGET = uman_debug
+	TARGET = UltraStarManager_debug
 	DESTDIR = ../bin/wip_debug
 	MOC_DIR = tmp/debug
 	OBJECTS_DIR = tmp/debug

@@ -699,29 +699,38 @@ bool QUSongFile::save(bool force) {
 		setInfo(ENCODING_TAG, ENCODING_UTF8);
 	}
 
+	// MB: fix/todo! add gui element to select this, save to registry, read from registry
+	// now set permanently to false in order to enforce CRLF as line endings even with MacOS/Unix
+	bool useSystemDefaultLineEndings = false;
+
 	// write supported tags
 	foreach(QString tag, tags) {
 		if(tag == ENCODING_TAG) { // only write ENCODING tag if necessary (CP1250)
 			if (_info.value(tag.toUpper()) == ENCODING_CP1250) {
-				_out << "#" << tag.toUpper() << ":" << _info.value(tag.toUpper()) << endl;
+				_out << "#" << tag.toUpper() << ":" << _info.value(tag.toUpper());
+				useSystemDefaultLineEndings ? _out << endl : _out << "\r\n" << flush;
 			}
 		} else if (_info.value(tag.toUpper()) != "") { // do not write empty tags
-			_out << "#" << tag.toUpper() << ":" << _info.value(tag.toUpper()) << endl;
+			_out << "#" << tag.toUpper() << ":" << _info.value(tag.toUpper());
+			useSystemDefaultLineEndings ? _out << endl : _out << "\r\n" << flush;
 		}
 	}
 
 	// write unsupported tags
 	foreach(QString uTag, _foundUnsupportedTags) {
-		_out << "#" << uTag << ":" << _info.value(uTag) << endl;
+		_out << "#" << uTag << ":" << _info.value(uTag);
+		useSystemDefaultLineEndings ? _out << endl : _out << "\r\n" << flush;
 	}
 
 	// write lyrics
 	foreach(QString line, _lyrics) {
-		_out << line << endl;
+		_out << line;
+		useSystemDefaultLineEndings ? _out << endl : _out << "\r\n" << flush;
 	}
 
 	// write song ending
-	_out << "E" << endl;
+	_out << "E";
+	useSystemDefaultLineEndings ? _out << endl : _out << "\r\n" << flush;
 
 	// write footer
 	foreach(QString line, _footer) {

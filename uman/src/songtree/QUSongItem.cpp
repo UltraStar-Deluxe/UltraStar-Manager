@@ -16,6 +16,8 @@
 #include <QRegExp>
 #include <QSettings>
 #include <QMessageBox>
+#include <QMovie>
+#include <QVideoFrame>
 #include <QtCore/qmath.h>
 
 #include "QUSongSupport.h"
@@ -448,8 +450,10 @@ void QUSongItem::setTick(int column) {
 			this->setData(column, Qt::UserRole, QVariant(img.width()));
 		} else if(column == VIDEO_COLUMN) {
 			// MB TODO: check for video quality, set icon and tooltip accordingly
-			int video_width = 1920;
-			int video_height = 1080;
+			QMovie movie(this->song()->videoFileInfo().filePath());
+			QVideoFrame frame(movie.currentImage());
+			int video_width = 1920; //frame.width();
+			int video_height = 1080; //frame.height();
 
 			if (video_width < QUSongSupport::mediumVideoQuality()) {
 				this->setIcon(column, QIcon(":/marks/tick_low.png"));

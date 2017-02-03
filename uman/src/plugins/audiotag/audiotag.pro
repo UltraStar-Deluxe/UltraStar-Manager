@@ -57,7 +57,7 @@ QT += xml \
 win32 {
     LIBS += -L"../../../lib/Windows" \
 		-ltag
-
+}
 mac {
     LIBS += -L"../../../lib/MacOS" \
 		-ltag
