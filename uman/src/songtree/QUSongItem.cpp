@@ -16,8 +16,7 @@
 #include <QRegExp>
 #include <QSettings>
 #include <QMessageBox>
-#include <QMovie>
-#include <QVideoFrame>
+#include <QMediaResource>
 #include <QtCore/qmath.h>
 
 #include "QUSongSupport.h"
@@ -450,10 +449,9 @@ void QUSongItem::setTick(int column) {
 			this->setData(column, Qt::UserRole, QVariant(img.width()));
 		} else if(column == VIDEO_COLUMN) {
 			// MB TODO: check for video quality, set icon and tooltip accordingly
-			QMovie movie(this->song()->videoFileInfo().filePath());
-			QVideoFrame frame(movie.currentImage());
-			int video_width = 1920; //frame.width();
-			int video_height = 1080; //frame.height();
+			QMediaResource video(QUrl::fromLocalFile(this->song()->videoFileInfo().filePath()));
+			int video_width = 1920; //video.resolution().width();
+			int video_height = 1080; //video.resolution().height();
 
 			if (video_width < QUSongSupport::mediumVideoQuality()) {
 				this->setIcon(column, QIcon(":/marks/tick_low.png"));
@@ -705,18 +703,48 @@ void QUSongItem::updateTypeColumns() {
 
 		double medleyDuration = (song()->medleyendbeat().toInt() - song()->medleystartbeat().toInt() + 1) * 15 / song()->bpm().replace(',','.').toDouble();
 
-		if(medleyStartBeatAtLineStart && medleyEndBeatAtLineEnd) {
-			this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley.png"));
-			this->setData(MEDLEY_COLUMN, Qt::UserRole, medleyDuration);
-			this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley available (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
-		} else if((medleyStartBeatAtLineStart && medleyEndBeatAtNoteEnd) || (medleyStartBeatAtNoteStart && medleyEndBeatAtLineEnd) || (medleyStartBeatAtNoteStart && medleyEndBeatAtNoteEnd)) {
-			this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley_warning.png"));
-			this->setData(MEDLEY_COLUMN, Qt::UserRole, 0.2);
-			this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley does not start at the beginning of a line or end at the end of a line (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+		if(medleyStartBeatAtLineStart) {
+			if(medleyEndBeatAtLineEnd) {
+				this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley.png"));
+				this->setData(MEDLEY_COLUMN, Qt::UserRole, medleyDuration);
+				this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley available (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+			} else if(medleyEndBeatAtNoteEnd) {
+				this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley_warning.png"));
+				this->setData(MEDLEY_COLUMN, Qt::UserRole, 0.2);
+				this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley does not end at the end of a line (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+			} else {
+				this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley_error.png"));
+				this->setData(MEDLEY_COLUMN, Qt::UserRole, 0.1);
+				this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley does not end at the end of a note (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+			}
+		} else if(medleyStartBeatAtNoteStart) {
+			if(medleyEndBeatAtLineEnd) {
+				this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley_warning.png"));
+				this->setData(MEDLEY_COLUMN, Qt::UserRole, medleyDuration);
+				this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley does not start at the beginning of a line (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+			} else if(medleyEndBeatAtNoteEnd) {
+				this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley_warning.png"));
+				this->setData(MEDLEY_COLUMN, Qt::UserRole, 0.2);
+				this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley does not start at the beginning of a line and does not end at the end of a line (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+			} else {
+				this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley_error.png"));
+				this->setData(MEDLEY_COLUMN, Qt::UserRole, 0.1);
+				this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley does not start at the beginning of a line and does not end at the end of a note (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+			}
 		} else {
-			this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley_error.png"));
-			this->setData(MEDLEY_COLUMN, Qt::UserRole, 0.1);
-			this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley does not start at the beginning of a note or end at the end of a note (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+			if(medleyEndBeatAtLineEnd) {
+				this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley_error.png"));
+				this->setData(MEDLEY_COLUMN, Qt::UserRole, 0.1);
+				this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley does not start at the beginning of a note (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+			} else if(medleyEndBeatAtNoteEnd) {
+				this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley_error.png"));
+				this->setData(MEDLEY_COLUMN, Qt::UserRole, 0.1);
+				this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley does not start at the beginning of a note and does not end at the end of a line (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+			} else {
+				this->setIcon(MEDLEY_COLUMN, QIcon(":/types/medley_error.png"));
+				this->setData(MEDLEY_COLUMN, Qt::UserRole, 0.1);
+				this->setToolTip(MEDLEY_COLUMN, QObject::tr("Medley does not start at the beginning of a note and does not end at the end of a note (%1 seconds).").arg(medleyDuration, 0, 'f', 1));
+			}
 		}
 	}
 
