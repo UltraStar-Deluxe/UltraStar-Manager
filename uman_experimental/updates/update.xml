@@ -1,8 +1,0 @@
-<uman>
-	<app version="1.8.0">
-	</app>
-	<plugin type="task" name="Preparatory Tasks" version="1.0.0">
-	</plugin>
-	<plugin type="ris" name="Amazon Product Advertising API" version="1.0.0">
-	</plugin>
-</uman>
