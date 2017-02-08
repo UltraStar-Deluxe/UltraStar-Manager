@@ -23,48 +23,76 @@
  *   http://www.mozilla.org/MPL/                                           *
  ***************************************************************************/
 
-#ifndef TAGLIB_ID3V2SYNCHDATA_H
-#define TAGLIB_ID3V2SYNCHDATA_H
+#ifndef TAGLIB_TAGUNION_H
+#define TAGLIB_TAGUNION_H
 
-#include "tbytevector.h"
-#include "taglib.h"
+#include "tag.h"
+
+#ifndef DO_NOT_DOCUMENT
 
 namespace TagLib {
 
-  namespace ID3v2 {
+  /*!
+   * \internal
+   */
 
-    //! A few functions for ID3v2 synch safe integer conversion
+  class TagUnion : public Tag
+  {
+  public:
+
+    enum AccessType { Read, Write };
 
     /*!
-     * In the ID3v2.4 standard most integer values are encoded as "synch safe"
-     * integers which are encoded in such a way that they will not give false
-     * MPEG syncs and confuse MPEG decoders.  This namespace provides some
-     * methods for converting to and from these values to ByteVectors for
-     * things rendering and parsing ID3v2 data.
+     * Creates a TagLib::Tag that is the union of \a first, \a second, and
+     * \a third.  The TagUnion takes ownership of these tags and will handle
+     * their deletion.
      */
+    TagUnion(Tag *first = 0, Tag *second = 0, Tag *third = 0);
 
-    namespace SynchData
+    virtual ~TagUnion();
+
+    Tag *operator[](int index) const;
+    Tag *tag(int index) const;
+
+    void set(int index, Tag *tag);
+
+    PropertyMap properties() const;
+    void removeUnsupportedProperties(const StringList &unsupported);
+
+    virtual String title() const;
+    virtual String artist() const;
+    virtual String album() const;
+    virtual String comment() const;
+    virtual String genre() const;
+    virtual unsigned int year() const;
+    virtual unsigned int track() const;
+
+    virtual void setTitle(const String &s);
+    virtual void setArtist(const String &s);
+    virtual void setAlbum(const String &s);
+    virtual void setComment(const String &s);
+    virtual void setGenre(const String &s);
+    virtual void setYear(unsigned int i);
+    virtual void setTrack(unsigned int i);
+    virtual bool isEmpty() const;
+
+    template <class T> T *access(int index, bool create)
     {
-      /*!
-       * This returns the unsigned integer value of \a data where \a data is a
-       * ByteVector that contains a \e synchsafe integer (Structure,
-       * <a href="id3v2-structure.html#6.2">6.2</a>).  The default \a length of
-       * 4 is used if another value is not specified.
-       */
-      TAGLIB_EXPORT unsigned int toUInt(const ByteVector &data);
+      if(!create || tag(index))
+        return static_cast<T *>(tag(index));
 
-      /*!
-       * Returns a 4 byte (32 bit) synchsafe integer based on \a value.
-       */
-      TAGLIB_EXPORT ByteVector fromUInt(unsigned int value);
-
-      /*!
-       * Convert the data from unsynchronized data to its original format.
-       */
-      TAGLIB_EXPORT ByteVector decode(const ByteVector &input);
+      set(index, new T);
+      return static_cast<T *>(tag(index));
     }
 
-  }
+  private:
+    TagUnion(const Tag &);
+    TagUnion &operator=(const Tag &);
+
+    class TagUnionPrivate;
+    TagUnionPrivate *d;
+  };
 }
 
+#endif
 #endif

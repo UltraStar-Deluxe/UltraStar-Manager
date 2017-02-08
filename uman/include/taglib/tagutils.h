@@ -1,6 +1,6 @@
 /***************************************************************************
-    copyright            : (C) 2002 - 2008 by Scott Wheeler
-    email                : wheeler@kde.org
+    copyright            : (C) 2015 by Tsuda Kageyu
+    email                : tsuda.kageyu@gmail.com
  ***************************************************************************/
 
 /***************************************************************************
@@ -23,48 +23,27 @@
  *   http://www.mozilla.org/MPL/                                           *
  ***************************************************************************/
 
-#ifndef TAGLIB_ID3V2SYNCHDATA_H
-#define TAGLIB_ID3V2SYNCHDATA_H
+#ifndef TAGLIB_TAGUTILS_H
+#define TAGLIB_TAGUTILS_H
 
-#include "tbytevector.h"
-#include "taglib.h"
+// THIS FILE IS NOT A PART OF THE TAGLIB API
+
+#ifndef DO_NOT_DOCUMENT  // tell Doxygen not to document this header
 
 namespace TagLib {
 
-  namespace ID3v2 {
+  class File;
 
-    //! A few functions for ID3v2 synch safe integer conversion
+  namespace Utils {
 
-    /*!
-     * In the ID3v2.4 standard most integer values are encoded as "synch safe"
-     * integers which are encoded in such a way that they will not give false
-     * MPEG syncs and confuse MPEG decoders.  This namespace provides some
-     * methods for converting to and from these values to ByteVectors for
-     * things rendering and parsing ID3v2 data.
-     */
+    long findID3v1(File *file);
 
-    namespace SynchData
-    {
-      /*!
-       * This returns the unsigned integer value of \a data where \a data is a
-       * ByteVector that contains a \e synchsafe integer (Structure,
-       * <a href="id3v2-structure.html#6.2">6.2</a>).  The default \a length of
-       * 4 is used if another value is not specified.
-       */
-      TAGLIB_EXPORT unsigned int toUInt(const ByteVector &data);
+    long findID3v2(File *file);
 
-      /*!
-       * Returns a 4 byte (32 bit) synchsafe integer based on \a value.
-       */
-      TAGLIB_EXPORT ByteVector fromUInt(unsigned int value);
-
-      /*!
-       * Convert the data from unsynchronized data to its original format.
-       */
-      TAGLIB_EXPORT ByteVector decode(const ByteVector &input);
-    }
-
+    long findAPE(File *file, long id3v1Location);
   }
 }
+
+#endif
 
 #endif
