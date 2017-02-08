@@ -708,29 +708,29 @@ bool QUSongFile::save(bool force) {
 		if(tag == ENCODING_TAG) { // only write ENCODING tag if necessary (CP1250)
 			if (_info.value(tag.toUpper()) == ENCODING_CP1250) {
 				_out << "#" << tag.toUpper() << ":" << _info.value(tag.toUpper());
-				useSystemDefaultLineEndings ? _out << endl : _out << "\r\n" << flush;
+				useSystemDefaultLineEndings ? _out << endl : _out << "\n" << flush;
 			}
 		} else if (_info.value(tag.toUpper()) != "") { // do not write empty tags
 			_out << "#" << tag.toUpper() << ":" << _info.value(tag.toUpper());
-			useSystemDefaultLineEndings ? _out << endl : _out << "\r\n" << flush;
+			useSystemDefaultLineEndings ? _out << endl : _out << "\n" << flush;
 		}
 	}
 
 	// write unsupported tags
 	foreach(QString uTag, _foundUnsupportedTags) {
 		_out << "#" << uTag << ":" << _info.value(uTag);
-		useSystemDefaultLineEndings ? _out << endl : _out << "\r\n" << flush;
+		useSystemDefaultLineEndings ? _out << endl : _out << "\n" << flush;
 	}
 
 	// write lyrics
 	foreach(QString line, _lyrics) {
 		_out << line;
-		useSystemDefaultLineEndings ? _out << endl : _out << "\r\n" << flush;
+		useSystemDefaultLineEndings ? _out << endl : _out << "\n" << flush;
 	}
 
 	// write song ending
 	_out << "E";
-	useSystemDefaultLineEndings ? _out << endl : _out << "\r\n" << flush;
+	useSystemDefaultLineEndings ? _out << endl : _out << "\n" << flush;
 
 	// write footer
 	foreach(QString line, _footer) {
