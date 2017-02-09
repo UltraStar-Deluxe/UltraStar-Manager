@@ -8,8 +8,8 @@ SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
 	../shared/QUSmartInputField.cpp
 HEADERS = ../shared/QUMultilingualTaskFactory.h \
 	QULyricTaskFactory.h \
-    QULyricTask.h \
-    ../shared/QUSimpleTask.h \
+	QULyricTask.h \
+	../shared/QUSimpleTask.h \
 	../shared/QUSimpleTaskFactory.h \
 	../shared/QUSmartSetting.h \
 	../shared/QUSmartCheckBox.h \

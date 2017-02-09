@@ -30,6 +30,11 @@ QULyricTask::QULyricTask(TaskModes mode, QObject *parent):
 		this->setDescription(tr("Fix spaces"));
 		this->setToolTip(tr("Moves spaces from the end of a syllable to the beginning of the next one. Trim the whole song line."));
 		break;
+	case FixApostrophes:
+		this->setIcon(QIcon(":/control/edit_apostrophe.png"));
+		this->setDescription(tr("Fix apostrophes"));
+		this->setToolTip(tr("Replaces wrongfully used apostrophe symbols `, ´, ’ by the ASCII apostrophe '"));
+		break;
 	case FixLowBPM:
 		this->setIcon(QIcon(":/control/bpm_increase.png"));
 		this->setDescription(tr("Increase low BPM values"));
@@ -90,6 +95,9 @@ void QULyricTask::startOn(QUSongInterface *song) {
 		break;
 	case FixSpaces:
 		fixSpaces(song);
+		break;
+	case FixApostrophes:
+		fixApostrophes(song);
 		break;
 	case FixLowBPM:
 		fixLowBPM(song, smartSettings().first()->value().toInt());
@@ -388,6 +396,47 @@ void QULyricTask::fixSpaces(QUSongInterface *song) {
 	song->clearMelody(); // save memory
 
 	song->log(QString(tr("Spaces were fixed successfully for \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::Information);
+}
+
+/*!
+ * Replace wrongfully used apostrophe symbols `, ´ and ’ by ASCII apostroph '.
+ */
+void QULyricTask::fixApostrophes(QUSongInterface *song) {
+	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
+		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::Warning);
+		return;
+	}
+
+	int count = 0;
+
+	foreach(QUSongLineInterface *line, song->loadMelody()) {
+		foreach(QUSongNoteInterface *note, line->notes()) {
+			if(note->syllable().contains("´")) { // acute accent (U+00B4)
+				note->setSyllable(note->syllable().replace("´", "'"));
+				count++;
+			}
+			if(note->syllable().contains("`")) { // grave accent (U+0060)
+				note->setSyllable(note->syllable().replace("`", "'"));
+				count++;
+			}
+			if(note->syllable().contains("′")) { // prime (U+2032)
+				note->setSyllable(note->syllable().replace("′", "'"));
+				count++;
+			}
+			if(note->syllable().contains("’")) { // typographically correct apostrophe (U+2019) (not available in ASCII/Latin-9/ISO 8859-15)
+				note->setSyllable(note->syllable().replace("’", "'"));
+				count++;
+			}
+		}
+	}
+
+	song->saveMelody();
+	song->clearMelody(); // save memory
+
+	song->log(QString(tr("%1 wrong apostrophe symbols replaced successfully for \"%2 - %3\"."))
+			  .arg(count)
+			  .arg(song->artist())
+			  .arg(song->title()), QU::Information);
 }
 
 /*!

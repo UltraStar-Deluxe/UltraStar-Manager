@@ -15,6 +15,7 @@ public:
 		FixOverlappingNotes,
 		FixLineBreaks,
 		FixSpaces,
+		FixApostrophes,
 		FixLowBPM,
 		SetMedleyTags,
 		FixLineCapitalization,
@@ -40,6 +41,7 @@ private:
 	void fixOverlappingNotes(QUSongInterface *song);
 	void fixLineBreaks(QUSongInterface *song);
 	void fixSpaces(QUSongInterface *song);
+	void fixApostrophes(QUSongInterface *song);
 	void fixLowBPM(QUSongInterface *song, int threshold = 200);
 	void setMedleyTags(QUSongInterface *song, int medleyMinDuration = 30, bool overwriteExisting = false);
 	void fixLineCapitalization(QUSongInterface *song);

@@ -132,6 +132,7 @@
         <file>edit_uppercase.png</file>
         <file>edit_direction.png</file>
         <file>fix_overlapping_notes.png</file>
+        <file>edit_apostrophe.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>splash.png</file>

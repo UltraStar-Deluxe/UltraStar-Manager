@@ -27,6 +27,7 @@ QList<int> QULyricTaskFactory::types() const {
 	result << QULyricTask::FixOverlappingNotes;
 	result << QULyricTask::FixLineBreaks;
 	result << QULyricTask::FixSpaces;
+	result << QULyricTask::FixApostrophes;
 	result << QULyricTask::FixLowBPM;
 	result << QULyricTask::SetMedleyTags;
 	result << QULyricTask::FixLineCapitalization;
