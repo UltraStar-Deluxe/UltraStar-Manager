@@ -1,0 +1,13 @@
+<task>
+    <general group="3" type="rename">
+        <icon resource=":/types/text.png"/>
+        <description><![CDATA[Rename songtext file to "Artist - Title.txt" and add " (duet)" to title for duets]]></description>
+        <tooltip/>
+    </general>
+    <rename schema="%1 - %2%3.txt" target="txt">
+        <data source="artist"/>
+        <data source="title"/>
+        <data text=" (duet)" if="isDuet"/>
+        <data text="-" if="isDuet" modifier="NOT"/>
+    </rename>
+</task>
