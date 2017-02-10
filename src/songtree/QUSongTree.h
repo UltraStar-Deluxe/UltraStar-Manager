@@ -108,6 +108,9 @@ private slots:
 	void mergeSelectedSongs();
 	void calculateSpeed();
 
+	void searchForCoverOnAAE();
+	void searchForCoverOnGoogleImages();
+	void searchForBackgroundOnGoogleImages();
 	void lookUpOnSwisscharts();
 	void lookUpOnUSDB();
 	void createDuetFromSongFiles();

@@ -1342,8 +1342,11 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 		menu->addAction(QIcon(":/control/text_edit.png"), tr("Edit Lyrics..."), this, SLOT(requestEditLyrics()), QKeySequence(Qt::CTRL + Qt::Key_E));
 
 		menu->addSeparator();
-		menu->addAction(QIcon(":/types/world.png"),tr("Look up on Swisscharts..."), this, SLOT(lookUpOnSwisscharts()));
-		menu->addAction(QIcon(":/types/world.png"),tr("Look up on USDB..."), this, SLOT(lookUpOnUSDB()));
+		menu->addAction(QIcon(":/faviconAAE.ico"),tr("Search for cover on AlbumArtExchange..."), this, SLOT(searchForCoverOnAAE()));
+		menu->addAction(QIcon(":/faviconGoogle.ico"),tr("Search for cover on Google Images..."), this, SLOT(searchForCoverOnGoogleImages()));
+		menu->addAction(QIcon(":/faviconGoogle.ico"),tr("Search for background on Google Images..."), this, SLOT(searchForBackgroundOnGoogleImages()));
+		menu->addAction(QIcon(":/faviconSwissCharts.ico"),tr("Look up on Swisscharts..."), this, SLOT(lookUpOnSwisscharts()));
+		menu->addAction(QIcon(":/faviconUSDB.ico"),tr("Look up on USDB..."), this, SLOT(lookUpOnUSDB()));
 
 		if ( item->song()->songFileInfo().dir().entryList(QStringList("*.txt"), QDir::Files).size() == 2 ) {
 			menu->addSeparator();
@@ -1512,6 +1515,93 @@ void QUSongTree::lookUpOnSwisscharts() {
 		}
 		urlQuery.addQueryItem("search", encodedQuery);
 		url.setQuery(urlQuery);
+		QDesktopServices::openUrl(url);
+	}
+
+	if(selectedSongItems().size() > 1) {
+		logSrv->add(tr("You can only look up one song at a time."), QU::Information);
+	}
+}
+
+/*!
+ * Look up song at www.albumartexchange.com to find a high quality cover
+ */
+void QUSongTree::searchForCoverOnAAE() {
+	QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->currentItem());
+
+	if(songItem) {
+		QUrl url("http://www.albumartexchange.com/covers");
+		QUrlQuery urlQuery;
+		QString queryString = songItem->song()->artist() + " " + songItem->song()->title();
+		QStringList queryStrings = queryString.split(QRegExp("(\\s+)"));
+		QByteArray encodedQuery;
+		foreach(QString queryString, queryStrings) {
+			encodedQuery += queryString.toLatin1() + QString("+").toLatin1();
+		}
+		urlQuery.addQueryItem("q", encodedQuery);
+		urlQuery.addQueryItem("fltr", "ALL");
+		urlQuery.addQueryItem("sort", "TITLE");
+		urlQuery.addQueryItem("status", "");
+		urlQuery.addQueryItem("size", "any");
+		url.setQuery(urlQuery);
+		QDesktopServices::openUrl(url);
+	}
+
+	if(selectedSongItems().size() > 1) {
+		logSrv->add(tr("You can only look up one song at a time."), QU::Information);
+	}
+}
+
+/*!
+ * Look up song at images.google.com to find a cover
+ */
+void QUSongTree::searchForCoverOnGoogleImages() {
+	QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->currentItem());
+
+	if(songItem) {
+		QUrl url("https://www.google.com/search");
+		QUrlQuery urlQuery;
+		urlQuery.addQueryItem("safe", "off");
+		urlQuery.addQueryItem("tbm", "isch");
+		urlQuery.addQueryItem("tbs", "imgo:1");
+		QString queryString = songItem->song()->artist() + " " + songItem->song()->title();
+		QStringList queryStrings = queryString.split(QRegExp("(\\s+)"));
+		QByteArray encodedQuery;
+		foreach(QString queryString, queryStrings) {
+			encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
+		}
+		urlQuery.addQueryItem("q", encodedQuery);
+		url.setQuery(urlQuery);
+
+		QDesktopServices::openUrl(url);
+	}
+
+	if(selectedSongItems().size() > 1) {
+		logSrv->add(tr("You can only look up one song at a time."), QU::Information);
+	}
+}
+
+/*!
+ * Look up song at images.google.com to find a cover
+ */
+void QUSongTree::searchForBackgroundOnGoogleImages() {
+	QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->currentItem());
+
+	if(songItem) {
+		QUrl url("https://www.google.com/search");
+		QUrlQuery urlQuery;
+		urlQuery.addQueryItem("safe", "off");
+		urlQuery.addQueryItem("tbm", "isch");
+		urlQuery.addQueryItem("tbs", "imgo:1,isz:lt,islt:2mp");
+		QString queryString = songItem->song()->artist();
+		QStringList queryStrings = queryString.split(QRegExp("(\\s+)"));
+		QByteArray encodedQuery;
+		foreach(QString queryString, queryStrings) {
+			encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
+		}
+		urlQuery.addQueryItem("q", encodedQuery);
+		url.setQuery(urlQuery);
+
 		QDesktopServices::openUrl(url);
 	}
 

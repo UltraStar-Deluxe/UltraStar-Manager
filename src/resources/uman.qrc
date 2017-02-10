@@ -39,6 +39,10 @@
         <file>monty/speech6.png</file>
         <file>monty/speech7.png</file>
         <file>monty/speech8.png</file>
+        <file>faviconAAE.ico</file>
+        <file>faviconGoogle.ico</file>
+        <file>faviconSwissCharts.ico</file>
+        <file>faviconUSDB.ico</file>
     </qresource>
     <qresource prefix="/bullets">
         <file>arrow_down_small.png</file>
