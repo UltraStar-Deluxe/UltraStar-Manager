@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1218</width>
-    <height>95</height>
+    <height>112</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -32,7 +32,7 @@
    <enum>QTabWidget::Rounded</enum>
   </property>
   <property name="currentIndex">
-   <number>0</number>
+   <number>2</number>
   </property>
   <property name="documentMode">
    <bool>false</bool>
@@ -48,7 +48,16 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <item>
@@ -66,7 +75,16 @@
        <property name="spacing">
         <number>0</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -239,7 +257,16 @@ from Artist</string>
        <property name="spacing">
         <number>0</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -538,7 +565,16 @@ Speed</string>
        <property name="spacing">
         <number>0</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -803,7 +839,16 @@ all</string>
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <item>
@@ -821,7 +866,16 @@ all</string>
        <property name="spacing">
         <number>0</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -937,7 +991,16 @@ Symbols</string>
        <property name="spacing">
         <number>0</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -1216,7 +1279,16 @@ Log</string>
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <item>
@@ -1234,7 +1306,16 @@ Log</string>
        <property name="spacing">
         <number>0</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -1384,7 +1465,16 @@ border-left-color: #C2C7CB;</string>
        <property name="spacing">
         <number>0</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -1582,7 +1672,16 @@ Save</string>
        <property name="spacing">
         <number>2</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -1765,17 +1864,7 @@ border-left-color: #C2C7CB;</string>
            </item>
            <item>
             <property name="text">
-             <string>128 x 128</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
              <string notr="true">200 x 200</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>256 x 256</string>
             </property>
            </item>
            <item>
@@ -1791,6 +1880,36 @@ border-left-color: #C2C7CB;</string>
            <item>
             <property name="text">
              <string>500 x 500</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>600 x 600</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>700 x 700</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>800 x 800</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>900 x 900</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>1000 x 1000</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>1100 x 1100</string>
             </property>
            </item>
           </widget>
@@ -1823,17 +1942,7 @@ border-left-color: #C2C7CB;</string>
            </property>
            <item>
             <property name="text">
-             <string>128 x 128</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
              <string notr="true">200 x 200</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>256 x 256</string>
             </property>
            </item>
            <item>
@@ -1853,7 +1962,37 @@ border-left-color: #C2C7CB;</string>
            </item>
            <item>
             <property name="text">
-             <string>512 x 512</string>
+             <string>600 x 600</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>700 x 700</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>800 x 800</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>900 x 900</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>1000 x 1000</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>1100 x 1100</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>1200 x 1200</string>
             </property>
            </item>
           </widget>
@@ -1947,6 +2086,11 @@ border-left-color: #C2C7CB;</string>
              <string notr="true">1760 x 990</string>
             </property>
            </item>
+           <item>
+            <property name="text">
+             <string>1920 x 1080</string>
+            </property>
+           </item>
           </widget>
          </item>
          <item row="1" column="0">
@@ -1973,7 +2117,7 @@ border-left-color: #C2C7CB;</string>
             <string>Specify the minimum resolution for high background quality.</string>
            </property>
            <property name="currentIndex">
-            <number>1</number>
+            <number>0</number>
            </property>
            <item>
             <property name="text">
@@ -2015,6 +2159,11 @@ border-left-color: #C2C7CB;</string>
              <string notr="true">1920 x 1080</string>
             </property>
            </item>
+           <item>
+            <property name="text">
+             <string>3840 x 2160</string>
+            </property>
+           </item>
           </widget>
          </item>
         </layout>
@@ -2045,7 +2194,16 @@ border-left-color: #C2C7CB;</string>
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <item>
@@ -2063,7 +2221,16 @@ border-left-color: #C2C7CB;</string>
        <property name="spacing">
         <number>0</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -2197,7 +2364,16 @@ Audio Files...</string>
        <property name="spacing">
         <number>0</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -2264,7 +2440,16 @@ Update</string>
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <item>
@@ -2282,7 +2467,16 @@ Update</string>
        <property name="spacing">
         <number>0</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -2581,7 +2775,16 @@ Update</string>
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <item>
@@ -2599,7 +2802,16 @@ Update</string>
        <property name="spacing">
         <number>0</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -2689,7 +2901,16 @@ Manager...</string>
        <property name="spacing">
         <number>0</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>

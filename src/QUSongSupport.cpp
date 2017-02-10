@@ -478,11 +478,11 @@ int QUSongSupport::highMp3Quality() {
 }
 
 int QUSongSupport::mediumCoverQuality() {
-	return registryKey("mediumCoverQuality", "200 x 200").first().toInt();
+	return registryKey("mediumCoverQuality", "300 x 300").first().toInt();
 }
 
 int QUSongSupport::highCoverQuality() {
-	return registryKey("highCoverQuality", "300 x 300").first().toInt();
+	return registryKey("highCoverQuality", "500 x 500").first().toInt();
 }
 
 int QUSongSupport::mediumBackgroundQuality() {
