@@ -264,7 +264,7 @@ revtarget.target = version.h
 
 win32 {
 revtarget.commands = @echo \
-    "const char *revision = \"r$(shell svnversion .)\"; const char *date_time = \"$(shell date /T)$(shell time /T)\";" > $$revtarget.target
+    "const char *revision = \"r$(shell git rev-parse --short HEAD)\"; const char *date_time = \"$(shell date /T)$(shell time /T)\";" > $$revtarget.target
 revtarget.depends = $$SOURCES \
     $$HEADERS \
     $$FORMS
