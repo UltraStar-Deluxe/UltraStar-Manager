@@ -109,10 +109,7 @@ QUAboutDialog::QUAboutDialog(QWidget *parent): QDialog(parent) {
 
 	QDateTime dateTime = QDateTime::fromString(QString(date_time), "dd.MM.yyyy HH:mm");
 
-	versionLbl->setText(QString(tr("Version: <b>%1.%2.%3</b><br>Commit: %4, %5"))
-			.arg(MAJOR_VERSION)
-			.arg(MINOR_VERSION)
-			.arg(PATCH_VERSION)
+	versionLbl->setText(QString(tr("Version: <b>%1</b><br>Date: %2"))
 			.arg(QString(revision))
 			.arg(dateTime.toString("yyyy-MM-dd, HH:mm")));
 
