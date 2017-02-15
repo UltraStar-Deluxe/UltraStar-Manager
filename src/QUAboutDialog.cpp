@@ -113,7 +113,7 @@ QUAboutDialog::QUAboutDialog(QWidget *parent): QDialog(parent) {
 			.arg(MAJOR_VERSION)
 			.arg(MINOR_VERSION)
 			.arg(PATCH_VERSION)
-			.arg(QString(revision).remove(QRegExp("(.*:)|\\D")))
+			.arg(QString(revision))
 			.arg(dateTime.toString("yyyy-MM-dd, HH:mm")));
 
 	resetText();
