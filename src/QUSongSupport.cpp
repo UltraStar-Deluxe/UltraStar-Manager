@@ -59,6 +59,8 @@ QStringList QUSongSupport::availableNoteTypes() {
 	result << ":"; // normal
 	result << "*"; // golden note
 	result << "F"; // freestyle
+	result << "R"; // rap note
+	result << "G"; // golden rap note
 	result << "-"; // pause
 
 	return result;

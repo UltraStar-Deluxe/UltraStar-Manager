@@ -29,6 +29,10 @@ QUBooleanSongData::QUBooleanSongData(const QString &tag, QObject *parent): QUAbs
 		this->setIcon(QIcon(":/types/golden_notes.png"));
 		this->setDescription(tr("Golden Notes exist?"));
 		this->setID(GOLDEN_NOTES_EXIST_COL);
+	} else if(QString::compare(_tag, RAP_NOTES, Qt::CaseInsensitive) == 0) {
+		this->setIcon(QIcon(":/types/rap_notes.png"));
+		this->setDescription(tr("Rap Notes exist?"));
+		this->setID(RAP_NOTES_EXIST_COL);
 	}
 }
 
@@ -47,6 +51,8 @@ QString QUBooleanSongData::textData(QUSongFile *song) {
 		result = song->hasMedley();
 	else if(QString::compare(_tag, GOLDEN_NOTES, Qt::CaseInsensitive) == 0)
 		result = song->hasGoldenNotes();
+	else if(QString::compare(_tag, RAP_NOTES, Qt::CaseInsensitive) == 0)
+		result = song->hasRapNotes();
 
 	if(result)
 		return tr("yes");
@@ -88,6 +94,11 @@ QString QUBooleanSongData::iconData(QUSongFile *song) {
 			return useAltIcons ? ":/types/golden_notes.png" : ":/marks/tick.png";
 		else
 			return useAltIcons ? "" : ":/marks/cross.png";
+	} else if(QString::compare(_tag, RAP_NOTES, Qt::CaseInsensitive) == 0) {
+		if (song->hasRapNotes())
+			return useAltIcons ? ":/types/rap_notes.png" : ":/marks/tick.png";
+		else
+			return useAltIcons ? "" : ":/marks/cross.png";
 	}
 
 	return "";
@@ -110,6 +121,8 @@ QString QUBooleanSongData::headerIconData() {
 		return ":/types/medley.png";
 	else if(QString::compare(_tag, GOLDEN_NOTES, Qt::CaseInsensitive) == 0)
 		return ":/types/golden_notes.png";
+	else if(QString::compare(_tag, RAP_NOTES, Qt::CaseInsensitive) == 0)
+		return ":/types/rap_notes.png";
 
 	return QString();
 }
@@ -130,4 +143,6 @@ void QUBooleanSongData::sort(QList<QUSongFile*> &songs) {
 		qStableSort(songs.begin(), songs.end(), QUSongFile::hasMedleyLessThan);
 	else if(QString::compare(_tag, GOLDEN_NOTES, Qt::CaseInsensitive) == 0)
 		qStableSort(songs.begin(), songs.end(), QUSongFile::hasGoldenNotesLessThan);
+	else if(QString::compare(_tag, RAP_NOTES, Qt::CaseInsensitive) == 0)
+		qStableSort(songs.begin(), songs.end(), QUSongFile::hasRapNotesLessThan);
 }

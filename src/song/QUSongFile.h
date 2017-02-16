@@ -54,6 +54,7 @@ public:
 	static bool hasVideoLessThan (QUSongFile *s1, QUSongFile *s2);
 	static bool hasMedleyLessThan (QUSongFile *s1, QUSongFile *s2);
 	static bool hasGoldenNotesLessThan (QUSongFile *s1, QUSongFile *s2);
+	static bool hasRapNotesLessThan (QUSongFile *s1, QUSongFile *s2);
 
 	// comparing functions
 	static bool equal(QUSongFile *s1, QUSongFile *s2);
@@ -103,6 +104,7 @@ public slots:
 	bool hasVideo() const;
 	bool hasMedley() const;
 	bool hasGoldenNotes() const;
+	bool hasRapNotes() const;
 
 	bool isSongChecked() const; // for [SC]
 	bool isSingStar() const;

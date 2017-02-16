@@ -16,6 +16,8 @@ QUColumnAction::QUColumnAction(const QString &text, const QVariant &userData, QO
 		this->setText(tr("Medley"));
 	else if(userData.toInt() == GOLDEN_NOTES_COLUMN)
 		this->setText(tr("Golden Notes"));
+	else if(userData.toInt() == RAP_NOTES_COLUMN)
+		this->setText(tr("Rap Notes"));
 
 	connect(this, SIGNAL(toggled(bool)), SLOT(toggleColumn(bool)));
 }

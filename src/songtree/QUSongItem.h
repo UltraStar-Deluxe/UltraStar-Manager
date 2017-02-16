@@ -21,35 +21,36 @@
 #define TYPE_DUET_COLUMN		8
 #define MEDLEY_COLUMN			9
 #define GOLDEN_NOTES_COLUMN		10
-#define UNUSED_FILES_COLUMN		11
-#define MULTIPLE_SONGS_COLUMN	12
-#define SCORE_COLUMN			13
+#define RAP_NOTES_COLUMN		11
+#define UNUSED_FILES_COLUMN		12
+#define MULTIPLE_SONGS_COLUMN	13
+#define SCORE_COLUMN			14
 
-#define LENGTH_COLUMN			14
-#define LENGTH_DIFF_COLUMN		15
-#define LENGTH_MP3_COLUMN		16
-#define LENGTH_EFF_COLUMN		17
-#define SPEED_COLUMN			18
+#define LENGTH_COLUMN			15
+#define LENGTH_DIFF_COLUMN		16
+#define LENGTH_MP3_COLUMN		17
+#define LENGTH_EFF_COLUMN		18
+#define SPEED_COLUMN			19
 
-#define START_COLUMN			19
-#define END_COLUMN				20
-#define VIDEOGAP_COLUMN			21
+#define START_COLUMN			20
+#define END_COLUMN				21
+#define VIDEOGAP_COLUMN			22
 
-#define ARTIST_COLUMN_EX		22
-#define TITLE_COLUMN_EX			23
-#define LANGUAGE_COLUMN			24
-#define EDITION_COLUMN			25
-#define GENRE_COLUMN			26
-#define YEAR_COLUMN				27
-#define CREATOR_COLUMN			28
+#define ARTIST_COLUMN_EX		23
+#define TITLE_COLUMN_EX			24
+#define LANGUAGE_COLUMN			25
+#define EDITION_COLUMN			26
+#define GENRE_COLUMN			27
+#define YEAR_COLUMN				28
+#define CREATOR_COLUMN			29
 
-#define RELATIVE_COLUMN			29
-#define BPM_COLUMN				30
-#define GAP_COLUMN				31
+#define RELATIVE_COLUMN			30
+#define BPM_COLUMN				31
+#define GAP_COLUMN				32
 
-#define DUPLICATE_ID_COLUMN		32
+#define DUPLICATE_ID_COLUMN		33
 
-#define FIRST_CUSTOM_TAG_COLUMN	33
+#define FIRST_CUSTOM_TAG_COLUMN	34
 
 /*!
  * This class encapsulates a pointer to a QUSongFile object to be able

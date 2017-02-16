@@ -578,6 +578,7 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case GAP_COLUMN:
 	case MEDLEY_COLUMN:
 	case GOLDEN_NOTES_COLUMN:
+	case RAP_NOTES_COLUMN:
 		return this->data(column, Qt::UserRole).toDouble() < other.data(column, Qt::UserRole).toDouble(); break;
 	default:
 		return text(column) < other.text(column);
@@ -770,6 +771,28 @@ void QUSongItem::updateTypeColumns() {
 		this->setIcon(GOLDEN_NOTES_COLUMN, QIcon(":/types/golden_notes.png"));
 		this->setData(GOLDEN_NOTES_COLUMN, Qt::UserRole, goldenNotesPercentage);
 		this->setToolTip(GOLDEN_NOTES_COLUMN, QObject::tr("%1% golden notes.").arg(goldenNotesPercentage, 0, 'f', 1));
+	}
+
+	if(song()->hasRapNotes()) {
+		int notesCnt = 0;
+		int rapNotesCnt = 0;
+		int rapGoldenNotesCnt = 0;
+		foreach(QUSongLineInterface *line, song()->loadMelody()) {
+			foreach(QUSongNoteInterface *note, line->notes()) {
+				notesCnt++;
+				if(note->type() == QUSongNoteInterface::rap)
+					rapNotesCnt++;
+				else if(note->type() == QUSongNoteInterface::rapgolden)
+					rapGoldenNotesCnt++;
+			}
+		}
+
+		double rapNotesPercentage = double(rapNotesCnt)/double(notesCnt)*100;
+		double rapGoldenNotesPercentage = double(rapGoldenNotesCnt)/double(notesCnt)*100;
+
+		this->setIcon(RAP_NOTES_COLUMN, QIcon(":/types/rap_notes.png"));
+		this->setData(RAP_NOTES_COLUMN, Qt::UserRole, rapNotesPercentage);
+		this->setToolTip(RAP_NOTES_COLUMN, QObject::tr("%1% rap notes (%2% rap golden notes).").arg(rapNotesPercentage, 0, 'f', 1).arg(rapGoldenNotesPercentage, 0, 'f', 1));
 	}
 }
 

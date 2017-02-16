@@ -47,6 +47,8 @@ void QUAutoCue::reset(const QList<QUSongLineInterface*> &lines, double bpm, doub
 				setFontWeight(QFont::Bold);
 			else if(note->type() == QUSongNoteInterface::freestyle)
 				setFontItalic(true);
+			else if(note->type() == QUSongNoteInterface::rap || note->type() == QUSongNoteInterface::rapgolden)
+				setFontUnderline(true);
 
 			setAlignment(Qt::AlignHCenter);
 			insertPlainText(note->syllable());

@@ -399,7 +399,7 @@ bool QUPdfReport::save() {
 				painter.setPen(Qt::gray);
 				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideLeft, _relSongFilePathHSep));
 				x += _relSongFilePathHSep + _colHSep;
-			} else if(currentColumn == AUDIO_EXISTS_COL || currentColumn == COVER_EXISTS_COL || currentColumn == BACKGROUND_EXISTS_COL || currentColumn == VIDEO_EXISTS_COL || currentColumn == MEDLEY_EXISTS_COL || currentColumn == GOLDEN_NOTES_EXIST_COL) {
+			} else if(currentColumn == AUDIO_EXISTS_COL || currentColumn == COVER_EXISTS_COL || currentColumn == BACKGROUND_EXISTS_COL || currentColumn == VIDEO_EXISTS_COL || currentColumn == MEDLEY_EXISTS_COL || currentColumn == GOLDEN_NOTES_EXIST_COL || currentColumn == RAP_NOTES_EXIST_COL) {
 
 				if(reportDataList().at(i)->textData(song) == tr("yes")) {
 					painter.setPen(Qt::darkGreen);

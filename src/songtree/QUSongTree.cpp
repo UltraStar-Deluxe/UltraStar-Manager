@@ -101,6 +101,9 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(GOLDEN_NOTES_COLUMN, QIcon(":/types/golden_notes.png"));
 	header->setToolTip(GOLDEN_NOTES_COLUMN, tr("Shows whether the song has golden notes."));
 	header->setSizeHint(GOLDEN_NOTES_COLUMN, QSize(25,0));
+	header->setIcon(RAP_NOTES_COLUMN, QIcon(":/types/rap_notes.png"));
+	header->setToolTip(RAP_NOTES_COLUMN, tr("Shows whether the song has rap notes."));
+	header->setSizeHint(RAP_NOTES_COLUMN, QSize(25,0));
 
 	header->setIcon(UNUSED_FILES_COLUMN, QIcon(":/types/unused_files.png"));
 	header->setToolTip(UNUSED_FILES_COLUMN, tr("Shows whether your folder contains unused files."));
@@ -639,6 +642,7 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 		   && i != TYPE_KARAOKE_COLUMN
 		   && i != MEDLEY_COLUMN
 		   && i != GOLDEN_NOTES_COLUMN
+		   && i != RAP_NOTES_COLUMN
 		   && (headerItem()->text(i).isEmpty() || i == FOLDER_COLUMN))
 			continue;
 
@@ -651,7 +655,8 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 		case TYPE_KARAOKE_COLUMN:
 		case TYPE_DUET_COLUMN:
 		case MEDLEY_COLUMN:
-		case GOLDEN_NOTES_COLUMN: typesMenu.addAction(a); break;
+		case GOLDEN_NOTES_COLUMN:
+		case RAP_NOTES_COLUMN: typesMenu.addAction(a); break;
 		case SPEED_COLUMN: lengthsMenu.addSeparator();
 		case START_COLUMN: lengthsMenu.addSeparator();
 		case LENGTH_COLUMN:
@@ -713,6 +718,7 @@ void QUSongTree::showDefaultColumns(bool save) {
 	this->header()->showSection(TYPE_DUET_COLUMN);
 	this->header()->showSection(MEDLEY_COLUMN);
 	this->header()->showSection(GOLDEN_NOTES_COLUMN);
+	this->header()->showSection(RAP_NOTES_COLUMN);
 	this->header()->showSection(UNUSED_FILES_COLUMN);
 	this->header()->showSection(MULTIPLE_SONGS_COLUMN);
 	this->header()->showSection(SCORE_COLUMN);
@@ -782,6 +788,7 @@ void QUSongTree::showCheckColumns() {
 	this->header()->showSection(VIDEO_COLUMN);
 	this->header()->showSection(MEDLEY_COLUMN);
 	this->header()->showSection(GOLDEN_NOTES_COLUMN);
+	this->header()->showSection(RAP_NOTES_COLUMN);
 	this->header()->showSection(UNUSED_FILES_COLUMN);
 	this->header()->showSection(MULTIPLE_SONGS_COLUMN);
 	this->header()->showSection(SCORE_COLUMN);
@@ -1639,7 +1646,7 @@ void QUSongTree::createDuetFromSongFiles() {
 	QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->currentItem());
 
 	if(songItem) {
-		QString duetFilename = songItem->song()->path() + QDir::separator() + songItem->song()->artist() + " - " + songItem->song()->title() + ".txd";
+		QString duetFilename = songItem->song()->path() + QDir::separator() + songItem->song()->artist() + " - " + songItem->song()->title() + " (duet).txt";
 		QUSongFile *duet = new QUSongFile(duetFilename);
 
 		duet->setInfo(ARTIST_TAG, songItem->song()->artist());

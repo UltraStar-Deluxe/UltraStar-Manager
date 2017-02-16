@@ -43,6 +43,7 @@ class QFileInfo;
 
 #define MEDLEY_TAGS				"MEDLEYTAGS"
 #define GOLDEN_NOTES			"GOLDENNOTES"
+#define RAP_NOTES				"RAPNOTES"
 
 class QUSongNoteInterface: public QObject {
 	Q_OBJECT
@@ -51,7 +52,9 @@ public:
 	enum Type {
 		normal,
 		golden,
-		freestyle
+		freestyle,
+		rap,
+		rapgolden
 	};
 	Q_DECLARE_FLAGS(Types, Type)
 
@@ -159,6 +162,7 @@ class QUSongInterface: public QObject {
 	Q_PROPERTY(bool hasVideo READ hasVideo)
 	Q_PROPERTY(bool hasMedley READ hasMedley)
 	Q_PROPERTY(bool hasGoldenNotes READ hasGoldenNotes)
+	Q_PROPERTY(bool hasRapNotes READ hasRapNotes)
 	Q_PROPERTY(bool isSongChecked READ isSongChecked)
 	Q_PROPERTY(bool isDuet READ isDuet)
 	Q_PROPERTY(bool isKaraoke READ isKaraoke)
@@ -215,6 +219,8 @@ public:
 	virtual bool hasVideo() const = 0;
 	virtual bool hasMedley() const = 0;
 	virtual bool hasGoldenNotes() const = 0;
+	virtual bool hasRapNotes() const = 0;
+
 	virtual bool isSongChecked() const = 0;
 	virtual bool isDuet() const = 0;
 	virtual bool isKaraoke() const = 0;

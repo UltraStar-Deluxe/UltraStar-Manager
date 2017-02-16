@@ -77,6 +77,7 @@ void QUReportDialog::initReportList() {
 
 	reportList->addItem(new QUReportItem(new QUBooleanSongData(MEDLEY_TAGS)));
 	reportList->addItem(new QUReportItem(new QUBooleanSongData(GOLDEN_NOTES)));
+	reportList->addItem(new QUReportItem(new QUBooleanSongData(RAP_NOTES)));
 
 	reportList->addItem(new QUReportItem(new QUSongFileData("speed")));
 	reportList->addItem(new QUReportItem(new QUSongFileData("lengthTotal")));

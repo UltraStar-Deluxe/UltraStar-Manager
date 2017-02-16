@@ -99,24 +99,25 @@ bool QUSongFile::isValid() {
 
 /* SORTING FUNCTIONS BEGIN */
 
-bool QUSongFile::artistLessThan (QUSongFile *s1, QUSongFile *s2)   { return QString::compare(s1->artist(), s2->artist(), Qt::CaseInsensitive) < 0; }
-bool QUSongFile::titleLessThan (QUSongFile *s1, QUSongFile *s2)	{ return QString::compare(s1->title(), s2->title(), Qt::CaseInsensitive) < 0; }
-bool QUSongFile::languageLessThan (QUSongFile *s1, QUSongFile *s2) { return QString::compare(s1->language(), s2->language(), Qt::CaseInsensitive) < 0; }
-bool QUSongFile::editionLessThan (QUSongFile *s1, QUSongFile *s2)  { return QString::compare(s1->edition(), s2->edition(), Qt::CaseInsensitive) < 0; }
-bool QUSongFile::genreLessThan (QUSongFile *s1, QUSongFile *s2)	{ return QString::compare(s1->genre(), s2->genre(), Qt::CaseInsensitive) < 0; }
-bool QUSongFile::yearLessThan (QUSongFile *s1, QUSongFile *s2)	 { return QString::compare(s1->year(), s2->year(), Qt::CaseInsensitive) < 0; }
-bool QUSongFile::creatorLessThan (QUSongFile *s1, QUSongFile *s2)  { return QString::compare(s1->creator(), s2->creator(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::artistLessThan (QUSongFile *s1, QUSongFile *s2)			{ return QString::compare(s1->artist(), s2->artist(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::titleLessThan (QUSongFile *s1, QUSongFile *s2)				{ return QString::compare(s1->title(), s2->title(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::languageLessThan (QUSongFile *s1, QUSongFile *s2)			{ return QString::compare(s1->language(), s2->language(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::editionLessThan (QUSongFile *s1, QUSongFile *s2)			{ return QString::compare(s1->edition(), s2->edition(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::genreLessThan (QUSongFile *s1, QUSongFile *s2)				{ return QString::compare(s1->genre(), s2->genre(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::yearLessThan (QUSongFile *s1, QUSongFile *s2)				{ return QString::compare(s1->year(), s2->year(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::creatorLessThan (QUSongFile *s1, QUSongFile *s2)			{ return QString::compare(s1->creator(), s2->creator(), Qt::CaseInsensitive) < 0; }
 
-bool QUSongFile::pathLessThan (QUSongFile *s1, QUSongFile *s2)			 { return QString::compare(s1->path(), s2->path(), Qt::CaseInsensitive) < 0; }
-bool QUSongFile::filePathLessThan (QUSongFile *s1, QUSongFile *s2)		 { return QString::compare(s1->filePath(), s2->filePath(), Qt::CaseInsensitive) < 0; }
-bool QUSongFile::relativeFilePathLessThan (QUSongFile *s1, QUSongFile *s2) { return QString::compare(s1->relativeFilePath(), s2->relativeFilePath(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::pathLessThan (QUSongFile *s1, QUSongFile *s2)				{ return QString::compare(s1->path(), s2->path(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::filePathLessThan (QUSongFile *s1, QUSongFile *s2)			{ return QString::compare(s1->filePath(), s2->filePath(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::relativeFilePathLessThan (QUSongFile *s1, QUSongFile *s2)	{ return QString::compare(s1->relativeFilePath(), s2->relativeFilePath(), Qt::CaseInsensitive) < 0; }
 
-bool QUSongFile::hasMp3LessThan (QUSongFile *s1, QUSongFile *s2)		   { return !s1->hasMp3() && s2->hasMp3(); }
-bool QUSongFile::hasCoverLessThan (QUSongFile *s1, QUSongFile *s2)		 { return !s1->hasCover() && s2->hasCover(); }
-bool QUSongFile::hasBackgroundLessThan (QUSongFile *s1, QUSongFile *s2)	{ return !s1->hasBackground() && s2->hasBackground(); }
-bool QUSongFile::hasVideoLessThan (QUSongFile *s1, QUSongFile *s2)		 { return !s1->hasVideo() && s2->hasVideo(); }
-bool QUSongFile::hasMedleyLessThan (QUSongFile *s1, QUSongFile *s2)		{ return !s1->hasMedley() && s2->hasMedley(); }
-bool QUSongFile::hasGoldenNotesLessThan (QUSongFile *s1, QUSongFile *s2)   { return !s1->hasGoldenNotes() && s2->hasGoldenNotes(); }
+bool QUSongFile::hasMp3LessThan (QUSongFile *s1, QUSongFile *s2)			{ return !s1->hasMp3() && s2->hasMp3(); }
+bool QUSongFile::hasCoverLessThan (QUSongFile *s1, QUSongFile *s2)			{ return !s1->hasCover() && s2->hasCover(); }
+bool QUSongFile::hasBackgroundLessThan (QUSongFile *s1, QUSongFile *s2)		{ return !s1->hasBackground() && s2->hasBackground(); }
+bool QUSongFile::hasVideoLessThan (QUSongFile *s1, QUSongFile *s2)			{ return !s1->hasVideo() && s2->hasVideo(); }
+bool QUSongFile::hasMedleyLessThan (QUSongFile *s1, QUSongFile *s2)			{ return !s1->hasMedley() && s2->hasMedley(); }
+bool QUSongFile::hasGoldenNotesLessThan (QUSongFile *s1, QUSongFile *s2)	{ return !s1->hasGoldenNotes() && s2->hasGoldenNotes(); }
+bool QUSongFile::hasRapNotesLessThan (QUSongFile *s1, QUSongFile *s2)		{ return !s1->hasRapNotes() && s2->hasRapNotes(); }
 
 /* SORTING FUNCTIONS END */
 
@@ -235,7 +236,7 @@ bool QUSongFile::updateCache() {
 	 */
 	QString line;
 
-	while( !(QRegExp("([:\\*FE\\-].*)|(P\\s*[123].*)").exactMatch(line) || _in.atEnd()) ) {
+	while( !(QRegExp("([:\\*FRGE\\-].*)|(P\\s*[123].*)").exactMatch(line) || _in.atEnd()) ) {
 		line = QUStringSupport::withoutLeadingBlanks(_in.readLine());
 
 		// read supported tags
@@ -269,7 +270,7 @@ bool QUSongFile::updateCache() {
 
 	// read lyrics + other stuff (distinct them)
 	while( !_in.atEnd() ) {
-		if(QRegExp("([:\\*F\\-].*)|(P\\s*[123].*)").exactMatch(line))
+		if(QRegExp("([:\\*FRG\\-].*)|(P\\s*[123].*)").exactMatch(line))
 			_lyrics << line;
 		else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
 			_footer << line;
@@ -279,7 +280,7 @@ bool QUSongFile::updateCache() {
 
 	// use last line buffer
 	// TODO: a little bit dirty here (duplicate code)
-	if(QRegExp("[:\\*F\\-].*").exactMatch(line))
+	if(QRegExp("[:\\*FRG\\-].*").exactMatch(line))
 		_lyrics << line;
 	else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
 		_footer << line;
@@ -377,6 +378,15 @@ bool QUSongFile::hasMedley() const {
 bool QUSongFile::hasGoldenNotes() const {
 	foreach(QString line, _lyrics) {
 		if(line.startsWith('*'))
+			return true;
+	}
+
+	return false;
+}
+
+bool QUSongFile::hasRapNotes() const {
+	foreach(QString line, _lyrics) {
+		if(line.startsWith('R'))
 			return true;
 	}
 
@@ -595,7 +605,7 @@ QStringList QUSongFile::lyrics() const {
 
 	QRegExp lineBreak("\\s*-.*");
 	QRegExp lineSinger("\\s*P\\s*[123].*");
-	QRegExp linePrefix("\\s*[:\\*F]\\s*-?\\d+\\s+\\d+\\s+-?\\d+\\s");
+	QRegExp linePrefix("\\s*[:\\*FRG]\\s*-?\\d+\\s+\\d+\\s+-?\\d+\\s");
 
 	int lastBeat = -1;
 
@@ -620,7 +630,7 @@ QStringList QUSongFile::lyrics() const {
 			if(lastBeat != -1) {
 				// insert an empty line?
 				QString lineCopy = line;
-				lineCopy.remove(QRegExp("[:\\*F]"));
+				lineCopy.remove(QRegExp("[:\\*FRG]"));
 				int nextBeat = QVariant(lineCopy.section(" ", 0, 0, QString::SectionSkipEmpty)).toInt();
 
 				if(nextBeat - lastBeat > 20)
@@ -634,6 +644,10 @@ QStringList QUSongFile::lyrics() const {
 				result.last() += line.remove(linePrefix).append("</b>").prepend("<b>");
 			else if(QRegExp("\\s*F.*").exactMatch(line)) // freestyle note
 				result.last() += line.remove(linePrefix).append("</i>").prepend("<i>");
+			else if(QRegExp("\\s*R.*").exactMatch(line)) // rap note
+				result.last() += line.remove(linePrefix).append("</u>").prepend("<u>");
+			else if(QRegExp("\\s*G.*").exactMatch(line)) // rap golden note
+				result.last() += line.remove(linePrefix).append("</b></u>").prepend("<u><b>");
 			else
 				result.last() += line.remove(linePrefix);
 		}
@@ -1452,8 +1466,10 @@ void QUSongFile::convertLyricsToRaw() {
 
 		foreach(QUSongNoteInterface *note, line->notes()) {
 			QStringList out;
-			if(note->type() == QUSongNoteInterface::freestyle)	  out.append("F");
+			if(note->type() == QUSongNoteInterface::freestyle)		out.append("F");
 			else if(note->type() == QUSongNoteInterface::golden)	out.append("*");
+			else if(note->type() == QUSongNoteInterface::rap)		out.append("R");
+			else if(note->type() == QUSongNoteInterface::rapgolden)	out.append("G");
 			else													out.append(":");
 
 			out.append(QVariant(note->timestamp()).toString());
@@ -1480,7 +1496,7 @@ void QUSongFile::convertLyricsToRaw() {
  * Takes a raw lyrics line (e.g. ": 2345 10 90 foo ") and converts that to an internal format.
  */
 void QUSongFile::lyricsAddNote(QString line) {
-	if(!QRegExp("([:\\*F\\-].*)|(P\\s*[123].*)").exactMatch(line)) {
+	if(!QRegExp("([:\\*FRG\\-].*)|(P\\s*[123].*)").exactMatch(line)) {
 		logSrv->add(QString(tr("Error while preparing lyrics for %1 - %2. Could not parse the following line: %3"))
 					.arg(artist())
 					.arg(title())
@@ -1525,11 +1541,21 @@ void QUSongFile::lyricsAddNote(QString line) {
 		if(lineSplit.size() < 4)
 			logSrv->add(QString(tr("Line too short: \"%1\"")).arg(line), QU::Warning);
 		else {
-			QUSongNoteInterface::Types t = line.startsWith("F") ? QUSongNoteInterface::freestyle : (line.startsWith("*") ? QUSongNoteInterface::golden : QUSongNoteInterface::normal);
+			QUSongNoteInterface::Types t;
+			if(line.startsWith("F"))
+				t = QUSongNoteInterface::freestyle;
+			else if(line.startsWith("*"))
+				t = QUSongNoteInterface::golden;
+			else if(line.startsWith("R"))
+				t = QUSongNoteInterface::rap;
+			else if(line.startsWith("G"))
+				t = QUSongNoteInterface::rapgolden;
+			else
+				t = QUSongNoteInterface::normal;
 
 			// extract the lyric/syllable
-			line.remove(QRegExp("[:\\*F]\\s*\\-?\\d+\\s+\\d+\\s+\\-?\\d+\\s"));
-			line.remove(QRegExp("[:\\*F]\\s*\\-?\\d+\\s+\\d+\\s+\\-?\\d+")); // if no syllable is present
+			line.remove(QRegExp("[:\\*FRG]\\s*\\-?\\d+\\s+\\d+\\s+\\-?\\d+\\s"));
+			line.remove(QRegExp("[:\\*FRG]\\s*\\-?\\d+\\s+\\d+\\s+\\-?\\d+")); // if no syllable is present
 
 			QUSongNote *note = new QUSongNote(
 					t,
