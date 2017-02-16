@@ -59,7 +59,7 @@ void QUProgressDialog::update(const QString &itemText, bool forceUpdate) {
 	}
 
 	// only show update in certain steps
-	if(!forceUpdate && _lastStep.msecsTo(QTime::currentTime()) < STEP_SIZE)
+	if(!forceUpdate && _lastStep.isValid() && _lastStep.msecsTo(QTime::currentTime()) < STEP_SIZE)
 		return;
 
 	progress->setValue(_progress);
