@@ -157,25 +157,25 @@ void QUPathsDialog::checkSongPath(QListWidgetItem *item) {
 void QUPathsDialog::chooseUsPath() {
 	QString path = QFileDialog::getExistingDirectory(this, tr("Select folder of UltraStar (Deluxe)"), pathEditUs->text());
 	if(!path.isEmpty())
-		pathEditUs->setText(path);
+		pathEditUs->setText(QDir::toNativeSeparators(path));
 }
 
 void QUPathsDialog::choosePlaylistPath() {
 	QString path = QFileDialog::getExistingDirectory(this, tr("Select folder for playlists"), pathEditPlaylist->text());
 	if(!path.isEmpty())
-		pathEditPlaylist->setText(path);
+		pathEditPlaylist->setText(QDir::toNativeSeparators(path));
 }
 
 void QUPathsDialog::chooseCoverPath() {
 	QString path = QFileDialog::getExistingDirectory(this, tr("Select folder for UltraStar cover pictures"), pathEditCover->text());
 	if(!path.isEmpty())
-		pathEditCover->setText(path);
+		pathEditCover->setText(QDir::toNativeSeparators(path));
 }
 
 void QUPathsDialog::chooseLanguagePath() {
 	QString path = QFileDialog::getExistingDirectory(this, tr("Select folder of UltraStar language files"), pathEditLang->text());
 	if(!path.isEmpty())
-		pathEditLang->setText(path);
+		pathEditLang->setText(QDir::toNativeSeparators(path));
 }
 
 void QUPathsDialog::chooseSongPath() {
@@ -184,7 +184,7 @@ void QUPathsDialog::chooseSongPath() {
 	if(path.isEmpty())
 		return;
 
-	QListWidgetItem *pathItem = new QListWidgetItem(path);
+	QListWidgetItem *pathItem = new QListWidgetItem(QDir::toNativeSeparators(path));
 	pathItem->setFlags(pathItem->flags() | Qt::ItemIsEditable);
 	songPathList->addItem(pathItem);
 	checkSongPath(pathItem);

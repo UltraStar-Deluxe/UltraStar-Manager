@@ -177,7 +177,7 @@ void QUPlaylistArea::browse() {
 	QString newPath = QFileDialog::getExistingDirectory(this, tr("Select a folder for playlists"), playlistDB->dir().path());
 
 	if(!newPath.isEmpty())
-		playlistDB->setDir(newPath);
+		playlistDB->setDir(QDir::toNativeSeparators(newPath));
 }
 
 void QUPlaylistArea::removeCurrentPlaylist() {
