@@ -257,7 +257,8 @@ void QULyricTask::fixOverlappingNotes(QUSongInterface *song) {
 
 			QUSongNoteInterface *nextNote;
 			if(currentNote == currentLine->notes().last() && currentLine != song->loadMelody().last()) {
-				nextNote = song->loadMelody().at(i+1)->notes().first();
+				if(!song->loadMelody().at(i+1)->notes().isEmpty())
+					nextNote = song->loadMelody().at(i+1)->notes().first();
 			} else {
 				nextNote = currentLine->notes().at(j+1);
 			}
@@ -639,7 +640,8 @@ void QULyricTask::fixLineCapitalization(QUSongInterface *song) {
 	}
 
 	foreach(QUSongLineInterface *line, song->loadMelody()) {
-		line->notes().first()->setSyllable(line->notes().first()->syllable().at(0).toUpper() + line->notes().first()->syllable().mid(1));
+		if(!line->notes().isEmpty())
+			line->notes().first()->setSyllable(line->notes().first()->syllable().at(0).toUpper() + line->notes().first()->syllable().mid(1));
 	}
 
 	song->saveMelody();
