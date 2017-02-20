@@ -75,8 +75,8 @@ void QUDetailsTable::initTagColumn() {
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/P2.png"),					tr("P2")));
 
 	this->initSeparator(tr("Sorting"), row++);
-	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/font.png"),				tr("Title on Sorting")));
-	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/user.png"),				tr("Artist on Sorting")));
+	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/font.png"),				tr("TitleOnSorting")));
+	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/user.png"),				tr("ArtistOnSorting")));
 
 	if(!QUSongSupport::availableCustomTags().isEmpty()) {
 		this->initSeparator(tr("Custom"), row++);

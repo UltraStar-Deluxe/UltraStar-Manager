@@ -2058,22 +2058,7 @@ border-left-color: #C2C7CB;</string>
            </item>
            <item>
             <property name="text">
-             <string notr="true">1024 x 576</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string notr="true">1120 x 630</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
              <string notr="true">1280 x 720</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string notr="true">1440 x 810</string>
             </property>
            </item>
            <item>
@@ -2083,12 +2068,17 @@ border-left-color: #C2C7CB;</string>
            </item>
            <item>
             <property name="text">
-             <string notr="true">1760 x 990</string>
+             <string>1920 x 1080</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>1920 x 1080</string>
+             <string>2540 x 1440</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>3200 x 1800</string>
             </property>
            </item>
           </widget>
@@ -2126,22 +2116,7 @@ border-left-color: #C2C7CB;</string>
            </item>
            <item>
             <property name="text">
-             <string notr="true">1024 x 576</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string notr="true">1120 x 630</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
              <string notr="true">1280 x 720</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string notr="true">1440 x 810</string>
             </property>
            </item>
            <item>
@@ -2151,12 +2126,17 @@ border-left-color: #C2C7CB;</string>
            </item>
            <item>
             <property name="text">
-             <string notr="true">1760 x 990</string>
+             <string notr="true">1920 x 1080</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string notr="true">1920 x 1080</string>
+             <string>2560 x 1440</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>3200 x 1800</string>
             </property>
            </item>
            <item>

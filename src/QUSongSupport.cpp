@@ -3,6 +3,7 @@
 
 #include <QMap>
 #include <QSettings>
+#include <QDate>
 
 QUSongSupport::QUSongSupport(QObject *parent): QObject(parent) {}
 
@@ -463,6 +464,16 @@ QStringList QUSongSupport::availableSongGenres() {
 	return result;
 }
 
+QStringList QUSongSupport::availableSongYears() {
+	QStringList result;
+	int currentYear = QDate::currentDate().year();
+	for (int year = currentYear; year >= 1920; year--) {
+		result << QString::number(year);
+	}
+
+	return result;
+}
+
 QString QUSongSupport::defaultInputEncoding() {
 	return registryKey("defaultInputEncoding", "CP1252").first();
 }
@@ -480,27 +491,27 @@ int QUSongSupport::highMp3Quality() {
 }
 
 int QUSongSupport::mediumCoverQuality() {
-	return registryKey("mediumCoverQuality", "300 x 300").first().toInt();
+	return registryKey("mediumCoverQuality", "400 x 400").first().toInt();
 }
 
 int QUSongSupport::highCoverQuality() {
-	return registryKey("highCoverQuality", "500 x 500").first().toInt();
+	return registryKey("highCoverQuality", "600 x 600").first().toInt();
 }
 
 int QUSongSupport::mediumBackgroundQuality() {
-	return registryKey("mediumBackgroundQuality", "800 x 450").first().toInt();
+	return registryKey("mediumBackgroundQuality", "1280 x 720").first().toInt();
 }
 
 int QUSongSupport::highBackgroundQuality() {
-	return registryKey("highBackgroundQuality", "1280 x 720").first().toInt();
+	return registryKey("highBackgroundQuality", "1920 x 1080").first().toInt();
 }
 
 int QUSongSupport::mediumVideoQuality() {
-	return registryKey("mediumVideoQuality", "800 x 450").first().toInt();
+	return registryKey("mediumVideoQuality", "1280 x 720").first().toInt();
 }
 
 int QUSongSupport::highVideoQuality() {
-	return registryKey("highVideoQuality", "1280 x 720").first().toInt();
+	return registryKey("highVideoQuality", "1920 x 1080").first().toInt();
 }
 
 /*!

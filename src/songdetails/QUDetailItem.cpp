@@ -69,6 +69,8 @@ void QUDetailItem::reset() {
 		_hasDynamicDefaultData = false;
 	} else if(QString::compare(_tag, YEAR_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+		setData(Qt::UserRole, QUSongSupport::availableSongYears()); // static default data
+		_hasDynamicDefaultData = false;
 	} else if(QString::compare(_tag, CREATOR_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
 //	} else if(QString::compare(_tag, MP3_TAG) == 0) {
@@ -89,6 +91,8 @@ void QUDetailItem::reset() {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
 		setData(Qt::UserRole, QStringList() << "" << "OFF");
 		_hasDynamicDefaultData = false;
+//	} else if(QString::compare(_tag, MEDLEYSTARTBEAT_TAG) == 0) {
+//	} else if(QString::compare(_tag, MEDLEYENDBEAT_TAG) == 0) {
 	} else if(QString::compare(_tag, BPM_TAG) == 0) {
 		_flagsForSingleSong = 0;
 	} else if(QString::compare(_tag, GAP_TAG) == 0) {
@@ -221,6 +225,26 @@ QStringList QUDetailItem::defaultData(QUSongFile *song) {
 			QString year(ref.isNull()? "0" : QVariant(ref.tag()->year()).toString());
 			if(year != "0")
 				dropDownData << year;
+		}
+	}
+	else if(QString::compare(tag(), MEDLEYSTARTBEAT_TAG) == 0) {
+		if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
+			return dropDownData;
+		}
+
+		foreach(QUSongLineInterface *line, song->loadMelody()) {
+			if(!line->notes().isEmpty())
+				dropDownData << QString::number(line->notes().first()->timestamp());
+		}
+	}
+	else if(QString::compare(tag(), MEDLEYENDBEAT_TAG) == 0) {
+		if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
+			return dropDownData;
+		}
+
+		foreach(QUSongLineInterface *line, song->loadMelody()) {
+			if(!line->notes().isEmpty())
+				dropDownData << QString::number(line->notes().last()->timestamp() + line->notes().last()->duration());
 		}
 	}
 

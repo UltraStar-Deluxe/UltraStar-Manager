@@ -30,6 +30,7 @@ public:
 	static QStringList availableSongLanguages();
 	static QStringList availableSongEditions();
 	static QStringList availableSongGenres();
+	static QStringList availableSongYears();
 
 	static QString defaultInputEncoding();
 	static QString defaultOutputEncoding();
