@@ -812,6 +812,8 @@ void QUSongItem::updateTimeCheckColumns() {
 	int timeDiff = lengthMp3 - length;
 	int timeDiffLower = settings.value("timeDiffLower", LOWER_TIME_BOUND_DEFAULT).toInt();
 	int timeDiffUpper = settings.value("timeDiffUpper", UPPER_TIME_BOUND_DEFAULT).toInt();
+	settings.setValue("timeDiffLower", timeDiffLower);
+	settings.setValue("timeDiffUpper", timeDiffUpper);
 
 	if(lengthMp3 >= length && timeDiff <= timeDiffLower)
 		; // well done ^_^
