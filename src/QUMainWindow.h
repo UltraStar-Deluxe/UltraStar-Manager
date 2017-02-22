@@ -61,7 +61,7 @@ private slots:
 	void aboutUman();
 	void aboutTagLib();
 	void aboutBASS();
-    void checkForUpdate(bool silent);
+	void checkForUpdate(bool silent);
 
 	void toggleRelativeSongPath(bool checked);
 	void toggleCompleterChk(bool checked);

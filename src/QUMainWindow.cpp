@@ -916,14 +916,14 @@ void QUMainWindow::aboutTagLib() {
 	QUMessageBox::information(this,
 			tr("About TagLib"),
 			QString(tr("<b>TagLib Audio Meta-Data Library</b><br><br>"
-                    "TagLib is a library for reading and editing the meta-data of several popular audio formats.<br><br>"
+					"TagLib is a library for reading and editing the meta-data of several popular audio formats.<br><br>"
 					"Version: <b>%1.%2.%3</b><br><br>"
 					"Visit: <a href=\"http://developer.kde.org/~wheeler/taglib.html\">TagLib Homepage</a>"))
 					.arg(TAGLIB_MAJOR_VERSION)
 					.arg(TAGLIB_MINOR_VERSION)
-                    .arg(TAGLIB_PATCH_VERSION),
-             BTN << ":/marks/accept.png" << "OK",
-             400);
+					.arg(TAGLIB_PATCH_VERSION),
+			BTN << ":/marks/accept.png" << "OK",
+			400);
 }
 
 void QUMainWindow::aboutBASS() {
@@ -941,7 +941,7 @@ void QUMainWindow::aboutBASS() {
 					"Copyright (c) 1999-2012<br><a href=\"http://www.un4seen.com/bass.html\">Un4seen Developments Ltd.</a> All rights reserved."))
 					.arg(BASS_VERSION),
 			BTN << ":/marks/accept.png" << "OK",
-            500);
+			500);
 }
 
 void QUMainWindow::checkForUpdate(bool silent) {
