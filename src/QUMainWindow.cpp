@@ -361,6 +361,8 @@ void QUMainWindow::initRibbonBar() {
 	_menu->highCoverQualityComboBox->setCurrentIndex(_menu->highCoverQualityComboBox->findText(QString::number(QUSongSupport::highCoverQuality()), Qt::MatchStartsWith));
 	_menu->mediumBackgroundQualityComboBox->setCurrentIndex(_menu->mediumBackgroundQualityComboBox->findText(QString::number(QUSongSupport::mediumBackgroundQuality()), Qt::MatchStartsWith));
 	_menu->highBackgroundQualityComboBox->setCurrentIndex(_menu->highBackgroundQualityComboBox->findText(QString::number(QUSongSupport::highBackgroundQuality()), Qt::MatchStartsWith));
+	_menu->mediumVideoQualityComboBox->setCurrentIndex(_menu->mediumVideoQualityComboBox->findText(QString::number(QUSongSupport::mediumVideoQuality()), Qt::MatchStartsWith));
+	_menu->highVideoQualityComboBox->setCurrentIndex(_menu->highVideoQualityComboBox->findText(QString::number(QUSongSupport::highVideoQuality()), Qt::MatchStartsWith));
 
 	connect(_menu->mediumMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumMp3Quality(QString)));
 	connect(_menu->highMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighMp3Quality(QString)));
@@ -368,6 +370,8 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->highCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighCoverQuality(QString)));
 	connect(_menu->mediumBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumBackgroundQuality(QString)));
 	connect(_menu->highBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighBackgroundQuality(QString)));
+	connect(_menu->mediumVideoQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumVideoQuality(QString)));
+	connect(_menu->highVideoQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighVideoQuality(QString)));
 
 	connect(_menu->langUsBtn, SIGNAL(clicked()), this, SLOT(enableEnglish()));
 	connect(_menu->langDeBtn, SIGNAL(clicked()), this, SLOT(enableGerman()));
@@ -1834,6 +1838,60 @@ void QUMainWindow::setHighBackgroundQuality(QString quality) {
 	}
 
 	QUProgressDialog dlg(tr("Updating background quality icons..."), songTree->topLevelItemCount(), this, false);
+	dlg.setPixmap(":/types/folder.png");
+	dlg.show();
+
+	for(int i = 0; i < songTree->topLevelItemCount(); ++i) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
+
+		if(songItem) {
+			dlg.update(songItem->song()->songFileInfo().dir().dirName());
+			songItem->updateSpellFileCheckColumns();
+		}
+	}
+}
+
+void QUMainWindow::setMediumVideoQuality(QString quality) {
+	QSettings settings;
+	settings.setValue("mediumVideoQuality", quality);
+
+	// ensure that highVideoQuality is at least one level higher
+	if(_menu->highVideoQualityComboBox->currentIndex() <= _menu->highVideoQualityComboBox->findText(quality)) {
+		disconnect(_menu->highVideoQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighVideoQuality(QString)));
+		_menu->highVideoQualityComboBox->setCurrentIndex(_menu->highVideoQualityComboBox->findText(quality) + 1);
+		connect(_menu->highVideoQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighVideoQuality(QString)));
+		settings.setValue("highVideoQuality", _menu->highVideoQualityComboBox->currentText().split(" ").first().toInt());
+	}
+
+	QUProgressDialog dlg(tr("Updating video quality icons..."), songTree->topLevelItemCount(), this, false);
+	dlg.setPixmap(":/types/folder.png");
+	dlg.show();
+
+	for(int i = 0; i < songTree->topLevelItemCount(); ++i) {
+		QUSongItem *songItem = dynamic_cast<QUSongItem*>(songTree->topLevelItem(i));
+
+		if(songItem) {
+			dlg.update(songItem->song()->songFileInfo().dir().dirName());
+			songItem->updateSpellFileCheckColumns();
+		}
+	}
+}
+
+void QUMainWindow::setHighVideoQuality(QString quality) {
+	QSettings settings;
+	settings.setValue("highVideoQuality", quality);
+
+	// ensure that mediumVideoQuality is at least one level lower
+	if(_menu->mediumVideoQualityComboBox->findText(quality) != -1) {
+		if(_menu->mediumVideoQualityComboBox->currentIndex() >= _menu->mediumVideoQualityComboBox->findText(quality)) {
+			disconnect(_menu->mediumVideoQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumVideoQuality(QString)));
+			_menu->mediumVideoQualityComboBox->setCurrentIndex(_menu->mediumVideoQualityComboBox->findText(quality) - 1);
+			connect(_menu->mediumVideoQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumVideoQuality(QString)));
+			settings.setValue("mediumVideoQuality", _menu->mediumVideoQualityComboBox->currentText().split(" ").first().toInt());
+		}
+	}
+
+	QUProgressDialog dlg(tr("Updating video quality icons..."), songTree->topLevelItemCount(), this, false);
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
 

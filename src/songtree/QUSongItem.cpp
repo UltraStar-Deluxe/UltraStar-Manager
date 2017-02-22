@@ -6,6 +6,7 @@
 #include "fileref.h"
 #include "tag.h"
 #include "tstring.h"
+#include "MediaInfo.h"
 
 #include <QString>
 #include <QStringList>
@@ -16,7 +17,7 @@
 #include <QRegExp>
 #include <QSettings>
 #include <QMessageBox>
-#include <QMediaResource>
+//#include <QMediaResource>
 #include <QtCore/qmath.h>
 
 #include "QUSongSupport.h"
@@ -448,20 +449,33 @@ void QUSongItem::setTick(int column) {
 			// used for sorting
 			this->setData(column, Qt::UserRole, QVariant(img.width()));
 		} else if(column == VIDEO_COLUMN) {
+			int video_width = -1;
+			int video_height = -1;
+
 			// MB TODO: check for video quality, set icon and tooltip accordingly
-			QMediaResource video(QUrl::fromLocalFile(this->song()->videoFileInfo().filePath()));
-			int video_width = 1920; //video.resolution().width();
-			int video_height = 1080; //video.resolution().height();
+			// Unfortunately, using Qt's QMediaResource class does not work at all currently
+			//QMediaResource video(QUrl::fromLocalFile(this->song()->videoFileInfo().filePath()));
+			//video.resolution().width();
+			//video.resolution().height();
+
+			// Therefore, the external MediaInfo library is used at the moment
+			MediaInfoLib::MediaInfo MI;
+			if(MI.Open(this->song()->videoFileInfo().filePath().toStdWString().c_str()) > 0) {
+				// retrieve width/height from first video stream
+				video_width = QString::fromStdWString(MI.Get(MediaInfoLib::Stream_Video, 0, __T("Width"), MediaInfoLib::Info_Text, MediaInfoLib::Info_Name)).toInt();
+				video_height = QString::fromStdWString(MI.Get(MediaInfoLib::Stream_Video, 0, __T("Height"), MediaInfoLib::Info_Text, MediaInfoLib::Info_Name)).toInt();
+				MI.Close();
+			}
 
 			if (video_width < QUSongSupport::mediumVideoQuality()) {
 				this->setIcon(column, QIcon(":/marks/tick_low.png"));
-				//this->setToolTip(column, QString(QObject::tr("Low quality (%1 x %2)")).arg(video_width).arg(video_height));
+				this->setToolTip(column, QString(QObject::tr("Low quality (%1 x %2)")).arg(video_width).arg(video_height));
 			} else if (video_width < QUSongSupport::highVideoQuality()) {
 				this->setIcon(column, QIcon(":/marks/tick_medium.png"));
-				//this->setToolTip(column, QString(QObject::tr("Medium quality (%1 x %2)")).arg(video_width).arg(video_height));
+				this->setToolTip(column, QString(QObject::tr("Medium quality (%1 x %2)")).arg(video_width).arg(video_height));
 			} else {
 				this->setIcon(column, QIcon(":/marks/tick_high.png"));
-				//this->setToolTip(column, QString(QObject::tr("High quality (%1 x %2)")).arg(video_width).arg(video_height));
+				this->setToolTip(column, QString(QObject::tr("High quality (%1 x %2)")).arg(video_width).arg(video_height));
 			}
 			// used for sorting
 			this->setData(column, Qt::UserRole, QVariant(video_width));

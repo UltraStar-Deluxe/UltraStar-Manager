@@ -138,6 +138,8 @@ private slots:
 	void setHighCoverQuality(QString quality);
 	void setMediumBackgroundQuality(QString quality);
 	void setHighBackgroundQuality(QString quality);
+	void setMediumVideoQuality(QString quality);
+	void setHighVideoQuality(QString quality);
 
 	// status bar
 	void clearStatusMessage();

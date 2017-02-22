@@ -233,14 +233,18 @@ INCLUDEPATH += . \
 	score \
 	remoteimages
 INCLUDEPATH += ../include/taglib \
-	../include/bass
+	../include/bass \
+	../include/mediainfo
 
 win32 {
 	RC_FILE = uman.rc
 
 	LIBS += -L"../lib/Windows" \
 		-ltag \
-		-lbass
+		-lbass \
+		-lmediainfo \
+		-lzen \
+		-lzlibstatic
 }
 
 mac {
