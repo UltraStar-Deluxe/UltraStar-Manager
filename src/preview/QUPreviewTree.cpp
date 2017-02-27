@@ -6,6 +6,7 @@
 #include "tag.h"
 #include "tstring.h"
 
+#include "MediaInfo.h"
 //extern "C" {
 //  #include "avformat.h" /* ffmpeg */
 //}
@@ -174,12 +175,12 @@ void QUPreviewTree::showFileInformation(const QFileInfo &fi) {
 
 	QString fileScheme("*." + fi.suffix());
 
-	if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive))
-		showAudioFileInformation(fi);
-	else if(QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive))
+	if(QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive))
 		showPictureFileInformation(fi);
 	else if(QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive))
 		showVideoFileInformation(fi);
+	else if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive))
+		showAudioFileInformation(fi);
 	else if(QUSongSupport::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive))
 		showSimpleFileInformation(fi, tr("text file"));
 	else if(QUSongSupport::allowedKaraokeFiles().contains(fileScheme, Qt::CaseInsensitive))
@@ -224,7 +225,6 @@ void QUPreviewTree::showAudioFileInformation(const QFileInfo &fi) {
 			extra->addChild(this->createInfoItem(tr("Bitrate"), QString("%1 kbit/s").arg(prop->bitrate())));
 		}
 
-
 		extra->setText(0, tr("Audio Properties"));
 		extra->setHidden(false);
 	}
@@ -235,7 +235,7 @@ void QUPreviewTree::showAudioFileInformation(const QFileInfo &fi) {
 void QUPreviewTree::showPictureFileInformation(const QFileInfo &fi) {
 	current->addChild(this->createInfoItem(tr("Filename"), fi.fileName()));
 	current->addChild(this->createInfoItem(tr("Path"), fi.absolutePath()));
-	current->addChild(this->createInfoItem(tr("Type"), tr("Image file")));
+	current->addChild(this->createInfoItem(tr("Type"), tr("image file")));
 	current->addChild(this->createInfoItem(tr("Size"), QString("%1 KiB").arg(fi.size() / 1024., 0, 'f', 2)));
 
 	QImage img(fi.filePath());
@@ -254,7 +254,29 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 	current->addChild(this->createInfoItem(tr("Type"), tr("video file")));
 	current->addChild(this->createInfoItem(tr("Size"), QString("%1 MiB").arg(fi.size() / 1024. / 1024., 0, 'f', 2)));
 
+	MediaInfoLib::MediaInfo MI;
+	if(MI.Open(fi.filePath().toStdWString().c_str()) > 0) {
+		// retrieve width/height from first video stream
+		QString width(QString::fromStdWString(MI.Get(MediaInfoLib::Stream_Video, 0, __T("Width"), MediaInfoLib::Info_Text, MediaInfoLib::Info_Name)));
+		QString height(QString::fromStdWString(MI.Get(MediaInfoLib::Stream_Video, 0, __T("Height"), MediaInfoLib::Info_Text, MediaInfoLib::Info_Name)));
+		QString formatContainer(QString::fromStdWString(MI.Get(MediaInfoLib::Stream_General, 0, __T("Format"), MediaInfoLib::Info_Text, MediaInfoLib::Info_Name)));
+		QString formatVideo(QString::fromStdWString(MI.Get(MediaInfoLib::Stream_Video, 0, __T("Format"), MediaInfoLib::Info_Text, MediaInfoLib::Info_Name)));
+		QString formatAudio(QString::fromStdWString(MI.Get(MediaInfoLib::Stream_Audio, 0, __T("Format"), MediaInfoLib::Info_Text, MediaInfoLib::Info_Name)));
+		QString raw(QString::fromStdWString(MI.Inform()));
+		MI.Close();
+
+		extra->addChild(this->createInfoItem(tr("Dimensions"), QString("%1 x %2").arg(width).arg(height)));
+		extra->addChild(this->createInfoItem(tr("Container"), formatContainer));
+		extra->addChild(this->createInfoItem(tr("Video format"), formatVideo));
+		extra->addChild(this->createInfoItem(tr("Audio format"), formatAudio));
+		extra->addChild(this->createInfoItem(tr("Raw"), raw));
+
+		extra->setText(0, tr("Video Properties"));
+		extra->setHidden(false);
+	}
+
 	current->setHidden(false);
+
 /*
 	AVFormatContext *pFormatCtx;
 	const char *filename=fi.filePath().toLocal8Bit().data();
@@ -319,10 +341,9 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 
 	// Close the video file
 	av_close_input_file(pFormatCtx);
-
+*/
 	extra->setText(0, tr("Video Properties"));
 	extra->setHidden(false);
-*/
 }
 
 void QUPreviewTree::showSimpleFileInformation(const QFileInfo &fi, const QString type) {
