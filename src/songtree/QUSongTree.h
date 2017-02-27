@@ -111,6 +111,8 @@ private slots:
 	void searchForCoverOnAAE();
 	void searchForCoverOnGoogleImages();
 	void searchForBackgroundOnGoogleImages();
+	void searchForVideoOnGoogleVideo();
+	void searchForVideoOnYoutube();
 	void lookUpOnSwisscharts();
 	void lookUpOnUSDB();
 	void createDuetFromSongFiles();

@@ -1352,6 +1352,8 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 		menu->addAction(QIcon(":/faviconAAE.ico"),tr("Search for cover on AlbumArtExchange..."), this, SLOT(searchForCoverOnAAE()));
 		menu->addAction(QIcon(":/faviconGoogle.ico"),tr("Search for cover on Google Images..."), this, SLOT(searchForCoverOnGoogleImages()));
 		menu->addAction(QIcon(":/faviconGoogle.ico"),tr("Search for background on Google Images..."), this, SLOT(searchForBackgroundOnGoogleImages()));
+		menu->addAction(QIcon(":/faviconGoogle.ico"),tr("Search for video on Google Video..."), this, SLOT(searchForVideoOnGoogleVideo()));
+		menu->addAction(QIcon(":/faviconYoutube.ico"),tr("Search for video on Youtube..."), this, SLOT(searchForVideoOnYoutube()));
 		menu->addAction(QIcon(":/faviconSwissCharts.ico"),tr("Look up on Swisscharts..."), this, SLOT(lookUpOnSwisscharts()));
 		menu->addAction(QIcon(":/faviconUSDB.ico"),tr("Look up on USDB..."), this, SLOT(lookUpOnUSDB()));
 
@@ -1589,7 +1591,7 @@ void QUSongTree::searchForCoverOnGoogleImages() {
 }
 
 /*!
- * Look up song at images.google.com to find a cover
+ * Look up song at images.google.com to find a background
  */
 void QUSongTree::searchForBackgroundOnGoogleImages() {
 	QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->currentItem());
@@ -1600,13 +1602,62 @@ void QUSongTree::searchForBackgroundOnGoogleImages() {
 		urlQuery.addQueryItem("safe", "off");
 		urlQuery.addQueryItem("tbm", "isch");
 		urlQuery.addQueryItem("tbs", "imgo:1,isz:lt,islt:2mp");
-		QString queryString = songItem->song()->artist();
+		QString queryString = songItem->song()->artist() + " " + songItem->song()->title();
 		QStringList queryStrings = queryString.split(QRegExp("(\\s+)"));
 		QByteArray encodedQuery;
 		foreach(QString queryString, queryStrings) {
 			encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
 		}
 		urlQuery.addQueryItem("q", encodedQuery);
+		url.setQuery(urlQuery);
+
+		QDesktopServices::openUrl(url);
+	}
+
+	if(selectedSongItems().size() > 1) {
+		logSrv->add(tr("You can only look up one song at a time."), QU::Information);
+	}
+}
+
+/*!
+ * Look up song at video.google.com to find a video
+ */
+void QUSongTree::searchForVideoOnGoogleVideo() {
+	QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->currentItem());
+
+	if(songItem) {
+		QUrl url("https://www.google.com/search");
+		QUrlQuery urlQuery;
+		urlQuery.addQueryItem("safe", "off");
+		urlQuery.addQueryItem("tbm", "vid");
+		QString queryString = songItem->song()->artist() + " " + songItem->song()->title();
+		QStringList queryStrings = queryString.split(QRegExp("(\\s+)"));
+		QByteArray encodedQuery;
+		foreach(QString queryString, queryStrings) {
+			encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
+		}
+		urlQuery.addQueryItem("q", encodedQuery);
+		url.setQuery(urlQuery);
+
+		QDesktopServices::openUrl(url);
+	}
+
+	if(selectedSongItems().size() > 1) {
+		logSrv->add(tr("You can only look up one song at a time."), QU::Information);
+	}
+}
+
+/*!
+ * Look up song at youtube.com to find a video
+ */
+void QUSongTree::searchForVideoOnYoutube() {
+	QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->currentItem());
+
+	if(songItem) {
+		QUrl url("https://www.youtube.com/results");
+		QUrlQuery urlQuery;
+		QString queryString = QString(songItem->song()->artist() + " " + songItem->song()->title()).replace(QRegExp("(\\s+)"), "+");
+		urlQuery.addQueryItem("search_query", queryString);
 		url.setQuery(urlQuery);
 
 		QDesktopServices::openUrl(url);

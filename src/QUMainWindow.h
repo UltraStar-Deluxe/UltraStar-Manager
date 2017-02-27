@@ -61,6 +61,7 @@ private slots:
 	void aboutUman();
 	void aboutTagLib();
 	void aboutBASS();
+	void aboutMediaInfo();
 	void checkForUpdate(bool silent);
 
 	void toggleRelativeSongPath(bool checked);

@@ -43,6 +43,8 @@
         <file>faviconGoogle.ico</file>
         <file>faviconSwissCharts.ico</file>
         <file>faviconUSDB.ico</file>
+        <file>MediaInfo.png</file>
+        <file>faviconYoutube.ico</file>
     </qresource>
     <qresource prefix="/bullets">
         <file>arrow_down_small.png</file>

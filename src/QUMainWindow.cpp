@@ -44,6 +44,7 @@
 
 #include "taglib.h"
 #include "bass.h"
+#include "MediaInfo.h"
 
 #include "QUTagOrderDialog.h"
 #include "QUTextDialog.h"
@@ -406,6 +407,7 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->aboutUmanBtn, SIGNAL(clicked()), this, SLOT(aboutUman()));
 	connect(_menu->aboutTagLibBtn, SIGNAL(clicked()), this, SLOT(aboutTagLib()));
 	connect(_menu->aboutBASSBtn, SIGNAL(clicked()), this, SLOT(aboutBASS()));
+	connect(_menu->aboutMediaInfoBtn, SIGNAL(clicked()), this, SLOT(aboutMediaInfo()));
 	connect(_menu->checkForUpdateBtn, SIGNAL(clicked(bool)), this, SLOT(checkForUpdate(bool)));
 
 	// help menu
@@ -948,10 +950,25 @@ void QUMainWindow::aboutBASS() {
 			500);
 }
 
+void QUMainWindow::aboutMediaInfo() {
+	MediaInfoLib::MediaInfo MI;
+	QString MEDIALIB_VERSION = QString::fromStdWString(MI.Option(QString("Info_Version").toStdWString()));
+
+	QUMessageBox::information(this,
+			tr("About MediaInfo"),
+			QString(tr("<b>MediaInfoLib Media Library</b><br><br>"
+					"MediaInfoLib is a convenient media library to display the most relevant technical and tag data for video and audio files.<br><br>"
+					"Version: <b>%1</b><br><br>"
+					"Copyright (c) 2002-2016<br><a href=\"https://mediaarea.net/en/MediaInfo/License\">MediaArea.net SARL.</a> All rights reserved."))
+					.arg(MEDIALIB_VERSION),
+			BTN << ":/marks/accept.png" << "OK",
+			500);
+}
+
 void QUMainWindow::checkForUpdate(bool silent) {
 	int currentVersion = MAJOR_VERSION*100 + MINOR_VERSION*10 + PATCH_VERSION;
 
-	QUrl url("http://uman.svn.sourceforge.net/viewvc/uman/uman/src/latest_version.xml");
+	QUrl url("https://github.com/bohning/uman/tree/master/src/latest_version.xml");
 	QNetworkAccessManager *m_NetworkMngr = new QNetworkAccessManager(this);
 	QNetworkReply *reply = m_NetworkMngr->get(QNetworkRequest(url));
 
@@ -995,7 +1012,7 @@ void QUMainWindow::checkForUpdate(bool silent) {
 		QUMessageBox::information(this,
 				tr("Update check successful."),
 				QString(tr("UltraStar Manager %1.%2.%3 is <b>outdated</b>.<br><br>"
-						"Download the most recent UltraStar Manager %4 <a href='http://sourceforge.net/projects/uman/'>here</a>."))
+						"Download the most recent UltraStar Manager %4 <a href='https://github.com/bohning/uman/releases'>here</a>."))
 						.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION)
 						.arg(latestVersionString),
 				BTN << ":/marks/accept.png" << "OK",
