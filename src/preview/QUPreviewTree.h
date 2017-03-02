@@ -38,8 +38,12 @@ private:
 	QTreeWidgetItem *general;
 	QTreeWidgetItem *generalSelected;
 	QTreeWidgetItem *types;
-	QTreeWidgetItem *current;
-	QTreeWidgetItem *extra;
+	QTreeWidgetItem *file;
+	QTreeWidgetItem *image;
+	QTreeWidgetItem *audio;
+	QTreeWidgetItem *video;
+	QTreeWidgetItem *text;
+	QTreeWidgetItem *dir;
 
 	QTreeWidgetItem* createInfoItem(const QString &tag, const QString &value);
 	QTreeWidgetItem* createInfoItem(const QIcon &icon, const QString &tag, const QString &value);
@@ -47,7 +51,9 @@ private:
 	void showAudioFileInformation(const QFileInfo &fi);
 	void showPictureFileInformation(const QFileInfo &fi);
 	void showVideoFileInformation(const QFileInfo &fi);
+	void showTextFileInformation(const QFileInfo &fi);
 	void showSimpleFileInformation(const QFileInfo &fi, const QString type);
+	void showDirectoryFileInformation(const QFileInfo &fi);
 
 	void showSelectedLength(QTreeWidgetItem *child, int seconds);
 };
