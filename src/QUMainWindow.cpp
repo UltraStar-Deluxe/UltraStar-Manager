@@ -44,7 +44,8 @@
 
 #include "taglib.h"
 #include "bass.h"
-#include "MediaInfo.h"
+#include "MediaInfoDLL_Static.h"
+using namespace MediaInfoDLL;
 
 #include "QUTagOrderDialog.h"
 #include "QUTextDialog.h"
@@ -951,8 +952,8 @@ void QUMainWindow::aboutBASS() {
 }
 
 void QUMainWindow::aboutMediaInfo() {
-	MediaInfoLib::MediaInfo MI;
-	QString MEDIALIB_VERSION = QString::fromStdWString(MI.Option(QString("Info_Version").toStdWString()));
+	MediaInfo MI;
+	QString MEDIALIB_VERSION = QString::fromStdString(MI.Option(QString("Info_Version").toStdString()));
 
 	QUMessageBox::information(this,
 			tr("About MediaInfo"),

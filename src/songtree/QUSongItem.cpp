@@ -6,7 +6,8 @@
 #include "fileref.h"
 #include "tag.h"
 #include "tstring.h"
-#include "MediaInfo.h"
+#include "MediaInfoDLL_Static.h"
+using namespace MediaInfoDLL;
 
 #include <QString>
 #include <QStringList>
@@ -459,11 +460,11 @@ void QUSongItem::setTick(int column) {
 			//video.resolution().height();
 
 			// Therefore, the external MediaInfo library is used at the moment
-			MediaInfoLib::MediaInfo MI;
-			if(MI.Open(this->song()->videoFileInfo().filePath().toStdWString().c_str()) > 0) {
+			MediaInfo MI;
+			if(MI.Open(this->song()->videoFileInfo().filePath().toStdString()) > 0) {
 				// retrieve width/height from first video stream
-				video_width = QString::fromStdWString(MI.Get(MediaInfoLib::Stream_Video, 0, __T("Width"), MediaInfoLib::Info_Text, MediaInfoLib::Info_Name)).toInt();
-				video_height = QString::fromStdWString(MI.Get(MediaInfoLib::Stream_Video, 0, __T("Height"), MediaInfoLib::Info_Text, MediaInfoLib::Info_Name)).toInt();
+				video_width = QString::fromStdString(MI.Get(Stream_Video, 0, __T("Width"), Info_Text, Info_Name)).toInt();
+				video_height = QString::fromStdString(MI.Get(Stream_Video, 0, __T("Height"), Info_Text, Info_Name)).toInt();
 				MI.Close();
 			}
 

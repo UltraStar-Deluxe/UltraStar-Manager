@@ -106,7 +106,7 @@ HEADERS += plugins/QUPluginManager.h \
 	score/QUScoreFile.h \
 	preferences/QUEncodingsDialog.h \
 	report/QUCSVReport.h
-#   support/qkFileWatcher.h
+#	support/qkFileWatcher.h
 SOURCES += plugins/QUPluginManager.cpp \
 	plugins/QUPluginDialog.cpp \
 	plugins/QUPluginModel.cpp \
@@ -250,7 +250,8 @@ win32 {
 mac {
 	LIBS += -L"../lib/MacOS" \
 		-ltag \
-		-lbass
+		-lbass \
+		-lmediainfo
 	CONFIG += app_bundle
 }
 
@@ -268,7 +269,7 @@ revtarget.target = version.h
 
 win32 {
 revtarget.commands = @echo \
-	"const char *revision = \"$(shell git describe)\"; const char *date_time = \"$(shell date /T)$(shell time /T)\";" > $$revtarget.target
+	"const char *revision = \"$(shell git describe --always)\"; const char *date_time = \"$(shell date /T)$(shell time /T)\";" > $$revtarget.target
 revtarget.depends = $$SOURCES \
 	$$HEADERS \
 	$$FORMS
@@ -276,7 +277,7 @@ revtarget.depends = $$SOURCES \
 
 unix {
 revtarget.commands = @echo \
-	"const char *revision = \\\"rev`git rev-parse --short HEAD`\\\"\\; \
+	"const char *revision = \\\"`git describe --always`\\\"\\; \
 	const char *date_time = \\\"`date`\\\"\\;" \
 	> $${PWD}/$$revtarget.target
 }
