@@ -2149,7 +2149,7 @@ border-left-color: #C2C7CB;</string>
         </layout>
        </item>
        <item>
-        <widget class="Line" name="line_9">
+        <widget class="Line" name="line_10">
          <property name="styleSheet">
           <string>border: 0;
 border-left-width: 1px;
