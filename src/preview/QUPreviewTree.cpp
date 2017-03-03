@@ -295,53 +295,53 @@ void QUPreviewTree::showAudioFileInformation(const QFileInfo &fi) {
 	*/
 
 	MediaInfo MI;
-	if(MI.Open(fi.filePath().toStdString().c_str()) <= 0) {
+	if(MI.Open(fi.filePath().toStdWString().c_str()) <= 0) {
 		video->addChild(this->createInfoItem(tr("Error"), "Could not open file."));
 		return;
 	}
-	QString artist(QString::fromStdString(MI.Get(Stream_General, 0, __T("Performer"), Info_Text, Info_Name))); if(artist == "") artist = N_A;
+	QString artist(QString::fromStdWString(MI.Get(Stream_General, 0, __T("Performer"), Info_Text, Info_Name))); if(artist == "") artist = N_A;
 	audio->addChild(this->createInfoItem(tr("Artist"), artist));
-	QString title(QString::fromStdString(MI.Get(Stream_General, 0, __T("Title"), Info_Text, Info_Name))); if(title == "") title = N_A;
+	QString title(QString::fromStdWString(MI.Get(Stream_General, 0, __T("Title"), Info_Text, Info_Name))); if(title == "") title = N_A;
 	audio->addChild(this->createInfoItem(tr("Title"), title));
-	QString album(QString::fromStdString(MI.Get(Stream_General, 0, __T("Album"), Info_Text, Info_Name))); if(album == "") album = N_A;
+	QString album(QString::fromStdWString(MI.Get(Stream_General, 0, __T("Album"), Info_Text, Info_Name))); if(album == "") album = N_A;
 	audio->addChild(this->createInfoItem(tr("Album"), album));
-	QString genre(QString::fromStdString(MI.Get(Stream_General, 0, __T("Genre"), Info_Text, Info_Name))); if(genre == "") genre = N_A;
+	QString genre(QString::fromStdWString(MI.Get(Stream_General, 0, __T("Genre"), Info_Text, Info_Name))); if(genre == "") genre = N_A;
 	audio->addChild(this->createInfoItem(tr("Genre"), genre));
-	QString year(QString::fromStdString(MI.Get(Stream_General, 0, __T("Recorded_Date"), Info_Text, Info_Name))); if(year == "") year = N_A;
+	QString year(QString::fromStdWString(MI.Get(Stream_General, 0, __T("Recorded_Date"), Info_Text, Info_Name))); if(year == "") year = N_A;
 	audio->addChild(this->createInfoItem(tr("Year"), year));
-	QString track(QString::fromStdString(MI.Get(Stream_General, 0, __T("Track/Position"), Info_Text, Info_Name))); if(track == "") track = N_A;
+	QString track(QString::fromStdWString(MI.Get(Stream_General, 0, __T("Track/Position"), Info_Text, Info_Name))); if(track == "") track = N_A;
 	audio->addChild(this->createInfoItem(tr("Track"), track));
 
-	QString lengthAudio(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("PlayTime/String3"), Info_Text, Info_Name)).mid(3));
+	QString lengthAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("PlayTime/String3"), Info_Text, Info_Name)).mid(3));
 	if(lengthAudio != "") audio->addChild(this->createInfoItem(tr("Length"), lengthAudio));
-	QString formatAudio(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("Format"), Info_Text, Info_Name)));
-	QString codecIDAudio(QString::fromStdString(MI.Get(Stream_Video, 0, __T("CodecID"), Info_Text, Info_Name)));
+	QString formatAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("Format"), Info_Text, Info_Name)));
+	QString codecIDAudio(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("CodecID"), Info_Text, Info_Name)));
 	if(formatAudio != "") {
 		if(codecIDAudio != "") audio->addChild(this->createInfoItem(tr("Format"), QString("%1 (%2)").arg(formatAudio).arg(codecIDAudio)));
 		else audio->addChild(this->createInfoItem(tr("Format"), QString("%1").arg(formatAudio)));
 	}
-	QString profileAudio(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("Format_Profile"), Info_Text, Info_Name)));
+	QString profileAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("Format_Profile"), Info_Text, Info_Name)));
 	if(profileAudio != "") audio->addChild(this->createInfoItem(tr("Profile"), profileAudio));
-	QString bitRateAudio(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("BitRate"), Info_Text, Info_Name)));
-	QString bitRateModeAudio(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("BitRate_Mode"), Info_Text, Info_Name)).toUpper());
+	QString bitRateAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("BitRate"), Info_Text, Info_Name)));
+	QString bitRateModeAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("BitRate_Mode"), Info_Text, Info_Name)).toUpper());
 	if(bitRateAudio != "") {
 		if(QString::compare(bitRateModeAudio, "CBR") == 0)
 			audio->addChild(this->createInfoItem(tr("Bitrate"), QString("%1 kbit/s (%2)").arg(bitRateAudio.toInt()/1000).arg(bitRateModeAudio)));
 		else {
-			QString bitRateMaxAudio(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("BitRate_Maximum"), Info_Text, Info_Name))); if(bitRateMaxAudio != "")
+			QString bitRateMaxAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("BitRate_Maximum"), Info_Text, Info_Name))); if(bitRateMaxAudio != "")
 			audio->addChild(this->createInfoItem(tr("Bitrate"), QString("%1 kbit/s (%2, max. %3 kbit/s)").arg(bitRateAudio.toInt()/1000).arg(bitRateModeAudio.toLower()).arg(bitRateMaxAudio.toInt()/1000)));
 		}
 	}
-	//QString channels(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("Channel_s_"), Info_Text, Info_Name)));
+	//QString channels(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("Channel_s_"), Info_Text, Info_Name)));
 	//if(channels != "") audio->addChild(this->createInfoItem(tr("Channels"), channels));
-	QString samplingRate(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("SamplingRate"), Info_Text, Info_Name)));
+	QString samplingRate(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("SamplingRate"), Info_Text, Info_Name)));
 	if(samplingRate != "") audio->addChild(this->createInfoItem(tr("Sampling rate"), QString("%1 kHz").arg(samplingRate.toInt() / 1000.)));
-	QString bitDepthAudio(QString::fromStdString(MI.Get(Stream_Video, 0, __T("BitDepth"), Info_Text, Info_Name)));
+	QString bitDepthAudio(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("BitDepth"), Info_Text, Info_Name)));
 	if(bitDepthAudio != "") audio->addChild(this->createInfoItem(tr("Bit depth"), bitDepthAudio));
 
 	// raw MediaInfoLib information (as reference)
 	//audio->addChild(this->createInfoItem("", ""));
-	//QString raw(QString::fromStdString(MI.Inform()));
+	//QString raw(QString::fromStdWString(MI.Inform()));
 	//audio->addChild(this->createInfoItem(tr("Raw info"), raw));
 	MI.Close();
 
@@ -366,120 +366,120 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 	video->addChild(this->createInfoItem(tr("Size"), QString("%1 MiB").arg(fi.size() / 1024. / 1024., 0, 'f', 2)));
 
 	MediaInfo MI;
-	if(MI.Open(fi.filePath().toStdString().c_str()) <= 0) {
+	if(MI.Open(fi.filePath().toStdWString().c_str()) <= 0) {
 		video->addChild(this->createInfoItem(tr("Error"), "Could not open file."));
 		return;
 	}
 
 	// general information
-	QString artist(QString::fromStdString(MI.Get(Stream_General, 0, __T("Performer"), Info_Text, Info_Name)));
+	QString artist(QString::fromStdWString(MI.Get(Stream_General, 0, __T("Performer"), Info_Text, Info_Name)));
 	if(artist != "") video->addChild(this->createInfoItem(tr("Artist"), artist));
-	QString title(QString::fromStdString(MI.Get(Stream_General, 0, __T("Title"), Info_Text, Info_Name)));
+	QString title(QString::fromStdWString(MI.Get(Stream_General, 0, __T("Title"), Info_Text, Info_Name)));
 	if(title != "") video->addChild(this->createInfoItem(tr("Title"), title));
-	QString album(QString::fromStdString(MI.Get(Stream_General, 0, __T("Album"), Info_Text, Info_Name)));
+	QString album(QString::fromStdWString(MI.Get(Stream_General, 0, __T("Album"), Info_Text, Info_Name)));
 	if(album != "") video->addChild(this->createInfoItem(tr("Album"), album));
-	QString length(QString::fromStdString(MI.Get(Stream_General, 0, __T("PlayTime/String3"), Info_Text, Info_Name)).mid(3));
+	QString length(QString::fromStdWString(MI.Get(Stream_General, 0, __T("PlayTime/String3"), Info_Text, Info_Name)).mid(3));
 	if(length != "") video->addChild(this->createInfoItem(tr("Length"), length));
-	QString bitRate(QString::fromStdString(MI.Get(Stream_General, 0, __T("BitRate"), Info_Text, Info_Name)));
-	QString bitRateMode(QString::fromStdString(MI.Get(Stream_General, 0, __T("BitRate_Mode"), Info_Text, Info_Name)).toUpper());
+	QString bitRate(QString::fromStdWString(MI.Get(Stream_General, 0, __T("BitRate"), Info_Text, Info_Name)));
+	QString bitRateMode(QString::fromStdWString(MI.Get(Stream_General, 0, __T("BitRate_Mode"), Info_Text, Info_Name)).toUpper());
 	if(bitRate != "") {
 		if(bitRateMode != "") video->addChild(this->createInfoItem(tr("Bit rate"), QString("%1 kbit/s (%2)").arg(bitRate.toInt() / 1000.).arg(bitRateMode)));
 		else video->addChild(this->createInfoItem(tr("Bit rate"), QString("%1 kbit/s").arg(bitRate.toInt() / 1000.)));
 	}
-	QString format(QString::fromStdString(MI.Get(Stream_General, 0, __T("Format"), Info_Text, Info_Name)));
-	QString codecID(QString::fromStdString(MI.Get(Stream_General, 0, __T("CodecID"), Info_Text, Info_Name)));
+	QString format(QString::fromStdWString(MI.Get(Stream_General, 0, __T("Format"), Info_Text, Info_Name)));
+	QString codecID(QString::fromStdWString(MI.Get(Stream_General, 0, __T("CodecID"), Info_Text, Info_Name)));
 	if(format != "") {
 		if(codecID != "") video->addChild(this->createInfoItem(tr("Format"), QString("%1 (%2)").arg(format).arg(codecID)));
 		else video->addChild(this->createInfoItem(tr("Format"), QString("%1").arg(format)));
 	}
-	QString profile(QString::fromStdString(MI.Get(Stream_General, 0, __T("Format_Profile"), Info_Text, Info_Name)));
+	QString profile(QString::fromStdWString(MI.Get(Stream_General, 0, __T("Format_Profile"), Info_Text, Info_Name)));
 	if(profile != "") video->addChild(this->createInfoItem(tr("Profile"), profile));
-	QString countVideo(QString::fromStdString(MI.Get(Stream_Video, 0, __T("StreamCount"), Info_Text, Info_Name)));
-	QString countAudio(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("StreamCount"), Info_Text, Info_Name)));
+	QString countVideo(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("StreamCount"), Info_Text, Info_Name)));
+	QString countAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("StreamCount"), Info_Text, Info_Name)));
 	if(countAudio == "") countAudio = "no";
 	video->addChild(this->createInfoItem(tr("Streams"), QString("%1 (%2 video, %3 audio)").arg(countVideo.toInt()+countAudio.toInt()).arg(countVideo).arg(countAudio)));
 
 	// video stream information
 	video->addChild(this->createInfoItem("", ""));
 	video->addChild(this->createInfoItem("Video track", ""));
-	QString lengthVideo(QString::fromStdString(MI.Get(Stream_Video, 0, __T("PlayTime/String3"), Info_Text, Info_Name)).mid(3));
+	QString lengthVideo(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("PlayTime/String3"), Info_Text, Info_Name)).mid(3));
 	if(lengthVideo != "") video->addChild(this->createInfoItem(tr("Length"), lengthVideo));
-	QString width(QString::fromStdString(MI.Get(Stream_Video, 0, __T("Width"), Info_Text, Info_Name)));
-	QString height(QString::fromStdString(MI.Get(Stream_Video, 0, __T("Height"), Info_Text, Info_Name)));
-	QString aspectRatio(QString::fromStdString(MI.Get(Stream_Video, 0, __T("DisplayAspectRatio/String"), Info_Text, Info_Name)));
+	QString width(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("Width"), Info_Text, Info_Name)));
+	QString height(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("Height"), Info_Text, Info_Name)));
+	QString aspectRatio(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("DisplayAspectRatio/String"), Info_Text, Info_Name)));
 	if(width != "" || height != "" || aspectRatio != "") video->addChild(this->createInfoItem(tr("Dimensions"), QString("%1 x %2 px (%3)").arg(width).arg(height).arg(aspectRatio)));
-	QString formatVideo(QString::fromStdString(MI.Get(Stream_Video, 0, __T("Format"), Info_Text, Info_Name)));
-	QString codecIDVideo(QString::fromStdString(MI.Get(Stream_Video, 0, __T("CodecID"), Info_Text, Info_Name)));
+	QString formatVideo(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("Format"), Info_Text, Info_Name)));
+	QString codecIDVideo(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("CodecID"), Info_Text, Info_Name)));
 	if(formatVideo != "") {
 		if(codecIDVideo != "") video->addChild(this->createInfoItem(tr("Format"), QString("%1 (%2)").arg(formatVideo).arg(codecIDVideo)));
 		else video->addChild(this->createInfoItem(tr("Format"), QString("%1").arg(formatVideo)));
 	}
-	QString profileVideo(QString::fromStdString(MI.Get(Stream_Video, 0, __T("Format_Profile"), Info_Text, Info_Name)));
+	QString profileVideo(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("Format_Profile"), Info_Text, Info_Name)));
 	if(profileVideo != "") video->addChild(this->createInfoItem(tr("Profile"), profileVideo));
-	QString bitRateVideo(QString::fromStdString(MI.Get(Stream_Video, 0, __T("BitRate"), Info_Text, Info_Name)));
-	QString bitRateModeVideo(QString::fromStdString(MI.Get(Stream_Video, 0, __T("BitRate_Mode"), Info_Text, Info_Name)).toUpper());
+	QString bitRateVideo(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("BitRate"), Info_Text, Info_Name)));
+	QString bitRateModeVideo(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("BitRate_Mode"), Info_Text, Info_Name)).toUpper());
 	if(bitRateVideo != "") {
 		if(QString::compare(bitRateModeVideo, "CBR") == 0)
 			video->addChild(this->createInfoItem(tr("Bitrate"), QString("%1 kbit/s (%2)").arg(bitRateVideo.toInt()/1000).arg(bitRateModeVideo)));
 		else {
-			QString bitRateMaxVideo(QString::fromStdString(MI.Get(Stream_Video, 0, __T("BitRate_Maximum"), Info_Text, Info_Name)));
+			QString bitRateMaxVideo(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("BitRate_Maximum"), Info_Text, Info_Name)));
 			if(bitRateMaxVideo != "") video->addChild(this->createInfoItem(tr("Bitrate"), QString("%1 kbit/s (max. %2 kbit/s)").arg(bitRateVideo.toInt()/1000).arg(bitRateMaxVideo.toInt()/1000)));
 			else video->addChild(this->createInfoItem(tr("Bitrate"), QString("%1 kbit/s").arg(bitRateVideo.toInt() / 1000.)));
 		}
 	}
-	QString frameRate(QString::fromStdString(MI.Get(Stream_Video, 0, __T("FrameRate"), Info_Text, Info_Name)));
-	QString frameRateMode(QString::fromStdString(MI.Get(Stream_Video, 0, __T("FrameRate_Mode/String"), Info_Text, Info_Name)));
+	QString frameRate(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("FrameRate"), Info_Text, Info_Name)));
+	QString frameRateMode(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("FrameRate_Mode/String"), Info_Text, Info_Name)));
 	if(frameRate != "") {
 		if(frameRateMode != "") video->addChild(this->createInfoItem(tr("Framerate"), QString("%1 fps (%2)").arg(frameRate).arg(frameRateMode.toLower())));
 		else video->addChild(this->createInfoItem(tr("Framerate"), QString("%1 fps").arg(frameRate)));
 	}
-	QString colorSpace(QString::fromStdString(MI.Get(Stream_Video, 0, __T("ColorSpace"), Info_Text, Info_Name)));
+	QString colorSpace(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("ColorSpace"), Info_Text, Info_Name)));
 	if(colorSpace != "") video->addChild(this->createInfoItem(tr("Color space"), colorSpace));
-	QString bitDepthVideo(QString::fromStdString(MI.Get(Stream_Video, 0, __T("BitDepth"), Info_Text, Info_Name)));
+	QString bitDepthVideo(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("BitDepth"), Info_Text, Info_Name)));
 	if(bitDepthVideo != "") video->addChild(this->createInfoItem(tr("Bit depth"), bitDepthVideo));
-	QString chromaSubsampling(QString::fromStdString(MI.Get(Stream_Video, 0, __T("ChromaSubsampling/String"), Info_Text, Info_Name)));
+	QString chromaSubsampling(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("ChromaSubsampling/String"), Info_Text, Info_Name)));
 	if(chromaSubsampling != "") video->addChild(this->createInfoItem(tr("Chroma"), chromaSubsampling));
-	QString scanType(QString::fromStdString(MI.Get(Stream_Video, 0, __T("ScanType"), Info_Text, Info_Name)));
+	QString scanType(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("ScanType"), Info_Text, Info_Name)));
 	if(scanType != "") video->addChild(this->createInfoItem(tr("Scan type"), scanType));
-	QString streamSizeVideo(QString::fromStdString(MI.Get(Stream_Video, 0, __T("StreamSize"), Info_Text, Info_Name)));
+	QString streamSizeVideo(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("StreamSize"), Info_Text, Info_Name)));
 	if(streamSizeVideo != "") video->addChild(this->createInfoItem(tr("Stream size"), QString("%1 MiB").arg(QString::number(streamSizeVideo.toInt() / 1024. / 1024., 'f', 2))));
 
 	// audio stream information
 	video->addChild(this->createInfoItem("", ""));
 	video->addChild(this->createInfoItem("Audio track", ""));
-	QString lengthAudio(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("PlayTime/String3"), Info_Text, Info_Name)).mid(3));
+	QString lengthAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("PlayTime/String3"), Info_Text, Info_Name)).mid(3));
 	if(lengthAudio != "") video->addChild(this->createInfoItem(tr("Length"), lengthAudio));
-	QString formatAudio(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("Format"), Info_Text, Info_Name)));
-	QString codecIDAudio(QString::fromStdString(MI.Get(Stream_Video, 0, __T("CodecID"), Info_Text, Info_Name)));
+	QString formatAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("Format"), Info_Text, Info_Name)));
+	QString codecIDAudio(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("CodecID"), Info_Text, Info_Name)));
 	if(formatAudio != "") {
 		if(codecIDAudio != "") video->addChild(this->createInfoItem(tr("Format"), QString("%1 (%2)").arg(formatAudio).arg(codecIDAudio)));
 		else video->addChild(this->createInfoItem(tr("Format"), QString("%1").arg(formatAudio)));
 	}
-	QString profileAudio(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("Format_Profile"), Info_Text, Info_Name)));
+	QString profileAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("Format_Profile"), Info_Text, Info_Name)));
 	if(profileAudio != "") video->addChild(this->createInfoItem(tr("Profile"), profileAudio));
-	QString bitRateAudio(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("BitRate"), Info_Text, Info_Name)));
-	QString bitRateModeAudio(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("BitRate_Mode"), Info_Text, Info_Name)).toUpper());
+	QString bitRateAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("BitRate"), Info_Text, Info_Name)));
+	QString bitRateModeAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("BitRate_Mode"), Info_Text, Info_Name)).toUpper());
 	if(bitRateAudio != "") {
 		if(QString::compare(bitRateModeAudio, "CBR") == 0)
 			video->addChild(this->createInfoItem(tr("Bitrate"), QString("%1 kbit/s (%2)").arg(bitRateAudio.toInt()/1000).arg(bitRateModeAudio)));
 		else {
-			QString bitRateMaxAudio(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("BitRate_Maximum"), Info_Text, Info_Name))); if(bitRateMaxAudio != "")
+			QString bitRateMaxAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("BitRate_Maximum"), Info_Text, Info_Name))); if(bitRateMaxAudio != "")
 			video->addChild(this->createInfoItem(tr("Bitrate"), QString("%1 kbit/s (%2, max. %3 kbit/s)").arg(bitRateAudio.toInt()/1000).arg(bitRateModeAudio).arg(bitRateMaxAudio.toInt()/1000)));
 		}
 	}
-	QString streamSizeAudio(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("StreamSize"), Info_Text, Info_Name)));
+	QString streamSizeAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("StreamSize"), Info_Text, Info_Name)));
 	if(streamSizeAudio != "") video->addChild(this->createInfoItem(tr("Stream size"), QString("%1 MiB").arg(QString::number(streamSizeAudio.toInt() / 1024. / 1024., 'f', 2))));
-	//QString channels(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("Channel_s_"), Info_Text, Info_Name)));
+	//QString channels(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("Channel_s_"), Info_Text, Info_Name)));
 	//if(channels != "") video->addChild(this->createInfoItem(tr("Channels"), channels));
-	QString samplingRate(QString::fromStdString(MI.Get(Stream_Audio, 0, __T("SamplingRate"), Info_Text, Info_Name)));
+	QString samplingRate(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("SamplingRate"), Info_Text, Info_Name)));
 	if(samplingRate != "") video->addChild(this->createInfoItem(tr("Sampling rate"), QString("%1 kHz").arg(samplingRate.toInt() / 1000.)));
-	QString bitDepthAudio(QString::fromStdString(MI.Get(Stream_Video, 0, __T("BitDepth"), Info_Text, Info_Name)));
+	QString bitDepthAudio(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("BitDepth"), Info_Text, Info_Name)));
 	if(bitDepthAudio != "") video->addChild(this->createInfoItem(tr("Bit depth"), bitDepthAudio));
 
 	// raw MediaInfoLib information (as reference)
 	//video->addChild(this->createInfoItem("", ""));
 	//video->addChild(this->createInfoItem("Raw", ""));
-	//QString raw(QString::fromStdString(MI.Inform()));
+	//QString raw(QString::fromStdWString(MI.Inform()));
 	//video->addChild(this->createInfoItem(tr("Raw"), raw));
 	MI.Close();
 
