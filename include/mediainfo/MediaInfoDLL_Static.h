@@ -229,7 +229,7 @@ DLL wrapper for MediaInfo.h \n
     "Handle" replaces class definition
 */
 /***************************************************************************/
-
+#define UNICODE
 #if defined(MEDIAINFO_DLL_EXPORT) || (defined(UNICODE) || defined(_UNICODE)) //DLL construction or Unicode
 /** @brief A 'new' MediaInfo interface, return a Handle, don't forget to delete it after using it*/
 MEDIAINFO_EXP void*             __stdcall MediaInfo_New (); /*you must ALWAYS call MediaInfo_Delete(Handle) in order to free memory*/
