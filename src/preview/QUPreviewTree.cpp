@@ -221,20 +221,22 @@ void QUPreviewTree::setSelectedTotalLength(int seconds) {
 /*!
  * Show audio file information for now.
  */
-void QUPreviewTree::showFileInformation(const QFileInfo &fi) {
-	qDeleteAll(file->takeChildren());
-	qDeleteAll(image->takeChildren());
-	qDeleteAll(audio->takeChildren());
-	qDeleteAll(video->takeChildren());
-	qDeleteAll(text->takeChildren());
-	qDeleteAll(dir->takeChildren());
+void QUPreviewTree::showFileInformation(const QFileInfo &fi, bool deleteAndHide) {
+	if(deleteAndHide) {
+		qDeleteAll(file->takeChildren());
+		qDeleteAll(image->takeChildren());
+		qDeleteAll(audio->takeChildren());
+		qDeleteAll(video->takeChildren());
+		qDeleteAll(text->takeChildren());
+		qDeleteAll(dir->takeChildren());
 
-	file->setHidden(true);
-	image->setHidden(true);
-	audio->setHidden(true);
-	video->setHidden(true);
-	text->setHidden(true);
-	dir->setHidden(true);
+		file->setHidden(true);
+		image->setHidden(true);
+		audio->setHidden(true);
+		video->setHidden(true);
+		text->setHidden(true);
+		dir->setHidden(true);
+	}
 
 	if(fi.isFile()) {
 		QString fileScheme("*." + fi.suffix());
@@ -572,31 +574,14 @@ void QUPreviewTree::showSimpleFileInformation(const QFileInfo &fi, const QString
 }
 
 void QUPreviewTree::showDirectoryFileInformation(const QFileInfo &di) {
-	dir->addChild(this->createInfoItem(tr("Path"), QDir::toNativeSeparators(di.absolutePath())));
+	dir->addChild(this->createInfoItem(tr("Path"), di.absolutePath()));
+	QFileInfoList fil(di.dir().entryInfoList(QDir::Files | QDir::NoDotAndDotDot));
+	dir->addChild(this->createInfoItem(tr("Files"), QString::number(fil.size())));
 	dir->addChild(this->createInfoItem("", ""));
 	dir->setHidden(false);
 
-	foreach(QFileInfo fi, di.dir().entryInfoList(QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot)) {
-		QString fileScheme("*." + fi.suffix());
-
-		if(QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive))
-			showPictureFileInformation(fi);
-		else if(QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive))
-			showVideoFileInformation(fi);
-		else if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive))
-			showAudioFileInformation(fi);
-		else if(QUSongSupport::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive))
-			showTextFileInformation(fi);
-		else if(QUSongSupport::allowedKaraokeFiles().contains(fileScheme, Qt::CaseInsensitive))
-			showSimpleFileInformation(fi, tr("karaoke file"));
-		else if(QUSongSupport::allowedLicenseFiles().contains(fileScheme, Qt::CaseInsensitive))
-			showSimpleFileInformation(fi, tr("license file"));
-		else if(QUSongSupport::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive))
-			showSimpleFileInformation(fi, tr("midi file"));
-		else if(QUSongSupport::allowedPlaylistFiles().contains(fileScheme, Qt::CaseInsensitive))
-			showSimpleFileInformation(fi, tr("playlist file"));
-		else if(QUSongSupport::allowedScoreFiles().contains(fileScheme, Qt::CaseInsensitive))
-			showSimpleFileInformation(fi, tr("score file"));
+	foreach(QFileInfo fi, fil) {
+		showFileInformation(fi, false);
 	}
 }
 

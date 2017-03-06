@@ -32,7 +32,7 @@ public slots:
 	void setSelectedAudioLength(int seconds = -1);
 	void setSelectedTotalLength(int seconds = -1);
 
-	void showFileInformation(const QFileInfo &fi);
+	void showFileInformation(const QFileInfo &fi, bool deleteAndHide = true);
 
 private:
 	QTreeWidgetItem *general;
