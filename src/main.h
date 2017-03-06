@@ -9,4 +9,9 @@
 //#define WIP_VERSION
 //#define RC_VERSION
 
+// define UNICODE for MediaInfoLib
+#ifndef UNICODE
+	#define UNICODE
+#endif
+
 #endif /*MAIN_H_*/
