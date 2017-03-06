@@ -14,6 +14,7 @@ using namespace MediaInfoDLL;
 #include <QFont>
 #include <QMessageBox>
 #include <QImage>
+#include <QTextStream>
 
 #include "QUSongSupport.h"
 
@@ -489,7 +490,23 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 void QUPreviewTree::showTextFileInformation(const QFileInfo &fi) {
 	text->addChild(this->createInfoItem(tr("Filename"), fi.fileName()));
 	text->addChild(this->createInfoItem(tr("Size"), QString("%1 KiB").arg(fi.size() / 1024., 0, 'f', 2)));
-	//TODO: add file encoding and line endings?
+	QFile file(fi.filePath());
+	if(file.open(QIODevice::ReadOnly)) {
+		QByteArray content = file.readAll();
+		int CR = content.count(QByteArray("\x0D"));
+		int LF = content.count(QByteArray("\x0A"));
+		if(CR == 0 && LF != 0)
+			text->addChild(this->createInfoItem(tr("Line endings"), tr("Unix/Linux/Mac OS X (LF)")));
+		else if(CR == LF)
+			text->addChild(this->createInfoItem(tr("Line endings"), tr("Windows (CRLF)")));
+		else if(CR != 0 && LF == 0)
+			text->addChild(this->createInfoItem(tr("Line endings"), tr("Mac < OS X (CR)")));
+		else
+			text->addChild(this->createInfoItem(tr("Line endings"), QString("inconsistent (%1 CR, %2 LF)").arg(CR).arg(LF)));
+
+		file.close();
+	}
+	//TODO: add file encoding?
 
 	text->addChild(this->createInfoItem("", ""));
 	text->setHidden(false);
