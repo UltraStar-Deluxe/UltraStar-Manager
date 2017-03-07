@@ -295,8 +295,9 @@ void QUPreviewTree::showAudioFileInformation(const QFileInfo &fi) {
 	*/
 
 	MediaInfo MI;
-	if(MI.Open(fi.filePath().toStdWString().c_str()) <= 0) {
-		video->addChild(this->createInfoItem(tr("Error"), "Could not open file."));
+	if(MI.Open(fi.absoluteFilePath().toStdWString()) == 0) {
+		audio->addChild(this->createInfoItem(tr("Error"), "Could not open file."));
+		audio->setHidden(false);
 		return;
 	}
 	QString artist(QString::fromStdWString(MI.Get(Stream_General, 0, __T("Performer"), Info_Text, Info_Name))); if(artist == "") artist = N_A;
@@ -365,9 +366,11 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 	video->addChild(this->createInfoItem(tr("Filename"), fi.fileName()));
 	video->addChild(this->createInfoItem(tr("Size"), QString("%1 MiB").arg(fi.size() / 1024. / 1024., 0, 'f', 2)));
 
+
 	MediaInfo MI;
-	if(MI.Open(fi.filePath().toStdWString().c_str()) <= 0) {
+	if(MI.Open(fi.absoluteFilePath().toStdWString()) == 0) {
 		video->addChild(this->createInfoItem(tr("Error"), "Could not open file."));
+		video->setHidden(false);
 		return;
 	}
 
