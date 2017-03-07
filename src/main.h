@@ -6,12 +6,7 @@
 #define PATCH_VERSION 0x0004
 
 #define WIP_TEXT "" //" *work in progress* -> Please do not distribute."
-//#define WIP_VERSION
+#define WIP_VERSION
 //#define RC_VERSION
-
-// define UNICODE for MediaInfoLib
-#ifndef UNICODE
-	#define UNICODE
-#endif
 
 #endif /*MAIN_H_*/

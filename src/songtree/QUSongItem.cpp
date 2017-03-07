@@ -6,6 +6,8 @@
 #include "fileref.h"
 #include "tag.h"
 #include "tstring.h"
+
+#define UNICODE
 #include "MediaInfoDLL_Static.h"
 using namespace MediaInfoDLL;
 
