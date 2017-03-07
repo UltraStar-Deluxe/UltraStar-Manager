@@ -522,7 +522,7 @@ void QUPreviewTree::showSimpleFileInformation(const QFileInfo &fi, const QString
 }
 
 void QUPreviewTree::showDirectoryFileInformation(const QFileInfo &di) {
-	dir->addChild(this->createInfoItem(tr("Path"), di.absolutePath()));
+	dir->addChild(this->createInfoItem(tr("Path"), QDir::toNativeSeparators(di.absolutePath())));
 	QFileInfoList fil(di.dir().entryInfoList(QDir::Files | QDir::NoDotAndDotDot));
 	dir->addChild(this->createInfoItem(tr("Files"), QString::number(fil.size())));
 	dir->addChild(this->createInfoItem("", ""));
