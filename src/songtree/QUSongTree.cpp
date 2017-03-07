@@ -1541,13 +1541,8 @@ void QUSongTree::searchForCoverOnAAE() {
 	if(songItem) {
 		QUrl url("http://www.albumartexchange.com/covers");
 		QUrlQuery urlQuery;
-		QString queryString = songItem->song()->artist() + " " + songItem->song()->title();
-		QStringList queryStrings = queryString.split(QRegExp("(\\s+)"));
-		QByteArray encodedQuery;
-		foreach(QString queryString, queryStrings) {
-			encodedQuery += queryString.toLatin1() + QString("+").toLatin1();
-		}
-		urlQuery.addQueryItem("q", encodedQuery);
+		QString queryString = QString(songItem->song()->artist() + " " + songItem->song()->title()).replace(QRegExp("(\\s+)"), "+");
+		urlQuery.addQueryItem("q", queryString);
 		urlQuery.addQueryItem("fltr", "ALL");
 		urlQuery.addQueryItem("sort", "TITLE");
 		urlQuery.addQueryItem("status", "");

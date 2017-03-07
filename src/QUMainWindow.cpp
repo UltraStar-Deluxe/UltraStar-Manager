@@ -651,7 +651,9 @@ void QUMainWindow::updatePreviewTree() {
 	QUSongItem *item = dynamic_cast<QUSongItem*>(songTree->currentItem());
 
 	if(item) {
-		QFileInfo fi(item->song()->songFileInfo().dir(), item->text(FOLDER_COLUMN));
+		// remove potentially present relative path of item->text(FOLDER_COLUMN)
+		QString file = QFileInfo(item->text(FOLDER_COLUMN)).fileName();
+		QFileInfo fi(item->song()->songFileInfo().dir(), file);
 		previewTree->showFileInformation(fi);
 	} else
 		previewTree->showFileInformation(QFileInfo());
