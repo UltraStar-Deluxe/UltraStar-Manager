@@ -461,7 +461,7 @@ void QUSongItem::setTick(int column) {
 
 			// Therefore, the external MediaInfo library is used at the moment
 			MediaInfo MI;
-			if(MI.Open(this->song()->videoFileInfo().filePath().toStdWString()) > 0) {
+			if(MI.Open(this->song()->videoFileInfo().filePath().toStdWString()) >= 0) {
 				// retrieve width/height from first video stream
 				video_width = QString::fromStdWString(MI.Get(Stream_Video, 0, __T("Width"), Info_Text, Info_Name)).toInt();
 				video_height = QString::fromStdWString(MI.Get(Stream_Video, 0, __T("Height"), Info_Text, Info_Name)).toInt();
