@@ -44,6 +44,8 @@
 
 #include "taglib.h"
 #include "bass.h"
+
+#define UNICODE
 #include "MediaInfoDLL_Static.h"
 using namespace MediaInfoDLL;
 
