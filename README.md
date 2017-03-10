@@ -27,8 +27,8 @@ Download the Qt framework for your respective platform from https://www.qt.io/do
 (under construction)
 
 1. Install Qt (MinGW).
-2. Open and compile all task plugins (open respective *.pro files in subdirectory plugins).
-3. Compile UltraStar Manager.
+2. Open and compile all task plugins (open respective *.pro files in subdirectory plugins, disable shadow build).
+3. Compile UltraStar Manager (disable shadow build).
 4. Add DLL dependencies to /bin/wip diretory (Qt + MinGW runtime libraries, bass, taglib, mediainfo).
 5. Manage your entire song collection with ease!
 
@@ -39,8 +39,8 @@ Download the Qt framework for your respective platform from https://www.qt.io/do
 (under construction)
 
 1. Install Qt (clang).
-2. Open and compile all task plugins (open respective *.pro files in subdirectory plugins).
-3. Compile UltraStar Manager.
+2. Open and compile all task plugins (open respective *.pro files in subdirectory plugins, disable shadow build).
+3. Compile UltraStar Manager (disable shadow build).
 4. Manage your entire song collection with ease!
 
 Feel free to fork this project, modify it to your hearts content and maybe also do pull requests to this repository for additional features, improvements or clean-ups.
