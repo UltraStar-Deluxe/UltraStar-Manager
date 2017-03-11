@@ -14,8 +14,8 @@ Command-line parameters are passed to the game adding it to the path of a
 shortcut or starting the game within the console.
 
 The following parameters are possible. They can be joined in any possible way.
-- `-Songpath <PATH>`   : Same as config Songpath.
-                         Example: `-SongPath "C:\Ultrastar Songs"`
+- `-Songpath <PATH>`
+    Example: `-SongPath "C:\Ultrastar Songs"`
 
 ###4. Controls
 (under construction)
