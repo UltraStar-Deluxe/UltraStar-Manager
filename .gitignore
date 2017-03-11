@@ -1,0 +1,6 @@
+
+*.user
+
+*.stash
+
+src/version.h
