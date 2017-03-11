@@ -1597,7 +1597,7 @@ void QUSongTree::searchForBackgroundOnGoogleImages() {
 		urlQuery.addQueryItem("safe", "off");
 		urlQuery.addQueryItem("tbm", "isch");
 		urlQuery.addQueryItem("tbs", "imgo:1,isz:lt,islt:2mp");
-		QString queryString = songItem->song()->artist() + " " + songItem->song()->title();
+		QString queryString = songItem->song()->artist();
 		QStringList queryStrings = queryString.split(QRegExp("(\\s+)"));
 		QByteArray encodedQuery;
 		foreach(QString queryString, queryStrings) {
