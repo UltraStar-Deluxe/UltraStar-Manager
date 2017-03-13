@@ -25,7 +25,7 @@ The following parameters are possible. They can be joined in any possible way.
 (under construction)
 
 1. Download the Qt Online Installer for Windows from http://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe.
-2. Install the Qt framework. The Qt Account login can be skipped. Select (at least) Qt -> Qt 5.8 -> MinGW 5.3.0 32 bit and Qt -> Tools -> MinGW 4.9.2.
+2. Install the Qt framework. The Qt Account login can be skipped. Select (at least) Qt -> Qt 5.8 -> MinGW 5.3.0 32 bit and Qt -> Tools -> MinGW 5.3.0.
 3. Open and compile all task plugins (open respective *.pro files in subdirectory src\plugins with Qt Creator, disable shadow build).
 4. Open and compile UltraStar Manager (open uman.pro in subdirectory src with Qt Creator, disable shadow build).
 5. Add DLL dependencies to bin/wip directory
@@ -37,7 +37,7 @@ The following parameters are possible. They can be joined in any possible way.
    TagLib library: libtag.dll
 6. Manage your entire song collection with ease!
 
-####Compiling on Linux/BSD using make
+####Compiling on Linux
 (under construction)
 
 ####Compiling on OS X
