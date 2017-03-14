@@ -4,3 +4,10 @@
 *.stash
 
 src/version.h
+bin
+/src/tmp
+/src/*.Debug
+/src/*.Release
+/src/Makefile
+/src/*.autosave
+/src/ui
