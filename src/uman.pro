@@ -257,10 +257,13 @@ mac {
 
 unix:!macx {
 	LIBS += -L"../lib/Unix" \
-		-ltag64 \
-		-lbass64
-#		-ltag \
-#		-lbass
+		-ltag \
+		-lbass \
+		-lmediainfo \
+		-lzen \
+		-lz
+#		-ltag32 \
+#		-lbass32
 }
 
 QMAKE_EXTRA_TARGETS += revtarget
