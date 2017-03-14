@@ -3,13 +3,13 @@
 ![UltraStar Manager Logo](https://github.com/UltraStar-Deluxe/UltraStar-Manager/blob/master/src/resources/uman128.png)
 
 
-###1. About
+### 1. About
 UltraStar Manager (uman) is a free and open source song management tool using Qt. It should be compilable and runnable on Windows, Linux and Mac OS.
 
-###2. Release Notes
+### 2. Release Notes
 (under construction)
 
-###3. Command-Line Parameters
+### 3. Command-Line Parameters
 Command-line parameters are passed to the game adding it to the path of a
 shortcut or starting the game within the console.
 
@@ -18,11 +18,11 @@ shortcut or starting the game within the console.
     
 This allows passing a certain folder as song path to UltraStar Manager, e.g. via the context menu of a folder (Win, Mac).
 
-###4. Controls
+### 4. Controls
 (under construction)
 
-###5. Build and Run
-####Compiling on Windows
+### 5. Build and Run
+#### Compiling on Windows
 (under construction)
 
 1. Download the Qt Online Installer for Windows from [here](http://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe).
@@ -41,7 +41,7 @@ This allows passing a certain folder as song path to UltraStar Manager, e.g. via
    * TagLib library: libtag.dll
 6. Manage your entire song collection with ease!
 
-####Compiling on Linux
+#### Compiling on Linux
 (under construction)
 
 1. Install the Qt framework: `sudo apt get install qt5-default qttools5-dev-tools`
@@ -49,7 +49,7 @@ This allows passing a certain folder as song path to UltraStar Manager, e.g. via
 3. Open and compile UltraStar Manager (open uman.pro in subdirectory src with Qt Creator, disable shadow build).
 4. Manage your entire song collection with ease!
 
-####Compiling on OS X
+#### Compiling on OS X
 (under construction)
 
 1. Download the Qt Online Installer for Mac OS from [here](http://download.qt.io/official_releases/online_installers/qt-unified-mac-x64-online.dmg).
@@ -58,4 +58,5 @@ This allows passing a certain folder as song path to UltraStar Manager, e.g. via
 4. Compile UltraStar Manager (open uman.pro in subdirectory src with Qt Creator, disable shadow build).
 5. Manage your entire song collection with ease!
 
+### 6. Contribute
 Feel free to fork this project, modify it to your hearts content and maybe also do pull requests to this repository for additional features, improvements or clean-ups.
