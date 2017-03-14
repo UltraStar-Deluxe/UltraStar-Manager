@@ -44,6 +44,11 @@ This allows passing a certain folder as song path to UltraStar Manager, e.g. via
 ####Compiling on Linux
 (under construction)
 
+1. Install the Qt framework: `sudo apt get install qt5-default qttools5-dev-tools`
+2. Open and compile all task plugins (open respective *.pro files in subdirectory src\plugins with Qt Creator, disable shadow build).
+3. Open and compile UltraStar Manager (open uman.pro in subdirectory src with Qt Creator, disable shadow build).
+4. Manage your entire song collection with ease!
+
 ####Compiling on OS X
 (under construction)
 
