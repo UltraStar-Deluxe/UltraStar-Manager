@@ -9,6 +9,7 @@ addons:
       - qt5-default
       - qtbase5-dev-tools
       - qt5-qmake
+      - qtmultimedia5-dev
       - libtag1-dev
       - libmediainfo-dev
       - libzen-dev
