@@ -1,0 +1,15 @@
+dist: trusty
+sudo: false
+language: cpp
+before_script: cd src/
+script: qmake uman.pro && make
+addons:
+  apt:
+    packages:
+      - qt5-default
+      - qtbase5-dev-tools
+      - qt5-qmake
+      - qtmultimedia5-dev
+      - libtag1-dev
+      - libmediainfo-dev
+      - libzen-dev
