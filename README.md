@@ -1,5 +1,8 @@
 # UltraStar Manager Development README
 
+[![Build Status](https://travis-ci.org/UltraStar-Deluxe/UltraStar-Manager.svg?branch=master)](https://travis-ci.org/UltraStar-Deluxe/UltraStar-Manager)
+[![License](https://img.shields.io/badge/license-GPLv2-blue.svg)](LICENSE)
+
 ![UltraStar Manager Logo](https://github.com/UltraStar-Deluxe/UltraStar-Manager/blob/master/src/resources/uman128.png)
 
 
