@@ -457,7 +457,6 @@ void QUSongItem::setTick(int column) {
 			int video_width = -1;
 			int video_height = -1;
 
-			// MB TODO: check for video quality, set icon and tooltip accordingly
 			// Unfortunately, using Qt's QMediaResource class does not work at all currently
 			//QMediaResource video(QUrl::fromLocalFile(this->song()->videoFileInfo().filePath()));
 			//video.resolution().width();
@@ -465,7 +464,7 @@ void QUSongItem::setTick(int column) {
 
 			// Therefore, the external MediaInfo library is used at the moment
 			MediaInfo MI;
-			if(MI.Open(this->song()->videoFileInfo().filePath().toStdWString()) >= 0) {
+			if(MI.Open(this->song()->videoFileInfo().filePath().toStdWString()) > 0) {
 				// retrieve width/height from first video stream
 				video_width = QString::fromStdWString(MI.Get(Stream_Video, 0, __T("Width"), Info_Text, Info_Name)).toInt();
 				video_height = QString::fromStdWString(MI.Get(Stream_Video, 0, __T("Height"), Info_Text, Info_Name)).toInt();
