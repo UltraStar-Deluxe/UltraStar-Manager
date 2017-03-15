@@ -13,7 +13,7 @@ QUPlaylistFile::QUPlaylistFile(QObject *parent):
 		_nameChanged(false),
 		_playlistChanged(false)
 {
-	_fi.setFile(playlistDB->dir(), tr("unnamed.xml"));
+	_fi.setFile(playlistDB->dir(), tr("unnamed.upl"));
 	setName(tr("New Playlist"));
 }
 
@@ -97,17 +97,20 @@ bool QUPlaylistFile::save() {
 		delete xmlWriter;
 	} else {
 		/* write UltraStar UPL */
+
+		// if it is a new playlist created within UltraStar Creator, we add a header to the comments
+		if(_comments.isEmpty()) {
+			_comments << "######################################";
+			_comments << "#Ultrastar Deluxe Playlist Format v1.0";
+			_comments << QString("Playlist %1 with %2 Songs.").arg(_name).arg(_playlist.length());
+			_comments << "######################################";
+		}
+
 		// write comments
 		foreach(QString comment, _comments) {
 			file.write(comment.toLocal8Bit());
 			file.write("\n");
 		}
-
-		// write header
-		file.write("######################################\n");
-		file.write("#Ultrastar Deluxe Playlist Format v1.0\n");
-		file.write(QString("Playlist %1 with %2 Songs.\n").arg(_name).arg(_playlist.length()).toLocal8Bit());
-		file.write("######################################\n");
 
 		// write name of playlist
 		file.write(QString("#%1: %2\n").arg(NAME_TAG).arg(_name).toLocal8Bit());
