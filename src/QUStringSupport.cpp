@@ -14,21 +14,26 @@ QUStringSupport::QUStringSupport(QObject *parent): QObject(parent) {}
  */
 QString QUStringSupport::withoutUnsupportedCharacters(const QString &text) {
 	QString cleanText = text;
-#ifdef Q_OS_WIN32
+//MB: to create songs that are cross-platform compatible, all potentially critical characters on all platforms should be removed
+//#ifdef Q_OS_WIN32
 	// replace colons by dashes
 	cleanText.replace(':', '-');
-	// remove everything else
+	// replace asterixes by dashes
+	cleanText.replace('*', '-');
+	// remove everything else: '\', ':', '*', '?', '"', '|', '<', '>'
 	cleanText.remove(QRegExp("[\\\\:\\*\\?\"\\|<>]"));
 
-	/* MB: commented out as trailing and leading dots do not seem to pose problems in Windows
-	// remove trailing and leading dots
 	bool dotsRemoved = false;
 
+	/* MB: commented out as trailing dots do not seem to pose problems
+	// remove trailing dots
 	while(cleanText.endsWith(".")) {
 		dotsRemoved = true;
 		cleanText.chop(1);
 	}
+	*/
 
+	// remove leading dots
 	while (cleanText.startsWith(".")) {
 		dotsRemoved = true;
 		cleanText.remove(0, 1);
@@ -36,8 +41,7 @@ QString QUStringSupport::withoutUnsupportedCharacters(const QString &text) {
 
 	if(dotsRemoved)
 		cleanText = cleanText.trimmed();
-	*/
-#endif
+//#endif
 	return cleanText;
 }
 
@@ -72,10 +76,10 @@ QString QUStringSupport::withoutLeadingBlanks(const QString &text) {
 QString QUStringSupport::withoutAnyUmlaut(const QString &text) {
 	QString result = text;
 
-	result.replace("ä", "ae", Qt::CaseInsensitive);
-	result.replace("ö", "oe", Qt::CaseInsensitive);
-	result.replace("ü", "ue", Qt::CaseInsensitive);
-	result.replace("ß", "ss", Qt::CaseInsensitive);
+	result.replace("Ã¤", "ae", Qt::CaseInsensitive);
+	result.replace("Ã¶", "oe", Qt::CaseInsensitive);
+	result.replace("Ã¼", "ue", Qt::CaseInsensitive);
+	result.replace("ÃŸ", "ss", Qt::CaseInsensitive);
 
 	return result;
 }
@@ -83,14 +87,14 @@ QString QUStringSupport::withoutAnyUmlaut(const QString &text) {
 QString QUStringSupport::withoutAnyUmlautEx(const QString &text) {
 	QString result = text;
 
-	result.replace("ä", "ae", Qt::CaseInsensitive);
-	result.replace("ö", "oe", Qt::CaseInsensitive);
-	result.replace("ü", "ue", Qt::CaseInsensitive);
-	result.replace("ß", "ss", Qt::CaseInsensitive);
+	result.replace("Ã¤", "ae", Qt::CaseInsensitive);
+	result.replace("Ã¶", "oe", Qt::CaseInsensitive);
+	result.replace("Ã¼", "ue", Qt::CaseInsensitive);
+	result.replace("ÃŸ", "ss", Qt::CaseInsensitive);
 
-	result.replace("ô", "o", Qt::CaseInsensitive);
-	result.replace("é", "e", Qt::CaseInsensitive);
-	result.replace("è", "e", Qt::CaseInsensitive);
+	result.replace("Ã´", "o", Qt::CaseInsensitive);
+	result.replace("Ã©", "e", Qt::CaseInsensitive);
+	result.replace("Ã¨", "e", Qt::CaseInsensitive);
 
 	result.replace("_", " ");
 	result.replace("-", " ");
