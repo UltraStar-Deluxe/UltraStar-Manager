@@ -103,6 +103,12 @@ bool QUPlaylistFile::save() {
 			file.write("\n");
 		}
 
+		// write header
+		file.write("######################################\n");
+		file.write("#Ultrastar Deluxe Playlist Format v1.0\n");
+		file.write(QString("Playlist %1 with %2 Songs.\n").arg(_name).arg(_playlist.length()).toLocal8Bit());
+		file.write("######################################\n");
+
 		// write name of playlist
 		file.write(QString("#%1: %2\n").arg(NAME_TAG).arg(_name).toLocal8Bit());
 		_nameChanged = false;
