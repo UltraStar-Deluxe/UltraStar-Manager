@@ -255,15 +255,13 @@ mac {
 	CONFIG += app_bundle
 }
 
-unix:!macx {
+unix:!mac {
 	LIBS += -L"../lib/Unix" \
 		-ltag \
 		-lbass \
 		-lmediainfo \
 		-lzen \
 		-lz
-#		-ltag32 \
-#		-lbass32
 }
 
 QMAKE_EXTRA_TARGETS += revtarget
@@ -273,15 +271,12 @@ revtarget.target = version.h
 win32 {
 revtarget.commands = @echo \
 	"const char *revision = \"$(shell git describe --always)\"; const char *date_time = \"$(shell date /T)$(shell time /T)\";" > $$revtarget.target
-revtarget.depends = $$SOURCES \
-	$$HEADERS \
-	$$FORMS
 }
 
 unix {
 revtarget.commands = @echo \
 	"const char *revision = \\\"`git describe --always`\\\"\\; \
-	const char *date_time = \\\"`date`\\\"\\;" \
+	const char *date_time = \\\"`date +'%d.%m.%Y %H:%M'`\\\"\\;" \
 	> $${PWD}/$$revtarget.target
 }
 
