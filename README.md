@@ -47,9 +47,19 @@ This allows passing a certain folder as song path to UltraStar Manager, e.g. via
 #### Compiling on Linux
 (under construction)
 
-1. Install the Qt framework: `sudo apt get install qt5-default qttools5-dev-tools`
-2. Open and compile all task plugins (open respective *.pro files in subdirectory src\plugins with Qt Creator, disable shadow build).
-3. Open and compile UltraStar Manager (open uman.pro in subdirectory src with Qt Creator, disable shadow build).
+1. Install the Qt framework: `sudo apt get install qt5-default qttools5-dev-tools qtbase5-dev-tools qt5-qmake`
+2. Install dependencies: `sudo apt get install libtag1-dev libmediainfo-dev libzen-dev`
+3. Compile UltraStar Manager plugins
+   * from command line
+     * audiotag plugin: `cd src/plugins/audiotag && qmake audiotag.pro && make`
+     * cleanup plugin: `cd src/plugins/cleanup && qmake cleanup.pro && make`
+     * lyrics plugin: `cd src/plugins/lyric && qmake lyric.pro && make`
+     * preparatory plugin: `cd src/plugins/preparatory && qmake preparatory.pro && make`
+     * preparatory rename: `cd src/plugins/rename && qmake rename.pro && make`
+   * using Qt Creator: open the respective *.pro files in Qt Creator, disable shadow build in Project tab, then build
+3. Compile UltraStar Manager
+   * from command line: `cd src && qmake uman.pro && make` 
+   * using Qt Creator: open uman.pro in Qt Creator, disable shadow build in Project tab, then build and run
 4. Manage your entire song collection with ease!
 
 #### Compiling on OS X
