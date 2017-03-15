@@ -113,7 +113,7 @@ void QUPlaylistArea::saveCurrentPlaylistAs() {
 	if(!playlistDB->currentPlaylist())
 		return;
 
-	QString filePath = QFileDialog::getSaveFileName(this, tr("Save playlist as..."), playlistDB->dir().path(), QString(tr("Vocaluxe Playlists (%1);;UltraStar Playlists (%2)")).arg(QUSongSupport::allowedVocaluxePlaylistFiles().join(" ")).arg(QUSongSupport::allowedUltraStarPlaylistFiles().join(" ")));
+	QString filePath = QFileDialog::getSaveFileName(this, tr("Save playlist as..."), playlistDB->dir().path(), QString(tr("UltraStar Playlists (%1);;Vocaluxe Playlists (%2)")).arg(QUSongSupport::allowedUltraStarPlaylistFiles().join(" ")).arg(QUSongSupport::allowedVocaluxePlaylistFiles().join(" ")));
 
 	if(!filePath.isEmpty()) {
 		QFileInfo oldFi = playlistDB->currentPlaylist()->fileInfo();

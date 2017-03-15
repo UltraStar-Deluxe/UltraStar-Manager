@@ -133,7 +133,7 @@ void QUPlaylistDatabase::save() {
 					QString(
 						tr("Save playlist \"%1\" as...")).arg(playlist->name()),
 						dir().path(),
-						QString(tr("Vocaluxe Playlists (%1);;UltraStar Playlists (%2)")).arg(QUSongSupport::allowedVocaluxePlaylistFiles().join(" ")).arg(QUSongSupport::allowedUltraStarPlaylistFiles().join(" ")));
+						QString(tr("UltraStar Playlists (%1);;Vocaluxe Playlists (%2)")).arg(QUSongSupport::allowedUltraStarPlaylistFiles().join(" ")).arg(QUSongSupport::allowedVocaluxePlaylistFiles().join(" ")));
 
 			if(!filePath.isEmpty()) {
 				playlist->setFileInfo(QFileInfo(filePath));
