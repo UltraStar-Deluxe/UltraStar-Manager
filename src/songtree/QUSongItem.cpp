@@ -213,6 +213,7 @@ void QUSongItem::updateAsImage() {
 	bool used = false;
 
 	if(QString::compare(song()->cover(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
+		this->setIcon(FOLDER_COLUMN, QIcon(":/types/cover.png"));
 		this->setIcon(COVER_COLUMN, QIcon(":/marks/link.png"));
 		used = true;
 	} else if(song()->friendHasTag(COVER_TAG, this->text(FOLDER_COLUMN))) { // file used by friend as cover
@@ -222,6 +223,7 @@ void QUSongItem::updateAsImage() {
 	}
 
 	if(QString::compare(song()->background(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
+		this->setIcon(FOLDER_COLUMN, QIcon(":/types/background.png"));
 		this->setIcon(BACKGROUND_COLUMN, QIcon(":/marks/link.png"));
 		used = true;
 	} else if(song()->friendHasTag(BACKGROUND_TAG, this->text(FOLDER_COLUMN))) { // file used by friend as background
