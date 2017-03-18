@@ -62,14 +62,15 @@ This allows passing a certain folder as song path to UltraStar Manager, e.g. via
    * using Qt Creator: open uman.pro in Qt Creator, disable shadow build in Project tab, then build and run
 4. Manage your entire song collection with ease!
 
-#### Compiling on OS X
+#### Compiling on Mac OS X
 (under construction)
 
 1. Download the Qt Online Installer for Mac OS from [here](http://download.qt.io/official_releases/online_installers/qt-unified-mac-x64-online.dmg).
 2. Install the Qt framework. The Qt Account login can be skipped.
-3. Open and compile all task plugins (open respective *.pro files in subdirectory plugins with Qt Creator, disable shadow build).
-4. Compile UltraStar Manager (open uman.pro in subdirectory src with Qt Creator, disable shadow build).
-5. Manage your entire song collection with ease!
+3. Install brew and external dependencies: `brew install taglib`, `brew install mediainfo`
+4. Open and compile all task plugins (open respective *.pro files in subdirectory plugins with Qt Creator, disable shadow build).
+5. Compile UltraStar Manager (open uman.pro in subdirectory src with Qt Creator, disable shadow build).
+6. Manage your entire song collection with ease!
 
 ### 6. Contribute
 Feel free to fork this project, modify it to your hearts content and maybe also do pull requests to this repository for additional features, improvements or clean-ups.
