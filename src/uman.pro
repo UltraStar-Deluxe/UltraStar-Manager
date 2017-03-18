@@ -248,11 +248,13 @@ win32 {
 }
 
 mac {
+	CONFIG += link_pkgconfig
+	PKGCONFIG += taglib
+	PKGCONFIG += libmediainfo
 	LIBS += -L"../lib/MacOS" \
-		-ltag \
-		-lbass \
-		-lmediainfo
+		-lbass
 	CONFIG += app_bundle
+	QMAKE_RPATHDIR += @executable_path/../Frameworks
 }
 
 unix:!mac {
@@ -288,9 +290,8 @@ mac {
 	plugins.files = ../bin/wip/plugins
 	plugins.path = Contents/MacOS
 	QMAKE_BUNDLE_DATA += plugins
-	dylibs.files = ../lib/MacOS/libbass.dylib \
-		../lib/MacOS/libtag.1.15.1.dylib
-	dylibs.path = Contents/Frameworks
+	dylibs.files = ../lib/MacOS/libbass.dylib
+	dylibs.path = Contents/MacOS
 	QMAKE_BUNDLE_DATA += dylibs
 	ICON = resources/uman.icns
 }
