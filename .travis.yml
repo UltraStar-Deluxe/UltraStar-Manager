@@ -1,30 +1,30 @@
 language: cpp
 
-os:
-    - linux
-    - osx
-
-dist: trusty
-
-sudo: true
+matrix:
+    include:
+        - os: linux
+          dist: trusy
+          sudo: required
+          compiler: gcc
+        - os: osx
+          compiler: clang
 
 before_install:
     - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-        sudo apt-get -qy update
-        ;
+        sudo apt-get -qy update;
       else
-        brew update
-        ;
+        brew update;
       fi
 
 install:
     - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-        sudo apt-get install qt5-default qtbase5-dev-tools qt5-qmake qtmultimedia5-dev libtag1-dev libmediainfo-dev libzen-dev
-        ;
+        sudo apt-get install qt5-default qtbase5-dev-tools qt5-qmake qtmultimedia5-dev libtag1-dev libmediainfo-dev libzen-dev;
       else
-           brew update
-        && brew install qt5 taglib mediainfo
-        ;
+        brew update;
+        brew install qt5;
+        brew link --force qt5;
+        brew install taglib;
+        brew install mediainfo;
       fi
 before_script:
 
@@ -35,6 +35,9 @@ script:
     - cd ../preparatory/ && qmake preparatory.pro && make
     - cd ../rename/ && qmake rename.pro && make
     - cd ../../ && qmake uman.pro && make
+
+notifications:
+    email: false
 
 #addons:
   #apt:
