@@ -11,22 +11,38 @@ matrix:
           compiler: clang
 
 before_install:
-    - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-        sudo apt-get -qy update;
-      else
+    - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
         brew update;
+        
+      else
+        # Due to container-based infrastructure, sudo is not available.
+        # Installing packages is handled via the key addons.apt.packages for Linux.
+        #sudo apt-get -qy update;
       fi
 
 install:
-    - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-        sudo apt-get install qt5-default qtbase5-dev-tools qt5-qmake qtmultimedia5-dev libtag1-dev libmediainfo-dev libzen-dev;
-      else
+    - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
         brew update;
         brew install qt5;
         brew link --force qt5;
         brew install taglib;
         brew install mediainfo;
+      else
+        #sudo apt-get install qt5-default qtbase5-dev-tools qt5-qmake qtmultimedia5-dev libtag1-dev libmediainfo-dev libzen-dev;
+        
       fi
+
+addons:
+  apt:
+    packages:
+      - qt5-default
+      - qtbase5-dev-tools
+      - qt5-qmake
+      - qtmultimedia5-dev
+      - libtag1-dev
+      - libmediainfo-dev
+      - libzen-dev
+
 before_script:
 
 script: 
@@ -51,14 +67,3 @@ script:
 
 notifications:
     email: false
-
-#addons:
-  #apt:
-    #packages:
-      #- qt5-default
-      #- qtbase5-dev-tools
-      #- qt5-qmake
-      #- qtmultimedia5-dev
-      #- libtag1-dev
-      #- libmediainfo-dev
-      #- libzen-dev
