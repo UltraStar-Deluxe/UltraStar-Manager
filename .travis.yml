@@ -1,24 +1,48 @@
 language: cpp
-os: linux
+
+os:
+    - linux
+    - osx
+
 dist: trusty
-sudo: false
+
+sudo: true
+
 before_install:
+    - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+        sudo apt-get -qy update
+        ;
+      else
+        brew update
+        ;
+      fi
+
 install:
-before_script: cd src/
+    - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+        sudo apt-get install qt5-default qtbase5-dev-tools qt5-qmake qtmultimedia5-dev libtag1-dev libmediainfo-dev libzen-dev
+        ;
+      else
+        brew update
+        brew install qt5 taglib mediainfo
+        ;
+      fi
+before_script:
+
 script: 
-    - cd plugins/audiotag/ && qmake audiotag.pro && make
+    - cd src/plugins/audiotag/ && qmake audiotag.pro && make
     - cd ../cleanup/ && qmake cleanup.pro && make
     - cd ../lyric/ && qmake lyric.pro && make
     - cd ../preparatory/ && qmake preparatory.pro && make
     - cd ../rename/ && qmake rename.pro && make
     - cd ../../ && qmake uman.pro && make
-addons:
-  apt:
-    packages:
-      - qt5-default
-      - qtbase5-dev-tools
-      - qt5-qmake
-      - qtmultimedia5-dev
-      - libtag1-dev
-      - libmediainfo-dev
-      - libzen-dev
+
+#addons:
+  #apt:
+    #packages:
+      #- qt5-default
+      #- qtbase5-dev-tools
+      #- qt5-qmake
+      #- qtmultimedia5-dev
+      #- libtag1-dev
+      #- libmediainfo-dev
+      #- libzen-dev
