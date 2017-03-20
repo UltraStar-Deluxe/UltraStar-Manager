@@ -33,7 +33,7 @@ HEADERS = language.h \
 	QUDefaultDelegate.h \
 	../shared/QUSmartSetting.h \
 	../QUSmartSettingInterface.h \
-    ../shared/QUTaskModifierDelegate.h
+	../shared/QUTaskModifierDelegate.h
 FORMS += ../shared/QUTaskDialog.ui
 OTHER_FILES += audiotag.json
 TRANSLATIONS = audiotag.de.ts \
@@ -59,12 +59,10 @@ win32 {
 		-ltag
 }
 mac {
-	LIBS += -L"../../../lib/MacOS" \
-		-ltag
+	LIBS += -ltag
 }
-unix:!macx  {
-	LIBS += -L"../../../lib/Unix" \
-		-ltag
+unix:!macx {
+	LIBS += -ltag
 }
 QMAKE_EXTRA_TARGETS += langtarget
 PRE_TARGETDEPS += language.h
