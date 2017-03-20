@@ -22,8 +22,8 @@ install:
         sudo apt-get install qt5-default qtbase5-dev-tools qt5-qmake qtmultimedia5-dev libtag1-dev libmediainfo-dev libzen-dev
         ;
       else
-        brew update
-        brew install qt5 taglib mediainfo
+           brew update
+        && brew install qt5 taglib mediainfo
         ;
       fi
 before_script:
