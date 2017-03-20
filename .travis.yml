@@ -6,6 +6,16 @@ matrix:
           dist: trusy
           sudo: false
           compiler: gcc
+          addons:
+            apt:
+              packages:
+                - qt5-default
+                - qtbase5-dev-tools
+                - qt5-qmake
+                - qtmultimedia5-dev
+                - libtag1-dev
+                - libmediainfo-dev
+                - libzen-dev
         - os: osx
           osx_image: xcode8.2
           compiler: clang
@@ -23,17 +33,6 @@ install:
         brew install taglib;
         brew install mediainfo;
       fi
-
-addons:
-  apt:
-    packages:
-      - qt5-default
-      - qtbase5-dev-tools
-      - qt5-qmake
-      - qtmultimedia5-dev
-      - libtag1-dev
-      - libmediainfo-dev
-      - libzen-dev
 
 before_script:
 
