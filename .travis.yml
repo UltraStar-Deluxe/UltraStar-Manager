@@ -39,13 +39,13 @@ script:
     - cd ../bin/wip/
     - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
         if [ -r "UltraStarManager.app" ]; then
-            macdeployqt UltraStarManager.app
-            macdeployqt UltraStarManager.app -dmg
+            macdeployqt UltraStarManager.app;
+            macdeployqt UltraStarManager.app -dmg;
         fi
         if [ -r "UltraStarManager.dmg" ]; then
-            link=$(curl --upload-file 'UltraStarManager.dmg' "https://transfer.sh/UltraStarManager-$(git rev-parse --short HEAD).dmg")
-            echo "UltraStarManager.dmg should be available at:"
-            echo "    $link"
+            link=$(curl --upload-file 'UltraStarManager.dmg' "https://transfer.sh/UltraStarManager-$(git rev-parse --short HEAD).dmg");
+            echo "UltraStarManager.dmg should be available at:";
+            echo "    $link";
         fi
       fi
 
