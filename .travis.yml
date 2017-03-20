@@ -13,11 +13,6 @@ matrix:
 before_install:
     - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
         brew update;
-        
-      else
-        # Due to container-based infrastructure, sudo is not available.
-        # Installing packages is handled via the key addons.apt.packages for Linux.
-        #sudo apt-get -qy update;
       fi
 
 install:
@@ -27,9 +22,6 @@ install:
         brew link --force qt5;
         brew install taglib;
         brew install mediainfo;
-      else
-        #sudo apt-get install qt5-default qtbase5-dev-tools qt5-qmake qtmultimedia5-dev libtag1-dev libmediainfo-dev libzen-dev;
-        
       fi
 
 addons:
