@@ -55,17 +55,16 @@ QT += xml \
 	widgets
 
 win32 {
-    LIBS += -L"../../../lib/Windows" \
+	LIBS += -L"../../../lib/Windows" \
 		-ltag
 }
 mac {
-    LIBS += -L"../../../lib/MacOS" \
+	LIBS += -L"../../../lib/MacOS" \
 		-ltag
 }
 unix:!macx  {
-    LIBS += -L"../../../lib/Unix" \
-        -ltag64 \
-#        -ltag
+	LIBS += -L"../../../lib/Unix" \
+		-ltag
 }
 QMAKE_EXTRA_TARGETS += langtarget
 PRE_TARGETDEPS += language.h
@@ -86,7 +85,7 @@ CONFIG(debug, debug|release) {
 	MOC_DIR = ../tmp/audiotag/debug
 }
 unix {
-    QMAKE_POST_LINK += $${QMAKE_MKDIR} $${DESTDIR}/config/audiotag/ $$escape_expand(\n\t)
-    QMAKE_POST_LINK += $${QMAKE_COPY} $${PWD}/config/* $${DESTDIR}/config/audiotag/
+	QMAKE_POST_LINK += $${QMAKE_MKDIR} $${DESTDIR}/config/audiotag/ $$escape_expand(\n\t)
+	QMAKE_POST_LINK += $${QMAKE_COPY} $${PWD}/config/* $${DESTDIR}/config/audiotag/
 }
 
