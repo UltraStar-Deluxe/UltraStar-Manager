@@ -4,9 +4,10 @@ matrix:
     include:
         - os: linux
           dist: trusy
-          sudo: required
+          sudo: false
           compiler: gcc
         - os: osx
+          osx_image: xcode8.2
           compiler: clang
 
 before_install:
@@ -29,12 +30,24 @@ install:
 before_script:
 
 script: 
-    - cd src/plugins/audiotag/ && qmake audiotag.pro && make
-    - cd ../cleanup/ && qmake cleanup.pro && make
+    #- cd src/plugins/audiotag/ && qmake audiotag.pro && make
+    - cd src/plugins/cleanup/ && qmake cleanup.pro && make
     - cd ../lyric/ && qmake lyric.pro && make
     - cd ../preparatory/ && qmake preparatory.pro && make
     - cd ../rename/ && qmake rename.pro && make
     - cd ../../ && qmake uman.pro && make
+    - cd ../bin/wip/
+    - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+        if [ -r "UltraStarManager.app" ]; then
+            macdeployqt UltraStarManager.app
+            macdeployqt UltraStarManager.app -dmg
+        fi
+        if [ -r "UltraStarManager.dmg" ]; then
+            link=$(curl --upload-file 'UltraStarManager.dmg' "https://transfer.sh/UltraStarManager-$(git rev-parse --short HEAD).dmg")
+            echo "UltraStarManager.dmg should be available at:"
+            echo "    $link"
+        fi
+      fi
 
 notifications:
     email: false
