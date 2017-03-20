@@ -1,8 +1,17 @@
+language: cpp
+os: linux
 dist: trusty
 sudo: false
-language: cpp
+before_install:
+install:
 before_script: cd src/
-script: qmake uman.pro && make
+script: 
+    - cd plugins/audiotag/ && qmake audiotag.pro && make
+    - cd ../cleanup/ && qmake cleanup.pro && make
+    - cd ../lyric/ && qmake lyric.pro && make
+    - cd ../preparatory/ && qmake preparatory.pro && make
+    - cd ../rename/ && qmake rename.pro && make
+    - cd ../../ && qmake uman.pro && make
 addons:
   apt:
     packages:
