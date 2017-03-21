@@ -249,9 +249,7 @@ win32 {
 }
 
 mac {
-	INCLUDEPATH += /usr/local/include/taglib \
-		/usr/local/include/MediaInfoDLL \
-		../include/bass
+	INCLUDEPATH += ../include/bass
 
 	CONFIG += link_pkgconfig
 	PKGCONFIG += taglib
@@ -263,16 +261,21 @@ mac {
 }
 
 unix:!mac {
-	INCLUDEPATH += /usr/local/include/taglib \
-		/usr/local/include/MediaInfoDLL \
-		../include/bass
+    #INCLUDEPATH += /usr/local/include/taglib \
+    #	/usr/local/include/MediaInfoDLL \
+    INCLUDEPATH += ../include/bass
 
-	LIBS += -L"../lib/Unix" \
-		-ltag \
-		-lbass \
-		-lmediainfo \
-		-lzen \
-		-lz
+    #LIBS += -L"../lib/Unix" \
+    #	-ltag \
+    #	-lbass \
+    #	-lmediainfo \
+    #	-lzen \
+    #	-lz
+    CONFIG += link_pkgconfig
+    PKGCONFIG += taglib
+    PKGCONFIG += libmediainfo
+    LIBS += -L"../lib/MacOS" \
+        -lbass
 }
 
 QMAKE_EXTRA_TARGETS += revtarget

@@ -48,7 +48,7 @@
 #ifndef UNICODE
 #define UNICODE
 #endif
-#include "MediaInfoDLL_Static.h"
+#include "MediaInfoDLL/MediaInfoDLL_Static.h"
 using namespace MediaInfoDLL;
 
 #include "QUTagOrderDialog.h"
