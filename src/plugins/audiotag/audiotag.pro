@@ -59,7 +59,8 @@ win32 {
 		-ltag
 }
 mac {
-	LIBS += -ltag
+	LIBS += -L"/usr/local/lib" \
+		-ltag
 }
 unix:!macx {
 	LIBS += -ltag
