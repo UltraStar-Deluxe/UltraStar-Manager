@@ -36,9 +36,9 @@ install:
 
 before_script:
 
-script: 
-    #- cd src/plugins/audiotag/ && qmake audiotag.pro && make
-    - cd src/plugins/cleanup/ && qmake cleanup.pro && make
+script:
+    - cd src/plugins/audiotag/ && qmake audiotag.pro && make
+    - cd ../cleanup/ && qmake cleanup.pro && make
     - cd ../lyric/ && qmake lyric.pro && make
     - cd ../preparatory/ && qmake preparatory.pro && make
     - cd ../rename/ && qmake rename.pro && make
