@@ -70,3 +70,7 @@ CONFIG(debug, debug|release) {
 	OBJECTS_DIR = ../tmp/rename/debug
 	MOC_DIR = ../tmp/rename/debug
 }
+unix {
+	QMAKE_POST_LINK += $${QMAKE_MKDIR} $${DESTDIR}/config/rename/ $$escape_expand(\n\t)
+	QMAKE_POST_LINK += $${QMAKE_COPY} $${PWD}/config/* $${DESTDIR}/config/rename/
+}
