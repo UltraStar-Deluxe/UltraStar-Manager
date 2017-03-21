@@ -1,0 +1,11 @@
+<task>
+    <general type="id3">
+        <icon resource=":/types/video.png"/>
+        <description><![CDATA[Write #VIDEO even without existing video file]]></description>
+        <tooltip/>
+    </general>
+    <id3 target="video" schema="%1 - %2.mp4">
+        <data source="artist_"/>
+        <data source="title_"/>
+    </id3>
+</task>
