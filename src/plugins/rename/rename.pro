@@ -59,18 +59,20 @@ langtarget.commands = python getTaskText.py
 
 CONFIG(release, debug|release) {
 	TARGET = 4-rename
-	DESTDIR = ../../../bin/wip/plugins
+	DESTDIR = ../../../bin/release/plugins
 	OBJECTS_DIR = ../tmp/rename/release
 	MOC_DIR = ../tmp/rename/release
 }
 
 CONFIG(debug, debug|release) {
 	TARGET = 4-rename_debug
-	DESTDIR = ../../../bin/wip_debug/plugins
+	DESTDIR = ../../../bin/debug/plugins
 	OBJECTS_DIR = ../tmp/rename/debug
 	MOC_DIR = ../tmp/rename/debug
 }
 unix {
 	QMAKE_POST_LINK += $${QMAKE_MKDIR} $${DESTDIR}/config/rename/ $$escape_expand(\n\t)
-	QMAKE_POST_LINK += $${QMAKE_COPY} $${PWD}/config/* $${DESTDIR}/config/rename/
+	QMAKE_POST_LINK += $${QMAKE_COPY} $${PWD}/config/* $${DESTDIR}/config/rename/ $$escape_expand(\n\t)
+	QMAKE_POST_LINK += $${QMAKE_MKDIR} $${DESTDIR}/languages/ $$escape_expand(\n\t)
+	QMAKE_POST_LINK += $${QMAKE_COPY} $${PWD}/*.qm $${DESTDIR}/languages/
 }

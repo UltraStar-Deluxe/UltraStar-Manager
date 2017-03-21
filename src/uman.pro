@@ -12,7 +12,7 @@ QT += core \
 
 CONFIG(release, debug|release) {
 	TARGET = "UltraStarManager"
-	DESTDIR = ../bin/wip
+	DESTDIR = ../bin/release
 	MOC_DIR = tmp/release
 	OBJECTS_DIR = tmp/release
 	RCC_DIR = tmp/release
@@ -20,7 +20,7 @@ CONFIG(release, debug|release) {
 
 CONFIG(debug, debug|release) {
 	TARGET = UltraStarManager_debug
-	DESTDIR = ../bin/wip_debug
+	DESTDIR = ../bin/debug
 	MOC_DIR = tmp/debug
 	OBJECTS_DIR = tmp/debug
 	RCC_DIR = tmp/debug
@@ -232,11 +232,12 @@ INCLUDEPATH += . \
 	lyricseditor \
 	score \
 	remoteimages
-INCLUDEPATH += ../include/taglib \
-	../include/bass \
-	../include/mediainfo
 
 win32 {
+	INCLUDEPATH += ../include/taglib \
+		../include/bass \
+		../include/mediainfo
+
 	RC_FILE = uman.rc
 
 	LIBS += -L"../lib/Windows" \
@@ -248,6 +249,10 @@ win32 {
 }
 
 mac {
+	INCLUDEPATH += /usr/local/include/taglib \
+		/usr/local/include/MediaInfoDLL \
+		../include/bass
+
 	CONFIG += link_pkgconfig
 	PKGCONFIG += taglib
 	PKGCONFIG += libmediainfo
@@ -258,6 +263,10 @@ mac {
 }
 
 unix:!mac {
+	INCLUDEPATH += /usr/local/include/taglib \
+		/usr/local/include/MediaInfoDLL \
+		../include/bass
+
 	LIBS += -L"../lib/Unix" \
 		-ltag \
 		-lbass \
@@ -287,7 +296,7 @@ revtarget.depends = $$SOURCES \
 	$$FORMS
 
 mac {
-	plugins.files = ../bin/wip/plugins
+	plugins.files = ../bin/release/plugins
 	plugins.path = Contents/MacOS
 	QMAKE_BUNDLE_DATA += plugins
 	dylibs.files = ../lib/MacOS/libbass.dylib

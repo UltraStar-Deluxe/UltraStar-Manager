@@ -72,19 +72,21 @@ langtarget.commands = python $${PWD}/getTaskText.py
 
 CONFIG(release, debug|release) {
 	TARGET = 3-audiotag
-	DESTDIR = ../../../bin/wip/plugins
+	DESTDIR = ../../../bin/release/plugins
 	OBJECTS_DIR = ../tmp/audiotag/release
 	MOC_DIR = ../tmp/audiotag/release
 }
 
 CONFIG(debug, debug|release) {
 	TARGET = 3-audiotag_debug
-	DESTDIR = ../../../bin/wip_debug/plugins
+	DESTDIR = ../../../bin/debug/plugins
 	OBJECTS_DIR = ../tmp/audiotag/debug
 	MOC_DIR = ../tmp/audiotag/debug
 }
 unix {
 	QMAKE_POST_LINK += $${QMAKE_MKDIR} $${DESTDIR}/config/audiotag/ $$escape_expand(\n\t)
-	QMAKE_POST_LINK += $${QMAKE_COPY} $${PWD}/config/* $${DESTDIR}/config/audiotag/
+	QMAKE_POST_LINK += $${QMAKE_COPY} $${PWD}/config/* $${DESTDIR}/config/audiotag/ $$escape_expand(\n\t)
+	QMAKE_POST_LINK += $${QMAKE_MKDIR} $${DESTDIR}/languages/ $$escape_expand(\n\t)
+	QMAKE_POST_LINK += $${QMAKE_COPY} $${PWD}/*.qm $${DESTDIR}/languages/
 }
 

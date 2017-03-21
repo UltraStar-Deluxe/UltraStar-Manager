@@ -33,14 +33,18 @@ QT += widgets
 
 CONFIG(release, debug|release) {
 	TARGET = 2-lyric
-	DESTDIR = ../../../bin/wip/plugins
+	DESTDIR = ../../../bin/release/plugins
 	OBJECTS_DIR = ../tmp/lyric/release
 	MOC_DIR = ../tmp/lyric/release
 }
 
 CONFIG(debug, debug|release) {
 	TARGET = 2-lyric_debug
-	DESTDIR = ../../../bin/wip_debug/plugins
+	DESTDIR = ../../../bin/debug/plugins
 	OBJECTS_DIR = ../tmp/lyric/debug
 	MOC_DIR = ../tmp/lyric/debug
+}
+unix {
+	QMAKE_POST_LINK += $${QMAKE_MKDIR} $${DESTDIR}/languages/ $$escape_expand(\n\t)
+	QMAKE_POST_LINK += $${QMAKE_COPY} $${PWD}/*.qm $${DESTDIR}/languages/
 }

@@ -35,14 +35,18 @@ QT += widgets
 
 CONFIG(release, debug|release) {
 	TARGET = 1-preparatory
-	DESTDIR = ../../../bin/wip/plugins
+	DESTDIR = ../../../bin/release/plugins
 	OBJECTS_DIR = ../tmp/preparatory/release
 	MOC_DIR = ../tmp/preparatory/release
 }
 
 CONFIG(debug, debug|release) {
 	TARGET = 1-preparatory_debug
-	DESTDIR = ../../../bin/wip_debug/plugins
+	DESTDIR = ../../../bin/debug/plugins
 	OBJECTS_DIR = ../tmp/preparatory/debug
 	MOC_DIR = ../tmp/preparatory/debug
+}
+unix {
+	QMAKE_POST_LINK += $${QMAKE_MKDIR} $${DESTDIR}/languages/ $$escape_expand(\n\t)
+	QMAKE_POST_LINK += $${QMAKE_COPY} $${PWD}/*.qm $${DESTDIR}/languages/
 }
