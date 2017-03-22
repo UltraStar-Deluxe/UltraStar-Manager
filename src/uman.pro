@@ -261,21 +261,27 @@ mac {
 }
 
 unix:!mac {
-    #INCLUDEPATH += /usr/local/include/taglib \
-    INCLUDEPATH += ../include/mediainfo \
-    INCLUDEPATH += ../include/bass
+	# the INCLUDEPATH += ../include/mediainfo should be removed
+	# because it refers to the local copy of the header file
+	# which should only be used for Windows.
+	# However, for some reason mediainfo installed via brew does NOT have
+	# MediaInfoDLL/MediaInfoDLL_Static.h, but instead only
+	# MediaInfoDLL/MediaInfoDLL.h, and currently compilation fails with that
+	# header file. Help wanted.
+	INCLUDEPATH += ../include/mediainfo \
+	INCLUDEPATH += ../include/bass
 
-    #LIBS += -L"../lib/Unix" \
-    #	-ltag \
-    #	-lbass \
-    #	-lmediainfo \
-    #	-lzen \
-    #	-lz
-    CONFIG += link_pkgconfig
-    PKGCONFIG += taglib
-    PKGCONFIG += libmediainfo
-    LIBS += -L"../lib/MacOS" \
-        -lbass
+	#LIBS += -L"../lib/Unix" \
+	#	-ltag \
+	#	-lbass \
+	#	-lmediainfo \
+	#	-lzen \
+	#	-lz
+	CONFIG += link_pkgconfig
+	PKGCONFIG += taglib
+	PKGCONFIG += libmediainfo
+	LIBS += -L"../lib/Unix" \
+		-lbass
 }
 
 QMAKE_EXTRA_TARGETS += revtarget
