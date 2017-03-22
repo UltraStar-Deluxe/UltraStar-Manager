@@ -262,7 +262,7 @@ mac {
 
 unix:!mac {
     #INCLUDEPATH += /usr/local/include/taglib \
-    #	/usr/local/include/MediaInfoDLL \
+    INCLUDEPATH += ../include/mediainfo \
     INCLUDEPATH += ../include/bass
 
     #LIBS += -L"../lib/Unix" \
