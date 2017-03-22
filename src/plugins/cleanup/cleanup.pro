@@ -45,7 +45,13 @@ CONFIG(debug, debug|release) {
 	OBJECTS_DIR = ../tmp/cleanup/debug
 	MOC_DIR = ../tmp/cleanup/debug
 }
-unix {
-	QMAKE_POST_LINK += $${QMAKE_MKDIR} $${DESTDIR}/languages/ $$escape_expand(\n\t)
-	QMAKE_POST_LINK += $${QMAKE_COPY} $${PWD}/*.qm $${DESTDIR}/languages/
+
+LANG_SRC_DIR = $$IN_PWD/
+LANG_DEST_DIR = $${DESTDIR}/languages/
+win32 {
+	LANG_SRC_DIR ~= s,/,\\,g
+	LANG_DEST_DIR ~= s,/,\\,g
 }
+QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, "$${LANG_DEST_DIR}") $$escape_expand(\n\t)
+QMAKE_POST_LINK += $${QMAKE_COPY} $${LANG_SRC_DIR}*.qm $${LANG_DEST_DIR}
+

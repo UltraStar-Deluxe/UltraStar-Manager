@@ -72,9 +72,9 @@ langtarget.commands = python $${PWD}/getTaskText.py
 
 CONFIG(release, debug|release) {
 	TARGET = 3-audiotag
-        DESTDIR = ../../../bin/release/plugins
-        OBJECTS_DIR = ../tmp/audiotag/release
-        MOC_DIR = ../tmp/audiotag/release
+	DESTDIR = ../../../bin/release/plugins
+	OBJECTS_DIR = ../tmp/audiotag/release
+	MOC_DIR = ../tmp/audiotag/release
 }
 
 CONFIG(debug, debug|release) {
@@ -89,10 +89,10 @@ CONFIG_DEST_DIR = $${DESTDIR}/config/audiotag/
 LANG_SRC_DIR = $$IN_PWD/
 LANG_DEST_DIR = $${DESTDIR}/languages/
 win32 {
-    CONFIG_SRC_DIR ~= s,/,\\,g
-    CONFIG_DEST_DIR ~= s,/,\\,g
-    LANG_SRC_DIR ~= s,/,\\,g
-    LANG_DEST_DIR ~= s,/,\\,g
+	CONFIG_SRC_DIR ~= s,/,\\,g
+	CONFIG_DEST_DIR ~= s,/,\\,g
+	LANG_SRC_DIR ~= s,/,\\,g
+	LANG_DEST_DIR ~= s,/,\\,g
 }
 
 QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, "$${CONFIG_DEST_DIR}") $$escape_expand(\n\t)
