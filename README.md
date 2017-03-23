@@ -13,17 +13,16 @@ UltraStar Manager (uman) is a free and open source song management tool using Qt
 (under construction)
 
 ### 3. Command-Line Parameters
-Command-line parameters are passed to the game adding it to the path of a
-shortcut or starting the game within the console.
+Command-line parameters are passed to the game adding it to the path of a shortcut or starting the game within the console.
 
-- `-Songpath <PATH>`
-    Example: `-SongPath "C:\Ultrastar Songs"`
+- `-SongPath <PATH>`
+  Example: `-SongPath "C:\Ultrastar Songs"`
     
-This allows passing a certain folder as song path to UltraStar Manager, conveniently via the folder's context menu, as explained below.
+This allows passing a certain folder as song path to UltraStar Manager, conveniently via the folder's context menu, as explained below (expert tip: you can use the same steps to use this neat feature for UltraStar Deluxe itself!).
 #### Windows
 
 1. Open the Explorer and browse to the program folder of UltraStar Manager.
-2. Right-click on UltraStarManager.exe and select 'Create Shortcut'.
+2. Right-click on UltraStarManager.exe and select 'Create Shortcut'. Rename the shortcut if you want.
 3. Right-click on the newly created shortcut file and select 'Properties'.
 4. In the open tab 'Shortcut', under 'Target', add ' -SongPath' after 'UltraStarManager.exe' and confirm with 'OK'.
 5. Right-click on the shortcut file again and select 'Cut' (STRG+X).
