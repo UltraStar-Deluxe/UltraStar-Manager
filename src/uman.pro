@@ -232,51 +232,45 @@ INCLUDEPATH += . \
 	lyricseditor \
 	score \
 	remoteimages
+INCLUDEPATH += ../include/bass
 
 win32 {
 	INCLUDEPATH += ../include/taglib \
-		../include/bass \
 		../include/mediainfo
 
-	RC_FILE = uman.rc
-
-	LIBS += -L"../lib/Windows" \
-		-ltag \
+	LIBS += -L"../lib/win32" \
 		-lbass \
+		-ltag \
 		-lmediainfo \
 		-lzen \
 		-lzlibstatic
+
+	RC_FILE = uman.rc
 }
 
-mac {
-	INCLUDEPATH += ../include/bass
-
+macx {
+	LIBS += -L"../lib/macx" -lbass
 	CONFIG += link_pkgconfig
 	PKGCONFIG += taglib
 	PKGCONFIG += libmediainfo
-	LIBS += -L"../lib/MacOS" \
-		-lbass
+
 	CONFIG += app_bundle
 	QMAKE_RPATHDIR += @executable_path/../Frameworks
 }
 
-unix:!mac {
-	# the INCLUDEPATH += ../include/mediainfo should be removed
-	# because it refers to the local copy of the header file
-	# which should only be used for Windows.
-	# However, for some reason mediainfo on Unix installed via 'apt-get install libmediainfo-dev'
-	# does NOT have MediaInfoDLL/MediaInfoDLL_Static.h, but instead only
-	# MediaInfoDLL/MediaInfoDLL.h, and currently compilation fails with that
-	# header file. Help wanted.
-	INCLUDEPATH += ../include/mediainfo \
-	INCLUDEPATH += ../include/bass
+unix:!macx {
+	# the INCLUDEPATH += ../include/mediainfo should be removed since it refers to the local copy of the header file
+	# which should only be used for Windows. However, for some reason mediainfo on Unix installed via
+	# 'apt-get install libmediainfo-dev' does NOT have MediaInfoDLL/MediaInfoDLL_Static.h, but instead only
+	# MediaInfoDLL/MediaInfoDLL.h, and currently compilation fails with that header file. Help wanted.
+	INCLUDEPATH += ../include/mediainfo
 
+	LIBS += -L"../lib/unix" -lbass
 	CONFIG += link_pkgconfig
 	PKGCONFIG += taglib
 	PKGCONFIG += libmediainfo
-	LIBS += -L"../lib/Unix" \
-		-lbass
-	#QMAKE_RPATHDIR += \$\$ORIGIN
+
+	#QMAKE_RPATHDIR += \$\$ORIGIN # doesn't seem to work
 	QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN\''
 }
 
@@ -300,15 +294,15 @@ revtarget.depends = $$SOURCES \
 	$$HEADERS \
 	$$FORMS
 
-unix {
-	QMAKE_POST_LINK += $${QMAKE_COPY} $$IN_PWD/../lib/Unix/libbass.so $$IN_PWD/../bin/release
+unix:!macx {
+	QMAKE_POST_LINK += $${QMAKE_COPY} $$IN_PWD/../lib/unix/libbass.so $$IN_PWD/../bin/release
 }
 
-mac {
+macx {
 	plugins.files = ../bin/release/plugins
 	plugins.path = Contents/MacOS
 	QMAKE_BUNDLE_DATA += plugins
-	dylibs.files = ../lib/MacOS/libbass.dylib
+	dylibs.files = ../lib/macx/libbass.dylib
 	dylibs.path = Contents/MacOS
 	QMAKE_BUNDLE_DATA += dylibs
 	ICON = resources/uman.icns
