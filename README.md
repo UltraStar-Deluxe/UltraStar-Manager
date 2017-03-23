@@ -19,7 +19,21 @@ shortcut or starting the game within the console.
 - `-Songpath <PATH>`
     Example: `-SongPath "C:\Ultrastar Songs"`
     
-This allows passing a certain folder as song path to UltraStar Manager, e.g. via the context menu of a folder (Win, Mac).
+This allows passing a certain folder as song path to UltraStar Manager, conveniently via the folder's context menu, as explained below.
+#### Windows
+
+1. Open the Explorer and browse to the program folder of UltraStar Manager.
+2. Right-click on UltraStarManager.exe and select 'Create Shortcut'.
+3. Right-click on the newly created shortcut file and select 'Properties'.
+4. In the open tab 'Shortcut', under 'Target', add ' -SongPath' after 'UltraStarManager.exe' and confirm with 'OK'.
+5. Right-click on the shortcut file again and select 'Cut' (STRG+X).
+6. Enter 'shell:sendto' in the address bar and hit Enter.
+7. Right-click inside the folder and select 'Paste' (STRG+V).
+
+#### Mac OS X
+
+1. Start Automator from your Applications folder or Launchpad.
+2. (under construction)
 
 ### 4. Controls
 (under construction)
