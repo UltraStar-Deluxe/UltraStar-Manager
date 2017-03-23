@@ -5,10 +5,6 @@
 #include "fileref.h"
 #include "tag.h"
 #include "tstring.h"
-
-#ifndef UNICODE
-#define UNICODE
-#endif
 #include "MediaInfoDLL/MediaInfoDLL_Static.h"
 using namespace MediaInfoDLL;
 
