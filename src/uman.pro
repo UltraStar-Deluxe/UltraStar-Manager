@@ -276,6 +276,8 @@ unix:!mac {
 	PKGCONFIG += libmediainfo
 	LIBS += -L"../lib/Unix" \
 		-lbass
+	#QMAKE_RPATHDIR += \$\$ORIGIN
+	QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN\''
 }
 
 QMAKE_EXTRA_TARGETS += revtarget
@@ -297,6 +299,10 @@ revtarget.commands = @echo \
 revtarget.depends = $$SOURCES \
 	$$HEADERS \
 	$$FORMS
+
+unix {
+	QMAKE_POST_LINK += $${QMAKE_COPY} $$IN_PWD/../lib/Unix/libbass.so $$IN_PWD/../bin/release
+}
 
 mac {
 	plugins.files = ../bin/release/plugins
