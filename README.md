@@ -55,7 +55,7 @@ This allows passing a certain folder as song path to UltraStar Manager, e.g. via
      * cleanup plugin: `cd src/plugins/cleanup && qmake cleanup.pro && make`
      * lyrics plugin: `cd src/plugins/lyric && qmake lyric.pro && make`
      * preparatory plugin: `cd src/plugins/preparatory && qmake preparatory.pro && make`
-     * preparatory rename: `cd src/plugins/rename && qmake rename.pro && make`
+     * rename plugin: `cd src/plugins/rename && qmake rename.pro && make`
    * using Qt Creator: open the respective *.pro files in Qt Creator, disable shadow build in Project tab, then build
 3. Compile UltraStar Manager
    * from command line: `cd src && qmake uman.pro && make` 
@@ -65,12 +65,21 @@ This allows passing a certain folder as song path to UltraStar Manager, e.g. via
 #### Compiling on Mac OS X
 (under construction)
 
-1. Download the Qt Online Installer for Mac OS from [here](http://download.qt.io/official_releases/online_installers/qt-unified-mac-x64-online.dmg).
-2. Install the Qt framework. The Qt Account login can be skipped.
-3. Install brew and external dependencies: `brew install taglib`, `brew install mediainfo`
-4. Open and compile all task plugins (open respective *.pro files in subdirectory plugins with Qt Creator, disable shadow build).
-5. Compile UltraStar Manager (open uman.pro in subdirectory src with Qt Creator, disable shadow build).
-6. Manage your entire song collection with ease!
+1. Install homebrew via `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+2. Install the Qt framework via `brew install qt5'.
+3. Install external dependencies via `brew install taglib mediainfo`
+4. Compile UltraStar Manager plugins
+   * from command line
+     * audiotag plugin: `cd src/plugins/audiotag && qmake audiotag.pro && make`
+     * cleanup plugin: `cd src/plugins/cleanup && qmake cleanup.pro && make`
+     * lyrics plugin: `cd src/plugins/lyric && qmake lyric.pro && make`
+     * preparatory plugin: `cd src/plugins/preparatory && qmake preparatory.pro && make`
+     * rename plugin: `cd src/plugins/rename && qmake rename.pro && make`
+   * using Qt Creator: open the respective *.pro files in Qt Creator, disable shadow build in Project tab, then build
+4. Compile UltraStar Manager
+   * from command line: `cd src && qmake uman.pro && make` 
+   * using Qt Creator: open uman.pro in Qt Creator, disable shadow build in Project tab, then build and run
+5. Manage your entire song collection with ease!
 
 ### 6. Contribute
 Feel free to fork this project, modify it to your hearts content and maybe also do pull requests to this repository for additional features, improvements or clean-ups.
