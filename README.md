@@ -32,7 +32,13 @@ This allows passing a certain folder as song path to UltraStar Manager, convenie
 #### Mac OS X
 
 1. Start Automator from your Applications folder or Launchpad.
-2. (under construction)
+2. Choose 'Service' as document type.
+3. Select 'Service receives `folders` in `Finder`'.
+4. On the left, under 'Actions', select 'Files & Folders', find 'Get Selected Finder Items' and drag this action to the right pane.
+5. Again under 'Actions', select 'Utilities', find 'Run Shell Script' and drag this action to the right pane below the first item.
+6. Leave 'Shell' as '/bin/bash', but change 'Pass inputs' to 'as arguments'.
+7. Paste `exec /Applications/UltraStarDeluxe.app/Contents/MacOS/ultrastardx -songpath "$1"` into the script field.
+8. Save, e.g. as 'Start UltraStar-Manager with this folder'.
 
 ### 4. Controls
 (under construction)
