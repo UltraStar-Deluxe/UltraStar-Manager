@@ -1343,7 +1343,15 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 		menu->addAction(QIcon(":/marks/speed_slow_turtle.png"), tr("Calculate Song Speed"), this, SLOT(calculateSpeed()));
 
 		menu->addSeparator();
+#ifdef Q_OS_WIN
 		menu->addAction(QIcon(":/types/folder.png"),tr("Open With Explorer..."), this, SLOT(openCurrentFolder()), QKeySequence(Qt::CTRL + Qt::Key_Return));
+#endif
+#ifdef Q_OS_MAC
+		menu->addAction(QIcon(":/types/folder.png"),tr("Open With Finder..."), this, SLOT(openCurrentFolder()), QKeySequence(Qt::CTRL + Qt::Key_Return));
+#endif
+#ifdef Q_OS_LINUX
+		menu->addAction(QIcon(":/types/folder.png"),tr("Open With File Manager..."), this, SLOT(openCurrentFolder()), QKeySequence(Qt::CTRL + Qt::Key_Return));
+#endif
 		menu->addAction(QIcon(":/types/user.png"), tr("Find More From Artist"), this, SLOT(showMoreCurrentArtist()));
 		menu->addAction(QIcon(":/types/text.png"), tr("Show Lyrics..."), this, SLOT(requestLyrics()), QKeySequence(Qt::CTRL + Qt::Key_L));
 		menu->addAction(QIcon(":/control/text_edit.png"), tr("Edit Lyrics..."), this, SLOT(requestEditLyrics()), QKeySequence(Qt::CTRL + Qt::Key_E));
