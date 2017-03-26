@@ -306,4 +306,7 @@ macx {
 	dylibs.path = Contents/MacOS
 	QMAKE_BUNDLE_DATA += dylibs
 	ICON = resources/uman.icns
+
+	QMAKE_POST_LINK += macdeployqt ../bin/release/UltraStarManager.app $$escape_expand(\n\t)
+	QMAKE_POST_LINK += ../setup/macx/create-dmg --volname UltraStarManager --volicon resources/uman.icns --app-drop-link 350 170 --background ../setup/macx/img/uman_bg.png --hide-extension UltraStarManager.app --window-size 500 300 --text-size 14 --icon-size 64 --icon UltraStarManager.app 150 170 "../bin/release/UltraStarManager.dmg" ../bin/release/UltraStarManager.app/
 }
