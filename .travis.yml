@@ -19,6 +19,20 @@ matrix:
         - os: osx
           osx_image: xcode8.2
           compiler: clang
+        - os: linux
+          dist: trusty
+          sudo: false
+          compiler: ": w64"
+          env: PLATFORM="mingw32" ARCH="x86_64" BITSIZE=64 HOST="x86_64"
+          addons:
+            apt:
+              sources:
+                - sourceline: 'ppa:tobydox/mingw-x-trusty'
+              packages:
+                - mingw-x-qt5base
+                - mingw64-x-binutils
+                - mingw64-x-gcc
+                - mingw64-x-runtime
 
 before_install:
     - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
