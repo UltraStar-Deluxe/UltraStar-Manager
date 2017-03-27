@@ -6,8 +6,42 @@ install:
 
 build_script:
   - cmd: >-
-      cd src
+      cd src/plugins/audiotag/
+      
+      qmake audiotag.pro -spec win32-g++
+      
+      mingw32-make
+      
+      cd ../cleanup/
+      
+      qmake cleanup.pro -spec win32-g++
+      
+      mingw32-make
+      
+      cd ../lyric/
+      
+      qmake lyric.pro -spec win32-g++
+      
+      mingw32-make
+      
+      cd ../preparatory/ 
+      
+      qmake preparatory.pro -spec win32-g++
+      
+      mingw32-make
+      
+      cd ../rename/
+      
+      qmake rename.pro -spec win32-g++
+      
+      mingw32-make
+      
+      cd ../../
       
       qmake uman.pro -spec win32-g++
       
       mingw32-make
+      
+      cd ../bin/release/
+      
+      dir
