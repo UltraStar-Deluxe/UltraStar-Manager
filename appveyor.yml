@@ -41,7 +41,3 @@ build_script:
       qmake uman.pro -spec win32-g++
       
       mingw32-make
-      
-      cd ../bin/release/
-      
-      dir
