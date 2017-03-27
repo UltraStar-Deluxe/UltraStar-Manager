@@ -1,7 +1,7 @@
 # UltraStar Manager Development README
 
 [![Build Status](https://travis-ci.org/UltraStar-Deluxe/UltraStar-Manager.svg?branch=master)](https://travis-ci.org/UltraStar-Deluxe/UltraStar-Manager)
-[![Build status](https://ci.appveyor.com/api/projects/status/1eyftuox42fekp25/branch/master?svg=true)](https://ci.appveyor.com/project/bohning/ultrastar-manager/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/u1sv3urd3mkljn5s/branch/master?svg=true)](https://ci.appveyor.com/project/bohning/ultrastar-manager/branch/master)
 [![License](https://img.shields.io/badge/license-GPLv2-blue.svg)](LICENSE)
 
 ![UltraStar Manager Logo](https://github.com/UltraStar-Deluxe/UltraStar-Manager/blob/master/src/resources/uman128.png)
