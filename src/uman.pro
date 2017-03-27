@@ -279,8 +279,8 @@ PRE_TARGETDEPS += version.h
 revtarget.target = version.h
 
 win32 {
-revtarget.commands = @echo \
-	"const char *revision = \"$(shell git describe --always)\"; const char *date_time = \"$(shell date /T)$(shell time /T)\";" > $$revtarget.target
+	revtarget.commands = "$$system(echo 'const char *revision = \"$$system(git describe --always)\";' > $$revtarget.target)"
+	revtarget.commands += "$$system(echo 'const char *date_time = \"$$system(date /T) $$system(time /T)\";' >> $$revtarget.target)"
 }
 
 unix {
