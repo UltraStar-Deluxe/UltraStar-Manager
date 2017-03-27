@@ -95,7 +95,7 @@ win32 {
 	LANG_DEST_DIR ~= s,/,\\,g
 }
 
-QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, "$${CONFIG_DEST_DIR}") $$escape_expand(\n\t)
-QMAKE_POST_LINK += $${QMAKE_COPY} $${CONFIG_SRC_DIR}$${QMAKE_DIR_SEP}* $${CONFIG_DEST_DIR} $$escape_expand(\n\t)
-QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, "$${LANG_DEST_DIR}") $$escape_expand(\n\t)
-QMAKE_POST_LINK += $${QMAKE_COPY} $${LANG_SRC_DIR}$${QMAKE_DIR_SEP}*.qm $${LANG_DEST_DIR}
+QMAKE_POST_LINK += $$system($$sprintf($${QMAKE_MKDIR_CMD}, "$${CONFIG_DEST_DIR}")) $$escape_expand(\n\t)
+QMAKE_POST_LINK += $$system($${QMAKE_COPY} $${CONFIG_SRC_DIR}$${QMAKE_DIR_SEP}* $${CONFIG_DEST_DIR}) $$escape_expand(\n\t)
+QMAKE_POST_LINK += $$system($$sprintf($${QMAKE_MKDIR_CMD}, "$${LANG_DEST_DIR}")) $$escape_expand(\n\t)
+QMAKE_POST_LINK += $$system($${QMAKE_COPY} $${LANG_SRC_DIR}$${QMAKE_DIR_SEP}*.qm $${LANG_DEST_DIR})
