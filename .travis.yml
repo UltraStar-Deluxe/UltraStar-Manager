@@ -1,6 +1,7 @@
 language: cpp
 
 matrix:
+    fast_finish: true
     include:
         - os: linux
           dist: trusty
@@ -33,6 +34,8 @@ matrix:
                 - mingw64-x-binutils
                 - mingw64-x-gcc
                 - mingw64-x-runtime
+    allowed_failures:
+        - env: PLATFORM="mingw32" ARCH="x86_64" BITSIZE=64 HOST="x86_64"
 
 before_install:
     - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
