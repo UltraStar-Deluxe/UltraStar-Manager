@@ -70,19 +70,14 @@ CONFIG(debug, debug|release) {
 	OBJECTS_DIR = ../tmp/rename/debug
 	MOC_DIR = ../tmp/rename/debug
 }
-CONFIG_SRC_DIR = $$IN_PWD/config/
-CONFIG_DEST_DIR = $${DESTDIR}/config/rename/
-LANG_SRC_DIR = $$IN_PWD/
-LANG_DEST_DIR = $${DESTDIR}/languages/
-win32 {
-	CONFIG_SRC_DIR ~= s,/,\\,g
-	CONFIG_DEST_DIR ~= s,/,\\,g
-	LANG_SRC_DIR ~= s,/,\\,g
-	LANG_DEST_DIR ~= s,/,\\,g
-}
 
-QMAKE_POST_LINK += $$system($$sprintf($${QMAKE_MKDIR_CMD}, "$${CONFIG_DEST_DIR}")) $$escape_expand(\n\t)
-QMAKE_POST_LINK += $$system($${QMAKE_COPY} $${CONFIG_SRC_DIR}* $${CONFIG_DEST_DIR}) $$escape_expand(\n\t)
-QMAKE_POST_LINK += $$system($$sprintf($${QMAKE_MKDIR_CMD}, "$${LANG_DEST_DIR}")) $$escape_expand(\n\t)
-QMAKE_POST_LINK += $$system($${QMAKE_COPY} $${LANG_SRC_DIR}*.qm $${LANG_DEST_DIR})
+CONFIG_SRC_DIR = $$shell_path(config/)
+CONFIG_DEST_DIR = $$shell_path($${DESTDIR}/config/rename/)
+LANG_SRC_DIR = $$shell_path(./)
+LANG_DEST_DIR = $$shell_path($${DESTDIR}/languages/)
+
+QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, "$${CONFIG_DEST_DIR}") $$escape_expand(\\n\\t)
+QMAKE_POST_LINK += $${QMAKE_COPY} $${CONFIG_SRC_DIR}*.xml $${CONFIG_DEST_DIR} $$escape_expand(\\n\\t)
+QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, "$${LANG_DEST_DIR}") $$escape_expand(\\n\\t)
+QMAKE_POST_LINK += $${QMAKE_COPY} $${LANG_SRC_DIR}*.qm $${LANG_DEST_DIR}
 

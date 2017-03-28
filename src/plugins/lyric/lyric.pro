@@ -45,11 +45,8 @@ CONFIG(debug, debug|release) {
 	MOC_DIR = ../tmp/lyric/debug
 }
 
-LANG_SRC_DIR = $$IN_PWD/
-LANG_DEST_DIR = $${DESTDIR}/languages/
-win32 {
-	LANG_SRC_DIR ~= s,/,\\,g
-	LANG_DEST_DIR ~= s,/,\\,g
-}
-QMAKE_POST_LINK += $$system($$sprintf($${QMAKE_MKDIR_CMD}, "$${LANG_DEST_DIR}")) $$escape_expand(\n\t)
-QMAKE_POST_LINK += $$system($${QMAKE_COPY} $${LANG_SRC_DIR}*.qm $${LANG_DEST_DIR})
+LANG_SRC_DIR = $$shell_path(./)
+LANG_DEST_DIR = $$shell_path($${DESTDIR}/languages/)
+
+QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, "$${LANG_DEST_DIR}") $$escape_expand(\\n\\t)
+QMAKE_POST_LINK += $${QMAKE_COPY} $${LANG_SRC_DIR}*.qm $${LANG_DEST_DIR}
