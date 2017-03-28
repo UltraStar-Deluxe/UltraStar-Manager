@@ -84,21 +84,17 @@ CONFIG(debug, debug|release) {
 	MOC_DIR = ../tmp/audiotag/debug
 }
 
-CONFIG_SRC_DIR = $$IN_PWD/config
-CONFIG_DEST_DIR = $${DESTDIR}/config/audiotag/
-LANG_SRC_DIR = $$IN_PWD
-LANG_DEST_DIR = $${DESTDIR}/languages/
-win32 {
-	CONFIG_SRC_DIR ~= s,/,\\,g
-	CONFIG_DEST_DIR ~= s,/,\\,g
-	LANG_SRC_DIR ~= s,/,\\,g
-	LANG_DEST_DIR ~= s,/,\\,g
-}
+CONFIG_SRC_DIR = $$shell_path(config/)
+CONFIG_DEST_DIR = $$shell_path($${DESTDIR}/config/audiotag/)
+LANG_SRC_DIR = $$shell_path(./)
+LANG_DEST_DIR = $$shell_path($${DESTDIR}/languages/)
 
 message("\$\$QMAKESPEC = " $$QMAKESPEC)
-message("\$\$QMAKE_MKDIR_CMD = " $$QMAKE_MKDIR_CMD)
-message("\$\$QMAKE_COPY = " $$QMAKE_COPY)
-QMAKE_POST_LINK += $$system($$sprintf($${QMAKE_MKDIR_CMD}, "$${CONFIG_DEST_DIR}")) $$escape_expand(\n\t)
-QMAKE_POST_LINK += $$system($${QMAKE_COPY} $${CONFIG_SRC_DIR}$${QMAKE_DIR_SEP}* $${CONFIG_DEST_DIR}) $$escape_expand(\n\t)
-QMAKE_POST_LINK += $$system($$sprintf($${QMAKE_MKDIR_CMD}, "$${LANG_DEST_DIR}")) $$escape_expand(\n\t)
-QMAKE_POST_LINK += $$system($${QMAKE_COPY} $${LANG_SRC_DIR}$${QMAKE_DIR_SEP}*.qm $${LANG_DEST_DIR})
+message($$CONFIG_SRC_DIR)
+message($$CONFIG_DEST_DIR)
+message($$LANG_SRC_DIR)
+message($$LANG_DEST_DIR)
+QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, "$${CONFIG_DEST_DIR}") $$escape_expand(\\n\\t)
+QMAKE_POST_LINK += $${QMAKE_COPY} $${CONFIG_SRC_DIR}*.xml $${CONFIG_DEST_DIR} $$escape_expand(\\n\\t)
+QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, "$${LANG_DEST_DIR}") $$escape_expand(\\n\\t)
+QMAKE_POST_LINK += $${QMAKE_COPY} $${LANG_SRC_DIR}*.qm $${LANG_DEST_DIR}
