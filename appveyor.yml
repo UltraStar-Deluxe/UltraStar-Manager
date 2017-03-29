@@ -43,5 +43,6 @@ build_script:
       mingw32-make
 
 artifacts:
-  - path: ../bin/release
-    name: UltraStar-Manager-{build}-portable
+  - path: bin/release
+    name: UltraStar-Manager-portable
+    type: zip
