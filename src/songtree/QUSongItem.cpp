@@ -80,12 +80,12 @@ void QUSongItem::update() {
 			child->updateAsLicense();
 		} else if(QUSongSupport::allowedSongFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsTxt();
+		} else if(QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+			child->updateAsVideo();
 		} else if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsMp3();
 		} else if(QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsImage();
-		} else if(QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-			child->updateAsVideo();
 		} else if(QUSongSupport::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsMidi();
 		} else if(QUSongSupport::allowedKaraokeFiles().contains(fileScheme, Qt::CaseInsensitive)) {
