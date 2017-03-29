@@ -298,6 +298,15 @@ unix:!macx {
 	QMAKE_POST_LINK += $${QMAKE_COPY} $$IN_PWD/../lib/unix/libbass.so $$IN_PWD/../bin/release
 }
 
+win32 {
+	QMAKE_POST_LINK += windeployqt --release --no-system-d3d-compiler --compiler-runtime --no-angle --no-opengl-sw ..\bin\release\UltraStarManager.exe $$escape_expand(\\n\\t)
+	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../lib/win32/bass.dll) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
+	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../lib/win32/libtag.dll) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
+	QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, $$shell_path($${DESTDIR}/styles/)) $$escape_expand(\\n\\t)
+	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(styles/*.css) $$shell_path($${DESTDIR}/styles/) $$escape_expand(\\n\\t)
+	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../doc/changes.txt) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
+}
+
 macx {
 	plugins.files = ../bin/release/plugins
 	plugins.path = Contents/MacOS
@@ -307,6 +316,6 @@ macx {
 	QMAKE_BUNDLE_DATA += dylibs
 	ICON = resources/uman.icns
 
-	QMAKE_POST_LINK += macdeployqt ../bin/release/UltraStarManager.app $$escape_expand(\n\t)
+	QMAKE_POST_LINK += macdeployqt ../bin/release/UltraStarManager.app $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += ../setup/macx/create-dmg --volname UltraStarManager --volicon resources/uman.icns --app-drop-link 350 170 --background ../setup/macx/img/uman_bg.png --hide-extension UltraStarManager.app --window-size 500 300 --text-size 14 --icon-size 64 --icon UltraStarManager.app 150 170 "../bin/release/UltraStarManager.dmg" ../bin/release/UltraStarManager.app/
 }
