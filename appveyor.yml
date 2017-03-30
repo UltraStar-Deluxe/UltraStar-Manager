@@ -2,7 +2,7 @@ environment:
   QTDIR: C:\Qt\5.8\mingw53_32
 
 install:
-  - cmd: set PATH=%QTDIR%\bin;%QTDIR%\..\..\Tools\mingw530_32\bin;%PATH%
+  - cmd: set PATH=%QTDIR%\bin;%QTDIR%\..\..\Tools\mingw530_32\bin;C:\Program Files (x86)\NSIS\;%PATH%
 
 build_script:
   - cmd: >-
@@ -41,6 +41,10 @@ build_script:
       qmake uman.pro -spec win32-g++
       
       mingw32-make
+
+after_build:
+  - cmd: >-
+      makensis ../setup/win32/uman.nsi
 
 artifacts:
   - path: bin/release
