@@ -16,7 +16,7 @@ Name "${PRODUCTNAME} ${PRODUCTVERSION}"
 !define BASE_REGKEY "Software\HPI\${PRODUCTNAME}"
 !define UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCTNAME}"
 
-OutFile "_files\uman-${PRODUCTVERSION}-win32-setup.exe"
+OutFile "UltraStarManager-${PRODUCTVERSION}-win32-setup.exe"
 InstallDir "$PROGRAMFILES\${PRODUCTNAME}"
 InstallDirRegKey HKCU "Software\HPI\${PRODUCTNAME}" ""
 
@@ -38,7 +38,7 @@ Var MUI_TEMP
 Var STARTMENU_FOLDER
 
 !insertmacro MUI_PAGE_WELCOME
-!insertmacro MUI_PAGE_LICENSE "..\doc\gpl.txt"
+!insertmacro MUI_PAGE_LICENSE "..\..\doc\gpl.txt"
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_STARTMENU Application $STARTMENU_FOLDER
 !insertmacro MUI_PAGE_INSTFILES
@@ -50,7 +50,7 @@ Var STARTMENU_FOLDER
 
 !insertmacro MUI_LANGUAGE "English"
 
-!cd "..\bin\${PRODUCTVERSION}"
+!cd "..\..\bin\release"
 
 LangString DESC_SecCopyUI ${LANG_ENGLISH} "${PRODUCTNAME}"
 
@@ -69,12 +69,25 @@ Section "Application" SecCopyUI
 	File "Qt5Gui.dll"
 	File "Qt5Network.dll"
 	File "Qt5PrintSupport.dll"
+	;;File "Qt5Svg.dll" ;; added via windeployqt, but not needed
 	File "Qt5Widgets.dll"
 	File "Qt5Xml.dll"
 	File "UltraStarManager.exe"
+	SetOutPath "$INSTDIR\bearer"
+	File "bearer\qgenericbearer.dll"
+	File "bearer\qnativewifibearer.dll"
+	;;SetOutPath "$INSTDIR\iconengines" ;; added via windeployqt, but not needed
+	;;File "iconengines\qsvgicon.dll" ;; added via windeployqt, but not needed
 	SetOutPath "$INSTDIR\imageformats"
 	File "imageformats\qgif.dll"
+	;;File "imageformats\qicns.dll" ;; added via windeployqt, but not needed
+	;;File "imageformats\qico.dll" ;; added via windeployqt, but not needed
 	File "imageformats\qjpeg.dll"
+	;;File "imageformats\qsvg.dll" ;; added via windeployqt, but not needed
+	;;File "imageformats\qtga.dll" ;; added via windeployqt, but not needed
+	;;File "imageformats\qtiff.dll" ;; added via windeployqt, but not needed
+	;;File "imageformats\qwbmp.dll" ;; added via windeployqt, but not needed
+	;;File "imageformats\qwebp.dll" ;; added via windeployqt, but not needed
 	SetOutPath "$INSTDIR\platforms"
 	File "platforms\qwindows.dll"
 	SetOutPath "$INSTDIR\plugins"
@@ -156,6 +169,8 @@ Section "Application" SecCopyUI
 	File "plugins\config\rename\060-renameSongBackground.xml"
 	File "plugins\config\rename\070-renameSongVideo.xml"
 	File "plugins\config\rename\080-renameSongVideoSpecial.xml"
+	SetOutPath "$INSTDIR\printsupport"
+	File "printsupport\windowsprintersupport.dll"
 	SetOutPath "$INSTDIR\styles"
 	File "styles\blue.css"
 	File "styles\fabian.css"
@@ -198,13 +213,27 @@ SectionEnd
 
 Section "Uninstall"
 	;; Files
-	RMDir /r "$INSTDIR\covers"
+	Delete "$INSTDIR\bearer\qgenericbearer.dll"
+	Delete "$INSTDIR\bearer\qnativewifibearer.dll"
+	RMDir "$INSTDIR\bearer"
+	
+	;;Delete "$INSTDIR\iconengines\qsvgicon.dll"
+	;;RMDir "$INSTDIR\iconengines"
+	
+	RMDir "$INSTDIR\covers"
 	
 	Delete "$INSTDIR\imageformats\qgif.dll"
+	;;Delete "$INSTDIR\imageformats\qicns.dll"
+	;;Delete "$INSTDIR\imageformats\qico.dll"
 	Delete "$INSTDIR\imageformats\qjpeg.dll"
+	;;Delete "$INSTDIR\imageformats\qsvg.dll"
+	;;Delete "$INSTDIR\imageformats\qtga.dll"
+	;;Delete "$INSTDIR\imageformats\qtiff.dll"
+	;;Delete "$INSTDIR\imageformats\qwbmp.dll"
+	;;Delete "$INSTDIR\imageformats\qwebp.dll"
 	RMDir "$INSTDIR\imageformats"
 	
-	RMDir /r "$INSTDIR\logs"
+	RMDir "$INSTDIR\logs"
 	
 	Delete "$INSTDIR\platforms\qwindows.dll"
 	RMDir "$INSTDIR\platforms"
@@ -289,7 +318,10 @@ Section "Uninstall"
 	;;Delete "$INSTDIR\plugins\amazon.dll"
 	;;Delete "$INSTDIR\plugins\freecovers.dll"
 	RMDir "$INSTDIR\plugins"
-
+	
+	Delete "$INSTDIR\printsupport\windowsprintersupport.dll"
+	RMDir "$INSTDIR\printsupport"
+	
 	Delete "$INSTDIR\styles\blue.css"
 	Delete "$INSTDIR\styles\fabian.css"
 	RMDir "$INSTDIR\styles"
@@ -304,6 +336,7 @@ Section "Uninstall"
 	Delete "$INSTDIR\Qt5Gui.dll"
 	Delete "$INSTDIR\Qt5Network.dll"
 	Delete "$INSTDIR\Qt5PrintSupport.dll"
+	;;Delete "$INSTDIR\Qt5Svg.dll"
 	Delete "$INSTDIR\Qt5Widgets.dll"
 	Delete "$INSTDIR\Qt5Xml.dll"
 	Delete "$INSTDIR\UltraStarManager.exe"
