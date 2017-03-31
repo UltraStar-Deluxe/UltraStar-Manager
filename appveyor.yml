@@ -50,3 +50,4 @@ artifacts:
   - path: bin/release
     name: UltraStar-Manager-portable
     type: zip
+  - path: bin/release/UltraStarManager*-setup.exe
