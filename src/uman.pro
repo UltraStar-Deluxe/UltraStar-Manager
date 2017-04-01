@@ -269,9 +269,6 @@ unix:!macx {
 	CONFIG += link_pkgconfig
 	PKGCONFIG += taglib
 	PKGCONFIG += libmediainfo
-
-	#QMAKE_RPATHDIR += \$\$ORIGIN # doesn't seem to work
-	QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN\''
 }
 
 QMAKE_EXTRA_TARGETS += revtarget
@@ -323,11 +320,12 @@ macx {
 	plugins.path = Contents/MacOS
 	QMAKE_BUNDLE_DATA += plugins
 	dylibs.files = ../lib/macx/libbass.dylib
-	dylibs.path = Contents/MacOS
+	dylibs.path = Contents/Frameworks
 	QMAKE_BUNDLE_DATA += dylibs
 	ICON = resources/uman.icns
 
 	QMAKE_POST_LINK += macdeployqt ../bin/release/UltraStarManager.app $$escape_expand(\\n\\t)
+	QMAKE_POST_LINK += install_name_tool -change @loader_path/libbass.dylib @executable_path/../Frameworks/libbass.dylib ../bin/release/UltraStarManager.app/Contents/MacOS/UltraStarManager $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += install_name_tool -change /usr/local/Cellar/media-info/0.7.93/lib/libzen.0.dylib @executable_path/../Frameworks/libzen.0.dylib ../bin/release/UltraStarManager.app/Contents/Frameworks/libmediainfo.0.dylib $$escape_expand(\\n\\t)	
 	QMAKE_POST_LINK += ../setup/macx/create-dmg --volname UltraStarManager --volicon resources/uman.icns --app-drop-link 350 170 --background ../setup/macx/img/uman_bg.png --hide-extension UltraStarManager.app --window-size 500 300 --text-size 14 --icon-size 64 --icon UltraStarManager.app 150 170 "../bin/release/UltraStarManager.dmg" ../bin/release/UltraStarManager.app/
 }
