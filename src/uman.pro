@@ -327,5 +327,6 @@ macx {
 	QMAKE_POST_LINK += macdeployqt ../bin/release/UltraStarManager.app $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += install_name_tool -change @loader_path/libbass.dylib @executable_path/../Frameworks/libbass.dylib ../bin/release/UltraStarManager.app/Contents/MacOS/UltraStarManager $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += install_name_tool -change /usr/local/Cellar/media-info/0.7.94/lib/libzen.0.dylib @executable_path/../Frameworks/libzen.0.dylib ../bin/release/UltraStarManager.app/Contents/Frameworks/libmediainfo.0.dylib $$escape_expand(\\n\\t)	
+	QMAKE_POST_LINK += install_name_tool -change /usr/local/Cellar/qt5/5.8.0_1/lib/QtWidgets.framework/Versions/5/QtWidgets @executable_path/../Frameworks/QtWidgets.framework/Versions/5/QtWidgets ../bin/release/UltraStarManager.app/Contents/Frameworks/QtPrintSupport.framework/Versions/5/QtPrintSupport $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += ../setup/macx/create-dmg --volname UltraStarManager --volicon resources/uman.icns --app-drop-link 350 170 --background ../setup/macx/img/uman_bg.png --hide-extension UltraStarManager.app --window-size 500 300 --text-size 14 --icon-size 64 --icon UltraStarManager.app 150 170 "../bin/release/UltraStarManager.dmg" ../bin/release/UltraStarManager.app/
 }
