@@ -37,14 +37,14 @@ QT += xml \
 
 CONFIG(release, debug|release) {
 	TARGET = freecovers
-	DESTDIR = ../../../bin/wip/plugins
+	DESTDIR = ../../../bin/release/plugins
 	OBJECTS_DIR = ../tmp/freecovers/release
 	MOC_DIR = ../tmp/freecovers/release
 }
 
 CONFIG(debug, debug|release) {
 	TARGET = freecovers_debug
-	DESTDIR = ../../../bin/wip_debug/plugins
+	DESTDIR = ../../../bin/debug/plugins
 	OBJECTS_DIR = ../tmp/freecovers/debug
 	MOC_DIR = ../tmp/freecovers/debug
 }

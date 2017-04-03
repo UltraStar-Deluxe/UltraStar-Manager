@@ -7,7 +7,6 @@ class QUAlbumArtExImageSource;
 
 class QUAlbumArtExCollector: public QUHttpCollector {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "QUAlbumArtExCollector" FILE "albumartex.json")
 
 public:
 	QUAlbumArtExCollector(QUSongInterface *song, QUAlbumArtExImageSource *source = 0);

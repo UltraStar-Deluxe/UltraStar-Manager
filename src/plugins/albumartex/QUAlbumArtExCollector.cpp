@@ -10,7 +10,10 @@
 #include <QBuffer>
 #include <QRegExp>
 #include <QTextStream>
-#include <QHttp>
+//#include <QHttp>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 #include <QVariant>
 
 QUAlbumArtExCollector::QUAlbumArtExCollector(QUSongInterface *song, QUAlbumArtExImageSource *source): QUHttpCollector(song, source) {}
@@ -77,8 +80,11 @@ void QUAlbumArtExCollector::processSearchResults() {
 //		song()->log(tr("[albumartex - result] ") + "http://" + source()->host() + urls.at(i), QU::Help);
 
 		if(file) {
-			http()->setHost(source()->host());
-			http()->get("http://" + source()->host() + urls.at(i), file);
+			//http()->setHost(source()->host());
+			//http()->get("http://" + source()->host() + urls.at(i), file);
+			QNetworkReply *reply = manager()->get(QNetworkRequest(QUrl("http://" + source()->host() + urls.at(i))));
+			file->write(reply->readAll());
 		}
 	}
 }
+

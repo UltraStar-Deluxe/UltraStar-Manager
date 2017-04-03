@@ -11,7 +11,10 @@
 #include <QBuffer>
 #include <QRegExp>
 #include <QTextStream>
-#include <QHttp>
+//#include <QHttp>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 #include <QVariant>
 
 QUFreeCoversCollector::QUFreeCoversCollector(QUSongInterface *song, QUFreeCoversSource *source): QUHttpCollector(song, source) {}
@@ -47,11 +50,13 @@ void QUFreeCoversCollector::processSearchResults() {
 		QString fileName = response.results().at(i).path().remove("/").remove("preview0");
 		QFile *file = openLocalFile(source()->imageFolder(song()).filePath(fileName));
 
-//		song()->log(tr("[freecovers - result] ") + response.results().at(i).toString(), QU::Help);
+		song()->log(tr("[freecovers - result] ") + response.results().at(i).toString(), QU::Help);
 
 		if(file) {
-			http()->setHost(response.results().at(i).host());
-			http()->get(response.results().at(i).toString(), file);
+			//http()->setHost(response.results().at(i).host());
+			//http()->get(response.results().at(i).toString(), file);
+			QNetworkReply *reply = manager()->get(QNetworkRequest(QUrl(response.results().at(i).toString())));
+			file->write(reply->readAll());
 		}
 	}
 }

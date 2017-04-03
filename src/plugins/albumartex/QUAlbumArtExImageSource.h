@@ -5,6 +5,7 @@
 
 class QUAlbumArtExImageSource: public QUMultilingualImageSource {
 	Q_OBJECT
+	Q_PLUGIN_METADATA(IID "QUAlbumArtExCollector" FILE "albumartex.json")
 
 public:
 	QUAlbumArtExImageSource(QObject *parent = 0);

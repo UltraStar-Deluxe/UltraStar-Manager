@@ -35,14 +35,14 @@ QT += xml \
 
 CONFIG(release, debug|release) {
 	TARGET = albumartex
-	DESTDIR = ../../../bin/wip/plugins
+	DESTDIR = ../../../bin/release/plugins
 	OBJECTS_DIR = ../tmp/albumartex/release
 	MOC_DIR = ../tmp/albumartex/release
 }
 
 CONFIG(debug, debug|release) {
 	TARGET = albumartex_debug
-	DESTDIR = ../../../bin/wip_debug/plugins
+	DESTDIR = ../../../bin/debug/plugins
 	OBJECTS_DIR = ../tmp/albumartex/debug
 	MOC_DIR = ../tmp/albumartex/debug
 }

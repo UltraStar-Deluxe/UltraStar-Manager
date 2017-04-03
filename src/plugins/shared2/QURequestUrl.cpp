@@ -1,17 +1,17 @@
 #include "QURequestUrl.h"
 
-QURequestUrl::QURequestUrl(const QString &host, const QStringList &properties, QUSongInterface *song): QUrl() {	
+QURequestUrl::QURequestUrl(const QString &host, const QStringList &properties, QUSongInterface *song): QUrl() {
 	_song = song;
 	_properties = properties;
 
 	// setup this URL instance
 	setScheme("http");
 	setHost(host);
-	setQueryDelimiters('=', '&');
+	//setQueryDelimiters('=', '&');
 }
 
 QByteArray QURequestUrl::fixedPercentageEncoding() const {
-	return fixedPercentageEncoding(encodedQuery());
+	//return fixedPercentageEncoding(encodedQuery());
 }
 
 QByteArray QURequestUrl::fixedPercentageEncoding(QByteArray source) const {

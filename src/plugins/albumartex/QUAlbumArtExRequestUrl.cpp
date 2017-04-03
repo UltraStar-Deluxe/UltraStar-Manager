@@ -15,7 +15,7 @@ QUAlbumArtExRequestUrl::QUAlbumArtExRequestUrl(const QString &host, const QStrin
 QString QUAlbumArtExRequestUrl::request() const {
 	QString result = QString("http://%1/covers.php?grid=4x7&%2")
 			.arg(host())
-			.arg(QString(fixedPercentageEncoding()));
+			.arg(QString(fixedPercentageEncoding(this->query())));
 
 //	song()->log(tr("[albumartex - search] ") + result, QU::Help);
 
@@ -37,5 +37,5 @@ void QUAlbumArtExRequestUrl::initQuery() {
 	query << QPair<QString, QString>("sort", settings.value("albumartex/sort by").toString());
 	query << QPair<QString, QString>("q", data.join(" ").trimmed());
 	query << QPair<QString, QString>("fltr", settings.value("albumartex/filter").toString());
-	setQueryItems(query);
+	//setQueryItems(query);
 }

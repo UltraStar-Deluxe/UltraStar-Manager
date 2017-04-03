@@ -9,7 +9,10 @@
 #include "QUAmazonRequestUrl.h"
 #include "QUAmazonResponse.h"
 
-#include <QHttp>
+//#include <QHttp>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 #include <QBuffer>
 #include <QFile>
 #include <QDomDocument>
@@ -55,8 +58,10 @@ void QUAmazonImageCollector::processSearchResults() {
 		QFile *file = openLocalFile(source()->imageFolder(song()).filePath(QFileInfo(response.url(i, QU::largeImage).path()).fileName()));
 
 		if(file) {
-			http()->setHost(response.url(i, QU::largeImage).host());
-			http()->get(response.url(i, QU::largeImage).toString(), file);
+			//http()->setHost(response.url(i, QU::largeImage).host());
+			//http()->get(response.url(i, QU::largeImage).toString(), file);
+			QNetworkReply *reply = manager()->get(QNetworkRequest(QUrl(response.url(i, QU::largeImage).toString())));
+			file->write(reply->readAll());
 		}
 	}
 }

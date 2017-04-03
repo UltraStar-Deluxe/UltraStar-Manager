@@ -64,7 +64,7 @@ void QUAmazonRequestUrl::initQuery() {
 
 	query << QPair<QString, QString>("Version", "2009-03-31");
 
-	setQueryItems(query);
+	//setQueryItems(query);
 }
 
 QString QUAmazonRequestUrl::stringToSign() const {

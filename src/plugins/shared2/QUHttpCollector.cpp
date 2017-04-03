@@ -7,7 +7,10 @@
 
 #include "QUSongSupport.h"
 
-#include <QHttp>
+//#include <QHttp>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 #include <QBuffer>
 #include <QFile>
 #include <QDomDocument>
@@ -28,26 +31,30 @@ void QUHttpCollector::clearBuffer() {
 }
 
 void QUHttpCollector::initNetwork() {
-	_http = new QHttp(this);
-	connect(_http, SIGNAL(stateChanged(int)), this, SLOT(processNetworkStateChange(int)));
-	connect(_http, SIGNAL(done(bool)), this, SLOT(processNetworkOperationDone(bool)));
+	//_http = new QHttp(this);
+	//connect(_http, SIGNAL(stateChanged(int)), this, SLOT(processNetworkStateChange(int)));
+	//connect(_http, SIGNAL(done(bool)), this, SLOT(processNetworkOperationDone(bool)));
+	_manager = new QNetworkAccessManager(this);
+	connect(_manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(processNetworkReply(QNetworkReply*)));
 
 	_buffer = 0;
 }
 
 void QUHttpCollector::collect() {
-	if(http()->hasPendingRequests() or state() != Idle) {
-		song()->log(tr("Could not get covers for \"%1 - %2\". HTTP connection is busy.").arg(song()->artist()).arg(song()->title()), QU::Warning);
-		return;
-	}
+	//if(http()->hasPendingRequests() or state() != Idle) {
+	//	song()->log(tr("Could not get covers for \"%1 - %2\". HTTP connection is busy.").arg(song()->artist()).arg(song()->title()), QU::Warning);
+	//	return;
+	//}
 
 	QURequestUrl *url = this->url();
 
 	setState(SearchRequest);
 
 	clearBuffer();
-	http()->setHost(url->host());
-	http()->get(url->request(), buffer());
+	//http()->setHost(url->host());
+	//http()->get(url->request(), buffer());
+	QNetworkReply *reply = manager()->get(QNetworkRequest(QUrl(url->request())));
+	buffer()->setData(reply->readAll());
 
 	delete url;
 }
@@ -57,19 +64,19 @@ QFileInfoList QUHttpCollector::results() const {
 }
 
 void QUHttpCollector::processNetworkStateChange(int state) {
-	if(state == QHttp::Sending)
-		communicator()->send(tr("Sending..."));
-	else if(state == QHttp::Reading)
-		communicator()->send(tr("Reading..."));
+//	if(state == QHttp::Sending)
+//		communicator()->send(tr("Sending..."));
+//	else if(state == QHttp::Reading)
+//		communicator()->send(tr("Reading..."));
 }
 
-void QUHttpCollector::processNetworkOperationDone(bool error) {
+void QUHttpCollector::processNetworkReply(QNetworkReply* reply) {
 	int count = localFiles().size();
 	closeLocalFiles();
 
-	if(error) {
+	if(reply->error() != QNetworkReply::NoError) {
 		setState(Idle);
-		communicator()->send(http()->errorString());
+		communicator()->send(reply->errorString());
 		communicator()->send(QUCommunicatorInterface::Failed);
 		return;
 	}
