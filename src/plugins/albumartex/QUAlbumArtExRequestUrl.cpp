@@ -6,6 +6,7 @@
 #include "QUSongInterface.h"
 
 #include <QVariant>
+#include <QUrlQuery>
 #include <QSettings>
 
 QUAlbumArtExRequestUrl::QUAlbumArtExRequestUrl(const QString &host, const QStringList &properties, QUSongInterface *song): QURequestUrl(host, properties, song) {
@@ -13,17 +14,17 @@ QUAlbumArtExRequestUrl::QUAlbumArtExRequestUrl(const QString &host, const QStrin
 }
 
 QString QUAlbumArtExRequestUrl::request() const {
-	QString result = QString("http://%1/covers.php?grid=4x7&%2")
+	QString result = QString("http://%1/covers?%2")
 			.arg(host())
-			.arg(QString(fixedPercentageEncoding(this->query())));
+			.arg(QString(fixedPercentageEncoding(this->query().toUtf8())));
 
-//	song()->log(tr("[albumartex - search] ") + result, QU::Help);
+	song()->log(tr("[albumartex - search] ") + result, QU::Help);
 
 	return result;
 }
 
 void QUAlbumArtExRequestUrl::initQuery() {
-	QList<QPair<QString, QString> > query;
+	QUrlQuery query;
 
 	QStringList data;
 	foreach(QString property, properties()) {
@@ -34,8 +35,10 @@ void QUAlbumArtExRequestUrl::initQuery() {
 	}
 
 	QSettings settings;
-	query << QPair<QString, QString>("sort", settings.value("albumartex/sort by").toString());
-	query << QPair<QString, QString>("q", data.join(" ").trimmed());
-	query << QPair<QString, QString>("fltr", settings.value("albumartex/filter").toString());
-	//setQueryItems(query);
+	query.addQueryItem("q", data.join(" ").trimmed());
+	query.addQueryItem("fltr", settings.value("albumartex/filter").toString());
+	query.addQueryItem("sort", settings.value("albumartex/sort by").toString());
+	query.addQueryItem("status", settings.value("albumartex/image status").toString());
+	query.addQueryItem("size", settings.value("albumartex/image size").toString());
+	this->setQuery(query);
 }

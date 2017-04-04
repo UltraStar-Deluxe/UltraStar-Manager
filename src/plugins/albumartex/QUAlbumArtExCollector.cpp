@@ -10,7 +10,6 @@
 #include <QBuffer>
 #include <QRegExp>
 #include <QTextStream>
-//#include <QHttp>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
@@ -26,48 +25,36 @@ QURequestUrl* QUAlbumArtExCollector::url() const {
 }
 
 void QUAlbumArtExCollector::processSearchResults() {
-	QRegExp rx = QRegExp("img src=\"/gallery/images/public/(.*)\" width=.*(\\d+)&times;(\\d+)\"");
+	QRegExp rx = QRegExp("<div class=\"img-box\" style=\"background-image: url\\(/coverart/_tn/(.*)\\);\">(.*)<p class=\"image-info\"><span class=\"dimensions\">(\\d+)&times;(\\d+)</span>");
 
 	rx.setMinimal(true);
 	rx.setCaseSensitivity(Qt::CaseInsensitive);
 
 	QString text(buffer()->data());
 //	song()->log(tr("[albumartex - result] ") + text, QU::Help);
-	QStringList allUrls;
+	QStringList urls;
 	QList<QPair<int, int> > resolutions;
 	int pos = 0;
 
 	while ((pos = rx.indexIn(text, pos)) != -1) {
-		allUrls << "/gallery/images/public/" + rx.cap(1).trimmed().replace("%2F", "/").replace("/_", "/").replace(".tn.", ".");
-		resolutions << QPair<int, int>(QVariant(rx.cap(2)).toInt(), QVariant(rx.cap(3)).toInt());
+		urls << "/coverart/gallery/" + rx.cap(1).trimmed();
+		resolutions << QPair<int, int>(QVariant(rx.cap(3)).toInt(), QVariant(rx.cap(4)).toInt());
 		pos += rx.matchedLength();
 	}
 
+	/*
 	rx.setPattern("Images (\\d+)\\-(\\d+) of (\\d+)\\.");
 	rx.indexIn(text);
 	int from = QVariant(rx.cap(1)).toInt();
 	int to = QVariant(rx.cap(2)).toInt();
 	int last = QVariant(rx.cap(3)).toInt();
+	*/
 
 	handleOldDownloads();
 
-	QStringList urls;
-	QPair<int, int> maxResolution(
-			QVariant(source()->customDataField(source()->customDataFields().at(0))).toInt(),
-			QVariant(source()->customDataField(source()->customDataFields().at(1))).toInt());
-	for(int i = 0; i < allUrls.size(); i++)
-		if(resolutions.at(i).first <= maxResolution.first and
-		   resolutions.at(i).second <= maxResolution.second)
-			urls << allUrls.at(i);
-
-	ignoredUrls = allUrls.size() - qMin(urls.size(), source()->limit()) + last - to;
-
 	if(urls.isEmpty()) {
 		setState(Idle);
-		if(ignoredUrls > 0)
-			communicator()->send(tr("No results, %1 ignored.").arg(ignoredUrls));
-		else
-			communicator()->send(tr("No results."));
+		communicator()->send(tr("No results."));
 		communicator()->send(QUCommunicatorInterface::Done);
 		return;
 	}
@@ -77,14 +64,12 @@ void QUAlbumArtExCollector::processSearchResults() {
 	for(int i = 0; i < urls.size() and i < source()->limit(); i++) {
 		QFile *file = openLocalFile(source()->imageFolder(song()).filePath(QFileInfo(urls.at(i)).fileName()));
 
-//		song()->log(tr("[albumartex - result] ") + "http://" + source()->host() + urls.at(i), QU::Help);
+		song()->log(tr("[albumartex - result] ") + "http://" + source()->host() + urls.at(i), QU::Help);
 
 		if(file) {
-			//http()->setHost(source()->host());
-			//http()->get("http://" + source()->host() + urls.at(i), file);
-			QNetworkReply *reply = manager()->get(QNetworkRequest(QUrl("http://" + source()->host() + urls.at(i))));
-			file->write(reply->readAll());
+			manager()->get(QNetworkRequest(QUrl("http://" + source()->host() + urls.at(i))));
+			// FIX ME: this cannot be done here, because the request is not done yet!
+			file->write(buffer()->data());
 		}
 	}
 }
-

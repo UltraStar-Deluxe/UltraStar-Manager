@@ -19,7 +19,6 @@ QUHttpCollector::QUHttpCollector(QUSongInterface *song, QUMultilingualImageSourc
 	_song = song;
 	_source = source;
 	_communicator = 0;
-	ignoredUrls = 0;
 	initNetwork();
 	setState(Idle);
 }
@@ -53,8 +52,7 @@ void QUHttpCollector::collect() {
 	clearBuffer();
 	//http()->setHost(url->host());
 	//http()->get(url->request(), buffer());
-	QNetworkReply *reply = manager()->get(QNetworkRequest(QUrl(url->request())));
-	buffer()->setData(reply->readAll());
+	manager()->get(QNetworkRequest(QUrl(url->request())));
 
 	delete url;
 }
@@ -81,8 +79,9 @@ void QUHttpCollector::processNetworkReply(QNetworkReply* reply) {
 		return;
 	}
 
+	buffer()->setData(reply->readAll());
+
 	if(state() == SearchRequest) {
-		ignoredUrls = 0;
 		processSearchResults();
 	} else if(state() == ImageRequest)
 		processImageResults(count);
@@ -119,9 +118,6 @@ void QUHttpCollector::handleOldDownloads() {
 
 void QUHttpCollector::processImageResults(int count) {
 	setState(Idle);
-	if(ignoredUrls > 0)
-		communicator()->send(tr("%1 results, %2 ignored").arg(count).arg(ignoredUrls));
-	else
-		communicator()->send(tr("%1 results").arg(count));
+	communicator()->send(tr("%1 results").arg(count));
 	communicator()->send(QUCommunicatorInterface::Done);
 }
