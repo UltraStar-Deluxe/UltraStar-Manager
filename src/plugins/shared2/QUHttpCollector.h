@@ -40,7 +40,6 @@ protected:
 	void setState(State s) { _state = s; }
 
 	QUMultilingualImageSource* source() const { return _source; }
-	//QHttp* http() const { return _http; }
 	QNetworkAccessManager*  manager() const { return _manager; }
 	QUSongInterface* song() const { return _song; }
 
@@ -58,7 +57,7 @@ protected:
 	virtual QURequestUrl* url() const = 0;
 
 	virtual void processSearchResults() = 0;
-	virtual void processImageResults(int count, QNetworkReply* reply);
+	virtual void processImageResults(QNetworkReply* reply);
 
 private:
 	State						_state;

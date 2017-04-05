@@ -7,7 +7,6 @@
 
 #include "QUSongSupport.h"
 
-//#include <QHttp>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
@@ -72,8 +71,8 @@ void QUHttpCollector::processNetworkStateChange(int state) {
 
 void QUHttpCollector::processNetworkReply(QNetworkReply* reply) {
 	song()->log(tr("[albumartex] in QUHttpCollector::processNetworkReply()"), QU::Help);
-	int count = localFiles().size();
-	closeLocalFiles();
+	//int count = localFiles().size();
+	//closeLocalFiles();
 
 	if(reply->error() != QNetworkReply::NoError) {
 		setState(Idle);
@@ -88,7 +87,7 @@ void QUHttpCollector::processNetworkReply(QNetworkReply* reply) {
 		processSearchResults();
 	} else if(state() == ImageRequest)
 		song()->log(tr("[albumartex] in QUHttpCollector::processNetworkReply(), state() = ") + QString::number(state()), QU::Help);
-		processImageResults(count, reply);
+		processImageResults(reply);
 }
 
 QFile* QUHttpCollector::openLocalFile(const QString &filePath) {
@@ -120,7 +119,7 @@ void QUHttpCollector::handleOldDownloads() {
 	}
 }
 
-void QUHttpCollector::processImageResults(int count, QNetworkReply* reply) {
+void QUHttpCollector::processImageResults(QNetworkReply* reply) {
 	song()->log(tr("[albumartex] in QUHttpCollector::processImageResults(), state() = ") + QString::number(state()), QU::Help);
 	QUrl url = reply->url();
 	QFile *file = openLocalFile(source()->imageFolder(song()).filePath(QFileInfo(url.toString()).fileName()));
