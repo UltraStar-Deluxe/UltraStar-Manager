@@ -5,7 +5,6 @@
 
 #include "QURemoteImageSourcePlugin.h"
 
-//class QHttp;
 class QNetworkAccessManager;
 class QNetworkReply;
 class QBuffer;
@@ -33,7 +32,7 @@ public:
 	virtual void collect();
 
 protected slots:
-	virtual void processNetworkStateChange(int state);
+	//virtual void processNetworkStateChange(int state);
 	virtual void processNetworkReply(QNetworkReply* reply);
 
 protected:
@@ -59,13 +58,12 @@ protected:
 	virtual QURequestUrl* url() const = 0;
 
 	virtual void processSearchResults() = 0;
-	virtual void processImageResults(int count);
+	virtual void processImageResults(int count, QNetworkReply* reply);
 
 private:
 	State						_state;
 	QUMultilingualImageSource	*_source;
 	QUCommunicatorInterface		*_communicator;
-	//QHttp						*_http;
 	QNetworkAccessManager		*_manager;
 	QUSongInterface				*_song;
 	QBuffer						*_buffer;

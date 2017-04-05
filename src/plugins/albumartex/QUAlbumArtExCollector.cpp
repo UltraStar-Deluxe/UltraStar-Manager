@@ -25,6 +25,7 @@ QURequestUrl* QUAlbumArtExCollector::url() const {
 }
 
 void QUAlbumArtExCollector::processSearchResults() {
+	song()->log(tr("[albumartex] in QUAlbumArtExCollector::processSearchResults(), state() = ") + QString::number(state()), QU::Help);
 	QRegExp rx = QRegExp("<div class=\"img-box\" style=\"background-image: url\\(/coverart/_tn/(.*)\\);\">(.*)<p class=\"image-info\"><span class=\"dimensions\">(\\d+)&times;(\\d+)</span>");
 
 	rx.setMinimal(true);
@@ -62,14 +63,7 @@ void QUAlbumArtExCollector::processSearchResults() {
 	setState(ImageRequest);
 
 	for(int i = 0; i < urls.size() and i < source()->limit(); i++) {
-		QFile *file = openLocalFile(source()->imageFolder(song()).filePath(QFileInfo(urls.at(i)).fileName()));
-
 		song()->log(tr("[albumartex - result] ") + "http://" + source()->host() + urls.at(i), QU::Help);
-
-		if(file) {
-			manager()->get(QNetworkRequest(QUrl("http://" + source()->host() + urls.at(i))));
-			// FIX ME: this cannot be done here, because the request is not done yet!
-			file->write(buffer()->data());
-		}
+		manager()->get(QNetworkRequest(QUrl("http://" + source()->host() + urls.at(i))));
 	}
 }

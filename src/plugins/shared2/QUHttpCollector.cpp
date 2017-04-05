@@ -40,10 +40,10 @@ void QUHttpCollector::initNetwork() {
 }
 
 void QUHttpCollector::collect() {
-	//if(http()->hasPendingRequests() or state() != Idle) {
-	//	song()->log(tr("Could not get covers for \"%1 - %2\". HTTP connection is busy.").arg(song()->artist()).arg(song()->title()), QU::Warning);
-	//	return;
-	//}
+	if(/*http()->hasPendingRequests() or*/ state() != Idle) {
+		song()->log(tr("Could not get covers for \"%1 - %2\". HTTP connection is busy.").arg(song()->artist()).arg(song()->title()), QU::Warning);
+		return;
+	}
 
 	QURequestUrl *url = this->url();
 
@@ -61,14 +61,17 @@ QFileInfoList QUHttpCollector::results() const {
 	return source()->imageFolder(song()).entryInfoList(QUSongSupport::allowedImageFiles(), QDir::Files, QDir::Name);
 }
 
+/*
 void QUHttpCollector::processNetworkStateChange(int state) {
-//	if(state == QHttp::Sending)
-//		communicator()->send(tr("Sending..."));
-//	else if(state == QHttp::Reading)
-//		communicator()->send(tr("Reading..."));
+	if(state == QHttp::Sending)
+		communicator()->send(tr("Sending..."));
+	else if(state == QHttp::Reading)
+		communicator()->send(tr("Reading..."));
 }
+*/
 
 void QUHttpCollector::processNetworkReply(QNetworkReply* reply) {
+	song()->log(tr("[albumartex] in QUHttpCollector::processNetworkReply()"), QU::Help);
 	int count = localFiles().size();
 	closeLocalFiles();
 
@@ -79,12 +82,13 @@ void QUHttpCollector::processNetworkReply(QNetworkReply* reply) {
 		return;
 	}
 
-	buffer()->setData(reply->readAll());
-
 	if(state() == SearchRequest) {
+		song()->log(tr("[albumartex] in QUHttpCollector::processNetworkReply(), state() = ") + QString::number(state()), QU::Help);
+		buffer()->setData(reply->readAll());
 		processSearchResults();
 	} else if(state() == ImageRequest)
-		processImageResults(count);
+		song()->log(tr("[albumartex] in QUHttpCollector::processNetworkReply(), state() = ") + QString::number(state()), QU::Help);
+		processImageResults(count, reply);
 }
 
 QFile* QUHttpCollector::openLocalFile(const QString &filePath) {
@@ -116,8 +120,16 @@ void QUHttpCollector::handleOldDownloads() {
 	}
 }
 
-void QUHttpCollector::processImageResults(int count) {
+void QUHttpCollector::processImageResults(int count, QNetworkReply* reply) {
+	song()->log(tr("[albumartex] in QUHttpCollector::processImageResults(), state() = ") + QString::number(state()), QU::Help);
+	QUrl url = reply->url();
+	QFile *file = openLocalFile(source()->imageFolder(song()).filePath(QFileInfo(url.toString()).fileName()));
+
+	if(file) {
+		file->write(reply->readAll());
+	}
+
 	setState(Idle);
-	communicator()->send(tr("%1 results").arg(count));
+	communicator()->send(tr("%1 results").arg(localFiles().size()));
 	communicator()->send(QUCommunicatorInterface::Done);
 }

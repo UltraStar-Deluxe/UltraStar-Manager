@@ -34,7 +34,7 @@ QString QUAlbumArtExImageSource::defaultValue(const QString &key) const {
 	else if(QString::compare(key, songDataFields().at(1), Qt::CaseInsensitive) == 0)
 		return "TITLE";
 	else if(QString::compare(key, customDataFields().first(), Qt::CaseInsensitive) == 0)
-		return "ARTISTTITLE";
+		return "ALL";
 	else if(QString::compare(key, customDataFields().at(1), Qt::CaseInsensitive) == 0)
 		return "DATE";
 	else if(QString::compare(key, customDataFields().at(2), Qt::CaseInsensitive) == 0)

@@ -11,11 +11,12 @@ QURequestUrl::QURequestUrl(const QString &host, const QStringList &properties, Q
 }
 
 QByteArray QURequestUrl::fixedPercentageEncoding() const {
-	//return fixedPercentageEncoding(encodedQuery());
+	return fixedPercentageEncoding(QUrl(this->url()).toEncoded());
 }
 
 QByteArray QURequestUrl::fixedPercentageEncoding(QByteArray source) const {
 	return source
+		.replace(" ", "%20")
 		.replace(":", "%3A")
 		.replace("/", "%2F")
 		.replace("?", "%3F")
