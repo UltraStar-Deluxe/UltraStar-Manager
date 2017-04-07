@@ -14,14 +14,15 @@ QUStringSupport::QUStringSupport(QObject *parent): QObject(parent) {}
  */
 QString QUStringSupport::withoutUnsupportedCharacters(const QString &text) {
 	QString cleanText = text;
-//MB: to create songs that are cross-platform compatible, all potentially critical characters on all platforms should be removed
-//#ifdef Q_OS_WIN32
+
+	// create songs that are cross-platform compatible by replacing/removing all potentially illegal characters
+
 	// replace colons by dashes
 	cleanText.replace(':', '-');
 	// replace asterixes by dashes
 	cleanText.replace('*', '-');
-	// remove everything else: '\', ':', '*', '?', '"', '|', '<', '>'
-	cleanText.remove(QRegExp("[\\\\:\\*\\?\"\\|<>]"));
+	// remove everything else: '\', ':', '*', '?', '"', '|', '<', '>', '^'
+	cleanText.remove(QRegExp("[\\\\:\\*\\?\"\\|<>\\^]"));
 
 	bool dotsRemoved = false;
 
@@ -41,7 +42,7 @@ QString QUStringSupport::withoutUnsupportedCharacters(const QString &text) {
 
 	if(dotsRemoved)
 		cleanText = cleanText.trimmed();
-//#endif
+
 	return cleanText;
 }
 
