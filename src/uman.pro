@@ -296,7 +296,10 @@ unix:!macx {
 }
 
 win32 {
+	# Run windeployqt to bundle the required Qt libraries with the application
 	QMAKE_POST_LINK += windeployqt --release --no-translations --no-system-d3d-compiler --compiler-runtime --no-angle --no-opengl-sw ..\bin\release\UltraStarManager.exe $$escape_expand(\\n\\t)
+
+	# Clean up after running windeployqt, removing some superfluous Qt libraries
 	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/Qt5Svg.dll) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/iconengines/qsvgicon.dll) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_DEL_DIR} $$shell_path($${DESTDIR}/iconengines) $$escape_expand(\\n\\t)
@@ -307,11 +310,17 @@ win32 {
 	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/imageformats/qtiff.dll) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/imageformats/qwbmp.dll) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/imageformats/qwebp.dll) $$escape_expand(\\n\\t)
+
+	# Manually add bass and libtag libraries
 	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../lib/win32/bass.dll) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../lib/win32/libtag.dll) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
+
+	# Manually add styles files and changes.txt
 	QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, $$shell_path($${DESTDIR}/styles/)) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(styles/*.css) $$shell_path($${DESTDIR}/styles/) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../doc/changes.txt) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
+
+	# Create a fancy Windows installer
 	#QMAKE_POST_LINK += $$shell_quote(C:\Program Files (x86)\NSIS\makensis.exe) $$shell_path(../setup/win32/uman.nsi) $$escape_expand(\\n\\t)
 }
 
@@ -324,7 +333,11 @@ macx {
 	QMAKE_BUNDLE_DATA += dylibs
 	ICON = resources/uman.icns
 
+	# Run macdeployqt to bundle the required Qt libraries with the application
 	QMAKE_POST_LINK += macdeployqt ../bin/release/UltraStarManager.app $$escape_expand(\\n\\t)
+
+	# These manual path fixes are only necessary for the AppVeyor CI build, since Qt is installed via brew and only gets symlinked. Unfortunately, symlinks currently do not work with macdeployqt.
+	# For details, see https://bugreports.qt.io/browse/QTBUG-56814. This is issue is expected to be fixed in Qt 5.10.
 	QMAKE_POST_LINK += install_name_tool -change @loader_path/libbass.dylib @executable_path/../Frameworks/libbass.dylib ../bin/release/UltraStarManager.app/Contents/MacOS/UltraStarManager $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += install_name_tool -change /usr/local/Cellar/media-info/0.7.94/lib/libzen.0.dylib @executable_path/../Frameworks/libzen.0.dylib ../bin/release/UltraStarManager.app/Contents/Frameworks/libmediainfo.0.dylib $$escape_expand(\\n\\t)	
 	QMAKE_POST_LINK += install_name_tool -change /usr/local/Cellar/qt5/5.8.0_1/lib/QtWidgets.framework/Versions/5/QtWidgets @executable_path/../Frameworks/QtWidgets.framework/Versions/5/QtWidgets ../bin/release/UltraStarManager.app/Contents/Frameworks/QtPrintSupport.framework/Versions/5/QtPrintSupport $$escape_expand(\\n\\t)
@@ -342,5 +355,7 @@ macx {
 	QMAKE_POST_LINK += install_name_tool -change /usr/local/Cellar/qt5/5.8.0_1/lib/QtCore.framework/Versions/5/QtCore @executable_path/../Frameworks/QtCore.framework/Versions/5/QtCore ../bin/release/UltraStarManager.app/Contents/PlugIns/platforms/libqcocoa.dylib $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += install_name_tool -change /usr/local/Cellar/qt5/5.8.0_1/lib/QtPrintSupport.framework/Versions/5/QtPrintSupport @executable_path/../Frameworks/QtPrintSupport.framework/Versions/5/QtPrintSupport ../bin/release/UltraStarManager.app/Contents/PlugIns/platforms/libqcocoa.dylib $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += install_name_tool -change /usr/local/Cellar/qt5/5.8.0_1/lib/QtWidgets.framework/Versions/5/QtWidgets @executable_path/../Frameworks/QtWidgets.framework/Versions/5/QtWidgets ../bin/release/UltraStarManager.app/Contents/PlugIns/platforms/libqcocoa.dylib $$escape_expand(\\n\\t)
+
+	# Create a fancy Mac disk image
 	QMAKE_POST_LINK += ../setup/macx/create-dmg --volname UltraStarManager --volicon resources/uman.icns --app-drop-link 350 170 --background ../setup/macx/img/uman_bg.png --hide-extension UltraStarManager.app --window-size 500 300 --text-size 14 --icon-size 64 --icon UltraStarManager.app 150 170 "../bin/release/UltraStarManager.dmg" ../bin/release/UltraStarManager.app/
 }
