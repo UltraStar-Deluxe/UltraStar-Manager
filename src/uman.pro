@@ -1,5 +1,6 @@
 TEMPLATE = app
 UI_DIR = ui
+
 QT += core \
 	gui \
 	widgets \
@@ -7,8 +8,6 @@ QT += core \
 	xml \
 	network \
 	printsupport
-
-#CONFIG += release
 
 CONFIG(release, debug|release) {
 	TARGET = "UltraStarManager"
@@ -107,6 +106,7 @@ HEADERS += plugins/QUPluginManager.h \
 	preferences/QUEncodingsDialog.h \
 	report/QUCSVReport.h
 #	support/qkFileWatcher.h
+
 SOURCES += plugins/QUPluginManager.cpp \
 	plugins/QUPluginDialog.cpp \
 	plugins/QUPluginModel.cpp \
@@ -183,6 +183,7 @@ SOURCES += plugins/QUPluginManager.cpp \
 	preferences/QUEncodingsDialog.cpp \
 	report/QUCSVReport.cpp
 	#support/qkFileWatcher.cpp
+
 FORMS += plugins/QUPluginDialog.ui \
 	QUMainWindow.ui \
 	QUAboutDialog.ui \
@@ -204,12 +205,15 @@ FORMS += plugins/QUPluginDialog.ui \
 	remoteimages/QURemoteImageDialog.ui \
 	remoteimages/QUCoverGroup.ui \
 	preferences/QUEncodingsDialog.ui
+
 RESOURCES += resources/uman.qrc
+
 TRANSLATIONS = resources/lang/uman.de.ts \
 	resources/lang/uman.pl.ts \
 	resources/lang/uman.es.ts \
 	resources/lang/uman.fr.ts \
 	resources/lang/uman.pt.ts
+
 INCLUDEPATH += . \
 	song \
 	songdetails \
@@ -232,6 +236,7 @@ INCLUDEPATH += . \
 	lyricseditor \
 	score \
 	remoteimages
+
 INCLUDEPATH += ../include/bass
 
 win32 {
