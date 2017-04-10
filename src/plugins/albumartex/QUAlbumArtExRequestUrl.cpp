@@ -24,16 +24,15 @@ QString QUAlbumArtExRequestUrl::request() const {
 }
 
 void QUAlbumArtExRequestUrl::initQuery() {
-	QUrlQuery query;
-
 	QStringList data;
 	foreach(QString property, properties()) {
 		if(QUSongSupport::availableCustomTags().contains(property, Qt::CaseInsensitive))
-			data <<	(QUStringSupport::withoutAnyUmlaut(song()->customTag(property)));
+			data << (QUStringSupport::withoutAnyUmlaut(song()->customTag(property)));
 		else
 			data << (QUStringSupport::withoutAnyUmlaut(song()->property(property.toLower().toLocal8Bit().data()).toString()));
 	}
 
+	QUrlQuery query;
 	QSettings settings;
 	query.addQueryItem("q", data.join(" ").trimmed());
 	query.addQueryItem("fltr", settings.value("albumartex/filter").toString());

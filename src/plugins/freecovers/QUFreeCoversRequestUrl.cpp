@@ -14,8 +14,7 @@ QUFreeCoversRequestUrl::QUFreeCoversRequestUrl(const QString &host, const QStrin
 QString QUFreeCoversRequestUrl::request() const {
 	QString result = QString("http://%1/api/search/%2/Music+CD")
 			.arg(host())
-			//.arg(QString(fixedPercentageEncoding(encodedPath())));
-			.arg("foo");
+			.arg(QString(fixedPercentageEncoding(this->path().toUtf8())));
 
 	song()->log(tr("[freecovers - search] ") + result, QU::Help);
 

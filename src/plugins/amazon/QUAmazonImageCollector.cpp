@@ -54,14 +54,17 @@ void QUAmazonImageCollector::processSearchResults() {
 	setState(ImageRequest);
 
 	for(int i = 0; i < response.count() and i < source()->limit(); i++) {
-//		song()->log(tr("[amazon - result] ") + response.url(i, QU::largeImage).toString(), QU::Help);
-		QFile *file = openLocalFile(source()->imageFolder(song()).filePath(QFileInfo(response.url(i, QU::largeImage).path()).fileName()));
+		song()->log(tr("[amazon - result] ") + response.url(i, QU::largeImage).toString(), QU::Help);
+		manager()->get(QNetworkRequest(QUrl(response.url(i, QU::largeImage).toString())));
+	}
+}
 
-		if(file) {
-			//http()->setHost(response.url(i, QU::largeImage).host());
-			//http()->get(response.url(i, QU::largeImage).toString(), file);
-			QNetworkReply *reply = manager()->get(QNetworkRequest(QUrl(response.url(i, QU::largeImage).toString())));
-			file->write(reply->readAll());
-		}
+void QUAmazonImageCollector::processImageResults(QNetworkReply* reply) {
+	song()->log(tr("[QUAmazonImageCollector] processImageResults(), state() = ") + QString::number(state()), QU::Help);
+	QUrl url = reply->url();
+	QFile *file = openLocalFile(source()->imageFolder(song()).filePath(QFileInfo(url.toString().remove("/").remove("preview0")).fileName()));
+
+	if(file) {
+		file->write(reply->readAll());
 	}
 }

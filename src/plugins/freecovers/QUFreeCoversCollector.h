@@ -14,6 +14,7 @@ public:
 protected:
 	virtual QURequestUrl* url() const;
 	virtual void processSearchResults();
+	virtual void processImageResults(QNetworkReply* reply);
 };
 
 #endif // QUFREECOVERSCOLLECTOR_H

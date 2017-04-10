@@ -11,7 +11,6 @@
 #include <QBuffer>
 #include <QRegExp>
 #include <QTextStream>
-//#include <QHttp>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
@@ -27,8 +26,10 @@ QURequestUrl* QUFreeCoversCollector::url() const {
 }
 
 void QUFreeCoversCollector::processSearchResults() {
+	song()->log(tr("[QUFreeCoversCollector] processSearchResults(), state() = ") + QString::number(state()), QU::Help);
 	QDomDocument doc; doc.setContent(buffer()->data());
 	QUFreeCoversResponse response(doc);
+	song()->log(tr("[freecovers - result] ") + buffer()->data(), QU::Help);
 
 	handleOldDownloads();
 
@@ -47,16 +48,17 @@ void QUFreeCoversCollector::processSearchResults() {
 	setState(ImageRequest);
 
 	for(int i = 0; i < response.results().size() && i < source()->limit(); i++) {
-		QString fileName = response.results().at(i).path().remove("/").remove("preview0");
-		QFile *file = openLocalFile(source()->imageFolder(song()).filePath(fileName));
+		song()->log(tr("[albumartex - result] ") + "http://" + source()->host() + response.results().at(i).toString(), QU::Help);
+		manager()->get(QNetworkRequest(QUrl(response.results().at(i).toString())));
+	}
+}
 
-		song()->log(tr("[freecovers - result] ") + response.results().at(i).toString(), QU::Help);
+void QUFreeCoversCollector::processImageResults(QNetworkReply* reply) {
+	song()->log(tr("[QUFreeCoversCollector] processImageResults(), state() = ") + QString::number(state()), QU::Help);
+	QUrl url = reply->url();
+	QFile *file = openLocalFile(source()->imageFolder(song()).filePath(QFileInfo(url.toString().remove("/").remove("preview0")).fileName()));
 
-		if(file) {
-			//http()->setHost(response.results().at(i).host());
-			//http()->get(response.results().at(i).toString(), file);
-			QNetworkReply *reply = manager()->get(QNetworkRequest(QUrl(response.results().at(i).toString())));
-			file->write(reply->readAll());
-		}
+	if(file) {
+		file->write(reply->readAll());
 	}
 }
