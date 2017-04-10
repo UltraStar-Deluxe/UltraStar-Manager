@@ -1,6 +1,6 @@
 XPStyle on
 
-!define PRODUCTNAME "UltraStarManager"
+!define PRODUCTNAME "UltraStar-Manager"
 !define PRODUCTVERSION "1.8.4"
 Name "${PRODUCTNAME} ${PRODUCTVERSION}"
 
@@ -16,7 +16,7 @@ Name "${PRODUCTNAME} ${PRODUCTVERSION}"
 !define BASE_REGKEY "Software\HPI\${PRODUCTNAME}"
 !define UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCTNAME}"
 
-OutFile "..\UltraStarManager-${PRODUCTVERSION}-win32-setup.exe"
+OutFile "..\UltraStar-Manager-${PRODUCTVERSION}-win32-setup.exe"
 InstallDir "$PROGRAMFILES\${PRODUCTNAME}"
 InstallDirRegKey HKCU "Software\HPI\${PRODUCTNAME}" ""
 
@@ -31,7 +31,7 @@ RequestExecutionLevel admin
 !define MUI_ABORTWARNING
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\changes.txt"
-!define MUI_FINISHPAGE_RUN "$INSTDIR\UltraStarManager.exe"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\UltraStar-Manager.exe"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
 Var MUI_TEMP
@@ -72,7 +72,7 @@ Section "Application" SecCopyUI
 	;;File "Qt5Svg.dll" ;; added via windeployqt, but not needed
 	File "Qt5Widgets.dll"
 	File "Qt5Xml.dll"
-	File "UltraStarManager.exe"
+	File "UltraStar-Manager.exe"
 	SetOutPath "$INSTDIR\bearer"
 	File "bearer\qgenericbearer.dll"
 	File "bearer\qnativewifibearer.dll"
@@ -194,7 +194,7 @@ Section "Application" SecCopyUI
 	;; Start Menu
 	!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 	CreateDirectory "$SMPROGRAMS\$STARTMENU_FOLDER"
-	CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\${PRODUCTNAME}.lnk" "$INSTDIR\UltraStarManager.exe"
+	CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\${PRODUCTNAME}.lnk" "$INSTDIR\UltraStar-Manager.exe"
 	CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall ${PRODUCTNAME}.lnk" "$INSTDIR\Uninstall.exe"
 	!insertmacro MUI_STARTMENU_WRITE_END
 
@@ -202,7 +202,7 @@ Section "Application" SecCopyUI
 	WriteRegStr HKLM "${UNINST_KEY}" "DisplayName" "${PRODUCTNAME}"
 	WriteRegStr HKLM "${UNINST_KEY}" "UninstallString" '"$INSTDIR\Uninstall.exe"'
 	WriteRegStr HKLM "${UNINST_KEY}" "InstallLocation" $INSTDIR
-	WriteRegStr HKLM "${UNINST_KEY}" "DisplayIcon" "$INSTDIR\UltraStarManager.exe,0"
+	WriteRegStr HKLM "${UNINST_KEY}" "DisplayIcon" "$INSTDIR\UltraStar-Manager.exe,0"
 	WriteRegStr HKLM "${UNINST_KEY}" "Publisher" "uman Community"
 	WriteRegStr HKLM "${UNINST_KEY}" "DisplayVersion" "${PRODUCTVERSION}"
 	WriteRegDWORD HKLM "${UNINST_KEY}" "NoModify" 1
@@ -339,7 +339,7 @@ Section "Uninstall"
 	;;Delete "$INSTDIR\Qt5Svg.dll"
 	Delete "$INSTDIR\Qt5Widgets.dll"
 	Delete "$INSTDIR\Qt5Xml.dll"
-	Delete "$INSTDIR\UltraStarManager.exe"
+	Delete "$INSTDIR\UltraStar-Manager.exe"
 
 	Delete "$INSTDIR\Uninstall.exe"
 
