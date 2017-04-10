@@ -41,7 +41,7 @@ script:
     - cd ../lyric/ && qmake lyric.pro && make
     - cd ../preparatory/ && qmake preparatory.pro && make
     - cd ../rename/ && qmake rename.pro && make
-    - cd ../../ && qmake uman.pro && make
+    - cd ../../ && qmake UltraStar-Manager.pro && make
     - cd ../bin/release/
     - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
         if [ -r "UltraStar-Manager.dmg" ]; then

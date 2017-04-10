@@ -38,13 +38,13 @@ build_script:
       
       cd ../../
       
-      qmake uman.pro -spec win32-g++
+      qmake UltraStar-Manager.pro -spec win32-g++
       
       mingw32-make
 
 after_build:
   - cmd: >-
-      makensis ../setup/win32/uman.nsi
+      makensis ../setup/win32/UltraStar-Manager.nsi
 
 artifacts:
   - path: bin/release
