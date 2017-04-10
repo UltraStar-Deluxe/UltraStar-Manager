@@ -10,3 +10,4 @@ src/ui
 Makefile
 ui
 release
+*.rc
