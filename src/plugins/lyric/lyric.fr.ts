@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>QULyricTask</name>
     <message>
@@ -40,113 +40,128 @@
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="35"/>
+        <source>Fix apostrophes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QULyricTask.cpp" line="36"/>
+        <source>Replaces wrongfully used apostrophe symbols `, ´, ’ by the ASCII apostrophe &apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QULyricTask.cpp" line="40"/>
         <source>Increase low BPM values</source>
         <translation>Augmenter les valeurs de BPM faibles</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="36"/>
+        <location filename="QULyricTask.cpp" line="41"/>
         <source>Doubles BPM value and all note timings while it is below a certain threshold.</source>
         <translation>Doubler les valeurs du BPM et tous les temps des chansons lorsque le BPM est en dessous d&apos;un certain seuil.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="40"/>
+        <location filename="QULyricTask.cpp" line="45"/>
         <source>Set medley and preview tags if not present</source>
         <translation>Fixer les champs medley et prévisualisation si ils ne sont pas présents</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="41"/>
+        <location filename="QULyricTask.cpp" line="46"/>
         <source>Tries to determine a suitable medley section and sets medley tags accordingly, if successful.</source>
         <translation>Essaye de déterminer une zone de medley approppriée et règle les champs de medley en accord avec ces résultats, si ils sont positifs.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="45"/>
+        <location filename="QULyricTask.cpp" line="50"/>
         <source>Capitalize first word of each song line</source>
         <translation>Mettre en capitale le premier mot de chaque ligne</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="49"/>
+        <location filename="QULyricTask.cpp" line="54"/>
         <source>Normalize pitch values</source>
         <translation>Normaliser les valeurs du pitch</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="50"/>
+        <location filename="QULyricTask.cpp" line="55"/>
         <source>Shifts all note pitches octavewise towards a zero mean.</source>
         <oldsource>Decreases all note pitches by as many octaves as necessary.</oldsource>
         <translation>Décaller tous les pitchs des notes d&apos;un octave vers zéro.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="54"/>
+        <location filename="QULyricTask.cpp" line="59"/>
         <source>Remove empty syllables</source>
         <translation>Enlever les syllabes vides</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="55"/>
+        <location filename="QULyricTask.cpp" line="60"/>
         <source>Example:&lt;br&gt;&lt;br&gt;: 230 6 9 be&lt;br&gt;&lt;b&gt;: 236 5 10&lt;/b&gt;&lt;br&gt;: 241 7 3 not.&lt;br&gt;&lt;br&gt;Remove the bold one.</source>
         <translation>Exemple:&lt;br&gt;&lt;br&gt;: 230 6 9 be&lt;br&gt;&lt;b&gt;: 236 5 10&lt;/b&gt;&lt;br&gt;: 241 7 3 happy.&lt;br&gt;&lt;br&gt;Enlève la partie en gras.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="58"/>
+        <location filename="QULyricTask.cpp" line="63"/>
         <source>Convert syllable placeholders from &quot;-&quot; to &quot;~&quot;</source>
         <translation>Convertir les syllabes longues de &quot;-&quot; en &quot;~&quot;</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="63"/>
+        <location filename="QULyricTask.cpp" line="68"/>
         <source>Convert syllable placeholders from &quot;~&quot; to &quot;-&quot;</source>
         <translation>Convertir les syllabes longues de &quot;~&quot; en &quot;-&quot;</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="68"/>
+        <location filename="QULyricTask.cpp" line="73"/>
         <source>Convert relative to absolute timestamps</source>
         <translation>Convertir les marqueurs de temps relatifs en absolus</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="73"/>
+        <location filename="QULyricTask.cpp" line="78"/>
         <source>Convert absolute to relative timestamps</source>
         <translation>Convertir les marqueurs de temps absolus en relatifs</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="127"/>
+        <location filename="QULyricTask.cpp" line="135"/>
         <source>Start:</source>
         <translation>Départ:</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="443"/>
+        <location filename="QULyricTask.cpp" line="437"/>
+        <source>%1 wrong apostrophe symbols replaced successfully for &quot;%2 - %3&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QULyricTask.cpp" line="493"/>
         <source>BPM changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation>BPM changé de %1 en %2 pour &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="461"/>
+        <location filename="QULyricTask.cpp" line="511"/>
         <source>Skipping medley search: medley tags already set for &quot;%1 - %2&quot;.</source>
         <translation>Saut de la recherche de medley: le champ medley est déjà fixé pour &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="466"/>
+        <location filename="QULyricTask.cpp" line="516"/>
         <source>Skipping medley search: medley tags not supported for duet &quot;%1 - %2&quot;.</source>
         <translation>Saut de la recherche de medley: le champ medley n&apos;est pas supporté par le duo &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="471"/>
+        <location filename="QULyricTask.cpp" line="521"/>
         <source>Skipping medley search: relative format not supported for &quot;%1 - %2&quot;.</source>
         <translation>Saut de la recherche de medley:le format relatif n&apos;est pas supporté pour &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="476"/>
+        <location filename="QULyricTask.cpp" line="526"/>
         <source>Skipping medley search: search disabled by CALCMEDLEY tag for song &quot;%1 - %2&quot;.</source>
         <translation>Saut de la recherche de medley: recherche désactivée par le champ CALCMEDLEY pour la chanson &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="518"/>
+        <location filename="QULyricTask.cpp" line="568"/>
         <source>No medley candidates found for song &quot;%1 - %2&quot;</source>
         <oldsource>No medley candiates found for song &quot;%1 - %2&quot;</oldsource>
         <translation>Pas de candidat trouvé pour un medley pour la chanson &quot;%1 - %2&quot;</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="569"/>
+        <location filename="QULyricTask.cpp" line="619"/>
         <source>Medley with a duration of %1 seconds set for &quot;%2 - %3&quot;.</source>
         <translation>Medley d&apos;une durée de %1 secondes fixé pour &quot;%2 - %3&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="577"/>
+        <location filename="QULyricTask.cpp" line="627"/>
         <source>No suitable medley section found for &quot;%1 - %2&quot;.</source>
         <translation>Pas de zone utilisable pour un medley pour la chanson &quot;%1 - %2&quot;.</translation>
     </message>
@@ -156,77 +171,78 @@
         <translation type="obsolete">si BPM &lt;</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="145"/>
-        <location filename="QULyricTask.cpp" line="298"/>
-        <location filename="QULyricTask.cpp" line="398"/>
-        <location filename="QULyricTask.cpp" line="456"/>
+        <location filename="QULyricTask.cpp" line="153"/>
+        <location filename="QULyricTask.cpp" line="307"/>
+        <location filename="QULyricTask.cpp" line="448"/>
+        <location filename="QULyricTask.cpp" line="506"/>
         <source>Invalid lyrics in file &quot;%1&quot;</source>
         <translation>Paroles invalides dans le fichier &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="346"/>
+        <location filename="QULyricTask.cpp" line="355"/>
         <source>Line break timings adjusted for &quot;%1 - %2&quot;.</source>
         <translation>Temps de retour à la ligne ajustés pour &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="225"/>
-        <location filename="QULyricTask.cpp" line="358"/>
-        <location filename="QULyricTask.cpp" line="588"/>
-        <location filename="QULyricTask.cpp" line="609"/>
-        <location filename="QULyricTask.cpp" line="656"/>
-        <location filename="QULyricTask.cpp" line="680"/>
-        <location filename="QULyricTask.cpp" line="706"/>
-        <location filename="QULyricTask.cpp" line="754"/>
+        <location filename="QULyricTask.cpp" line="233"/>
+        <location filename="QULyricTask.cpp" line="367"/>
+        <location filename="QULyricTask.cpp" line="407"/>
+        <location filename="QULyricTask.cpp" line="638"/>
+        <location filename="QULyricTask.cpp" line="660"/>
+        <location filename="QULyricTask.cpp" line="707"/>
+        <location filename="QULyricTask.cpp" line="731"/>
+        <location filename="QULyricTask.cpp" line="757"/>
+        <location filename="QULyricTask.cpp" line="805"/>
         <source>Invalid lyrics: %1 - %2</source>
         <translation>Paroles invalides: %1 - %2</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="130"/>
+        <location filename="QULyricTask.cpp" line="138"/>
         <source>if BPM less than:</source>
         <translation>si le BPM est inférieur à:</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="133"/>
+        <location filename="QULyricTask.cpp" line="141"/>
         <source>Minimum length:</source>
         <translation>Longueur minimale:</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="133"/>
+        <location filename="QULyricTask.cpp" line="141"/>
         <source>seconds</source>
         <translation>secondes</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="134"/>
+        <location filename="QULyricTask.cpp" line="142"/>
         <source>Overwrite existing values</source>
         <translation>Ecraser les valeurs existantes</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="171"/>
+        <location filename="QULyricTask.cpp" line="179"/>
         <source>#GAP changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation>#GAP changé de %1 en %2 pour &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="214"/>
+        <location filename="QULyricTask.cpp" line="222"/>
         <source>Timestamps were changed successfully for &quot;%1 - %2&quot;.</source>
         <translation>Marqueurs de temps changés avec succès pour &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="274"/>
+        <location filename="QULyricTask.cpp" line="283"/>
         <source>Unable to fix out of sequence notes at beats %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation>Impossible de corriger la séquence de note des beats %1 à %2 pour &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="281"/>
+        <location filename="QULyricTask.cpp" line="290"/>
         <source>Adjusted medley end beat from %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation>Beat de fin du medley ajusté de %1 à %2 pour &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="290"/>
+        <location filename="QULyricTask.cpp" line="299"/>
         <source>%1 of %2 overlapping notes were fixed successfully for &quot;%3 - %4&quot;.</source>
         <translation>%1 sur %2 notes se chevauchant ont été corrigées avec succès pour &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="390"/>
+        <location filename="QULyricTask.cpp" line="399"/>
         <source>Spaces were fixed successfully for &quot;%1 - %2&quot;.</source>
         <translation>Les espaces ont été corrigés avec succès pour &quot;%1 - %2&quot;.</translation>
     </message>
@@ -235,32 +251,32 @@
         <translation type="obsolete">#BPM changé de %1 en %2 pour &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="599"/>
+        <location filename="QULyricTask.cpp" line="650"/>
         <source>Line capitalization fixed for &quot;%1 - %2&quot;.</source>
         <translation>Mise en capitale des lignes effectué pour &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="643"/>
+        <location filename="QULyricTask.cpp" line="694"/>
         <source>Mean note pitch changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation>Moyenne du pitch des notes changé de %1 en %2 pour &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="675"/>
+        <location filename="QULyricTask.cpp" line="726"/>
         <source>Empty syllables were removed successfully for &quot;%1 - %2&quot;.</source>
         <translation>Les syllabes vides ont été enlevées avec succès pour &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="694"/>
+        <location filename="QULyricTask.cpp" line="745"/>
         <source>Syllable placeholders were converted successfully from &apos;%3&apos; to &apos;%4&apos; for &quot;%1 - %2&quot;.</source>
         <translation>Les syllabes longues ont été converties avec succès de &apos;%3&apos; en &apos;%4&apos; pour &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="744"/>
+        <location filename="QULyricTask.cpp" line="795"/>
         <source>Relative timestamps converted successfully to absolute timestamps for &quot;%1 - %2&quot;.</source>
         <translation>Les marqueurs de temps relatifs ont été convertis avec succès en marqueurs absolus pour &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="785"/>
+        <location filename="QULyricTask.cpp" line="836"/>
         <source>Absolute timestamps converted successfully to relative timestamps for &quot;%1 - %2&quot;.</source>
         <translation>Les marqueurs de temps absolus ont été convertis avec succès en marqueurs relatifs pour &quot;%1 - %2&quot;.</translation>
     </message>

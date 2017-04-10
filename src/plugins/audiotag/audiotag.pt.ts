@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pt_PT">
+<TS version="2.1" language="pt_PT">
 <context>
     <name>QObject</name>
     <message>
@@ -70,9 +70,8 @@
         <translation>Alterar #ALBUM via etiqueta ID3</translation>
     </message>
     <message>
-        <location filename="language.h" line="12"/>
         <source>You need the custom tag #ALBUM for this task.</source>
-        <translation>Você precisa da etiqueta personalizada #ALBUM para esta tarefa.</translation>
+        <translation type="vanished">Você precisa da etiqueta personalizada #ALBUM para esta tarefa.</translation>
     </message>
 </context>
 <context>

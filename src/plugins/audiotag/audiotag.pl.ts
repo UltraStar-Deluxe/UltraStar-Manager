@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pl_PL">
+<TS version="2.1" language="pl_PL">
 <context>
     <name>QObject</name>
     <message>
@@ -63,9 +63,8 @@
         <translation>Zmień etykietę #ALBUM (z jakiego albumu pochodzi utwór) w oparciu o informacje ID3 pliku z muzyką</translation>
     </message>
     <message>
-        <location filename="language.h" line="12"/>
         <source>You need the custom tag #ALBUM for this task.</source>
-        <translation>Do tego zadania wymagana jest własna etykieta #ALBUM (z jakiego albumu pochodzi utwór).</translation>
+        <translation type="vanished">Do tego zadania wymagana jest własna etykieta #ALBUM (z jakiego albumu pochodzi utwór).</translation>
     </message>
     <message>
         <location filename="language.h" line="13"/>

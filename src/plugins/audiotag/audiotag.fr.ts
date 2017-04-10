@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>QObject</name>
     <message>
@@ -63,9 +63,8 @@
         <translation>Changer #ALBUM à partir de ce champ dans l&apos;ID3 du fichier audio</translation>
     </message>
     <message>
-        <location filename="language.h" line="12"/>
         <source>You need the custom tag #ALBUM for this task.</source>
-        <translation>Vous devez avoir un champ personnalisé #ALBUM pour réaliser cette tâche.</translation>
+        <translation type="vanished">Vous devez avoir un champ personnalisé #ALBUM pour réaliser cette tâche.</translation>
     </message>
     <message>
         <location filename="language.h" line="13"/>

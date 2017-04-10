@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<TS version="2.1" language="de_DE">
 <context>
     <name>QObject</name>
     <message>
@@ -63,9 +63,8 @@
         <translation>Ändere #ALBUM mittels ID3-Tag</translation>
     </message>
     <message>
-        <location filename="language.h" line="12"/>
         <source>You need the custom tag #ALBUM for this task.</source>
-        <translation>Der benutzerdefinierte Tag #ALBUM ist für diesen Task erforderlich.</translation>
+        <translation type="vanished">Der benutzerdefinierte Tag #ALBUM ist für diesen Task erforderlich.</translation>
     </message>
     <message>
         <location filename="language.h" line="13"/>
