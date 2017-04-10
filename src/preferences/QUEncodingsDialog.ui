@@ -14,14 +14,23 @@
    <string>Set Default Encodings</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../resources/uman.qrc">
+   <iconset resource="../resources/UltraStar-Manager.qrc">
     <normaloff>:/control/encoding.png</normaloff>:/control/encoding.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>
    </property>
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
@@ -115,7 +124,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../resources/uman.qrc">:/marks/information.png</pixmap>
+         <pixmap resource="../resources/UltraStar-Manager.qrc">:/marks/information.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -147,11 +156,20 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout" rowminimumheight="0,0">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
+      <number>5</number>
+     </property>
      <property name="verticalSpacing">
       <number>10</number>
-     </property>
-     <property name="margin">
-      <number>5</number>
      </property>
      <item row="0" column="0">
       <widget class="QLabel" name="label_2">
@@ -239,7 +257,16 @@
      <property name="spacing">
       <number>5</number>
      </property>
-     <property name="margin">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
       <number>5</number>
      </property>
      <item>
@@ -268,7 +295,7 @@
         <string>OK</string>
        </property>
        <property name="icon">
-        <iconset resource="../resources/uman.qrc">
+        <iconset resource="../resources/UltraStar-Manager.qrc">
          <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
        </property>
       </widget>
@@ -279,7 +306,7 @@
         <string>Cancel</string>
        </property>
        <property name="icon">
-        <iconset resource="../resources/uman.qrc">
+        <iconset resource="../resources/UltraStar-Manager.qrc">
          <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
        </property>
       </widget>
@@ -289,7 +316,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../resources/uman.qrc"/>
+  <include location="../resources/UltraStar-Manager.qrc"/>
  </resources>
  <connections/>
 </ui>

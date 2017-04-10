@@ -41,7 +41,7 @@ void QURemoteImageDialog::initImageSources() {
 		copyAndSetBtn->setEnabled(false);
 
 		infoIconLbl->setPixmap(QPixmap(":/marks/error.png"));
-		infoLbl->setText(tr("You need plugins to download images from the internet. Visit the <a href=\"http://sf.net/projects/uman\">project page</a> and try to get some."));
+		infoLbl->setText(tr("You need plugins to download images from the internet. Visit the <a href=\"https://github.com/UltraStar-Deluxe/UltraStar-Manager\">project page</a> and try to get some."));
 	}
 
 	connect(sourcesCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(updateResultsPage()));

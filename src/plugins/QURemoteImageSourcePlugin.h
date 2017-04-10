@@ -81,7 +81,7 @@ public:
 	virtual QFileInfoList results() const = 0;
 };
 
-Q_DECLARE_INTERFACE(QURemoteImageSource, "net.sf.uman.QURemoteImageSource/1.0");
-Q_DECLARE_INTERFACE(QURemoteImageCollector, "net.sf.uman.QURemoteImageCollector/1.0");
+Q_DECLARE_INTERFACE(QURemoteImageSource, "com.github.ultrastar-deluxe.ultrastar-manager.QURemoteImageSource/1.0");
+Q_DECLARE_INTERFACE(QURemoteImageCollector, "com.github.ultrastar-deluxe.ultrastar-manager.QURemoteImageCollector/1.0");
 
 #endif // QUREMOTEIMAGESOURCEPLUGIN_H

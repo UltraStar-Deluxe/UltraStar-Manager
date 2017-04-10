@@ -23,15 +23,24 @@
    <string>S</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources/uman.qrc">
-    <normaloff>:/icons/uman16.png</normaloff>:/icons/uman16.png</iconset>
+   <iconset>
+    <normaloff>:/icons/UltraStar-Manager16.png</normaloff>:/icons/UltraStar-Manager16.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_4">
     <property name="spacing">
      <number>5</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <item>
@@ -116,7 +125,16 @@
           <property name="spacing">
            <number>0</number>
           </property>
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
           <item>
@@ -192,7 +210,16 @@
           <property name="spacing">
            <number>2</number>
           </property>
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
           <item>
@@ -226,7 +253,7 @@
                <string notr="true"/>
               </property>
               <property name="icon">
-               <iconset resource="resources/uman.qrc">
+               <iconset resource="resources/UltraStar-Manager.qrc">
                 <normaloff>:/marks/flag_blue.png</normaloff>:/marks/flag_blue.png</iconset>
               </property>
               <property name="checkable">
@@ -246,7 +273,7 @@
                <string notr="true"/>
               </property>
               <property name="icon">
-               <iconset resource="resources/uman.qrc">
+               <iconset resource="resources/UltraStar-Manager.qrc">
                 <normaloff>:/marks/flag_green.png</normaloff>:/marks/flag_green.png</iconset>
               </property>
               <property name="checkable">
@@ -266,7 +293,7 @@
                <string notr="true"/>
               </property>
               <property name="icon">
-               <iconset resource="resources/uman.qrc">
+               <iconset resource="resources/UltraStar-Manager.qrc">
                 <normaloff>:/marks/flag_yellow.png</normaloff>:/marks/flag_yellow.png</iconset>
               </property>
               <property name="checkable">
@@ -286,7 +313,7 @@
                <string notr="true"/>
               </property>
               <property name="icon">
-               <iconset resource="resources/uman.qrc">
+               <iconset resource="resources/UltraStar-Manager.qrc">
                 <normaloff>:/marks/flag_red.png</normaloff>:/marks/flag_red.png</iconset>
               </property>
               <property name="checkable">
@@ -351,7 +378,7 @@
 Tasks</string>
               </property>
               <property name="icon">
-               <iconset resource="resources/uman.qrc">
+               <iconset resource="resources/UltraStar-Manager.qrc">
                 <normaloff>:/control/play32.png</normaloff>:/control/play32.png</iconset>
               </property>
               <property name="iconSize">
@@ -400,7 +427,7 @@ Tasks</string>
                    <string>Add</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="resources/uman.qrc">
+                   <iconset resource="resources/UltraStar-Manager.qrc">
                     <normaloff>:/marks/add.png</normaloff>:/marks/add.png</iconset>
                   </property>
                   <property name="toolButtonStyle">
@@ -430,7 +457,7 @@ Tasks</string>
                    <string>Uncheck All</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="resources/uman.qrc">
+                   <iconset resource="resources/UltraStar-Manager.qrc">
                     <normaloff>:/control/uncheck_tasks.png</normaloff>:/control/uncheck_tasks.png</iconset>
                   </property>
                   <property name="autoRaise">
@@ -447,7 +474,7 @@ Tasks</string>
                    <string>Check All</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="resources/uman.qrc">
+                   <iconset resource="resources/UltraStar-Manager.qrc">
                     <normaloff>:/control/check_tasks.png</normaloff>:/control/check_tasks.png</iconset>
                   </property>
                   <property name="toolButtonStyle">
@@ -494,7 +521,16 @@ Tasks</string>
           <property name="spacing">
            <number>0</number>
           </property>
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
           <item>
@@ -539,7 +575,16 @@ Tasks</string>
           <property name="spacing">
            <number>0</number>
           </property>
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
           <item>
@@ -559,7 +604,16 @@ Tasks</string>
           <property name="spacing">
            <number>0</number>
           </property>
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
           <item>
@@ -579,7 +633,16 @@ Tasks</string>
           <property name="spacing">
            <number>0</number>
           </property>
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
           <item>
@@ -699,7 +762,7 @@ Tasks</string>
                    <string notr="true"/>
                   </property>
                   <property name="icon">
-                   <iconset resource="resources/uman.qrc">
+                   <iconset resource="resources/UltraStar-Manager.qrc">
                     <normaloff>:/marks/information.png</normaloff>:/marks/information.png</iconset>
                   </property>
                   <property name="checkable">
@@ -719,7 +782,7 @@ Tasks</string>
                    <string notr="true"/>
                   </property>
                   <property name="icon">
-                   <iconset resource="resources/uman.qrc">
+                   <iconset resource="resources/UltraStar-Manager.qrc">
                     <normaloff>:/marks/help.png</normaloff>:/marks/help.png</iconset>
                   </property>
                   <property name="checkable">
@@ -739,7 +802,7 @@ Tasks</string>
                    <string notr="true"/>
                   </property>
                   <property name="icon">
-                   <iconset resource="resources/uman.qrc">
+                   <iconset resource="resources/UltraStar-Manager.qrc">
                     <normaloff>:/marks/disk.png</normaloff>:/marks/disk.png</iconset>
                   </property>
                   <property name="checkable">
@@ -759,7 +822,7 @@ Tasks</string>
                    <string notr="true"/>
                   </property>
                   <property name="icon">
-                   <iconset resource="resources/uman.qrc">
+                   <iconset resource="resources/UltraStar-Manager.qrc">
                     <normaloff>:/marks/error.png</normaloff>:/marks/error.png</iconset>
                   </property>
                   <property name="checkable">
@@ -779,7 +842,7 @@ Tasks</string>
                    <string notr="true"/>
                   </property>
                   <property name="icon">
-                   <iconset resource="resources/uman.qrc">
+                   <iconset resource="resources/UltraStar-Manager.qrc">
                     <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
                   </property>
                   <property name="checkable">
@@ -813,7 +876,7 @@ Tasks</string>
                <string>Save</string>
               </property>
               <property name="icon">
-               <iconset resource="resources/uman.qrc">
+               <iconset resource="resources/UltraStar-Manager.qrc">
                 <normaloff>:/control/save.png</normaloff>:/control/save.png</iconset>
               </property>
               <property name="toolButtonStyle">
@@ -837,7 +900,7 @@ Tasks</string>
                <string>Clear</string>
               </property>
               <property name="icon">
-               <iconset resource="resources/uman.qrc">
+               <iconset resource="resources/UltraStar-Manager.qrc">
                 <normaloff>:/control/bin.png</normaloff>:/control/bin.png</iconset>
               </property>
               <property name="toolButtonStyle">
@@ -917,7 +980,7 @@ Tasks</string>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="resources/uman.qrc"/>
+  <include location="resources/UltraStar-Manager.qrc"/>
  </resources>
  <connections/>
 </ui>

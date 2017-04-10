@@ -1,4 +1,4 @@
-lupdate uman.pro
+lupdate UltraStar-Manager.pro
 
 cd plugins/audiotag
 python getTaskText.py

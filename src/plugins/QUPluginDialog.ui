@@ -14,14 +14,23 @@
    <string>Plugins</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../resources/uman.qrc">
+   <iconset resource="../resources/UltraStar-Manager.qrc">
     <normaloff>:/control/plugin.png</normaloff>:/control/plugin.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">
     <number>0</number>
    </property>
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
@@ -109,7 +118,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../resources/uman.qrc">:/marks/information.png</pixmap>
+         <pixmap resource="../resources/UltraStar-Manager.qrc">:/marks/information.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -123,7 +132,7 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Plugins extend the application's functionality. All found plugins are listed below. Check out the &lt;/span&gt;&lt;a href=&quot;http://sf.net/projects/uman&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;project page&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; for new plugins.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Plugins extend the application's functionality. All found plugins are listed below. Check out the &lt;/span&gt;&lt;a href=&quot;https://github.com/UltraStar-Deluxe/UltraStar-Manager&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;project page&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; for new plugins.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -151,7 +160,16 @@ p, li { white-space: pre-wrap; }
      <property name="spacing">
       <number>0</number>
      </property>
-     <property name="margin">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
       <number>5</number>
      </property>
      <item>
@@ -188,7 +206,7 @@ p, li { white-space: pre-wrap; }
           <string>Reload</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/refresh.png</normaloff>:/control/refresh.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -215,7 +233,16 @@ p, li { white-space: pre-wrap; }
      <property name="spacing">
       <number>5</number>
      </property>
-     <property name="margin">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
       <number>5</number>
      </property>
      <item>
@@ -237,7 +264,7 @@ p, li { white-space: pre-wrap; }
         <string>OK</string>
        </property>
        <property name="icon">
-        <iconset resource="../resources/uman.qrc">
+        <iconset resource="../resources/UltraStar-Manager.qrc">
          <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
        </property>
       </widget>
@@ -247,7 +274,7 @@ p, li { white-space: pre-wrap; }
   </layout>
  </widget>
  <resources>
-  <include location="../resources/uman.qrc"/>
+  <include location="../resources/UltraStar-Manager.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -14,14 +14,23 @@
    <string>Get Images</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../resources/uman.qrc">
+   <iconset resource="../resources/UltraStar-Manager.qrc">
     <normaloff>:/control/image_go.png</normaloff>:/control/image_go.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">
     <number>0</number>
    </property>
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
@@ -115,7 +124,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../resources/uman.qrc">:/marks/information.png</pixmap>
+         <pixmap resource="../resources/UltraStar-Manager.qrc">:/marks/information.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -196,7 +205,7 @@
         <string>Configure</string>
        </property>
        <property name="icon">
-        <iconset resource="../resources/uman.qrc">
+        <iconset resource="../resources/UltraStar-Manager.qrc">
          <normaloff>:/control/cog.png</normaloff>:/control/cog.png</iconset>
        </property>
        <property name="checkable">
@@ -219,7 +228,7 @@
         <string>Search</string>
        </property>
        <property name="icon">
-        <iconset resource="../resources/uman.qrc">
+        <iconset resource="../resources/UltraStar-Manager.qrc">
          <normaloff>:/control/magnifier.png</normaloff>:/control/magnifier.png</iconset>
        </property>
        <property name="flat">
@@ -371,7 +380,7 @@ p, li { white-space: pre-wrap; }
             <string>Replace current song covers</string>
            </property>
            <property name="icon">
-            <iconset resource="../resources/uman.qrc">
+            <iconset resource="../resources/UltraStar-Manager.qrc">
              <normaloff>:/control/image_minus.png</normaloff>:/control/image_minus.png</iconset>
            </property>
            <property name="checked">
@@ -398,7 +407,7 @@ p, li { white-space: pre-wrap; }
             <string>Copy &amp;&amp; Set</string>
            </property>
            <property name="icon">
-            <iconset resource="../resources/uman.qrc">
+            <iconset resource="../resources/UltraStar-Manager.qrc">
              <normaloff>:/control/image_go.png</normaloff>:/control/image_go.png</iconset>
            </property>
            <property name="toolButtonStyle">
@@ -422,7 +431,7 @@ p, li { white-space: pre-wrap; }
             <string>None</string>
            </property>
            <property name="icon">
-            <iconset resource="../resources/uman.qrc">
+            <iconset resource="../resources/UltraStar-Manager.qrc">
              <normaloff>:/control/uncheck_tasks.png</normaloff>:/control/uncheck_tasks.png</iconset>
            </property>
            <property name="toolButtonStyle">
@@ -439,7 +448,7 @@ p, li { white-space: pre-wrap; }
             <string>All</string>
            </property>
            <property name="icon">
-            <iconset resource="../resources/uman.qrc">
+            <iconset resource="../resources/UltraStar-Manager.qrc">
              <normaloff>:/control/check_tasks.png</normaloff>:/control/check_tasks.png</iconset>
            </property>
            <property name="toolButtonStyle">
@@ -468,7 +477,16 @@ p, li { white-space: pre-wrap; }
      <property name="spacing">
       <number>0</number>
      </property>
-     <property name="margin">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
       <number>5</number>
      </property>
      <item>
@@ -490,7 +508,7 @@ p, li { white-space: pre-wrap; }
         <string>Close</string>
        </property>
        <property name="icon">
-        <iconset resource="../resources/uman.qrc">
+        <iconset resource="../resources/UltraStar-Manager.qrc">
          <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
        </property>
       </widget>
@@ -500,7 +518,7 @@ p, li { white-space: pre-wrap; }
   </layout>
  </widget>
  <resources>
-  <include location="../resources/uman.qrc"/>
+  <include location="../resources/UltraStar-Manager.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -5,8 +5,8 @@
         <file>monty/normal.png</file>
         <file>monty/seated.png</file>
         <file>lang/de.png</file>
-        <file>lang/uman.de.qm</file>
-        <file>lang/uman.pl.qm</file>
+        <file>lang/UltraStar-Manager.de.qm</file>
+        <file>lang/UltraStar-Manager.pl.qm</file>
         <file>lang/pl.png</file>
         <file>lang/us.png</file>
         <file>player/next.png</file>
@@ -19,11 +19,11 @@
         <file>qt.png</file>
         <file>about_bgr.png</file>
         <file>lang/fr.png</file>
-        <file>lang/uman.fr.qm</file>
+        <file>lang/UltraStar-Manager.fr.qm</file>
         <file>lang/es.png</file>
-        <file>lang/uman.es.qm</file>
+        <file>lang/UltraStar-Manager.es.qm</file>
         <file>lang/pt.png</file>
-        <file>lang/uman.pt.qm</file>
+        <file>lang/UltraStar-Manager.pt.qm</file>
         <file>lang/qt_de.qm</file>
         <file>lang/qt_es.qm</file>
         <file>lang/qt_fr.qm</file>
@@ -146,15 +146,15 @@
         <file>splash.png</file>
         <file>splash2.png</file>
         <file>cup.png</file>
-        <file>uman128.png</file>
-        <file>uman32.png</file>
-        <file>uman48.png</file>
-        <file>uman64.png</file>
-        <file>uman72.png</file>
-        <file>uman96.png</file>
-        <file>uman16.png</file>
-        <file>uman24.png</file>
-        <file>uman.icns</file>
+        <file>UltraStar-Manager128.png</file>
+        <file>UltraStar-Manager32.png</file>
+        <file>UltraStar-Manager48.png</file>
+        <file>UltraStar-Manager64.png</file>
+        <file>UltraStar-Manager72.png</file>
+        <file>UltraStar-Manager96.png</file>
+        <file>UltraStar-Manager16.png</file>
+        <file>UltraStar-Manager24.png</file>
+        <file>UltraStar-Manager.icns</file>
     </qresource>
     <qresource prefix="/marks">
         <file>accept.png</file>

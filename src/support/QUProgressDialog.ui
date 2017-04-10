@@ -23,7 +23,16 @@
    <property name="spacing">
     <number>0</number>
    </property>
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
@@ -111,7 +120,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../resources/uman.qrc">:/marks/information.png</pixmap>
+         <pixmap resource="../resources/UltraStar-Manager.qrc">:/marks/information.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -152,7 +161,16 @@
      <property name="spacing">
       <number>2</number>
      </property>
-     <property name="margin">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
       <number>5</number>
      </property>
      <item>
@@ -172,7 +190,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../resources/uman.qrc">:/types/text.png</pixmap>
+          <pixmap resource="../resources/UltraStar-Manager.qrc">:/types/text.png</pixmap>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -239,7 +257,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../resources/uman.qrc">:/marks/clock.png</pixmap>
+          <pixmap resource="../resources/UltraStar-Manager.qrc">:/marks/clock.png</pixmap>
          </property>
         </widget>
        </item>
@@ -271,7 +289,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../resources/uman.qrc">:/marks/chart.png</pixmap>
+          <pixmap resource="../resources/UltraStar-Manager.qrc">:/marks/chart.png</pixmap>
          </property>
         </widget>
        </item>
@@ -298,7 +316,16 @@
      <property name="spacing">
       <number>0</number>
      </property>
-     <property name="margin">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
       <number>5</number>
      </property>
      <item>
@@ -320,7 +347,7 @@
         <string>Cancel</string>
        </property>
        <property name="icon">
-        <iconset resource="../resources/uman.qrc">
+        <iconset resource="../resources/UltraStar-Manager.qrc">
          <normaloff>:/marks/cancel.png</normaloff>:/marks/cancel.png</iconset>
        </property>
        <property name="autoDefault">
@@ -333,7 +360,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../resources/uman.qrc"/>
+  <include location="../resources/UltraStar-Manager.qrc"/>
  </resources>
  <connections/>
 </ui>

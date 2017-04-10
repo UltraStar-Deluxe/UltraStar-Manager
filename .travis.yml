@@ -44,9 +44,9 @@ script:
     - cd ../../ && qmake uman.pro && make
     - cd ../bin/release/
     - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-        if [ -r "UltraStarManager.dmg" ]; then
-            link=$(curl --upload-file 'UltraStarManager.dmg' "https://transfer.sh/UltraStarManager-$(git rev-parse --short HEAD).dmg");
-            echo "UltraStarManager.dmg should be available at:";
+        if [ -r "UltraStar-Manager.dmg" ]; then
+            link=$(curl --upload-file 'UltraStar-Manager.dmg' "https://transfer.sh/UltraStar-Manager-$(git rev-parse --short HEAD).dmg");
+            echo "UltraStar-Manager.dmg should be available at:";
             echo "    $link";
         fi
       fi

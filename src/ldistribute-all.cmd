@@ -1,4 +1,4 @@
-copy /Y _lang\uman*.ts resources\lang
+copy /Y _lang\UltraStar-Manager*.ts resources\lang
 copy /Y _lang\hints* resources\txt
 
 copy /Y _lang\audiotag*.ts plugins\audiotag

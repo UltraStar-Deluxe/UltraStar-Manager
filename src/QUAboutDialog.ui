@@ -5,7 +5,7 @@
   <property name="geometry">
    <rect>
     <x>0</x>
-    <y>4</y>
+    <y>0</y>
     <width>500</width>
     <height>300</height>
    </rect>
@@ -20,7 +20,7 @@
    <string>About</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources/uman.qrc">
+   <iconset resource="resources/UltraStar-Manager.qrc">
     <normaloff>:/icons/cup.png</normaloff>:/icons/cup.png</iconset>
   </property>
   <property name="styleSheet">
@@ -30,7 +30,16 @@
    <property name="spacing">
     <number>0</number>
    </property>
-   <property name="margin">
+   <property name="leftMargin">
+    <number>5</number>
+   </property>
+   <property name="topMargin">
+    <number>5</number>
+   </property>
+   <property name="rightMargin">
+    <number>5</number>
+   </property>
+   <property name="bottomMargin">
     <number>5</number>
    </property>
    <item>
@@ -198,7 +207,7 @@ background-image: url();</string>
   </layout>
  </widget>
  <resources>
-  <include location="resources/uman.qrc"/>
+  <include location="resources/UltraStar-Manager.qrc"/>
  </resources>
  <connections/>
 </ui>

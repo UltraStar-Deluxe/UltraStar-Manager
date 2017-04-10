@@ -14,14 +14,23 @@
    <string>New Report</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../resources/uman.qrc">
+   <iconset resource="../resources/UltraStar-Manager.qrc">
     <normaloff>:/control/report.png</normaloff>:/control/report.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_6">
    <property name="spacing">
     <number>0</number>
    </property>
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
@@ -109,7 +118,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../resources/uman.qrc">:/marks/information.png</pixmap>
+         <pixmap resource="../resources/UltraStar-Manager.qrc">:/marks/information.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -150,7 +159,16 @@
      <property name="spacing">
       <number>0</number>
      </property>
-     <property name="margin">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
       <number>5</number>
      </property>
      <item>
@@ -184,7 +202,16 @@
          <property name="spacing">
           <number>0</number>
          </property>
-         <property name="margin">
+         <property name="leftMargin">
+          <number>5</number>
+         </property>
+         <property name="topMargin">
+          <number>5</number>
+         </property>
+         <property name="rightMargin">
+          <number>5</number>
+         </property>
+         <property name="bottomMargin">
           <number>5</number>
          </property>
          <item>
@@ -261,7 +288,7 @@
                <string>All Songs</string>
               </property>
               <property name="icon">
-               <iconset resource="../resources/uman.qrc">
+               <iconset resource="../resources/UltraStar-Manager.qrc">
                 <normaloff>:/control/database.png</normaloff>:/control/database.png</iconset>
               </property>
              </widget>
@@ -278,7 +305,7 @@
                <string>Visible Songs</string>
               </property>
               <property name="icon">
-               <iconset resource="../resources/uman.qrc">
+               <iconset resource="../resources/UltraStar-Manager.qrc">
                 <normaloff>:/control/eye.png</normaloff>:/control/eye.png</iconset>
               </property>
               <property name="checked">
@@ -309,7 +336,7 @@
                  <string>Playlist:</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../resources/uman.qrc">
+                 <iconset resource="../resources/UltraStar-Manager.qrc">
                   <normaloff>:/control/playlist.png</normaloff>:/control/playlist.png</iconset>
                 </property>
                </widget>
@@ -555,7 +582,7 @@
                <string>PDF Report</string>
               </property>
               <property name="icon">
-               <iconset resource="../resources/uman.qrc">
+               <iconset resource="../resources/UltraStar-Manager.qrc">
                 <normaloff>:/types/page_white_acrobat.png</normaloff>:/types/page_white_acrobat.png</iconset>
               </property>
               <property name="toolButtonStyle">
@@ -591,7 +618,7 @@
                <string>HTML Report</string>
               </property>
               <property name="icon">
-               <iconset resource="../resources/uman.qrc">
+               <iconset resource="../resources/UltraStar-Manager.qrc">
                 <normaloff>:/types/page_code.png</normaloff>:/types/page_code.png</iconset>
               </property>
               <property name="toolButtonStyle">
@@ -630,7 +657,7 @@
                <string>Text Report</string>
               </property>
               <property name="icon">
-               <iconset resource="../resources/uman.qrc">
+               <iconset resource="../resources/UltraStar-Manager.qrc">
                 <normaloff>:/types/text_plain.png</normaloff>:/types/text_plain.png</iconset>
               </property>
               <property name="toolButtonStyle">
@@ -669,7 +696,7 @@
                <string>CSV Report</string>
               </property>
               <property name="icon">
-               <iconset resource="../resources/uman.qrc">
+               <iconset resource="../resources/UltraStar-Manager.qrc">
                 <normaloff>:/types/csv.png</normaloff>:/types/csv.png</iconset>
               </property>
               <property name="toolButtonStyle">
@@ -729,7 +756,7 @@
         <string>Close</string>
        </property>
        <property name="icon">
-        <iconset resource="../resources/uman.qrc">
+        <iconset resource="../resources/UltraStar-Manager.qrc">
          <normaloff>:/marks/accept.png</normaloff>:/marks/accept.png</iconset>
        </property>
       </widget>
@@ -739,7 +766,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../resources/uman.qrc"/>
+  <include location="../resources/UltraStar-Manager.qrc"/>
  </resources>
  <connections/>
 </ui>

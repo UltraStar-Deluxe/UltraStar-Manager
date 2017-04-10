@@ -175,7 +175,7 @@ void QUMainWindow::initPluginManager() {
 }
 
 /*!
- * Initializes the windows registry entry for uman. Lets the user
+ * Initializes the windows registry entry for UltraStar-Manager. Lets the user
  * choose a path where the song files are located.
  */
 void QUMainWindow::initConfig() {
@@ -226,10 +226,10 @@ void QUMainWindow::initConfig() {
 
 	QStringList imageFormatsNeeded;
 	QStringList imageFormatsQt;
-	QStringList imageFormatsUman = QUSongSupport::allowedImageFiles().join(" ").remove("*.").split(" ");
+	QStringList imageFormatsUltraStar_Manager = QUSongSupport::allowedImageFiles().join(" ").remove("*.").split(" ");
 	foreach(QByteArray ba, QImageReader::supportedImageFormats())
 		imageFormatsQt << ba;
-	foreach(QString neededFormat, imageFormatsUman)
+	foreach(QString neededFormat, imageFormatsUltraStar_Manager)
 		if(imageFormatsQt.indexOf(neededFormat) == -1)
 			imageFormatsNeeded << neededFormat;
 	if(imageFormatsNeeded.size() > 0)
@@ -243,12 +243,12 @@ void QUMainWindow::initWindow() {
 	// create window icon
 	QIcon windowIcon;
 	windowIcon.addFile(":/icons/cup.png", QSize(16, 16));
-	windowIcon.addFile(":/icons/uman32.png", QSize(32, 32));
-	windowIcon.addFile(":/icons/uman48.png", QSize(48, 48));
-	windowIcon.addFile(":/icons/uman64.png", QSize(64, 64));
-	windowIcon.addFile(":/icons/uman72.png", QSize(72, 72));
-	windowIcon.addFile(":/icons/uman96.png", QSize(96, 96));
-	windowIcon.addFile(":/icons/uman128.png", QSize(128, 128));
+	windowIcon.addFile(":/icons/UltraStar-Manager32.png", QSize(32, 32));
+	windowIcon.addFile(":/icons/UltraStar-Manager48.png", QSize(48, 48));
+	windowIcon.addFile(":/icons/UltraStar-Manager64.png", QSize(64, 64));
+	windowIcon.addFile(":/icons/UltraStar-Manager72.png", QSize(72, 72));
+	windowIcon.addFile(":/icons/UltraStar-Manager96.png", QSize(96, 96));
+	windowIcon.addFile(":/icons/UltraStar-Manager128.png", QSize(128, 128));
 
 	setWindowIcon(windowIcon);
 	setWindowTitle(QString("%1%2").arg(tr("UltraStar Manager")).arg(WIP_TEXT));
@@ -405,7 +405,7 @@ void QUMainWindow::initRibbonBar() {
 
 	// about menu
 	connect(_menu->aboutQtBtn, SIGNAL(clicked()), this, SLOT(aboutQt()));
-	connect(_menu->aboutUmanBtn, SIGNAL(clicked()), this, SLOT(aboutUman()));
+	connect(_menu->aboutUltraStar_ManagerBtn, SIGNAL(clicked()), this, SLOT(aboutUltraStar_Manager()));
 	connect(_menu->aboutTagLibBtn, SIGNAL(clicked()), this, SLOT(aboutTagLib()));
 	connect(_menu->aboutBASSBtn, SIGNAL(clicked()), this, SLOT(aboutBASS()));
 	connect(_menu->aboutMediaInfoBtn, SIGNAL(clicked()), this, SLOT(aboutMediaInfo()));
@@ -917,7 +917,7 @@ void QUMainWindow::aboutQt() {
 	QMessageBox::aboutQt(this, "About Qt");
 }
 
-void QUMainWindow::aboutUman() {
+void QUMainWindow::aboutUltraStar_Manager() {
 	QUAboutDialog(this).exec();
 }
 
@@ -971,7 +971,7 @@ void QUMainWindow::aboutMediaInfo() {
 void QUMainWindow::checkForUpdate(bool silent) {
 	int currentVersion = MAJOR_VERSION*100 + MINOR_VERSION*10 + PATCH_VERSION;
 
-	QUrl url("https://github.com/bohning/uman/tree/master/src/latest_version.xml");
+	QUrl url("https://github.com/UltraStar-Deluxe/UltraStar-Manager/blob/master/src/latest_version.xml");
 	QNetworkAccessManager *m_NetworkMngr = new QNetworkAccessManager(this);
 	QNetworkReply *reply = m_NetworkMngr->get(QNetworkRequest(url));
 
@@ -1015,7 +1015,7 @@ void QUMainWindow::checkForUpdate(bool silent) {
 		QUMessageBox::information(this,
 				tr("Update check successful."),
 				QString(tr("UltraStar Manager %1.%2.%3 is <b>outdated</b>.<br><br>"
-						"Download the most recent UltraStar Manager %4 <a href='https://github.com/bohning/uman/releases'>here</a>."))
+						"Download the most recent UltraStar-Manager %4 <a href='https://github.com/UltraStar-Deluxe/UltraStar-Manager/releases'>here</a>."))
 						.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION)
 						.arg(latestVersionString),
 				BTN << ":/marks/accept.png" << "OK",

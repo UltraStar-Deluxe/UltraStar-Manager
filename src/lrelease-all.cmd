@@ -1,4 +1,4 @@
-lrelease uman.pro
+lrelease UltraStar-Manager.pro
 
 cd plugins
 

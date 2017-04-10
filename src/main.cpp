@@ -58,12 +58,12 @@ int main(int argc, char *argv[]) {
  * random timers and registry setups.
  */
 void initApplication() {
-	Q_INIT_RESOURCE(uman);
+	Q_INIT_RESOURCE(UltraStar_Manager);
 
 	qsrand(QDateTime::currentDateTime().toTime_t());
 
 	QCoreApplication::setOrganizationName("HPI");
-	QCoreApplication::setApplicationName("UltraStar Manager");
+	QCoreApplication::setApplicationName("UltraStar-Manager");
 }
 
 /*!
@@ -89,35 +89,35 @@ void initLanguage(QApplication &app, QTranslator &trContent, QTranslator &trQt, 
 	}
 
 	if(lang.language() == QLocale::Spanish) {
-		if(trContent.load(":/lang/uman.es.qm")) {
+		if(trContent.load(":/lang/UltraStar-Manager.es.qm")) {
 			app.installTranslator(&trContent);
 		}
 		if(trQt.load(":/lang/qt_es.qm")) {
 			app.installTranslator(&trQt);
 		}
 	} else if(lang.language() == QLocale::German) {
-		if(trContent.load(":/lang/uman.de.qm")) {
+		if(trContent.load(":/lang/UltraStar-Manager.de.qm")) {
 			app.installTranslator(&trContent);
 		}
 		if(trQt.load(":/lang/qt_de.qm")) {
 			app.installTranslator(&trQt);
 		}
 	} else if(lang.language() == QLocale::French) {
-		if(trContent.load(":/lang/uman.fr.qm")) {
+		if(trContent.load(":/lang/UltraStar-Manager.fr.qm")) {
 			app.installTranslator(&trContent);
 		}
 		if(trQt.load(":/lang/qt_fr.qm")) {
 			app.installTranslator(&trQt);
 		}
 	} else if(lang.language() == QLocale::Polish) {
-		if(trContent.load(":/lang/uman.pl.qm")) {
+		if(trContent.load(":/lang/UltraStar-Manager.pl.qm")) {
 			app.installTranslator(&trContent);
 		}
 		if(trQt.load(":/lang/qt_pl.qm")) {
 			app.installTranslator(&trQt);
 		}
 	} else if(lang.language() == QLocale::Portuguese) {
-		if(trContent.load(":/lang/uman.pt.qm")) {
+		if(trContent.load(":/lang/UltraStar-Manager.pt.qm")) {
 			app.installTranslator(&trContent);
 		}
 		if(trQt.load(":/lang/qt_pt.qm")) {
@@ -169,7 +169,7 @@ void handlePreviousAppCrash() {
 			QObject::tr("Application Crash Detected"),
 			QObject::tr("The UltraStar Manager did not exit successfully last time. Maybe you've chosen a <b>bad song folder</b>.<br>"
 					"<br>"
-					"Please report this problem <a href=\"http://uman.sf.net\">here</a>."),
+					"Please report this problem <a href=\"https://github.com/UltraStar-Deluxe/UltraStar-Manager/issues\">here</a>."),
 			BTN	<< ":/marks/accept.png" << QObject::tr("Try again.")
 				<< ":/control/folder_note.png" << QObject::tr("Select another song folder."));
 	if(result == 1) {

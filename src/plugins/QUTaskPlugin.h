@@ -59,7 +59,7 @@ public:
 	virtual void provideData(const QVariant &data, TaskDataTypes type = UndefinedData) = 0;
 };
 
-Q_DECLARE_INTERFACE(QUTaskFactory, "net.sf.uman.QUTaskFactory/1.0");
-Q_DECLARE_INTERFACE(QUTask, "net.sf.uman.QUTask/1.0");
+Q_DECLARE_INTERFACE(QUTaskFactory, "com.github.ultrastar-deluxe.ultrastar-manager.QUTaskFactory/1.0");
+Q_DECLARE_INTERFACE(QUTask, "com.github.ultrastar-deluxe.ultrastar-manager.QUTask/1.0");
 
 #endif // QUPLUGIN_H_

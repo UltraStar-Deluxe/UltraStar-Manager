@@ -16,7 +16,7 @@
 class QURibbonBar;
 
 /*!
- * This class represents the main user interface of uman. All important tasks
+ * This class represents the main user interface of UltraStar-Manager. All important tasks
  * will be offered to the user here.
  */
 class QUMainWindow : public QMainWindow, private Ui::QUMainWindow {
@@ -58,7 +58,7 @@ private slots:
 	void editSongLyrics(QUSongFile *song, int line);
 
 	void aboutQt();
-	void aboutUman();
+	void aboutUltraStar_Manager();
 	void aboutTagLib();
 	void aboutBASS();
 	void aboutMediaInfo();

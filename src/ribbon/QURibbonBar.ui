@@ -114,7 +114,7 @@
 Lyrics...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/types/text.png</normaloff>:/types/text.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -152,7 +152,7 @@ Lyrics...</string>
 Lyrics...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/text_edit.png</normaloff>:/control/text_edit.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -190,7 +190,7 @@ Lyrics...</string>
  Explorer...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/types/folder.png</normaloff>:/types/folder.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -228,7 +228,7 @@ Lyrics...</string>
 from Artist</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/types/user.png</normaloff>:/types/user.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -295,7 +295,7 @@ from Artist</string>
           <string>Save</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/save.png</normaloff>:/control/save.png</iconset>
          </property>
          <property name="iconSize">
@@ -338,7 +338,7 @@ from Artist</string>
           <string>Delete</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/bin.png</normaloff>:/control/bin.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -375,7 +375,7 @@ from Artist</string>
           <string>Merge</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/merge.png</normaloff>:/control/merge.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -413,7 +413,7 @@ from Artist</string>
 Covers...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/image_go.png</normaloff>:/control/image_go.png</iconset>
          </property>
          <property name="iconSize">
@@ -457,7 +457,7 @@ Covers...</string>
 Images</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/images.png</normaloff>:/control/images.png</iconset>
          </property>
          <property name="popupMode">
@@ -498,7 +498,7 @@ Images</string>
 Speed</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/marks/speed_slow_turtle.png</normaloff>:/marks/speed_slow_turtle.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -536,7 +536,7 @@ Speed</string>
  Playlist</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/playlist_to.png</normaloff>:/control/playlist_to.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -604,7 +604,7 @@ Speed</string>
 Songs</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/magnifier.png</normaloff>:/control/magnifier.png</iconset>
          </property>
          <property name="checkable">
@@ -645,7 +645,7 @@ Songs</string>
 Changes</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/save_all.png</normaloff>:/control/save_all.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -683,7 +683,7 @@ Changes</string>
 Song Folder</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/refresh.png</normaloff>:/control/refresh.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -721,7 +721,7 @@ Song Folder</string>
 all</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/expand.png</normaloff>:/control/expand.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -759,7 +759,7 @@ all</string>
 all</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/collapse.png</normaloff>:/control/collapse.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -796,7 +796,7 @@ all</string>
           <string>Hide</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/eye.png</normaloff>:/control/eye.png</iconset>
          </property>
          <property name="popupMode">
@@ -918,7 +918,7 @@ border-left-color: #C2C7CB;</string>
 Paths</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/folder_relative.png</normaloff>:/control/folder_relative.png</iconset>
          </property>
          <property name="checkable">
@@ -959,7 +959,7 @@ Paths</string>
 Symbols</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/types/music.png</normaloff>:/types/music.png</iconset>
          </property>
          <property name="checkable">
@@ -1030,7 +1030,7 @@ Symbols</string>
 Details</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/text_edit.png</normaloff>:/control/text_edit.png</iconset>
          </property>
          <property name="checkable">
@@ -1073,7 +1073,7 @@ Details</string>
           <string>Tasks</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/tasks.png</normaloff>:/control/tasks.png</iconset>
          </property>
          <property name="checkable">
@@ -1116,7 +1116,7 @@ Details</string>
           <string>Playlists</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/playlist.png</normaloff>:/control/playlist.png</iconset>
          </property>
          <property name="checkable">
@@ -1157,7 +1157,7 @@ Details</string>
 Player</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/mediaplayer.png</normaloff>:/control/mediaplayer.png</iconset>
          </property>
          <property name="checkable">
@@ -1198,7 +1198,7 @@ Player</string>
 Information</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/file_info.png</normaloff>:/control/file_info.png</iconset>
          </property>
          <property name="checkable">
@@ -1239,7 +1239,7 @@ Information</string>
 Log</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/log.png</normaloff>:/control/log.png</iconset>
          </property>
          <property name="checkable">
@@ -1344,7 +1344,7 @@ Log</string>
           <string>Paths...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/types/folder_go.png</normaloff>:/types/folder_go.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -1379,7 +1379,7 @@ Log</string>
 Directory</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/folder_note.png</normaloff>:/control/folder_note.png</iconset>
          </property>
          <property name="popupMode">
@@ -1420,7 +1420,7 @@ Directory</string>
 On Top</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/applications-blue.png</normaloff>:/control/applications-blue.png</iconset>
          </property>
          <property name="checkable">
@@ -1504,7 +1504,7 @@ border-left-color: #C2C7CB;</string>
 Order...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/tag_disk.png</normaloff>:/control/tag_disk.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -1542,7 +1542,7 @@ Order...</string>
 Tags...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/tag_custom.png</normaloff>:/control/tag_custom.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -1596,7 +1596,7 @@ border-left-color: #C2C7CB;</string>
 Encodings...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/encoding.png</normaloff>:/control/encoding.png</iconset>
          </property>
          <property name="popupMode">
@@ -1637,7 +1637,7 @@ Encodings...</string>
 Save</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/auto_save.png</normaloff>:/control/auto_save.png</iconset>
          </property>
          <property name="checkable">
@@ -1698,7 +1698,7 @@ Save</string>
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/control/mediumMp3Quality.png</pixmap>
+            <pixmap resource="../resources/UltraStar-Manager.qrc">:/control/mediumMp3Quality.png</pixmap>
            </property>
           </widget>
          </item>
@@ -1711,7 +1711,7 @@ Save</string>
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/control/highMp3Quality.png</pixmap>
+            <pixmap resource="../resources/UltraStar-Manager.qrc">:/control/highMp3Quality.png</pixmap>
            </property>
           </widget>
          </item>
@@ -1840,7 +1840,7 @@ border-left-color: #C2C7CB;</string>
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/control/mediumCoverQuality.png</pixmap>
+            <pixmap resource="../resources/UltraStar-Manager.qrc">:/control/mediumCoverQuality.png</pixmap>
            </property>
           </widget>
          </item>
@@ -1923,7 +1923,7 @@ border-left-color: #C2C7CB;</string>
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/control/highCoverQuality.png</pixmap>
+            <pixmap resource="../resources/UltraStar-Manager.qrc">:/control/highCoverQuality.png</pixmap>
            </property>
           </widget>
          </item>
@@ -2029,7 +2029,7 @@ border-left-color: #C2C7CB;</string>
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/control/mediumBackgroundQuality.png</pixmap>
+            <pixmap resource="../resources/UltraStar-Manager.qrc">:/control/mediumBackgroundQuality.png</pixmap>
            </property>
           </widget>
          </item>
@@ -2092,7 +2092,7 @@ border-left-color: #C2C7CB;</string>
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/control/highBackgroundQuality.png</pixmap>
+            <pixmap resource="../resources/UltraStar-Manager.qrc">:/control/highBackgroundQuality.png</pixmap>
            </property>
           </widget>
          </item>
@@ -2178,7 +2178,7 @@ border-left-color: #C2C7CB;</string>
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/control/mediumVideoQuality.png</pixmap>
+            <pixmap resource="../resources/UltraStar-Manager.qrc">:/control/mediumVideoQuality.png</pixmap>
            </property>
           </widget>
          </item>
@@ -2241,7 +2241,7 @@ border-left-color: #C2C7CB;</string>
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../resources/uman.qrc">:/control/highVideoQuality.png</pixmap>
+            <pixmap resource="../resources/UltraStar-Manager.qrc">:/control/highVideoQuality.png</pixmap>
            </property>
           </widget>
          </item>
@@ -2389,7 +2389,7 @@ border-left-color: #C2C7CB;</string>
 Report...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/report.png</normaloff>:/control/report.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -2427,7 +2427,7 @@ Report...</string>
 Audio Files...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/types/music.png</normaloff>:/types/music.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -2464,7 +2464,7 @@ Audio Files...</string>
           <string>Plugins...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/plugin.png</normaloff>:/control/plugin.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -2532,7 +2532,7 @@ Audio Files...</string>
 Update</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/control/check_for_update.png</normaloff>:/control/check_for_update.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -2637,7 +2637,7 @@ Update</string>
           <string notr="true">English</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/lang/us.png</normaloff>:/lang/us.png</iconset>
          </property>
          <property name="iconSize">
@@ -2689,7 +2689,7 @@ Update</string>
           <string notr="true">Español</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/lang/es.png</normaloff>:/lang/es.png</iconset>
          </property>
          <property name="checkable">
@@ -2732,7 +2732,7 @@ Update</string>
           <string notr="true">Deutsch</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/lang/de.png</normaloff>:/lang/de.png</iconset>
          </property>
          <property name="checkable">
@@ -2775,7 +2775,7 @@ Update</string>
           <string notr="true">Français</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/lang/fr.png</normaloff>:/lang/fr.png</iconset>
          </property>
          <property name="checkable">
@@ -2818,7 +2818,7 @@ Update</string>
           <string notr="true">Polski</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/lang/pl.png</normaloff>:/lang/pl.png</iconset>
          </property>
          <property name="checkable">
@@ -2861,7 +2861,7 @@ Update</string>
           <string notr="true">Português</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/lang/pt.png</normaloff>:/lang/pt.png</iconset>
          </property>
          <property name="checkable">
@@ -2944,7 +2944,7 @@ Update</string>
         <number>0</number>
        </property>
        <item>
-        <widget class="QToolButton" name="aboutUmanBtn">
+        <widget class="QToolButton" name="aboutUltraStar_ManagerBtn">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -2967,7 +2967,7 @@ Update</string>
 Manager...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/icons/cup.png</normaloff>:/icons/cup.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -3001,7 +3001,7 @@ Manager...</string>
           <string>Qt...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/qt.png</normaloff>:/qt.png</iconset>
          </property>
          <property name="toolButtonStyle">
@@ -3065,7 +3065,7 @@ Manager...</string>
           <string>TagLib...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/taglib.png</normaloff>:/taglib.png</iconset>
          </property>
          <property name="iconSize">
@@ -3108,7 +3108,7 @@ Manager...</string>
           <string>BASS...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/bass.png</normaloff>:/bass.png</iconset>
          </property>
          <property name="iconSize">
@@ -3151,7 +3151,7 @@ Manager...</string>
           <string>MediaInfo...</string>
          </property>
          <property name="icon">
-          <iconset resource="../resources/uman.qrc">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
            <normaloff>:/MediaInfo.png</normaloff>:/MediaInfo.png</iconset>
          </property>
          <property name="iconSize">
@@ -3188,7 +3188,7 @@ Manager...</string>
   </widget>
  </widget>
  <resources>
-  <include location="../resources/uman.qrc"/>
+  <include location="../resources/UltraStar-Manager.qrc"/>
  </resources>
  <connections/>
 </ui>

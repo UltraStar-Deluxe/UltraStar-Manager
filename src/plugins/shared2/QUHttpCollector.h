@@ -54,10 +54,12 @@ protected:
 
 	void handleOldDownloads();
 
+	int ignoredUrls;
+
 	virtual QURequestUrl* url() const = 0;
 
 	virtual void processSearchResults() = 0;
-	virtual void processImageResults(QNetworkReply* reply);
+	virtual void processImageResults(QNetworkReply* reply) = 0;
 
 private:
 	State						_state;

@@ -18,6 +18,7 @@ QUHttpCollector::QUHttpCollector(QUSongInterface *song, QUMultilingualImageSourc
 	_song = song;
 	_source = source;
 	_communicator = 0;
+	ignoredUrls = 0;
 	initNetwork();
 	setState(Idle);
 }
@@ -51,7 +52,9 @@ void QUHttpCollector::collect() {
 	clearBuffer();
 	//http()->setHost(url->host());
 	//http()->get(url->request(), buffer());
-	manager()->get(QNetworkRequest(QUrl(url->request())));
+	QNetworkRequest request(QUrl(url->request()));
+	request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
+	manager()->get(request);
 
 	delete url;
 }
@@ -70,7 +73,7 @@ void QUHttpCollector::processNetworkStateChange(int state) {
 */
 
 void QUHttpCollector::processNetworkReply(QNetworkReply* reply) {
-	song()->log(tr("[albumartex] in QUHttpCollector::processNetworkReply()"), QU::Help);
+	song()->log(tr("[QUHttpCollector] processNetworkReply()"), QU::Help);
 	//int count = localFiles().size();
 	//closeLocalFiles();
 
@@ -82,11 +85,11 @@ void QUHttpCollector::processNetworkReply(QNetworkReply* reply) {
 	}
 
 	if(state() == SearchRequest) {
-		song()->log(tr("[albumartex] in QUHttpCollector::processNetworkReply(), state() = ") + QString::number(state()), QU::Help);
+		song()->log(tr("[QUHttpCollector] processNetworkReply(), state() = ") + QString::number(state()), QU::Help);
 		buffer()->setData(reply->readAll());
 		processSearchResults();
 	} else if(state() == ImageRequest)
-		song()->log(tr("[albumartex] in QUHttpCollector::processNetworkReply(), state() = ") + QString::number(state()), QU::Help);
+		song()->log(tr("[QUHttpCollector] processNetworkReply(), state() = ") + QString::number(state()), QU::Help);
 		processImageResults(reply);
 }
 
@@ -120,14 +123,7 @@ void QUHttpCollector::handleOldDownloads() {
 }
 
 void QUHttpCollector::processImageResults(QNetworkReply* reply) {
-	song()->log(tr("[albumartex] in QUHttpCollector::processImageResults(), state() = ") + QString::number(state()), QU::Help);
-	QUrl url = reply->url();
-	QFile *file = openLocalFile(source()->imageFolder(song()).filePath(QFileInfo(url.toString()).fileName()));
-
-	if(file) {
-		file->write(reply->readAll());
-	}
-
+	song()->log(tr("[QUHttpCollector] processImageResults(), state() = ") + QString::number(state()), QU::Help);
 	setState(Idle);
 	communicator()->send(tr("%1 results").arg(localFiles().size()));
 	communicator()->send(QUCommunicatorInterface::Done);
