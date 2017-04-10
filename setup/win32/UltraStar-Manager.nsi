@@ -7,11 +7,11 @@ Name "${PRODUCTNAME} ${PRODUCTVERSION}"
 !include "MUI.nsh"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
-!define MUI_HEADERIMAGE_BITMAP "img\uman_installer_top_2.bmp"
-!define MUI_HEADERIMAGE_UNBITMAP "img\uman_installer_top_2.bmp"
+!define MUI_HEADERIMAGE_BITMAP "img\installer_top_2.bmp"
+!define MUI_HEADERIMAGE_UNBITMAP "img\installer_top_2.bmp"
 
-!define MUI_WELCOMEFINISHPAGE_BITMAP "img\uman_installer_side_2.bmp"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "img\uman_installer_side_2.bmp"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "img\installer_side_2.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "img\installer_side_2.bmp"
 
 !define BASE_REGKEY "Software\HPI\${PRODUCTNAME}"
 !define UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCTNAME}"
@@ -197,13 +197,16 @@ Section "Application" SecCopyUI
 	CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\${PRODUCTNAME}.lnk" "$INSTDIR\UltraStar-Manager.exe"
 	CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall ${PRODUCTNAME}.lnk" "$INSTDIR\Uninstall.exe"
 	!insertmacro MUI_STARTMENU_WRITE_END
+	
+	;; SendTo shortcut
+	CreateShortCut "$SENDTO\${PRODUCTNAME}.lnk" "$INSTDIR\UltraStar-Manager.exe" "-SongPath"
 
 	;; Registry for Windows Uninstall
 	WriteRegStr HKLM "${UNINST_KEY}" "DisplayName" "${PRODUCTNAME}"
 	WriteRegStr HKLM "${UNINST_KEY}" "UninstallString" '"$INSTDIR\Uninstall.exe"'
 	WriteRegStr HKLM "${UNINST_KEY}" "InstallLocation" $INSTDIR
 	WriteRegStr HKLM "${UNINST_KEY}" "DisplayIcon" "$INSTDIR\UltraStar-Manager.exe,0"
-	WriteRegStr HKLM "${UNINST_KEY}" "Publisher" "uman Community"
+	WriteRegStr HKLM "${UNINST_KEY}" "Publisher" "UltraStar-Manager Community"
 	WriteRegStr HKLM "${UNINST_KEY}" "DisplayVersion" "${PRODUCTVERSION}"
 	WriteRegDWORD HKLM "${UNINST_KEY}" "NoModify" 1
 	WriteRegDWORD HKLM "${UNINST_KEY}" "NoRepair" 1
@@ -349,6 +352,8 @@ Section "Uninstall"
 	!insertmacro MUI_STARTMENU_GETFOLDER Application $MUI_TEMP
 	Delete "$SMPROGRAMS\$MUI_TEMP\Uninstall ${PRODUCTNAME}.lnk"
 	Delete "$SMPROGRAMS\$MUI_TEMP\${PRODUCTNAME}.lnk"
+	;; SendTo shortcut
+	Delete "$SENDTO\${PRODUCTNAME}.lnk"
 	;Delete empty start menu parent diretories
 	StrCpy $MUI_TEMP "$SMPROGRAMS\$MUI_TEMP"
 	startMenuDeleteLoop:
