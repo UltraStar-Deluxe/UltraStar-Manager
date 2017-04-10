@@ -260,7 +260,8 @@ macx {
 	PKGCONFIG += libmediainfo
 
 	CONFIG += app_bundle
-	QMAKE_RPATHDIR += @executable_path/../Frameworks
+	#QMAKE_RPATHDIR += @executable_path/../Frameworks
+	QMAKE_LFLAGS += -Wl,-rpath,@executable_path/../Frameworks/
 
 	ICON = resources/UltraStar-Manager.icns
 }
