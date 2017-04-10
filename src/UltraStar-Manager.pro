@@ -261,6 +261,8 @@ macx {
 
 	CONFIG += app_bundle
 	QMAKE_RPATHDIR += @executable_path/../Frameworks
+
+	ICON = resources/UltraStar-Manager.icns
 }
 
 unix:!macx {
@@ -274,6 +276,8 @@ unix:!macx {
 	CONFIG += link_pkgconfig
 	PKGCONFIG += taglib
 	PKGCONFIG += libmediainfo
+
+	QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN\''
 }
 
 QMAKE_EXTRA_TARGETS += revtarget
@@ -336,7 +340,6 @@ macx {
 	dylibs.files = ../lib/macx/libbass.dylib
 	dylibs.path = Contents/Frameworks
 	QMAKE_BUNDLE_DATA += dylibs
-	ICON = resources/UltraStar-Manager.icns
 
 	# Run macdeployqt to bundle the required Qt libraries with the application
 	QMAKE_POST_LINK += macdeployqt ../bin/release/UltraStar-Manager.app $$escape_expand(\\n\\t)
