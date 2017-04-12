@@ -36,12 +36,12 @@ install:
 before_script:
 
 script:
-    - cd src/plugins/audiotag/ && qmake audiotag.pro && make
-    - cd ../cleanup/ && qmake cleanup.pro && make
-    - cd ../lyric/ && qmake lyric.pro && make
-    - cd ../preparatory/ && qmake preparatory.pro && make
-    - cd ../rename/ && qmake rename.pro && make
-    - cd ../../ && qmake UltraStar-Manager.pro && make
+    - cd src/plugins/audiotag/ && qmake audiotag.pro && make -j4
+    - cd ../cleanup/ && qmake cleanup.pro && make -j4
+    - cd ../lyric/ && qmake lyric.pro && make -j4
+    - cd ../preparatory/ && qmake preparatory.pro && make -j4
+    - cd ../rename/ && qmake rename.pro && make -j4
+    - cd ../../ && qmake UltraStar-Manager.pro && make -j4
     - cd ../bin/release/
     - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
         if [ -r "UltraStar-Manager.dmg" ]; then
