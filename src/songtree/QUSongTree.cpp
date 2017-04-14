@@ -1547,7 +1547,7 @@ void QUSongTree::searchForCoverOnAAE() {
 	QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->currentItem());
 
 	if(songItem) {
-		QUrl url("http://www.albumartexchange.com/covers");
+		QUrl url("https://www.albumartexchange.com/covers");
 		QUrlQuery urlQuery;
 		QString queryString = QString(songItem->song()->artist() + " " + songItem->song()->title()).replace(QRegExp("(\\s+)"), "+");
 		urlQuery.addQueryItem("q", queryString);
