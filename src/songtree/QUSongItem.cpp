@@ -471,13 +471,13 @@ void QUSongItem::setTick(int column) {
 
 			if (video_width < QUSongSupport::mediumVideoQuality()) {
 				this->setIcon(column, QIcon(":/marks/tick_low.png"));
-				this->setToolTip(column, QString(QObject::tr("Low quality (%1 x %2)")).arg(video_width).arg(video_height));
+				this->setToolTip(column, QString(QObject::tr("Low quality video file (%1 x %2)")).arg(video_width).arg(video_height));
 			} else if (video_width < QUSongSupport::highVideoQuality()) {
 				this->setIcon(column, QIcon(":/marks/tick_medium.png"));
-				this->setToolTip(column, QString(QObject::tr("Medium quality (%1 x %2)")).arg(video_width).arg(video_height));
+				this->setToolTip(column, QString(QObject::tr("Medium quality video file (%1 x %2)")).arg(video_width).arg(video_height));
 			} else {
 				this->setIcon(column, QIcon(":/marks/tick_high.png"));
-				this->setToolTip(column, QString(QObject::tr("High quality (%1 x %2)")).arg(video_width).arg(video_height));
+				this->setToolTip(column, QString(QObject::tr("High quality video file (%1 x %2)")).arg(video_width).arg(video_height));
 			}
 			// used for sorting
 			this->setData(column, Qt::UserRole, QVariant(video_width));

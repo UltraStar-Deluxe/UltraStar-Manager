@@ -678,17 +678,17 @@ Intenta cortarla a %1 x %3 para un aspecto panorámico.</translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="474"/>
-        <source>Low quality (%1 x %2)</source>
+        <source>Low quality video file (%1 x %2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="477"/>
-        <source>Medium quality (%1 x %2)</source>
+        <source>Medium quality video file (%1 x %2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../songtree/QUSongItem.cpp" line="480"/>
-        <source>High quality (%1 x %2)</source>
+        <source>High quality video file (%1 x %2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2279,27 +2279,27 @@ Tareas</translation>
 <context>
     <name>QUMessageBox</name>
     <message>
-        <location filename="../../support/QUMessageBox.ui" line="16"/>
+        <location filename="../../support/QUMessageBox.ui" line="17"/>
         <source>MessageBox</source>
         <translation>CuadroDeMensajes</translation>
     </message>
     <message>
-        <location filename="../../support/QUMessageBox.ui" line="129"/>
+        <location filename="../../support/QUMessageBox.ui" line="139"/>
         <source>This is an example message. You&apos;ll have to change it to fit your needs.</source>
         <translation>Este es un ejemplo de mensaje. Tendrás que cambiarlo para ajustarlo a tus propósitos.</translation>
     </message>
     <message>
-        <location filename="../../support/QUMessageBox.ui" line="190"/>
+        <location filename="../../support/QUMessageBox.ui" line="200"/>
         <source>Okay, I get it.</source>
         <translation>Bueno, lo entiendo.</translation>
     </message>
     <message>
-        <location filename="../../support/QUMessageBox.ui" line="201"/>
+        <location filename="../../support/QUMessageBox.ui" line="211"/>
         <source>What do you mean?</source>
         <translation>¿Qué quieres decir?</translation>
     </message>
     <message>
-        <location filename="../../support/QUMessageBox.ui" line="212"/>
+        <location filename="../../support/QUMessageBox.ui" line="222"/>
         <source>I&apos;m outta here...</source>
         <translation>Me voy de aquí...</translation>
     </message>
@@ -2570,37 +2570,37 @@ margin: 0;</translation>
 &lt;b&gt;Size:&lt;/b&gt;	%3 KiB]</translation>
     </message>
     <message>
-        <location filename="../../support/QUPictureDialog.ui" line="13"/>
+        <location filename="../../support/QUPictureDialog.ui" line="14"/>
         <source>Picture Preview</source>
         <translation>Previsualización de Imagen</translation>
     </message>
     <message>
-        <location filename="../../support/QUPictureDialog.ui" line="123"/>
+        <location filename="../../support/QUPictureDialog.ui" line="133"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../support/QUPictureDialog.ui" line="193"/>
+        <location filename="../../support/QUPictureDialog.ui" line="212"/>
         <source>Fit to window (Ctrl+1)</source>
         <translation>Ajustar a ventana (Ctrl+1)</translation>
     </message>
     <message>
-        <location filename="../../support/QUPictureDialog.ui" line="196"/>
+        <location filename="../../support/QUPictureDialog.ui" line="215"/>
         <source>Fit</source>
         <translation>Ajustar</translation>
     </message>
     <message>
-        <location filename="../../support/QUPictureDialog.ui" line="210"/>
+        <location filename="../../support/QUPictureDialog.ui" line="229"/>
         <source>Original size (Ctrl+2)</source>
         <translation>Tamaño original (Ctrl+2)</translation>
     </message>
     <message>
-        <location filename="../../support/QUPictureDialog.ui" line="213"/>
+        <location filename="../../support/QUPictureDialog.ui" line="232"/>
         <source>Full</source>
         <translation>Completo</translation>
     </message>
     <message>
-        <location filename="../../support/QUPictureDialog.ui" line="240"/>
+        <location filename="../../support/QUPictureDialog.ui" line="259"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -2958,17 +2958,25 @@ margin: 0;</translation>
         <translation>Plugins</translation>
     </message>
     <message>
-        <location filename="../../plugins/QUPluginDialog.ui" line="131"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Plugins extend the application&apos;s functionality. All found plugins are listed below. Check out the &lt;/span&gt;&lt;a href=&quot;http://sf.net/projects/uman&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;project page&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; for new plugins.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="vanished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Los plugins aumentan la funcionalidad de la aplicacion. Todos los plugins encontrados se muestran en la lista a continuación. Visita la &lt;/span&gt;&lt;a href=&quot;http://sf.net/projects/uman&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;página del proyecto&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; para más plugins.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/QUPluginDialog.ui" line="131"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Plugins extend the application&apos;s functionality. All found plugins are listed below. Check out the &lt;/span&gt;&lt;a href=&quot;https://github.com/UltraStar-Deluxe/UltraStar-Manager&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;project page&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; for new plugins.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../plugins/QUPluginDialog.ui" line="196"/>
@@ -3469,29 +3477,29 @@ p, li { white-space: pre-wrap; }
         <translation>Progreso</translation>
     </message>
     <message>
-        <location filename="../../support/QUProgressDialog.ui" line="130"/>
-        <location filename="../../support/QUProgressDialog.ui" line="255"/>
-        <location filename="../../support/QUProgressDialog.ui" line="281"/>
+        <location filename="../../support/QUProgressDialog.ui" line="139"/>
+        <location filename="../../support/QUProgressDialog.ui" line="273"/>
+        <location filename="../../support/QUProgressDialog.ui" line="299"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../support/QUProgressDialog.ui" line="191"/>
+        <location filename="../../support/QUProgressDialog.ui" line="209"/>
         <source>Current Song...</source>
         <translation>Canción Actual...</translation>
     </message>
     <message>
-        <location filename="../../support/QUProgressDialog.ui" line="236"/>
+        <location filename="../../support/QUProgressDialog.ui" line="254"/>
         <source>Remaining time</source>
         <translation>Tiempo restante</translation>
     </message>
     <message>
-        <location filename="../../support/QUProgressDialog.ui" line="268"/>
+        <location filename="../../support/QUProgressDialog.ui" line="286"/>
         <source>Performance</source>
         <translation>Rendimiento</translation>
     </message>
     <message>
-        <location filename="../../support/QUProgressDialog.ui" line="320"/>
+        <location filename="../../support/QUProgressDialog.ui" line="347"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -6139,12 +6147,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">...</translation>
     </message>
     <message>
-        <location filename="../../support/QUTextDialog.ui" line="252"/>
+        <location filename="../../support/QUTextDialog.ui" line="270"/>
         <source>background-color: rgba(255, 255, 255, 0);</source>
         <translation>colore de fondor: rgba(255, 255, 255, 0);</translation>
     </message>
     <message>
-        <location filename="../../support/QUTextDialog.ui" line="298"/>
+        <location filename="../../support/QUTextDialog.ui" line="325"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>

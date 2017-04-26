@@ -30,7 +30,7 @@
         <location filename="QUPreparatoryTask.cpp" line="29"/>
         <source>Fix or remove unsupported tags</source>
         <oldsource>Remove unsupported tags</oldsource>
-        <translation type="unfinished">Entferne nicht unterstützte Tags</translation>
+        <translation>Korrigiere oder entferne nicht unterstützte Tags</translation>
     </message>
     <message>
         <source>&lt;b&gt;#MP3&lt;/b&gt; ... first audio file found.&lt;br&gt;&lt;b&gt;#COVER&lt;/b&gt; ... first picture file, including pattern: &lt;i&gt;[CO]|cove?r?&lt;/i&gt;.&lt;br&gt;&lt;b&gt;#BACKGROUND&lt;/b&gt; ... first picture file, including pattern: &lt;i&gt;[BG]|back&lt;/i&gt;.&lt;br&gt;&lt;b&gt;#VIDEO&lt;/b&gt; ... first video file found.</source>
@@ -44,7 +44,7 @@
     <message>
         <location filename="QUPreparatoryTask.cpp" line="30"/>
         <source>Replaces the incorrect &lt;b&gt;#AUTHOR&lt;/b&gt; tag by the correct &lt;b&gt;#CREATOR&lt;/b&gt; tag and deletes all other unsupported tags.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ersetzt den inkorrekten &lt;b&gt;#AUTHOR&lt;/b&gt;-Tag durch den korrekten &lt;b&gt;#CREATOR&lt;/b&gt;-Tag and löscht alle anderen nicht unterstützten Tags.</translation>
     </message>
     <message>
         <location filename="QUPreparatoryTask.cpp" line="34"/>

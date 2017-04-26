@@ -41,12 +41,12 @@
     <message>
         <location filename="QULyricTask.cpp" line="35"/>
         <source>Fix apostrophes</source>
-        <translation type="unfinished"></translation>
+        <translation>Korrigiere Apostrophe</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="36"/>
         <source>Replaces wrongfully used apostrophe symbols `, ´, ’ by the ASCII apostrophe &apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ersetzt falsch verwendete Apostrophsymbole `, ´, ’ durch den ASCII Apostroph &apos;</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="40"/>
@@ -117,7 +117,7 @@
     <message>
         <location filename="QULyricTask.cpp" line="437"/>
         <source>%1 wrong apostrophe symbols replaced successfully for &quot;%2 - %3&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 falsche Apostrophsymbole erfolgreich ersetzt: &quot;%2 - %3&quot;.</translation>
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="493"/>
