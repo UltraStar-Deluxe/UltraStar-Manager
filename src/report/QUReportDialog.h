@@ -26,6 +26,14 @@ public:
 	~QUReportDialog();
 
 private slots:
+	void selectLetterFnt();
+	void selectTopLevelEntryFnt();
+	void selectSubLevelEntryFnt();
+	void selectSubSubLevelEntryFnt();
+	void selectLetterClr();
+	void selectTopLevelEntryClr();
+	void selectSubLevelEntryClr();
+	void selectSubSubLevelEntryClr();
 	void createPdfReport();
 	void createHtmlReport();
 	void createPlainTextReport();
@@ -39,12 +47,24 @@ private:
 	QList<QUSongFile*> _allSongs;
 	QList<QUSongFile*> _visibleSongs;
 	QList<QUPlaylistFile*> _allPlaylists;
+	QFont _letterFnt;
+	QFont _topLevelEntryFnt;
+	QFont _subLevelEntryFnt;
+	QFont _subSubLevelEntryFnt;
+	QColor _letterClr;
+	QColor _topLevelEntryClr;
+	QColor _subLevelEntryClr;
+	QColor _subSubLevelEntryClr;
 
 	QList<QUAbstractReportData*> _data;
 
 	void initReportList();
 	void initStyleCombo();
 	void initPlaylistCombo();
+	void initPaperSizeCombo();
+	void initOrientationCombo();
+	void initSelectFntBtns();
+	void initSelectClrBtns();
 
 	void fetchData();
 	QList<QUSongFile*> sortedSongs();

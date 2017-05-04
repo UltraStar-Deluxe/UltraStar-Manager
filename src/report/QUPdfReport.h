@@ -5,23 +5,45 @@
 
 #include <QFont>
 #include <QFontMetrics>
+#include <QPrinter>
 
 class QUPdfReport: public QUAbstractReport {
 	Q_OBJECT
 
 public:
-	QUPdfReport(
-			const QList<QUSongFile*> &songFiles,
+	QUPdfReport(const QList<QUSongFile*> &songFiles,
 			const QList<QUAbstractReportData*> &reportDataList,
 			const QFileInfo &fi,
 			QU::ReportOptions options = 0,
 			const QVariant &userData = QVariant(),
+			const QPrinter::PaperSize paperSize = QPrinter::A4,
+			const QPrinter::Orientation orientation = QPrinter::Portrait,
+			const int layoutColumns = 1,
+			const int leftMargin = 10,
+			const int rightMargin = 10,
+			const int topMargin = 8,
+			const int bottomMargin = 8,
+			const QFont &letterFnt = QFont("Verdana", 14, QFont::Black, false),
+			const QFont &topLevelEntryFnt = QFont("Verdana", 7, QFont::DemiBold, false),
+			const QFont &subLevelEntryFnt = QFont("Verdana", 7, QFont::Normal, false),
+			const QFont &subSubLevelEntryFnt = QFont("Verdana", 6, QFont::Normal, false),
+			const QColor &letterClr = Qt::darkGreen,
+			const QColor &topLevelEntryClr = Qt::black,
+			const QColor &subLevelEntryClr = Qt::black,
+			const QColor &subSubLevelEntryClr = Qt::gray,
 			QObject *parent = 0);
 
 	virtual QString content() const { return tr("PDF Report"); }
 	virtual bool save();
 
 private:
+	QPrinter::PaperSize _paperSize;
+	QPrinter::Orientation _orientation;
+	int _layoutColumns;
+	int _leftMargin;
+	int _rightMargin;
+	int _topMargin;
+	int _bottomMargin;
 	QList<int> _colWidth;
 	// vertical spacing
 	int _subLevelToLetterVSep;
@@ -55,6 +77,10 @@ private:
 	QFont _subLevelEntryFnt;
 	QFont _subSubLevelEntryFnt;
 	QFont _numberFnt;
+	QColor _letterClr;
+	QColor _topLevelEntryClr;
+	QColor _subLevelEntryClr;
+	QColor _subSubLevelEntryClr;
 };
 
 #endif // QUPDFREPORT_H
