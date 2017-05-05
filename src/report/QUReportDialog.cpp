@@ -25,6 +25,7 @@
 #include <QUrl>
 #include <QDesktopServices>
 #include <QPrinter>
+#include <QDebug>
 
 QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<QUSongFile*> &visibleSongs, const QList<QUPlaylistFile*> &allPlaylists, QWidget *parent):
 		QDialog(parent),
@@ -32,14 +33,21 @@ QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<Q
 		_visibleSongs(visibleSongs),
 		_allPlaylists(allPlaylists)
 {
-	_letterFnt = QFont("Verdana", 14, QFont::Black, false);
+	_categoryFnt = QFont("Verdana", 14, QFont::Black, false);
 	_topLevelEntryFnt = QFont("Verdana", 7, QFont::DemiBold, false);
 	_subLevelEntryFnt = QFont("Verdana", 7, QFont::Normal, false);
 	_subSubLevelEntryFnt = QFont("Verdana", 6, QFont::Normal, false);
-	_letterClr = Qt::darkGreen;
+	_categoryClr = Qt::darkGreen;
 	_topLevelEntryClr = Qt::black;
 	_subLevelEntryClr = Qt::black;
 	_subSubLevelEntryClr = Qt::gray;
+	_categoryToTopLevelVSep	= 12.0; // point
+	_topLevelToSubLevelVSep	= 11.0; // point
+	_subLevelToSubLevelVSep	= 11.0; // point
+	_subLevelToTopLevelVSep	= 12.0; // point
+	_subLevelToCategoryVSep	= 24.0; // point
+	_subLevelEntryHIndent	= 4.0; // mm
+	_colHSep				= 2.0; // mm
 
 	setupUi(this);
 
@@ -55,14 +63,15 @@ QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<Q
 	initSelectFntBtns();
 	initSelectClrBtns();
 
-	connect(selectLetterFntBtn, SIGNAL(clicked()), this, SLOT(selectLetterFnt()));
+	connect(selectCategoryFntBtn, SIGNAL(clicked()), this, SLOT(selectCategoryFnt()));
 	connect(selectTopLevelEntryFntBtn, SIGNAL(clicked()), this, SLOT(selectTopLevelEntryFnt()));
 	connect(selectSubLevelEntryFntBtn, SIGNAL(clicked()), this, SLOT(selectSubLevelEntryFnt()));
 	connect(selectSubSubLevelEntryFntBtn, SIGNAL(clicked()), this, SLOT(selectSubSubLevelEntryFnt()));
-	connect(selectLetterClrBtn, SIGNAL(clicked()), this, SLOT(selectLetterClr()));
+	connect(selectCategoryClrBtn, SIGNAL(clicked()), this, SLOT(selectCategoryClr()));
 	connect(selectTopLevelEntryClrBtn, SIGNAL(clicked()), this, SLOT(selectTopLevelEntryClr()));
 	connect(selectSubLevelEntryClrBtn, SIGNAL(clicked()), this, SLOT(selectSubLevelEntryClr()));
 	connect(selectSubSubLevelEntryClrBtn, SIGNAL(clicked()), this, SLOT(selectSubSubLevelEntryClr()));
+
 	connect(doneBtn, SIGNAL(clicked()), this, SLOT(accept()));
 	connect(createPdfBtn, SIGNAL(clicked()), this, SLOT(createPdfReport()));
 	connect(createHtmlBtn, SIGNAL(clicked()), this, SLOT(createHtmlReport()));
@@ -150,8 +159,8 @@ void QUReportDialog::initOrientationCombo() {
 }
 
 void QUReportDialog::initSelectFntBtns() {
-	selectLetterFntBtn->setFont(_letterFnt);
-	selectLetterFntBtn->setText(QString("%1, %2").arg(_letterFnt.family()).arg(_letterFnt.pointSize()));
+	selectCategoryFntBtn->setFont(_categoryFnt);
+	selectCategoryFntBtn->setText(QString("%1, %2").arg(_categoryFnt.family()).arg(_categoryFnt.pointSize()));
 	selectTopLevelEntryFntBtn->setFont(_topLevelEntryFnt);
 	selectTopLevelEntryFntBtn->setText(QString("%1, %2").arg(_topLevelEntryFnt.family()).arg(_topLevelEntryFnt.pointSize()));
 	selectSubLevelEntryFntBtn->setFont(_subLevelEntryFnt);
@@ -161,9 +170,9 @@ void QUReportDialog::initSelectFntBtns() {
 }
 
 void QUReportDialog::initSelectClrBtns() {
-	selectLetterClrBtn->setStyleSheet(QString("background-color: %1").arg(_letterClr.name()));
-	selectLetterClrBtn->setAutoFillBackground(true);
-	selectLetterClrBtn->setFlat(true);
+	selectCategoryClrBtn->setStyleSheet(QString("background-color: %1").arg(_categoryClr.name()));
+	selectCategoryClrBtn->setAutoFillBackground(true);
+	selectCategoryClrBtn->setFlat(true);
 	selectTopLevelEntryClrBtn->setStyleSheet(QString("background-color: %1").arg(_topLevelEntryClr.name()));
 	selectTopLevelEntryClrBtn->setAutoFillBackground(true);
 	selectTopLevelEntryClrBtn->setFlat(true);
@@ -173,14 +182,13 @@ void QUReportDialog::initSelectClrBtns() {
 	selectSubSubLevelEntryClrBtn->setStyleSheet(QString("background-color: %1").arg(_subSubLevelEntryClr.name()));
 	selectSubSubLevelEntryClrBtn->setAutoFillBackground(true);
 	selectSubSubLevelEntryClrBtn->setFlat(true);
-	this->repaint();
 }
 
-void QUReportDialog::selectLetterFnt() {
+void QUReportDialog::selectCategoryFnt() {
 	bool ok;
-	_letterFnt = QFontDialog::getFont(&ok, _letterFnt);
-	selectLetterFntBtn->setFont(_letterFnt);
-	selectLetterFntBtn->setText(QString("%1, %2").arg(_letterFnt.family()).arg(_letterFnt.pointSize()));
+	_categoryFnt = QFontDialog::getFont(&ok, _categoryFnt);
+	selectCategoryFntBtn->setFont(_categoryFnt);
+	selectCategoryFntBtn->setText(QString("%1, %2").arg(_categoryFnt.family()).arg(_categoryFnt.pointSize()));
 }
 
 void QUReportDialog::selectTopLevelEntryFnt() {
@@ -204,11 +212,11 @@ void QUReportDialog::selectSubSubLevelEntryFnt() {
 	selectSubSubLevelEntryFntBtn->setText(QString("%1, %2").arg(_subSubLevelEntryFnt.family()).arg(_subSubLevelEntryFnt.pointSize()));
 }
 
-void QUReportDialog::selectLetterClr() {
-	_letterClr = QColorDialog::getColor(_letterClr);
-	selectLetterClrBtn->setStyleSheet(QString("background-color: %1").arg(_letterClr.name()));
-	selectLetterClrBtn->setAutoFillBackground(true);
-	selectLetterClrBtn->setFlat(true);
+void QUReportDialog::selectCategoryClr() {
+	_categoryClr = QColorDialog::getColor(_categoryClr);
+	selectCategoryClrBtn->setStyleSheet(QString("background-color: %1").arg(_categoryClr.name()));
+	selectCategoryClrBtn->setAutoFillBackground(true);
+	selectCategoryClrBtn->setFlat(true);
 }
 
 void QUReportDialog::selectTopLevelEntryClr() {
@@ -237,6 +245,19 @@ void QUReportDialog::createPdfReport() {
 	QString reportFileName = tr("Songlist_%1.pdf").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd"));
 	QFileInfo fi(QDir(settings.value("reportPath").toString()), reportFileName);
 
+	float pt2px = 1200/72; // HighResolution = 1200 dots per inch (dpi) = 1200 dpi/ mm = 12000/254 dpm
+	float mm2px = 12000/254; // HighResolution = 1200 dots per inch (dpi) = 1200/25.4 dots per mm = 12000/254 dots per millimeter
+
+	// point to pixels
+	_categoryToTopLevelVSep = categoryToTopLevelVSepDoubleSpinBox->value() * pt2px;
+	_topLevelToSubLevelVSep = topLevelToSubLevelVSepDoubleSpinBox->value() * pt2px;
+	_subLevelToSubLevelVSep = subLevelToSubLevelVSepDoubleSpinBox->value() * pt2px;
+	_subLevelToTopLevelVSep = subLevelToTopLevelVSepDoubleSpinBox->value() * pt2px;
+	_subLevelToCategoryVSep = subLevelToCategoryVSepDoubleSpinBox->value() * pt2px;
+	// millimeters to pixels
+	_subLevelEntryHIndent = subLevelEntryHIndentDoubleSpinBox->value() * mm2px;
+	_colHSep = colHSepDoubleSpinBox->value() * mm2px;
+
 	fi.setFile(QFileDialog::getSaveFileName(this, tr("Save PDF Report"),
 		fi.filePath(),
 		tr("PDF files (*.pdf)")));
@@ -259,14 +280,21 @@ void QUReportDialog::createPdfReport() {
 				rightMargin->value(),
 				topMargin->value(),
 				bottomMargin->value(),
-				_letterFnt,
+				_categoryFnt,
 				_topLevelEntryFnt,
 				_subLevelEntryFnt,
 				_subSubLevelEntryFnt,
-				_letterClr,
+				_categoryClr,
 				_topLevelEntryClr,
 				_subLevelEntryClr,
-				_subSubLevelEntryClr);
+				_subSubLevelEntryClr,
+				_categoryToTopLevelVSep,
+				_topLevelToSubLevelVSep,
+				_subLevelToSubLevelVSep,
+				_subLevelToTopLevelVSep,
+				_subLevelToCategoryVSep,
+				_subLevelEntryHIndent,
+				_colHSep);
 
 		if(report.save()) {
 			logSrv->add(QString(tr("PDF report created successfully to: \"%1\".")).arg(fi.filePath()), QU::Information);

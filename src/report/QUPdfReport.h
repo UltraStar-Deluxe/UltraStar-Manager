@@ -19,18 +19,25 @@ public:
 			const QPrinter::PaperSize paperSize = QPrinter::A4,
 			const QPrinter::Orientation orientation = QPrinter::Portrait,
 			const int layoutColumns = 1,
-			const int leftMargin = 10,
-			const int rightMargin = 10,
-			const int topMargin = 8,
-			const int bottomMargin = 8,
-			const QFont &letterFnt = QFont("Verdana", 14, QFont::Black, false),
+			const float leftMargin = 16.0,
+			const float rightMargin = 8.0,
+			const float topMargin = 8.0,
+			const float bottomMargin = 8.0,
+			const QFont &categoryFnt = QFont("Verdana", 14, QFont::Black, false),
 			const QFont &topLevelEntryFnt = QFont("Verdana", 7, QFont::DemiBold, false),
 			const QFont &subLevelEntryFnt = QFont("Verdana", 7, QFont::Normal, false),
 			const QFont &subSubLevelEntryFnt = QFont("Verdana", 6, QFont::Normal, false),
-			const QColor &letterClr = Qt::darkGreen,
+			const QColor &categoryClr = Qt::darkGreen,
 			const QColor &topLevelEntryClr = Qt::black,
 			const QColor &subLevelEntryClr = Qt::black,
 			const QColor &subSubLevelEntryClr = Qt::gray,
+			const float categoryToTopLevelVSep = 12.0,
+			const float topLevelToSubLevelVSep = 11.0,
+			const float subLevelToSubLevelVSep = 11.0,
+			const float subLevelToTopLevelVSep = 12.0,
+			const float subLevelToCategoryVSep = 24.0,
+			const float subLevelEntryHIndent = 4.0,
+			const float colHSep = 2.0,
 			QObject *parent = 0);
 
 	virtual QString content() const { return tr("PDF Report"); }
@@ -46,8 +53,8 @@ private:
 	int _bottomMargin;
 	QList<int> _colWidth;
 	// vertical spacing
-	int _subLevelToLetterVSep;
-	int _letterToTopLevelVSep;
+	int _subLevelToCategoryVSep;
+	int _categoryToTopLevelVSep;
 	int _topLevelToSubLevelVSep;
 	int _subLevelToSubLevelVSep;
 	int _subLevelToTopLevelVSep;
@@ -72,12 +79,12 @@ private:
 	int _relSongFilePathHSep;
 	int _defaultHSep;
 
-	QFont _letterFnt;
+	QFont _categoryFnt;
 	QFont _topLevelEntryFnt;
 	QFont _subLevelEntryFnt;
 	QFont _subSubLevelEntryFnt;
 	QFont _numberFnt;
-	QColor _letterClr;
+	QColor _categoryClr;
 	QColor _topLevelEntryClr;
 	QColor _subLevelEntryClr;
 	QColor _subSubLevelEntryClr;

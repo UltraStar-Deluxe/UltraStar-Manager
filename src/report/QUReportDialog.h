@@ -26,11 +26,11 @@ public:
 	~QUReportDialog();
 
 private slots:
-	void selectLetterFnt();
+	void selectCategoryFnt();
 	void selectTopLevelEntryFnt();
 	void selectSubLevelEntryFnt();
 	void selectSubSubLevelEntryFnt();
-	void selectLetterClr();
+	void selectCategoryClr();
 	void selectTopLevelEntryClr();
 	void selectSubLevelEntryClr();
 	void selectSubSubLevelEntryClr();
@@ -47,14 +47,21 @@ private:
 	QList<QUSongFile*> _allSongs;
 	QList<QUSongFile*> _visibleSongs;
 	QList<QUPlaylistFile*> _allPlaylists;
-	QFont _letterFnt;
+	QFont _categoryFnt;
 	QFont _topLevelEntryFnt;
 	QFont _subLevelEntryFnt;
 	QFont _subSubLevelEntryFnt;
-	QColor _letterClr;
+	QColor _categoryClr;
 	QColor _topLevelEntryClr;
 	QColor _subLevelEntryClr;
 	QColor _subSubLevelEntryClr;
+	float _categoryToTopLevelVSep;
+	float _topLevelToSubLevelVSep;
+	float _subLevelToSubLevelVSep;
+	float _subLevelToTopLevelVSep;
+	float _subLevelToCategoryVSep;
+	float _subLevelEntryHIndent;
+	float _colHSep;
 
 	QList<QUAbstractReportData*> _data;
 

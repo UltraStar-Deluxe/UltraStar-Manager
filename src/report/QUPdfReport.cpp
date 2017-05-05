@@ -19,18 +19,25 @@ QUPdfReport::QUPdfReport(const QList<QUSongFile*> &songFiles,
 		const QPrinter::PaperSize paperSize,
 		const QPrinter::Orientation orientation,
 		const int layoutColumns,
-		const int leftMargin,
-		const int rightMargin,
-		const int topMargin,
-		const int bottomMargin,
-		const QFont &letterFnt,
+		const float leftMargin,
+		const float rightMargin,
+		const float topMargin,
+		const float bottomMargin,
+		const QFont &categoryFnt,
 		const QFont &topLevelEntryFnt,
 		const QFont &subLevelEntryFnt,
 		const QFont &subSubLevelEntryFnt,
-		const QColor &letterClr,
+		const QColor &categoryClr,
 		const QColor &topLevelEntryClr,
 		const QColor &subLevelEntryClr,
 		const QColor &subSubLevelEntryClr,
+		const float categoryToTopLevelVSep,
+		const float topLevelToSubLevelVSep,
+		const float subLevelToSubLevelVSep,
+		const float subLevelToTopLevelVSep,
+		const float subLevelToCategoryVSep,
+		const float subLevelEntryHIndent,
+		const float colHSep,
 		QObject *parent): QUAbstractReport(songFiles, reportDataList, fi, options, userData, parent)
 {
 	//
@@ -41,25 +48,21 @@ QUPdfReport::QUPdfReport(const QList<QUSongFile*> &songFiles,
 	_rightMargin = rightMargin;
 	_topMargin = topMargin;
 	_bottomMargin = bottomMargin;
-	_letterFnt = letterFnt;
+	_categoryFnt = categoryFnt;
 	_topLevelEntryFnt = topLevelEntryFnt;
 	_subLevelEntryFnt = subLevelEntryFnt;
 	_subSubLevelEntryFnt = subSubLevelEntryFnt;
-	_letterClr = letterClr;
+	_categoryClr = categoryClr;
 	_topLevelEntryClr = topLevelEntryClr;
 	_subLevelEntryClr = subLevelEntryClr;
 	_subSubLevelEntryClr = subSubLevelEntryClr;
-
-	// vertical spacing
-	_letterToTopLevelVSep	= 200;
-	_topLevelToSubLevelVSep	= 180;
-	_subLevelToSubLevelVSep	= 180;
-	_subLevelToTopLevelVSep	= 200;
-	_subLevelToLetterVSep	= 400;
-
-	// horizontal spacing
-	_subLevelEntryHIndent	= 120;
-	_colHSep				= 120;
+	_categoryToTopLevelVSep = categoryToTopLevelVSep;
+	_topLevelToSubLevelVSep = topLevelToSubLevelVSep;
+	_subLevelToSubLevelVSep = subLevelToSubLevelVSep;
+	_subLevelToTopLevelVSep = subLevelToTopLevelVSep;
+	_subLevelToCategoryVSep = subLevelToCategoryVSep;
+	_subLevelEntryHIndent = subLevelEntryHIndent;
+	_colHSep = colHSep;
 
 	_subLevelEntryHSep		= 2000;
 	_artistHSep				= 2000;
@@ -77,10 +80,6 @@ QUPdfReport::QUPdfReport(const QList<QUSongFile*> &songFiles,
 	_relSongFilePathHSep	= 2000;
 	_defaultHSep			= 1000;
 
-	//_letterFnt			= QFont("Verdana", 14, QFont::Black, false);
-	//_topLevelEntryFnt		= QFont("Verdana", 7, QFont::DemiBold, false);
-	//_subLevelEntryFnt		= QFont("Verdana", 7, QFont::Normal, false);
-	//_subSubLevelEntryFnt	= QFont("Verdana", 6, QFont::Normal, false);
 	_numberFnt				= QFont("Verdana", 6, QFont::Normal, true);
 }
 
@@ -103,9 +102,11 @@ bool QUPdfReport::save() {
 	pDlg.setPixmap(":/types/folder.png");
 	pDlg.show();
 
+	QString prevCategory("Zyxel");
 	QString previousTopLevelEntry("Zyxel");
 
 	int pageHeight = painter.window().height();
+	int columnWidth = painter.window().width()/_layoutColumns;
 	int x = 0;
 	int y = 0;
 
@@ -113,8 +114,8 @@ bool QUPdfReport::save() {
 		// TODO
 	}
 
-	painter.setFont(_letterFnt);
-	int letterHeight = painter.fontMetrics().height();
+	painter.setFont(_categoryFnt);
+	int categoryHeight = painter.fontMetrics().height();
 	painter.setFont(_topLevelEntryFnt);
 	int topLevelEntryHeight = painter.fontMetrics().height();
 	painter.setFont(_subLevelEntryFnt);
@@ -203,7 +204,7 @@ bool QUPdfReport::save() {
 	_songFilePathHSep		= qMin(_songFilePathHSep, maxFilePathWidth);
 	_relSongFilePathHSep	= qMin(_relSongFilePathHSep, maxRelFilePathWidth);
 
-	bool letterBefore = false;
+	bool categoryBefore = false;
 	bool topLevelEntryBefore = false;
 
 	/* // find optimal colHSep to spread contents over page width
@@ -260,19 +261,37 @@ bool QUPdfReport::save() {
 		//painter.translate(200,0);
 		//painter.setFont(artist);
 
-		if(reportDataList().at(0)->textData(song).at(0).toUpper() != previousTopLevelEntry.at(0).toUpper()) {
-			// new letter
-			x = currentColumn * painter.window().width()/_layoutColumns;
+		QString category;
+		QString topLevelEntry;
+		QString subLevelEntry;
+		int subLevelIndex;
+		if(reportDataList().at(0)->id() == ARTIST_COL || reportDataList().at(0)->id() == TITLE_COL) {
+			// for artist or title as first column, use first letter as category
+			category = reportDataList().at(0)->textData(song).at(0).toUpper();
+			topLevelEntry = reportDataList().at(0)->textData(song);
+			subLevelEntry = reportDataList().at(1)->textData(song);
+			subLevelIndex = 2;
+		} else {
+			// for all other fields as first column, use full text as category
+			category = reportDataList().at(0)->textData(song).toUpper();
+			topLevelEntry = reportDataList().at(1)->textData(song);
+			subLevelEntry = reportDataList().at(2)->textData(song);
+			subLevelIndex = 3;
+		}
+
+		if(category != prevCategory) {
+			// new category
+			x = currentColumn * columnWidth;
 			if(currentColumn > 0) {
 				x += _colHSep/2;
 			}
 
-			// check if letter + topLevelEntry + first subLevelEntry will fit on page
-			if((y + _subLevelToLetterVSep + _letterToTopLevelVSep + _topLevelToSubLevelVSep) > pageHeight) {
-				y = letterHeight;
+			// check if category + topLevelEntry + first subLevelEntry will fit in current column
+			if((y + _subLevelToCategoryVSep + _categoryToTopLevelVSep + _topLevelToSubLevelVSep) > pageHeight) {
+				y = categoryHeight;
 
 				currentColumn = (currentColumn + 1) % _layoutColumns;
-				x = currentColumn * painter.window().width()/_layoutColumns;
+				x = currentColumn * columnWidth;
 				if(currentColumn > 0) {
 					x += _colHSep/2;
 				} else {
@@ -280,36 +299,37 @@ bool QUPdfReport::save() {
 				}
 			} else {
 				if(y == 0)
-					y = letterHeight;
+					y = categoryHeight;
 				else
-					y += _subLevelToLetterVSep;
+					y += _subLevelToCategoryVSep;
 			}
 
-			painter.setPen(_letterClr);
-			painter.setFont(_letterFnt);
-			painter.drawText(x, y, reportDataList().at(0)->textData(song).at(0).toUpper());
+			painter.setPen(_categoryClr);
+			painter.setFont(_categoryFnt);
+			painter.drawText(x, y, painter.fontMetrics().elidedText(category, Qt::ElideRight, columnWidth - _colHSep/2));
 
-			letterBefore = true;
+			prevCategory = category;
+			categoryBefore = true;
 		}
 
-		if(reportDataList().at(0)->textData(song) != previousTopLevelEntry) {
+		if(topLevelEntry != previousTopLevelEntry) {
 			// new topLevelEntry
-			x = currentColumn * painter.window().width()/_layoutColumns;
+			x = currentColumn * columnWidth;
 			if(currentColumn > 0) {
 				x += _colHSep/2;
 			}
 
-			// check if topLevelEntry + first subLevelEntry will fit on page
-			if(letterBefore) {
-				letterBefore = false;
-				y += _letterToTopLevelVSep;
+			// check if topLevelEntry + first subLevelEntry will fit in current column
+			if(categoryBefore) {
+				categoryBefore = false;
+				y += _categoryToTopLevelVSep;
 			}
 			else {
 				if((y + _subLevelToTopLevelVSep + _topLevelToSubLevelVSep) > pageHeight) {
 					y = topLevelEntryHeight;
 
 					currentColumn = (currentColumn + 1) % _layoutColumns;
-					x = currentColumn * painter.window().width()/_layoutColumns;
+					x = currentColumn * columnWidth;
 					if(currentColumn > 0) {
 						x += _colHSep/2;
 					} else {
@@ -323,16 +343,16 @@ bool QUPdfReport::save() {
 
 			painter.setPen(_topLevelEntryClr);
 			painter.setFont(_topLevelEntryFnt);
-			painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(0)->textData(song), Qt::ElideRight, painter.window().width()));
+			painter.drawText(x, y, painter.fontMetrics().elidedText(topLevelEntry, Qt::ElideRight, columnWidth - _colHSep/2));
 
-			previousTopLevelEntry = reportDataList().at(0)->textData(song);
+			previousTopLevelEntry = topLevelEntry;
 
 			topLevelEntryBefore = true;
 		}
 
 		x += _subLevelEntryHIndent;
 
-		// check if topLevelEntry + first subLevelEntry will fit on page
+		// check if topLevelEntry + first subLevelEntry will fit in current column
 		if(topLevelEntryBefore) {
 			topLevelEntryBefore = false;
 			y += _topLevelToSubLevelVSep;
@@ -342,7 +362,7 @@ bool QUPdfReport::save() {
 				y = subLevelEntryHeight;
 
 				currentColumn = (currentColumn + 1) % _layoutColumns;
-				x = currentColumn * painter.window().width()/_layoutColumns + _subLevelEntryHIndent;
+				x = currentColumn * columnWidth + _subLevelEntryHIndent;
 				if(currentColumn > 0) {
 					x += _colHSep/2;
 				} else {
@@ -357,18 +377,18 @@ bool QUPdfReport::save() {
 		if(reportDataList().size() > 1) {
 			painter.setPen(_subLevelEntryClr);
 			painter.setFont(_subLevelEntryFnt);
-			painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(1)->textData(song), Qt::ElideRight, _subLevelEntryHSep));
+			painter.drawText(x, y, painter.fontMetrics().elidedText(subLevelEntry, Qt::ElideRight, qMin(_subLevelEntryHSep, columnWidth - _subLevelEntryHIndent - _colHSep/2)));
 			x += _subLevelEntryHSep + _colHSep;
 		}
 
 		// paint all subsublevel entries
-		for(int i = 2; i < reportDataList().size(); ++i) {
+		for(subLevelIndex; subLevelIndex < reportDataList().size(); ++subLevelIndex) {
 			painter.setFont(_subSubLevelEntryFnt);
 
 			/*
-			QUBooleanSongData *bData = dynamic_cast<QUBooleanSongData*>(reportDataList().at(i));
-			QUSongFileData *fData = dynamic_cast<QUSongFileData*>(reportDataList().at(i));
-			QUSongTagData *tData = dynamic_cast<QUSongTagData*>(reportDataList().at(i));
+			QUBooleanSongData *bData = dynamic_cast<QUBooleanSongData*>(reportDataList().at(subLevelIndex));
+			QUSongFileData *fData = dynamic_cast<QUSongFileData*>(reportDataList().at(subLevelIndex));
+			QUSongTagData *tData = dynamic_cast<QUSongTagData*>(reportDataList().at(subLevelIndex));
 			if(bData)
 				logSrv->add(bData->_tag, QU::Information);
 			if(fData)
@@ -377,55 +397,55 @@ bool QUPdfReport::save() {
 				logSrv->add(tData->_tag, QU::Information);
 			*/
 
-			int currentColumn = reportDataList().at(i)->id();
+			int currentColumn = reportDataList().at(subLevelIndex)->id();
 
 			if(currentColumn == ARTIST_COL) {
 				painter.setPen(_subSubLevelEntryClr);
-				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _artistHSep));
+				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(subLevelIndex)->textData(song), Qt::ElideRight, _artistHSep));
 				x += _artistHSep + _colHSep;
 			} else if(currentColumn == TITLE_COL) {
 				painter.setPen(_subSubLevelEntryClr);
-				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _titleHSep));
+				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(subLevelIndex)->textData(song), Qt::ElideRight, _titleHSep));
 				x += _titleHSep + _colHSep;
 			} else if(currentColumn == LANGUAGE_COL) {
 				painter.setPen(_subSubLevelEntryClr);
-				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _languageHSep));
+				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(subLevelIndex)->textData(song), Qt::ElideRight, _languageHSep));
 				x += _languageHSep + _colHSep;
 			} else if(currentColumn == EDITION_COL) {
 				painter.setPen(_subSubLevelEntryClr);
-				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _editionHSep));
+				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(subLevelIndex)->textData(song), Qt::ElideRight, _editionHSep));
 				x += _editionHSep + _colHSep;
 			} else if(currentColumn == GENRE_COL) {
 				painter.setPen(_subSubLevelEntryClr);
-				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _genreHSep));
+				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(subLevelIndex)->textData(song), Qt::ElideRight, _genreHSep));
 				x +=_genreHSep + _colHSep;
 			} else if(currentColumn == YEAR_COL) {
 				painter.setPen(_subSubLevelEntryClr);
-				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _yearHSep));
+				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(subLevelIndex)->textData(song), Qt::ElideRight, _yearHSep));
 				x += _yearHSep + _colHSep;
 			} else if(currentColumn == CREATOR_COL) {
 				painter.setPen(_subSubLevelEntryClr);
-				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _creatorHSep));
+				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(subLevelIndex)->textData(song), Qt::ElideRight, _creatorHSep));
 				x += _creatorHSep + _colHSep;
 			} else if(currentColumn == SPEED_COL) {
 				painter.setPen(_subSubLevelEntryClr);
-				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _speedHSep));
+				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(subLevelIndex)->textData(song), Qt::ElideRight, _speedHSep));
 				x += _speedHSep + _colHSep;
 			} else if(currentColumn == LENGTH_COL) {
 				painter.setPen(_subSubLevelEntryClr);
-				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _lengthHSep));
+				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(subLevelIndex)->textData(song), Qt::ElideRight, _lengthHSep));
 				x += _lengthHSep + _colHSep;
 			} else if(currentColumn == SONG_PATH_COL) {
 				painter.setPen(_subSubLevelEntryClr);
-				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideLeft, _songPathHSep));
+				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(subLevelIndex)->textData(song), Qt::ElideLeft, _songPathHSep));
 				x += _songPathHSep + _colHSep;
 			} else if(currentColumn == SONG_FILE_PATH_COL) {
 				painter.setPen(_subSubLevelEntryClr);
-				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideLeft, _songFilePathHSep));
+				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(subLevelIndex)->textData(song), Qt::ElideLeft, _songFilePathHSep));
 				x += _songFilePathHSep + _colHSep;
 			} else if(currentColumn == REL_SONG_FILE_PATH_COL) {
 				painter.setPen(_subSubLevelEntryClr);
-				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideLeft, _relSongFilePathHSep));
+				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(subLevelIndex)->textData(song), Qt::ElideLeft, _relSongFilePathHSep));
 				x += _relSongFilePathHSep + _colHSep;
 			} else if(currentColumn == AUDIO_EXISTS_COL ||
 					  currentColumn == COVER_EXISTS_COL ||
@@ -434,7 +454,7 @@ bool QUPdfReport::save() {
 					  currentColumn == MEDLEY_EXISTS_COL ||
 					  currentColumn == GOLDEN_NOTES_EXIST_COL ||
 					  currentColumn == RAP_NOTES_EXIST_COL) {
-				if(reportDataList().at(i)->textData(song) == tr("yes")) {
+				if(reportDataList().at(subLevelIndex)->textData(song) == tr("yes")) {
 					painter.setPen(_subSubLevelEntryClr);
 					painter.drawText(x, y, QString::fromUtf8(CHAR_UTF8_CHECK));
 					//painter.drawText(x, y, "y");
@@ -446,12 +466,12 @@ bool QUPdfReport::save() {
 				x += _booleanHSep + _colHSep;
 			} else {
 				painter.setPen(_subSubLevelEntryClr);
-				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(i)->textData(song), Qt::ElideRight, _defaultHSep));
+				painter.drawText(x, y, painter.fontMetrics().elidedText(reportDataList().at(subLevelIndex)->textData(song), Qt::ElideRight, _defaultHSep));
 				x += _defaultHSep + _colHSep;
 			}
 		}
 
-		x = currentColumn * painter.window().width()/_layoutColumns;
+		x = currentColumn * columnWidth;
 		if(currentColumn > 0) {
 			x += _colHSep/2;
 		}
