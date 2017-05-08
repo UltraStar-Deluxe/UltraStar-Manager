@@ -148,9 +148,14 @@ void QUReportDialog::initPlaylistCombo() {
 }
 
 void QUReportDialog::initPaperSizeCombo() {
+	paperSizeCombo->addItem("A3", QPrinter::A3);
 	paperSizeCombo->addItem("A4", QPrinter::A4);
 	paperSizeCombo->addItem("A5", QPrinter::A5);
+	paperSizeCombo->addItem("A6", QPrinter::A6);
 	paperSizeCombo->addItem("Letter", QPrinter::Letter);
+	paperSizeCombo->addItem("Legal", QPrinter::Legal);
+	paperSizeCombo->addItem("Executive", QPrinter::Executive);
+	paperSizeCombo->setCurrentText("A4");
 }
 
 void QUReportDialog::initOrientationCombo() {
@@ -187,29 +192,37 @@ void QUReportDialog::initSelectClrBtns() {
 void QUReportDialog::selectCategoryFnt() {
 	bool ok;
 	_categoryFnt = QFontDialog::getFont(&ok, _categoryFnt);
-	selectCategoryFntBtn->setFont(_categoryFnt);
-	selectCategoryFntBtn->setText(QString("%1, %2").arg(_categoryFnt.family()).arg(_categoryFnt.pointSize()));
+	if(ok) {
+		selectCategoryFntBtn->setFont(_categoryFnt);
+		selectCategoryFntBtn->setText(QString("%1, %2").arg(_categoryFnt.family()).arg(_categoryFnt.pointSize()));
+	}
 }
 
 void QUReportDialog::selectTopLevelEntryFnt() {
 	bool ok;
 	_topLevelEntryFnt = QFontDialog::getFont(&ok, _topLevelEntryFnt);
-	selectTopLevelEntryFntBtn->setFont(_topLevelEntryFnt);
-	selectTopLevelEntryFntBtn->setText(QString("%1, %2").arg(_topLevelEntryFnt.family()).arg(_topLevelEntryFnt.pointSize()));
+	if(ok) {
+		selectTopLevelEntryFntBtn->setFont(_topLevelEntryFnt);
+		selectTopLevelEntryFntBtn->setText(QString("%1, %2").arg(_topLevelEntryFnt.family()).arg(_topLevelEntryFnt.pointSize()));
+	}
 }
 
 void QUReportDialog::selectSubLevelEntryFnt() {
 	bool ok;
 	_subLevelEntryFnt = QFontDialog::getFont(&ok, _subLevelEntryFnt);
-	selectSubLevelEntryFntBtn->setFont(_subLevelEntryFnt);
-	selectSubLevelEntryFntBtn->setText(QString("%1, %2").arg(_subLevelEntryFnt.family()).arg(_subLevelEntryFnt.pointSize()));
+	if(ok) {
+		selectSubLevelEntryFntBtn->setFont(_subLevelEntryFnt);
+		selectSubLevelEntryFntBtn->setText(QString("%1, %2").arg(_subLevelEntryFnt.family()).arg(_subLevelEntryFnt.pointSize()));
+	}
 }
 
 void QUReportDialog::selectSubSubLevelEntryFnt() {
 	bool ok;
 	_subSubLevelEntryFnt = QFontDialog::getFont(&ok, _subSubLevelEntryFnt);
-	selectSubSubLevelEntryFntBtn->setFont(_subSubLevelEntryFnt);
-	selectSubSubLevelEntryFntBtn->setText(QString("%1, %2").arg(_subSubLevelEntryFnt.family()).arg(_subSubLevelEntryFnt.pointSize()));
+	if(ok) {
+		selectSubSubLevelEntryFntBtn->setFont(_subSubLevelEntryFnt);
+		selectSubSubLevelEntryFntBtn->setText(QString("%1, %2").arg(_subSubLevelEntryFnt.family()).arg(_subSubLevelEntryFnt.pointSize()));
+	}
 }
 
 void QUReportDialog::selectCategoryClr() {
