@@ -269,6 +269,7 @@ void QUReportDialog::createPdfReport() {
 	_subLevelToCategoryVSep = subLevelToCategoryVSepDoubleSpinBox->value() * pt2px;
 	// millimeters to pixels
 	_subLevelEntryHIndent = subLevelEntryHIndentDoubleSpinBox->value() * mm2px;
+	_subLevelEntryHSep = subLevelEntryHSepDoubleSpinBox->value() * mm2px;
 	_colHSep = colHSepDoubleSpinBox->value() * mm2px;
 
 	fi.setFile(QFileDialog::getSaveFileName(this, tr("Save PDF Report"),
@@ -307,6 +308,7 @@ void QUReportDialog::createPdfReport() {
 				_subLevelToTopLevelVSep,
 				_subLevelToCategoryVSep,
 				_subLevelEntryHIndent,
+				_subLevelEntryHSep,
 				_colHSep);
 
 		if(report.save()) {

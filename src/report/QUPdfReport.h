@@ -37,7 +37,8 @@ public:
 			const float subLevelToTopLevelVSep = 12.0,
 			const float subLevelToCategoryVSep = 24.0,
 			const float subLevelEntryHIndent = 4.0,
-			const float colHSep = 2.0,
+			const float subLevelEntryHSep = 4.0,
+			const float colHSep = 4.0,
 			QObject *parent = 0);
 
 	virtual QString content() const { return tr("PDF Report"); }
@@ -61,23 +62,8 @@ private:
 
 	// horizontal spacing
 	int _subLevelEntryHIndent;
-	int _colHSep;
-
 	int _subLevelEntryHSep;
-	int _artistHSep;
-	int _titleHSep;
-	int _languageHSep;
-	int _editionHSep;
-	int _genreHSep;
-	int _yearHSep;
-	int _creatorHSep;
-	int _booleanHSep;
-	int _speedHSep;
-	int _lengthHSep;
-	int _songPathHSep;
-	int _songFilePathHSep;
-	int _relSongFilePathHSep;
-	int _defaultHSep;
+	int _colHSep;
 
 	QFont _categoryFnt;
 	QFont _topLevelEntryFnt;

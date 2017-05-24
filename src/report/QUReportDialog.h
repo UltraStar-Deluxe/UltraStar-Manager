@@ -61,6 +61,7 @@ private:
 	float _subLevelToTopLevelVSep;
 	float _subLevelToCategoryVSep;
 	float _subLevelEntryHIndent;
+	float _subLevelEntryHSep;
 	float _colHSep;
 
 	QList<QUAbstractReportData*> _data;

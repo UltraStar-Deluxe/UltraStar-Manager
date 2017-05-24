@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>675</width>
-    <height>718</height>
+    <height>721</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1157,21 +1157,17 @@
                <property name="verticalSpacing">
                 <number>2</number>
                </property>
-               <item row="0" column="2">
-                <widget class="QLabel" name="label_17">
-                 <property name="text">
-                  <string>Sub level indent:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="0">
-                <widget class="QLabel" name="label_18">
-                 <property name="text">
-                  <string>Column separation:</string>
-                 </property>
-                </widget>
-               </item>
                <item row="0" column="1">
+                <widget class="QDoubleSpinBox" name="subLevelEntryHIndentDoubleSpinBox">
+                 <property name="decimals">
+                  <number>1</number>
+                 </property>
+                 <property name="value">
+                  <double>2.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="5">
                 <widget class="QDoubleSpinBox" name="colHSepDoubleSpinBox">
                  <property name="decimals">
                   <number>1</number>
@@ -1184,8 +1180,29 @@
                  </property>
                 </widget>
                </item>
+               <item row="0" column="4">
+                <widget class="QLabel" name="label_18">
+                 <property name="text">
+                  <string>Column sep.:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QLabel" name="label_19">
+                 <property name="text">
+                  <string>Entry sep.:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_17">
+                 <property name="text">
+                  <string>Entry indent:</string>
+                 </property>
+                </widget>
+               </item>
                <item row="0" column="3">
-                <widget class="QDoubleSpinBox" name="subLevelEntryHIndentDoubleSpinBox">
+                <widget class="QDoubleSpinBox" name="subLevelEntryHSepDoubleSpinBox">
                  <property name="decimals">
                   <number>1</number>
                  </property>
