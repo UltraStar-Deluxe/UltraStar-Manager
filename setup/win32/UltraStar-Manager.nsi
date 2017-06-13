@@ -59,7 +59,6 @@ Section "Application" SecCopyUI
 
 	;; Files
 	SetOutPath "$INSTDIR"
-	File "bass.dll"
 	File "changes.txt"
 	File "libgcc_s_dw2-1.dll"
 	File "libstdc++-6.dll"
@@ -329,7 +328,6 @@ Section "Uninstall"
 	Delete "$INSTDIR\styles\fabian.css"
 	RMDir "$INSTDIR\styles"
 	
-	Delete "$INSTDIR\bass.dll"
 	Delete "$INSTDIR\changes.txt"
 	Delete "$INSTDIR\libgcc_s_dw2-1.dll"
 	Delete "$INSTDIR\libstdc++-6.dll"
