@@ -43,7 +43,6 @@
 #include "QUPluginManager.h"
 
 #include "taglib.h"
-#include "bass.h"
 #include "MediaInfoDLL/MediaInfoDLL_Static.h"
 using namespace MediaInfoDLL;
 
@@ -407,7 +406,6 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->aboutQtBtn, SIGNAL(clicked()), this, SLOT(aboutQt()));
 	connect(_menu->aboutUltraStar_ManagerBtn, SIGNAL(clicked()), this, SLOT(aboutUltraStar_Manager()));
 	connect(_menu->aboutTagLibBtn, SIGNAL(clicked()), this, SLOT(aboutTagLib()));
-	connect(_menu->aboutBASSBtn, SIGNAL(clicked()), this, SLOT(aboutBASS()));
 	connect(_menu->aboutMediaInfoBtn, SIGNAL(clicked()), this, SLOT(aboutMediaInfo()));
 	connect(_menu->checkForUpdateBtn, SIGNAL(clicked(bool)), this, SLOT(checkForUpdate(bool)));
 
@@ -933,24 +931,6 @@ void QUMainWindow::aboutTagLib() {
 					.arg(TAGLIB_PATCH_VERSION),
 			BTN << ":/marks/accept.png" << "OK",
 			400);
-}
-
-void QUMainWindow::aboutBASS() {
-	BYTE BASS_MAJOR_VERSION = (BASS_GetVersion()    >> 24) & 0xFF;
-	BYTE BASS_MINOR_VERSION = (BASS_GetVersion()    >> 16) & 0xFF;
-	BYTE BASS_PATCH_VERSION = (BASS_GetVersion()    >>  8) & 0xFF;
-	BYTE BASS_REVISION      = (BASS_GetVersion()         ) & 0xFF;
-	QString BASS_VERSION    = QString("%1.%2.%3.%4").arg(BASS_MAJOR_VERSION).arg(BASS_MINOR_VERSION).arg(BASS_PATCH_VERSION).arg(BASS_REVISION);
-
-	QUMessageBox::information(this,
-			tr("About BASS"),
-			QString(tr("<b>BASS Audio Library</b><br><br>"
-					"BASS is an audio library for use in Windows and MacOSX software. Its purpose is to provide the most powerful and efficient (yet easy to use), sample, stream, MOD music, and recording functions. All in a tiny DLL, under 100KB in size.<br><br>"
-					"Version: <b>%1</b><br><br>"
-					"Copyright (c) 1999-2012<br><a href=\"http://www.un4seen.com/bass.html\">Un4seen Developments Ltd.</a> All rights reserved."))
-					.arg(BASS_VERSION),
-			BTN << ":/marks/accept.png" << "OK",
-			500);
 }
 
 void QUMainWindow::aboutMediaInfo() {

@@ -97,7 +97,7 @@ void QUAutoCue::resume(double position) {
 		return;
 
 	_cueListIndex = 0;
-	int targetTime = (int)(position * 1000);
+	int targetTime = (int)(position);
 
 	while(_cueListIndex < _cueList.size() && _cueList.at(_cueListIndex).time < targetTime)
 		_cueListIndex++;
@@ -115,7 +115,7 @@ void QUAutoCue::resume(double position) {
 void QUAutoCue::seek(double position) {
 	_startTime = QTime::currentTime();
 	_startTime.start();
-	_waitedMilliseconds = (int)(-position * 1000);
+	_waitedMilliseconds = (int)(-position);
 	_cueListIndex = 0;
 	_stopRequested = false;
 	_pauseRequested = false;

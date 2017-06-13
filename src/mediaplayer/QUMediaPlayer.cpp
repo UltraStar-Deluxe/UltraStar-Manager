@@ -47,6 +47,8 @@ QUSongInfo::QUSongInfo(QUSongFile *song) {
 }
 
 QUMediaPlayer::QUMediaPlayer(QWidget *parent): QWidget(parent) {
+	_player = new QMediaPlayer;
+
 	setupUi(this);
 
 	connect(stopBtn, SIGNAL(clicked()), this, SLOT(stop()));
@@ -68,10 +70,6 @@ QUMediaPlayer::QUMediaPlayer(QWidget *parent): QWidget(parent) {
 	timeSlider->setMinimum(0);
 	timeSlider->setSingleStep(1);
 
-	if(!BASS_Init(-1, 44100, 0, 0, NULL))
-		logSrv->add("BASS was NOT loaded.", QU::Warning);
-
-	_mediaStream = 0;
 	_currentSongIndex = -1;
 
 	setState(QUMediaPlayer::stopped);
@@ -79,9 +77,6 @@ QUMediaPlayer::QUMediaPlayer(QWidget *parent): QWidget(parent) {
 
 QUMediaPlayer::~QUMediaPlayer() {
 	stop();
-
-	if(!BASS_Free())
-		logSrv->add("BASS was NOT unloaded.", QU::Warning);
 }
 
 void QUMediaPlayer::setSongs(const QList<QUSongFile*> &songs, Source src) {
@@ -101,8 +96,8 @@ void QUMediaPlayer::setSongs(const QList<QUSongFile*> &songs, Source src) {
 	}
 }
 
-void QUMediaPlayer::play() {	
-	if(_mediaStream)
+void QUMediaPlayer::play() {
+	if(_player->state() == QMediaPlayer::PlayingState)
 		return;	// already playing
 
 	if(_currentSongIndex == -1) {
@@ -123,22 +118,20 @@ void QUMediaPlayer::play() {
 		return;
 	}
 
-
-	_mediaStream = BASS_StreamCreateFile(FALSE, info.filePath.toLocal8Bit().data(), 0, 0, BASS_STREAM_PRESCAN);
+	_player->setMedia(QUrl::fromLocalFile(info.filePath));
 
 	autocue2->setVisible(!info.melody2.isEmpty());
 
 	autocue->reset(info.melody1, info.bpm, info.gap1, info.isRelative);
 	autocue2->reset(info.melody2, info.bpm, info.gap2, info.isRelative);
 
-	BASS_Play();
+	_player->play();
 	autocue->play(); autocue2->play();
 	setState(QUMediaPlayer::playing);
 }
 
 void QUMediaPlayer::stop() {
-	BASS_StopAndFree();
-	_mediaStream = 0;
+	_player->stop();
 	autocue->stop(); autocue2->stop();
 	setState(QUMediaPlayer::stopped);
 }
@@ -147,7 +140,7 @@ void QUMediaPlayer::pause() {
 	if(state() == QUMediaPlayer::paused)
 		return;
 
-	BASS_Pause();
+	_player->pause();
 	autocue->pause(); autocue2->pause();
 	setState(QUMediaPlayer::paused);
 }
@@ -156,9 +149,9 @@ void QUMediaPlayer::resume() {
 	if(state() != QUMediaPlayer::paused)
 		return;
 
-	autocue->resume(BASS_Position());
-	autocue2->resume(BASS_Position());
-	BASS_Resume();
+	autocue->resume(_player->position());
+	autocue2->resume(_player->position());
+	_player->play();
 	setState(QUMediaPlayer::playing);
 }
 
@@ -217,10 +210,10 @@ void QUMediaPlayer::seek() {
 
 	pause();
 
-	BASS_SetPosition(pos);
-	BASS_Resume();
-	autocue->seek(BASS_Position());
-	autocue2->seek(BASS_Position());
+	_player->setPosition(pos);
+	_player->play();
+	autocue->seek(_player->position());
+	autocue2->seek(_player->position());
 	setState(QUMediaPlayer::playing);
 }
 
@@ -233,25 +226,27 @@ void QUMediaPlayer::updateTime() {
 
 	QUSongInfo info = _songs.at(_currentSongIndex);
 
-	int posSec = (int)BASS_Position();
+	int pos = (int)_player->position();
 	timeLbl->setText(QString("%1:%2 / %3:%4")
-			.arg(posSec / 60)
-			.arg(posSec % 60, 2, 10, QChar('0'))
+			.arg(pos / 1000 / 60)
+			.arg(pos / 1000 % 60, 2, 10, QChar('0'))
 			.arg(info.length / 60)
 			.arg(info.length % 60, 2, 10, QChar('0')));
 
 	if(!timeSlider->isSliderDown())
-		timeSlider->setValue(posSec);
+		timeSlider->setValue(pos);
 
-	if(posSec < info.length && posSec != -1)
+	if(pos / 1000 < info.length && pos != -1)
 		QTimer::singleShot(1000, this, SLOT(updateTime()));
 	else
 		next();
 }
 
 void QUMediaPlayer::requestSongs() {
-	if(_mediaStream)
-		stop();
+	//if(_mediaStream)
+	//	stop();
+	if(_player->state() == QMediaPlayer::PlayingState)
+		_player->stop();
 
 	if(sourceCombo->currentIndex() == SelectedSongs) {
 		emit selectedSongsRequested();
@@ -321,7 +316,7 @@ void QUMediaPlayer::updateTimeSlider(QUMediaPlayer::States state) {
 		QUSongInfo info = _songs.at(_currentSongIndex);
 
 		timeSlider->setEnabled(true);
-		timeSlider->setMaximum(info.length);
+		timeSlider->setMaximum(info.length * 1000);
 	} else if(state.testFlag(QUMediaPlayer::stopped)) {
 		timeSlider->setEnabled(false);
 	}
@@ -349,77 +344,4 @@ void QUMediaPlayer::requestSongEdit(int line) {
 void QUMediaPlayer::setState(States newState) {
 	_state = newState;
 	emit stateChanged(newState);
-}
-
-void QUMediaPlayer::BASS_StopAndFree() {
-	if(!_mediaStream)
-		return;
-
-	if(!BASS_ChannelStop(_mediaStream)) {
-		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
-		return;
-	}
-
-	if(!BASS_StreamFree(_mediaStream)) {
-		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
-		return;
-	}
-}
-
-void QUMediaPlayer::BASS_Play() {
-	if(!_mediaStream) {
-		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
-		return;
-	}
-
-	if(!BASS_ChannelPlay(_mediaStream, TRUE)) {
-		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
-		return;
-	}
-}
-
-void QUMediaPlayer::BASS_Pause() {
-	if(!_mediaStream) {
-		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
-		return;
-	}
-
-	if(!BASS_ChannelPause(_mediaStream)) {
-		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
-		return;
-	}
-}
-
-void QUMediaPlayer::BASS_Resume() {
-	if(!_mediaStream) {
-		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
-		return;
-	}
-
-	if(!BASS_ChannelPlay(_mediaStream, FALSE)) {
-		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
-		return;
-	}
-}
-
-/*!
- * Get current position in seconds of the stream.
- */
-double QUMediaPlayer::BASS_Position() {
-	if(!_mediaStream)
-		return -1;
-
-	return BASS_ChannelBytes2Seconds(_mediaStream, BASS_ChannelGetPosition(_mediaStream, BASS_POS_BYTE));
-}
-
-void QUMediaPlayer::BASS_SetPosition(int seconds) {
-	if(!_mediaStream)
-		return;
-
-	QWORD pos = BASS_ChannelSeconds2Bytes(_mediaStream, (double)seconds);
-
-	if(!BASS_ChannelSetPosition(_mediaStream, pos, BASS_POS_BYTE)) {
-		logSrv->add(QString(tr("BASS error: %1")).arg(BASS_ErrorGetCode()), QU::Warning);
-		return;
-	}
 }

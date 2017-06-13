@@ -6,8 +6,9 @@
 #include <QObject>
 #include <QTimer>
 
-#include "bass.h"
 #include "ui_QUMediaPlayer.h"
+
+#include <QMediaPlayer>
 
 class QUSongInfo {
 public:
@@ -91,7 +92,8 @@ signals:
 	void stateChanged(QUMediaPlayer::States state);
 
 private:
-	HSTREAM _mediaStream;
+	QMediaPlayer *_player;
+	//HSTREAM _mediaStream;
 	QList<QUSongInfo> _songs;
 	int _currentSongIndex;
 	QList<int> _lastIndices;
@@ -100,13 +102,6 @@ private:
 	QUMediaPlayer::States _state;
 	void setState(QUMediaPlayer::States newState);
 	QUMediaPlayer::States state() const { return _state; }
-
-	void BASS_StopAndFree();
-	void BASS_Play();
-	void BASS_Pause();
-	void BASS_Resume();
-	double BASS_Position();
-	void BASS_SetPosition(int seconds);
 };
 
 #endif /* QUMEDIAPLAYER_H_ */

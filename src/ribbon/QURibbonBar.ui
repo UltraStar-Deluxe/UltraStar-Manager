@@ -3083,49 +3083,6 @@ Manager...</string>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="aboutBASSBtn">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>64</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>7</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>BASS...</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources/UltraStar-Manager.qrc">
-           <normaloff>:/bass.png</normaloff>:/bass.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>32</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-         <property name="autoRaise">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QToolButton" name="aboutMediaInfoBtn">
          <property name="enabled">
           <bool>true</bool>

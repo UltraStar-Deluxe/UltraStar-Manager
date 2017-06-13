@@ -60,7 +60,6 @@ private slots:
 	void aboutQt();
 	void aboutUltraStar_Manager();
 	void aboutTagLib();
-	void aboutBASS();
 	void aboutMediaInfo();
 	void checkForUpdate(bool silent);
 
