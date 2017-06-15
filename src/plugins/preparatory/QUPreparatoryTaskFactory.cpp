@@ -27,6 +27,9 @@ QList<int> QUPreparatoryTaskFactory::types() const {
 	result << QUPreparatoryTask::RoundGap;
 	result << QUPreparatoryTask::CapitalizeTitle;
 	result << QUPreparatoryTask::CapitalizeArtist;
+	result << QUPreparatoryTask::SetEditionIfEmpty;
+	result << QUPreparatoryTask::SetGenreIfEmpty;
+	result << QUPreparatoryTask::FixLanguage;
 	return result;
 }
 

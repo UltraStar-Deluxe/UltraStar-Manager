@@ -19,7 +19,10 @@ public:
 		FixAudioLength,
 		RoundGap,
 		CapitalizeTitle,
-		CapitalizeArtist
+		CapitalizeArtist,
+		SetEditionIfEmpty,
+		SetGenreIfEmpty,
+		FixLanguage
 	};
 	Q_DECLARE_FLAGS(TaskModes, TaskMode)
 
@@ -39,6 +42,9 @@ private:
 	void autoSetFiles(QUSongInterface *song, const QString &coverPattern, const QString &backgroundPattern);
 	void capitalizeTitle(QUSongInterface *song);
 	void capitalizeArtist(QUSongInterface *song);
+	void setEditionIfEmpty(QUSongInterface *song);
+	void setGenreIfEmpty(QUSongInterface *song);
+	void fixLanguage(QUSongInterface *song);
 };
 
 #endif /*QUPREPARATORYTASK_H_*/
