@@ -55,14 +55,7 @@ This allows passing a certain folder as song path to UltraStar-Manager, convenie
    * Qt -> Tools -> MinGW 5.3.0.
 3. Open and compile all task plugins (open respective *.pro files in subdirectory src\plugins with Qt Creator, disable shadow build).
 4. Open and compile UltraStar-Manager (open UltraStar-Manager.pro in subdirectory src with Qt Creator, disable shadow build).
-5. Add DLL dependencies to bin\wip directory
-   * Qt libraries: Qt5Core.dll, Qt5Gui.dll, Qt5Multimedia.dll, Qt5Network.dll, Qt5PrintSupport.dll, Qt5Widgets.dll, Qt5Xml.dll
-   * Qt imageformats: qgif.dll, qjpeg.dll to subdirectory wip\imageformats
-   * Qt platforms: qwindows.dll to wip\platforms
-   * MinGW runtime libraries: libgcc_s_dw2-1.dll, libstdc++-6.dll, libwinpthread-1.dll
-   * Bass library: bass.dll
-   * TagLib library: libtag.dll
-6. Manage your entire song collection with ease!
+5. Manage your entire song collection with ease!
 
 #### Compiling on Linux
 (under construction)
