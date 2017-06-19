@@ -1253,6 +1253,44 @@ Log</string>
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QToolButton" name="webInfoBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>64</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Web
+Info</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/UltraStar-Manager.qrc">
+           <normaloff>:/faviconSwissCharts.ico</normaloff>:/faviconSwissCharts.ico</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>

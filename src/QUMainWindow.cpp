@@ -208,6 +208,7 @@ void QUMainWindow::initConfig() {
 	connect(mediaPlayerDock, SIGNAL(visibilityChanged(bool)), this, SLOT(updateViewButtons()));
 	connect(previewDock, SIGNAL(visibilityChanged(bool)), this, SLOT(updateViewButtons()));
 	connect(eventsDock, SIGNAL(visibilityChanged(bool)), this, SLOT(updateViewButtons()));
+	connect(webInfoDock, SIGNAL(visibilityChanged(bool)), this, SLOT(updateViewButtons()));
 
 	if(QLocale(settings.value("language").toString()).language() == QLocale::English) {
 		_menu->langUsBtn->setChecked(true);
@@ -255,6 +256,7 @@ void QUMainWindow::initWindow() {
 
 	addDockWidget(Qt::LeftDockWidgetArea, detailsDock);
 	addDockWidget(Qt::LeftDockWidgetArea, previewDock);
+	addDockWidget(Qt::LeftDockWidgetArea, webInfoDock);
 
 	addDockWidget(Qt::RightDockWidgetArea, tasksDock);
 	addDockWidget(Qt::RightDockWidgetArea, playlistDock);
@@ -263,6 +265,7 @@ void QUMainWindow::initWindow() {
 	addDockWidget(Qt::RightDockWidgetArea, eventsDock); eventsDock->setFloating(true); eventsDock->hide();
 
 	tabifyDockWidget(previewDock, detailsDock);
+	tabifyDockWidget(detailsDock, webInfoDock);
 	tabifyDockWidget(playlistDock, mediaPlayerDock);
 	tabifyDockWidget(mediaPlayerDock, tasksDock);
 
@@ -335,6 +338,7 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->playerBtn, SIGNAL(clicked(bool)), mediaPlayerDock, SLOT(setVisible(bool)));
 	connect(_menu->fileInfoBtn, SIGNAL(clicked(bool)), previewDock, SLOT(setVisible(bool)));
 	connect(_menu->eventLogBtn, SIGNAL(clicked(bool)), eventsDock, SLOT(setVisible(bool)));
+	connect(_menu->webInfoBtn, SIGNAL(clicked(bool)), webInfoDock, SLOT(setVisible(bool)));
 
 	_menu->setShortcut(_menu->findSongsBtn, Qt::CTRL + Qt::Key_F);
 
@@ -344,6 +348,7 @@ void QUMainWindow::initRibbonBar() {
 	_menu->setShortcut(_menu->playerBtn,	Qt::CTRL + Qt::Key_4);
 	_menu->setShortcut(_menu->fileInfoBtn,  Qt::CTRL + Qt::Key_5);
 	_menu->setShortcut(_menu->eventLogBtn,  Qt::CTRL + Qt::Key_6);
+	_menu->setShortcut(_menu->webInfoBtn,  Qt::CTRL + Qt::Key_7);
 
 	// options menu
 	_menu->updateBaseDirMenu();
@@ -426,6 +431,7 @@ void QUMainWindow::initSongTree() {
 
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateDetails()));
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updatePreviewTree()));
+	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateWebInfoTree()));
 	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateMergeBtn()));
 
 	connect(songTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(editSongSetFileLink(QTreeWidgetItem*, int)));
@@ -598,6 +604,7 @@ void QUMainWindow::refreshAllSongs(bool force) {
 	songDB->reload();
 	updateDetails();
 	updatePreviewTree();
+	updateWebInfoTree();
 	pluginMGR->reload();
 }
 
@@ -657,6 +664,20 @@ void QUMainWindow::updatePreviewTree() {
 		previewTree->showFileInformation(QFileInfo());
 }
 
+/*!
+ * Updates all web information according to the current selection or dimension of the
+ * song tree.
+ */
+void QUMainWindow::updateWebInfoTree() {
+	QUSongItem *item = dynamic_cast<QUSongItem*>(songTree->currentItem());
+
+	if(item) {
+		webInfoTree->showInformation(item->song()->artist(), item->song()->title(), item->song()->genre(), item->song()->year());
+	} else {
+		webInfoTree->showInformation(QString(), QString(), QString(), QString());
+	}
+}
+
 void QUMainWindow::updateMergeBtn() {
 	_menu->mergeBtn->setEnabled(songTree->selectedItems().size() > 1);
 }
@@ -680,6 +701,7 @@ void QUMainWindow::updateViewButtons() {
 	_menu->playerBtn->setChecked(mediaPlayerDock->isVisible() || !tabifiedDockWidgets(mediaPlayerDock).isEmpty());
 	_menu->fileInfoBtn->setChecked(previewDock->isVisible() || !tabifiedDockWidgets(previewDock).isEmpty());
 	_menu->eventLogBtn->setChecked(eventsDock->isVisible() || !tabifiedDockWidgets(eventsDock).isEmpty());
+	_menu->webInfoBtn->setChecked(webInfoDock->isVisible() || !tabifiedDockWidgets(webInfoDock).isEmpty());
 }
 
 /*!

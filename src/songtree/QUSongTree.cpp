@@ -1179,6 +1179,7 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 	if(parentWindow) {
 		disconnect(this, SIGNAL(itemSelectionChanged()), parentWindow, SLOT(updateDetails()));
 		disconnect(this, SIGNAL(itemSelectionChanged()), parentWindow, SLOT(updatePreviewTree()));
+		disconnect(this, SIGNAL(itemSelectionChanged()), parentWindow, SLOT(updateWebInfoTree()));
 	}
 
 	foreach(QUSongItem *songItem, visibleSongItems())
@@ -1188,6 +1189,7 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 	if(parentWindow) {
 		connect(this, SIGNAL(itemSelectionChanged()), parentWindow, SLOT(updateDetails()));
 		connect(this, SIGNAL(itemSelectionChanged()), parentWindow, SLOT(updatePreviewTree()));
+		connect(this, SIGNAL(itemSelectionChanged()), parentWindow, SLOT(updateWebInfoTree()));
 	}
 
 	emit itemSelectionChanged();

@@ -23,7 +23,7 @@
    <string>S</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="resources/UltraStar-Manager.qrc">
     <normaloff>:/icons/UltraStar-Manager16.png</normaloff>:/icons/UltraStar-Manager16.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -538,6 +538,9 @@ Tasks</string>
             <property name="textElideMode">
              <enum>Qt::ElideRight</enum>
             </property>
+            <attribute name="headerVisible">
+             <bool>false</bool>
+            </attribute>
             <column>
              <property name="text">
               <string>1</string>
@@ -550,6 +553,63 @@ Tasks</string>
             <property name="text">
              <string>Show selected lengths</string>
             </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDockWidget" name="webInfoDock">
+        <property name="windowTitle">
+         <string>Web Information</string>
+        </property>
+        <widget class="QWidget" name="dockWidgetContents_7">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QUWebInfoTree" name="webInfoTree">
+            <property name="textElideMode">
+             <enum>Qt::ElideRight</enum>
+            </property>
+            <property name="columnCount">
+             <number>3</number>
+            </property>
+            <attribute name="headerVisible">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="headerCascadingSectionResizes">
+             <bool>true</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string notr="true">2</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string notr="true">3</string>
+             </property>
+            </column>
            </widget>
           </item>
          </layout>
@@ -977,6 +1037,11 @@ Tasks</string>
    <extends>QWidget</extends>
    <header>QUMediaPlayer.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QUWebInfoTree</class>
+   <extends>QTreeWidget</extends>
+   <header>QUWebInfoTree.h</header>
   </customwidget>
  </customwidgets>
  <resources>

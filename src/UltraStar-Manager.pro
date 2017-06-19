@@ -104,7 +104,8 @@ HEADERS += plugins/QUPluginManager.h \
 	preferences/QUPathsDialog.h \
 	score/QUScoreFile.h \
 	preferences/QUEncodingsDialog.h \
-	report/QUCSVReport.h
+	report/QUCSVReport.h \
+	webinfo/QUWebInfoTree.h
 #	support/qkFileWatcher.h
 
 SOURCES += plugins/QUPluginManager.cpp \
@@ -181,7 +182,8 @@ SOURCES += plugins/QUPluginManager.cpp \
 	preferences/QUPathsDialog.cpp \
 	score/QUScoreFile.cpp \
 	preferences/QUEncodingsDialog.cpp \
-	report/QUCSVReport.cpp
+	report/QUCSVReport.cpp \
+	webinfo/QUWebInfoTree.cpp
 	#support/qkFileWatcher.cpp
 
 FORMS += plugins/QUPluginDialog.ui \
@@ -235,7 +237,8 @@ INCLUDEPATH += . \
 	slideshow \
 	lyricseditor \
 	score \
-	remoteimages
+	remoteimages \
+	webinfo
 
 win32 {
 	INCLUDEPATH += ../include/taglib \

@@ -47,6 +47,7 @@ private slots:
 
 	void updateDetails();
 	void updatePreviewTree();
+	void updateWebInfoTree();
 	void updateMergeBtn();
 	void updateTasksSlotButtons(int, const QString&);
 	void updateViewButtons();
