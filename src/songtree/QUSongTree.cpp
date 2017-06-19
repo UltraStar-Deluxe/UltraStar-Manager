@@ -1532,6 +1532,8 @@ void QUSongTree::lookUpOnSwisscharts() {
 		foreach(QString queryString, queryStrings) {
 			encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
 		}
+		encodedQuery.chop(1);
+		encodedQuery = encodedQuery.left(50); // swisscharts only accepts 50 characters for the search
 		urlQuery.addQueryItem("search", encodedQuery);
 		url.setQuery(urlQuery);
 		QDesktopServices::openUrl(url);
