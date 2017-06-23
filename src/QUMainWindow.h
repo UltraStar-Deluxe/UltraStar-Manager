@@ -36,6 +36,7 @@ private slots:
 	void initRibbonBar();
 	void initSongTree();
 	void initDetailsTable();
+	void initWebInfo();
 	void initTaskList();
 	void initTaskListMenu();
 	void initEventLog();
@@ -66,6 +67,9 @@ private slots:
 
 	void toggleRelativeSongPath(bool checked);
 	void toggleCompleterChk(bool checked);
+	void toggleSwisschartsChk(bool checked);
+	void toggleDiscogsChk(bool checked);
+	void toggleAllmusicChk(bool checked);
 	void toggleAutoSaveChk(bool checked);
 	void toggleAltSongTreeChk(bool checked);
 	void toggleAlwaysOnTop(bool checked);

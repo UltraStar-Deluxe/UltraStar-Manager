@@ -582,6 +582,73 @@ Tasks</string>
            <number>0</number>
           </property>
           <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QCheckBox" name="swisschartsChk">
+              <property name="text">
+               <string>Swisscharts</string>
+              </property>
+              <property name="icon">
+               <iconset resource="resources/UltraStar-Manager.qrc">
+                <normaloff>:/faviconSwissCharts.ico</normaloff>:/faviconSwissCharts.ico</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>12</width>
+                <height>12</height>
+               </size>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="discogsChk">
+              <property name="text">
+               <string>Discogs</string>
+              </property>
+              <property name="icon">
+               <iconset resource="resources/UltraStar-Manager.qrc">
+                <normaloff>:/faviconDiscogs.ico</normaloff>:/faviconDiscogs.ico</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>12</width>
+                <height>12</height>
+               </size>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="allmusicChk">
+              <property name="text">
+               <string>AllMusic</string>
+              </property>
+              <property name="icon">
+               <iconset resource="resources/UltraStar-Manager.qrc">
+                <normaloff>:/faviconAllMusic.ico</normaloff>:/faviconAllMusic.ico</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>12</width>
+                <height>12</height>
+               </size>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
            <widget class="QUWebInfoTree" name="webInfoTree">
             <property name="textElideMode">
              <enum>Qt::ElideRight</enum>

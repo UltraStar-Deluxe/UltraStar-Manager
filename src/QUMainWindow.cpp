@@ -83,6 +83,7 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 
 	initSongTree();
 	initDetailsTable();
+	initWebInfo();
 	initTaskList();
 
 	initMonty();
@@ -193,6 +194,9 @@ void QUMainWindow::initConfig() {
 	_menu->relativePathsChk->setChecked(settings.value("showRelativeSongPath", true).toBool());
 	_menu->otherSymbolsChk->setChecked(settings.value("altSongTree", false).toBool());
 	completerChk->setChecked(settings.value("caseSensitiveAutoCompletion", false).toBool());
+	swisschartsChk->setChecked(settings.value("swisschartsWebInfo", false).toBool());
+	discogsChk->setChecked(settings.value("discogsWebInfo", false).toBool());
+	allmusicChk->setChecked(settings.value("allmusicWebInfo", false).toBool());
 
 	_menu->autoSaveBtn->setChecked(settings.value("autoSave", true).toBool());
 	_menu->onTopChk->setChecked(settings.value("alwaysOnTop", false).toBool());
@@ -462,6 +466,12 @@ void QUMainWindow::initDetailsTable() {
 	connect(detailsTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(editSongSetDetail(QTableWidgetItem*)));
 
 	connect(completerChk, SIGNAL(toggled(bool)), this, SLOT(toggleCompleterChk(bool)));
+}
+
+void QUMainWindow::initWebInfo() {
+	connect(swisschartsChk, SIGNAL(toggled(bool)), this, SLOT(toggleSwisschartsChk(bool)));
+	connect(discogsChk, SIGNAL(toggled(bool)), this, SLOT(toggleDiscogsChk(bool)));
+	connect(allmusicChk, SIGNAL(toggled(bool)), this, SLOT(toggleAllmusicChk(bool)));
 }
 
 /*!
@@ -1196,6 +1206,30 @@ void QUMainWindow::toggleRelativeSongPath(bool checked) {
 void QUMainWindow::toggleCompleterChk(bool checked) {
 	QSettings settings;
 	settings.setValue("caseSensitiveAutoCompletion", QVariant(checked));
+}
+
+/*!
+ * Toggle whether information from swisscharts.com should be retrieved.
+ */
+void QUMainWindow::toggleSwisschartsChk(bool checked) {
+	QSettings settings;
+	settings.setValue("swisschartsWebInfo", QVariant(checked));
+}
+
+/*!
+ * Toggle whether information from discogs.com should be retrieved.
+ */
+void QUMainWindow::toggleDiscogsChk(bool checked) {
+	QSettings settings;
+	settings.setValue("discogsWebInfo", QVariant(checked));
+}
+
+/*!
+ * Toggle whether information from allmusic.com should be retrieved.
+ */
+void QUMainWindow::toggleAllmusicChk(bool checked) {
+	QSettings settings;
+	settings.setValue("allmusicWebInfo", QVariant(checked));
 }
 
 /*!

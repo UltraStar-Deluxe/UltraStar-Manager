@@ -8,6 +8,7 @@
 #include <QImage>
 #include <QTextStream>
 #include <QBuffer>
+#include <QtNetwork>
 #include <QDebug>
 
 #include "QUSongSupport.h"
@@ -25,29 +26,46 @@ QUWebInfoTree::QUWebInfoTree(QWidget *parent): QTreeWidget(parent) {
 	this->setIndentation(10);
 
 	// set up "swisscharts" toplevel item
-	swisscharts = new QTreeWidgetItem();
-	this->addTopLevelItem(swisscharts);
+	_swisscharts = new QTreeWidgetItem();
+	this->addTopLevelItem(_swisscharts);
 
-	swisscharts->setIcon(0, QIcon(":/faviconSwissCharts.ico"));
-	swisscharts->setText(0, tr("swisscharts.com"));
-	swisscharts->setFlags(Qt::ItemIsEnabled);
-	swisscharts->setTextColor(0, Qt::darkGray);
-	swisscharts->setFirstColumnSpanned(true);
+	_swisscharts->setIcon(0, QIcon(":/faviconSwissCharts.ico"));
+	_swisscharts->setText(0, tr("swisscharts.com"));
+	_swisscharts->setFlags(Qt::ItemIsEnabled);
+	_swisscharts->setTextColor(0, Qt::darkGray);
+	_swisscharts->setFirstColumnSpanned(true);
 
-	swisscharts->setExpanded(true);
-	swisscharts->setHidden(true);
+	_swisscharts->setExpanded(true);
+	_swisscharts->setHidden(true);
+
+	// set up "discogs" toplevel item
+	_discogs = new QTreeWidgetItem();
+	this->addTopLevelItem(_discogs);
+
+	_discogs->setIcon(0, QIcon(":/faviconDiscogs.ico"));
+	_discogs->setText(0, tr("discogs.com"));
+	_discogs->setFlags(Qt::ItemIsEnabled);
+	_discogs->setTextColor(0, Qt::darkGray);
+	_discogs->setFirstColumnSpanned(true);
+
+	_discogs->setExpanded(true);
+	_discogs->setHidden(true);
 
 	// set up "allmusic" toplevel item
-	allmusic = new QTreeWidgetItem();
-	this->addTopLevelItem(allmusic);
+	_allmusic = new QTreeWidgetItem();
+	this->addTopLevelItem(_allmusic);
 
-	allmusic->setText(0, tr("allmusic.com"));
-	allmusic->setFlags(Qt::ItemIsEnabled);
-	allmusic->setTextColor(0, Qt::darkGray);
-	allmusic->setFirstColumnSpanned(true);
+	_allmusic->setIcon(0, QIcon(":/faviconAllMusic.ico"));
+	_allmusic->setText(0, tr("allmusic.com"));
+	_allmusic->setFlags(Qt::ItemIsEnabled);
+	_allmusic->setTextColor(0, Qt::darkGray);
+	_allmusic->setFirstColumnSpanned(true);
 
-	allmusic->setExpanded(true);
-	allmusic->setHidden(true);
+	_allmusic->setExpanded(true);
+	_allmusic->setHidden(true);
+
+	_manager = new QNetworkAccessManager(this);
+	connect(_manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(processNetworkReply(QNetworkReply*)));
 }
 
 QTreeWidgetItem* QUWebInfoTree::createInfoItem(const QIcon &icon, const QString &tag, const QString &value, const QIcon &status) {
@@ -79,103 +97,384 @@ void QUWebInfoTree::showInformation(const QString &artist, const QString &title,
 	_title = title;
 	_genre = genre;
 	_year = year;
-	qDeleteAll(swisscharts->takeChildren());
-	qDeleteAll(allmusic->takeChildren());
-	swisscharts->setHidden(true);
-	allmusic->setHidden(true);
 
-	// Retrieve information from swisscharts
-	QNetworkAccessManager *manager = new QNetworkAccessManager(this);
-	connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(processNetworkReply(QNetworkReply*)));
+	qDeleteAll(_swisscharts->takeChildren());
+	qDeleteAll(_discogs->takeChildren());
+	qDeleteAll(_allmusic->takeChildren());
+
+	_swisscharts->setHidden(true);
+	_discogs->setHidden(true);
+	_allmusic->setHidden(true);
+
+	QSettings settings;
+	if(settings.value("swisschartsWebInfo", QVariant(false)).toBool())
+		getSwisschartsInformation();
+	if(settings.value("discogsWebInfo", QVariant(false)).toBool())
+		getDiscogsInformation();
+	if(settings.value("allmusicWebInfo", QVariant(false)).toBool())
+		getAllmusicInformation();
+}
+
+void QUWebInfoTree::getSwisschartsInformation() {
 	QUrl url("http://swisscharts.com/search.asp");
 	QUrlQuery urlQuery;
 	urlQuery.addQueryItem("cat", "s");
+
 	QString queryString = _artist + " " + _title;
-	QStringList queryStrings = queryString.split(QRegExp("(\\s+)"));
-	QByteArray encodedQuery;
-	foreach(QString queryString, queryStrings) {
-		encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
-	}
-	encodedQuery.chop(1);
-	encodedQuery = encodedQuery.left(50); // swisscharts only accepts 50 characters for the search
-	urlQuery.addQueryItem("search", encodedQuery);
+	queryString.mid(0,50); // swisscharts only accepts 50 characters for the search
+	urlQuery.addQueryItem("search", queryString.toLatin1().toPercentEncoding());
 	url.setQuery(urlQuery);
-	manager->get(QNetworkRequest(url));
+	_manager->get(QNetworkRequest(url));
+	//qDebug() << "URL: " + url.toString();
+}
+
+void QUWebInfoTree::getDiscogsInformation() {
+	_discogs->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "not supported yet.", QIcon()));
+	_discogs->addChild(this->createInfoItem(QIcon(), "", "", QIcon()));
+	_discogs->setHidden(false);
+	return;
+
+	// Retrieve information from discogs
+	QUrl url("https://www.discogs.com/search/");
+	QUrlQuery urlQuery;
+	urlQuery.addQueryItem("type", "release");
+	//urlQuery.addQueryItem("title", QUrl::toPercentEncoding(_title.split(' ').join('+')));
+	//urlQuery.addQueryItem("artist", QUrl::toPercentEncoding(_artist.split(' ').join('+')));
+	urlQuery.addQueryItem("q", QString(_artist + " " + _title).split(' ').join('+'));
+	url.setQuery(urlQuery);
+	QNetworkRequest req(url);
+	req.setRawHeader("User-Agent", "UltraStar-Manager/1.8.4 +https://github.com/UltraStar-Deluxe/UltraStar-Manager");
+	_manager->get(req);
+	qDebug() << "URL: " + url.toString();
+	//QList<QByteArray> headerList = req.rawHeaderList();
+	//foreach(QByteArray head, headerList) {
+	//	qDebug() << head << ":" << req.rawHeader(head);
+	//}
+}
+
+void QUWebInfoTree::getAllmusicInformation() {
+	_allmusic->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "not supported yet.", QIcon()));
+	_allmusic->setHidden(false);
+	return;
+
+	QUrl url("http://www.allmusic.com/search/songs/" + _artist.split(QRegExp("\\s+"), QString::SkipEmptyParts).join('+') + "+" + _title.split(QRegExp("\\s+"), QString::SkipEmptyParts).join('+'));
+	_manager->get(QNetworkRequest(url));
 }
 
 void QUWebInfoTree::processNetworkReply(QNetworkReply* reply) {
+	if(reply->url().toString().contains("swisscharts")) {
+		processSwisschartsReply(reply);
+	} else
+	if(reply->url().toString().contains("allmusic.com")) {
+		processAllmusicReply(reply);
+	} else
+	if(reply->url().toString().contains("discogs.com")) {
+		processDiscogsReply(reply);
+	}
+}
+
+void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 	if(reply->error() != QNetworkReply::NoError) {
+		qDebug() << reply->errorString();
+		_swisscharts->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", reply->errorString(), QIcon()));
+		_swisscharts->setHidden(false);
 		return;
 	}
 
-	qDeleteAll(swisscharts->takeChildren());
-
 	QByteArray newData = reply->readAll();
-	QString swisscharts_text = QString::fromUtf8(newData);
+	QString swisscharts_reply = QString::fromLatin1(newData);
 
-	QRegExp rx = QRegExp("<a name=\"itemsmdb\">(.*)</table>");
+	QRegExp rx1 = QRegExp("<a name=\"itemsmdb\">(.*)</table>");
+	rx1.setMinimal(true);
+	rx1.setCaseSensitivity(Qt::CaseInsensitive);
 
-	rx.setMinimal(true);
-	rx.setCaseSensitivity(Qt::CaseInsensitive);
+	if(rx1.indexIn(swisscharts_reply) != -1) {
+		QString swisscharts_results = QVariant(rx1.cap(0)).toString().remove("\r\n");
 
-	rx.indexIn(swisscharts_text);
-	QString swisscharts_table = QVariant(rx.cap(0)).toString().remove("\r\n");
+		rx1.setPattern("<tr><td class=\"text\"><a href=.*>.*</a></td><td class=\"text\"><a href=.*>.*</a><a href=.*</td><td class=\"text\">\\s*\\d+</td>.*</tr>");
 
-	rx.setPattern("<tr><td class=\"text\"><a href=.*>.*</a></td><td class=\"text\"><a href=.*>.*</a><a href=.*</td><td class=\"text\">\\s*\\d+</td>.*</tr>");
+		int pos = 0;
+		QStringList entries;
+		while ((pos = rx1.indexIn(swisscharts_results, pos)) != -1) {
+			entries << rx1.cap(0);
+			pos += rx1.matchedLength();
+		}
+		if(entries.isEmpty()) {
+			_swisscharts->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "Song not found.", QIcon(":/marks/spell_error.png")));
+			_swisscharts->setHidden(false);
+			return;
+		}
+
+		rx1.setPattern("<tr><td class=\"text\"><a href=\"(.*)\">(.*)</a></td><td class=\"text\"><a href=.*>(.*)</a><a href=.*</a></td><td class=\"text\">\\s*(\\d*)</td>");
+		QStringList::iterator it = entries.begin();
+		while(it != entries.end()) {
+			if(rx1.indexIn(*it) != -1) {
+				QIcon icon;
+				_swisscharts_artist = QVariant(rx1.cap(2)).toString();
+				_swisscharts_title = QVariant(rx1.cap(3)).toString();
+
+				if(QString::compare(_artist, _swisscharts_artist, Qt::CaseSensitive) == 0)
+					icon = QIcon(":/marks/spell_ok.png");
+				else if(QString::compare(_artist, _swisscharts_artist, Qt::CaseInsensitive) == 0)
+					icon =  QIcon(":/marks/spell_warn.png");
+				else
+					icon = QIcon(":/marks/spell_error.png");
+				_swisscharts->addChild(this->createInfoItem(QIcon(":/types/user.png"), tr("Artist"), _swisscharts_artist, icon));
+
+				if(QString::compare(_title, _swisscharts_title, Qt::CaseSensitive) == 0)
+					icon = QIcon(":/marks/spell_ok.png");
+				else if(QString::compare(_title, _swisscharts_title, Qt::CaseInsensitive) == 0)
+					icon = QIcon(":/marks/spell_warn.png");
+				else
+					icon = QIcon(":/marks/spell_error.png");
+				_swisscharts->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), _swisscharts_title, icon));
+
+				_swisscharts_year = QVariant(rx1.cap(4)).toString();
+				if(QString::compare(_year, _swisscharts_year, Qt::CaseSensitive) == 0)
+					icon = QIcon(":/marks/spell_ok.png");
+				else
+					icon = QIcon(":/marks/spell_error.png");
+				_swisscharts->addChild(this->createInfoItem(QIcon(":/types/date.png"), tr("Year"), _swisscharts_year, icon));
+
+				_swisscharts->addChild(this->createInfoItem(QIcon(), "", "", QIcon()));
+
+				++it;
+			}
+		}
+	}
+
+	_swisscharts->setHidden(false);
+}
+
+void QUWebInfoTree::processDiscogsReply(QNetworkReply* reply) {
+	if(reply->error() != QNetworkReply::NoError) {
+		QList<QByteArray> headerList = reply->rawHeaderList();
+		foreach(QByteArray head, headerList) {
+			qDebug() << head << ":" << reply->rawHeader(head);
+		}
+		_discogs->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", reply->errorString(), QIcon()));
+		_discogs->setHidden(false);
+		return;
+	}
+
+	if((reply->url().toString().contains("discogs.com")) && (reply->url().toString().contains("search"))) {
+		processDiscogsSearchReply(reply);
+	} else if((reply->url().toString().contains("discogs.com")) && (reply->url().toString().contains("master"))) {
+		processDiscogsSongReply(reply);
+	}
+}
+
+void QUWebInfoTree::processDiscogsSearchReply(QNetworkReply* reply) {
+	QByteArray newData = reply->readAll();
+	QString discogs_reply = QString(newData.data());
+	qDebug() << "Discogs reply received!";
+	qDebug() << "Reply: " << discogs_reply;
+
+	QRegExp rx1 = QRegExp("<h4><a href=\".*\" class=\"search_result_title\".*>.*</a></h4>\\s*<h5>\\s*<span itemprop=\"name\" title=.*>\\s*<a href=\".*\">.*</a></span></h5>");
+	rx1.setMinimal(true);
+	rx1.setCaseSensitivity(Qt::CaseInsensitive);
 
 	int pos = 0;
 	QStringList entries;
-	while ((pos = rx.indexIn(swisscharts_table, pos)) != -1) {
-		entries << rx.cap(0);
-		pos += rx.matchedLength();
+	while ((pos = rx1.indexIn(discogs_reply, pos)) != -1) {
+		entries << rx1.cap(0);
+		pos += rx1.matchedLength();
 	}
 	if(entries.isEmpty()) {
-		swisscharts->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "Song not found.", QIcon(":/marks/spell_error.png")));
-		swisscharts->setHidden(false);
+		_discogs->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "Song not found.", QIcon(":/marks/spell_error.png")));
+		_discogs->setHidden(false);
 		return;
 	}
 
-	rx.setPattern("<tr><td class=\"text\"><a href=\"(.*)\">(.*)</a></td><td class=\"text\"><a href=.*>(.*)</a><a href=.*</td><td class=\"text\">\\s*(\\d+)</td>.*</tr>");
+	rx1.setPattern("<h4><a href=\"(.*)\" class=\"search_result_title\".*>(.*)</a></h4>\\s*<h5>\\s*<span itemprop=\"name\" title=.*>\\s*<a href=\".*\">(.*)</a></span></h5>");
 	QStringList::iterator it = entries.begin();
 	while(it != entries.end()) {
-		rx.indexIn(*it);
+		//qDebug() << "*it: " << *it;
+		if(rx1.indexIn(*it) != -1) {
+			_discogs_url = "https://www.discogs.com" + QVariant(rx1.cap(1)).toString();
+			_discogs_title = QVariant(rx1.cap(2)).toString();
+			_discogs_artist = QVariant(rx1.cap(3)).toString();
+			//qDebug() << "Discogs URL: " << _discogs_url;
+			//qDebug() << "Discogs title: " << _discogs_title;
+			//qDebug() << "Discogs artist: " << _discogs_artist;
 
-		QIcon icon;
+			if((_artist.contains(_discogs_artist, Qt::CaseInsensitive) || _discogs_artist.contains(_artist, Qt::CaseInsensitive)) && (_title.contains(_discogs_title, Qt::CaseInsensitive) || _discogs_title.contains(_title, Qt::CaseInsensitive))) {
+				_manager->get(QNetworkRequest(_discogs_url));
+				qDebug() << "Discogs URL: " << _discogs_url;
+				qDebug() << "Discogs title: " << _discogs_title;
+				qDebug() << "Discogs artist: " << _discogs_artist;
+			}
 
-		QString swisscharts_artist = QVariant(rx.cap(2)).toString();
-		if(QString::compare(_artist, swisscharts_artist, Qt::CaseSensitive) == 0)
+			++it;
+		}
+	}
+}
+
+void QUWebInfoTree::processDiscogsSongReply(QNetworkReply* reply) {
+	QByteArray newData = reply->readAll();
+
+	QString discogs_reply = QString::fromUtf8(newData);
+	QIcon icon;
+
+	QRegExp rx2 = QRegExp("<span itemprop=\"name\" title=\".*\" >\\s*<a href=\".*\">(.+)</a></span>\\s*</span>.*<span itemprop=\"name\">\\s*(.+)\\s*</span>\\s*</h1>\\s*<div class=\"head\">.*:</div>\\s*<div class=\"content\" itemprop=\"genre\">\\s*<a href=\".*\">(.+)</a>\\s*</div>\\s*<div class=\"head\">.*:</div>\\s*<div class=\"content\">\\s*<a href=\".*\">(.+)</a>"); //\\s*</div>\\s*<div class=\"head\">.*:</div>\\s*<div class=\"content\">\\*s<a href=\".*\">(.+)</a>");
+	rx2.setMinimal(true);
+	rx2.setCaseSensitivity(Qt::CaseInsensitive);
+
+	if(rx2.indexIn(discogs_reply) != -1) {
+		_discogs_artist = QVariant(rx2.cap(1)).toString();
+		_discogs_title = QVariant(rx2.cap(2)).toString().trimmed();
+		_discogs_genre = QVariant(rx2.cap(3)).toString();
+		_discogs_style = QVariant(rx2.cap(4)).toString();
+		//_discogs_year = QVariant(rx2.cap(5)).toString();
+
+		if(QString::compare(_artist, _discogs_artist, Qt::CaseSensitive) == 0)
 			icon = QIcon(":/marks/spell_ok.png");
-		else if(QString::compare(_artist, swisscharts_artist, Qt::CaseInsensitive) == 0)
+		else if(QString::compare(_artist, _discogs_artist, Qt::CaseInsensitive) == 0)
 			icon =  QIcon(":/marks/spell_warn.png");
 		else
 			icon = QIcon(":/marks/spell_error.png");
-		swisscharts->addChild(this->createInfoItem(QIcon(":/types/user.png"), tr("Artist"), swisscharts_artist, icon));
+		_discogs->addChild(this->createInfoItem(QIcon(":/types/user.png"), tr("Artist"), _discogs_artist, icon));
 
-		QString swisscharts_title = QVariant(rx.cap(3)).toString();
-		if(QString::compare(_title, swisscharts_title, Qt::CaseSensitive) == 0)
+		if(QString::compare(_title, _discogs_title, Qt::CaseSensitive) == 0)
 			icon = QIcon(":/marks/spell_ok.png");
-		else if(QString::compare(_title, swisscharts_title, Qt::CaseInsensitive) == 0)
+		else if(QString::compare(_title, _discogs_title, Qt::CaseInsensitive) == 0)
 			icon = QIcon(":/marks/spell_warn.png");
 		else
 			icon = QIcon(":/marks/spell_error.png");
-		swisscharts->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), swisscharts_title, icon));
+		_discogs->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), _discogs_title, icon));
 
-		QString swisscharts_year = QVariant(rx.cap(4)).toString();
-		if(QString::compare(_year, swisscharts_year, Qt::CaseSensitive) == 0)
+		if(QString::compare(_genre, _discogs_genre, Qt::CaseSensitive) == 0)
+			icon = QIcon(":/marks/spell_ok.png");
+		else if(QString::compare(_artist, _discogs_genre, Qt::CaseInsensitive) == 0)
+			icon =  QIcon(":/marks/spell_warn.png");
+		else
+			icon = QIcon(":/marks/spell_error.png");
+		_discogs->addChild(this->createInfoItem(QIcon(":/types/genre.png"), tr("Genre"), _discogs_genre, icon));
+		_discogs->addChild(this->createInfoItem(QIcon(":/types/genre.png"), tr("Style"), _discogs_style, QIcon()));
+
+		/*
+		if(QString::compare(_year, _discogs_year, Qt::CaseSensitive) == 0)
 			icon = QIcon(":/marks/spell_ok.png");
 		else
 			icon = QIcon(":/marks/spell_error.png");
-		swisscharts->addChild(this->createInfoItem(QIcon(":/types/date.png"), tr("Year"), swisscharts_year, icon));
+		_discogs->addChild(this->createInfoItem(QIcon(":/types/date.png"), tr("Year"), _discogs_year, icon));
+		*/
 
-		//QString swisscharts_link = "http://swisscharts.com" + QVariant(rx.cap(1)).toString();
-		//swisscharts->addChild(this->createInfoItem(QIcon(":/types/world.png"), tr("Link"), swisscharts_link, QIcon()));
+		_discogs->addChild(this->createInfoItem(QIcon(), "", "", QIcon()));
+		_discogs->setHidden(false);
+	} else {
+		qDebug() << "Information NOT found.";
+		_discogs->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error", "Song not found.", QIcon(":/marks/spell_error.png")));
+		_discogs->setHidden(false);
+	}
+}
 
-		swisscharts->addChild(this->createInfoItem(QIcon(), "", "", QIcon()));
-
-		++it;
+void QUWebInfoTree::processAllmusicReply(QNetworkReply* reply) {
+	if(reply->error() != QNetworkReply::NoError) {
+		qDebug() << reply->errorString();
+		_allmusic->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error", reply->errorString(), QIcon()));
+		_allmusic->setHidden(false);
+		return;
 	}
 
-	//swisscharts->addChild(this->createInfoItem(tr("Table"), swisscharts_table));
-	swisscharts->setHidden(false);
-	//allmusic->setHidden(false);
+	if(reply->url().toString().contains("allmusic.com/search")) {
+		processAllmusicSearchReply(reply);
+	} else if(reply->url().toString().contains("allmusic.com/song")) {
+		processAllmusicSongReply(reply);
+	}
+}
+
+void QUWebInfoTree::processAllmusicSearchReply(QNetworkReply* reply) {
+	QByteArray newData = reply->readAll();
+	QString allmusic_reply = QString(newData.data());
+
+	QRegExp rx1 = QRegExp("<ul class=\"search-results\">.*</ul>");
+	rx1.setMinimal(true);
+	rx1.setCaseSensitivity(Qt::CaseInsensitive);
+
+	if(rx1.indexIn(allmusic_reply) != -1) {
+		QString allmusic_results = QVariant(rx1.cap(0)).toString();
+
+		rx1.setPattern("<li class=\"song\">\\s*<h4>Song</h4>\\s*<div class=\"title\">\\s*<a href=\".*\">&quot;.*&quot;</a>\\s*</div>\\s*<div class=\"performers\">\\s*by <a href=\".*\">.*</a>\\s*</div>.*</li>");
+
+		int pos = 0;
+		QStringList entries;
+		while ((pos = rx1.indexIn(allmusic_results, pos)) != -1) {
+			entries << rx1.cap(0);
+			pos += rx1.matchedLength();
+		}
+		if(entries.isEmpty()) {
+			_allmusic->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "Song not found.", QIcon(":/marks/spell_error.png")));
+			_allmusic->setHidden(false);
+			return;
+		}
+
+		QRegExp rx1 = QRegExp("<li class=\"song\">\\s*<h4>Song</h4>\\s*<div class=\"title\">\\s*<a href=\"(.*)\">&quot;(.*)&quot;</a>\\s*</div>\\s*<div class=\"performers\">\\s*by <a href=\".*\">(.*)</a>\\s*</div>.*</li>");
+		QStringList::iterator it = entries.begin();
+		while(it != entries.end()) {
+			if(rx1.indexIn(*it) != -1) {
+				_allmusic_title = QVariant(rx1.cap(2)).toString();
+				_allmusic_artist = QVariant(rx1.cap(3)).toString();
+
+				if((_artist.contains(_allmusic_artist, Qt::CaseInsensitive) || _allmusic_artist.contains(_artist, Qt::CaseInsensitive)) && (_title.contains(_allmusic_title, Qt::CaseInsensitive) || _allmusic_title.contains(_title, Qt::CaseInsensitive))) {
+					_allmusic_url = QVariant(rx1.cap(1)).toString();
+					_manager->get(QNetworkRequest(_allmusic_url));
+				}
+
+				++it;
+			}
+		}
+	} else {
+		qDebug() << "No search results!";
+		_allmusic->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "Song not found.", QIcon(":/marks/spell_error.png")));
+		_allmusic->setHidden(false);
+		return;
+	}
+}
+
+void QUWebInfoTree::processAllmusicSongReply(QNetworkReply* reply) {
+	QByteArray newData = reply->readAll();
+	QString allmusic_reply = QString::fromUtf8(newData);
+	QIcon icon;
+
+	QRegExp rx2 = QRegExp("<hgroup>\\s*<h2 class=\"song-artist\".*<a href=\".*\">(.*)</a>\\s*</span>\\s*</h2>\\s*<h1 class=\"song-title\".*>\\s*(.*)\\s*</h1>");
+	rx2.setMinimal(true);
+	rx2.setCaseSensitivity(Qt::CaseInsensitive);
+
+	if(rx2.indexIn(allmusic_reply) != -1) {
+		_allmusic_artist = QVariant(rx2.cap(1)).toString().trimmed();
+		_allmusic_title = QVariant(rx2.cap(2)).toString().trimmed();
+	}
+
+	rx2.setPattern("<div class=\"genre\">\\s*<h4>Genre</h4>\\s*<div>\\s*<a href=.*>(.*)</a>");
+
+	if(rx2.indexIn(allmusic_reply) != -1) {
+		if(QString::compare(_artist, _allmusic_artist, Qt::CaseSensitive) == 0)
+			icon = QIcon(":/marks/spell_ok.png");
+		else if(QString::compare(_artist, _allmusic_artist, Qt::CaseInsensitive) == 0)
+			icon =  QIcon(":/marks/spell_warn.png");
+		else
+			icon = QIcon(":/marks/spell_error.png");
+		_allmusic->addChild(this->createInfoItem(QIcon(":/types/user.png"), tr("Artist"), _allmusic_artist, icon));
+
+		if(QString::compare(_title, _allmusic_title, Qt::CaseSensitive) == 0)
+			icon = QIcon(":/marks/spell_ok.png");
+		else if(QString::compare(_title, _allmusic_title, Qt::CaseInsensitive) == 0)
+			icon = QIcon(":/marks/spell_warn.png");
+		else
+			icon = QIcon(":/marks/spell_error.png");
+		_allmusic->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), _allmusic_title, icon));
+
+		_allmusic_genre = QVariant(rx2.cap(1)).toString();
+		if(QString::compare(_genre, _allmusic_genre, Qt::CaseSensitive) == 0)
+			icon = QIcon(":/marks/spell_ok.png");
+		else if(QString::compare(_artist, _allmusic_genre, Qt::CaseInsensitive) == 0)
+			icon =  QIcon(":/marks/spell_warn.png");
+		else
+			icon = QIcon(":/marks/spell_error.png");
+		_allmusic->addChild(this->createInfoItem(QIcon(":/types/genre.png"), tr("Genre"), _allmusic_genre, icon));
+
+		_allmusic->addChild(this->createInfoItem(QIcon(), "", "", QIcon()));
+		_allmusic->setHidden(false);
+	}
 }

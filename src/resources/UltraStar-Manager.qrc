@@ -44,6 +44,8 @@
         <file>faviconUSDB.ico</file>
         <file>MediaInfo.png</file>
         <file>faviconYoutube.ico</file>
+        <file>faviconAllMusic.ico</file>
+        <file>faviconDiscogs.ico</file>
     </qresource>
     <qresource prefix="/bullets">
         <file>arrow_down_small.png</file>
