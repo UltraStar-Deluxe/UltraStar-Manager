@@ -121,11 +121,16 @@ void QUWebInfoTree::getSwisschartsInformation() {
 	urlQuery.addQueryItem("cat", "s");
 
 	QString queryString = _artist + " " + _title;
-	queryString.mid(0,50); // swisscharts only accepts 50 characters for the search
+	while(queryString.length() > 50) { // swisscharts.com only allows search queries up to 50 characters
+		QRegExp lastWord("\\s\\w+$");
+		lastWord.setMinimal(true);
+		queryString.remove(lastWord);
+		qDebug() << queryString;
+	}
 	urlQuery.addQueryItem("search", queryString.toLatin1().toPercentEncoding());
 	url.setQuery(urlQuery);
 	_manager->get(QNetworkRequest(url));
-	//qDebug() << "URL: " + url.toString();
+	qDebug() << "URL: " + url.toString();
 }
 
 void QUWebInfoTree::getDiscogsInformation() {
