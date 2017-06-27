@@ -1527,14 +1527,13 @@ void QUSongTree::lookUpOnSwisscharts() {
 		QUrlQuery urlQuery;
 		urlQuery.addQueryItem("cat", "s");
 		QString queryString = songItem->song()->artist() + " " + songItem->song()->title();
-		QStringList queryStrings = queryString.split(QRegExp("(\\s+)"));
-		QByteArray encodedQuery;
-		foreach(QString queryString, queryStrings) {
-			encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
+
+		// swisscharts.com only allows search queries up to 50 characters
+		while(queryString.length() > 50) {
+			queryString = queryString.left(queryString.lastIndexOf(' '));
 		}
-		encodedQuery.chop(1);
-		encodedQuery = encodedQuery.left(50); // swisscharts only accepts 50 characters for the search
-		urlQuery.addQueryItem("search", encodedQuery);
+
+		urlQuery.addQueryItem("search", queryString.toLatin1().toPercentEncoding());
 		url.setQuery(urlQuery);
 		QDesktopServices::openUrl(url);
 	}
