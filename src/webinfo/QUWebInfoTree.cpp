@@ -120,17 +120,20 @@ void QUWebInfoTree::getSwisschartsInformation() {
 	QUrlQuery urlQuery;
 	urlQuery.addQueryItem("cat", "s");
 
-	QString queryString = _artist + " " + _title;
+	QString simplifiedArtist = _artist;
+	simplifiedArtist = simplifiedArtist.remove(QRegExp("\\(.*\\)")).remove(QRegExp(" feat\\..*")).remove(QRegExp(" ft\\..*")).remove(" &").remove(" +").simplified();
+	QString simplifiedTitle = _title;
+	simplifiedTitle = simplifiedTitle.remove(QRegExp("\\(.*\\)")).simplified();
+	QString queryString = simplifiedArtist + " " + simplifiedTitle;
+	qDebug() << "simplified query: " << queryString;
+	// fixme: possibly remove "(.*)" and "feat. .*"/"vs."/" & " from queryString?
 	while(queryString.length() > 50) { // swisscharts.com only allows search queries up to 50 characters
-		QRegExp lastWord("\\s\\w+$");
-		lastWord.setMinimal(true);
-		queryString.remove(lastWord);
-		qDebug() << queryString;
+		queryString = queryString.left(queryString.lastIndexOf(' '));
 	}
 	urlQuery.addQueryItem("search", queryString.toLatin1().toPercentEncoding());
 	url.setQuery(urlQuery);
 	_manager->get(QNetworkRequest(url));
-	qDebug() << "URL: " + url.toString();
+	//qDebug() << "URL: " + url.toString();
 }
 
 void QUWebInfoTree::getDiscogsInformation() {
@@ -196,7 +199,8 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 	if(rx1.indexIn(swisscharts_reply) != -1) {
 		QString swisscharts_results = QVariant(rx1.cap(0)).toString().remove("\r\n");
 
-		rx1.setPattern("<tr><td class=\"text\"><a href=.*>.*</a></td><td class=\"text\"><a href=.*>.*</a><a href=.*</td><td class=\"text\">\\s*\\d+</td>.*</tr>");
+		rx1.setPattern("<tr><td class=\"text\"><a href=\".*\">.*</a></td><td class=\"text\">(?:<a href=.*</a>\\s*)+</td><td class=\"text\">(?:\\d{4}|&nbsp;)</td>.*</tr>");
+		rx1.setMinimal(true);
 
 		int pos = 0;
 		QStringList entries;
@@ -210,13 +214,22 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 			return;
 		}
 
-		rx1.setPattern("<tr><td class=\"text\"><a href=\"(.*)\">(.*)</a></td><td class=\"text\"><a href=.*>(.*)</a><a href=.*</a></td><td class=\"text\">\\s*(\\d*)</td>");
+		rx1.setPattern("<tr><td class=\"text\"><a href=\"(.*)\">(.*)</a></td><td class=\"text\"><a href=\".*\">(.*)</a>(?:<a href=.*</a>)*</td><td class=\"text\">(?:(\\d{4})|&nbsp;)</td>");
+		rx1.setMinimal(true);
+
 		QStringList::iterator it = entries.begin();
 		while(it != entries.end()) {
 			if(rx1.indexIn(*it) != -1) {
 				QIcon icon;
+				_swisscharts_url = QVariant(rx1.cap(1)).toString();
 				_swisscharts_artist = QVariant(rx1.cap(2)).toString();
 				_swisscharts_title = QVariant(rx1.cap(3)).toString();
+				// fixme: ugly hack, should be fixed via a correct QRegExp pattern/greediness
+				if(_swisscharts_title.contains("</a>")) {
+					_swisscharts_title = _swisscharts_title.left(_swisscharts_title.indexOf("</a"));
+				}
+				// end fixme
+				_swisscharts_year = QVariant(rx1.cap(rx1.captureCount())).toString();
 
 				if(QString::compare(_artist, _swisscharts_artist, Qt::CaseSensitive) == 0)
 					icon = QIcon(":/marks/spell_ok.png");
@@ -234,7 +247,6 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 					icon = QIcon(":/marks/spell_error.png");
 				_swisscharts->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), _swisscharts_title, icon));
 
-				_swisscharts_year = QVariant(rx1.cap(4)).toString();
 				if(QString::compare(_year, _swisscharts_year, Qt::CaseSensitive) == 0)
 					icon = QIcon(":/marks/spell_ok.png");
 				else
@@ -246,6 +258,8 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 				++it;
 			}
 		}
+	} else {
+		_swisscharts->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "Song not found.", QIcon(":/marks/spell_error.png")));
 	}
 
 	_swisscharts->setHidden(false);

@@ -32,6 +32,7 @@ private:
 	QString _title;
 	QString _genre;
 	QString _year;
+	QString _swisscharts_url;
 	QString _swisscharts_artist;
 	QString _swisscharts_title;
 	QString _swisscharts_year;
