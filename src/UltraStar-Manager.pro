@@ -327,6 +327,10 @@ win32 {
 	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(styles/*.css) $$shell_path($${DESTDIR}/styles/) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../doc/changes.txt) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
 
+	# Manually add OpenSSL libs
+	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path($$[QT_INSTALL_PREFIX]/../../Tools/mingw530_32/opt/bin/libeay32.dll) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
+	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path($$[QT_INSTALL_PREFIX]/../../Tools/mingw530_32/opt/bin/ssleay32.dll) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
+
 	# Create a fancy Windows installer
 	#QMAKE_POST_LINK += $$shell_quote(C:\Program Files (x86)\NSIS\makensis.exe) $$shell_path(../setup/win32/UltraStar-Manager.nsi) $$escape_expand(\\n\\t)
 }

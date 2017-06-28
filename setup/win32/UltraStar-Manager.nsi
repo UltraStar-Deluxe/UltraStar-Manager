@@ -60,6 +60,7 @@ Section "Application" SecCopyUI
 	;; Files
 	SetOutPath "$INSTDIR"
 	File "changes.txt"
+	File "libeay32.dll"
 	File "libgcc_s_dw2-1.dll"
 	File "libstdc++-6.dll"
 	File "libtag.dll"
@@ -71,6 +72,7 @@ Section "Application" SecCopyUI
 	;;File "Qt5Svg.dll" ;; added via windeployqt, but not needed
 	File "Qt5Widgets.dll"
 	File "Qt5Xml.dll"
+	File "ssleay32.dll"
 	File "UltraStar-Manager.exe"
 	SetOutPath "$INSTDIR\bearer"
 	File "bearer\qgenericbearer.dll"
@@ -329,6 +331,7 @@ Section "Uninstall"
 	RMDir "$INSTDIR\styles"
 	
 	Delete "$INSTDIR\changes.txt"
+	Delete "$INSTDIR\libeay32.dll"
 	Delete "$INSTDIR\libgcc_s_dw2-1.dll"
 	Delete "$INSTDIR\libstdc++-6.dll"
 	Delete "$INSTDIR\libtag.dll"
@@ -340,6 +343,7 @@ Section "Uninstall"
 	;;Delete "$INSTDIR\Qt5Svg.dll"
 	Delete "$INSTDIR\Qt5Widgets.dll"
 	Delete "$INSTDIR\Qt5Xml.dll"
+	Delete "$INSTDIR\ssleay32.dll"
 	Delete "$INSTDIR\UltraStar-Manager.exe"
 
 	Delete "$INSTDIR\Uninstall.exe"
