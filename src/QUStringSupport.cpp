@@ -105,6 +105,30 @@ QString QUStringSupport::withoutAnyUmlautEx(const QString &text) {
 	return result;
 }
 
+/*!
+ * Simplify a string to use it for a web information query (artist + title)
+ */
+QString QUStringSupport::simplifiedQueryString(const QString &text) {
+	QString result = text;
+
+	// remove any additions in parentheses
+	result.remove(QRegExp("\\(.*\\)"));
+	// remove additional artists listed as 'feat.', 'ft.', 'with' or 'vs.'/'vs'
+	result.remove(QRegExp(" feat\\. .*"));
+	result.remove(QRegExp(" ft\\. .*"));
+	result.remove(QRegExp(" with .*"));
+	result.remove(QRegExp(" vs\\.? .*"));
+	// remove the ampersand character
+	result.replace(" & ", " ");
+	// remove the plus character
+	result.replace(" + ", " ");
+	// remove the plus character
+	result.replace(" / ", " ");
+
+
+	return result.simplified();
+}
+
 QStringList QUStringSupport::extractTags(const QString &text) {
 	QRegExp rx = QRegExp("\\[([^\\]]+)\\]");
 	QStringList tags;

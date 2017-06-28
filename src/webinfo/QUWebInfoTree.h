@@ -19,6 +19,7 @@ public:
 
 public slots:
 	void showInformation(const QString &artist, const QString &title, const QString &genre, const QString &year);
+	void applyWebInformationToSong(QTreeWidgetItem *item, int column);
 
 private slots:
 	void processNetworkReply(QNetworkReply* reply);

@@ -12,6 +12,7 @@
 #include <QDebug>
 
 #include "QUSongSupport.h"
+#include "QUStringSupport.h"
 
 QUWebInfoTree::QUWebInfoTree(QWidget *parent): QTreeWidget(parent) {
 	this->setColumnCount(3);
@@ -22,11 +23,13 @@ QUWebInfoTree::QUWebInfoTree(QWidget *parent): QTreeWidget(parent) {
 	this->header()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
 	//this->header()->setSectionResizeMode(1, QHeaderView::Stretch);
 
-	this->setRootIsDecorated(false);
+	this->setRootIsDecorated(true);
 	this->setIndentation(10);
+	connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(useWebInformation(QTreeWidgetItem*, int)));
 
 	// set up "swisscharts" toplevel item
 	_swisscharts = new QTreeWidgetItem();
+
 	this->addTopLevelItem(_swisscharts);
 
 	_swisscharts->setIcon(0, QIcon(":/faviconSwissCharts.ico"));
@@ -120,13 +123,9 @@ void QUWebInfoTree::getSwisschartsInformation() {
 	QUrlQuery urlQuery;
 	urlQuery.addQueryItem("cat", "s");
 
-	QString simplifiedArtist = _artist;
-	simplifiedArtist = simplifiedArtist.remove(QRegExp("\\(.*\\)")).remove(QRegExp(" feat\\..*")).remove(QRegExp(" ft\\..*")).remove(" &").remove(" +").simplified();
-	QString simplifiedTitle = _title;
-	simplifiedTitle = simplifiedTitle.remove(QRegExp("\\(.*\\)")).simplified();
-	QString queryString = simplifiedArtist + " " + simplifiedTitle;
-	qDebug() << "simplified query: " << queryString;
-	// fixme: possibly remove "(.*)" and "feat. .*"/"vs."/" & " from queryString?
+	QString queryString = QUStringSupport::simplifiedQueryString(_artist) + " " + QUStringSupport::simplifiedQueryString(_title);
+	//qDebug() << "simplified query: " << queryString;
+
 	while(queryString.length() > 50) { // swisscharts.com only allows search queries up to 50 characters
 		queryString = queryString.left(queryString.lastIndexOf(' '));
 	}
@@ -208,6 +207,13 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 			entries << rx1.cap(0);
 			pos += rx1.matchedLength();
 		}
+
+		if(entries.length() == 1) {
+			_swisscharts->setText(0, QString("swisscharts.com (%1 entry)").arg(entries.length()));
+		} else {
+			_swisscharts->setText(0, QString("swisscharts.com (%1 entries)").arg(entries.length()));
+		}
+
 		if(entries.isEmpty()) {
 			_swisscharts->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "Song not found.", QIcon(":/marks/spell_error.png")));
 			_swisscharts->setHidden(false);
@@ -496,4 +502,8 @@ void QUWebInfoTree::processAllmusicSongReply(QNetworkReply* reply) {
 		_allmusic->addChild(this->createInfoItem(QIcon(), "", "", QIcon()));
 		_allmusic->setHidden(false);
 	}
+}
+
+void QUWebInfoTree::useWebInformation(QTreeWidgetItem *item, int column) {
+	qDebug() << "result: " << item->text(1);
 }
