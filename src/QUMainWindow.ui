@@ -608,6 +608,9 @@ Tasks</string>
             </item>
             <item>
              <widget class="QCheckBox" name="discogsChk">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="text">
                <string>Discogs</string>
               </property>
@@ -628,6 +631,9 @@ Tasks</string>
             </item>
             <item>
              <widget class="QCheckBox" name="allmusicChk">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="text">
                <string>AllMusic</string>
               </property>

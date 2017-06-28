@@ -2,6 +2,7 @@
 #define QUWEBINFOTREE_H_
 
 #include "QU.h"
+#include "QUSongFile.h"
 
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
@@ -18,7 +19,7 @@ public:
 	QUWebInfoTree(QWidget *parent = 0);
 
 public slots:
-	void showInformation(const QString &artist, const QString &title, const QString &genre, const QString &year);
+	void showInformation(QUSongFile *song);
 	void applyWebInformationToSong(QTreeWidgetItem *item, int column);
 
 private slots:
@@ -29,6 +30,7 @@ private:
 	QTreeWidgetItem *_swisscharts;
 	QTreeWidgetItem *_allmusic;
 	QTreeWidgetItem *_discogs;
+	QUSongFile *_song;
 	QString _artist;
 	QString _title;
 	QString _genre;
@@ -48,7 +50,7 @@ private:
 	QString _discogs_style;
 	QString _discogs_year;
 
-	QTreeWidgetItem* createInfoItem(const QIcon &icon, const QString &tag, const QString &value, const QIcon &status);
+	QTreeWidgetItem* createInfoItem(const QIcon &icon, const QString &tag, const QString &value, const QIcon &status, const QString &tooltip = "");
 	void getSwisschartsInformation();
 	void getAllmusicInformation();
 	void getDiscogsInformation();

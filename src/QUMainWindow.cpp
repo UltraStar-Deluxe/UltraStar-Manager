@@ -682,9 +682,9 @@ void QUMainWindow::updateWebInfoTree() {
 	QUSongItem *item = dynamic_cast<QUSongItem*>(songTree->currentItem());
 
 	if(item) {
-		webInfoTree->showInformation(item->song()->artist(), item->song()->title(), item->song()->genre(), item->song()->year());
+		webInfoTree->showInformation(item->song());
 	} else {
-		webInfoTree->showInformation(QString(), QString(), QString(), QString());
+		//webInfoTree->showInformation(QUSongFile*);
 	}
 }
 

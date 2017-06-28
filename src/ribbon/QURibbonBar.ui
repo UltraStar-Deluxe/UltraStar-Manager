@@ -1278,7 +1278,7 @@ Info</string>
          </property>
          <property name="icon">
           <iconset resource="../resources/UltraStar-Manager.qrc">
-           <normaloff>:/faviconSwissCharts.ico</normaloff>:/faviconSwissCharts.ico</iconset>
+           <normaloff>:/types/world.png</normaloff>:/types/world.png</iconset>
          </property>
          <property name="checkable">
           <bool>true</bool>

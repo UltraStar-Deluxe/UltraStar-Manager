@@ -25,7 +25,7 @@ QUWebInfoTree::QUWebInfoTree(QWidget *parent): QTreeWidget(parent) {
 
 	this->setRootIsDecorated(true);
 	this->setIndentation(10);
-	connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(useWebInformation(QTreeWidgetItem*, int)));
+	connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(applyWebInformationToSong(QTreeWidgetItem*, int)));
 
 	// set up "swisscharts" toplevel item
 	_swisscharts = new QTreeWidgetItem();
@@ -71,14 +71,16 @@ QUWebInfoTree::QUWebInfoTree(QWidget *parent): QTreeWidget(parent) {
 	connect(_manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(processNetworkReply(QNetworkReply*)));
 }
 
-QTreeWidgetItem* QUWebInfoTree::createInfoItem(const QIcon &icon, const QString &tag, const QString &value, const QIcon &status) {
+QTreeWidgetItem* QUWebInfoTree::createInfoItem(const QIcon &icon, const QString &tag, const QString &value, const QIcon &status, const QString &tooltip) {
 	QTreeWidgetItem *infoItem = new QTreeWidgetItem();
 
 	infoItem->setIcon(0, icon);
 	infoItem->setText(0, tag);
 	infoItem->setText(1, value);
 	infoItem->setIcon(2, status);
-	if(value != N_A) infoItem->setToolTip(1, value);
+	infoItem->setToolTip(0, tooltip);
+	infoItem->setToolTip(1, tooltip);
+	infoItem->setToolTip(2, tooltip);
 
 	QFont f(infoItem->font(0));
 	f.setBold(true);
@@ -90,16 +92,17 @@ QTreeWidgetItem* QUWebInfoTree::createInfoItem(const QIcon &icon, const QString 
 }
 
 /*!
- * Retrieve additional information about the song from music sites such as swisscharts, e.g correct spelling of artist/title and release year
+ * Retrieve additional information about the song from music sites such as swisscharts, e.g. correct spelling of artist/title and genre/release year
  */
-void QUWebInfoTree::showInformation(const QString &artist, const QString &title, const QString &genre, const QString &year) {
-	if(artist.isEmpty() || title.isEmpty())
+void QUWebInfoTree::showInformation(QUSongFile *song) {
+	if(song->artist().isEmpty() || song->title().isEmpty())
 		return;
 
-	_artist = artist;
-	_title = title;
-	_genre = genre;
-	_year = year;
+	_song = song;
+	_artist = song->artist();
+	_title = song->title();
+	_genre = song->genre();
+	_year = song->year();
 
 	qDeleteAll(_swisscharts->takeChildren());
 	qDeleteAll(_discogs->takeChildren());
@@ -227,6 +230,7 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 		while(it != entries.end()) {
 			if(rx1.indexIn(*it) != -1) {
 				QIcon icon;
+				QString tooltip;
 				_swisscharts_url = QVariant(rx1.cap(1)).toString();
 				_swisscharts_artist = QVariant(rx1.cap(2)).toString();
 				_swisscharts_title = QVariant(rx1.cap(3)).toString();
@@ -237,27 +241,38 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 				// end fixme
 				_swisscharts_year = QVariant(rx1.cap(rx1.captureCount())).toString();
 
-				if(QString::compare(_artist, _swisscharts_artist, Qt::CaseSensitive) == 0)
+				if(QString::compare(_artist, _swisscharts_artist, Qt::CaseSensitive) == 0) {
 					icon = QIcon(":/marks/spell_ok.png");
-				else if(QString::compare(_artist, _swisscharts_artist, Qt::CaseInsensitive) == 0)
+					tooltip = "";
+				} else if(QString::compare(_artist, _swisscharts_artist, Qt::CaseInsensitive) == 0) {
 					icon =  QIcon(":/marks/spell_warn.png");
-				else
+					tooltip = QString("Double-click to change artist from '%1' to '%2'.").arg(_artist).arg(_swisscharts_artist);
+				} else {
 					icon = QIcon(":/marks/spell_error.png");
-				_swisscharts->addChild(this->createInfoItem(QIcon(":/types/user.png"), tr("Artist"), _swisscharts_artist, icon));
+					tooltip = QString("Double-click to change artist from '%1' to '%2'.").arg(_artist).arg(_swisscharts_artist);
+				}
+				_swisscharts->addChild(this->createInfoItem(QIcon(":/types/user.png"), tr("Artist"), _swisscharts_artist, icon, tooltip));
 
-				if(QString::compare(_title, _swisscharts_title, Qt::CaseSensitive) == 0)
+				if(QString::compare(_title, _swisscharts_title, Qt::CaseSensitive) == 0) {
 					icon = QIcon(":/marks/spell_ok.png");
-				else if(QString::compare(_title, _swisscharts_title, Qt::CaseInsensitive) == 0)
+					tooltip = "";
+				} else if(QString::compare(_title, _swisscharts_title, Qt::CaseInsensitive) == 0) {
 					icon = QIcon(":/marks/spell_warn.png");
-				else
+					tooltip = QString("Double-click to change title from '%1' to '%2'.").arg(_title).arg(_swisscharts_title);
+				} else {
 					icon = QIcon(":/marks/spell_error.png");
-				_swisscharts->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), _swisscharts_title, icon));
+					tooltip = QString("Double-click to change title from '%1' to '%2'.").arg(_title).arg(_swisscharts_title);
+				}
+				_swisscharts->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), _swisscharts_title, icon, tooltip));
 
-				if(QString::compare(_year, _swisscharts_year, Qt::CaseSensitive) == 0)
+				if(QString::compare(_year, _swisscharts_year, Qt::CaseSensitive) == 0) {
 					icon = QIcon(":/marks/spell_ok.png");
-				else
+					tooltip = "";
+				} else {
 					icon = QIcon(":/marks/spell_error.png");
-				_swisscharts->addChild(this->createInfoItem(QIcon(":/types/date.png"), tr("Year"), _swisscharts_year, icon));
+					tooltip = QString("Double-click to change year from '%1' to '%2'.").arg(_year).arg(_swisscharts_year);
+				}
+				_swisscharts->addChild(this->createInfoItem(QIcon(":/types/date.png"), tr("Year"), _swisscharts_year, icon, tooltip));
 
 				_swisscharts->addChild(this->createInfoItem(QIcon(), "", "", QIcon()));
 
@@ -340,6 +355,7 @@ void QUWebInfoTree::processDiscogsSongReply(QNetworkReply* reply) {
 
 	QString discogs_reply = QString::fromUtf8(newData);
 	QIcon icon;
+	QString tooltip;
 
 	QRegExp rx2 = QRegExp("<span itemprop=\"name\" title=\".*\" >\\s*<a href=\".*\">(.+)</a></span>\\s*</span>.*<span itemprop=\"name\">\\s*(.+)\\s*</span>\\s*</h1>\\s*<div class=\"head\">.*:</div>\\s*<div class=\"content\" itemprop=\"genre\">\\s*<a href=\".*\">(.+)</a>\\s*</div>\\s*<div class=\"head\">.*:</div>\\s*<div class=\"content\">\\s*<a href=\".*\">(.+)</a>"); //\\s*</div>\\s*<div class=\"head\">.*:</div>\\s*<div class=\"content\">\\*s<a href=\".*\">(.+)</a>");
 	rx2.setMinimal(true);
@@ -352,29 +368,41 @@ void QUWebInfoTree::processDiscogsSongReply(QNetworkReply* reply) {
 		_discogs_style = QVariant(rx2.cap(4)).toString();
 		//_discogs_year = QVariant(rx2.cap(5)).toString();
 
-		if(QString::compare(_artist, _discogs_artist, Qt::CaseSensitive) == 0)
+		if(QString::compare(_artist, _discogs_artist, Qt::CaseSensitive) == 0) {
 			icon = QIcon(":/marks/spell_ok.png");
-		else if(QString::compare(_artist, _discogs_artist, Qt::CaseInsensitive) == 0)
+			tooltip = "";
+		} else if(QString::compare(_artist, _discogs_artist, Qt::CaseInsensitive) == 0) {
 			icon =  QIcon(":/marks/spell_warn.png");
-		else
+			tooltip = QString("Double-click to change artist from '%1' to '%2'.").arg(_artist).arg(_discogs_artist);
+		} else {
 			icon = QIcon(":/marks/spell_error.png");
-		_discogs->addChild(this->createInfoItem(QIcon(":/types/user.png"), tr("Artist"), _discogs_artist, icon));
+			tooltip = QString("Double-click to change artist from '%1' to '%2'.").arg(_artist).arg(_discogs_artist);
+		}
+		_discogs->addChild(this->createInfoItem(QIcon(":/types/user.png"), tr("Artist"), _discogs_artist, icon, tooltip));
 
-		if(QString::compare(_title, _discogs_title, Qt::CaseSensitive) == 0)
+		if(QString::compare(_title, _discogs_title, Qt::CaseSensitive) == 0){
 			icon = QIcon(":/marks/spell_ok.png");
-		else if(QString::compare(_title, _discogs_title, Qt::CaseInsensitive) == 0)
+			tooltip = "";
+		} else if(QString::compare(_title, _discogs_title, Qt::CaseInsensitive) == 0) {
 			icon = QIcon(":/marks/spell_warn.png");
-		else
+			tooltip = QString("Double-click to change title from '%1' to '%2'.").arg(_title).arg(_discogs_title);
+		} else {
 			icon = QIcon(":/marks/spell_error.png");
-		_discogs->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), _discogs_title, icon));
+			tooltip = QString("Double-click to change title from '%1' to '%2'.").arg(_title).arg(_discogs_title);
+		}
+		_discogs->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), _discogs_title, icon, tooltip));
 
-		if(QString::compare(_genre, _discogs_genre, Qt::CaseSensitive) == 0)
+		if(QString::compare(_genre, _discogs_genre, Qt::CaseSensitive) == 0) {
 			icon = QIcon(":/marks/spell_ok.png");
-		else if(QString::compare(_artist, _discogs_genre, Qt::CaseInsensitive) == 0)
+			tooltip = "";
+		} else if(QString::compare(_genre, _discogs_genre, Qt::CaseInsensitive) == 0) {
 			icon =  QIcon(":/marks/spell_warn.png");
-		else
+			tooltip = QString("Double-click to change genre from '%1' to '%2'.").arg(_genre).arg(_discogs_genre);
+		} else {
 			icon = QIcon(":/marks/spell_error.png");
-		_discogs->addChild(this->createInfoItem(QIcon(":/types/genre.png"), tr("Genre"), _discogs_genre, icon));
+			tooltip = QString("Double-click to change genre from '%1' to '%2'.").arg(_genre).arg(_discogs_genre);
+		}
+		_discogs->addChild(this->createInfoItem(QIcon(":/types/genre.png"), tr("Genre"), _discogs_genre, icon, tooltip));
 		_discogs->addChild(this->createInfoItem(QIcon(":/types/genre.png"), tr("Style"), _discogs_style, QIcon()));
 
 		/*
@@ -504,6 +532,14 @@ void QUWebInfoTree::processAllmusicSongReply(QNetworkReply* reply) {
 	}
 }
 
-void QUWebInfoTree::useWebInformation(QTreeWidgetItem *item, int column) {
-	qDebug() << "result: " << item->text(1);
+void QUWebInfoTree::applyWebInformationToSong(QTreeWidgetItem *item, int column) {
+	if(item->text(0) == "Artist") {
+		_song->setInfo(ARTIST_TAG, item->text(1));
+	} else if(item->text(0) == "Title") {
+		_song->setInfo(TITLE_TAG, item->text(1));
+	} else if(item->text(0) == "Genre") {
+		_song->setInfo(GENRE_TAG, item->text(1));
+	} else if(item->text(0) == "Year") {
+		_song->setInfo(YEAR_TAG, item->text(1));
+	}
 }
