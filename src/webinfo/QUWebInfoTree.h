@@ -28,29 +28,16 @@ private slots:
 private:
 	QNetworkAccessManager *_manager;
 	QTreeWidgetItem *_swisscharts;
-	QTreeWidgetItem *_allmusic;
 	QTreeWidgetItem *_discogs;
+	QTreeWidgetItem *_allmusic;
 	QUSongFile *_song;
 	QString _artist;
 	QString _title;
 	QString _genre;
 	QString _year;
-	QString _swisscharts_url;
-	QString _swisscharts_artist;
-	QString _swisscharts_title;
-	QString _swisscharts_year;
-	QString _allmusic_url;
-	QString _allmusic_title;
-	QString _allmusic_artist;
-	QString _allmusic_genre;
-	QString _discogs_url;
-	QString _discogs_artist;
-	QString _discogs_title;
-	QString _discogs_genre;
-	QString _discogs_style;
-	QString _discogs_year;
 
 	QTreeWidgetItem* createInfoItem(const QIcon &icon, const QString &tag, const QString &value, const QIcon &status, const QString &tooltip = "");
+	QTreeWidgetItem* createInfoItem(const QIcon &icon, const QString &tag, const QString &value, const QU::SpellState &spellState);
 	void getSwisschartsInformation();
 	void getAllmusicInformation();
 	void getDiscogsInformation();
