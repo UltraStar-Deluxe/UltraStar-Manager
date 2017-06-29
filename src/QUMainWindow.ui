@@ -624,9 +624,6 @@ Tasks</string>
                 <height>12</height>
                </size>
               </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -646,9 +643,6 @@ Tasks</string>
                 <width>12</width>
                 <height>12</height>
                </size>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
