@@ -679,7 +679,13 @@ void QUMainWindow::updatePreviewTree() {
  * song tree.
  */
 void QUMainWindow::updateWebInfoTree() {
-	QUSongItem *item = dynamic_cast<QUSongItem*>(songTree->currentItem());
+	//QList<QTreeWidgetItem*> itemList = songTree->selectedItems();
+	QList<QUSongItem*> songItems = songTree->selectedSongItems();
+	if(songItems.length() != 1) {
+		return;
+	}
+
+	QUSongItem *item = songItems.first();
 
 	if(item) {
 		webInfoTree->showInformation(item->song());
