@@ -1361,6 +1361,7 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 		menu->addSeparator();
 		menu->addAction(QIcon(":/faviconAAE.ico"),tr("Search for cover on AlbumArtExchange..."), this, SLOT(searchForCoverOnAAE()));
 		menu->addAction(QIcon(":/faviconGoogle.ico"),tr("Search for cover on Google Images..."), this, SLOT(searchForCoverOnGoogleImages()));
+		menu->addAction(QIcon(":/faviconFanart.ico"),tr("Search for artwork on Fanart..."), this, SLOT(searchForArtworkOnFanart()));
 		menu->addAction(QIcon(":/faviconGoogle.ico"),tr("Search for background on Google Images..."), this, SLOT(searchForBackgroundOnGoogleImages()));
 		menu->addAction(QIcon(":/faviconGoogle.ico"),tr("Search for video on Google Video..."), this, SLOT(searchForVideoOnGoogleVideo()));
 		menu->addAction(QIcon(":/faviconYoutube.ico"),tr("Search for video on Youtube..."), this, SLOT(searchForVideoOnYoutube()));
@@ -1615,6 +1616,27 @@ void QUSongTree::searchForBackgroundOnGoogleImages() {
 			encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
 		}
 		urlQuery.addQueryItem("q", encodedQuery);
+		url.setQuery(urlQuery);
+
+		QDesktopServices::openUrl(url);
+	}
+
+	if(selectedSongItems().size() > 1) {
+		logSrv->add(tr("You can only look up one song at a time."), QU::Information);
+	}
+}
+
+/*!
+ * Look up song at fanart.tv to find cover/background artwork
+ */
+void QUSongTree::searchForArtworkOnFanart() {
+	QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->currentItem());
+
+	if(songItem) {
+		QUrl url("https://fanart.tv/");
+		QUrlQuery urlQuery;
+		urlQuery.addQueryItem("sect", "2");
+		urlQuery.addQueryItem("s", songItem->song()->artist().toLatin1().toPercentEncoding());
 		url.setQuery(urlQuery);
 
 		QDesktopServices::openUrl(url);

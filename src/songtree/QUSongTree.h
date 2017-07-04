@@ -111,6 +111,7 @@ private slots:
 	void searchForCoverOnAAE();
 	void searchForCoverOnGoogleImages();
 	void searchForBackgroundOnGoogleImages();
+	void searchForArtworkOnFanart();
 	void searchForVideoOnGoogleVideo();
 	void searchForVideoOnYoutube();
 	void lookUpOnSwisscharts();

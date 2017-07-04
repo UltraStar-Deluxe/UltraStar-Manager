@@ -46,6 +46,7 @@
         <file>faviconYoutube.ico</file>
         <file>faviconAllMusic.ico</file>
         <file>faviconDiscogs.ico</file>
+        <file>faviconFanart.ico</file>
     </qresource>
     <qresource prefix="/bullets">
         <file>arrow_down_small.png</file>
