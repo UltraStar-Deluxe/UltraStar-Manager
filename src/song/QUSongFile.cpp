@@ -1022,15 +1022,15 @@ void QUSongFile::removeUnsupportedTags(const QStringList &filter, bool useFilter
 void QUSongFile::autoSetFile(const QFileInfo &fi, bool force, const QString &coverPattern, const QString &backgroundPattern) {
 	QString fileScheme("*." + fi.suffix());
 
-	if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-		if(!this->hasMp3() || force) {
-			this->setInfo(MP3_TAG, fi.fileName());
-			logSrv->add(QString(tr("Assigned \"%1\" as audio file for \"%2 - %3\".")).arg(mp3()).arg(artist()).arg(title()), QU::Information);
-		}
-	} else if(QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+	if(QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		if(!this->hasVideo() || force) {
 			this->setInfo(VIDEO_TAG, fi.fileName());
 			logSrv->add(QString(tr("Assigned \"%1\" as video file for \"%2 - %3\".")).arg(video()).arg(artist()).arg(title()), QU::Information);
+		}
+	} else if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+		if(!this->hasMp3() || force) {
+			this->setInfo(MP3_TAG, fi.fileName());
+			logSrv->add(QString(tr("Assigned \"%1\" as audio file for \"%2 - %3\".")).arg(mp3()).arg(artist()).arg(title()), QU::Information);
 		}
 	} else if(QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		QRegExp reCover(coverPattern, Qt::CaseInsensitive);
