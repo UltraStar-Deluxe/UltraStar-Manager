@@ -826,6 +826,7 @@ void QUMainWindow::editSongApplyTasks() {
 	dlg.show();
 
 	songTree->clearSelection();
+	disconnect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateWebInfoTree()));
 
 	foreach(QUSongItem *songItem, songItems) {
 		QUSongFile *song = songItem->song();
@@ -847,6 +848,8 @@ void QUMainWindow::editSongApplyTasks() {
 		} else
 			songItem->update();
 	}
+
+	connect(songTree, SIGNAL(itemSelectionChanged()), this, SLOT(updateWebInfoTree()));
 
 	// restore selection
 	songTree->setCurrentItem(songItems.first());
