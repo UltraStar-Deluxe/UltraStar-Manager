@@ -983,7 +983,7 @@ void QUMainWindow::aboutMediaInfo() {
 			QString(tr("<b>MediaInfoLib Media Library</b><br><br>"
 					"MediaInfoLib is a convenient media library to display the most relevant technical and tag data for video and audio files.<br><br>"
 					"Version: <b>%1</b><br><br>"
-					"Copyright (c) 2002-2016<br><a href=\"https://mediaarea.net/en/MediaInfo/License\">MediaArea.net SARL.</a> All rights reserved."))
+					"Copyright (c) 2002-2017<br><a href=\"https://mediaarea.net/en/MediaInfo/License\">MediaArea.net SARL.</a> All rights reserved."))
 					.arg(MEDIALIB_VERSION),
 			BTN << ":/marks/accept.png" << "OK",
 			500);
