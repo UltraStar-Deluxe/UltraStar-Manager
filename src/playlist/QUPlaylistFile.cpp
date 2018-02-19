@@ -7,6 +7,8 @@
 #include <QRegExp>
 #include <QXmlStreamWriter>
 #include <QXmlStreamReader>
+#include <QTextStream>
+#include <QTextCodec>
 
 QUPlaylistFile::QUPlaylistFile(QObject *parent):
 		QObject(parent),
@@ -97,8 +99,15 @@ bool QUPlaylistFile::save() {
 		delete xmlWriter;
 	} else {
 		/* write UltraStar UPL */
+		QTextStream _out(&file);
+		QTextCodec *codec;
+		if (QUSongSupport::defaultOutputEncoding() == ENCODING_UTF8)
+			codec = QTextCodec::codecForName("UTF-8");
+		else if (QUSongSupport::defaultOutputEncoding() == ENCODING_CP1250)
+			codec = QTextCodec::codecForName("windows-1250");
+		_out.setCodec(codec);
 
-		// if it is a new playlist created within UltraStar Creator, we add a header to the comments
+		// if it is a new playlist created within UltraStar Manager, we add a header to the comments
 		if(_comments.isEmpty()) {
 			_comments << "######################################";
 			_comments << "#Ultrastar Deluxe Playlist Format v1.0";
@@ -108,24 +117,23 @@ bool QUPlaylistFile::save() {
 
 		// write comments
 		foreach(QString comment, _comments) {
-			file.write(comment.toLocal8Bit());
-			file.write("\n");
+			_out << comment << "\n";
 		}
 
 		// write name of playlist
-		file.write(QString("#%1: %2\n").arg(NAME_TAG).arg(_name).toLocal8Bit());
+		_out << QString("#%1: %2\n").arg(NAME_TAG).arg(_name);
 		_nameChanged = false;
 		_playlistChanged = false;
 
 		// write song links
-		file.write(QString("#%1:\n").arg(SONGS_TAG).toLocal8Bit());
+		_out << QString("#%1:\n").arg(SONGS_TAG);
 		foreach(QUPlaylistEntry *entry, _playlist) {
 			if(!entry->song())
 				logSrv->add(QString(tr("Warning! The playlist entry \"%1 - %2\" will NOT be found by UltraStar!")).arg(entry->artistLink()).arg(entry->titleLink()), QU::Warning);
 			else
 				entry->setLinks(entry->song()->artist(), entry->song()->title());
 
-			file.write(QString("%1 : %2\n").arg(entry->artistLink()).arg(entry->titleLink()).toLocal8Bit());
+			_out << QString("%1 : %2\n").arg(entry->artistLink()).arg(entry->titleLink());
 		}
 	}
 

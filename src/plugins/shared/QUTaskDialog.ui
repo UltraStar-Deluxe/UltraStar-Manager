@@ -21,7 +21,16 @@
    <property name="spacing">
     <number>0</number>
    </property>
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
@@ -144,7 +153,16 @@
      <property name="spacing">
       <number>5</number>
      </property>
-     <property name="margin">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
       <number>5</number>
      </property>
      <item>
@@ -153,7 +171,7 @@
         <number>5</number>
        </property>
        <item row="0" column="0">
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="label_Description">
          <property name="text">
           <string>&amp;Description</string>
          </property>
@@ -166,7 +184,7 @@
         <widget class="QLineEdit" name="descriptionEdit"/>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="label_ToolTip">
          <property name="text">
           <string>T&amp;oolTip</string>
          </property>
@@ -204,7 +222,7 @@
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="label_Icon">
          <property name="text">
           <string>&amp;Icon</string>
          </property>
@@ -229,8 +247,7 @@
             </property>
             <property name="icon">
              <iconset>
-              <normaloff/>
-             </iconset>
+              <normaloff>.</normaloff>.</iconset>
             </property>
            </item>
           </widget>
@@ -251,7 +268,7 @@
         </layout>
        </item>
        <item row="3" column="0">
-        <widget class="QLabel" name="label_5">
+        <widget class="QLabel" name="label_Group">
          <property name="text">
           <string>&amp;Group</string>
          </property>
@@ -299,7 +316,7 @@
         <number>5</number>
        </property>
        <item row="0" column="0">
-        <widget class="QLabel" name="label_7">
+        <widget class="QLabel" name="label_Target">
          <property name="font">
           <font>
            <pointsize>9</pointsize>
@@ -351,7 +368,7 @@
         </layout>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label_6">
+        <widget class="QLabel" name="label_Schema">
          <property name="font">
           <font>
            <pointsize>9</pointsize>
@@ -554,7 +571,16 @@
      <property name="spacing">
       <number>5</number>
      </property>
-     <property name="margin">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
       <number>5</number>
      </property>
      <item>

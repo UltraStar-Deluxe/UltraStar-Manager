@@ -10,25 +10,16 @@ SONG TREE
 * Video files may now be set for both audio and video file (also simultaneously).
 
 
-QT
-* updated to Qt 5.6.0
-
-BASS
-* updated to BASS 2.4.12
-
-TAGLIB
-* updated to TagLib 1.9.1
-
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#  CHANGES  ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
 
 QT
-* updated to Qt 4.8.5
+* updated to Qt 5.10.0
 
 BASS
-* updated to BASS 2.4.10
+* dependency to BASS removed
 
 TAGLIB
-* updated to TagLib 1.8.0
+* updated to TagLib 1.11.1
 
 
 ~#~#~#~#~#~#~#~#~#~#~#~#~#~#~  BUG FIXES  #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~
