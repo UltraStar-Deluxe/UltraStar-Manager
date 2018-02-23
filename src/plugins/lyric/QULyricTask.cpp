@@ -358,11 +358,56 @@ void QULyricTask::fixLineBreaks(QUSongInterface *song) {
 }
 
 /*!
- * Avoid a space at the end of a syllable.
- * ": 200 5 20 'cause " -> ": 200 5 20 'cause"
- * ": 205 2 10 I"	   -> ": 205 2 10  I"
+ * Avoid a space at the beginning of a syllable.
+ * ": 200 5 20 'cause"		-> ": 200 5 20 'cause␣"
+ * ": 205 2 10 ␣I"			-> ": 205 2 10 I"
  */
 void QULyricTask::fixSpaces(QUSongInterface *song) {
+	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
+		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::Warning);
+		return;
+	}
+
+	// modify all lyrics
+	foreach(QUSongLineInterface *line, song->loadMelody()) {
+		// first syllable should not start with a space
+		if(line->notes().size() > 0) {
+			QUSongNoteInterface *first = line->notes().first();
+			if(first->syllable().startsWith(" "))
+				first->resetTrailingSpaces(0, -1);
+		}
+
+		// if current syllable starts with a space, shift it to the end of the previous syllable
+		for(int i = 1; i < line->notes().size(); i++) {
+			QUSongNoteInterface *previous = line->notes()[i-1];
+			QUSongNoteInterface *current = line->notes()[i];
+
+			if(current->syllable().startsWith(" ")) {
+				previous->resetTrailingSpaces(-1, 1);
+				current->resetTrailingSpaces(0, -1);
+			}
+		}
+
+		// ensure last syllable ends with a space as well (so that syllable highlighting is always complete when singing)
+		if(line->notes().size() > 0) {
+			QUSongNoteInterface *last = line->notes().last();
+			if(!last->syllable().endsWith(" "))
+				last->resetTrailingSpaces(-1, 1);
+		}
+	}
+
+	song->saveMelody();
+	song->clearMelody(); // save memory
+
+	song->log(QString(tr("Spaces were fixed successfully for \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::Information);
+}
+
+/*!
+ * Avoid a space at the end of a syllable.
+ * ": 200 5 20 'cause␣"		-> ": 200 5 20 'cause"
+ * ": 205 2 10 I"			-> ": 205 2 10 ␣I"
+ */
+/*void QULyricTask::fixSpaces(QUSongInterface *song) {
 	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
 		song->log(QString(tr("Invalid lyrics: %1 - %2")).arg(song->artist()).arg(song->title()), QU::Warning);
 		return;
@@ -397,7 +442,7 @@ void QULyricTask::fixSpaces(QUSongInterface *song) {
 	song->clearMelody(); // save memory
 
 	song->log(QString(tr("Spaces were fixed successfully for \"%1 - %2\".")).arg(song->artist()).arg(song->title()), QU::Information);
-}
+}*/
 
 /*!
  * Replace wrongfully used apostrophe symbols `, ´ and ’ by ASCII apostroph '.
