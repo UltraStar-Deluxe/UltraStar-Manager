@@ -60,20 +60,21 @@ This allows passing a certain folder as song path to UltraStar-Manager, convenie
 #### Compiling on Linux
 (under construction)
 
-1. Install the Qt framework: `sudo apt get install qt5-default qttools5-dev-tools qtbase5-dev-tools qt5-qmake`
+1. Install the Qt framework: `sudo apt-get install qt5-default qttools5-dev-tools qtbase5-dev-tools qt5-qmake qtmultimedia5-dev libqt5multimediawidgets5 libqt5multimedia5-plugins libqt5multimedia5`
 2. Install dependencies: `sudo apt get install libtag1-dev libmediainfo-dev libzen-dev`
-3. Compile UltraStar-Manager plugins
+3. Clone repository: `git clone https://github.com/UltraStar-Deluxe/UltraStar-Manager && cd UltraStar-Manager`
+4. Compile UltraStar-Manager plugins
    * from command line
-     * audiotag plugin: `cd src/plugins/audiotag && qmake audiotag.pro && make`
-     * cleanup plugin: `cd src/plugins/cleanup && qmake cleanup.pro && make`
-     * lyrics plugin: `cd src/plugins/lyric && qmake lyric.pro && make`
-     * preparatory plugin: `cd src/plugins/preparatory && qmake preparatory.pro && make`
-     * rename plugin: `cd src/plugins/rename && qmake rename.pro && make`
-   * using Qt Creator: open the respective *.pro files in Qt Creator, disable shadow build in Project tab, then build
-3. Compile UltraStar-Manager
-   * from command line: `cd src && qmake UltraStar-Manager.pro && make` 
+     * audiotag plugin: `cd src/plugins/audiotag && qmake audiotag.pro && make && cd ../../../`
+     * cleanup plugin: `cd src/plugins/cleanup && qmake cleanup.pro && make && cd ../../../`
+     * lyrics plugin: `cd src/plugins/lyric && qmake lyric.pro && make && cd ../../../`
+     * preparatory plugin: `cd src/plugins/preparatory && qmake preparatory.pro && make && cd ../../../`
+     * rename plugin: `cd src/plugins/rename && qmake rename.pro && make && cd ../../../`
+   * using Qt Creator: open the respective *.pro files in Qt Creator, disable shadow build in Project tab, then build   
+5. Compile UltraStar-Manager
+   * from command line: `cd src && qmake UltraStar-Manager.pro && make && cd ../` (Note: if "make" fails with "stdlib.h was not found", open makefile and remove "-isystem /usr/include " from it. Afterwards, run "make" again.)
    * using Qt Creator: open UltraStar-Manager.pro in Qt Creator, disable shadow build in Project tab, then build and run
-4. Manage your entire song collection with ease!
+6. Run UltraStar Manager: `bin/release/UltraStar-Manager` and manage your entire song collection with ease!
 
 #### Compiling on Mac OS X
 (under construction)
