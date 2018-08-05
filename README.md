@@ -61,7 +61,7 @@ This allows passing a certain folder as song path to UltraStar-Manager, convenie
 (under construction)
 
 1. Install the Qt framework: `sudo apt-get install qt5-default qttools5-dev-tools qtbase5-dev-tools qt5-qmake qtmultimedia5-dev libqt5multimediawidgets5 libqt5multimedia5-plugins libqt5multimedia5`
-2. Install dependencies: `sudo apt get install libtag1-dev libmediainfo-dev libzen-dev`
+2. Install dependencies: `sudo apt-get install libtag1-dev libmediainfo-dev libzen-dev`
 3. Clone repository: `git clone https://github.com/UltraStar-Deluxe/UltraStar-Manager && cd UltraStar-Manager`
 4. Compile UltraStar-Manager plugins
    * from command line
