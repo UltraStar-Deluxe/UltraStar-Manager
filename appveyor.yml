@@ -25,7 +25,7 @@ build_script:
   - mingw32-make -j4
 
 after_build:
-  - makensis ../setup/win32/UltraStar-Manager.nsi
+  - makensis ../setup/win64/UltraStar-Manager.nsi
 
 artifacts:
   - path: bin/release
