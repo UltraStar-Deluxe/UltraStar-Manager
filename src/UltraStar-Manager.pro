@@ -244,7 +244,7 @@ win32 {
 	INCLUDEPATH += ../include/taglib \
 		../include/mediainfo
 
-	LIBS += -L"../lib/win32" \
+        LIBS += -L"../lib/win64" \
 		-ltag \
 		-lmediainfo \
 		-lzen \
@@ -320,19 +320,15 @@ win32 {
 	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/imageformats/qwebp.dll) $$escape_expand(\\n\\t)
 
 	# Manually add libtag library
-	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../lib/win32/libtag.dll) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
+        QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../lib/win64/libtag.dll) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
 
 	# Manually add styles files and changes.txt
 	QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, $$shell_path($${DESTDIR}/styles/)) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(styles/*.css) $$shell_path($${DESTDIR}/styles/) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../doc/changes.txt) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
 
-	# Manually add OpenSSL libs
-	#QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path($$[QT_INSTALL_PREFIX]/../../Tools/mingw530_32/opt/bin/libeay32.dll) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
-	#QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path($$[QT_INSTALL_PREFIX]/../../Tools/mingw530_32/opt/bin/ssleay32.dll) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
-
 	# Create a fancy Windows installer
-	#QMAKE_POST_LINK += $$shell_quote(C:\Program Files (x86)\NSIS\makensis.exe) $$shell_path(../setup/win32/UltraStar-Manager.nsi) $$escape_expand(\\n\\t)
+        QMAKE_POST_LINK += $$shell_quote(C:\Program Files (x86)\NSIS\makensis.exe) $$shell_path(../setup/win64/UltraStar-Manager.nsi) $$escape_expand(\\n\\t)
 }
 
 macx {

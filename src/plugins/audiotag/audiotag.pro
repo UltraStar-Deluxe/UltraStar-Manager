@@ -55,7 +55,7 @@ QT += xml \
 	widgets
 
 win32 {
-	LIBS += -L"../../../lib/win32" \
+        LIBS += -L"../../../lib/win64" \
 		-ltag
 }
 mac {
