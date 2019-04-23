@@ -17,7 +17,7 @@ matrix:
                 - libmediainfo-dev
                 - libzen-dev
         - os: osx
-          osx_image: xcode8.2
+          osx_image: xcode10.2
           compiler: clang
 
 before_install:
