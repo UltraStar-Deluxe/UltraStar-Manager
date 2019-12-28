@@ -22,7 +22,8 @@ matrix:
 
 before_install:
     - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
-        brew upgrade;
+        brew update;
+        brew upgrade qt5;
       fi
 
 install:
