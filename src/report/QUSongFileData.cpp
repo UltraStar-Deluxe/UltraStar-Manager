@@ -46,10 +46,10 @@ void QUSongFileData::sort(QList<QUSongFile*> &songs) {
 		this->next()->sort(songs);
 
 	if(QString::compare(_property, "path", Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::pathLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::pathLessThan);
 	else if(QString::compare(_property, "filePath", Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::filePathLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::filePathLessThan);
 	else if(QString::compare(_property, "relativeFilePath", Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::relativeFilePathLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::relativeFilePathLessThan);
 }
 

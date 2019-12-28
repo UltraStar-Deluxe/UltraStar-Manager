@@ -19,14 +19,14 @@ void QUPlayListItem::updateData() {
 
 	if(entry()->song()) {
 		this->setText(QString("%1. %2 - %3").arg(listWidget()->row(this) + 1).arg(entry()->song()->artist()).arg(entry()->song()->title()));
-		this->setTextColor(Qt::black);
+		this->setForeground(Qt::black);
 
 		if(entry()->hasUnsavedChanges())
 			f.setBold(true);
 
 	} else {
 		this->setText(QString("%1. %2 - %3 (not found)").arg(listWidget()->row(this) + 1).arg(entry()->artistLink()).arg(entry()->titleLink()));
-		this->setTextColor(Qt::gray);
+		this->setForeground(Qt::gray);
 	}
 
 	this->setFont(f);

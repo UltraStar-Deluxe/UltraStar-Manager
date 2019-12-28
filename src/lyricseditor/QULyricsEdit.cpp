@@ -45,9 +45,9 @@ void QULyricsEdit::initLyrics() {
 		return;
 
 	if(_song->length() >= 600)
-		setColumnWidth(0, fontMetrics().width("19:59") + 8);
+		setColumnWidth(0, fontMetrics().horizontalAdvance("19:59") + 8);
 	else
-		setColumnWidth(0, fontMetrics().width("9:59") + 8);
+		setColumnWidth(0, fontMetrics().horizontalAdvance("9:59") + 8);
 
 	this->setRowCount(_song->loadMelody().size());
 
@@ -60,7 +60,7 @@ void QULyricsEdit::initLyrics() {
 		QTableWidgetItem *lineItem = new QTableWidgetItem(line->toString());
 
 		if(_showWhitespace)
-			lineItem->setText(lineItem->text().replace(" ", QObject::trUtf8(CHAR_UTF8_DOT)));
+			lineItem->setText(lineItem->text().replace(" ", CHAR_UTF8_DOT));
 
 		lineItem->setData(Qt::UserRole, line->syllables());
 		lineItem->setData(Qt::UserRole + 1, index); // to allow find correct song line later
@@ -105,7 +105,7 @@ void QULyricsEdit::lineModified(QTableWidgetItem *item) {
 	item->setText(line->toString());
 
 	if(_showWhitespace)
-		item->setText(item->text().replace(" ", QObject::trUtf8(CHAR_UTF8_DOT)));
+		item->setText(item->text().replace(" ", CHAR_UTF8_DOT));
 	connect(this, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(lineModified(QTableWidgetItem*)));
 }
 
@@ -116,10 +116,10 @@ void QULyricsEdit::setShowWhitespace(bool enabled) {
 
 	if(enabled)
 		for(int row = 0; row < rowCount(); ++row)
-			this->item(row, 1)->setText(item(row, 1)->text().replace(" ", QObject::trUtf8(CHAR_UTF8_DOT)));
+			this->item(row, 1)->setText(item(row, 1)->text().replace(" ", CHAR_UTF8_DOT));
 	else
 		for(int row = 0; row < rowCount(); ++row)
-			this->item(row, 1)->setText(item(row, 1)->text().replace(QObject::trUtf8(CHAR_UTF8_DOT), " "));
+			this->item(row, 1)->setText(item(row, 1)->text().replace(CHAR_UTF8_DOT, " "));
 
 	connect(this, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(lineModified(QTableWidgetItem*)));
 }

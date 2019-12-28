@@ -153,8 +153,8 @@ QTreeWidgetItem* QUTaskList::appendSeparator(const QString &text) {
 
 	separator->setTextAlignment(0, Qt::AlignLeft);
 	separator->setFlags(Qt::ItemIsEnabled);
-	separator->setBackgroundColor(0, QColor(239, 239, 239));
-	separator->setTextColor(0, QColor(134, 134, 134));
+	separator->setBackground(0, QColor(239, 239, 239));
+	separator->setForeground(0, QColor(134, 134, 134));
 
 	QFont f(separator->font(0));
 	f.setBold(true);

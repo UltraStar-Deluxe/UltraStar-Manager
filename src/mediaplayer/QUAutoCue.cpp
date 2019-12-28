@@ -3,6 +3,7 @@
 
 #include <QColor>
 #include <QScrollBar>
+#include <QTime>
 
 QUAutoCue::QUAutoCue(QWidget *parent):
 		QTextBrowser(parent),

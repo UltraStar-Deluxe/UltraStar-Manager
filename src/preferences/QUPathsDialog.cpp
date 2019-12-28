@@ -135,19 +135,19 @@ void QUPathsDialog::checkSongPath(QListWidgetItem *item) {
 	if(!d.exists()) {
 		item->setIcon(QIcon(":/marks/path_error.png"));
 		item->setToolTip(tr("Path does not exist."));
-		item->setBackgroundColor(Qt::white);
+		item->setBackground(Qt::white);
 	} else if(item->text().isEmpty()) {
 		item->setIcon(QIcon(":/marks/path_error.png"));
 		item->setToolTip(tr("Path is empty."));
-		item->setBackgroundColor(Qt::white);
+		item->setBackground(Qt::white);
 	} else {
 		item->setIcon(QIcon(":/marks/path_ok.png"));
 		if(QU::BaseDir == d) {
 			item->setToolTip(tr("This song path is active. Songs were loaded."));
-			item->setBackgroundColor(Qt::yellow);
+			item->setBackground(Qt::yellow);
 		} else {
 			item->setToolTip(tr(""));
-			item->setBackgroundColor(Qt::white);
+			item->setBackground(Qt::white);
 		}
 	}
 

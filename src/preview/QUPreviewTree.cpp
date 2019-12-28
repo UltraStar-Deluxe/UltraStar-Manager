@@ -34,7 +34,7 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 
 	general->setText(0, tr("Figures"));
 	general->setFlags(Qt::ItemIsEnabled);
-	general->setTextColor(0, Qt::darkGray);
+	general->setForeground(0, Qt::darkGray);
 	general->setFirstColumnSpanned(true);
 
 	general->insertChild(SONG_COUNT_CHILD_INDEX, this->createInfoItem(tr("Database"), N_A));
@@ -57,7 +57,7 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 
 	types->setText(0, tr("Supported File Types"));
 	types->setFlags(Qt::ItemIsEnabled);
-	types->setTextColor(0, Qt::darkGray);
+	types->setForeground(0, Qt::darkGray);
 	types->setFirstColumnSpanned(true);
 	types->setExpanded(false);
 
@@ -79,7 +79,7 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 
 	dir->setText(0, tr("Directory Information"));
 	dir->setFlags(Qt::ItemIsEnabled);
-	dir->setTextColor(0, Qt::darkGray);
+	dir->setForeground(0, Qt::darkGray);
 	dir->setFirstColumnSpanned(true);
 
 	dir->setExpanded(true);
@@ -92,7 +92,7 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 
 	text->setText(0, tr("Text File Information"));
 	text->setFlags(Qt::ItemIsEnabled);
-	text->setTextColor(0, Qt::darkGray);
+	text->setForeground(0, Qt::darkGray);
 	text->setFirstColumnSpanned(true);
 
 	text->setExpanded(true);
@@ -105,7 +105,7 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 
 	audio->setText(0, tr("Audio File Information"));
 	audio->setFlags(Qt::ItemIsEnabled);
-	audio->setTextColor(0, Qt::darkGray);
+	audio->setForeground(0, Qt::darkGray);
 	audio->setFirstColumnSpanned(true);
 
 	audio->setExpanded(true);
@@ -118,7 +118,7 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 
 	image->setText(0, tr("Image File Information"));
 	image->setFlags(Qt::ItemIsEnabled);
-	image->setTextColor(0, Qt::darkGray);
+	image->setForeground(0, Qt::darkGray);
 	image->setFirstColumnSpanned(true);
 
 	image->setExpanded(true);
@@ -131,7 +131,7 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 
 	video->setText(0, tr("Video File Information"));
 	video->setFlags(Qt::ItemIsEnabled);
-	video->setTextColor(0, Qt::darkGray);
+	video->setForeground(0, Qt::darkGray);
 	video->setFirstColumnSpanned(true);
 
 	video->setExpanded(true);
@@ -144,7 +144,7 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 
 	file->setText(0, tr("Other File Information"));
 	file->setFlags(Qt::ItemIsEnabled);
-	file->setTextColor(0, Qt::darkGray);
+	file->setForeground(0, Qt::darkGray);
 	file->setFirstColumnSpanned(true);
 
 	file->setExpanded(true);

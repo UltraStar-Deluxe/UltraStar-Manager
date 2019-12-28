@@ -50,9 +50,9 @@ void QULyricsEditorDialog::toggleWhitespace(int state) {
 void QULyricsEditorDialog::search(const QString &keyword) {
 	for(int row = 0; row < lyrics->rowCount(); ++row) {
 		if( !keyword.isEmpty() && lyrics->item(row, 1)->text().contains(QRegExp(keyword, Qt::CaseInsensitive))) {
-			lyrics->item(row, 1)->setBackgroundColor(Qt::yellow);
+			lyrics->item(row, 1)->setBackground(Qt::yellow);
 		} else {
-			lyrics->item(row, 1)->setBackgroundColor(Qt::white);
+			lyrics->item(row, 1)->setBackground(Qt::white);
 		}
 	}
 }

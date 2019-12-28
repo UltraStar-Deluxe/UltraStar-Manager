@@ -141,7 +141,7 @@ bool QUPdfReport::save() {
 				currentEntry = QString::fromUtf8(CHAR_UTF8_BALLOT);
 				//currentEntry = "n";
 			}
-			int currentEntryWidth = painter.fontMetrics().width(currentEntry);
+			int currentEntryWidth = painter.fontMetrics().horizontalAdvance(currentEntry);
 			if( currentEntryWidth > maxWidth.at(i)) {
 				maxWidth.replace(i, currentEntryWidth);
 			}

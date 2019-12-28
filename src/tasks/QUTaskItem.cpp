@@ -31,7 +31,7 @@ void QUTaskItem::installSmartSettings() {
 	task()->provideData(monty->unsupportedTags(), QUTask::UnsupportedTags);
 	foreach(QUSmartSettingInterface *smartSetting, task()->smartSettings()) {
 		QTreeWidgetItem *sItem = new QTreeWidgetItem();
-		sItem->setBackgroundColor(0, QColor(239, 239, 239));
+		sItem->setBackground(0, QColor(239, 239, 239));
 		addChild(sItem);
 		treeWidget()->setItemWidget(sItem, 0, smartSetting->editor());
 

@@ -67,8 +67,8 @@ void QUPropertyTable::initSeparator(const QString &text, int row) {
 	QTableWidgetItem *separator = new QTableWidgetItem(text);
 
 	separator->setFlags(Qt::ItemIsEnabled);
-	separator->setBackgroundColor(QColor(239, 239, 239));
-	separator->setTextColor(QColor(134, 134, 134));
+	separator->setBackground(QColor(239, 239, 239));
+	separator->setForeground(QColor(134, 134, 134));
 	separator->setTextAlignment(Qt::AlignCenter);
 
 	QFont font(separator->font());

@@ -36,7 +36,7 @@ QUWebInfoTree::QUWebInfoTree(QWidget *parent): QTreeWidget(parent) {
 	_swisscharts->setIcon(0, QIcon(":/faviconSwissCharts.ico"));
 	_swisscharts->setText(0, tr("swisscharts.com"));
 	_swisscharts->setFlags(Qt::ItemIsEnabled);
-	_swisscharts->setTextColor(0, Qt::darkGray);
+	_swisscharts->setForeground(0, Qt::darkGray);
 	_swisscharts->setFirstColumnSpanned(true);
 
 	_swisscharts->setExpanded(true);
@@ -49,7 +49,7 @@ QUWebInfoTree::QUWebInfoTree(QWidget *parent): QTreeWidget(parent) {
 	_discogs->setIcon(0, QIcon(":/faviconDiscogs.ico"));
 	_discogs->setText(0, tr("discogs.com"));
 	_discogs->setFlags(Qt::ItemIsEnabled);
-	_discogs->setTextColor(0, Qt::darkGray);
+	_discogs->setForeground(0, Qt::darkGray);
 	_discogs->setFirstColumnSpanned(true);
 
 	_discogs->setExpanded(true);
@@ -62,7 +62,7 @@ QUWebInfoTree::QUWebInfoTree(QWidget *parent): QTreeWidget(parent) {
 	_allmusic->setIcon(0, QIcon(":/faviconAllMusic.ico"));
 	_allmusic->setText(0, tr("allmusic.com"));
 	_allmusic->setFlags(Qt::ItemIsEnabled);
-	_allmusic->setTextColor(0, Qt::darkGray);
+	_allmusic->setForeground(0, Qt::darkGray);
 	_allmusic->setFirstColumnSpanned(true);
 
 	_allmusic->setExpanded(true);
@@ -602,4 +602,6 @@ void QUWebInfoTree::applyWebInformationToSong(QTreeWidgetItem *item, int column)
 	} else if(item->text(0) == "Year") {
 		_song->setInfo(YEAR_TAG, item->text(1));
 	}
+	
+	_song->save();
 }

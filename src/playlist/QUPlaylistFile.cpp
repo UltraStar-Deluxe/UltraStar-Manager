@@ -28,7 +28,7 @@ QUPlaylistFile::~QUPlaylistFile() {
 	qDeleteAll(_playlist);
 	_playlist.clear();
 
-	disconnect(this, 0, 0, 0);
+	disconnect(this, nullptr, nullptr, nullptr);
 }
 
 /*!
@@ -100,11 +100,7 @@ bool QUPlaylistFile::save() {
 	} else {
 		/* write UltraStar UPL */
 		QTextStream _out(&file);
-		QTextCodec *codec;
-		if (QUSongSupport::defaultOutputEncoding() == ENCODING_UTF8)
-			codec = QTextCodec::codecForName("UTF-8");
-		else if (QUSongSupport::defaultOutputEncoding() == ENCODING_CP1250)
-			codec = QTextCodec::codecForName("windows-1250");
+		QTextCodec *codec = QTextCodec::codecForName("UTF-8");
 		_out.setCodec(codec);
 
 		// if it is a new playlist created within UltraStar Manager, we add a header to the comments
@@ -145,7 +141,7 @@ bool QUPlaylistFile::save() {
 
 QUPlaylistEntry* QUPlaylistFile::entry(int index) {
 	if(index < 0 || index >= _playlist.size())
-		return 0;
+		return nullptr;
 
 	return _playlist.at(index);
 }

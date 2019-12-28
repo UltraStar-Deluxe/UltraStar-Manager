@@ -169,7 +169,8 @@ void QUMediaPlayer::prev() {
 	_freeIndices.prepend(_lastIndices.last());
 	_lastIndices.removeLast();
 	_freeIndices.prepend(_lastIndices.last());
-	qStableSort(_freeIndices);
+	//qStableSort(_freeIndices); // deprecated
+	std::stable_sort(_freeIndices.begin(), _freeIndices.end());
 	this->_currentSongIndex = _lastIndices.last();
 
 	this->play();
@@ -226,7 +227,7 @@ void QUMediaPlayer::updateTime() {
 
 	QUSongInfo info = _songs.at(_currentSongIndex);
 
-	int pos = (int)_player->position();
+	int pos = int(_player->position());
 	timeLbl->setText(QString("%1:%2 / %3:%4")
 			.arg(pos / 1000 / 60)
 			.arg(pos / 1000 % 60, 2, 10, QChar('0'))
@@ -274,15 +275,15 @@ void QUMediaPlayer::updatePlayerControls(QUMediaPlayer::States state) {
 
 	if(state.testFlag(QUMediaPlayer::playing)) {
 		playBtn->setIcon(QIcon(":/player/pause.png"));
-		disconnect(playBtn, 0, 0, 0);
+		disconnect(playBtn, nullptr, nullptr, nullptr);
 		connect(playBtn, SIGNAL(clicked()), this, SLOT(pause()));
 	} else if(state.testFlag(QUMediaPlayer::paused)) {
 		playBtn->setIcon(QIcon(":/player/play.png"));
-		disconnect(playBtn, 0, 0, 0);
+		disconnect(playBtn, nullptr, nullptr, nullptr);
 		connect(playBtn, SIGNAL(clicked()), this, SLOT(resume()));
 	} else {
 		playBtn->setIcon(QIcon(":/player/play.png"));
-		disconnect(playBtn, 0, 0, 0);
+		disconnect(playBtn, nullptr, nullptr, nullptr);
 		connect(playBtn, SIGNAL(clicked()), this, SLOT(requestSongs()));
 	}
 }

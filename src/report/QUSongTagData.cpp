@@ -69,19 +69,19 @@ void QUSongTagData::sort(QList<QUSongFile*> &songs) {
 		this->next()->sort(songs);
 
 	if(QString::compare(_tag, ARTIST_TAG, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::artistLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::artistLessThan);
 	else if(QString::compare(_tag, TITLE_TAG, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::titleLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::titleLessThan);
 	else if(QString::compare(_tag, LANGUAGE_TAG, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::languageLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::languageLessThan);
 	else if(QString::compare(_tag, EDITION_TAG, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::editionLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::editionLessThan);
 	else if(QString::compare(_tag, GENRE_TAG, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::genreLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::genreLessThan);
 	else if(QString::compare(_tag, YEAR_TAG, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::yearLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::yearLessThan);
 	else if(QString::compare(_tag, CREATOR_TAG, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::creatorLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::creatorLessThan);
 
 	// TODO: sort custom tag columns
 }

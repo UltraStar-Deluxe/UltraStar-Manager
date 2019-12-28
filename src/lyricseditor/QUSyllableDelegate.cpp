@@ -26,7 +26,7 @@ void QUSyllableDelegate::setEditorData(
 {
 	QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
 
-	lineEdit->setText(index.data(Qt::EditRole).toString().replace(QObject::trUtf8(CHAR_UTF8_DOT), " "));
+	lineEdit->setText(index.data(Qt::EditRole).toString().replace(CHAR_UTF8_DOT, " "));
 }
 
 void QUSyllableDelegate::setModelData(
@@ -35,5 +35,5 @@ void QUSyllableDelegate::setModelData(
 		const QModelIndex &index) const
 {
 	QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
-	model->setData(index, lineEdit->text().replace(" ", QObject::trUtf8(CHAR_UTF8_DOT)), Qt::EditRole);
+	model->setData(index, lineEdit->text().replace(" ", CHAR_UTF8_DOT), Qt::EditRole);
 }

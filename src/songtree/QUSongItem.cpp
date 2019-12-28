@@ -42,9 +42,9 @@ QUSongItem::QUSongItem(QUSongFile *song, bool isToplevel):
 void QUSongItem::clearContents() {
 	for(int i = 0; i < this->columnCount(); ++i) {
 		this->setIcon(i, QIcon());
-		this->setTextColor(i, Qt::black);
+		this->setForeground(i, Qt::white);
 		this->setToolTip(i, "");
-		this->setBackgroundColor(i, QColor(0, 0, 0, 0));
+		this->setBackground(i, QColor(0, 0, 0, 0));
 	}
 }
 
@@ -141,7 +141,7 @@ void QUSongItem::updateAsTxt() {
 
 	if(QString::compare(this->text(FOLDER_COLUMN), song()->songFileInfo().fileName(), Qt::CaseInsensitive) == 0) {
 		// song itself found
-		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+		this->setForeground(FOLDER_COLUMN, QColor(13, 86, 166, 255));
 
 		if(song()->isKaraoke()) {
 			this->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/karaoke.png"));
@@ -153,8 +153,8 @@ void QUSongItem::updateAsTxt() {
 
 	if(song()->isFriend(this->text(FOLDER_COLUMN))) {
 		// friend found
-		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
-		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
+		this->setForeground(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+		this->setBackground(FOLDER_COLUMN, QColor(255, 209, 64, 120));
 		QUSongFile* f = song()->friendAt(this->text(FOLDER_COLUMN));
 		if(f->isKaraoke()) {
 			this->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/karaoke.png"));
@@ -163,7 +163,7 @@ void QUSongItem::updateAsTxt() {
 
 	} else {
 		// unnecessary song text file, not used --- SHOULD NEVER HAPPEN!
-		this->setTextColor(FOLDER_COLUMN, Qt::gray);
+		this->setForeground(FOLDER_COLUMN, Qt::gray);
 	}
 
 	// Show that there are multiple songs in this folder available.
@@ -181,8 +181,8 @@ void QUSongItem::updateAsMp3() {
 		this->setIcon(MP3_COLUMN, QIcon(":/marks/link.png"));
 		used = true;
 	} else if(song()->friendHasTag(MP3_TAG, this->text(FOLDER_COLUMN))) { // audio file used by friend
-		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
-		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
+		this->setForeground(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+		this->setBackground(FOLDER_COLUMN, QColor(255, 209, 64, 120));
 		used = true;
 	}
 
@@ -190,13 +190,13 @@ void QUSongItem::updateAsMp3() {
 		this->setIcon(VIDEO_COLUMN, QIcon(":/marks/link.png"));
 		used = true;
 	} else if(song()->friendHasTag(VIDEO_TAG, this->text(FOLDER_COLUMN))) {
-		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
-		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
+		this->setForeground(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+		this->setBackground(FOLDER_COLUMN, QColor(255, 209, 64, 120));
 		used = true;
 	}
 
 	if(!used) {
-		this->setTextColor(FOLDER_COLUMN, Qt::gray);
+		this->setForeground(FOLDER_COLUMN, Qt::gray);
 		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
 	}
 }
@@ -213,8 +213,8 @@ void QUSongItem::updateAsImage() {
 		this->setIcon(COVER_COLUMN, QIcon(":/marks/link.png"));
 		used = true;
 	} else if(song()->friendHasTag(COVER_TAG, this->text(FOLDER_COLUMN))) { // file used by friend as cover
-		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
-		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
+		this->setForeground(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+		this->setBackground(FOLDER_COLUMN, QColor(255, 209, 64, 120));
 		used = true;
 	}
 
@@ -223,13 +223,13 @@ void QUSongItem::updateAsImage() {
 		this->setIcon(BACKGROUND_COLUMN, QIcon(":/marks/link.png"));
 		used = true;
 	} else if(song()->friendHasTag(BACKGROUND_TAG, this->text(FOLDER_COLUMN))) { // file used by friend as background
-		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
-		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
+		this->setForeground(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+		this->setBackground(FOLDER_COLUMN, QColor(255, 209, 64, 120));
 		used = true;
 	}
 
 	if(!used) {
-		this->setTextColor(FOLDER_COLUMN, Qt::gray);
+		this->setForeground(FOLDER_COLUMN, Qt::gray);
 		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
 	}
 }
@@ -245,8 +245,8 @@ void QUSongItem::updateAsVideo() {
 		this->setIcon(VIDEO_COLUMN, QIcon(":/marks/link.png"));
 		used = true;
 	} else if(song()->friendHasTag(VIDEO_TAG, this->text(FOLDER_COLUMN))) { // video file used by friend
-		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
-		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
+		this->setForeground(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+		this->setBackground(FOLDER_COLUMN, QColor(255, 209, 64, 120));
 		used = true;
 	}
 
@@ -254,13 +254,13 @@ void QUSongItem::updateAsVideo() {
 		this->setIcon(MP3_COLUMN, QIcon(":/marks/link.png"));
 		used = true;
 	} else if(song()->friendHasTag(MP3_TAG, this->text(FOLDER_COLUMN))) { // file used by friend as background
-		this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
-		this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
+		this->setForeground(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+		this->setBackground(FOLDER_COLUMN, QColor(255, 209, 64, 120));
 		used = true;
 	}
 
 	if(!used) {
-		this->setTextColor(FOLDER_COLUMN, Qt::gray);
+		this->setForeground(FOLDER_COLUMN, Qt::gray);
 		(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
 	}
 }
@@ -271,7 +271,7 @@ void QUSongItem::updateAsLicense() {
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/license.png"));
 
 	// special files, special color ^_^
-	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
+	this->setForeground(FOLDER_COLUMN, Qt::darkGreen);
 }
 
 void QUSongItem::updateAsMidi() {
@@ -304,20 +304,20 @@ void QUSongItem::updateAsScore() {
 	foreach(QUSongFile *friendSong, song()->friends()) {
 		if(friendSong->score() && QFileInfo(friendSong->score()->filePath()).fileName() == text(FOLDER_COLUMN)) {
 			// song friend uses this file!
-			this->setTextColor(FOLDER_COLUMN, QColor(13, 86, 166, 255));
-			this->setBackgroundColor(FOLDER_COLUMN, QColor(255, 209, 64, 120));
+			this->setForeground(FOLDER_COLUMN, QColor(13, 86, 166, 255));
+			this->setBackground(FOLDER_COLUMN, QColor(255, 209, 64, 120));
 			return;
 		}
 	}
 
 	// last option: no song uses this score file
-	this->setTextColor(FOLDER_COLUMN, Qt::gray);
+	this->setForeground(FOLDER_COLUMN, Qt::gray);
 	(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
 }
 
 void QUSongItem::updateAsUnknown() {
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/file.png"));
-	this->setTextColor(FOLDER_COLUMN, Qt::gray);
+	this->setForeground(FOLDER_COLUMN, Qt::gray);
 	QFont f(this->font(FOLDER_COLUMN));
 	f.setStrikeOut(true);
 	this->setFont(FOLDER_COLUMN, f);
@@ -586,7 +586,7 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case LENGTH_EFF_COLUMN:
 	case SPEED_COLUMN:
 	case RELATIVE_COLUMN:
-		return this->data(column, Qt::UserRole).toInt() < other.data(column, Qt::UserRole).toInt(); break;
+		return this->data(column, Qt::UserRole).toInt() < other.data(column, Qt::UserRole).toInt(); // break;
 	case START_COLUMN:
 	case END_COLUMN:
 	case VIDEOGAP_COLUMN:
@@ -595,7 +595,7 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case MEDLEY_COLUMN:
 	case GOLDEN_NOTES_COLUMN:
 	case RAP_NOTES_COLUMN:
-		return this->data(column, Qt::UserRole).toDouble() < other.data(column, Qt::UserRole).toDouble(); break;
+		return this->data(column, Qt::UserRole).toDouble() < other.data(column, Qt::UserRole).toDouble(); // break;
 	default:
 		return text(column) < other.text(column);
 	}
@@ -630,9 +630,9 @@ void QUSongItem::updateSpellCheckColumns() {
 	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
 		this->setSmiley(ARTIST_COLUMN);
 	else if(QString::compare(part1, part2, Qt::CaseInsensitive) == 0)
-		this->setSmiley(ARTIST_COLUMN, QU::spellingWarning, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_APPROX)));
+		this->setSmiley(ARTIST_COLUMN, QU::spellingWarning, toolTip.arg(part1).arg(part2).arg(CHAR_UTF8_APPROX));
 	else
-		this->setSmiley(ARTIST_COLUMN, QU::spellingError, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_NEQUAL)));
+		this->setSmiley(ARTIST_COLUMN, QU::spellingError, toolTip.arg(part1).arg(part2).arg(CHAR_UTF8_NEQUAL));
 
 	/* title column */
 	part1 = QUStringSupport::withoutUnsupportedCharacters(song()->title());
@@ -645,9 +645,9 @@ void QUSongItem::updateSpellCheckColumns() {
 	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
 		this->setSmiley(TITLE_COLUMN);
 	else if(QString::compare(part1, part2, Qt::CaseInsensitive) == 0)
-		this->setSmiley(TITLE_COLUMN, QU::spellingWarning, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_APPROX)));
+		this->setSmiley(TITLE_COLUMN, QU::spellingWarning, toolTip.arg(part1).arg(part2).arg(CHAR_UTF8_APPROX));
 	else
-		this->setSmiley(TITLE_COLUMN, QU::spellingError, toolTip.arg(part1).arg(part2).arg(QObject::trUtf8(CHAR_UTF8_NEQUAL)));
+		this->setSmiley(TITLE_COLUMN, QU::spellingError, toolTip.arg(part1).arg(part2).arg(CHAR_UTF8_NEQUAL));
 }
 
 void QUSongItem::updateFileCheckColumns() {
@@ -916,9 +916,9 @@ void QUSongItem::updateControlColumns() {
 void QUSongItem::updateBackground() {
 	if(!song()->isValid())
 		for(int i = 0; i < this->columnCount(); ++i)
-			this->setBackgroundColor(i, QColor(255, 48, 48, 50));
+			this->setBackground(i, QColor(255, 48, 48, 50));
 	else
 		for(int i = 0; i < this->columnCount(); ++i)
-			this->setBackgroundColor(i, QColor(0, 0, 0, 0));
+			this->setBackground(i, QColor(0, 0, 0, 0));
 
 }

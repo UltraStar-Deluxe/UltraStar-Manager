@@ -100,9 +100,9 @@ void QUMonty::initMessages() {
 	messages << QObject::tr("You can refresh a single song or a selection of songs by choosing <i>Reload</i> from the context menu or by simply pressing <i>F5</i>.");
 }
 
-QUMonty* QUMonty::_instance = 0;
+QUMonty* QUMonty::_instance = nullptr;
 QUMonty* QUMonty::instance() {
-	if(_instance == 0)
+	if(_instance == nullptr)
 		_instance = new QUMonty();
 
 	return _instance;

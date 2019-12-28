@@ -132,17 +132,17 @@ void QUBooleanSongData::sort(QList<QUSongFile*> &songs) {
 		this->next()->sort(songs);
 
 	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::hasMp3LessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::hasMp3LessThan);
 	else if(QString::compare(_tag, COVER_TAG, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::hasCoverLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::hasCoverLessThan);
 	else if(QString::compare(_tag, BACKGROUND_TAG, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::hasBackgroundLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::hasBackgroundLessThan);
 	else if(QString::compare(_tag, VIDEO_TAG, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::hasVideoLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::hasVideoLessThan);
 	else if(QString::compare(_tag, MEDLEY_TAGS, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::hasMedleyLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::hasMedleyLessThan);
 	else if(QString::compare(_tag, GOLDEN_NOTES, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::hasGoldenNotesLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::hasGoldenNotesLessThan);
 	else if(QString::compare(_tag, RAP_NOTES, Qt::CaseInsensitive) == 0)
-		qStableSort(songs.begin(), songs.end(), QUSongFile::hasRapNotesLessThan);
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::hasRapNotesLessThan);
 }

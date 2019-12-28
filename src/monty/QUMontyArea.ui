@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>311</width>
-    <height>186</height>
+    <width>312</width>
+    <height>195</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -180,6 +180,15 @@
            <property name="palette">
             <palette>
              <active>
+              <colorrole role="BrightText">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
               <colorrole role="Base">
                <brush brushstyle="SolidPattern">
                 <color alpha="255">
@@ -200,6 +209,15 @@
               </colorrole>
              </active>
              <inactive>
+              <colorrole role="BrightText">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
               <colorrole role="Base">
                <brush brushstyle="SolidPattern">
                 <color alpha="255">
@@ -220,6 +238,15 @@
               </colorrole>
              </inactive>
              <disabled>
+              <colorrole role="BrightText">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
               <colorrole role="Base">
                <brush brushstyle="SolidPattern">
                 <color alpha="255">

@@ -53,7 +53,7 @@ void QUSongLineDelegate::setEditorData(
 
 	int i = 0;
 	foreach(QString syllable, index.model()->data(index, Qt::UserRole).toStringList())
-		table->item(0, i++)->setText(syllable.replace(" ", QObject::trUtf8(CHAR_UTF8_DOT)));
+		table->item(0, i++)->setText(syllable.replace(" ", CHAR_UTF8_DOT));
 }
 
 void QUSongLineDelegate::setModelData(
@@ -65,7 +65,7 @@ void QUSongLineDelegate::setModelData(
 
 	QStringList syllables;
 	for(int i = 0; i < table->columnCount(); i++)
-		syllables << table->item(0, i)->text().replace(QObject::trUtf8(CHAR_UTF8_DOT), " ");
+		syllables << table->item(0, i)->text().replace(CHAR_UTF8_DOT, " ");
 
 	model->setData(index, syllables, Qt::UserRole);
 }
