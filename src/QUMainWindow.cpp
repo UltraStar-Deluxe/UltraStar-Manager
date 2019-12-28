@@ -1733,7 +1733,6 @@ void QUMainWindow::showPathsDialog() {
 
 void QUMainWindow::setDefaultEncodings() {
 	QString defaultInputEncoding = QUSongSupport::defaultInputEncoding();
-	QString defaultOutputEncoding = QUSongSupport::defaultOutputEncoding();
 	QUEncodingsDialog *dlg = new QUEncodingsDialog(this);
 
 	if(dlg->exec()) {
@@ -1742,9 +1741,6 @@ void QUMainWindow::setDefaultEncodings() {
 			detailsTable->reset();
 
 			logSrv->add(QString(tr("Default input encoding changed to \"%1\".")).arg(QUSongSupport::defaultInputEncoding()), QU::Information);
-		}
-		if (defaultOutputEncoding != QUSongSupport::defaultOutputEncoding()) {
-			logSrv->add(QString(tr("Default output encoding changed to \"%1\".")).arg(QUSongSupport::defaultOutputEncoding()), QU::Information);
 		}
 
 		delete dlg;

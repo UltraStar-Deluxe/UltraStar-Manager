@@ -88,7 +88,7 @@ QStringList QUSongSupport::allowedScoreFiles() {
 }
 
 QStringList QUSongSupport::allowedAudioFiles() {
-    return registryKey("allowedAudioFiles", "*.mp3 *.ogg *.m4a *.avi *.divx *.flv *.m2v *.m4v *.mkv *.mov *.mp4 *.mpeg *.mpg *.ogm *.ts *.vob *.webm *.wmv *.3gp");
+	return registryKey("allowedAudioFiles", "*.mp3 *.ogg *.m4a *.avi *.divx *.flv *.m2v *.m4v *.mkv *.mov *.mp4 *.mpeg *.mpg *.ogm *.ts *.vob *.webm *.wmv *.3gp");
 }
 
 QStringList QUSongSupport::allowedImageFiles() {
@@ -478,10 +478,6 @@ QString QUSongSupport::defaultInputEncoding() {
 	return registryKey("defaultInputEncoding", "CP1252").first();
 }
 
-QString QUSongSupport::defaultOutputEncoding() {
-	return registryKey("defaultOutputEncoding", "CP1252").first();
-}
-
 int QUSongSupport::mediumMp3Quality() {
 	return registryKey("mediumMp3Quality", "96").first().toInt();
 }
@@ -518,7 +514,7 @@ int QUSongSupport::highVideoQuality() {
  * Looks for a value in the registry and sets the default, if key not present.
  */
 QStringList QUSongSupport::registryKey(const QString &key, const QString &defaultValue) {
-// MB: map-related stuff commented out because of update problems with defaultInput/OutputEncoding
+// MB: map-related stuff commented out because of update problems with defaultInput
 //	static QMap<QString, QStringList> map;
 
 //	if(map.contains(key))

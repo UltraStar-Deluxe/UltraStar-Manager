@@ -33,7 +33,6 @@ public:
 	static QStringList availableSongYears();
 
 	static QString defaultInputEncoding();
-	static QString defaultOutputEncoding();
 
 	static int mediumMp3Quality();
 	static int highMp3Quality();

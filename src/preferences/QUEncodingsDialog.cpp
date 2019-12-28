@@ -14,11 +14,10 @@ QUEncodingsDialog::QUEncodingsDialog(QWidget *parent): QDialog(parent) {
 
 	foreach(QString item, items) {
 		inputEncodingsComboBox->addItem(item);
-		outputEncodingsComboBox->addItem(item);
 	}
+	inputEncodingsComboBox->removeItem(items.indexOf("UTF8"));
 
 	inputEncodingsComboBox->setCurrentIndex(inputEncodingsComboBox->findText(QUSongSupport::defaultInputEncoding()));
-	outputEncodingsComboBox->setCurrentIndex(outputEncodingsComboBox->findText(QUSongSupport::defaultOutputEncoding()));
 
 	connect(applyBtn, SIGNAL(clicked()), SLOT(saveEncodings()));
 	connect(cancelBtn, SIGNAL(clicked()), SLOT(reject()));
@@ -31,7 +30,6 @@ QUEncodingsDialog::~QUEncodingsDialog() {
 void QUEncodingsDialog::saveEncodings() {
 	QSettings settings;
 	settings.setValue("defaultInputEncoding", inputEncodingsComboBox->currentText());
-	settings.setValue("defaultOutputEncoding", outputEncodingsComboBox->currentText());
 
 	accept();
 }
@@ -41,5 +39,4 @@ void QUEncodingsDialog::saveEncodings() {
  */
 void QUEncodingsDialog::resetEncodings() {
 	inputEncodingsComboBox->setCurrentIndex(0);
-	outputEncodingsComboBox->setCurrentIndex(0);
 }
