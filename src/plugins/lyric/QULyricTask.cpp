@@ -33,7 +33,7 @@ QULyricTask::QULyricTask(TaskModes mode, QObject *parent):
 	case FixApostrophes:
 		this->setIcon(QIcon(":/control/edit_apostrophe.png"));
 		this->setDescription(tr("Fix apostrophes"));
-		this->setToolTip(tr("Replaces wrongfully used apostrophe symbols `, ´, ’ by the ASCII apostrophe '"));
+		this->setToolTip(tr("Replaces wrongfully used apostrophe symbols `, ´, ' by the correct apostrophe ’"));
 		break;
 	case FixLowBPM:
 		this->setIcon(QIcon(":/control/bpm_increase.png"));
@@ -445,7 +445,7 @@ void QULyricTask::fixSpaces(QUSongInterface *song) {
 }*/
 
 /*!
- * Replace wrongfully used apostrophe symbols `, ´ and ’ by ASCII apostroph '.
+ * Replace wrongfully used apostrophe symbols `, ´ and ASCII ' by typographically correct apostrophe ’.
  */
 void QULyricTask::fixApostrophes(QUSongInterface *song) {
 	if(song->loadMelody().isEmpty() or song->loadMelody().first()->notes().isEmpty()) {
@@ -458,19 +458,19 @@ void QULyricTask::fixApostrophes(QUSongInterface *song) {
 	foreach(QUSongLineInterface *line, song->loadMelody()) {
 		foreach(QUSongNoteInterface *note, line->notes()) {
 			if(note->syllable().contains("´")) { // acute accent (U+00B4)
-				note->setSyllable(note->syllable().replace("´", "'"));
+				note->setSyllable(note->syllable().replace("´", "’"));
 				count++;
 			}
 			if(note->syllable().contains("`")) { // grave accent (U+0060)
-				note->setSyllable(note->syllable().replace("`", "'"));
+				note->setSyllable(note->syllable().replace("`", "’"));
 				count++;
 			}
 			if(note->syllable().contains("′")) { // prime (U+2032)
-				note->setSyllable(note->syllable().replace("′", "'"));
+				note->setSyllable(note->syllable().replace("′", "’"));
 				count++;
 			}
-			if(note->syllable().contains("’")) { // typographically correct apostrophe (U+2019) (not available in ASCII/Latin-9/ISO 8859-15)
-				note->setSyllable(note->syllable().replace("’", "'"));
+			if(note->syllable().contains("'")) { // ASCII apostrophe (not available in ASCII/Latin-9/ISO 8859-15)
+				note->setSyllable(note->syllable().replace("'", "’"));
 				count++;
 			}
 		}
