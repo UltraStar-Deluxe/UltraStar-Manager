@@ -3,7 +3,7 @@ language: cpp
 matrix:
     include:
         - os: linux
-          dist: bionic
+          dist: xenial
           sudo: false
           compiler: gcc
           addons:
