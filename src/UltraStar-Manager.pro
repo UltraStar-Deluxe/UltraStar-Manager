@@ -345,5 +345,5 @@ macx {
 	QMAKE_POST_LINK += install_name_tool -change /usr/local/Cellar/media-info/0.7.94/lib/libzen.0.dylib @executable_path/../Frameworks/libzen.0.dylib ../bin/release/UltraStar-Manager.app/Contents/Frameworks/libmediainfo.0.dylib $$escape_expand(\\n\\t)
 
 	# Create a fancy Mac disk image
-	#QMAKE_POST_LINK += ../setup/macx/create-dmg --volname UltraStar-Manager --volicon resources/UltraStar-Manager.icns --app-drop-link 350 170 --background ../setup/macx/img/UltraStar-Manager_bg.png --hide-extension UltraStar-Manager.app --window-size 500 300 --text-size 14 --icon-size 64 --icon UltraStar-Manager.app 150 170 --no-internet-enable "../bin/release/UltraStar-Manager.dmg" ../bin/release/UltraStar-Manager.app/
+	#QMAKE_POST_LINK += create-dmg --volname UltraStar-Manager --volicon resources/UltraStar-Manager.icns --app-drop-link 350 170 --background ../setup/macx/img/UltraStar-Manager_bg.png --hide-extension UltraStar-Manager.app --window-size 500 300 --text-size 14 --icon-size 64 --icon UltraStar-Manager.app 150 170 --no-internet-enable "../bin/release/UltraStar-Manager.dmg" ../bin/release/UltraStar-Manager.app/
 }
