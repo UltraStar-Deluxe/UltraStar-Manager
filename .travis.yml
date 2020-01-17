@@ -32,6 +32,7 @@ install:
         brew link --force qt5;
         brew install taglib;
         brew install mediainfo;
+        brew install create-dmg
       fi
 
 before_script:
