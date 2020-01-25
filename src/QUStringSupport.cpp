@@ -124,7 +124,9 @@ QString QUStringSupport::simplifiedQueryString(const QString &text) {
 	result.replace(" + ", " ");
 	// remove the plus character
 	result.replace(" / ", " ");
-
+	// remove "The" and "the"
+	result.replace("The ", "");
+	result.replace(" the ", " ");
 
 	return result.simplified();
 }

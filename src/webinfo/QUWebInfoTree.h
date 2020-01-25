@@ -36,7 +36,7 @@ private:
 	QString _genre;
 	QString _year;
 
-	QTreeWidgetItem* createInfoItem(const QIcon &icon, const QString &tag, const QString &value, const QIcon &status, const QString &tooltip = "");
+	QTreeWidgetItem* createInfoItem(const QIcon &icon, const QString &tag, const QString &value, const QIcon &status, const QString &score = "", const QString &tooltip = "");
 	QTreeWidgetItem* createInfoItem(const QIcon &icon, const QString &tag, const QString &value, const QU::SpellState &spellState);
 	void getSwisschartsInformation();
 	void getAllmusicInformation();

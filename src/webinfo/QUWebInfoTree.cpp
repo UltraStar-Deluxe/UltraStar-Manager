@@ -72,13 +72,14 @@ QUWebInfoTree::QUWebInfoTree(QWidget *parent): QTreeWidget(parent) {
 	connect(_manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(processNetworkReply(QNetworkReply*)));
 }
 
-QTreeWidgetItem* QUWebInfoTree::createInfoItem(const QIcon &icon, const QString &tag, const QString &value, const QIcon &status, const QString &toolTip) {
+QTreeWidgetItem* QUWebInfoTree::createInfoItem(const QIcon &icon, const QString &tag, const QString &value, const QIcon &status, const QString &score, const QString &toolTip) {
 	QTreeWidgetItem *infoItem = new QTreeWidgetItem();
 
 	infoItem->setIcon(0, icon);
 	infoItem->setText(0, tag);
 	infoItem->setText(1, value);
 	infoItem->setIcon(2, status);
+	infoItem->setText(3, score);
 	infoItem->setToolTip(0, toolTip);
 	infoItem->setToolTip(1, toolTip);
 	infoItem->setToolTip(2, toolTip);
@@ -248,16 +249,14 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 			pos += rx1.matchedLength();
 		}
 
-		if(entries.length() == 1) {
-			_swisscharts->setText(0, QString("swisscharts.com (%1 entry)").arg(entries.length()));
-		} else {
-			_swisscharts->setText(0, QString("swisscharts.com (%1 entries)").arg(entries.length()));
-		}
-
 		if(entries.isEmpty()) {
 			_swisscharts->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "Song not found.", QIcon(":/marks/spell_error.png")));
 			_swisscharts->setHidden(false);
 			return;
+		} else if(entries.length() == 1) {
+			_swisscharts->setText(0, QString("swisscharts.com (%1 entry)").arg(entries.length()));
+		} else {
+			_swisscharts->setText(0, QString("swisscharts.com (%1 entries)").arg(entries.length()));
 		}
 
 		rx1.setPattern("<tr><td class=\"text\"><a href=\"(.*)\">(.*)</a></td><td class=\"text\"><a href=\".*\">(.*)</a>(?:<a href=.*</a>)*</td><td class=\"text\">(?:(\\d{4})|&nbsp;)</td>");
@@ -283,25 +282,25 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 
 				_swisscharts->addChild(this->createInfoItem(QIcon(":/types/music.png"), swisscharts_artist, swisscharts_title, QIcon(), QString()));
 
-				if(QString::compare(_artist, swisscharts_artist, Qt::CaseSensitive) == 0) {
+				if(QString::compare(_artist.replace("’", "'"), swisscharts_artist, Qt::CaseSensitive) == 0) {
 					spellState = QU::spellingOk;
-				} else if(QString::compare(_artist, swisscharts_artist, Qt::CaseInsensitive) == 0) {
+				} else if(QString::compare(_artist.replace("’", "'"), swisscharts_artist, Qt::CaseInsensitive) == 0) {
 					spellState = QU::spellingWarning;
 				} else {
 					spellState = QU::spellingError;
 				}
 				_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(":/types/user.png"), tr("Artist"), swisscharts_artist, spellState));
-				_swisscharts->child(i)->setData(2, Qt::UserRole, QVariant(_swisscharts->child(i)->data(2, Qt::UserRole).toString() + QString::number(spellState)));
+				_swisscharts->child(i)->setText(3, _swisscharts->child(i)->text(3) + QString::number(spellState));
 
-				if(QString::compare(_title, swisscharts_title, Qt::CaseSensitive) == 0) {
+				if(QString::compare(_title.replace("’", "'"), swisscharts_title, Qt::CaseSensitive) == 0) {
 					spellState = QU::spellingOk;
-				} else if(QString::compare(_title, swisscharts_title, Qt::CaseInsensitive) == 0) {
+				} else if(QString::compare(_title.replace("’", "'"), swisscharts_title, Qt::CaseInsensitive) == 0) {
 					spellState = QU::spellingWarning;
 				} else {
 					spellState = QU::spellingError;
 				}
 				_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), swisscharts_title, spellState));
-				_swisscharts->child(i)->setData(2, Qt::UserRole, QVariant(_swisscharts->child(i)->data(2, Qt::UserRole).toString() + QString::number(spellState)));
+				_swisscharts->child(i)->setText(3, _swisscharts->child(i)->text(3) + QString::number(spellState));
 
 				if(QString::compare(_year, swisscharts_year, Qt::CaseSensitive) == 0) {
 					spellState = QU::spellingOk;
@@ -309,17 +308,22 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 					spellState = QU::spellingError;
 				}
 				_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(":/types/date.png"), tr("Year"), swisscharts_year, spellState));
-				_swisscharts->child(i)->setData(2, Qt::UserRole, QVariant(_swisscharts->child(i)->data(2, Qt::UserRole).toString() + QString::number(spellState)));
+				_swisscharts->child(i)->setText(3, _swisscharts->child(i)->text(3) + QString::number(spellState));
 
-				if(_swisscharts->child(i)->data(2, Qt::UserRole).toString().contains('2')) {
+				// column 3 data contains score string "xyz" where x = artist spellState, y = title spellState, z = year spellState (perfect match = "000")
+				if(_swisscharts->child(i)->text(3).contains('2')) {
 					_swisscharts->child(i)->setIcon(2, QIcon(":/marks/spell_error.png"));
-				} else if(_swisscharts->child(i)->data(2, Qt::UserRole).toString().contains('1')) {
+				} else if(_swisscharts->child(i)->text(3).contains('1')) {
 					_swisscharts->child(i)->setIcon(2, QIcon(":/marks/spell_warn.png"));
 				} else {
 					_swisscharts->child(i)->setIcon(2, QIcon(":/marks/spell_ok.png"));
 				}
 
-				_swisscharts->child(i)->setExpanded(true);
+				if(_swisscharts->child(i)->text(3) == "222") {
+					_swisscharts->child(i)->setExpanded(false);
+				} else {
+					_swisscharts->child(i)->setExpanded(true);
+				}
 				_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(), "", "", QIcon()));
 			}
 		}
@@ -327,6 +331,7 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 		_swisscharts->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "Song not found.", QIcon(":/marks/spell_error.png")));
 	}
 
+	_swisscharts->sortChildren(3, Qt::AscendingOrder);
 	_swisscharts->setHidden(false);
 }
 
