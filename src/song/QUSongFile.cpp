@@ -697,7 +697,8 @@ bool QUSongFile::save(bool force) {
 	setInfo(ENCODING_TAG, ENCODING_UTF8);
 
 	// ... unless the user selected to not change the text encoding in settings AND the codec can encode the file
-	if (false) {
+	/*
+	if (some kind of gui element) {
 		
 		if (this->encoding() == ENCODING_CP1252) {
 			codec = QTextCodec::codecForName("windows-1252");
@@ -713,7 +714,7 @@ bool QUSongFile::save(bool force) {
 			// UTF-8 is used
 			logSrv->add(QString(tr("%1 output encoding NOT sufficient. Using UTF8 for song file: \"%2\".")).arg(this->encoding()).arg(_fi.filePath()), QU::Warning);
 		}
-	}
+	}*/
 
 	// MB: fix/todo! add gui element to select this, save to registry, read from registry
 	// now set permanently to false in order to enforce CRLF as line endings even with MacOS/Unix
