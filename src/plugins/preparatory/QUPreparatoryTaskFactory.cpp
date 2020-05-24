@@ -30,6 +30,7 @@ QList<int> QUPreparatoryTaskFactory::types() const {
 	result << QUPreparatoryTask::SetEditionIfEmpty;
 	result << QUPreparatoryTask::SetGenreIfEmpty;
 	result << QUPreparatoryTask::FixLanguage;
+	result << QUPreparatoryTask::FixApostrophes;
 	return result;
 }
 

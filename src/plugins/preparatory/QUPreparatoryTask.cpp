@@ -63,6 +63,11 @@ QUPreparatoryTask::QUPreparatoryTask(TaskModes mode, QObject *parent):
 		this->setDescription(tr("Fix #LANGUAGE tag to contain English language names"));
 		this->setToolTip(tr("Sets <b>#LANGUAGE</b> to contain English language names (e.g. Deutsch -> German)."));
 		break;
+	case FixApostrophes:
+		this->setIcon(QIcon(":/control/edit_apostrophe.png"));
+		this->setDescription(tr("Fix apostrophes in song artist and title"));
+		this->setToolTip(tr("Replaces wrongfully used apostrophe symbols `, ´, ' by the correct apostrophe ’"));
+		break;
 	}
 }
 
@@ -105,6 +110,9 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 	case FixLanguage:
 		fixLanguage(song);
 		break;
+	case FixApostrophes:
+		fixApostrophes(song);
+		break;
 	}
 }
 
@@ -115,15 +123,15 @@ QList<QUSmartSettingInterface*> QUPreparatoryTask::smartSettings() const {
 	if(_smartSettings.isEmpty()) {
 		switch(_mode) {
 		case AutoAssignFiles:
-			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_coverPattern", "\\[CO\\]", new QRegExpValidator(QRegExp(".*"), 0), tr("Pattern:"), tr("(cover)")));
-			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_backgroundPattern", "\\[BG\\]", new QRegExpValidator(QRegExp(".*"), 0), tr("Pattern:"), tr("(background)")));
+			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_coverPattern", "\\[CO\\]", new QRegExpValidator(QRegExp(".*"), nullptr), tr("Pattern:"), tr("(cover)")));
+			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_backgroundPattern", "\\[BG\\]", new QRegExpValidator(QRegExp(".*"), nullptr), tr("Pattern:"), tr("(background)")));
 			break;
 		case RemoveUnsupportedTags:
 			foreach(QString unsupportedTag, _unsupportedTags)
 				_smartSettings.append(new QUSmartCheckBox("preparatory/removeUnsupportedTags_" + unsupportedTag, unsupportedTag, true));
 			break;
 		case FixAudioLength:
-			_smartSettings.append(new QUSmartInputField("preparatory/fixAudioLength", timeDiffLower, new QRegExpValidator(QRegExp("\\d*"), 0), tr("Buffer:"), tr("seconds")));
+			_smartSettings.append(new QUSmartInputField("preparatory/fixAudioLength", timeDiffLower, new QRegExpValidator(QRegExp("\\d*"), nullptr), tr("Buffer:"), tr("seconds")));
 			break;
 		case CapitalizeTitle:
 			_smartSettings.append(new QUSmartCheckBox("preparatory/capitalizeTitle_onlyEnglish", tr("Capitalize English songs only"), true));
@@ -134,10 +142,10 @@ QList<QUSmartSettingInterface*> QUPreparatoryTask::smartSettings() const {
 			_smartSettings.append(new QUSmartCheckBox("preparatory/capitalizeArtist_onlyFirstWord", tr("Capitalize first word only"), false));
 			break;
 		case SetEditionIfEmpty:
-			_smartSettings.append(new QUSmartInputField("preparatory/setEditionIfEmpty_edition", "None", new QRegExpValidator(QRegExp(".*"), 0), tr("Edition:"), ""));
+			_smartSettings.append(new QUSmartInputField("preparatory/setEditionIfEmpty_edition", "None", new QRegExpValidator(QRegExp(".*"), nullptr), tr("Edition:"), ""));
 			break;
 		case SetGenreIfEmpty:
-			_smartSettings.append(new QUSmartInputField("preparatory/setGenreIfEmpty_genre", "None", new QRegExpValidator(QRegExp(".*"), 0), tr("Genre:"), ""));
+			_smartSettings.append(new QUSmartInputField("preparatory/setGenreIfEmpty_genre", "None", new QRegExpValidator(QRegExp(".*"), nullptr), tr("Genre:"), ""));
 			break;
 		}
 	}
@@ -361,4 +369,20 @@ void QUPreparatoryTask::fixLanguage(QUSongInterface *song) {
 
 	if(lang != song->language())
 		song->log(tr("#LANGUAGE changed from \"%1\" to \"%2\".").arg(lang).arg(song->language()), QU::Information);
+}
+
+/*!
+ * Replace wrongfully used apostrophe symbols `, ´ and ASCII ' by typographically correct apostrophe ’.
+ */
+void QUPreparatoryTask::fixApostrophes(QUSongInterface *song) {
+	song->setInfo(ARTIST_TAG, song->artist().replace("´", "’")); // acute accent (U+00B4)
+	song->setInfo(ARTIST_TAG, song->artist().replace("`", "’")); // grave accent (U+0060)
+	song->setInfo(ARTIST_TAG, song->artist().replace("′", "’")); // prime (U+2032)
+	song->setInfo(ARTIST_TAG, song->artist().replace("'", "’")); // ASCII apostrophe (not available in ASCII/Latin-9/ISO 8859-15)
+	song->setInfo(TITLE_TAG, song->title().replace("´", "’")); // acute accent (U+00B4)
+	song->setInfo(TITLE_TAG, song->title().replace("`", "’")); // grave accent (U+0060)
+	song->setInfo(TITLE_TAG, song->title().replace("′", "’")); // prime (U+2032)
+	song->setInfo(TITLE_TAG, song->title().replace("'", "’")); // ASCII apostrophe (not available in ASCII/Latin-9/ISO 8859-15)
+	
+	song->log(tr("Apostrophes fixed for \"%1 - %2\".").arg(song->artist()).arg(song->title()), QU::Information);
 }

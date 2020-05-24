@@ -22,7 +22,8 @@ public:
 		CapitalizeArtist,
 		SetEditionIfEmpty,
 		SetGenreIfEmpty,
-		FixLanguage
+		FixLanguage,
+		FixApostrophes
 	};
 	Q_DECLARE_FLAGS(TaskModes, TaskMode)
 
@@ -45,6 +46,7 @@ private:
 	void setEditionIfEmpty(QUSongInterface *song);
 	void setGenreIfEmpty(QUSongInterface *song);
 	void fixLanguage(QUSongInterface *song);
+	void fixApostrophes(QUSongInterface *song);
 };
 
 #endif /*QUPREPARATORYTASK_H_*/
