@@ -1,6 +1,6 @@
 environment:
   QTDIR: C:\Qt\5.14.2\mingw73_64
-  APPVEYOR_RDP_PASSWORD: uman!!
+  APPVEYOR_RDP_PASSWORD: UltraStar-Manager
 
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
