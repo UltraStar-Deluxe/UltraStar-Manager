@@ -131,7 +131,7 @@ void QUPropertyTable::setValueItem(
 		openPersistentEditor(helpItem);
 	} else {
 		QTableWidgetItem *helpItem = new QTableWidgetItem;
-		helpItem->setFlags(0);
+		helpItem->setFlags(Qt::NoItemFlags);
 		setItem(row, 2, helpItem);
 	}
 }

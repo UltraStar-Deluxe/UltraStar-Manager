@@ -51,7 +51,7 @@ QStringList QUSongSupport::availableTags() {
 
 QStringList QUSongSupport::availableCustomTags() {
 	QSettings settings;
-	return settings.value("customTags").toString().split(" ", QString::SkipEmptyParts);
+	return settings.value("customTags").toString().split(" ", Qt::SkipEmptyParts);
 }
 
 QStringList QUSongSupport::availableNoteTypes() {
@@ -527,5 +527,5 @@ QStringList QUSongSupport::registryKey(const QString &key, const QString &defaul
 //	map.insert(key, settings.value(key, defaultValue).toString().split(" ", QString::SkipEmptyParts));
 
 //	return map.value(key);
-	return settings.value(key, defaultValue).toString().split(" ", QString::SkipEmptyParts);
+	return settings.value(key, defaultValue).toString().split(" ", Qt::SkipEmptyParts);
 }

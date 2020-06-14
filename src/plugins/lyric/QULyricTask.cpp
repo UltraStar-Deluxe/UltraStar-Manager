@@ -132,13 +132,13 @@ void QULyricTask::startOn(QUSongInterface *song) {
 QList<QUSmartSettingInterface*> QULyricTask::smartSettings() const {
 	if(_smartSettings.isEmpty()) {
 		if(_mode == FixTimeStamps) {
-			_smartSettings.append(new QUSmartInputField("lyric/fixTimeStamps", "0", new QRegExpValidator(QRegExp("-?\\d*"), 0), tr("Start:"), ""));
+			_smartSettings.append(new QUSmartInputField("lyric/fixTimeStamps", "0", new QRegExpValidator(QRegExp("-?\\d*"), nullptr), tr("Start:"), ""));
 		}
 		if(_mode == FixLowBPM) {
-			_smartSettings.append(new QUSmartInputField("lyric/fixLowBPM", "200", new QRegExpValidator(QRegExp("\\d*"), 0), tr("if BPM less than:"), ""));
+			_smartSettings.append(new QUSmartInputField("lyric/fixLowBPM", "200", new QRegExpValidator(QRegExp("\\d*"), nullptr), tr("if BPM less than:"), ""));
 		}
 		if(_mode == SetMedleyTags) {
-			_smartSettings.append(new QUSmartInputField("lyric/medleyMinDuration", "30", new QRegExpValidator(QRegExp("\\d*"), 0), tr("Minimum length:"), tr("seconds")));
+			_smartSettings.append(new QUSmartInputField("lyric/medleyMinDuration", "30", new QRegExpValidator(QRegExp("\\d*"), nullptr), tr("Minimum length:"), tr("seconds")));
 			_smartSettings.append(new QUSmartCheckBox("lyric/overwriteExisting", tr("Overwrite existing values"), false));
 		}
 	}
@@ -502,11 +502,11 @@ void QULyricTask::fixLowBPM(QUSongInterface *song, int threshold) {
 		// calculate and set new BPM
 		double newBPM = BPM;
 		while(newBPM < threshold) {
-			newBPM *=2;
+			newBPM *= 2;
 		}
 		song->setInfo(BPM_TAG, QString::number(newBPM));
 
-		int multiplicator = newBPM / BPM;
+		int multiplicator = int(newBPM / BPM);
 
 		// modify medley tags, if present
 		if(song->hasMedley()) {
@@ -666,7 +666,7 @@ void QULyricTask::setMedleyTags(QUSongInterface *song, int medleyMinDuration, bo
 				  .arg(song->artist())
 				  .arg(song->title()), QU::Information);
 		if(song->previewstart() == N_A || overwriteExisting) {
-			song->setInfo(PREVIEWSTART_TAG, QString::number(song->medleystartbeat().toInt() * 15 / bpm + song->gap().toFloat() / 1000, 'f', 3));
+			song->setInfo(PREVIEWSTART_TAG, QString::number(song->medleystartbeat().toInt() * 15 / bpm + song->gap().toDouble() / 1000, 'f', 3));
 		}
 	} else {
 		song->log(QString(tr("No suitable medley section found for \"%1 - %2\"."))
@@ -721,9 +721,9 @@ void QULyricTask::normalizePitches(QUSongInterface *song) {
 
 	meanPitch = meanPitch/numNotes;
 	if (meanPitch < 0)
-		octaves = meanPitch/12 - 1;
+		octaves = int(meanPitch/12) - 1;
 	else
-		octaves = meanPitch/12;
+		octaves = int(meanPitch/12);
 
 	if(octaves != 0) {
 		// modify all note pitches

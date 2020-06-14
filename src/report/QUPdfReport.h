@@ -14,7 +14,7 @@ public:
 	QUPdfReport(const QList<QUSongFile*> &songFiles,
 			const QList<QUAbstractReportData*> &reportDataList,
 			const QFileInfo &fi,
-			QU::ReportOptions options = 0,
+			QU::ReportOptions options,
 			const QVariant &userData = QVariant(),
 			const QPrinter::PaperSize paperSize = QPrinter::A4,
 			const QPrinter::Orientation orientation = QPrinter::Portrait,
@@ -39,7 +39,7 @@ public:
 			const float subLevelEntryHIndent = 4.0,
 			const float subLevelEntryHSep = 4.0,
 			const float colHSep = 4.0,
-			QObject *parent = 0);
+			QObject *parent = nullptr);
 
 	virtual QString content() const { return tr("PDF Report"); }
 	virtual bool save();

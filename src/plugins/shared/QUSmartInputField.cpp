@@ -28,7 +28,7 @@ void QUSmartInputField::initContainer(QValidator *validator, const QString &pref
 	_edit->setValidator(validator);
 	_edit->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	_edit->setFixedHeight(_edit->fontMetrics().height() + 1);
-	_edit->setFixedWidth(_edit->fontMetrics().width('x') * 10);
+	_edit->setFixedWidth(_edit->fontMetrics().horizontalAdvance('x') * 10);
 
 	layout->addWidget(new QLabel(prefix));
 	layout->addWidget(_edit);

@@ -7,6 +7,7 @@
 #include <QPixmap>
 #include <QFileInfo>
 #include <QRegExp>
+#include <QRandomGenerator>
 
 QUMonty::QUMonty() {
 	initMessages();
@@ -138,8 +139,8 @@ QString QUMonty::welcomeMsg() {
 }
 
 void QUMonty::talk(QLabel *montyLbl, QLabel *msgLbl) {
-	montyLbl->setPixmap(pic((QUMonty::Status)(qrand() % 4)));
-	QString message = messages[qrand() % messages.size()];
+	montyLbl->setPixmap(pic(QUMonty::Status(QRandomGenerator::global()->generate() % 4)));
+	QString message = messages[QRandomGenerator::global()->generate() % messages.size()];
 	if (!message.contains("%1")) {
 		msgLbl->setText(message);
 	} else {
@@ -164,8 +165,8 @@ void QUMonty::answer(QLabel *montyLbl, QLabel *msgLbl, const QString &question, 
 	}
 
 	if(answers.isEmpty()) {
-		montyLbl->setPixmap(pic((QUMonty::Status)(qrand() % 4)));
-		msgLbl->setText(QObject::tr("Sorry. I don't understand you."));
+		montyLbl->setPixmap(pic(QUMonty::Status(QRandomGenerator::global()->generate() % 4)));
+		msgLbl->setText(QObject::tr("Sorry. I don’t understand you."));
 		return;
 	}
 
@@ -179,7 +180,7 @@ void QUMonty::answer(QLabel *montyLbl, QLabel *msgLbl, const QString &question, 
 		answers.prepend(out);
 	}
 
-	montyLbl->setPixmap(pic((QUMonty::Status)(qrand() % 4)));
+	montyLbl->setPixmap(pic(QUMonty::Status(QRandomGenerator::global()->generate() % 4)));
 	if (!answers.first().contains('1')) {
 		msgLbl->setText(answers.first());
 	} else {

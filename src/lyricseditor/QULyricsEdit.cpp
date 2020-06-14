@@ -70,7 +70,7 @@ void QULyricsEdit::initLyrics() {
 		setItem(index, 1, lineItem);
 
 		QTableWidgetItem *timeItem = new QTableWidgetItem();
-		timeItem->setFlags(0);
+		timeItem->setFlags(Qt::NoItemFlags);
 		timeItem->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
 		setItem(index, 0, timeItem);
 		setRowHeight(index, 16);
@@ -82,10 +82,10 @@ void QULyricsEdit::initLyrics() {
 				beats += line->notes().first()->timestamp();
 			}
 
-			int seconds = qMax(0, (int)((beats / (bpm * 4)) * 60 + gap));
+			int seconds = qMax(0, int((beats / (bpm * 4)) * 60 + gap));
 			timeItem->setText(QString("%1:%2")
 				.arg(seconds / 60)
-				.arg((int)(seconds % 60), 2, 10, QChar('0')));
+				.arg(int(seconds % 60), 2, 10, QChar('0')));
 
 			if(_song->isRelative())
 				beats += line->inTime() - line->notes().first()->timestamp();

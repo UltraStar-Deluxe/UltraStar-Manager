@@ -184,7 +184,7 @@ void QUTaskList::backupCurrentSelection() {
 
 void QUTaskList::restoreCurrentSelection() {
 	QSettings s;
-	QStringList states = s.value(QString("taskListState%1").arg(_currentSlot), "").toString().split("-", QString::SkipEmptyParts);
+	QStringList states = s.value(QString("taskListState%1").arg(_currentSlot), "").toString().split("-", Qt::SkipEmptyParts);
 
 	this->uncheckAllTasks();
 

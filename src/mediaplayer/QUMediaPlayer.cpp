@@ -4,6 +4,8 @@
 #include "QULogService.h"
 #include "QUSongDatabase.h"
 
+#include <QRandomGenerator>
+
 #include "audioproperties.h"
 #include "fileref.h"
 #include "tag.h"
@@ -195,7 +197,7 @@ void QUMediaPlayer::next() {
 
 	// which song next?
 	if(shuffleBtn->isChecked()) {
-		_lastIndices << _freeIndices.at(qrand() % _freeIndices.size());
+		_lastIndices << _freeIndices.at(QRandomGenerator::global()->generate() % _freeIndices.size());
 	} else {
 		_lastIndices << _freeIndices.first();
 	}

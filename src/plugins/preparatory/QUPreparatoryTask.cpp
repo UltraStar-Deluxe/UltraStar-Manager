@@ -188,8 +188,8 @@ void QUPreparatoryTask::capitalizeTitle(QUSongInterface *song) {
 		return;
 	}
 
-	QStringList words = song->titleCompact().toLower().split(" ", QString::SkipEmptyParts);
-	QStringList suffixes = song->title().split(" ", QString::SkipEmptyParts).filter(QRegExp("\\[.*\\]")); // extract []-tags
+	QStringList words = song->titleCompact().toLower().split(" ", Qt::SkipEmptyParts);
+	QStringList suffixes = song->title().split(" ", Qt::SkipEmptyParts).filter(QRegExp("\\[.*\\]")); // extract []-tags
 
 	if(words.isEmpty()) {
 		song->log(tr("Capitalization fix not applicable due to empty title: \"%1\".").arg(song->artist()), QU::Warning);
@@ -267,7 +267,7 @@ void QUPreparatoryTask::capitalizeTitle(QUSongInterface *song) {
 void QUPreparatoryTask::capitalizeArtist(QUSongInterface *song) {
 	bool onlyFirstWord = smartSettings().at(0)->value().toBool();
 
-	QStringList words = song->artist().split(" ", QString::SkipEmptyParts);
+	QStringList words = song->artist().split(" ", Qt::SkipEmptyParts);
 
 	if(words.isEmpty()) {
 		song->log(tr("Capitalization fix not applicable due to empty artist: \"%1\".").arg(song->title()), QU::Warning);
@@ -351,8 +351,8 @@ void QUPreparatoryTask::fixLanguage(QUSongInterface *song) {
 	else if(Finnish.contains(lang, Qt::CaseInsensitive))	song->setInfo(LANGUAGE_TAG, "Finnish");
 	else if(French.contains(lang, Qt::CaseInsensitive))		song->setInfo(LANGUAGE_TAG, "French");
 	else if(German.contains(lang, Qt::CaseInsensitive))		song->setInfo(LANGUAGE_TAG, "German");
-	else if(Hindi.contains(lang, Qt::CaseInsensitive))		song->setInfo(LANGUAGE_TAG, "Italian");
-	else if(Italian.contains(lang, Qt::CaseInsensitive))	song->setInfo(LANGUAGE_TAG, "Croatian");
+	else if(Hindi.contains(lang, Qt::CaseInsensitive))		song->setInfo(LANGUAGE_TAG, "Hindi");
+	else if(Italian.contains(lang, Qt::CaseInsensitive))	song->setInfo(LANGUAGE_TAG, "Italian");
 	else if(Japanese.contains(lang, Qt::CaseInsensitive))	song->setInfo(LANGUAGE_TAG, "Japanese");
 	else if(Korean.contains(lang, Qt::CaseInsensitive))		song->setInfo(LANGUAGE_TAG, "Korean");
 	else if(Latin.contains(lang, Qt::CaseInsensitive))		song->setInfo(LANGUAGE_TAG, "Latin");

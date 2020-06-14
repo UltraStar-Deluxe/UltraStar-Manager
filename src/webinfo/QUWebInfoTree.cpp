@@ -203,7 +203,7 @@ void QUWebInfoTree::getAllmusicInformation() {
 	_allmusic->setHidden(false);
 	return;
 
-	QUrl url("http://www.allmusic.com/search/songs/" + _artist.split(QRegExp("\\s+"), QString::SkipEmptyParts).join('+') + "+" + _title.split(QRegExp("\\s+"), QString::SkipEmptyParts).join('+'));
+	QUrl url("http://www.allmusic.com/search/songs/" + _artist.split(QRegExp("\\s+"), Qt::SkipEmptyParts).join('+') + "+" + _title.split(QRegExp("\\s+"), Qt::SkipEmptyParts).join('+'));
 	_manager->get(QNetworkRequest(url));
 }
 

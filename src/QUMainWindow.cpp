@@ -939,7 +939,7 @@ void QUMainWindow::saveLog() {
 		out.setGenerateByteOrderMark(true);
 
 		for(int row = 0; row < log->count(); ++row) {
-			out << QString("%1 %2").arg(log->item(row)->data(Qt::UserRole).toString()).arg(log->item(row)->text()) << endl;
+			out << QString("%1 %2").arg(log->item(row)->data(Qt::UserRole).toString()).arg(log->item(row)->text()) << Qt::endl;
 		}
 		file.close();
 

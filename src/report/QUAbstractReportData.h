@@ -32,7 +32,7 @@ class QUAbstractReportData: public QObject {
 	Q_OBJECT
 	
 public:
-	QUAbstractReportData(QObject *parent = 0);
+	QUAbstractReportData(QObject *parent = nullptr);
 	
 	virtual QString textData(QUSongFile *song) = 0;
 	virtual QString iconData(QUSongFile *song) = 0;

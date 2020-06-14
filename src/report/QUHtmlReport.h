@@ -13,10 +13,10 @@ public:
 			const QList<QUSongFile*> &songFiles,
 			const QList<QUAbstractReportData*> &reportDataList,
 			const QFileInfo &fi,
-			QU::ReportOptions options = 0,
+			QU::ReportOptions options,
 			const QVariant &userData = QVariant(),
 			const QString &cssFilePath = QString(),
-			QObject *parent = 0);
+			QObject *parent = nullptr);
 
 	virtual QString content() const;
 

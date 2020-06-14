@@ -27,10 +27,10 @@ QString QUCSVReport::content() const {
 
 void QUCSVReport::printHeading(QTextStream &out) {
 	if(options().testFlag(QU::reportPrependCurrentPath))
-		out << QString(tr("Songs Path: \"%1\"")).arg(QDir::toNativeSeparators(QU::BaseDir.path())) << endl << endl;
+		out << QString(tr("Songs Path: \"%1\"")).arg(QDir::toNativeSeparators(QU::BaseDir.path())) << Qt::endl << Qt::endl;
 
 	if(options().testFlag(QU::reportPrependUserData))
-		out << QString("\"%1\"").arg(userData().toString()) << endl << endl;
+		out << QString("\"%1\"").arg(userData().toString()) << Qt::endl << Qt::endl;
 
 	/* selected columns */
 	for(int i = 0; i < reportDataList().size(); ++i) {
@@ -39,7 +39,7 @@ void QUCSVReport::printHeading(QTextStream &out) {
 		out << reportDataList().at(i)->headerTextData();
 	}
 	out.setFieldWidth(0);
-	out << endl;
+	out << Qt::endl;
 }
 
 void QUCSVReport::printSongTable(QTextStream &out) {
@@ -62,6 +62,6 @@ void QUCSVReport::printSongTable(QTextStream &out) {
 			out << reportDataList().at(i)->textData(song);
 		}
 		out.setFieldWidth(0);
-		out << endl;
+		out << Qt::endl;
 	}
 }

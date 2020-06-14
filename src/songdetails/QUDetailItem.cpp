@@ -46,12 +46,12 @@ void QUDetailItem::setSongItems(const QList<QUSongItem*> &songItems) {
 void QUDetailItem::reset() {
 	// default values
 	_flagsForSingleSong = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
-	_flagsForMultipleSongs = 0;
+	_flagsForMultipleSongs = Qt::NoItemFlags;
 	_textMask = QString("%1");
 	_hasDynamicDefaultData = true;
 
 	if(QString::compare(_tag, ENCODING_TAG) == 0) {
-		_flagsForSingleSong = 0;
+		_flagsForSingleSong = Qt::NoItemFlags;
 //	} else if(QString::compare(_tag, TITLE_TAG) == 0) {
 	} else if(QString::compare(_tag, ARTIST_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
@@ -84,7 +84,7 @@ void QUDetailItem::reset() {
 	} else if(QString::compare(_tag, END_TAG) == 0) {
 		_textMask = QString(QObject::tr("%1 milliseconds"));
 	} else if(QString::compare(_tag, RELATIVE_TAG) == 0) {
-		_flagsForSingleSong = 0;
+		_flagsForSingleSong = Qt::NoItemFlags;
 	} else if(QString::compare(_tag, PREVIEWSTART_TAG) == 0) {
 		_textMask = QString(QObject::tr("%1 seconds"));
 	} else if (QString::compare(_tag, CALCMEDLEY_TAG) == 0) {
@@ -94,14 +94,14 @@ void QUDetailItem::reset() {
 //	} else if(QString::compare(_tag, MEDLEYSTARTBEAT_TAG) == 0) {
 //	} else if(QString::compare(_tag, MEDLEYENDBEAT_TAG) == 0) {
 	} else if(QString::compare(_tag, BPM_TAG) == 0) {
-		_flagsForSingleSong = 0;
+		_flagsForSingleSong = Qt::NoItemFlags;
 	} else if(QString::compare(_tag, GAP_TAG) == 0) {
 		_textMask = QString(QObject::tr("%1 milliseconds"));
 	} else if(QString::compare(_tag, P1_TAG) == 0) {
-		_flagsForSingleSong = 0;
+		_flagsForSingleSong = Qt::NoItemFlags;
 		_hasDynamicDefaultData = false;
 	} else if(QString::compare(_tag, P2_TAG) == 0) {
-		_flagsForSingleSong = 0;
+		_flagsForSingleSong = Qt::NoItemFlags;
 		_hasDynamicDefaultData = false;
 	} else if(QString::compare(_tag, ALBUM_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
@@ -127,7 +127,7 @@ void QUDetailItem::updateItemForSingleSong() {
 		if(songItems().first()->song()->isDuet()) {
 			_flagsForSingleSong = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
 		} else {
-			_flagsForSingleSong = 0;
+			_flagsForSingleSong = Qt::NoItemFlags;
 		}
 	}
 	setFlags(_flagsForSingleSong);

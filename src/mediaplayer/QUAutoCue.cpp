@@ -39,7 +39,7 @@ void QUAutoCue::reset(const QList<QUSongLineInterface*> &lines, double bpm, doub
 			}
 			last = note->timestamp() + note->duration();
 
-			if(isRelative)
+			if(bool(isRelative))
 				time = relTime + qRound((note->timestamp() / bpm) * 60000);
 			else
 				time = qRound(gap) + qRound((note->timestamp() / bpm) * 60000);
@@ -66,7 +66,7 @@ void QUAutoCue::reset(const QList<QUSongLineInterface*> &lines, double bpm, doub
 		}
 		insertPlainText("\n"); pos++;
 
-		if(isRelative) {
+		if(bool(isRelative)) {
 			relTime += qRound((line->inTime() / bpm) * 60000);
 		}
 		lineNumber += 1;
@@ -88,7 +88,7 @@ void QUAutoCue::stop() {
 }
 
 void QUAutoCue::pause() {
-	_pauseTime = QTime::currentTime();
+	_pauseTimer.start();
 	_pauseRequested = true;
 	_stopRequested = false;
 }
@@ -98,7 +98,7 @@ void QUAutoCue::resume(double position) {
 		return;
 
 	_cueListIndex = 0;
-	int targetTime = (int)(position);
+	int targetTime = int(position);
 
 	while(_cueListIndex < _cueList.size() && _cueList.at(_cueListIndex).time < targetTime)
 		_cueListIndex++;
@@ -106,7 +106,7 @@ void QUAutoCue::resume(double position) {
 	if(_cueListIndex >= _cueList.size())
 		return;
 
-	_waitedMilliseconds += _pauseTime.elapsed();
+	_waitedMilliseconds += _pauseTimer.elapsed();
 
 	_pauseRequested = false;
 	_stopRequested = false;
@@ -114,9 +114,8 @@ void QUAutoCue::resume(double position) {
 }
 
 void QUAutoCue::seek(double position) {
-	_startTime = QTime::currentTime();
-	_startTime.start();
-	_waitedMilliseconds = (int)(-position);
+	_startTimer.start();
+	_waitedMilliseconds = int(-position);
 	_cueListIndex = 0;
 	_stopRequested = false;
 	_pauseRequested = false;
@@ -127,7 +126,7 @@ void QUAutoCue::seek(double position) {
  * Highlight the correct syllable. Handle scrolling and so on.
  */
 void QUAutoCue::update() {
-	int time = _startTime.elapsed() - _waitedMilliseconds;
+	int time = int(_startTimer.elapsed() - _waitedMilliseconds);
 	int maxDelay = 30; // milliseconds
 	int frequency = 10; // milliseconds
 

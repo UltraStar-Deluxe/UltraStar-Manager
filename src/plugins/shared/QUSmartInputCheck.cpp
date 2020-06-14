@@ -28,7 +28,7 @@ QUSmartInputCheck::QUSmartInputCheck(const QString &registryKey, const QString &
 	_edit->setValidator(validator);
 	_edit->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	_edit->setFixedHeight(_edit->fontMetrics().height() + 1);
-	_edit->setFixedWidth(_edit->fontMetrics().width('x') * 10);
+	_edit->setFixedWidth(_edit->fontMetrics().horizontalAdvance('x') * 10);
 
 	QHBoxLayout *containerLayout = new QHBoxLayout;
 	QHBoxLayout *groupLayout = new QHBoxLayout;

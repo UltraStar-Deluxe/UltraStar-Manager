@@ -9,6 +9,7 @@
 #include <QTime>
 #include <QMenu>
 #include <QContextMenuEvent>
+#include <QElapsedTimer>
 
 class QUCueInfo {
 public:
@@ -46,8 +47,8 @@ protected:
 	virtual void contextMenuEvent(QContextMenuEvent *event);
 
 private:
-	QTime _startTime;
-	QTime _pauseTime;
+	QElapsedTimer _startTimer;
+	QElapsedTimer _pauseTimer;
 	int _waitedMilliseconds;
 	bool  _stopRequested;
 	bool  _pauseRequested;

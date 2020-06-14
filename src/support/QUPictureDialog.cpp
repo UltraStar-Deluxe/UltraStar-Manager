@@ -27,9 +27,9 @@ QUPictureDialog::QUPictureDialog(const QString &filePath, QWidget *parent): QDia
 	this->fullPicture();
 
 	if(gfx->pixmap()) {
-		double ratio = (double)gfx->pixmap()->height() / (double)gfx->pixmap()->width();
+		double ratio = double(gfx->pixmap()->height()) / double(gfx->pixmap()->width());
 		if((ratio <= 2.0) && (ratio >= 0.5))
-			this->resize(initialWidth(), (int)(ratio * initialWidth()) + EXTRA_HEIGHT);
+			this->resize(initialWidth(), int((ratio * initialWidth()) + EXTRA_HEIGHT));
 	}
 
 	// show file information
