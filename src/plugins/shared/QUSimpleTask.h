@@ -13,7 +13,7 @@ class QUSimpleTask: public QObject, public QUTask {
 	Q_INTERFACES(QUTask)
 
 public:
-	QUSimpleTask(QObject *parent = 0);
+	QUSimpleTask(QObject *parent = nullptr);
 
 	virtual QIcon icon() const { return _icon; }
 	virtual QString description() const { return _description; }

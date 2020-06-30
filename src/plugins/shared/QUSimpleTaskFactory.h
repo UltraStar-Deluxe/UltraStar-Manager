@@ -9,13 +9,13 @@ class QUSimpleTaskFactory: public QUMultilingualTaskFactory {
 	Q_OBJECT
 
 public:
-	QUSimpleTaskFactory(QObject *parent = 0);
+	QUSimpleTaskFactory(QObject *parent = nullptr);
 
 	virtual QList<QUTask*> createTasks();
 
 	virtual QString productName() const { return tr("Simple Task"); }
 
-	virtual int addConfiguration(QWidget *parent = 0) { return 0; }
+	virtual int addConfiguration(QWidget *parent = nullptr) { return 0; }
 	virtual bool canAddConfigurations() const { return false; }
 
 protected:

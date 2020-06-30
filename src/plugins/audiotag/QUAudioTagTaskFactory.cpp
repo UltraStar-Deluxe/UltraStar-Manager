@@ -30,12 +30,12 @@ QUTask* QUAudioTagTaskFactory::createTask(QDomDocument *configuration) {
 	if( QString::compare("id3", configuration->firstChild().firstChildElement("general").attribute("type"), Qt::CaseInsensitive) == 0 ) {
 		return new QUAudioTagTask(configuration);
 	} else {
-		return 0;
+		return nullptr;
 	}
 }
 
 int QUAudioTagTaskFactory::addConfiguration(QWidget *parent) {
-	return QUAudioTagTaskDialog(0, parent).exec();
+	return QUAudioTagTaskDialog(nullptr, parent).exec();
 }
 
 QMap<QString, QString> QUAudioTagTaskFactory::translationLocations() const {

@@ -4,7 +4,7 @@
 #include <QToolButton>
 #include <QIcon>
 
-QUSmartSetting::QUSmartSetting(const QString &registryKey): QUSmartSettingInterface(0) {
+QUSmartSetting::QUSmartSetting(const QString &registryKey): QUSmartSettingInterface(nullptr) {
 	_registryKey = registryKey;
 }
 
@@ -24,7 +24,7 @@ QVariant QUSmartSetting::value() const {
 }
 
 QToolButton* QUSmartSetting::createResetButton() {
-	QToolButton *btn = new QToolButton(0);
+	QToolButton *btn = new QToolButton(nullptr);
 	btn->setAutoRaise(true);
 	btn->setIcon(QIcon(":/control/arrow_undo.png"));
 	btn->setToolTip(tr("Reset to default value."));

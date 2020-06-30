@@ -9,7 +9,7 @@ class QUStringSupport: QObject {
 	Q_OBJECT
 
 public:
-	QUStringSupport(QObject *parent = 0);
+	QUStringSupport(QObject *parent = nullptr);
 
 	static QString withoutUnsupportedCharacters (const QString &text);
 	static QString withoutFolderTags(const QString &text);

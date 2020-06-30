@@ -31,12 +31,12 @@ class QUAudioTagTask: public QUScriptableTask {
 	Q_PROPERTY(QString targetfull READ currentContentAll)
 
 public:
-	QUAudioTagTask(QDomDocument *taskConfig, QObject *parent = 0);
+	QUAudioTagTask(QDomDocument *taskConfig, QObject *parent = nullptr);
 
 	virtual void startOn(QUSongInterface *song);
 
 	virtual bool isConfigurable() const { return true; }
-	virtual int configure(QWidget *parent = 0);
+	virtual int configure(QWidget *parent = nullptr);
 
 	static QStringList availableSources();
 	static QStringList availableSpecialSources();

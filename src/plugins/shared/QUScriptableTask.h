@@ -16,7 +16,7 @@ class QUScriptData: public QObject {
 	Q_OBJECT
 
 public:
-	QUScriptData(QObject *parent = 0):
+	QUScriptData(QObject *parent = nullptr):
 		QObject(parent),
 		_keepSuffix(false),
 		_keepUnknownTags(false) {}
@@ -45,7 +45,7 @@ public:
 	};
 	Q_DECLARE_FLAGS(TaskTypes, TaskType)
 
-	QUScriptableTask(QDomDocument *taskConfig, QObject *parent = 0);
+	QUScriptableTask(QDomDocument *taskConfig, QObject *parent = nullptr);
 	~QUScriptableTask() { qDeleteAll(_data); _data.clear(); }
 
 	virtual QString description() const { return QObject::tr(QUSimpleTask::description().toLocal8Bit().data()); }

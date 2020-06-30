@@ -6,7 +6,7 @@
 #include "QUSongSupport.h"
 #include "QUStringSupport.h"
 
-QUAudioTagTask::QUAudioTagTask(QDomDocument *taskConfig, QObject *parent): QUScriptableTask(taskConfig), _currentSong(0) {
+QUAudioTagTask::QUAudioTagTask(QDomDocument *taskConfig, QObject *parent): QUScriptableTask(taskConfig), _currentSong(nullptr) {
 	// setup internal operations
 	QDomElement id3(taskConfig->firstChild().firstChildElement("id3"));
 	if(!id3.isNull()) {
@@ -139,7 +139,7 @@ QStringList QUAudioTagTask::availableCustomTargets() {
 
 TagLib::FileRef QUAudioTagTask::ref() {
 	if(!_currentSong)
-        return TagLib::FileRef();
+		return TagLib::FileRef();
 
 	return TagLib::FileRef(_currentSong->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
 }
