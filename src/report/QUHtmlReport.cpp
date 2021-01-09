@@ -7,6 +7,7 @@
 #include <QDomNodeList>
 #include <QFile>
 #include <QMessageBox>
+#include <QDebug>
 
 QUHtmlReport::QUHtmlReport(
 		const QList<QUSongFile*> &songFiles,
@@ -230,6 +231,8 @@ void QUHtmlReport::appendLyrics(QDomNode &parent) {
 
 		QString lyrics = "<root><p>";
 		lyrics += song->lyrics().join("<br/>").replace("<br/><br/>", "</p><br/><p>");
+		lyrics.remove("</b><b>").remove("</i><i>"); // remove subsquent bold/italics markings (introduced extra whitespace)
+		qDebug() << lyrics;
 		lyrics.append("</p></root>");
 
 		QDomDocument tmp; tmp.setContent(lyrics);
