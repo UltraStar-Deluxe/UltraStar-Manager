@@ -243,7 +243,8 @@ INCLUDEPATH += . \
 
 win32 {
 	INCLUDEPATH += ../include/taglib \
-		../include/mediainfo
+		../include/mediainfo \
+		../include/cld2/public
 
 	LIBS += -L"../lib/win64" \
 		-ltag \
