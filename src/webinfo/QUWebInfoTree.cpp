@@ -15,6 +15,8 @@
 #include "QUStringSupport.h"
 #include "QU.h"
 
+#include "compact_lang_det.h"
+
 QUWebInfoTree::QUWebInfoTree(QWidget *parent): QTreeWidget(parent) {
 	this->setColumnCount(3);
 
@@ -28,6 +30,20 @@ QUWebInfoTree::QUWebInfoTree(QWidget *parent): QTreeWidget(parent) {
 	this->setIndentation(10);
 	connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(applyWebInformationToSong(QTreeWidgetItem*, int)));
 
+	// set up language toplevel item
+	_cld2 = new QTreeWidgetItem();
+	
+	this->addTopLevelItem(_cld2);
+	
+	_cld2->setIcon(0, QIcon(":/types/language.png"));
+	_cld2->setText(0, tr("Compact Language Detection"));
+	_cld2->setFlags(Qt::ItemIsEnabled);
+	_cld2->setForeground(0, Qt::darkGray);
+	_cld2->setFirstColumnSpanned(true);
+	
+	_cld2->setExpanded(true);
+	_cld2->setHidden(true);
+	
 	// set up "swisscharts" toplevel item
 	_swisscharts = new QTreeWidgetItem();
 
@@ -137,24 +153,96 @@ void QUWebInfoTree::showInformation(QUSongFile *song) {
 	_song = song;
 	_artist = song->artist();
 	_title = song->title();
+	_language = song->language();
 	_genre = song->genre();
 	_year = song->year();
 
+	qDeleteAll(_cld2->takeChildren());
 	qDeleteAll(_swisscharts->takeChildren());
 	qDeleteAll(_discogs->takeChildren());
 	qDeleteAll(_allmusic->takeChildren());
 
+	_cld2->setHidden(true);
 	_swisscharts->setHidden(true);
 	_discogs->setHidden(true);
 	_allmusic->setHidden(true);
 
 	QSettings settings;
+	if(settings.value("cld2Info", QVariant(true)).toBool())
+		getCld2Information();
 	if(settings.value("swisschartsWebInfo", QVariant(false)).toBool())
 		getSwisschartsInformation();
 	if(settings.value("discogsWebInfo", QVariant(false)).toBool())
 		getDiscogsInformation();
 	if(settings.value("allmusicWebInfo", QVariant(false)).toBool())
 		getAllmusicInformation();
+}
+
+void QUWebInfoTree::getCld2Information() {
+	int threshold = 10; // 10 % of song lyrics need to identified as a certain language to count
+	bool isReliable;
+	QU::SpellState spellState;
+	QString cld2_language;
+	QStringList cld2_languages;
+	QStringList cld2_percentages;
+	//qDebug() << _song->lyrics().join("").remove(QChar('~'));
+	//CLD2::Language cld2_lang = CLD2::DetectLanguage(_song->lyrics().join("").remove(QChar('~'), Qt::CaseInsensitive).toStdString().c_str(), _song->lyrics().join("").toStdString().length(), false, &isReliable);
+	
+	CLD2::Language language3[3];
+	int percent3[3];
+	int text_bytes;
+	CLD2::Language cld2_lang = CLD2::DetectLanguageSummary(_song->lyrics().join("").remove(QChar('~'), Qt::CaseInsensitive).toStdString().c_str(), _song->lyrics().join("").toStdString().length(), false, language3, percent3, &text_bytes, &isReliable);
+	
+	if(isReliable) {
+		for(int i = 0; i < 3; ++i) {
+			if(language3[i] != CLD2::UNKNOWN_LANGUAGE && percent3[i] > threshold) {
+				cld2_language = QString::fromUtf8(CLD2::LanguageDeclaredName(language3[i])).toLower();
+				cld2_language[0] = cld2_language[0].toUpper();
+				cld2_languages.append(cld2_language);
+				cld2_percentages.append(QString("(%1 %)").arg(percent3[i]));
+			}
+		}
+		
+		if(cld2_languages.length() > 1) {
+			cld2_language = cld2_languages.join(", ");
+		}
+		
+		if(QString::compare(_language, cld2_language, Qt::CaseSensitive) == 0) {
+			spellState = QU::spellingOk;
+		} else if(QString::compare(_language, cld2_language, Qt::CaseInsensitive) == 0) {
+			spellState = QU::spellingWarning;
+		} else {
+			spellState = QU::spellingError;
+		}
+		
+		_cld2->addChild(this->createInfoItem(QIcon(":/types/language.png"), tr("Language"), cld2_language, spellState));
+		_cld2->child(0)->setToolTip(2, _cld2->child(0)->toolTip(2) + cld2_percentages.join(", "));
+		_cld2->setHidden(false);
+		if(spellState != QU::spellingOk) {
+			_cld2->child(0)->setExpanded(true);
+		}
+		
+		// if more than one language is identified, add children for each language
+		if(cld2_languages.length() > 1) {
+			for(int i = 0; i < cld2_languages.length(); ++i) {
+				if(QString::compare(_language, cld2_languages.at(i), Qt::CaseSensitive) == 0) {
+					spellState = QU::spellingOk;
+				} else if(QString::compare(_language, cld2_languages.at(i), Qt::CaseInsensitive) == 0) {
+					spellState = QU::spellingWarning;
+				} else {
+					spellState = QU::spellingError;
+				}
+				
+				_cld2->child(0)->addChild(this->createInfoItem(QIcon(":/types/language.png"), tr("Language"), cld2_languages[i], spellState));
+				_cld2->child(0)->child(i)->setToolTip(2, _cld2->child(0)->child(i)->toolTip(2) + cld2_percentages.at(i));
+				_cld2->child(0)->setText(3, QString::number(spellState));
+			}
+			//_cld2->child(0)->setExpanded(true);
+		}
+	} else {
+		_cld2->addChild(this->createInfoItem(QIcon(":/types/language.png"), tr("Language"), tr("unreliable"), QU::spellingError));
+		_cld2->setHidden(false);
+	}
 }
 
 void QUWebInfoTree::getSwisschartsInformation() {
@@ -602,6 +690,8 @@ void QUWebInfoTree::applyWebInformationToSong(QTreeWidgetItem *item, int column)
 		_song->setInfo(ARTIST_TAG, item->text(1));
 	} else if(item->text(0) == "Title") {
 		_song->setInfo(TITLE_TAG, item->text(1));
+	} else if(item->text(0) == "Language") {
+		_song->setInfo(LANGUAGE_TAG, item->text(1));
 	} else if(item->text(0) == "Genre") {
 		_song->setInfo(GENRE_TAG, item->text(1));
 	} else if(item->text(0) == "Year") {

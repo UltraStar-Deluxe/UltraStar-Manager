@@ -8,7 +8,7 @@ class QUSongSupport: QObject {
 	Q_OBJECT
 
 public:
-	QUSongSupport(QObject *parent = 0);
+	QUSongSupport(QObject *parent = nullptr);
 
 	static QStringList availableTags();
 	static QStringList availableCustomTags();
@@ -42,6 +42,8 @@ public:
 	static int highBackgroundQuality();
 	static int mediumVideoQuality();
 	static int highVideoQuality();
+	
+	static QString langToLangCode(const QString &language);
 
 private:
 	static QStringList registryKey(const QString &key, const QString &defaultValue);

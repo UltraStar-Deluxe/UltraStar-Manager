@@ -145,7 +145,7 @@ QStringList QUSongSupport::availableSongLanguages() {
 	result << "Romanian";
 	result << "Russian";
 	result << "Slovak";
-	result << "Slowenian";
+	result << "Slovenian";
 	result << "Spanish";
 	result << "Swedish";
 	result << "Turkish";
@@ -528,4 +528,37 @@ QStringList QUSongSupport::registryKey(const QString &key, const QString &defaul
 
 //	return map.value(key);
 	return settings.value(key, defaultValue).toString().split(" ", Qt::SkipEmptyParts);
+}
+
+/*!
+ * Returns ISO-639-3 language code for given language
+ */
+QString QUSongSupport::langToLangCode(const QString &language) {
+	if(QString::compare(language, "Arabic", Qt::CaseInsensitive) == 0) { return "ara"; }
+	else if(QString::compare(language, "Chinese", Qt::CaseInsensitive) == 0) { return "zho"; }
+	else if(QString::compare(language, "Croatian", Qt::CaseInsensitive) == 0) { return "hrv"; }
+	else if(QString::compare(language, "Czech", Qt::CaseInsensitive) == 0) { return "ces"; }
+	else if(QString::compare(language, "Danish", Qt::CaseInsensitive) == 0) { return "dan"; }
+	else if(QString::compare(language, "Dutch", Qt::CaseInsensitive) == 0) { return "nld"; }
+	else if(QString::compare(language, "English", Qt::CaseInsensitive) == 0) { return "eng"; }
+	else if(QString::compare(language, "Finnish", Qt::CaseInsensitive) == 0) { return "fin"; }
+	else if(QString::compare(language, "French", Qt::CaseInsensitive) == 0) { return "fra"; }
+	else if(QString::compare(language, "German", Qt::CaseInsensitive) == 0) { return "deu"; }
+	else if(QString::compare(language, "Hindi", Qt::CaseInsensitive) == 0) { return "hin"; }
+	else if(QString::compare(language, "Italian", Qt::CaseInsensitive) == 0) { return "ita"; }
+	else if(QString::compare(language, "Japanese", Qt::CaseInsensitive) == 0) { return "jpn"; }
+	else if(QString::compare(language, "Korean", Qt::CaseInsensitive) == 0) { return "kor"; }
+	else if(QString::compare(language, "Latin", Qt::CaseInsensitive) == 0) { return "lat"; }
+	else if(QString::compare(language, "Norwegian", Qt::CaseInsensitive) == 0) { return "nor"; }
+	else if(QString::compare(language, "Polish", Qt::CaseInsensitive) == 0) { return "pol"; }
+	else if(QString::compare(language, "Portuguese", Qt::CaseInsensitive) == 0) { return "por"; }
+	else if(QString::compare(language, "Romanian", Qt::CaseInsensitive) == 0) { return "ron"; }
+	else if(QString::compare(language, "Russian", Qt::CaseInsensitive) == 0) { return "rus"; }
+	else if(QString::compare(language, "Slovak", Qt::CaseInsensitive) == 0) { return "slk"; }
+	else if(QString::compare(language, "Slovenian", Qt::CaseInsensitive) == 0) { return "slv"; }
+	else if(QString::compare(language, "Spanish", Qt::CaseInsensitive) == 0) { return "spa"; }
+	else if(QString::compare(language, "Swedish", Qt::CaseInsensitive) == 0) { return "swe"; }
+	else if(QString::compare(language, "Turkish", Qt::CaseInsensitive) == 0) { return "tur"; }
+	else return "und"; //undetermined
+	// TODO: "mul" for multiple languages or several language codes for language="English/Italian"
 }

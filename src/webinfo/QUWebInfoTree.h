@@ -27,17 +27,20 @@ private slots:
 
 private:
 	QNetworkAccessManager *_manager;
+	QTreeWidgetItem *_cld2;
 	QTreeWidgetItem *_swisscharts;
 	QTreeWidgetItem *_discogs;
 	QTreeWidgetItem *_allmusic;
 	QUSongFile *_song;
 	QString _artist;
 	QString _title;
+	QString _language;
 	QString _genre;
 	QString _year;
 
 	QTreeWidgetItem* createInfoItem(const QIcon &icon, const QString &tag, const QString &value, const QIcon &status, const QString &score = "", const QString &tooltip = "");
 	QTreeWidgetItem* createInfoItem(const QIcon &icon, const QString &tag, const QString &value, const QU::SpellState &spellState);
+	void getCld2Information();
 	void getSwisschartsInformation();
 	void getAllmusicInformation();
 	void getDiscogsInformation();
