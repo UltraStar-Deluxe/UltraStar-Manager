@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>954</width>
-    <height>765</height>
+    <height>775</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -786,43 +786,6 @@ Tasks</string>
               <height>16777215</height>
              </size>
             </property>
-            <property name="palette">
-             <palette>
-              <active>
-               <colorrole role="Base">
-                <brush brushstyle="SolidPattern">
-                 <color alpha="255">
-                  <red>255</red>
-                  <green>255</green>
-                  <blue>255</blue>
-                 </color>
-                </brush>
-               </colorrole>
-              </active>
-              <inactive>
-               <colorrole role="Base">
-                <brush brushstyle="SolidPattern">
-                 <color alpha="255">
-                  <red>255</red>
-                  <green>255</green>
-                  <blue>255</blue>
-                 </color>
-                </brush>
-               </colorrole>
-              </inactive>
-              <disabled>
-               <colorrole role="Base">
-                <brush brushstyle="SolidPattern">
-                 <color alpha="255">
-                  <red>212</red>
-                  <green>208</green>
-                  <blue>200</blue>
-                 </color>
-                </brush>
-               </colorrole>
-              </disabled>
-             </palette>
-            </property>
             <property name="selectionMode">
              <enum>QAbstractItemView::ContiguousSelection</enum>
             </property>
@@ -1054,7 +1017,7 @@ Tasks</string>
      <x>0</x>
      <y>0</y>
      <width>954</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
