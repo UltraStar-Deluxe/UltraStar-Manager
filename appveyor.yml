@@ -1,5 +1,5 @@
 environment:
-  QTDIR: C:\Qt\5.14.2\mingw73_64
+  QTDIR: C:\Qt\5.15.2\mingw81_64
   APPVEYOR_RDP_PASSWORD: UltraStar-Manager!
 
 init:
