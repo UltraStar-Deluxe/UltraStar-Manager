@@ -250,7 +250,8 @@ win32 {
 		-ltag \
 		-lmediainfo \
 		-lzen \
-		-lzlibstatic
+		-lzlibstatic \
+		-lcld2
 
 	RC_ICONS += UltraStar-Manager.ico
 }
@@ -313,7 +314,7 @@ unix:!macx {
 
 win32 {
 	# Run windeployqt to bundle the required Qt libraries with the application
-	QMAKE_POST_LINK += windeployqt --release --no-translations --no-system-d3d-compiler --compiler-runtime --no-angle --no-opengl-sw ..\bin\release\UltraStar-Manager.exe $$escape_expand(\\n\\t)
+	QMAKE_POST_LINK += windeployqt64releaseonly --release --no-translations --no-system-d3d-compiler --compiler-runtime --no-angle --no-opengl-sw ..\bin\release\UltraStar-Manager.exe $$escape_expand(\\n\\t)
 
 	# Clean up after running windeployqt, removing some superfluous Qt libraries
 	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/Qt5Svg.dll) $$escape_expand(\\n\\t)
@@ -329,6 +330,9 @@ win32 {
 
 	# Manually add libtag library
 	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../lib/win64/libtag.dll) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
+
+	# Manually add cld2 library
+	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../lib/win64/libcld2.dll) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
 
 	# Manually add styles files and changes.txt
 	QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, $$shell_path($${DESTDIR}/styles/)) $$escape_expand(\\n\\t)

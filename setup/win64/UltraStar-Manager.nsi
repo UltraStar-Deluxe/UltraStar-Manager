@@ -60,6 +60,7 @@ Section "Application" SecCopyUI
 	;; Files
 	SetOutPath "$INSTDIR"
 	File "changes.txt"
+	File "libcld2.dll"
 	File "libgcc_s_seh-1.dll"
 	File "libstdc++-6.dll"
 	File "libtag.dll"
@@ -327,6 +328,7 @@ Section "Uninstall"
 	RMDir "$INSTDIR\styles"
 	
 	Delete "$INSTDIR\changes.txt"
+	Delete "$INSTDIR\libcld2.dll"
 	Delete "$INSTDIR\libgcc_s_seh-1.dll"
 	Delete "$INSTDIR\libstdc++-6.dll"
 	Delete "$INSTDIR\libtag.dll"
