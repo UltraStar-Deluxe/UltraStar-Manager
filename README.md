@@ -49,12 +49,18 @@ This allows passing a certain folder as song path to UltraStar-Manager, convenie
 (under construction)
 
 1. Download the Qt Online Installer for Windows from [here](http://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe).
-2. Install the Qt framework. The Qt Account login can be skipped.  
+2. Install the Qt framework. 
    Select (at least)
-   * Qt -> Qt 5.x -> MinGW 5.x.x 32 bit
-   * Qt -> Tools -> MinGW 5.x.x.
-3. Open and compile all task plugins (open respective *.pro files in subdirectory src\plugins with Qt Creator, disable shadow build).
-4. Open and compile UltraStar-Manager (open UltraStar-Manager.pro in subdirectory src with Qt Creator, disable shadow build).
+   * Qt -> Qt 5.15.2 -> MinGW 8.1.0 64-bit
+   * Qt -> Developer and Designer Tools -> MinGW 8.1.0 64-bit
+3. Open and compile all task plugins (except albumartexchange, amazon and freecovers)
+   * open respective *.pro files in subdirectory src\plugins with Qt Creator
+   * disable shadow build in Project tab
+   * build
+4. Open and compile UltraStar-Manager
+   * open UltraStar-Manager.pro in subdirectory src with Qt Creator
+   * disable shadow build in Project tab
+   * build
 5. Manage your entire song collection with ease!
 
 #### Compiling on Linux
