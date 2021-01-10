@@ -26,8 +26,8 @@ QUPictureDialog::QUPictureDialog(const QString &filePath, QWidget *parent): QDia
 
 	this->fullPicture();
 
-	if(gfx->pixmap()) {
-		double ratio = double(gfx->pixmap()->height()) / double(gfx->pixmap()->width());
+	if(!gfx->pixmap(Qt::ReturnByValue).isNull()) {
+		double ratio = double(gfx->pixmap(Qt::ReturnByValue).height()) / double(gfx->pixmap(Qt::ReturnByValue).width());
 		if((ratio <= 2.0) && (ratio >= 0.5))
 			this->resize(initialWidth(), int((ratio * initialWidth()) + EXTRA_HEIGHT));
 	}
@@ -36,8 +36,8 @@ QUPictureDialog::QUPictureDialog(const QString &filePath, QWidget *parent): QDia
 	QString fileInfoTxt = tr("%4 [<b>Dimensions:</b>\t%1 x %2, \n<b>Size:</b>\t%3 KiB]");
 	QFileInfo fi(filePath);
 
-	fileInfoTxt = fileInfoTxt.arg(gfx->pixmap()->width());
-	fileInfoTxt = fileInfoTxt.arg(gfx->pixmap()->height());
+	fileInfoTxt = fileInfoTxt.arg(gfx->pixmap(Qt::ReturnByValue).width());
+	fileInfoTxt = fileInfoTxt.arg(gfx->pixmap(Qt::ReturnByValue).height());
 	fileInfoTxt = fileInfoTxt.arg(fi.size() / 1024., 0, 'f', 2);
 	fileInfoTxt = fileInfoTxt.arg(filePath);
 

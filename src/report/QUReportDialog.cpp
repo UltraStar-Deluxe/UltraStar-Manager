@@ -58,8 +58,8 @@ QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<Q
 	initReportList();
 	initStyleCombo();
 	initPlaylistCombo();
-	initPaperSizeCombo();
-	initOrientationCombo();
+	initPageSizeCombo();
+	initPageOrientationCombo();
 	initSelectFntBtns();
 	initSelectClrBtns();
 
@@ -147,20 +147,20 @@ void QUReportDialog::initPlaylistCombo() {
 	playlistCombo->setEnabled(!_allPlaylists.isEmpty());
 }
 
-void QUReportDialog::initPaperSizeCombo() {
-	paperSizeCombo->addItem("A3", QPrinter::A3);
-	paperSizeCombo->addItem("A4", QPrinter::A4);
-	paperSizeCombo->addItem("A5", QPrinter::A5);
-	paperSizeCombo->addItem("A6", QPrinter::A6);
-	paperSizeCombo->addItem("Letter", QPrinter::Letter);
-	paperSizeCombo->addItem("Legal", QPrinter::Legal);
-	paperSizeCombo->addItem("Executive", QPrinter::Executive);
-	paperSizeCombo->setCurrentText("A4");
+void QUReportDialog::initPageSizeCombo() {
+	pageSizeCombo->addItem("A3", QPageSize::A3);
+	pageSizeCombo->addItem("A4", QPageSize::A4);
+	pageSizeCombo->addItem("A5", QPageSize::A5);
+	pageSizeCombo->addItem("A6", QPageSize::A6);
+	pageSizeCombo->addItem("Letter", QPageSize::Letter);
+	pageSizeCombo->addItem("Legal", QPageSize::Legal);
+	pageSizeCombo->addItem("Executive", QPageSize::Executive);
+	pageSizeCombo->setCurrentText("A4");
 }
 
-void QUReportDialog::initOrientationCombo() {
-	orientationCombo->addItem("Portrait", QPrinter::Portrait);
-	orientationCombo->addItem("Landscape", QPrinter::Landscape);
+void QUReportDialog::initPageOrientationCombo() {
+	pageOrientationCombo->addItem("Portrait", QPageLayout::Portrait);
+	pageOrientationCombo->addItem("Landscape", QPageLayout::Landscape);
 }
 
 void QUReportDialog::initSelectFntBtns() {
@@ -287,8 +287,8 @@ void QUReportDialog::createPdfReport() {
 				fi,
 				this->selectedOptions(),
 				this->currentPlaylistName(),
-				static_cast<QPrinter::PaperSize>(paperSizeCombo->itemData(paperSizeCombo->currentIndex()).toInt()),
-				static_cast<QPrinter::Orientation>(orientationCombo->itemData(orientationCombo->currentIndex()).toInt()),
+				qvariant_cast<QPageSize>(pageSizeCombo->currentData()),
+				qvariant_cast<QPageLayout::Orientation>(pageOrientationCombo->currentData()),
 				layoutColumnsCombo->currentText().toInt(),
 				leftMargin->value(),
 				rightMargin->value(),

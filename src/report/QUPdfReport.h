@@ -16,8 +16,8 @@ public:
 			const QFileInfo &fi,
 			QU::ReportOptions options,
 			const QVariant &userData = QVariant(),
-			const QPrinter::PaperSize paperSize = QPrinter::A4,
-			const QPrinter::Orientation orientation = QPrinter::Portrait,
+			const QPageSize pageSize = QPageSize(QPageSize::A4),
+			const QPageLayout::Orientation orientation = QPageLayout::Portrait,
 			const int layoutColumns = 1,
 			const float leftMargin = 16.0,
 			const float rightMargin = 8.0,
@@ -45,8 +45,8 @@ public:
 	virtual bool save();
 
 private:
-	QPrinter::PaperSize _paperSize;
-	QPrinter::Orientation _orientation;
+	QPageSize _pageSize;
+	QPageLayout::Orientation _orientation;
 	int _layoutColumns;
 	int _leftMargin;
 	int _rightMargin;

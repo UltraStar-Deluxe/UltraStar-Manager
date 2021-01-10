@@ -69,8 +69,8 @@ private:
 	void initReportList();
 	void initStyleCombo();
 	void initPlaylistCombo();
-	void initPaperSizeCombo();
-	void initOrientationCombo();
+	void initPageSizeCombo();
+	void initPageOrientationCombo();
 	void initSelectFntBtns();
 	void initSelectClrBtns();
 

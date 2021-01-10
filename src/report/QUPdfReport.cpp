@@ -16,8 +16,8 @@ QUPdfReport::QUPdfReport(const QList<QUSongFile*> &songFiles,
 		const QFileInfo &fi,
 		QU::ReportOptions options,
 		const QVariant &userData,
-		const QPrinter::PaperSize paperSize,
-		const QPrinter::Orientation orientation,
+		const QPageSize pageSize,
+		const QPageLayout::Orientation orientation,
 		const int layoutColumns,
 		const float leftMargin,
 		const float rightMargin,
@@ -42,7 +42,7 @@ QUPdfReport::QUPdfReport(const QList<QUSongFile*> &songFiles,
 		QObject *parent): QUAbstractReport(songFiles, reportDataList, fi, options, userData, parent)
 {
 	//
-	_paperSize = paperSize;
+	_pageSize = pageSize;
 	_orientation = orientation;
 	_layoutColumns = layoutColumns;
 	_leftMargin = leftMargin;
@@ -77,9 +77,9 @@ bool QUPdfReport::save() {
 	printer.setOutputFormat(QPrinter::PdfFormat);
 	printer.setOutputFileName(fileInfo().filePath());
 
-	printer.setPaperSize(_paperSize);
-	printer.setOrientation(_orientation);
-	printer.setPageMargins(_leftMargin, _topMargin, _rightMargin, _bottomMargin, QPrinter::Millimeter);
+	printer.setPageSize(_pageSize);
+	printer.setPageOrientation(_orientation);
+	printer.setPageMargins(QMarginsF(_leftMargin, _topMargin, _rightMargin, _bottomMargin), QPageLayout::Millimeter);
 
 	QPainter painter;
 	painter.begin(&printer);
