@@ -316,109 +316,76 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 		_swisscharts->setHidden(false);
 		return;
 	}
-
+	
 	QByteArray newData = reply->readAll();
-	QString swisscharts_reply = QString::fromLatin1(newData);
-
-	QRegExp rx1 = QRegExp("<a name=\"itemsmdb\">(.*)</table>");
-	rx1.setMinimal(true);
-	rx1.setCaseSensitivity(Qt::CaseInsensitive);
-
-	if(rx1.indexIn(swisscharts_reply) != -1) {
-		QString swisscharts_results = QVariant(rx1.cap(0)).toString().remove("\r\n");
-
-		rx1.setPattern("<tr><td class=\"text\"><a href=\".*\">.*</a></td><td class=\"text\">(?:<a href=.*</a>\\s*)+</td><td class=\"text\">(?:\\d{4}|&nbsp;)</td>.*</tr>");
-		rx1.setMinimal(true);
-
-		int pos = 0;
-		QStringList entries;
-		while ((pos = rx1.indexIn(swisscharts_results, pos)) != -1) {
-			entries << rx1.cap(0);
-			pos += rx1.matchedLength();
-		}
-
-		if(entries.isEmpty()) {
-			_swisscharts->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "Song not found.", QIcon(":/marks/spell_error.png")));
-			_swisscharts->setHidden(false);
-			return;
-		} else if(entries.length() == 1) {
-			_swisscharts->setText(0, QString("swisscharts.com (%1 entry)").arg(entries.length()));
-		} else {
-			_swisscharts->setText(0, QString("swisscharts.com (%1 entries)").arg(entries.length()));
-		}
-
-		rx1.setPattern("<tr><td class=\"text\"><a href=\"(.*)\">(.*)</a></td><td class=\"text\"><a href=\".*\">(.*)</a>(?:<a href=.*</a>)*</td><td class=\"text\">(?:(\\d{4})|&nbsp;)</td>");
-		rx1.setMinimal(true);
-
-		QString swisscharts_url;
-		QString swisscharts_artist;
-		QString swisscharts_title;
-		QString swisscharts_year;
-
-		for(int i = 0; i < entries.length(); ++i) {
-			if(rx1.indexIn(entries.at(i)) != -1) {
-				QU::SpellState spellState;
-				swisscharts_url = QVariant(rx1.cap(1)).toString();
-				swisscharts_artist = QVariant(rx1.cap(2)).toString();
-				swisscharts_title = QVariant(rx1.cap(3)).toString();
-				// fixme: ugly hack, should be fixed via a correct QRegExp pattern/greediness
-				if(swisscharts_title.contains("</a>")) {
-					swisscharts_title = swisscharts_title.left(swisscharts_title.indexOf("</a"));
-				}
-				// end fixme
-				swisscharts_year = QVariant(rx1.cap(rx1.captureCount())).toString();
-
-				_swisscharts->addChild(this->createInfoItem(QIcon(":/types/music.png"), swisscharts_artist, swisscharts_title, QIcon(), QString()));
-
-				if(QString::compare(_artist.replace("’", "'"), swisscharts_artist, Qt::CaseSensitive) == 0) {
-					spellState = QU::spellingOk;
-				} else if(QString::compare(_artist.replace("’", "'"), swisscharts_artist, Qt::CaseInsensitive) == 0) {
-					spellState = QU::spellingWarning;
-				} else {
-					spellState = QU::spellingError;
-				}
-				_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(":/types/user.png"), tr("Artist"), swisscharts_artist, spellState));
-				_swisscharts->child(i)->setText(3, _swisscharts->child(i)->text(3) + QString::number(spellState));
-
-				if(QString::compare(_title.replace("’", "'"), swisscharts_title, Qt::CaseSensitive) == 0) {
-					spellState = QU::spellingOk;
-				} else if(QString::compare(_title.replace("’", "'"), swisscharts_title, Qt::CaseInsensitive) == 0) {
-					spellState = QU::spellingWarning;
-				} else {
-					spellState = QU::spellingError;
-				}
-				_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), swisscharts_title, spellState));
-				_swisscharts->child(i)->setText(3, _swisscharts->child(i)->text(3) + QString::number(spellState));
-
-				if(QString::compare(_year, swisscharts_year, Qt::CaseSensitive) == 0) {
-					spellState = QU::spellingOk;
-				} else {
-					spellState = QU::spellingError;
-				}
-				_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(":/types/date.png"), tr("Year"), swisscharts_year, spellState));
-				_swisscharts->child(i)->setText(3, _swisscharts->child(i)->text(3) + QString::number(spellState));
-
-				// column 3 data contains score string "xyz" where x = artist spellState, y = title spellState, z = year spellState (perfect match = "000")
-				if(_swisscharts->child(i)->text(3).contains('2')) {
-					_swisscharts->child(i)->setIcon(2, QIcon(":/marks/spell_error.png"));
-				} else if(_swisscharts->child(i)->text(3).contains('1')) {
-					_swisscharts->child(i)->setIcon(2, QIcon(":/marks/spell_warn.png"));
-				} else {
-					_swisscharts->child(i)->setIcon(2, QIcon(":/marks/spell_ok.png"));
-				}
-
-				if(_swisscharts->child(i)->text(3) == "222") {
-					_swisscharts->child(i)->setExpanded(false);
-				} else {
-					_swisscharts->child(i)->setExpanded(true);
-				}
-				_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(), "", "", QIcon()));
+	QString searchresult = QString::fromLatin1(newData);
+	
+	QRegularExpression re = QRegularExpression("<td class=\"text\">\\s*<a href=\".*\">(.*)</a>\\s*</td>\\s*<td class=\"text\">\\s*<a href=\".*\">(.*)</a>\\s*.*\\s*</td>\\s*<td class=\"text\" style=\"border-right:0;\">\\s*(\\s*|\\d{4})\\s*</td>", QRegularExpression::InvertedGreedinessOption);
+	QRegularExpressionMatchIterator mi = re.globalMatch(searchresult);
+	
+	if (mi.hasNext()) {
+		int i = 0;
+		while (mi.hasNext()) {
+			QRegularExpressionMatch match = mi.next();
+		
+			QString swisscharts_artist = match.captured(1);
+			QString swisscharts_title = match.captured(2);
+			QString swisscharts_year = match.captured(3);
+			
+			_swisscharts->addChild(this->createInfoItem(QIcon(":/types/music.png"), swisscharts_artist, swisscharts_title, QIcon(), QString()));
+	
+			QU::SpellState spellState;
+			if(QString::compare(_artist.replace("’", "'"), swisscharts_artist, Qt::CaseSensitive) == 0) {
+				spellState = QU::spellingOk;
+			} else if(QString::compare(_artist.replace("’", "'"), swisscharts_artist, Qt::CaseInsensitive) == 0) {
+				spellState = QU::spellingWarning;
+			} else {
+				spellState = QU::spellingError;
 			}
+			_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(":/types/user.png"), tr("Artist"), swisscharts_artist, spellState));
+			_swisscharts->child(i)->setText(3, _swisscharts->child(i)->text(3) + QString::number(spellState));
+	
+			if(QString::compare(_title.replace("’", "'"), swisscharts_title, Qt::CaseSensitive) == 0) {
+				spellState = QU::spellingOk;
+			} else if(QString::compare(_title.replace("’", "'"), swisscharts_title, Qt::CaseInsensitive) == 0) {
+				spellState = QU::spellingWarning;
+			} else {
+				spellState = QU::spellingError;
+			}
+			_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), swisscharts_title, spellState));
+			_swisscharts->child(i)->setText(3, _swisscharts->child(i)->text(3) + QString::number(spellState));
+	
+			if(QString::compare(_year, swisscharts_year, Qt::CaseSensitive) == 0) {
+				spellState = QU::spellingOk;
+			} else {
+				spellState = QU::spellingError;
+			}
+			_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(":/types/date.png"), tr("Year"), swisscharts_year, spellState));
+			_swisscharts->child(i)->setText(3, _swisscharts->child(i)->text(3) + QString::number(spellState));
+	
+			// column 3 data contains score string "xyz" where x = artist spellState, y = title spellState, z = year spellState (perfect match = "000")
+			if(_swisscharts->child(i)->text(3).contains('2')) {
+				_swisscharts->child(i)->setIcon(2, QIcon(":/marks/spell_error.png"));
+			} else if(_swisscharts->child(i)->text(3).contains('1')) {
+				_swisscharts->child(i)->setIcon(2, QIcon(":/marks/spell_warn.png"));
+			} else {
+				_swisscharts->child(i)->setIcon(2, QIcon(":/marks/spell_ok.png"));
+			}
+	
+			if(_swisscharts->child(i)->text(3) == "222") {
+				_swisscharts->child(i)->setExpanded(false);
+			} else {
+				_swisscharts->child(i)->setExpanded(true);
+			}
+			_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(), "", "", QIcon()));
+			++i;
 		}
 	} else {
 		_swisscharts->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "Song not found.", QIcon(":/marks/spell_error.png")));
+		_swisscharts->setHidden(false);
+		return;
 	}
-
+	
 	_swisscharts->sortChildren(3, Qt::AscendingOrder);
 	_swisscharts->setHidden(false);
 }
