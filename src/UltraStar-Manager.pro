@@ -279,7 +279,8 @@ unix:!macx {
 	# which should only be used for Windows. However, for some reason mediainfo on Unix installed via
 	# 'apt-get install libmediainfo-dev' does NOT have MediaInfoDLL/MediaInfoDLL_Static.h, but instead only
 	# MediaInfoDLL/MediaInfoDLL.h, and currently compilation fails with that header file. Help wanted.
-	INCLUDEPATH += ../include/mediainfo
+	INCLUDEPATH += ../include/mediainfo \
+		../include/cld2/public
 
 	CONFIG += link_pkgconfig
 	PKGCONFIG += taglib
