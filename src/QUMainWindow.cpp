@@ -95,6 +95,9 @@ QUMainWindow::QUMainWindow(QWidget *parent): QMainWindow(parent) {
 	if (settings.value("allowUpdateCheck", QVariant(false)).toBool()) {
 		this->checkForUpdate(true);
 	}
+	
+	QUMainWindow::discogsChk->setVisible(false);
+	QUMainWindow::allmusicChk->setVisible(false);
 
 	addLogMsg(tr("Ready."), QU::Information);
 }
