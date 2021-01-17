@@ -181,29 +181,24 @@ for:
       #- sh: git clone https://code.qt.io/qt/qtstyleplugins.git && cd qtstyleplugins && qmake && make -j$(nproc) && sudo make install && cd -
 
     build_script:
-      - sh: cd src
-      - sh: qmake UltraStar-Manager.pro
-      - sh: make -j$(getconf _NPROCESSORS_ONLN)
-      - sh: cd ../bin/release
-
       - sh: cd src/plugins/audiotag/
       - sh: qmake audiotag.pro
-      - sh: make -j4
+      - sh: make -j$(getconf _NPROCESSORS_ONLN)
       - sh: cd ../cleanup/
       - sh: qmake cleanup.pro
-      - sh: make -j4
+      - sh: make -j$(getconf _NPROCESSORS_ONLN)
       - sh: cd ../lyric/
       - sh: qmake lyric.pro
-      - sh: make -j4
+      - sh: make -j$(getconf _NPROCESSORS_ONLN)
       - sh: cd ../preparatory/
       - sh: qmake preparatory.pro
-      - sh: make -j4
+      - sh: make -j$(getconf _NPROCESSORS_ONLN)
       - sh: cd ../rename/
       - sh: qmake rename.pro
-      - sh: make -j4
+      - sh: make -j$(getconf _NPROCESSORS_ONLN)
       - sh: cd ../../
       - sh: qmake UltraStar-Manager.pro
-      - sh: make -j4
+      - sh: make -j$(getconf _NPROCESSORS_ONLN)
       - sh: cd ../bin/release/
       # Build AppImage
       #- sh: wget https://github.com/probonopd/linuxdeployqt/releases/download/5/linuxdeployqt-5-x86_64.AppImage # linuxdeployqt 5
