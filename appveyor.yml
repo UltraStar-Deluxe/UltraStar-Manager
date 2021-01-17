@@ -172,7 +172,7 @@ for:
       - ps: $env:package_version = ("$(git describe --tags --always --long)").trim()
       - ps: Update-AppveyorBuild -Version "$env:package_version-$env:APPVEYOR_BUILD_NUMBER"
       - sh: sudo apt update -qq
-      - sh: sudo apt install -y libgl1-mesa-dev build-essential
+      - sh: sudo apt install -y libgl1-mesa-dev build-essential libpulse-mainloop-glib0
       # UltraStar-Manager needs these:
       - sh: sudo apt install -y libtag1-dev libcld2-dev libmediainfo-dev
       # linuxdeployqt needs these:
