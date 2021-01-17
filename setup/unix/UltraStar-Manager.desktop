@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Name=UltraStar-Creator
-Exec=UltraStar-Creator %F
-Icon=UltraStar-Creator
-Comment=Create new songs for UltraStar from scratch.
+Name=UltraStar-Manager
+Exec=UltraStar-Manager %F
+Icon=UltraStar-Manager
+Comment=Manage your UltraStar song collection with ease.
 Terminal=true
 Categories=Qt;Game;Music;X-Karaoke;X-UltraStar;
-Name[en]=UltraStar-Creator.desktop
+Name[en]=UltraStar-Manager.desktop
