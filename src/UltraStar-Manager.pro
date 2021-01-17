@@ -282,6 +282,9 @@ unix:!macx {
 	INCLUDEPATH += ../include/mediainfo \
 		../include/cld2/public
 
+	LIBS += -L"/usr/lib/x86_64-linux-gnu" \
+		-lcld2
+
 	CONFIG += link_pkgconfig
 	PKGCONFIG += taglib
 	PKGCONFIG += libmediainfo
