@@ -128,13 +128,6 @@ for:
       - brew install create-dmg;
 
     build_script:
-      - cd src
-      - qmake UltraStar-Manager.pro
-      - make -j$(getconf _NPROCESSORS_ONLN)
-      - cd ../bin/release
-      - ls
-      #- macdeployqt UltraStar-Manager.app -dmg;
-
       - cd src/plugins/audiotag/
       - qmake audiotag.pro
       - make -j$(getconf _NPROCESSORS_ONLN)
