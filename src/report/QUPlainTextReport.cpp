@@ -2,6 +2,7 @@
 #include "QUProgressDialog.h"
 
 #include <QTextStream>
+#include <QRegularExpression>
 
 QUPlainTextReport::QUPlainTextReport(
 		const QList<QUSongFile*> &songFiles,
@@ -109,6 +110,6 @@ void QUPlainTextReport::printLyrics(QTextStream &out) {
 		out << subheader << Qt::endl;
 		out << QString(subheader.length(), '-') << Qt::endl;
 
-		out << song->lyrics().join("\n").remove(QRegExp("<b>|</b>|<i>|</i>")) << Qt::endl << Qt::endl;
+		out << song->lyrics().join("\n").remove(QRegularExpression("<b>|</b>|<i>|</i>")) << Qt::endl << Qt::endl;
 	}
 }

@@ -2,7 +2,7 @@
 
 #include <QFile>
 #include <QStringList>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QTextStream>
 #include <QTextCodec>
 
@@ -86,7 +86,7 @@ void QUTextDialog::initFile(QUSongFile *song) {
 		content.replace("  ", "&nbsp;&nbsp;");
 		content.replace(" \n", "&nbsp;<br>");
 		content.replace("\n", "<br>");
-		content.replace(QRegExp("(#[^<]*:)"), "<b>\\1</b>");
+		content.replace(QRegularExpression("(#[^<]*:)"), "<b>\\1</b>");
 
 		textEdit->insertHtml(content);
 		file.close();

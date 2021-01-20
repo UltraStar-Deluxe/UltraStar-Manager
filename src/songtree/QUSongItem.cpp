@@ -15,7 +15,6 @@ using namespace MediaInfoDLL;
 #include <QFileInfo>
 #include <QDir>
 #include <QIcon>
-#include <QRegExp>
 #include <QSettings>
 #include <QMessageBox>
 //#include <QMediaResource>

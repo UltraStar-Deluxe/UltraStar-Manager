@@ -3,17 +3,17 @@
 
 #include <QList>
 #include <QPair>
-#include <QRegExp>
+#include <QRegularExpression>
 
 bool QUMetaphoneString::isSlavoGermanic() {
-	return contains(QRegExp("W|K|CZ|WITZ"));
+	return contains(QRegularExpression("W|K|CZ|WITZ"));
 }
 
 bool QUMetaphoneString::hasVowel(int at) {
 	if( (at < 0) || (at >= _length) )
 		return false;
 
-	return QRegExp("[AEIOUY]").exactMatch(mid(at, 1));
+	return QRegularExpression(QRegularExpression::anchoredPattern("[AEIOUY]")).match(mid(at, 1)).hasMatch();
 }
 
 
@@ -815,7 +815,7 @@ bool QUMetaphoneString::equal(QString token1, QString token2, bool ignoreEmpty) 
 	// replace "lonely, unimportant" words
 	token1.append(' '); token1.prepend(' ');
 	token2.append(' '); token2.prepend(' ');
-	QRegExp rx(" THE | DER | DIE | DAS | A | AN | EIN ");
+	QRegularExpression rx(" THE | DER | DIE | DAS | A | AN | EIN ");
 	token1.replace(rx, " ");
 	token2.replace(rx, " ");
 

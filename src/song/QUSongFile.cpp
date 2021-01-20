@@ -15,6 +15,7 @@
 #include <QMap>
 #include <QTextStream>
 #include <QTextCodec>
+#include <QRegularExpression>
 
 #include "audioproperties.h"
 #include "fileref.h"
@@ -235,7 +236,7 @@ bool QUSongFile::updateCache() {
 	 */
 	QString line;
 
-	while( !(QRegExp("([:\\*FRGE\\-].*)|(P\\s*[123].*)").exactMatch(line) || _in.atEnd()) ) {
+	while( !(QRegularExpression(QRegularExpression::anchoredPattern("([:\\*FRGE\\-].*)|(P\\s*[123].*)")).match(line).hasMatch() || _in.atEnd()) ) {
 		line = QUStringSupport::withoutLeadingBlanks(_in.readLine());
 
 		// read supported tags
@@ -269,7 +270,7 @@ bool QUSongFile::updateCache() {
 
 	// read lyrics + other stuff (distinct them)
 	while( !_in.atEnd() ) {
-		if(QRegExp("([:\\*FRG\\-].*)|(P\\s*[123].*)").exactMatch(line))
+		if(QRegularExpression(QRegularExpression::anchoredPattern("([:\\*FRG\\-].*)|(P\\s*[123].*)")).match(line).hasMatch())
 			_lyrics << line;
 		else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
 			_footer << line;
@@ -279,7 +280,7 @@ bool QUSongFile::updateCache() {
 
 	// use last line buffer
 	// TODO: a little bit dirty here (duplicate code)
-	if(QRegExp("[:\\*FRG\\-].*").exactMatch(line))
+	if(QRegularExpression(QRegularExpression::anchoredPattern("[:\\*FRG\\-].*")).match(line).hasMatch())
 		_lyrics << line;
 	else if(QString::compare(line.trimmed(), "E", Qt::CaseInsensitive) != 0 && !line.isEmpty())
 		_footer << line;
@@ -426,7 +427,7 @@ bool QUSongFile::isDuet() const {
 }
 
 bool QUSongFile::isKaraoke() const {
-	QRegExp rxTag("kar(aoke)?", Qt::CaseInsensitive);
+	QRegularExpression rxTag("kar(aoke)?", QRegularExpression::CaseInsensitiveOption);
 
 	foreach(QString fiTag, _fiTags) { // look for a []-tag that could be the singer name
 		if(fiTag.contains(rxTag))
@@ -603,17 +604,17 @@ QStringList QUSongFile::lyrics() const {
 	QStringList _lyricsCopy = _lyrics;
 	QStringList result; result << QString();
 
-	QRegExp lineBreak("\\s*-.*");
-	QRegExp lineSinger("\\s*P\\s*[123].*");
-	QRegExp linePrefix("\\s*[:\\*FRG]\\s*-?\\d+\\s+\\d+\\s+-?\\d+\\s");
+	QRegularExpression lineBreak(QRegularExpression::anchoredPattern("\\s*-.*"));
+	QRegularExpression lineSinger(QRegularExpression::anchoredPattern("\\s*P\\s*[123].*"));
+	QRegularExpression linePrefix(QRegularExpression::anchoredPattern("\\s*[:\\*FRG]\\s*-?\\d+\\s+\\d+\\s+-?\\d+\\s"));
 
 	int lastBeat = -1;
 
 	foreach(QString line, _lyricsCopy) {
-		if(lineSinger.exactMatch(line))
+		if(lineSinger.match(line).hasMatch())
 			continue;
 
-		if(lineBreak.exactMatch(line)) {
+		if(lineBreak.match(line).hasMatch()) {
 			result << QString();
 
 			line = line.remove("-").trimmed();
@@ -630,7 +631,7 @@ QStringList QUSongFile::lyrics() const {
 			if(lastBeat != -1) {
 				// insert an empty line?
 				QString lineCopy = line;
-				lineCopy.remove(QRegExp("[:\\*FRG]"));
+				lineCopy.remove(QRegularExpression("[:\\*FRG]"));
 				int nextBeat = QVariant(lineCopy.section(" ", 0, 0, QString::SectionSkipEmpty)).toInt();
 
 				if(nextBeat - lastBeat > 20)
@@ -640,13 +641,13 @@ QStringList QUSongFile::lyrics() const {
 
 			line.remove("\n");
 
-			if(QRegExp("\\s*\\*.*").exactMatch(line)) // golden note
+			if(QRegularExpression(QRegularExpression::anchoredPattern("\\s*\\*.*")).match(line).hasMatch()) // golden note
 				result.last() += line.remove(linePrefix).append("</b>").prepend("<b>");
-			else if(QRegExp("\\s*F.*").exactMatch(line)) // freestyle note
+			else if(QRegularExpression(QRegularExpression::anchoredPattern("\\s*F.*")).match(line).hasMatch()) // freestyle note
 				result.last() += line.remove(linePrefix).append("</i>").prepend("<i>");
-			else if(QRegExp("\\s*R.*").exactMatch(line)) // rap note
+			else if(QRegularExpression(QRegularExpression::anchoredPattern("\\s*R.*")).match(line).hasMatch()) // rap note
 				result.last() += line.remove(linePrefix).append("</u>").prepend("<u>");
-			else if(QRegExp("\\s*G.*").exactMatch(line)) // rap golden note
+			else if(QRegularExpression(QRegularExpression::anchoredPattern("\\s*G.*")).match(line).hasMatch()) // rap golden note
 				result.last() += line.remove(linePrefix).append("</b></u>").prepend("<u><b>");
 			else
 				result.last() += line.remove(linePrefix);
@@ -1035,8 +1036,8 @@ void QUSongFile::autoSetFile(const QFileInfo &fi, bool force, const QString &cov
 			logSrv->add(QString(tr("Assigned \"%1\" as audio file for \"%2 - %3\".")).arg(mp3()).arg(artist()).arg(title()), QU::Information);
 		}
 	} else if(QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-		QRegExp reCover(coverPattern, Qt::CaseInsensitive);
-		QRegExp reBackground(backgroundPattern, Qt::CaseInsensitive);
+		QRegularExpression reCover(coverPattern, QRegularExpression::CaseInsensitiveOption);
+		QRegularExpression reBackground(backgroundPattern, QRegularExpression::CaseInsensitiveOption);
 
 		if(fi.fileName().contains(reCover) && (!this->hasCover() || force) ) {
 			this->setInfo(COVER_TAG, fi.fileName());
@@ -1089,7 +1090,7 @@ void QUSongFile::deleteUnusedFiles(const QStringList &filter, const QString &pat
 
 	foreach(QFileInfo fi, fiList) {
 		if(!filter.contains("*." + fi.suffix()))
-			if(!usePattern || !fi.fileName().contains(QRegExp(pattern)))
+			if(!usePattern || !fi.fileName().contains(QRegularExpression(pattern)))
 				continue;
 
 		if(!usedFileNames.contains(fi.fileName(), Qt::CaseInsensitive)) {
@@ -1498,7 +1499,7 @@ void QUSongFile::convertLyricsToRaw() {
  * Takes a raw lyrics line (e.g. ": 2345 10 90 foo ") and converts that to an internal format.
  */
 void QUSongFile::lyricsAddNote(QString line) {
-	if(!QRegExp("([:\\*FRG\\-].*)|(P\\s*[123].*)").exactMatch(line)) {
+	if(!QRegularExpression(QRegularExpression::anchoredPattern("([:\\*FRG\\-].*)|(P\\s*[123].*)")).match(line).hasMatch()) {
 		logSrv->add(QString(tr("Error while preparing lyrics for %1 - %2. Could not parse the following line: %3"))
 					.arg(artist())
 					.arg(title())
@@ -1556,8 +1557,8 @@ void QUSongFile::lyricsAddNote(QString line) {
 				t = QUSongNoteInterface::normal;
 
 			// extract the lyric/syllable
-			line.remove(QRegExp("[:\\*FRG]\\s*\\-?\\d+\\s+\\d+\\s+\\-?\\d+\\s"));
-			line.remove(QRegExp("[:\\*FRG]\\s*\\-?\\d+\\s+\\d+\\s+\\-?\\d+")); // if no syllable is present
+			line.remove(QRegularExpression("[:\\*FRG]\\s*\\-?\\d+\\s+\\d+\\s+\\-?\\d+\\s"));
+			line.remove(QRegularExpression("[:\\*FRG]\\s*\\-?\\d+\\s+\\d+\\s+\\-?\\d+")); // if no syllable is present
 
 			QUSongNote *note = new QUSongNote(
 					t,

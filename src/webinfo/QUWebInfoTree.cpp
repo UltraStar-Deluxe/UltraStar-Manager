@@ -9,6 +9,7 @@
 #include <QTextStream>
 #include <QBuffer>
 #include <QtNetwork>
+#include <QRegularExpression>
 #include <QDebug>
 
 #include "QUSongSupport.h"
@@ -291,7 +292,7 @@ void QUWebInfoTree::getAllmusicInformation() {
 	_allmusic->setHidden(false);
 	return;
 
-	QUrl url("http://www.allmusic.com/search/songs/" + _artist.split(QRegExp("\\s+"), Qt::SkipEmptyParts).join('+') + "+" + _title.split(QRegExp("\\s+"), Qt::SkipEmptyParts).join('+'));
+	QUrl url("http://www.allmusic.com/search/songs/" + _artist.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts).join('+') + "+" + _title.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts).join('+'));
 	_manager->get(QNetworkRequest(url));
 }
 
@@ -414,15 +415,13 @@ void QUWebInfoTree::processDiscogsSearchReply(QNetworkReply* reply) {
 	qDebug() << "Discogs reply received!";
 	qDebug() << "Reply: " << discogs_reply;
 
-	QRegExp rx1 = QRegExp("<h4><a href=\".*\" class=\"search_result_title\".*>.*</a></h4>\\s*<h5>\\s*<span itemprop=\"name\" title=.*>\\s*<a href=\".*\">.*</a></span></h5>");
-	rx1.setMinimal(true);
-	rx1.setCaseSensitivity(Qt::CaseInsensitive);
-
-	int pos = 0;
+	QRegularExpression rx1 = QRegularExpression("<h4><a href=\".*\" class=\"search_result_title\".*>.*</a></h4>\\s*<h5>\\s*<span itemprop=\"name\" title=.*>\\s*<a href=\".*\">.*</a></span></h5>", QRegularExpression::InvertedGreedinessOption | QRegularExpression::CaseInsensitiveOption);
+	QRegularExpressionMatchIterator i = rx1.globalMatch(discogs_reply);
+	
 	QStringList entries;
-	while ((pos = rx1.indexIn(discogs_reply, pos)) != -1) {
-		entries << rx1.cap(0);
-		pos += rx1.matchedLength();
+	while (i.hasNext()) {
+		QRegularExpressionMatch match = i.next();
+		entries << match.captured(0);
 	}
 	if(entries.isEmpty()) {
 		_discogs->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "Song not found.", QIcon(":/marks/spell_error.png")));
@@ -436,11 +435,11 @@ void QUWebInfoTree::processDiscogsSearchReply(QNetworkReply* reply) {
 	rx1.setPattern("<h4><a href=\"(.*)\" class=\"search_result_title\".*>(.*)</a></h4>\\s*<h5>\\s*<span itemprop=\"name\" title=.*>\\s*<a href=\".*\">(.*)</a></span></h5>");
 	QStringList::iterator it = entries.begin();
 	while(it != entries.end()) {
-		//qDebug() << "*it: " << *it;
-		if(rx1.indexIn(*it) != -1) {
-			discogs_url = "https://www.discogs.com" + QVariant(rx1.cap(1)).toString();
-			discogs_title = QVariant(rx1.cap(2)).toString();
-			discogs_artist = QVariant(rx1.cap(3)).toString();
+		QRegularExpressionMatch match = rx1.match(*it);
+		if(match.hasMatch()) {
+			discogs_url = "https://www.discogs.com" + QVariant(match.captured(1)).toString();
+			discogs_title = QVariant(match.captured(2)).toString();
+			discogs_artist = QVariant(match.captured(3)).toString();
 			//qDebug() << "Discogs URL: " << discogs_url;
 			//qDebug() << "Discogs title: " << discogs_title;
 			//qDebug() << "Discogs artist: " << discogs_artist;
@@ -464,22 +463,21 @@ void QUWebInfoTree::processDiscogsSongReply(QNetworkReply* reply) {
 	QIcon icon;
 	QString toolTip;
 
-	QRegExp rx2 = QRegExp("<span itemprop=\"name\" title=\".*\" >\\s*<a href=\".*\">(.+)</a></span>\\s*</span>.*<span itemprop=\"name\">\\s*(.+)\\s*</span>\\s*</h1>\\s*<div class=\"head\">.*:</div>\\s*<div class=\"content\" itemprop=\"genre\">\\s*<a href=\".*\">(.+)</a>\\s*</div>\\s*<div class=\"head\">.*:</div>\\s*<div class=\"content\">\\s*<a href=\".*\">(.+)</a>"); //\\s*</div>\\s*<div class=\"head\">.*:</div>\\s*<div class=\"content\">\\*s<a href=\".*\">(.+)</a>");
-	rx2.setMinimal(true);
-	rx2.setCaseSensitivity(Qt::CaseInsensitive);
-
+	QRegularExpression rx2 = QRegularExpression("<span itemprop=\"name\" title=\".*\" >\\s*<a href=\".*\">(.+)</a></span>\\s*</span>.*<span itemprop=\"name\">\\s*(.+)\\s*</span>\\s*</h1>\\s*<div class=\"head\">.*:</div>\\s*<div class=\"content\" itemprop=\"genre\">\\s*<a href=\".*\">(.+)</a>\\s*</div>\\s*<div class=\"head\">.*:</div>\\s*<div class=\"content\">\\s*<a href=\".*\">(.+)</a>", QRegularExpression::InvertedGreedinessOption | QRegularExpression::CaseInsensitiveOption);
+	QRegularExpressionMatch match = rx2.match(discogs_reply);
+	
 	QString discogs_url;
 	QString discogs_artist;
 	QString discogs_title;
 	QString discogs_genre;
 	QString discogs_style;
 	QString discogs_year;
-	if(rx2.indexIn(discogs_reply) != -1) {
-		discogs_artist = QVariant(rx2.cap(1)).toString();
-		discogs_title = QVariant(rx2.cap(2)).toString().trimmed();
-		discogs_genre = QVariant(rx2.cap(3)).toString();
-		discogs_style = QVariant(rx2.cap(4)).toString();
-		//discogs_year = QVariant(rx2.cap(5)).toString();
+	if(match.hasMatch()) {
+		discogs_artist = QVariant(match.captured(1)).toString();
+		discogs_title = QVariant(match.captured(2)).toString().trimmed();
+		discogs_genre = QVariant(match.captured(3)).toString();
+		discogs_style = QVariant(match.captured(4)).toString();
+		//discogs_year = QVariant(match.captured(5)).toString();
 
 		if(QString::compare(_artist, discogs_artist, Qt::CaseSensitive) == 0) {
 			icon = QIcon(":/marks/spell_ok.png");
@@ -554,20 +552,19 @@ void QUWebInfoTree::processAllmusicSearchReply(QNetworkReply* reply) {
 	QByteArray newData = reply->readAll();
 	QString allmusic_reply = QString(newData.data());
 
-	QRegExp rx1 = QRegExp("<ul class=\"search-results\">.*</ul>");
-	rx1.setMinimal(true);
-	rx1.setCaseSensitivity(Qt::CaseInsensitive);
-
-	if(rx1.indexIn(allmusic_reply) != -1) {
-		QString allmusic_results = QVariant(rx1.cap(0)).toString();
+	QRegularExpression rx1 = QRegularExpression("<ul class=\"search-results\">.*</ul>", QRegularExpression::InvertedGreedinessOption | QRegularExpression::CaseInsensitiveOption);
+	QRegularExpressionMatch match = rx1.match(allmusic_reply);
+	
+	if(match.hasMatch()) {
+		QString allmusic_results = QVariant(match.captured(0)).toString();
 
 		rx1.setPattern("<li class=\"song\">\\s*<h4>Song</h4>\\s*<div class=\"title\">\\s*<a href=\".*\">&quot;.*&quot;</a>\\s*</div>\\s*<div class=\"performers\">\\s*by <a href=\".*\">.*</a>\\s*</div>.*</li>");
-
-		int pos = 0;
+		QRegularExpressionMatchIterator mi = rx1.globalMatch(allmusic_reply);
+		
 		QStringList entries;
-		while ((pos = rx1.indexIn(allmusic_results, pos)) != -1) {
-			entries << rx1.cap(0);
-			pos += rx1.matchedLength();
+		while (mi.hasNext()) {
+			QRegularExpressionMatch match = mi.next();
+			entries << match.captured(0);
 		}
 		if(entries.isEmpty()) {
 			_allmusic->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "Song not found.", QIcon(":/marks/spell_error.png")));
@@ -578,13 +575,14 @@ void QUWebInfoTree::processAllmusicSearchReply(QNetworkReply* reply) {
 		QString allmusic_url;
 		QString allmusic_title;
 		QString allmusic_artist;
-		QRegExp rx1 = QRegExp("<li class=\"song\">\\s*<h4>Song</h4>\\s*<div class=\"title\">\\s*<a href=\"(.*)\">&quot;(.*)&quot;</a>\\s*</div>\\s*<div class=\"performers\">\\s*by <a href=\".*\">(.*)</a>\\s*</div>.*</li>");
+		QRegularExpression rx1 = QRegularExpression("<li class=\"song\">\\s*<h4>Song</h4>\\s*<div class=\"title\">\\s*<a href=\"(.*)\">&quot;(.*)&quot;</a>\\s*</div>\\s*<div class=\"performers\">\\s*by <a href=\".*\">(.*)</a>\\s*</div>.*</li>");
 		QStringList::iterator it = entries.begin();
 		while(it != entries.end()) {
-			if(rx1.indexIn(*it) != -1) {
-				allmusic_url = QVariant(rx1.cap(1)).toString();
-				allmusic_title = QVariant(rx1.cap(2)).toString();
-				allmusic_artist = QVariant(rx1.cap(3)).toString();
+			QRegularExpressionMatch match = rx1.match(*it);
+			if(match.hasMatch()) {
+				allmusic_url = QVariant(match.captured(1)).toString();
+				allmusic_title = QVariant(match.captured(2)).toString();
+				allmusic_artist = QVariant(match.captured(3)).toString();
 
 				if((_artist.contains(allmusic_artist, Qt::CaseInsensitive) || allmusic_artist.contains(_artist, Qt::CaseInsensitive)) && (_title.contains(allmusic_title, Qt::CaseInsensitive) || allmusic_title.contains(_title, Qt::CaseInsensitive))) {
 					_manager->get(QNetworkRequest(allmusic_url));
@@ -606,22 +604,22 @@ void QUWebInfoTree::processAllmusicSongReply(QNetworkReply* reply) {
 	QString allmusic_reply = QString::fromUtf8(newData);
 	QIcon icon;
 
-	QRegExp rx2 = QRegExp("<hgroup>\\s*<h2 class=\"song-artist\".*<a href=\".*\">(.*)</a>\\s*</span>\\s*</h2>\\s*<h1 class=\"song-title\".*>\\s*(.*)\\s*</h1>");
-	rx2.setMinimal(true);
-	rx2.setCaseSensitivity(Qt::CaseInsensitive);
-
+	QRegularExpression rx2 = QRegularExpression("<hgroup>\\s*<h2 class=\"song-artist\".*<a href=\".*\">(.*)</a>\\s*</span>\\s*</h2>\\s*<h1 class=\"song-title\".*>\\s*(.*)\\s*</h1>", QRegularExpression::InvertedGreedinessOption | QRegularExpression::CaseInsensitiveOption);
+	QRegularExpressionMatch match = rx2.match(allmusic_reply);
+	
 	QString allmusic_title;
 	QString allmusic_artist;
 	QString allmusic_genre;
 
-	if(rx2.indexIn(allmusic_reply) != -1) {
-		allmusic_artist = QVariant(rx2.cap(1)).toString().trimmed();
-		allmusic_title = QVariant(rx2.cap(2)).toString().trimmed();
+	if(match.hasMatch()) {
+		allmusic_artist = QVariant(match.captured(1)).toString().trimmed();
+		allmusic_title = QVariant(match.captured(2)).toString().trimmed();
 	}
 
 	rx2.setPattern("<div class=\"genre\">\\s*<h4>Genre</h4>\\s*<div>\\s*<a href=.*>(.*)</a>");
+	match = rx2.match(allmusic_reply);
 
-	if(rx2.indexIn(allmusic_reply) != -1) {
+	if(match.hasMatch()) {
 		if(QString::compare(_artist, allmusic_artist, Qt::CaseSensitive) == 0)
 			icon = QIcon(":/marks/spell_ok.png");
 		else if(QString::compare(_artist, allmusic_artist, Qt::CaseInsensitive) == 0)
@@ -638,7 +636,7 @@ void QUWebInfoTree::processAllmusicSongReply(QNetworkReply* reply) {
 			icon = QIcon(":/marks/spell_error.png");
 		_allmusic->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), allmusic_title, icon));
 
-		allmusic_genre = QVariant(rx2.cap(1)).toString();
+		allmusic_genre = QVariant(match.captured(1)).toString();
 		if(QString::compare(_genre, allmusic_genre, Qt::CaseSensitive) == 0)
 			icon = QIcon(":/marks/spell_ok.png");
 		else if(QString::compare(_artist, allmusic_genre, Qt::CaseInsensitive) == 0)

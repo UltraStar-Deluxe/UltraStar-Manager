@@ -1,6 +1,6 @@
 #include "QUStringSupport.h"
 
-#include <QRegExp>
+#include <QRegularExpression>
 
 QUStringSupport::QUStringSupport(QObject *parent): QObject(parent) {}
 
@@ -22,7 +22,7 @@ QString QUStringSupport::withoutUnsupportedCharacters(const QString &text) {
 	// replace asterixes by dashes
 	cleanText.replace('*', '-');
 	// remove everything else: '\', ':', '*', '?', '"', '|', '<', '>', '^'
-	cleanText.remove(QRegExp("[\\\\:\\*\\?\"\\|<>\\^]"));
+	cleanText.remove(QRegularExpression("[\\\\:\\*\\?\"\\|<>\\^]"));
 
 	bool dotsRemoved = false;
 
@@ -54,8 +54,7 @@ QString QUStringSupport::withoutPathDelimiters(const QString &text) {
  * Remove all "folder tags" like [SC], [VIDEO], a.s.o. from the given text.
  */
 QString QUStringSupport::withoutFolderTags(const QString &text) {
-	QRegExp rx("\\[.*\\]");
-	rx.setMinimal(true);
+	QRegularExpression rx("\\[.*\\]", QRegularExpression::InvertedGreedinessOption);
 	return QString(text).remove(rx).trimmed();
 }
 
@@ -112,12 +111,12 @@ QString QUStringSupport::simplifiedQueryString(const QString &text) {
 	QString result = text;
 
 	// remove any additions in parentheses
-	result.remove(QRegExp("\\(.*\\)"));
+	result.remove(QRegularExpression("\\(.*\\)"));
 	// remove additional artists listed as 'feat.', 'ft.', 'with' or 'vs.'/'vs'
-	result.remove(QRegExp(" feat\\. .*"));
-	result.remove(QRegExp(" ft\\. .*"));
-	result.remove(QRegExp(" with .*"));
-	result.remove(QRegExp(" vs\\.? .*"));
+	result.remove(QRegularExpression(" feat\\. .*"));
+	result.remove(QRegularExpression(" ft\\. .*"));
+	result.remove(QRegularExpression(" with .*"));
+	result.remove(QRegularExpression(" vs\\.? .*"));
 	// remove the ampersand character
 	result.replace(" & ", " ");
 	// remove the plus character
@@ -132,13 +131,13 @@ QString QUStringSupport::simplifiedQueryString(const QString &text) {
 }
 
 QStringList QUStringSupport::extractTags(const QString &text) {
-	QRegExp rx = QRegExp("\\[([^\\]]+)\\]");
-	QStringList tags;
-	int pos = 0;
+	QRegularExpression rx = QRegularExpression("\\[([^\\]]+)\\]");
+	QRegularExpressionMatchIterator i = rx.globalMatch(text);
 
-	while ((pos = rx.indexIn(text, pos)) != -1) {
-		tags << rx.cap(1).trimmed();
-		pos += rx.matchedLength();
+	QStringList tags;
+	while (i.hasNext()) {
+		QRegularExpressionMatch match = i.next();
+		tags << match.captured(1).trimmed();
 	}
 
 	if(text.contains("(kar)", Qt::CaseInsensitive))

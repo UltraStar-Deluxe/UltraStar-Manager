@@ -4,7 +4,6 @@
 #include "QUSongSupport.h"
 
 #include <QFile>
-#include <QRegExp>
 #include <QXmlStreamWriter>
 #include <QXmlStreamReader>
 #include <QTextStream>

@@ -15,7 +15,7 @@
 #include <QIcon>
 #include <QMenu>
 #include <QList>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QByteArray>
 #include <QAction>
 #include <QHeaderView>
@@ -384,7 +384,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 		return;
 	}
 
-	QRegExp rx(regexp, Qt::CaseInsensitive);
+	QRegularExpression rx(regexp, QRegularExpression::CaseInsensitiveOption);
 
 	// collect all toplevel items
 	QList<QTreeWidgetItem*> topLevelItems;
@@ -1553,7 +1553,7 @@ void QUSongTree::searchForCoverOnAAE() {
 	if(songItem) {
 		QUrl url("https://www.albumartexchange.com/covers");
 		QUrlQuery urlQuery;
-		QString queryString = QString(songItem->song()->artist() + " " + songItem->song()->title()).replace(QRegExp("(\\s+)"), "+");
+		QString queryString = QString(songItem->song()->artist() + " " + songItem->song()->title()).replace(QRegularExpression("(\\s+)"), "+");
 		urlQuery.addQueryItem("q", queryString);
 		urlQuery.addQueryItem("fltr", "ALL");
 		urlQuery.addQueryItem("sort", "TITLE");
@@ -1581,7 +1581,7 @@ void QUSongTree::searchForCoverOnGoogleImages() {
 		urlQuery.addQueryItem("tbm", "isch");
 		urlQuery.addQueryItem("tbs", "imgo:1");
 		QString queryString = songItem->song()->artist() + " " + songItem->song()->title();
-		QStringList queryStrings = queryString.split(QRegExp("(\\s+)"));
+		QStringList queryStrings = queryString.split(QRegularExpression("(\\s+)"));
 		QByteArray encodedQuery;
 		foreach(QString queryString, queryStrings) {
 			encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
@@ -1610,7 +1610,7 @@ void QUSongTree::searchForBackgroundOnGoogleImages() {
 		urlQuery.addQueryItem("tbm", "isch");
 		urlQuery.addQueryItem("tbs", "imgo:1,isz:lt,islt:2mp");
 		QString queryString = songItem->song()->artist();
-		QStringList queryStrings = queryString.split(QRegExp("(\\s+)"));
+		QStringList queryStrings = queryString.split(QRegularExpression("(\\s+)"));
 		QByteArray encodedQuery;
 		foreach(QString queryString, queryStrings) {
 			encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
@@ -1659,7 +1659,7 @@ void QUSongTree::searchForVideoOnGoogleVideo() {
 		urlQuery.addQueryItem("safe", "off");
 		urlQuery.addQueryItem("tbm", "vid");
 		QString queryString = songItem->song()->artist() + " " + songItem->song()->title();
-		QStringList queryStrings = queryString.split(QRegExp("(\\s+)"));
+		QStringList queryStrings = queryString.split(QRegularExpression("(\\s+)"));
 		QByteArray encodedQuery;
 		foreach(QString queryString, queryStrings) {
 			encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
@@ -1684,7 +1684,7 @@ void QUSongTree::searchForVideoOnYoutube() {
 	if(songItem) {
 		QUrl url("https://www.youtube.com/results");
 		QUrlQuery urlQuery;
-		QString queryString = QString(songItem->song()->artist() + " " + songItem->song()->title()).replace(QRegExp("(\\s+)"), "+");
+		QString queryString = QString(songItem->song()->artist() + " " + songItem->song()->title()).replace(QRegularExpression("(\\s+)"), "+");
 		urlQuery.addQueryItem("search_query", queryString);
 		url.setQuery(urlQuery);
 

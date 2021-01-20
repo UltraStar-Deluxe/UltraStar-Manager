@@ -1,7 +1,7 @@
 #include "QULyricsEditorDialog.h"
 #include "QUSongLineDelegate.h"
 
-#include <QRegExp>
+#include <QRegularExpression>
 
 QULyricsEditorDialog::QULyricsEditorDialog(QUSongFile *song, QWidget *parent): QDialog(parent) {
 	setupUi(this);
@@ -49,7 +49,7 @@ void QULyricsEditorDialog::toggleWhitespace(int state) {
 
 void QULyricsEditorDialog::search(const QString &keyword) {
 	for(int row = 0; row < lyrics->rowCount(); ++row) {
-		if( !keyword.isEmpty() && lyrics->item(row, 1)->text().contains(QRegExp(keyword, Qt::CaseInsensitive))) {
+		if( !keyword.isEmpty() && lyrics->item(row, 1)->text().contains(QRegularExpression(keyword, QRegularExpression::CaseInsensitiveOption))) {
 			lyrics->item(row, 1)->setBackground(Qt::yellow);
 		} else {
 			lyrics->item(row, 1)->setBackground(Qt::white);
