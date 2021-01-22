@@ -290,7 +290,7 @@ void QUPlaylistFile::load() {
 		xml.clear();
 	} else {
 		/* read UltraStar UPL */
-		QString line = QString::fromLocal8Bit(file.readLine()).trimmed();
+		QString line = QString::fromUtf8(file.readLine()).trimmed();
 
 		while(!line.startsWith(QString("#%1:").arg(SONGS_TAG), Qt::CaseInsensitive)) {
 			if(line.startsWith(QString("#%1:").arg(NAME_TAG), Qt::CaseInsensitive))
