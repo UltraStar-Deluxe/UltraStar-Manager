@@ -331,7 +331,7 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 		
 			QString swisscharts_artist = match.captured(1);
 			QString swisscharts_title = match.captured(2);
-			QString swisscharts_year = QString::compare(match.captured(3), "&nbsp;", Qt::CaseInsensitive) == 0 ? "" : match.captured(3);
+			QString swisscharts_year = match.captured(3).toInt() != 0 ? match.captured(3) : "";
 			
 			_swisscharts->addChild(this->createInfoItem(QIcon(":/types/music.png"), swisscharts_artist, swisscharts_title, QIcon(), QString()));
 	
