@@ -301,14 +301,14 @@ void QUPlaylistFile::load() {
 			if(file.atEnd())
 				break;
 
-			line = QString::fromLocal8Bit(file.readLine()).trimmed();
+			line = QString::fromUtf8(file.readLine()).trimmed();
 		}
 
 		while(!file.atEnd()) {
 			if(!line.startsWith(QString("#%1:").arg(SONGS_TAG), Qt::CaseInsensitive))
 				_playlist.append(new QUPlaylistEntry(line.section(":", 0, 0).trimmed(), line.section(":", 1, 1).trimmed(), GAMEMODE_NORMAL, this));
 
-			line = QString::fromLocal8Bit(file.readLine()).trimmed();
+			line = QString::fromUtf8(file.readLine()).trimmed();
 		}
 
 		// use last line buffer
