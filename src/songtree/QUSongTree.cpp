@@ -1534,7 +1534,7 @@ void QUSongTree::lookUpOnSwisscharts() {
 			queryString = queryString.left(queryString.lastIndexOf(' '));
 		}
 
-		urlQuery.addQueryItem("search", queryString.toLatin1().toPercentEncoding());
+		urlQuery.addQueryItem("search", queryString.replace("’", "'"));
 		url.setQuery(urlQuery);
 		QDesktopServices::openUrl(url);
 	}
@@ -1580,13 +1580,7 @@ void QUSongTree::searchForCoverOnGoogleImages() {
 		urlQuery.addQueryItem("safe", "off");
 		urlQuery.addQueryItem("tbm", "isch");
 		urlQuery.addQueryItem("tbs", "imgo:1");
-		QString queryString = songItem->song()->artist() + " " + songItem->song()->title();
-		QStringList queryStrings = queryString.split(QRegularExpression("(\\s+)"));
-		QByteArray encodedQuery;
-		foreach(QString queryString, queryStrings) {
-			encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
-		}
-		urlQuery.addQueryItem("q", encodedQuery);
+		urlQuery.addQueryItem("q", QString(songItem->song()->artist() + " " + songItem->song()->title()).replace("’", "'"));
 		url.setQuery(urlQuery);
 
 		QDesktopServices::openUrl(url);
@@ -1609,13 +1603,7 @@ void QUSongTree::searchForBackgroundOnGoogleImages() {
 		urlQuery.addQueryItem("safe", "off");
 		urlQuery.addQueryItem("tbm", "isch");
 		urlQuery.addQueryItem("tbs", "imgo:1,isz:lt,islt:2mp");
-		QString queryString = songItem->song()->artist();
-		QStringList queryStrings = queryString.split(QRegularExpression("(\\s+)"));
-		QByteArray encodedQuery;
-		foreach(QString queryString, queryStrings) {
-			encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
-		}
-		urlQuery.addQueryItem("q", encodedQuery);
+		urlQuery.addQueryItem("q", songItem->song()->artist().replace("’", "'"));
 		url.setQuery(urlQuery);
 
 		QDesktopServices::openUrl(url);
@@ -1636,7 +1624,8 @@ void QUSongTree::searchForArtworkOnFanart() {
 		QUrl url("https://fanart.tv/");
 		QUrlQuery urlQuery;
 		urlQuery.addQueryItem("sect", "2");
-		urlQuery.addQueryItem("s", songItem->song()->artist().toLatin1().toPercentEncoding());
+		// There seems to be a bug on fanart.tv that does not return any results if the artist contains an apostrophe
+		urlQuery.addQueryItem("s", songItem->song()->artist().remove(QRegularExpression("[’|']\\w+")));
 		url.setQuery(urlQuery);
 
 		QDesktopServices::openUrl(url);
@@ -1658,13 +1647,7 @@ void QUSongTree::searchForVideoOnGoogleVideo() {
 		QUrlQuery urlQuery;
 		urlQuery.addQueryItem("safe", "off");
 		urlQuery.addQueryItem("tbm", "vid");
-		QString queryString = songItem->song()->artist() + " " + songItem->song()->title();
-		QStringList queryStrings = queryString.split(QRegularExpression("(\\s+)"));
-		QByteArray encodedQuery;
-		foreach(QString queryString, queryStrings) {
-			encodedQuery += queryString.toLatin1().toPercentEncoding() + QString("+").toLatin1();
-		}
-		urlQuery.addQueryItem("q", encodedQuery);
+		urlQuery.addQueryItem("q", songItem->song()->artist() + " " + songItem->song()->title());
 		url.setQuery(urlQuery);
 
 		QDesktopServices::openUrl(url);
@@ -1684,8 +1667,7 @@ void QUSongTree::searchForVideoOnYoutube() {
 	if(songItem) {
 		QUrl url("https://www.youtube.com/results");
 		QUrlQuery urlQuery;
-		QString queryString = QString(songItem->song()->artist() + " " + songItem->song()->title()).replace(QRegularExpression("(\\s+)"), "+");
-		urlQuery.addQueryItem("search_query", queryString);
+		urlQuery.addQueryItem("search_query", songItem->song()->artist() + " " + songItem->song()->title());
 		url.setQuery(urlQuery);
 
 		QDesktopServices::openUrl(url);
@@ -1706,8 +1688,8 @@ void QUSongTree::lookUpOnUSDB() {
 		QUrl url("http://usdb.animux.de/");
 		QUrlQuery urlQuery;
 		urlQuery.addQueryItem("link", "list");
-		urlQuery.addQueryItem("interpret", songItem->song()->artist());
-		urlQuery.addQueryItem("title", songItem->song()->title());
+		urlQuery.addQueryItem("interpret", songItem->song()->artist().replace("’", "'"));
+		urlQuery.addQueryItem("title", songItem->song()->title().replace("’", "'"));
 		url.setQuery(urlQuery);
 
 		QDesktopServices::openUrl(url);
