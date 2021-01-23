@@ -321,7 +321,7 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 	QByteArray newData = reply->readAll();
 	QString searchresult = QString::fromLatin1(newData);
 	
-	QRegularExpression re = QRegularExpression("<td class=\"text\">\\s*<a href=\".*\">(.*)</a>\\s*</td>\\s*<td class=\"text\">\\s*<a href=\".*\">(.*)</a>\\s*.*\\s*</td>\\s*<td class=\"text\" style=\"border-right:0;\">\\s*(\\s*|\\d{4})\\s*</td>", QRegularExpression::InvertedGreedinessOption);
+	QRegularExpression re = QRegularExpression("<td class=\"text\">\\s*<a href=\".*\">(.*)</a>\\s*</td>\\s*<td class=\"text\">\\s*<a href=\".*\">(.*)</a>\\s*.*\\s*</td>\\s*<td class=\"text\" style=\"border-right:0;\">\\s*(\\d{4}|&nbsp;|\\s*)\\s*</td>", QRegularExpression::InvertedGreedinessOption);
 	QRegularExpressionMatchIterator mi = re.globalMatch(searchresult);
 	
 	if (mi.hasNext()) {
@@ -331,7 +331,7 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 		
 			QString swisscharts_artist = match.captured(1);
 			QString swisscharts_title = match.captured(2);
-			QString swisscharts_year = match.captured(3);
+			QString swisscharts_year = QString::compare(match.captured(3), "&nbsp;", Qt::CaseInsensitive) == 0 ? "" : match.captured(3);
 			
 			_swisscharts->addChild(this->createInfoItem(QIcon(":/types/music.png"), swisscharts_artist, swisscharts_title, QIcon(), QString()));
 	
