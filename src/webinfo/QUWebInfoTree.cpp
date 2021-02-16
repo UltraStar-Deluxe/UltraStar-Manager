@@ -319,9 +319,9 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 	}
 	
 	QByteArray newData = reply->readAll();
-	QString searchresult = QString::fromLatin1(newData);
+	QString searchresult = QString::fromLatin1(newData).remove("\r\n");
 	
-	QRegularExpression re = QRegularExpression("<td class=\"text\">\\s*<a href=\".*\">(.*)</a>\\s*</td>\\s*<td class=\"text\">\\s*<a href=\".*\">(.*)</a>\\s*.*\\s*</td>\\s*<td class=\"text\" style=\"border-right:0;\">\\s*(\\d{4}|&nbsp;|\\s*)\\s*</td>", QRegularExpression::InvertedGreedinessOption);
+	QRegularExpression re = QRegularExpression("<tr><td.*?><a href=\"/song/.*?\">(.*?)</a></td.*?>.*?<a href=\"/song/.*?\">(.*?)</a>.*?<td.*?>(\\d{4}|&nbsp;|\\s*)</td>", QRegularExpression::DotMatchesEverythingOption);
 	QRegularExpressionMatchIterator mi = re.globalMatch(searchresult);
 	
 	if (mi.hasNext()) {
