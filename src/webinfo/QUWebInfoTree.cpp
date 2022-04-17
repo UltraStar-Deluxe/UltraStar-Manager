@@ -192,7 +192,9 @@ void QUWebInfoTree::getCld2Information() {
 	CLD2::Language language3[3];
 	int percent3[3];
 	int text_bytes;
-	CLD2::Language cld2_lang = CLD2::DetectLanguageSummary(_song->lyrics().join("").remove(QChar('~'), Qt::CaseInsensitive).toStdString().c_str(), _song->lyrics().join("").toStdString().length(), false, language3, percent3, &text_bytes, &isReliable);
+	std::string songText = _song->lyrics().join("").remove(QChar('~'), Qt::CaseInsensitive).toStdString();
+
+	CLD2::Language cld2_lang = CLD2::DetectLanguageSummary(songText.c_str(), songText.length();, false, language3, percent3, &text_bytes, &isReliable);
 	
 	if(isReliable) {
 		for(int i = 0; i < 3; ++i) {
