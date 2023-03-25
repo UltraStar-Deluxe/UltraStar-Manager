@@ -5,8 +5,10 @@
 #include "fileref.h"
 #include "tag.h"
 #include "tstring.h"
-#include "MediaInfoDLL/MediaInfoDLL_Static.h"
-using namespace MediaInfoDLL;
+//#include "MediaInfoDLL/MediaInfoDLL_Static.h"
+#include "MediaInfo/MediaInfo.h"
+//using namespace MediaInfoDLL;
+using namespace MediaInfoLib;
 
 #include <QStringList>
 #include <QHeaderView>
@@ -15,7 +17,12 @@ using namespace MediaInfoDLL;
 #include <QImage>
 #include <QTextStream>
 
+#include <QDebug>
+#include <codecvt>
+#include <locale>
+
 #include "QUSongSupport.h"
+#include "QULogService.h"
 
 QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 	this->setColumnCount(2);
@@ -293,10 +300,22 @@ void QUPreviewTree::showAudioFileInformation(const QFileInfo &fi) {
 	}
 	*/
 
+	setlocale(LC_ALL, "");
 	MediaInfo MI;
-	if(MI.Open(fi.absoluteFilePath().toStdWString()) == 0) {
-		audio->addChild(this->createInfoItem(tr("Error"), "Could not open file."));
+	MI.Option(L"CharSet", L"UTF-8");
+	std::wstring filePath = fi.absoluteFilePath().toStdWString();
+	//filePath = L"/Users/markus/Downloads/JDownloader/!cleaned_foreign/Louane - Si T’étais Là [VIDEO]/Louane - Si T’étais Là.mp3";
+	//std::wcout << L"Si T’étais Là" << std::endl << std::flush;
+	//std::wcout << L'à' << std::endl << std::flush;
+	//qDebug() << QString::fromStdWString(filePath);
+	//std::cout << "cout (utf8().data): " << fi.absoluteFilePath().toUtf8().data() << std::flush;
+	
+	//std::cout << fi.absoluteFilePath().toUtf8().toStdString() << std::endl << std::flush;
+	
+	if(MI.Open(filePath) == 0) {
+		audio->addChild(this->createInfoItem(tr("Error"), tr("Could not open file.")));
 		audio->setHidden(false);
+		//logSrv->add(QString("absoluteFilePath() = " + fi.absoluteFilePath()), QU::Error);
 		return;
 	}
 	QString artist(QString::fromStdWString(MI.Get(Stream_General, 0, __T("Performer"), Info_Text, Info_Name))); if(artist == "") artist = N_A;

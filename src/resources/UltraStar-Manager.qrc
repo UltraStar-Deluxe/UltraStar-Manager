@@ -273,6 +273,7 @@
         <file>album.png</file>
         <file>source.png</file>
         <file>rap_notes.png</file>
+        <file>writeID3.png</file>
     </qresource>
     <qresource prefix="/big">
         <file>save_big.png</file>

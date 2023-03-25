@@ -36,7 +36,7 @@ void QUSmartInputField::initContainer(QValidator *validator, const QString &pref
 		layout->addWidget(new QLabel(suffix));
 	layout->addSpacerItem(new QSpacerItem(20, 5, QSizePolicy::Expanding, QSizePolicy::Fixed));
 	layout->addWidget(createResetButton());
-	layout->setMargin(0);
+	layout->setContentsMargins(0, 0, 0,0);
 	layout->setSpacing(2);
 
 	_container->setLayout(layout);

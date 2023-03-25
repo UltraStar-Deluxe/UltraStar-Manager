@@ -4,8 +4,8 @@
 #include "QUSongSupport.h"
 #include "QU.h"
 
-#include <QRegExpValidator>
-#include <QRegExp>
+#include <QRegularExpressionValidator>
+#include <QRegularExpression>
 #include <QSettings>
 #include <QFileInfo>
 #include <QDir>
@@ -68,6 +68,11 @@ QUPreparatoryTask::QUPreparatoryTask(TaskModes mode, QObject *parent):
 		this->setDescription(tr("Fix apostrophes in song artist and title"));
 		this->setToolTip(tr("Replaces wrongfully used apostrophe symbols `, ´, ' by the correct apostrophe ’"));
 		break;
+	case AddMissingDuetTags:
+		this->setIcon(QIcon(":/types/duet.png"));
+		this->setDescription(tr("Add missing ’P1’ and ’P2’ in duets"));
+		this->setToolTip(tr("Detects if a song is a duet that is missing ’P1’ and ’P2’ tags and adds them"));
+		break;
 	}
 }
 
@@ -113,6 +118,9 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 	case FixApostrophes:
 		fixApostrophes(song);
 		break;
+	case AddMissingDuetTags:
+		addMissingDuetTags(song);
+		break;
 	}
 }
 
@@ -123,15 +131,15 @@ QList<QUSmartSettingInterface*> QUPreparatoryTask::smartSettings() const {
 	if(_smartSettings.isEmpty()) {
 		switch(_mode) {
 		case AutoAssignFiles:
-			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_coverPattern", "\\[CO\\]", new QRegExpValidator(QRegExp(".*"), nullptr), tr("Pattern:"), tr("(cover)")));
-			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_backgroundPattern", "\\[BG\\]", new QRegExpValidator(QRegExp(".*"), nullptr), tr("Pattern:"), tr("(background)")));
+			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_coverPattern", "\\[CO\\]", new QRegularExpressionValidator(QRegularExpression(".*"), nullptr), tr("Pattern:"), tr("(cover)")));
+			_smartSettings.append(new QUSmartInputField("preparatory/autoAssignFiles_backgroundPattern", "\\[BG\\]", new QRegularExpressionValidator(QRegularExpression(".*"), nullptr), tr("Pattern:"), tr("(background)")));
 			break;
 		case RemoveUnsupportedTags:
 			foreach(QString unsupportedTag, _unsupportedTags)
 				_smartSettings.append(new QUSmartCheckBox("preparatory/removeUnsupportedTags_" + unsupportedTag, unsupportedTag, true));
 			break;
 		case FixAudioLength:
-			_smartSettings.append(new QUSmartInputField("preparatory/fixAudioLength", timeDiffLower, new QRegExpValidator(QRegExp("\\d*"), nullptr), tr("Buffer:"), tr("seconds")));
+			_smartSettings.append(new QUSmartInputField("preparatory/fixAudioLength", timeDiffLower, new QRegularExpressionValidator(QRegularExpression("\\d*"), nullptr), tr("Buffer:"), tr("seconds")));
 			break;
 		case CapitalizeTitle:
 			_smartSettings.append(new QUSmartCheckBox("preparatory/capitalizeTitle_onlyEnglish", tr("Capitalize English songs only"), true));
@@ -142,10 +150,10 @@ QList<QUSmartSettingInterface*> QUPreparatoryTask::smartSettings() const {
 			_smartSettings.append(new QUSmartCheckBox("preparatory/capitalizeArtist_onlyFirstWord", tr("Capitalize first word only"), false));
 			break;
 		case SetEditionIfEmpty:
-			_smartSettings.append(new QUSmartInputField("preparatory/setEditionIfEmpty_edition", "None", new QRegExpValidator(QRegExp(".*"), nullptr), tr("Edition:"), ""));
+			_smartSettings.append(new QUSmartInputField("preparatory/setEditionIfEmpty_edition", "None", new QRegularExpressionValidator(QRegularExpression(".*"), nullptr), tr("Edition:"), ""));
 			break;
 		case SetGenreIfEmpty:
-			_smartSettings.append(new QUSmartInputField("preparatory/setGenreIfEmpty_genre", "None", new QRegExpValidator(QRegExp(".*"), nullptr), tr("Genre:"), ""));
+			_smartSettings.append(new QUSmartInputField("preparatory/setGenreIfEmpty_genre", "None", new QRegularExpressionValidator(QRegularExpression(".*"), nullptr), tr("Genre:"), ""));
 			break;
 		}
 	}
@@ -189,7 +197,7 @@ void QUPreparatoryTask::capitalizeTitle(QUSongInterface *song) {
 	}
 
 	QStringList words = song->titleCompact().toLower().split(" ", Qt::SkipEmptyParts);
-	QStringList suffixes = song->title().split(" ", Qt::SkipEmptyParts).filter(QRegExp("\\[.*\\]")); // extract []-tags
+	QStringList suffixes = song->title().split(" ", Qt::SkipEmptyParts).filter(QRegularExpression("\\[.*\\]")); // extract []-tags
 
 	if(words.isEmpty()) {
 		song->log(tr("Capitalization fix not applicable due to empty title: \"%1\".").arg(song->artist()), QU::Warning);
@@ -385,4 +393,68 @@ void QUPreparatoryTask::fixApostrophes(QUSongInterface *song) {
 	song->setInfo(TITLE_TAG, song->title().replace("'", "’")); // ASCII apostrophe (not available in ASCII/Latin-9/ISO 8859-15)
 	
 	song->log(tr("Apostrophes fixed for \"%1 - %2\".").arg(song->artist()).arg(song->title()), QU::Information);
+}
+
+/*!
+ * Detect if a song is a duet that is missing ’P1’ and ’P2’ tags and add them
+ */
+void QUPreparatoryTask::addMissingDuetTags(QUSongInterface *song) {
+	if(song->isDuet())
+		return;
+	
+	const int threshold = -1000;
+	bool isPotentialDuet = false;
+	int lastNoteEnd = 0;
+	int currentNoteStart = 0;
+	int lastLineP1 = 0;
+	int lastNoteP1 = 0;
+	int diff = 0;
+	//foreach(QUSongLineInterface *line, song->loadMelody()) {
+	for(int linenumber = 0; linenumber < song->loadMelody().length(); ++linenumber) {
+		QUSongLineInterface *line = song->loadMelody().at(linenumber);
+		//foreach(QUSongNoteInterface *note, line->notes()) {
+		for(int notenumber = 0; notenumber < line->notes().length(); ++notenumber) {
+			QUSongNoteInterface *note = line->notes().at(notenumber);
+			currentNoteStart = note->timestamp();
+			diff = currentNoteStart - lastNoteEnd;
+			if(diff < threshold) {
+				isPotentialDuet = true;
+				lastLineP1 = linenumber;
+				lastNoteP1 = notenumber;
+				song->log(tr("Line: %1, Note: %2, Diff: %3").arg(lastLineP1).arg(lastNoteP1).arg(diff), QU::Information);
+			}
+			lastNoteEnd = currentNoteStart + note->duration();
+		}
+	}
+	
+	if(isPotentialDuet) {
+		song->log(tr("Potential duet with missing duet tags detected: \"%1 - %2\".").arg(song->artist()).arg(song->title()), QU::Information);
+		
+		song->setInfo(P1_TAG, "Singer 1");
+		song->setInfo(P2_TAG, "Singer 2");
+		
+		song->loadMelody().first()->setSinger(QUSongLineInterface::Singer::first);
+		
+		//duplicate mixed P1/P2 line
+		song->loadMelody().insert(lastLineP1, song->loadMelody().at(lastLineP1));
+		
+		//remove P2 notes in first mixed line (lastLineP1)
+		for(int notenumber = lastNoteP1+1; notenumber < song->loadMelody().at(lastLineP1)->notes().length(); ++notenumber) {
+			QUSongNoteInterface *note = song->loadMelody().at(lastLineP1)->notes().at(notenumber);
+			song->loadMelody().at(lastLineP1)->notes().removeAll(note);
+			qDebug() << "#notes = " << song->loadMelody().at(lastLineP1)->notes().length();
+		}
+		
+		//remove P1 notes in second mixed line (lastLineP1+1)
+		//TODO
+		
+		//set singer to P2 for second line
+		song->loadMelody().at(lastLineP1+1)->setSinger(QUSongLineInterface::Singer::second);
+		
+		song->saveMelody();
+	} else {
+		song->log(tr("Not a potential duet: \"%1 - %2\".").arg(song->artist()).arg(song->title()), QU::Information);
+	}
+
+	//song->log(tr("Missing ’P1’ and ’P2’ added to \"%1 - %2\".").arg(song->artist()).arg(song->title()), QU::Information);
 }

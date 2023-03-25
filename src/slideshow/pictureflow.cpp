@@ -1168,7 +1168,7 @@ void PictureFlow::keyPressEvent(QKeyEvent* event)
 
 void PictureFlow::mousePressEvent(QMouseEvent* event)
 {
-  if(event->x() > width()/2)
+  if(event->position().x() > width()/2)
 	showNext();
   else
 	showPrevious();

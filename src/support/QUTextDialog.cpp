@@ -4,7 +4,7 @@
 #include <QStringList>
 #include <QRegularExpression>
 #include <QTextStream>
-#include <QTextCodec>
+#include <QStringConverter>
 
 QUTextDialog::QUTextDialog(QUSongFile *song, QWidget *parent, bool showLyrics): QDialog(parent) {
 	setupUi(this);
@@ -66,11 +66,13 @@ void QUTextDialog::initFile(QUSongFile *song) {
 		in.setDevice(&file);
 
 		if(song->encoding() == "UTF8") {
-			in.setCodec(QTextCodec::codecForName("UTF-8"));
+			in.setEncoding(QStringConverter::Utf8);
 		} else if (song->encoding() == "CP1252") {
-			in.setCodec(QTextCodec::codecForName("windows-1252"));
+			//in.setEncoding(QTextCodec::codecForName("windows-1252"));
+			in.setEncoding(QStringConverter::Latin1);
 		} else if (song->encoding() == "CP1250") {
-			in.setCodec(QTextCodec::codecForName("windows-1250"));
+			//in.setEncoding(QTextCodec::codecForName("windows-1250"));
+			in.setEncoding(QStringConverter::Latin1);
 		} else {
 			// should not occur
 		}

@@ -23,7 +23,7 @@
 #include <QFileInfo>
 #include <QFileInfoList>
 #include <QTextStream>
-#include <QTextCodec>
+#include <QStringConverter>
 #include <QProgressDialog>
 
 #include <QDesktopServices>
@@ -293,7 +293,7 @@ void QUMainWindow::initWindow() {
 
 	// other things
 	QAction *a = new QAction(this);
-	a->setShortcut(Qt::CTRL + Qt::Key_F11);
+	a->setShortcut(Qt::CTRL | Qt::Key_F11);
 	connect(a, SIGNAL(triggered()), this, SLOT(toggleFullScreenMode()));
 	addAction(a);
 }
@@ -326,13 +326,13 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->openExpBtn, SIGNAL(clicked()), songTree, SLOT(openCurrentFolder()));
 	connect(_menu->moreArtistBtn, SIGNAL(clicked()), songTree, SLOT(showMoreCurrentArtist()));
 
-	_menu->setShortcut(_menu->saveBtn, Qt::CTRL + Qt::Key_S);
-	_menu->setShortcut(_menu->sendToPlaylistBtn, Qt::CTRL  + Qt::Key_P);
-	_menu->setShortcut(_menu->showLyricsBtn, Qt::CTRL  + Qt::Key_L);
-	_menu->setShortcut(_menu->deleteBtn, Qt::SHIFT + Qt::Key_Delete);
-	_menu->setShortcut(_menu->mergeBtn, Qt::CTRL  + Qt::Key_M);
-	_menu->setShortcut(_menu->openExpBtn, Qt::CTRL + Qt::Key_Return);
-	_menu->setShortcut(_menu->editLyricsBtn, Qt::CTRL + Qt::Key_E);
+	_menu->setShortcut(_menu->saveBtn, Qt::CTRL | Qt::Key_S);
+	_menu->setShortcut(_menu->sendToPlaylistBtn, Qt::CTRL | Qt::Key_P);
+	_menu->setShortcut(_menu->showLyricsBtn, Qt::CTRL | Qt::Key_L);
+	_menu->setShortcut(_menu->deleteBtn, Qt::SHIFT | Qt::Key_Delete);
+	_menu->setShortcut(_menu->mergeBtn, Qt::CTRL | Qt::Key_M);
+	_menu->setShortcut(_menu->openExpBtn, Qt::CTRL | Qt::Key_Return);
+	_menu->setShortcut(_menu->editLyricsBtn, Qt::CTRL | Qt::Key_E);
 
 	// view menu
 	connect(_menu->relativePathsChk, SIGNAL(toggled(bool)), this, SLOT(toggleRelativeSongPath(bool)));
@@ -347,15 +347,15 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->eventLogBtn, SIGNAL(clicked(bool)), eventsDock, SLOT(setVisible(bool)));
 	connect(_menu->webInfoBtn, SIGNAL(clicked(bool)), webInfoDock, SLOT(setVisible(bool)));
 
-	_menu->setShortcut(_menu->findSongsBtn, Qt::CTRL + Qt::Key_F);
+	_menu->setShortcut(_menu->findSongsBtn,	Qt::CTRL | Qt::Key_F);
 
-	_menu->setShortcut(_menu->detailsBtn,   Qt::CTRL + Qt::Key_1);
-	_menu->setShortcut(_menu->tasksBtn,	 Qt::CTRL + Qt::Key_2);
-	_menu->setShortcut(_menu->playlistsBtn, Qt::CTRL + Qt::Key_3);
-	_menu->setShortcut(_menu->playerBtn,	Qt::CTRL + Qt::Key_4);
-	_menu->setShortcut(_menu->fileInfoBtn,  Qt::CTRL + Qt::Key_5);
-	_menu->setShortcut(_menu->eventLogBtn,  Qt::CTRL + Qt::Key_6);
-	_menu->setShortcut(_menu->webInfoBtn,  Qt::CTRL + Qt::Key_7);
+	_menu->setShortcut(_menu->detailsBtn,	Qt::CTRL | Qt::Key_1);
+	_menu->setShortcut(_menu->tasksBtn,		Qt::CTRL | Qt::Key_2);
+	_menu->setShortcut(_menu->playlistsBtn, Qt::CTRL | Qt::Key_3);
+	_menu->setShortcut(_menu->playerBtn,	Qt::CTRL | Qt::Key_4);
+	_menu->setShortcut(_menu->fileInfoBtn,	Qt::CTRL | Qt::Key_5);
+	_menu->setShortcut(_menu->eventLogBtn,	Qt::CTRL | Qt::Key_6);
+	_menu->setShortcut(_menu->webInfoBtn,	Qt::CTRL | Qt::Key_7);
 
 	// options menu
 	_menu->updateBaseDirMenu();
@@ -411,8 +411,8 @@ void QUMainWindow::initRibbonBar() {
 	connect(_menu->collapseAllBtn, SIGNAL(clicked()), songTree, SLOT(collapseAll()));
 	connect(_menu->collapseAllBtn, SIGNAL(clicked()), songTree, SLOT(resizeToContents()));
 
-	_menu->setShortcut(_menu->saveAllBtn, Qt::CTRL + Qt::SHIFT + Qt::Key_S);
-	_menu->setShortcut(_menu->rescanSongsBtn, Qt::SHIFT + Qt::Key_F5);
+	_menu->setShortcut(_menu->saveAllBtn, Qt::CTRL | Qt::SHIFT | Qt::Key_S);
+	_menu->setShortcut(_menu->rescanSongsBtn, Qt::SHIFT | Qt::Key_F5);
 
 	// about menu
 	connect(_menu->aboutQtBtn, SIGNAL(clicked()), this, SLOT(aboutQt()));
@@ -424,8 +424,8 @@ void QUMainWindow::initRibbonBar() {
 	// help menu
 	connect(_menu->helpBtn, SIGNAL(clicked()), montyArea, SLOT(show()));
 	_menu->setShortcut(_menu->helpBtn, Qt::Key_F1);
-	_menu->setShortcut(_menu->montyBtn, Qt::SHIFT + Qt::Key_F1);
-	_menu->setShortcut(_menu->hideBtn, Qt::CTRL + Qt::Key_F1);
+	_menu->setShortcut(_menu->montyBtn, Qt::SHIFT | Qt::Key_F1);
+	_menu->setShortcut(_menu->hideBtn, Qt::CTRL | Qt::Key_F1);
 }
 
 /*!
@@ -938,7 +938,7 @@ void QUMainWindow::saveLog() {
 
 	if(file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
 		QTextStream out(&file);
-		out.setCodec(QTextCodec::codecForName("UTF-8"));
+		out.setEncoding(QStringConverter::Utf8);
 		out.setGenerateByteOrderMark(true);
 
 		for(int row = 0; row < log->count(); ++row) {

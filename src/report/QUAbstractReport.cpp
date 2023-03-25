@@ -2,7 +2,7 @@
 
 #include <QFile>
 #include <QTextStream>
-#include <QTextCodec>
+#include <QStringConverter>
 
 QUAbstractReport::QUAbstractReport(
 		const QList<QUSongFile*> &songFiles,
@@ -25,7 +25,7 @@ bool QUAbstractReport::save() {
 
 	if(file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
 		QTextStream out(&file);
-		out.setCodec(QTextCodec::codecForName("UTF-8"));
+		out.setEncoding(QStringConverter::Utf8);
 		out.setGenerateByteOrderMark(true);
 		out << this->content();
 		file.close();

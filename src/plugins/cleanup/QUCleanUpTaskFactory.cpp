@@ -24,6 +24,7 @@ QList<int> QUCleanUpTaskFactory::types() const {
 	result << QUCleanUpTask::UnusedFiles;
 	result << QUCleanUpTask::InvalidFileTags;
 	result << QUCleanUpTask::RemoveEndTag;
+	result << QUCleanUpTask::SetID3Tags;
 	return result;
 }
 

@@ -27,10 +27,23 @@ INCLUDEPATH += . \
 	.. \
 	../.. \
 	../../song \
+	../../../include/taglib \
 	../shared
 TEMPLATE = lib
 CONFIG += plugin
 QT += widgets
+
+win32 {
+	LIBS += -L"../../../lib/win64" \
+		-ltag
+}
+mac {
+	LIBS += -L"/usr/local/lib" \
+		-ltag
+}
+unix:!macx {
+	LIBS += -ltag
+}
 
 CONFIG(release, debug|release) {
 	TARGET = 5-cleanup

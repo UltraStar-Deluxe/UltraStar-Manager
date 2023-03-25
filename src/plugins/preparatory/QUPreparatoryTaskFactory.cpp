@@ -31,6 +31,7 @@ QList<int> QUPreparatoryTaskFactory::types() const {
 	result << QUPreparatoryTask::SetGenreIfEmpty;
 	result << QUPreparatoryTask::FixLanguage;
 	result << QUPreparatoryTask::FixApostrophes;
+	result << QUPreparatoryTask::AddMissingDuetTags;
 	return result;
 }
 

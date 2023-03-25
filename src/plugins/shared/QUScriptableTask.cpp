@@ -4,7 +4,7 @@
 #include <QFileInfo>
 #include <QVariant>
 #include <QMessageBox>
-#include <QRegExp>
+#include <QRegularExpression>
 
 QUScriptableTask::QUScriptableTask(QDomDocument *taskConfig, QObject *parent): QUSimpleTask(parent) {
 	this->_configFileName = taskConfig->firstChildElement("task").attribute("file", tr("unnamed.xml"));

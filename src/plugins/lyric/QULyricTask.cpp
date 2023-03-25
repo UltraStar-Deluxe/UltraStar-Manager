@@ -3,7 +3,7 @@
 #include "QUSmartCheckBox.h"
 
 #include <QVariant>
-#include <QRegExpValidator>
+#include <QRegularExpressionValidator>
 #include <QList>
 
 QULyricTask::QULyricTask(TaskModes mode, QObject *parent):
@@ -132,13 +132,13 @@ void QULyricTask::startOn(QUSongInterface *song) {
 QList<QUSmartSettingInterface*> QULyricTask::smartSettings() const {
 	if(_smartSettings.isEmpty()) {
 		if(_mode == FixTimeStamps) {
-			_smartSettings.append(new QUSmartInputField("lyric/fixTimeStamps", "0", new QRegExpValidator(QRegExp("-?\\d*"), nullptr), tr("Start:"), ""));
+			_smartSettings.append(new QUSmartInputField("lyric/fixTimeStamps", "0", new QRegularExpressionValidator(QRegularExpression("-?\\d*"), nullptr), tr("Start:"), ""));
 		}
 		if(_mode == FixLowBPM) {
-			_smartSettings.append(new QUSmartInputField("lyric/fixLowBPM", "200", new QRegExpValidator(QRegExp("\\d*"), nullptr), tr("if BPM less than:"), ""));
+			_smartSettings.append(new QUSmartInputField("lyric/fixLowBPM", "200", new QRegularExpressionValidator(QRegularExpression("\\d*"), nullptr), tr("if BPM less than:"), ""));
 		}
 		if(_mode == SetMedleyTags) {
-			_smartSettings.append(new QUSmartInputField("lyric/medleyMinDuration", "30", new QRegExpValidator(QRegExp("\\d*"), nullptr), tr("Minimum length:"), tr("seconds")));
+			_smartSettings.append(new QUSmartInputField("lyric/medleyMinDuration", "30", new QRegularExpressionValidator(QRegularExpression("\\d*"), nullptr), tr("Minimum length:"), tr("seconds")));
 			_smartSettings.append(new QUSmartCheckBox("lyric/overwriteExisting", tr("Overwrite existing values"), false));
 		}
 	}
@@ -579,9 +579,9 @@ void QULyricTask::setMedleyTags(QUSongInterface *song, int medleyMinDuration, bo
 	QList<QPair<int, int> > medleyCandidates;
 
 	for(int i = 0; i <= song->loadMelody().size() - 2; i++) {
-		QString firstLine = song->loadMelody().at(i)->toString().toLower().remove(QRegExp("[,\\.!\\?~ ]"));
+		QString firstLine = song->loadMelody().at(i)->toString().toLower().remove(QRegularExpression("[,\\.!\\?~ ]"));
 		for(int j = i + 4; j <= song->loadMelody().size() - 1; j++) {
-			QString secondLine = song->loadMelody().at(j)->toString().toLower().remove(QRegExp("[,\\.!\\?~ ]"));
+			QString secondLine = song->loadMelody().at(j)->toString().toLower().remove(QRegularExpression("[,\\.!\\?~ ]"));
 			if(firstLine == secondLine) {
 				tempMedley.first = i;
 				tempMedley.second = i;
@@ -594,8 +594,8 @@ void QULyricTask::setMedleyTags(QUSongInterface *song, int medleyMinDuration, bo
 				}
 
 				for(int k = 1; k <= max; k++) {
-					firstLine = song->loadMelody().at(i+k)->toString().toLower().remove(QRegExp("[,\\.!\\?~ ]"));
-					secondLine = song->loadMelody().at(j+k)->toString().toLower().remove(QRegExp("[,\\.!\\?~ ]"));
+					firstLine = song->loadMelody().at(i+k)->toString().toLower().remove(QRegularExpression("[,\\.!\\?~ ]"));
+					secondLine = song->loadMelody().at(j+k)->toString().toLower().remove(QRegularExpression("[,\\.!\\?~ ]"));
 					if(firstLine == secondLine) {
 						tempMedley.second = i + k;
 					} else {

@@ -75,7 +75,7 @@ void QUPlayList::showContextMenu(const QPoint &point) {
 		menu.addAction(QIcon(":/types/duet.png"), tr("Game mode 'Duet'"), this, SLOT(setGameModeDuet()));
 	}
 	menu.addSeparator();
-	menu.addAction(QIcon(":/marks/delete.png"), tr("Remove from list"), this, SLOT(removeSelectedItems()), QKeySequence::fromString("Del"));
+	menu.addAction(QIcon(":/marks/delete.png"), tr("Remove from list"), QKeySequence::fromString("Del"), this, SLOT(removeSelectedItems()));
 	menu.addAction(tr("Remove unknown entries"), this, SLOT(removeUnknownEntries()));
 
 	menu.exec(this->mapToGlobal(point));

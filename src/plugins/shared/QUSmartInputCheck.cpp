@@ -37,12 +37,12 @@ QUSmartInputCheck::QUSmartInputCheck(const QString &registryKey, const QString &
 	groupLayout->addWidget(_edit);
 	groupLayout->addSpacerItem(new QSpacerItem(20, 5, QSizePolicy::Expanding, QSizePolicy::Fixed));
 	groupLayout->addWidget(createResetButton());
-	groupLayout->setMargin(0);
+	groupLayout->setContentsMargins(0, 0, 0, 0);
 	groupLayout->setSpacing(2);
 
 	containerLayout->addWidget(_checkBox);
 	containerLayout->addWidget(_group);
-	containerLayout->setMargin(0);
+	containerLayout->setContentsMargins(0, 0, 0, 0);
 	containerLayout->setSpacing(0);
 
 	_group->setLayout(groupLayout);

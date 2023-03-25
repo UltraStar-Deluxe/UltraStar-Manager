@@ -21,8 +21,8 @@ QUPictureDialog::QUPictureDialog(const QString &filePath, QWidget *parent): QDia
 	connect(fitSizeBtn, SIGNAL(clicked()), this, SLOT(fitPicture()));
 	connect(fullSizeBtn, SIGNAL(clicked()), this, SLOT(fullPicture()));
 
-	fitSizeBtn->setShortcut(Qt::CTRL + Qt::Key_1);
-	fullSizeBtn->setShortcut(Qt::CTRL + Qt::Key_2);
+	fitSizeBtn->setShortcut(Qt::CTRL | Qt::Key_1);
+	fullSizeBtn->setShortcut(Qt::CTRL | Qt::Key_2);
 
 	this->fullPicture();
 

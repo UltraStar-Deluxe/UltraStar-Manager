@@ -99,7 +99,7 @@ void QUMediaPlayer::setSongs(const QList<QUSongFile*> &songs, Source src) {
 }
 
 void QUMediaPlayer::play() {
-	if(_player->state() == QMediaPlayer::PlayingState)
+	if(_player->playbackState() == QMediaPlayer::PlayingState)
 		return;	// already playing
 
 	if(_currentSongIndex == -1) {
@@ -120,7 +120,7 @@ void QUMediaPlayer::play() {
 		return;
 	}
 
-	_player->setMedia(QUrl::fromLocalFile(info.filePath));
+	_player->setSource(QUrl::fromLocalFile(info.filePath));
 
 	autocue2->setVisible(!info.melody2.isEmpty());
 
@@ -248,7 +248,7 @@ void QUMediaPlayer::updateTime() {
 void QUMediaPlayer::requestSongs() {
 	//if(_mediaStream)
 	//	stop();
-	if(_player->state() == QMediaPlayer::PlayingState)
+	if(_player->playbackState() == QMediaPlayer::PlayingState)
 		_player->stop();
 
 	if(sourceCombo->currentIndex() == SelectedSongs) {

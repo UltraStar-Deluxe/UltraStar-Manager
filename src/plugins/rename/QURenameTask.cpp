@@ -5,7 +5,7 @@
 #include <QFileInfo>
 #include <QVariant>
 #include <QMessageBox>
-#include <QRegExp>
+#include <QRegularExpression>
 
 QURenameTask::QURenameTask(QDomDocument *taskConfig, QObject *parent):
 	QUScriptableTask(taskConfig, parent)
@@ -86,7 +86,7 @@ void QURenameTask::startOn(QUSongInterface *song) {
 	}
 
 	// remove any unused placeholders
-	while(schema.contains(QRegExp("%\\d")))
+	while(schema.contains(QRegularExpression("%\\d")))
 		schema = schema.arg("");
 
 	// a '/' stands for the root with path renaming -> remove it!
@@ -167,7 +167,7 @@ QStringList QURenameTask::filterUnknownTags(const QString &text) {
 		}
 
 		if(keep) {
-			tag.replace(QRegExp("\\].*"), "]");
+			tag.replace(QRegularExpression("\\].*"), "]");
 			tag.prepend("[");
 			cleanTags << tag.trimmed();
 		}

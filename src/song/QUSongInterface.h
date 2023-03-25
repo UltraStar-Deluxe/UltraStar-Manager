@@ -6,7 +6,7 @@
 #include <QObject>
 
 class QString;
-class QStringList;
+//class QStringList;
 class QFileInfo;
 
 #define ENCODING_TAG			"ENCODING"

@@ -27,7 +27,7 @@ Qt::ItemFlags QUCoverModel::flags (const QModelIndex &index) const {
 	if (index.isValid())
 		return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
-	return nullptr;
+	return Qt::ItemFlags(); // nullptr;
 }
 
 /*!

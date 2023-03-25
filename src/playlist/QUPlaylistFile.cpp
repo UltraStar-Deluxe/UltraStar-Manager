@@ -7,7 +7,7 @@
 #include <QXmlStreamWriter>
 #include <QXmlStreamReader>
 #include <QTextStream>
-#include <QTextCodec>
+#include <QStringConverter>
 
 QUPlaylistFile::QUPlaylistFile(QObject *parent):
 		QObject(parent),
@@ -99,8 +99,7 @@ bool QUPlaylistFile::save() {
 	} else {
 		/* write UltraStar UPL */
 		QTextStream _out(&file);
-		QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-		_out.setCodec(codec);
+		_out.setEncoding(QStringConverter::Utf8);
 
 		// if it is a new playlist created within UltraStar Manager, we add a header to the comments
 		if(_comments.isEmpty()) {
@@ -254,25 +253,25 @@ void QUPlaylistFile::load() {
 			}
 
 			if(token == QXmlStreamReader::StartElement) {
-				if(xml.name() == "Info") {
+				if(xml.name() == QString("Info")) {
 					continue;
 				}
-				else if(xml.name() == "PlaylistName") {
+				else if(xml.name() == QString("PlaylistName")) {
 					_name = xml.readElementText();
 				}
-				else if(xml.name() == "Songs") {
+				else if(xml.name() == QString("Songs")) {
 					continue;
 				}
-				else if(xml.name().startsWith("Song")) {
+				else if(xml.name().startsWith(QString("Song"))) {
 					continue;
 				}
-				else if(xml.name() == "Artist") {
+				else if(xml.name() == QString("Artist")) {
 					artist = xml.readElementText();
 				}
-				else if(xml.name() == "Title") {
+				else if(xml.name() == QString("Title")) {
 					title = xml.readElementText();
 				}
-				else if(xml.name() == "GameMode") {
+				else if(xml.name() == QString("GameMode")) {
 					gameMode = xml.readElementText();
 				}
 				if(!artist.isEmpty() && !title.isEmpty() && !gameMode.isEmpty()) {

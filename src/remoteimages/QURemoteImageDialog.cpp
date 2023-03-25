@@ -51,7 +51,7 @@ void QURemoteImageDialog::initResultsPage(const QList<QUSongItem*> &items) {
 	// setup layout in scrolling area
 	QVBoxLayout *l = new QVBoxLayout;
 	l->setSpacing(10);
-	l->setMargin(5);
+	l->setContentsMargins(5, 5, 5, 5);
 	l->setObjectName(QString::fromUtf8("contentLayout"));
 	content->setLayout(l);
 	scrollArea->setWidget(content);
