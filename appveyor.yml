@@ -25,7 +25,7 @@ image:
   # AppVeyor builds are ordered by the image list:
   - Visual Studio 2019
   - macos
-  - Ubuntu2004
+  - Ubuntu1804
 
 matrix:
   exclude:
@@ -38,9 +38,9 @@ matrix:
       COMPILER: MinGW
     - image: macos
       COMPILER: GCC
-    - image: Ubuntu2004
+    - image: Ubuntu1804
       COMPILER: MinGW
-    - image: Ubuntu2004
+    - image: Ubuntu1804
       COMPILER: Clang
 
 for:
@@ -160,7 +160,7 @@ for:
   -
     matrix:
       only:
-        - image: Ubuntu2004
+        - image: Ubuntu1804
 
     clone_folder: ~/UltraStar-Manager
 
