@@ -70,6 +70,7 @@ for:
     before_build:
       - cmd: set PATH=%QTDIR%\bin;C:\Program Files (x86)\NSIS\;%PATH%
       - cmd: echo PATH=%PATH%
+      - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
 
     build_script:
       - cmd: cd C:\UltraStar-Manager
