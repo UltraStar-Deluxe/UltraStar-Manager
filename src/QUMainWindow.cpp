@@ -499,7 +499,7 @@ void QUMainWindow::initTaskList() {
 	grp->addButton(tasksSlot4Btn); grp->setId(tasksSlot4Btn, 3);
 	grp->setExclusive(true);
 
-	connect(grp, SIGNAL(buttonClicked(int)), taskList, SLOT(setCurrentSlot(int)));
+	connect(grp, SIGNAL(idClicked(int)), taskList, SLOT(setCurrentSlot(int)));
 	connect(taskList, SIGNAL(toolTipChanged(int, const QString&)), this, SLOT(updateTasksSlotButtons(int, const QString&)));
 
 	// fetch all tooltips
