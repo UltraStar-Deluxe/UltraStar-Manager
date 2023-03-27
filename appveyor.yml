@@ -76,7 +76,7 @@ for:
       - cmd: cd C:\UltraStar-Manager
       - cmd: cd src\plugins\audiotag\
       - cmd: qmake audiotag.pro -spec win32-msvc #win32-g++
-      - cmd: jom -j %NUMBER_OF_PROCESSORS%
+      - cmd: nmake #-j %NUMBER_OF_PROCESSORS%
       - cmd: cd ..\cleanup\
       - cmd: qmake cleanup.pro -spec win32-msvc #win32-g++
       - cmd: jom -j %NUMBER_OF_PROCESSORS%
