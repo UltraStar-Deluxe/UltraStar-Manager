@@ -76,22 +76,22 @@ for:
       - cmd: cd C:\UltraStar-Manager
       - cmd: cd src\plugins\audiotag\
       - cmd: qmake audiotag.pro -spec win32-msvc #win32-g++
-      - cmd: make -j%NUMBER_OF_PROCESSORS%
+      - cmd: jom -j %NUMBER_OF_PROCESSORS%
       - cmd: cd ..\cleanup\
       - cmd: qmake cleanup.pro -spec win32-msvc #win32-g++
-      - cmd: make -j%NUMBER_OF_PROCESSORS%
+      - cmd: jom -j %NUMBER_OF_PROCESSORS%
       - cmd: cd ..\lyric\
       - cmd: qmake lyric.pro -spec win32-msvc #win32-g++
-      - cmd: make -j%NUMBER_OF_PROCESSORS%
+      - cmd: jom -j %NUMBER_OF_PROCESSORS%
       - cmd: cd ..\preparatory\
       - cmd: qmake preparatory.pro -spec win32-msvc #win32-g++
-      - cmd: make -j%NUMBER_OF_PROCESSORS%
+      - cmd: jom -j %NUMBER_OF_PROCESSORS%
       - cmd: cd ..\rename\
       - cmd: qmake rename.pro -spec win32-msvc #win32-g++
-      - cmd: make -j%NUMBER_OF_PROCESSORS%
+      - cmd: jom -j %NUMBER_OF_PROCESSORS%
       - cmd: cd ..\..\
       - cmd: qmake UltraStar-Manager.pro -spec win32-msvc #win32-g++
-      - cmd: make -j%NUMBER_OF_PROCESSORS%
+      - cmd: jom -j %NUMBER_OF_PROCESSORS%
 
     after_build:
       - cmd: makensis ../setup/win64/UltraStar-Manager.nsi
