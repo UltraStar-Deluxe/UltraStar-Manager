@@ -5,9 +5,7 @@
 #include "fileref.h"
 #include "tag.h"
 #include "tstring.h"
-//#include "MediaInfoDLL/MediaInfoDLL_Static.h"
 #include "MediaInfo/MediaInfo.h"
-//using namespace MediaInfoDLL;
 using namespace MediaInfoLib;
 
 #include <QStringList>

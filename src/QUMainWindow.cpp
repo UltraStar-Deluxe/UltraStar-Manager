@@ -43,8 +43,8 @@
 #include "QUPluginManager.h"
 
 #include "taglib.h"
-#include "MediaInfoDLL/MediaInfoDLL_Static.h"
-using namespace MediaInfoDLL;
+#include "MediaInfo/MediaInfo.h"
+using namespace MediaInfoLib;
 
 #include "QUTagOrderDialog.h"
 #include "QUTextDialog.h"
