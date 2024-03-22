@@ -72,6 +72,7 @@ for:
       # build taglib dependency
       - git clone https://github.com/taglib/taglib.git
       - cd taglib
+      - git submodule update --init
       - mkdir build
       - cd build
       - cmake .. -G "Visual Studio 17 2022" -DCMAKE_BUILD_TYPE=Release
