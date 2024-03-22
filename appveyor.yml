@@ -12,8 +12,8 @@ environment:
   matrix:
     # Windows
     - ARCH: x64
-      COMPILER: msvc2019 #MinGW
-      QTDIR: C:\Qt\6.5\msvc2019_64 #C:\Qt\6.4.2\mingw_64
+      COMPILER: msvc2019
+      QTDIR: C:\Qt\6.5\msvc2019_64
     # macOS
     - ARCH: x64
       COMPILER: Clang
@@ -37,16 +37,16 @@ matrix:
     - image: Visual Studio 2022
       COMPILER: GCC
     - image: macos
-      COMPILER: msvc2019 #MinGW
+      COMPILER: msvc2019
     - image: macos
       COMPILER: GCC
     - image: Ubuntu2004
-      COMPILER: msvc2019 #MinGW
+      COMPILER: msvc2019
     - image: Ubuntu2004
       COMPILER: Clang
 
 for:
-  # Windows (MinGW)
+  # Windows (MSVC)
   - matrix:
       only:
         - image: Visual Studio 2022
@@ -64,9 +64,6 @@ for:
     install:
       - ps: $env:package_version = ("$(git describe --tags --always --long)").trim()
       - ps: Update-AppveyorBuild -Version "$env:package_version-$env:APPVEYOR_BUILD_NUMBER"
-      # Qt 5.15.2 windeployqt has a bug, so use a custom version of windeployqt
-      #- cmd: appveyor DownloadFile http://tripleboot.org/Uploads/windeployqt64releaseonly.zip
-      #- cmd: 7z e windeployqt64releaseonly.zip -o%QTDIR%\..\..\Tools\mingw810_64\bin
 
     before_build:
       - cmd: set PATH=%QTDIR%\bin;C:\Program Files (x86)\NSIS\;%PATH%
@@ -106,7 +103,7 @@ for:
 
     on_failure:
       # Change false to true to block build and investigate build failures
-      - ps: $blockRdp = $false; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+      - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
   # Mac
   - matrix:
