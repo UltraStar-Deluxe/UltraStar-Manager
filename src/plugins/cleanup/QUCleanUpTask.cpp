@@ -95,18 +95,18 @@ void QUCleanUpTask::startOn(QUSongInterface *song) {
 			TagLib::MPEG::File f(_currentSong->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
 			
 			if(artistToID3) {
-				if(f.hasID3v1Tag()) { f.ID3v1Tag()->setArtist(_currentSong->artist() == N_A ? TagLib::String::null : QStringToTString(_currentSong->artist())); }
-				f.ID3v2Tag(true)->setArtist(_currentSong->artist() == N_A ? TagLib::String::null : QStringToTString(_currentSong->artist()));
+				if(f.hasID3v1Tag()) { f.ID3v1Tag()->setArtist(_currentSong->artist() == N_A ? TagLib::String() : QStringToTString(_currentSong->artist())); }
+				f.ID3v2Tag(true)->setArtist(_currentSong->artist() == N_A ? TagLib::String() : QStringToTString(_currentSong->artist()));
 				_currentSong->log(QString(tr("#ARTIST written to ID3 tag of song file: \"%1\"")).arg(_currentSong->filePath()), QU::Information);
 			}
 			if(titleToID3) {
-				if(f.hasID3v1Tag()) { f.ID3v1Tag()->setTitle(_currentSong->title() == N_A ? TagLib::String::null : QStringToTString(_currentSong->title())); }
-				f.ID3v2Tag(true)->setTitle(_currentSong->title() == N_A ? TagLib::String::null : QStringToTString(_currentSong->title()));
+				if(f.hasID3v1Tag()) { f.ID3v1Tag()->setTitle(_currentSong->title() == N_A ? TagLib::String() : QStringToTString(_currentSong->title())); }
+				f.ID3v2Tag(true)->setTitle(_currentSong->title() == N_A ? TagLib::String() : QStringToTString(_currentSong->title()));
 				_currentSong->log(QString(tr("#TITLE written to ID3 tag of song file: \"%1\"")).arg(_currentSong->filePath()), QU::Information);
 			}
 			if(genreToID3) {
-				if(f.hasID3v1Tag()) { f.ID3v1Tag()->setGenre(_currentSong->genre() == N_A ? TagLib::String::null : QStringToTString(_currentSong->genre())); }
-				f.ID3v2Tag(true)->setGenre(_currentSong->genre() == N_A ? TagLib::String::null : QStringToTString(_currentSong->genre()));
+				if(f.hasID3v1Tag()) { f.ID3v1Tag()->setGenre(_currentSong->genre() == N_A ? TagLib::String() : QStringToTString(_currentSong->genre())); }
+				f.ID3v2Tag(true)->setGenre(_currentSong->genre() == N_A ? TagLib::String() : QStringToTString(_currentSong->genre()));
 				_currentSong->log(QString(tr("#GENRE written to ID3 tag of song file: \"%1\"")).arg(_currentSong->filePath()), QU::Information);
 			}
 			if(yearToID3) {
@@ -115,8 +115,8 @@ void QUCleanUpTask::startOn(QUSongInterface *song) {
 				_currentSong->log(QString(tr("#YEAR written to ID3 tag of song file: \"%1\"")).arg(_currentSong->filePath()), QU::Information);
 			}
 			if(commentToID3) {
-				if(f.hasID3v1Tag()) { f.ID3v1Tag()->setComment(_currentSong->comment() == N_A ? TagLib::String::null : QStringToTString(_currentSong->comment())); }
-				f.ID3v2Tag(true)->setComment(_currentSong->comment() == N_A ? TagLib::String::null : QStringToTString(_currentSong->comment()));
+				if(f.hasID3v1Tag()) { f.ID3v1Tag()->setComment(_currentSong->comment() == N_A ? TagLib::String() : QStringToTString(_currentSong->comment())); }
+				f.ID3v2Tag(true)->setComment(_currentSong->comment() == N_A ? TagLib::String() : QStringToTString(_currentSong->comment()));
 				_currentSong->log(QString(tr("#COMMENT written to ID3 tag of song file: \"%1\"")).arg(_currentSong->filePath()), QU::Information);
 			}
 			if(languageToID3) {
