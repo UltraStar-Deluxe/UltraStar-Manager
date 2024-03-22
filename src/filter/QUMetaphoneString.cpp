@@ -120,7 +120,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 				current +=1;
 			break;
 
-		case 'Ç':
+        case L'Ç':
 			add("S");
 			current += 1;
 			break;
@@ -515,7 +515,7 @@ void QUMetaphoneString::doDoubleMetaphone(QString &metaph, QString &metaph2) {
 			add("N");
 			break;
 
-		case 'Ñ':
+        case L'Ñ':
 			current += 1;
 			add("N");
 			break;
