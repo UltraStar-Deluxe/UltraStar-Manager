@@ -11,3 +11,6 @@ Makefile
 ui
 release
 *.rc
+.DS_Store
+**/.DS_Store
+.qtc_clangd/
