@@ -244,13 +244,14 @@ INCLUDEPATH += . \
 win32 {
 	INCLUDEPATH += ../include/taglib \
 		../include/mediainfo \
+		../include/ \
 		../include/cld2/public
 
 	LIBS += -L"../lib/win64" \
 		-ltag \
 		-lmediainfo \
 		-lzen \
-		-lzlibstatic \
+		-lzlib \
 		-lcld2
 
 	RC_ICONS += UltraStar-Manager.ico
@@ -279,12 +280,7 @@ macx {
 }
 
 unix:!macx {
-	# the INCLUDEPATH += ../include/mediainfo should be removed since it refers to the local copy of the header file
-	# which should only be used for Windows. However, for some reason mediainfo on Unix installed via
-	# 'apt-get install libmediainfo-dev' does NOT have MediaInfoDLL/MediaInfoDLL_Static.h, but instead only
-	# MediaInfoDLL/MediaInfoDLL.h, and currently compilation fails with that header file. Help wanted.
-	INCLUDEPATH += ../include/mediainfo \
-		../include/cld2/public
+	INCLUDEPATH += /usr/include/cld2/public
 
 	LIBS += -L"/usr/lib/x86_64-linux-gnu" \
 		-lcld2
