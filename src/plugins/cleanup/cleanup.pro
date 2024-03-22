@@ -35,7 +35,7 @@ QT += widgets
 
 win32 {
 	LIBS += -L"../../../lib/win64" \
-		-llibtag
+		-ltag
 }
 mac {
 	LIBS += -L"/usr/local/lib" \

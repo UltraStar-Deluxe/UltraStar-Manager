@@ -69,17 +69,33 @@ for:
       - cmd: set PATH=%QTDIR%\bin;C:\Program Files (x86)\NSIS\;%PATH%
       - cmd: echo PATH=%PATH%
       - cmd: call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
-      # build taglib dependency
-      - git clone https://github.com/taglib/taglib.git
-      - cd taglib
-      - git submodule update --init
-      - mkdir build
-      - cd build
-      - cmake .. -G "Visual Studio 17 2022" -DCMAKE_BUILD_TYPE=Release
-      - cmake --build . --config Release
 
     build_script:
-      - cmd: cd C:\UltraStar-Manager
+      # setup vcpkg package manager for easy dependency installation
+      - git clone https://github.com/microsoft/vcpkg.git
+      - cd vcpkg
+      - bootstrap-vcpkg.bat
+      - .\vcpkg install taglib
+      - .\vcpkg install libmediainfo
+      # copy include files
+      - cp -r installed/x64-windows/include/MediaInfo ../include/mediainfo
+      - cp -r installed/x64-windows/include/MediaInfoDLL ../include/mediainfo
+      - cp -r installed/x64-windows/include/ZenLib ../include
+      - cp -r installed/x64-windows/include/taglib ../include
+      # copy lib files
+      - cp installed/x64-windows/lib/mediainfo.lib ../lib/win64
+      - cp installed/x64-windows/lib/zen.lib ../lib/win64
+      - cp installed/x64-windows/lib/zlib.lib ../lib/win64
+      - cp installed/x64-windows/lib/tag.lib ../lib/win64
+      # build cld2
+      - cd ..
+      - git clone https://github.com/CLD2Owners/cld2
+      - cd cld2/internal
+      - cl /MD -c cldutil.cc cldutil_shared.cc compact_lang_det.cc compact_lang_det_hint_code.cc compact_lang_det_impl.cc debug.cc fixunicodevalue.cc generated_entities.cc generated_language.cc generated_ulscript.cc getonescriptspan.cc lang_script.cc offsetmap.cc scoreonescriptspan.cc tote.cc utf8statetable.cc cld_generated_cjk_uni_prop_80.cc cld2_generated_cjk_compatible.cc cld_generated_cjk_delta_bi_4.cc generated_distinct_bi_0.cc cld2_generated_quadchrome_2.cc cld2_generated_deltaoctachrome.cc cld2_generated_distinctoctachrome.cc cld_generated_score_quad_octa_2.cc
+      - lib cldutil.obj cldutil_shared.obj compact_lang_det.obj compact_lang_det_hint_code.obj compact_lang_det_impl.obj debug.obj fixunicodevalue.obj generated_entities.obj generated_language.obj generated_ulscript.obj getonescriptspan.obj lang_script.obj offsetmap.obj scoreonescriptspan.obj tote.obj utf8statetable.obj cld_generated_cjk_uni_prop_80.obj cld2_generated_cjk_compatible.obj cld_generated_cjk_delta_bi_4.obj generated_distinct_bi_0.obj cld2_generated_quadchrome_2.obj cld2_generated_deltaoctachrome.obj cld2_generated_distinctoctachrome.obj cld_generated_score_quad_octa_2.obj /OUT:cld2.lib
+      - cp cld2.lib ../../lib/win64/cld2.lib
+      # build
+      - cd ../..
       - cmd: cd src\plugins\audiotag\
       - cmd: qmake audiotag.pro -spec win32-msvc
       - cmd: nmake
