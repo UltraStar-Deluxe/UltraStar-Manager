@@ -69,27 +69,34 @@ for:
       - cmd: set PATH=%QTDIR%\bin;C:\Program Files (x86)\NSIS\;%PATH%
       - cmd: echo PATH=%PATH%
       - cmd: call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
+      # build taglib dependency
+      - git clone https://github.com/taglib/taglib.git
+      - cd taglib
+      - mkdir build
+      - cd build
+      - cmake .. -G "Visual Studio 17 2022" -DCMAKE_BUILD_TYPE=Release
+      - cmake --build . --config Release
 
     build_script:
       - cmd: cd C:\UltraStar-Manager
       - cmd: cd src\plugins\audiotag\
-      #- cmd: qmake audiotag.pro -spec win32-msvc #win32-g++
-      #- cmd: nmake #-j %NUMBER_OF_PROCESSORS%
+      - cmd: qmake audiotag.pro -spec win32-msvc
+      - cmd: nmake
       - cmd: cd ..\cleanup\
-      - cmd: qmake6 cleanup.pro -spec win32-msvc #win32-g++
-      - cmd: nmake #-j %NUMBER_OF_PROCESSORS%
+      - cmd: qmake6 cleanup.pro -spec win32-msvc
+      - cmd: nmake
       - cmd: cd ..\lyric\
-      - cmd: qmake6 lyric.pro -spec win32-msvc #win32-g++
-      - cmd: nmake #-j %NUMBER_OF_PROCESSORS%
+      - cmd: qmake6 lyric.pro -spec win32-msvc
+      - cmd: nmake
       - cmd: cd ..\preparatory\
-      - cmd: qmake6 preparatory.pro -spec win32-msvc #win32-g++
-      - cmd: nmake #-j %NUMBER_OF_PROCESSORS%
+      - cmd: qmake6 preparatory.pro -spec win32-msvc
+      - cmd: nmake
       - cmd: cd ..\rename\
-      - cmd: qmake6 rename.pro -spec win32-msvc #win32-g++
-      - cmd: nmake #-j %NUMBER_OF_PROCESSORS%
+      - cmd: qmake6 rename.pro -spec win32-msvc
+      - cmd: nmake
       - cmd: cd ..\..\
-      - cmd: qmake6 UltraStar-Manager.pro -spec win32-msvc #win32-g++
-      - cmd: nmake #-j %NUMBER_OF_PROCESSORS%
+      - cmd: qmake6 UltraStar-Manager.pro -spec win32-msvc
+      - cmd: nmake
 
     after_build:
       - cmd: makensis ../setup/win64/UltraStar-Manager.nsi
