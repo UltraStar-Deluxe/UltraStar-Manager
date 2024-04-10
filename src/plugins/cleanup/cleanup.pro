@@ -27,22 +27,21 @@ INCLUDEPATH += . \
 	.. \
 	../.. \
 	../../song \
-	../../../include/taglib \
 	../shared
 TEMPLATE = lib
 CONFIG += plugin
 QT += widgets
 
 win32 {
-	LIBS += -L"../../../lib/win64" \
+	CONFIG -= entrypoint
+
+	INCLUDEPATH += "C:/Program Files/taglib/include/taglib"
+	LIBS += -L"C:/Program Files/taglib/lib" \
 		-ltag
 }
-mac {
-	LIBS += -L"/usr/local/lib" \
-		-ltag
-}
-unix:!macx {
-	LIBS += -ltag
+unix {
+	CONFIG += link_pkgconfig
+	PKGCONFIG += taglib
 }
 
 CONFIG(release, debug|release) {

@@ -55,15 +55,13 @@ QT += xml \
 	widgets
 
 win32 {
-	LIBS += -L"../../../lib/win64" \
+	INCLUDEPATH += "C:/Program Files/taglib/include/taglib"
+	LIBS += -L"C:/Program Files/taglib/lib" \
 		-ltag
 }
-mac {
-	LIBS += -L"/usr/local/lib" \
-		-ltag
-}
-unix:!macx {
-	LIBS += -ltag
+unix {
+	CONFIG += link_pkgconfig
+	PKGCONFIG += taglib
 }
 QMAKE_EXTRA_TARGETS += langtarget
 PRE_TARGETDEPS += language.h

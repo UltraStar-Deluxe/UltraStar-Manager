@@ -43,7 +43,6 @@
 #include "QUPluginManager.h"
 
 #include "taglib.h"
-#define _UNICODE
 #include "MediaInfo/MediaInfo.h"
 using namespace MediaInfoLib;
 
