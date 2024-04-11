@@ -242,21 +242,21 @@ INCLUDEPATH += . \
 	webinfo
 
 win32 {
-	INCLUDEPATH += ../include/taglib \
-		../include/mediainfo \
-		../include/ \
-		../include/cld2/public
+	INCLUDEPATH += ../include/cld2/public \
+		"C:/Program Files/taglib/include/taglib" \
+		"C:/Program Files/MediaInfoLib/include"
 
 	LIBS += -L"../lib/win64" \
-		-ltag \
-		-lmediainfo \
-		-lzen \
-		-lzlib \
 		-lcld2
+	LIBS += -L"C:/Program Files/MediaInfoLib/lib" \
+		-lmediainfo \
+		-lzen
+	LIBS += -L"C:/Program Files/zlib/lib" \
+		-lzlib
+	LIBS += -L"C:/Program Files/taglib/lib" \
+		-ltag
 
 	RC_ICONS += UltraStar-Manager.ico
-	
-	QMAKE_CXXFLAGS += -lstdc++fs -std=c++17
 }
 
 macx {
@@ -318,25 +318,13 @@ unix:!macx {
 
 win32 {
 	# Run windeployqt to bundle the required Qt libraries with the application
-	QMAKE_POST_LINK += windeployqt64releaseonly --release --no-translations --no-system-d3d-compiler --compiler-runtime --no-angle --no-opengl-sw ..\bin\release\UltraStar-Manager.exe $$escape_expand(\\n\\t)
+	QMAKE_POST_LINK += windeployqt --release --no-translations --no-system-d3d-compiler --compiler-runtime --no-opengl-sw ..\bin\release\UltraStar-Manager.exe $$escape_expand(\\n\\t)
 
 	# Clean up after running windeployqt, removing some superfluous Qt libraries
-	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/Qt5Svg.dll) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/iconengines/qsvgicon.dll) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_DEL_DIR} $$shell_path($${DESTDIR}/iconengines) $$escape_expand(\\n\\t)
-	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/imageformats/qicns.dll) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/imageformats/qico.dll) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/imageformats/qsvg.dll) $$escape_expand(\\n\\t)
-	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/imageformats/qtga.dll) $$escape_expand(\\n\\t)
-	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/imageformats/qtiff.dll) $$escape_expand(\\n\\t)
-	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/imageformats/qwbmp.dll) $$escape_expand(\\n\\t)
-	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/imageformats/qwebp.dll) $$escape_expand(\\n\\t)
-
-	# Manually add libtag library
-	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../lib/win64/libtag.dll) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
-
-	# Manually add cld2 library
-	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../lib/win64/libcld2.dll) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
 
 	# Manually add styles files and changes.txt
 	QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, $$shell_path($${DESTDIR}/styles/)) $$escape_expand(\\n\\t)

@@ -5,7 +5,6 @@
 #include "fileref.h"
 #include "tag.h"
 #include "tstring.h"
-#define _UNICODE
 #include "MediaInfo/MediaInfo.h"
 using namespace MediaInfoLib;
 

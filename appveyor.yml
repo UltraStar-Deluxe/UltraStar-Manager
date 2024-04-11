@@ -71,31 +71,40 @@ for:
       - cmd: call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
 
     build_script:
-      # setup vcpkg package manager for easy dependency installation
-      - git clone https://github.com/microsoft/vcpkg.git
-      - cd vcpkg
-      - bootstrap-vcpkg.bat
-      - .\vcpkg install taglib
-      - .\vcpkg install libmediainfo
-      # copy include files
-      - cp -r installed/x64-windows/include/MediaInfo ../include/mediainfo
-      - cp -r installed/x64-windows/include/MediaInfoDLL ../include/mediainfo
-      - cp -r installed/x64-windows/include/ZenLib ../include
-      - cp -r installed/x64-windows/include/taglib ../include
-      # copy lib files
-      - cp installed/x64-windows/lib/mediainfo.lib ../lib/win64
-      - cp installed/x64-windows/lib/zen.lib ../lib/win64
-      - cp installed/x64-windows/lib/zlib.lib ../lib/win64
-      - cp installed/x64-windows/lib/tag.lib ../lib/win64
-      # build cld2
+      # build taglib
+      - git clone --recurse-submodules https://github.com/taglib/taglib.git
+      - cd taglib
+      - cmake -B build -G "Visual Studio 17 2022" -A x64 -DWITH_ZLIB=OFF -DBUILD_SHARED_LIBS=ON -DENABLE_STATIC_RUNTIME=OFF -DBUILD_TESTING=OFF
+      - msbuild build/install.vcxproj -p:Configuration=Release
       - cd ..
+      # build ZenLib
+      - git clone https://github.com/MediaArea/ZenLib.git
+      - cd ZenLib
+      - cmake -S Project/CMake -B build -G "Visual Studio 17 2022" -A x64
+      - msbuild build/install.vcxproj -p:Configuration=Release
+      - cd ..
+      # get zlib
+      - git clone https://github.com/MediaArea/zlib.git
+      - cd zlib
+      - cmake -B build -G "Visual Studio 17 2022" -A x64
+      - msbuild build/install.vcxproj -p:Configuration=Release
+      - cd ..
+      # build libmediainfo
+      - git clone https://github.com/MediaArea/MediaInfoLib.git
+      - cd MediaInfoLib
+      - cmake -S Project/CMake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=Release
+      - msbuild build/install.vcxproj -p:Configuration=Release
+      - cd ..
+      # build cld2
       - git clone https://github.com/CLD2Owners/cld2
       - cd cld2/internal
       - cl /MD -c cldutil.cc cldutil_shared.cc compact_lang_det.cc compact_lang_det_hint_code.cc compact_lang_det_impl.cc debug.cc fixunicodevalue.cc generated_entities.cc generated_language.cc generated_ulscript.cc getonescriptspan.cc lang_script.cc offsetmap.cc scoreonescriptspan.cc tote.cc utf8statetable.cc cld_generated_cjk_uni_prop_80.cc cld2_generated_cjk_compatible.cc cld_generated_cjk_delta_bi_4.cc generated_distinct_bi_0.cc cld2_generated_quadchrome_2.cc cld2_generated_deltaoctachrome.cc cld2_generated_distinctoctachrome.cc cld_generated_score_quad_octa_2.cc
-      - lib cldutil.obj cldutil_shared.obj compact_lang_det.obj compact_lang_det_hint_code.obj compact_lang_det_impl.obj debug.obj fixunicodevalue.obj generated_entities.obj generated_language.obj generated_ulscript.obj getonescriptspan.obj lang_script.obj offsetmap.obj scoreonescriptspan.obj tote.obj utf8statetable.obj cld_generated_cjk_uni_prop_80.obj cld2_generated_cjk_compatible.obj cld_generated_cjk_delta_bi_4.obj generated_distinct_bi_0.obj cld2_generated_quadchrome_2.obj cld2_generated_deltaoctachrome.obj cld2_generated_distinctoctachrome.obj cld_generated_score_quad_octa_2.obj /OUT:cld2.lib
+      - link /dll /OUT:cld2.dll cldutil.obj cldutil_shared.obj compact_lang_det.obj compact_lang_det_hint_code.obj compact_lang_det_impl.obj debug.obj fixunicodevalue.obj generated_entities.obj generated_language.obj generated_ulscript.obj getonescriptspan.obj lang_script.obj offsetmap.obj scoreonescriptspan.obj tote.obj utf8statetable.obj cld_generated_cjk_uni_prop_80.obj cld2_generated_cjk_compatible.obj cld_generated_cjk_delta_bi_4.obj generated_distinct_bi_0.obj cld2_generated_quadchrome_2.obj cld2_generated_deltaoctachrome.obj cld2_generated_distinctoctachrome.obj cld_generated_score_quad_octa_2.obj
+      - lib /OUT:cld2.lib cldutil.obj cldutil_shared.obj compact_lang_det.obj compact_lang_det_hint_code.obj compact_lang_det_impl.obj debug.obj fixunicodevalue.obj generated_entities.obj generated_language.obj generated_ulscript.obj getonescriptspan.obj lang_script.obj offsetmap.obj scoreonescriptspan.obj tote.obj utf8statetable.obj cld_generated_cjk_uni_prop_80.obj cld2_generated_cjk_compatible.obj cld_generated_cjk_delta_bi_4.obj generated_distinct_bi_0.obj cld2_generated_quadchrome_2.obj cld2_generated_deltaoctachrome.obj cld2_generated_distinctoctachrome.obj cld_generated_score_quad_octa_2.obj
       - cp cld2.lib ../../lib/win64/cld2.lib
-      # build
+      - cp cld2.dll ../../lib/win64/cld2.dll
       - cd ../..
+      # build UltraStar-Manager
       - cmd: cd src\plugins\audiotag\
       - cmd: qmake audiotag.pro -spec win32-msvc
       - cmd: nmake
@@ -112,6 +121,9 @@ for:
       - cmd: qmake6 rename.pro -spec win32-msvc
       - cmd: nmake
       - cmd: cd ..\..\
+      - cp "C:/Program Files/taglib/bin/tag.dll" ../bin/release/
+      - cp "C:/Program Files/zlib/bin/zlib.dll" ../bin/release/
+      - cp ../lib/win64/cld2.dll ../bin/release/
       - cmd: qmake6 UltraStar-Manager.pro -spec win32-msvc
       - cmd: nmake
 
@@ -127,7 +139,7 @@ for:
 
     on_failure:
       # Change false to true to block build and investigate build failures
-      - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+      - ps: $blockRdp = $false; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
   # Mac
   - matrix:
