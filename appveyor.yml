@@ -17,7 +17,7 @@ environment:
     # macOS
     - ARCH: x64
       COMPILER: Clang
-      QTDIR: Qt/6.5/macos
+      #QTDIR: Qt/6.5/macos # if pre-installed Qt is used
     # Ubuntu
     - ARCH: x64
       COMPILER: GCC
@@ -150,13 +150,15 @@ for:
 
     init:
       - sh: echo _NPROCESSORS_ONLN=$(getconf _NPROCESSORS_ONLN)
-      - sh: export PATH=$HOME/$QTDIR/bin:/usr/local/bin:$PATH
+      #- sh: export PATH=$HOME/$QTDIR/bin:/usr/local/bin:$PATH # if pre-installed Qt is used
+      - sh: export PATH=/usr/local/bin:$PATH # if brew-installed Qt is used
       - sh: set PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig"
 
     install:
       - ps: $env:package_version = ("$(git describe --tags --always --long)").trim()
       - ps: Update-AppveyorBuild -Version "$env:package_version-$env:APPVEYOR_BUILD_NUMBER"
       - brew update
+      - brew install qt;
       - brew install taglib;
       - brew install mediainfo;
       - brew install create-dmg;

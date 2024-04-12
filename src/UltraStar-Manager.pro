@@ -343,8 +343,19 @@ macx {
 	# Run macdeployqt to bundle the required Qt libraries with the application
 	QMAKE_POST_LINK += macdeployqt ../bin/release/UltraStar-Manager.app -libpath=../lib/MacOS -always-overwrite -verbose=3 $$escape_expand(\\n\\t)
 
-	# Fix path to external libraries in app bundle
-	QMAKE_POST_LINK += install_name_tool -change /usr/local/Cellar/media-info/22.12/lib/libzen.0.dylib @executable_path/../Frameworks/libzen.0.dylib ../bin/release/UltraStar-Manager.app/Contents/Frameworks/libmediainfo.0.dylib $$escape_expand(\\n\\t)
+        # Fix brew installation of Qt
+        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtCore.framework/Versions/A/QtCore' /usr/local/lib/QtCore.framework/Versions/A/QtCore $$escape_expand(\\n\\t)
+        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtGui.framework/Versions/A/QtGui' /usr/local/lib/QtGui.framework/Versions/A/QtGui $$escape_expand(\\n\\t)
+        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtNetwork.framework/Versions/A/QtNetwork' /usr/local/lib/QtNetwork.framework/Versions/A/QtNetwork $$escape_expand(\\n\\t)
+        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtWidgets.framework/Versions/A/QtWidgets' /usr/local/lib/QtWidgets.framework/Versions/A/QtWidgets $$escape_expand(\\n\\t)
+        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtPdf.framework/Versions/A/QtPdf' /usr/local/lib/QtPdf.framework/Versions/A/QtPdf $$escape_expand(\\n\\t)
+        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtSvg.framework/Versions/A/QtSvg' /usr/local/lib/QtSvg.framework/Versions/A/QtSvg $$escape_expand(\\n\\t)
+        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtVirtualKeyboard.framework/Versions/A/QtVirtualKeyboard' /usr/local/lib/QtVirtualKeyboard.framework/Versions/A/QtVirtualKeyboard $$escape_expand(\\n\\t)
+        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtQuick.framework/Versions/A/QtQuick' /usr/local/lib/QtQuick.framework/Versions/A/QtQuick $$escape_expand(\\n\\t)
+        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtQmlModels.framework/Versions/A/QtQmlModels' /usr/local/lib/QtQmlModels.framework/Versions/A/QtQmlModels $$escape_expand(\\n\\t)
+        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtQml.framework/Versions/A/QtQml' /usr/local/lib/QtQml.framework/Versions/A/QtQml $$escape_expand(\\n\\t)
+        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtOpenGL.framework/Versions/A/QtOpenGL' /usr/local/lib/QtOpenGL.framework/Versions/A/QtOpenGL $$escape_expand(\\n\\t)
+        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtMultimedia.framework/Versions/A/QtMultimedia' /usr/local/lib/QtMultimedia.framework/Versions/A/QtMultimedia $$escape_expand(\\n\\t)
 
 	# Create a fancy Mac disk image
 	QMAKE_POST_LINK += create-dmg --volname UltraStar-Manager --volicon resources/UltraStar-Manager.icns --app-drop-link 350 170 --background ../setup/macx/img/UltraStar-Manager_bg.png --hide-extension UltraStar-Manager.app --window-size 500 300 --text-size 14 --icon-size 64 --icon UltraStar-Manager.app 150 170 --no-internet-enable --skip-jenkins "../bin/release/UltraStar-Manager.dmg" ../bin/release/UltraStar-Manager.app/
