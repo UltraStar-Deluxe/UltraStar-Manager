@@ -340,20 +340,6 @@ macx {
 	plugins.path = Contents/MacOS
 	QMAKE_BUNDLE_DATA += plugins
 
-        # Fix brew installation of Qt
-        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtCore.framework/Versions/A/QtCore' /usr/local/lib/QtCore.framework/Versions/A/QtCore $$escape_expand(\\n\\t)
-        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtGui.framework/Versions/A/QtGui' /usr/local/lib/QtGui.framework/Versions/A/QtGui $$escape_expand(\\n\\t)
-        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtNetwork.framework/Versions/A/QtNetwork' /usr/local/lib/QtNetwork.framework/Versions/A/QtNetwork $$escape_expand(\\n\\t)
-        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtWidgets.framework/Versions/A/QtWidgets' /usr/local/lib/QtWidgets.framework/Versions/A/QtWidgets $$escape_expand(\\n\\t)
-        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtPdf.framework/Versions/A/QtPdf' /usr/local/lib/QtPdf.framework/Versions/A/QtPdf $$escape_expand(\\n\\t)
-        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtSvg.framework/Versions/A/QtSvg' /usr/local/lib/QtSvg.framework/Versions/A/QtSvg $$escape_expand(\\n\\t)
-        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtVirtualKeyboard.framework/Versions/A/QtVirtualKeyboard' /usr/local/lib/QtVirtualKeyboard.framework/Versions/A/QtVirtualKeyboard $$escape_expand(\\n\\t)
-        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtQuick.framework/Versions/A/QtQuick' /usr/local/lib/QtQuick.framework/Versions/A/QtQuick $$escape_expand(\\n\\t)
-        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtQmlModels.framework/Versions/A/QtQmlModels' /usr/local/lib/QtQmlModels.framework/Versions/A/QtQmlModels $$escape_expand(\\n\\t)
-        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtQml.framework/Versions/A/QtQml' /usr/local/lib/QtQml.framework/Versions/A/QtQml $$escape_expand(\\n\\t)
-        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtOpenGL.framework/Versions/A/QtOpenGL' /usr/local/lib/QtOpenGL.framework/Versions/A/QtOpenGL $$escape_expand(\\n\\t)
-        QMAKE_POST_LINK += install_name_tool -id '@rpath/QtMultimedia.framework/Versions/A/QtMultimedia' /usr/local/lib/QtMultimedia.framework/Versions/A/QtMultimedia $$escape_expand(\\n\\t)
-
 	# Run macdeployqt to bundle the required Qt libraries with the application
 	QMAKE_POST_LINK += macdeployqt ../bin/release/UltraStar-Manager.app -libpath=../lib/MacOS -always-overwrite -verbose=3 $$escape_expand(\\n\\t)
 
