@@ -116,6 +116,10 @@ void QUSongTree::initHorizontalHeader() {
 	header->setToolTip(SCORE_COLUMN, tr("Shows whether a score file was found."));
 	header->setSizeHint(SCORE_COLUMN, QSize(25,0));
 
+	header->setIcon(SYNC_COLUMN, QIcon(":/types/sync.png"));
+	header->setToolTip(SYNC_COLUMN, tr("Shows whether a sync file was found."));
+	header->setSizeHint(SYNC_COLUMN, QSize(25,0));
+
 	header->setText(ARTIST_COLUMN_EX, tr("Artist"));
 	header->setIcon(ARTIST_COLUMN_EX, QIcon(":/types/user.png"));
 	header->setText(TITLE_COLUMN_EX, tr("Title"));
@@ -722,6 +726,7 @@ void QUSongTree::showDefaultColumns(bool save) {
 	this->header()->showSection(UNUSED_FILES_COLUMN);
 	this->header()->showSection(MULTIPLE_SONGS_COLUMN);
 	this->header()->showSection(SCORE_COLUMN);
+	this->header()->showSection(SYNC_COLUMN);
 	this->header()->showSection(LANGUAGE_COLUMN);
 	this->header()->showSection(EDITION_COLUMN);
 	this->header()->showSection(GENRE_COLUMN);
@@ -792,6 +797,7 @@ void QUSongTree::showCheckColumns() {
 	this->header()->showSection(UNUSED_FILES_COLUMN);
 	this->header()->showSection(MULTIPLE_SONGS_COLUMN);
 	this->header()->showSection(SCORE_COLUMN);
+	this->header()->showSection(SYNC_COLUMN);
 
 	this->resizeToContents();
 

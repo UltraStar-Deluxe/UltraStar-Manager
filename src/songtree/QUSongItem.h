@@ -5,7 +5,7 @@
 #include "QU.h"
 #include "QUSongFile.h"
 
-#define FIXED_COLUMN_COUNT		33
+#define FIXED_COLUMN_COUNT		34
 
 #define FOLDER_COLUMN			0
 
@@ -25,32 +25,33 @@
 #define UNUSED_FILES_COLUMN		12
 #define MULTIPLE_SONGS_COLUMN	13
 #define SCORE_COLUMN			14
+#define SYNC_COLUMN				15
 
-#define LENGTH_COLUMN			15
-#define LENGTH_DIFF_COLUMN		16
-#define LENGTH_MP3_COLUMN		17
-#define LENGTH_EFF_COLUMN		18
-#define SPEED_COLUMN			19
+#define LENGTH_COLUMN			16
+#define LENGTH_DIFF_COLUMN		17
+#define LENGTH_MP3_COLUMN		18
+#define LENGTH_EFF_COLUMN		19
+#define SPEED_COLUMN			20
 
-#define START_COLUMN			20
-#define END_COLUMN				21
-#define VIDEOGAP_COLUMN			22
+#define START_COLUMN			21
+#define END_COLUMN				22
+#define VIDEOGAP_COLUMN			23
 
-#define ARTIST_COLUMN_EX		23
-#define TITLE_COLUMN_EX			24
-#define LANGUAGE_COLUMN			25
-#define EDITION_COLUMN			26
-#define GENRE_COLUMN			27
-#define YEAR_COLUMN				28
-#define CREATOR_COLUMN			29
+#define ARTIST_COLUMN_EX		24
+#define TITLE_COLUMN_EX			25
+#define LANGUAGE_COLUMN			26
+#define EDITION_COLUMN			27
+#define GENRE_COLUMN			28
+#define YEAR_COLUMN				29
+#define CREATOR_COLUMN			30
 
-#define RELATIVE_COLUMN			30
-#define BPM_COLUMN				31
-#define GAP_COLUMN				32
+#define RELATIVE_COLUMN			31
+#define BPM_COLUMN				32
+#define GAP_COLUMN				33
 
-#define DUPLICATE_ID_COLUMN		33
+#define DUPLICATE_ID_COLUMN		34
 
-#define FIRST_CUSTOM_TAG_COLUMN	34
+#define FIRST_CUSTOM_TAG_COLUMN	35
 
 /*!
  * This class encapsulates a pointer to a QUSongFile object to be able

@@ -320,6 +320,8 @@ void QUSongItem::updateAsSync() {
 	clearContents();
 
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/sync.png"));
+	(dynamic_cast<QUSongItem*>(this->parent()))->setData(SYNC_COLUMN, Qt::UserRole, QVariant(-1));
+	(dynamic_cast<QUSongItem*>(this->parent()))->setIcon(SYNC_COLUMN, QIcon(":/types/sync.png"));
 
 	// special files, special color ^_^
 	//	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
@@ -590,6 +592,7 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case UNUSED_FILES_COLUMN:
 	case MULTIPLE_SONGS_COLUMN:
 	case SCORE_COLUMN:
+	case SYNC_COLUMN:
 	case LENGTH_COLUMN:
 	case LENGTH_DIFF_COLUMN:
 	case LENGTH_MP3_COLUMN:
@@ -686,6 +689,10 @@ void QUSongItem::updateFileCheckColumns() {
 	// score files
 	if(song()->score())
 		this->setIcon(SCORE_COLUMN, QIcon(":/types/score.png"));
+
+	// sync files
+	//if(song()->sync())
+	//	this->setIcon(SYNC_COLUMN, QIcon(":/types/sync.png"));
 }
 
 void QUSongItem::updateTypeColumns() {
