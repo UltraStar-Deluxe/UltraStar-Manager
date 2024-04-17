@@ -44,6 +44,7 @@ private:
 	QTreeWidgetItem *video;
 	QTreeWidgetItem *text;
 	QTreeWidgetItem *dir;
+	QTreeWidgetItem *sync;
 
 	QTreeWidgetItem* createInfoItem(const QString &tag, const QString &value);
 	QTreeWidgetItem* createInfoItem(const QIcon &icon, const QString &tag, const QString &value);
@@ -54,6 +55,7 @@ private:
 	void showTextFileInformation(const QFileInfo &fi);
 	void showSimpleFileInformation(const QFileInfo &fi, const QString type);
 	void showDirectoryFileInformation(const QFileInfo &fi);
+	void showSyncFileInformation(const QFileInfo &fi);
 
 	void showSelectedLength(QTreeWidgetItem *child, int seconds);
 };

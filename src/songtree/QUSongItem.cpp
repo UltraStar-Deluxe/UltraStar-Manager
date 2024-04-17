@@ -91,6 +91,8 @@ void QUSongItem::update() {
 			child->updateAsKaraoke();
 		} else if(QUSongSupport::allowedScoreFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsScore();
+		} else if(QUSongSupport::allowedSyncFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+			child->updateAsSync();
 		} else {
 			child->updateAsUnknown();
 		}
@@ -312,6 +314,15 @@ void QUSongItem::updateAsScore() {
 	// last option: no song uses this score file
 	this->setForeground(FOLDER_COLUMN, Qt::gray);
 	(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
+}
+
+void QUSongItem::updateAsSync() {
+	clearContents();
+
+	this->setIcon(FOLDER_COLUMN, QIcon(":/types/sync.png"));
+
+	// special files, special color ^_^
+	//	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
 }
 
 void QUSongItem::updateAsUnknown() {

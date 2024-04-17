@@ -25,6 +25,7 @@ public:
 	static QStringList allowedPlaylistFiles();
 	static QStringList allowedUltraStarPlaylistFiles();
 	static QStringList allowedVocaluxePlaylistFiles();
+	static QStringList allowedSyncFiles();
 
 	static QStringList allowedEncodingTypes();
 	static QStringList availableSongLanguages();

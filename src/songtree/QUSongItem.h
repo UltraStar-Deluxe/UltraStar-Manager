@@ -70,6 +70,7 @@ public:
 	void updateAsMidi();
 	void updateAsKaraoke();
 	void updateAsScore();
+	void updateAsSync();
 	void updateAsUnknown();
 
 	void updateSpellFileCheckColumns();
