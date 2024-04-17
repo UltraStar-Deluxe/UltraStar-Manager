@@ -1,11 +1,7 @@
 #include "QUSongItem.h"
 
-#include "QUSongTree.h"
-
 #include "audioproperties.h"
 #include "fileref.h"
-#include "tag.h"
-#include "tstring.h"
 #include "MediaInfo/MediaInfo.h"
 using namespace MediaInfoLib;
 
