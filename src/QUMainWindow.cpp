@@ -377,14 +377,14 @@ void QUMainWindow::initRibbonBar() {
 	_menu->mediumVideoQualityComboBox->setCurrentIndex(_menu->mediumVideoQualityComboBox->findText(QString::number(QUSongSupport::mediumVideoQuality()), Qt::MatchStartsWith));
 	_menu->highVideoQualityComboBox->setCurrentIndex(_menu->highVideoQualityComboBox->findText(QString::number(QUSongSupport::highVideoQuality()), Qt::MatchStartsWith));
 
-	connect(_menu->mediumMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumMp3Quality(QString)));
-	connect(_menu->highMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighMp3Quality(QString)));
-	connect(_menu->mediumCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumCoverQuality(QString)));
-	connect(_menu->highCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighCoverQuality(QString)));
-	connect(_menu->mediumBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumBackgroundQuality(QString)));
-	connect(_menu->highBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighBackgroundQuality(QString)));
-	connect(_menu->mediumVideoQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumVideoQuality(QString)));
-	connect(_menu->highVideoQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighVideoQuality(QString)));
+	connect(_menu->mediumMp3QualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setMediumMp3Quality(QString)));
+	connect(_menu->highMp3QualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setHighMp3Quality(QString)));
+	connect(_menu->mediumCoverQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setMediumCoverQuality(QString)));
+	connect(_menu->highCoverQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setHighCoverQuality(QString)));
+	connect(_menu->mediumBackgroundQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setMediumBackgroundQuality(QString)));
+	connect(_menu->highBackgroundQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setHighBackgroundQuality(QString)));
+	connect(_menu->mediumVideoQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setMediumVideoQuality(QString)));
+	connect(_menu->highVideoQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setHighVideoQuality(QString)));
 
 	connect(_menu->langUsBtn, SIGNAL(clicked()), this, SLOT(enableEnglish()));
 	connect(_menu->langDeBtn, SIGNAL(clicked()), this, SLOT(enableGerman()));
@@ -1758,9 +1758,9 @@ void QUMainWindow::setMediumMp3Quality(QString quality) {
 
 	// ensure that highMp3Quality is at least one level higher
 	if(_menu->highMp3QualityComboBox->currentIndex() <= _menu->highMp3QualityComboBox->findText(quality)) {
-		disconnect(_menu->highMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighMp3Quality(QString)));
+		disconnect(_menu->highMp3QualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setHighMp3Quality(QString)));
 		_menu->highMp3QualityComboBox->setCurrentIndex(_menu->highMp3QualityComboBox->findText(quality) + 1);
-		connect(_menu->highMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighMp3Quality(QString)));
+		connect(_menu->highMp3QualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setHighMp3Quality(QString)));
 		settings.setValue("highMp3Quality", _menu->highMp3QualityComboBox->currentText().split(" ").first().toInt());
 	}
 
@@ -1785,9 +1785,9 @@ void QUMainWindow::setHighMp3Quality(QString quality) {
 	// ensure that mediumMp3Quality is at least one level lower
 	if(_menu->mediumMp3QualityComboBox->findText(quality) != -1) {
 		if(_menu->mediumMp3QualityComboBox->currentIndex() >= _menu->mediumMp3QualityComboBox->findText(quality)) {
-			disconnect(_menu->mediumMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumMp3Quality(QString)));
+			disconnect(_menu->mediumMp3QualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setMediumMp3Quality(QString)));
 			_menu->mediumMp3QualityComboBox->setCurrentIndex(_menu->mediumMp3QualityComboBox->findText(quality) - 1);
-			connect(_menu->mediumMp3QualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumMp3Quality(QString)));
+			connect(_menu->mediumMp3QualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setMediumMp3Quality(QString)));
 			settings.setValue("mediumMp3Quality", _menu->mediumMp3QualityComboBox->currentText().split(" ").first().toInt());
 		}
 	}
@@ -1813,9 +1813,9 @@ void QUMainWindow::setMediumCoverQuality(QString quality) {
 
 	// ensure that highCoverQuality is at least one level higher
 	if(_menu->highCoverQualityComboBox->currentIndex() <= _menu->highCoverQualityComboBox->findText(quality)) {
-		disconnect(_menu->highCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighCoverQuality(QString)));
+		disconnect(_menu->highCoverQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setHighCoverQuality(QString)));
 		_menu->highCoverQualityComboBox->setCurrentIndex(_menu->highCoverQualityComboBox->findText(quality) + 1);
-		connect(_menu->highCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighCoverQuality(QString)));
+		connect(_menu->highCoverQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setHighCoverQuality(QString)));
 		settings.setValue("highCoverQuality", _menu->highCoverQualityComboBox->currentText().split(" ").first().toInt());
 	}
 
@@ -1840,9 +1840,9 @@ void QUMainWindow::setHighCoverQuality(QString quality) {
 	// ensure that mediumCoverQuality is at least one level lower
 	if(_menu->mediumCoverQualityComboBox->findText(quality) != -1) {
 		if(_menu->mediumCoverQualityComboBox->currentIndex() >= _menu->mediumCoverQualityComboBox->findText(quality)) {
-			disconnect(_menu->mediumCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumCoverQuality(QString)));
+			disconnect(_menu->mediumCoverQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setMediumCoverQuality(QString)));
 			_menu->mediumCoverQualityComboBox->setCurrentIndex(_menu->mediumCoverQualityComboBox->findText(quality) - 1);
-			connect(_menu->mediumCoverQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumCoverQuality(QString)));
+			connect(_menu->mediumCoverQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setMediumCoverQuality(QString)));
 			settings.setValue("mediumCoverQuality", _menu->mediumCoverQualityComboBox->currentText().split(" ").first().toInt());
 		}
 	}
@@ -1867,9 +1867,9 @@ void QUMainWindow::setMediumBackgroundQuality(QString quality) {
 
 	// ensure that highBackgroundQuality is at least one level higher
 	if(_menu->highBackgroundQualityComboBox->currentIndex() <= _menu->highBackgroundQualityComboBox->findText(quality)) {
-		disconnect(_menu->highBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighBackgroundQuality(QString)));
+		disconnect(_menu->highBackgroundQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setHighBackgroundQuality(QString)));
 		_menu->highBackgroundQualityComboBox->setCurrentIndex(_menu->highBackgroundQualityComboBox->findText(quality) + 1);
-		connect(_menu->highBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighBackgroundQuality(QString)));
+		connect(_menu->highBackgroundQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setHighBackgroundQuality(QString)));
 		settings.setValue("highBackgroundQuality", _menu->highBackgroundQualityComboBox->currentText().split(" ").first().toInt());
 	}
 
@@ -1894,9 +1894,9 @@ void QUMainWindow::setHighBackgroundQuality(QString quality) {
 	// ensure that mediumBackgroundQuality is at least one level lower
 	if(_menu->mediumBackgroundQualityComboBox->findText(quality) != -1) {
 		if(_menu->mediumBackgroundQualityComboBox->currentIndex() >= _menu->mediumBackgroundQualityComboBox->findText(quality)) {
-			disconnect(_menu->mediumBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumBackgroundQuality(QString)));
+			disconnect(_menu->mediumBackgroundQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setMediumBackgroundQuality(QString)));
 			_menu->mediumBackgroundQualityComboBox->setCurrentIndex(_menu->mediumBackgroundQualityComboBox->findText(quality) - 1);
-			connect(_menu->mediumBackgroundQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumBackgroundQuality(QString)));
+			connect(_menu->mediumBackgroundQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setMediumBackgroundQuality(QString)));
 			settings.setValue("mediumBackgroundQuality", _menu->mediumBackgroundQualityComboBox->currentText().split(" ").first().toInt());
 		}
 	}
@@ -1921,9 +1921,9 @@ void QUMainWindow::setMediumVideoQuality(QString quality) {
 
 	// ensure that highVideoQuality is at least one level higher
 	if(_menu->highVideoQualityComboBox->currentIndex() <= _menu->highVideoQualityComboBox->findText(quality)) {
-		disconnect(_menu->highVideoQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighVideoQuality(QString)));
+		disconnect(_menu->highVideoQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setHighVideoQuality(QString)));
 		_menu->highVideoQualityComboBox->setCurrentIndex(_menu->highVideoQualityComboBox->findText(quality) + 1);
-		connect(_menu->highVideoQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setHighVideoQuality(QString)));
+		connect(_menu->highVideoQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setHighVideoQuality(QString)));
 		settings.setValue("highVideoQuality", _menu->highVideoQualityComboBox->currentText().split(" ").first().toInt());
 	}
 
@@ -1948,9 +1948,9 @@ void QUMainWindow::setHighVideoQuality(QString quality) {
 	// ensure that mediumVideoQuality is at least one level lower
 	if(_menu->mediumVideoQualityComboBox->findText(quality) != -1) {
 		if(_menu->mediumVideoQualityComboBox->currentIndex() >= _menu->mediumVideoQualityComboBox->findText(quality)) {
-			disconnect(_menu->mediumVideoQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumVideoQuality(QString)));
+			disconnect(_menu->mediumVideoQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setMediumVideoQuality(QString)));
 			_menu->mediumVideoQualityComboBox->setCurrentIndex(_menu->mediumVideoQualityComboBox->findText(quality) - 1);
-			connect(_menu->mediumVideoQualityComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setMediumVideoQuality(QString)));
+			connect(_menu->mediumVideoQualityComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(setMediumVideoQuality(QString)));
 			settings.setValue("mediumVideoQuality", _menu->mediumVideoQualityComboBox->currentText().split(" ").first().toInt());
 		}
 	}

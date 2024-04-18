@@ -14,6 +14,8 @@ using namespace MediaInfoLib;
 #include <QMessageBox>
 #include <QImage>
 #include <QTextStream>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 #include <QDebug>
 #include <codecvt>
@@ -75,6 +77,7 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 	types->addChild(this->createInfoItem(QIcon(":/types/midi.png"), tr("MIDI"), QUSongSupport::allowedMidiFiles().join(" ")));
 	types->addChild(this->createInfoItem(QIcon(":/types/midi_kar.png"), tr("Karaoke"),QUSongSupport::allowedKaraokeFiles().join(" ")));
 	types->addChild(this->createInfoItem(QIcon(":/types/score.png"), tr("Score"), QUSongSupport::allowedScoreFiles().join(" ")));
+	types->addChild(this->createInfoItem(QIcon(":/types/sync.png"), tr("Sync"), QUSongSupport::allowedSyncFiles().join(" ")));
 	types->addChild(this->createInfoItem("", ""));
 
 	// set up "dir" toplevel item
@@ -141,6 +144,19 @@ QUPreviewTree::QUPreviewTree(QWidget *parent): QTreeWidget(parent) {
 
 	video->setExpanded(true);
 	video->setHidden(true);
+
+	// set up "sync" toplevel item
+
+	sync = new QTreeWidgetItem();
+	this->addTopLevelItem(sync);
+
+	sync->setText(0, tr("Sync File Information"));
+	sync->setFlags(Qt::ItemIsEnabled);
+	sync->setForeground(0, Qt::darkGray);
+	sync->setFirstColumnSpanned(true);
+
+	sync->setExpanded(true);
+	sync->setHidden(true);
 
 	// set up "file" toplevel item
 
@@ -230,6 +246,7 @@ void QUPreviewTree::showFileInformation(const QFileInfo &fi, bool deleteAndHide)
 		qDeleteAll(audio->takeChildren());
 		qDeleteAll(video->takeChildren());
 		qDeleteAll(text->takeChildren());
+		qDeleteAll(sync->takeChildren());
 		qDeleteAll(dir->takeChildren());
 
 		file->setHidden(true);
@@ -237,6 +254,7 @@ void QUPreviewTree::showFileInformation(const QFileInfo &fi, bool deleteAndHide)
 		audio->setHidden(true);
 		video->setHidden(true);
 		text->setHidden(true);
+		sync->setHidden(true);
 		dir->setHidden(true);
 	}
 
@@ -261,6 +279,8 @@ void QUPreviewTree::showFileInformation(const QFileInfo &fi, bool deleteAndHide)
 			showSimpleFileInformation(fi, tr("playlist file"));
 		else if(QUSongSupport::allowedScoreFiles().contains(fileScheme, Qt::CaseInsensitive))
 			showSimpleFileInformation(fi, tr("score file"));
+		else if(QUSongSupport::allowedSyncFiles().contains(fileScheme, Qt::CaseInsensitive))
+			showSyncFileInformation(fi);
 	} else {
 		showDirectoryFileInformation(fi);
 	}
@@ -529,6 +549,54 @@ void QUPreviewTree::showTextFileInformation(const QFileInfo &fi) {
 
 	text->addChild(this->createInfoItem("", ""));
 	text->setHidden(false);
+}
+
+void QUPreviewTree::showSyncFileInformation(const QFileInfo &fi) {
+	sync->addChild(this->createInfoItem(tr("Filename"), fi.fileName()));
+	sync->addChild(this->createInfoItem(tr("Size"), QString("%1 KiB").arg(fi.size() / 1024., 0, 'f', 2)));
+	QFile file(fi.filePath());
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+	{
+		logSrv->add(QString("Failed to open sync file: " + fi.absoluteFilePath()), QU::Error);
+		return;
+	}
+
+	QByteArray jsonData = file.readAll();
+	file.close();
+
+	// Parse JSON data
+	QJsonParseError error;
+	QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData, &error);
+	if (jsonDoc.isNull())
+	{
+		logSrv->add(QString("Failed to parse JSON: " + error.errorString()), QU::Error);
+		return;
+	}
+
+	// Get the root object
+	QJsonObject jsonObj = jsonDoc.object();
+
+	// Access values from the JSON object
+	int songId = jsonObj["song_id"].toInt();
+	QStringList metaTags = jsonObj["meta_tags"].toString().split(",");
+	bool pinned = jsonObj["pinned"].toBool();
+	int version = jsonObj["version"].toInt();
+
+	// Access nested objects
+	//QJsonObject txtObj = jsonObj["txt"].toObject();
+	//QString txtFileName = txtObj["fname"].toString();
+	//QString txtResource = txtObj["resource"].toString();
+
+	sync->addChild(this->createInfoItem("Song ID", QString::number(songId)));
+	sync->addChild(this->createInfoItem("Metatags", metaTags.first()));
+	for (int i = 1; i < metaTags.size(); ++i) {
+		sync->addChild(createInfoItem("", metaTags[i]));
+	}
+	sync->addChild(this->createInfoItem("Pinned", QVariant(pinned).toString()));
+	sync->addChild(this->createInfoItem("Version", QString::number(version)));
+
+	sync->addChild(this->createInfoItem("", ""));
+	sync->setHidden(false);
 }
 
 void QUPreviewTree::showSimpleFileInformation(const QFileInfo &fi, const QString type) {

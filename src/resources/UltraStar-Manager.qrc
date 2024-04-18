@@ -274,6 +274,7 @@
         <file>source.png</file>
         <file>rap_notes.png</file>
         <file>writeID3.png</file>
+        <file>sync.png</file>
     </qresource>
     <qresource prefix="/big">
         <file>save_big.png</file>

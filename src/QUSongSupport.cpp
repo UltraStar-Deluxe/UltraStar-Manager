@@ -111,6 +111,10 @@ QStringList QUSongSupport::allowedVocaluxePlaylistFiles() {
 	return registryKey("allowedVocaluxePlaylistFiles", "*.xml");
 }
 
+QStringList QUSongSupport::allowedSyncFiles() {
+	return registryKey("allowedSyncFiles", "*.usdb");
+}
+
 QStringList QUSongSupport::allowedEncodingTypes() {
 	QStringList result;
 

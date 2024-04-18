@@ -1,11 +1,7 @@
 #include "QUSongItem.h"
 
-#include "QUSongTree.h"
-
 #include "audioproperties.h"
 #include "fileref.h"
-#include "tag.h"
-#include "tstring.h"
 #include "MediaInfo/MediaInfo.h"
 using namespace MediaInfoLib;
 
@@ -91,6 +87,8 @@ void QUSongItem::update() {
 			child->updateAsKaraoke();
 		} else if(QUSongSupport::allowedScoreFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsScore();
+		} else if(QUSongSupport::allowedSyncFiles().contains(fileScheme, Qt::CaseInsensitive)) {
+			child->updateAsSync();
 		} else {
 			child->updateAsUnknown();
 		}
@@ -312,6 +310,17 @@ void QUSongItem::updateAsScore() {
 	// last option: no song uses this score file
 	this->setForeground(FOLDER_COLUMN, Qt::gray);
 	(dynamic_cast<QUSongItem*>(this->parent()))->showUnusedFilesIcon(this->text(FOLDER_COLUMN));
+}
+
+void QUSongItem::updateAsSync() {
+	clearContents();
+
+	this->setIcon(FOLDER_COLUMN, QIcon(":/types/sync.png"));
+	(dynamic_cast<QUSongItem*>(this->parent()))->setData(SYNC_COLUMN, Qt::UserRole, QVariant(-1));
+	(dynamic_cast<QUSongItem*>(this->parent()))->setIcon(SYNC_COLUMN, QIcon(":/types/sync.png"));
+
+	// special files, special color ^_^
+	//	this->setTextColor(FOLDER_COLUMN, Qt::darkGreen);
 }
 
 void QUSongItem::updateAsUnknown() {
@@ -579,6 +588,7 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case UNUSED_FILES_COLUMN:
 	case MULTIPLE_SONGS_COLUMN:
 	case SCORE_COLUMN:
+	case SYNC_COLUMN:
 	case LENGTH_COLUMN:
 	case LENGTH_DIFF_COLUMN:
 	case LENGTH_MP3_COLUMN:
@@ -675,6 +685,10 @@ void QUSongItem::updateFileCheckColumns() {
 	// score files
 	if(song()->score())
 		this->setIcon(SCORE_COLUMN, QIcon(":/types/score.png"));
+
+	// sync files
+	//if(song()->sync())
+	//	this->setIcon(SYNC_COLUMN, QIcon(":/types/sync.png"));
 }
 
 void QUSongItem::updateTypeColumns() {
