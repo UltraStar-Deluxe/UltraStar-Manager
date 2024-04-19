@@ -1,0 +1,247 @@
+name: Build
+
+on:
+  push:
+    branches: "*"
+    tags:
+      - "[0-9].[0-9].[0-9]"
+
+jobs:
+  build_windows:
+    name: Build for Windows
+    runs-on: windows-latest
+
+    steps:
+      - name: Set up MSVC Environment
+        uses: compnerd/gha-setup-vsdevenv@main
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: "6.5.*"
+          modules: qtmultimedia
+      - name: Install Taglib
+        run: |
+          git clone --recurse-submodules https://github.com/taglib/taglib.git
+          cd taglib
+          cmake -B build -G "Visual Studio 17 2022" -A x64 -DWITH_ZLIB=OFF -DBUILD_SHARED_LIBS=ON -DENABLE_STATIC_RUNTIME=OFF -DBUILD_TESTING=OFF
+          msbuild build/install.vcxproj -p:Configuration=Release
+      - name: Install ZenLib
+        run: |
+          git clone https://github.com/MediaArea/ZenLib.git
+          cd ZenLib
+          cmake -S Project/CMake -B build -G "Visual Studio 17 2022" -A x64
+          msbuild build/install.vcxproj -p:Configuration=Release
+      - name: Install zlib
+        run: |
+          git clone https://github.com/MediaArea/zlib.git
+          cd zlib
+          cmake -B build -G "Visual Studio 17 2022" -A x64
+          msbuild build/install.vcxproj -p:Configuration=Release
+      - name: Install libmediainfo
+        run: |
+          git clone https://github.com/MediaArea/MediaInfoLib.git
+          cd MediaInfoLib
+          cmake -S Project/CMake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=Release
+          msbuild build/install.vcxproj -p:Configuration=Release
+      - name: Install cld2
+        run: |
+          git clone https://github.com/CLD2Owners/cld2.git
+          cd cld2/internal
+          cl /TP /GR /EHsc /c /MD cldutil.cc cldutil_shared.cc compact_lang_det.cc compact_lang_det_hint_code.cc compact_lang_det_impl.cc  debug.cc fixunicodevalue.cc generated_entities.cc  generated_language.cc generated_ulscript.cc getonescriptspan.cc lang_script.cc offsetmap.cc scoreonescriptspan.cc tote.cc utf8statetable.cc cld_generated_cjk_uni_prop_80.cc cld2_generated_cjk_compatible.cc cld_generated_cjk_delta_bi_32.cc generated_distinct_bi_0.cc cld2_generated_quad0122.cc cld2_generated_deltaocta0122.cc cld2_generated_distinctocta0122.cc cld_generated_score_quad_octa_0122.cc
+          link /dll /out:cld2.dll *.obj
+          lib /out:cld2.lib *.obj
+          copy cld2.lib ../../lib/win64
+          copy cld2.dll ../../lib/win64
+      - name: Build plugins
+        run: |
+          cd src/plugins/audiotag/
+          qmake audiotag.pro -spec win32-msvc
+          nmake
+          cd ../cleanup
+          qmake6 cleanup.pro -spec win32-msvc
+          nmake
+          cd ../lyric
+          qmake6 lyric.pro -spec win32-msvc
+          nmake
+          cd ../preparatory
+          qmake6 preparatory.pro -spec win32-msvc
+          nmake
+          cd ../rename
+          qmake6 rename.pro -spec win32-msvc
+          nmake
+      - name: Build UltraStar-Manager
+        run: |
+          cp "C:/Program Files/taglib/bin/tag.dll" bin/release/
+          cp "C:/Program Files/zlib/bin/zlib.dll" bin/release/
+          cp lib/win64/cld2.dll bin/release/
+          cd src
+          qmake6 UltraStar-Manager.pro -spec win32-msvc
+          nmake
+      - name: Create installer
+        uses: joncloud/makensis-action@v4.1
+        with:
+          script-file: setup/win64/UltraStar-Manager.nsi
+      - name: Upload Portable Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: WIN64-UltraStar-Manager-portable
+          path: bin/release
+          if-no-files-found: error
+      - name: Upload Installer Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: WIN64-UltraStar-Manager-installer
+          path: bin/UltraStar-Manager*-setup.exe
+          if-no-files-found: error
+
+  build_mac:
+    name: Build for MacOS
+    runs-on: macos-latest
+
+    steps:
+      - name: Get Number of CPU Cores
+        uses: SimenB/github-actions-cpu-cores@v2
+        id: cpu-cores
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: |
+          brew install qt
+          brew install taglib
+          brew install mediainfo;
+          brew install create-dmg
+      - name: Fix Qt lib rpaths # see: https://github.com/orgs/Homebrew/discussions/2823#discussioncomment-2010340)
+        run: |
+          install_name_tool -id '@rpath/QtCore.framework/Versions/A/QtCore' /usr/local/lib/QtCore.framework/Versions/A/QtCore
+          install_name_tool -id '@rpath/QtGui.framework/Versions/A/QtGui' /usr/local/lib/QtGui.framework/Versions/A/QtGui
+          install_name_tool -id '@rpath/QtNetwork.framework/Versions/A/QtNetwork' /usr/local/lib/QtNetwork.framework/Versions/A/QtNetwork
+          install_name_tool -id '@rpath/QtWidgets.framework/Versions/A/QtWidgets' /usr/local/lib/QtWidgets.framework/Versions/A/QtWidgets
+          install_name_tool -id '@rpath/QtPdf.framework/Versions/A/QtPdf' /usr/local/lib/QtPdf.framework/Versions/A/QtPdf
+          install_name_tool -id '@rpath/QtSvg.framework/Versions/A/QtSvg' /usr/local/lib/QtSvg.framework/Versions/A/QtSvg
+          install_name_tool -id '@rpath/QtVirtualKeyboard.framework/Versions/A/QtVirtualKeyboard' /usr/local/lib/QtVirtualKeyboard.framework/Versions/A/QtVirtualKeyboard
+          install_name_tool -id '@rpath/QtQuick.framework/Versions/A/QtQuick' /usr/local/lib/QtQuick.framework/Versions/A/QtQuick
+          install_name_tool -id '@rpath/QtQmlModels.framework/Versions/A/QtQmlModels' /usr/local/lib/QtQmlModels.framework/Versions/A/QtQmlModels
+          install_name_tool -id '@rpath/QtQml.framework/Versions/A/QtQml' /usr/local/lib/QtQml.framework/Versions/A/QtQml
+          install_name_tool -id '@rpath/QtOpenGL.framework/Versions/A/QtOpenGL' /usr/local/lib/QtOpenGL.framework/Versions/A/QtOpenGL
+          install_name_tool -id '@rpath/QtMultimedia.framework/Versions/A/QtMultimedia' /usr/local/lib/QtMultimedia.framework/Versions/A/QtMultimedia
+      - name: Build plugins
+        run: |
+          cd src/plugins/audiotag/
+          qmake6 audiotag.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
+          cd ../cleanup/
+          qmake6 cleanup.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
+          cd ../lyric/
+          qmake6 lyric.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
+          cd ../preparatory/
+          qmake6 preparatory.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
+          cd ../rename/
+          qmake6 rename.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
+      - name: Build UltraStar-Manager
+        run: |
+          cd src
+          qmake6 UltraStar-Manager.pro
+          make -j$${{ steps.cpu-cores.outputs.count }}
+          cd ../bin/release
+          mv UltraStar-Manager.dmg MAC-UltraStar-Manager.dmg
+      - name: Upload Portable Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MAC-UltraStar-Manager-portable
+          path: bin/release
+          if-no-files-found: error
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MAC-UltraStar-Manager-image
+          path: bin/release/MAC-UltraStar-Manager.dmg
+          if-no-files-found: error
+
+  build_linux:
+    name: Build for Linux
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Get Number of CPU Cores
+        uses: SimenB/github-actions-cpu-cores@v2
+        id: cpu-cores
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: "6.5.*"
+          modules: qtmultimedia
+      - name: Install Dependencies
+        run: |
+          sudo apt update -qq
+          sudo apt install -y libgl1-mesa-dev build-essential libpulse-mainloop-glib0 libgstreamer-plugins-base1.0-dev
+          sudo apt install -y libtag1-dev libcld2-dev libmediainfo-dev
+          sudo apt install -y libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xinerama0 libxcb-xkb-dev libxkbcommon-x11-0 libxcb-cursor0 libgtk2.0-dev
+      - name: Build plugins
+        run: |
+          cd src/plugins/audiotag/
+          qmake6 audiotag.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
+          cd ../cleanup/
+          qmake6 cleanup.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
+          cd ../lyric/
+          qmake6 lyric.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
+          cd ../preparatory/
+          qmake6 preparatory.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
+          cd ../rename/
+          qmake6 rename.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
+      - name: Build UltraStar-Manager
+        run: |
+          cd src
+          qmake6 UltraStar-Manager.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
+      - name: Create AppImage
+        run: |
+          cd bin/release
+          wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
+          chmod a+x linuxdeployqt*.AppImage
+          cp ../../setup/unix/UltraStar-Manager.desktop .
+          cp ../../setup/unix/UltraStar-Manager.png .
+          sed -i "s/Name=UltraStar-Manager/Name=LINUX-UltraStar-Manager/g" UltraStar-Manager.desktop
+          ./linuxdeployqt*.AppImage UltraStar-Manager.desktop -bundle-non-qt-libs -appimage
+          mv LINUX-UltraStar-Manager-*.AppImage LINUX-UltraStar-Manager.AppImage
+      - name: Upload AppImage Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: LINUX-UltraStar-Manager-appimage
+          path: bin/release/LINUX-UltraStar-Manager.AppImage
+          if-no-files-found: error
+
+  draft_release:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    name: Draft a Release
+    needs: [build_windows, build_mac, build_linux]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Download Artifacts from Build Jobs
+        uses: actions/download-artifact@v4
+        with:
+          path: .
+          pattern: "*"
+      - name: Prepare Artifacts
+        run: |
+          zip -r MAC-UltraStar-Manager-portable.zip MAC-UltraStar-Manager-portable
+          zip -r WIN64-UltraStar-Manager-portable.zip WIN64-UltraStar-Manager-portable
+          mv WIN64-UltraStar-Manager-installer/UltraStar-Manager* WIN64-UltraStar-Manager-installer/WIN64-UltraStar-Manager-setup.exe
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "LINUX-UltraStar-Manager-appimage/*, MAC-UltraStar-Manager-image/*, MAC-UltraStar-Manager-portable.zip, WIN64-UltraStar-Manager-installer/*, WIN64-UltraStar-Manager-portable.zip"
+          draft: true
+          artifactErrorsFailBuild: true

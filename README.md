@@ -1,6 +1,6 @@
 # UltraStar-Manager Development README
 
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/gypi0njftnnsmfij/branch/master?svg=true)](https://ci.appveyor.com/project/bohning/ultrastar-manager/branch/master)
+[![Build](https://github.com/UltraStar-Deluxe/UltraStar-Manager/actions/workflows/main.yml/badge.svg)](https://github.com/UltraStar-Deluxe/UltraStar-Manager/actions/workflows/main.yml)
 [![License](https://img.shields.io/badge/license-GPLv2-blue.svg)](LICENSE)
 
 ![UltraStar-Manager Logo](https://github.com/UltraStar-Deluxe/UltraStar-Manager/blob/master/src/resources/UltraStar-Manager128.png)
