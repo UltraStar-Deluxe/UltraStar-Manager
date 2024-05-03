@@ -265,7 +265,6 @@ macx {
 	LIBS += -L"../lib/MacOS" \
 		-lcld2
 
-	PKG_CONFIG = /usr/local/bin/pkg-config
 	CONFIG += link_pkgconfig
 	PKGCONFIG += taglib
 	PKGCONFIG += libmediainfo
