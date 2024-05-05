@@ -265,14 +265,14 @@ macx {
 	LIBS += -L"../lib/MacOS" \
 		-lcld2
 
-	PKG_CONFIG = /usr/local/bin/pkg-config
+	PKG_CONFIG = $$system(brew --prefix)/bin/pkg-config
 	CONFIG += link_pkgconfig
 	PKGCONFIG += taglib
 	PKGCONFIG += libmediainfo
 
 	CONFIG += app_bundle
 	#QMAKE_RPATHDIR += @executable_path/../Frameworks
-	QMAKE_LFLAGS += -Wl,-rpath,@executable_path/../Frameworks/
+	#QMAKE_LFLAGS += -Wl,-rpath,@executable_path/../Frameworks/
 	
 	QMAKE_MACOSX_DEPLOYMENT_TARGET = 12.0
 
