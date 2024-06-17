@@ -243,18 +243,17 @@ INCLUDEPATH += . \
 
 win32 {
 	INCLUDEPATH += ../include/cld2/public \
-		"C:/Program Files/taglib/include/taglib" \
+		../include/taglib \
 		"C:/Program Files/MediaInfoLib/include"
 
 	LIBS += -L"../lib/win64" \
-		-lcld2
+		-lcld2 \
+		-ltag
 	LIBS += -L"C:/Program Files/MediaInfoLib/lib" \
 		-lmediainfo \
 		-lzen
 	LIBS += -L"C:/Program Files/zlib/lib" \
 		-lzlib
-	LIBS += -L"C:/Program Files/taglib/lib" \
-		-ltag
 
 	RC_ICONS += UltraStar-Manager.ico
 }
