@@ -50,7 +50,7 @@ QUWebInfoTree::QUWebInfoTree(QWidget *parent): QTreeWidget(parent) {
 
 	this->addTopLevelItem(_hitparade);
 
-	_hitparade->setIcon(0, QIcon(":/faviconHitparade.ico"));
+	_hitparade->setIcon(0, QIcon(":/faviconHitparade.png"));
 	_hitparade->setText(0, tr("hitparade.ch"));
 	_hitparade->setFlags(Qt::ItemIsEnabled);
 	_hitparade->setForeground(0, Qt::darkGray);

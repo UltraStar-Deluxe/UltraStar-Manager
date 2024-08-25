@@ -46,7 +46,7 @@
         <file>faviconAllMusic.ico</file>
         <file>faviconDiscogs.ico</file>
         <file>faviconFanart.ico</file>
-        <file>faviconHitparade.ico</file>
+        <file>faviconHitparade.png</file>
     </qresource>
     <qresource prefix="/bullets">
         <file>arrow_down_small.png</file>

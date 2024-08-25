@@ -592,7 +592,7 @@ Tasks</string>
               </property>
               <property name="icon">
                <iconset resource="resources/UltraStar-Manager.qrc">
-                <normaloff>:/faviconHitparade.ico</normaloff>:/faviconHitparade.ico</iconset>
+                <normaloff>:/faviconHitparade.png</normaloff>:/faviconHitparade.png</iconset>
               </property>
               <property name="iconSize">
                <size>
