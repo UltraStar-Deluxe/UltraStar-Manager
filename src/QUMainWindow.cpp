@@ -197,7 +197,7 @@ void QUMainWindow::initConfig() {
 	_menu->relativePathsChk->setChecked(settings.value("showRelativeSongPath", true).toBool());
 	_menu->otherSymbolsChk->setChecked(settings.value("altSongTree", false).toBool());
 	completerChk->setChecked(settings.value("caseSensitiveAutoCompletion", false).toBool());
-	swisschartsChk->setChecked(settings.value("swisschartsWebInfo", false).toBool());
+	hitparadeChk->setChecked(settings.value("hitparadeWebInfo", false).toBool());
 	discogsChk->setChecked(settings.value("discogsWebInfo", false).toBool());
 	allmusicChk->setChecked(settings.value("allmusicWebInfo", false).toBool());
 
@@ -472,7 +472,7 @@ void QUMainWindow::initDetailsTable() {
 }
 
 void QUMainWindow::initWebInfo() {
-	connect(swisschartsChk, SIGNAL(toggled(bool)), this, SLOT(toggleSwisschartsChk(bool)));
+	connect(hitparadeChk, SIGNAL(toggled(bool)), this, SLOT(toggleHitparadeChk(bool)));
 	connect(discogsChk, SIGNAL(toggled(bool)), this, SLOT(toggleDiscogsChk(bool)));
 	connect(allmusicChk, SIGNAL(toggled(bool)), this, SLOT(toggleAllmusicChk(bool)));
 }
@@ -1221,11 +1221,11 @@ void QUMainWindow::toggleCompleterChk(bool checked) {
 }
 
 /*!
- * Toggle whether information from swisscharts.com should be retrieved.
+ * Toggle whether information from hitparade.ch should be retrieved.
  */
-void QUMainWindow::toggleSwisschartsChk(bool checked) {
+void QUMainWindow::toggleHitparadeChk(bool checked) {
 	QSettings settings;
-	settings.setValue("swisschartsWebInfo", QVariant(checked));
+	settings.setValue("hitparadeWebInfo", QVariant(checked));
 }
 
 /*!

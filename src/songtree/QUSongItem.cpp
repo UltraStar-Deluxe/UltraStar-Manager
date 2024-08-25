@@ -316,6 +316,7 @@ void QUSongItem::updateAsSync() {
 	clearContents();
 
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/sync.png"));
+	// this->setToolTip((SYNC_COLUMN, QString("%1").arg("Test!")));
 	(dynamic_cast<QUSongItem*>(this->parent()))->setData(SYNC_COLUMN, Qt::UserRole, QVariant(-1));
 	(dynamic_cast<QUSongItem*>(this->parent()))->setIcon(SYNC_COLUMN, QIcon(":/types/sync.png"));
 

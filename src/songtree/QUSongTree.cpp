@@ -1371,7 +1371,7 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 		menu->addAction(QIcon(":/faviconGoogle.ico"),tr("Search for background on Google Images..."), this, SLOT(searchForBackgroundOnGoogleImages()));
 		menu->addAction(QIcon(":/faviconGoogle.ico"),tr("Search for video on Google Video..."), this, SLOT(searchForVideoOnGoogleVideo()));
 		menu->addAction(QIcon(":/faviconYoutube.ico"),tr("Search for video on Youtube..."), this, SLOT(searchForVideoOnYoutube()));
-		menu->addAction(QIcon(":/faviconSwissCharts.ico"),tr("Look up on Swisscharts..."), this, SLOT(lookUpOnSwisscharts()));
+		menu->addAction(QIcon(":/faviconHitparade.ico"),tr("Look up on Hitparade.ch..."), this, SLOT(lookUpOnHitparade()));
 		menu->addAction(QIcon(":/faviconUSDB.ico"),tr("Look up on USDB..."), this, SLOT(lookUpOnUSDB()));
 
 		if ( item->song()->songFileInfo().dir().entryList(QStringList("*.txt"), QDir::Files).size() == 2 ) {
@@ -1524,18 +1524,18 @@ void QUSongTree::restoreSelection(const QList<QUSongItem*> &selectedItems) {
 }
 
 /*!
- * Look up song at swisscharts.com, e.g. for correct spelling and release year
+ * Look up song at hitparade.ch, e.g. for correct spelling and release year
  */
-void QUSongTree::lookUpOnSwisscharts() {
+void QUSongTree::lookUpOnHitparade() {
 	QUSongItem *songItem = dynamic_cast<QUSongItem*>(this->currentItem());
 
 	if(songItem) {
-		QUrl url("http://swisscharts.com/search.asp");
+		QUrl url("http://hitparade.ch/search.asp");
 		QUrlQuery urlQuery;
 		urlQuery.addQueryItem("cat", "s");
 		QString queryString = songItem->song()->artist() + " " + songItem->song()->title();
 
-		// swisscharts.com only allows search queries up to 50 characters
+		// hitparade.ch only allows search queries up to 50 characters
 		while(queryString.length() > 50) {
 			queryString = queryString.left(queryString.lastIndexOf(' '));
 		}

@@ -67,7 +67,7 @@ private slots:
 
 	void toggleRelativeSongPath(bool checked);
 	void toggleCompleterChk(bool checked);
-	void toggleSwisschartsChk(bool checked);
+	void toggleHitparadeChk(bool checked);
 	void toggleDiscogsChk(bool checked);
 	void toggleAllmusicChk(bool checked);
 	void toggleAutoSaveChk(bool checked);

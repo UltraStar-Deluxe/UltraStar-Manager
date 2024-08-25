@@ -114,7 +114,7 @@ private slots:
 	void searchForArtworkOnFanart();
 	void searchForVideoOnGoogleVideo();
 	void searchForVideoOnYoutube();
-	void lookUpOnSwisscharts();
+	void lookUpOnHitparade();
 	void lookUpOnUSDB();
 	void createDuetFromSongFiles();
 
