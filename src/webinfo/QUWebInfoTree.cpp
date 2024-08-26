@@ -45,19 +45,19 @@ QUWebInfoTree::QUWebInfoTree(QWidget *parent): QTreeWidget(parent) {
 	_cld2->setExpanded(true);
 	_cld2->setHidden(true);
 	
-	// set up "swisscharts" toplevel item
-	_swisscharts = new QTreeWidgetItem();
+	// set up "hitparade.ch" toplevel item
+	_hitparade = new QTreeWidgetItem();
 
-	this->addTopLevelItem(_swisscharts);
+	this->addTopLevelItem(_hitparade);
 
-	_swisscharts->setIcon(0, QIcon(":/faviconSwissCharts.ico"));
-	_swisscharts->setText(0, tr("swisscharts.com"));
-	_swisscharts->setFlags(Qt::ItemIsEnabled);
-	_swisscharts->setForeground(0, Qt::darkGray);
-	_swisscharts->setFirstColumnSpanned(true);
+	_hitparade->setIcon(0, QIcon(":/faviconHitparade.png"));
+	_hitparade->setText(0, tr("hitparade.ch"));
+	_hitparade->setFlags(Qt::ItemIsEnabled);
+	_hitparade->setForeground(0, Qt::darkGray);
+	_hitparade->setFirstColumnSpanned(true);
 
-	_swisscharts->setExpanded(true);
-	_swisscharts->setHidden(true);
+	_hitparade->setExpanded(true);
+	_hitparade->setHidden(true);
 
 	// set up "discogs" toplevel item
 	_discogs = new QTreeWidgetItem();
@@ -145,7 +145,7 @@ QTreeWidgetItem* QUWebInfoTree::createInfoItem(const QIcon &icon, const QString 
 }
 
 /*!
- * Retrieve additional information about the song from music sites such as swisscharts, e.g. correct spelling of artist/title and genre/release year
+ * Retrieve additional information about the song from music sites such as hitparade.ch, e.g. correct spelling of artist/title and genre/release year
  */
 void QUWebInfoTree::showInformation(QUSongFile *song) {
 	if(song->artist().isEmpty() || song->title().isEmpty())
@@ -159,20 +159,20 @@ void QUWebInfoTree::showInformation(QUSongFile *song) {
 	_year = song->year();
 
 	qDeleteAll(_cld2->takeChildren());
-	qDeleteAll(_swisscharts->takeChildren());
+	qDeleteAll(_hitparade->takeChildren());
 	qDeleteAll(_discogs->takeChildren());
 	qDeleteAll(_allmusic->takeChildren());
 
 	_cld2->setHidden(true);
-	_swisscharts->setHidden(true);
+	_hitparade->setHidden(true);
 	_discogs->setHidden(true);
 	_allmusic->setHidden(true);
 
 	QSettings settings;
 	if(settings.value("cld2Info", QVariant(true)).toBool())
 		getCld2Information();
-	if(settings.value("swisschartsWebInfo", QVariant(false)).toBool())
-		getSwisschartsInformation();
+	if(settings.value("hitparadeWebInfo", QVariant(false)).toBool())
+		getHitparadeInformation();
 	if(settings.value("discogsWebInfo", QVariant(false)).toBool())
 		getDiscogsInformation();
 	if(settings.value("allmusicWebInfo", QVariant(false)).toBool())
@@ -248,15 +248,15 @@ void QUWebInfoTree::getCld2Information() {
 	}
 }
 
-void QUWebInfoTree::getSwisschartsInformation() {
-	QUrl url("http://swisscharts.com/search.asp");
+void QUWebInfoTree::getHitparadeInformation() {
+	QUrl url("http://hitparade.ch/search.asp");
 	QUrlQuery urlQuery;
 	urlQuery.addQueryItem("cat", "s");
 
 	QString queryString = QUStringSupport::simplifiedQueryString(_artist) + " " + QUStringSupport::simplifiedQueryString(_title);
 	//qDebug() << "simplified query: " << queryString;
 
-	while(queryString.length() > 50) { // swisscharts.com only allows search queries up to 50 characters
+	while(queryString.length() > 50) { // hitparade.ch only allows search queries up to 50 characters
 		queryString = queryString.left(queryString.lastIndexOf(' '));
 	}
 	urlQuery.addQueryItem("search", queryString.toLatin1().toPercentEncoding());
@@ -299,8 +299,8 @@ void QUWebInfoTree::getAllmusicInformation() {
 }
 
 void QUWebInfoTree::processNetworkReply(QNetworkReply* reply) {
-	if(reply->url().toString().contains("swisscharts")) {
-		processSwisschartsReply(reply);
+	if(reply->url().toString().contains("hitparade")) {
+		processHitparadeReply(reply);
 	} else
 	if(reply->url().toString().contains("allmusic.com")) {
 		processAllmusicReply(reply);
@@ -310,13 +310,13 @@ void QUWebInfoTree::processNetworkReply(QNetworkReply* reply) {
 	}
 }
 
-void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
-	qDeleteAll(_swisscharts->takeChildren());
+void QUWebInfoTree::processHitparadeReply(QNetworkReply* reply) {
+	qDeleteAll(_hitparade->takeChildren());
 
 	if(reply->error() != QNetworkReply::NoError) {
 		qDebug() << reply->errorString();
-		_swisscharts->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", reply->errorString(), QIcon()));
-		_swisscharts->setHidden(false);
+		_hitparade->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", reply->errorString(), QIcon()));
+		_hitparade->setHidden(false);
 		return;
 	}
 	
@@ -331,66 +331,66 @@ void QUWebInfoTree::processSwisschartsReply(QNetworkReply* reply) {
 		while (mi.hasNext()) {
 			QRegularExpressionMatch match = mi.next();
 		
-			QString swisscharts_artist = match.captured(1);
-			QString swisscharts_title = match.captured(2);
-			QString swisscharts_year = match.captured(3).toInt() != 0 ? match.captured(3) : "";
+			QString hitparade_artist = match.captured(1);
+			QString hitparade_title = match.captured(2);
+			QString hitparade_year = match.captured(3).toInt() != 0 ? match.captured(3) : "";
 			
-			_swisscharts->addChild(this->createInfoItem(QIcon(":/types/music.png"), swisscharts_artist, swisscharts_title, QIcon(), QString()));
+			_hitparade->addChild(this->createInfoItem(QIcon(":/types/music.png"), hitparade_artist, hitparade_title, QIcon(), QString()));
 	
 			QU::SpellState spellState;
-			if(QString::compare(_artist.replace("’", "'"), swisscharts_artist, Qt::CaseSensitive) == 0) {
+			if(QString::compare(_artist.replace("’", "'"), hitparade_artist, Qt::CaseSensitive) == 0) {
 				spellState = QU::spellingOk;
-			} else if(QString::compare(_artist.replace("’", "'"), swisscharts_artist, Qt::CaseInsensitive) == 0) {
+			} else if(QString::compare(_artist.replace("’", "'"), hitparade_artist, Qt::CaseInsensitive) == 0) {
 				spellState = QU::spellingWarning;
 			} else {
 				spellState = QU::spellingError;
 			}
-			_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(":/types/user.png"), tr("Artist"), swisscharts_artist, spellState));
-			_swisscharts->child(i)->setText(3, _swisscharts->child(i)->text(3) + QString::number(spellState));
+			_hitparade->child(i)->addChild(this->createInfoItem(QIcon(":/types/user.png"), tr("Artist"), hitparade_artist, spellState));
+			_hitparade->child(i)->setText(3, _hitparade->child(i)->text(3) + QString::number(spellState));
 	
-			if(QString::compare(_title.replace("’", "'"), swisscharts_title, Qt::CaseSensitive) == 0) {
+			if(QString::compare(_title.replace("’", "'"), hitparade_title, Qt::CaseSensitive) == 0) {
 				spellState = QU::spellingOk;
-			} else if(QString::compare(_title.replace("’", "'"), swisscharts_title, Qt::CaseInsensitive) == 0) {
+			} else if(QString::compare(_title.replace("’", "'"), hitparade_title, Qt::CaseInsensitive) == 0) {
 				spellState = QU::spellingWarning;
 			} else {
 				spellState = QU::spellingError;
 			}
-			_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), swisscharts_title, spellState));
-			_swisscharts->child(i)->setText(3, _swisscharts->child(i)->text(3) + QString::number(spellState));
+			_hitparade->child(i)->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), hitparade_title, spellState));
+			_hitparade->child(i)->setText(3, _hitparade->child(i)->text(3) + QString::number(spellState));
 	
-			if(QString::compare(_year, swisscharts_year, Qt::CaseSensitive) == 0) {
+			if(QString::compare(_year, hitparade_year, Qt::CaseSensitive) == 0) {
 				spellState = QU::spellingOk;
 			} else {
 				spellState = QU::spellingError;
 			}
-			_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(":/types/date.png"), tr("Year"), swisscharts_year, spellState));
-			_swisscharts->child(i)->setText(3, _swisscharts->child(i)->text(3) + QString::number(spellState));
+			_hitparade->child(i)->addChild(this->createInfoItem(QIcon(":/types/date.png"), tr("Year"), hitparade_year, spellState));
+			_hitparade->child(i)->setText(3, _hitparade->child(i)->text(3) + QString::number(spellState));
 	
 			// column 3 data contains score string "xyz" where x = artist spellState, y = title spellState, z = year spellState (perfect match = "000")
-			if(_swisscharts->child(i)->text(3).contains('2')) {
-				_swisscharts->child(i)->setIcon(2, QIcon(":/marks/spell_error.png"));
-			} else if(_swisscharts->child(i)->text(3).contains('1')) {
-				_swisscharts->child(i)->setIcon(2, QIcon(":/marks/spell_warn.png"));
+			if(_hitparade->child(i)->text(3).contains('2')) {
+				_hitparade->child(i)->setIcon(2, QIcon(":/marks/spell_error.png"));
+			} else if(_hitparade->child(i)->text(3).contains('1')) {
+				_hitparade->child(i)->setIcon(2, QIcon(":/marks/spell_warn.png"));
 			} else {
-				_swisscharts->child(i)->setIcon(2, QIcon(":/marks/spell_ok.png"));
+				_hitparade->child(i)->setIcon(2, QIcon(":/marks/spell_ok.png"));
 			}
 	
-			if(_swisscharts->child(i)->text(3) == "222") {
-				_swisscharts->child(i)->setExpanded(false);
+			if(_hitparade->child(i)->text(3) == "222") {
+				_hitparade->child(i)->setExpanded(false);
 			} else {
-				_swisscharts->child(i)->setExpanded(true);
+				_hitparade->child(i)->setExpanded(true);
 			}
-			_swisscharts->child(i)->addChild(this->createInfoItem(QIcon(), "", "", QIcon()));
+			_hitparade->child(i)->addChild(this->createInfoItem(QIcon(), "", "", QIcon()));
 			++i;
 		}
 	} else {
-		_swisscharts->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "Song not found.", QIcon(":/marks/spell_error.png")));
-		_swisscharts->setHidden(false);
+		_hitparade->addChild(this->createInfoItem(QIcon(":/marks/cross_error.png"), "Error:", "Song not found.", QIcon(":/marks/spell_error.png")));
+		_hitparade->setHidden(false);
 		return;
 	}
 	
-	_swisscharts->sortChildren(3, Qt::AscendingOrder);
-	_swisscharts->setHidden(false);
+	_hitparade->sortChildren(3, Qt::AscendingOrder);
+	_hitparade->setHidden(false);
 }
 
 void QUWebInfoTree::processDiscogsReply(QNetworkReply* reply) {

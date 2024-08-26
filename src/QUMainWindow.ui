@@ -60,7 +60,7 @@
          </sizepolicy>
         </property>
         <property name="contextMenuPolicy">
-         <enum>Qt::CustomContextMenu</enum>
+         <enum>Qt::ContextMenuPolicy::CustomContextMenu</enum>
         </property>
         <property name="acceptDrops">
          <bool>true</bool>
@@ -69,16 +69,16 @@
          <bool>false</bool>
         </property>
         <property name="dragDropMode">
-         <enum>QAbstractItemView::DropOnly</enum>
+         <enum>QAbstractItemView::DragDropMode::DropOnly</enum>
         </property>
         <property name="alternatingRowColors">
          <bool>true</bool>
         </property>
         <property name="selectionMode">
-         <enum>QAbstractItemView::ExtendedSelection</enum>
+         <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
         </property>
         <property name="selectionBehavior">
-         <enum>QAbstractItemView::SelectRows</enum>
+         <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
         </property>
         <property name="uniformRowHeights">
          <bool>true</bool>
@@ -92,10 +92,10 @@
         <property name="allColumnsShowFocus">
          <bool>false</bool>
         </property>
-        <attribute name="headerDefaultSectionSize">
+        <attribute name="headerMinimumSectionSize">
          <number>27</number>
         </attribute>
-        <attribute name="headerMinimumSectionSize">
+        <attribute name="headerDefaultSectionSize">
          <number>27</number>
         </attribute>
         <column>
@@ -158,7 +158,7 @@
              </size>
             </property>
             <property name="editTriggers">
-             <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+             <set>QAbstractItemView::EditTrigger::AnyKeyPressed|QAbstractItemView::EditTrigger::DoubleClicked|QAbstractItemView::EditTrigger::EditKeyPressed</set>
             </property>
             <property name="showDropIndicator" stdset="0">
              <bool>true</bool>
@@ -167,16 +167,16 @@
              <bool>false</bool>
             </property>
             <property name="selectionMode">
-             <enum>QAbstractItemView::SingleSelection</enum>
+             <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
             </property>
             <property name="selectionBehavior">
-             <enum>QAbstractItemView::SelectRows</enum>
+             <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
             </property>
             <property name="showGrid">
              <bool>false</bool>
             </property>
             <property name="gridStyle">
-             <enum>Qt::DashLine</enum>
+             <enum>Qt::PenStyle::DashLine</enum>
             </property>
             <property name="wordWrap">
              <bool>false</bool>
@@ -230,7 +230,7 @@
             <item>
              <spacer name="horizontalSpacer_2">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -338,13 +338,13 @@
              </sizepolicy>
             </property>
             <property name="editTriggers">
-             <set>QAbstractItemView::NoEditTriggers</set>
+             <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
             </property>
             <property name="alternatingRowColors">
              <bool>false</bool>
             </property>
             <property name="selectionMode">
-             <enum>QAbstractItemView::SingleSelection</enum>
+             <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
             </property>
            </widget>
           </item>
@@ -366,7 +366,6 @@
              <widget class="QToolButton" name="taskBtn">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -391,7 +390,7 @@ Tasks</string>
                <string>Ctrl+R</string>
               </property>
               <property name="toolButtonStyle">
-               <enum>Qt::ToolButtonTextBesideIcon</enum>
+               <enum>Qt::ToolButtonStyle::ToolButtonTextBesideIcon</enum>
               </property>
               <property name="autoRaise">
                <bool>true</bool>
@@ -401,7 +400,7 @@ Tasks</string>
             <item>
              <spacer>
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -431,20 +430,20 @@ Tasks</string>
                     <normaloff>:/marks/add.png</normaloff>:/marks/add.png</iconset>
                   </property>
                   <property name="toolButtonStyle">
-                   <enum>Qt::ToolButtonTextBesideIcon</enum>
+                   <enum>Qt::ToolButtonStyle::ToolButtonTextBesideIcon</enum>
                   </property>
                   <property name="autoRaise">
                    <bool>true</bool>
                   </property>
                   <property name="arrowType">
-                   <enum>Qt::NoArrow</enum>
+                   <enum>Qt::ArrowType::NoArrow</enum>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="Line" name="line">
                   <property name="orientation">
-                   <enum>Qt::Vertical</enum>
+                   <enum>Qt::Orientation::Vertical</enum>
                   </property>
                  </widget>
                 </item>
@@ -478,7 +477,7 @@ Tasks</string>
                     <normaloff>:/control/check_tasks.png</normaloff>:/control/check_tasks.png</iconset>
                   </property>
                   <property name="toolButtonStyle">
-                   <enum>Qt::ToolButtonIconOnly</enum>
+                   <enum>Qt::ToolButtonStyle::ToolButtonIconOnly</enum>
                   </property>
                   <property name="autoRaise">
                    <bool>true</bool>
@@ -490,10 +489,10 @@ Tasks</string>
               <item>
                <spacer>
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeType">
-                 <enum>QSizePolicy::Minimum</enum>
+                 <enum>QSizePolicy::Policy::Minimum</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -536,7 +535,7 @@ Tasks</string>
           <item>
            <widget class="QUPreviewTree" name="previewTree">
             <property name="textElideMode">
-             <enum>Qt::ElideRight</enum>
+             <enum>Qt::TextElideMode::ElideRight</enum>
             </property>
             <attribute name="headerVisible">
              <bool>false</bool>
@@ -587,13 +586,13 @@ Tasks</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="QCheckBox" name="swisschartsChk">
+             <widget class="QCheckBox" name="hitparadeChk">
               <property name="text">
-               <string>Swisscharts</string>
+               <string>Hitparade</string>
               </property>
               <property name="icon">
                <iconset resource="resources/UltraStar-Manager.qrc">
-                <normaloff>:/faviconSwissCharts.ico</normaloff>:/faviconSwissCharts.ico</iconset>
+                <normaloff>:/faviconHitparade.png</normaloff>:/faviconHitparade.png</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -651,7 +650,7 @@ Tasks</string>
           <item>
            <widget class="QUWebInfoTree" name="webInfoTree">
             <property name="textElideMode">
-             <enum>Qt::ElideRight</enum>
+             <enum>Qt::TextElideMode::ElideRight</enum>
             </property>
             <property name="columnCount">
              <number>3</number>
@@ -787,10 +786,10 @@ Tasks</string>
              </size>
             </property>
             <property name="selectionMode">
-             <enum>QAbstractItemView::ContiguousSelection</enum>
+             <enum>QAbstractItemView::SelectionMode::ContiguousSelection</enum>
             </property>
             <property name="selectionBehavior">
-             <enum>QAbstractItemView::SelectRows</enum>
+             <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
             </property>
             <property name="isWrapping" stdset="0">
              <bool>false</bool>
@@ -806,7 +805,7 @@ Tasks</string>
              <number>0</number>
             </property>
             <property name="sizeConstraint">
-             <enum>QLayout::SetDefaultConstraint</enum>
+             <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
             </property>
             <property name="leftMargin">
              <number>0</number>
@@ -950,7 +949,7 @@ Tasks</string>
             <item>
              <spacer name="horizontalSpacer">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -970,7 +969,7 @@ Tasks</string>
                 <normaloff>:/control/save.png</normaloff>:/control/save.png</iconset>
               </property>
               <property name="toolButtonStyle">
-               <enum>Qt::ToolButtonTextBesideIcon</enum>
+               <enum>Qt::ToolButtonStyle::ToolButtonTextBesideIcon</enum>
               </property>
               <property name="autoRaise">
                <bool>true</bool>
@@ -980,7 +979,7 @@ Tasks</string>
             <item>
              <widget class="Line" name="line_2">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
              </widget>
             </item>
@@ -994,7 +993,7 @@ Tasks</string>
                 <normaloff>:/control/bin.png</normaloff>:/control/bin.png</iconset>
               </property>
               <property name="toolButtonStyle">
-               <enum>Qt::ToolButtonIconOnly</enum>
+               <enum>Qt::ToolButtonStyle::ToolButtonIconOnly</enum>
               </property>
               <property name="autoRaise">
                <bool>true</bool>
@@ -1017,7 +1016,7 @@ Tasks</string>
      <x>0</x>
      <y>0</y>
      <width>954</width>
-     <height>22</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>
