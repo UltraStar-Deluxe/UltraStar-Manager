@@ -71,6 +71,7 @@ Section "Application" SecCopyUI
 	;;File "Qt6Svg.dll" ;; added via windeployqt, but not needed
 	File "Qt6Widgets.dll"
 	File "Qt6Xml.dll"
+	File "Qt6Multimedia.dll"
 	File "UltraStar-Manager.exe"
 	;;SetOutPath "$INSTDIR\iconengines" ;; added via windeployqt, but not needed
 	;;File "iconengines\qsvgicon.dll" ;; added via windeployqt, but not needed
@@ -328,6 +329,7 @@ Section "Uninstall"
 	;;Delete "$INSTDIR\Qt6Svg.dll"
 	Delete "$INSTDIR\Qt6Widgets.dll"
 	Delete "$INSTDIR\Qt6Xml.dll"
+	Delete "$INSTDIR\Qt6Multimedia.dll"
 	Delete "$INSTDIR\UltraStar-Manager.exe"
 
 	Delete "$INSTDIR\Uninstall.exe"
