@@ -59,7 +59,7 @@ void QURibbonBar::setShortcut(QToolButton *w, const QKeySequence &key) {
 	connect(a, SIGNAL(triggered()), w, SLOT(click()));
 	addAction(a);
 
-	w->setToolTip(QString("%1 (%2)").arg(w->toolTip()).arg(key.toString()));
+	w->setToolTip(QString("%1 (%2)").arg(w->toolTip(), key.toString()));
 }
 
 QSize QURibbonBar::sizeHint() const {

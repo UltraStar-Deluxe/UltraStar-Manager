@@ -22,7 +22,8 @@ QString QUStringSupport::withoutUnsupportedCharacters(const QString &text) {
 	// replace asterixes by dashes
 	cleanText.replace('*', '-');
 	// remove everything else: '\', ':', '*', '?', '"', '|', '<', '>', '^'
-	cleanText.remove(QRegularExpression("[\\\\:\\*\\?\"\\|<>\\^]"));
+	static const QRegularExpression regex("[\\\\:\\*\\?\"\\|<>\\^]");
+	cleanText.remove(regex);
 
 	bool dotsRemoved = false;
 
@@ -52,8 +53,8 @@ QString QUStringSupport::withoutPathDelimiters(const QString &text) {
  * Remove all "folder tags" like [SC], [VIDEO], a.s.o. from the given text.
  */
 QString QUStringSupport::withoutFolderTags(const QString &text) {
-	QRegularExpression rx("\\[.*\\]", QRegularExpression::InvertedGreedinessOption);
-	return QString(text).remove(rx).trimmed();
+	static const QRegularExpression regex("\\[.*\\]", QRegularExpression::InvertedGreedinessOption);
+	return QString(text).remove(regex).trimmed();
 }
 
 /*!
@@ -109,12 +110,17 @@ QString QUStringSupport::simplifiedQueryString(const QString &text) {
 	QString result = text;
 
 	// remove any additions in parentheses
-	result.remove(QRegularExpression("\\(.*\\)"));
+	static const QRegularExpression regex1("\\(.*\\)");
+	result.remove(regex1);
 	// remove additional artists listed as 'feat.', 'ft.', 'with' or 'vs.'/'vs'
-	result.remove(QRegularExpression(" feat\\. .*"));
-	result.remove(QRegularExpression(" ft\\. .*"));
-	result.remove(QRegularExpression(" with .*"));
-	result.remove(QRegularExpression(" vs\\.? .*"));
+	static const QRegularExpression regex2(" feat\\. .*");
+	result.remove(regex2);
+	static const QRegularExpression regex3(" ft\\. .*");
+	result.remove(regex3);
+	static const QRegularExpression regex4(" with .*");
+	result.remove(regex4);
+	static const QRegularExpression regex5(" vs\\.? .*");
+	result.remove(regex5);
 	// remove the ampersand character
 	result.replace(" & ", " ");
 	// remove the plus character
@@ -129,7 +135,7 @@ QString QUStringSupport::simplifiedQueryString(const QString &text) {
 }
 
 QStringList QUStringSupport::extractTags(const QString &text) {
-	QRegularExpression rx = QRegularExpression("\\[([^\\]]+)\\]");
+	static const QRegularExpression rx = QRegularExpression("\\[([^\\]]+)\\]");
 	QRegularExpressionMatchIterator i = rx.globalMatch(text);
 
 	QStringList tags;

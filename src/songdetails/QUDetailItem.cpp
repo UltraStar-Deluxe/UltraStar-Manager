@@ -233,8 +233,9 @@ QStringList QUDetailItem::defaultData(QUSongFile *song) {
 		}
 
 		foreach(QUSongLineInterface *line, song->loadMelody()) {
-			if(!line->notes().isEmpty())
-				dropDownData << QString::number(line->notes().first()->timestamp());
+			auto notes = line->notes();
+			if(!notes.isEmpty())
+				dropDownData << QString::number(notes.first()->timestamp());
 		}
 	}
 	else if(QString::compare(tag(), MEDLEYENDBEAT_TAG) == 0) {
@@ -243,8 +244,9 @@ QStringList QUDetailItem::defaultData(QUSongFile *song) {
 		}
 
 		foreach(QUSongLineInterface *line, song->loadMelody()) {
-			if(!line->notes().isEmpty())
-				dropDownData << QString::number(line->notes().last()->timestamp() + line->notes().last()->duration());
+			auto notes = line->notes();
+			if(!notes.isEmpty())
+				dropDownData << QString::number(notes.last()->timestamp() + notes.last()->duration());
 		}
 	}
 

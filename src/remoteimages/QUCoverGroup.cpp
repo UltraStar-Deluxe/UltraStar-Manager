@@ -67,7 +67,7 @@ void QUCoverGroup::showCovers() {
 }
 
 void QUCoverGroup::showFailure() {
-	logSrv->add(tr("Cover download failed for \"%1 - %2\"").arg(song()->artist()).arg(song()->title()), QU::Error);
+	logSrv->add(tr("Cover download failed for \"%1 - %2\"").arg(song()->artist(), song()->title()), QU::Error);
 }
 
 /*!
@@ -82,14 +82,14 @@ QString QUCoverGroup::currentFilePath() const {
  */
 void QUCoverGroup::copyCoverToSongPath(bool deleteCurrentCover) {
 	if(currentFilePath().isEmpty()) {
-		logSrv->add(QString(tr("Could not copy cover to song path. No cover selected for: \"%1 - %2\"")).arg(song()->artist()).arg(song()->title()), QU::Warning);
+		logSrv->add(QString(tr("Could not copy cover to song path. No cover selected for: \"%1 - %2\"")).arg(song()->artist(), song()->title()), QU::Warning);
 		return;
 	}
 
 	QFileInfo target(song()->songFileInfo().dir(), "cover_" + QFileInfo(currentFilePath()).fileName());
 
 	if(!QFile::copy(currentFilePath(), target.filePath())) {
-		logSrv->add(QString(tr("Could not copy the new cover \"%1\" to \"%2\".")).arg(currentFilePath()).arg(target.filePath()), QU::Warning);
+		logSrv->add(QString(tr("Could not copy the new cover \"%1\" to \"%2\".")).arg(currentFilePath(), target.filePath()), QU::Warning);
 		return;
 	}
 
@@ -99,7 +99,7 @@ void QUCoverGroup::copyCoverToSongPath(bool deleteCurrentCover) {
 			logSrv->add(QString(tr("Could not delete current cover: \"%1\"")).arg(song()->coverFileInfo().filePath()), QU::Warning);
 			song()->autoSetFile(target, true);
 		} else {
-			logSrv->add(QString(tr("Current cover was replaced successfully for: \"%1 - %2\"")).arg(song()->artist()).arg(song()->title()), QU::Information);
+			logSrv->add(QString(tr("Current cover was replaced successfully for: \"%1 - %2\"")).arg(song()->artist(), song()->title()), QU::Information);
 			QFile::rename(target.filePath(), oldName);
 		}
 	} else {
@@ -113,9 +113,9 @@ void QUCoverGroup::copyCoverToSongPath(bool deleteCurrentCover) {
 
 void QUCoverGroup::showStatus(const QString &status) {
 	if(!status.isEmpty())
-		group->setTitle(QString("%1 - %2 (%3)").arg(song()->artist()).arg(song()->title()).arg(status));
+		group->setTitle(QString("%1 - %2 (%3)").arg(song()->artist(), song()->title(), status));
 	else
-		group->setTitle(QString("%1 - %2").arg(song()->artist()).arg(song()->title()));
+		group->setTitle(QString("%1 - %2").arg(song()->artist(), song()->title()));
 }
 
 void QUCoverGroup::openAmazonSearchUrl() {

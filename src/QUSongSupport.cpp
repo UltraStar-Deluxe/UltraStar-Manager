@@ -1,4 +1,4 @@
-﻿#include "QUSongSupport.h"
+#include "QUSongSupport.h"
 #include "QUSongInterface.h"
 
 #include <QMap>
@@ -488,39 +488,48 @@ QStringList QUSongSupport::availableSongYears() {
 }
 
 QString QUSongSupport::defaultInputEncoding() {
-	return registryKey("defaultInputEncoding", "CP1252").first();
+	QStringList result = registryKey("defaultInputEncoding", "CP1252");
+	return result.first();
 }
 
 int QUSongSupport::mediumMp3Quality() {
-	return registryKey("mediumMp3Quality", "96").first().toInt();
+	QStringList result = registryKey("mediumMp3Quality", "96");
+	return result.first().toInt();
 }
 
 int QUSongSupport::highMp3Quality() {
-	return registryKey("highMp3Quality", "128").first().toInt();
+	QStringList result = registryKey("highMp3Quality", "128");
+	return result.first().toInt();
 }
 
 int QUSongSupport::mediumCoverQuality() {
-	return registryKey("mediumCoverQuality", "400 x 400").first().toInt();
+	QStringList result = registryKey("mediumCoverQuality", "400 x 400");
+	return result.first().toInt();
 }
 
 int QUSongSupport::highCoverQuality() {
-	return registryKey("highCoverQuality", "600 x 600").first().toInt();
+	QStringList result = registryKey("highCoverQuality", "600 x 600");
+	return result.first().toInt();
 }
 
 int QUSongSupport::mediumBackgroundQuality() {
-	return registryKey("mediumBackgroundQuality", "1280 x 720").first().toInt();
+	QStringList result = registryKey("mediumBackgroundQuality", "1280 x 720");
+	return result.first().toInt();
 }
 
 int QUSongSupport::highBackgroundQuality() {
-	return registryKey("highBackgroundQuality", "1920 x 1080").first().toInt();
+	QStringList result = registryKey("highBackgroundQuality", "1920 x 1080");
+	return result.first().toInt();
 }
 
 int QUSongSupport::mediumVideoQuality() {
-	return registryKey("mediumVideoQuality", "1280 x 720").first().toInt();
+	QStringList result = registryKey("mediumVideoQuality", "1280 x 720");
+	return result.first().toInt();
 }
 
 int QUSongSupport::highVideoQuality() {
-	return registryKey("highVideoQuality", "1920 x 1080").first().toInt();
+	QStringList result = registryKey("highVideoQuality", "1920 x 1080");
+	return result.first().toInt();
 }
 
 /*!

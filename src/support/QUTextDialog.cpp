@@ -43,7 +43,7 @@ QUTextDialog::QUTextDialog(const QString &filePath, QWidget *parent): QDialog(pa
 
 void QUTextDialog::showLyrics(QUSongFile *song) {
 	this->setWindowTitle(tr("Lyrics"));
-	textLbl->setText(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+	textLbl->setText(QString("%1 - %2").arg(song->artist(), song->title()));
 
 	this->initLyrics(song);
 }
@@ -88,7 +88,8 @@ void QUTextDialog::initFile(QUSongFile *song) {
 		content.replace("  ", "&nbsp;&nbsp;");
 		content.replace(" \n", "&nbsp;<br>");
 		content.replace("\n", "<br>");
-		content.replace(QRegularExpression("(#[^<]*:)"), "<b>\\1</b>");
+		static const QRegularExpression regex("(#[^<]*:)");
+		content.replace(regex, "<b>\\1</b>");
 
 		textEdit->insertHtml(content);
 		file.close();

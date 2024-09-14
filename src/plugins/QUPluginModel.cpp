@@ -47,12 +47,8 @@ QVariant QUPluginModel::data(const QModelIndex &index, int role) const {
 				stuff += tr("<br>Subtype: Background Images");
 		}
 
-		return tr("<b>%1</b><br>%2<br><br>Author: %3<br>Version: %4<br>%5")
-				.arg(pluginMGR->plugins().at(index.row())->name())
-				.arg(pluginMGR->plugins().at(index.row())->description())
-				.arg(pluginMGR->plugins().at(index.row())->author())
-				.arg(pluginMGR->plugins().at(index.row())->version())
-				.arg(stuff);
+		auto plugin = pluginMGR->plugins().at(index.row());
+		return tr("<b>%1</b><br>%2<br><br>Author: %3<br>Version: %4<br>%5").arg(plugin->name(), plugin->description(), plugin->author(), plugin->version(), stuff);
 	}
 
 	return QVariant();

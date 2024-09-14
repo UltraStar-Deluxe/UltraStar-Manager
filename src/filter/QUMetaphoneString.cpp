@@ -6,14 +6,16 @@
 #include <QRegularExpression>
 
 bool QUMetaphoneString::isSlavoGermanic() {
-	return contains(QRegularExpression("W|K|CZ|WITZ"));
+	static const QRegularExpression regex("W|K|CZ|WITZ");
+	return contains(regex);
 }
 
 bool QUMetaphoneString::hasVowel(int at) {
 	if( (at < 0) || (at >= _length) )
 		return false;
 
-	return QRegularExpression(QRegularExpression::anchoredPattern("[AEIOUY]")).match(mid(at, 1)).hasMatch();
+	static const QRegularExpression regex(QRegularExpression::anchoredPattern("[AEIOUY]"));
+	return regex.match(mid(at, 1)).hasMatch();
 }
 
 
@@ -815,9 +817,9 @@ bool QUMetaphoneString::equal(QString token1, QString token2, bool ignoreEmpty) 
 	// replace "lonely, unimportant" words
 	token1.append(' '); token1.prepend(' ');
 	token2.append(' '); token2.prepend(' ');
-	QRegularExpression rx(" THE | DER | DIE | DAS | A | AN | EIN ");
-	token1.replace(rx, " ");
-	token2.replace(rx, " ");
+	static const QRegularExpression regex(" THE | DER | DIE | DAS | A | AN | EIN ");
+	token1.replace(regex, " ");
+	token2.replace(regex, " ");
 
 	token1 = token1.simplified().trimmed();
 	token2 = token2.simplified().trimmed();

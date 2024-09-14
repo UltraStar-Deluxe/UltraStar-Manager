@@ -354,7 +354,7 @@ void QUSongItem::showUnusedFilesIcon(QString fileName) {
 		this->setToolTip(UNUSED_FILES_COLUMN, QObject::tr("Unused files found:")); // headline for the tooltip
 
 	if(!fileName.isEmpty())
-		this->setToolTip(UNUSED_FILES_COLUMN, QString("%1\n* %2").arg(this->toolTip(UNUSED_FILES_COLUMN)).arg(fileName));
+		this->setToolTip(UNUSED_FILES_COLUMN, QString("%1\n* %2").arg(this->toolTip(UNUSED_FILES_COLUMN), fileName));
 
 	// used for sorting, should be smaller than zero
 	this->setData(UNUSED_FILES_COLUMN, Qt::UserRole, QVariant(-1));
@@ -367,7 +367,7 @@ void QUSongItem::showMultipleSongsIcon(QString fileName) {
 		this->setToolTip(MULTIPLE_SONGS_COLUMN, QString(QObject::tr("Multiple songs found:\n* %1 (primary)")).arg(song()->songFileInfo().fileName())); // headline for the tooltip
 
 	if(!fileName.isEmpty())
-		this->setToolTip(MULTIPLE_SONGS_COLUMN, QString("%1\n* %2").arg(this->toolTip(MULTIPLE_SONGS_COLUMN)).arg(fileName));
+		this->setToolTip(MULTIPLE_SONGS_COLUMN, QString("%1\n* %2").arg(this->toolTip(MULTIPLE_SONGS_COLUMN), fileName));
 
 	// used for sorting, should be smaller than zero
 	this->setData(MULTIPLE_SONGS_COLUMN, Qt::UserRole, QVariant(-1));
@@ -639,9 +639,9 @@ void QUSongItem::updateSpellCheckColumns() {
 	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
 		this->setSmiley(ARTIST_COLUMN);
 	else if(QString::compare(part1, part2, Qt::CaseInsensitive) == 0)
-		this->setSmiley(ARTIST_COLUMN, QU::spellingWarning, toolTip.arg(part1).arg(part2).arg(CHAR_UTF8_APPROX));
+		this->setSmiley(ARTIST_COLUMN, QU::spellingWarning, toolTip.arg(part1, part2, CHAR_UTF8_APPROX));
 	else
-		this->setSmiley(ARTIST_COLUMN, QU::spellingError, toolTip.arg(part1).arg(part2).arg(CHAR_UTF8_NEQUAL));
+		this->setSmiley(ARTIST_COLUMN, QU::spellingError, toolTip.arg(part1, part2, CHAR_UTF8_NEQUAL));
 
 	/* title column */
 	part1 = QUStringSupport::withoutUnsupportedCharacters(song()->title());
@@ -654,9 +654,9 @@ void QUSongItem::updateSpellCheckColumns() {
 	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
 		this->setSmiley(TITLE_COLUMN);
 	else if(QString::compare(part1, part2, Qt::CaseInsensitive) == 0)
-		this->setSmiley(TITLE_COLUMN, QU::spellingWarning, toolTip.arg(part1).arg(part2).arg(CHAR_UTF8_APPROX));
+		this->setSmiley(TITLE_COLUMN, QU::spellingWarning, toolTip.arg(part1, part2, CHAR_UTF8_APPROX));
 	else
-		this->setSmiley(TITLE_COLUMN, QU::spellingError, toolTip.arg(part1).arg(part2).arg(CHAR_UTF8_NEQUAL));
+		this->setSmiley(TITLE_COLUMN, QU::spellingError, toolTip.arg(part1, part2, CHAR_UTF8_NEQUAL));
 }
 
 void QUSongItem::updateFileCheckColumns() {

@@ -258,7 +258,7 @@ void QUMainWindow::initWindow() {
 	windowIcon.addFile(":/icons/UltraStar-Manager128.png", QSize(128, 128));
 
 	setWindowIcon(windowIcon);
-	setWindowTitle(QString("%1%2").arg(tr("UltraStar Manager")).arg(WIP_TEXT));
+	setWindowTitle(QString("%1%2").arg(tr("UltraStar Manager"), WIP_TEXT));
 	resize(1000, 500);
 
 	addDockWidget(Qt::LeftDockWidgetArea, detailsDock);
@@ -743,25 +743,25 @@ void QUMainWindow::editSongSetFileLink(QTreeWidgetItem *item, int column) {
 	if( songItem->icon(MP3_COLUMN).isNull()
 			&& QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)
 			&& column == MP3_COLUMN ) {
-		logSrv->add(QString(tr("Audio file changed from \"%1\" to: \"%2\".")).arg(song->mp3()).arg(songItem->text(FOLDER_COLUMN)), QU::Information);
+		logSrv->add(QString(tr("Audio file changed from \"%1\" to: \"%2\".")).arg(song->mp3(), songItem->text(FOLDER_COLUMN)), QU::Information);
 		song->setInfo(MP3_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	} else if( songItem->icon(COVER_COLUMN).isNull()
 			&& QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)
 			&& column == COVER_COLUMN ) {
-		logSrv->add(QString(tr("Cover changed from \"%1\" to: \"%2\".")).arg(song->cover()).arg(songItem->text(FOLDER_COLUMN)), QU::Information);
+		logSrv->add(QString(tr("Cover changed from \"%1\" to: \"%2\".")).arg(song->cover(), songItem->text(FOLDER_COLUMN)), QU::Information);
 		song->setInfo(COVER_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	} else if( songItem->icon(BACKGROUND_COLUMN).isNull()
 			&& QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)
 			&& column == BACKGROUND_COLUMN ) {
-		logSrv->add(QString(tr("Background changed from \"%1\" to: \"%2\".")).arg(song->background()).arg(songItem->text(FOLDER_COLUMN)), QU::Information);
+		logSrv->add(QString(tr("Background changed from \"%1\" to: \"%2\".")).arg(song->background(), songItem->text(FOLDER_COLUMN)), QU::Information);
 		song->setInfo(BACKGROUND_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	} else if( songItem->icon(VIDEO_COLUMN).isNull()
 			&& QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)
 			&& column == VIDEO_COLUMN ) {
-		logSrv->add(QString(tr("Video file changed from \"%1\" to: \"%2\".")).arg(song->video()).arg(songItem->text(FOLDER_COLUMN)), QU::Information);
+		logSrv->add(QString(tr("Video file changed from \"%1\" to: \"%2\".")).arg(song->video(), songItem->text(FOLDER_COLUMN)), QU::Information);
 		song->setInfo(VIDEO_TAG, songItem->text(FOLDER_COLUMN));
 		song->save();
 	}
@@ -792,7 +792,7 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 
 	// save changes for each song
 	foreach(QUSongItem *songItem, selectedItems) {
-		dlg.update(QString("%1 - %2").arg(songItem->song()->artist()).arg(songItem->song()->title()));
+		dlg.update(QString("%1 - %2").arg(songItem->song()->artist(), songItem->song()->title()));
 		if(dlg.cancelled()) break;
 
 		// delete medley tags if CALCMEDLEY_TAG is set to OFF
@@ -835,7 +835,7 @@ void QUMainWindow::editSongApplyTasks() {
 		QUSongFile *song = songItem->song();
 		itemExpandedStates.append(songItem->isExpanded());
 
-		dlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+		dlg.update(QString("%1 - %2").arg(song->artist(), song->title()));
 		if(dlg.cancelled()) break;
 
 		songDB->ignoreChangesForSong(song);
@@ -942,7 +942,7 @@ void QUMainWindow::saveLog() {
 		out.setGenerateByteOrderMark(true);
 
 		for(int row = 0; row < log->count(); ++row) {
-			out << QString("%1 %2").arg(log->item(row)->data(Qt::UserRole).toString()).arg(log->item(row)->text()) << Qt::endl;
+			out << QString("%1 %2").arg(log->item(row)->data(Qt::UserRole).toString(), log->item(row)->text()) << Qt::endl;
 		}
 		file.close();
 

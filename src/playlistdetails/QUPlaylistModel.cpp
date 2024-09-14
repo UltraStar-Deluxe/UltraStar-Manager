@@ -33,17 +33,9 @@ QVariant QUPlaylistModel::data(const QModelIndex &index, int role) const {
 
 	if(role == Qt::DisplayRole) {
 		if(song)
-			return QString("%1. %2 - %3 (%4)")
-				.arg( index.row() + 1)
-				.arg( song->artist() )
-				.arg( song->title() )
-				.arg( entry->gameMode().remove("TR_GAMEMODE_").toLower() );
+			return QString("%1. %2 - %3 (%4)").arg(QString::number(index.row() + 1), song->artist(), song->title(), entry->gameMode().remove("TR_GAMEMODE_").toLower());
 		else
-			return QString(tr("%1. %2 - %3 (%4) (not found)"))
-				.arg( index.row() + 1)
-				.arg( entry->artistLink() )
-				.arg( entry->titleLink() )
-				.arg( entry->gameMode().remove("TR_GAMEMODE_").toLower() );
+			return QString(tr("%1. %2 - %3 (%4) (not found)")).arg(QString::number(index.row() + 1), entry->artistLink(), entry->titleLink(), entry->gameMode().remove("TR_GAMEMODE_").toLower());
 	} else if(role == Qt::FontRole) {
 		QFont f("MS Shell Dlg", 8, QFont::Normal, false);
 		if(entry->hasUnsavedChanges())

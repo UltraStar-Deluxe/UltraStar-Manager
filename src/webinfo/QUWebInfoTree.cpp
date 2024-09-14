@@ -124,10 +124,10 @@ QTreeWidgetItem* QUWebInfoTree::createInfoItem(const QIcon &icon, const QString 
 		toolTip = "";
 	} else if(spellState == QU::spellingWarning) {
 		status =  QIcon(":/marks/spell_warn.png");
-		toolTip = QString("Double-click to change %1 to '%2'.").arg(tag.toLower()).arg(value);
+		toolTip = QString("Double-click to change %1 to '%2'.").arg(tag.toLower(), value);
 	} else {
 		status = QIcon(":/marks/spell_error.png");
-		toolTip = QString("Double-click to change %1 to '%2'.").arg(tag.toLower()).arg(value);
+		toolTip = QString("Double-click to change %1 to '%2'.").arg(tag.toLower(), value);
 	}
 	infoItem->setIcon(2, status);
 	infoItem->setToolTip(0, toolTip);
@@ -294,7 +294,8 @@ void QUWebInfoTree::getAllmusicInformation() {
 	_allmusic->setHidden(false);
 	return;
 
-	QUrl url("http://www.allmusic.com/search/songs/" + _artist.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts).join('+') + "+" + _title.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts).join('+'));
+	static const QRegularExpression regex("\\s+");
+	QUrl url("http://www.allmusic.com/search/songs/" + _artist.split(regex, Qt::SkipEmptyParts).join('+') + "+" + _title.split(regex, Qt::SkipEmptyParts).join('+'));
 	_manager->get(QNetworkRequest(url));
 }
 
@@ -323,7 +324,7 @@ void QUWebInfoTree::processHitparadeReply(QNetworkReply* reply) {
 	QByteArray newData = reply->readAll();
 	QString searchresult = QString::fromLatin1(newData).remove("\r\n");
 	
-	QRegularExpression re = QRegularExpression("<tr><td.*?><a href=\"/song/.*?\">(.*?)</a></td.*?>.*?<a href=\"/song/.*?\">(.*?)</a>.*?<td.*?>(\\d{4}|&nbsp;|\\s*)</td>", QRegularExpression::DotMatchesEverythingOption);
+	static const QRegularExpression re = QRegularExpression("<tr><td.*?><a href=\"/song/.*?\">(.*?)</a></td.*?>.*?<a href=\"/song/.*?\">(.*?)</a>.*?<td.*?>(\\d{4}|&nbsp;|\\s*)</td>", QRegularExpression::DotMatchesEverythingOption);
 	QRegularExpressionMatchIterator mi = re.globalMatch(searchresult);
 	
 	if (mi.hasNext()) {
@@ -465,7 +466,7 @@ void QUWebInfoTree::processDiscogsSongReply(QNetworkReply* reply) {
 	QIcon icon;
 	QString toolTip;
 
-	QRegularExpression rx2 = QRegularExpression("<span itemprop=\"name\" title=\".*\" >\\s*<a href=\".*\">(.+)</a></span>\\s*</span>.*<span itemprop=\"name\">\\s*(.+)\\s*</span>\\s*</h1>\\s*<div class=\"head\">.*:</div>\\s*<div class=\"content\" itemprop=\"genre\">\\s*<a href=\".*\">(.+)</a>\\s*</div>\\s*<div class=\"head\">.*:</div>\\s*<div class=\"content\">\\s*<a href=\".*\">(.+)</a>", QRegularExpression::InvertedGreedinessOption | QRegularExpression::CaseInsensitiveOption);
+	static const QRegularExpression rx2 = QRegularExpression("<span itemprop=\"name\" title=\".*\" >\\s*<a href=\".*\">(.+)</a></span>\\s*</span>.*<span itemprop=\"name\">\\s*(.+)\\s*</span>\\s*</h1>\\s*<div class=\"head\">.*:</div>\\s*<div class=\"content\" itemprop=\"genre\">\\s*<a href=\".*\">(.+)</a>\\s*</div>\\s*<div class=\"head\">.*:</div>\\s*<div class=\"content\">\\s*<a href=\".*\">(.+)</a>", QRegularExpression::InvertedGreedinessOption | QRegularExpression::CaseInsensitiveOption);
 	QRegularExpressionMatch match = rx2.match(discogs_reply);
 	
 	QString discogs_url;
@@ -486,10 +487,10 @@ void QUWebInfoTree::processDiscogsSongReply(QNetworkReply* reply) {
 			toolTip = "";
 		} else if(QString::compare(_artist, discogs_artist, Qt::CaseInsensitive) == 0) {
 			icon =  QIcon(":/marks/spell_warn.png");
-			toolTip = QString("Double-click to change artist from '%1' to '%2'.").arg(_artist).arg(discogs_artist);
+			toolTip = QString("Double-click to change artist from '%1' to '%2'.").arg(_artist, discogs_artist);
 		} else {
 			icon = QIcon(":/marks/spell_error.png");
-			toolTip = QString("Double-click to change artist from '%1' to '%2'.").arg(_artist).arg(discogs_artist);
+			toolTip = QString("Double-click to change artist from '%1' to '%2'.").arg(_artist, discogs_artist);
 		}
 		_discogs->addChild(this->createInfoItem(QIcon(":/types/user.png"), tr("Artist"), discogs_artist, icon, toolTip));
 
@@ -498,10 +499,10 @@ void QUWebInfoTree::processDiscogsSongReply(QNetworkReply* reply) {
 			toolTip = "";
 		} else if(QString::compare(_title, discogs_title, Qt::CaseInsensitive) == 0) {
 			icon = QIcon(":/marks/spell_warn.png");
-			toolTip = QString("Double-click to change title from '%1' to '%2'.").arg(_title).arg(discogs_title);
+			toolTip = QString("Double-click to change title from '%1' to '%2'.").arg(_title, discogs_title);
 		} else {
 			icon = QIcon(":/marks/spell_error.png");
-			toolTip = QString("Double-click to change title from '%1' to '%2'.").arg(_title).arg(discogs_title);
+			toolTip = QString("Double-click to change title from '%1' to '%2'.").arg(_title, discogs_title);
 		}
 		_discogs->addChild(this->createInfoItem(QIcon(":/types/font.png"), tr("Title"), discogs_title, icon, toolTip));
 
@@ -510,10 +511,10 @@ void QUWebInfoTree::processDiscogsSongReply(QNetworkReply* reply) {
 			toolTip = "";
 		} else if(QString::compare(_genre, discogs_genre, Qt::CaseInsensitive) == 0) {
 			icon =  QIcon(":/marks/spell_warn.png");
-			toolTip = QString("Double-click to change genre from '%1' to '%2'.").arg(_genre).arg(discogs_genre);
+			toolTip = QString("Double-click to change genre from '%1' to '%2'.").arg(_genre, discogs_genre);
 		} else {
 			icon = QIcon(":/marks/spell_error.png");
-			toolTip = QString("Double-click to change genre from '%1' to '%2'.").arg(_genre).arg(discogs_genre);
+			toolTip = QString("Double-click to change genre from '%1' to '%2'.").arg(_genre, discogs_genre);
 		}
 		_discogs->addChild(this->createInfoItem(QIcon(":/types/genre.png"), tr("Genre"), discogs_genre, icon, toolTip));
 		_discogs->addChild(this->createInfoItem(QIcon(":/types/genre.png"), tr("Style"), discogs_style, QIcon()));

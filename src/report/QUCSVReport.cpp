@@ -49,7 +49,7 @@ void QUCSVReport::printSongTable(QTextStream &out) {
 
 	int rn = 1, max = QVariant(songs().size()).toString().length();
 	foreach(QUSongFile *song, songs()) {
-		pDlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+		pDlg.update(QString("%1 - %2").arg(song->artist(), song->title()));
 		if(pDlg.cancelled()) break;
 
 		/* running number */

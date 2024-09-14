@@ -408,7 +408,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 		if(songItem) {
 			QUSongFile *song = songItem->song();
 
-			progress.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+			progress.update(QString("%1 - %2").arg(song->artist(), song->title()));
 			if(progress.cancelled()) break;
 
 			bool filterInfo = true;
@@ -487,7 +487,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 	restoreSelection(selectedItems);
 
 	emit itemSelectionChanged(); // update details
-	logSrv->add(QString(tr("Filter applied: \"%1\"%2")).arg(regexp).arg(mode.testFlag(QU::negateFilter) ? tr(", negated") : ""), QU::Information);
+	logSrv->add(QString(tr("Filter applied: \"%1\"%2")).arg(regexp, mode.testFlag(QU::negateFilter) ? tr(", negated") : ""), QU::Information);
 }
 
 /*!
@@ -501,7 +501,7 @@ void QUSongTree::filterDuplicates() {
 	QList<QUSongItem*> uniqueList; // store unique items;
 
 	int nextID = 0;
-	QMap<QUSongItem*, int> id;
+	QHash<QUSongItem*, int> id;
 
 	// sort after an invisible column to combine duplicate items
 	this->sortItems(FOLDER_COLUMN, Qt::AscendingOrder);
@@ -512,7 +512,7 @@ void QUSongTree::filterDuplicates() {
 	dlg.show();
 
 	foreach(QUSongItem *item, allItems) {
-		dlg.update(QString("%1 - %2").arg(item->song()->artist()).arg(item->song()->title()));
+		dlg.update(QString("%1 - %2").arg(item->song()->artist(), item->song()->title()));
 		if(dlg.cancelled()) break;
 
 		bool isItemUnique = true;
@@ -947,7 +947,7 @@ void QUSongTree::requestDeleteSelectedSongs() {
 			break;
 		}
 
-		infoText.append(QString("<br>&nbsp;&nbsp;<b>%1 - %2</b>").arg(songItem->song()->artist()).arg(songItem->song()->title()));
+		infoText.append(QString("<br>&nbsp;&nbsp;<b>%1 - %2</b>").arg(songItem->song()->artist(), songItem->song()->title()));
 	}
 
 	int result = QUMessageBox::information(this,
@@ -1004,10 +1004,7 @@ void QUSongTree::mergeSelectedSongs() {
 
 	// ---------------------------------
 
-	QString infoText = QString(tr("You want to merge songs with <b>\"%1 - %2\"</b>. All files of the other songs will be moved to that song's path.<br><br>The following <b>%3</b> songs will disappear:"))
-		.arg(currentSongItem->song()->artist())
-		.arg(currentSongItem->song()->title())
-		.arg(selectedItems.size());
+	QString infoText = QString(tr("You want to merge songs with <b>\"%1 - %2\"</b>. All files of the other songs will be moved to that song's path.<br><br>The following <b>%3</b> songs will disappear:")).arg(currentSongItem->song()->artist(), currentSongItem->song()->title(), QString::number(selectedItems.size()));
 
 	int i = 0;
 	foreach(QUSongItem *songItem, selectedItems) {
@@ -1016,7 +1013,7 @@ void QUSongTree::mergeSelectedSongs() {
 			break;
 		}
 
-		infoText.append(QString("<br>&nbsp;&nbsp;<b>%1 - %2</b>").arg(songItem->song()->artist()).arg(songItem->song()->title()));
+		infoText.append(QString("<br>&nbsp;&nbsp;<b>%1 - %2</b>").arg(songItem->song()->artist(), songItem->song()->title()));
 	}
 
 	int result = QUMessageBox::information(this,
@@ -1030,7 +1027,7 @@ void QUSongTree::mergeSelectedSongs() {
 
 	// ----------------------------------
 
-	QUProgressDialog dlg(QString(tr("Merging selected songs with \"%1 - %2\"...")).arg(currentSongItem->song()->artist()).arg(currentSongItem->song()->title()), selectedItems.size(), this);
+	QUProgressDialog dlg(QString(tr("Merging selected songs with \"%1 - %2\"...")).arg(currentSongItem->song()->artist(), currentSongItem->song()->title()), selectedItems.size(), this);
 //	dlg.setPixmap(":/control/bin.png");
 	dlg.show();
 
@@ -1047,13 +1044,13 @@ void QUSongTree::mergeSelectedSongs() {
 
 		bool allFilesCopied = true;
 		foreach(QFileInfo fi, fiList) {
-			QString target = QFileInfo(currentSongItem->song()->songFileInfo().dir(), QString("%1%2_%3").arg(i++, 3, 10, QChar('0')).arg(QTime::currentTime().toString("sszzz")).arg(fi.fileName())).filePath();
+			QString target = QFileInfo(currentSongItem->song()->songFileInfo().dir(), QString("%1%2_%3").arg(i++, 3, 10, QChar('0')).arg(QTime::currentTime().toString("sszzz"), fi.fileName())).filePath();
 
 			if(!QFile::copy(fi.filePath(), target)) {
 				allFilesCopied = false;
-				logSrv->add(QString(tr("Could NOT copy file \"%1\" to \"%2\".")).arg(fi.filePath()).arg(target), QU::Warning);
+				logSrv->add(QString(tr("Could NOT copy file \"%1\" to \"%2\".")).arg(fi.filePath(), target), QU::Warning);
 			} else
-				logSrv->add(QString(tr("File was copied successfully from \"%1\" to \"%2\".")).arg(fi.filePath()).arg(target), QU::Information);
+				logSrv->add(QString(tr("File was copied successfully from \"%1\" to \"%2\".")).arg(fi.filePath(), target), QU::Information);
 		}
 
 		if(allFilesCopied) {
@@ -1062,7 +1059,7 @@ void QUSongTree::mergeSelectedSongs() {
 
 			songDB->deleteSong(song);
 		} else {
-			logSrv->add(QString(tr("Not all files of \"%1 - %2\" were copied. Song will not be deleted. Merging failed.")).arg(songItem->song()->artist()).arg(songItem->song()->title()), QU::Warning);
+			logSrv->add(QString(tr("Not all files of \"%1 - %2\" were copied. Song will not be deleted. Merging failed.")).arg(songItem->song()->artist(), songItem->song()->title()), QU::Warning);
 		}
 	}
 
@@ -1082,7 +1079,7 @@ void QUSongTree::calculateSpeed() {
 	clearSelection();
 
 	foreach(QUSongItem *item, selectedItems) {
-		dlg.update(QString("%1 - %2").arg(item->song()->artist()).arg(item->song()->title()));
+		dlg.update(QString("%1 - %2").arg(item->song()->artist(), item->song()->title()));
 		if(dlg.cancelled()) break;
 
 		item->song()->syllablesPerSecond(false);
@@ -1106,7 +1103,7 @@ bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
 
 	bool dataUsed = false;
 
-	QUProgressDialog dlg(QString(tr("Copy & Use files for the song: \"%1 - %2\"...")).arg(item->song()->artist()).arg(item->song()->title()), files.size(), this);
+	QUProgressDialog dlg(QString(tr("Copy & Use files for the song: \"%1 - %2\"...")).arg(item->song()->artist(), item->song()->title()), files.size(), this);
 	dlg.setPixmap(":/marks/disk.png");
 	dlg.show();
 
@@ -1166,9 +1163,7 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 			continue; // dir creation did not work
 
 		if(!QFile::copy(fi.filePath(), newFileInfo.filePath())) {
-			logSrv->add(QString(tr("Could not copy song file \"%1\" to new song directory \"%2\"!"))
-						.arg(fi.fileName())
-						.arg(QDir::toNativeSeparators(newFileInfo.path())), QU::Warning);
+			logSrv->add(QString(tr("Could not copy song file \"%1\" to new song directory \"%2\"!")).arg(fi.fileName(), QDir::toNativeSeparators(newFileInfo.path())), QU::Warning);
 			continue;
 		}
 
@@ -1176,7 +1171,7 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
 		newSong = new QUSongFile(newFileInfo.filePath());
 		newSongs.append(newSong);
 
-		logSrv->add(QString(tr("New song included to your song collection: \"%1 - %2\".")).arg(newSong->artist()).arg(newSong->title()), QU::Information);
+		logSrv->add(QString(tr("New song included to your song collection: \"%1 - %2\".")).arg(newSong->artist(), newSong->title()), QU::Information);
 		songDB->addSong(newSong);
 	}
 
@@ -1208,7 +1203,7 @@ void QUSongTree::dropSongFiles(const QList<QUrl> &urls) {
  * Set the given song to that folder.
  */
 QFileInfo QUSongTree::createSongFolder(QUSongFile *song) {
-	QString newDirName = QUStringSupport::withoutUnsupportedCharacters(QString("%1 - %2").arg(song->artist()).arg(song->title())).trimmed();
+	QString newDirName = QUStringSupport::withoutUnsupportedCharacters(QString("%1 - %2").arg(song->artist(), song->title())).trimmed();
 
 	int i = 0;
 	QString tmp = newDirName;
@@ -1559,7 +1554,8 @@ void QUSongTree::searchForCoverOnAAE() {
 	if(songItem) {
 		QUrl url("https://www.albumartexchange.com/covers");
 		QUrlQuery urlQuery;
-		QString queryString = QString(songItem->song()->artist() + " " + songItem->song()->title()).replace(QRegularExpression("(\\s+)"), "+").replace("’", "'");
+		static const QRegularExpression regex("(\\s+)");
+		QString queryString = QString(songItem->song()->artist() + " " + songItem->song()->title()).replace(regex, "+").replace("’", "'");
 		urlQuery.addQueryItem("q", queryString);
 		urlQuery.addQueryItem("fltr", "ALL");
 		urlQuery.addQueryItem("sort", "TITLE");
@@ -1631,7 +1627,8 @@ void QUSongTree::searchForArtworkOnFanart() {
 		QUrlQuery urlQuery;
 		urlQuery.addQueryItem("sect", "2");
 		// There seems to be a bug on fanart.tv that does not return any results if the artist contains an apostrophe
-		urlQuery.addQueryItem("s", songItem->song()->artist().remove(QRegularExpression("[’|']\\w+")));
+		static const QRegularExpression regex("[’|']\\w+");
+		urlQuery.addQueryItem("s", songItem->song()->artist().remove(regex));
 		url.setQuery(urlQuery);
 
 		QDesktopServices::openUrl(url);
