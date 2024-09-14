@@ -26,13 +26,11 @@ QString QUStringSupport::withoutUnsupportedCharacters(const QString &text) {
 
 	bool dotsRemoved = false;
 
-	/* MB: commented out as trailing dots do not seem to pose problems
 	// remove trailing dots
 	while(cleanText.endsWith(".")) {
 		dotsRemoved = true;
 		cleanText.chop(1);
 	}
-	*/
 
 	// remove leading dots
 	while (cleanText.startsWith(".")) {
