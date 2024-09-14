@@ -32,8 +32,9 @@ void QUAutoCue::reset(const QList<QUSongLineInterface*> &lines, double bpm, doub
 	int lineNumber = 0;
 	foreach(QUSongLineInterface *line, lines) {
 		int last = 0;
-		foreach(QUSongNoteInterface *note, line->notes()) {
-			if(note != line->notes().first()) {
+		auto notes = line->notes();
+		foreach(QUSongNoteInterface *note, notes) {
+			if(note != notes.first()) {
 				if(last == note->timestamp()) // no space
 					_cueList.pop_back();
 			}

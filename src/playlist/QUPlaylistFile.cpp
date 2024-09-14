@@ -75,7 +75,7 @@ bool QUPlaylistFile::save() {
 		uint num = 1;
 		foreach(QUPlaylistEntry *entry, _playlist) {
 			if(!entry->song())
-				logSrv->add(QString(tr("Warning! The playlist entry \"%1 - %2\" will NOT be found by Vocaluxe/UltraStar!")).arg(entry->artistLink()).arg(entry->titleLink()), QU::Warning);
+				logSrv->add(QString(tr("Warning! The playlist entry \"%1 - %2\" will NOT be found by Vocaluxe/UltraStar!")).arg(entry->artistLink(), entry->titleLink()), QU::Warning);
 			else
 				entry->setLinks(entry->song()->artist(), entry->song()->title());
 
@@ -115,7 +115,7 @@ bool QUPlaylistFile::save() {
 		}
 
 		// write name of playlist
-		_out << QString("#%1: %2\n").arg(NAME_TAG).arg(_name);
+		_out << QString("#%1: %2\n").arg(NAME_TAG, _name);
 		_nameChanged = false;
 		_playlistChanged = false;
 
@@ -123,11 +123,11 @@ bool QUPlaylistFile::save() {
 		_out << QString("#%1:\n").arg(SONGS_TAG);
 		foreach(QUPlaylistEntry *entry, _playlist) {
 			if(!entry->song())
-				logSrv->add(QString(tr("Warning! The playlist entry \"%1 - %2\" will NOT be found by UltraStar!")).arg(entry->artistLink()).arg(entry->titleLink()), QU::Warning);
+				logSrv->add(QString(tr("Warning! The playlist entry \"%1 - %2\" will NOT be found by UltraStar!")).arg(entry->artistLink(), entry->titleLink()), QU::Warning);
 			else
 				entry->setLinks(entry->song()->artist(), entry->song()->title());
 
-			_out << QString("%1 : %2\n").arg(entry->artistLink()).arg(entry->titleLink());
+			_out << QString("%1 : %2\n").arg(entry->artistLink(), entry->titleLink());
 		}
 	}
 
@@ -169,7 +169,7 @@ bool QUPlaylistFile::addEntry(QUSongFile *song) {
 
 	foreach(QUPlaylistEntry *entry, _playlist) { // TODO: a progressbar helpful?! (for big playlists)
 		if(song == entry->song()) {
-			logSrv->add(QString(tr("The song \"%1 - %2\" is already in the current playlist. It was not added.")).arg(song->artist()).arg(song->title()), QU::Warning);
+			logSrv->add(QString(tr("The song \"%1 - %2\" is already in the current playlist. It was not added.")).arg(song->artist(), song->title()), QU::Warning);
 			return false;
 		}
 	}

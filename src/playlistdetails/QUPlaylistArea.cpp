@@ -69,7 +69,7 @@ void QUPlaylistArea::addSongToCurrentPlaylist(QUSongFile *song) {
 		return;
 
 	if(!playlistDB->currentPlaylist()) {
-		logSrv->add(QString(tr("Could NOT add song \"%1 - %2\" to playlist. Try to create a new playlist.")).arg(song->artist()).arg(song->title()), QU::Warning);
+		logSrv->add(QString(tr("Could NOT add song \"%1 - %2\" to playlist. Try to create a new playlist.")).arg(song->artist(), song->title()), QU::Warning);
 		return;
 	}
 
@@ -113,7 +113,7 @@ void QUPlaylistArea::saveCurrentPlaylistAs() {
 	if(!playlistDB->currentPlaylist())
 		return;
 
-	QString filePath = QFileDialog::getSaveFileName(this, tr("Save playlist as..."), playlistDB->dir().path(), QString(tr("UltraStar Playlists (%1);;Vocaluxe Playlists (%2)")).arg(QUSongSupport::allowedUltraStarPlaylistFiles().join(" ")).arg(QUSongSupport::allowedVocaluxePlaylistFiles().join(" ")));
+	QString filePath = QFileDialog::getSaveFileName(this, tr("Save playlist as..."), playlistDB->dir().path(), QString(tr("UltraStar Playlists (%1);;Vocaluxe Playlists (%2)")).arg(QUSongSupport::allowedUltraStarPlaylistFiles().join(" "), QUSongSupport::allowedVocaluxePlaylistFiles().join(" ")));
 
 	if(!filePath.isEmpty()) {
 		QFileInfo oldFi = playlistDB->currentPlaylist()->fileInfo();
@@ -187,8 +187,7 @@ void QUPlaylistArea::removeCurrentPlaylist() {
 	int result = QUMessageBox::information(this,
 			tr("Delete Playlist"),
 			QString(tr("<b>\"%1 (%2)\"</b> will be deleted permanently. You cannot undo a delete operation."))
-				.arg(playlistDB->currentPlaylist()->name())
-				.arg(playlistDB->currentPlaylist()->fileInfo().fileName()),
+				.arg(playlistDB->currentPlaylist()->name(), playlistDB->currentPlaylist()->fileInfo().fileName()),
 			BTN << ":/control/bin.png"  << tr("Delete this playlist.")
 				<< ":/marks/cancel.png" << tr("Cancel delete operation."));
 	if(result == 1)

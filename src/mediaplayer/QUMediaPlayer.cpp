@@ -114,7 +114,7 @@ void QUMediaPlayer::play() {
 	_freeIndices.removeAll(_currentSongIndex);
 
 	if(!info.isValid()) {
-		logSrv->add(tr("[Media Player] The song \"%1 - %2\" has no valid audio file.").arg(info.artist).arg(info.title), QU::Warning);
+		logSrv->add(tr("[Media Player] The song \"%1 - %2\" has no valid audio file.").arg(info.artist, info.title), QU::Warning);
 		loopBtn->setChecked(false); // avoid endless-loops
 		next();
 		return;
@@ -296,7 +296,7 @@ void QUMediaPlayer::updateInfoLabel(QUMediaPlayer::States state) {
 			return; // invalid index
 
 		QUSongInfo info = _songs.at(_currentSongIndex);
-		currentSongLbl->setText(QString("%1<br><b>%2</b>").arg(info.artist).arg(info.title));
+		currentSongLbl->setText(QString("%1<br><b>%2</b>").arg(info.artist, info.title));
 		infoIconLbl->setToolTip(
 				QString(tr("Bitrate: <b>%1</b> kbit/s<br>Channels: <b>%2</b><br>Sample Rate: <b>%3</b> kHz"))
 				.arg(info.bitrate)

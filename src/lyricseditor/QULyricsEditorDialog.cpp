@@ -13,7 +13,7 @@ QULyricsEditorDialog::QULyricsEditorDialog(QUSongFile *song, QWidget *parent): Q
 	connect(searchEdit, SIGNAL(textEdited(QString)), this, SLOT(search(QString)));
 
 	textLbl->setText(tr("Edit each syllable of each line and <b>fix spelling</b> or <b>wrong whitespaces</b> manually."));
-	this->setWindowTitle(QString(tr("Edit Lyrics: \"%1 - %2\"")).arg(song->artist()).arg(song->title()));
+	this->setWindowTitle(QString(tr("Edit Lyrics: \"%1 - %2\"")).arg(song->artist(), song->title()));
 	songLbl->setText(song->songFileInfo().fileName());
 }
 

@@ -144,7 +144,7 @@ void QUHtmlReport::appendSongsTableBody(QDomNode &parent) {
 
 	int rn = 1;
 	foreach(QUSongFile *song, songs()) {
-		pDlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+		pDlg.update(QString("%1 - %2").arg(song->artist(), song->title()));
 		if(pDlg.cancelled()) break;
 
 		QDomElement tr = _report.createElement("tr");
@@ -217,7 +217,7 @@ void QUHtmlReport::appendLyrics(QDomNode &parent) {
 
 	int rn = 1;
 	foreach(QUSongFile *song, songs()) {
-		pDlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+		pDlg.update(QString("%1 - %2").arg(song->artist(), song->title()));
 		if(pDlg.cancelled()) break;
 
 		QDomElement div = _report.createElement("div");
@@ -226,7 +226,7 @@ void QUHtmlReport::appendLyrics(QDomNode &parent) {
 			div.setAttribute("id", QVariant(rn).toString());
 
 		QDomElement h1 = _report.createElement("h1");
-		h1.appendChild(_report.createTextNode(QString("%3. %1 - %2").arg(song->artist()).arg(song->title()).arg(rn)));
+		h1.appendChild(_report.createTextNode(QString("%3. %1 - %2").arg(song->artist(), song->title(), QString::number(rn))));
 		div.appendChild(h1);
 
 		QString lyrics = "<root><p>";

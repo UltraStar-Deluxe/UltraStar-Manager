@@ -75,11 +75,12 @@ void QULyricsEdit::initLyrics() {
 		setItem(index, 0, timeItem);
 		setRowHeight(index, 16);
 
-		if(!line->notes().isEmpty() && bpm != 0.0) { // show timestamps
+		auto notes = line->notes();
+		if(!notes.isEmpty() && bpm != 0.0) { // show timestamps
 			if(!_song->isRelative()) {
-				beats = line->notes().first()->timestamp();
+				beats = notes.first()->timestamp();
 			} else {
-				beats += line->notes().first()->timestamp();
+				beats += notes.first()->timestamp();
 			}
 
 			int seconds = qMax(0, int((beats / (bpm * 4)) * 60 + gap));
@@ -88,7 +89,7 @@ void QULyricsEdit::initLyrics() {
 				.arg(int(seconds % 60), 2, 10, QChar('0')));
 
 			if(_song->isRelative())
-				beats += line->inTime() - line->notes().first()->timestamp();
+				beats += line->inTime() - notes.first()->timestamp();
 		}
 
 		index++;

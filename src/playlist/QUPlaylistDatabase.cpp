@@ -62,7 +62,7 @@ void QUPlaylistDatabase::connectAllPlaylists() {
 	dlg.show();
 
 	foreach(QUPlaylistFile *playlist, _playlists) {
-		dlg.update(QString("%1 (%2)").arg(playlist->name()).arg(playlist->fileInfo().fileName()));
+		dlg.update(QString("%1 (%2)").arg(playlist->name(), playlist->fileInfo().fileName()));
 		playlist->connectSongs();
 	}
 
@@ -75,7 +75,7 @@ void QUPlaylistDatabase::disconnectAllPlaylists() {
 	dlg.show();
 
 	foreach(QUPlaylistFile *playlist, _playlists) {
-		dlg.update(QString("%1 (%2)").arg(playlist->name()).arg(playlist->fileInfo().fileName()));
+		dlg.update(QString("%1 (%2)").arg(playlist->name(), playlist->fileInfo().fileName()));
 		playlist->disconnectSongs();
 	}
 
@@ -133,7 +133,7 @@ void QUPlaylistDatabase::save() {
 					QString(
 						tr("Save playlist \"%1\" as...")).arg(playlist->name()),
 						dir().path(),
-						QString(tr("UltraStar Playlists (%1);;Vocaluxe Playlists (%2)")).arg(QUSongSupport::allowedUltraStarPlaylistFiles().join(" ")).arg(QUSongSupport::allowedVocaluxePlaylistFiles().join(" ")));
+						QString(tr("UltraStar Playlists (%1);;Vocaluxe Playlists (%2)")).arg(QUSongSupport::allowedUltraStarPlaylistFiles().join(" "), QUSongSupport::allowedVocaluxePlaylistFiles().join(" ")));
 
 			if(!filePath.isEmpty()) {
 				playlist->setFileInfo(QFileInfo(filePath));
@@ -177,7 +177,7 @@ bool QUPlaylistDatabase::hasUnsavedChanges() const {
 	dlg.show();
 
 	foreach(QUPlaylistFile *playlist, playlists()) {
-		dlg.update(QString("%1 (%2)").arg(playlist->name()).arg(playlist->fileInfo().fileName()));
+		dlg.update(QString("%1 (%2)").arg(playlist->name(), playlist->fileInfo().fileName()));
 
 		if(playlist->hasUnsavedChanges())
 			return true;
@@ -192,7 +192,7 @@ void QUPlaylistDatabase::saveUnsavedChanges() {
 	dlg.show();
 
 	foreach(QUPlaylistFile *playlist, playlists()) {
-		dlg.update(QString("%1 (%2)").arg(playlist->name()).arg(playlist->fileInfo().fileName()));
+		dlg.update(QString("%1 (%2)").arg(playlist->name(), playlist->fileInfo().fileName()));
 
 		if(playlist->hasUnsavedChanges())
 			playlist->save();

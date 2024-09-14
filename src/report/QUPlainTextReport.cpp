@@ -71,7 +71,7 @@ void QUPlainTextReport::printSongTable(QTextStream &out) {
 
 	int rn = 1, max = QVariant(songs().size()).toString().length();
 	foreach(QUSongFile *song, songs()) {
-		pDlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+		pDlg.update(QString("%1 - %2").arg(song->artist(), song->title()));
 		if(pDlg.cancelled()) break;
 
 		/* running number */
@@ -101,15 +101,16 @@ void QUPlainTextReport::printLyrics(QTextStream &out) {
 
 	int i = 1;
 	foreach(QUSongFile *song, songs()) {
-		pDlg.update(QString("%1 - %2").arg(song->artist()).arg(song->title()));
+		pDlg.update(QString("%1 - %2").arg(song->artist(), song->title()));
 		if(pDlg.cancelled()) break;
 
-		QString subheader = QString("%3. %1 - %2").arg(song->artist()).arg(song->title()).arg(i++, QVariant(songs().size()).toString().length(), 10, QChar('0'));
+		QString subheader = QString("%3. %1 - %2").arg(song->artist(), song->title()).arg(i++, QVariant(songs().size()).toString().length(), 10, QChar('0'));
 
 		out << QString(subheader.length(), '-') << Qt::endl;
 		out << subheader << Qt::endl;
 		out << QString(subheader.length(), '-') << Qt::endl;
 
-		out << song->lyrics().join("\n").remove(QRegularExpression("<b>|</b>|<i>|</i>")) << Qt::endl << Qt::endl;
+		static const QRegularExpression regex("<b>|</b>|<i>|</i>");
+		out << song->lyrics().join("\n").remove(regex) << Qt::endl << Qt::endl;
 	}
 }

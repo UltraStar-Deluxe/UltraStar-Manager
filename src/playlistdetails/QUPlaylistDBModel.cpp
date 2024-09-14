@@ -24,9 +24,7 @@ QVariant QUPlaylistDBModel::data(const QModelIndex &index, int role) const {
 
 	if(role == Qt::DisplayRole) {
 		return QString("%1%2 (%3)")
-			.arg( playlistDB->at(index.row())->name() )
-			.arg( playlistDB->at(index.row())->hasUnsavedChanges() ? "*" : "" )
-			.arg( playlistDB->dir().relativeFilePath( playlistDB->at(index.row())->fileInfo().filePath()) );
+			.arg(playlistDB->at(index.row())->name(), playlistDB->at(index.row())->hasUnsavedChanges() ? "*" : "", playlistDB->dir().relativeFilePath( playlistDB->at(index.row())->fileInfo().filePath()));
 	} else  if(role == Qt::FontRole) {
 		QFont f(
 			"MS Shell Dlg", 8,

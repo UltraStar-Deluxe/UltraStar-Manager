@@ -45,8 +45,11 @@ void QUDropDownDelegate::setEditorData(
 	if(QString::compare(value, N_A, Qt::CaseSensitive) == 0)
 		value = "";
 
-	if(QRegularExpression(QRegularExpression::anchoredPattern(QString("(-*)(\\d*|\\d*[,.]\\d*) (") + tr("seconds") + "|" + tr("milliseconds") + ")")).match(value).hasMatch())
-		value.remove(QRegularExpression(QString("(") + tr("seconds") + "|" + tr("milliseconds") + ")"));
+	static const QRegularExpression regex1(QRegularExpression::anchoredPattern(QString("(-*)(\\d*|\\d*[,.]\\d*) (") + tr("seconds") + "|" + tr("milliseconds") + ")"));
+	if(regex1.match(value).hasMatch()) {
+		static const QRegularExpression regex2(QString("(") + tr("seconds") + "|" + tr("milliseconds") + ")");
+		value.remove(regex2);
+	}
 	
 	comboBox->setEditText(value.trimmed());
 	comboBox->lineEdit()->selectAll();

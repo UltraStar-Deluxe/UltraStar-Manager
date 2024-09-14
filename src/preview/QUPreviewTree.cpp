@@ -354,7 +354,7 @@ void QUPreviewTree::showAudioFileInformation(const QFileInfo &fi) {
 	QString formatAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("Format"), Info_Text, Info_Name)));
 	QString codecIDAudio(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("CodecID"), Info_Text, Info_Name)));
 	if(formatAudio != "") {
-		if(codecIDAudio != "") audio->addChild(this->createInfoItem(tr("Format"), QString("%1 (%2)").arg(formatAudio).arg(codecIDAudio)));
+		if(codecIDAudio != "") audio->addChild(this->createInfoItem(tr("Format"), QString("%1 (%2)").arg(formatAudio, codecIDAudio)));
 		else audio->addChild(this->createInfoItem(tr("Format"), QString("%1").arg(formatAudio)));
 	}
 	QString profileAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("Format_Profile"), Info_Text, Info_Name)));
@@ -428,7 +428,7 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 	QString format(QString::fromStdWString(MI.Get(Stream_General, 0, __T("Format"), Info_Text, Info_Name)));
 	QString codecID(QString::fromStdWString(MI.Get(Stream_General, 0, __T("CodecID"), Info_Text, Info_Name)));
 	if(format != "") {
-		if(codecID != "") video->addChild(this->createInfoItem(tr("Format"), QString("%1 (%2)").arg(format).arg(codecID)));
+		if(codecID != "") video->addChild(this->createInfoItem(tr("Format"), QString("%1 (%2)").arg(format, codecID)));
 		else video->addChild(this->createInfoItem(tr("Format"), QString("%1").arg(format)));
 	}
 	QString profile(QString::fromStdWString(MI.Get(Stream_General, 0, __T("Format_Profile"), Info_Text, Info_Name)));
@@ -436,7 +436,7 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 	QString countVideo(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("StreamCount"), Info_Text, Info_Name)));
 	QString countAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("StreamCount"), Info_Text, Info_Name)));
 	if(countAudio == "") countAudio = "no";
-	video->addChild(this->createInfoItem(tr("Streams"), QString("%1 (%2 video, %3 audio)").arg(countVideo.toInt()+countAudio.toInt()).arg(countVideo).arg(countAudio)));
+	video->addChild(this->createInfoItem(tr("Streams"), QString("%1 (%2 video, %3 audio)").arg(countVideo.toInt()+countAudio.toInt()).arg(countVideo, countAudio)));
 
 	// video stream information
 	video->addChild(this->createInfoItem("", ""));
@@ -446,11 +446,11 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 	QString width(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("Width"), Info_Text, Info_Name)));
 	QString height(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("Height"), Info_Text, Info_Name)));
 	QString aspectRatio(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("DisplayAspectRatio/String"), Info_Text, Info_Name)));
-	if(width != "" || height != "" || aspectRatio != "") video->addChild(this->createInfoItem(tr("Dimensions"), QString("%1 x %2 px (%3)").arg(width).arg(height).arg(aspectRatio)));
+	if(width != "" || height != "" || aspectRatio != "") video->addChild(this->createInfoItem(tr("Dimensions"), QString("%1 x %2 px (%3)").arg(width, height, aspectRatio)));
 	QString formatVideo(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("Format"), Info_Text, Info_Name)));
 	QString codecIDVideo(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("CodecID"), Info_Text, Info_Name)));
 	if(formatVideo != "") {
-		if(codecIDVideo != "") video->addChild(this->createInfoItem(tr("Format"), QString("%1 (%2)").arg(formatVideo).arg(codecIDVideo)));
+		if(codecIDVideo != "") video->addChild(this->createInfoItem(tr("Format"), QString("%1 (%2)").arg(formatVideo, codecIDVideo)));
 		else video->addChild(this->createInfoItem(tr("Format"), QString("%1").arg(formatVideo)));
 	}
 	QString profileVideo(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("Format_Profile"), Info_Text, Info_Name)));
@@ -469,7 +469,7 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 	QString frameRate(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("FrameRate"), Info_Text, Info_Name)));
 	QString frameRateMode(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("FrameRate_Mode/String"), Info_Text, Info_Name)));
 	if(frameRate != "") {
-		if(frameRateMode != "") video->addChild(this->createInfoItem(tr("Framerate"), QString("%1 fps (%2)").arg(frameRate).arg(frameRateMode.toLower())));
+		if(frameRateMode != "") video->addChild(this->createInfoItem(tr("Framerate"), QString("%1 fps (%2)").arg(frameRate, frameRateMode.toLower())));
 		else video->addChild(this->createInfoItem(tr("Framerate"), QString("%1 fps").arg(frameRate)));
 	}
 	QString colorSpace(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("ColorSpace"), Info_Text, Info_Name)));
@@ -491,7 +491,7 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 	QString formatAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("Format"), Info_Text, Info_Name)));
 	QString codecIDAudio(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("CodecID"), Info_Text, Info_Name)));
 	if(formatAudio != "") {
-		if(codecIDAudio != "") video->addChild(this->createInfoItem(tr("Format"), QString("%1 (%2)").arg(formatAudio).arg(codecIDAudio)));
+		if(codecIDAudio != "") video->addChild(this->createInfoItem(tr("Format"), QString("%1 (%2)").arg(formatAudio, codecIDAudio)));
 		else video->addChild(this->createInfoItem(tr("Format"), QString("%1").arg(formatAudio)));
 	}
 	QString profileAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("Format_Profile"), Info_Text, Info_Name)));

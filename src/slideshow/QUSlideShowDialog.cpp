@@ -50,8 +50,7 @@ void QUSlideShowDialog::changeSelection(int index) {
 		return;
 
 	songLbl->setText(QString("%1<br><b>%2</b>")
-					 .arg(_items.at(index)->song()->artist())
-					 .arg(_items.at(index)->song()->titleCompact()));
+					 .arg(_items.at(index)->song()->artist(), _items.at(index)->song()->titleCompact()));
 
 	disconnect(unlinkChk, SIGNAL(toggled(bool)), this, SLOT(changeUnlinkFlag(bool)));
 	unlinkChk->setChecked(_items.at(index)->data(COVER_COLUMN, Qt::UserRole + 1).toBool());

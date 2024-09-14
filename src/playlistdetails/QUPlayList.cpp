@@ -116,7 +116,7 @@ void QUPlayList::setGameModeMedley() {
 		if(entry->song()->hasMedley()) {
 			entry->setGameMode(GAMEMODE_MEDLEY);
 		} else {
-			logSrv->add(QString(tr("Unable to set game mode to 'Medley'. The playlist entry \"%1 - %2\" does NOT have a medley section!")).arg(entry->artistLink()).arg(entry->titleLink()), QU::Warning);
+			logSrv->add(QString(tr("Unable to set game mode to 'Medley'. The playlist entry \"%1 - %2\" does NOT have a medley section!")).arg(entry->artistLink(), entry->titleLink()), QU::Warning);
 		}
 	}
 	update();
@@ -128,7 +128,7 @@ void QUPlayList::setGameModeDuet() {
 		if(entry->song()->isDuet()) {
 			entry->setGameMode(GAMEMODE_DUET);
 		} else {
-			logSrv->add(QString(tr("Unable to set game mode to 'Duet'. The playlist entry \"%1 - %2\" is NOT a duet!")).arg(entry->artistLink()).arg(entry->titleLink()), QU::Warning);
+			logSrv->add(QString(tr("Unable to set game mode to 'Duet'. The playlist entry \"%1 - %2\" is NOT a duet!")).arg(entry->artistLink(), entry->titleLink()), QU::Warning);
 		}
 	}
 	update();
