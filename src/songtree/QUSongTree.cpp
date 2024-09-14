@@ -1004,8 +1004,7 @@ void QUSongTree::mergeSelectedSongs() {
 
 	// ---------------------------------
 
-	QString infoText = QString(tr("You want to merge songs with <b>\"%1 - %2\"</b>. All files of the other songs will be moved to that song's path.<br><br>The following <b>%3</b> songs will disappear:"))
-			.arg(currentSongItem->song()->artist(), currentSongItem->song()->title(), QString::number(selectedItems.size()));
+	QString infoText = QString(tr("You want to merge songs with <b>\"%1 - %2\"</b>. All files of the other songs will be moved to that song's path.<br><br>The following <b>%3</b> songs will disappear:")).arg(currentSongItem->song()->artist(), currentSongItem->song()->title(), QString::number(selectedItems.size()));
 
 	int i = 0;
 	foreach(QUSongItem *songItem, selectedItems) {

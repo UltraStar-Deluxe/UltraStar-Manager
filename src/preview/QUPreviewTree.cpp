@@ -436,7 +436,7 @@ void QUPreviewTree::showVideoFileInformation(const QFileInfo &fi) {
 	QString countVideo(QString::fromStdWString(MI.Get(Stream_Video, 0, __T("StreamCount"), Info_Text, Info_Name)));
 	QString countAudio(QString::fromStdWString(MI.Get(Stream_Audio, 0, __T("StreamCount"), Info_Text, Info_Name)));
 	if(countAudio == "") countAudio = "no";
-	video->addChild(this->createInfoItem(tr("Streams"), QString("%1 (%2 video, %3 audio)").arg(countVideo.toInt()+countAudio.toInt()).arg(countVideo, countAudio)));
+	video->addChild(this->createInfoItem(tr("Streams"), QString("%1 (%2 video, %3 audio)").arg(QString::number(countVideo.toInt()+countAudio.toInt()), countVideo, countAudio)));
 
 	// video stream information
 	video->addChild(this->createInfoItem("", ""));

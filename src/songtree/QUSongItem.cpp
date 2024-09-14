@@ -639,9 +639,9 @@ void QUSongItem::updateSpellCheckColumns() {
 	if(QString::compare(part1, part2, Qt::CaseSensitive) == 0)
 		this->setSmiley(ARTIST_COLUMN);
 	else if(QString::compare(part1, part2, Qt::CaseInsensitive) == 0)
-		this->setSmiley(ARTIST_COLUMN, QU::spellingWarning, toolTip.arg(part1).arg(part2, CHAR_UTF8_APPROX));
+		this->setSmiley(ARTIST_COLUMN, QU::spellingWarning, toolTip.arg(part1, part2, CHAR_UTF8_APPROX));
 	else
-		this->setSmiley(ARTIST_COLUMN, QU::spellingError, toolTip.arg(part1).arg(part2, CHAR_UTF8_NEQUAL));
+		this->setSmiley(ARTIST_COLUMN, QU::spellingError, toolTip.arg(part1, part2, CHAR_UTF8_NEQUAL));
 
 	/* title column */
 	part1 = QUStringSupport::withoutUnsupportedCharacters(song()->title());

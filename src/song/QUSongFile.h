@@ -59,7 +59,7 @@ public:
 	// comparing functions
 	static bool equal(QUSongFile *s1, QUSongFile *s2);
 
-public:
+public slots:
 	QString artist() const			{return _info.value(ARTIST_TAG,				QString(N_A));}
 	QString title() const			{return _info.value(TITLE_TAG,				QString(N_A));}
 	QString mp3() const				{return _info.value(MP3_TAG,				QString(N_A));}
