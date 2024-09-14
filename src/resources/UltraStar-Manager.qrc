@@ -42,11 +42,11 @@
         <file>faviconGoogle.ico</file>
         <file>faviconUSDB.ico</file>
         <file>MediaInfo.png</file>
-        <file>faviconYoutube.ico</file>
         <file>faviconAllMusic.ico</file>
-        <file>faviconDiscogs.ico</file>
         <file>faviconFanart.ico</file>
         <file>faviconHitparade.png</file>
+        <file>faviconDiscogs.png</file>
+        <file>faviconYoutube.png</file>
     </qresource>
     <qresource prefix="/bullets">
         <file>arrow_down_small.png</file>

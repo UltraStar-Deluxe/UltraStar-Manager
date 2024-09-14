@@ -63,7 +63,7 @@ QUWebInfoTree::QUWebInfoTree(QWidget *parent): QTreeWidget(parent) {
 	_discogs = new QTreeWidgetItem();
 	this->addTopLevelItem(_discogs);
 
-	_discogs->setIcon(0, QIcon(":/faviconDiscogs.ico"));
+	_discogs->setIcon(0, QIcon(":/faviconDiscogs.png"));
 	_discogs->setText(0, tr("discogs.com"));
 	_discogs->setFlags(Qt::ItemIsEnabled);
 	_discogs->setForeground(0, Qt::darkGray);

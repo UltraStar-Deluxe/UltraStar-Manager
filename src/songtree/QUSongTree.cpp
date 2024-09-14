@@ -1370,7 +1370,7 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 		menu->addAction(QIcon(":/faviconFanart.ico"),tr("Search for artwork on Fanart..."), this, SLOT(searchForArtworkOnFanart()));
 		menu->addAction(QIcon(":/faviconGoogle.ico"),tr("Search for background on Google Images..."), this, SLOT(searchForBackgroundOnGoogleImages()));
 		menu->addAction(QIcon(":/faviconGoogle.ico"),tr("Search for video on Google Video..."), this, SLOT(searchForVideoOnGoogleVideo()));
-		menu->addAction(QIcon(":/faviconYoutube.ico"),tr("Search for video on Youtube..."), this, SLOT(searchForVideoOnYoutube()));
+		menu->addAction(QIcon(":/faviconYoutube.png"),tr("Search for video on Youtube..."), this, SLOT(searchForVideoOnYoutube()));
 		menu->addAction(QIcon(":/faviconHitparade.png"),tr("Look up on Hitparade.ch..."), this, SLOT(lookUpOnHitparade()));
 		menu->addAction(QIcon(":/faviconUSDB.ico"),tr("Look up on USDB..."), this, SLOT(lookUpOnUSDB()));
 

@@ -615,7 +615,7 @@ Tasks</string>
               </property>
               <property name="icon">
                <iconset resource="resources/UltraStar-Manager.qrc">
-                <normaloff>:/faviconDiscogs.ico</normaloff>:/faviconDiscogs.ico</iconset>
+                <normaloff>:/faviconDiscogs.png</normaloff>:/faviconDiscogs.png</iconset>
               </property>
               <property name="iconSize">
                <size>
