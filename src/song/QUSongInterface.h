@@ -17,6 +17,7 @@ class QFileInfo;
 #define GENRE_TAG				"GENRE"
 #define YEAR_TAG				"YEAR"
 #define CREATOR_TAG				"CREATOR"
+#define TAGS_TAG				"TAGS"
 #define MP3_TAG					"MP3"
 #define COVER_TAG				"COVER"
 #define BACKGROUND_TAG			"BACKGROUND"
@@ -134,6 +135,7 @@ class QUSongInterface: public QObject {
 	Q_PROPERTY(QString year READ year)
 	Q_PROPERTY(QString end READ end)
 	Q_PROPERTY(QString creator READ creator)
+	Q_PROPERTY(QString tags READ tags)
 	Q_PROPERTY(QString encoding READ encoding)
 	Q_PROPERTY(QString previewstart READ previewstart)
 	Q_PROPERTY(QString calcmedley READ calcmedley)
@@ -192,6 +194,7 @@ public:
 	virtual QString year() const = 0;
 	virtual QString end() const = 0;
 	virtual QString creator() const = 0;
+	virtual QString tags() const = 0;
 	virtual QString encoding() const = 0;
 	virtual QString previewstart() const = 0;
 	virtual QString calcmedley() const = 0;

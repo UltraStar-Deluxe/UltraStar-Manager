@@ -73,6 +73,10 @@ void QUDetailItem::reset() {
 		_hasDynamicDefaultData = false;
 	} else if(QString::compare(_tag, CREATOR_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+	} else if(QString::compare(_tag, TAGS_TAG) == 0) {
+		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+		setData(Qt::UserRole, QUSongSupport::availableSongTags()); // static default data
+		_hasDynamicDefaultData = false;
 //	} else if(QString::compare(_tag, MP3_TAG) == 0) {
 //	} else if(QString::compare(_tag, COVER_TAG) == 0) {
 //	} else if(QString::compare(_tag, BACKGROUND_TAG) == 0) {

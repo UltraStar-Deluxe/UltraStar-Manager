@@ -14,19 +14,20 @@
 #define GENRE_COL				4
 #define YEAR_COL				5
 #define CREATOR_COL				6
-#define AUDIO_EXISTS_COL		7
-#define COVER_EXISTS_COL		8
-#define BACKGROUND_EXISTS_COL	9
-#define VIDEO_EXISTS_COL		10
-#define MEDLEY_EXISTS_COL		11
-#define GOLDEN_NOTES_EXIST_COL	12
-#define RAP_NOTES_EXIST_COL		13
-#define SONG_PATH_COL			14
-#define SONG_FILE_PATH_COL		15
-#define REL_SONG_FILE_PATH_COL	16
-#define LENGTH_COL				17
-#define SPEED_COL				18
-#define CUSTOM_TAG_COL			19
+#define TAGS_COL				7
+#define AUDIO_EXISTS_COL		8
+#define COVER_EXISTS_COL		9
+#define BACKGROUND_EXISTS_COL	10
+#define VIDEO_EXISTS_COL		11
+#define MEDLEY_EXISTS_COL		12
+#define GOLDEN_NOTES_EXIST_COL	13
+#define RAP_NOTES_EXIST_COL		14
+#define SONG_PATH_COL			15
+#define SONG_FILE_PATH_COL		16
+#define REL_SONG_FILE_PATH_COL	17
+#define LENGTH_COL				18
+#define SPEED_COL				19
+#define CUSTOM_TAG_COL			20
 
 class QUAbstractReportData: public QObject {
 	Q_OBJECT
