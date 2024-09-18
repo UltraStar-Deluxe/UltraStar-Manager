@@ -135,6 +135,8 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(YEAR_COLUMN, QIcon(":/types/date.png"));
 	header->setText(CREATOR_COLUMN, tr("Creator"));
 	header->setIcon(CREATOR_COLUMN, QIcon(":/types/creator.png"));
+	header->setText(TAGS_COLUMN, tr("Tags"));
+	header->setIcon(TAGS_COLUMN, QIcon(":/types/tags.png"));
 
 	header->setText(LENGTH_COLUMN, tr("Song"));
 	header->setIcon(LENGTH_COLUMN, QIcon(":/types/time_song.png"));
@@ -424,6 +426,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 					song->year().contains(rx) ||
 					song->edition().contains(rx) ||
 					song->creator().contains(rx) ||
+					song->tags().contains(rx) ||
 					song->language().contains(rx);
 
 				if(!matchesInfoTag)
@@ -732,6 +735,7 @@ void QUSongTree::showDefaultColumns(bool save) {
 	this->header()->showSection(GENRE_COLUMN);
 	this->header()->showSection(YEAR_COLUMN);
 	this->header()->showSection(CREATOR_COLUMN);
+	this->header()->showSection(TAGS_COLUMN);
 
 	int customTagsCount = QUSongSupport::availableCustomTags().size();
 	for(int i = 0; i < customTagsCount; ++i)

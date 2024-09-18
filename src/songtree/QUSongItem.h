@@ -44,14 +44,15 @@
 #define GENRE_COLUMN			28
 #define YEAR_COLUMN				29
 #define CREATOR_COLUMN			30
+#define TAGS_COLUMN				31
 
-#define RELATIVE_COLUMN			31
-#define BPM_COLUMN				32
-#define GAP_COLUMN				33
+#define RELATIVE_COLUMN			32
+#define BPM_COLUMN				33
+#define GAP_COLUMN				34
 
-#define DUPLICATE_ID_COLUMN		34
+#define DUPLICATE_ID_COLUMN		35
 
-#define FIRST_CUSTOM_TAG_COLUMN	35
+#define FIRST_CUSTOM_TAG_COLUMN	36
 
 /*!
  * This class encapsulates a pointer to a QUSongFile object to be able

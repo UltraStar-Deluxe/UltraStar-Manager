@@ -107,6 +107,7 @@ bool QUSongFile::editionLessThan (QUSongFile *s1, QUSongFile *s2)			{ return QSt
 bool QUSongFile::genreLessThan (QUSongFile *s1, QUSongFile *s2)				{ return QString::compare(s1->genre(), s2->genre(), Qt::CaseInsensitive) < 0; }
 bool QUSongFile::yearLessThan (QUSongFile *s1, QUSongFile *s2)				{ return QString::compare(s1->year(), s2->year(), Qt::CaseInsensitive) < 0; }
 bool QUSongFile::creatorLessThan (QUSongFile *s1, QUSongFile *s2)			{ return QString::compare(s1->creator(), s2->creator(), Qt::CaseInsensitive) < 0; }
+bool QUSongFile::tagsLessThan (QUSongFile *s1, QUSongFile *s2)				{ return QString::compare(s1->tags(), s2->tags(), Qt::CaseInsensitive) < 0; }
 
 bool QUSongFile::pathLessThan (QUSongFile *s1, QUSongFile *s2)				{ return QString::compare(s1->path(), s2->path(), Qt::CaseInsensitive) < 0; }
 bool QUSongFile::filePathLessThan (QUSongFile *s1, QUSongFile *s2)			{ return QString::compare(s1->filePath(), s2->filePath(), Qt::CaseInsensitive) < 0; }

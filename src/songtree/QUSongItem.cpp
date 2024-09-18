@@ -905,6 +905,7 @@ void QUSongItem::updateTextColumns() {
 	this->setText(GENRE_COLUMN,		song()->genre());	if(song()->genre()		!= N_A) this->setToolTip(GENRE_COLUMN,		song()->genre());
 	this->setText(YEAR_COLUMN,		song()->year());	if(song()->year()		!= N_A) this->setToolTip(YEAR_COLUMN,		song()->year());
 	this->setText(CREATOR_COLUMN,	song()->creator());	if(song()->creator()	!= N_A) this->setToolTip(CREATOR_COLUMN,	song()->creator());
+	this->setText(TAGS_COLUMN,		song()->tags());	if(song()->tags()		!= N_A) this->setToolTip(TAGS_COLUMN,		song()->tags());
 
 	// show custom tags
 	int i = 0;

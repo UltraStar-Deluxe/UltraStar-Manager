@@ -43,6 +43,7 @@ public:
 	static bool genreLessThan (QUSongFile *s1, QUSongFile *s2);
 	static bool yearLessThan (QUSongFile *s1, QUSongFile *s2);
 	static bool creatorLessThan (QUSongFile *s1, QUSongFile *s2);
+	static bool tagsLessThan (QUSongFile *s1, QUSongFile *s2);
 
 	static bool pathLessThan (QUSongFile *s1, QUSongFile *s2);
 	static bool filePathLessThan (QUSongFile *s1, QUSongFile *s2);
@@ -77,6 +78,7 @@ public slots:
 	QString year() const			{return _info.value(YEAR_TAG,				QString(N_A));}
 	QString end() const				{return _info.value(END_TAG,				QString(N_A));}
 	QString creator() const			{return _info.value(CREATOR_TAG,			QString(N_A));}
+	QString tags() const			{return _info.value(TAGS_TAG,				QString(N_A));}
 	QString encoding() const		{return _info.value(ENCODING_TAG,			QString(N_A));}
 	QString previewstart() const	{return _info.value(PREVIEWSTART_TAG,		QString(N_A));}
 	QString calcmedley() const		{return _info.value(CALCMEDLEY_TAG,			QString(N_A));}

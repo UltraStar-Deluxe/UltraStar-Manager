@@ -21,6 +21,7 @@ QStringList QUSongSupport::availableTags() {
 	result << GENRE_TAG;
 	result << YEAR_TAG;
 	result << CREATOR_TAG;
+	result << TAGS_TAG;
 	result << MP3_TAG;
 	result << COVER_TAG;
 	result << BACKGROUND_TAG;
@@ -483,6 +484,19 @@ QStringList QUSongSupport::availableSongYears() {
 	for (int year = currentYear; year >= 1920; year--) {
 		result << QString::number(year);
 	}
+
+	return result;
+}
+
+QStringList QUSongSupport::availableSongTags() {
+	QStringList result;
+
+	result << "Christmas";
+	result << "Clean";
+	result << "Duet";
+	result << "Explicit";
+	result << "Eurovision";
+	result << "Kids";
 
 	return result;
 }

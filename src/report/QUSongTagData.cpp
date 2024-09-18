@@ -32,6 +32,10 @@ QUSongTagData::QUSongTagData(const QString &tag, QObject *parent): QUAbstractRep
 		this->setIcon(QIcon(":/types/creator.png"));
 		this->setDescription(tr("Creator"));
 		this->setID(CREATOR_COL);
+	} else if(QString::compare(_tag, TAGS_TAG, Qt::CaseInsensitive) == 0) {
+		this->setIcon(QIcon(":/types/tags.png"));
+		this->setDescription(tr("Tags"));
+		this->setID(TAGS_COL);
 	} else if(QUSongSupport::availableCustomTags().contains(tag, Qt::CaseInsensitive)) {
 		this->setIcon(QIcon(":/bullets/bullet_star.png"));
 		this->setDescription(tag);
@@ -54,6 +58,8 @@ QString QUSongTagData::textData(QUSongFile *song) {
 		return song->year();
 	if(QString::compare(_tag, CREATOR_TAG, Qt::CaseInsensitive) == 0)
 		return song->creator();
+	if(QString::compare(_tag, TAGS_TAG, Qt::CaseInsensitive) == 0)
+		return song->tags();
 	if(QUSongSupport::availableCustomTags().contains(_tag, Qt::CaseInsensitive))
 		return song->customTag(_tag);
 
@@ -82,6 +88,8 @@ void QUSongTagData::sort(QList<QUSongFile*> &songs) {
 		std::stable_sort(songs.begin(), songs.end(), QUSongFile::yearLessThan);
 	else if(QString::compare(_tag, CREATOR_TAG, Qt::CaseInsensitive) == 0)
 		std::stable_sort(songs.begin(), songs.end(), QUSongFile::creatorLessThan);
+	else if(QString::compare(_tag, TAGS_TAG, Qt::CaseInsensitive) == 0)
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::tagsLessThan);
 
 	// TODO: sort custom tag columns
 }
