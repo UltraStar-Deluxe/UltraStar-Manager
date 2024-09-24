@@ -342,6 +342,9 @@ macx {
 	# Run macdeployqt to bundle the required Qt libraries with the application
 	QMAKE_POST_LINK += macdeployqt ../bin/release/UltraStar-Manager.app -libpath=../lib/MacOS -always-overwrite -verbose=3 $$escape_expand(\\n\\t)
 
+	# Add Ad-Hoc code signature to allow ARM Macs to run it
+	QMAKE_POST_LINK += codesign --force --deep --sign - --preserve-metadata=entitlements,requirements,flags,runtime ../bin/release/UltraStar-Manager.app $$escape_expand(\\n\\t)
+
 	# Create a fancy Mac disk image
 	QMAKE_POST_LINK += create-dmg --volname UltraStar-Manager --volicon resources/UltraStar-Manager.icns --app-drop-link 350 170 --background ../setup/macx/img/UltraStar-Manager_bg.png --hide-extension UltraStar-Manager.app --window-size 500 300 --text-size 14 --icon-size 64 --icon UltraStar-Manager.app 150 170 --no-internet-enable --skip-jenkins "../bin/release/UltraStar-Manager.dmg" ../bin/release/UltraStar-Manager.app/
 }
