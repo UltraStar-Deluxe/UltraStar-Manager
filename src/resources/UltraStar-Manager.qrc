@@ -145,8 +145,6 @@
         <file>mediumVideoQuality.png</file>
     </qresource>
     <qresource prefix="/icons">
-        <file>splash.png</file>
-        <file>splash2.png</file>
         <file>cup.png</file>
         <file>UltraStar-Manager128.png</file>
         <file>UltraStar-Manager32.png</file>
@@ -281,5 +279,9 @@
         <file>save_big.png</file>
         <file>user_big.png</file>
         <file>cover_big.png</file>
+    </qresource>
+    <qresource prefix="/splash">
+        <file>splash.png</file>
+        <file>KozGoPro-ExtraLight.otf</file>
     </qresource>
 </RCC>
