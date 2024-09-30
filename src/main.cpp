@@ -7,6 +7,7 @@
 #include <QColor>
 #include <QDateTime>
 #include <QFont>
+#include <QFontDatabase>
 #include <QTranslator>
 #include <QSettings>
 #include <QSplashScreen>
@@ -38,9 +39,11 @@ int main(int argc, char *argv[]) {
 	QPainter painter(&canvas);
 	painter.setPen(QColor(0, 174, 239));  // light blue
 
-	QFont font(":/splash/KozGoPro-ExtraLight.otf");
-	font.setPointSize(24);
-	painter.setFont(font);
+	int fontId = QFontDatabase::addApplicationFont(":/splash/KozGoPro-ExtraLight.otf");
+	QString fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
+	QFont versionFont(fontFamily);
+	versionFont.setPixelSize(24);
+	painter.setFont(versionFont);
 
 	painter.drawText(
 		0, 0, 418, 130,
