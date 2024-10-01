@@ -1,6 +1,5 @@
 #include "QUAboutDialog.h"
 #include "main.h"
-#include "version.h"
 #include <QTimer>
 #include <QScrollBar>
 #include <QFile>
@@ -107,10 +106,10 @@ QUAboutDialog::QUAboutDialog(QWidget *parent): QDialog(parent) {
 
 	credits->setHtml(creditsText);
 
-	QDateTime dateTime = QDateTime::fromString(QString(date_time), "dd.MM.yyyy HH:mm");
+	QDateTime dateTime = QDateTime::fromString(QString(xstr(DATE_TIME)), "dd.MM.yyyy HH:mm");
 
 	versionLbl->setText(QString(tr("Version: <b>%1</b><br>Date: %2"))
-			.arg(QString(revision), dateTime.toString("yyyy-MM-dd, HH:mm")));
+		.arg(QString(xstr(REVISION)), dateTime.toString("yyyy-MM-dd, HH:mm")));
 
 	resetText();
 	credits->document()->setDefaultStyleSheet("a {color: white}");

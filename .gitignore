@@ -3,7 +3,6 @@
 *.stash
 *.user
 bin
-src/version.h
 src/tmp
 src/*.autosave
 src/ui

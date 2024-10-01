@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
+          fetch-depth: 0
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
@@ -116,6 +117,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
+          fetch-depth: 0
       - name: Determine Arch
         run: |
           if [ "${{ matrix.os }}" = "macos-13" ]; then
@@ -202,6 +204,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
+          fetch-depth: 0
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
