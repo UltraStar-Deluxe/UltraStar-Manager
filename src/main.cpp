@@ -4,10 +4,14 @@
 #include "QUMessageBox.h"
 
 #include <QApplication>
+#include <QColor>
 #include <QDateTime>
+#include <QFont>
+#include <QFontDatabase>
 #include <QTranslator>
 #include <QSettings>
 #include <QSplashScreen>
+#include <QPainter>
 #include <QPixmap>
 #include <QString>
 #include <QFile>
@@ -29,7 +33,26 @@ int main(int argc, char *argv[]) {
 	QTranslator  trContent;
 	QTranslator  trQt;
 
-	QSplashScreen splash(QPixmap(":/icons/splash2.png"));
+	// create splash screen with major and minor version number
+	QPixmap canvas(":/splash/splash.png");
+
+	QPainter painter(&canvas);
+	painter.setPen(QColor(0, 174, 239));  // light blue
+
+	int fontId = QFontDatabase::addApplicationFont(":/splash/KozGoPro-ExtraLight.otf");
+	QString fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
+	QFont versionFont(fontFamily);
+	versionFont.setPixelSize(24);
+	painter.setFont(versionFont);
+
+	painter.drawText(
+		0, 0, 418, 130,
+		Qt::AlignRight | Qt::AlignBottom,
+		QString("%1.%2").arg(MAJOR_VERSION).arg(MINOR_VERSION)
+	);
+
+	painter.end();
+	QSplashScreen splash(canvas);
 	splash.show();
 
 	initLanguage(app, trContent, trQt, splash);
