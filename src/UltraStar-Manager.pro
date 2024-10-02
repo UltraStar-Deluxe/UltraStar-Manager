@@ -241,6 +241,9 @@ INCLUDEPATH += . \
 	remoteimages \
 	webinfo
 
+DEFINES += REVISION=$$system(git describe --always --tags --match "[0-9].[0-9].[0-9]") \
+	VERSION=$$system(git describe --tags --abbrev=0 --match "[0-9].[0-9].[0-9]")
+
 win32 {
 	INCLUDEPATH += ../include/cld2/public \
 		../include/taglib \
@@ -256,6 +259,8 @@ win32 {
 		-lzlib
 
 	RC_ICONS += UltraStar-Manager.ico
+
+	DEFINES += DATE_TIME=\"$$quote($$system(date /T) $$system(time /T))\"
 }
 
 macx {
@@ -291,25 +296,9 @@ unix:!macx {
 	QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN\''
 }
 
-QMAKE_EXTRA_TARGETS += revtarget
-PRE_TARGETDEPS += version.h
-revtarget.target = version.h
-
-win32 {
-	revtarget.commands = "$$system(echo 'const char *revision = \"$$system(git describe --always)\";' > $$revtarget.target)"
-	revtarget.commands += "$$system(echo 'const char *date_time = \"$$system(date /T) $$system(time /T)\";' >> $$revtarget.target)"
-}
-
 unix {
-revtarget.commands = @echo \
-	"const char *revision = \\\"`git describe --always`\\\"\\; \
-	const char *date_time = \\\"`date +'%d.%m.%Y %H:%M'`\\\"\\;" \
-	> $${PWD}/$$revtarget.target
+	DEFINES += DATE_TIME=\"$$quote($$system(date '+%d.%m.%Y\ %H:%M'))\"
 }
-
-revtarget.depends = $$SOURCES \
-	$$HEADERS \
-	$$FORMS
 
 unix:!macx {
 	QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, $$shell_path($${DESTDIR}/lib/)) $$escape_expand(\\n\\t)

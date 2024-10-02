@@ -45,11 +45,13 @@ int main(int argc, char *argv[]) {
 	versionFont.setPixelSize(24);
 	painter.setFont(versionFont);
 
+	QStringList version_parts = QString(xstr(VERSION)).split(".");
+	QString maj_min_version = version_parts[0] + "." + version_parts[1];
+
 	painter.drawText(
 		0, 0, 418, 130,
 		Qt::AlignRight | Qt::AlignBottom,
-		QString("%1.%2").arg(MAJOR_VERSION).arg(MINOR_VERSION)
-	);
+		maj_min_version);
 
 	painter.end();
 	QSplashScreen splash(canvas);
@@ -151,7 +153,7 @@ void initLanguage(QApplication &app, QTranslator &trContent, QTranslator &trQt, 
 
 	monty->initMessages();
 
-	s.showMessage(QString(QObject::tr("%1.%2.%3 is loading...")).arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION), Qt::AlignBottom | Qt::AlignRight, Qt::white);
+	s.showMessage(QString(QObject::tr("%1 is loading...")).arg(xstr(VERSION)), Qt::AlignBottom | Qt::AlignRight, Qt::white);
 
 	// message needs to be here because it can be translated only after installing the translator
 	if(!settingFound)

@@ -32,6 +32,7 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QTemporaryFile>
+#include <QJsonDocument>
 
 #include "QUSongItem.h"
 #include "QUDetailItem.h"
@@ -993,9 +994,10 @@ void QUMainWindow::aboutMediaInfo() {
 }
 
 void QUMainWindow::checkForUpdate(bool silent) {
-	int currentVersion = MAJOR_VERSION*100 + MINOR_VERSION*10 + PATCH_VERSION;
+	QString currentVersion = QString(xstr(VERSION));
+	int currentVersionNum = QString(currentVersion).remove('.').toInt();
 
-	QUrl url("https://github.com/UltraStar-Deluxe/UltraStar-Manager/blob/master/src/latest_version.xml");
+	QUrl url("https://api.github.com/repos/UltraStar-Deluxe/UltraStar-Manager/releases/latest");
 	QNetworkAccessManager *m_NetworkMngr = new QNetworkAccessManager(this);
 	QNetworkReply *reply = m_NetworkMngr->get(QNetworkRequest(url));
 
@@ -1027,20 +1029,18 @@ void QUMainWindow::checkForUpdate(bool silent) {
 		return;
 	}
 
-	tmp.write(reply->readAll());
-	tmp.seek(0);
-	QString line =  QString(tmp.readLine());
+	QJsonDocument json = QJsonDocument::fromJson(reply->readAll());
+	QString line = json["tag_name"].toString();
 	QString latestVersionString = line;
-	int latestVersion = line.remove('.').toInt();
+	int latestVersion = line.remove('.').remove('v').toInt();
 	delete reply;
-	tmp.remove();
 
-	if (currentVersion < latestVersion) {
+	if (currentVersionNum < latestVersion) {
 		QUMessageBox::information(this,
 				tr("Update check successful."),
-				QString(tr("UltraStar Manager %1.%2.%3 is <b>outdated</b>.<br><br>"
-						"Download the most recent UltraStar-Manager %4 <a href='https://github.com/UltraStar-Deluxe/UltraStar-Manager/releases'>here</a>."))
-						.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION)
+				QString(tr("UltraStar Manager %1 is <b>outdated</b>.<br><br>"
+						"Download the most recent UltraStar-Manager %2 <a href='https://github.com/UltraStar-Deluxe/UltraStar-Manager/releases'>here</a>."))
+						.arg(currentVersion)
 						.arg(latestVersionString),
 				BTN << ":/marks/accept.png" << "OK",
 				240);
@@ -1051,8 +1051,8 @@ void QUMainWindow::checkForUpdate(bool silent) {
 			QSettings settings;
 			int result = QUMessageBox::information(this,
 					tr("Update check successful."),
-					QString(tr("UltraStar Manager %1.%2.%3 is <b>up to date</b>!"))
-							.arg(MAJOR_VERSION).arg(MINOR_VERSION).arg(PATCH_VERSION),
+					QString(tr("UltraStar Manager %1 is <b>up to date</b>!"))
+						.arg(currentVersion),
 					BTN << ":/marks/accept.png" << tr("OK. I will check again later.")
 						<< ":/marks/accept.png" << tr("OK. Check automatically on startup."),
 					240);
