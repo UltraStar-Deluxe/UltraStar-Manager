@@ -45,10 +45,13 @@ int main(int argc, char *argv[]) {
 	versionFont.setPixelSize(24);
 	painter.setFont(versionFont);
 
+	QStringList version_parts = QString(xstr(VERSION)).split(".");
+	QString maj_min_version = version_parts[0] + "." + version_parts[1];
+
 	painter.drawText(
 		0, 0, 418, 130,
 		Qt::AlignRight | Qt::AlignBottom,
-		QString(xstr(VERSION)));
+		maj_min_version);
 
 	painter.end();
 	QSplashScreen splash(canvas);
