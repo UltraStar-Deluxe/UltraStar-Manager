@@ -274,6 +274,7 @@
         <file>writeID3.png</file>
         <file>sync.png</file>
         <file>tags.png</file>
+        <file>format_version.png</file>
     </qresource>
     <qresource prefix="/big">
         <file>save_big.png</file>

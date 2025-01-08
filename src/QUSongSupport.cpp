@@ -14,6 +14,7 @@ QStringList QUSongSupport::availableTags() {
 	QStringList result;
 
 	result << ENCODING_TAG;
+	result << VERSION_TAG;
 	result << TITLE_TAG;
 	result << ARTIST_TAG;
 	result << LANGUAGE_TAG;
@@ -23,9 +24,16 @@ QStringList QUSongSupport::availableTags() {
 	result << CREATOR_TAG;
 	result << TAGS_TAG;
 	result << MP3_TAG;
+	result << AUDIO_TAG;
+	result << AUDIOURL_TAG;
+	result << VOCALS_TAG;
+	result << INSTRUMENTAL_TAG;
 	result << COVER_TAG;
+	result << COVERURL_TAG;
 	result << BACKGROUND_TAG;
+	result << BACKGROUNDURL_TAG;
 	result << VIDEO_TAG;
+	result << VIDEOURL_TAG;
 	result << VIDEOGAP_TAG;
 	result << START_TAG;
 	result << END_TAG;

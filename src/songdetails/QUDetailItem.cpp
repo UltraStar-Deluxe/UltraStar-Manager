@@ -52,6 +52,8 @@ void QUDetailItem::reset() {
 
 	if(QString::compare(_tag, ENCODING_TAG) == 0) {
 		_flagsForSingleSong = Qt::NoItemFlags;
+	} else if(QString::compare(_tag, VERSION_TAG) == 0) {
+		_flagsForSingleSong = Qt::NoItemFlags;
 //	} else if(QString::compare(_tag, TITLE_TAG) == 0) {
 	} else if(QString::compare(_tag, ARTIST_TAG) == 0) {
 		_flagsForMultipleSongs = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
