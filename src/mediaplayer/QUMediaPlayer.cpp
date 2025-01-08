@@ -5,6 +5,7 @@
 #include "QUSongDatabase.h"
 
 #include <QRandomGenerator>
+#include <QtMultimedia/QAudioOutput>
 
 #include "audioproperties.h"
 #include "fileref.h"
@@ -50,6 +51,7 @@ QUSongInfo::QUSongInfo(QUSongFile *song) {
 
 QUMediaPlayer::QUMediaPlayer(QWidget *parent): QWidget(parent) {
 	_player = new QMediaPlayer;
+	_player->setAudioOutput(new QAudioOutput);
 
 	setupUi(this);
 
