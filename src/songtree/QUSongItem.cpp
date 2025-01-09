@@ -2,8 +2,8 @@
 
 #include "audioproperties.h"
 #include "fileref.h"
-#include "MediaInfo/MediaInfo.h"
-using namespace MediaInfoLib;
+//#include "MediaInfo/MediaInfo.h"
+//using namespace MediaInfoLib;
 
 #include <QString>
 #include <QStringList>
@@ -11,9 +11,9 @@ using namespace MediaInfoLib;
 #include <QFileInfo>
 #include <QDir>
 #include <QIcon>
+#include <QImageReader>
 #include <QSettings>
 #include <QMessageBox>
-//#include <QMediaResource>
 #include <QtCore/qmath.h>
 
 #include "QUSongSupport.h"
@@ -401,74 +401,86 @@ void QUSongItem::setTick(int column) {
 			// used for sorting
 			this->setData(column, Qt::UserRole, QVariant(mp3_quality));
 		} else if(column == COVER_COLUMN) {
-			QImage img(this->song()->coverFileInfo().filePath());
-			if (img.width() == img.height()) {
-				if (img.width() < QUSongSupport::mediumCoverQuality()) {
+			QImageReader reader(this->song()->coverFileInfo().filePath());
+			if (!reader.canRead()) {
+				this->setIcon(column, QIcon(":/marks/cross_error.png"));
+				this->setToolTip(column, QString(QObject::tr("Cannot read image: %1")).arg(this->song()->coverFileInfo().filePath()));
+				return;
+			}
+			int width = reader.size().width();
+			int height = reader.size().height();
+
+			if (width == height) {
+				if (width < QUSongSupport::mediumCoverQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_low.png"));
-					this->setToolTip(column, QString(QObject::tr("Low quality cover (%1 x %2)")).arg(img.width()).arg(img.height()));
-				} else if (img.width() < QUSongSupport::highCoverQuality()) {
+					this->setToolTip(column, QString(QObject::tr("Low quality cover (%1 x %2)")).arg(width).arg(height));
+				} else if (width < QUSongSupport::highCoverQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_medium.png"));
-					this->setToolTip(column, QString(QObject::tr("Medium quality cover (%1 x %2)")).arg(img.width()).arg(img.height()));
+					this->setToolTip(column, QString(QObject::tr("Medium quality cover (%1 x %2)")).arg(width).arg(height));
 				} else {
 					this->setIcon(column, QIcon(":/marks/tick_high.png"));
-					this->setToolTip(column, QString(QObject::tr("High quality cover (%1 x %2)")).arg(img.width()).arg(img.height()));
+					this->setToolTip(column, QString(QObject::tr("High quality cover (%1 x %2)")).arg(width).arg(height));
 				}
 
 				// used for sorting
-				this->setData(column, Qt::UserRole, QVariant(img.width()));
+				this->setData(column, Qt::UserRole, QVariant(width));
 			} else {
-				int min_dimension = qMin(img.width(), img.height());
+				int min_dimension = qMin(width, height);
 				if (min_dimension < QUSongSupport::mediumCoverQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_low_exclamation.png"));
-					this->setToolTip(column, QString(QObject::tr("Non-square low quality cover (%1 x %2).\nTry cropping to %3 x %3.")).arg(img.width()).arg(img.height()).arg(min_dimension));
-				} else if (qMin(img.width(), img.height()) < QUSongSupport::highCoverQuality()) {
+					this->setToolTip(column, QString(QObject::tr("Non-square low quality cover (%1 x %2).\nTry cropping to %3 x %3.")).arg(width).arg(height).arg(min_dimension));
+				} else if (qMin(width, height) < QUSongSupport::highCoverQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_medium_exclamation.png"));
-					this->setToolTip(column, QString(QObject::tr("Non-square medium quality cover (%1 x %2).\nTry cropping to %3 x %3.")).arg(img.width()).arg(img.height()).arg(min_dimension));
+					this->setToolTip(column, QString(QObject::tr("Non-square medium quality cover (%1 x %2).\nTry cropping to %3 x %3.")).arg(width).arg(height).arg(min_dimension));
 				} else {
 					this->setIcon(column, QIcon(":/marks/tick_high_exclamation.png"));
-					this->setToolTip(column, QString(QObject::tr("Non-square high quality cover (%1 x %2).\nTry cropping to %3 x %3.")).arg(img.width()).arg(img.height()).arg(min_dimension));
+					this->setToolTip(column, QString(QObject::tr("Non-square high quality cover (%1 x %2).\nTry cropping to %3 x %3.")).arg(width).arg(height).arg(min_dimension));
 				}
 
 				// used for sorting
 				this->setData(column, Qt::UserRole, QVariant(min_dimension));
 			}
 		} else if(column == BACKGROUND_COLUMN) {
-			QImage img(this->song()->backgroundFileInfo().filePath());
-			if (img.width()*9 == img.height()*16) {
-				if (img.width() < QUSongSupport::mediumBackgroundQuality()) {
+			QImageReader reader(this->song()->backgroundFileInfo().filePath());
+			if (!reader.canRead()) {
+				this->setIcon(column, QIcon(":/marks/cross_error.png"));
+				this->setToolTip(column, QString(QObject::tr("Cannot read image: %1")).arg(this->song()->backgroundFileInfo().filePath()));
+				return;
+			}
+			int width = reader.size().width();
+			int height = reader.size().height();
+
+			if (width*9 == height*16) {
+				if (width < QUSongSupport::mediumBackgroundQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_low.png"));
-					this->setToolTip(column, QString(QObject::tr("Low quality background (%1 x %2)")).arg(img.width()).arg(img.height()));
-				} else if (img.width() < QUSongSupport::highBackgroundQuality()) {
+					this->setToolTip(column, QString(QObject::tr("Low quality background (%1 x %2)")).arg(width).arg(height));
+				} else if (width < QUSongSupport::highBackgroundQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_medium.png"));
-					this->setToolTip(column, QString(QObject::tr("Medium quality background (%1 x %2)")).arg(img.width()).arg(img.height()));
+					this->setToolTip(column, QString(QObject::tr("Medium quality background (%1 x %2)")).arg(width).arg(height));
 				} else {
 					this->setIcon(column, QIcon(":/marks/tick_high.png"));
-					this->setToolTip(column, QString(QObject::tr("High quality background (%1 x %2)")).arg(img.width()).arg(img.height()));
+					this->setToolTip(column, QString(QObject::tr("High quality background (%1 x %2)")).arg(width).arg(height));
 				}
 			} else {
-				if (img.width() < QUSongSupport::mediumBackgroundQuality()) {
+				if (width < QUSongSupport::mediumBackgroundQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_low_exclamation.png"));
-					this->setToolTip(column, QString(QObject::tr("Low quality background with non-widescreen aspect ratio (%1 x %2).\nTry cropping to %1 x %3 for a widescreen aspect ratio.")).arg(img.width()).arg(img.height()).arg(qRound(float(img.width()*9/16))));
-				} else if (img.width() < QUSongSupport::highBackgroundQuality()) {
+					this->setToolTip(column, QString(QObject::tr("Low quality background with non-widescreen aspect ratio (%1 x %2).\nTry cropping to %1 x %3 for a widescreen aspect ratio.")).arg(width).arg(height).arg(qRound(float(width*9/16))));
+				} else if (width < QUSongSupport::highBackgroundQuality()) {
 					this->setIcon(column, QIcon(":/marks/tick_medium_exclamation.png"));
-					this->setToolTip(column, QString(QObject::tr("Medium quality background with non-widescreen aspect ratio (%1 x %2).\nTry cropping to %1 x %3 for a widescreen aspect ratio.")).arg(img.width()).arg(img.height()).arg(qRound(float(img.width()*9/16))));
+					this->setToolTip(column, QString(QObject::tr("Medium quality background with non-widescreen aspect ratio (%1 x %2).\nTry cropping to %1 x %3 for a widescreen aspect ratio.")).arg(width).arg(height).arg(qRound(float(width*9/16))));
 				} else {
 					this->setIcon(column, QIcon(":/marks/tick_high_exclamation.png"));
-					this->setToolTip(column, QString(QObject::tr("High quality background with non-widescreen aspect ratio (%1 x %2).\nTry cropping to %1 x %3 for a widescreen aspect ratio.")).arg(img.width()).arg(img.height()).arg(qRound(float(img.width()*9/16))));
+					this->setToolTip(column, QString(QObject::tr("High quality background with non-widescreen aspect ratio (%1 x %2).\nTry cropping to %1 x %3 for a widescreen aspect ratio.")).arg(width).arg(height).arg(qRound(float(width*9/16))));
 				}
 			}
 			// used for sorting
-			this->setData(column, Qt::UserRole, QVariant(img.width()));
+			this->setData(column, Qt::UserRole, QVariant(width));
 		} else if(column == VIDEO_COLUMN) {
+			/* determining the video resolution is slow (entire video file has to be read), therefore disabled
+			 * maybe ffprobe (external call) is better suited here, but this would an external dependency
 			int video_width = -1;
 			int video_height = -1;
 
-			// Unfortunately, using Qt's QMediaResource class does not work at all currently
-			//QMediaResource video(QUrl::fromLocalFile(this->song()->videoFileInfo().filePath()));
-			//video.resolution().width();
-			//video.resolution().height();
-
-			// Therefore, the external MediaInfo library is used at the moment
 			MediaInfo MI;
 			if(MI.Open(this->song()->videoFileInfo().filePath().toStdWString()) > 0) {
 				// retrieve width/height from first video stream
@@ -489,6 +501,8 @@ void QUSongItem::setTick(int column) {
 			}
 			// used for sorting
 			this->setData(column, Qt::UserRole, QVariant(video_width));
+			*/
+			this->setIcon(column, QIcon(":/marks/tick_high.png"));
 		}
 	}
 	else {
@@ -685,10 +699,6 @@ void QUSongItem::updateFileCheckColumns() {
 	// score files
 	if(song()->score())
 		this->setIcon(SCORE_COLUMN, QIcon(":/types/score.png"));
-
-	// sync files
-	//if(song()->sync())
-	//	this->setIcon(SYNC_COLUMN, QIcon(":/types/sync.png"));
 }
 
 void QUSongItem::updateTypeColumns() {
