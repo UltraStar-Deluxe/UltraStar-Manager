@@ -41,6 +41,7 @@ void QUDetailsTable::initTagColumn() {
 	unsigned row = 0;
 	this->initSeparator(tr("Information"), row++);
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/control/encoding.png"),			tr("Encoding")));
+	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/format_version.png"),		tr("Version")));
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/font.png"),				tr("Title")));
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/user.png"),				tr("Artist")));
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/language.png"),			tr("Language")));
@@ -55,9 +56,18 @@ void QUDetailsTable::initTagColumn() {
 
 	this->initSeparator(tr("Files"), row++);
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/music.png"),				tr("MP3")));
+	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/music.png"),				tr("Audio")));
+	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/music.png"),				tr("Vocals")));
+	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/music.png"),				tr("Instrumental")));
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/cover.png"),				tr("Cover")));
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/background.png"),			tr("Background")));
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/video.png"),				tr("Video")));
+
+	this->initSeparator(tr("URLs"), row++);
+	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/music.png"),				tr("Audio URL")));
+	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/cover.png"),				tr("Cover URL")));
+	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/background.png"),			tr("Background URL")));
+	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/video.png"),				tr("Video URL")));
 
 	this->initSeparator(tr("Control"), row++);
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/videogap.png"),			tr("Videogap")));
@@ -92,6 +102,7 @@ void QUDetailsTable::initValueColumn() {
 	/* separator here - skip a row */
 	row++;
 	this->setItem(row++, 1, new QUDetailItem(ENCODING_TAG));
+	this->setItem(row++, 1, new QUDetailItem(VERSION_TAG));
 	this->setItem(row++, 1, new QUDetailItem(TITLE_TAG));
 	this->setItem(row++, 1, new QUDetailItem(ARTIST_TAG));
 	this->setItem(row++, 1, new QUDetailItem(LANGUAGE_TAG));
@@ -107,9 +118,19 @@ void QUDetailsTable::initValueColumn() {
 	/* separator here - skip a row */
 	row++;
 	this->setItem(row++, 1, new QUDetailItem(MP3_TAG));
+	this->setItem(row++, 1, new QUDetailItem(AUDIO_TAG));
+	this->setItem(row++, 1, new QUDetailItem(VOCALS_TAG));
+	this->setItem(row++, 1, new QUDetailItem(INSTRUMENTAL_TAG));
 	this->setItem(row++, 1, new QUDetailItem(COVER_TAG));
 	this->setItem(row++, 1, new QUDetailItem(BACKGROUND_TAG));
 	this->setItem(row++, 1, new QUDetailItem(VIDEO_TAG));
+
+	/* separator here - skip a row */
+	row++;
+	this->setItem(row++, 1, new QUDetailItem(AUDIOURL_TAG));
+	this->setItem(row++, 1, new QUDetailItem(COVERURL_TAG));
+	this->setItem(row++, 1, new QUDetailItem(BACKGROUNDURL_TAG));
+	this->setItem(row++, 1, new QUDetailItem(VIDEOURL_TAG));
 
 	/* separator here - skip a row */
 	row++;

@@ -61,15 +61,23 @@ public:
 	static bool equal(QUSongFile *s1, QUSongFile *s2);
 
 public slots:
+	QString version() const			{return _info.value(VERSION_TAG,			QString(N_A));}
 	QString artist() const			{return _info.value(ARTIST_TAG,				QString(N_A));}
 	QString title() const			{return _info.value(TITLE_TAG,				QString(N_A));}
 	QString mp3() const				{return _info.value(MP3_TAG,				QString(N_A));}
+	QString audio() const			{return _info.value(AUDIO_TAG,				QString(N_A));}
+	QString audiourl() const		{return _info.value(AUDIOURL_TAG,			QString(N_A));}
+	QString vocals() const			{return _info.value(VOCALS_TAG,				QString(N_A));}
+	QString instrumental() const	{return _info.value(INSTRUMENTAL_TAG,		QString(N_A));}
 	QString bpm() const				{return _info.value(BPM_TAG,				QString(N_A));}
 	QString gap() const				{return _info.value(GAP_TAG,				QString(N_A));}
 	QString video() const			{return _info.value(VIDEO_TAG,				QString(N_A));}
+	QString videourl() const		{return _info.value(VIDEOURL_TAG,			QString(N_A));}
 	QString videogap() const		{return _info.value(VIDEOGAP_TAG,			QString(N_A));}
 	QString cover() const			{return _info.value(COVER_TAG,				QString(N_A));}
+	QString coverurl() const		{return _info.value(COVERURL_TAG,			QString(N_A));}
 	QString background() const		{return _info.value(BACKGROUND_TAG,			QString(N_A));}
+	QString backgroundurl() const	{return _info.value(BACKGROUNDURL_TAG,		QString(N_A));}
 	QString start() const			{return _info.value(START_TAG,				QString(N_A));}
 	QString language() const		{return _info.value(LANGUAGE_TAG,			QString(N_A));}
 	QString relative() const		{return _info.value(RELATIVE_TAG,			QString(N_A));}
