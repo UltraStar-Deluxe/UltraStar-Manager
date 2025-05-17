@@ -194,7 +194,7 @@ jobs:
 
   build_linux:
     name: Build for Linux
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Get Number of CPU Cores
