@@ -51,6 +51,14 @@ jobs:
           cd MediaInfoLib
           cmake -S Project/CMake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=Release
           msbuild build/install.vcxproj -p:Configuration=Release
+      - name: Install libebur128
+        run: |
+          git clone https://github.com/jiixyj/libebur128.git
+          cd libebur128
+          git checkout tags/v1.2.6
+          cmake -S . -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_INCLUDEDIR="${{ github.workspace }}/include" -DCMAKE_INSTALL_BINDIR="${{ github.workspace }}/lib/win64" -DCMAKE_INSTALL_LIBDIR="${{ github.workspace }}/lib/win64"
+          cmake --build build --config release --target install
+
       - name: Install cld2
         run: |
           cd include/cld2/internal
@@ -80,6 +88,7 @@ jobs:
         run: |
           cp "C:/Program Files/taglib/bin/tag.dll" bin/release/
           cp "C:/Program Files/zlib/bin/zlib.dll" bin/release/
+          cp lib/win64/ebur128.dll bin/release/
           cp lib/win64/cld2.dll bin/release/
           cd src
           qmake6 UltraStar-Manager.pro -spec win32-msvc
@@ -131,6 +140,7 @@ jobs:
           brew install qt
           brew install taglib
           brew install libmediainfo
+          brew install libebur128
           brew install create-dmg
       - name: Install cld2
         run: |
@@ -214,7 +224,7 @@ jobs:
         run: |
           sudo apt update -qq
           sudo apt install -y libgl1-mesa-dev build-essential libpulse-mainloop-glib0 libgstreamer-plugins-base1.0-dev
-          sudo apt install -y libtag1-dev libcld2-dev libmediainfo-dev
+          sudo apt install -y libtag1-dev libcld2-dev libmediainfo-dev libebur128-dev
           sudo apt install -y libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xinerama0 libxcb-xkb-dev libxkbcommon-x11-0 libxcb-cursor0 libgtk2.0-dev
       - name: Build plugins
         run: |
