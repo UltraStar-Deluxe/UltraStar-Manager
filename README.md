@@ -66,7 +66,7 @@ This allows passing a certain folder as song path to UltraStar-Manager, convenie
 (under construction)
 
 1. Install the Qt framework: `sudo apt-get install qt6-base-dev qt6-multimedia-dev`
-2. Install dependencies: `sudo apt-get install libtag1-dev libcld2-dev libmediainfo-dev libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xinerama0 libxcb-xkb-dev libxkbcommon-x11-0 libxcb-cursor0 libgtk2.0-dev`
+2. Install dependencies: `sudo apt-get install libtag1-dev libcld2-dev libmediainfo-dev libebur128-dev libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xinerama0 libxcb-xkb-dev libxkbcommon-x11-0 libxcb-cursor0 libgtk2.0-dev`
 3. Clone repository: `git clone https://github.com/UltraStar-Deluxe/UltraStar-Manager && cd UltraStar-Manager`
 4. Compile UltraStar-Manager plugins
    * from command line
@@ -86,7 +86,7 @@ This allows passing a certain folder as song path to UltraStar-Manager, convenie
 
 1. Install homebrew via `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 2. Install the Qt framework via `brew install qt`.
-3. Install external dependencies via `brew install taglib mediainfo`
+3. Install external dependencies via `brew install taglib mediainfo libebur128`
 4. Compile UltraStar-Manager plugins
    * from command line
      * audiotag plugin: `cd src/plugins/audiotag && qmake6 audiotag.pro && make`

@@ -54,6 +54,7 @@ HEADERS += plugins/QUPluginManager.h \
 	support/QUProgressDialog.h \
 	support/QUTextDialog.h \
 	support/QUPictureDialog.h \
+	support/QUReplayGainScanner.h \
 	monty/QUMontyArea.h \
 	filter/QUFilterArea.h \
 	filter/QUMetaphoneString.h \
@@ -129,6 +130,7 @@ SOURCES += plugins/QUPluginManager.cpp \
 	support/QUTextDialog.cpp \
 	support/QUPictureDialog.cpp \
 	support/QUMessageBox.cpp \
+	support/QUReplayGainScanner.cpp \
 	monty/QUMontyArea.cpp \
 	filter/QUFilterArea.cpp \
 	filter/QUMetaphoneString.cpp \
@@ -247,11 +249,13 @@ DEFINES += REVISION=$$system(git describe --always --tags --match "[0-9].[0-9].[
 win32 {
 	INCLUDEPATH += ../include/cld2/public \
 		../include/taglib \
+		../include \
 		"C:/Program Files/MediaInfoLib/include"
 
 	LIBS += -L"../lib/win64" \
 		-lcld2 \
-		-ltag
+		-ltag \
+		-lebur128
 	LIBS += -L"C:/Program Files/MediaInfoLib/lib" \
 		-lmediainfo \
 		-lzen
@@ -273,6 +277,7 @@ macx {
 	CONFIG += link_pkgconfig
 	PKGCONFIG += taglib
 	PKGCONFIG += libmediainfo
+	PKGCONFIG += libebur128
 
 	CONFIG += app_bundle
 	#QMAKE_RPATHDIR += @executable_path/../Frameworks
@@ -292,6 +297,7 @@ unix:!macx {
 	CONFIG += link_pkgconfig
 	PKGCONFIG += taglib
 	PKGCONFIG += libmediainfo
+	PKGCONFIG += libebur128
 
 	QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN\''
 }

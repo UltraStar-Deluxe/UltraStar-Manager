@@ -30,6 +30,9 @@ private slots:
 	void cancel();
 	void updateTime();
 
+signals:
+	void userCancelled();
+
 private:
 	bool _cancelled;
 	bool _beResponsive; // you can only cancel an operation with a responsive progress dialog

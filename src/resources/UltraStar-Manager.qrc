@@ -200,6 +200,7 @@
         <file>tick_low_exclamation.png</file>
         <file>tick_medium.png</file>
         <file>tick_medium_exclamation.png</file>
+        <file>replaygain.png</file>
     </qresource>
     <qresource prefix="/types">
         <file>text_stack.png</file>

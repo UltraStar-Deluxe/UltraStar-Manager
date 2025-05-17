@@ -15,6 +15,11 @@
 #include "QUSongInterface.h"
 #include "QUScoreFile.h"
 
+struct ReplayGainInfo {
+	QString trackGain;
+	QString trackPeak;
+};
+
 /*!
  * This class represents a data file which is used by UltraStar for every song.
  * It contains all tags that are available in US Deluxe 1.00.
@@ -32,6 +37,7 @@ public:
 	void setFile(const QString &filePath, bool update = true);
 
 	bool updateCache();
+	void updateReplayGain();
 
 	bool isValid();
 
@@ -99,6 +105,7 @@ public slots:
 	QString source() const			{return _info.value(SOURCE_TAG,				QString(N_A));}
 	QString artistonsorting() const	{return _info.value(ARTISTONSORTING_TAG,	QString(N_A));}
 	QString titleonsorting() const	{return _info.value(TITLEONSORTING_TAG,		QString(N_A));}
+	const ReplayGainInfo* rgInfo() const {return _rgInfo; }
 
 	QString customTag(const QString &tag) const {return _info.value(tag.toUpper(), QString(N_A));}
 
@@ -109,6 +116,7 @@ public slots:
 	QString txt() const {return _fi.fileName();}
 
 	bool hasMp3() const;
+	bool hasReplayGain() const { return _rgInfo != nullptr; }
 	bool hasCover() const;
 	bool hasBackground() const;
 	bool hasVideo() const;
@@ -218,6 +226,7 @@ private:
 	QMap<QString, QString> _info; // song header
 	QStringList _lyrics;		  // lyrics
 	QStringList _footer;		  // other stuff after the end mark 'E' in the song file
+	ReplayGainInfo *_rgInfo;
 
 	QStringList _foundUnsupportedTags;
 	bool _hasUnsavedChanges;

@@ -86,6 +86,7 @@ void QUProgressDialog::setLabel(const QString &text) {
 
 void QUProgressDialog::cancel() {
 	_cancelled = true;
+	emit userCancelled();
 }
 
 void QUProgressDialog::updateTime() {

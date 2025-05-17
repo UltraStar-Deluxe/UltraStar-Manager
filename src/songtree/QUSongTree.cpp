@@ -31,6 +31,7 @@
 
 #include "QUSongSupport.h"
 #include "QUStringSupport.h"
+#include "QUReplayGainScanner.h"
 
 #define FILE_DROP_LIMIT 5
 
@@ -88,6 +89,9 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(VIDEO_COLUMN, QIcon(":/types/video.png"));
 	header->setToolTip(VIDEO_COLUMN, tr("Shows whether the song text file points to a <b>video file</b> that can be found by UltraStar"));
 	header->setSizeHint(VIDEO_COLUMN, QSize(25,0));
+	header->setIcon(REPLAYGAIN_COLUMN, QIcon(":/marks/replaygain.png"));
+	header->setToolTip(REPLAYGAIN_COLUMN, tr("Shows whether the song audio file contains ReplayGain information"));
+	header->setSizeHint(REPLAYGAIN_COLUMN, QSize(25,0));
 
 	header->setIcon(TYPE_KARAOKE_COLUMN, QIcon(":/types/karaoke.png"));
 	header->setToolTip(TYPE_KARAOKE_COLUMN, tr("Shows whether the song is a karaoke song."));
@@ -721,6 +725,7 @@ void QUSongTree::showDefaultColumns(bool save) {
 	this->header()->showSection(COVER_COLUMN);
 	this->header()->showSection(BACKGROUND_COLUMN);
 	this->header()->showSection(VIDEO_COLUMN);
+	this->header()->showSection(REPLAYGAIN_COLUMN);
 	this->header()->showSection(TYPE_KARAOKE_COLUMN);
 	this->header()->showSection(TYPE_DUET_COLUMN);
 	this->header()->showSection(MEDLEY_COLUMN);
@@ -1094,6 +1099,22 @@ void QUSongTree::calculateSpeed() {
 //	emit itemSelectionChanged(); // update details
 }
 
+void QUSongTree::calculateReplayGain()
+{
+	auto scanner = new QUReplayGainScanner(selectedSongItems(), this);
+    connect(scanner, &QUReplayGainScanner::finished, scanner, &QObject::deleteLater);
+	auto dlg = new QUProgressDialog(tr("Calculating selected song ReplayGain..."), selectedItems().size(), this);
+	dlg->setAttribute(Qt::WA_DeleteOnClose);
+	connect(dlg, &QUProgressDialog::userCancelled, scanner, &QUReplayGainScanner::cancel);
+	connect(scanner, &QUReplayGainScanner::updateProgress, dlg, &QUProgressDialog::update);
+	connect(scanner, &QUReplayGainScanner::scanFinished, dlg, &QUProgressDialog::done);
+	connect(scanner, &QUReplayGainScanner::updateItem, this, &QUSongTree::updateItem);
+	dlg->show();
+	static_cast<QDialog*>(dlg)->show(); // this will force the dialog to show immediately instead of waiting
+	emit stopMediaPlayer();
+	scanner->start();
+}
+
 bool QUSongTree::copyFilesToSong(const QList<QUrl> &files, QUSongItem *item) {
 	if(files.size() > FILE_DROP_LIMIT) {
 		int result = QUMessageBox::information(this,
@@ -1348,6 +1369,7 @@ QMenu* QUSongTree::itemMenu(QUSongItem *item) {
 		menu->addMenu(hideMenu());
 
 		menu->addAction(QIcon(":/marks/speed_slow_turtle.png"), tr("Calculate Song Speed"), this, SLOT(calculateSpeed()));
+		menu->addAction(QIcon(":/marks/replaygain.png"), tr("Calculate Song ReplayGain"), this, SLOT(calculateReplayGain()));
 
 		menu->addSeparator();
 #ifdef Q_OS_WIN

@@ -504,6 +504,11 @@ void QUSongItem::setTick(int column) {
 			*/
 			this->setIcon(column, QIcon(":/marks/tick_high.png"));
 		}
+		else if (column == REPLAYGAIN_COLUMN) {
+			this->setIcon(column, QIcon(":/marks/tick.png"));
+			this->setData(column, Qt::UserRole, QVariant(0));
+
+		}
 	}
 	else {
 		if(column == MP3_COLUMN) {
@@ -609,6 +614,7 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case LENGTH_EFF_COLUMN:
 	case SPEED_COLUMN:
 	case RELATIVE_COLUMN:
+	case REPLAYGAIN_COLUMN:
 		return this->data(column, Qt::UserRole).toInt() < other.data(column, Qt::UserRole).toInt(); // break;
 	case START_COLUMN:
 	case END_COLUMN:
@@ -695,6 +701,20 @@ void QUSongItem::updateFileCheckColumns() {
 	else if(song()->video() != N_A && !song()->videoFileInfo().exists())	this->setCross(VIDEO_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->video()));
 	else if(song()->video() != N_A && song()->videoFileInfo().exists())		this->setCross(VIDEO_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->video()));
 	else																	this->setCross(VIDEO_COLUMN);
+
+	if(song()->hasReplayGain()) {
+		this->setTick(REPLAYGAIN_COLUMN);
+		const ReplayGainInfo *rgInfo = song()->rgInfo();
+		this->setToolTip(REPLAYGAIN_COLUMN,
+			QString("<b>%1:</b> %2%3")
+				.arg(QObject::tr("Gain"))
+				.arg(rgInfo->trackGain)
+				.arg(rgInfo->trackPeak.isEmpty() ? QString() : QString("<br><b>%1:</b> %2").arg(QObject::tr("Peak")).arg(rgInfo->trackPeak)
+			)
+		);
+	}
+	else
+		this->setCross(REPLAYGAIN_COLUMN);
 
 	// score files
 	if(song()->score())

@@ -73,6 +73,7 @@ signals:
 	void openCurrentFileExternalRequested(QTreeWidgetItem* currentItem);
 	void openCurrentFileInternalRequested(QTreeWidgetItem* currentItem);
 	void setCurrentFilePrimaryRequested(QTreeWidgetItem* currentItem);
+	void stopMediaPlayer();
 
 private slots:
 	void deleteCurrentItem();
@@ -107,6 +108,7 @@ private slots:
 	void requestDeleteSelectedSongs();
 	void mergeSelectedSongs();
 	void calculateSpeed();
+	void calculateReplayGain();
 
 	void searchForCoverOnAAE();
 	void searchForCoverOnGoogleImages();
