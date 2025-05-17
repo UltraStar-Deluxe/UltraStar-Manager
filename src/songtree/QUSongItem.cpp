@@ -37,7 +37,7 @@ QUSongItem::QUSongItem(QUSongFile *song, bool isToplevel):
 void QUSongItem::clearContents() {
 	for(int i = 0; i < this->columnCount(); ++i) {
 		this->setIcon(i, QIcon());
-		this->setForeground(i, Qt::white);
+		this->setForeground(i, Qt::black);
 		this->setToolTip(i, "");
 		this->setBackground(i, QColor(0, 0, 0, 0));
 	}
