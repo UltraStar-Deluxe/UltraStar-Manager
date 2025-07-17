@@ -16,11 +16,17 @@
 #include <QTextStream>
 #include <QStringConverter>
 #include <QRegularExpression>
+#include <QDebug>
+#include <string>
 
 #include "audioproperties.h"
 #include "fileref.h"
 #include "tag.h"
 #include "tstring.h"
+#include "mp4file.h"
+#include "mp4item.h"
+#include "tpropertymap.h"
+#include "opusfile.h"
 
 #include "math.h"
 
@@ -41,7 +47,8 @@ QUSongFile::QUSongFile(const QString &filePath, QObject *parent):
 	_hasUnsavedChanges(false),
 	_songLengthCacheValid(false),
 	_songSpeedCacheValid(false),
-	_score(nullptr)
+	_score(nullptr),
+	_rgInfo(nullptr)
 {
 	connect(monty->watcher(), SIGNAL(fileChanged(const QString&)), this, SLOT(songFileChanged(const QString&)));
 
@@ -298,6 +305,7 @@ bool QUSongFile::updateCache() {
 	_file.close();
 
 	initScoreFile();
+	updateReplayGain();
 
 	songDB->processChangesForSong(this);
 	return true;
@@ -1593,4 +1601,50 @@ void QUSongFile::initScoreFile() {
 		logSrv->add(tr("More than one score file found for \"%1 - %2\". Only one will be used.").arg(artist(), title()), QU::Warning);
 
 	_score = new QUScoreFile(scoreFiles.first().filePath(), this);
+}
+
+void QUSongFile::updateReplayGain()
+{
+	delete _rgInfo;
+	_rgInfo = nullptr;
+	QFileInfo fi = mp3FileInfo();
+	TagLib::FileRef file(fi.absoluteFilePath().toLocal8Bit().data(), false);
+	TagLib::MP4::File *mp4File = nullptr;
+	if (!file.file() || !file.file()->isValid())
+		return;
+
+	if ((mp4File = dynamic_cast<TagLib::MP4::File*>(file.file()))) {
+		TagLib::MP4::Tag *tag = mp4File->tag();
+		const TagLib::MP4::ItemMap &map = tag->itemMap();
+		auto itGain = map.find("----:com.apple.iTunes:REPLAYGAIN_TRACK_GAIN");
+		if (itGain == map.end())
+			itGain = map.find("----:com.apple.iTunes:replaygain_track_gain");
+		auto itPeak = map.find("----:com.apple.iTunes:REPLAYGAIN_TRACK_PEAK");
+		if (itPeak == map.end())
+			itPeak = map.find("----:com.apple.iTunes:replaygain_track_peak");
+		if (itGain != map.end() && itPeak != map.end())
+			_rgInfo = new ReplayGainInfo {
+				QString::fromStdString(itGain->second.toStringList().toString().to8Bit()),
+				QString::fromStdString(itPeak->second.toStringList().toString().to8Bit())
+			};
+	}
+	else {
+		TagLib::Ogg::Opus::File *opusFile = dynamic_cast<TagLib::Ogg::Opus::File*>(file.file());
+		TagLib::PropertyMap map = file.properties();
+		auto itGain = map.find("REPLAYGAIN_TRACK_GAIN");
+		auto itPeak = map.find("REPLAYGAIN_TRACK_PEAK");
+		if (itGain != map.end() && itPeak != map.end())
+			_rgInfo =  new ReplayGainInfo {
+				QString::fromStdString(itGain->second.toString().to8Bit()),
+				QString::fromStdString(itPeak->second.toString().to8Bit())
+			};
+		else if (opusFile) {
+			auto itGainR128 = map.find("R128_TRACK_GAIN");
+			if (itGainR128 != map.end())
+				_rgInfo = new ReplayGainInfo {
+					QString("%1 dB").arg((std::stod(itGainR128->second.toString().to8Bit()) / 256.0) + 5.0, 0, 'f', 2),
+					QString()
+				};
+		}
+	}
 }

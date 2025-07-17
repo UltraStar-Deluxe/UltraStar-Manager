@@ -291,6 +291,7 @@ void QUMainWindow::initWindow() {
 	connect(mediaplayer, SIGNAL(allSongsRequested()), this, SLOT(sendAllSongsToMediaPlayer()));
 	connect(mediaplayer, SIGNAL(visibleSongsRequested()), this, SLOT(sendVisibleSongsToMediaPlayer()));
 	connect(mediaplayer, SIGNAL(currentPlaylistRequested()), this, SLOT(sendCurrentPlaylistToMediaPlayer()));
+	connect(songTree, &QUSongTree::stopMediaPlayer, mediaplayer, &QUMediaPlayer::stop);
 
 	// other things
 	QAction *a = new QAction(this);
