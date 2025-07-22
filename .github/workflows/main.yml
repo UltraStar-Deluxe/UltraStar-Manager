@@ -135,10 +135,15 @@ jobs:
           else
             echo "arch=ARM" >> $GITHUB_ENV
           fi
-      - name: Install Dependencies
+      - name: Install Dependencies # macos-13 needs to install old Qt bottle due to break introduced by https://github.com/Homebrew/homebrew-core/commit/ec5bed9bbcaee87f26208ddb39da93c15722ffad
         run: |
           brew unlink python@3.12 && brew link --overwrite python@3.12
-          brew install qt
+          if [ "${{ matrix.os }}" = "macos-13" ]; then
+            curl -L -H "Authorization: Bearer QQ==" -o qt-6.7.3.ventura.bottle.1.tar.gz https://ghcr.io/v2/homebrew/core/qt/blobs/sha256:5a16728c19d459550d2f369498f431a164569a727475298a53fea542bfaddf77
+            brew install -f qt-6.7.3.ventura.bottle.1.tar.gz
+          else
+            brew install qt
+          fi
           brew install taglib
           brew install libmediainfo
           brew install libebur128
@@ -221,6 +226,8 @@ jobs:
         with:
           version: "6.5.*"
           modules: qtmultimedia
+      - name: Remove libunwind # workaround for libunwind conflicts on Ubuntu 22.04, see https://github.com/actions/runner-images/issues/9546
+        run: sudo apt remove libunwind-*
       - name: Install Dependencies
         run: |
           sudo apt update -qq
