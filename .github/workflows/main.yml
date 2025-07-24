@@ -199,7 +199,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: MAC-${{ env.arch }}-UltraStar-Manager-portable
-          path: bin/release
+          path: |
+            bin/release
+            !bin/release/*.dmg
           if-no-files-found: error
       - name: Upload Image Artifact
         uses: actions/upload-artifact@v4
