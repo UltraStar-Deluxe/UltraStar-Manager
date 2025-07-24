@@ -121,6 +121,8 @@ bool QUReplayGainFile::tag()
     bool ret = false;
     TagLib::FileRef file(_path.toLocal8Bit().data(), false);
     TagLib::File *f = file.file();
+    if (!f)
+        return false;
     TagLib::MP4::File *mp4File = dynamic_cast<TagLib::MP4::File*>(f);
     TagLib::MPEG::File *mp3File = dynamic_cast<TagLib::MPEG::File*>(f);
 
@@ -149,37 +151,44 @@ bool QUReplayGainFile::tag()
         TagLib::Ogg::Opus::File *opusFile = dynamic_cast<TagLib::Ogg::Opus::File*>(f);
 
         // Remove existing ReplayGain tags (if any)
-        TagLib::PropertyMap props = file.properties();
+        TagLib::PropertyMap props = f->properties();
         props.erase("REPLAYGAIN_TRACK_GAIN");
         props.erase("REPLAYGAIN_TRACK_PEAK");
         props.erase("REPLAYGAIN_ALBUM_GAIN");
         props.erase("REPLAYGAIN_ALBUM_PEAK");
         if (opusFile)
             props.erase("R128_TRACK_GAIN");
-        file.setProperties(props);
+        f->setProperties(props);
 
         // Write ReplayGain tags
-        props = file.properties();
+        props = f->properties();
         if (opusFile)
             props["R128_TRACK_GAIN"] = formatGainR128(-23 - _loudness);
         else {
             props["REPLAYGAIN_TRACK_GAIN"] = formatGain(-18 - _loudness);
             props["REPLAYGAIN_TRACK_PEAK"] = formatPeak(_peak);
         }
-        file.setProperties(props);
+        f->setProperties(props);
     }
 
     // For MP3 files, TagLib will duplicate the information into a ID3v1 tag
     // by default...need to call the overloaded save function
     if (mp3File)
         ret = mp3File->save(
+#if TAGLIB_MAJOR_VERSION > 1
             TagLib::MPEG::File::TagTypes::ID3v2,
             TagLib::File::StripTags::StripNone,
             TagLib::ID3v2::Version::v4,
             TagLib::File::DuplicateTags::DoNotDuplicate
+#else
+            static_cast<int>(TagLib::MPEG::File::TagTypes::ID3v2),
+            false,
+            4,
+            false
+#endif
         );
     else
-        ret = file.save();
+        ret = f->save();
 
     if (!ret)
         logSrv->add(tr("[ReplayGain Scanner] failed to write tags to audio file '%1'").arg(_path), QU::Error);

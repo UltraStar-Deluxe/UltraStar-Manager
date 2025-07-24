@@ -1609,8 +1609,9 @@ void QUSongFile::updateReplayGain()
 	_rgInfo = nullptr;
 	QFileInfo fi = mp3FileInfo();
 	TagLib::FileRef file(fi.absoluteFilePath().toLocal8Bit().data(), false);
+	TagLib::File *f = file.file();
 	TagLib::MP4::File *mp4File = nullptr;
-	if (!file.file() || !file.file()->isValid())
+	if (!f || !f->isValid())
 		return;
 
 	if ((mp4File = dynamic_cast<TagLib::MP4::File*>(file.file()))) {
@@ -1630,7 +1631,7 @@ void QUSongFile::updateReplayGain()
 	}
 	else {
 		TagLib::Ogg::Opus::File *opusFile = dynamic_cast<TagLib::Ogg::Opus::File*>(file.file());
-		TagLib::PropertyMap map = file.properties();
+		TagLib::PropertyMap map = f->properties();
 		auto itGain = map.find("REPLAYGAIN_TRACK_GAIN");
 		auto itPeak = map.find("REPLAYGAIN_TRACK_PEAK");
 		if (itGain != map.end() && itPeak != map.end())
