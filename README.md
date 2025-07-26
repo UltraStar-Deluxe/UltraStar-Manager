@@ -52,15 +52,11 @@ This allows passing a certain folder as song path to UltraStar-Manager, convenie
    Select (recommended)
    * Qt -> Qt 6.5 -> MSVC 2019
    * Qt -> Developer and Designer Tools -> MSVC 2019
-3. Open and compile all task plugins (except albumartexchange, amazon and freecovers)
-   * open respective *.pro files in subdirectory src\plugins with Qt Creator
+3. Open and compile UltraStar-Manager
+   * open `all.pro` with Qt Creator
    * disable shadow build in Project tab
    * build
-4. Open and compile UltraStar-Manager
-   * open UltraStar-Manager.pro in subdirectory src with Qt Creator
-   * disable shadow build in Project tab
-   * build
-5. Manage your entire song collection with ease!
+4. Manage your entire song collection with ease!
 
 #### Compiling on Linux
 (under construction)
@@ -68,18 +64,10 @@ This allows passing a certain folder as song path to UltraStar-Manager, convenie
 1. Install the Qt framework: `sudo apt-get install qt6-base-dev qt6-multimedia-dev`
 2. Install dependencies: `sudo apt-get install libtag1-dev libcld2-dev libmediainfo-dev libebur128-dev libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xinerama0 libxcb-xkb-dev libxkbcommon-x11-0 libxcb-cursor0 libgtk2.0-dev`
 3. Clone repository: `git clone https://github.com/UltraStar-Deluxe/UltraStar-Manager && cd UltraStar-Manager`
-4. Compile UltraStar-Manager plugins
-   * from command line
-     * audiotag plugin: `cd src/plugins/audiotag && qmake6 audiotag.pro && make && cd ../../../`
-     * cleanup plugin: `cd src/plugins/cleanup && qmake6 cleanup.pro && make && cd ../../../`
-     * lyrics plugin: `cd src/plugins/lyric && qmake6 lyric.pro && make && cd ../../../`
-     * preparatory plugin: `cd src/plugins/preparatory && qmake6 preparatory.pro && make && cd ../../../`
-     * rename plugin: `cd src/plugins/rename && qmake6 rename.pro && make && cd ../../../`
-   * using Qt Creator: open the respective *.pro files in Qt Creator, disable shadow build in Project tab, then build   
-5. Compile UltraStar-Manager
-   * from command line: `cd src && qmake6 UltraStar-Manager.pro && make && cd ../` (Note: if "make" fails with "stdlib.h was not found", open makefile and remove "-isystem /usr/include " from it. Afterwards, run "make" again.)
-   * using Qt Creator: open UltraStar-Manager.pro in Qt Creator, disable shadow build in Project tab, then build and run
-6. Run UltraStar Manager: `bin/release/UltraStar-Manager` and manage your entire song collection with ease!
+4. Compile UltraStar-Manager
+   * from command line: `qmake6 && make` (Note: if "make" fails with "stdlib.h was not found", open makefile and remove "-isystem /usr/include " from it. Afterwards, run "make" again.)
+   * using Qt Creator: open `all.pro` in Qt Creator, disable shadow build in Project tab, then build and run
+5. Run UltraStar Manager: `bin/release/UltraStar-Manager` and manage your entire song collection with ease!
 
 #### Compiling on Mac OS X
 (under construction)
@@ -87,17 +75,9 @@ This allows passing a certain folder as song path to UltraStar-Manager, convenie
 1. Install homebrew via `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 2. Install the Qt framework via `brew install qt`.
 3. Install external dependencies via `brew install taglib mediainfo libebur128`
-4. Compile UltraStar-Manager plugins
-   * from command line
-     * audiotag plugin: `cd src/plugins/audiotag && qmake6 audiotag.pro && make`
-     * cleanup plugin: `cd src/plugins/cleanup && qmake6 cleanup.pro && make`
-     * lyrics plugin: `cd src/plugins/lyric && qmake6 lyric.pro && make`
-     * preparatory plugin: `cd src/plugins/preparatory && qmake6 preparatory.pro && make`
-     * rename plugin: `cd src/plugins/rename && qmake6 rename.pro && make`
-   * using Qt Creator: open the respective *.pro files in Qt Creator, disable shadow build in Project tab, then build
 4. Compile UltraStar-Manager
-   * from command line: `cd src && qmake6 UltraStar-Manager.pro && make`
-   * using Qt Creator: open UltraStar-Manager.pro in Qt Creator, disable shadow build in Project tab, then build and run
+   * from command line: `qmake6 && make`
+   * using Qt Creator: open `all.pro` in Qt Creator, disable shadow build in Project tab, then build and run
 5. Manage your entire song collection with ease!
 
 ### 6. Contribute
