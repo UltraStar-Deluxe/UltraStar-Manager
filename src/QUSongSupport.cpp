@@ -97,7 +97,7 @@ QStringList QUSongSupport::allowedScoreFiles() {
 }
 
 QStringList QUSongSupport::allowedAudioFiles() {
-	return registryKey("allowedAudioFiles", "*.mp3 *.ogg *.m4a *.avi *.divx *.flv *.m2v *.m4v *.mkv *.mov *.mp4 *.mpeg *.mpg *.ogm *.ts *.vob *.webm *.wmv *.3gp");
+	return registryKey("allowedAudioFiles", "*.mp3 *.ogg *.m4a *.avi *.divx *.flv *.m2v *.m4v *.mkv *.mov *.mp4 *.mpeg *.mpg *.ogm *.ts *.vob *.webm *.wmv *.3gp *.opus *.flac");
 }
 
 QStringList QUSongSupport::allowedImageFiles() {
