@@ -7,6 +7,7 @@ src/tmp
 src/*.autosave
 src/ui
 Makefile
+Makefile.*
 ui
 release
 *.rc
