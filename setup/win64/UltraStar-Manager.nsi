@@ -2,7 +2,7 @@ Unicode True
 XPStyle on
 
 !define PRODUCTNAME "UltraStar-Manager"
-!define PRODUCTVERSION "1.8.4"
+!define PRODUCTVERSION "2.0.0"
 Name "${PRODUCTNAME} ${PRODUCTVERSION}"
 
 !include "MUI.nsh"
@@ -64,6 +64,7 @@ Section "Application" SecCopyUI
 	File "tag.dll"
 	File "zlib.dll"
 	File "cld2.dll"
+	File "ebur128.dll"
 	File "Qt6Core.dll"
 	File "Qt6Gui.dll"
 	File "Qt6Network.dll"
@@ -73,6 +74,8 @@ Section "Application" SecCopyUI
 	File "Qt6Xml.dll"
 	File "Qt6Multimedia.dll"
 	File "UltraStar-Manager.exe"
+	SetOutPath "$INSTDIR\generic"
+	File "generic\qtuiotouchplugin.dll"
 	;;SetOutPath "$INSTDIR\iconengines" ;; added via windeployqt, but not needed
 	;;File "iconengines\qsvgicon.dll" ;; added via windeployqt, but not needed
 	SetOutPath "$INSTDIR\imageformats"
@@ -85,6 +88,11 @@ Section "Application" SecCopyUI
 	;;File "imageformats\qtiff.dll" ;; added via windeployqt, but not needed
 	;;File "imageformats\qwbmp.dll" ;; added via windeployqt, but not needed
 	;;File "imageformats\qwebp.dll" ;; added via windeployqt, but not needed
+	SetOutPath "$INSTDIR\multimedia"
+	File "multimedia\ffmpegmediaplugin.dll"
+	File "multimedia\windowsmediaplugin.dll"
+	SetOutPath "$INSTDIR\networkinformation"
+	File "networkinformation\qnetworklistmanager.dll"
 	SetOutPath "$INSTDIR\platforms"
 	File "platforms\qwindows.dll"
 	SetOutPath "$INSTDIR\plugins"
@@ -169,6 +177,11 @@ Section "Application" SecCopyUI
 	SetOutPath "$INSTDIR\styles"
 	File "styles\blue.css"
 	File "styles\fabian.css"
+	File "styles\qwindowsvistastyle.dll"
+	SetOutPath "$INSTDIR\tls"
+	File "tls\qcertonlybackend.dll"
+	File "tls\qopensslbackend.dll"
+	File "tls\qschannelbackend.dll"
 
 	;; setup initial reg values
 	;;WriteRegStr HKCU "Software\HPI\${PRODUCTNAME}" "customTags" "Comment Album"
@@ -216,7 +229,10 @@ Section "Uninstall"
 	;;RMDir "$INSTDIR\iconengines"
 	
 	RMDir "$INSTDIR\covers"
-	
+
+	Delete "$INSTDIR\generic\qtuiotouchplugin.dll"
+	RMDir "$INSTDIR\generic"
+
 	Delete "$INSTDIR\imageformats\qgif.dll"
 	;;Delete "$INSTDIR\imageformats\qicns.dll"
 	;;Delete "$INSTDIR\imageformats\qico.dll"
@@ -229,7 +245,14 @@ Section "Uninstall"
 	RMDir "$INSTDIR\imageformats"
 	
 	RMDir "$INSTDIR\logs"
-	
+
+	Delete "$INSTDIR\multimedia\ffmpegmediaplugin.dll"
+	Delete "$INSTDIR\multimedia\windowsmediaplugin.dll"
+	RMDir "$INSTDIR\multimedia"
+
+	Delete "$INSTDIR\networkinformation\qnetworklistmanager.dll"
+	RMDir "$INSTDIR\networkinformation"
+
 	Delete "$INSTDIR\platforms\qwindows.dll"
 	RMDir "$INSTDIR\platforms"
 	
@@ -316,12 +339,19 @@ Section "Uninstall"
 	
 	Delete "$INSTDIR\styles\blue.css"
 	Delete "$INSTDIR\styles\fabian.css"
+	Delete "$INSTDIR\styles\qwindowsvistastyle.dll"
 	RMDir "$INSTDIR\styles"
-	
+
+	Delete "$INSTDIR\tls\qcertonlybackend.dll"
+	Delete "$INSTDIR\tls\qopensslbackend.dll"
+	Delete "$INSTDIR\tls\qschannelbackend.dll"
+	RMDir "$INSTDIR\tls"
+
 	Delete "$INSTDIR\changes.txt"
 	Delete "$INSTDIR\tag.dll"
 	Delete "$INSTDIR\zlib.dll"
 	Delete "$INSTDIR\cld2.dll"
+	Delete "$INSTDIR\ebur128.dll"
 	Delete "$INSTDIR\Qt6Core.dll"
 	Delete "$INSTDIR\Qt6Gui.dll"
 	Delete "$INSTDIR\Qt6Network.dll"
