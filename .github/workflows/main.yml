@@ -68,31 +68,14 @@ jobs:
           lib /out:cld2.lib *.obj
           copy cld2.lib ../../../lib/win64
           copy cld2.dll ../../../lib/win64
-      - name: Build plugins
-        run: |
-          cd src/plugins/audiotag/
-          qmake audiotag.pro -spec win32-msvc
-          nmake
-          cd ../cleanup
-          qmake6 cleanup.pro -spec win32-msvc
-          nmake
-          cd ../lyric
-          qmake6 lyric.pro -spec win32-msvc
-          nmake
-          cd ../preparatory
-          qmake6 preparatory.pro -spec win32-msvc
-          nmake
-          cd ../rename
-          qmake6 rename.pro -spec win32-msvc
-          nmake
       - name: Build UltraStar-Manager
         run: |
+          mkdir bin/release
           cp "C:/Program Files/taglib/bin/tag.dll" bin/release/
           cp "C:/Program Files/zlib/bin/zlib.dll" bin/release/
           cp lib/win64/ebur128.dll bin/release/
           cp lib/win64/cld2.dll bin/release/
-          cd src
-          qmake6 UltraStar-Manager.pro -spec win32-msvc
+          qmake6 -r -spec win32-msvc
           nmake
       - name: Create installer
         uses: joncloud/makensis-action@v4.1
@@ -171,29 +154,11 @@ jobs:
           install_name_tool -id '@rpath/QtQml.framework/Versions/A/QtQml' $(brew --prefix)/lib/QtQml.framework/Versions/A/QtQml
           install_name_tool -id '@rpath/QtOpenGL.framework/Versions/A/QtOpenGL' $(brew --prefix)/lib/QtOpenGL.framework/Versions/A/QtOpenGL
           install_name_tool -id '@rpath/QtMultimedia.framework/Versions/A/QtMultimedia' $(brew --prefix)/lib/QtMultimedia.framework/Versions/A/QtMultimedia
-      - name: Build plugins
-        run: |
-          cd src/plugins/audiotag/
-          qmake6 audiotag.pro
-          make -j${{ steps.cpu-cores.outputs.count }}
-          cd ../cleanup/
-          qmake6 cleanup.pro
-          make -j${{ steps.cpu-cores.outputs.count }}
-          cd ../lyric/
-          qmake6 lyric.pro
-          make -j${{ steps.cpu-cores.outputs.count }}
-          cd ../preparatory/
-          qmake6 preparatory.pro
-          make -j${{ steps.cpu-cores.outputs.count }}
-          cd ../rename/
-          qmake6 rename.pro
-          make -j${{ steps.cpu-cores.outputs.count }}
       - name: Build UltraStar-Manager
         run: |
-          cd src
-          qmake6 UltraStar-Manager.pro
+          qmake6
           make -j$${{ steps.cpu-cores.outputs.count }}
-          cd ../bin/release
+          cd bin/release
           mv UltraStar-Manager.dmg MAC-${{ env.arch }}-UltraStar-Manager.dmg
       - name: Upload Portable Artifact
         uses: actions/upload-artifact@v4
@@ -236,27 +201,9 @@ jobs:
           sudo apt install -y libgl1-mesa-dev build-essential libpulse-mainloop-glib0 libgstreamer-plugins-base1.0-dev
           sudo apt install -y libtag1-dev libcld2-dev libmediainfo-dev libebur128-dev
           sudo apt install -y libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xinerama0 libxcb-xkb-dev libxkbcommon-x11-0 libxcb-cursor0 libgtk2.0-dev libfuse2
-      - name: Build plugins
-        run: |
-          cd src/plugins/audiotag/
-          qmake6 audiotag.pro
-          make -j${{ steps.cpu-cores.outputs.count }}
-          cd ../cleanup/
-          qmake6 cleanup.pro
-          make -j${{ steps.cpu-cores.outputs.count }}
-          cd ../lyric/
-          qmake6 lyric.pro
-          make -j${{ steps.cpu-cores.outputs.count }}
-          cd ../preparatory/
-          qmake6 preparatory.pro
-          make -j${{ steps.cpu-cores.outputs.count }}
-          cd ../rename/
-          qmake6 rename.pro
-          make -j${{ steps.cpu-cores.outputs.count }}
       - name: Build UltraStar-Manager
         run: |
-          cd src
-          qmake6 UltraStar-Manager.pro
+          qmake6
           make -j${{ steps.cpu-cores.outputs.count }}
       - name: Create AppImage
         run: |
