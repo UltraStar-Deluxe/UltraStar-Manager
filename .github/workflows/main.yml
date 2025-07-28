@@ -154,11 +154,29 @@ jobs:
           install_name_tool -id '@rpath/QtQml.framework/Versions/A/QtQml' $(brew --prefix)/lib/QtQml.framework/Versions/A/QtQml
           install_name_tool -id '@rpath/QtOpenGL.framework/Versions/A/QtOpenGL' $(brew --prefix)/lib/QtOpenGL.framework/Versions/A/QtOpenGL
           install_name_tool -id '@rpath/QtMultimedia.framework/Versions/A/QtMultimedia' $(brew --prefix)/lib/QtMultimedia.framework/Versions/A/QtMultimedia
+      - name: Build plugins
+        run: |
+          cd src/plugins/audiotag/
+          qmake6 audiotag.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
+          cd ../cleanup/
+          qmake6 cleanup.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
+          cd ../lyric/
+          qmake6 lyric.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
+          cd ../preparatory/
+          qmake6 preparatory.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
+          cd ../rename/
+          qmake6 rename.pro
+          make -j${{ steps.cpu-cores.outputs.count }}
       - name: Build UltraStar-Manager
         run: |
-          qmake6
+          cd src
+          qmake6 UltraStar-Manager.pro
           make -j$${{ steps.cpu-cores.outputs.count }}
-          cd bin/release
+          cd ../bin/release
           mv UltraStar-Manager.dmg MAC-${{ env.arch }}-UltraStar-Manager.dmg
       - name: Upload Portable Artifact
         uses: actions/upload-artifact@v4
