@@ -320,10 +320,10 @@ win32 {
 	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/imageformats/qico.dll) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_DEL_FILE} $$shell_path($${DESTDIR}/imageformats/qsvg.dll) $$escape_expand(\\n\\t)
 
-	# Manually add styles files and changes.txt
+	# Manually add styles files and CHANGELOG.md
 	QMAKE_POST_LINK += $$sprintf($${QMAKE_MKDIR_CMD}, $$shell_path($${DESTDIR}/styles/)) $$escape_expand(\\n\\t)
 	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(styles/*.css) $$shell_path($${DESTDIR}/styles/) $$escape_expand(\\n\\t)
-	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../doc/changes.txt) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
+	QMAKE_POST_LINK += $${QMAKE_COPY} $$shell_path(../CHANGELOG.md) $$shell_path($${DESTDIR}) $$escape_expand(\\n\\t)
 
 	# Create a fancy Windows installer
 	QMAKE_POST_LINK += $$shell_quote(C:\Program Files (x86)\NSIS\makensis.exe) $$shell_path(../setup/win64/UltraStar-Manager.nsi) $$escape_expand(\\n\\t)

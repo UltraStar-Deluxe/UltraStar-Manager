@@ -2,7 +2,7 @@ Unicode True
 XPStyle on
 
 !define PRODUCTNAME "UltraStar-Manager"
-!define PRODUCTVERSION "2.0.0"
+!define PRODUCTVERSION "2.1.0"
 Name "${PRODUCTNAME} ${PRODUCTVERSION}"
 
 !include "MUI.nsh"
@@ -31,7 +31,7 @@ RequestExecutionLevel admin
 
 !define MUI_ABORTWARNING
 !define MUI_FINISHPAGE_NOAUTOCLOSE
-!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\changes.txt"
+!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\CHANGELOG.md"
 !define MUI_FINISHPAGE_RUN "$INSTDIR\UltraStar-Manager.exe"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
@@ -60,7 +60,7 @@ Section "Application" SecCopyUI
 
 	;; Files
 	SetOutPath "$INSTDIR"
-	File "changes.txt"
+	File "CHANGELOG.md"
 	File "tag.dll"
 	File "zlib.dll"
 	File "cld2.dll"
@@ -347,7 +347,7 @@ Section "Uninstall"
 	Delete "$INSTDIR\tls\qschannelbackend.dll"
 	RMDir "$INSTDIR\tls"
 
-	Delete "$INSTDIR\changes.txt"
+	Delete "$INSTDIR\CHANGELOG.md"
 	Delete "$INSTDIR\tag.dll"
 	Delete "$INSTDIR\zlib.dll"
 	Delete "$INSTDIR\cld2.dll"
