@@ -10,8 +10,13 @@ on:
 jobs:
   build_windows:
     name: Build for Windows
-    runs-on: windows-latest
-
+    runs-on: windows-2025
+    env:
+      TAGLIB_VERSION: 2.1.1
+      ZENLIB_VERSION: 490e2426aa96f983c577a02861e2a9cf6f73082f
+      ZLIB_VERSION: 9d0c46d9104e1e79fbd6665ca2854e5b0435e536
+      LIBMEDIAINFO_VERSION: 25.09
+      LIBEBUR128_VERSION: 1.2.6
     steps:
       - name: Set up MSVC Environment
         uses: compnerd/gha-setup-vsdevenv@main
@@ -25,41 +30,36 @@ jobs:
         with:
           version: "6.5.*"
           modules: qtmultimedia
+      - name: Install NSIS
+        run: choco install nsis
       - name: Install Taglib
         run: |
           git clone --recurse-submodules https://github.com/taglib/taglib.git
           cd taglib
+          git checkout tags/v${{env.TAGLIB_VERSION}}
           cmake -B build -G "Visual Studio 17 2022" -A x64 -DWITH_ZLIB=OFF -DBUILD_SHARED_LIBS=ON -DENABLE_STATIC_RUNTIME=OFF -DBUILD_TESTING=OFF
           msbuild build/install.vcxproj -p:Configuration=Release
           cp -r "C:/Program Files/taglib/include/taglib" ../include
           copy build/taglib/Release/tag.dll ../lib/win64
           copy build/taglib/Release/tag.lib ../lib/win64
-      - name: Install ZenLib
-        run: |
-          git clone https://github.com/MediaArea/ZenLib.git
-          cd ZenLib
-          cmake -S Project/CMake -B build -G "Visual Studio 17 2022" -A x64
-          msbuild build/install.vcxproj -p:Configuration=Release
-      - name: Install zlib
-        run: |
-          git clone https://github.com/MediaArea/zlib.git
-          cd zlib
-          cmake -B build -G "Visual Studio 17 2022" -A x64
-          msbuild build/install.vcxproj -p:Configuration=Release
       - name: Install libmediainfo
         run: |
+          git clone https://github.com/MediaArea/ZenLib.git
+          git -C ZenLib checkout ${{env.ZENLIB_VERSION}}
+          git clone https://github.com/MediaArea/zlib.git
+          git -C zlib checkout ${{env.ZLIB_VERSION}}
           git clone https://github.com/MediaArea/MediaInfoLib.git
+          git -C MediaInfoLib checkout tags/v${{env.LIBMEDIAINFO_VERSION}}
           cd MediaInfoLib
-          cmake -S Project/CMake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=Release
-          msbuild build/install.vcxproj -p:Configuration=Release
+          cmake -S Project/CMake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_BINDIR="${{ github.workspace }}/lib/win64" -DCMAKE_INSTALL_LIBDIR="${{ github.workspace }}/lib/win64"
+          cmake --build build --config release --target install
       - name: Install libebur128
         run: |
           git clone https://github.com/jiixyj/libebur128.git
           cd libebur128
-          git checkout tags/v1.2.6
+          git checkout tags/v${{env.LIBEBUR128_VERSION}}
           cmake -S . -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_INCLUDEDIR="${{ github.workspace }}/include" -DCMAKE_INSTALL_BINDIR="${{ github.workspace }}/lib/win64" -DCMAKE_INSTALL_LIBDIR="${{ github.workspace }}/lib/win64"
           cmake --build build --config release --target install
-
       - name: Install cld2
         run: |
           cd include/cld2/internal
@@ -72,15 +72,10 @@ jobs:
         run: |
           mkdir bin/release
           cp "C:/Program Files/taglib/bin/tag.dll" bin/release/
-          cp "C:/Program Files/zlib/bin/zlib.dll" bin/release/
           cp lib/win64/ebur128.dll bin/release/
           cp lib/win64/cld2.dll bin/release/
           qmake6 -r -spec win32-msvc
           nmake
-      - name: Create installer
-        uses: joncloud/makensis-action@v4.1
-        with:
-          script-file: setup/win64/UltraStar-Manager.nsi
       - name: Upload Portable Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -99,7 +94,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-13, macos-14]
+        os: [macos-15-intel, macos-14]
       fail-fast: false
 
     steps:
@@ -113,20 +108,15 @@ jobs:
           fetch-depth: 0
       - name: Determine Arch
         run: |
-          if [ "${{ matrix.os }}" = "macos-13" ]; then
+          if [ "${{ matrix.os }}" = "macos-15-intel" ]; then
             echo "arch=x86" >> $GITHUB_ENV
+            echo "MACOSX_DEPLOYMENT_TARGET=13.0" >> $GITHUB_ENV
           else
             echo "arch=ARM" >> $GITHUB_ENV
           fi
-      - name: Install Dependencies # macos-13 needs to install old Qt bottle due to break introduced by https://github.com/Homebrew/homebrew-core/commit/ec5bed9bbcaee87f26208ddb39da93c15722ffad
+      - name: Install Dependencies
         run: |
-          brew unlink python@3.12 && brew link --overwrite python@3.12
-          if [ "${{ matrix.os }}" = "macos-13" ]; then
-            curl -L -H "Authorization: Bearer QQ==" -o qt-6.7.3.ventura.bottle.1.tar.gz https://ghcr.io/v2/homebrew/core/qt/blobs/sha256:5a16728c19d459550d2f369498f431a164569a727475298a53fea542bfaddf77
-            brew install -f qt-6.7.3.ventura.bottle.1.tar.gz
-          else
-            brew install qt
-          fi
+          brew install qt
           brew install taglib
           brew install libmediainfo
           brew install libebur128

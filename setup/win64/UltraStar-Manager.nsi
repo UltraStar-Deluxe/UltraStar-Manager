@@ -62,7 +62,6 @@ Section "Application" SecCopyUI
 	SetOutPath "$INSTDIR"
 	File "CHANGELOG.md"
 	File "tag.dll"
-	File "zlib.dll"
 	File "cld2.dll"
 	File "ebur128.dll"
 	File "Qt6Core.dll"

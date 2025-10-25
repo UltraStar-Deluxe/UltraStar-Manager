@@ -258,9 +258,8 @@ win32 {
 		-lebur128
 	LIBS += -L"C:/Program Files/MediaInfoLib/lib" \
 		-lmediainfo \
-		-lzen
-	LIBS += -L"C:/Program Files/zlib/lib" \
-		-lzlib
+		-lzen \
+		-lzs
 
 	RC_ICONS += UltraStar-Manager.ico
 
