@@ -45,7 +45,8 @@
     </message>
     <message>
         <location filename="QULyricTask.cpp" line="36"/>
-        <source>Replaces wrongfully used apostrophe symbols `, ´, ’ by the ASCII apostrophe &apos;</source>
+        <source>Replaces wrongfully used apostrophe symbols `, ´, &apos; by the correct apostrophe ’</source>
+        <oldsource>Replaces wrongfully used apostrophe symbols `, ´, ’ by the ASCII apostrophe &apos;</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -119,48 +120,48 @@
         <translation>Inicio:</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="437"/>
+        <location filename="QULyricTask.cpp" line="482"/>
         <source>%1 wrong apostrophe symbols replaced successfully for &quot;%2 - %3&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="493"/>
+        <location filename="QULyricTask.cpp" line="538"/>
         <source>BPM changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation>BPM alterado de %1 para %2 para &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="511"/>
+        <location filename="QULyricTask.cpp" line="556"/>
         <source>Skipping medley search: medley tags already set for &quot;%1 - %2&quot;.</source>
         <translation>Pesquisa etiqueta medley: medley já está definido para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="516"/>
+        <location filename="QULyricTask.cpp" line="561"/>
         <source>Skipping medley search: medley tags not supported for duet &quot;%1 - %2&quot;.</source>
         <translation>Pesquisa etiqueta medley: etiqueta medley não é suportada para o dueto &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="521"/>
+        <location filename="QULyricTask.cpp" line="566"/>
         <source>Skipping medley search: relative format not supported for &quot;%1 - %2&quot;.</source>
         <translation>Pesquisa etiqueta medley: tempo relativo não é suportado para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="526"/>
+        <location filename="QULyricTask.cpp" line="571"/>
         <source>Skipping medley search: search disabled by CALCMEDLEY tag for song &quot;%1 - %2&quot;.</source>
         <translation>Pesquisa etiqueta medley: pesquisa desabilitada por etiqueta #CALCMEDLEY para canção &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="568"/>
+        <location filename="QULyricTask.cpp" line="613"/>
         <source>No medley candidates found for song &quot;%1 - %2&quot;</source>
         <oldsource>No medley candiates found for song &quot;%1 - %2&quot;</oldsource>
         <translation>Medleynão encontrado para canção &quot;%1 - %2&quot;</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="619"/>
+        <location filename="QULyricTask.cpp" line="664"/>
         <source>Medley with a duration of %1 seconds set for &quot;%2 - %3&quot;.</source>
         <translation>Medley com duração de %1 segundos atribuída a &quot;%2 - %3&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="627"/>
+        <location filename="QULyricTask.cpp" line="672"/>
         <source>No suitable medley section found for &quot;%1 - %2&quot;.</source>
         <translation>Não foi encontrada nenhuma secção medley adequada para &quot;%1 - %2&quot;.</translation>
     </message>
@@ -171,8 +172,8 @@
     <message>
         <location filename="QULyricTask.cpp" line="153"/>
         <location filename="QULyricTask.cpp" line="307"/>
-        <location filename="QULyricTask.cpp" line="448"/>
-        <location filename="QULyricTask.cpp" line="506"/>
+        <location filename="QULyricTask.cpp" line="493"/>
+        <location filename="QULyricTask.cpp" line="551"/>
         <source>Invalid lyrics in file &quot;%1&quot;</source>
         <translation>Letra inválida no ficheiro &quot;%1&quot;</translation>
     </message>
@@ -194,13 +195,13 @@
     <message>
         <location filename="QULyricTask.cpp" line="233"/>
         <location filename="QULyricTask.cpp" line="367"/>
-        <location filename="QULyricTask.cpp" line="407"/>
-        <location filename="QULyricTask.cpp" line="638"/>
-        <location filename="QULyricTask.cpp" line="660"/>
-        <location filename="QULyricTask.cpp" line="707"/>
-        <location filename="QULyricTask.cpp" line="731"/>
-        <location filename="QULyricTask.cpp" line="757"/>
-        <location filename="QULyricTask.cpp" line="805"/>
+        <location filename="QULyricTask.cpp" line="452"/>
+        <location filename="QULyricTask.cpp" line="683"/>
+        <location filename="QULyricTask.cpp" line="705"/>
+        <location filename="QULyricTask.cpp" line="752"/>
+        <location filename="QULyricTask.cpp" line="776"/>
+        <location filename="QULyricTask.cpp" line="802"/>
+        <location filename="QULyricTask.cpp" line="850"/>
         <source>Invalid lyrics: %1 - %2</source>
         <translation>Letra inválida: %1 - %2</translation>
     </message>
@@ -240,7 +241,7 @@
         <translation>%1 de %2 notas sobrepostas foram corrigidas com sucesso para &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="399"/>
+        <location filename="QULyricTask.cpp" line="402"/>
         <source>Spaces were fixed successfully for &quot;%1 - %2&quot;.</source>
         <translation>Espaços corrigidos com sucesso para &quot;%1 - %2&quot;.</translation>
     </message>
@@ -249,32 +250,32 @@
         <translation type="obsolete">#BPM alterado de %1 para %2 para &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="650"/>
+        <location filename="QULyricTask.cpp" line="695"/>
         <source>Line capitalization fixed for &quot;%1 - %2&quot;.</source>
         <translation>Capitalização da linha corrigida para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="694"/>
+        <location filename="QULyricTask.cpp" line="739"/>
         <source>Mean note pitch changed from %1 to %2 for &quot;%3 - %4&quot;.</source>
         <translation>A média de tons passou de %1 para %2 para &quot;%3 - %4&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="726"/>
+        <location filename="QULyricTask.cpp" line="771"/>
         <source>Empty syllables were removed successfully for &quot;%1 - %2&quot;.</source>
         <translation>Sílabas vazias removidas com sucesso para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="745"/>
+        <location filename="QULyricTask.cpp" line="790"/>
         <source>Syllable placeholders were converted successfully from &apos;%3&apos; to &apos;%4&apos; for &quot;%1 - %2&quot;.</source>
         <translation>Sílaba de mudança de tom convertida com sucesso de &apos;%3&apos; a &apos;%4&apos; para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="795"/>
+        <location filename="QULyricTask.cpp" line="840"/>
         <source>Relative timestamps converted successfully to absolute timestamps for &quot;%1 - %2&quot;.</source>
         <translation>Timestamp relativo convertido com sucesso para absoluto para &quot;%1 - %2&quot;.</translation>
     </message>
     <message>
-        <location filename="QULyricTask.cpp" line="836"/>
+        <location filename="QULyricTask.cpp" line="881"/>
         <source>Absolute timestamps converted successfully to relative timestamps for &quot;%1 - %2&quot;.</source>
         <translation>Timestamp absoluto convertido com sucesso para relativo para &quot;%1 - %2&quot;.</translation>
     </message>

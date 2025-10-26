@@ -202,76 +202,76 @@
         <translation>Bearbeite &quot;Umbenennen&quot;-Aufgabe</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="122"/>
-        <location filename="../shared/QUTaskDialog.ui" line="397"/>
+        <location filename="../shared/QUTaskDialog.ui" line="131"/>
         <location filename="../shared/QUTaskDialog.ui" line="411"/>
-        <location filename="../shared/QUTaskDialog.ui" line="489"/>
-        <location filename="../shared/QUTaskDialog.ui" line="515"/>
+        <location filename="../shared/QUTaskDialog.ui" line="425"/>
+        <location filename="../shared/QUTaskDialog.ui" line="503"/>
+        <location filename="../shared/QUTaskDialog.ui" line="529"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="158"/>
+        <location filename="../shared/QUTaskDialog.ui" line="176"/>
         <source>&amp;Description</source>
         <translation>&amp;Beschreibung</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="171"/>
+        <location filename="../shared/QUTaskDialog.ui" line="189"/>
         <source>T&amp;oolTip</source>
         <translation>&amp;ToolTip</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="209"/>
+        <location filename="../shared/QUTaskDialog.ui" line="224"/>
         <source>&amp;Icon</source>
         <translation>&amp;Icon</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="228"/>
+        <location filename="../shared/QUTaskDialog.ui" line="243"/>
         <source>Cup</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="256"/>
+        <location filename="../shared/QUTaskDialog.ui" line="270"/>
         <source>&amp;Group</source>
         <translation>&amp;Gruppe</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="281"/>
+        <location filename="../shared/QUTaskDialog.ui" line="295"/>
         <source>Exclusive task</source>
         <translation>Exclusive Aufgabe</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="311"/>
+        <location filename="../shared/QUTaskDialog.ui" line="325"/>
         <source>&amp;Target</source>
         <translation>&amp;Ziel</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="329"/>
+        <location filename="../shared/QUTaskDialog.ui" line="343"/>
         <source>The target specifies the object on which the renaming will be done.</source>
         <translation>Das Ziel bestimmt die Stelle, welche umbenannt wird.</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="333"/>
+        <location filename="../shared/QUTaskDialog.ui" line="347"/>
         <source>mp3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="363"/>
+        <location filename="../shared/QUTaskDialog.ui" line="377"/>
         <source>&amp;Schema</source>
         <translation>&amp;Schema</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="563"/>
+        <location filename="../shared/QUTaskDialog.ui" line="586"/>
         <source>Save As...</source>
         <translation>Speichern unter...</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="590"/>
+        <location filename="../shared/QUTaskDialog.ui" line="613"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="601"/>
+        <location filename="../shared/QUTaskDialog.ui" line="624"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>

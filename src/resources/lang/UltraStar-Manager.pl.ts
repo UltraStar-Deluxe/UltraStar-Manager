@@ -2809,80 +2809,72 @@ Zadania</translation>
 <context>
     <name>QUPathsDialog</name>
     <message>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="75"/>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="96"/>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="107"/>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="120"/>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="137"/>
+        <location filename="../../preferences/QUPathsDialog.cpp" line="62"/>
+        <location filename="../../preferences/QUPathsDialog.cpp" line="79"/>
         <source>Path does not exist.</source>
         <translation>Ścieżka nie istnieje.</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="78"/>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="98"/>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="109"/>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="122"/>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="141"/>
+        <location filename="../../preferences/QUPathsDialog.cpp" line="64"/>
+        <location filename="../../preferences/QUPathsDialog.cpp" line="83"/>
         <source>Path is empty.</source>
         <translation>Ścieżka jest pusta.</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="81"/>
-        <source>Configuration file &quot;config.ini&quot; not found.</source>
-        <translation>Plik konfiguracyjny &quot;cofing.ini&quot; nie został znaleziony.</translation>
-    </message>
-    <message>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="84"/>
-        <source>Could not recognize UltraStar or UltraStar Deluxe.</source>
-        <translation>Nie można rozpoznać UltraStar lub UltraStar Deluxe.</translation>
-    </message>
-    <message>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="111"/>
-        <source>Could not find &quot;covers.ini&quot;.</source>
-        <translation>Nie można odnaleźć &quot;covers.ini&quot;.</translation>
-    </message>
-    <message>
         <location filename="../../preferences/QUPathsDialog.cpp" line="146"/>
+        <source>&lt;b&gt;First time path setup:&lt;/b&gt;&lt;br&gt;&lt;br&gt;Choose at least &lt;b&gt;one song folder&lt;/b&gt;. If you set more than one folder for songs, the first one will be used for now. Optionally, choose a folder for &lt;b&gt;Playlists&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configuration file &quot;config.ini&quot; not found.</source>
+        <translation type="vanished">Plik konfiguracyjny &quot;cofing.ini&quot; nie został znaleziony.</translation>
+    </message>
+    <message>
+        <source>Could not recognize UltraStar or UltraStar Deluxe.</source>
+        <translation type="vanished">Nie można rozpoznać UltraStar lub UltraStar Deluxe.</translation>
+    </message>
+    <message>
+        <source>Could not find &quot;covers.ini&quot;.</source>
+        <translation type="vanished">Nie można odnaleźć &quot;covers.ini&quot;.</translation>
+    </message>
+    <message>
+        <location filename="../../preferences/QUPathsDialog.cpp" line="88"/>
         <source>This song path is active. Songs were loaded.</source>
         <translation>Ścieżka jest aktywna. Utwory zostały załadowane.</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="158"/>
         <source>Select folder of UltraStar (Deluxe)</source>
-        <translation>Wybierz folder z UltraStar</translation>
+        <translation type="vanished">Wybierz folder z UltraStar</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="164"/>
+        <location filename="../../preferences/QUPathsDialog.cpp" line="100"/>
         <source>Select folder for playlists</source>
         <translation>Wybierz folder dla listy odtwarzania</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="170"/>
         <source>Select folder for UltraStar cover pictures</source>
-        <translation>Wybierz folder dla  okładek</translation>
+        <translation type="vanished">Wybierz folder dla  okładek</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="176"/>
         <source>Select folder of UltraStar language files</source>
-        <translation>Wybierz folder plików językowych UltraStar</translation>
+        <translation type="vanished">Wybierz folder plików językowych UltraStar</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="182"/>
+        <location filename="../../preferences/QUPathsDialog.cpp" line="106"/>
         <source>Choose your UltraStar song directory</source>
         <translation>Wybierz katalog piosenek UltraStar</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="256"/>
         <source>&lt;b&gt;First time path setup:&lt;/b&gt;&lt;br&gt;&lt;br&gt;Choose your UltraStar folder and click on the &lt;b&gt;magic wand&lt;/b&gt;, which appears then, to auto-detect the other folders. You will need at least &lt;b&gt;one song folder&lt;/b&gt;. If you set more than one folder for songs, the first one will be used for now.</source>
-        <translation>&lt;b&gt;Pierwsza konfiguracja ścieżki czasu:&lt;b&gt;&lt;br&gt;&lt;br&gt;Wybierz swój folder z Ultrastar oraz kliknij na &lt;b&gt;magiczną różdżke&lt;/b&gt;, która pojawi się automatycznie aby wykryć inne foldery. Będziesz potrzebował co najmniej &lt;b&gt;jednego folderu piosenki&lt;/b&gt;. Jeśli ustawisz więcej niż jeden folder piosenek, pierwszy zostanie wykorzystane teraz.</translation>
+        <translation type="vanished">&lt;b&gt;Pierwsza konfiguracja ścieżki czasu:&lt;b&gt;&lt;br&gt;&lt;br&gt;Wybierz swój folder z Ultrastar oraz kliknij na &lt;b&gt;magiczną różdżke&lt;/b&gt;, która pojawi się automatycznie aby wykryć inne foldery. Będziesz potrzebował co najmniej &lt;b&gt;jednego folderu piosenki&lt;/b&gt;. Jeśli ustawisz więcej niż jeden folder piosenek, pierwszy zostanie wykorzystane teraz.</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="262"/>
+        <location filename="../../preferences/QUPathsDialog.cpp" line="152"/>
         <source>Please choose at least &lt;b&gt;one song path&lt;/b&gt;. Otherwise the main functionality of this program will not be available.</source>
         <translation>Proszę wybrać co najmniej jedną ścieżkę &lt;b&gt; piosenki&lt;/b&gt;. W przeciwnym razie główna funkcjonalność tego programu nie będzie dostępna.</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.cpp" line="265"/>
+        <location filename="../../preferences/QUPathsDialog.cpp" line="155"/>
         <source>Set all paths so that a &lt;b&gt;green tick&lt;/b&gt; appears in front of each one. This allows all program features to work properly.</source>
         <translation>Ustaw wszystkie ścieżki piosenek tak aby &lt;b&gt;zielony ptaszek&lt;/b&gt; pojawił się przed każdej z nich. Dzięki temu wszystkie funkcje programu będą dostępne do poprawnej pracy.</translation>
     </message>
@@ -2893,92 +2885,80 @@ Zadania</translation>
     </message>
     <message>
         <location filename="../../preferences/QUPathsDialog.ui" line="158"/>
-        <location filename="../../preferences/QUPathsDialog.ui" line="285"/>
-        <location filename="../../preferences/QUPathsDialog.ui" line="302"/>
-        <location filename="../../preferences/QUPathsDialog.ui" line="398"/>
-        <location filename="../../preferences/QUPathsDialog.ui" line="506"/>
-        <location filename="../../preferences/QUPathsDialog.ui" line="614"/>
-        <location filename="../../preferences/QUPathsDialog.ui" line="696"/>
-        <location filename="../../preferences/QUPathsDialog.ui" line="723"/>
+        <location filename="../../preferences/QUPathsDialog.ui" line="300"/>
+        <location filename="../../preferences/QUPathsDialog.ui" line="327"/>
+        <location filename="../../preferences/QUPathsDialog.ui" line="406"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.ui" line="208"/>
         <source>UltraStar</source>
-        <translation>UltraStar</translation>
+        <translation type="vanished">UltraStar</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.ui" line="267"/>
         <source>C:\UltraStar</source>
-        <translation>C:\UltraStar</translation>
+        <translation type="vanished">C:\UltraStar</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.ui" line="385"/>
+        <location filename="../../preferences/QUPathsDialog.ui" line="232"/>
         <source>C:\UltraStar\Playlists</source>
         <translation>C:\UltraStar\Playlists</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.ui" line="490"/>
         <source>C:\UltraStar\Covers</source>
-        <translation>C:\UltraStar\Covers</translation>
+        <translation type="vanished">C:\UltraStar\Covers</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.ui" line="598"/>
         <source>C:\UltraStar\Languages</source>
-        <translation>C:\UltraStar\Languages</translation>
+        <translation type="vanished">C:\UltraStar\Languages</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.ui" line="670"/>
+        <location filename="../../preferences/QUPathsDialog.ui" line="264"/>
         <source>C:\Songs</source>
         <translation>C:\Songs</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.ui" line="679"/>
+        <location filename="../../preferences/QUPathsDialog.ui" line="273"/>
         <source>D:\External\Songs</source>
         <translation>D:\External\Songs</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.ui" line="277"/>
         <source>Auto-detect other folders</source>
-        <translation>Autodetekcja innych folderów</translation>
+        <translation type="vanished">Autodetekcja innych folderów</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.ui" line="280"/>
         <source>padding: 0;
 border-width: 0;
 margin: 0;</source>
-        <translation>padding: 0;
+        <translation type="vanished">padding: 0;
 border-width: 0;
 margin: 0;</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.ui" line="326"/>
+        <location filename="../../preferences/QUPathsDialog.ui" line="399"/>
         <source>Playlists</source>
         <translation>Listy odtwarzania</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.ui" line="428"/>
         <source>Covers</source>
-        <translation>Okładki</translation>
+        <translation type="vanished">Okładki</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.ui" line="536"/>
         <source>Languages</source>
-        <translation>Języki</translation>
+        <translation type="vanished">Języki</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.ui" line="641"/>
+        <location filename="../../preferences/QUPathsDialog.ui" line="285"/>
         <source>Songs</source>
         <translation>Piosenki</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.ui" line="778"/>
+        <location filename="../../preferences/QUPathsDialog.ui" line="459"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../preferences/QUPathsDialog.ui" line="789"/>
+        <location filename="../../preferences/QUPathsDialog.ui" line="470"/>
         <source>Cancel</source>
         <translation>Anuluj</translation>
     </message>
@@ -4278,12 +4258,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../support/QUReplayGainScanner.cpp" line="185"/>
+        <location filename="../../support/QUReplayGainScanner.cpp" line="194"/>
         <source>[ReplayGain Scanner] failed to write tags to audio file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../support/QUReplayGainScanner.cpp" line="207"/>
+        <location filename="../../support/QUReplayGainScanner.cpp" line="216"/>
         <source>[ReplayGain Scanner] Error occured while decoding file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4291,7 +4271,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QUReplayGainScanner</name>
     <message>
-        <location filename="../../support/QUReplayGainScanner.cpp" line="226"/>
+        <location filename="../../support/QUReplayGainScanner.cpp" line="235"/>
         <source>[ReplayGain Scanner] Song &apos;%1 - %2&apos; has no valid audio file</source>
         <translation type="unfinished"></translation>
     </message>
