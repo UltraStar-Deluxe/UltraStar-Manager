@@ -80,71 +80,182 @@
         <translation>Capitalizar cada palavra do artista, ex: &quot;michael jackson&quot; -&gt; &quot;Michael Jackson&quot;.</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="94"/>
-        <location filename="QUPreparatoryTask.cpp" line="95"/>
+        <location filename="QUPreparatoryTask.cpp" line="53"/>
+        <source>Set #EDITION tag if it is empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="54"/>
+        <source>Sets &lt;b&gt;#EDITION&lt;/b&gt; to a defined value if it is empty or not present.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="58"/>
+        <source>Set #GENRE tag if it is empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="59"/>
+        <source>Sets &lt;b&gt;#GENRE&lt;/b&gt; to a defined value if it is empty or not present.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="63"/>
+        <source>Fix #LANGUAGE tag to contain English language names</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="64"/>
+        <source>Sets &lt;b&gt;#LANGUAGE&lt;/b&gt; to contain English language names (e.g. Deutsch -&gt; German).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="68"/>
+        <source>Fix apostrophes in song artist and title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="69"/>
+        <source>Replaces wrongfully used apostrophe symbols `, ´, &apos; by the correct apostrophe ’</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="73"/>
+        <source>Add missing ’P1’ and ’P2’ in duets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="74"/>
+        <source>Detects if a song is a duet that is missing ’P1’ and ’P2’ tags and adds them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="134"/>
+        <location filename="QUPreparatoryTask.cpp" line="135"/>
         <source>Pattern:</source>
         <translation>Padrão:</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="94"/>
+        <location filename="QUPreparatoryTask.cpp" line="134"/>
         <source>(cover)</source>
         <translation>(capa)</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="95"/>
+        <location filename="QUPreparatoryTask.cpp" line="135"/>
         <source>(background)</source>
         <translation>(fundo)</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="102"/>
+        <location filename="QUPreparatoryTask.cpp" line="142"/>
         <source>Buffer:</source>
         <translation>Buffer:</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="102"/>
+        <location filename="QUPreparatoryTask.cpp" line="142"/>
         <source>seconds</source>
         <translation>segundos</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="105"/>
+        <location filename="QUPreparatoryTask.cpp" line="145"/>
         <source>Capitalize English songs only</source>
         <translation>Capitalizar apenas canções inglesas</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="106"/>
+        <location filename="QUPreparatoryTask.cpp" line="146"/>
         <source>Capitalize each word</source>
         <translation>Capitalizar cada palavra</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="107"/>
-        <location filename="QUPreparatoryTask.cpp" line="110"/>
+        <location filename="QUPreparatoryTask.cpp" line="147"/>
+        <location filename="QUPreparatoryTask.cpp" line="150"/>
         <source>Capitalize first word only</source>
         <translation>Capitalizar apenas primeira palavra</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="149"/>
+        <location filename="QUPreparatoryTask.cpp" line="153"/>
+        <source>Edition:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="156"/>
+        <source>Genre:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="195"/>
         <source>Capitalization fix not applicable due to non-english song: &quot;%1 - %2&quot;. Try to configure the task.</source>
         <translation>Corrigir capitalização não aplicável, devido às canções não-inglesas: &quot;%1 -%2&quot;. Tente configurar a tarefa.</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="157"/>
+        <location filename="QUPreparatoryTask.cpp" line="203"/>
+        <source>Capitalization fix not applicable due to empty title: &quot;%1&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="268"/>
+        <source>Capitalization of #TITLE fixed for &quot;%1 - %2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="281"/>
+        <source>Capitalization fix not applicable due to empty artist: &quot;%1&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="296"/>
+        <source>Capitalization of #ARTIST fixed for &quot;%1 - %2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="305"/>
+        <source>#EDITION set to &quot;%1&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="315"/>
+        <source>#GENRE set to &quot;%1&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="379"/>
+        <source>#LANGUAGE changed from &quot;%1&quot; to &quot;%2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="395"/>
+        <source>Apostrophes fixed for &quot;%1 - %2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="424"/>
+        <source>Line: %1, Note: %2, Diff: %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="431"/>
+        <source>Potential duet with missing duet tags detected: &quot;%1 - %2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="456"/>
+        <source>Not a potential duet: &quot;%1 - %2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Capitalization fix not applicable due to empty title: &quot;%1&quot;</source>
-        <translation>Corrigir capitalização não aplicável, devido a título vazio: &quot;%1&quot;</translation>
+        <translation type="vanished">Corrigir capitalização não aplicável, devido a título vazio: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="222"/>
         <source>Capitalization of #TITLE fixed for &quot;%1 - %2&quot;</source>
-        <translation>Capitalização de #TITLE corrigida para &quot;%1&apos;-&apos;%2&quot;</translation>
+        <translation type="vanished">Capitalização de #TITLE corrigida para &quot;%1&apos;-&apos;%2&quot;</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="235"/>
         <source>Capitalization fix not applicable due to empty artist: &quot;%1&quot;</source>
-        <translation>Corrigir capitalização não aplicável, devido a artista vazio: &quot;%1&quot;</translation>
+        <translation type="vanished">Corrigir capitalização não aplicável, devido a artista vazio: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="250"/>
         <source>Capitalization of #ARTIST fixed for &quot;%1 - %2&quot;</source>
-        <translation>Capitalização de #ARTIST corrigida para &quot;%1&apos;-&apos;%2&quot;</translation>
+        <translation type="vanished">Capitalização de #ARTIST corrigida para &quot;%1&apos;-&apos;%2&quot;</translation>
     </message>
 </context>
 <context>

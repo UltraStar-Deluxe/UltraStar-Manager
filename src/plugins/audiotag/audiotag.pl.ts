@@ -202,76 +202,76 @@
         <translation>Zmień lub Przemianuj Zadania</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="122"/>
-        <location filename="../shared/QUTaskDialog.ui" line="397"/>
+        <location filename="../shared/QUTaskDialog.ui" line="131"/>
         <location filename="../shared/QUTaskDialog.ui" line="411"/>
-        <location filename="../shared/QUTaskDialog.ui" line="489"/>
-        <location filename="../shared/QUTaskDialog.ui" line="515"/>
+        <location filename="../shared/QUTaskDialog.ui" line="425"/>
+        <location filename="../shared/QUTaskDialog.ui" line="503"/>
+        <location filename="../shared/QUTaskDialog.ui" line="529"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="158"/>
+        <location filename="../shared/QUTaskDialog.ui" line="176"/>
         <source>&amp;Description</source>
         <translation>&amp;Opis</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="171"/>
+        <location filename="../shared/QUTaskDialog.ui" line="189"/>
         <source>T&amp;oolTip</source>
         <translation>P&amp;odpowiedź</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="209"/>
+        <location filename="../shared/QUTaskDialog.ui" line="224"/>
         <source>&amp;Icon</source>
         <translation>&amp;Ikona</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="228"/>
+        <location filename="../shared/QUTaskDialog.ui" line="243"/>
         <source>Cup</source>
         <translation>Puchar</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="256"/>
+        <location filename="../shared/QUTaskDialog.ui" line="270"/>
         <source>&amp;Group</source>
         <translation>&amp;Grupa</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="281"/>
+        <location filename="../shared/QUTaskDialog.ui" line="295"/>
         <source>Exclusive task</source>
         <translation>Zadanie Priorytetowe</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="311"/>
+        <location filename="../shared/QUTaskDialog.ui" line="325"/>
         <source>&amp;Target</source>
         <translation>&amp;Cel</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="329"/>
+        <location filename="../shared/QUTaskDialog.ui" line="343"/>
         <source>The target specifies the object on which the renaming will be done.</source>
         <translation>Cel wskazuje na obiekt którego nazwa zostanie zmieniona.</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="333"/>
+        <location filename="../shared/QUTaskDialog.ui" line="347"/>
         <source>mp3</source>
         <translation>mp3</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="363"/>
+        <location filename="../shared/QUTaskDialog.ui" line="377"/>
         <source>&amp;Schema</source>
         <translation>&amp;Schemat</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="563"/>
+        <location filename="../shared/QUTaskDialog.ui" line="586"/>
         <source>Save As...</source>
         <translation>Zapisz Jako...</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="590"/>
+        <location filename="../shared/QUTaskDialog.ui" line="613"/>
         <source>Save</source>
         <translation>Zapisz</translation>
     </message>
     <message>
-        <location filename="../shared/QUTaskDialog.ui" line="601"/>
+        <location filename="../shared/QUTaskDialog.ui" line="624"/>
         <source>Cancel</source>
         <translation>Anuluj</translation>
     </message>
