@@ -57,6 +57,7 @@ void QUAutoCue::reset(const QList<QUSongLineInterface*> &lines, double bpm, doub
 
 			setFontWeight(QFont::Normal);
 			setFontItalic(false);
+			setFontUnderline(false);
 
 			_cueList << QUCueInfo(time, pos, note->syllable().size(), lineNumber);
 
