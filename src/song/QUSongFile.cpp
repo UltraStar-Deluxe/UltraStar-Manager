@@ -173,7 +173,7 @@ bool QUSongFile::updateCache() {
 	QFile _file;
 	_file.setFileName(_fi.filePath());
 
-	if(!_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+	if(!_file.open(QIODevice::ReadOnly)) {
 		logSrv->add(QString(tr("Could NOT open song file: \"%1\"")).arg(_fi.filePath()), QU::Warning);
 		return false;
 	}
@@ -187,6 +187,16 @@ bool QUSongFile::updateCache() {
 	_foundUnsupportedTags.clear();
 	invalidateCaches();
 	clearMelody();
+
+	// Try to detect line endings
+	QByteArray data = _file.read(1000);
+	if (data.contains("\r\n"))
+		_lineEnding = LineEnding::CRLF;
+	else if (data.contains("\n"))
+		_lineEnding = LineEnding::LF;
+	else
+		logSrv->add(QString(tr("Failed to detect line endings in file \"%1\", defaulting to CRLF")).arg(_fi.filePath()), QU::Information);
+	_file.seek(0);
 
 	/*
 	 * Try to determine the text file encoding based on Byte Order Mark (BOM) or on #ENCODING tag.
@@ -705,7 +715,7 @@ bool QUSongFile::save(bool force) {
 	QFile _file;
 	_file.setFileName(_fi.filePath());
 
-	if(!_file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)) {
+	if(!_file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
 		logSrv->add(QString(tr("Save error! The song file \"%1\" was NOT saved.")).arg(this->songFileInfo().fileName()), QU::Warning);
 		monty->watcher()->addPath(_fi.filePath());
 		return false;
@@ -724,39 +734,36 @@ bool QUSongFile::save(bool force) {
 	//_out.setCodec(codec);
 	_out.setEncoding(QStringConverter::Utf8);
 	setInfo(ENCODING_TAG, ENCODING_UTF8);
-
-	// MB: fix/todo! add gui element to select this, save to registry, read from registry
-	// now set permanently to false in order to enforce CRLF as line endings even with MacOS/Unix
-	bool useSystemDefaultLineEndings = false;
+	QString lineEnding(_lineEnding == LineEnding::CRLF ? "\r\n" : "\n");
 
 	// write supported tags
 	foreach(QString tag, tags) {
 		if(tag == ENCODING_TAG) { // only write ENCODING tag if necessary (CP1250)
 			if (_info.value(tag.toUpper()) == ENCODING_CP1250) {
 				_out << "#" << tag.toUpper() << ":" << _info.value(tag.toUpper());
-				useSystemDefaultLineEndings ? _out << Qt::endl : _out << "\n" << Qt::flush;
+				_out << lineEnding;
 			}
 		} else if (_info.value(tag.toUpper()) != "") { // do not write empty tags
 			_out << "#" << tag.toUpper() << ":" << _info.value(tag.toUpper());
-			useSystemDefaultLineEndings ? _out << Qt::endl : _out << "\n" << Qt::flush;
+			_out << lineEnding;
 		}
 	}
 
 	// write unsupported tags
 	foreach(QString uTag, _foundUnsupportedTags) {
 		_out << "#" << uTag << ":" << _info.value(uTag);
-		useSystemDefaultLineEndings ? _out << Qt::endl : _out << "\n" << Qt::flush;
+		_out << lineEnding;
 	}
 
 	// write lyrics
 	foreach(QString line, _lyrics) {
 		_out << line;
-		useSystemDefaultLineEndings ? _out << Qt::endl : _out << "\n" << Qt::flush;
+		_out << lineEnding;
 	}
 
 	// write song ending
 	_out << "E";
-	useSystemDefaultLineEndings ? _out << Qt::endl : _out << "\n" << Qt::flush;
+	_out << lineEnding;
 
 	// write footer
 	foreach(QString line, _footer) {

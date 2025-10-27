@@ -1,6 +1,7 @@
 #include "QUPreparatoryTask.h"
 #include "QUSmartCheckBox.h"
 #include "QUSmartInputField.h"
+#include "QUSmartComboBox.h"
 #include "QUSongSupport.h"
 #include "QU.h"
 
@@ -9,6 +10,7 @@
 #include <QSettings>
 #include <QFileInfo>
 #include <QDir>
+#include <algorithm>
 
 QUPreparatoryTask::QUPreparatoryTask(TaskModes mode, QObject *parent):
 	QUSimpleTask(parent),
@@ -73,6 +75,11 @@ QUPreparatoryTask::QUPreparatoryTask(TaskModes mode, QObject *parent):
 		this->setDescription(tr("Add missing ’P1’ and ’P2’ in duets"));
 		this->setToolTip(tr("Detects if a song is a duet that is missing ’P1’ and ’P2’ tags and adds them"));
 		break;
+	case FixLineEndings:
+		this->setIcon(QIcon(":/types/text.png"));
+		this->setDescription(tr("Fix line endings"));
+		this->setToolTip(tr("Change the .txt line endings to either CRLF or LF"));
+		break;
 	}
 }
 
@@ -121,6 +128,9 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 	case AddMissingDuetTags:
 		addMissingDuetTags(song);
 		break;
+	case FixLineEndings:
+		fixLineEndings(song);
+		break;
 	}
 }
 
@@ -154,6 +164,9 @@ QList<QUSmartSettingInterface*> QUPreparatoryTask::smartSettings() const {
 			break;
 		case SetGenreIfEmpty:
 			_smartSettings.append(new QUSmartInputField("preparatory/setGenreIfEmpty_genre", "None", new QRegularExpressionValidator(QRegularExpression(".*"), nullptr), tr("Genre:"), ""));
+			break;
+		case FixLineEndings:
+			_smartSettings.append(new QUSmartComboBox("preparatory/fixLineEndings_lineEnding", tr("Convert to:"), {"CRLF", "LF"}, std::clamp(settings.value("preparatory/fixLineEndings_lineEnding", 0).toInt(), 0, 1)));
 			break;
 		}
 	}
@@ -457,4 +470,9 @@ void QUPreparatoryTask::addMissingDuetTags(QUSongInterface *song) {
 	}
 
 	//song->log(tr("Missing ’P1’ and ’P2’ added to \"%1 - %2\".").arg(song->artist()).arg(song->title()), QU::Information);
+}
+
+void QUPreparatoryTask::fixLineEndings(QUSongInterface *song)
+{
+	song->setLineEnding(static_cast<LineEnding>(smartSettings().at(0)->value().toInt()));
 }

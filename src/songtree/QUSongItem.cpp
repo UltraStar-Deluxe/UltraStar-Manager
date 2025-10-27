@@ -943,6 +943,10 @@ void QUSongItem::updateTextColumns() {
 		this->setText(FIRST_CUSTOM_TAG_COLUMN + (i),	  song()->customTag(customTag));
 		this->setToolTip(FIRST_CUSTOM_TAG_COLUMN + (i++), song()->customTag(customTag));
 	}
+
+	// line ending
+	QString lineEnding(song()->lineEnding() == LineEnding::CRLF ? "CRLF" : "LF");
+	this->setText(LINE_ENDING_COLUMN, lineEnding); this->setToolTip(LINE_ENDING_COLUMN, lineEnding);
 }
 
 void QUSongItem::updateControlColumns() {
