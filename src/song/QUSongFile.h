@@ -106,6 +106,7 @@ public slots:
 	QString artistonsorting() const	{return _info.value(ARTISTONSORTING_TAG,	QString(N_A));}
 	QString titleonsorting() const	{return _info.value(TITLEONSORTING_TAG,		QString(N_A));}
 	const ReplayGainInfo* rgInfo() const {return _rgInfo; }
+	LineEnding lineEnding() const override { return _lineEnding; }
 
 	QString customTag(const QString &tag) const {return _info.value(tag.toUpper(), QString(N_A));}
 
@@ -159,6 +160,7 @@ public slots:
 	void renameSongCover(const QString &newName);
 	void renameSongBackground(const QString &newName);
 	void renameSongVideo(const QString &newName);
+	void setLineEnding(LineEnding lineEnding) override { _lineEnding = lineEnding; }
 
 	void useID3TagForArtist();
 	void useID3TagForTitle();
@@ -227,6 +229,7 @@ private:
 	QStringList _lyrics;		  // lyrics
 	QStringList _footer;		  // other stuff after the end mark 'E' in the song file
 	ReplayGainInfo *_rgInfo;
+	LineEnding _lineEnding = LineEnding::CRLF;
 
 	QStringList _foundUnsupportedTags;
 	bool _hasUnsavedChanges;

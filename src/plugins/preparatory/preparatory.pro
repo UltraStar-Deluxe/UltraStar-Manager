@@ -5,6 +5,7 @@ SOURCES = ../shared/QUMultilingualTaskFactory.cpp \
 	../shared/QUSimpleTaskFactory.cpp \
 	../shared/QUSmartSetting.cpp \
 	../shared/QUSmartCheckBox.cpp \
+	../shared/QUSmartComboBox.cpp \
 	../shared/QUSmartInputField.cpp \
 	../../QUSongSupport.cpp
 HEADERS = ../shared/QUMultilingualTaskFactory.h \
@@ -14,6 +15,7 @@ HEADERS = ../shared/QUMultilingualTaskFactory.h \
 	../shared/QUSimpleTaskFactory.h \
 	../shared/QUSmartSetting.h \
 	../shared/QUSmartCheckBox.h \
+	../shared/QUSmartComboBox.h \
 	../shared/QUSmartInputField.h \
 	../../QUSongSupport.h \
 	../QUSmartSettingInterface.h

@@ -24,7 +24,8 @@ public:
 		SetGenreIfEmpty,
 		FixLanguage,
 		FixApostrophes,
-		AddMissingDuetTags
+		AddMissingDuetTags,
+		FixLineEndings
 	};
 	Q_DECLARE_FLAGS(TaskModes, TaskMode)
 
@@ -49,6 +50,7 @@ private:
 	void fixLanguage(QUSongInterface *song);
 	void fixApostrophes(QUSongInterface *song);
 	void addMissingDuetTags(QUSongInterface *song);
+	void fixLineEndings(QUSongInterface *song);
 };
 
 #endif /*QUPREPARATORYTASK_H_*/

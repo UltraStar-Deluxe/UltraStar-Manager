@@ -54,6 +54,11 @@ class QFileInfo;
 #define GOLDEN_NOTES			"GOLDENNOTES"
 #define RAP_NOTES				"RAPNOTES"
 
+enum class LineEnding {
+	CRLF,
+	LF
+};
+
 class QUSongNoteInterface: public QObject {
 	Q_OBJECT
 
@@ -257,6 +262,8 @@ public:
 	virtual QFileInfo backgroundFileInfo() const = 0;
 	virtual QFileInfo videoFileInfo() const = 0;
 
+	virtual LineEnding lineEnding() const = 0;
+
 	virtual void setInfo(const QString &key, const QString &value) = 0;
 
 	virtual void renameSongDir(const QString &newName) = 0;
@@ -288,6 +295,7 @@ public:
 	virtual void fixAudioLength(int buffer) = 0;
 	virtual void roundGap() = 0;
 	virtual void removeEndTag() = 0;
+	virtual void setLineEnding(LineEnding lineEnding) = 0;
 
 	virtual QList<QUSongLineInterface*>& loadMelody() = 0;
 	virtual void clearMelody() = 0;

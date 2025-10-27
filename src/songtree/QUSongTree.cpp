@@ -141,6 +141,8 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(CREATOR_COLUMN, QIcon(":/types/creator.png"));
 	header->setText(TAGS_COLUMN, tr("Tags"));
 	header->setIcon(TAGS_COLUMN, QIcon(":/types/tags.png"));
+	header->setText(LINE_ENDING_COLUMN, tr("Line Endings"));
+	header->setToolTip(LINE_ENDING_COLUMN, tr("Shows whether the text file has CRLF or LF line endings"));
 
 	header->setText(LENGTH_COLUMN, tr("Song"));
 	header->setIcon(LENGTH_COLUMN, QIcon(":/types/time_song.png"));
@@ -741,6 +743,8 @@ void QUSongTree::showDefaultColumns(bool save) {
 	this->header()->showSection(YEAR_COLUMN);
 	this->header()->showSection(CREATOR_COLUMN);
 	this->header()->showSection(TAGS_COLUMN);
+	this->header()->showSection(LINE_ENDING_COLUMN);
+
 
 	int customTagsCount = QUSongSupport::availableCustomTags().size();
 	for(int i = 0; i < customTagsCount; ++i)
