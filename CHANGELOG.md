@@ -1,5 +1,16 @@
 # UltraStar Manager Changelog
 
+## Changelog (2.1.0 to 2.2.0)
+### Features
+- Improved support for text file line endings:
+  - Automatically detect if a text file has CRLF or LF line endings. When writing changes to a file, preserve the file's existing line ending.
+  - Added a column in the song tree which indicates if the text file has CRLF or LF line endings
+  - Added a task which allows the user to batch convert text files to CRLF or LF line endings
+- Modernized first time path setup dialog by removing unecessary settings.
+
+### Bug fixes
+- Fixed display of rap notes in media player
+
 ## Changelog (2.0.0 to 2.1.0)
 ### Features
 - ReplayGain support:
