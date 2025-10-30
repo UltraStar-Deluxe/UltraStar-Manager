@@ -220,7 +220,7 @@ jobs:
           chmod a+x linuxdeployqt*.AppImage
           cp ../../setup/unix/UltraStar-Manager.desktop .
           cp ../../setup/unix/UltraStar-Manager.png .
-          sed -i "s/Name=UltraStar-Manager/Name=LINUX-UltraStar-Manager/g" UltraStar-Manager.desktop
+          sed -i "s/Name=UltraStar Manager/Name=LINUX-UltraStar-Manager/g" UltraStar-Manager.desktop
           ./linuxdeployqt*.AppImage UltraStar-Manager.desktop -bundle-non-qt-libs -appimage
           mv LINUX-UltraStar-Manager-*.AppImage LINUX-UltraStar-Manager.AppImage
       - name: Upload AppImage Artifact
