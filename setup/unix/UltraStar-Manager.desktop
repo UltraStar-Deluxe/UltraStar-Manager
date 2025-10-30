@@ -1,9 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=UltraStar-Manager
+Name=UltraStar Manager
 Exec=UltraStar-Manager %F
 Icon=UltraStar-Manager
 Comment=Manage your UltraStar song collection with ease.
-Terminal=true
 Categories=Qt;Game;Music;X-Karaoke;X-UltraStar;
-Name[en]=UltraStar-Manager.desktop
