@@ -88,7 +88,7 @@ bool QUReplayGainFile::scan()
 
     // Scan the file
     _decoder.start();
-    while(_decoder.isDecoding() && !_error && !_cancelled)
+    if (!(_error || _cancelled))
         _loop.exec();
     if (_error || _cancelled)
         return false;
