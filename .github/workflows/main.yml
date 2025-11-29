@@ -114,9 +114,13 @@ jobs:
           else
             echo "arch=ARM" >> $GITHUB_ENV
           fi
-      - name: Install Dependencies
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: "6.8.3"
+          modules: qtmultimedia
+      - name: Install Other Dependencies
         run: |
-          brew install qt
           brew install taglib
           brew install libmediainfo
           brew install libebur128
@@ -130,20 +134,6 @@ jobs:
           export CFLAGS="-Wno-narrowing -O3"
           ./compile_libs.sh
           cp libcld2.dylib ../../../lib/MacOS
-      - name: Fix Qt lib rpaths # see: https://github.com/orgs/Homebrew/discussions/2823#discussioncomment-2010340)
-        run: |
-          install_name_tool -id '@rpath/QtCore.framework/Versions/A/QtCore' $(brew --prefix)/lib/QtCore.framework/Versions/A/QtCore
-          install_name_tool -id '@rpath/QtGui.framework/Versions/A/QtGui' $(brew --prefix)/lib/QtGui.framework/Versions/A/QtGui
-          install_name_tool -id '@rpath/QtNetwork.framework/Versions/A/QtNetwork' $(brew --prefix)/lib/QtNetwork.framework/Versions/A/QtNetwork
-          install_name_tool -id '@rpath/QtWidgets.framework/Versions/A/QtWidgets' $(brew --prefix)/lib/QtWidgets.framework/Versions/A/QtWidgets
-          install_name_tool -id '@rpath/QtPdf.framework/Versions/A/QtPdf' $(brew --prefix)/lib/QtPdf.framework/Versions/A/QtPdf
-          install_name_tool -id '@rpath/QtSvg.framework/Versions/A/QtSvg' $(brew --prefix)/lib/QtSvg.framework/Versions/A/QtSvg
-          install_name_tool -id '@rpath/QtVirtualKeyboard.framework/Versions/A/QtVirtualKeyboard' $(brew --prefix)/lib/QtVirtualKeyboard.framework/Versions/A/QtVirtualKeyboard
-          install_name_tool -id '@rpath/QtQuick.framework/Versions/A/QtQuick' $(brew --prefix)/lib/QtQuick.framework/Versions/A/QtQuick
-          install_name_tool -id '@rpath/QtQmlModels.framework/Versions/A/QtQmlModels' $(brew --prefix)/lib/QtQmlModels.framework/Versions/A/QtQmlModels
-          install_name_tool -id '@rpath/QtQml.framework/Versions/A/QtQml' $(brew --prefix)/lib/QtQml.framework/Versions/A/QtQml
-          install_name_tool -id '@rpath/QtOpenGL.framework/Versions/A/QtOpenGL' $(brew --prefix)/lib/QtOpenGL.framework/Versions/A/QtOpenGL
-          install_name_tool -id '@rpath/QtMultimedia.framework/Versions/A/QtMultimedia' $(brew --prefix)/lib/QtMultimedia.framework/Versions/A/QtMultimedia
       - name: Build plugins
         run: |
           cd src/plugins/audiotag/
