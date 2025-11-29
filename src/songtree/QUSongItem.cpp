@@ -36,10 +36,11 @@ QUSongItem::QUSongItem(QUSongFile *song, bool isToplevel):
  */
 void QUSongItem::clearContents() {
 	for(int i = 0; i < this->columnCount(); ++i) {
+		QBrush defaultBrush;
 		this->setIcon(i, QIcon());
-		this->setForeground(i, Qt::black);
+		this->setForeground(i, defaultBrush);
 		this->setToolTip(i, "");
-		this->setBackground(i, QColor(0, 0, 0, 0));
+		this->setBackground(i, defaultBrush);
 	}
 }
 
@@ -138,7 +139,6 @@ void QUSongItem::updateAsTxt() {
 
 	if(QString::compare(this->text(FOLDER_COLUMN), song()->songFileInfo().fileName(), Qt::CaseInsensitive) == 0) {
 		// song itself found
-		this->setForeground(FOLDER_COLUMN, QColor(13, 86, 166, 255));
 
 		if(song()->isKaraoke()) {
 			this->setIcon(MULTIPLE_SONGS_COLUMN, QIcon(":/types/karaoke.png"));
