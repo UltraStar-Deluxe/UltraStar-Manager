@@ -1,5 +1,12 @@
 # UltraStar Manager Changelog
 
+## Changelog (2.2.0 to 2.2.1)
+### Bug fixes
+- Fix ReplayGain scanner on macOS
+- In song tree, use text color according to the active system theme
+- Fix dependency management issue on macOS
+- Improve Linux desktop integration
+
 ## Changelog (2.1.0 to 2.2.0)
 ### Features
 - Improved support for text file line endings:
