@@ -128,6 +128,8 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(ARTIST_COLUMN_EX, QIcon(":/types/user.png"));
 	header->setText(TITLE_COLUMN_EX, tr("Title"));
 	header->setIcon(TITLE_COLUMN_EX, QIcon(":/types/font.png"));
+	header->setText(VERSION_COLUMN, tr("Version"));
+	header->setIcon(VERSION_COLUMN, QIcon(":/types/text.png"));
 
 	header->setText(LANGUAGE_COLUMN, tr("Language"));
 	header->setIcon(LANGUAGE_COLUMN, QIcon(":/types/language.png"));
@@ -744,6 +746,7 @@ void QUSongTree::showDefaultColumns(bool save) {
 	this->header()->showSection(CREATOR_COLUMN);
 	this->header()->showSection(TAGS_COLUMN);
 	this->header()->showSection(LINE_ENDING_COLUMN);
+	this->header()->showSection(VERSION_COLUMN);
 
 
 	int customTagsCount = QUSongSupport::availableCustomTags().size();

@@ -161,6 +161,8 @@ public slots:
 	void renameSongBackground(const QString &newName);
 	void renameSongVideo(const QString &newName);
 	void setLineEnding(LineEnding lineEnding) override { _lineEnding = lineEnding; }
+	void setVersion(const QUSongVersion &version) override { _version = version; setInfo(VERSION_TAG, version.toString()); }
+
 
 	void useID3TagForArtist();
 	void useID3TagForTitle();
@@ -230,6 +232,7 @@ private:
 	QStringList _footer;		  // other stuff after the end mark 'E' in the song file
 	ReplayGainInfo *_rgInfo;
 	LineEnding _lineEnding = LineEnding::CRLF;
+	QUSongVersion _version;
 
 	QStringList _foundUnsupportedTags;
 	bool _hasUnsavedChanges;

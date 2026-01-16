@@ -33,6 +33,7 @@ QList<int> QUPreparatoryTaskFactory::types() const {
 	result << QUPreparatoryTask::FixApostrophes;
 	result << QUPreparatoryTask::AddMissingDuetTags;
 	result << QUPreparatoryTask::FixLineEndings;
+	result << QUPreparatoryTask::SetTextVersion;
 	return result;
 }
 

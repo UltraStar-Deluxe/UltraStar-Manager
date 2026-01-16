@@ -316,6 +316,8 @@ bool QUSongFile::updateCache() {
 
 	initScoreFile();
 	updateReplayGain();
+	if (_info.contains(VERSION_TAG))
+		_version.readFromString(_info[VERSION_TAG]);
 
 	songDB->processChangesForSong(this);
 	return true;
@@ -735,6 +737,9 @@ bool QUSongFile::save(bool force) {
 	_out.setEncoding(QStringConverter::Utf8);
 	setInfo(ENCODING_TAG, ENCODING_UTF8);
 	QString lineEnding(_lineEnding == LineEnding::CRLF ? "\r\n" : "\n");
+
+	if (_version.isValid())
+		setInfo(VERSION_TAG, _version.toString());
 
 	// write supported tags
 	foreach(QString tag, tags) {

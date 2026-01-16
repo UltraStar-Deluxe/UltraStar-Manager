@@ -40,21 +40,22 @@
 
 #define ARTIST_COLUMN_EX		25
 #define TITLE_COLUMN_EX			26
-#define LANGUAGE_COLUMN			27
-#define EDITION_COLUMN			28
-#define GENRE_COLUMN			29
-#define YEAR_COLUMN				30
-#define CREATOR_COLUMN			31
-#define TAGS_COLUMN				32
-#define LINE_ENDING_COLUMN      33
+#define VERSION_COLUMN          27
+#define LANGUAGE_COLUMN			28
+#define EDITION_COLUMN			29
+#define GENRE_COLUMN			30
+#define YEAR_COLUMN				31
+#define CREATOR_COLUMN			32
+#define TAGS_COLUMN				33
+#define LINE_ENDING_COLUMN      34
 
-#define RELATIVE_COLUMN			34
-#define BPM_COLUMN				35
-#define GAP_COLUMN				36
+#define RELATIVE_COLUMN			35
+#define BPM_COLUMN				36
+#define GAP_COLUMN				37
 
-#define DUPLICATE_ID_COLUMN		37
+#define DUPLICATE_ID_COLUMN		38
 
-#define FIRST_CUSTOM_TAG_COLUMN	38
+#define FIRST_CUSTOM_TAG_COLUMN	39
 
 /*!
  * This class encapsulates a pointer to a QUSongFile object to be able
