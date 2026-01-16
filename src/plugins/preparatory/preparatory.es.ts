@@ -140,119 +140,134 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="144"/>
-        <location filename="QUPreparatoryTask.cpp" line="145"/>
+        <location filename="QUPreparatoryTask.cpp" line="85"/>
+        <source>Set #VERSION tag</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="86"/>
+        <source>Convert the .txt to a different #VERSION</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="152"/>
+        <location filename="QUPreparatoryTask.cpp" line="153"/>
         <source>Pattern:</source>
         <translation>Patron:</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="144"/>
+        <location filename="QUPreparatoryTask.cpp" line="152"/>
         <source>(cover)</source>
         <translation>(carátula)</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="145"/>
+        <location filename="QUPreparatoryTask.cpp" line="153"/>
         <source>(background)</source>
         <translation>(imagen de fondo)</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="152"/>
+        <location filename="QUPreparatoryTask.cpp" line="160"/>
         <source>Buffer:</source>
         <translation>Buffer:</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="152"/>
+        <location filename="QUPreparatoryTask.cpp" line="160"/>
         <source>seconds</source>
         <translation>segundos</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="155"/>
+        <location filename="QUPreparatoryTask.cpp" line="163"/>
         <source>Capitalize English songs only</source>
         <translation>Utilizar mayúsculas solo en las canciones en inglés</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="156"/>
+        <location filename="QUPreparatoryTask.cpp" line="164"/>
         <source>Capitalize each word</source>
         <translation>Utilizar mayúsculas en cada palabra</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="157"/>
-        <location filename="QUPreparatoryTask.cpp" line="160"/>
+        <location filename="QUPreparatoryTask.cpp" line="165"/>
+        <location filename="QUPreparatoryTask.cpp" line="168"/>
         <source>Capitalize first word only</source>
         <translation>Utilizar mayúsculas solo en la primera palabra</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="163"/>
+        <location filename="QUPreparatoryTask.cpp" line="171"/>
         <source>Edition:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="166"/>
+        <location filename="QUPreparatoryTask.cpp" line="174"/>
         <source>Genre:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="169"/>
+        <location filename="QUPreparatoryTask.cpp" line="177"/>
         <source>Convert to:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="208"/>
+        <location filename="QUPreparatoryTask.cpp" line="180"/>
+        <source>Version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="QUPreparatoryTask.cpp" line="219"/>
         <source>Capitalization fix not applicable due to non-english song: &quot;%1 - %2&quot;. Try to configure the task.</source>
         <translation>Uso de mayúsculas no corresponde por no ser una canción en inglés: &quot;%1 - %2&quot;. Intenta configurar la tarea.</translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="216"/>
+        <location filename="QUPreparatoryTask.cpp" line="227"/>
         <source>Capitalization fix not applicable due to empty title: &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="281"/>
+        <location filename="QUPreparatoryTask.cpp" line="292"/>
         <source>Capitalization of #TITLE fixed for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="294"/>
+        <location filename="QUPreparatoryTask.cpp" line="305"/>
         <source>Capitalization fix not applicable due to empty artist: &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="309"/>
+        <location filename="QUPreparatoryTask.cpp" line="320"/>
         <source>Capitalization of #ARTIST fixed for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="318"/>
+        <location filename="QUPreparatoryTask.cpp" line="329"/>
         <source>#EDITION set to &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="328"/>
+        <location filename="QUPreparatoryTask.cpp" line="339"/>
         <source>#GENRE set to &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="392"/>
+        <location filename="QUPreparatoryTask.cpp" line="403"/>
         <source>#LANGUAGE changed from &quot;%1&quot; to &quot;%2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="408"/>
+        <location filename="QUPreparatoryTask.cpp" line="419"/>
         <source>Apostrophes fixed for &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="437"/>
+        <location filename="QUPreparatoryTask.cpp" line="448"/>
         <source>Line: %1, Note: %2, Diff: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="444"/>
+        <location filename="QUPreparatoryTask.cpp" line="455"/>
         <source>Potential duet with missing duet tags detected: &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="QUPreparatoryTask.cpp" line="469"/>
+        <location filename="QUPreparatoryTask.cpp" line="480"/>
         <source>Not a potential duet: &quot;%1 - %2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>

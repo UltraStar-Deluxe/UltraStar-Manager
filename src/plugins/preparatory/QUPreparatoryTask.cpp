@@ -80,6 +80,11 @@ QUPreparatoryTask::QUPreparatoryTask(TaskModes mode, QObject *parent):
 		this->setDescription(tr("Fix line endings"));
 		this->setToolTip(tr("Change the .txt line endings to either CRLF or LF"));
 		break;
+	case SetTextVersion:
+		this->setIcon(QIcon(":/types/text.png"));
+		this->setDescription(tr("Set #VERSION tag"));
+		this->setToolTip(tr("Convert the .txt to a different #VERSION"));
+		break;
 	}
 }
 
@@ -131,6 +136,9 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 	case FixLineEndings:
 		fixLineEndings(song);
 		break;
+	case SetTextVersion:
+		setTextVersion(song);
+		break;
 	}
 }
 
@@ -167,6 +175,9 @@ QList<QUSmartSettingInterface*> QUPreparatoryTask::smartSettings() const {
 			break;
 		case FixLineEndings:
 			_smartSettings.append(new QUSmartComboBox("preparatory/fixLineEndings_lineEnding", tr("Convert to:"), {"CRLF", "LF"}, std::clamp(settings.value("preparatory/fixLineEndings_lineEnding", 0).toInt(), 0, 1)));
+			break;
+		case SetTextVersion:
+			_smartSettings.append(new QUSmartComboBox("preparatory/setTextVersion_textVersion", tr("Version:"), {"1.0.0", "1.1.0", "1.2.0"}, std::clamp(settings.value("preparatory/setTextVersion_textVersion", 0).toInt(), 0, 2)));
 			break;
 		}
 	}
@@ -475,4 +486,9 @@ void QUPreparatoryTask::addMissingDuetTags(QUSongInterface *song) {
 void QUPreparatoryTask::fixLineEndings(QUSongInterface *song)
 {
 	song->setLineEnding(static_cast<LineEnding>(smartSettings().at(0)->value().toInt()));
+}
+
+void QUPreparatoryTask::setTextVersion(QUSongInterface *song)
+{
+	song->setVersion(QUSongVersion(static_cast<QUSongVersion::SupportedVersion>(smartSettings().at(0)->value().toInt())));
 }

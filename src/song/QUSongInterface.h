@@ -127,6 +127,63 @@ public:
 	virtual void setSyllables(const QStringList &syllables) = 0;
 };
 
+class QUSongVersion {
+private:
+	int _versionMajor = 0;
+	int _versionMinor = 0;
+	int _versionPatch = 0;
+
+public:
+	enum SupportedVersion {
+		v1_0_0,
+		v1_1_0,
+		v1_2_0
+	};
+	QUSongVersion() = default;
+	QUSongVersion(SupportedVersion version) {
+		if (version == v1_0_0) {
+			_versionMajor = 1;
+			_versionMinor = 0;
+			_versionPatch = 0;
+		}
+		else if (version == v1_1_0) {
+			_versionMajor = 1;
+			_versionMinor = 1;
+			_versionPatch = 0;
+		}
+		else if (version == v1_2_0) {
+			_versionMajor = 1;
+			_versionMinor = 2;
+			_versionPatch = 0;
+		}
+	}
+	~QUSongVersion() = default;
+
+	void readFromString(const QString &string) {
+		QStringList list = string.split(".");
+		if (list.size() != 3)
+			return;
+		bool ok = true;
+		int versionMajor = 0;
+		int versionMinor = 0;
+		int versionPatch = 0;
+		versionMajor = list[0].toInt(&ok);
+		if (!ok)
+			return;
+		versionMinor = list[1].toInt(&ok);
+		if (!ok)
+			return;
+		versionPatch = list[2].toInt(&ok);
+		if (!ok)
+			return;
+		_versionMajor = versionMajor;
+		_versionMinor = versionMinor;
+		_versionPatch = versionPatch;
+	}
+	QString toString() const { return QString("%1.%2.%3").arg(_versionMajor).arg(_versionMinor).arg(_versionPatch); }
+	bool isValid() const { return (_versionMajor > 0) && (_versionMinor >= 0) && (_versionPatch >= 0); }
+};
+
 class QUSongInterface: public QObject {
 	Q_OBJECT
 
@@ -192,6 +249,7 @@ public:
 
 	virtual QString artist() const = 0;
 	virtual QString title() const = 0;
+	virtual QString version() const = 0;
 	virtual QString mp3() const = 0;
 	virtual QString bpm() const = 0;
 	virtual QString gap() const = 0;
@@ -272,6 +330,7 @@ public:
 	virtual void renameSongCover(const QString &newName) = 0;
 	virtual void renameSongBackground(const QString &newName) = 0;
 	virtual void renameSongVideo(const QString &newName) = 0;
+	virtual void setVersion(const QUSongVersion &version) = 0;
 
 	virtual void useID3TagForArtist() = 0;
 	virtual void useID3TagForTitle() = 0;
