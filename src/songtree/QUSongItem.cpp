@@ -79,7 +79,7 @@ void QUSongItem::update() {
 		} else if(QUSongSupport::allowedVideoFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsVideo();
 		} else if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-			child->updateAsMp3();
+			child->updateAsAudio();
 		} else if(QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 			child->updateAsImage();
 		} else if(QUSongSupport::allowedMidiFiles().contains(fileScheme, Qt::CaseInsensitive)) {
@@ -167,17 +167,17 @@ void QUSongItem::updateAsTxt() {
 	(dynamic_cast<QUSongItem*>(this->parent()))->showMultipleSongsIcon(this->text(FOLDER_COLUMN));
 }
 
-void QUSongItem::updateAsMp3() {
+void QUSongItem::updateAsAudio() {
 	clearContents();
 
 	this->setIcon(FOLDER_COLUMN, QIcon(":/types/music.png"));
 
 	bool used = false;
 
-	if(QString::compare(song()->mp3(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
-		this->setIcon(MP3_COLUMN, QIcon(":/marks/link.png"));
+	if(QString::compare(song()->audio(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
+		this->setIcon(AUDIO_COLUMN, QIcon(":/marks/link.png"));
 		used = true;
-	} else if(song()->friendHasTag(MP3_TAG, this->text(FOLDER_COLUMN))) { // audio file used by friend
+	} else if(song()->friendHasTag(AUDIO_TAG, this->text(FOLDER_COLUMN)) || song()->friendHasTag(MP3_TAG, this->text(FOLDER_COLUMN))) { // audio file used by friend
 		this->setForeground(FOLDER_COLUMN, QColor(13, 86, 166, 255));
 		this->setBackground(FOLDER_COLUMN, QColor(255, 209, 64, 120));
 		used = true;
@@ -247,10 +247,10 @@ void QUSongItem::updateAsVideo() {
 		used = true;
 	}
 
-	if(QString::compare(song()->mp3(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
-		this->setIcon(MP3_COLUMN, QIcon(":/marks/link.png"));
+	if(QString::compare(song()->audio(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
+		this->setIcon(AUDIO_COLUMN, QIcon(":/marks/link.png"));
 		used = true;
-	} else if(song()->friendHasTag(MP3_TAG, this->text(FOLDER_COLUMN))) { // file used by friend as background
+	} else if(song()->friendHasTag(AUDIO_TAG, this->text(FOLDER_COLUMN)) || song()->friendHasTag(MP3_TAG, this->text(FOLDER_COLUMN))) { // file used by friend as background
 		this->setForeground(FOLDER_COLUMN, QColor(13, 86, 166, 255));
 		this->setBackground(FOLDER_COLUMN, QColor(255, 209, 64, 120));
 		used = true;
@@ -375,10 +375,10 @@ void QUSongItem::showMultipleSongsIcon(QString fileName) {
 
 void QUSongItem::setTick(int column) {
 	if(!altViewEnabled()) {
-		if(column == MP3_COLUMN) {
+		if(column == AUDIO_COLUMN) {
 			int mp3_quality = 0;
 
-			TagLib::FileRef ref(this->song()->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+			TagLib::FileRef ref(this->song()->audioFileInfo().absoluteFilePath().toLocal8Bit().data());
 
 			if(!ref.isNull()) {
 				TagLib::AudioProperties *prop = ref.audioProperties();
@@ -511,7 +511,7 @@ void QUSongItem::setTick(int column) {
 		}
 	}
 	else {
-		if(column == MP3_COLUMN) {
+		if(column == AUDIO_COLUMN) {
 			this->setIcon(column, QIcon(":/types/music.png"));
 		} else if(column == COVER_COLUMN) {
 			this->setIcon(column, QIcon(":/types/cover.png"));
@@ -529,7 +529,7 @@ void QUSongItem::setCross(int column, bool isWarning, QString toolTip) {
 		if(!altViewEnabled()) {
 			this->setIcon(column, QIcon(":/marks/cross_error.png"));
 		} else {
-			if(column == MP3_COLUMN)				this->setIcon(column, QIcon(":/types/music_warn.png"));
+			if(column == AUDIO_COLUMN)				this->setIcon(column, QIcon(":/types/music_warn.png"));
 			else if(column == COVER_COLUMN)			this->setIcon(column, QIcon(":/types/image_warn.png"));
 			else if(column == BACKGROUND_COLUMN)	this->setIcon(column, QIcon(":/types/image_warn.png"));
 			else if(column == VIDEO_COLUMN)			this->setIcon(column, QIcon(":/types/video_warn.png"));
@@ -553,7 +553,7 @@ void QUSongItem::setCross(int column, bool isWarning, QString toolTip) {
 				this->setData(column, Qt::UserRole, QVariant(-1)); // used for sorting, should be smaller than a "tick" icon
 			}
 		}
-		else if(column == MP3_COLUMN) {
+		else if(column == AUDIO_COLUMN) {
 			this->setIcon(column, QIcon(":/types/music_error.png"));
 			this->setData(column, Qt::UserRole, QVariant(0)); // used for sorting, should be smaller than a "tick" icon
 		} else {
@@ -598,7 +598,7 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	switch(column) {
 	case ARTIST_COLUMN:
 	case TITLE_COLUMN:
-	case MP3_COLUMN:
+	case AUDIO_COLUMN:
 	case COVER_COLUMN:
 	case BACKGROUND_COLUMN:
 	case VIDEO_COLUMN:
@@ -610,7 +610,7 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case SYNC_COLUMN:
 	case LENGTH_COLUMN:
 	case LENGTH_DIFF_COLUMN:
-	case LENGTH_MP3_COLUMN:
+	case LENGTH_AUDIO_COLUMN:
 	case LENGTH_EFF_COLUMN:
 	case SPEED_COLUMN:
 	case RELATIVE_COLUMN:
@@ -682,10 +682,10 @@ void QUSongItem::updateSpellCheckColumns() {
 void QUSongItem::updateFileCheckColumns() {
 	/* file-related columns */
 
-		 if(song()->hasMp3())												this->setTick(MP3_COLUMN);
-	else if(song()->mp3() != N_A && !song()->mp3FileInfo().exists())		this->setCross(MP3_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->mp3()));
-	else if(song()->mp3() != N_A && song()->mp3FileInfo().exists())			this->setCross(MP3_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->mp3()));
-	else																	this->setCross(MP3_COLUMN);
+		 if(song()->hasAudio())												this->setTick(AUDIO_COLUMN);
+	else if(song()->audio() != N_A && !song()->audioFileInfo().exists())		this->setCross(AUDIO_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->audio()));
+	else if(song()->audio() != N_A && song()->audioFileInfo().exists())			this->setCross(AUDIO_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->audio()));
+	else																	this->setCross(AUDIO_COLUMN);
 
 		 if(song()->hasCover())												this->setTick(COVER_COLUMN);
 	else if(song()->cover() != N_A && !song()->coverFileInfo().exists())	this->setCross(COVER_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->cover()));
@@ -860,9 +860,9 @@ void QUSongItem::updateTimeCheckColumns() {
 	this->setTextAlignment(LENGTH_COLUMN, Qt::AlignLeft);
 	this->setText(LENGTH_COLUMN, length == 0 ? N_A : QString("%1:%2").arg(length / 60).arg(length % 60, 2, 10, QChar('0')));
 	this->setData(LENGTH_COLUMN, Qt::UserRole, QVariant(length));
-	int lengthMp3 = song()->lengthMp3();
-	this->setText(LENGTH_MP3_COLUMN, lengthMp3 == 0 ? N_A : QString("%1:%2").arg(lengthMp3 / 60).arg(lengthMp3 % 60, 2, 10, QChar('0')));
-	this->setData(LENGTH_MP3_COLUMN, Qt::UserRole, QVariant(lengthMp3));
+	int lengthMp3 = song()->lengthAudio();
+	this->setText(LENGTH_AUDIO_COLUMN, lengthMp3 == 0 ? N_A : QString("%1:%2").arg(lengthMp3 / 60).arg(lengthMp3 % 60, 2, 10, QChar('0')));
+	this->setData(LENGTH_AUDIO_COLUMN, Qt::UserRole, QVariant(lengthMp3));
 	int lengthEffective = song()->lengthEffective();
 	this->setText(LENGTH_EFF_COLUMN, lengthEffective == 0 ? N_A : QString("%1:%2").arg(lengthEffective / 60).arg(lengthEffective % 60, 2, 10, QChar('0')));
 	this->setData(LENGTH_EFF_COLUMN, Qt::UserRole, QVariant(lengthEffective));
@@ -947,6 +947,26 @@ void QUSongItem::updateTextColumns() {
 	// line ending
 	QString lineEnding(song()->lineEnding() == LineEnding::CRLF ? "CRLF" : "LF");
 	this->setText(LINE_ENDING_COLUMN, lineEnding); this->setToolTip(LINE_ENDING_COLUMN, lineEnding);
+
+	// Audio
+	bool hasAudioTag = song()->customTag(AUDIO_TAG) != N_A;
+	bool hasMp3Tag =  song()->customTag(MP3_TAG) != N_A;
+	if (hasAudioTag && hasMp3Tag) {
+		this->setText(AUDIO_TAG_COLUMN, "Both");
+		this->setToolTip(AUDIO_TAG_COLUMN, "Text file has both #AUDIO and #MP3 tags");
+	}
+	else if (hasAudioTag && !hasMp3Tag) {
+		this->setText(AUDIO_TAG_COLUMN, "#AUDIO");
+		this->setToolTip(AUDIO_TAG_COLUMN, "Text file has #AUDIO tag");
+	}
+	else if (!hasAudioTag && hasMp3Tag) {
+		this->setText(AUDIO_TAG_COLUMN, "#MP3");
+		this->setToolTip(AUDIO_TAG_COLUMN, "Text file has #MP3 tag");
+	}
+	else {
+		this->setText(AUDIO_TAG_COLUMN, "None");
+		this->setToolTip(AUDIO_TAG_COLUMN, "Text file has neither #MP3 nor #AUDIO tags");
+	}
 }
 
 void QUSongItem::updateControlColumns() {

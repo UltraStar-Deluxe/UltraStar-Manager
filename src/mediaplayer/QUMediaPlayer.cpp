@@ -13,7 +13,7 @@
 #include "tstring.h"
 
 QUSongInfo::QUSongInfo(QUSongFile *song) {
-	_isValid = song->hasMp3();
+	_isValid = song->hasAudio();
 
 	gap1 = QVariant(song->gap().replace(",", ".")).toDouble();
 	gap2 = gap1;
@@ -21,10 +21,10 @@ QUSongInfo::QUSongInfo(QUSongFile *song) {
 	bpm = QVariant(song->bpm().replace(",", ".")).toDouble() * 4;
 	isRelative = song->isRelative();
 
-	filePath = song->mp3FileInfo().filePath();
+	filePath = song->audioFileInfo().filePath();
 	artist = song->artist();
 	title = song->title();
-	length = song->lengthMp3();
+	length = song->lengthAudio();
 	lengthAudio = song->lengthAudioFile();
 
 	if(song->isDuet()) {
@@ -38,7 +38,7 @@ QUSongInfo::QUSongInfo(QUSongFile *song) {
 	channels = 0;
 	sampleRate = 0;
 
-	TagLib::FileRef ref(song->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+	TagLib::FileRef ref(song->audioFileInfo().absoluteFilePath().toLocal8Bit().data());
 	if(!ref.isNull()) {
 		album = TStringToQString(ref.tag()->album());
 		if(ref.audioProperties()) {

@@ -5,7 +5,7 @@
 QUBooleanSongData::QUBooleanSongData(const QString &tag, QObject *parent): QUAbstractReportData(parent) {
 	_tag = tag;
 
-	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0) {
+	if(QString::compare(_tag, AUDIO_TAG, Qt::CaseInsensitive) == 0) {
 		this->setIcon(QIcon(":/types/music.png"));
 		this->setDescription(tr("Audio file exists?"));
 		this->setID(AUDIO_EXISTS_COL);
@@ -39,8 +39,8 @@ QUBooleanSongData::QUBooleanSongData(const QString &tag, QObject *parent): QUAbs
 QString QUBooleanSongData::textData(QUSongFile *song) {
 	bool result = false;
 
-	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0)
-		result = song->hasMp3();
+	if(QString::compare(_tag, AUDIO_TAG, Qt::CaseInsensitive) == 0)
+		result = song->hasAudio();
 	else if(QString::compare(_tag, COVER_TAG, Qt::CaseInsensitive) == 0)
 		result = song->hasCover();
 	else if(QString::compare(_tag, BACKGROUND_TAG, Qt::CaseInsensitive) == 0)
@@ -64,8 +64,8 @@ QString QUBooleanSongData::iconData(QUSongFile *song) {
 	QSettings settings;
 	bool useAltIcons = settings.value("altSongTree", false).toBool();
 
-	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0) {
-		if (song->hasMp3())
+	if(QString::compare(_tag, AUDIO_TAG, Qt::CaseInsensitive) == 0) {
+		if (song->hasAudio())
 			return useAltIcons ? ":/types/music.png" : ":/marks/tick.png";
 		else
 			return useAltIcons ? "" : ":/marks/cross.png";
@@ -109,7 +109,7 @@ QString QUBooleanSongData::headerTextData() {
 }
 
 QString QUBooleanSongData::headerIconData() {
-	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0)
+	if(QString::compare(_tag, AUDIO_TAG, Qt::CaseInsensitive) == 0)
 		return ":/types/music.png";
 	else if(QString::compare(_tag, COVER_TAG, Qt::CaseInsensitive) == 0)
 		return ":/types/cover.png";
@@ -131,8 +131,8 @@ void QUBooleanSongData::sort(QList<QUSongFile*> &songs) {
 	if(this->next())
 		this->next()->sort(songs);
 
-	if(QString::compare(_tag, MP3_TAG, Qt::CaseInsensitive) == 0)
-		std::stable_sort(songs.begin(), songs.end(), QUSongFile::hasMp3LessThan);
+	if(QString::compare(_tag, AUDIO_TAG, Qt::CaseInsensitive) == 0)
+		std::stable_sort(songs.begin(), songs.end(), QUSongFile::hasAudioLessThan);
 	else if(QString::compare(_tag, COVER_TAG, Qt::CaseInsensitive) == 0)
 		std::stable_sort(songs.begin(), songs.end(), QUSongFile::hasCoverLessThan);
 	else if(QString::compare(_tag, BACKGROUND_TAG, Qt::CaseInsensitive) == 0)

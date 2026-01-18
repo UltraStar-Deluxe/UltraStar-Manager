@@ -4,7 +4,7 @@
         <description><![CDATA[Rename audio file to "Artist - Title.*"]]></description>
         <tooltip/>
     </general>
-    <rename target="mp3" schema="%1 - %2.%3" >
+    <rename target="audio" schema="%1 - %2.%3" >
         <data source="artist" />
         <data source="title" />
         <data keepSuffix="true" />

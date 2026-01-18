@@ -650,12 +650,12 @@ void QUMainWindow::updatePreviewTree() {
 		int totalTotalTime = 0;
 		foreach(QUSongFile *song, songTree->selectedSongs()) {
 			totalSongTime += song->length();
-			totalAudioTime += song->lengthMp3();
+			totalAudioTime += song->lengthAudio();
 			totalTotalTime += song->lengthEffective();
 
 			foreach(QUSongFile *song, song->friends()) {
 				totalSongTime += song->length();
-				totalAudioTime += song->lengthMp3();
+				totalAudioTime += song->lengthAudio();
 				totalTotalTime += song->lengthEffective();
 			}
 		}
@@ -730,7 +730,7 @@ void QUMainWindow::updateViewButtons() {
  * \sa updateDetails()
  */
 void QUMainWindow::editSongSetFileLink(QTreeWidgetItem *item, int column) {
-	if(column < MP3_COLUMN || column > VIDEO_COLUMN)
+	if(column < AUDIO_COLUMN || column > VIDEO_COLUMN)
 		return;
 
 	QUSongItem *songItem = dynamic_cast<QUSongItem*>(item);
@@ -742,11 +742,11 @@ void QUMainWindow::editSongSetFileLink(QTreeWidgetItem *item, int column) {
 
 	QString fileScheme("*." + QFileInfo(songItem->text(FOLDER_COLUMN)).suffix());
 
-	if( songItem->icon(MP3_COLUMN).isNull()
+	if( songItem->icon(AUDIO_COLUMN).isNull()
 			&& QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)
-			&& column == MP3_COLUMN ) {
-		logSrv->add(QString(tr("Audio file changed from \"%1\" to: \"%2\".")).arg(song->mp3(), songItem->text(FOLDER_COLUMN)), QU::Information);
-		song->setInfo(MP3_TAG, songItem->text(FOLDER_COLUMN));
+			&& column == AUDIO_COLUMN ) {
+		logSrv->add(QString(tr("Audio file changed from \"%1\" to: \"%2\".")).arg(song->audio(), songItem->text(FOLDER_COLUMN)), QU::Information);
+		song->setAudioInfo(songItem->text(FOLDER_COLUMN));
 		song->save();
 	} else if( songItem->icon(COVER_COLUMN).isNull()
 			&& QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)
@@ -797,8 +797,12 @@ void QUMainWindow::editSongSetDetail(QTableWidgetItem *item) {
 		dlg.update(QString("%1 - %2").arg(songItem->song()->artist(), songItem->song()->title()));
 		if(dlg.cancelled()) break;
 
+		if (tag == AUDIO_TAG)
+			songItem->song()->setAudioInfo(text);
+		else
+			songItem->song()->setInfo(tag, text);
+
 		// delete medley tags if CALCMEDLEY_TAG is set to OFF
-		songItem->song()->setInfo(tag, text);
 		if(tag == CALCMEDLEY_TAG && text == "OFF") {
 			songItem->song()->setInfo(MEDLEYSTARTBEAT_TAG, "");
 			songItem->song()->setInfo(MEDLEYENDBEAT_TAG, "");
@@ -1666,14 +1670,14 @@ void QUMainWindow::copyAudioToPath() {
 	dlg.show();
 
 	foreach(QUSongFile *song, songDB->songs()) {
-		if(!song->hasMp3())
+		if(!song->hasAudio())
 			continue;
 
-		dlg.update(song->mp3FileInfo().fileName());
+		dlg.update(song->audioFileInfo().fileName());
 		if(dlg.cancelled()) break;
 
 		// TODO: copy files
-		QFile::copy(song->mp3FileInfo().filePath(), QFileInfo(QDir(target), song->mp3FileInfo().fileName()).filePath());
+		QFile::copy(song->audioFileInfo().filePath(), QFileInfo(QDir(target), song->audioFileInfo().fileName()).filePath());
 	}
 
 	logSrv->add(tr("Backup for audio files finished."), QU::Information);

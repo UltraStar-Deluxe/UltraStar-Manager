@@ -182,6 +182,28 @@ public:
 	}
 	QString toString() const { return QString("%1.%2.%3").arg(_versionMajor).arg(_versionMinor).arg(_versionPatch); }
 	bool isValid() const { return (_versionMajor > 0) && (_versionMinor >= 0) && (_versionPatch >= 0); }
+	bool operator==(const QUSongVersion &other) const { return _versionMajor == other._versionMajor && _versionMinor == other._versionMinor && _versionPatch == other._versionPatch; }
+	bool operator>(const QUSongVersion &other) const {
+		return _versionMajor > other._versionMajor
+		|| (_versionMajor == other._versionMajor && _versionMinor > other._versionMinor)
+		|| (_versionMajor == other._versionMajor && _versionMinor == other._versionMinor && _versionPatch > other._versionPatch);
+	}
+	bool operator>=(const QUSongVersion &other) const {
+		return _versionMajor > other._versionMajor
+		|| (_versionMajor == other._versionMajor && _versionMinor > other._versionMinor)
+		|| (_versionMajor == other._versionMajor && _versionMinor == other._versionMinor && _versionPatch >= other._versionPatch);
+	}
+	bool operator<(const QUSongVersion &other) const {
+		return _versionMajor < other._versionMajor
+		|| (_versionMajor == other._versionMajor && _versionMinor < other._versionMinor)
+		|| (_versionMajor == other._versionMajor && _versionMinor == other._versionMinor && _versionPatch < other._versionPatch);
+	}
+	bool operator<=(const QUSongVersion &other) const {
+		return _versionMajor < other._versionMajor
+		|| (_versionMajor == other._versionMajor && _versionMinor < other._versionMinor)
+		|| (_versionMajor == other._versionMajor && _versionMinor == other._versionMinor && _versionPatch <= other._versionPatch);
+	}
+	void operator=(const QUSongVersion &other) { _versionMajor = other._versionMajor; _versionMinor = other._versionMinor; _versionPatch = other._versionPatch; }
 };
 
 class QUSongInterface: public QObject {
@@ -190,7 +212,7 @@ class QUSongInterface: public QObject {
 	// normal tag properties
 	Q_PROPERTY(QString artist READ artist)
 	Q_PROPERTY(QString title READ title)
-	Q_PROPERTY(QString mp3 READ mp3)
+	Q_PROPERTY(QString audio READ audio)
 	Q_PROPERTY(QString bpm READ bpm)
 	Q_PROPERTY(QString gap READ gap)
 	Q_PROPERTY(QString video READ video)
@@ -228,7 +250,7 @@ class QUSongInterface: public QObject {
 	Q_PROPERTY(QString speed READ speedFormatted)
 	Q_PROPERTY(QString titlecompact READ titleCompact)
 	// boolean properties
-	Q_PROPERTY(bool hasMp3 READ hasMp3)
+	Q_PROPERTY(bool hasAudio READ hasAudio)
 	Q_PROPERTY(bool hasCover READ hasCover)
 	Q_PROPERTY(bool hasBackground READ hasBackground)
 	Q_PROPERTY(bool hasVideo READ hasVideo)
@@ -250,7 +272,7 @@ public:
 	virtual QString artist() const = 0;
 	virtual QString title() const = 0;
 	virtual QString version() const = 0;
-	virtual QString mp3() const = 0;
+	virtual QString audio() const = 0;
 	virtual QString bpm() const = 0;
 	virtual QString gap() const = 0;
 	virtual QString video() const = 0;
@@ -287,7 +309,7 @@ public:
 	virtual QString relativeFilePath() const = 0;
 	virtual QString txt() const = 0;
 
-	virtual bool hasMp3() const = 0;
+	virtual bool hasAudio() const = 0;
 	virtual bool hasCover() const = 0;
 	virtual bool hasBackground() const = 0;
 	virtual bool hasVideo() const = 0;
@@ -304,7 +326,7 @@ public:
 
 	virtual QString titleCompact() const = 0;
 	virtual int length() const = 0;
-	virtual int lengthMp3() const = 0;
+	virtual int lengthAudio() const = 0;
 	virtual int lengthEffective() const = 0;
 	virtual double syllablesPerSecond(bool bypassCache = true) const = 0;
 
@@ -315,7 +337,7 @@ public:
 
 	virtual QFileInfo songFileInfo() const = 0;
 
-	virtual QFileInfo mp3FileInfo() const = 0;
+	virtual QFileInfo audioFileInfo() const = 0;
 	virtual QFileInfo coverFileInfo() const = 0;
 	virtual QFileInfo backgroundFileInfo() const = 0;
 	virtual QFileInfo videoFileInfo() const = 0;
@@ -323,10 +345,11 @@ public:
 	virtual LineEnding lineEnding() const = 0;
 
 	virtual void setInfo(const QString &key, const QString &value) = 0;
+	virtual void setAudioInfo(const QString &value) = 0;
 
 	virtual void renameSongDir(const QString &newName) = 0;
 	virtual void renameSongTxt(const QString &newName) = 0;
-	virtual void renameSongMp3(const QString &newName) = 0;
+	virtual void renameSongAudio(const QString &newName) = 0;
 	virtual void renameSongCover(const QString &newName) = 0;
 	virtual void renameSongBackground(const QString &newName) = 0;
 	virtual void renameSongVideo(const QString &newName) = 0;

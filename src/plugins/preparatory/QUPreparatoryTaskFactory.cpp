@@ -34,6 +34,7 @@ QList<int> QUPreparatoryTaskFactory::types() const {
 	result << QUPreparatoryTask::AddMissingDuetTags;
 	result << QUPreparatoryTask::FixLineEndings;
 	result << QUPreparatoryTask::SetTextVersion;
+	result << QUPreparatoryTask::SetAudioTagName;
 	return result;
 }
 

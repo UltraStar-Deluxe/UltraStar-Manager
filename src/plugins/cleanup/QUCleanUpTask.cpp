@@ -80,7 +80,7 @@ void QUCleanUpTask::startOn(QUSongInterface *song) {
 		bool artworkBGToID3 = smartSettings().at(10)->value().toBool();
 		
 		// currently only support MP3 files (FIXME/TODO)
-		if(_currentSong->mp3().toLower().endsWith(".mp3")) {
+		if(_currentSong->audio().toLower().endsWith(".mp3")) {
 			/*
 			// with FileRef --> fails (FIXME/TODO)
 			qDebug() << "ID3 song artist (ref) before: " << this->ref().tag()->artist().toCString() << Qt::endl;
@@ -92,7 +92,7 @@ void QUCleanUpTask::startOn(QUSongInterface *song) {
 			*/
 			
 			//with MPEG::File --> seems to work
-			TagLib::MPEG::File f(_currentSong->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+			TagLib::MPEG::File f(_currentSong->audioFileInfo().absoluteFilePath().toLocal8Bit().data());
 			
 			if(artistToID3) {
 				if(f.hasID3v1Tag()) { f.ID3v1Tag()->setArtist(_currentSong->artist() == N_A ? TagLib::String() : QStringToTString(_currentSong->artist())); }
@@ -379,5 +379,5 @@ TagLib::FileRef QUCleanUpTask::ref() {
 	if(!_currentSong)
 		return TagLib::FileRef();
 
-	return TagLib::FileRef(_currentSong->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+	return TagLib::FileRef(_currentSong->audioFileInfo().absoluteFilePath().toLocal8Bit().data());
 }

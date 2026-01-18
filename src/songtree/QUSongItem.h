@@ -12,7 +12,7 @@
 #define ARTIST_COLUMN			1
 #define TITLE_COLUMN			2
 
-#define MP3_COLUMN				3
+#define AUDIO_COLUMN	    	3
 #define COVER_COLUMN			4
 #define BACKGROUND_COLUMN		5
 #define VIDEO_COLUMN			6
@@ -30,7 +30,7 @@
 
 #define LENGTH_COLUMN			17
 #define LENGTH_DIFF_COLUMN		18
-#define LENGTH_MP3_COLUMN		19
+#define LENGTH_AUDIO_COLUMN		19
 #define LENGTH_EFF_COLUMN		20
 #define SPEED_COLUMN			21
 
@@ -48,14 +48,15 @@
 #define CREATOR_COLUMN			32
 #define TAGS_COLUMN				33
 #define LINE_ENDING_COLUMN      34
+#define AUDIO_TAG_COLUMN        35
 
-#define RELATIVE_COLUMN			35
-#define BPM_COLUMN				36
-#define GAP_COLUMN				37
+#define RELATIVE_COLUMN			36
+#define BPM_COLUMN				37
+#define GAP_COLUMN				38
 
-#define DUPLICATE_ID_COLUMN		38
+#define DUPLICATE_ID_COLUMN		39
 
-#define FIRST_CUSTOM_TAG_COLUMN	39
+#define FIRST_CUSTOM_TAG_COLUMN	40
 
 /*!
  * This class encapsulates a pointer to a QUSongFile object to be able
@@ -68,7 +69,7 @@ public:
 	void update();
 	void updateAsDirectory(bool showRelativePath = false);
 	void updateAsTxt();
-	void updateAsMp3();
+	void updateAsAudio();
 	void updateAsImage();
 	void updateAsVideo();
 	void updateAsLicense();

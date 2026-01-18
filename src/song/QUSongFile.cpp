@@ -120,7 +120,7 @@ bool QUSongFile::pathLessThan (QUSongFile *s1, QUSongFile *s2)				{ return QStri
 bool QUSongFile::filePathLessThan (QUSongFile *s1, QUSongFile *s2)			{ return QString::compare(s1->filePath(), s2->filePath(), Qt::CaseInsensitive) < 0; }
 bool QUSongFile::relativeFilePathLessThan (QUSongFile *s1, QUSongFile *s2)	{ return QString::compare(s1->relativeFilePath(), s2->relativeFilePath(), Qt::CaseInsensitive) < 0; }
 
-bool QUSongFile::hasMp3LessThan (QUSongFile *s1, QUSongFile *s2)			{ return !s1->hasMp3() && s2->hasMp3(); }
+bool QUSongFile::hasAudioLessThan (QUSongFile *s1, QUSongFile *s2)			{ return !s1->hasAudio() && s2->hasAudio(); }
 bool QUSongFile::hasCoverLessThan (QUSongFile *s1, QUSongFile *s2)			{ return !s1->hasCover() && s2->hasCover(); }
 bool QUSongFile::hasBackgroundLessThan (QUSongFile *s1, QUSongFile *s2)		{ return !s1->hasBackground() && s2->hasBackground(); }
 bool QUSongFile::hasVideoLessThan (QUSongFile *s1, QUSongFile *s2)			{ return !s1->hasVideo() && s2->hasVideo(); }
@@ -356,6 +356,26 @@ void QUSongFile::setInfo(const QString &tag, const QString &value) {
 	emit dataChanged(tag, value);
 }
 
+
+/* #MP3 and #AUDIO both represent the same data, but txts could have one or the other
+*  Therefore, always call this wrapper function when setting the audio file information instead
+*  of directly calling setInfo
+*/
+void QUSongFile::setAudioInfo(const QString &value) {
+	if (_info.contains(AUDIO_TAG)) {
+		setInfo(AUDIO_TAG, value);
+
+		// Files should not have both #AUDIO and #MP3, but let's handle this edge case anyways
+		if (_info.contains(MP3_TAG))
+			setInfo(MP3_TAG, value);
+	}
+	else if (_info.contains(MP3_TAG))
+		setInfo(MP3_TAG, value);
+	else
+		setInfo(_version >= QUSongVersion::SupportedVersion::v1_1_0 ? AUDIO_TAG : MP3_TAG, value);
+}
+
+
 /*!
  * Checks whether the configuration information about the
  * tag order is correct (especially the count of the tags).
@@ -378,8 +398,8 @@ void QUSongFile::verifyTags(QStringList &tags) {
  * Checks whether the mp3 file really exists and can be used by US.
  * \returns True if the mp3 specified by the song file really exists.
  */
-bool QUSongFile::hasMp3() const {
-	return !mp3().isEmpty() && mp3FileInfo().exists() && QUSongSupport::allowedAudioFiles().contains("*." + mp3FileInfo().suffix(), Qt::CaseInsensitive);
+bool QUSongFile::hasAudio() const {
+	return !audio().isEmpty() && audioFileInfo().exists() && QUSongSupport::allowedAudioFiles().contains("*." + audioFileInfo().suffix(), Qt::CaseInsensitive);
 }
 
 /*!
@@ -520,8 +540,8 @@ int QUSongFile::calculateSongLength() const {
 /*!
  * \returns the length of the audio file, if one exists. That length can be reset by the #END tag.
  */
-int QUSongFile::lengthMp3() const {
-	TagLib::FileRef ref(this->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+int QUSongFile::lengthAudio() const {
+	TagLib::FileRef ref(this->audioFileInfo().absoluteFilePath().toLocal8Bit().data());
 
 	if(ref.isNull() || !ref.audioProperties())
 		return 0;
@@ -537,14 +557,14 @@ int QUSongFile::lengthMp3() const {
 }
 
 int QUSongFile::lengthEffective() const {
-	return qMax(0, this->lengthMp3() - QVariant(this->start()).toInt());
+	return qMax(0, this->lengthAudio() - QVariant(this->start()).toInt());
 }
 
 /*!
  * \returns the length of the audio file, if one exists. #END tag will be ignored.
  */
 int QUSongFile::lengthAudioFile() const {
-	TagLib::FileRef ref(this->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+	TagLib::FileRef ref(this->audioFileInfo().absoluteFilePath().toLocal8Bit().data());
 
 	if(ref.isNull() || !ref.audioProperties())
 		return 0;
@@ -723,6 +743,10 @@ bool QUSongFile::save(bool force) {
 		return false;
 	}
 
+	// Upgrade text version if required
+	if (customTag(AUDIO_TAG) != N_A && setMinimumVersion(QUSongVersion::SupportedVersion::v1_1_0))
+		logSrv->add(tr("Text file \"%1\" was upgraded to v1.1.0 because it has the #AUDIO tag").arg(this->songFileInfo().fileName()), QU::Information);
+
 	QStringList tags;
 	QSettings settings;
 	tags = settings.value("tagOrder", QUSongSupport::availableTags()).toStringList();
@@ -853,15 +877,15 @@ void QUSongFile::renameSongTxt(const QString &newName) {
  * current mp3 file has to be correct or the file cannot be found and renamed.
  * \param newName the new name (avoid illegal characters for your OS)
  */
-void QUSongFile::renameSongMp3(const QString &newName) {
-	QString oldName(mp3());
+void QUSongFile::renameSongAudio(const QString &newName) {
+	QString oldName(audio());
 
 	if(!rename(_fi.dir(), oldName, newName)) {
 		logSrv->add(QString(tr("Could NOT rename the audio file \"%1\" to \"%2\".")).arg(oldName, newName), QU::Warning);
 		return;
 	}
 
-	setInfo(MP3_TAG, newName);
+	setAudioInfo( newName);
 	logSrv->add(QString(tr("Audio file renamed from: \"%1\" to: \"%2\".")).arg(oldName, newName), QU::Information);
 
 	if(QString::compare(video(), oldName, Qt::CaseInsensitive) == 0) {
@@ -930,7 +954,7 @@ void QUSongFile::renameSongVideo(const QString &newName) {
 	setInfo(VIDEO_TAG, newName);
 	logSrv->add(QString(tr("Video file renamed from: \"%1\" to: \"%2\".")).arg(oldName, newName), QU::Information);
 
-	if(QString::compare(mp3(), oldName, Qt::CaseInsensitive) == 0) {
+	if(QString::compare(audio(), oldName, Qt::CaseInsensitive) == 0) {
 		setInfo(MP3_TAG, newName);
 		logSrv->add(QString(tr("Audio file renamed from: \"%1\" to: \"%2\".")).arg(oldName, newName), QU::Information);
 	}
@@ -941,84 +965,84 @@ void QUSongFile::renameSongVideo(const QString &newName) {
  * artist and title information for the song file.
  */
 void QUSongFile::useID3TagForArtist() {
-	if(!hasMp3()) {
+	if(!hasAudio()) {
 		logSrv->add(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for artist.")).arg(this->artist(), this->title()), QU::Warning);
 		return;
 	}
 
 	// TOFIX: Possible App Crash!!! Check NULL Pointer!
-	TagLib::FileRef ref(mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+	TagLib::FileRef ref(audioFileInfo().absoluteFilePath().toLocal8Bit().data());
 
 	QString oldArtist(this->artist());
 	QString newArtist(TStringToQString(ref.tag()->artist()));
 
 	if(newArtist.isEmpty()) {
-		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about an artist.")).arg(this->mp3()), QU::Warning);
+		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about an artist.")).arg(this->audio()), QU::Warning);
 		return;
 	}
 
 	setInfo(ARTIST_TAG, newArtist);
-	logSrv->add(QString(tr("ID3 tag of \"%1\" used for artist. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3(), oldArtist, this->artist()), QU::Information);
+	logSrv->add(QString(tr("ID3 tag of \"%1\" used for artist. Changed from: \"%2\" to: \"%3\".")).arg(this->audio(), oldArtist, this->artist()), QU::Information);
 }
 
 void QUSongFile::useID3TagForTitle() {
-	if(!hasMp3()) {
+	if(!hasAudio()) {
 		logSrv->add(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for title.")).arg(this->artist(), this->title()), QU::Warning);
 		return;
 	}
 
-	TagLib::FileRef ref(mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+	TagLib::FileRef ref(audioFileInfo().absoluteFilePath().toLocal8Bit().data());
 
 	QString oldTitle(this->title());
 	QString newTitle(TStringToQString(ref.tag()->title()));
 
 	if(newTitle.isEmpty()) {
-		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about a title.")).arg(this->mp3()), QU::Warning);
+		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about a title.")).arg(this->audio()), QU::Warning);
 		return;
 	}
 
 	setInfo(TITLE_TAG, newTitle);
-	logSrv->add(QString(tr("ID3 tag of \"%1\" used for title. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3(), oldTitle, this->title()), QU::Information);
+	logSrv->add(QString(tr("ID3 tag of \"%1\" used for title. Changed from: \"%2\" to: \"%3\".")).arg(this->audio(), oldTitle, this->title()), QU::Information);
 }
 
 void QUSongFile::useID3TagForGenre() {
-	if(!hasMp3()) {
+	if(!hasAudio()) {
 		logSrv->add(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for genre.")).arg(this->artist(), this->title()), QU::Warning);
 		return;
 	}
 
-	TagLib::FileRef ref(mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+	TagLib::FileRef ref(audioFileInfo().absoluteFilePath().toLocal8Bit().data());
 
 	QString oldGenre(this->genre());
 	QString newGenre(TStringToQString(ref.tag()->genre()));
 
 	if(newGenre.isEmpty()) {
-		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about a genre.")).arg(this->mp3()), QU::Warning);
+		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about a genre.")).arg(this->audio()), QU::Warning);
 		return;
 	}
 
 	setInfo(GENRE_TAG, newGenre);
-	logSrv->add(QString(tr("ID3 tag of \"%1\" used for genre. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3(), oldGenre, this->genre()), QU::Information);
+	logSrv->add(QString(tr("ID3 tag of \"%1\" used for genre. Changed from: \"%2\" to: \"%3\".")).arg(this->audio(), oldGenre, this->genre()), QU::Information);
 }
 
 void QUSongFile::useID3TagForYear() {
-	if(!hasMp3()) {
+	if(!hasAudio()) {
 		logSrv->add(QString(tr("The song \"%1 - %2\" has no audio file assigned. Cannot use ID3 tag for year.")).arg(this->artist(), this->title()), QU::Warning);
 		return;
 	}
 
-	TagLib::FileRef ref(mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+	TagLib::FileRef ref(audioFileInfo().absoluteFilePath().toLocal8Bit().data());
 
 	QString oldYear(this->year());
 	QString newYear(QVariant(ref.tag()->year()).toString());
 
 	if(newYear == "0") {
-		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about a year.")).arg(this->mp3()), QU::Warning);
+		logSrv->add(QString(tr("The audio file %1 does not contain ID3 tag information about a year.")).arg(this->audio()), QU::Warning);
 		return;
 	}
 
 	setInfo(YEAR_TAG, newYear);
-	logSrv->add(QString(tr("ID3 tag of \"%1\" used for year. Changed from: \"%2\" to: \"%3\".")).arg(this->mp3(), oldYear, this->year()), QU::Information);
+	logSrv->add(QString(tr("ID3 tag of \"%1\" used for year. Changed from: \"%2\" to: \"%3\".")).arg(this->audio(), oldYear, this->year()), QU::Information);
 }
 
 void QUSongFile::removeUnsupportedTags(const QStringList &filter, bool useFilter) {
@@ -1052,9 +1076,9 @@ void QUSongFile::autoSetFile(const QFileInfo &fi, bool force, const QString &cov
 			logSrv->add(QString(tr("Assigned \"%1\" as video file for \"%2 - %3\".")).arg(video(), artist(), title()), QU::Information);
 		}
 	} else if(QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)) {
-		if(!this->hasMp3() || force) {
-			this->setInfo(MP3_TAG, fi.fileName());
-			logSrv->add(QString(tr("Assigned \"%1\" as audio file for \"%2 - %3\".")).arg(mp3(), artist(), title()), QU::Information);
+		if(!this->hasAudio() || force) {
+			this->setAudioInfo(fi.fileName());
+			logSrv->add(QString(tr("Assigned \"%1\" as audio file for \"%2 - %3\".")).arg(audio(), artist(), title()), QU::Information);
 		}
 	} else if(QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)) {
 		static const QRegularExpression reCover(coverPattern, QRegularExpression::CaseInsensitiveOption);
@@ -1095,14 +1119,14 @@ void QUSongFile::deleteUnusedFiles(const QStringList &filter, const QString &pat
 	QFileInfoList fiList = _fi.dir().entryInfoList(QDir::Files, QDir::Name);
 
 	QStringList usedFileNames;
-	usedFileNames << mp3();
+	usedFileNames << audio();
 	usedFileNames << cover();
 	usedFileNames << background();
 	usedFileNames << video();
 	usedFileNames << songFileInfo().fileName();
 
 	foreach(QUSongFile *song, friends()) {
-		usedFileNames << song->mp3();
+		usedFileNames << song->audio();
 		usedFileNames << song->cover();
 		usedFileNames << song->background();
 		usedFileNames << song->video();
@@ -1125,7 +1149,7 @@ void QUSongFile::deleteUnusedFiles(const QStringList &filter, const QString &pat
 }
 
 void QUSongFile::clearInvalidFileTags() {
-	if( (this->mp3() != N_A || this->start() != N_A || this->end() != N_A) && !this->hasMp3()) {
+	if( (this->audio() != N_A || this->start() != N_A || this->end() != N_A) && !this->hasAudio()) {
 		this->setInfo(MP3_TAG, "");
 		this->setInfo(START_TAG, "");
 		this->setInfo(END_TAG, "");
@@ -1203,13 +1227,13 @@ void QUSongFile::moveAllFiles(const QString &newRelativePath) {
 }
 
 /*!
- * Uses the #END tag to close the gap between length() and lengthMp3(). But only if an
+ * Uses the #END tag to close the gap between length() and lengthAudio(). But only if an
  * audio file is present and longer than the song.
  *
  * A little gap is appended.
  */
 void QUSongFile::fixAudioLength(int buffer) {
-	if(!hasMp3()) {
+	if(!hasAudio()) {
 		logSrv->add(QString(tr("Could not fix audio length because no audio file is present: \"%1 - %2\"")).arg(artist(), title()), QU::Warning);
 		return;
 	}
@@ -1218,7 +1242,7 @@ void QUSongFile::fixAudioLength(int buffer) {
 	setInfo(END_TAG, "");
 
 	int length = this->length();
-	int lengthMp3 = this->lengthMp3(); // length of audio file because #END was set to 0
+	int lengthMp3 = this->lengthAudio(); // length of audio file because #END was set to 0
 
 	if(length > lengthMp3) {
 		logSrv->add(QString(tr("Could not fix audio length because audio file is shorter than song: \"%1 - %2\"")).arg(artist(), title()), QU::Warning);
@@ -1619,7 +1643,7 @@ void QUSongFile::updateReplayGain()
 {
 	delete _rgInfo;
 	_rgInfo = nullptr;
-	QFileInfo fi = mp3FileInfo();
+	QFileInfo fi = audioFileInfo();
 	TagLib::FileRef file(fi.absoluteFilePath().toLocal8Bit().data(), false);
 	TagLib::File *f = file.file();
 	TagLib::MP4::File *mp4File = nullptr;
@@ -1660,4 +1684,12 @@ void QUSongFile::updateReplayGain()
 				};
 		}
 	}
+}
+
+bool QUSongFile::setMinimumVersion(const QUSongVersion &version) {
+	if (_version < version) {
+		_version = version;
+		return true;
+	}
+	return false;
 }

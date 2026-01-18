@@ -55,7 +55,7 @@ public:
 	static bool filePathLessThan (QUSongFile *s1, QUSongFile *s2);
 	static bool relativeFilePathLessThan (QUSongFile *s1, QUSongFile *s2);
 
-	static bool hasMp3LessThan (QUSongFile *s1, QUSongFile *s2);
+	static bool hasAudioLessThan (QUSongFile *s1, QUSongFile *s2);
 	static bool hasCoverLessThan (QUSongFile *s1, QUSongFile *s2);
 	static bool hasBackgroundLessThan (QUSongFile *s1, QUSongFile *s2);
 	static bool hasVideoLessThan (QUSongFile *s1, QUSongFile *s2);
@@ -70,8 +70,15 @@ public slots:
 	QString version() const			{return _info.value(VERSION_TAG,			QString(N_A));}
 	QString artist() const			{return _info.value(ARTIST_TAG,				QString(N_A));}
 	QString title() const			{return _info.value(TITLE_TAG,				QString(N_A));}
-	QString mp3() const				{return _info.value(MP3_TAG,				QString(N_A));}
-	QString audio() const			{return _info.value(AUDIO_TAG,				QString(N_A));}
+	QString audio() const
+	{
+		if (_info.contains(AUDIO_TAG))
+			return _info[AUDIO_TAG];
+		else if (_info.contains(MP3_TAG))
+			return _info[MP3_TAG];
+		else
+			return N_A;
+	}
 	QString audiourl() const		{return _info.value(AUDIOURL_TAG,			QString(N_A));}
 	QString vocals() const			{return _info.value(VOCALS_TAG,				QString(N_A));}
 	QString instrumental() const	{return _info.value(INSTRUMENTAL_TAG,		QString(N_A));}
@@ -116,7 +123,7 @@ public slots:
 	QString relativeFilePath() const;
 	QString txt() const {return _fi.fileName();}
 
-	bool hasMp3() const;
+	bool hasAudio() const;
 	bool hasReplayGain() const { return _rgInfo != nullptr; }
 	bool hasCover() const;
 	bool hasBackground() const;
@@ -134,7 +141,7 @@ public slots:
 
 	QString titleCompact() const;
 	int length() const;
-	int lengthMp3() const;
+	int lengthAudio() const;
 	int lengthEffective() const;
 	int lengthAudioFile() const;
 	double syllablesPerSecond(bool bypassCache = true) const;
@@ -146,17 +153,18 @@ public slots:
 
 	QFileInfo songFileInfo() const { QFileInfo result(_fi); result.refresh(); return result; } //!< \returns a file info for the current US song file
 
-	QFileInfo mp3FileInfo() const {return QFileInfo(_fi.dir(), mp3());} //!< \returns a file info for the mp3 file
+	QFileInfo audioFileInfo() const {return QFileInfo(_fi.dir(), audio());} //!< \returns a file info for the mp3 file
 	QFileInfo coverFileInfo() const {return QFileInfo(_fi.dir(), cover());} //!< \returns a file info for the cover file
 	QFileInfo backgroundFileInfo() const {return QFileInfo(_fi.dir(), background());} //!< \returns a file info for the background file
 	QFileInfo videoFileInfo() const {return QFileInfo(_fi.dir(), video());} //!< \returns a file info for the video file
 
 	void setInfo(const QString &key, const QString &value);
+	void setAudioInfo(const QString &value) override;
 
 	bool save(bool force = false);
 	void renameSongDir(const QString &newName);
 	void renameSongTxt(const QString &newName);
-	void renameSongMp3(const QString &newName);
+	void renameSongAudio(const QString &newName);
 	void renameSongCover(const QString &newName);
 	void renameSongBackground(const QString &newName);
 	void renameSongVideo(const QString &newName);
@@ -262,6 +270,7 @@ private:
 	void initScoreFile();
 
 	bool isValidUTF8(QFile &in) const;
+	bool setMinimumVersion(const QUSongVersion &version);
 };
 
 #endif /*QUSONGFILE_H_*/

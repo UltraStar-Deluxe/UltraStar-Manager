@@ -231,14 +231,14 @@ void QUReplayGainScanner::run()
     foreach(QUSongItem *songItem, _selectedItems) {
         QUSongFile *song = songItem->song();
 		emit updateProgress(QString("%1 - %2").arg(song->artist(), song->title()));
-        if (!song->hasMp3()) {
+        if (!song->hasAudio()) {
             logSrv->add(tr("[ReplayGain Scanner] Song '%1 - %2' has no valid audio file")
                             .arg(song->artist()).arg(song->title()),
                         QU::Error);
             continue;
         }
 
-        QUReplayGainFile file(song->mp3FileInfo().absoluteFilePath());
+        QUReplayGainFile file(song->audioFileInfo().absoluteFilePath());
         connect(this, &QUReplayGainScanner::userCancelled, &file, &QUReplayGainFile::cancel);
         if (file.scan() && file.tag()) {
             song->updateReplayGain();

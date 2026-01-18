@@ -105,7 +105,7 @@ void QUReportDialog::initReportList() {
 	reportList->addItem(new QUReportItem(new QUSongTagData(CREATOR_TAG)));
 	reportList->addItem(new QUReportItem(new QUSongTagData(TAGS_TAG)));
 
-	reportList->addItem(new QUReportItem(new QUBooleanSongData(MP3_TAG)));
+	reportList->addItem(new QUReportItem(new QUBooleanSongData(AUDIO_TAG)));
 	reportList->addItem(new QUReportItem(new QUBooleanSongData(COVER_TAG)));
 	reportList->addItem(new QUReportItem(new QUBooleanSongData(BACKGROUND_TAG)));
 	reportList->addItem(new QUReportItem(new QUBooleanSongData(VIDEO_TAG)));
