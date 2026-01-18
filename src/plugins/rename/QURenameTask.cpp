@@ -102,7 +102,7 @@ void QURenameTask::startOn(QUSongInterface *song) {
 		 if (QString::compare(this->_target, "dir", Qt::CaseInsensitive) == 0)		song->renameSongDir(schema);
 	else if (QString::compare(this->_target, "path", Qt::CaseInsensitive) == 0)	   song->moveAllFiles(schema);
 	else if (QString::compare(this->_target, "txt", Qt::CaseInsensitive) == 0)		song->renameSongTxt(schema);
-	else if (QString::compare(this->_target, "mp3", Qt::CaseInsensitive) == 0)		song->renameSongMp3(schema);
+	else if (QString::compare(this->_target, "audio", Qt::CaseInsensitive) == 0)		song->renameSongAudio(schema);
 	else if (QString::compare(this->_target, "cover", Qt::CaseInsensitive) == 0)	  song->renameSongCover(schema);
 	else if (QString::compare(this->_target, "background", Qt::CaseInsensitive) == 0) song->renameSongBackground(schema);
 	else if (QString::compare(this->_target, "video", Qt::CaseInsensitive) == 0)	  song->renameSongVideo(schema);
@@ -122,7 +122,7 @@ int QURenameTask::configure(QWidget *parent) {
  * \returns a list of all possible targets used by rename tasks.
  */
 QStringList QURenameTask::availableTargets() {
-	return QString("dir path txt mp3 cover background video").split(" ");
+	return QString("dir path txt audio cover background video").split(" ");
 }
 
 QStringList QURenameTask::availableSources() {
@@ -145,7 +145,7 @@ QStringList QURenameTask::availableSpecialSources() {
 }
 
 QStringList QURenameTask::availableCommonSources() {
-	return QString("artist title titlecompact mp3 bpm gap video videogap cover background start language relative edition genre year end creator dir txt").split(" ");
+	return QString("artist title titlecompact audio bpm gap video videogap cover background start language relative edition genre year end creator dir txt").split(" ");
 }
 
 /*!

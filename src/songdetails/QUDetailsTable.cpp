@@ -55,8 +55,7 @@ void QUDetailsTable::initTagColumn() {
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/source.png"),				tr("Source")));
 
 	this->initSeparator(tr("Files"), row++);
-	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/music.png"),				tr("MP3")));
-	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/music.png"),				tr("Audio")));
+	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/music.png"),				tr("Audio/MP3")));
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/music.png"),				tr("Vocals")));
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/music.png"),				tr("Instrumental")));
 	this->setItem(row++, 0, new QUTagItem(QIcon(":/types/cover.png"),				tr("Cover")));
@@ -117,7 +116,6 @@ void QUDetailsTable::initValueColumn() {
 
 	/* separator here - skip a row */
 	row++;
-	this->setItem(row++, 1, new QUDetailItem(MP3_TAG));
 	this->setItem(row++, 1, new QUDetailItem(AUDIO_TAG));
 	this->setItem(row++, 1, new QUDetailItem(VOCALS_TAG));
 	this->setItem(row++, 1, new QUDetailItem(INSTRUMENTAL_TAG));

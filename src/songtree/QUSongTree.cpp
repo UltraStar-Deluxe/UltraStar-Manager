@@ -77,9 +77,9 @@ void QUSongTree::initHorizontalHeader() {
 	header->setToolTip(TITLE_COLUMN, tr("Shows whether your folder includes the title correctly:<br><i>Artist - Title ...</i>"));
 	header->setSizeHint(TITLE_COLUMN, QSize(25,0));
 
-	header->setIcon(MP3_COLUMN, QIcon(":/types/music.png"));
-	header->setToolTip(MP3_COLUMN, tr("Shows whether the song text file points to an <b>audio file</b> that can be found by UltraStar"));
-	header->setSizeHint(MP3_COLUMN, QSize(25,0));
+	header->setIcon(AUDIO_COLUMN, QIcon(":/types/music.png"));
+	header->setToolTip(AUDIO_COLUMN, tr("Shows whether the song text file points to an <b>audio file</b> that can be found by UltraStar"));
+	header->setSizeHint(AUDIO_COLUMN, QSize(25,0));
 	header->setIcon(COVER_COLUMN, QIcon(":/types/cover.png"));
 	header->setToolTip(COVER_COLUMN, tr("Shows whether the song text file points to a <b>cover picture</b> that can be found by UltraStar"));
 	header->setSizeHint(COVER_COLUMN, QSize(25,0));
@@ -145,6 +145,8 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(TAGS_COLUMN, QIcon(":/types/tags.png"));
 	header->setText(LINE_ENDING_COLUMN, tr("Line Endings"));
 	header->setToolTip(LINE_ENDING_COLUMN, tr("Shows whether the text file has CRLF or LF line endings"));
+	header->setText(AUDIO_TAG_COLUMN, tr("Audio Tag"));
+	header->setToolTip(AUDIO_TAG_COLUMN, tr("Shows whether the text file uses #AUDIO or #MP3 to specify the audio file"));
 
 	header->setText(LENGTH_COLUMN, tr("Song"));
 	header->setIcon(LENGTH_COLUMN, QIcon(":/types/time_song.png"));
@@ -154,9 +156,9 @@ void QUSongTree::initHorizontalHeader() {
 	header->setToolTip(LENGTH_DIFF_COLUMN, tr("Indicates a problem with the difference of <i>song length</i> and <i>audio length</i>.<br><br>The tooltip shows the difference."));
 	header->setSizeHint(LENGTH_DIFF_COLUMN, QSize(25,0));
 
-	header->setText(LENGTH_MP3_COLUMN, tr("Audio"));
-	header->setIcon(LENGTH_MP3_COLUMN, QIcon(":/types/time_mp3.png"));
-	header->setToolTip(LENGTH_MP3_COLUMN, tr("Shows the length of audio file, if present.<br><br>Can be reset through <b>#END</b> tag."));
+	header->setText(LENGTH_AUDIO_COLUMN, tr("Audio"));
+	header->setIcon(LENGTH_AUDIO_COLUMN, QIcon(":/types/time_mp3.png"));
+	header->setToolTip(LENGTH_AUDIO_COLUMN, tr("Shows the length of audio file, if present.<br><br>Can be reset through <b>#END</b> tag."));
 
 	header->setText(LENGTH_EFF_COLUMN, tr("Effective"));
 	header->setIcon(LENGTH_EFF_COLUMN, QIcon(":/types/time_eff.png"));
@@ -445,7 +447,7 @@ void QUSongTree::filterItems(const QString &regexp, QU::FilterModes mode) {
 
 			if(mode.testFlag(QU::fileTags)) {
 				bool matchesFileTag =
-					song->mp3().contains(rx) ||
+					song->audio().contains(rx) ||
 					song->cover().contains(rx) ||
 					song->background().contains(rx) ||
 					song->video().contains(rx);
@@ -676,7 +678,7 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 		case START_COLUMN: lengthsMenu.addSeparator();
 		case LENGTH_COLUMN:
 		case LENGTH_DIFF_COLUMN:
-		case LENGTH_MP3_COLUMN:
+		case LENGTH_AUDIO_COLUMN:
 		case LENGTH_EFF_COLUMN:
 		case END_COLUMN:
 		case VIDEOGAP_COLUMN: lengthsMenu.addAction(a); break;
@@ -725,7 +727,7 @@ void QUSongTree::showDefaultColumns(bool save) {
 	this->header()->showSection(FOLDER_COLUMN);
 	this->header()->showSection(ARTIST_COLUMN);
 	this->header()->showSection(TITLE_COLUMN);
-	this->header()->showSection(MP3_COLUMN);
+	this->header()->showSection(AUDIO_COLUMN);
 	this->header()->showSection(COVER_COLUMN);
 	this->header()->showSection(BACKGROUND_COLUMN);
 	this->header()->showSection(VIDEO_COLUMN);
@@ -783,7 +785,7 @@ void QUSongTree::showTimeColumns() {
 	this->header()->showSection(FOLDER_COLUMN);
 	this->header()->showSection(LENGTH_COLUMN);
 	this->header()->showSection(LENGTH_DIFF_COLUMN);
-	this->header()->showSection(LENGTH_MP3_COLUMN);
+	this->header()->showSection(LENGTH_AUDIO_COLUMN);
 	this->header()->showSection(LENGTH_EFF_COLUMN);
 	this->header()->showSection(SPEED_COLUMN);
 	this->header()->showSection(START_COLUMN);
@@ -803,7 +805,7 @@ void QUSongTree::showCheckColumns() {
 	this->header()->showSection(FOLDER_COLUMN);
 	this->header()->showSection(ARTIST_COLUMN);
 	this->header()->showSection(TITLE_COLUMN);
-	this->header()->showSection(MP3_COLUMN);
+	this->header()->showSection(AUDIO_COLUMN);
 	this->header()->showSection(COVER_COLUMN);
 	this->header()->showSection(BACKGROUND_COLUMN);
 	this->header()->showSection(VIDEO_COLUMN);
@@ -1748,7 +1750,7 @@ void QUSongTree::createDuetFromSongFiles() {
 
 		duet->setInfo(ARTIST_TAG, songItem->song()->artist());
 		duet->setInfo(TITLE_TAG, songItem->song()->title());
-		duet->setInfo(MP3_TAG, songItem->song()->mp3());
+		duet->setAudioInfo(songItem->song()->audio());
 		duet->setInfo(BPM_TAG, songItem->song()->bpm());
 		duet->setInfo(P1_TAG, "Singer 1");
 		duet->setInfo(P2_TAG, "Singer 2");

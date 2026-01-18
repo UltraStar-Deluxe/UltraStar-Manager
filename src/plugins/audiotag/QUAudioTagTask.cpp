@@ -141,7 +141,7 @@ TagLib::FileRef QUAudioTagTask::ref() {
 	if(!_currentSong)
 		return TagLib::FileRef();
 
-	return TagLib::FileRef(_currentSong->mp3FileInfo().absoluteFilePath().toLocal8Bit().data());
+	return TagLib::FileRef(_currentSong->audioFileInfo().absoluteFilePath().toLocal8Bit().data());
 }
 
 QString QUAudioTagTask::artist() {

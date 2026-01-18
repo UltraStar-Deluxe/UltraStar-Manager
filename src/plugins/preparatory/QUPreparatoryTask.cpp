@@ -85,6 +85,11 @@ QUPreparatoryTask::QUPreparatoryTask(TaskModes mode, QObject *parent):
 		this->setDescription(tr("Set #VERSION tag"));
 		this->setToolTip(tr("Convert the .txt to a different #VERSION"));
 		break;
+	case SetAudioTagName:
+		this->setIcon(QIcon(":/types/music.png"));
+		this->setDescription(tr("Set audio file tag name"));
+		this->setToolTip(tr("Set the .txt to use the #AUDIO or #MP3 tag to specify the audio file"));
+		break;
 	}
 }
 
@@ -139,6 +144,9 @@ void QUPreparatoryTask::startOn(QUSongInterface *song) {
 	case SetTextVersion:
 		setTextVersion(song);
 		break;
+	case SetAudioTagName:
+		setAudioTagName(song);
+		break;
 	}
 }
 
@@ -178,6 +186,9 @@ QList<QUSmartSettingInterface*> QUPreparatoryTask::smartSettings() const {
 			break;
 		case SetTextVersion:
 			_smartSettings.append(new QUSmartComboBox("preparatory/setTextVersion_textVersion", tr("Version:"), {"1.0.0", "1.1.0", "1.2.0"}, std::clamp(settings.value("preparatory/setTextVersion_textVersion", 0).toInt(), 0, 2)));
+			break;
+		case SetAudioTagName:
+			_smartSettings.append(new QUSmartComboBox("preparatory/setAudioTagName_tagName", tr("Tag:"), {"#AUDIO", "#MP3"}, std::clamp(settings.value("preparatory/setAudioTagName_tagName", 0).toInt(), 0, 1)));
 			break;
 		}
 	}
@@ -491,4 +502,26 @@ void QUPreparatoryTask::fixLineEndings(QUSongInterface *song)
 void QUPreparatoryTask::setTextVersion(QUSongInterface *song)
 {
 	song->setVersion(QUSongVersion(static_cast<QUSongVersion::SupportedVersion>(smartSettings().at(0)->value().toInt())));
+}
+
+void QUPreparatoryTask::setAudioTagName(QUSongInterface *song)
+{
+	QString audio = song->customTag(AUDIO_TAG);
+	QString mp3 = song->customTag(MP3_TAG);
+
+	// #AUDIO
+	if (smartSettings().at(0)->value().toInt() == 0) {
+		if ((audio == N_A) && (mp3 != N_A))
+			song->setInfo(AUDIO_TAG, mp3);
+		if (song->customTag(AUDIO_TAG) != N_A)
+			song->setInfo(MP3_TAG, "");
+	}
+
+	// #MP3
+	else {
+		if ((mp3 == N_A) && (audio != N_A))
+			song->setInfo(MP3_TAG, audio);
+		if (song->customTag(MP3_TAG) != N_A)
+			song->setInfo(AUDIO_TAG, "");
+	}
 }
