@@ -158,6 +158,8 @@ jobs:
           make -j$${{ steps.cpu-cores.outputs.count }}
           cd ../bin/release
           mv UltraStar-Manager.dmg MAC-${{ env.arch }}-UltraStar-Manager.dmg
+      - name: Set Executable Bit For Portable
+        run: chmod +x bin/release/UltraStar-Manager.app/Contents/MacOS/UltraStar-Manager
       - name: Upload Portable Artifact
         uses: actions/upload-artifact@v4
         with:
