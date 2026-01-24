@@ -3853,216 +3853,221 @@ p, li { white-space: pre-wrap; }
         <translation>Colunas</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="282"/>
+        <location filename="../../report/QUReportDialog.ui" line="281"/>
         <source>Source</source>
         <translation>Origem</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="315"/>
+        <location filename="../../report/QUReportDialog.ui" line="314"/>
         <source>All Songs</source>
         <translation>Todas as canções</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="332"/>
+        <location filename="../../report/QUReportDialog.ui" line="331"/>
         <source>Visible Songs</source>
         <translation>Canções visiveis</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="363"/>
+        <location filename="../../report/QUReportDialog.ui" line="362"/>
         <source>Playlist:</source>
         <translation>Playlist:</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="392"/>
+        <location filename="../../report/QUReportDialog.ui" line="391"/>
         <source>Header Options</source>
         <translation>Opções Cabeçalho</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="531"/>
+        <location filename="../../report/QUReportDialog.ui" line="530"/>
         <source>Use Style Sheet:</source>
         <translation>Usar Folha de Estilos:</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="553"/>
+        <location filename="../../report/QUReportDialog.ui" line="552"/>
         <source>PDF Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="580"/>
+        <location filename="../../report/QUReportDialog.ui" line="579"/>
         <source>Layout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="616"/>
+        <location filename="../../report/QUReportDialog.ui" line="615"/>
         <source>Orientation:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="632"/>
+        <location filename="../../report/QUReportDialog.ui" line="631"/>
         <source>Columns:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="645"/>
+        <location filename="../../report/QUReportDialog.ui" line="644"/>
         <source>Page size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="662"/>
+        <location filename="../../report/QUReportDialog.ui" line="661"/>
         <source>1</source>
         <translation type="unfinished">1</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="667"/>
+        <location filename="../../report/QUReportDialog.ui" line="666"/>
         <source>2</source>
         <translation type="unfinished">2</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="672"/>
+        <location filename="../../report/QUReportDialog.ui" line="671"/>
         <source>3</source>
         <translation type="unfinished">3</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="677"/>
+        <location filename="../../report/QUReportDialog.ui" line="676"/>
         <source>4</source>
         <translation type="unfinished">4</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="682"/>
+        <location filename="../../report/QUReportDialog.ui" line="681"/>
         <source>5</source>
         <translation type="unfinished">5</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="687"/>
+        <location filename="../../report/QUReportDialog.ui" line="686"/>
         <source>6</source>
         <translation type="unfinished">6</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="698"/>
+        <location filename="../../report/QUReportDialog.ui" line="697"/>
         <source>Margins (millimeters)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="734"/>
+        <location filename="../../report/QUReportDialog.ui" line="733"/>
         <source>Bottom:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="747"/>
+        <location filename="../../report/QUReportDialog.ui" line="746"/>
         <source>Top:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="760"/>
+        <location filename="../../report/QUReportDialog.ui" line="759"/>
         <source>Left:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="773"/>
+        <location filename="../../report/QUReportDialog.ui" line="772"/>
         <source>Right:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="835"/>
+        <location filename="../../report/QUReportDialog.ui" line="834"/>
         <source>Fonts &amp;&amp; Colors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="865"/>
-        <location filename="../../report/QUReportDialog.ui" line="885"/>
-        <location filename="../../report/QUReportDialog.ui" line="931"/>
-        <location filename="../../report/QUReportDialog.ui" line="938"/>
+        <location filename="../../report/QUReportDialog.ui" line="864"/>
+        <location filename="../../report/QUReportDialog.ui" line="884"/>
+        <location filename="../../report/QUReportDialog.ui" line="930"/>
+        <location filename="../../report/QUReportDialog.ui" line="937"/>
         <source>Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="878"/>
+        <location filename="../../report/QUReportDialog.ui" line="877"/>
         <source>Top level:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="898"/>
+        <location filename="../../report/QUReportDialog.ui" line="897"/>
         <source>Sub sub level:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="911"/>
+        <location filename="../../report/QUReportDialog.ui" line="910"/>
         <source>Sub level:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="924"/>
+        <location filename="../../report/QUReportDialog.ui" line="923"/>
         <source>Category:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1003"/>
+        <location filename="../../report/QUReportDialog.ui" line="1002"/>
         <source>Vertical spacing (points)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1036"/>
+        <location filename="../../report/QUReportDialog.ui" line="1035"/>
         <source>Cat. → top:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1052"/>
+        <location filename="../../report/QUReportDialog.ui" line="1051"/>
         <source>Top → sub:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1062"/>
+        <location filename="../../report/QUReportDialog.ui" line="1061"/>
         <source>Sub → top:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1072"/>
+        <location filename="../../report/QUReportDialog.ui" line="1071"/>
         <source>Sub → cat.:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1082"/>
+        <location filename="../../report/QUReportDialog.ui" line="1081"/>
         <source>Sub → sub:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1163"/>
+        <location filename="../../report/QUReportDialog.ui" line="1162"/>
         <source>Horizontal spacing (millimeters)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1213"/>
+        <location filename="../../report/QUReportDialog.ui" line="1212"/>
         <source>Column sep.:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1220"/>
+        <location filename="../../report/QUReportDialog.ui" line="1219"/>
         <source>Entry sep.:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1227"/>
+        <location filename="../../report/QUReportDialog.ui" line="1226"/>
         <source>Entry indent:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1315"/>
+        <location filename="../../report/QUReportDialog.ui" line="1313"/>
         <source>CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1354"/>
+        <location filename="../../report/QUReportDialog.ui" line="1351"/>
         <source>Text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1390"/>
+        <location filename="../../report/QUReportDialog.ui" line="1386"/>
         <source>HTML</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1420"/>
+        <location filename="../../report/QUReportDialog.ui" line="1415"/>
         <source>PDF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../report/QUReportDialog.ui" line="1475"/>
+        <source>Defaults</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4070,33 +4075,33 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Opções adicionais</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="425"/>
+        <location filename="../../report/QUReportDialog.ui" line="424"/>
         <source>Prepend current Path</source>
         <translation>Prefixo caminho actual</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="432"/>
+        <location filename="../../report/QUReportDialog.ui" line="431"/>
         <source>Prepend Playlist Name</source>
         <translation>Prefixo Nome da Playlist</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="442"/>
+        <location filename="../../report/QUReportDialog.ui" line="441"/>
         <source>HTML Options</source>
         <translation>Opções HTML</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="475"/>
+        <location filename="../../report/QUReportDialog.ui" line="474"/>
         <source>Append Lyrics</source>
         <translation>Anexar letras</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="499"/>
-        <location filename="../../report/QUReportDialog.ui" line="528"/>
+        <location filename="../../report/QUReportDialog.ui" line="498"/>
+        <location filename="../../report/QUReportDialog.ui" line="527"/>
         <source>For HTML reports only.</source>
         <translation>Apenas para relatórios HTML.</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="502"/>
+        <location filename="../../report/QUReportDialog.ui" line="501"/>
         <source>Link Lyrics with Table</source>
         <translation>Ligação da letra com a tabela</translation>
     </message>
@@ -4105,7 +4110,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Usar folha de estilos:</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1266"/>
+        <location filename="../../report/QUReportDialog.ui" line="1265"/>
         <source>Create</source>
         <translation>Criar</translation>
     </message>
@@ -4126,7 +4131,7 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">Relatório CSV</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.ui" line="1480"/>
+        <location filename="../../report/QUReportDialog.ui" line="1482"/>
         <source>Close</source>
         <translation>Fechar</translation>
     </message>
@@ -4135,17 +4140,17 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="54"/>
+        <location filename="../../report/QUReportDialog.cpp" line="55"/>
         <source>Select the &lt;b&gt;columns&lt;/b&gt; you want to see in the report. Drag &amp; drop them to change their order. Songs of the &lt;b&gt;source&lt;/b&gt; will be sorted alphabetically column by column.&lt;br&gt;&lt;br&gt;You can &lt;b&gt;append and link&lt;/b&gt; lyrics and use style sheets in HTML reports.</source>
         <translation>Seleccione as &lt;b&gt;colunas&lt;/b&gt; que você quer ver no relatório. Arraste &amp; Larque para mudar sua ordem. Canções da &lt;b&gt;fonte&lt;/b&gt; serão ordenadas alfabéticamente coluna por coluna.&lt;br&gt;&lt;br&gt;Você pode &lt;b&gt;acrescentar e âncorar&lt;/b&gt; letras e usar folhas de estilo em relatórios HTML.</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="55"/>
+        <location filename="../../report/QUReportDialog.cpp" line="56"/>
         <source>All Songs (%1)</source>
         <translation>Todas as canções (%1)</translation>
     </message>
     <message>
-        <location filename="../../report/QUReportDialog.cpp" line="56"/>
+        <location filename="../../report/QUReportDialog.cpp" line="57"/>
         <source>Visible Songs (%1)</source>
         <translation>Canções Visiveis (%1)</translation>
     </message>

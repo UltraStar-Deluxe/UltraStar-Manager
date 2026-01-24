@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>675</width>
-    <height>785</height>
+    <height>993</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -130,7 +130,7 @@
       <bool>true</bool>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Shadow::Raised</enum>
      </property>
      <layout class="QHBoxLayout">
       <item>
@@ -148,7 +148,7 @@
          <pixmap resource="../resources/UltraStar-Manager.qrc">:/marks/information.png</pixmap>
         </property>
         <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
         </property>
        </widget>
       </item>
@@ -164,7 +164,7 @@
          <string>...</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -177,7 +177,7 @@
    <item>
     <widget class="Line" name="line">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
     </widget>
    </item>
@@ -201,7 +201,7 @@
      <item>
       <widget class="QSplitter" name="splitter">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="handleWidth">
         <number>5</number>
@@ -220,7 +220,7 @@
          <string>Columns</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
         <property name="flat">
          <bool>true</bool>
@@ -247,16 +247,16 @@
             <bool>true</bool>
            </property>
            <property name="dragDropMode">
-            <enum>QAbstractItemView::InternalMove</enum>
+            <enum>QAbstractItemView::DragDropMode::InternalMove</enum>
            </property>
            <property name="alternatingRowColors">
             <bool>true</bool>
            </property>
            <property name="selectionMode">
-            <enum>QAbstractItemView::ExtendedSelection</enum>
+            <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
            </property>
            <property name="selectionBehavior">
-            <enum>QAbstractItemView::SelectRows</enum>
+            <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
            </property>
            <property name="selectionRectVisible">
             <bool>true</bool>
@@ -274,7 +274,6 @@
           <widget class="QGroupBox" name="sourceGroup">
            <property name="font">
             <font>
-             <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
@@ -282,7 +281,7 @@
             <string>Source</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
            <property name="flat">
             <bool>true</bool>
@@ -392,7 +391,7 @@
             <string>Header Options</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
            <property name="flat">
             <bool>true</bool>
@@ -442,7 +441,7 @@
             <string>HTML Options</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
            <property name="flat">
             <bool>true</bool>
@@ -553,7 +552,7 @@
             <string>PDF Options</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
            <property name="flat">
             <bool>true</bool>
@@ -580,7 +579,7 @@
                <string>Layout</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
               </property>
               <property name="flat">
                <bool>true</bool>
@@ -698,7 +697,7 @@
                <string>Margins (millimeters)</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
               </property>
               <property name="flat">
                <bool>true</bool>
@@ -835,7 +834,7 @@
                <string>Fonts &amp;&amp; Colors</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
               </property>
               <property name="flat">
                <bool>true</bool>
@@ -1036,7 +1035,7 @@
                   <string>Cat. → top:</string>
                  </property>
                  <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
@@ -1052,7 +1051,7 @@
                   <string>Top → sub:</string>
                  </property>
                  <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
@@ -1062,7 +1061,7 @@
                   <string>Sub → top:</string>
                  </property>
                  <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
@@ -1072,7 +1071,7 @@
                   <string>Sub → cat.:</string>
                  </property>
                  <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
@@ -1082,7 +1081,7 @@
                   <string>Sub → sub:</string>
                  </property>
                  <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
@@ -1247,10 +1246,10 @@
          <item>
           <spacer name="verticalSpacer">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Expanding</enum>
+            <enum>QSizePolicy::Policy::Expanding</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -1266,7 +1265,7 @@
             <string>Create</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
            <property name="flat">
             <bool>true</bool>
@@ -1307,7 +1306,6 @@
               <property name="font">
                <font>
                 <pointsize>9</pointsize>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -1319,7 +1317,7 @@
                 <normaloff>:/types/csv.png</normaloff>:/types/csv.png</iconset>
               </property>
               <property name="toolButtonStyle">
-               <enum>Qt::ToolButtonTextBesideIcon</enum>
+               <enum>Qt::ToolButtonStyle::ToolButtonTextBesideIcon</enum>
               </property>
               <property name="autoRaise">
                <bool>true</bool>
@@ -1346,7 +1344,6 @@
               <property name="font">
                <font>
                 <pointsize>9</pointsize>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -1358,7 +1355,7 @@
                 <normaloff>:/types/text_plain.png</normaloff>:/types/text_plain.png</iconset>
               </property>
               <property name="toolButtonStyle">
-               <enum>Qt::ToolButtonTextBesideIcon</enum>
+               <enum>Qt::ToolButtonStyle::ToolButtonTextBesideIcon</enum>
               </property>
               <property name="autoRaise">
                <bool>true</bool>
@@ -1382,7 +1379,6 @@
               <property name="font">
                <font>
                 <pointsize>9</pointsize>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -1394,7 +1390,7 @@
                 <normaloff>:/types/page_code.png</normaloff>:/types/page_code.png</iconset>
               </property>
               <property name="toolButtonStyle">
-               <enum>Qt::ToolButtonTextBesideIcon</enum>
+               <enum>Qt::ToolButtonStyle::ToolButtonTextBesideIcon</enum>
               </property>
               <property name="autoRaise">
                <bool>true</bool>
@@ -1412,7 +1408,6 @@
               <property name="font">
                <font>
                 <pointsize>9</pointsize>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -1424,7 +1419,7 @@
                 <normaloff>:/types/page_white_acrobat.png</normaloff>:/types/page_white_acrobat.png</iconset>
               </property>
               <property name="toolButtonStyle">
-               <enum>Qt::ToolButtonTextBesideIcon</enum>
+               <enum>Qt::ToolButtonStyle::ToolButtonTextBesideIcon</enum>
               </property>
               <property name="autoRaise">
                <bool>true</bool>
@@ -1443,7 +1438,7 @@
    <item>
     <widget class="Line" name="line_2">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
     </widget>
    </item>
@@ -1464,7 +1459,7 @@
      <item>
       <spacer>
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -1473,6 +1468,13 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="defaultsBtn">
+       <property name="text">
+        <string>Defaults</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="doneBtn">
