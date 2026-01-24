@@ -82,6 +82,7 @@ private:
 
 	void saveState();
 	void loadState();
+	void resetToDefault();
 };
 
 #endif /*QUREPORTDIALOG_H_*/

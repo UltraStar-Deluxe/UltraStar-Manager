@@ -26,6 +26,7 @@
 #include <QDesktopServices>
 #include <QPrinter>
 #include <QDebug>
+#include <algorithm>
 
 QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<QUSongFile*> &visibleSongs, const QList<QUPlaylistFile*> &allPlaylists, QWidget *parent):
 		QDialog(parent),
@@ -60,8 +61,6 @@ QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<Q
 	initPlaylistCombo();
 	initPageSizeCombo();
 	initPageOrientationCombo();
-	initSelectFntBtns();
-	initSelectClrBtns();
 
 	connect(selectCategoryFntBtn, SIGNAL(clicked()), this, SLOT(selectCategoryFnt()));
 	connect(selectTopLevelEntryFntBtn, SIGNAL(clicked()), this, SLOT(selectTopLevelEntryFnt()));
@@ -73,6 +72,7 @@ QUReportDialog::QUReportDialog(const QList<QUSongFile*> &allSongs, const QList<Q
 	connect(selectSubSubLevelEntryClrBtn, SIGNAL(clicked()), this, SLOT(selectSubSubLevelEntryClr()));
 
 	connect(doneBtn, SIGNAL(clicked()), this, SLOT(accept()));
+	connect(defaultsBtn, &QPushButton::clicked, this, &QUReportDialog::resetToDefault);
 	connect(createPdfBtn, SIGNAL(clicked()), this, SLOT(createPdfReport()));
 	connect(createHtmlBtn, SIGNAL(clicked()), this, SLOT(createHtmlReport()));
 	connect(createPlainTextBtn, SIGNAL(clicked()), this, SLOT(createPlainTextReport()));
@@ -544,8 +544,31 @@ void QUReportDialog::saveState() {
 	settings.setValue("reportOtherOptions", otherOptions);
 	settings.setValue("reportPlaylistComboIndex", playlistComboIndex);
 	settings.setValue("reportStyleComboIndex", styleComboIndex);
-}
+	settings.setValue("reportPdfPageSize", pageSizeCombo->currentIndex());
+	settings.setValue("reportPdfOrientation", pageOrientationCombo->currentIndex());
+	settings.setValue("reportPdfColumns", layoutColumnsCombo->currentIndex());
+	settings.setValue("reportPdfMarginLeft", leftMargin->value());
+	settings.setValue("reportPdfMarginRight", rightMargin->value());
+	settings.setValue("reportPdfMarginTop", topMargin->value());
+	settings.setValue("reportPdfMarginBottom", bottomMargin->value());
+	settings.setValue("reportPdfCategoryFont", _categoryFnt.toString());
+	settings.setValue("reportPdfTopLevelEntryFont", _topLevelEntryFnt.toString());
+	settings.setValue("reportPdfSubLevelEntryFont", _subLevelEntryFnt.toString());
+	settings.setValue("reportPdfSubSubLevelEntryFont", _subSubLevelEntryFnt.toString());
+	settings.setValue("reportPdfCategoryColor", _categoryClr.name());
+	settings.setValue("reportPdfTopLevelEntryColor", _topLevelEntryClr.name());
+	settings.setValue("reportPdfSubLevelEntryColor", _subLevelEntryClr.name());
+	settings.setValue("reportPdfSubSubLevelEntryColor", _subSubLevelEntryClr.name());
+	settings.setValue("reportPdfCategoryToTopLevelVSep", categoryToTopLevelVSepDoubleSpinBox->value());
+	settings.setValue("reportPdfTopLevelToSubLevelVSep", topLevelToSubLevelVSepDoubleSpinBox->value());
+	settings.setValue("reportPdfSubLevelToSubLevelVSep", subLevelToSubLevelVSepDoubleSpinBox->value());
+	settings.setValue("reportPdfSubLevelToTopLevelVSep", subLevelToTopLevelVSepDoubleSpinBox->value());
+	settings.setValue("reportPdfSubLevelToCategoryVSep", subLevelToCategoryVSepDoubleSpinBox->value());
+	settings.setValue("reportPdfSubLevelEntryHIndent", subLevelEntryHIndentDoubleSpinBox->value());
+	settings.setValue("reportPdfSubLevelEntryHSep", subLevelEntryHSepDoubleSpinBox->value());
+	settings.setValue("reportPdfColHSep", colHSepDoubleSpinBox->value());
 
+}
 /*!
  * Loads a dialog state (checked elements a.s.o.) from registry.
  */
@@ -579,4 +602,74 @@ void QUReportDialog::loadState() {
 	int styleComboIndex	= settings.value("reportStyleComboIndex", 0).toInt();
 	playlistCombo->setCurrentIndex(playlistComboIndex >= playlistCombo->count() ? 0 : playlistComboIndex);
 	styleCombo->setCurrentIndex(styleComboIndex >= styleCombo->count() ? 0 : styleComboIndex);
+
+	pageSizeCombo->setCurrentIndex(std::clamp(settings.value("reportPdfPageSize", 1).toInt(), 0, pageSizeCombo->count() - 1));
+	pageOrientationCombo->setCurrentIndex(std::clamp(settings.value("reportPdfOrientation", 0).toInt(), 0, pageOrientationCombo->count() - 1));
+	layoutColumnsCombo->setCurrentIndex(std::clamp(settings.value("reportPdfColumns", 0).toInt(), 0, layoutColumnsCombo->count() - 1));
+
+	leftMargin->setValue(settings.value("reportPdfMarginLeft", 16.0).toDouble());
+	rightMargin->setValue(settings.value("reportPdfMarginRight", 8.0).toDouble());
+	topMargin->setValue(settings.value("reportPdfMarginTop", 8.0).toDouble());
+	bottomMargin->setValue(settings.value("reportPdfMarginBottom", 8.0).toDouble());
+
+	_categoryFnt.fromString(settings.value("reportPdfCategoryFont", QFont("Verdana", 14, QFont::Black, false).toString()).toString());
+	_topLevelEntryFnt.fromString(settings.value("reportPdfTopLevelEntryFont", QFont("Verdana", 7, QFont::DemiBold, false).toString()).toString());
+	_subLevelEntryFnt.fromString(settings.value("reportPdfSubLevelEntryFont", QFont("Verdana", 7, QFont::Normal, false).toString()).toString());
+	_subSubLevelEntryFnt.fromString(settings.value("reportPdfSubSubLevelEntryFont", QFont("Verdana", 6, QFont::Normal, false).toString()).toString());
+
+	// QColor::fromString throws exceptions on older Qt versions
+	try {
+		_categoryClr = QColor::fromString(settings.value("reportPdfCategoryColor", QColor(Qt::darkGreen).name()).toString());
+		_topLevelEntryClr = QColor::fromString(settings.value("reportPdfTopLevelEntryColor", QColor(Qt::black).name()).toString());
+		_subLevelEntryClr = QColor::fromString(settings.value("reportPdfSubLevelEntryColor", QColor(Qt::black).name()).toString());
+		_subSubLevelEntryClr = QColor::fromString(settings.value("reportPdfSubSubLevelEntryColor", QColor(Qt::gray).name()).toString());
+	}
+	catch(...) {}
+	categoryToTopLevelVSepDoubleSpinBox->setValue(settings.value("reportPdfCategoryToTopLevelVSep", 12.0).toDouble());
+	topLevelToSubLevelVSepDoubleSpinBox->setValue(settings.value("reportPdfTopLevelToSubLevelVSep", 11.0).toDouble());
+	subLevelToSubLevelVSepDoubleSpinBox->setValue(settings.value("reportPdfSubLevelToSubLevelVSep", 11.0).toDouble());
+	subLevelToTopLevelVSepDoubleSpinBox->setValue(settings.value("reportPdfSubLevelToTopLevelVSep", 12.0).toDouble());
+	subLevelToCategoryVSepDoubleSpinBox->setValue(settings.value("reportPdfSubLevelToCategoryVSep", 24.0).toDouble());
+	subLevelEntryHIndentDoubleSpinBox->setValue(settings.value("reportPdfSubLevelEntryHIndent", 2.0).toDouble());
+	subLevelEntryHSepDoubleSpinBox->setValue(settings.value("reportPdfSubLevelEntryHSep", 2.0).toDouble());
+	colHSepDoubleSpinBox->setValue(settings.value("reportPdfColHSep", 4.0).toDouble());
+
+	initSelectFntBtns();
+	initSelectClrBtns();
+}
+
+void QUReportDialog::resetToDefault() {
+	static const QStringList keys({
+		"reportColumns",
+		"reportOtherOptions",
+		"reportPlaylistComboIndex",
+		"reportStyleComboIndex",
+		"reportPdfPageSize",
+		"reportPdfOrientation",
+		"reportPdfColumns",
+		"reportPdfMarginLeft",
+		"reportPdfMarginRight",
+		"reportPdfMarginTop",
+		"reportPdfMarginBottom",
+		"reportPdfCategoryFont",
+		"reportPdfTopLevelEntryFont",
+		"reportPdfSubLevelEntryFont",
+		"reportPdfSubSubLevelEntryFont",
+		"reportPdfCategoryColor",
+		"reportPdfTopLevelEntryColor",
+		"reportPdfSubLevelEntryColor",
+		"reportPdfSubSubLevelEntryColor",
+		"reportPdfCategoryToTopLevelVSep",
+		"reportPdfTopLevelToSubLevelVSep",
+		"reportPdfSubLevelToSubLevelVSep",
+		"reportPdfSubLevelToTopLevelVSep",
+		"reportPdfSubLevelToCategoryVSep",
+		"reportPdfSubLevelEntryHIndent",
+		"reportPdfSubLevelEntryHSep",
+		"reportPdfColHSep"
+	});
+	QSettings settings;
+	for (auto &key : keys)
+		settings.remove(key);
+	loadState();
 }
