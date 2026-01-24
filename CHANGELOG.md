@@ -1,5 +1,20 @@
 # UltraStar Manager Changelog
 
+## Changelog (2.2.1 to 2.3.0)
+### Features
+- Full support for `#VERSION`:
+  - Add a column in the song tree that displays the version of the text file
+  - Add a preparatory task that allows users to batch convert text files between versions
+- Full support for `#AUDIO`:
+  - Respect `#AUDIO` in addition to `#MP3` for all program features (audio file identification/selection in song tree, song details tab, etc.)
+  - Add a preparatory task that allows users to batch convert their text files between using `#MP3` and `#AUDIO`
+  - Add an optional/non-default column in the song tree which indicates whether a text uses `#MP3` or `#AUDIO`, for the purpose of allow users to enforce a standard for their library
+- Make settings for reports persistent, and add a new button to reset the settings to their default values
+
+### Bug fixes
+- Make MacOS portable build executable
+- Remove unused DLL file on Windows
+
 ## Changelog (2.2.0 to 2.2.1)
 ### Bug fixes
 - Fix ReplayGain scanner on macOS
