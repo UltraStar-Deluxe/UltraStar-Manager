@@ -71,8 +71,8 @@ jobs:
           mkdir bin/release
           cp "C:/Program Files/taglib/bin/tag.dll" bin/release/
           cp lib/win64/ebur128.dll bin/release/
-          qmake6 -r -spec win32-msvc
-          nmake
+          qmake6 -r -spec win32-msvc CONFIG=release
+          nmake nsis
       - name: Upload Portable Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -152,7 +152,7 @@ jobs:
         run: |
           cd src
           qmake6 UltraStar-Manager.pro
-          make -j$${{ steps.cpu-cores.outputs.count }}
+          make dmg -j$${{ steps.cpu-cores.outputs.count }}
           cd ../bin/release
           mv UltraStar-Manager.dmg MAC-${{ env.arch }}-UltraStar-Manager.dmg
       - name: Set Executable Bit For Portable
