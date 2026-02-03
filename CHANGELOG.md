@@ -1,5 +1,9 @@
 # UltraStar Manager Changelog
 
+## Changelog (2.3.0 to 2.3.1)
+### Bug fixes
+- Fix formatting of report dialog
+
 ## Changelog (2.2.1 to 2.3.0)
 ### Features
 - Full support for `#VERSION`:
