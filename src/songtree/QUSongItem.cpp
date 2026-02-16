@@ -626,7 +626,7 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case RAP_NOTES_COLUMN:
 		return this->data(column, Qt::UserRole).toDouble() < other.data(column, Qt::UserRole).toDouble(); // break;
 	default:
-		return text(column) < other.text(column);
+		return QString::compare(text(column), other.text(column), Qt::CaseInsensitive) < 0;
 	}
 }
 
