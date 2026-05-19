@@ -1,4 +1,4 @@
-CONFIG += c++11 app_bundle
+CONFIG += c++17 app_bundle
 TEMPLATE = app
 UI_DIR = ui
 

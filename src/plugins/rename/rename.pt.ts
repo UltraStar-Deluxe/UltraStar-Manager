@@ -4,67 +4,77 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="language.h" line="1"/>
+        <location filename="language.h" line="5"/>
         <source>Change path to &quot;Artist - Title&quot; (default)</source>
         <translation>Alterar caminho para &quot;Artista - Título&quot; (padrão)</translation>
     </message>
     <message>
-        <location filename="language.h" line="2"/>
+        <location filename="language.h" line="6"/>
         <source>All songs will be in the UltraStar song folder with a custom subdirectory for each one.</source>
         <translation>Todas as canções da directoria de canções do Ultrastar vão ter um subdirectório personalizado para cada uma.</translation>
     </message>
     <message>
-        <location filename="language.h" line="3"/>
+        <location filename="language.h" line="18"/>
+        <source>Rename instrumental file to &quot;Artist - Title [INSTR].*&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="language.h" line="24"/>
         <source>Change path to &quot;Genre/Artist - Title&quot;</source>
         <translation>Alterar caminho para &quot;Gênero/Artista - Titulo&quot;</translation>
     </message>
     <message>
-        <location filename="language.h" line="4"/>
+        <location filename="language.h" line="25"/>
         <source>Songs will be organized in subdirectories by their genres.</source>
         <translation>Canções serão organizadas em subdirectórios por gênero.</translation>
     </message>
     <message>
-        <location filename="language.h" line="5"/>
+        <location filename="language.h" line="26"/>
+        <source>Rename songtext file to &quot;Artist - Title.txt&quot; and add &quot; (duet)&quot; to title for duets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="language.h" line="7"/>
         <source>Change path to &quot;Edition/Artist - Title&quot;</source>
         <translation>Alterar caminho para &quot;Edição/Artista - Titulo&quot;</translation>
     </message>
     <message>
-        <location filename="language.h" line="6"/>
+        <location filename="language.h" line="8"/>
         <source>Songs will be organized in subdirectories by their edition.</source>
         <translation>Canções serão organizadas em subdirectórios por edição.</translation>
     </message>
     <message>
-        <location filename="language.h" line="7"/>
+        <location filename="language.h" line="10"/>
         <source>Change path to &quot;Artist/Artist - Title&quot;</source>
         <translation>Alterar caminho para &quot;Artista/Artista - Titulo&quot;</translation>
     </message>
     <message>
-        <location filename="language.h" line="8"/>
+        <location filename="language.h" line="11"/>
         <source>Songs will be organized in subdirectories by their artist.</source>
         <translation>Canções serão organizadas em subdirectórios por artista.</translation>
     </message>
     <message>
-        <location filename="language.h" line="9"/>
+        <location filename="language.h" line="3"/>
         <source>Change path to &quot;Language/Artist - Title&quot;</source>
         <translation>Alterar caminho para &quot;Idioma/Artista - Titulo&quot;</translation>
     </message>
     <message>
-        <location filename="language.h" line="10"/>
+        <location filename="language.h" line="4"/>
         <source>Songs will be organized in subdirectories by their language.</source>
         <translation>Canções serão organizadas em subdirectórios por idioma.</translation>
     </message>
     <message>
-        <location filename="language.h" line="11"/>
+        <location filename="language.h" line="1"/>
         <source>Change path to &quot;Artist/Album/Artist - Title&quot;</source>
         <translation>Alterar caminho para &quot;Artista/Album/Artista - Titulo&quot;</translation>
     </message>
     <message>
-        <location filename="language.h" line="12"/>
+        <location filename="language.h" line="2"/>
         <source>Songs will be organized in subdirectories by their artist and album.&lt;br&gt;&lt;b&gt;You need the custom tag #ALBUM for this task.&lt;/b&gt;</source>
         <translation>Canções serão organizadas em subdirectórios por artista e album.&lt;br&gt;&lt;b&gt;É necessária a etiqueta personalizada #ALBUM para esta tarefa.&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="language.h" line="13"/>
+        <location filename="language.h" line="16"/>
         <source>Rename directory to &quot;Artist - Title&quot;</source>
         <translation>Renomear directório para &quot;Artista - Titulo&quot;</translation>
     </message>
@@ -80,48 +90,49 @@
         <translation>Procura &lt;b&gt; [SC] &lt;/b&gt; na etiqueta &lt;b&gt;#EDITION&lt;/b&gt; para descobrir se ela está verificada ou não.&lt;br&gt;&lt;br&gt;Outras etiquetas da pasta como &lt;b&gt;[KARAOKE]&lt;/b&gt; será anexado ao final, se existir.</translation>
     </message>
     <message>
-        <location filename="language.h" line="16"/>
+        <location filename="language.h" line="21"/>
         <source>Rename songtext file to &quot;Artist - Title.*&quot;</source>
         <oldsource>Rename songtext file to &quot;Artist - Title.txt&quot;</oldsource>
         <translation>Renomear ficheiro de texto da canção para &quot;Artista - Titulo.*&quot;</translation>
     </message>
     <message>
         <location filename="language.h" line="17"/>
-        <source>Rename songtext file to &quot;Artist - Title.*&quot; and use &quot;txd&quot; extension for duets</source>
-        <translation>Renomear ficheiro de texto da canção para &quot;Artista - Titulo.*&quot; e usar a extensão &quot;txd&quot; para duetos</translation>
+        <source>Rename vocals file to &quot;Artist - Title [VOC].*&quot;</source>
+        <oldsource>Rename songtext file to &quot;Artist - Title.*&quot; and use &quot;txd&quot; extension for duets</oldsource>
+        <translation type="unfinished">Renomear ficheiro de texto da canção para &quot;Artista - Titulo.*&quot; e usar a extensão &quot;txd&quot; para duetos</translation>
     </message>
     <message>
-        <location filename="language.h" line="18"/>
+        <location filename="language.h" line="13"/>
         <source>Rename audio file to &quot;Artist - Title.*&quot;</source>
         <translation>Renomear ficheiro audio para &quot;Artista - Titulo.*&quot;</translation>
     </message>
     <message>
-        <location filename="language.h" line="19"/>
+        <location filename="language.h" line="22"/>
         <source>Rename cover to &quot;Artist - Title [CO].*&quot;</source>
         <translation>Renomear capa para &quot;Artista - Titulo [CO].*&quot;</translation>
     </message>
     <message>
-        <location filename="language.h" line="20"/>
+        <location filename="language.h" line="23"/>
         <source>Rename the cover file to a proper schema.&lt;br&gt;File endings will be preserved.</source>
         <translation>Renomear ficheiro capa para esquema adequado.&lt;br&gt;Final do ficheiro será preservado.</translation>
     </message>
     <message>
-        <location filename="language.h" line="21"/>
+        <location filename="language.h" line="12"/>
         <source>Rename background to &quot;Artist - Title [BG].*&quot;</source>
         <translation>Renomear fundo para &quot;Artista - Titulo [BG].*&quot;</translation>
     </message>
     <message>
-        <location filename="language.h" line="22"/>
+        <location filename="language.h" line="9"/>
         <source>Rename video to &quot;Artist - Title.*&quot;</source>
         <translation>Renomear video para &quot;Artista - Titulo.*&quot;</translation>
     </message>
     <message>
-        <location filename="language.h" line="23"/>
+        <location filename="language.h" line="19"/>
         <source>Rename video to &quot;Artist - Title [VD#*].*&quot; considering #VIDEOGAP value</source>
         <translation>Renomear video para &quot;Artista - Titulo [VD#*].*&quot; considerando o valor do #VIDEOGAP</translation>
     </message>
     <message>
-        <location filename="language.h" line="24"/>
+        <location filename="language.h" line="20"/>
         <source>Uses &lt;b&gt;#VIDEOGAP:0&lt;/b&gt; if tag not present.</source>
         <translation>Usar &lt;b&gt;#VIDEOGAP:0&lt;/b&gt; se etiqueta não existir.</translation>
     </message>
@@ -147,7 +158,7 @@
 <context>
     <name>QURenameTask</name>
     <message>
-        <location filename="QURenameTask.cpp" line="110"/>
+        <location filename="QURenameTask.cpp" line="112"/>
         <source>Invalid target: %1</source>
         <translation>Destino inválido:  %1</translation>
     </message>

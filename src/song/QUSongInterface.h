@@ -213,6 +213,8 @@ class QUSongInterface: public QObject {
 	Q_PROPERTY(QString artist READ artist)
 	Q_PROPERTY(QString title READ title)
 	Q_PROPERTY(QString audio READ audio)
+	Q_PROPERTY(QString instrumental READ instrumental)
+	Q_PROPERTY(QString vocals READ vocals)
 	Q_PROPERTY(QString bpm READ bpm)
 	Q_PROPERTY(QString gap READ gap)
 	Q_PROPERTY(QString video READ video)
@@ -273,6 +275,8 @@ public:
 	virtual QString title() const = 0;
 	virtual QString version() const = 0;
 	virtual QString audio() const = 0;
+	virtual QString instrumental() const = 0;
+	virtual QString vocals() const = 0;
 	virtual QString bpm() const = 0;
 	virtual QString gap() const = 0;
 	virtual QString video() const = 0;
@@ -310,6 +314,8 @@ public:
 	virtual QString txt() const = 0;
 
 	virtual bool hasAudio() const = 0;
+	virtual bool hasInstrumental() const = 0;
+	virtual bool hasVocals() const = 0;
 	virtual bool hasCover() const = 0;
 	virtual bool hasBackground() const = 0;
 	virtual bool hasVideo() const = 0;
@@ -338,6 +344,8 @@ public:
 	virtual QFileInfo songFileInfo() const = 0;
 
 	virtual QFileInfo audioFileInfo() const = 0;
+	virtual QFileInfo instrumentalFileInfo() const = 0;
+	virtual QFileInfo vocalsFileInfo() const = 0;
 	virtual QFileInfo coverFileInfo() const = 0;
 	virtual QFileInfo backgroundFileInfo() const = 0;
 	virtual QFileInfo videoFileInfo() const = 0;
@@ -350,6 +358,8 @@ public:
 	virtual void renameSongDir(const QString &newName) = 0;
 	virtual void renameSongTxt(const QString &newName) = 0;
 	virtual void renameSongAudio(const QString &newName) = 0;
+	virtual void renameSongInstrumental(const QString &newName) = 0;
+	virtual void renameSongVocals(const QString &newName) = 0;
 	virtual void renameSongCover(const QString &newName) = 0;
 	virtual void renameSongBackground(const QString &newName) = 0;
 	virtual void renameSongVideo(const QString &newName) = 0;

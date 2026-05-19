@@ -1,0 +1,12 @@
+<task>
+    <general type="rename" >
+        <icon resource=":/types/instrumental.png" />
+        <description><![CDATA[Rename instrumental file to "Artist - Title [INSTR].*"]]></description>
+        <tooltip/>
+    </general>
+    <rename target="instrumental" schema="%1 - %2 [INSTR].%3" >
+        <data source="artist" />
+        <data source="title" />
+        <data keepSuffix="true" />
+    </rename>
+</task>

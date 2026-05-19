@@ -13,50 +13,52 @@
 #define TITLE_COLUMN			2
 
 #define AUDIO_COLUMN	    	3
-#define COVER_COLUMN			4
-#define BACKGROUND_COLUMN		5
-#define VIDEO_COLUMN			6
-#define REPLAYGAIN_COLUMN       7
+#define INSTRUMENTAL_COLUMN     4
+#define VOCALS_COLUMN           5
+#define COVER_COLUMN			6
+#define BACKGROUND_COLUMN		7
+#define VIDEO_COLUMN			8
+#define REPLAYGAIN_COLUMN       9
 
-#define TYPE_KARAOKE_COLUMN		8
-#define TYPE_DUET_COLUMN	    9
-#define MEDLEY_COLUMN			10
-#define GOLDEN_NOTES_COLUMN		11
-#define RAP_NOTES_COLUMN		12
-#define UNUSED_FILES_COLUMN		13
-#define MULTIPLE_SONGS_COLUMN	14
-#define SCORE_COLUMN			15
-#define SYNC_COLUMN				16
+#define TYPE_KARAOKE_COLUMN		10
+#define TYPE_DUET_COLUMN	    11
+#define MEDLEY_COLUMN			12
+#define GOLDEN_NOTES_COLUMN		13
+#define RAP_NOTES_COLUMN		14
+#define UNUSED_FILES_COLUMN		15
+#define MULTIPLE_SONGS_COLUMN	16
+#define SCORE_COLUMN			17
+#define SYNC_COLUMN				18
 
-#define LENGTH_COLUMN			17
-#define LENGTH_DIFF_COLUMN		18
-#define LENGTH_AUDIO_COLUMN		19
-#define LENGTH_EFF_COLUMN		20
-#define SPEED_COLUMN			21
+#define LENGTH_COLUMN			19
+#define LENGTH_DIFF_COLUMN		20
+#define LENGTH_AUDIO_COLUMN		21
+#define LENGTH_EFF_COLUMN		22
+#define SPEED_COLUMN			23
 
-#define START_COLUMN			22
-#define END_COLUMN				23
-#define VIDEOGAP_COLUMN			24
+#define START_COLUMN			24
+#define END_COLUMN				25
+#define VIDEOGAP_COLUMN			26
 
-#define ARTIST_COLUMN_EX		25
-#define TITLE_COLUMN_EX			26
-#define VERSION_COLUMN          27
-#define LANGUAGE_COLUMN			28
-#define EDITION_COLUMN			29
-#define GENRE_COLUMN			30
-#define YEAR_COLUMN				31
-#define CREATOR_COLUMN			32
-#define TAGS_COLUMN				33
-#define LINE_ENDING_COLUMN      34
-#define AUDIO_TAG_COLUMN        35
+#define ARTIST_COLUMN_EX		27
+#define TITLE_COLUMN_EX			28
+#define VERSION_COLUMN          29
+#define LANGUAGE_COLUMN			30
+#define EDITION_COLUMN			31
+#define GENRE_COLUMN			32
+#define YEAR_COLUMN				33
+#define CREATOR_COLUMN			34
+#define TAGS_COLUMN				35
+#define LINE_ENDING_COLUMN      36
+#define AUDIO_TAG_COLUMN        37
 
-#define RELATIVE_COLUMN			36
-#define BPM_COLUMN				37
-#define GAP_COLUMN				38
+#define RELATIVE_COLUMN			38
+#define BPM_COLUMN				39
+#define GAP_COLUMN				40
 
-#define DUPLICATE_ID_COLUMN		39
+#define DUPLICATE_ID_COLUMN		41
 
-#define FIRST_CUSTOM_TAG_COLUMN	40
+#define FIRST_CUSTOM_TAG_COLUMN	42
 
 /*!
  * This class encapsulates a pointer to a QUSongFile object to be able

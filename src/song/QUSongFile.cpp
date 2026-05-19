@@ -18,6 +18,8 @@
 #include <QRegularExpression>
 #include <QDebug>
 #include <string>
+#include <array>
+#include <utility>
 
 #include "audioproperties.h"
 #include "fileref.h"
@@ -48,7 +50,9 @@ QUSongFile::QUSongFile(const QString &filePath, QObject *parent):
 	_songLengthCacheValid(false),
 	_songSpeedCacheValid(false),
 	_score(nullptr),
-	_rgInfo(nullptr)
+	_rgInfo(nullptr),
+	_rgInfoInstrumental(nullptr),
+	_rgInfoVocals(nullptr)
 {
 	connect(monty->watcher(), SIGNAL(fileChanged(const QString&)), this, SLOT(songFileChanged(const QString&)));
 
@@ -66,6 +70,9 @@ QUSongFile::~QUSongFile() {
 		monty->watcher()->removePath(_fi.filePath());
 
 	disconnect(this, nullptr, nullptr, nullptr);
+	delete _rgInfo;
+	delete _rgInfoInstrumental;
+	delete _rgInfoVocals;
 
 	if(_score)
 		delete _score;
@@ -400,6 +407,22 @@ void QUSongFile::verifyTags(QStringList &tags) {
  */
 bool QUSongFile::hasAudio() const {
 	return !audio().isEmpty() && audioFileInfo().exists() && QUSongSupport::allowedAudioFiles().contains("*." + audioFileInfo().suffix(), Qt::CaseInsensitive);
+}
+
+/*!
+ * Checks whether the mp3 file really exists and can be used by US.
+ * \returns True if the mp3 specified by the song file really exists.
+ */
+bool QUSongFile::hasInstrumental() const {
+	return !instrumental().isEmpty() && instrumentalFileInfo().exists() && QUSongSupport::allowedAudioFiles().contains("*." + instrumentalFileInfo().suffix(), Qt::CaseInsensitive);
+}
+
+/*!
+ * Checks whether the mp3 file really exists and can be used by US.
+ * \returns True if the mp3 specified by the song file really exists.
+ */
+bool QUSongFile::hasVocals() const {
+	return !vocals().isEmpty() && vocalsFileInfo().exists() && QUSongSupport::allowedAudioFiles().contains("*." + vocalsFileInfo().suffix(), Qt::CaseInsensitive);
 }
 
 /*!
@@ -892,6 +915,44 @@ void QUSongFile::renameSongAudio(const QString &newName) {
 		setInfo(VIDEO_TAG, newName);
 		logSrv->add(QString(tr("Video file renamed from: \"%1\" to: \"%2\".")).arg(oldName, newName), QU::Information);
 	}
+}
+
+/*!
+ * Try to rename the instrumental file of the current song file. The information about the
+ * current instrumental file has to be correct or the file cannot be found and renamed.
+ * \param newName the new name (avoid illegal characters for your OS)
+ */
+void QUSongFile::renameSongInstrumental(const QString &newName) {
+	QString oldName(instrumental());
+	if (oldName == N_A)
+		return;
+
+	if(!rename(_fi.dir(), oldName, newName)) {
+		logSrv->add(QString(tr("Could NOT rename the instrumental file \"%1\" to \"%2\".")).arg(oldName, newName), QU::Warning);
+		return;
+	}
+
+	setInfo(INSTRUMENTAL_TAG, newName);
+	logSrv->add(QString(tr("Instrumental file renamed from: \"%1\" to: \"%2\".")).arg(oldName, newName), QU::Information);
+}
+
+/*!
+ * Try to rename the vocals file of the current song file. The information about the
+ * current instrumental file has to be correct or the file cannot be found and renamed.
+ * \param newName the new name (avoid illegal characters for your OS)
+ */
+void QUSongFile::renameSongVocals(const QString &newName) {
+	QString oldName(vocals());
+	if (oldName == N_A)
+		return;
+
+	if(!rename(_fi.dir(), oldName, newName)) {
+		logSrv->add(QString(tr("Could NOT rename the vocals file \"%1\" to \"%2\".")).arg(oldName, newName), QU::Warning);
+		return;
+	}
+
+	setInfo(VOCALS_TAG, newName);
+	logSrv->add(QString(tr("Vocals file renamed from: \"%1\" to: \"%2\".")).arg(oldName, newName), QU::Information);
 }
 
 /*!
@@ -1641,47 +1702,60 @@ void QUSongFile::initScoreFile() {
 
 void QUSongFile::updateReplayGain()
 {
-	delete _rgInfo;
-	_rgInfo = nullptr;
-	QFileInfo fi = audioFileInfo();
-	TagLib::FileRef file(fi.absoluteFilePath().toLocal8Bit().data(), false);
-	TagLib::File *f = file.file();
-	TagLib::MP4::File *mp4File = nullptr;
-	if (!f || !f->isValid())
-		return;
+	std::array<std::pair<QString, ReplayGainInfo*&>, 3> files  {{
+		{ audio(), _rgInfo },
+		{ instrumental(), _rgInfoInstrumental },
+		{ vocals(), _rgInfoVocals }
+	}};
 
-	if ((mp4File = dynamic_cast<TagLib::MP4::File*>(file.file()))) {
-		TagLib::MP4::Tag *tag = mp4File->tag();
-		const TagLib::MP4::ItemMap &map = tag->itemMap();
-		auto itGain = map.find("----:com.apple.iTunes:REPLAYGAIN_TRACK_GAIN");
-		if (itGain == map.end())
-			itGain = map.find("----:com.apple.iTunes:replaygain_track_gain");
-		auto itPeak = map.find("----:com.apple.iTunes:REPLAYGAIN_TRACK_PEAK");
-		if (itPeak == map.end())
-			itPeak = map.find("----:com.apple.iTunes:replaygain_track_peak");
-		if (itGain != map.end() && itPeak != map.end())
-			_rgInfo = new ReplayGainInfo {
-				QString::fromStdString(itGain->second.toStringList().toString().to8Bit()),
-				QString::fromStdString(itPeak->second.toStringList().toString().to8Bit())
-			};
-	}
-	else {
-		TagLib::Ogg::Opus::File *opusFile = dynamic_cast<TagLib::Ogg::Opus::File*>(file.file());
-		TagLib::PropertyMap map = f->properties();
-		auto itGain = map.find("REPLAYGAIN_TRACK_GAIN");
-		auto itPeak = map.find("REPLAYGAIN_TRACK_PEAK");
-		if (itGain != map.end() && itPeak != map.end())
-			_rgInfo =  new ReplayGainInfo {
-				QString::fromStdString(itGain->second.toString().to8Bit()),
-				QString::fromStdString(itPeak->second.toString().to8Bit())
-			};
-		else if (opusFile) {
-			auto itGainR128 = map.find("R128_TRACK_GAIN");
-			if (itGainR128 != map.end())
-				_rgInfo = new ReplayGainInfo {
-					QString("%1 dB").arg((std::stod(itGainR128->second.toString().to8Bit()) / 256.0) + 5.0, 0, 'f', 2),
-					QString()
+	for (const auto& [filename, rgInfo] : files) {
+		delete rgInfo;
+		rgInfo = nullptr;
+		if (filename == N_A)
+			continue;
+		QFileInfo fi(_fi.dir(), filename);
+		if (!fi.exists() || !QUSongSupport::allowedAudioFiles().contains("*." + fi.suffix(), Qt::CaseInsensitive))
+			continue;
+
+		TagLib::FileRef file(fi.absoluteFilePath().toLocal8Bit().data(), false);
+		TagLib::File *f = file.file();
+		TagLib::MP4::File *mp4File = nullptr;
+		if (!f || !f->isValid())
+			return;
+
+		if ((mp4File = dynamic_cast<TagLib::MP4::File*>(file.file()))) {
+			TagLib::MP4::Tag *tag = mp4File->tag();
+			const TagLib::MP4::ItemMap &map = tag->itemMap();
+			auto itGain = map.find("----:com.apple.iTunes:REPLAYGAIN_TRACK_GAIN");
+			if (itGain == map.end())
+				itGain = map.find("----:com.apple.iTunes:replaygain_track_gain");
+			auto itPeak = map.find("----:com.apple.iTunes:REPLAYGAIN_TRACK_PEAK");
+			if (itPeak == map.end())
+				itPeak = map.find("----:com.apple.iTunes:replaygain_track_peak");
+			if (itGain != map.end() && itPeak != map.end())
+				rgInfo = new ReplayGainInfo {
+					QString::fromStdString(itGain->second.toStringList().toString().to8Bit()),
+					QString::fromStdString(itPeak->second.toStringList().toString().to8Bit())
 				};
+		}
+		else {
+			TagLib::Ogg::Opus::File *opusFile = dynamic_cast<TagLib::Ogg::Opus::File*>(file.file());
+			TagLib::PropertyMap map = f->properties();
+			auto itGain = map.find("REPLAYGAIN_TRACK_GAIN");
+			auto itPeak = map.find("REPLAYGAIN_TRACK_PEAK");
+			if (itGain != map.end() && itPeak != map.end())
+				rgInfo =  new ReplayGainInfo {
+					QString::fromStdString(itGain->second.toString().to8Bit()),
+					QString::fromStdString(itPeak->second.toString().to8Bit())
+				};
+			else if (opusFile) {
+				auto itGainR128 = map.find("R128_TRACK_GAIN");
+				if (itGainR128 != map.end())
+					rgInfo = new ReplayGainInfo {
+						QString("%1 dB").arg((std::stod(itGainR128->second.toString().to8Bit()) / 256.0) + 5.0, 0, 'f', 2),
+						QString()
+					};
+			}
 		}
 	}
 }
