@@ -767,8 +767,9 @@ bool QUSongFile::save(bool force) {
 	}
 
 	// Upgrade text version if required
-	if (customTag(AUDIO_TAG) != N_A && setMinimumVersion(QUSongVersion::SupportedVersion::v1_1_0))
-		logSrv->add(tr("Text file \"%1\" was upgraded to v1.1.0 because it has the #AUDIO tag").arg(this->songFileInfo().fileName()), QU::Information);
+	if (((customTag(AUDIO_TAG) != N_A) || (customTag(INSTRUMENTAL_TAG) != N_A) || (customTag(VOCALS_TAG) != N_A))
+	&& setMinimumVersion(QUSongVersion::SupportedVersion::v1_1_0))
+		logSrv->add(tr("Text file \"%1\" was upgraded to v1.1.0").arg(this->songFileInfo().fileName()), QU::Information);
 
 	QStringList tags;
 	QSettings settings;
