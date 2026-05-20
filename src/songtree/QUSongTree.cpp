@@ -80,6 +80,12 @@ void QUSongTree::initHorizontalHeader() {
 	header->setIcon(AUDIO_COLUMN, QIcon(":/types/music.png"));
 	header->setToolTip(AUDIO_COLUMN, tr("Shows whether the song text file points to an <b>audio file</b> that can be found by UltraStar"));
 	header->setSizeHint(AUDIO_COLUMN, QSize(25,0));
+	header->setIcon(INSTRUMENTAL_COLUMN, QIcon(":/types/instrumental.png"));
+	header->setToolTip(INSTRUMENTAL_COLUMN, tr("Shows whether the song text file points to an <b>instrumental file</b> that can be found by UltraStar"));
+	header->setSizeHint(INSTRUMENTAL_COLUMN, QSize(25,0));
+	header->setIcon(VOCALS_COLUMN, QIcon(":/types/vocals.png"));
+	header->setToolTip(VOCALS_COLUMN, tr("Shows whether the song text file points to an <b>vocals file</b> that can be found by UltraStar"));
+	header->setSizeHint(VOCALS_COLUMN, QSize(25,0));
 	header->setIcon(COVER_COLUMN, QIcon(":/types/cover.png"));
 	header->setToolTip(COVER_COLUMN, tr("Shows whether the song text file points to a <b>cover picture</b> that can be found by UltraStar"));
 	header->setSizeHint(COVER_COLUMN, QSize(25,0));
@@ -728,6 +734,8 @@ void QUSongTree::showDefaultColumns(bool save) {
 	this->header()->showSection(ARTIST_COLUMN);
 	this->header()->showSection(TITLE_COLUMN);
 	this->header()->showSection(AUDIO_COLUMN);
+	this->header()->showSection(INSTRUMENTAL_COLUMN);
+	this->header()->showSection(VOCALS_COLUMN);
 	this->header()->showSection(COVER_COLUMN);
 	this->header()->showSection(BACKGROUND_COLUMN);
 	this->header()->showSection(VIDEO_COLUMN);
@@ -806,6 +814,8 @@ void QUSongTree::showCheckColumns() {
 	this->header()->showSection(ARTIST_COLUMN);
 	this->header()->showSection(TITLE_COLUMN);
 	this->header()->showSection(AUDIO_COLUMN);
+	this->header()->showSection(INSTRUMENTAL_COLUMN);
+	this->header()->showSection(VOCALS_COLUMN);
 	this->header()->showSection(COVER_COLUMN);
 	this->header()->showSection(BACKGROUND_COLUMN);
 	this->header()->showSection(VIDEO_COLUMN);

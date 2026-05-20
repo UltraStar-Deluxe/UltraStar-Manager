@@ -124,7 +124,10 @@ public slots:
 	QString txt() const {return _fi.fileName();}
 
 	bool hasAudio() const;
-	bool hasReplayGain() const { return _rgInfo != nullptr; }
+	bool hasInstrumental() const;
+	bool hasVocals() const;
+
+	bool hasReplayGain() const { return _rgInfo != nullptr && (!hasInstrumental() || _rgInfoInstrumental != nullptr) && (!hasVocals() || _rgInfoVocals != nullptr); }
 	bool hasCover() const;
 	bool hasBackground() const;
 	bool hasVideo() const;
@@ -153,7 +156,10 @@ public slots:
 
 	QFileInfo songFileInfo() const { QFileInfo result(_fi); result.refresh(); return result; } //!< \returns a file info for the current US song file
 
-	QFileInfo audioFileInfo() const {return QFileInfo(_fi.dir(), audio());} //!< \returns a file info for the mp3 file
+	QFileInfo audioFileInfo() const {return QFileInfo(_fi.dir(), audio());} //!< \returns a file info for the audio/mp3 file
+	QFileInfo instrumentalFileInfo() const {return QFileInfo(_fi.dir(), instrumental());} //!< \returns a file info for the instrumental file
+	QFileInfo vocalsFileInfo() const {return QFileInfo(_fi.dir(), vocals());} //!< \returns a file info for the vocals file
+
 	QFileInfo coverFileInfo() const {return QFileInfo(_fi.dir(), cover());} //!< \returns a file info for the cover file
 	QFileInfo backgroundFileInfo() const {return QFileInfo(_fi.dir(), background());} //!< \returns a file info for the background file
 	QFileInfo videoFileInfo() const {return QFileInfo(_fi.dir(), video());} //!< \returns a file info for the video file
@@ -165,6 +171,8 @@ public slots:
 	void renameSongDir(const QString &newName);
 	void renameSongTxt(const QString &newName);
 	void renameSongAudio(const QString &newName);
+	void renameSongInstrumental(const QString &newName);
+	void renameSongVocals(const QString &newName);
 	void renameSongCover(const QString &newName);
 	void renameSongBackground(const QString &newName);
 	void renameSongVideo(const QString &newName);
@@ -239,6 +247,9 @@ private:
 	QStringList _lyrics;		  // lyrics
 	QStringList _footer;		  // other stuff after the end mark 'E' in the song file
 	ReplayGainInfo *_rgInfo;
+	ReplayGainInfo *_rgInfoInstrumental;
+	ReplayGainInfo *_rgInfoVocals;
+
 	LineEnding _lineEnding = LineEnding::CRLF;
 	QUSongVersion _version;
 

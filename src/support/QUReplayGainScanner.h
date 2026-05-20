@@ -6,12 +6,13 @@
 #include <QList>
 #include <QAudioDecoder>
 #include <QEventLoop>
+#include <QFileInfo>
 
 class QAudioFormat;
 class QUReplayGainFile: public QObject {
     Q_OBJECT
 public:
-    QUReplayGainFile(const QString &path, QObject *parent = nullptr);
+    QUReplayGainFile(const QFileInfo &path, const QFileInfo &pathInstrumental, const QFileInfo &pathVocals, QObject *parent = nullptr);
     ~QUReplayGainFile();
     bool scan();
     bool tag();
@@ -23,7 +24,9 @@ public slots:
     void cancel();
 
 private:
-    QString _path;
+    QFileInfo _path;
+    QFileInfo _pathInstrumental;
+    QFileInfo _pathVocals;
     QAudioDecoder _decoder;
     ebur128_state *_ebur128_state;
     QEventLoop _loop;

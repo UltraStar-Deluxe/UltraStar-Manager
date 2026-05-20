@@ -748,7 +748,22 @@ void QUMainWindow::editSongSetFileLink(QTreeWidgetItem *item, int column) {
 		logSrv->add(QString(tr("Audio file changed from \"%1\" to: \"%2\".")).arg(song->audio(), songItem->text(FOLDER_COLUMN)), QU::Information);
 		song->setAudioInfo(songItem->text(FOLDER_COLUMN));
 		song->save();
-	} else if( songItem->icon(COVER_COLUMN).isNull()
+	}
+	else if( songItem->icon(INSTRUMENTAL_COLUMN).isNull()
+			&& QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)
+			&& column == INSTRUMENTAL_COLUMN ) {
+		logSrv->add(QString(tr("Instrumental file changed from \"%1\" to: \"%2\".")).arg(song->instrumental(), songItem->text(FOLDER_COLUMN)), QU::Information);
+		song->setInfo(INSTRUMENTAL_TAG, songItem->text(FOLDER_COLUMN));
+		song->save();
+	}
+	else if( songItem->icon(VOCALS_COLUMN).isNull()
+			&& QUSongSupport::allowedAudioFiles().contains(fileScheme, Qt::CaseInsensitive)
+			&& column == VOCALS_COLUMN ) {
+		logSrv->add(QString(tr("Vocals file changed from \"%1\" to: \"%2\".")).arg(song->vocals(), songItem->text(FOLDER_COLUMN)), QU::Information);
+		song->setInfo(VOCALS_TAG, songItem->text(FOLDER_COLUMN));
+		song->save();
+	}
+	else if( songItem->icon(COVER_COLUMN).isNull()
 			&& QUSongSupport::allowedImageFiles().contains(fileScheme, Qt::CaseInsensitive)
 			&& column == COVER_COLUMN ) {
 		logSrv->add(QString(tr("Cover changed from \"%1\" to: \"%2\".")).arg(song->cover(), songItem->text(FOLDER_COLUMN)), QU::Information);

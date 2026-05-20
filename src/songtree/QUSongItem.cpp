@@ -177,11 +177,21 @@ void QUSongItem::updateAsAudio() {
 	if(QString::compare(song()->audio(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
 		this->setIcon(AUDIO_COLUMN, QIcon(":/marks/link.png"));
 		used = true;
-	} else if(song()->friendHasTag(AUDIO_TAG, this->text(FOLDER_COLUMN)) || song()->friendHasTag(MP3_TAG, this->text(FOLDER_COLUMN))) { // audio file used by friend
+	}
+	if (QString::compare(song()->instrumental(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
+		this->setIcon(INSTRUMENTAL_COLUMN, QIcon(":/marks/link.png"));
+		used = true;
+	}
+	if (QString::compare(song()->vocals(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
+		this->setIcon(VOCALS_COLUMN, QIcon(":/marks/link.png"));
+		used = true;
+	}
+	if(!used && (song()->friendHasTag(AUDIO_TAG, this->text(FOLDER_COLUMN)) || song()->friendHasTag(MP3_TAG, this->text(FOLDER_COLUMN)))) { // audio file used by friend
 		this->setForeground(FOLDER_COLUMN, QColor(13, 86, 166, 255));
 		this->setBackground(FOLDER_COLUMN, QColor(255, 209, 64, 120));
 		used = true;
 	}
+
 
 	if(QString::compare(song()->video(), this->text(FOLDER_COLUMN), Qt::CaseInsensitive) == 0) {
 		this->setIcon(VIDEO_COLUMN, QIcon(":/marks/link.png"));
@@ -400,7 +410,12 @@ void QUSongItem::setTick(int column) {
 
 			// used for sorting
 			this->setData(column, Qt::UserRole, QVariant(mp3_quality));
-		} else if(column == COVER_COLUMN) {
+		}
+		else if((column == INSTRUMENTAL_COLUMN) || (column == VOCALS_COLUMN)) {
+			this->setIcon(column, QIcon(":/marks/tick.png"));
+			this->setData(column, Qt::UserRole, QVariant(0));
+		}
+		else if(column == COVER_COLUMN) {
 			QImageReader reader(this->song()->coverFileInfo().filePath());
 			if (!reader.canRead()) {
 				this->setIcon(column, QIcon(":/marks/cross_error.png"));
@@ -513,6 +528,10 @@ void QUSongItem::setTick(int column) {
 	else {
 		if(column == AUDIO_COLUMN) {
 			this->setIcon(column, QIcon(":/types/music.png"));
+		} else if(column == INSTRUMENTAL_COLUMN) {
+			this->setIcon(column, QIcon(":/types/instrumental.png"));
+		} else if(column == VOCALS_COLUMN) {
+			this->setIcon(column, QIcon(":/types/vocals.png"));
 		} else if(column == COVER_COLUMN) {
 			this->setIcon(column, QIcon(":/types/cover.png"));
 		} else if(column == BACKGROUND_COLUMN) {
@@ -558,7 +577,7 @@ void QUSongItem::setCross(int column, bool isWarning, QString toolTip) {
 			this->setData(column, Qt::UserRole, QVariant(0)); // used for sorting, should be smaller than a "tick" icon
 		} else {
 			this->setIcon(column, QIcon());
-			this->setData(column, Qt::UserRole, QVariant(0)); // used for sorting, should be smaller than a "tick" icon
+			this->setData(column, Qt::UserRole, QVariant(-1)); // used for sorting, should be smaller than a "tick" icon
 		}
 	}
 
@@ -599,6 +618,8 @@ bool QUSongItem::operator< (const QTreeWidgetItem &other) const {
 	case ARTIST_COLUMN:
 	case TITLE_COLUMN:
 	case AUDIO_COLUMN:
+	case INSTRUMENTAL_COLUMN:
+	case VOCALS_COLUMN:
 	case COVER_COLUMN:
 	case BACKGROUND_COLUMN:
 	case VIDEO_COLUMN:
@@ -687,6 +708,16 @@ void QUSongItem::updateFileCheckColumns() {
 	else if(song()->audio() != N_A && song()->audioFileInfo().exists())			this->setCross(AUDIO_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->audio()));
 	else																	this->setCross(AUDIO_COLUMN);
 
+		 if(song()->hasInstrumental())										this->setTick(INSTRUMENTAL_COLUMN);
+	else if(song()->instrumental() != N_A && !song()->instrumentalFileInfo().exists())		this->setCross(INSTRUMENTAL_COLUMN, false, QString(QObject::tr("File not found: \"%1\"")).arg(song()->instrumental()));
+	else if(song()->instrumental() != N_A && song()->instrumentalFileInfo().exists())			this->setCross(INSTRUMENTAL_COLUMN, false, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->instrumental()));
+	else																	this->setCross(INSTRUMENTAL_COLUMN);
+
+		 if(song()->hasVocals())										this->setTick(VOCALS_COLUMN);
+	else if(song()->vocals() != N_A && !song()->vocalsFileInfo().exists())		this->setCross(VOCALS_COLUMN, false, QString(QObject::tr("File not found: \"%1\"")).arg(song()->vocals()));
+	else if(song()->vocals() != N_A && song()->vocalsFileInfo().exists())			this->setCross(VOCALS_COLUMN, false, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->vocals()));
+	else																	this->setCross(VOCALS_COLUMN);
+
 		 if(song()->hasCover())												this->setTick(COVER_COLUMN);
 	else if(song()->cover() != N_A && !song()->coverFileInfo().exists())	this->setCross(COVER_COLUMN, true, QString(QObject::tr("File not found: \"%1\"")).arg(song()->cover()));
 	else if(song()->cover() != N_A && song()->coverFileInfo().exists())		this->setCross(COVER_COLUMN, true, QString(QObject::tr("File type unsupported: \"%1\"")).arg(song()->cover()));
@@ -713,8 +744,11 @@ void QUSongItem::updateFileCheckColumns() {
 			)
 		);
 	}
-	else
+	else {
 		this->setCross(REPLAYGAIN_COLUMN);
+		if (song()->rgInfo() != nullptr)
+			this->setToolTip(REPLAYGAIN_COLUMN, QObject::tr("Instrumental and/or vocal file lacks ReplayGain information"));
+	}
 
 	// score files
 	if(song()->score())

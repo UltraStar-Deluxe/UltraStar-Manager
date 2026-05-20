@@ -276,6 +276,8 @@
         <file>sync.png</file>
         <file>tags.png</file>
         <file>format_version.png</file>
+        <file>instrumental.png</file>
+        <file>vocals.png</file>
     </qresource>
     <qresource prefix="/big">
         <file>save_big.png</file>
