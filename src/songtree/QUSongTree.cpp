@@ -655,6 +655,26 @@ void QUSongTree::showHeaderMenu(const QPoint &point) {
 	menu.addMenu(&presetsMenu);
 	menu.addSeparator();
 
+	QMenu filesMenu(tr("Files"), this);
+	std::array<std::pair<int, QString>, 7> fileColumns {{
+		{ AUDIO_COLUMN, tr("Audio") },
+		{ INSTRUMENTAL_COLUMN, tr("Instrumental") },
+		{ VOCALS_COLUMN, tr("Vocals") },
+		{ COVER_COLUMN, tr("Cover") },
+		{ BACKGROUND_COLUMN, tr("Background") },
+		{ VIDEO_COLUMN, tr("Video") },
+		{ REPLAYGAIN_COLUMN, tr("ReplayGain") }
+	}};
+
+	for (int i = 0; i < fileColumns.size(); i++) {
+		QUColumnAction *a = new QUColumnAction(fileColumns[i].second, fileColumns[i].first); // save the logical index of this column
+		a->setChecked(!header()->isSectionHidden(fileColumns[i].first));
+		connect(a, SIGNAL(columnToggled(bool, int)), this, SLOT(toggleColumn(bool, int)));
+		filesMenu.addAction(a);
+	}
+	menu.addMenu(&filesMenu);
+	menu.addSeparator();
+
 	QMenu customTagsMenu(tr("Custom Tags"), this); customTagsMenu.setIcon(QIcon(":/bullets/bullet_star.png"));
 	QMenu lengthsMenu(tr("Time && Speed"), this); lengthsMenu.setIcon(QIcon(":/types/time.png"));
 	QMenu typesMenu(tr("Types"), this);
