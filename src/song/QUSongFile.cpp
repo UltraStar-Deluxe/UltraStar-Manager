@@ -761,7 +761,7 @@ bool QUSongFile::save(bool force) {
 	_file.setFileName(_fi.filePath());
 
 	if(!_file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-		logSrv->add(QString(tr("Save error! The song file \"%1\" was NOT saved.")).arg(this->songFileInfo().fileName()), QU::Warning);
+		logSrv->add(QString(tr("Save error: %1! The song file \"%2\" was NOT saved.")).arg(_file.errorString()).arg(this->songFileInfo().fileName()), QU::Warning);
 		monty->watcher()->addPath(_fi.filePath());
 		return false;
 	}

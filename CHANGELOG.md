@@ -1,5 +1,16 @@
 # UltraStar Manager Changelog
 
+## Changelog (2.3.1 to 2.4.0)
+### Features
+- Full Support for `#VOCALS` and `#INSTRUMENTAL`:
+  - Add columns in the song tree which indicates with a tick/cross whether the song has #INSTRUMENTAL and #VOCALS assigned
+  - Ability to assign #INSTRUMENTAL and #VOCALS to a song by doubling clicking on audio files in the song tree
+  - Added Rename tasks to rename the instrumental and vocals file names to include the recommended [INSTR] and [VOC] suffixes
+  - For the ReplayGain scanner feature, write the same gain from the main audio file to the instrumental and vocals files if present
+- Ability to hide file check columns
+- Sort text columns case insensitively
+- More verbose error reporting when saving a .txt fails
+
 ## Changelog (2.3.0 to 2.3.1)
 ### Bug fixes
 - Fix formatting of report dialog
