@@ -330,6 +330,16 @@ bool QUSongFile::updateCache() {
 	return true;
 }
 
+bool QUSongFile::reloadFromDisk() {
+	if(!updateCache())
+		return false;
+
+	_hasUnsavedChanges = false;
+	emit dataChanged();
+	logSrv->add(QString(tr("Song file reloaded: \"%1\"")).arg(QDir::toNativeSeparators(songFileInfo().filePath())), QU::Information);
+	return true;
+}
+
 /*!
  * Checks whether the text file is UTF8 encoded
  * \returns True if the text file contains UTF8 encoded text.

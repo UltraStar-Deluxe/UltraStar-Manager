@@ -13,6 +13,7 @@
 #include "tstring.h"
 
 QUSongInfo::QUSongInfo(QUSongFile *song) {
+	songFile = song;
 	_isValid = song->hasAudio();
 
 	gap1 = QVariant(song->gap().replace(",", ".")).toDouble();
@@ -100,6 +101,18 @@ void QUMediaPlayer::setSongs(const QList<QUSongFile*> &songs, Source src) {
 	}
 }
 
+void QUMediaPlayer::refreshSong(QUSongFile *song) {
+	for(int i = 0; i < _songs.size(); ++i) {
+		if(_songs.at(i).songFile != song)
+			continue;
+
+		if(i == _currentSongIndex && state() != QUMediaPlayer::stopped)
+			stop();
+
+		_songs[i] = QUSongInfo(song);
+	}
+}
+
 void QUMediaPlayer::play() {
 	if(_player->playbackState() == QMediaPlayer::PlayingState)
 		return;	// already playing
@@ -112,7 +125,8 @@ void QUMediaPlayer::play() {
 	if(_currentSongIndex < 0 || _currentSongIndex >= _songs.size())
 		return; // invalid index
 
-	QUSongInfo info = _songs.at(_currentSongIndex);
+	QUSongInfo info(_songs.at(_currentSongIndex).songFile);
+	_songs[_currentSongIndex] = info;
 	_freeIndices.removeAll(_currentSongIndex);
 
 	if(!info.isValid()) {

@@ -62,6 +62,7 @@ public slots:
 
 signals:
 	void songToPlaylistRequested(QUSongFile *song);
+	void songReloaded(QUSongFile *song);
 	void playSelectedSongsRequested();
 	void coversRequested(QList<QUSongItem*> items);
 	void coverFlowRequested(QList<QUSongItem*> items);
