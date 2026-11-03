@@ -9,6 +9,7 @@
 #include <QMap>
 #include <QDir>
 #include <QSettings>
+#include <QMetaType>
 
 #include "QU.h"
 #include "QUSongLine.h"
@@ -283,5 +284,7 @@ private:
 	bool isValidUTF8(QFile &in) const;
 	bool setMinimumVersion(const QUSongVersion &version);
 };
+
+Q_DECLARE_METATYPE(QUSongFile*)
 
 #endif /*QUSONGFILE_H_*/

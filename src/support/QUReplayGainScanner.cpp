@@ -33,7 +33,7 @@ QUReplayGainFile::QUReplayGainFile(const QFileInfo &path, const QFileInfo &pathI
     _error(false),
     _cancelled(false)
 {
-    _decoder.setSource(QUrl(path.absoluteFilePath()));
+    _decoder.setSource(QUrl::fromLocalFile(path.absoluteFilePath()));
 }
 
 QUReplayGainFile::~QUReplayGainFile()
