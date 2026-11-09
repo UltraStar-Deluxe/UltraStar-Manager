@@ -2,6 +2,7 @@
 #include "QUMainWindow.h"
 #include "QUMonty.h"
 #include "QUMessageBox.h"
+#include "QUSongFile.h"
 
 #include <QApplication>
 #include <QColor>
@@ -32,6 +33,8 @@ int main(int argc, char *argv[]) {
 	QApplication app(argc, argv);
 	QTranslator  trContent;
 	QTranslator  trQt;
+
+	qRegisterMetaType<QUSongFile*>("QUSongFile*");
 
 	// create splash screen with major and minor version number
 	QPixmap canvas(":/splash/splash.png");
