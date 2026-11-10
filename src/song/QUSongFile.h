@@ -38,6 +38,7 @@ public:
 	void setFile(const QString &filePath, bool update = true);
 
 	bool updateCache();
+	bool reloadFromDisk();
 	void updateReplayGain();
 
 	bool isValid();

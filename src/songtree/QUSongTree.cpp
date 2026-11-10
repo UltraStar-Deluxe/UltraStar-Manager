@@ -613,10 +613,16 @@ QStringList QUSongTree::mimeTypes() const {
 void QUSongTree::showItemMenu(const QPoint &point) {
 	QMenu *menu;
 
-	if(!this->itemAt(point))
+	QTreeWidgetItem *clickedItem = this->itemAt(point);
+	if(!clickedItem)
 		menu = generalMenu();
 	else {
-		QUSongItem *item = dynamic_cast<QUSongItem*>(this->currentItem());
+		setCurrentItem(clickedItem);
+		QUSongItem *item = dynamic_cast<QUSongItem*>(clickedItem);
+		if(item && item->isToplevel() && !item->isSelected()) {
+			clearSelection();
+			item->setSelected(true);
+		}
 		if(item)
 			menu = itemMenu(item);
 		else
@@ -1294,6 +1300,24 @@ void QUSongTree::refreshSelectedItems() {
 	if(songItems.isEmpty())
 		return;
 
+	foreach(QUSongItem *songItem, songItems) {
+		QUSongFile *song = songItem->song();
+		bool hasUnsavedChanges = song->hasUnsavedChanges();
+		foreach(QUSongFile *friendSong, song->friends())
+			hasUnsavedChanges = hasUnsavedChanges || friendSong->hasUnsavedChanges();
+
+		if(hasUnsavedChanges) {
+			int result = QUMessageBox::information(this,
+					tr("Refresh Songs"),
+					tr("Refreshing will discard unsaved changes in the selected songs. Continue?"),
+					BTN << ":/control/refresh.png" << tr("Discard changes and refresh.")
+						<< ":/marks/cancel.png" << tr("Cancel refresh."));
+			if(result != 0)
+				return;
+			break;
+		}
+	}
+
 	QUProgressDialog dlg(tr("Refreshing selected songs..."), songItems.size(), this, false);
 	dlg.setPixmap(":/types/folder.png");
 	dlg.show();
@@ -1305,6 +1329,15 @@ void QUSongTree::refreshSelectedItems() {
 		if(dlg.cancelled()) break;
 
 		itemExpandedStates.append(songItem->isExpanded());
+
+		QUSongFile *song = songItem->song();
+		QList<QUSongFile*> songsToReload;
+		songsToReload << song;
+		songsToReload.append(song->friends());
+		foreach(QUSongFile *songToReload, songsToReload) {
+			if(songToReload->reloadFromDisk())
+				emit songReloaded(songToReload);
+		}
 
 		if(songItem->isToplevel()) { // for performance reasons...
 			takeTopLevelItem(indexOfTopLevelItem(songItem));

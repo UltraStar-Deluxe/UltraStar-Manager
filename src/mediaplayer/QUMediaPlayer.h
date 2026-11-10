@@ -17,6 +17,7 @@ public:
 
 	QList<QUSongLineInterface*> melody1;
 	QList<QUSongLineInterface*> melody2;
+	QUSongFile *songFile;
 	double bpm;
 	double gap1;
 	double gap2;
@@ -72,6 +73,7 @@ public slots:
 	void seek();
 
 	void requestSongs();
+	void refreshSong(QUSongFile *song);
 
 private slots:
 	void updateTime();

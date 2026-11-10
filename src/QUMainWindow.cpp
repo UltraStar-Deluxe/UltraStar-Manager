@@ -448,6 +448,7 @@ void QUMainWindow::initSongTree() {
 
 	connect(songTree, SIGNAL(itemExpanded(QTreeWidgetItem*)), songTree, SLOT(resizeToContents()));
 	connect(songTree, SIGNAL(itemCollapsed(QTreeWidgetItem*)), songTree, SLOT(resizeToContents()));
+	connect(songTree, SIGNAL(songReloaded(QUSongFile*)), mediaplayer, SLOT(refreshSong(QUSongFile*)));
 
 	connect(songTree, SIGNAL(songToPlaylistRequested(QUSongFile*)), playlistArea, SLOT(addSongToCurrentPlaylist(QUSongFile*)));
 	connect(songTree, SIGNAL(coversRequested(QList<QUSongItem*>)), this, SLOT(getCovers(QList<QUSongItem*>)));
